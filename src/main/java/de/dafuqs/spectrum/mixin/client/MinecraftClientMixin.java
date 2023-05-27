@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 	
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/util/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/Biome;getMusic()Ljava/util/Optional;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
 	public void spectrum$getMusicType(CallbackInfoReturnable<MusicSound> cir) {
 		MinecraftClient thisClient = (MinecraftClient) (Object) this;
 		if (thisClient.player.world.getRegistryKey() == SpectrumCommon.DEEPER_DOWN) {

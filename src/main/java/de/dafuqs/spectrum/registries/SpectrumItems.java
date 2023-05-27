@@ -26,7 +26,6 @@ import de.dafuqs.spectrum.registries.color.*;
 import io.wispforest.owo.itemgroup.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -214,10 +213,10 @@ public class SpectrumItems {
 	};
 	
 	// Armor
-	public static final Item FETCHLING_HELMET = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.HELMET, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.HEAD)));
-	public static final Item FEROCIOUS_CHESTPLATE = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.CHESTPLATE, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.CHEST)));
-	public static final Item SYLPH_LEGGINGS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.LEGGINGS, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.LEGS)));
-	public static final Item OREAD_BOOTS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.BOOTS, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.FEET)));
+	public static final Item FETCHLING_HELMET = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.HELMET, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(ArmorItem.Type.HELMET)));
+	public static final Item FEROCIOUS_CHESTPLATE = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.CHESTPLATE, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(ArmorItem.Type.CHESTPLATE)));
+	public static final Item SYLPH_LEGGINGS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.LEGGINGS, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(ArmorItem.Type.LEGGINGS)));
+	public static final Item OREAD_BOOTS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, ArmorItem.Type.BOOTS, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(ArmorItem.Type.BOOTS)));
 	
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);

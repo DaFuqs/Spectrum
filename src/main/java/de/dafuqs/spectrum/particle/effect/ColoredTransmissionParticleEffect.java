@@ -33,7 +33,7 @@ public class ColoredTransmissionParticleEffect extends SimpleTransmissionParticl
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
 			int dyeColorId = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new ColoredTransmissionParticleEffect(new BlockPositionSource(blockPos), i, dyeColorId);
 		}
 		

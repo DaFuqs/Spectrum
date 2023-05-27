@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:decay",
+    "spectrum:deadly_poison",
+    "spectrum:irradiance",
+    "spectrum:ink_projectile",
+    "spectrum:moonstone_strike",
+    "spectrum:set_health_damage"
+  ]
+}

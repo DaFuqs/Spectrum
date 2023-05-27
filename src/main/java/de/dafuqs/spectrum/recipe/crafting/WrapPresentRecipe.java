@@ -17,10 +17,9 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class WrapPresentRecipe extends SpecialCraftingRecipe {
-	// TODO - Fix this recipe serializer
 	public static final RecipeSerializer<WrapPresentRecipe> SERIALIZER = new SpecialRecipeSerializer<>(WrapPresentRecipe::new);
 	
-	public WrapPresentRecipe(Identifier identifier) {
+	public WrapPresentRecipe(Identifier identifier, CraftingRecipeCategory category) {
 		super(identifier, CraftingRecipeCategory.MISC);
 	}
 	

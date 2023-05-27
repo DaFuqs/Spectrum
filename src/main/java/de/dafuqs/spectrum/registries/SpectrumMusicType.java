@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import net.minecraft.client.sound.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.*;
 
 public class SpectrumMusicType extends MusicType {
@@ -9,8 +10,8 @@ public class SpectrumMusicType extends MusicType {
 	public static MusicSound DEEPER_DOWN_THEME;
 	
 	public static void register() {
-		SPECTRUM_THEME = new MusicSound(SpectrumSoundEvents.SPECTRUM_THEME, 6000, 24000, false);
-		DEEPER_DOWN_THEME = new MusicSound(SpectrumSoundEvents.DEEPER_DOWN_THEME, 6000, 24000, false);
+		SPECTRUM_THEME = new MusicSound(Registries.SOUND_EVENT.createEntry(SpectrumSoundEvents.SPECTRUM_THEME), 6000, 24000, false);
+		DEEPER_DOWN_THEME = new MusicSound(Registries.SOUND_EVENT.createEntry(SpectrumSoundEvents.DEEPER_DOWN_THEME), 6000, 24000, false);
 	}
 	
 }

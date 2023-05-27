@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -75,7 +76,7 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (DamageSource.ANVIL.equals(source) || SpectrumDamageSources.FLOATBLOCK.equals(source)) {
+		if (source.isOf(DamageTypes.FALLING_ANVIL) || SpectrumDamageSources.FLOATBLOCK.equals(source)) {
 			doAnvilCrafting(amount);
 			
 			// prevent the source itemStack taking damage.
@@ -109,7 +110,7 @@ public abstract class ItemEntityMixin {
 			if (crushingInputAmount > 0) {
 				Vec3d position = thisEntity.getPos();
 				
-				ItemStack crushingOutput = recipe.getOutput();
+				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager());
 				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 				
 				// Remove the input amount from the source stack
@@ -151,7 +152,7 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
 		
-		if (itemStack != ItemStack.EMPTY && source != DamageSource.OUT_OF_WORLD) {
+		if (itemStack != ItemStack.EMPTY && !source.isOf(DamageTypes.OUT_OF_WORLD)) {
 			boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
 			if (isImmune) {
 				callbackInfoReturnable.setReturnValue(true);
@@ -164,8 +165,7 @@ public abstract class ItemEntityMixin {
 		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
 		
 		if (itemStack != ItemStack.EMPTY) {
-			boolean isImmune = SpectrumItemStackDamageImmunities.isFireDamageImmune(itemStack);
-			if (isImmune) {
+			if (itemStack.isIn(SpectrumDamageSources.FIRE_IMMUNE_ITEMS)) {
 				callbackInfoReturnable.setReturnValue(true);
 			}
 		}

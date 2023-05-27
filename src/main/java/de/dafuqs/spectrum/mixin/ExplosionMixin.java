@@ -17,7 +17,7 @@ public class ExplosionMixin {
 	
 	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/AbstractFireBlock;getState(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
 	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci) {
-		if (this.damageSource == SpectrumDamageSources.INCANDESCENCE) {
+		if (this.damageSource.isOf(SpectrumDamageSources.INCANDESCENCE)) {
 			PrimordialFireBlock.EXPLOSION_CAUSES_PRIMORDIAL_FIRE_FLAG = true;
 		}
 	}

@@ -11,6 +11,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -21,6 +22,7 @@ import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
+	// TODO - Might need to implement a serializer for this
 	
 	public static final RecipeSerializer<HardcorePlayerRevivalRecipe> SERIALIZER = new SpecialRecipeSerializer<>(HardcorePlayerRevivalRecipe::new);
 	
@@ -31,7 +33,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			GameProfile gameProfile = getSkullOwner(inv.getStack(SpiritInstillerRecipe.CENTER_INGREDIENT));
 			if (gameProfile != null) {

@@ -19,6 +19,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("collect_all_shooting_star_variants");
 	public static final Text DESCRIPTION = Text.translatable("spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening");
+	// TODO - Might require custom serializer
 	public static final RecipeSerializer<ShootingStarHardeningRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ShootingStarHardeningRecipe::new);
 	
 	public ShootingStarHardeningRecipe(Identifier identifier) {

@@ -41,7 +41,7 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		this.setSprite(sprite);
 		this.setMaxAge(effect.lifetimeTicks);
 		this.scale(effect.scale);
-		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ());
+		this.setColor(effect.color.x(), effect.color.y(), effect.color.z());
 		this.gravityStrength = effect.gravity;
 		this.collidesWithWorld = effect.collisions;
 		this.glowInTheDark = effect.glowing;

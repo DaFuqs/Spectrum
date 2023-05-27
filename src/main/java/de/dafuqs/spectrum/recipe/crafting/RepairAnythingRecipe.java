@@ -8,6 +8,8 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -17,8 +19,8 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 	
 	private static final Ingredient MOONSTRUCK_NECTAR = Ingredient.ofItems(SpectrumItems.MOONSTRUCK_NECTAR);
 	
-	public RepairAnythingRecipe(Identifier identifier) {
-		super(identifier);
+	public RepairAnythingRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
@@ -45,7 +47,7 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 		return nectarFound && itemFound;
 	}
 	
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j);

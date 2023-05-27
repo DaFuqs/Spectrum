@@ -14,6 +14,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
@@ -166,7 +167,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return this.output.copy();
 	}
 	
@@ -178,7 +179,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 			}
 			decrementIngredientStacks(pedestal, orientation);
 			
-			ItemStack recipeOutput = craft(inv);
+			ItemStack recipeOutput = craft(inv, pedestal.getWorld().getRegistryManager());
 			PlayerEntity player = pedestal.getOwnerIfOnline();
 			if (player != null) {
 				recipeOutput.onCraft(pedestal.getWorld(), player, recipeOutput.getCount());
@@ -242,7 +243,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return this.output;
 	}
 	

@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -13,8 +15,8 @@ public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearEnderSpliceRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearEnderSpliceRecipe::new);
 	
-	public ClearEnderSpliceRecipe(Identifier identifier) {
-		super(identifier);
+	public ClearEnderSpliceRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
@@ -38,7 +40,7 @@ public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 		return enderSpliceFound;
 	}
 	
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();

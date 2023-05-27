@@ -16,6 +16,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
@@ -73,7 +74,7 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return outputItemStack.copy();
 	}
 	
@@ -103,14 +104,14 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		ItemStack resultStack = ItemStack.EMPTY;
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
 			World world = spiritInstillerBlockEntity.getWorld();
 			BlockPos pos = spiritInstillerBlockEntity.getPos();
 
-			resultStack = getOutput().copy();
+			resultStack = getOutput(drm).copy();
 
 			// Yield upgrade
 			if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {

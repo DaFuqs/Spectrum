@@ -51,9 +51,9 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 				// just check every 20 ticks for performance
 				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
 					if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-						livingEntity.damage(SpectrumDamageSources.DRAGONROT, 6);
+						livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
 					} else {
-						livingEntity.damage(SpectrumDamageSources.DRAGONROT, 3);
+						livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
 					}
 					if (!livingEntity.isDead()) {
 						StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
@@ -72,7 +72,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 					DragonrotConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.DRAGONROT_CONVERTING, world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(world.getRegistryManager()), recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount(), Vec3d.ZERO);
 						itemEntity.discard();
 					}
 				}

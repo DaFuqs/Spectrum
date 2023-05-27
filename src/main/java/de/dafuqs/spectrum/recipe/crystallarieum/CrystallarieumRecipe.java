@@ -8,6 +8,7 @@ import net.minecraft.block.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
@@ -77,7 +78,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return ItemStack.EMPTY;
 	}
 	
@@ -87,7 +88,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		List<BlockState> states = getGrowthStages();
 		return states.get(states.size() - 1).getBlock().asItem().getDefaultStack();
 	}

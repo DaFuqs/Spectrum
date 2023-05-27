@@ -29,7 +29,7 @@ public class BlockPosEventTransmissionParticleEffect extends SimpleTransmissionP
 			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new BlockPosEventTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		

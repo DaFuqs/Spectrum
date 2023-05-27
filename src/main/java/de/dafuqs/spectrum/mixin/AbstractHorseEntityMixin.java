@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.GravitableItem;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AbstractDonkeyEntity;
 import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -49,7 +48,7 @@ public abstract class AbstractHorseEntityMixin {
 					// take damage when at height heights
 					// otherwise the animal would just be floating forever
 					if (thisEntity.getPos().y > thisEntity.getEntityWorld().getHeight() + 1000) {
-						thisEntity.damage(DamageSource.OUT_OF_WORLD, 10);
+						thisEntity.damage(thisEntity.getDamageSources().outOfWorld(), 10);
 					}
 				}
 			}

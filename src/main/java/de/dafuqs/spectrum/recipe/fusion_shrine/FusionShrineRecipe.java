@@ -12,6 +12,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -83,7 +84,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return ItemStack.EMPTY;
 	}
 	
@@ -93,7 +94,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return output;
 	}
 	
@@ -203,8 +204,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		ItemStack firstStack = ItemStack.EMPTY;
 
 		int maxAmount = 1;
-		if (!getOutput().isEmpty()) {
-			maxAmount = getOutput().getMaxCount();
+		if (!getOutput(world.getRegistryManager()).isEmpty()) {
+			maxAmount = getOutput(world.getRegistryManager()).getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
@@ -252,7 +253,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 			}
 		}
 
-		ItemStack output = getOutput().copy();
+		ItemStack output = getOutput(world.getRegistryManager()).copy();
 		if (this.copyNbt) {
 			output.setNbt(firstStack.getNbt());
 		}

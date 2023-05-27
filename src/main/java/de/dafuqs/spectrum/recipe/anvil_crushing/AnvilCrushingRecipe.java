@@ -9,10 +9,11 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.registry.Registry;
 import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
@@ -50,7 +51,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return null;
 	}
 	
@@ -60,7 +61,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return outputItemStack.copy();
 	}
 	

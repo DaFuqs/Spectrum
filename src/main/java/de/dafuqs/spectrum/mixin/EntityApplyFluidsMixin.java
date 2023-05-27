@@ -23,14 +23,14 @@ public abstract class EntityApplyFluidsMixin {
 	@Shadow
 	public abstract void readNbt(NbtCompound nbt);
 	
-	@Inject(method = "isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z", at = @At("RETURN"), cancellable = true)
+	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValue() && fluidTag == FluidTags.WATER) {
 			cir.setReturnValue(this.submergedFluidTag.contains(fluidTag) || this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
 		}
 	}
 	
-	@Redirect(method = "updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z"))
+	@Redirect(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
 	public boolean spectrum$updateMovementInFluid(FluidState fluidState, TagKey<Fluid> tag) {
 		return isInFluid(fluidState, tag);
 	}

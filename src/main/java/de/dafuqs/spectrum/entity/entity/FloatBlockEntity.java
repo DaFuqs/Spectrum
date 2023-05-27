@@ -90,7 +90,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 					// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
 					List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
 					for (Entity entity : list) {
-						entity.damage(SpectrumDamageSources.FLOATBLOCK, damage);
+						entity.damage(SpectrumDamageSources.floatblock(entity.world), damage);
 					}
 				}
 			}

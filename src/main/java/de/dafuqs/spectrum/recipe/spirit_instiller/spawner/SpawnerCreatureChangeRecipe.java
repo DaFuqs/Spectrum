@@ -18,6 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.Optional;
 
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
+	// TODO - might need a recipe serializer here
 	
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
@@ -56,13 +57,13 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 
 	@Override
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
-		// TODO - Implement
+		// TODO - Implement?
 		return null;
 	}
 
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		// TODO - Implement
+		// TODO - Implement?
 		return null;
 	}
 

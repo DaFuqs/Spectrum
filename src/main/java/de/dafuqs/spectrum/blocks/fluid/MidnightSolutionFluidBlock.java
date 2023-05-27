@@ -84,9 +84,9 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
 					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
 						livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
-						livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
+						livingEntity.damage(SpectrumDamageSources.midnightSolution(world), 2);
 					} else {
-						livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 1);
+						livingEntity.damage(SpectrumDamageSources.midnightSolution(world), 1);
 					}
 					if (livingEntity.isDead()) {
 						livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
@@ -121,7 +121,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(world.getRegistryManager()), recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount(), Vec3d.ZERO);
 						itemEntity.discard();
 					}
 				}

@@ -22,6 +22,7 @@ public abstract class ChunkNoiseSamplerMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void spectrum$init(int horizontalCellCount, NoiseConfig noiseConfig, int startX, int startZ, GenerationShapeConfig generationShapeConfig, DensityFunctionTypes.Beardifying beardifying, ChunkGeneratorSettings chunkGeneratorSettings, AquiferSampler.FluidLevelSampler fluidLevelSampler, Blender blender, CallbackInfo ci, NoiseRouter noiseRouter, NoiseRouter noiseRouter2, ImmutableList.Builder builder, DensityFunction densityFunction) {
 		if (chunkGeneratorSettings.defaultBlock() == Blocks.DEEPSLATE.getDefaultState() && chunkGeneratorSettings.generationShapeConfig().minimumY() == -448) {
+
 			builder.add(DDOreVeinSampler.create(noiseRouter.veinToggle(), noiseRouter.veinRidged(), noiseRouter.veinGap(), noiseConfig.getOreRandomDeriver()));
 		}
 	}

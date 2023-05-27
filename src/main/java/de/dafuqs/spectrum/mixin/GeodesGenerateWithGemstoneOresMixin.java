@@ -28,7 +28,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 	 * @param context The GeodeFeatures feature config
 	 */
 	private void generateGemstoneOres(FeatureContext<GeodeFeatureConfig> context) {
-		BlockState gemBlock = context.getConfig().layerConfig.innerLayerProvider.getBlockState(context.getRandom(), context.getOrigin());
+		BlockState gemBlock = context.getConfig().layerConfig.innerLayerProvider.get(context.getRandom(), context.getOrigin());
 		if (gemBlock != null) {
 			BlockState oreBlockState = getGemstoneOreForGeodeBlock(gemBlock);
 			if (oreBlockState != null) { // do not handle other modded geodes

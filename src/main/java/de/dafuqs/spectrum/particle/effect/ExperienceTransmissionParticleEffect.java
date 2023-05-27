@@ -29,7 +29,7 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new ExperienceTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		

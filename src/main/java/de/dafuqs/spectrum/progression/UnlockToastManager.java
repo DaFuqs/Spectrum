@@ -135,21 +135,21 @@ public class UnlockToastManager {
 			HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 			
 			for (GatedRecipe recipe : unlockedRecipes) {
-				if (!recipe.getOutput().isEmpty()) { // weather recipes
+				if (!recipe.getOutput(null).isEmpty()) { // weather recipes
 					if (recipe.getGroup() == null) {
 						SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are Dafuqs and you are reading this: you messed up big time.");
 					}
 					
 					if (recipe.getGroup().isEmpty()) {
-						ItemStack displayStack = recipe.getOutput().copy();
+						ItemStack displayStack = recipe.getOutput(null).copy();
 						displayStack.setCount(1);
 						UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), displayStack, singleText);
 					} else {
 						if (groupedRecipes.containsKey(recipe.getGroup())) {
-							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
+							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(null));
 						} else {
 							List<ItemStack> newList = new ArrayList<>();
-							newList.add(new ItemStack(recipe.getOutput().getItem()));
+							newList.add(new ItemStack(recipe.getOutput(null).getItem()));
 							groupedRecipes.put(recipe.getGroup(), newList);
 						}
 					}

@@ -14,7 +14,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
-import vazkii.patchouli.client.*;
 
 import static net.minecraft.client.gui.DrawableHelper.*;
 
@@ -143,7 +142,8 @@ public class HudRenderers {
 			
 			matrixStack.push();
 			matrixStack.scale(0.5F, 0.5F, 1F);
-			RenderHelper.renderItemStackInGui(matrixStack, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
+			// TODO - Render the item stack in the GUI, possibly without Patchoulis RenderHelper
+			//RenderHelper.renderItemStackInGui(matrixStack, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 			matrixStack.scale(2F, 2F, 1F);
 			MinecraftClient.getInstance().textRenderer.draw(matrixStack, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF);
 			if (amount == 0) {

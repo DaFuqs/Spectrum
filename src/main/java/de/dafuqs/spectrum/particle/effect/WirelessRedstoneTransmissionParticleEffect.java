@@ -30,7 +30,7 @@ public class WirelessRedstoneTransmissionParticleEffect extends SimpleTransmissi
 			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new WirelessRedstoneTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		

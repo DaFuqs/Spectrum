@@ -44,7 +44,7 @@ public class MoonstoneStrike {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(this) : damageSource;
+        this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(world, this) : damageSource;
     }
 
     public static MoonstoneStrike create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {

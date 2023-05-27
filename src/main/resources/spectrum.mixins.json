@@ -88,7 +88,6 @@
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",
     "client.TransparentBlockMixin",
-    "client.WorldRendererMixin",
     "client.accessors.BakedOverrideAccessor",
     "client.accessors.BossBarHudAccessor",
     "client.accessors.ModelOverrideListAccessor",

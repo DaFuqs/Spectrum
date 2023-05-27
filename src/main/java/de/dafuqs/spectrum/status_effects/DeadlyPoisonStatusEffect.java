@@ -11,7 +11,7 @@ public class DeadlyPoisonStatusEffect extends SpectrumStatusEffect {
 	}
 	
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		entity.damage(SpectrumDamageSources.DEADLY_POISON, 1.0F);
+		entity.damage(SpectrumDamageSources.deadlyPoison(entity.world), 1.0F);
 	}
 	
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {

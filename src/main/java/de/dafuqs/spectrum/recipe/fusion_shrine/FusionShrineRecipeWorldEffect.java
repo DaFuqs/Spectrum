@@ -15,7 +15,6 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 import net.minecraft.world.level.*;
 
 import java.util.*;
@@ -140,7 +139,7 @@ public interface FusionShrineRecipeWorldEffect {
 				float randomX = pos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
 				float randomY = pos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
 				float randomZ = pos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
-				world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				world.createExplosion(null, randomX, randomY, randomZ, 4, World.ExplosionSourceType.NONE);
 			}
 		}
 	});
@@ -151,7 +150,7 @@ public interface FusionShrineRecipeWorldEffect {
 				float randomX = pos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
 				float randomY = pos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
 				float randomZ = pos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
-				world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				world.createExplosion(null, randomX, randomY, randomZ, 4, World.ExplosionSourceType.NONE);
 			}
 			if (world.getRandom().nextFloat() < 0.05F) {
 				int randomX = pos.getX() + 12 - world.getRandom().nextInt(24);

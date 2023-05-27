@@ -19,6 +19,7 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class JadeWineRecipe extends TitrationBarrelRecipe {
+	// TODO - Needs a new serializer
 	
 	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/jade_wine");

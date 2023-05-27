@@ -11,6 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import org.spongepowered.asm.mixin.*;
@@ -44,7 +45,7 @@ public abstract class ServerPlayerEntityMixin {
 	public void spectrum$damageHead(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// If the player is damaged by lava and wears an ashen circlet:
 		// cancel damage and grant fire resistance
-		if (source.equals(DamageSource.LAVA)) {
+		if (source.isOf(DamageTypes.LAVA)) {
 			PlayerEntity thisEntity = (PlayerEntity) (Object) this;
 			
 			Optional<ItemStack> ashenCircletStack = SpectrumTrinketItem.getFirstEquipped(thisEntity, SpectrumItems.ASHEN_CIRCLET);
@@ -53,7 +54,7 @@ public abstract class ServerPlayerEntityMixin {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), thisEntity);
 				}
 			}
-		} else if (source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+		} else if (source.isIn(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(false);
 		}
 	}

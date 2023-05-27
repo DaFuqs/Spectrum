@@ -37,7 +37,7 @@ public abstract class InkSpellEffect {
 			for (Entity entity : entities) {
 				effect.affectEntity(entity, position, potency);
 			}
-			effect.affectArea(world, new BlockPos(position.x, position.y, position.z), potency);
+			effect.affectArea(world, BlockPos.ofFloored(position.x, position.y, position.z), potency);
 		}
 	}
 	

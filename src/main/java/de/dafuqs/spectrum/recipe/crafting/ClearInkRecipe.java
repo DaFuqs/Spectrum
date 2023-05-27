@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -13,8 +15,8 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearInkRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearInkRecipe::new);
 	
-	public ClearInkRecipe(Identifier identifier) {
-		super(identifier);
+	public ClearInkRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
@@ -34,7 +36,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 		return inkStorageItemFound;
 	}
 	
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();

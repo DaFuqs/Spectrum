@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "visit_forlorm_caves": {
+    "visit_black_langast": {
       "trigger": "minecraft:location",
       "conditions": {
         "player": [
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biome": "spectrum:forlorm_caves"
+                "biome": "spectrum:black_langast"
               }
             }
           }

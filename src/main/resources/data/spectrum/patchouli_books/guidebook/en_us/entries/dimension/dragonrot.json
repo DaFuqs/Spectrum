@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It looks blazingly hot as if it were on fire, touching it burns like hell (you $(italic)had$() to test to satisfy your curiosity...) and yet it does not radiate any heat whatsoever.$(br)While $(l:magical_blocks/midnight_solution)Midnight Solution$() seems to be destructive on the grounds of change, Dragonrot just seems to be out for pure and utter destruction. Surely there is not much organic that can resist it's bloodlust."
+      "text": "It looks blazingly hot as if it were on fire, touching it burns like hell (you $(italic)had$() to satisfy your curiosity...) and yet it does not radiate any heat whatsoever.$(br)While $(l:magical_blocks/midnight_solution)Midnight Solution$() seems to be destructive on the grounds of change, Dragonrot just seems to be out for pure and utter destruction. Surely there is not much organic that can resist it's bloodlust."
     },
     {
       "type": "spectrum:dragonrot_converting",

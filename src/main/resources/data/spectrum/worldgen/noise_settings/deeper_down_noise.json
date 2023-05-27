@@ -338,7 +338,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "spectrum:forlorm_caves"
+            "spectrum:black_langast"
           ]
         },
         "then_run": {

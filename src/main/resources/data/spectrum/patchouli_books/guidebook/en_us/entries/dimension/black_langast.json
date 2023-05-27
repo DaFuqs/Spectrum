@@ -1,0 +1,23 @@
+{
+  "name": "Black Langast",
+  "advancement": "spectrum:hidden/visit_dd_biomes/black_langast",
+  "icon": "spectrum:black_materia",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_sludge": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Black Langast",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_black_langast.png"
+      ],
+      "text": "$(l:magical_blocks/midnight_solution)Midnight Solution$(/l) everywhere."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have gone through a similar experience as yourself.... only much more tragic.$(br2)The $(italic)things$() that grow here - to call them plants would be an outrage even to $(item)Dead Bushes$() - look anything but healthy."
+    }
+  ]
+}

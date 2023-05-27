@@ -9,9 +9,17 @@
   },
   "pages": [
     {
+      "type": "patchouli:image",
+      "title": "Razor Edge",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_razor_edge.png"
+      ],
+      "text": "Everything here seems to have the livelihood to pierce you open. Not the most inviting place to be."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "spectrum:sawblade_grass",
-      "text": "Everything here seems to have the livelihood to pierce you open. Not the most beautiful place to be. Even the ground: Parched and razor sharp due to lack of light and water - hence the name."
+      "text": "Even the ground: Parched and razor sharp due to lack of light and water - hence the name."
     },
     {
       "type": "patchouli:spotlight",
@@ -21,7 +29,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:sawtooth",
-      "text": "$(italic)Those are tearing you apart.$()$(br)Well, your clothes, for the most part. But still."
+      "text": "$(italic)Those are tearing you apart.$()$(br2)Well, your clothes, for the most part. But still, point stands."
     }
   ]
 }

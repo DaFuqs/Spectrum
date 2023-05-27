@@ -37,10 +37,10 @@
         "advancement_identifier": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp"
       }
     },
-    "forlorm_caves": {
+    "black_langast": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/visit_dd_biomes/forlorm_caves"
+        "advancement_identifier": "spectrum:hidden/visit_dd_biomes/black_langast"
       }
     },
     "noxshroom_forest": {

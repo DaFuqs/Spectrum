@@ -6,8 +6,16 @@
   "extra_recipe_mappings": {},
   "pages": [
     {
+      "type": "patchouli:image",
+      "title": "Deep Dripstone Caves",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
+      ],
+      "text": "Same, but different."
+    },
+    {
       "type": "patchouli:text",
-      "text": "Gigantic stalactites can be found all over this area. You wonder how big these can get. You've seen ones that span hundreds of blocks.$(br)The ground is speckled in puddles of $(item)Water$()."
+      "text": "These caves must have existed since time began.$(br)You wonder how big the gigantic stalactites here can get. You've seen ones that span hundreds of blocks already.$(br)The ground is speckled in puddles of $(item)Water$()."
     }
   ]
 }

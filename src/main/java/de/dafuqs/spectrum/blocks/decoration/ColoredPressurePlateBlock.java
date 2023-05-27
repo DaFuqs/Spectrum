@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import com.google.common.collect.Maps;
+import de.dafuqs.spectrum.registries.SpectrumBlockSetTypes;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.util.DyeColor;
@@ -13,8 +14,7 @@ public class ColoredPressurePlateBlock extends PressurePlateBlock {
 	protected final DyeColor color;
 	
 	public ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule type, Settings settings, DyeColor color) {
-		// TODO - BlockSetType/WoodType
-		super(type, settings, BlockSetType.SPRUCE);
+		super(type, settings, SpectrumBlockSetTypes.COLORED_WOOD);
 		this.color = color;
 		BLOCKS.put(color, this);
 	}

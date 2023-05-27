@@ -177,10 +177,8 @@ public class SpectrumBlocks {
 	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_BLACKSLAG_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
+	public static final Block POLISHED_BLACKSLAG_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG, 5, false);
+	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG);
 	
 	
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
@@ -262,10 +260,8 @@ public class SpectrumBlocks {
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_BASALT_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
+	public static final Block POLISHED_BASALT_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BASALT, 5, false);
+	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BASALT);
 	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
@@ -296,10 +292,8 @@ public class SpectrumBlocks {
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(CALCITE_BRICKS));
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_CALCITE_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
-	// TODO - Handle BlockSetTypes
-	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
+	public static final Block POLISHED_CALCITE_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_CALCITE, 5, false);
+	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_CALCITE);
 	
 	// GEMSTONE LAMPS
 	public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
@@ -543,16 +537,11 @@ public class SpectrumBlocks {
 	public static final StairsBlock SLATE_NOXWOOD_STAIRS = new StairsBlock(SLATE_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.GRAY));
 	public static final SlabBlock SLATE_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.GRAY));
 	public static final FenceBlock SLATE_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.GRAY));
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final FenceGateBlock SLATE_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block SLATE_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block SLATE_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block SLATE_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE, 5, true);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
+	public static final FenceGateBlock SLATE_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), SpectrumWoodTypes.SLATE_NOXWOOD);
+	public static final Block SLATE_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.GRAY), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block SLATE_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.GRAY), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block SLATE_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.GRAY), SpectrumBlockSetTypes.NOXWOOD, 5, true);
+	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY), SpectrumBlockSetTypes.NOXWOOD);
 	public static final Block SLATE_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(LIT_PROVIDER));
@@ -567,16 +556,11 @@ public class SpectrumBlocks {
 	public static final StairsBlock EBONY_NOXWOOD_STAIRS = new StairsBlock(EBONY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final SlabBlock EBONY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final FenceBlock EBONY_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final FenceGateBlock EBONY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block EBONY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block EBONY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block EBONY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE, 5, true);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
+	public static final FenceGateBlock EBONY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), SpectrumWoodTypes.EBONY_NOXWOOD);
+	public static final Block EBONY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block EBONY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block EBONY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.TERRACOTTA_BLACK), SpectrumBlockSetTypes.NOXWOOD, 5, true);
+	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK), SpectrumBlockSetTypes.NOXWOOD);
 	public static final Block EBONY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(LIT_PROVIDER));
@@ -591,16 +575,11 @@ public class SpectrumBlocks {
 	public static final StairsBlock IVORY_NOXWOOD_STAIRS = new StairsBlock(IVORY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.OFF_WHITE));
 	public static final SlabBlock IVORY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.OFF_WHITE));
 	public static final FenceBlock IVORY_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.OFF_WHITE));
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final FenceGateBlock IVORY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block IVORY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block IVORY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block IVORY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE, 5, true);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
+	public static final FenceGateBlock IVORY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), SpectrumWoodTypes.CHESTNUT_NOXWOOD);
+	public static final Block IVORY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.OFF_WHITE), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block IVORY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.OFF_WHITE), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block IVORY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.OFF_WHITE), SpectrumBlockSetTypes.NOXWOOD, 5, true);
+	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE), SpectrumBlockSetTypes.NOXWOOD);
 	public static final Block IVORY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(LIT_PROVIDER));
@@ -615,16 +594,11 @@ public class SpectrumBlocks {
 	public static final StairsBlock CHESTNUT_NOXWOOD_STAIRS = new StairsBlock(CHESTNUT_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.DULL_RED));
 	public static final SlabBlock CHESTNUT_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.DULL_RED));
 	public static final FenceBlock CHESTNUT_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.DULL_RED));
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final FenceGateBlock CHESTNUT_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block CHESTNUT_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block CHESTNUT_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block CHESTNUT_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE, 5, true);
-	// TODO - Handle BlockSetTypes/WoodTypes
-	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
+	public static final FenceGateBlock CHESTNUT_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), SpectrumWoodTypes.IVORY_NOXWOOD);
+	public static final Block CHESTNUT_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.DULL_RED), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block CHESTNUT_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.DULL_RED), SpectrumBlockSetTypes.NOXWOOD);
+	public static final Block CHESTNUT_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.DULL_RED), SpectrumBlockSetTypes.NOXWOOD, 5, true);
+	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED), SpectrumBlockSetTypes.NOXWOOD);
 	public static final Block CHESTNUT_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LIT_PROVIDER));

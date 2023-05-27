@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.BlockSetType;
+import de.dafuqs.spectrum.registries.SpectrumBlockSetTypes;
 import net.minecraft.block.PressurePlateBlock;
 
+// TODO - Remove?
 public class SpectrumPressurePlateBlock extends PressurePlateBlock {
 	
 	public SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule type, Settings settings) {
-		// TODO - BlockSetType/WoodType
-		super(type, settings, BlockSetType.SPRUCE);
+		super(type, settings, SpectrumBlockSetTypes.COLORED_WOOD);
 	}
 	
 }

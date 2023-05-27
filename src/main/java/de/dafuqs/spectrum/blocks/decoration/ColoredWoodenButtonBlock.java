@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import com.google.common.collect.Maps;
+import de.dafuqs.spectrum.registries.SpectrumBlockSetTypes;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.ButtonBlock;
 import net.minecraft.util.DyeColor;
@@ -13,8 +14,7 @@ public class ColoredWoodenButtonBlock extends ButtonBlock {
 	protected final DyeColor color;
 	
 	public ColoredWoodenButtonBlock(Settings settings, DyeColor color) {
-		// TODO - BlockSetType/WoodType, also determine press ticks
-		super(settings, BlockSetType.SPRUCE, 5, true);
+		super(settings, SpectrumBlockSetTypes.COLORED_WOOD, 30, true);
 		this.color = color;
 		BLOCKS.put(color, this);
 	}

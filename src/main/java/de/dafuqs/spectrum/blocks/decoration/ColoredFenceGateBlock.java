@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import com.google.common.collect.Maps;
+import de.dafuqs.spectrum.registries.SpectrumWoodTypes;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.util.DyeColor;
@@ -13,8 +14,7 @@ public class ColoredFenceGateBlock extends FenceGateBlock {
 	protected final DyeColor color;
 	
 	public ColoredFenceGateBlock(Settings settings, DyeColor color) {
-		// TODO - WoodType
-		super(settings, WoodType.BAMBOO);
+		super(settings, SpectrumWoodTypes.COLORED_WOOD);
 		this.color = color;
 		BLOCKS.put(color, this);
 	}

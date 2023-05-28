@@ -126,7 +126,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		if (attacked instanceof Tameable pet && pet.getOwner() == getOwner())
 			return;
 		
-		if (attacked instanceof PlayerEntity player && targetEntity.map(entity -> entity == player).orElse(false)) {
+		if (attacked instanceof PlayerEntity player && targetEntity.<Boolean>map(entity -> entity == player).orElse(false)) {
 			return;
 		}
 		

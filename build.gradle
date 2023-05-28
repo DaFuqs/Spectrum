@@ -60,10 +60,14 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// mine
-	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
+	// TODO - Switch to official builds once PR's are merged
+	//modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
+	modImplementation "com.github.Noaaan:Revelationary:${project.revelationary_fork}"
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
-	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
-	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
+	//modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
+	modImplementation include("com.github.Noaaan:Arrowhead:${project.arrowhead_fork}")
+	//modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
+	modImplementation include("com.github.Noaaan:DimensionalReverb:${project.dimensional_reverb_fork}")
 
 	// we need a bit of concern
 	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
@@ -132,6 +136,16 @@ loom {
 			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
 
 			runDir "build/datagen"
+		}
+	}
+}
+
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
 		}
 	}
 }

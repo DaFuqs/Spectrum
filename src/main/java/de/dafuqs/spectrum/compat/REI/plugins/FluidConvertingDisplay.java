@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 
     public FluidConvertingDisplay(FluidConvertingRecipe recipe) {
-        super(recipe, recipe.getIngredients().get(0), recipe.getOutput());
+        super(recipe, recipe.getIngredients().get(0), recipe.getOutput(null));
     }
 
     public final EntryIngredient getIn() {

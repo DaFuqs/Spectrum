@@ -30,7 +30,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
                 double difX = Math.abs(entity.getX() - entity.lastRenderX);
                 double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
                 if (difX >= 0.003 || difZ >= 0.003) {
-                    entity.damage(SpectrumDamageSources.BRISTLE_SPROUTS, 1.0F);
+                    entity.damage(SpectrumDamageSources.bristeSprouts(world), 1.0F);
                 }
             }
         }

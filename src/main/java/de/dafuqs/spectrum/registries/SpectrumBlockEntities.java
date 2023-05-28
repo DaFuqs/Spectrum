@@ -29,7 +29,6 @@ import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import net.fabricmc.fabric.api.event.client.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -170,19 +169,21 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	}
 	
 	private static void registerTextureAtlasCallback() {
+		// TODO - Fix chest textures
 		// textures that are only referenced in code have to be added to the texture atlas manually
-		
+
+
 		//Register textures in chest atlas
-		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
-			registry.register(SpectrumCommon.locate("entity/private_chest"));
-			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
-		});
-		
-		//Register textures in block atlas
-		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
-			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
-			registry.register(SpectrumCommon.locate("entity/pastel_line"));
-		});
+//		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
+//			registry.register(SpectrumCommon.locate("entity/private_chest"));
+//			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
+//		});
+//
+//		//Register textures in block atlas
+//		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
+//			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
+//			registry.register(SpectrumCommon.locate("entity/pastel_line"));
+//		});
 	}
 	
 }

@@ -134,7 +134,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				lockableCraftingResultSlot.lock();
 				
 				PedestalCraftingRecipe pedestalCraftingRecipe = optionalPedestalCraftingRecipe.get();
-				ItemStack itemStack = pedestalCraftingRecipe.getOutput().copy();
+				ItemStack itemStack = pedestalCraftingRecipe.getOutput(world.getRegistryManager()).copy();
 				craftingResultInventory.setStack(0, itemStack);
 				
 				int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);

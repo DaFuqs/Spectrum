@@ -18,7 +18,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import org.joml.Vector3f;
+import org.joml.*;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 	
@@ -34,7 +34,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		
 		this.configuration = new ParticleSpawnerConfiguration(
 				SpectrumParticleTypes.SHOOTING_STAR,
-				new Vec3i(80, 40, 0),
+				new Vector3i(80, 40, 0),
 				false,
 				10.0F,
 				new Vector3f(0.0F, 1.0F, 0.0F),

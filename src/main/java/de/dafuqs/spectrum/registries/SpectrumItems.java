@@ -63,17 +63,21 @@ public class SpectrumItems {
 		
 		public OwoItemSettings settings() {
 			return new OwoItemSettings().group(itemGroup).tab(tab).stackGenerator((item, entries) -> {
+				// Beverage Items are already added to the group
+				if (item instanceof BeverageItem) {
+					return;
+				}
 				if (item instanceof Preenchanted preenchanted) {
 					entries.add(preenchanted.getDefaultEnchantedStack(item));
 				}
-
-				// TODO - Does this work with the Creative Ink Assortment?
-				if (item instanceof InkStorageItem<?> inkStorageItem) {
+				else if (item instanceof InkStorageItem<?> inkStorageItem) {
 					entries.add(inkStorageItem.getFullStack());
 				}
-
-				if (item instanceof MidnightAberrationItem aberrationItem) {
+				else if (item instanceof MidnightAberrationItem aberrationItem) {
 					entries.add(aberrationItem.getStableStack());
+				}
+				else {
+					entries.add(item);
 				}
 			});
 		}
@@ -318,7 +322,6 @@ public class SpectrumItems {
 	public static final Item SCONE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SCONE));
 
 	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE).stackGenerator((item, entries) -> {
-		// TODO - Are all beverages supplied this way, or do we have to do even more based hacks?
 		if (SpectrumCommon.minecraftServer != null) {
 			for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
 				ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
@@ -332,7 +335,7 @@ public class SpectrumItems {
 	}));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE).stackGenerator((item, entries) -> entries.add(item.getDefaultStack())));
+	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 
@@ -493,8 +496,8 @@ public class SpectrumItems {
 		}
 	}), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 100);
-	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 64 * 100);
-	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 64 * 64 * 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
 	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.EQUIPMENT.settings(1, Rarity.EPIC));
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN, Enchantments.POWER))));

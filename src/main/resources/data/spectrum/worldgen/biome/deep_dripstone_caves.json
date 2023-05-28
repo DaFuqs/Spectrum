@@ -1,7 +1,6 @@
 {
   "temperature": 0.2,
   "downfall": 0.2,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 3819567,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 4000,
       "block_search_extent": 8,
       "offset": 2
@@ -137,5 +138,6 @@
       "spectrum:dd_glow_lichen"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

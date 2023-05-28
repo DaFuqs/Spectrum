@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.client.render.fluid.v1.*;
-import net.fabricmc.fabric.api.event.client.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
@@ -91,12 +90,13 @@ public class SpectrumFluids {
 	private static void setupFluidRendering(final Fluid still, final Fluid flowing, final String textureFluidId, final int color) {
 		final Identifier stillSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_still");
 		final Identifier flowingSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_flow");
-		
+
+		// TODO - Fix chest textures
 		// If they're not already present, add the sprites to the block atlas
-		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
-			registry.register(stillSpriteId);
-			registry.register(flowingSpriteId);
-		});
+//		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
+//			registry.register(stillSpriteId);
+//			registry.register(flowingSpriteId);
+//		});
 		
 		final Identifier fluidId = Registries.FLUID.getId(still);
 		final Identifier listenerId = new Identifier(fluidId.getNamespace(), fluidId.getPath() + "_reload_listener");

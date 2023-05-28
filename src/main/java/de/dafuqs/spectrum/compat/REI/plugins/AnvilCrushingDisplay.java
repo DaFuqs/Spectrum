@@ -13,7 +13,7 @@ public class AnvilCrushingDisplay extends GatedSpectrumDisplay {
 	public final float crushedItemsPerPointOfDamage;
 	
 	public AnvilCrushingDisplay(AnvilCrushingRecipe recipe) {
-		super(recipe, recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).toList(), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).toList(), Collections.singletonList(EntryIngredients.of(recipe.getOutput(null))));
 		this.experience = recipe.getExperience();
 		this.crushedItemsPerPointOfDamage = recipe.getCrushedItemsPerPointOfDamage();
 	}

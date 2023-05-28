@@ -209,7 +209,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				}
 			} else if (baseIngredient.getItem() instanceof PotionFillable potionFillable) {
 				return recipe.isApplicableToPotionFillabes() && !potionFillable.isFull(baseIngredient);
-			} else if (recipe.getOutput().isOf(Items.POTION)) {
+			} else if (recipe.getOutput(null).isOf(Items.POTION)) {
 				return recipe.isApplicableToPotions();
 			} else {
 				return true;
@@ -237,7 +237,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		// output
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput().copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(null).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {

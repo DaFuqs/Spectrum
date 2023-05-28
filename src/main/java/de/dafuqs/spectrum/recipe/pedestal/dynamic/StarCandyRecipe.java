@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import oshi.util.tuples.*;
@@ -18,7 +20,7 @@ import java.util.*;
 
 public class StarCandyRecipe extends PedestalCraftingRecipe {
 	
-	public static final RecipeSerializer<StarCandyRecipe> SERIALIZER = new SpecialRecipeSerializer<>(StarCandyRecipe::new);
+	public static final RecipeSerializer<StarCandyRecipe> SERIALIZER = new EmptyRecipeSerializer<>(StarCandyRecipe::new);
 	public static final Random RANDOM = new Random();
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/star_candy");
@@ -32,7 +34,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
 			if (orientation == null) {

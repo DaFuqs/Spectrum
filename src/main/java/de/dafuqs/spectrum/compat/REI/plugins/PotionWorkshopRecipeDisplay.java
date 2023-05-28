@@ -18,7 +18,7 @@ public abstract class PotionWorkshopRecipeDisplay extends GatedSpectrumDisplay {
 	 * @param recipe The recipe
 	 */
 	public PotionWorkshopRecipeDisplay(PotionWorkshopRecipe recipe) {
-		super(recipe, recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput(null))));
 		this.craftingTime = recipe.getCraftingTime();
 	}
 	

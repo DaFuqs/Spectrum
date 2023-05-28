@@ -69,7 +69,7 @@
       "filling": 1.9,
       "inner_layer": 2.5,
       "middle_layer": 3.9,
-      "outer_layer": 5.0
+      "outer_layer": 5
     },
     "crack": {
       "generate_crack_chance": 0.35,

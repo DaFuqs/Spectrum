@@ -22,7 +22,7 @@ public class EnchanterDisplay extends GatedSpectrumDisplay {
 	
 	// first input is the center, all others around clockwise
 	public EnchanterDisplay(@NotNull EnchanterRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput());
+		super(recipe, buildIngredients(recipe), recipe.getOutput(null));
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.craftingTime = recipe.getCraftingTime();
 	}

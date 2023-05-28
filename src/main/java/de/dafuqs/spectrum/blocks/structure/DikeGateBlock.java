@@ -86,7 +86,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 		if (world instanceof ServerWorld serverWorld && entity instanceof LivingEntity livingEntity) {
 			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 			if (charges == 0) {
-				entity.damage(SpectrumDamageSources.DIKE_GATE, 1);
+				entity.damage(SpectrumDamageSources.dike(serverWorld), 1);
 				SpectrumS2CPacketSender.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);
 				if (entity instanceof ServerPlayerEntity serverPlayerEntity && (!decreasedSounds || ((ServerWorld) world).getTime() % 10 == 0)) {
 					serverPlayerEntity.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);

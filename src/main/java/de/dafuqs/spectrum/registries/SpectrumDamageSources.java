@@ -89,6 +89,14 @@ public class SpectrumDamageSources {
 		return new DamageSource(world.getDamageSources().registry.getEntry(DEADLY_POISON).orElseThrow());
 	}
 
+	public static DamageSource dike(World world) {
+		return new DamageSource(world.getDamageSources().registry.getEntry(DIKE_GATE).orElseThrow());
+	}
+
+	public static DamageSource bristeSprouts(World world) {
+		return new DamageSource(world.getDamageSources().registry.getEntry(BRISTLE_SPROUTS).orElseThrow());
+	}
+
 	public static class SetHealthDamageSource extends DamageSource {
 
 		public SetHealthDamageSource(World world, LivingEntity attacker) {

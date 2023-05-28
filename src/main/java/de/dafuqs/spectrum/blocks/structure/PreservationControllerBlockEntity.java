@@ -207,7 +207,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	public void yeetPlayer(@NotNull PlayerEntity player) {
 		if (this.destinationPos != null) {
-			player.damage(SpectrumDamageSources.DIKE_GATE, 1.0F);
+			player.damage(SpectrumDamageSources.dike(player.world), 1.0F);
 			Vec3d vec = Vec3d.ofCenter(destinationPos);
 			player.requestTeleport(vec.getX(), vec.getY(), vec.getZ());
 			world.playSound(null, destinationPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);

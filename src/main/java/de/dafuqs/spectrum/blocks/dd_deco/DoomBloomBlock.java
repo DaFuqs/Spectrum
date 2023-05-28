@@ -141,7 +141,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	
 	protected static void explode(World world, BlockPos pos, BlockState state) {
 		if (!world.isClient && state.get(AGE) == AGE_MAX) {
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, World.ExplosionSourceType.BLOCK);
+			world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, World.ExplosionSourceType.BLOCK);
 			dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(2, 4)));
 		}
 	}

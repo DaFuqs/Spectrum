@@ -72,7 +72,7 @@ public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 
     default boolean shouldTryWeather(World world, BlockPos pos) {
         float chance = world.isSkyVisible(pos) ? 0.5F : 0.0F;
-        if (world.isRaining() && world.getBiome(pos).value().getPrecipitation() != Biome.Precipitation.NONE) {
+        if (world.isRaining() && world.getBiome(pos).value().getPrecipitation(pos) != Biome.Precipitation.NONE) {
             chance += 0.5;
         }
         return world.random.nextFloat() < chance;

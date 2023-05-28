@@ -18,14 +18,14 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory, PlayerOwnedWithName {
+public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory, PlayerOwnedWithName {
 	
 	private UUID ownerUUID;
 	private String ownerName;
 	private long lastNonOwnerOpenedTick;
 	
-	public PrivateChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.PRIVATE_CHEST, blockPos, blockState);
+	public HeartboundChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntities.HEARTBOUND_CHEST, blockPos, blockState);
 		this.lastNonOwnerOpenedTick = -1;
 	}
 	
@@ -33,8 +33,8 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.hasBlockEntity()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
-				return privateChestBlockEntity.stateManager.getViewerCount();
+			if (blockEntity instanceof HeartboundChestBlockEntity heartboundChestBlockEntity) {
+				return heartboundChestBlockEntity.stateManager.getViewerCount();
 			}
 		}
 		return 0;
@@ -61,9 +61,9 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 	@Override
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.heartbound_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return Text.translatable("block.spectrum.private_chest");
+			return Text.translatable("block.spectrum.heartbound_chest");
 		}
 	}
 	
@@ -142,7 +142,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (!isOwner && this.world != null) {
 			this.lastNonOwnerOpenedTick = this.world.getTime();
 			updateRedstone(this.pos, this.world.getBlockState(pos));
-			player.sendMessage(Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), true);
+			player.sendMessage(Text.translatable("block.spectrum.heartbound_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), true);
 		}
 		
 		return isOwner;

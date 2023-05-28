@@ -1,11 +1,11 @@
 {
   "name": "Jade Vines",
-  "advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds",
-  "icon": "spectrum:hibernating_jade_vine_seeds",
+  "advancement": "spectrum:hidden/collect_hibernating_jade_vine_bulb",
+  "icon": "spectrum:hibernating_jade_vine_bulb",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:hibernating_jade_vine_seeds": 0,
-    "spectrum:germinated_jade_vine_seeds": 0,
+    "spectrum:hibernating_jade_vine_bulb": 0,
+    "spectrum:germinated_jade_vine_bulb": 0,
     "spectrum:jade_vine_petals": 0,
     "spectrum:moonstruck_nectar": 0,
     "spectrum:jade_jelly": 0,
@@ -15,21 +15,21 @@
     {
       "type": "patchouli:spotlight",
       "title": "Jade Vines",
-      "item": "spectrum:hibernating_jade_vine_seeds",
+      "item": "spectrum:hibernating_jade_vine_bulb",
       "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.$(br2)$(italic)Will the history of this plant remain elusive to you forever?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Germinating",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
+      "recipe": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
       "text": "Once almost a lost cause, you now have an ace up your sleeve:$(br)With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Planting & Growing",
-      "item": "spectrum:germinated_jade_vine_seeds",
-      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "item": "spectrum:germinated_jade_vine_bulb",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
       "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
@@ -53,7 +53,7 @@
       "title": "Petals",
       "anchor": "petals",
       "item": "spectrum:jade_vine_petals",
-      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
       "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found. How will Jade Vines look when you let them grow further, tough?"
     },
     {
@@ -61,7 +61,7 @@
       "title": "Moonstruck Nectar",
       "anchor": "nectar",
       "item": "spectrum:moonstruck_nectar",
-      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
       "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
     }
   ]

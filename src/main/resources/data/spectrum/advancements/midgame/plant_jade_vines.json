@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/build_spirit_instiller_structure",
   "display": {
     "icon": {
-      "item": "spectrum:germinated_jade_vine_seeds"
+      "item": "spectrum:germinated_jade_vine_bulb"
     },
     "title": {
       "translate": "advancements.spectrum.plant_jade_vines.title"
@@ -17,7 +17,7 @@
       "conditions": {
         "item": {
           "items": [
-            "spectrum:germinated_jade_vine_seeds"
+            "spectrum:germinated_jade_vine_bulb"
           ]
         }
       }

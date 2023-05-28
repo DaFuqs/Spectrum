@@ -693,7 +693,7 @@ public class SpectrumBlocks {
 	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_MALACHITE_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
 	
 	// FUNCTIONAL BLOCKS
-	public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(-1.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
+	public static final Block HEARTBOUND_CHEST = new HeartboundChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(-1.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block RESTOCKING_CHEST = new RestockingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block BLACK_HOLE_CHEST = new BlackHoleChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
@@ -1498,7 +1498,7 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerMagicalBlocks(FabricItemSettings settings) {
-		registerBlockWithItem("private_chest", PRIVATE_CHEST, settings, DyeColor.BLUE);
+		registerBlockWithItem("heartbound_chest", HEARTBOUND_CHEST, settings, DyeColor.BLUE);
 		registerBlockWithItem("compacting_chest", COMPACTING_CHEST, settings, DyeColor.YELLOW);
 		registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, settings, DyeColor.YELLOW);
 		registerBlockWithItem("black_hole_chest", BLACK_HOLE_CHEST, settings, DyeColor.LIGHT_GRAY);
@@ -1640,13 +1640,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("onyx_glass", ONYX_GLASS, settings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_glass", MOONSTONE_GLASS, settings, DyeColor.WHITE);
 		
-		registerBlockWithItem("glowing_glass", RADIANT_GLASS, settings, DyeColor.WHITE);
+		registerBlockWithItem("radiant_glass", RADIANT_GLASS, settings, DyeColor.WHITE);
 	}
 	
 	private static void registerPlayerOnlyGlass(FabricItemSettings settings) {
 		registerBlockWithItem("vanilla_semi_permeable_glass", VANILLA_SEMI_PERMEABLE_GLASS, settings, DyeColor.WHITE);
 		registerBlockWithItem("tinted_semi_permeable_glass", TINTED_SEMI_PERMEABLE_GLASS, settings, DyeColor.BLACK);
-		registerBlockWithItem("glowing_semi_permeable_glass", RADIANT_SEMI_PERMEABLE_GLASS, settings, DyeColor.YELLOW);
+		registerBlockWithItem("radiant_semi_permeable_glass", RADIANT_SEMI_PERMEABLE_GLASS, settings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("topaz_semi_permeable_glass", TOPAZ_SEMI_PERMEABLE_GLASS, settings, DyeColor.CYAN);
 		registerBlockWithItem("amethyst_semi_permeable_glass", AMETHYST_SEMI_PERMEABLE_GLASS, settings, DyeColor.MAGENTA);

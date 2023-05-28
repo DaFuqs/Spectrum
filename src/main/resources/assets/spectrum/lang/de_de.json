@@ -252,8 +252,8 @@
     "block.spectrum.compacting_chest": "Verdichtungs-Truhe",
     "block.spectrum.restocking_chest": "Fabrikations-Truhe",
     "block.spectrum.black_hole_chest": "Schwarzloch-Truhe",
-    "block.spectrum.private_chest": "Herzensbindung-Truhe",
-    "block.spectrum.private_chest.title_with_owner": "Herzensbindung-Truhe von %s",
+    "block.spectrum.heartbound_chest": "Herzensbindung-Truhe",
+    "block.spectrum.heartbound_chest.title_with_owner": "Herzensbindung-Truhe von %s",
     "block.spectrum.ominous_sapling": "Ominöser Setzling",
     "block.spectrum.bedrock_anvil": "Bedrock Amboss",
     "block.spectrum.radiating_ender": "Strahlendes Ender",
@@ -658,9 +658,9 @@
     "block.spectrum.onyx_glass": "Onyx Glas",
     "block.spectrum.moonstone_glass": "Mondstein Glas",
 
-    "block.spectrum.glowing_glass": "Strahlenglas",
+    "block.spectrum.radiant_glass": "Strahlenglas",
     "block.spectrum.tinted_semi_permeable_glass": "Halbdurchlässiges gefärbt Glas",
-    "block.spectrum.glowing_semi_permeable_glass": "Halbdurchlässiges Strahlenglas",
+    "block.spectrum.radiant_semi_permeable_glass": "Halbdurchlässiges Strahlenglas",
 
     "block.spectrum.vanilla_semi_permeable_glass": "Halbdurchlässiges Glas",
     "block.spectrum.amethyst_semi_permeable_glass": "Halbdurchlässiges Amethyst Glas",

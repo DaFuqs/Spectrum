@@ -1,21 +1,21 @@
 {
 	"pages":[
 		{
-			"item":"spectrum:hibernating_jade_vine_seeds",
+			"item":"spectrum:hibernating_jade_vine_bulb",
 			"text":"这种植物从远古时代遗留下来的能量现在还几乎看不到。如此轻和脆弱，以至于你认为任何错误的举动都可能让你脆弱的鳞茎失去最后一点生命。$(br2)$(italic)这种植物的历史会永远让你难以捉摸吗？",
 			"type":"patchouli:spotlight",
 			"title":"古玉藤树"
 		},
 		{
 			"advancement":"spectrum:midgame/build_spirit_instiller_structure",
-			"recipe":"spectrum:spirit_instiller/germinated_jade_vine_seeds",
+			"recipe":"spectrum:spirit_instiller/germinated_jade_vine_bulb",
 			"text":"曾经几乎是一项失败的事业，现在你有了一张王牌：$(br)在$(l:creating_life/spirit_instiller)灵魂注入器$(/l)的帮助下，你确信你可以将生命重新注入这个小鳞茎。",
 			"type":"spectrum:spirit_instiller_crafting",
 			"title":"发芽"
 		},
 		{
-			"item":"spectrum:germinated_jade_vine_seeds",
-			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_seeds",
+			"item":"spectrum:germinated_jade_vine_bulb",
+			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_bulb",
 			"text":"栅栏，脆弱但美丽的悬挂植物，缠绕着木质栅栏。$(br)$(c_red)经历了这么多年，它们还不习惯强光，直接暴露在阳光下会死去。$(br)$(c_lime)它们每晚只生长一个阶段，并且只有当暴露在更柔和的、间接的月球光下时。",
 			"type":"patchouli:spotlight",
 			"title":"种植和生长"
@@ -29,28 +29,28 @@
 		},
 		{
 			"item":"spectrum:jade_vine_petals",
-			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_seeds",
+			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_bulb",
 			"text":"有光泽的花瓣在部分生长时可以小心地采摘。$(br)这些花瓣可以用来$(l:decoration/jade_vine_petal_blocks)装饰$()。$(br)很少，当搜索花瓣时，可以找到另一个鳞茎。",
 			"type":"patchouli:spotlight",
 			"title":"花瓣"
 		},
 		{
 			"item":"spectrum:moonstruck_nectar",
-			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_seeds",
+			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_bulb",
 			"text":"在满月的许多夜晚之后，植物达到了盛开。$(br)$(italic)他们在花中收集的花蜜可以用玻璃瓶采集。有很好的恢复作用，可以喝掉来治疗。$()",
 			"type":"patchouli:spotlight",
 			"title":"月相花蜜"
 		}
 	],
-	"advancement":"spectrum:hidden/collect_hibernating_jade_vine_seeds",
+	"advancement":"spectrum:hidden/collect_hibernating_jade_vine_bulb",
 	"extra_recipe_mappings":{
 		"spectrum:moonstruck_nectar":0,
-		"spectrum:hibernating_jade_vine_seeds":0,
+		"spectrum:hibernating_jade_vine_bulb":0,
 		"spectrum:jade_jelly":0,
-		"spectrum:germinated_jade_vine_seeds":0,
+		"spectrum:germinated_jade_vine_bulb":0,
 		"spectrum:jade_vine_petals":0
 	},
 	"name":"古玉藤树",
-	"icon":"spectrum:hibernating_jade_vine_seeds",
+	"icon":"spectrum:hibernating_jade_vine_bulb",
 	"category":"spectrum:resources_category"
 }

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:germinated_jade_vine_seeds"
+          "name": "spectrum:germinated_jade_vine_bulb"
         }
       ],
       "conditions": [
@@ -32,7 +32,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:hibernating_jade_vine_seeds",
+          "name": "spectrum:hibernating_jade_vine_bulb",
           "functions": [
             {
               "function": "minecraft:set_count",

@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "instilled_germinated_jade_vine_seeds": {
+    "instilled_germinated_jade_vine_bulb": {
       "trigger":"spectrum:crafted_with_spirit_instiller",
-      "conditions": { "items": [{ "items": [ "spectrum:germinated_jade_vine_seeds" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:germinated_jade_vine_bulb" ]}] }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
@@ -10,7 +10,7 @@
     },
     "collected_seeds": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_hibernating_jade_vine_seeds" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_hibernating_jade_vine_bulb" }
     }
   }
 }

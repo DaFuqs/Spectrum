@@ -132,7 +132,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/private_chest"));
+		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/heartbound_chest"));
 	}
 	
 }

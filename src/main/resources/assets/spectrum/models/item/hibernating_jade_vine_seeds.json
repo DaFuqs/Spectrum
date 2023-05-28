@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/hibernating_jade_vine_seeds"
+    "layer0": "spectrum:item/hibernating_jade_vine_bulb"
   }
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:private_chest"
+          "name": "spectrum:heartbound_chest"
         }
       ],
       "conditions": [

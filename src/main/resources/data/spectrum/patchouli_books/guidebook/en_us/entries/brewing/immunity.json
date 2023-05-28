@@ -1,7 +1,7 @@
 {
   "name": "Immunity",
   "advancement": "spectrum:hidden/status_effects/immunity",
-  "icon": "spectrum:germinated_jade_vine_seeds",
+  "icon": "spectrum:germinated_jade_vine_bulb",
   "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [

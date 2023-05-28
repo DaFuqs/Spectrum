@@ -64,9 +64,9 @@ public class GerminatedJadeVineBulbItem extends CloakedItem {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
-		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip"));
-		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip2"));
-		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip3"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_bulb.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_bulb.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_bulb.tooltip3"));
 	}
 	
 }

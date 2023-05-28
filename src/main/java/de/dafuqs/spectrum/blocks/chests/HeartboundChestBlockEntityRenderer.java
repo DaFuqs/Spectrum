@@ -5,9 +5,9 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.block.entity.*;
 
 @Environment(EnvType.CLIENT)
-public class PrivateChestBlockEntityRenderer extends SpectrumChestBlockEntityRenderer {
+public class HeartboundChestBlockEntityRenderer extends SpectrumChestBlockEntityRenderer {
 	
-	public PrivateChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+	public HeartboundChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 		super(ctx);
 	}
 	

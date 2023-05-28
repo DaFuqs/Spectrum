@@ -1,21 +1,21 @@
 {
   "name": "Heartbound Chest",
-  "advancement": "spectrum:unlocks/blocks/private_chest",
-  "icon": "spectrum:private_chest",
+  "advancement": "spectrum:unlocks/blocks/heartbound_chest",
+  "icon": "spectrum:heartbound_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:private_chest": 0
+    "spectrum:heartbound_chest": 0
   },
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:private_chest",
+      "item": "spectrum:heartbound_chest",
       "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.$(br)To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/private_chest",
+      "recipe": "spectrum:pedestal/tier1/heartbound_chest",
       "text": "The Heartbound Chest can only be opened by its placer and provides the same space as two normal chests."
     },
     {

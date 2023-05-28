@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:glowing_glass"
+          "name": "spectrum:radiant_glass"
         }
       ],
       "conditions": [

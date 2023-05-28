@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/glowing_glass"
+			"model": "spectrum:block/radiant_glass"
 		}
 	}
 }

@@ -19,7 +19,6 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-// TODO - Incubus Core requires updating
 public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity {
 	
 	private static final float MAX_DAMAGE = 5.0F;

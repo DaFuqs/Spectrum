@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
+import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 
@@ -31,5 +33,9 @@ public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
+
+	static {
+		TILLING_ACTIONS.put(SpectrumBlocks.SLUSH, Pair.of(HoeItem::canTillFarmland, createTillAction(SpectrumBlocks.TILLED_SLUSH.getDefaultState())));
+		TILLING_ACTIONS.put(SpectrumBlocks.SHALE_CLAY, Pair.of(HoeItem::canTillFarmland, createTillAction(SpectrumBlocks.TILLED_SHALE_CLAY.getDefaultState())));
+	}
 }

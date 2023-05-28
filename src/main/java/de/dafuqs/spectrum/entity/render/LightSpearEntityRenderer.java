@@ -24,8 +24,7 @@ public class LightSpearEntityRenderer extends EntityRenderer<LightShardBaseEntit
         
         matrices.multiply(this.dispatcher.getRotation());
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
-        
-        matrices.push();
+
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, shard.prevYaw, shard.getYaw()) - 90.0F));
         matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(0 + MathHelper.lerp(tickDelta, shard.prevPitch, shard.getPitch())));
         

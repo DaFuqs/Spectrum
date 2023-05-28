@@ -722,6 +722,7 @@
   "block.spectrum.blackslag_malachite_ore": "Blackslag Malachite Ore",
 
   "block.spectrum.shale_clay": "Shale Clay",
+  "block.spectrum.tilled_shale_clay": "Tilled Shale Clay",
   "block.spectrum.polished_shale_clay": "Polished Shale Clay",
   "block.spectrum.shale_clay_bricks": "Shale Clay Bricks",
   "block.spectrum.shale_clay_tiles": "Shale Clay Tiles",
@@ -767,6 +768,7 @@
 
   "block.spectrum.sawtooth": "Sawtooth",
   "block.spectrum.slush": "Slush",
+  "block.spectrum.tilled_slush": "Tilled Slush",
   "block.spectrum.dragonbone": "Dragonbone",
   "block.spectrum.cracked_dragonbone": "Cracked Dragonbone",
   "block.spectrum.polished_calcite_button": "Polished Calcite Button",

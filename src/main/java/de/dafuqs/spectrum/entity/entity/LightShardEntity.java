@@ -15,6 +15,7 @@ public class LightShardEntity extends LightShardBaseEntity {
     
     public LightShardEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);
+		scaleOffset = world.random.nextFloat() + 0.15F;
     }
     
     public LightShardEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {

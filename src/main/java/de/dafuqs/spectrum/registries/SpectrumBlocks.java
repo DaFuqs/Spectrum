@@ -213,8 +213,8 @@ public class SpectrumBlocks {
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	
-	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.copy(Blocks.BEDROCK).strength(-1.0F, 50.0F).sounds(BlockSoundGroup.BONE));
-	public static final Block CRACKED_DRAGONBONE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE));
+	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
+	public static final Block CRACKED_DRAGONBONE = new PillarBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
 	
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BONE_ASH));

@@ -364,6 +364,7 @@ public class SpectrumS2CPacketSender {
 			buf.writeDouble(moonstoneStrike.getY());
 			buf.writeDouble(moonstoneStrike.getZ());
 			buf.writeFloat(moonstoneStrike.getPower());
+			buf.writeFloat(moonstoneStrike.getKnockbackMod());
 			buf.writeDouble(playerVelocity.x);
 			buf.writeDouble(playerVelocity.y);
 			buf.writeDouble(playerVelocity.z);

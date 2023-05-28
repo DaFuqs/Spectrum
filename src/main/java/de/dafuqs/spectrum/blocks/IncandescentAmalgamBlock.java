@@ -137,7 +137,7 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 7.0F, true, Explosion.DestructionType.DESTROY);
+			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8.0F, true, Explosion.DestructionType.DESTROY);
 		}
 	}
 	

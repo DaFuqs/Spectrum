@@ -381,12 +381,13 @@ public class SpectrumS2CPacketReceiver {
 			double y = buf.readDouble();
 			double z = buf.readDouble();
 			float power = buf.readFloat();
+			float knockback = buf.readFloat();
 			double playerVelocityX = buf.readDouble();
 			double playerVelocityY = buf.readDouble();
 			double playerVelocityZ = buf.readDouble();
 			
 			client.execute(() -> {
-				MoonstoneStrike.create(client.world, null, null, x, y, z, power);
+				MoonstoneStrike.create(client.world, null, null, x, y, z, power, knockback);
 				player.setVelocity(player.getVelocity().add(playerVelocityX, playerVelocityY, playerVelocityZ));
 			});
 		});

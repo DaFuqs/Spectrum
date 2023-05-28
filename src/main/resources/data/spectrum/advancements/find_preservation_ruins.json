@@ -1,0 +1,33 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:preservation_stone"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_preservation_ruins.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_preservation_ruins.description"
+    }
+  },
+  "criteria": {
+    "in_preservation_ruins": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:preservation_ruins"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

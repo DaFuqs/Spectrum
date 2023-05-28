@@ -1,0 +1,39 @@
+{
+  "parent": "spectrum:enter_dike_gate_preservation_ruin",
+  "display": {
+    "icon": {
+      "item": "spectrum:treasure_chest"
+    },
+    "title": {
+      "translate": "advancements.spectrum.solve_dike_gate_preservation_ruin.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.solve_dike_gate_preservation_ruin.description"
+    }
+  },
+  "criteria": {
+    "opened_dike_gate_main_treasure_chest": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "feature": "spectrum:preservation_ruins"
+              }
+            }
+          }
+        ],
+        "loot_table": "spectrum:chests/ancient_ruins_main"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:enter_dike_gate_preservation_ruin"
+      }
+    }
+  }
+}

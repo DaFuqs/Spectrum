@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.structure;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -28,9 +29,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	private Vec3i checkRange;
 	private Identifier requiredAdvancement;
 	private StatusEffect requiredEffect;
-	
-	private Identifier unlockedAdvancement;
-	private String unlockedAdvancementCriterion;
+	private String checkName;
 	
 	private Box checkBox;
 	private Vec3i checkBoxOffset;
@@ -78,64 +77,67 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	}
 	
 	@Override
-	public void writeNbt(NbtCompound tag) {
-		super.writeNbt(tag);
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
 		
 		if (this.entranceOffset != null) {
-			tag.putInt("EntranceOffsetX", this.entranceOffset.getX());
-			tag.putInt("EntranceOffsetY", this.entranceOffset.getY());
-			tag.putInt("EntranceOffsetZ", this.entranceOffset.getZ());
+			nbt.putInt("EntranceOffsetX", this.entranceOffset.getX());
+			nbt.putInt("EntranceOffsetY", this.entranceOffset.getY());
+			nbt.putInt("EntranceOffsetZ", this.entranceOffset.getZ());
 		}
 		if (this.checkBoxOffset != null) {
-			tag.putInt("CheckBoxOffsetX", this.checkBoxOffset.getX());
-			tag.putInt("CheckBoxOffsetY", this.checkBoxOffset.getY());
-			tag.putInt("CheckBoxOffsetZ", this.checkBoxOffset.getZ());
+			nbt.putInt("CheckBoxOffsetX", this.checkBoxOffset.getX());
+			nbt.putInt("CheckBoxOffsetY", this.checkBoxOffset.getY());
+			nbt.putInt("CheckBoxOffsetZ", this.checkBoxOffset.getZ());
 		}
 		if (this.checkRange != null) {
-			tag.putInt("CheckRangeX", this.checkRange.getX());
-			tag.putInt("CheckRangeY", this.checkRange.getY());
-			tag.putInt("CheckRangeZ", this.checkRange.getZ());
+			nbt.putInt("CheckRangeX", this.checkRange.getX());
+			nbt.putInt("CheckRangeY", this.checkRange.getY());
+			nbt.putInt("CheckRangeZ", this.checkRange.getZ());
 		}
 		if (this.requiredAdvancement != null) {
-			tag.putString("RequiredAdvancement", this.requiredAdvancement.toString());
+			nbt.putString("RequiredAdvancement", this.requiredAdvancement.toString());
 		}
 		if (this.requiredEffect != null) {
 			Identifier effectIdentifier = Registries.STATUS_EFFECT.getId(this.requiredEffect);
 			if (effectIdentifier != null) {
-				tag.putString("RequiredStatusEffect", effectIdentifier.toString());
+				nbt.putString("RequiredStatusEffect", effectIdentifier.toString());
 			}
 		}
-		if (this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
-			tag.putString("UnlockedAdvancement", this.unlockedAdvancement.toString());
-			tag.putString("UnlockedAdvancementCriterion", this.unlockedAdvancementCriterion);
+		if (this.checkName != null) {
+			nbt.putString("CheckName", this.checkName);
 		}
 	}
 	
 	@Override
-	public void readNbt(NbtCompound tag) {
-		super.readNbt(tag);
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
 		
-		if (tag.contains("EntranceOffsetX") && tag.contains("EntranceOffsetY") && tag.contains("EntranceOffsetZ")) {
-			this.entranceOffset = new Vec3i(tag.getInt("EntranceOffsetX"), tag.getInt("EntranceOffsetY"), tag.getInt("EntranceOffsetZ"));
+		if (nbt.contains("EntranceOffsetX") && nbt.contains("EntranceOffsetY") && nbt.contains("EntranceOffsetZ")) {
+			this.entranceOffset = new Vec3i(nbt.getInt("EntranceOffsetX"), nbt.getInt("EntranceOffsetY"), nbt.getInt("EntranceOffsetZ"));
 		}
-		if (tag.contains("CheckBoxOffsetX") && tag.contains("CheckBoxOffsetY") && tag.contains("CheckBoxOffsetZ")) {
-			this.checkBoxOffset = new Vec3i(tag.getInt("CheckBoxOffsetX"), tag.getInt("CheckBoxOffsetY"), tag.getInt("CheckBoxOffsetZ"));
+		if (nbt.contains("CheckBoxOffsetX") && nbt.contains("CheckBoxOffsetY") && nbt.contains("CheckBoxOffsetZ")) {
+			this.checkBoxOffset = new Vec3i(nbt.getInt("CheckBoxOffsetX"), nbt.getInt("CheckBoxOffsetY"), nbt.getInt("CheckBoxOffsetZ"));
 		}
-		if (tag.contains("CheckRangeX")) {
-			this.checkRange = new Vec3i(tag.getInt("CheckRangeX"), tag.getInt("CheckRangeY"), tag.getInt("CheckRangeZ"));
+		if (nbt.contains("CheckRangeX")) {
+			this.checkRange = new Vec3i(nbt.getInt("CheckRangeX"), nbt.getInt("CheckRangeY"), nbt.getInt("CheckRangeZ"));
 		}
-		if (tag.contains("RequiredStatusEffect", NbtElement.STRING_TYPE)) {
-			StatusEffect statusEffect = Registries.STATUS_EFFECT.get(new Identifier(tag.getString("RequiredStatusEffect")));
+		if (nbt.contains("RequiredStatusEffect", NbtElement.STRING_TYPE)) {
+			StatusEffect statusEffect = Registries.STATUS_EFFECT.get(new Identifier(nbt.getString("RequiredStatusEffect")));
 			if (this.requiredEffect != null) {
 				this.requiredEffect = statusEffect;
 			}
 		}
-		if (tag.contains("RequiredAdvancement", NbtElement.STRING_TYPE)) {
-			this.requiredAdvancement = new Identifier(tag.getString("RequiredAdvancement"));
+		if (nbt.contains("RequiredAdvancement", NbtElement.STRING_TYPE)) {
+			this.requiredAdvancement = new Identifier(nbt.getString("RequiredAdvancement"));
 		}
-		if (tag.contains("UnlockedAdvancement", NbtElement.STRING_TYPE) && tag.contains("UnlockedAdvancementCriterion", NbtElement.STRING_TYPE)) {
-			this.unlockedAdvancement = Identifier.tryParse(tag.getString("UnlockedAdvancement"));
-			this.unlockedAdvancementCriterion = tag.getString("UnlockedAdvancementCriterion");
+		if (nbt.contains("CheckName", NbtElement.STRING_TYPE)) {
+			this.checkName = nbt.getString("CheckName");
+		}
+		// backwards compatibility with old preservation controller nbt
+		if (nbt.contains("UnlockedAdvancement", NbtElement.STRING_TYPE)) {
+			Identifier unlockedAdvancement = new Identifier(nbt.getString("UnlockedAdvancement"));
+			this.checkName = unlockedAdvancement.getPath(); // enter_color_mixing_puzzle_structure, enter_dike_gate_puzzle_structure, enter_wireless_redstone_puzzle_structure
 		}
 	}
 	
@@ -218,15 +220,10 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
 					// fine
 				} else if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
-					if (this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
-						Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
-					}
-				} else if (this.requiredEffect != null && playerEntity.hasStatusEffect(this.requiredEffect)) {
-					if (this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
-						Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
-					}
+					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, true);
 				} else {
 					// yeet
+					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, false);
 					yeetPlayer(playerEntity);
 				}
 			}

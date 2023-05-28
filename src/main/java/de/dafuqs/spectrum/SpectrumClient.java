@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -112,7 +113,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
-		
+
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
 				if (Registries.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
@@ -123,10 +124,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
 			}
 		});
-		
+
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 
 		registerBlockOutlineEvent();
+		if (FabricLoader.getInstance().isModLoaded("ears")) {
+			logInfo("Registering Ears Compat...");
+			EarsCompat.register();
+		}
 
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
 			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();

@@ -21,7 +21,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -141,7 +140,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		super.mobTick();
 		
-		if (this.age % 10 == 0) {
+		if (this.age % 20 == 0) {
 			this.heal(1.0F);
 		}
 	}

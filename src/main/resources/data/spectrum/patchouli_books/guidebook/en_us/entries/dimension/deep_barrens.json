@@ -6,12 +6,15 @@
   "extra_recipe_mappings": {},
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "A dark, stony wasteland. At first glance, there is not much to see here, and yet it is worth a visit. You'll see ores smiling at you from every corner - as far as you can see (which isn't far, to be honest)."
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_barrens.png"
+      ],
+      "text": "A dark, stony wasteland."
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "At first glance, there's not much to see here, and yet it's worth a visit:$(br)ores smile at you from every corner - as far as you can see (which isn't far, to be honest). In some places, gigantic veins of ore crisscross this biome. A single vein will last you years."
     }
   ]
 }

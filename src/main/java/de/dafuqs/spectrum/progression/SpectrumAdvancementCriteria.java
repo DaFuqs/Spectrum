@@ -39,6 +39,7 @@ public class SpectrumAdvancementCriteria {
 	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
 	public static PastelNetworkCreatingCriterion PASTEL_NETWORK_CREATING;
+	public static PreservationCheckCriterion PRESERVATION_CHECK;
 
 	public static void register() {
 		PEDESTAL_RECIPE_CALCULATED = CriteriaAccessor.callRegister(new PedestalRecipeCalculatedCriterion());
@@ -75,6 +76,7 @@ public class SpectrumAdvancementCriteria {
 		CONSUMED_TEA_WITH_SCONE = CriteriaAccessor.callRegister(new ConsumedTeaWithSconeCriterion());
 		CREATE_HUMMINGSTONE_HYMN = CriteriaAccessor.callRegister(new HummingstoneHymnCriterion());
 		PASTEL_NETWORK_CREATING = CriteriaAccessor.callRegister(new PastelNetworkCreatingCriterion());
+		PRESERVATION_CHECK = CriteriaAccessor.callRegister(new PreservationCheckCriterion());
 	}
 	
 }

@@ -12,9 +12,9 @@
       "text": "You've already used your anvil plenty (lots of anvils, to be precise). $(l:general/anvil_crushing)Item Crushing$(/l), repairing and enchanting  are burning a hole in your iron supply.$(br)To make the anvil last longer - or even make it indestructible - Bedrock seems like the perfect choice.$(br)Allows you to rename items for free and has no maximum repair limit."
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_anvil",
       "text": "Also enables you to add descriptions to your items.$(br)$(italic)Pro tip: type \\n to split your text into multiple lines."
     }
   ]

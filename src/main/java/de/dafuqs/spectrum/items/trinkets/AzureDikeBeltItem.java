@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
@@ -13,7 +12,7 @@ import java.util.*;
 public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
 	public AzureDikeBeltItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("unlocks/trinkets/azure_dike_ring"));
+		super(settings);
 	}
 	
 	@Environment(EnvType.CLIENT)

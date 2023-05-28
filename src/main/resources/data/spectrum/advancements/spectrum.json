@@ -18,22 +18,22 @@
   },
   "criteria": {
     "has_amethyst_shard": {
-      "trigger": "minecraft:inventory_changed",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "items": [
-          {
-            "tag": "spectrum:amethyst_crystals"
-          }
-        ]
+        "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard"
       }
     },
     "has_citrine_shard": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": "spectrum:citrine_crystals" }] }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+      }
     },
     "has_topaz_shard": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": "spectrum:topaz_crystals" }] }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+      }
     }
   },
   "requirements": [

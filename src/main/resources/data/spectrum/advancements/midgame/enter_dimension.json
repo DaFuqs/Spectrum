@@ -10,7 +10,9 @@
     },
     "description": {
       "translate": "advancements.spectrum.enter_dimension.description"
-    }
+    },
+    "show_toast": false,
+    "announce_to_chat": false
   },
   "criteria": {
     "enter_dimension": {

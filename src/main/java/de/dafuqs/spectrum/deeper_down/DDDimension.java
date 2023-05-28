@@ -16,7 +16,7 @@ public class DDDimension {
 	public static final RegistryKey<Biome> CRYSTAL_GARDENS = getBiomeKey("crystal_gardens");
 	public static final RegistryKey<Biome> DEEP_BARRENS = getBiomeKey("deep_barrens");
 	public static final RegistryKey<Biome> DRAGONROT_SWAMP = getBiomeKey("dragonrot_swamp");
-	public static final RegistryKey<Biome> FORLORM_CAVES = getBiomeKey("forlorm_caves");
+	public static final RegistryKey<Biome> BLACK_LANGAST = getBiomeKey("black_langast");
 	public static final RegistryKey<Biome> RAZOR_EDGE = getBiomeKey("razor_edge");
 	
 	private static RegistryKey<Biome> getBiomeKey(String name) {

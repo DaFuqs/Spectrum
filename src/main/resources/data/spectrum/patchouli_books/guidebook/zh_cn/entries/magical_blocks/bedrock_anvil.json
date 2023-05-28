@@ -5,10 +5,9 @@
       "type": "patchouli:text"
     },
     {
-      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_anvil",
       "text": "允许您免费重命名物品，并且没有最大修复限制。$(br)$(italic)此外，您还可以为物品添加描述。提示：键入将文本拆分为多行。",
-      "type": "spectrum:pedestal_crafting",
-      "title": "基座配方"
+      "type": "spectrum:fusion_shrine_crafting"
     }
   ],
   "advancement": "spectrum:unlocks/equipment/bedrock_tools",

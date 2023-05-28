@@ -26,7 +26,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidLogging.SpectrumFluidFillable {
-	
+
 	private static final VoxelShape SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_mermaids_brush");
@@ -44,12 +44,12 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-	
+
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
 	}
-	
+
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
@@ -90,9 +90,10 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 		if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
-		} else {
+		} else if (fluidState.isIn(FluidTags.WATER)) {
 			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.WATER);
 		}
+		return null;
 	}
 	
 	@Override

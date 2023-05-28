@@ -46,7 +46,6 @@ public class DeeperDownPortalBlock extends Block {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 
 		if (!world.isClient) { // that should be a given, but in modded you never know
-
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3d(0.5, 0.0, 0.5), Vec3d.ZERO);
 			if (!hasNeighboringPortals(world, pos)) {
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
@@ -113,7 +112,7 @@ public class DeeperDownPortalBlock extends Block {
 						}
 						
 						BlockPos targetPos = portalPos.down(2);
-						makeRoomAround(targetWorld, targetPos, 2);
+						makeRoomAround(targetWorld, targetPos, 3);
 						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
 						teleportToSafePosition(targetWorld, entity, targetPos, 3);
 					}
@@ -131,7 +130,7 @@ public class DeeperDownPortalBlock extends Block {
 						}
 						
 						BlockPos targetPos = portalPos.up(2);
-						makeRoomAround(targetWorld, targetPos, 2);
+						makeRoomAround(targetWorld, targetPos, 3);
 						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
 						teleportToSafePosition(targetWorld, entity, targetPos, 3);
 					}

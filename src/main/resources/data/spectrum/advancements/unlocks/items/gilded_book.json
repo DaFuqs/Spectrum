@@ -4,7 +4,7 @@
       "trigger": "revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals" }
     },
-    "gotten_gilded_book_in_ancient_ruins": {
+    "gotten_gilded_book_in_preservation_ruins": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "player": [
@@ -13,7 +13,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "spectrum:ancient_ruins"
+                "structure": "spectrum:preservation_ruins"
               }
             }
           }

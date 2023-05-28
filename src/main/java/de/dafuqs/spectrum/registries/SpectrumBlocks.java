@@ -187,7 +187,6 @@ public class SpectrumBlocks {
 	
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
 	public static final Block TILLED_SHALE_CLAY = new TilledShaleClayBlock(AbstractBlock.Settings.copy(SHALE_CLAY), SHALE_CLAY.getDefaultState());
-
 	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
@@ -536,7 +535,6 @@ public class SpectrumBlocks {
 	public static AbstractBlock.Settings fungus(MapColor color) {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
-
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
 	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
@@ -1821,7 +1819,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("polished_bone_ash_slab", POLISHED_BONE_ASH_SLAB, settings, DyeColor.CYAN);
 		registerBlockWithItem("polished_bone_ash_stairs", POLISHED_BONE_ASH_STAIRS, settings, DyeColor.CYAN);
 		registerBlockWithItem("polished_bone_ash_wall", POLISHED_BONE_ASH_WALL, settings, DyeColor.CYAN);
-
 		registerBlockWithItem("bone_ash_bricks", BONE_ASH_BRICKS, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_brick_slab", BONE_ASH_BRICK_SLAB, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_brick_stairs", BONE_ASH_BRICK_STAIRS, settings, DyeColor.CYAN);
@@ -1837,7 +1834,8 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("sawtooth", SAWTOOTH, settings, DyeColor.RED);
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
-registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
+		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
+
 		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 

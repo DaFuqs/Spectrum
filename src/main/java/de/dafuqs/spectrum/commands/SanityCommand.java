@@ -36,12 +36,10 @@ public class SanityCommand {
 	
 	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = new ArrayList<>() {{
 		add(SpectrumCommon.locate("collect_mysterious_locket"));
-		add(SpectrumCommon.locate("find_ancient_ruins"));
-		add(SpectrumCommon.locate("enter_ancient_ruins"));
-		add(SpectrumCommon.locate("enter_wireless_redstone_puzzle_structure"));
-		add(SpectrumCommon.locate("enter_color_mixing_puzzle_structure"));
+		add(SpectrumCommon.locate("find_preservation_ruins"));
+		add(SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"));
+		add(SpectrumCommon.locate("place_moonstone_in_preservation_ruins"));
 		
-		add(SpectrumCommon.locate("enter_ancient_ruins"));
 		add(SpectrumCommon.locate("tap_aged_air"));
 		add(SpectrumCommon.locate("hook_entity_with_molten_rod"));
 		

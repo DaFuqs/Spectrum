@@ -83,18 +83,17 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "A weird mix between Trees and Mushrooms is towering over this biome."
+      "type": "patchouli:image",
+      "title": "Noxshroom Forest",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
+      ],
+      "text": "A weird mix between Tree and Mushroom is towering over this biome."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:shimmel",
       "text": "Blackslag, overgrown with a thin layer of a mycelium-like fungi."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:ebony_noxcap_stem",
-      "text": ""
     }
   ]
 }

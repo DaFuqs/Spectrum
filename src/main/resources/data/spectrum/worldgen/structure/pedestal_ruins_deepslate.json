@@ -1,10 +1,10 @@
 {
-  "type": "minecraft:jigsaw",
-  "start_pool": "spectrum:pedestal_ruins_deepslate",
+  "type": "spectrum:block_target_jigsaw",
+  "start_pool": "spectrum:pedestal_ruins/deepslate/centers",
   "size": 2,
   "max_distance_from_center": 80,
-  "biomes": "#spectrum:has_structure/underground_structures",
-  "step": "underground_structures",
+  "biomes": "#spectrum:has_structure/pedestal_ruins",
+  "step": "strongholds",
   "terrain_adaptation": "bury",
   "start_height": {
     "type": "minecraft:uniform",

@@ -1,0 +1,41 @@
+{
+  "name": "3 Structures",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/break_decayed_bedrock",
+  "read_by_default": true,
+  "turnin": "spectrum:generate_preservation_ruins_loot",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:generate_preservation_ruins_loot",
+      "cost": "spectrum:refined_azurite#4",
+      "text": "There are 3 different kinds of impenetrable structures hidden at around y=0 in the Overworld in any biome. They seem to be built from an unbreakable stone."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Blue Hearts",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:generate_preservation_ruins_loot",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefields sides seem to indicate you have to have Azure Dike active."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Colored Spore Blossoms",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:enter_color_mixing_preservation_ruin",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "The Colored Spore Blossoms at the ceiling and the engravings behind them on the walls seem to hint at the solution. A Powder engraving and a '? + ?'. You have to mix powders?"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Bedrock Seal",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:enter_wireless_redstone_preservation_ruin",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "Is there a way to crack open the Bedrock? After you get in, best to take a look at the corresponding pages in your book of everything you find there. Always good to have some dyes with you."
+    }
+  ]
+}

@@ -32,7 +32,7 @@
   ],
   "result": {
     "item": "spectrum:bedrock_shears",
-    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+    "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 6s}]}"
   },
   "required_advancement": "spectrum:unlocks/equipment/bedrock_tools",
   "world_conditions": [],

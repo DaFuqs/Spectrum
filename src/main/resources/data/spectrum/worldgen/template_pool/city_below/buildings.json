@@ -1,0 +1,24 @@
+{
+  "name": "spectrum:city_below",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/arboretum",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/waterfall",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

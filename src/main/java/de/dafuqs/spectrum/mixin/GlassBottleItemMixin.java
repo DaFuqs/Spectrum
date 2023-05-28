@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -51,12 +50,7 @@ public abstract class GlassBottleItemMixin {
 				&& SpectrumCommon.CONFIG.CanPickUpRuin
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_ruin"))) {
 			
-			if (blockState.get(DecayBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
-				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
-			} else {
-				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
-			}
-			
+			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
 			
@@ -64,12 +58,7 @@ public abstract class GlassBottleItemMixin {
 				&& SpectrumCommon.CONFIG.CanPickUpForfeiture
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture"))) {
 			
-			if (blockState.get(DecayBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
-				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
-			} else {
-				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
-			}
-			
+			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FORFEITURE.getDefaultStack()), world.isClient()));
 		}

@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "minecraft:ancient_debris"
+  },
+  "results": [
+    {
+      "item": "minecraft:netherite_scrap",
+      "count": 1
+    },
+    {
+      "item": "minecraft:netherite_scrap",
+      "chance": 0.5
+    }
+  ],
+  "experience": 0.2,
+  "time": 100
+}

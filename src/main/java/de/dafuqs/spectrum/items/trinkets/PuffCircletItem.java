@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
@@ -15,7 +14,7 @@ public class PuffCircletItem extends AzureDikeTrinketItem {
 	public static final float FALL_DAMAGE_NEGATING_COST = 2;
 
 	public PuffCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("unlocks/trinkets/ashen_circlet"));
+		super(settings);
 	}
 
 	@Override

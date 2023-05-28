@@ -34,7 +34,15 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof ShearsItem || stack.getItem() instanceof SpectrumFishingRodItem;
+		Item item = stack.getItem();
+		
+		return super.isAcceptableItem(stack)
+				|| EnchantmentTarget.WEAPON.isAcceptableItem(item)
+				|| EnchantmentTarget.TRIDENT.isAcceptableItem(item)
+				|| EnchantmentTarget.BOW.isAcceptableItem(item)
+				|| EnchantmentTarget.CROSSBOW.isAcceptableItem(item)
+				|| stack.getItem() instanceof ShearsItem
+				|| stack.getItem() instanceof SpectrumFishingRodItem;
 	}
 	
 }

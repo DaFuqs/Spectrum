@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You were quite simple-minded, weren't you? Thought you knew everything, but this everything was always merely half the truth.$(br)You know better now. This white, pure Gemstone you hold in your hand, shimmering in a soft, warm glow, is the monument to that."
+      "text": "You were quite simple-minded, weren't you? Thought you knew everything, but this everything was always merely half the truth.$(br2)You know better now. This white, pure gemstone you hold in your hand, shimmering in a soft, warm glow, is the monument to that."
     },
     {
       "type": "patchouli:text",

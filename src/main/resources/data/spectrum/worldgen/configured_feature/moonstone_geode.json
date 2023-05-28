@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:geode",
+  "type": "spectrum:air_check_geode",
   "config": {
     "blocks": {
       "filling_provider": {
@@ -34,43 +34,39 @@
       },
       "inner_placements": [
         {
-          "Name": "spectrum:moonstone_cluster",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Name": "spectrum:moonstone_cluster"
         }
       ],
       "cannot_replace": "#minecraft:features_cannot_replace",
       "invalid_blocks": "#minecraft:geode_invalid_blocks"
     },
     "layers": {
-      "filling": 5,
-      "inner_layer": 6,
-      "middle_layer": 7,
-      "outer_layer": 8
+      "filling": 3.8,
+      "inner_layer": 4.5,
+      "middle_layer": 5.9,
+      "outer_layer": 7.0
     },
     "crack": {
       "generate_crack_chance": 0.15,
-      "base_crack_size": 3,
-      "crack_point_offset": 3
+      "base_crack_size": 2,
+      "crack_point_offset": 2
     },
     "noise_multiplier": 0.05,
-    "use_potential_placements_chance": 1,
+    "use_potential_placements_chance": 1.0,
     "use_alternate_layer0_chance": 0.1,
     "placements_require_layer0_alternate": true,
     "outer_wall_distance": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 7,
-        "max_inclusive": 9
+        "min_inclusive": 4,
+        "max_inclusive": 6
       }
     },
     "distribution_points": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 2,
-        "max_inclusive": 3
+        "min_inclusive": 3,
+        "max_inclusive": 4
       }
     },
     "point_offset": {
@@ -80,8 +76,8 @@
         "max_inclusive": 2
       }
     },
-    "min_gen_offset": -14,
-    "max_gen_offset": 14,
-    "invalid_blocks_threshold": 1
+    "min_gen_offset": -16,
+    "max_gen_offset": 16,
+    "invalid_blocks_threshold": 0
   }
 }

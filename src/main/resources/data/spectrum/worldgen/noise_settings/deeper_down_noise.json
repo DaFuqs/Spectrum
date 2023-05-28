@@ -1,11 +1,14 @@
 {
-  "sea_level": -448,
+  "sea_level": -320,
   "disable_mob_generation": false,
   "aquifers_enabled": false,
   "ore_veins_enabled": false,
   "legacy_random_source": false,
   "default_block": {
-    "Name": "minecraft:deepslate"
+    "Name": "minecraft:deepslate",
+    "Properties": {
+      "axis": "y"
+    }
   },
   "default_fluid": {
     "Name": "minecraft:water",
@@ -14,8 +17,8 @@
     }
   },
   "noise": {
-    "min_y": -448,
-    "height": 384,
+    "min_y": -320,
+    "height": 256,
     "size_horizontal": 1,
     "size_vertical": 2
   },
@@ -63,9 +66,9 @@
                 "type": "minecraft:mul",
                 "argument1": {
                   "type": "minecraft:y_clamped_gradient",
-                  "from_y": -350,
-                  "to_y": -340,
-                  "from_value": 0,
+                  "from_y": -320,
+                  "to_y": -280,
+                  "from_value": 0.1,
                   "to_value": 1
                 },
                 "argument2": {
@@ -73,15 +76,15 @@
                   "argument1": -2.5,
                   "argument2": {
                     "type": "minecraft:add",
-                    "argument1": 0.9375,
+                    "argument1": 1,
                     "argument2": {
                       "type": "minecraft:mul",
                       "argument1": {
                         "type": "minecraft:y_clamped_gradient",
-                        "from_y": -300,
+                        "from_y": -180,
                         "to_y": -64,
                         "from_value": 1,
-                        "to_value": 0
+                        "to_value": 0.4
                       },
                       "argument2": {
                         "type": "minecraft:add",
@@ -109,7 +112,7 @@
       "argument": {
         "type": "minecraft:range_choice",
         "input": "minecraft:y",
-        "min_inclusive": -420,
+        "min_inclusive": -300,
         "max_exclusive": -80,
         "when_in_range": {
           "type": "minecraft:noise",
@@ -132,7 +135,7 @@
             "argument": {
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
-              "min_inclusive": -400,
+              "min_inclusive": -300,
               "max_exclusive": -80,
               "when_in_range": {
                 "type": "minecraft:noise",
@@ -260,7 +263,7 @@
           "invert": {
             "type": "minecraft:y_above",
             "anchor": {
-              "absolute": -447
+              "absolute": -319
             },
             "surface_depth_multiplier": 1,
             "add_stone_depth": false
@@ -338,7 +341,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "spectrum:forlorm_caves"
+            "spectrum:black_langast"
           ]
         },
         "then_run": {
@@ -415,10 +418,10 @@
           "type": "minecraft:vertical_gradient",
           "random_name": "minecraft:deepslate",
           "true_at_and_below": {
-            "absolute": -234
+            "absolute": -194
           },
           "false_at_and_above": {
-            "absolute": -220
+            "absolute": -190
           }
         },
         "then_run": {

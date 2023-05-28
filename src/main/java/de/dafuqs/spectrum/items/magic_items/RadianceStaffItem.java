@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -38,6 +39,10 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	public static boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
+		if (GenericClaimModsCompat.isProtected(world, targetPos, playerEntity)) {
+			return false;
+		}
+
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
 			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {

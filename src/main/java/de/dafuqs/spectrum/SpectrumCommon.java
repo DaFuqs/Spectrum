@@ -63,7 +63,6 @@ import java.util.*;
 public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
-
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));
@@ -145,7 +144,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumConfiguredFeatures.register();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register();
-		
+
 		// Dimension
 		logInfo("Registering Dimension...");
 		DDDimension.register();

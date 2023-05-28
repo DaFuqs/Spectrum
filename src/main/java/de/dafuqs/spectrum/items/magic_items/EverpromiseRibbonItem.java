@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -23,6 +24,10 @@ public class EverpromiseRibbonItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+		if (!GenericClaimModsCompat.canInteractWith(user.world, entity, user)) {
+			return ActionResult.FAIL;
+		}
+		
 		if (stack.hasCustomName() && !(entity instanceof PlayerEntity)) {
 			if (entity.isAlive()) {
 				if (user.world.isClient) {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -45,27 +46,31 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 			if (entity instanceof PlayerEntity playerEntity && playerEntity.isSpectator()) {
 				return;
 			}
+			BlockPos pos = entity.getBlockPos();
+			if (GenericClaimModsCompat.isProtected(world, pos, entity)) {
+				return;
+			}
 			
-			if (world.getLightLevel(entity.getBlockPos()) <= MAX_LIGHT_LEVEL) {
-				BlockState currentState = world.getBlockState(entity.getBlockPos());
+			if (world.getLightLevel(pos) <= MAX_LIGHT_LEVEL) {
+				BlockState currentState = world.getBlockState(pos);
 				boolean placed = false;
 				if (currentState.isAir()) {
-					world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE, 3);
+					world.setBlockState(pos, LIGHT_BLOCK_STATE, 3);
 					placed = true;
 				} else if (currentState.equals(Blocks.WATER.getDefaultState())) {
-					world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE_WATER, 3);
+					world.setBlockState(pos, LIGHT_BLOCK_STATE_WATER, 3);
 					placed = true;
 				} else if (currentState.isOf(SpectrumBlocks.DECAYING_LIGHT_BLOCK)) {
 					if (currentState.get(LightBlock.WATERLOGGED)) {
-						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE_WATER, 3);
+						world.setBlockState(pos, LIGHT_BLOCK_STATE_WATER, 3);
 					} else {
-						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE, 3);
+						world.setBlockState(pos, LIGHT_BLOCK_STATE, 3);
                     }
                     placed = true;
                 }
                 if (placed) {
-                    sendSmallLightCreatedParticle((ServerWorld) world, entity.getBlockPos());
-                    world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 0.08F, 0.9F + world.random.nextFloat() * 0.2F);
+					sendSmallLightCreatedParticle((ServerWorld) world, pos);
+					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 0.08F, 0.9F + world.random.nextFloat() * 0.2F);
                 }
             }
         }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:unbreakable_structure_blocks"
+    "#spectrum:unbreakable_structure_blocks",
+    "spectrum:downstone"
   ]
 }

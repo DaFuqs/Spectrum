@@ -11,19 +11,19 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "name": "Blood Orchid Products",
+      "title": "Blood Orchid Products",
       "item": "spectrum:bloodboil_syrup",
-      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may to put you in a $(thing)Frenzy$().$(br)Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
+      "text": "Extracts of the $(l:resources/blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may put you in a $(thing)Frenzy$().$(br)Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
     },
     {
       "type": "patchouli:text",
       "title": "Frenzy Stacking",
-      "text": "Instead of resetting the duration, applying another $(thing)Frenzy$() effect will increase it's potency instead.$(br2)To get the most out of the effect getting one with long duration first and then stacking up on that seems to be most effective."
+      "text": "Instead of resetting the duration, applying another $(thing)Frenzy$() effect will increase its potency instead.$(br2)In order to get the most out of the effect apply one with a long duration first, then stack up seems to be most effective."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
-      "text": "It's active ingredients can be extracted from a petal into a thick solution. While it almost smells like Rose Water, it's effect when drunk is definitely... $(italic)a little more effervescent$()."
+      "text": "A Petals active ingredient can be extracted into a thick solution. Almost smells like rose water, but its effect is definitely... $(italic)a little more effervescent$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -42,7 +42,7 @@
       "advancement": "spectrum:unlocks/food/rabbit_poison",
       "title": "Rabbit Poison",
       "recipe": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
-      "text": "A truly nasty brew. Tastes like you would imagine and the effects are similar."
+      "text": "A truly nasty brew. Tastes exactly what you would expect."
     }
   ]
 }

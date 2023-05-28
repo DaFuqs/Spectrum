@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
-      "text": "Deals a chunk of it's damage via $(thing)Magic$() - piercing armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you (improved by $(thing)Sweeping$())."
+      "text": "Deals a chunk of it's damage via $(thing)Magic$() - piercing armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you. This ability scales with $(thing)Sweeping$())."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

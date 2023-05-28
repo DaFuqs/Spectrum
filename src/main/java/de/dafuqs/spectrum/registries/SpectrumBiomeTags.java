@@ -7,7 +7,6 @@ import net.minecraft.world.biome.*;
 
 public class SpectrumBiomeTags {
 	
-	public static final TagKey<Biome> HAS_ANCIENT_RUINS = getReference("has_structure/ancient_ruins");
 	public static final TagKey<Biome> COLORED_TREES_GENERATING_IN = getReference("colored_trees_generating_in");
 	
 	private static TagKey<Biome> getReference(String id) {

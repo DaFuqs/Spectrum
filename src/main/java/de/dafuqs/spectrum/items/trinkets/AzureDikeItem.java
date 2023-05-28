@@ -10,6 +10,8 @@ import java.util.*;
 
 public interface AzureDikeItem {
 	
+	Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/create_refined_azurite");
+
 	int maxAzureDike(ItemStack stack);
 	
 	float azureDikeRechargeBonusTicks(ItemStack stack);

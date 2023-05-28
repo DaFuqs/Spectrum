@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
@@ -204,6 +205,10 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		if (user != null && user.getItemUseTime() > 2) {
 			World world = context.getWorld();
 			BlockPos blockPos = context.getBlockPos();
+			
+			if (GenericClaimModsCompat.isProtected(world, blockPos, user)) {
+				return ActionResult.FAIL;
+			}
 			
 			if (world.isClient) {
 				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(ITEM_COST)) {

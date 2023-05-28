@@ -3,7 +3,7 @@
   "icon": "spectrum:mysterious_locket",
   "advancement": "spectrum:lategame/collect_mysterious_locket",
   "category": "spectrum:general_category",
-  "sortnum": 20,
+  "sortnum": 21,
   "extra_recipe_mappings": {
     "spectrum:mysterious_locket": 0
   },

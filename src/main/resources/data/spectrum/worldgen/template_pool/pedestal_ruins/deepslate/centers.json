@@ -1,0 +1,15 @@
+{
+  "name": "spectrum:pedestal_ruins/deepslate/centers",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "spectrum:pedestal_ruins/deepslate/main",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

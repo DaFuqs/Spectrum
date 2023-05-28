@@ -62,7 +62,31 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
 			serverWorldProperties.setThundering(false);
+
+			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+		}
+	});
+	FusionShrineRecipeWorldEffect WEATHER_RAIN_SHORT = register("weather_rain_short", new SingleTimeRecipeWorldEffect() {
+		@Override
+		public void trigger(ServerWorld world, BlockPos pos) {
+			ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
+			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 4000, 6000));
+			serverWorldProperties.setRaining(true);
+			serverWorldProperties.setThunderTime(0);
+			serverWorldProperties.setThundering(false);
 			
+			world.playSound(null, pos.up(), SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
+		}
+	});
+	FusionShrineRecipeWorldEffect WEATHER_THUNDER_SHORT = register("weather_thunder_short", new SingleTimeRecipeWorldEffect() {
+		@Override
+		public void trigger(ServerWorld world, BlockPos pos) {
+			ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
+			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 4000, 6000));
+			serverWorldProperties.setRaining(true);
+			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3000, 4000));
+			serverWorldProperties.setThundering(false);
+
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});

@@ -12,25 +12,10 @@
     "background": "spectrum:textures/gui/advancement_background_lategame.png"
   },
   "criteria": {
-    "coming_soon": {
-      "trigger": "minecraft:impossible"
-    },
-    "has_collected_enough_hints": {
-      "trigger": "revelationary:advancement_count",
+    "visited_all_deeper_down_biomes": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "count": {
-          "min": 4
-        },
-        "advancement_identifiers": [
-          "spectrum:lategame/revive_black_sludge_plant",
-          "spectrum:lategame/break_cracked_dragonbone",
-          "spectrum:lategame/find_excavation_site",
-          "spectrum:lategame/find_forgotten_city",
-          "spectrum:lategame/reached_dd_floor",
-          "spectrum:lategame/strike_up_hummingstone_hymn",
-          "spectrum:lategame/visit_all_deeper_down_biomes",
-          "spectrum:lategame/collect_moonstone_shard"
-        ]
+        "advancement_identifier": "spectrum:lategame/visit_all_deeper_down_biomes"
       }
     }
   }

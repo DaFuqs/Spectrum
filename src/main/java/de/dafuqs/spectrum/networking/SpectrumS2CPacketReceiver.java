@@ -358,26 +358,22 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				client.getSoundManager().play(new DivinitySoundInstance());
-			});
-		});
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> client.execute(() -> {
+			// Everything in this lambda is running on the render thread
+			client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			client.getSoundManager().play(new DivinitySoundInstance());
+		}));
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				ClientPlayerEntity player = client.player;
-				client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
-				client.gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
-				client.world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.SIXTEEN, 0.4);
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.SIXTEEN, 0.4);
-			});
-		});
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> client.execute(() -> {
+			// Everything in this lambda is running on the render thread
+			ClientPlayerEntity player = client.player;
+			client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
+			client.gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
+			client.world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F);
+
+			ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.SIXTEEN, 0.4);
+			ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.SIXTEEN, 0.4);
+		}));
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.MOONSTONE_BLAST, (client, handler, buf, responseSender) -> {
 			ClientPlayerEntity player = client.player;
@@ -386,12 +382,13 @@ public class SpectrumS2CPacketReceiver {
 			double y = buf.readDouble();
 			double z = buf.readDouble();
 			float power = buf.readFloat();
+			float knockback = buf.readFloat();
 			double playerVelocityX = buf.readDouble();
 			double playerVelocityY = buf.readDouble();
 			double playerVelocityZ = buf.readDouble();
 			
 			client.execute(() -> {
-				MoonstoneStrike.create(client.world, null, null, x, y, z, power);
+				MoonstoneStrike.create(client.world, null, null, x, y, z, power, knockback);
 				player.setVelocity(player.getVelocity().add(playerVelocityX, playerVelocityY, playerVelocityZ));
 			});
 		});

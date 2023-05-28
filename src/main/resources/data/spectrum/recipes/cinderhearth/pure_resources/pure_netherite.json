@@ -7,11 +7,6 @@
     {
       "item": "minecraft:netherite_ingot",
       "count": 2
-    },
-    {
-      "item": "minecraft:netherite_ingot",
-      "count": 1,
-      "chance": 0.25
     }
   ],
   "experience": 0.5,

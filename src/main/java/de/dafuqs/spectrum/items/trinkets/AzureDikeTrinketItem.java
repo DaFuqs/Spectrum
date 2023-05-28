@@ -14,8 +14,8 @@ import java.util.*;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeTrinketItem(Settings settings, Identifier unlockIdentifier) {
-		super(settings, unlockIdentifier);
+	public AzureDikeTrinketItem(Settings settings) {
+		super(settings, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override

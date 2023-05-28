@@ -188,7 +188,7 @@ public class SpectrumItems {
 	// variants by socketing a moonstone core
 	public static final SpectrumToolMaterials.ToolMaterial GLASS_CREST = SpectrumToolMaterials.ToolMaterial.GLASS_CREST;
 	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, 32, 8, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
 	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
 	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
@@ -406,7 +406,7 @@ public class SpectrumItems {
 	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
 	public static final Item BLIZZARD_POWDER = new Item(Tab.RESOURCES.settings());
 	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
-	
+
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.RESOURCES.settings());
 	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, Tab.RESOURCES.settings());
@@ -691,7 +691,7 @@ public class SpectrumItems {
 		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
 		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
 		register("bone_ash", BONE_ASH, DyeColor.GRAY);
-		
+
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);
 	}
 	

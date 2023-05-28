@@ -35,8 +35,8 @@ public class SpectrumConfig implements ConfigData {
 			Separate value for Endermen spawning in the end, since there are LOTS of them there
 			Those blocks do not gate progression, so it is not that drastic not finding any right away.
 			Better to let players stumble about them organically instead of forcing it.""")
-	public float EndermanHoldingEnderTreasureChance = 0.08F;
-	public final float EndermanHoldingEnderTreasureInEndChance = 0.005F;
+	public float EndermanHoldingEnderTreasureChance = 0.1F;
+	public final float EndermanHoldingEnderTreasureInEndChance = 0.0075F;
 	
 	@Comment("Worlds where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
 	public final List<String> ShootingStarWorlds = new ArrayList<>();
@@ -86,7 +86,7 @@ public class SpectrumConfig implements ConfigData {
 	public final boolean ForfeitureCanDestroyBlockEntities = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
-	public final float BlockSoundVolume = 0.75F;
+	public final float BlockSoundVolume = 0.5F;
 	
 	@Comment("""
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
@@ -129,19 +129,19 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("Flat additional damage dealt with each level of the First Strike enchantment")
 	public float FirstStrikeDamagePerLevel = 2.0F;
-	
+
 	@Comment("The percentile a mobs armor/hand stacks are being dropped when hit with a Disarming enchanted weapon per the enchantments level")
 	public final float DisarmingChancePerLevelMobs = 0.01F;
-	
+
 	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
 	public final float DisarmingChancePerLevelPlayers = 0.001F;
-	
+
 	@Comment("The % attack speed boost each level of Tight Grip gives to a tool")
 	public final float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
-	
+
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public final int GlowVisionGogglesDuration = 240;
-	
+
 	public final int GemstoneArmorHelmetProtection = 3;
 	public final int GemstoneArmorChestplateProtection = 7;
 	public final int GemstoneArmorLeggingsProtection = 5;

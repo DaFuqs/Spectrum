@@ -13,22 +13,22 @@
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:downstone_fragments"
     },
     {
-      "item": "spectrum:bedrock_dust"
-    },
-    {
-      "item": "spectrum:blue_pigment"
+      "item": "spectrum:pure_netherite"
     },
     {
       "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:blue_pigment"
     },
     {
-      "item": "spectrum:bedrock_dust"
+      "item": "spectrum:downstone_fragments"
+    },
+    {
+      "item": "spectrum:pure_netherite"
     }
   ],
   "result": {

@@ -41,7 +41,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You can switch the basalt blocks with calcite and the amethyst blocks for any other gemstone block.$(br)Mix them up to create your personal variation!"
+      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up $(item)Calcite$() and $(item)Basalt$() up to create your personal variation!"
     }
   ]
 }

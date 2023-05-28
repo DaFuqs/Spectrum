@@ -52,10 +52,10 @@ public class SpectrumConfiguredFeatures {
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_NETHER), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("stratine_ore")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_THE_END), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("paltaeria_ore")));
 		
-		// Colored Trees
-		for (DyeColor dyeColor : DyeColor.values()) {
-			registerColoredTree(dyeColor);
-		}
+		// TODO - Remove?: Colored Trees
+//		for (DyeColor dyeColor : DyeColor.values()) {
+//			registerColoredTree(dyeColor);
+//		}
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.COLORED_TREES_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("colored_tree_patch")));
 		
 		// Plants
@@ -63,7 +63,7 @@ public class SpectrumConfiguredFeatures {
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("quitoxic_reeds")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("clover_patch")));
 	}
-	
+	// TODO - Remove?
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
 		Identifier identifier = SpectrumCommon.locate("colored_trees/" + dyeColor + "_tree");
 		
@@ -74,8 +74,8 @@ public class SpectrumConfiguredFeatures {
 				new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
 				new TwoLayersFeatureSize(1, 0, 1)
 		).ignoreVines().build();
-		
-		COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, registerConfiguredFeature(identifier, Feature.TREE, treeFeatureConfig));
+
+		//COLORED_TREE_CONFIGURED_FEATURES.put(dyeColor, registerConfiguredFeature(identifier, Feature.TREE, treeFeatureConfig));
 	}
 	
 }

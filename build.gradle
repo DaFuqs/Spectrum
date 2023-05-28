@@ -122,6 +122,18 @@ dependencies {
 
 loom {
 	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
+
+	runs {
+		datagen {
+			server()
+
+			name "Minecraft Data"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+
+			runDir "build/datagen"
+		}
+	}
 }
 
 processResources {

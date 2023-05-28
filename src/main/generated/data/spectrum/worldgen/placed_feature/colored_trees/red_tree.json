@@ -1,0 +1,8 @@
+{
+  "feature": "spectrum:colored_trees/red_tree",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

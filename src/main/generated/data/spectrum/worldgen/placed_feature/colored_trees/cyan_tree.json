@@ -1,0 +1,8 @@
+{
+  "feature": "spectrum:colored_trees/cyan_tree",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

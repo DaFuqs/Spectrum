@@ -1,0 +1,8 @@
+{
+  "feature": "spectrum:colored_trees/magenta_tree",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.entity.*;
@@ -9,6 +10,8 @@ import net.minecraft.util.*;
 import java.util.*;
 
 public interface AzureDikeItem {
+	
+	Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/create_refined_azurite");
 	
 	int maxAzureDike(ItemStack stack);
 	

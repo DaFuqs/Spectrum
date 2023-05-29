@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.energy.storage.*;
 import dev.emi.trinkets.api.*;
@@ -17,7 +16,7 @@ import java.util.*;
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
 	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("unlocks/trinkets/shieldgrasp_amulet"), InkColors.BLUE);
+		super(settings, UNLOCK_IDENTIFIER, InkColors.BLUE);
 	}
 	
 	@Environment(EnvType.CLIENT)

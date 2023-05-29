@@ -6,7 +6,6 @@ import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
-import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -14,8 +13,8 @@ import java.util.*;
 
 public abstract class AzureDikeTrinketItem extends SpectrumTrinketItem implements AzureDikeItem {
 	
-	public AzureDikeTrinketItem(Settings settings, Identifier unlockIdentifier) {
-		super(settings, unlockIdentifier);
+	public AzureDikeTrinketItem(Settings settings) {
+		super(settings, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override

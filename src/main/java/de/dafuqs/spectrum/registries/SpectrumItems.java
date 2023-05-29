@@ -443,8 +443,6 @@ public class SpectrumItems {
 		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.EFFICIENCY, Enchantments.QUICK_CHARGE));
 	}), 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> {
 		// Enchanted books with the max upgrade level available via Enchantment Upgrading
 		HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
@@ -465,7 +463,7 @@ public class SpectrumItems {
 			}
 		}
 	}));
-	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(Tab.EQUIPMENT.settings());
 	
 	// Lore

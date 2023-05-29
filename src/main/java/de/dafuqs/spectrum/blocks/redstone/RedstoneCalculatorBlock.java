@@ -17,6 +17,7 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.*;
 import org.jetbrains.annotations.*;
 
 public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {

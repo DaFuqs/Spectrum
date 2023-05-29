@@ -9,6 +9,7 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;

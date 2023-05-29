@@ -14,7 +14,7 @@ import net.minecraft.loot.context.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.util.JsonSerializer;
 
 import java.util.*;
 

@@ -7,10 +7,11 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
@@ -43,7 +44,7 @@ public class FirestarterMobBlock extends MobBlock {
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
 		for (SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
-			ItemStack outputStack = recipe.getOutput(null);
+			ItemStack outputStack = recipe.getOutput(DynamicRegistryManager.EMPTY);
 			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 				if (!ingredients.isEmpty()) {

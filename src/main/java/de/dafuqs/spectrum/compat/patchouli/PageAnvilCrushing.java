@@ -8,7 +8,9 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -22,11 +24,11 @@ public class PageAnvilCrushing extends PageDoubleRecipeRegistry<AnvilCrushingRec
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(AnvilCrushingRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, AnvilCrushingRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -48,7 +50,7 @@ public class PageAnvilCrushing extends PageDoubleRecipeRegistry<AnvilCrushingRec
 		parent.renderItemStack(ms, recipeX + 16, recipeY + 15, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

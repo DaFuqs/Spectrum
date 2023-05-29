@@ -4,7 +4,7 @@ import com.google.common.collect.*;
 import com.google.gson.*;
 import net.minecraft.block.*;
 import net.minecraft.predicate.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;

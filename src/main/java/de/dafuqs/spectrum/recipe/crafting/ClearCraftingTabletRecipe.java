@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.items.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 

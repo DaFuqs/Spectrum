@@ -1,17 +1,12 @@
 package de.dafuqs.spectrum.blocks.farming;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.FarmlandBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class ImmutableFarmlandBlock extends FarmlandBlock {
 
@@ -43,7 +38,7 @@ public class ImmutableFarmlandBlock extends FarmlandBlock {
             setBare(state, world, pos);
         }
 
-        entity.handleFallDamage(fallDistance, 1.0F, DamageSource.FALL);
+        entity.handleFallDamage(fallDistance, 1.0F, world.getDamageSources().fall());
     }
 
     public void setBare(BlockState state, World world, BlockPos pos) {

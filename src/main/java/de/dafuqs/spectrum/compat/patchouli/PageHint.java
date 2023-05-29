@@ -12,6 +12,7 @@ import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.base.*;
 import vazkii.patchouli.client.book.*;
@@ -42,8 +43,8 @@ public class PageHint extends BookPage {
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		ingredient = cost.as(Ingredient.class);
 	}
 	

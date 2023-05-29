@@ -6,7 +6,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
-import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

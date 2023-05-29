@@ -7,7 +7,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 

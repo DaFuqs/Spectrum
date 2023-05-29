@@ -22,10 +22,11 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 import vazkii.patchouli.api.*;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {

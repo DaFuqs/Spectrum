@@ -19,6 +19,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.potion.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
@@ -212,7 +213,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				}
 			} else if (baseIngredient.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient);
-			} else if (recipe.getOutput(null).isOf(Items.POTION)) {
+			} else if (recipe.getOutput(DynamicRegistryManager.EMPTY).isOf(Items.POTION)) {
 				return recipe.isApplicableToPotions();
 			} else {
 				return true;
@@ -240,7 +241,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		// output
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(null).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(DynamicRegistryManager.EMPTY).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {

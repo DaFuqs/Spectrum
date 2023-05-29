@@ -9,7 +9,9 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -26,11 +28,11 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(SpiritInstillerRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, SpiritInstillerRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -56,7 +58,7 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<Spirit
 		parent.renderItemStack(ms, recipeX + 44, recipeY + 25, mouseX, mouseY, ITEM_BOWL_STACK);
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

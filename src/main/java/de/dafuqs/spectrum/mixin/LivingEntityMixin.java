@@ -103,7 +103,7 @@ public abstract class LivingEntityMixin {
 	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
 		if (onGround) {
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
-			if (!thisEntity.isInvulnerableTo(DamageSource.FALL) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
+			if (!thisEntity.isInvulnerableTo(thisEntity.getDamageSources().fall()) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {

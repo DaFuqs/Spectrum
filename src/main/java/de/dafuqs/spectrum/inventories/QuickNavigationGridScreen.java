@@ -16,8 +16,8 @@ import net.minecraft.screen.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 
 import java.util.*;
 
@@ -83,7 +83,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		}
 
 		void drawBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			RenderSystem.setShader(GameRenderer::getPositionTexShader);
+			RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 			RenderSystem.setShaderTexture(0, BACKGROUND);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			
@@ -129,7 +129,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			return new TextGridEntry(innerText, text, callback);
 		}
 
-		public static GridEntry colored(Vec3f color, String text, @Nullable GridEntryCallback callback) {
+		public static GridEntry colored(Vector3f color, String text, @Nullable GridEntryCallback callback) {
 			return new ColoredGridEntry(color, text, callback);
 		}
 
@@ -185,9 +185,9 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	}
 
 	public static class ColoredGridEntry extends GridEntry {
-		protected final Vec3f color;
+		protected final Vector3f color;
 
-		private ColoredGridEntry(Vec3f color, String text, GridEntry.GridEntryCallback callback) {
+		private ColoredGridEntry(Vector3f color, String text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.color = color;
 		}
@@ -263,13 +263,13 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		@Override
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigForeground(screen, matrices, startX, startY);
-			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 10, startY + 10);
+			MinecraftClient.getInstance().getItemRenderer().renderInGui(matrices, stack, startX + 10, startY + 10);
 		}
 
 		@Override
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigForeground(screen, matrices, startX, startY);
-			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 5, startY + 5);
+			MinecraftClient.getInstance().getItemRenderer().renderInGui(matrices, stack, startX + 5, startY + 5);
 		}
 
 	}
@@ -291,7 +291,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	}
 	
 	protected void selectGrid(Grid grid) {
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		gridStack.push(grid);
 	}
 	

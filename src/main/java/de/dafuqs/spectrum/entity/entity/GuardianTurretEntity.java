@@ -21,6 +21,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
+import org.joml.Math;
 
 import java.util.*;
 
@@ -33,9 +35,9 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	
 	protected static final TrackedData<Direction> ATTACHED_FACE = DataTracker.registerData(GuardianTurretEntity.class, TrackedDataHandlerRegistry.FACING);
 	protected static final TrackedData<Byte> PEEK_AMOUNT = DataTracker.registerData(GuardianTurretEntity.class, TrackedDataHandlerRegistry.BYTE);
-	protected static final Vec3f SOUTH_VECTOR = Util.make(() -> {
+	protected static final Vector3f SOUTH_VECTOR = Util.make(() -> {
 		Vec3i vec3i = Direction.SOUTH.getVector();
-		return new Vec3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+		return new Vector3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
 	});
 	
 	protected float prevOpenProgress;
@@ -411,15 +413,15 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		@Override
 		protected Optional<Float> getTargetYaw() {
 			Direction attachedDirection = GuardianTurretEntity.this.getAttachedFace().getOpposite();
-			Vec3f southVectorCopy = GuardianTurretEntity.SOUTH_VECTOR.copy();
+			Vector3f southVectorCopy = new Vector3f(GuardianTurretEntity.SOUTH_VECTOR);
 			southVectorCopy.rotate(attachedDirection.getRotationQuaternion());
 			Vec3i vec3i = attachedDirection.getVector();
-			Vec3f vec3f2 = new Vec3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
+			Vector3f vec3f2 = new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			vec3f2.cross(southVectorCopy);
 			double d = this.x - this.entity.getX();
 			double e = this.y - this.entity.getEyeY();
 			double f = this.z - this.entity.getZ();
-			Vec3f vec3f3 = new Vec3f((float) d, (float) e, (float) f);
+			Vector3f vec3f3 = new Vector3f((float) d, (float) e, (float) f);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
 			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (MathHelper.atan2((-g), h) * 57.2957763671875));
@@ -478,7 +480,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 					if (squaredDistanceToTarget < 400.0) {
 						if (this.counter <= 0) {
 							this.counter = 20 + GuardianTurretEntity.this.random.nextInt(10) * 20 / 2;
-							target.damage(EntityDamageSource.mob(GuardianTurretEntity.this), 4F);
+							target.damage(world.getDamageSources().mobAttack(GuardianTurretEntity.this), 4F);
 							GuardianTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
 							target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
 						}

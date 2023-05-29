@@ -9,8 +9,10 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -27,11 +29,11 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(PedestalCraftingRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, PedestalCraftingRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -42,7 +44,7 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
 		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 		
 		switch (recipe.getTier()) {
 			case COMPLEX ->

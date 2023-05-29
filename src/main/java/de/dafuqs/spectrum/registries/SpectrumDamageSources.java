@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.locate;

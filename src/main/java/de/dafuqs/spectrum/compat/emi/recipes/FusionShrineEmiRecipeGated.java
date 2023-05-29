@@ -7,6 +7,7 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 
 import java.util.*;
@@ -24,7 +25,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		input = new ArrayList<>();
 		input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
 		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
-		output = List.of(EmiStack.of(recipe.getOutput(null)));
+		output = List.of(EmiStack.of(recipe.getOutput(DynamicRegistryManager.EMPTY)));
 	}
 
 	@Override

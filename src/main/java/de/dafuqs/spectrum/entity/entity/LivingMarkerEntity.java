@@ -5,7 +5,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 

@@ -11,7 +11,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
-import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 

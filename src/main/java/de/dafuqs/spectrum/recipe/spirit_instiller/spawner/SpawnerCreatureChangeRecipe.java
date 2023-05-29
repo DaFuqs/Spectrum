@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.*;

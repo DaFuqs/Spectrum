@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -27,11 +28,11 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	
 	public static EntryIngredient buildOutput(SpiritInstillerRecipe recipe) {
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
-			ItemStack outputStack = recipe.getOutput(null);
+			ItemStack outputStack = recipe.getOutput(DynamicRegistryManager.EMPTY);
 			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
 			return EntryIngredients.of(outputStack);
 		} else {
-			return EntryIngredients.of(recipe.getOutput(null));
+			return EntryIngredients.of(recipe.getOutput(DynamicRegistryManager.EMPTY));
 		}
 	}
 	

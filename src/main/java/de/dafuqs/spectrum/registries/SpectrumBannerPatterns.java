@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.util.*;
 
 public class SpectrumBannerPatterns {

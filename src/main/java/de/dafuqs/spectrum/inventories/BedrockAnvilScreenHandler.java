@@ -10,7 +10,6 @@ import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.*;
@@ -95,7 +94,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
+	public void onClosed(PlayerEntity player) {
 		super.onClosed(player);
 		this.context.run((world, pos) -> this.dropInventory(player, this.input));
 	}

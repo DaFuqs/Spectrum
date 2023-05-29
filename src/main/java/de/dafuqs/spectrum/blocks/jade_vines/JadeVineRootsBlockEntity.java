@@ -5,12 +5,12 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 

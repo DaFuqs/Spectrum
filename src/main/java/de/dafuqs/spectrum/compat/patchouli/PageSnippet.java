@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -20,8 +21,8 @@ public class PageSnippet extends PageWithText {
 	int texture_height;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 	}
 	
 	@Override

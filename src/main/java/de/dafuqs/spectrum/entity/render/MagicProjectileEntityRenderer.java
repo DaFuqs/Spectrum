@@ -8,7 +8,7 @@ import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import org.joml.*;
 import org.joml.Math;
 

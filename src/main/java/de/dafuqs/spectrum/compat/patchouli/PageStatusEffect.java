@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.registry.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -23,15 +24,15 @@ public class PageStatusEffect extends PageWithText {
 	transient Sprite statusEffectSprite;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		statusEffect = Registries.STATUS_EFFECT.get(new Identifier(statusEffectId));
 		statusEffectSprite = MinecraftClient.getInstance().getStatusEffectSpriteManager().getSprite(statusEffect);
 	}
 	
 	@Override
 	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		RenderSystem.setShaderTexture(0, statusEffectSprite.getAtlas().getId());
+		RenderSystem.setShaderTexture(0, statusEffectSprite.getContents().getId());
 		RenderSystem.enableBlend();
 		DrawableHelper.drawSprite(ms, 49, 14, 0, 18, 18, statusEffectSprite);
 		RenderSystem.setShaderTexture(0, book.craftingTexture);

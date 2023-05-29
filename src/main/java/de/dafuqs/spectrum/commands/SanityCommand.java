@@ -317,7 +317,7 @@ public class SanityCommand {
 					}
 				}
 			}
-			Item outputItem = recipe.getOutput(null).getItem();
+			Item outputItem = recipe.getOutput(DynamicRegistryManager.EMPTY).getItem();
 			if (outputItem != null && outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + Registries.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}

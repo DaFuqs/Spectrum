@@ -12,6 +12,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -129,21 +130,21 @@ public class UnlockToastManager {
 			HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 			
 			for (GatedRecipe recipe : unlockedRecipes) {
-				if (!recipe.getOutput(null).isEmpty()) { // weather recipes
+				if (!recipe.getOutput(DynamicRegistryManager.EMPTY).isEmpty()) { // weather recipes
 					if (recipe.getGroup() == null) {
 						SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are Dafuqs and you are reading this: you messed up big time.");
 					}
 					
 					if (recipe.getGroup().isEmpty()) {
-						ItemStack displayStack = recipe.getOutput(null).copy();
+						ItemStack displayStack = recipe.getOutput(DynamicRegistryManager.EMPTY).copy();
 						displayStack.setCount(1);
 						UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), displayStack, singleText);
 					} else {
 						if (groupedRecipes.containsKey(recipe.getGroup())) {
-							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(null));
+							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(DynamicRegistryManager.EMPTY));
 						} else {
 							List<ItemStack> newList = new ArrayList<>();
-							newList.add(new ItemStack(recipe.getOutput(null).getItem()));
+							newList.add(new ItemStack(recipe.getOutput(DynamicRegistryManager.EMPTY).getItem()));
 							groupedRecipes.put(recipe.getGroup(), newList);
 						}
 					}

@@ -10,8 +10,10 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -25,11 +27,11 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(EnchanterRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, EnchanterRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -65,7 +67,7 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 		parent.renderItemStack(ms, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultStack());
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

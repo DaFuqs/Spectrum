@@ -6,7 +6,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -80,10 +80,10 @@ public class FluidLogging {
 				if (!world.isClient()) {
 					if (fluidState.getFluid() == Fluids.WATER) {
 						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.WATER), Block.NOTIFY_ALL);
-						world.createAndScheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 					} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 						world.setBlockState(pos, state.with(ANY_INCLUDING_NONE, State.LIQUID_CRYSTAL), Block.NOTIFY_ALL);
-						world.createAndScheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+						world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 					}
 				}
 				

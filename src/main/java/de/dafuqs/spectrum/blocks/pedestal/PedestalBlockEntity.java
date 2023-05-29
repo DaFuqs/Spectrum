@@ -27,6 +27,7 @@ import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -174,7 +175,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				
 				PlayerEntity player = pedestalBlockEntity.getOwnerIfOnline();
 				if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalCraftingRecipe.craft(pedestalBlockEntity), (int) calculatedPedestalCraftingRecipe.getExperience(), pedestalBlockEntity.craftingTimeTotal);
+					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalCraftingRecipe.craft(pedestalBlockEntity, DynamicRegistryManager.EMPTY), (int) calculatedPedestalCraftingRecipe.getExperience(), pedestalBlockEntity.craftingTimeTotal);
 				}
 			} else {
 				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
@@ -756,7 +757,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return ItemStack.EMPTY;
 		} else {
 			if(currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-				return pedestalCraftingRecipe.craft(this);
+				return pedestalCraftingRecipe.craft(this, DynamicRegistryManager.EMPTY);
 			} else {
 				autoCraftingInventory.setInputInventory(this, 0, 9);
 				return this.currentRecipe.craft(autoCraftingInventory, null);

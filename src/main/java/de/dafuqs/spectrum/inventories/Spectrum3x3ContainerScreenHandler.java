@@ -111,7 +111,7 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
+	public void onClosed(PlayerEntity player) {
 		super.onClosed(player);
 		this.inventory.onClose(player);
 	}

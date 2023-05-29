@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -23,7 +24,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		);
 		output = Stream.concat(
 				Stream.concat(
-								Stream.of(recipe.getOutput(null)),
+								Stream.of(recipe.getOutput(DynamicRegistryManager.EMPTY)),
 								recipe.getAdditionalOutputs().stream())
 						.map(EmiStack::of),
 			recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())

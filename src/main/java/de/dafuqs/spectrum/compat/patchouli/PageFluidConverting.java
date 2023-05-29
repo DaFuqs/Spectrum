@@ -6,8 +6,10 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -21,11 +23,11 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 	public abstract Identifier getBackgroundTexture();
 	
 	@Override
-	protected ItemStack getRecipeOutput(FluidConvertingRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, FluidConvertingRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -45,7 +47,7 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 		parent.renderIngredient(ms, recipeX + 23, recipeY + 7, mouseX, mouseY, ingredients.get(0));
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

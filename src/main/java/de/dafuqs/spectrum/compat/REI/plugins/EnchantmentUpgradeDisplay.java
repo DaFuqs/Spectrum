@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
+import net.minecraft.registry.*;
 import net.minecraft.enchantment.*;
 import org.jetbrains.annotations.*;
 
@@ -24,7 +25,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	protected final int requiredItemCount;
 	
 	public EnchantmentUpgradeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput(null));
+		super(recipe, buildIngredients(recipe), recipe.getOutput(DynamicRegistryManager.EMPTY));
 		
 		this.enchantment = recipe.getEnchantment();
 		this.enchantmentDestinationLevel = recipe.getEnchantmentDestinationLevel();

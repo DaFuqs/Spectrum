@@ -214,7 +214,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 	}
 	
 	@Override
-	public void close(PlayerEntity playerEntity) {
+	public void onClosed(PlayerEntity playerEntity) {
 		// put all items in the crafting grid back into the players inventory
 		for (int i = 0; i < 9; i++) {
 			ItemStack itemStack = this.craftingInventory.getStack(i);

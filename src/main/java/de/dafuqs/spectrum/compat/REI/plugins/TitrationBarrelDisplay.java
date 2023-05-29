@@ -9,6 +9,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -34,7 +35,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
-			return EntryIngredients.of(recipe.getOutput(null));
+			return EntryIngredients.of(recipe.getOutput(DynamicRegistryManager.EMPTY));
 		}
 	}
 	

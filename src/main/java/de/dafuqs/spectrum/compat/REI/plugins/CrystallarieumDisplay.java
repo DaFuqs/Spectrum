@@ -10,6 +10,7 @@ import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -48,7 +49,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> outputs = new ArrayList<>();
-		outputs.add(EntryIngredients.of(recipe.getOutput(null)));
+		outputs.add(EntryIngredients.of(recipe.getOutput(DynamicRegistryManager.EMPTY)));
 		for (ItemStack additionalOutput : recipe.getAdditionalOutputs()) {
 			outputs.add(EntryIngredients.of(additionalOutput));
 		}

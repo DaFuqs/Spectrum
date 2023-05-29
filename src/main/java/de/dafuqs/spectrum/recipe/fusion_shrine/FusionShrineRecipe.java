@@ -259,7 +259,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 				sourceNbt.remove(ItemStack.DAMAGE_KEY);
 				output.setNbt(sourceNbt);
 				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(), firstStack);
+				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(world.getRegistryManager()), firstStack);
 			}
 		}
 		

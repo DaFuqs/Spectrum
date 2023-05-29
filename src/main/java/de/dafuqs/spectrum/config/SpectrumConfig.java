@@ -35,8 +35,8 @@ public class SpectrumConfig implements ConfigData {
 			Separate value for Endermen spawning in the end, since there are LOTS of them there
 			Those blocks do not gate progression, so it is not that drastic not finding any right away.
 			Better to let players stumble about them organically instead of forcing it.""")
-	public float EndermanHoldingEnderTreasureChance = 0.08F;
-	public final float EndermanHoldingEnderTreasureInEndChance = 0.005F;
+	public float EndermanHoldingEnderTreasureChance = 0.1F;
+	public final float EndermanHoldingEnderTreasureInEndChance = 0.0075F;
 	
 	@Comment("Worlds where shooting stars spawn for players. Shooting Stars will only spawn for players with sufficient progress in the mod")
 	public final List<String> ShootingStarWorlds = new ArrayList<>();

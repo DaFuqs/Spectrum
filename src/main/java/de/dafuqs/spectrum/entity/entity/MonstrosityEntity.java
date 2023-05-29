@@ -140,7 +140,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		super.mobTick();
 		
-		if (this.age % 10 == 0) {
+		if (this.age % 20 == 0) {
 			this.heal(1.0F);
 		}
 	}

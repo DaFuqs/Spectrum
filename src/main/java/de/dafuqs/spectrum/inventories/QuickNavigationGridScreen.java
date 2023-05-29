@@ -21,7 +21,7 @@ import org.joml.*;
 
 import java.util.*;
 
-// TODO - Port this again
+// TODO - No colors. Intentional placeholder? Consider implementing.
 public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends ScreenHandler> extends HandledScreen<QuickNavigationGridScreenHandler> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;

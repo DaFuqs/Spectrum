@@ -35,7 +35,6 @@ public abstract class BlockOverlayRendererMixin {
 	private static void renderOverlay(MinecraftClient client, MatrixStack matrixStack, Identifier textureIdentifier, float alpha) {
 		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		// TODO - Test this
-		//RenderSystem.enableTexture();
 		RenderSystem.setShaderTexture(0, textureIdentifier);
 		BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
 		float f = client.player.getBrightnessAtEyes();

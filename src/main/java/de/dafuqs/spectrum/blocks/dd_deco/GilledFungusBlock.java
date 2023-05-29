@@ -8,12 +8,8 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.registry.entry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
-
-import java.util.function.*;
 
 public class GilledFungusBlock extends PlantBlock implements Fertilizable {
 

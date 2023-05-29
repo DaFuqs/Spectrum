@@ -28,7 +28,7 @@
       "moon_phase": "new_moon"
     }
   ],
-  "start_crafting_effect": "weather_thunder",
+  "start_crafting_effect": "weather_thunder_short",
   "during_crafting_effects": [
     "visual_explosions_on_shrine",
     "nothing",

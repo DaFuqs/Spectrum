@@ -12,29 +12,29 @@
     {
       "type": "spectrum:anvil_crushing",
       "title": "Edified Leaves Crushing",
-      "recipe": "spectrum:mod_integration/hexcasting/anvil_crushing/amethyst_edified_leaves",
-      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(thing)Clearly$() these cyan-coloured leaves have the essence of $(thing)Topaz$()..."
+      "recipe": "spectrum:mod_integration/hexcasting/anvil_crushing/topaz_edified_leaves",
+      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(italic)Clearly$() these cyan-coloured leaves have the essence of $(item)Topaz$()..."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Edified Leaves Crafting",
       "advancement": "spectrum:unlocks/blocks/spirit_instiller",
       "recipe": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves",
-      "text": "By infusing $(thing)Leaves$() with $(thing)Amethyst$(), $(thing)Citrine$() or $(thing)Topaz$(), you get out glistening, colorful $(thing)Gemstone Leaves$(), from your $(l:general/colored_trees)Colored Trees$(). Intriguingly different, yet familiar."
+      "text": "By infusing $(item)Leaves$() with $(item)Amethyst$(), $(item)Citrine$() or $(item)Topaz$(), you get out glistening, colorful $(item)Gemstone Leaves$(), from your $(l:general/colored_trees)Colored Trees$(). Intriguingly different, yet familiar."
     },
     {
-      "type": "spectrum:potion_workshop_brewing",
+      "type": "spectrum:fusion_shrine_crafting",
       "title": "Charging Amethyst",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion",
-      "text": "You can charge up Amethyst Shards using the $(l:general/fusion_shrine)Fusion Shrine$()."
+      "text": "You can charge up $(item)Amethyst Shards$() using the $(l:general/fusion_shrine)Fusion Shrine$()."
     },
     {
-      "type": "spectrum:potion_workshop_brewing",
-      "title": "Brewing Potions",
+      "type": "patchouli:spotlight",
+      "title": "Potion Reagent",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
-      "recipe": "spectrum:mod_integration/hexcasting/potion_workshop_reacting/charged_amethyst",
-      "text": "As you expected, $(thing)Charged Amethyst$() serves as a more potent, but also more fluctuate, $(thing)Amethyst$() reagent in regards to prolonging effect durations."
+      "item": "hexcasting:charged_amethyst",
+      "text": "As you expected, $(item)Charged Amethyst$() serves as a more potent, but also more fluctuate, $(item)Amethyst$() reagent in regards to prolonging effect durations."
     }
   ]
 }

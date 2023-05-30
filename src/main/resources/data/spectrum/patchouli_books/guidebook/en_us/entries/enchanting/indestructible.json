@@ -8,7 +8,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've come this far and you still have to deal with the fact that your common tools like Flint and Steel keep breaking once you use it too many times. And you had more than enough equipment, which was previously too fragile to use for long.$(br)Now that you have Bedrock Dust though? No problem."
+      "text": "You've come this far and you still have to deal with the fact that your common tools like $(item)Flint and Steel$() keep breaking once you use it too many times. And you had more than enough equipment, which was previously too fragile to use for long.$(br)Now that you have $(l:creating_life/ruin#bedrock_dust)Bedrock Dust$() though? No problem."
     },
     {
       "type": "patchouli:spotlight",

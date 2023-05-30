@@ -47,7 +47,7 @@
       "advancement": "spectrum:create_onyx_shard",
       "title": "Onyx Shards",
       "item": "spectrum:onyx_shard",
-      "text": "Onyx is almost pitch black. It almost seems as if it drains the light from its surroundings.$(br2)The Onyx, as a combination of energy, matter, and time, serves as a $(bold)$(c_black)reinforcing focus and catalyst$() for magical tools and devices."
+      "text": "Onyx is nearly pitch black. It almost seems as if it drains the light from its surroundings.$(br2)The Onyx, as a combination of energy, matter, and time, serves as a reinforcing focus and $(bold)$(c_black)CATALYST$() for magical tools and devices."
     },
     {
       "type": "patchouli:spotlight",
@@ -55,7 +55,7 @@
       "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "Moonstone Shards",
       "item": "spectrum:moonstone_shard",
-      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies $(bold)$(c_white)pure magic$()."
+      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies pure $(bold)$(c_white)MAGIC$()."
     },
     {
       "type": "patchouli:spotlight",

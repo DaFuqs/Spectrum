@@ -10,13 +10,13 @@
     {
       "type": "patchouli:text",
       "item": "spectrum:item_roundel",
-      "text": "You very much took a liking to the rotating roundels in those ancient structures, so much that your copied their design yourself. Definitely a nice way to present your items, or keep them ready.$(br2)$(italic)Hopefully the patents have already expired."
+      "text": "You very much took a liking to the rotating roundels in those ancient structures, so much that you copied their design yourself. Definitely a nice way to present your items, or keep them ready.$(br2)$(italic)Hopefully the patents have already expired."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/item_roundel",
-      "text": "The basalt and calcite version you cobbled together hold significantly more items, up to 6 whole stacks."
+      "text": "The basalt and calcite varieties you cobbled together hold significantly more items, up to 6 whole stacks."
     }
   ]
 }

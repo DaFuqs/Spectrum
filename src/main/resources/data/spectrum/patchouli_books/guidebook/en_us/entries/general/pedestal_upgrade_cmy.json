@@ -33,14 +33,14 @@
       "text": "$(li)1 Pigment Pedestal$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)4 Notched Polished Blocks$(li)8 Polished Pillars$(li)68 Polished Blocks"
     },
     {
-      "type": "patchouli:text",
+      "type": "patchouli:image",
       "title": "Individualize!",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
       ]
     },
     {
-      "type": "patchouli:image",
+      "type": "patchouli:text",
       "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up $(item)Calcite$() and $(item)Basalt$() up to create your personal variation!"
     }
   ]

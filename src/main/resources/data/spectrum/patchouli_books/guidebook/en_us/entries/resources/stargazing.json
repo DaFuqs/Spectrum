@@ -39,6 +39,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:collect_star_fragment",
+      "anchor": "stardust",
       "title": "Stardust",
       "item": "spectrum:stardust",
       "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."

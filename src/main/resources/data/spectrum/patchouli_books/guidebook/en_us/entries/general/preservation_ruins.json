@@ -1,9 +1,9 @@
 {
-  "name": "Ancient Ruins",
+  "name": "Preservation Ruins",
   "icon": "spectrum:preservation_controller",
-  "advancement": "spectrum:find_ancient_ruins",
+  "advancement": "spectrum:find_preservation_ruins",
   "sortnum": 16,
-  "turnin": "spectrum:hidden/generate_every_ancient_ruins_loot",
+  "turnin": "spectrum:hidden/solve_every_preservation_ruin",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:preservation_stone": 0,
@@ -39,22 +39,33 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Ancient Ruins",
+      "title": "Preservation Ruins",
       "item": "spectrum:preservation_controller",
       "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {
       "type": "patchouli:text",
       "title": "A Challenge?",
-      "advancement": "spectrum:generate_ancient_ruins_loot",
-      "text": "Until now, you thought you were alone in your creative endeavour with the gems and pigments. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path to you, but were miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+      "advancement": "spectrum:generate_preservation_ruins_loot",
+      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but was miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "How many are there?",
+      "advancement": "spectrum:generate_preservation_ruins_loot",
+      "checklist": {
+        "spectrum:enter_dike_gate_puzzle": "#1",
+        "spectrum:enter_color_mixing_puzzle": "#2",
+        "spectrum:enter_wireless_redstone_puzzle": "#3"
+      },
+      "text": "They seem to come in different variations. In each one you will encounter a different challenge."
     },
     {
       "type": "patchouli:image",
-      "title": "A protected Entrance",
-      "advancement": "spectrum:enter_ancient_ruins",
+      "title": "A Protected Entrance",
+      "advancement": "spectrum:enter_dike_gate_puzzle_structure",
       "images": [
-        "spectrum:textures/gui/guidebook/ancient_ruins.png"
+        "spectrum:textures/gui/guidebook/puzzle_stucture_dike_gate.png"
       ],
       "border": true,
       "text": "A strong, magical forcefield. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
@@ -64,7 +75,7 @@
       "title": "Color Combinations",
       "advancement": "spectrum:enter_color_mixing_puzzle_structure",
       "images": [
-        "spectrum:textures/gui/guidebook/color_mixing_puzzle_structure.png"
+        "spectrum:textures/gui/guidebook/puzzle_structure_color_mixing.png"
       ],
       "border": true,
       "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
@@ -74,7 +85,7 @@
       "title": "Short Wired",
       "advancement": "spectrum:enter_wireless_redstone_puzzle_structure",
       "images": [
-        "spectrum:textures/gui/guidebook/wireless_redstone_puzzle_structure.png"
+        "spectrum:textures/gui/guidebook/puzzle_structure_wireless_redstone.png"
       ],
       "border": true,
       "text": "A really weird one. Having some colors at hand helped a lot."

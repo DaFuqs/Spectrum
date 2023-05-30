@@ -1,5 +1,5 @@
 {
-  "name": "Star Candies",
+  "name": "Star Candy",
   "advancement": "spectrum:unlocks/food/star_candy",
   "icon": "spectrum:star_candy",
   "category": "spectrum:cuisine_category",
@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It seems those $(l:resources/stargazing)Shooting Stars$(/l) have more secrets than you previously thought, and weird ones at that.$(br)Baked Stardust tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.$(br)Their hard, golden flesh has some purple speckles, shimmering like star shards."
+      "text": "It seems those $(l:resources/stargazing)Shooting Stars$(/l) have more secrets than you previously thought, and weird ones at that.$(br)Baked $(l:resources/stargazing#stardust)Stardust$() tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.$(br)Their hard, golden flesh has some purple speckles, shimmering like star shards."
     },
     {
       "type": "spectrum:pedestal_crafting",

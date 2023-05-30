@@ -109,7 +109,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			
 			if (world.getTime() % 12 == 0) {
-				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F, true);
+				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F * SpectrumCommon.CONFIG.BlockSoundVolume, 0.8F + world.random.nextFloat() * 0.4F, true);
 				enchanterBlockEntity.doItemBowlOrbs(world);
 			}
 		}

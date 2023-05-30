@@ -86,7 +86,7 @@ public class SpectrumConfig implements ConfigData {
 	public final boolean ForfeitureCanDestroyBlockEntities = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
-	public final float BlockSoundVolume = 0.75F;
+	public final float BlockSoundVolume = 0.5F;
 	
 	@Comment("""
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.

@@ -43,6 +43,12 @@ repositories {
 		name = "Curse"
 		url = 'https://cfa2.cursemaven.com'
 	}
+	maven {
+		url "https://repo.unascribed.com"
+		content {
+			includeGroup "com.unascribed"
+		}
+	}
 	mavenCentral()
 }
 
@@ -110,6 +116,9 @@ dependencies {
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
 	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
+
+	// Ears compact by Maya!
+	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
 
 	// Soft testing-only dependencies:
 	//modRuntimeOnly 'com.github.DaFuqs:PaginatedAdvancements:1.19-SNAPSHOT'

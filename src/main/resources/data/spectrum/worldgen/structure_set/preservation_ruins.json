@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "spectrum:preservation_ruins",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 8,
+    "separation": 5,
+    "salt": 1646207470
+  }
+}

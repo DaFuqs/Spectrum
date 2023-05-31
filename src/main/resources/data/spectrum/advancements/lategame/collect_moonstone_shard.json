@@ -15,7 +15,13 @@
   "criteria": {
     "collected_moonstone_shard": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:moonstone_shard" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:moonstone_crystals"
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

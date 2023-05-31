@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "spectrum:forsaken_cathedral",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 9769084,
+    "spacing": 64,
+    "separation": 48
+  }
+}

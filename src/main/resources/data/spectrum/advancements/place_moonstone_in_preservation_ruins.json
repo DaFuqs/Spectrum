@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:solve_dike_gate_preservation_ruin",
+  "display": {
+    "icon": {
+      "item": "spectrum:moonstone_block"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.place_moonstone_in_preservation_ruins.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_moonstone_in_preservation_ruins.description"
+    }
+  },
+  "criteria": {
+    "placed_moonstone_in_preservation_ruins": {
+      "trigger": "spectrum:preservation_check",
+      "conditions": {
+        "check_name": "moonstone_secret",
+        "check_passed": true
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:enter_dike_gate_preservation_ruin"
+      }
+    }
+  }
+}

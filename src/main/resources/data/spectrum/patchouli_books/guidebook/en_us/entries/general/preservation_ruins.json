@@ -46,13 +46,13 @@
     {
       "type": "patchouli:text",
       "title": "A Challenge?",
-      "advancement": "spectrum:generate_preservation_ruins_loot",
+      "advancement": "spectrum:hidden/solve_any_preservation_ruin",
       "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but was miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
     },
     {
       "type": "spectrum:checklist",
       "title": "How many are there?",
-      "advancement": "spectrum:generate_preservation_ruins_loot",
+      "advancement": "spectrum:hidden/solve_any_preservation_ruin",
       "checklist": {
         "spectrum:enter_dike_gate_puzzle": "#1",
         "spectrum:enter_color_mixing_puzzle": "#2",
@@ -63,7 +63,7 @@
     {
       "type": "patchouli:image",
       "title": "A Protected Entrance",
-      "advancement": "spectrum:enter_dike_gate_puzzle_structure",
+      "advancement": "spectrum:enter_dike_gate_preservation_ruin",
       "images": [
         "spectrum:textures/gui/guidebook/puzzle_stucture_dike_gate.png"
       ],
@@ -73,9 +73,9 @@
     {
       "type": "patchouli:image",
       "title": "Color Combinations",
-      "advancement": "spectrum:enter_color_mixing_puzzle_structure",
+      "advancement": "spectrum:enter_color_mixing_preservation_ruin",
       "images": [
-        "spectrum:textures/gui/guidebook/puzzle_structure_color_mixing.png"
+        "spectrum:textures/gui/guidebook/_preservation_ruin_color_mixing.png"
       ],
       "border": true,
       "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
@@ -83,9 +83,9 @@
     {
       "type": "patchouli:image",
       "title": "Short Wired",
-      "advancement": "spectrum:enter_wireless_redstone_puzzle_structure",
+      "advancement": "spectrum:enter_wireless_redstone_preservation_ruin",
       "images": [
-        "spectrum:textures/gui/guidebook/puzzle_structure_wireless_redstone.png"
+        "spectrum:textures/gui/guidebook/_preservation_ruin_wireless_redstone.png"
       ],
       "border": true,
       "text": "A really weird one. Having some colors at hand helped a lot."

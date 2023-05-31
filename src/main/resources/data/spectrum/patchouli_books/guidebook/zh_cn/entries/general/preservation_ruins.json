@@ -36,7 +36,7 @@
       "type": "patchouli:spotlight",
       "title": "这一切都值得吗？",
       "item": "spectrum:azure_dike_ring",
-      "advancement": "spectrum:enter_dike_gate_puzzle_structure",
+      "advancement": "spectrum:enter_dike_gate_preservation_ruin",
       "text": "看起来需要穿靛蓝色装备才能进入.$(br2)你这才想起，你之前花在宝石矿和颜料上的努力全都白费了。就现在而言，你大错特错了。"
     },
     {

@@ -9,9 +9,7 @@
     },
     "description": {
       "translate": "advancements.spectrum.craft_moonstone_pedestal.description"
-    },
-    "show_toast": false,
-    "announce_to_chat": false
+    }
   },
   "criteria": {
     "crafted_moonstone_pedestal": {

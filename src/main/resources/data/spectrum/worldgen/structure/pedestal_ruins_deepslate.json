@@ -1,6 +1,6 @@
 {
   "type": "spectrum:block_target_jigsaw",
-  "start_pool": "spectrum:pedestal_ruins_deepslate",
+  "start_pool": "spectrum:pedestal_ruins/deepslate/centers",
   "size": 2,
   "max_distance_from_center": 80,
   "biomes": "#spectrum:has_structure/pedestal_ruins",

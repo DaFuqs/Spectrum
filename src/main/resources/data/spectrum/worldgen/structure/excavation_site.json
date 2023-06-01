@@ -7,7 +7,7 @@
   "start_pool": "spectrum:excavation_site/main",
   "size": 2,
   "start_height": {
-    "absolute": -440
+    "absolute": -316
   },
   "max_distance_from_center": 80,
   "use_expansion_hack": false

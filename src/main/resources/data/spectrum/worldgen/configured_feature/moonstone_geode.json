@@ -34,11 +34,7 @@
       },
       "inner_placements": [
         {
-          "Name": "spectrum:moonstone_cluster",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Name": "spectrum:moonstone_cluster"
         }
       ],
       "cannot_replace": "#minecraft:features_cannot_replace",
@@ -82,6 +78,6 @@
     },
     "min_gen_offset": -16,
     "max_gen_offset": 16,
-    "invalid_blocks_threshold": 1
+    "invalid_blocks_threshold": 0
   }
 }

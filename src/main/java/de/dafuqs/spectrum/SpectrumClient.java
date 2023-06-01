@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.compat.ears.EarsCompat;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -48,6 +49,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
+	public static final boolean earsModLoaded = FabricLoader.getInstance().isModLoaded("ears");
 	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
@@ -111,6 +113,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
 			}
 		});
+
+		if (earsModLoaded) {
+			logInfo("Registering Ears Compat...");
+			EarsCompat.register();
+		}
 		
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 

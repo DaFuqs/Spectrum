@@ -15,9 +15,26 @@
     "opened_deeper_down_portal": {
       "trigger": "minecraft:impossible"
     },
+    "entered_dimension": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/enter_dimension"
+      }
+    },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "opened_deeper_down_portal",
+      "entered_dimension"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

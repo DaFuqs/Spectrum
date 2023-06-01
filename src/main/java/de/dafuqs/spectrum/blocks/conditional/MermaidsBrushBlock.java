@@ -90,9 +90,10 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 		if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
-		} else {
+		} else if (fluidState.isIn(FluidTags.WATER)) {
 			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.WATER);
 		}
+		return null;
 	}
 	
 	@Override

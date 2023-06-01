@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.networking.*;
@@ -65,6 +66,11 @@ public class HerdingStaffItem extends Item implements InkPowered {
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		World world = user.world;
 		Vec3d pos = entity.getPos();
+		
+		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
+			return ActionResult.FAIL;
+		}
+		
 		if (!world.isClient) {
 			if (turnEntityToMemory(user, entity)) {
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));

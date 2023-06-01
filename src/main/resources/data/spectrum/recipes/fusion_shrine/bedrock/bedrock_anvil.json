@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "group": "bedrock_tools",
+  "time": 1200,
+  "experience": 16.0,
+  "fluid": "spectrum:midnight_solution",
+  "copy_nbt": true,
+  "ingredients": [
+    {
+      "item": "minecraft:anvil"
+    },
+    {
+      "item": "spectrum:bedrock_dust",
+      "count": 27
+    },
+    {
+      "item": "spectrum:black_pigment",
+      "count": 3
+    },
+    {
+      "item": "spectrum:onyx_powder",
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "spectrum:bedrock_anvil",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

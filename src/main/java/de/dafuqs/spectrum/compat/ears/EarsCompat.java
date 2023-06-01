@@ -1,21 +1,20 @@
 package de.dafuqs.spectrum.compat.ears;
 
-import com.unascribed.ears.api.EarsAnchorPart;
-import com.unascribed.ears.api.EarsStateType;
-import com.unascribed.ears.api.registry.EarsInhibitorRegistry;
-import com.unascribed.ears.api.registry.EarsStateOverriderRegistry;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
+import com.unascribed.ears.api.*;
+import com.unascribed.ears.api.registry.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 
 public class EarsCompat {
     public static void register() {
-        EarsInhibitorRegistry.register("yttr", (part, peer) -> {
-            PlayerEntity player = (PlayerEntity)peer;
-            if (part.isAnchoredTo(EarsAnchorPart.TORSO)
-                    && player.getEquippedStack(EquipmentSlot.CHEST).getItem() == SpectrumItems.BEDROCK_CHESTPLATE
-                    && EarsStateOverriderRegistry.isActive(EarsStateType.WEARING_CHESTPLATE, peer, true).getValue()) {
-                return true;
+        EarsInhibitorRegistry.register(SpectrumCommon.MOD_ID, (part, peer) -> {
+            PlayerEntity player = (PlayerEntity) peer;
+            if (part.isAnchoredTo(EarsAnchorPart.TORSO) && EarsStateOverriderRegistry.isActive(EarsStateType.WEARING_CHESTPLATE, peer, true).getValue()) {
+                Item equippedItem = player.getEquippedStack(EquipmentSlot.CHEST).getItem();
+                return equippedItem == SpectrumItems.BEDROCK_CHESTPLATE || equippedItem == SpectrumItems.FEROCIOUS_CHESTPLATE;
             }
             return false;
         });

@@ -5,7 +5,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.compat.ears.EarsCompat;
+import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -49,7 +49,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-	public static final boolean earsModLoaded = FabricLoader.getInstance().isModLoaded("ears");
 	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
@@ -114,7 +113,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 		});
 
-		if (earsModLoaded) {
+		if (FabricLoader.getInstance().isModLoaded("ears")) {
 			logInfo("Registering Ears Compat...");
 			EarsCompat.register();
 		}

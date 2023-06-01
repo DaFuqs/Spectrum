@@ -143,7 +143,7 @@ public class UnlockToastManager {
 							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
 						} else {
 							List<ItemStack> newList = new ArrayList<>();
-							newList.add(new ItemStack(recipe.getOutput().getItem()));
+							newList.add(recipe.getOutput());
 							groupedRecipes.put(recipe.getGroup(), newList);
 						}
 					}

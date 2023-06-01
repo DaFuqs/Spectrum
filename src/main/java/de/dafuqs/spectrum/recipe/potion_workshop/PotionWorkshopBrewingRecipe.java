@@ -170,7 +170,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inventory) {
-		return null;
+		ItemStack stack = new ItemStack(Items.POTION);
+		PotionUtil.setCustomPotionEffects(stack, List.of(new StatusEffectInstance(this.statusEffect, this.baseDurationTicks)));
+		return stack;
 	}
 	
 	public ItemStack getPotion(PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {

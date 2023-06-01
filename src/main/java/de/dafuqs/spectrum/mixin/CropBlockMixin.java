@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.farming.ImmutableFarmlandBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -36,11 +38,11 @@ public abstract class CropBlockMixin {
 			ci.cancel();
 	}
 
-	// TODO: Come back to this later, this is going to be difficult
-	@ModifyVariable(method = "getAvailableMoisture", name = "g", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/BlockView;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
-	private static float modifyMoisture(float value) {
-
-		return value;
+	@ModifyExpressionValue(method = "getAvailableMoisture", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/world/BlockView;getBlockState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
+	private static BlockState catchState(BlockState original) {
+		if (original.getBlock() instanceof ImmutableFarmlandBlock)
+			return Blocks.FARMLAND.getDefaultState().with(FarmlandBlock.MOISTURE, original.get(FarmlandBlock.MOISTURE));
+		return original;
 	}
 	
 	// TODO: Redirect bad

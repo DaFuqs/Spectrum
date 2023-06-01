@@ -4,14 +4,16 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
     },
-    "broken_decayed_bedrock": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
-    },
-    "collected_moonstone_shard": {
-      "trigger":"revelationary:advancement_gotten",
+    "collected_pure_resource": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
+      }
+    },
+    "collected_downstone_fragments": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
       }
     }
   }

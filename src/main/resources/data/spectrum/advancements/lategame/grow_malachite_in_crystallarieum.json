@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_malachite",
   "display": {
     "icon": {
-        "item": "spectrum:malachite_crystal"
+      "item": "spectrum:malachite_crystal"
     },
     "title": {
       "translate": "advancements.spectrum.grow_malachite_in_crystallarieum.title"
@@ -12,17 +12,19 @@
     }
   },
   "criteria": {
-    "grown_malachite_in_crystallarieum": {
-      "trigger":"spectrum:crystallarieum_growing",
+    "fully_grown_malachite": {
+      "trigger": "spectrum:crystallarieum_growing",
       "conditions": {
-        "block": {
+        "grown_block": {
           "block": "spectrum:malachite_cluster"
         }
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_malachite" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_malachite"
+      }
     }
   }
 }

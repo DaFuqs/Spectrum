@@ -9,9 +9,10 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(EntityType.class)
 public abstract class EntityTypeMixin {
 	
-	@Inject(at = @At("RETURN"), method = "alwaysUpdateVelocity()Z", cancellable = true)
+	@Inject(at = @At("TAIL"), method = "alwaysUpdateVelocity()Z", cancellable = true)
 	public void alwaysUpdateVelocity(CallbackInfoReturnable<Boolean> cir) {
-		if (cir.getReturnValue() && ((Object) this == SpectrumEntityTypes.PHANTOM_FRAME || (Object) this == SpectrumEntityTypes.GLOW_PHANTOM_FRAME)) {
+		Object thisObject = this;
+		if (thisObject == SpectrumEntityTypes.PHANTOM_FRAME || thisObject == SpectrumEntityTypes.GLOW_PHANTOM_FRAME || thisObject == SpectrumEntityTypes.KINDLING_COUGH) {
 			cir.setReturnValue(false);
 		}
 	}

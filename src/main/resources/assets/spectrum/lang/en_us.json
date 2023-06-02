@@ -222,12 +222,13 @@
   "death.attack.spectrum_incandescence.player": "%1$s witnessed %2&s become a star and drew too close - more kindling for the flame!",
   "death.attack.spectrum_moonstone_blast": "%1$s was disintegrated",
   "death.attack.spectrum_moonstone_blast.player": "%1$s was disintegrated by %2$s",
-  "death.attac.spectrum.irradiance": "%1$s was skewered by solid light",
-  "death.attac.spectrum.irradiance.player": "%2$s made %1$s into a shimmering pincushion",
+  "death.attack.spectrum.irradiance": "%1$s was skewered by solid light",
+  "death.attack.spectrum.irradiance.player": "%2$s made %1$s into a shimmering pincushion",
   "death.attack.spectrum_set_health.player": "%1$s was sent to the shadow realm by %2$s",
   "death.attack.spectrum_set_health": "%1$s was sent to the shadow realm by %2$s using %3$s",
   "death.attack.spectrum_bristle_sprouts.item": "%1$s was pricked to death",
   "death.attack.spectrum_sawtooth": "%1$s wanted to play a game",
+  "death.attack.spectrum_kindling_cough": "%1$s got grilled by %2$s",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
@@ -3073,7 +3074,7 @@
   "advancements.spectrum.spectrum_endgame.description": "A story about all you have learned",
   "advancements.spectrum.find_forgotten_city.title": "Remnants of the Past",
   "advancements.spectrum.find_forgotten_city.description": "Enter a Forgotten City",
-  "advancements.spectrum.find_excavation_site.title": "Massive Mechanisms",
+  "advancements.spectrum.find_excavation_site.title": "Very Boring",
   "advancements.spectrum.find_excavation_site.description": "Stumble over an Excavation Site",
   "advancements.spectrum.revive_black_sludge_plant.title": "Druid of the Deeper Down",
   "advancements.spectrum.revive_black_sludge_plant.description": "Revive a Black Sludge 'Plant'",
@@ -3134,5 +3135,6 @@
   "advancements.spectrum.craft_energy_collector.title": "Roger that",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes",
   "advancements.spectrum.place_energy_collector.title": "A new form of energy",
-  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work"
+  "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
+  "advancements.spectrum.unused.title": "Massive Mechanisms"
 }

@@ -11,21 +11,21 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
-public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEntity, MonstrosityEntityModel> {
+public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, KindlingEntityModel> {
 	
 	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
 	
-	public MonstrosityEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new MonstrosityEntityModel(context.getPart(SpectrumModelLayers.MONSTROSITY)), 1.8F);
+	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
+		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 1.8F);
 	}
 	
 	@Override
-	public void render(MonstrosityEntity entity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+	public void render(KindlingEntity entity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		super.render(entity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 	
 	@Override
-	public Identifier getTexture(MonstrosityEntity entity) {
+	public Identifier getTexture(KindlingEntity entity) {
 		return TEXTURE;
 	}
 	

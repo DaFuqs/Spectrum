@@ -33,25 +33,31 @@ public class SpectrumDamageSources {
 	public static DamageSource moonstoneBlast(@Nullable LivingEntity attacker) {
 		return attacker != null ? (new EntityDamageSource("spectrum_moonstone_blast.player", attacker).setExplosive()) : (new DamageSource("moonstone_blast").setExplosive());
 	}
-
+	
 	public static DamageSource irradiance(@Nullable LivingEntity attacker) {
 		return attacker == null ? IRRADIANCE_DEFAULT :
 				new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection().setUnblockable();
 	}
-
+	
 	public static DamageSource setHealth(LivingEntity attacker) {
 		return new SetHealthDamageSource("spectrum_set_health", attacker);
 	}
-
+	
+	public static DamageSource kindlingCough(KindlingCoughEntity kindlingCoughEntity, @Nullable Entity attacker) {
+		return attacker == null ?
+				new ProjectileDamageSource("onFire", kindlingCoughEntity, kindlingCoughEntity).setFire().setProjectile() :
+				new ProjectileDamageSource("spectrum_kindling_cough", kindlingCoughEntity, attacker).setFire().setProjectile();
+	}
+	
 	public static class SetHealthDamageSource extends EntityDamageSource {
-
+		
 		public SetHealthDamageSource(String name, LivingEntity attacker) {
 			super(name, attacker);
 		}
 	}
-
+	
 	public static class SpectrumDamageSource extends DamageSource {
-
+		
 		private boolean dropsPlayerLoot = false;
 
 		protected SpectrumDamageSource(String name) {

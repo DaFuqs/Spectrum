@@ -100,6 +100,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Finished loading config file.");
 		
 		// Register internals
+		SpectrumRegistries.register();
 		InkColors.register();
 		
 		logInfo("Registering Banner Patterns...");

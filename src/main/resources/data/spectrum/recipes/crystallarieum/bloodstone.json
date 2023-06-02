@@ -10,7 +10,7 @@
   ],
   "seconds_per_growth_stage": 300,
   "ink_color": "red",
-  "ink_per_second": 80,
+  "ink_cost_tier": 4,
   "grows_without_catalyst": false,
   "catalysts": [
     {
@@ -41,5 +41,5 @@
   "additional_recipe_manager_outputs": [
     "spectrum:refined_bloodstone"
   ],
-  "required_advancement": "spectrum:lategame/collect_malachite"
+  "required_advancement": "spectrum:lategame/todo"
 }

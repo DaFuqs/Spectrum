@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:gemstone_shards",
+    "#spectrum:gemstone_buds",
+    "#spectrum:gemstone_clusters"
+  ]
+}

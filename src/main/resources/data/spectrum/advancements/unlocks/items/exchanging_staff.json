@@ -1,15 +1,19 @@
 {
   "criteria": {
-    "collected_storm_stone": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_storm_stone" }
+    "collected_paltaeria_fragments": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria_fragments"
+      }
     },
     "collected_light_gray_pigment": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
+      }
     },
     "collected_moonstone_shard": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
       }

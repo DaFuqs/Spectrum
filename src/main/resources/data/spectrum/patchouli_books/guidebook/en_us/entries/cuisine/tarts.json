@@ -14,7 +14,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! $(br)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
+      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! $(br2)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,7 +31,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/food/ashen_tart",
-      "text": "Makes you able to see & swim in lava as were it water.$(br2)Does NOT, however, make you Fire immune."
+      "text": "Makes you able to see & swim in Lava as were it Water.$(br)However, does NOT make you fire immune."
     },
     {
       "type": "spectrum:pedestal_crafting",

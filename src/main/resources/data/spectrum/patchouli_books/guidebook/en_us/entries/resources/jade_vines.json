@@ -54,7 +54,7 @@
       "anchor": "petals",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Shiny petals can be plucked when partly grown. They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br2)Rarely, when searching the petals, $(thing)another Bulb$() can be found. How will Jade Vines look when you let them grow further, though?"
+      "text": "Shiny petals can be plucked when partly grown. They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br2)Rarely, when searching the petals, $(thing)another bulb$() can be found.$(br2)How will Jade Vines look when you let them grow further, though?"
     },
     {
       "type": "patchouli:spotlight",

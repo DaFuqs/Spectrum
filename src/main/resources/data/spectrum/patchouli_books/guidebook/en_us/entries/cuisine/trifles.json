@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings very intense, mostly $(thing)offensive$() ones.$(br)Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Gelatin$() & $(l:resources/amaranth)Amaranth$(/l). Even the rudimentary one tastes great!"
+      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.$(br)Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Gelatin$() & $(l:resources/amaranth)Amaranth$(/l).$(br)Even the simple one tastes great!"
     },
     {
       "type": "spectrum:pedestal_crafting",

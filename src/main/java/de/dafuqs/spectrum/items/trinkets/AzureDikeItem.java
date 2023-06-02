@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.entity.*;

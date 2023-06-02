@@ -143,9 +143,8 @@ public class UnlockToastManager {
 						if (groupedRecipes.containsKey(recipe.getGroup())) {
 							groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(DynamicRegistryManager.EMPTY));
 						} else {
-							// TODO - Is this valid?
 							List<ItemStack> newList = new ArrayList<>();
-							newList.add(recipe.getOutput());
+							newList.add(recipe.getOutput(DynamicRegistryManager.EMPTY));
 							groupedRecipes.put(recipe.getGroup(), newList);
 						}
 					}

@@ -171,7 +171,7 @@ public class MoonstoneStrike {
     public void affectWorld() {
         LivingEntity cause = getCausingEntity();
         int range = (int) this.power / 2;
-        for (BlockPos pos : BlockPos.iterateOutwards(new BlockPos(this.x, this.y, this.z), range, range, range)) {
+        for (BlockPos pos : BlockPos.iterateOutwards(BlockPos.ofFloored(this.x, this.y, this.z), range, range, range)) {
             BlockState blockState = this.world.getBlockState(pos);
             Block block = blockState.getBlock();
             if (block instanceof MoonstoneStrikeableBlock moonstoneStrikeableBlock) {

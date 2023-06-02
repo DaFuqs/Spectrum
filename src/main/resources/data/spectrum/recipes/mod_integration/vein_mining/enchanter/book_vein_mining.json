@@ -1,0 +1,47 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 400,
+  "required_experience": 800,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:paltaeria_gem"
+    },
+    {
+      "item": "spectrum:stratine_gem"
+    },
+    {
+      "item": "spectrum:red_pigment"
+    },
+    {
+      "item": "spectrum:blue_pigment"
+    },
+    {
+      "item": "spectrum:paltaeria_gem"
+    },
+    {
+      "item": "spectrum:stratine_gem"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:lategame/collect_paltaeria",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "veinmining"
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@
     "item": "minecraft:glass_bottle"
   },
   "use_up_base_ingredient": true,
+  "secret": true,
   "color": 13803816,
   "ingredient1": {
     "item": "spectrum:jade_jelly"

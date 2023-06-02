@@ -14,6 +14,7 @@
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
       "recipe": "spectrum:mod_integration/vein_mining/enchanter/book_vein_mining",
       "text": "You can infuse a $(item)common Book$() with Vein Mining by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }

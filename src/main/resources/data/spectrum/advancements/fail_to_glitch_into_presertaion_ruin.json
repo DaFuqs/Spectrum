@@ -18,6 +18,12 @@
       "conditions": {
         "check_passed": false
       }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:find_preservation_ruins"
+      }
     }
   }
 }

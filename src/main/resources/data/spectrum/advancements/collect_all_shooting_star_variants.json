@@ -37,13 +37,5 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_star_fragment" }
     }
-  },
-  "requirements": [
-    ["has_glistering_shooting_star"],
-    ["has_fiery_shooting_star"],
-    ["has_colorful_shooting_star"],
-    ["has_pristine_shooting_star"],
-    ["has_gemstone_shooting_star"],
-    ["gotten_previous"]
-  ]
+  }
 }

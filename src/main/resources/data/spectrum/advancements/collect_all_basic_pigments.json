@@ -65,20 +65,5 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
     }
-  },
-  "requirements": [
-    ["collected_blue_pigment"],
-    ["collected_cyan_pigment"],
-    ["collected_green_pigment"],
-    ["collected_light_blue_pigment"],
-    ["collected_lime_pigment"],
-    ["collected_magenta_pigment"],
-    ["collected_orange_pigment"],
-    ["collected_pink_pigment"],
-    ["collected_purple_pigment"],
-    ["collected_red_pigment"],
-    ["collected_yellow_pigment"],
-    ["collected_brown_pigment"],
-    ["gotten_previous"]
-  ]
+  }
 }

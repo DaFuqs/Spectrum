@@ -255,6 +255,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
@@ -583,6 +584,7 @@ public class SpectrumItems {
 		register("stratine_fragments", STRATINE_FRAGMENTS, DyeColor.RED);
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
+		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);

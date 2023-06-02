@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:bloodstone_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:refined_bloodstone",
+    "count": 9
+  }
+}

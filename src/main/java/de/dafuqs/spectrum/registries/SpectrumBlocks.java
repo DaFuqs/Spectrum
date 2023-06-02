@@ -218,7 +218,12 @@ public class SpectrumBlocks {
 	
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block CRACKED_DRAGONBONE = new PillarBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
-	
+
+	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
+	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
+	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
+	public static final Block BLOODSTONE_BLOCK = new PillarBlock(AbstractBlock.Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
+
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
@@ -1826,7 +1831,10 @@ public class SpectrumBlocks {
 
 		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
-		
+		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("large_bloodstone_bud", LARGE_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_cluster", BLOODSTONE_CLUSTER, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_block", BLOODSTONE_BLOCK, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
 		
 	}
 	
@@ -2660,6 +2668,10 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_MALACHITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_MALACHITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MALACHITE_CLUSTER, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_BLOODSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_BLOODSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOODSTONE_CLUSTER, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_RED_DRAGONJAG, RenderLayer.getCutout());

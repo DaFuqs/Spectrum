@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/amethyst_cluster",
+  "textures": {
+    "layer0": "spectrum:block/bloodstone_cluster"
+  }
+}

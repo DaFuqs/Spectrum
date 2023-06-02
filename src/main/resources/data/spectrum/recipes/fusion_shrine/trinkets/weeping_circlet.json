@@ -11,7 +11,8 @@
       "item": "minecraft:heart_of_the_sea"
     },
     {
-      "item": "spectrum:mermaids_gem"
+      "item": "spectrum:mermaids_gem",
+      "count": 8
     },
     {
       "item": "minecraft:copper_ingot",

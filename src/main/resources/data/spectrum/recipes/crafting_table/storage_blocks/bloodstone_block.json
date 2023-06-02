@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:refined_bloodstone"
+    }
+  },
+  "result": {
+    "item": "spectrum:bloodstone_block",
+    "count": 1
+  }
+}

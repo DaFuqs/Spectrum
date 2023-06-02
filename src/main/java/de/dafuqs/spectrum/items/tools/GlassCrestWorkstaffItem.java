@@ -18,7 +18,7 @@ import java.util.*;
 public class GlassCrestWorkstaffItem extends WorkstaffItem {
     
     public static final int COOLDOWN_DURATION_TICKS = 10;
-    public static final InkCost PROJECTILE_COST = new InkCost(InkColors.WHITE, 250);
+    public static final InkCost PROJECTILE_COST = new InkCost(InkColors.WHITE, 50); // TODO: make pricier once ink networking is in
     
     public GlassCrestWorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);

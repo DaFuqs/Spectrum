@@ -60,7 +60,7 @@ public abstract class MiningToolItemMixin {
 				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 				if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
 					long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
-					double additionalSpeedPercent = 1.5 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
+					double additionalSpeedPercent = 2.0 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
 					
 					cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent));
 				} else {

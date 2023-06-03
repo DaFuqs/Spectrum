@@ -179,15 +179,19 @@ public class SpectrumSkullBlock extends SkullBlock {
 		TADPOLE(EntityType.TADPOLE),
 		WARDEN(EntityType.WARDEN),
 		ALLAY(EntityType.ALLAY),
-
-		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG);
-
+		
+		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG),
+		KINDLING(SpectrumEntityTypes.KINDLING),
+		GUARDIAN_TURRET(SpectrumEntityTypes.GUARDIAN_TURRET),
+		MONSTROSITY(SpectrumEntityTypes.MONSTROSITY),
+		LIZARD(SpectrumEntityTypes.LIZARD);
+		
 		public final EntityType entityType;
-
+		
 		SpectrumSkullBlockType(EntityType entityType) {
 			this.entityType = entityType;
 		}
-
+		
 		public SkullType getModelType() {
 			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EGG_LAYING_WOOLY_PIG;

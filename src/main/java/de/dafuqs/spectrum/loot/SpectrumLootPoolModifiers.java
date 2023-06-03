@@ -105,8 +105,12 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/warden"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.WARDEN).asItem(), 0.2F));
 		put(new Identifier("entities/tadpole"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.TADPOLE).asItem(), 0.02F));
 		put(new Identifier("entities/allay"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.ALLAY).asItem(), 0.02F));
-
+		
 		put(new Identifier("spectrum:entities/egg_laying_wooly_pig"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/kindling"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.KINDLING).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/guardian_turret"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.GUARDIAN_TURRET).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/monstrosity"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.MONSTROSITY).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/lizard"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.LIZARD).asItem(), 0.1F));
 	}};
 	
 	public static void setup() {

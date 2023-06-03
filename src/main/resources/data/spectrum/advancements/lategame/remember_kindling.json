@@ -2,14 +2,14 @@
   "parent": "spectrum:lategame/break_cracked_dragonbone",
   "display": {
     "icon": {
-      "item": "spectrum:effulgent_feather"
+      "item": "spectrum:kindling_head"
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.create_kindling.title"
+      "translate": "advancements.spectrum.remember_kindling.title"
     },
     "description": {
-      "translate": "advancements.spectrum.create_kindling.description"
+      "translate": "advancements.spectrum.remember_kindling.description"
     }
   },
   "criteria": {
@@ -22,12 +22,12 @@
           ]
         }
       }
-    }
-  },
-  "gotten_previous": {
-    "trigger": "revelationary:advancement_gotten",
-    "conditions": {
-      "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
     }
   }
 }

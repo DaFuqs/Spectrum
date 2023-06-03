@@ -34,6 +34,7 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.GOLDEN_HORSE_ARMOR, DyeColor.YELLOW);
 		put(Items.LEATHER_HORSE_ARMOR, DyeColor.BROWN);
 		
+		put(Items.ANVIL, DyeColor.BROWN);
 		put(Items.BLACKSTONE, DyeColor.BLACK);
 		put(Items.GILDED_BLACKSTONE, DyeColor.BLACK);
 		put(Items.DIAMOND_BLOCK, DyeColor.LIGHT_BLUE);

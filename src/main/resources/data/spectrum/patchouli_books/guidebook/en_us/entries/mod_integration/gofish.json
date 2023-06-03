@@ -18,9 +18,16 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Other Features",
+      "title": "Deepfry",
       "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"gofish:deepfry\", lvl: 1s}]}",
       "text": "While the Deepfry Enchantment cooks fish as usual, lures have no effect. But you are sure you will find a way to enhance your rod later.$(br)Deepfry on Fishing Rods is also mutually exclusive to Foundry"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
+      "recipe": "spectrum:mod_integration/gofish/enchanter/book_deepfry",
+      "text": ""
     }
   ]
 }

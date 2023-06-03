@@ -101,7 +101,8 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	}
 	
 	public static DefaultAttributeContainer.Builder createGuardianTurretAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0);
+		return MobEntity.createMobAttributes()
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0);
 	}
 	
 	@Override

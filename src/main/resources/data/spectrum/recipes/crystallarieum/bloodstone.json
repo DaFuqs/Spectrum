@@ -1,0 +1,45 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "spectrum:effulgent_feather"
+  },
+  "growth_stage_states": [
+    "spectrum:small_bloodstone_bud",
+    "spectrum:large_bloodstone_bud",
+    "spectrum:bloodstone_cluster"
+  ],
+  "seconds_per_growth_stage": 300,
+  "ink_color": "red",
+  "ink_cost_tier": 4,
+  "grows_without_catalyst": false,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:pure_copper"
+      },
+      "growth_acceleration_mod": 1.708,
+      "ink_consumption_mod": 0.707,
+      "consume_chance_per_second": 0.01
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:raw_copper"
+      },
+      "growth_acceleration_mod": 7.5,
+      "ink_consumption_mod": 10.0,
+      "consume_chance_per_second": 0.05
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:copper_ingot"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.15
+    }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:refined_bloodstone"
+  ],
+  "required_advancement": "spectrum:lategame/todo"
+}

@@ -18,18 +18,21 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Workstaff",
       "advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
       "text": "$(k:use) will shoot out $(c_white)White Ink$() which will break blocks on impact. You can also choose from $(l:enchanting/resonance)Resonance$(/l) when switching enchantments."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ultra Greatsword",
       "advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
       "text": "Deals a chunk of it's damage via $(thing)Magic$() - piercing armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you. This ability scales with $(thing)Sweeping$())."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Crossbow",
       "advancement": "spectrum:unlocks/malachite/glass_crest_crossbow",
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
       "text": "If an arrow is loaded, you can overcharge the shot by holding $(k:sneak) + $(k:use) to increase your shot's accuracy, speed and damage even further."
@@ -39,7 +42,7 @@
       "title": "Ferocious Bident",
       "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
       "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
-      "text": "This is what happens when you combine $(thing)Riptide$() and a pocket thunder storm?$(br)Allows flinging yourself in the air, damaging everything in your path. Even without rain and even in the driest of deserts - as long as you do not run out of Ink.$(br)$(italic)Flying isn't the problem. Landing is.$()"
+      "text": "This is what happens when you combine $(thing)Riptide$() and a pocket thunder storm? Allows flinging yourself in the air, even without rain and in the driest of deserts - as long as you do not run out of Ink, damaging everything in your way.$(br)$(italic)Flying isn't the problem. Landing is.$()"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

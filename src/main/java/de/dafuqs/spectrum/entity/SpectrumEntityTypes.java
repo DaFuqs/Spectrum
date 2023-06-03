@@ -19,9 +19,10 @@ public class SpectrumEntityTypes {
 	public static final EntityType LAGOON_FISHING_BOBBER = register("lagoon_fishing_bobber", EntityType.Builder.create(LagoonFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
 	public static final EntityType MOLTEN_FISHING_BOBBER = register("molten_fishing_bobber", EntityType.Builder.create(MoltenFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
 	public static final EntityType BEDROCK_FISHING_BOBBER = register("bedrock_fishing_bobber", EntityType.Builder.create(BedrockFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
-	public static final EntityType<? extends ItemEntity> FIREPROOF_ITEM = register("non_burnable_item_entity", 6, 20, true, EntityDimensions.changing(0.25F, 0.25F), true, FireproofItemEntity::new);
+	public static final EntityType<? extends ItemEntity> FIREPROOF_ITEM = register("fireproof_item", 6, 20, true, EntityDimensions.changing(0.25F, 0.25F), true, FireproofItemEntity::new);
 	public static final EntityType<EggLayingWoolyPigEntity> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
-	public static final EntityType GLASS_ARROW = register("glass_arrow", EntityType.Builder.create(GlassArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
+	public static final EntityType<GlassArrowEntity> GLASS_ARROW = register("glass_arrow", EntityType.Builder.<GlassArrowEntity>create(GlassArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
+	public static final EntityType<CapriciousArrowEntity> CAPRICIOUS_ARROW = register("capricious_arrow", EntityType.Builder.<CapriciousArrowEntity>create(CapriciousArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
 	public static final EntityType<MiningProjectileEntity> MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 	public static final EntityType<BidentEntity> BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
 	public static final EntityType<BidentEntity> BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
@@ -30,11 +31,16 @@ public class SpectrumEntityTypes {
 	public static final EntityType<LightMineEntity> LIGHT_MINE = register("light_mine", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightMineEntity::new);
 	public static final EntityType<MonstrosityEntity> MONSTROSITY = register("monstrosity", EntityType.Builder.create(MonstrosityEntity::new, SpawnGroup.MISC).makeFireImmune().spawnableFarFromPlayer().setDimensions(10.0F, 10.0F).maxTrackingRange(10));
 	public static final EntityType<GuardianTurretEntity> GUARDIAN_TURRET = register("guardian_turret", EntityType.Builder.create(GuardianTurretEntity::new, SpawnGroup.MONSTER).makeFireImmune().spawnableFarFromPlayer().setDimensions(1.0F, 1.0F).maxTrackingRange(10));
-	
+	public static final EntityType<LizardEntity> LIZARD = register("lizard", EntityType.Builder.create(LizardEntity::new, SpawnGroup.MONSTER).setDimensions(1.0F, 1.0F).maxTrackingRange(10));
+	public static final EntityType<KindlingEntity> KINDLING = register("kindling", EntityType.Builder.create(KindlingEntity::new, SpawnGroup.CREATURE).setDimensions(1.0F, 1.0F).maxTrackingRange(10));
+	public static final EntityType KINDLING_COUGH = register("kindling_cough", EntityType.Builder.create(KindlingCoughEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(10));
+
 	public static void register() {
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
 		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
 		FabricDefaultAttributeRegistry.register(GUARDIAN_TURRET, GuardianTurretEntity.createGuardianTurretAttributes());
+		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
+		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -45,12 +51,8 @@ public class SpectrumEntityTypes {
 		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
 	}
 	
-	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> type) {
-		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), type.build(name));
+	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(id), type.build(id));
 	}
-	
-	/*public static <X extends Entity> EntityType<X> register(String name, SpawnGroup category, EntityDimensions size, EntityType.EntityFactory<X> factory) {
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), FabricEntityTypeBuilder.create(category, factory).dimensions(size).build());
-	}*/
 	
 }

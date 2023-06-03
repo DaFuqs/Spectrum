@@ -43,7 +43,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 		return Optional.empty();
 	}
 	
-	protected Identifier getUnlockIdentifier() {
+	public Identifier getUnlockIdentifier() {
 		return this.unlockIdentifier;
 	}
 	

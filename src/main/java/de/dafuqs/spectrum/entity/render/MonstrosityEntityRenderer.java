@@ -20,8 +20,8 @@ public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEnti
 	}
 	
 	@Override
-	public void render(MonstrosityEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	public void render(MonstrosityEntity entity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		super.render(entity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 	
 	@Override

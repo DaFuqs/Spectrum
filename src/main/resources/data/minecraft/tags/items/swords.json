@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:razor_falchion",
-    "spectrum:bedrock_sword",
-    "spectrum:malachite_ultra_greatsword",
-    "spectrum:glass_crest_ultra_greatsword"
+    "#spectrum:swords"
   ]
 }

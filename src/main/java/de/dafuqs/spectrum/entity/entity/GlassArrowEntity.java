@@ -163,16 +163,15 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		this.dataTracker.startTracking(VARIANT, GlassArrowVariant.MALACHITE);
 	}
 	
+	public GlassArrowVariant getVariant() {
+		return this.dataTracker.get(VARIANT);
+	}
+	
 	public void setVariant(GlassArrowVariant variant) {
 		this.dataTracker.set(VARIANT, variant);
-		
 		if (variant == GlassArrowVariant.CITRINE) {
 			setPunch(5);
 		}
-	}
-	
-	public GlassArrowVariant getVariant() {
-		return this.dataTracker.get(VARIANT);
 	}
 	
 	@Override

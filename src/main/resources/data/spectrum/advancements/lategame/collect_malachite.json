@@ -15,10 +15,21 @@
   "criteria": {
     "collected_malachite": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": "spectrum:malachite_ores" }] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:raw_malachite",
+              "spectrum:malachite_ore",
+              "spectrum:deepslate_malachite_ore",
+              "spectrum:blackslag_malachite_ore"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }

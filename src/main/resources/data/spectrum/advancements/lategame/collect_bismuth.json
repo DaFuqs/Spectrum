@@ -15,7 +15,16 @@
   "criteria": {
     "collected_small_bismuth_bud": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:small_bismuth_bud" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:small_bismuth_bud",
+              "spectrum:large_bismuth_bud"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

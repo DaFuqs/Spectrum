@@ -31,6 +31,9 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.LIGHT_MINE, LightMineEntityRenderer::new);
 		register(SpectrumEntityTypes.MONSTROSITY, MonstrosityEntityRenderer::new);
 		register(SpectrumEntityTypes.GUARDIAN_TURRET, GuardianTurretEntityRenderer::new);
+		register(SpectrumEntityTypes.LIZARD, LizardEntityRenderer::new);
+		register(SpectrumEntityTypes.KINDLING, KindlingEntityRenderer::new);
+		register(SpectrumEntityTypes.KINDLING_COUGH, KindlingCoughEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

@@ -12,8 +12,8 @@ public interface AoEBreakingTool {
 		BlockHitResult hitResult = (BlockHitResult) player.raycast(10, 1, false);
 		if (!player.world.isClient && hitResult.getType() == HitResult.Type.BLOCK) {
 			Direction side = hitResult.getSide();
-			if (canMineAtRange(player, stack)) {
-				AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getRange(stack));
+			if (canUseAoE(player, stack)) {
+				AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getAoERange(stack));
 			}
 		}
 	}
@@ -25,14 +25,14 @@ public interface AoEBreakingTool {
 	 * @param stack the stack blocks get broken with
 	 * @return true to do AoE mining, false to skip AoE mining
 	 */
-	boolean canMineAtRange(PlayerEntity player, ItemStack stack);
+	boolean canUseAoE(PlayerEntity player, ItemStack stack);
 	
 	/**
-	 * The max possible theoretical
+	 * The range this tool breaks blocks via AoE
 	 *
 	 * @param stack the AoEBreakingTool stack
 	 * @return max square radius of block breaking
 	 */
-	int getRange(ItemStack stack);
+	int getAoERange(ItemStack stack);
 	
 }

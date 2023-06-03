@@ -185,7 +185,7 @@ public class SpectrumMultiblocks {
 		registerMultiBlock(CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER, withoutLavaStructure, targetBlocks);
 		
 		String[][] structureUpgrades = {
-				{"U___", "____", "_H__", "____", "U___"},
+				{"U___", "____", "____", "____", "U___"},
 				{"C___", "____", "_H__", "____", "C___"},
 				{"Xcc_", "cGGX", "__GX", "cGGX", "Xcc_"},
 				{"_XX_", "XLLX", "XLLX", "XLLX", "_XX_"},

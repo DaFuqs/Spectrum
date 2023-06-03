@@ -12,29 +12,24 @@
     }
   },
   "criteria": {
-    "has_ore": {
+    "collected_stratine": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:stratine_ore" ]}] }
-    },
-    "has_fragments": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:stratine_fragments" ]}] }
-    },
-    "has_gem": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:stratine_gem" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:stratine_ore",
+              "spectrum:stratine_fragments",
+              "spectrum:stratine_gem",
+              "spectrum:blackslag_malachite_ore"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     }
-  },
-  "requirements": [
-    [
-      "has_ore",
-      "has_fragments",
-      "has_gem"
-    ],
-    [ "gotten_previous" ]
-  ]
+  }
 }

@@ -162,6 +162,12 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
+	public static final Item DRAGONRENDING_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability())) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(SpectrumEnchantments.RAZING, 1);
+		}
+	};
 	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	public static final SpectrumFishingRodItem MOLTEN_ROD = new MoltenRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	
@@ -192,19 +198,20 @@ public class SpectrumItems {
 	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
 	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
 	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
-	
-	// able to pass through translucent blocks, like glass; render as rays of light
+
 	public static final Item MALACHITE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.MALACHITE, SpectrumParticleTypes.LIME_CRAFTING);
 	public static final Item TOPAZ_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.TOPAZ, SpectrumParticleTypes.CYAN_CRAFTING);
 	public static final Item AMETHYST_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.AMETHYST, SpectrumParticleTypes.MAGENTA_CRAFTING);
 	public static final Item CITRINE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.CITRINE, SpectrumParticleTypes.YELLOW_CRAFTING);
-	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING); // pulls entities
+	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
 	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
 	
 	public static final Item GLASS_AMPOULE = new GlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
 	public static final Item FRACTAL_GLASS_AMPOULE = new FractalGlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
 	public static final Item FEROCIOUS_GLASS_AMPOULE = new FerociousGlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
-	
+	public static final Item CRYSTALLIZED_DRAGON_FANG = new CrystallizedDragonFangItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
+
+
 	// Special tools
 	public static final Item DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -277,6 +284,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
@@ -385,7 +393,9 @@ public class SpectrumItems {
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
 
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings());
-	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings());
+	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
+	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
+	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
 	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
@@ -559,8 +569,11 @@ public class SpectrumItems {
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
 		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
+
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 		register("guardian_turret_spawn_egg", GUARDIAN_TURRET_SPAWN_EGG, DyeColor.WHITE);
+register("kindling_spawn_egg", KINDLING_SPAWN_EGG, DyeColor.WHITE);
+		register("lizard_spawn_egg", LIZARD_SPAWN_EGG, DyeColor.WHITE);
 
 		registerStructurePlacers();
 	}
@@ -654,6 +667,7 @@ public class SpectrumItems {
 		register("stratine_fragments", STRATINE_FRAGMENTS, DyeColor.RED);
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
+		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
@@ -710,6 +724,7 @@ public class SpectrumItems {
 		register("razor_falchion", RAZOR_FALCHION, DyeColor.RED);
 		register("oblivion_pickaxe", OBLIVION_PICKAXE, DyeColor.GRAY);
 		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
+		register("dragonrending_pickaxe", DRAGONRENDING_PICKAXE, DyeColor.WHITE);
 		register("lagoon_rod", LAGOON_ROD, DyeColor.LIGHT_BLUE);
 		register("molten_rod", MOLTEN_ROD, DyeColor.ORANGE);
 		
@@ -754,7 +769,9 @@ public class SpectrumItems {
 		register("glass_ampoule", GLASS_AMPOULE, DyeColor.WHITE);
 		register("ferocious_glass_ampoule", FEROCIOUS_GLASS_AMPOULE, DyeColor.WHITE);
 		register("fractal_glass_ampoule", FRACTAL_GLASS_AMPOULE, DyeColor.WHITE);
-		
+		register("crystallized_dragon_fang", CRYSTALLIZED_DRAGON_FANG, DyeColor.WHITE);
+
+
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);
 	}

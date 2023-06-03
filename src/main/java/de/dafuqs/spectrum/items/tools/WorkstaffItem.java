@@ -23,7 +23,7 @@ import java.util.*;
 
 public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Preenchanted {
 	
-	protected static final InkCost BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkCost(InkColors.WHITE, 10);
+	protected static final InkCost BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkCost(InkColors.WHITE, 3); // TODO: make pricier once ink networking is in
 	
 	public enum GUIToggle {
 		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
@@ -71,7 +71,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		int range = getRange(stack);
+		int range = getAoERange(stack);
 		if(range > 0) {
 			int displayedRange = 1 + range + range;
 			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.mining_range", displayedRange, displayedRange).formatted(Formatting.GRAY));
@@ -104,7 +104,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	}
 	
 	@Override
-	public int getRange(ItemStack stack) {
+	public int getAoERange(ItemStack stack) {
 		NbtCompound nbt = stack.getNbt();
 		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.INT_TYPE)) {
 			return 0;
@@ -113,8 +113,8 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	}
 	
 	@Override
-	public boolean canMineAtRange(PlayerEntity player, ItemStack stack) {
-		int range = getRange(stack);
+	public boolean canUseAoE(PlayerEntity player, ItemStack stack) {
+		int range = getAoERange(stack);
 		if (range <= 0) {
 			return true;
 		}

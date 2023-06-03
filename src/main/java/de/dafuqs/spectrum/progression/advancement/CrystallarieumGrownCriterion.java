@@ -27,34 +27,35 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 	
 	@Override
 	public CrystallarieumGrownCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
-		BlockPredicate blockPredicate = BlockPredicate.fromJson(jsonObject.get("block"));
-		return new CrystallarieumGrownCriterion.Conditions(extended, itemPredicate, blockPredicate);
+		BlockPredicate grownBlockPredicate = BlockPredicate.fromJson(jsonObject.get("grown_block"));
+		ItemPredicate catalystPredicate = ItemPredicate.fromJson(jsonObject.get("used_catalyst"));
+		return new CrystallarieumGrownCriterion.Conditions(extended, catalystPredicate, grownBlockPredicate);
 	}
 	
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack, ServerWorld world, BlockPos pos) {
-		this.trigger(player, (conditions) -> conditions.matches(itemStack, world, pos));
+	public void trigger(ServerPlayerEntity player, ServerWorld world, BlockPos pos, ItemStack catalystStack) {
+		this.trigger(player, (conditions) -> conditions.matches(world, pos, catalystStack));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
-		private final ItemPredicate itemPredicate;
+		private final ItemPredicate catalystPredicate;
 		private final BlockPredicate blockPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, BlockPredicate blockPredicate) {
+		public Conditions(EntityPredicate.Extended player, ItemPredicate catalystPredicate, BlockPredicate blockPredicate) {
 			super(ID, player);
-			this.itemPredicate = itemPredicate;
+			this.catalystPredicate = catalystPredicate;
 			this.blockPredicate = blockPredicate;
 		}
 		
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.add("item", this.itemPredicate.toJson());
+			jsonObject.add("grown_block", this.blockPredicate.toJson());
+			jsonObject.add("used_catalyst", this.catalystPredicate.toJson());
 			return jsonObject;
 		}
 		
-		public boolean matches(ItemStack stack, ServerWorld world, BlockPos blockPos) {
-			return this.itemPredicate.test(stack) && this.blockPredicate.test(world, blockPos);
+		public boolean matches(ServerWorld world, BlockPos blockPos, ItemStack catalystStack) {
+			return this.blockPredicate.test(world, blockPos) && this.catalystPredicate.test(catalystStack);
 		}
 	}
 	

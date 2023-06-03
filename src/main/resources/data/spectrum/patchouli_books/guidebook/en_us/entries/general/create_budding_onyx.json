@@ -16,13 +16,13 @@
     {
       "type": "patchouli:text",
       "title": "Creating Budding Onyx",
-      "text": "Crafting onyx was always very tricky, as it depended on the current phase of the moon. Despite the $(l:magical_items/crescent_clock)Crescent Clock$(/l) being a thing, you often missed that short time window.$(br)Making Onyx growable like the other gems will save you a huge amount of time.$(br2)$(italic)Strangely, the same procedure does not seem to work for the others?"
+      "text": "Crafting $(l:general/onyx_shards)Onyx$() was always very tricky, as it depended on the current phase of the moon. Despite the $(l:magical_items/crescent_clock)Crescent Clock$(/l) being a thing, you often missed that short time window.$(br)Making Onyx growable like the other gems will save you a huge amount of time.$(br2)$(italic)Strangely, the same procedure does not seem to work for the others?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/budding_onyx",
-      "text": "Even if it seems expensive, having renewable onyx seems worth it.$(br)Better to craft a larger amount of these $(l:general/midnight_aberration)Midnight Aberrations$(/l) all at once, as they seem to crumble in your hands quickly."
+      "text": "Even if it seems expensive, having renewable Onyx seems worth it.$(br2)Best to craft a larger amount of these $(l:general/midnight_aberration)Midnight Aberrations$(/l) all at once, as they seem to crumble in your hands quickly."
     }
   ]
 }

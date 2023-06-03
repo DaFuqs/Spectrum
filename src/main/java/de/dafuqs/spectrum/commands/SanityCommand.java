@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
@@ -258,7 +259,7 @@ public class SanityCommand {
 			}
 		}
 		
-		// Enchantments with nonexistent Advancement cloak
+		// Enchantments with nonexistent unlock enchantment
 		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registries.ENCHANTMENT.getEntrySet()) {
 			if (enchantment.getValue() instanceof SpectrumEnchantment spectrumEnchantment) {
 				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
@@ -269,7 +270,7 @@ public class SanityCommand {
 			}
 		}
 		
-		// EnchanterEnchantables with enchantability <= 0
+		// EnchanterEnchantables with enchantability <= 0 (unable to be enchanted)
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			Item i = item.getValue();
 			if (i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
@@ -277,6 +278,17 @@ public class SanityCommand {
 			}
 		}
 		
+		// Trinkets that have an invalid equip advancement and thus can't be equipped
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
+			if (item.getValue() instanceof SpectrumTrinketItem trinketItem) {
+				Identifier advancementIdentifier = trinketItem.getUnlockIdentifier();
+				Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
+				if (advancementCriterionAdvancement == null) {
+					SpectrumCommon.logWarning("[SANITY: Trinkets] Trinket '" + item.getKey().getValue() + "' references advancement '" + advancementIdentifier + "' that does not exist");
+				}
+			}
+		}
+
 		SpectrumCommon.logInfo("##### SANITY CHECK FINISHED ######");
 		
 		SpectrumCommon.logInfo("##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");

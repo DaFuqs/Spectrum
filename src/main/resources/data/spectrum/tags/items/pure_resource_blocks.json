@@ -1,0 +1,39 @@
+{
+  "values": [
+    "spectrum:pure_coal_block",
+    "spectrum:pure_iron_block",
+    "spectrum:pure_gold_block",
+    "spectrum:pure_diamond_block",
+    "spectrum:pure_emerald_block",
+    "spectrum:pure_redstone_block",
+    "spectrum:pure_lapis_block",
+    "spectrum:pure_copper_block",
+    "spectrum:pure_quartz_block",
+    "spectrum:pure_netherite_scrap_block",
+    "spectrum:pure_echo_block",
+    "spectrum:pure_glowstone_block",
+    "spectrum:pure_prismarine_block",
+
+    {
+      "id": "spectrum:pure_certus_quartz_block",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_fluix_block",
+      "required": false
+    },
+
+    {
+      "id": "spectrum:pure_globette_block",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_globette_nether_block",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_globette_end_block",
+      "required": false
+    }
+  ]
+}

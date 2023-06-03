@@ -29,7 +29,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	public static final long COOLDOWN_TICKS = 160;
 	
 	public GleamingPinItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("unlocks/gleaming_pin"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/gleaming_pin"));
 	}
 	
 	public static void doGleamingPinEffect(@NotNull PlayerEntity player, @NotNull ServerWorld world, ItemStack gleamingPinStack) {

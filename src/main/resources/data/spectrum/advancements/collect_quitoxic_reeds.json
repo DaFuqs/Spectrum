@@ -13,24 +13,22 @@
     }
   },
   "criteria": {
-    "has_plant": {
+    "collected_quitoxic_reeds": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_reeds" ]}] }
-    },
-    "has_powder": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:quitoxic_powder" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:quitoxic_reeds",
+              "spectrum:quitoxic_powder"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:craft_colored_pedestal" }
     }
-  },
-  "requirements": [
-    [
-      "has_plant",
-      "has_powder"
-    ],
-    [ "gotten_previous" ]
-  ]
+  }
 }

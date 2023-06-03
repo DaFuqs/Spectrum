@@ -10,7 +10,7 @@
   ],
   "seconds_per_growth_stage": 480,
   "ink_color": "cyan",
-  "ink_per_second": 100,
+  "ink_cost_tier": 4,
   "grows_without_catalyst": true,
   "catalysts": [
     {

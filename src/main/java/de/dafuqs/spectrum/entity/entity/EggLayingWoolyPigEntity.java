@@ -82,7 +82,9 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	public static DefaultAttributeContainer.Builder createEggLayingWoolyPigAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.20000000298023224D);
+		return MobEntity.createMobAttributes()
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D);
 	}
 	
 	@Override

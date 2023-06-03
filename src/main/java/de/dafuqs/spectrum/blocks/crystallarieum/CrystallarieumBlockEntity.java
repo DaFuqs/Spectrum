@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -16,6 +17,8 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -134,6 +137,11 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 							if (!it.hasNext()) {
 								crystallarieum.canWork = false;
 								crystallarieum.updateInClientWorld();
+							}
+							
+							ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();
+							if (owner != null) {
+								SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerWorld) world, topPos, crystallarieum.getStack(CATALYST_SLOT_ID));
 							}
 						}
 					}

@@ -1,0 +1,22 @@
+{
+  "name": "Vein Mining",
+  "icon": "spectrum:multitool",
+  "flag": "mod:veinmining",
+  "advancement": "spectrum:lategame/collect_paltaeria",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Vein Mining",
+      "item": "spectrum:multitool{Enchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}",
+      "text": "$(italic)Still mining each ore individually?$(br)Gravity might make this easier.$()$(br2)Use Gravity to rip out all connected blocks.$(br2)Max Level: 1$(br)Applicable to all tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
+      "recipe": "spectrum:mod_integration/vein_mining/enchanter/book_vein_mining",
+      "text": "You can infuse a $(item)common Book$() with Vein Mining by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

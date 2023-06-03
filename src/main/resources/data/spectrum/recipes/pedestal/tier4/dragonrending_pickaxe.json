@@ -5,7 +5,7 @@
   "cyan": 0,
   "magenta": 4,
   "yellow": 8,
-  "white": 0,
+  "white": 4,
   "black": 0,
   "experience": 2,
   "pattern": [
@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"spectrum:razing\", lvl: 1s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/equipment/resonant_pickaxe"
+  "required_advancement": "spectrum:unlocks/equipment/dragonrending_pickaxe"
 }

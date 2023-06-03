@@ -19,7 +19,7 @@
       "advancement": "spectrum:find_preservation_ruins",
       "completion_advancement": "spectrum:generate_preservation_ruins_loot",
       "cost": "spectrum:refined_azurite#12",
-      "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefields sides seem to indicate you have to have Azure Dike active."
+      "text": "The entrance seems to be blocked by a powerful force field. Whoever built those was kind enough to leave you clues, however! The hearts on the force field's sides seem to indicate you have to have Azure Dike active."
     },
     {
       "type": "spectrum:hint",
@@ -27,7 +27,7 @@
       "advancement": "spectrum:find_preservation_ruins",
       "completion_advancement": "spectrum:enter_color_mixing_preservation_ruin",
       "cost": "spectrum:refined_azurite#12",
-      "text": "The Colored Spore Blossoms at the ceiling and the engravings behind them on the walls seem to hint at the solution. A Powder engraving and a '? + ?'. You have to mix powders?"
+      "text": "The Colored Spore Blossoms at the ceiling and the engravings behind them on the walls seem to hint at the solution. A powder engraving and a '? + ?'. You have to mix Powders?"
     },
     {
       "type": "spectrum:hint",

@@ -1,7 +1,7 @@
 {
   "name": "Vanilla Enchantments",
   "icon": "spectrum:multitool",
-  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "advancement": "spectrum:unlocks/blocks/enchanter",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

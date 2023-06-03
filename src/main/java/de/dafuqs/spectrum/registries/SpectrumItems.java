@@ -140,6 +140,12 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
+	public static final Item DRAGONRENDING_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability())) {
+		@Override
+		public Map<Enchantment, Integer> getDefaultEnchantments() {
+			return Map.of(SpectrumEnchantments.RAZING, 1);
+		}
+	};
 	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	public static final SpectrumFishingRodItem MOLTEN_ROD = new MoltenRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	
@@ -181,6 +187,8 @@ public class SpectrumItems {
 	public static final Item GLASS_AMPOULE = new GlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
 	public static final Item FRACTAL_GLASS_AMPOULE = new FractalGlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
 	public static final Item FEROCIOUS_GLASS_AMPOULE = new FerociousGlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
+	public static final Item CRYSTALLIZED_DRAGON_FANG = new CrystallizedDragonFangItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
+
 	
 	// Special tools
 	public static final Item DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -640,6 +648,7 @@ public class SpectrumItems {
 		register("razor_falchion", RAZOR_FALCHION, DyeColor.RED);
 		register("oblivion_pickaxe", OBLIVION_PICKAXE, DyeColor.GRAY);
 		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
+		register("dragonrending_pickaxe", DRAGONRENDING_PICKAXE, DyeColor.WHITE);
 		register("lagoon_rod", LAGOON_ROD, DyeColor.LIGHT_BLUE);
 		register("molten_rod", MOLTEN_ROD, DyeColor.ORANGE);
 		
@@ -684,6 +693,8 @@ public class SpectrumItems {
 		register("glass_ampoule", GLASS_AMPOULE, DyeColor.WHITE);
 		register("ferocious_glass_ampoule", FEROCIOUS_GLASS_AMPOULE, DyeColor.WHITE);
 		register("fractal_glass_ampoule", FRACTAL_GLASS_AMPOULE, DyeColor.WHITE);
+		register("crystallized_dragon_fang", CRYSTALLIZED_DRAGON_FANG, DyeColor.WHITE);
+
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);

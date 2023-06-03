@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 8,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "MPM",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:smooth_basalt"
+    },
+    "M": {
+      "item": "spectrum:dragonbone_chunk"
+    },
+    "P": {
+      "item": "spectrum:effulgent_feather"
+    }
+  },
+  "result": {
+    "item": "spectrum:dragonrending_pickaxe",
+    "nbt": "{Enchantments: [{id: \"spectrum:razing\", lvl: 1s}]}",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/equipment/resonant_pickaxe"
+}

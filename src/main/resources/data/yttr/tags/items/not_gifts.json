@@ -1,0 +1,40 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:trinkets",
+    "#spectrum:bedrock_equipment",
+    "#spectrum:bedrock_armor",
+    "#spectrum:gemstone_armor",
+    "#spectrum:malachite_equipment",
+    "#spectrum:glass_crest_equipment",
+    "#spectrum:pickaxes",
+    "#spectrum:swords",
+    "#spectrum:shovels",
+    "#spectrum:hoes",
+    "#spectrum:axes",
+    "#spectrum:fishing_rods",
+    "#spectrum:ink_containers",
+    "#spectrum:pure_resources",
+
+    "spectrum:onyx_shard",
+    "spectrum:moonstone_shard",
+    "spectrum:spectral_shard",
+
+    "spectrum:axolotl_gold_head",
+    "spectrum:gilded_book",
+
+    "#spectrum:pure_resource_blocks",
+    "#spectrum:gemstone_storage_blocks",
+
+    "spectrum:shimmerstone_block",
+    "spectrum:bismuth_block",
+    "spectrum:malachite_block",
+    "spectrum:azurite_block",
+
+    "spectrum:bedrock_anvil",
+
+    "spectrum:blood_orchid",
+    "spectrum:resonant_lily",
+    "spectrum:amaranth_bushel"
+  ]
+}

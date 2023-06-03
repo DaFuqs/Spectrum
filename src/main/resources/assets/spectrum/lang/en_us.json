@@ -399,6 +399,8 @@
   "enchantment.spectrum.crumbling.desc": "Mining speed scales inversely with hardness.",
   "enchantment.spectrum.inexorable": "Inexorable",
   "enchantment.spectrum.inexorable.desc": "Prevents tool and movement slowdown effects",
+  "enchantment.spectrum.razing": "Razing",
+  "enchantment.spectrum.razing.desc": "Higher mining speed the harder a block is to break",
 
   "spectrum.subtitles.overcharging": "Overcharging",
   "spectrum.subtitles.hummingstone_hum": "Hummingstone hums",

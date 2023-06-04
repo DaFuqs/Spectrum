@@ -2,7 +2,8 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.FallingBlockEntity;
+import net.minecraft.block.piston.*;
+import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -61,8 +62,10 @@ public class BlackMateriaBlock extends FallingBlock {
 	@Override
     public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
 		BlockState state = world.getBlockState(pos);
-		if(state.isOf(Blocks.KELP_PLANT) || state.isOf(Blocks.KELP)) {
-			world.setBlockState(pos, Blocks.WATER.getDefaultState().with(FluidBlock.LEVEL, 15));
+		if (!state.getMaterial().isSolid() && state.getMaterial().getPistonBehavior() == PistonBehavior.DESTROY) {
+			world.breakBlock(pos, true, fallingBlockEntity, 4);
 		}
-    }
+		super.onDestroyedOnLanding(world, pos, fallingBlockEntity);
+	}
+	
 }

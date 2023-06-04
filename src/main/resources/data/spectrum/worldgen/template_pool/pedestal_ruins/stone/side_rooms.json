@@ -6,7 +6,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:pedestal_ruins/stone/side_0",
+        "location": "spectrum:pedestal_ruins/stone/side/furnace",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }
@@ -15,7 +15,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:pedestal_ruins/stone/side_1",
+        "location": "spectrum:pedestal_ruins/stone/side/hopper",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }
@@ -24,16 +24,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:pedestal_ruins/stone/side_2",
-        "projection": "rigid",
-        "processors": "minecraft:empty"
-      }
-    },
-    {
-      "weight": 2,
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:pedestal_ruins/stone/side_3",
+        "location": "spectrum:pedestal_ruins/stone/side/wheat",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

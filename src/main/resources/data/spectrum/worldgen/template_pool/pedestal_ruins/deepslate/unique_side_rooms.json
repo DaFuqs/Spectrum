@@ -1,12 +1,12 @@
 {
-  "name": "spectrum:pedestal_ruins/stone/centers",
+  "name": "spectrum:pedestal_ruins/deepslate/unique_side_rooms",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:pedestal_ruins/stone/main",
+        "location": "spectrum:pedestal_ruins/deepslate/side_unique/sheep",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

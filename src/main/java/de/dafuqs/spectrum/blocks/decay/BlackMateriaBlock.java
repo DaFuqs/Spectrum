@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -57,4 +58,11 @@ public class BlackMateriaBlock extends FallingBlock {
 		builder.add(AGE);
 	}
 	
+	@Override
+    public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
+		BlockState state = world.getBlockState(pos);
+		if(state.isOf(Blocks.KELP_PLANT) || state.isOf(Blocks.KELP)) {
+			world.setBlockState(pos, Blocks.WATER.getDefaultState().with(FluidBlock.LEVEL, 15));
+		}
+    }
 }

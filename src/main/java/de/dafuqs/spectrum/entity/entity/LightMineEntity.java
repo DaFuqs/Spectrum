@@ -13,8 +13,8 @@ import net.minecraft.potion.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class LightMineEntity extends LightShardBaseEntity {

@@ -9,8 +9,8 @@ import net.minecraft.predicate.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class SpectrumTypeSpecificPredicates {

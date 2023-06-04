@@ -3,6 +3,7 @@
     "minecraft:grass_block",
     "minecraft:dirt",
     "minecraft:gravel",
-    "minecraft:sand"
+    "minecraft:sand",
+    "spectrum:slush"
   ]
 }

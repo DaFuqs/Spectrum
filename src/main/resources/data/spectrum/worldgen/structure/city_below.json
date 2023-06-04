@@ -1,7 +1,7 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": "#spectrum:has_structure/city_below",
-  "step": "strongholds",
+  "step": "top_layer_modification",
   "spawn_overrides": {},
   "terrain_adaptation": "beard_thin",
   "start_pool": "spectrum:city_below/city_centers",

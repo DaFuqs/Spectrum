@@ -103,7 +103,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-			HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+			Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 			
 			for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 				int amount = entry.getValue();
@@ -126,7 +126,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 			if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-				HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+				Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 				
 				for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 					int amount = entry.getValue();

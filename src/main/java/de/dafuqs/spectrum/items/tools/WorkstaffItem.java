@@ -88,7 +88,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		NbtCompound nbt = context.getStack().getNbt();
 		if(canTill(nbt)) {
-			super.useOnBlock(context);
+			return super.useOnBlock(context);
 		}
 		return ActionResult.PASS;
 	}

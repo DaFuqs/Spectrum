@@ -1886,7 +1886,7 @@
   "item.spectrum.workstaff.gui.disable_right_click_actions": "Disable Right-Click",
   "item.spectrum.workstaff.gui.enable_projectiles": "Enable Ranged Mining",
   "item.spectrum.workstaff.gui.disable_projectiles": "Disable Ranged Mining",
-  "item.spectrum.workstaff.gui.range_group": "Choose Range",
+  "item.spectrum.workstaff.gui.range_group": "Choose AoE",
   "item.spectrum.workstaff.gui.enchantment_group": "Choose Enchantment",
   "item.spectrum.glass_crest_workstaff": "Glass Crest Workstaff",
 

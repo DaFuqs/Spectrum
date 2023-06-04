@@ -57,6 +57,7 @@ dependencies {
 	implementation 'org.jetbrains:annotations:23.1.0'
 
 	implementation include('org.jgrapht:jgrapht-core:1.5.1')
+	implementation include('org.jheaps:jheaps:0.13')
 
 	// fabric & api
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

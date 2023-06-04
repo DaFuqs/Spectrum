@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -57,4 +58,10 @@ public class BlackMateriaBlock extends FallingBlock {
 		builder.add(AGE);
 	}
 	
+	@Override
+    public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
+		// To prevent infinite materia, we eat any non-solid blocks that we land on. Since the block item
+		// is going to be dropped regardless, we just replace the non-solid block with air.
+		world.setBlockState(pos, Blocks.AIR.getDefaultState());
+    }
 }

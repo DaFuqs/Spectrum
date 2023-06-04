@@ -60,8 +60,9 @@ public class BlackMateriaBlock extends FallingBlock {
 	
 	@Override
     public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
-		// To prevent infinite materia, we eat any non-solid blocks that we land on. Since the block item
-		// is going to be dropped regardless, we just replace the non-solid block with air.
-		world.setBlockState(pos, Blocks.AIR.getDefaultState());
+		BlockState state = world.getBlockState(pos);
+		if(state.isOf(Blocks.KELP_PLANT) || state.isOf(Blocks.KELP)) {
+			world.setBlockState(pos, Blocks.WATER.getDefaultState().with(FluidBlock.LEVEL, 15));
+		}
     }
 }

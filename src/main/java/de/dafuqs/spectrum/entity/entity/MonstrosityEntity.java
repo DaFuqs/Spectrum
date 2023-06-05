@@ -215,13 +215,13 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	public static DefaultAttributeContainer createMonstrosityAttributes() {
 		return HostileEntity.createHostileAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 800.0)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 600.0)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 24.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0)
 				.add(EntityAttributes.GENERIC_ARMOR, 18.0)
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 4.0)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0)
-				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 2.0)
+				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 4.0)
 				.build();
 	}
 	

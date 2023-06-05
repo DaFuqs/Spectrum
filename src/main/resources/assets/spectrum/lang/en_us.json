@@ -249,6 +249,9 @@
   "entity.spectrum.bident": "Bident",
   "entity.spectrum.monstrosity": "§kMonstrosity",
   "entity.spectrum.guardian_turret": "Guardian Turret",
+  "entity.spectrum.kindling": "Kindling",
+  "entity.spectrum.kindling_cough": "Kindling Cough",
+  "entity.spectrum.lizard": "Lurking Lizard",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",

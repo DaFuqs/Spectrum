@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
+      }
+    },
+    "grown_malachite_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      }
+    },
+    "grown_refined_bloodstone_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_refined_bloodstone_in_crystallarieum"
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@
   "values": [
     "spectrum:malachite_cluster",
     "spectrum:bismuth_cluster",
+    "spectrum:azurite_cluster",
+    "spectrum:bloodstone_cluster",
 
     "spectrum:coal_cluster",
     "spectrum:copper_cluster",

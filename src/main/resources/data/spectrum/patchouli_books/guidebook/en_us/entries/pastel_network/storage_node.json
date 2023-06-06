@@ -1,7 +1,6 @@
 {
   "name": "Storage Node",
   "icon": "spectrum:provider_node",
-  "secret": true,
   "advancement": "spectrum:unlocks/blocks/pastel_network",
   "category": "spectrum:pastel_network_category",
   "pages": [

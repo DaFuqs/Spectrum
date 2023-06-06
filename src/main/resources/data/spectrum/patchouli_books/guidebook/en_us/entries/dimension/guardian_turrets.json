@@ -1,0 +1,21 @@
+{
+  "name": "Guardian Turrets",
+  "icon": "spectrum:guardian_turret_head",
+  "advancement": "spectrum:hidden/interact_with_guardian_turret",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:guardian_turret_head": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Guardian Turrets",
+      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.$(br)Ready to poke holes in you at any time if you make your presence known."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "spectrum:guardian_turret",
+      "text": "$(italic)True engineering excellence. But boy does it hurt."
+    }
+  ]
+}

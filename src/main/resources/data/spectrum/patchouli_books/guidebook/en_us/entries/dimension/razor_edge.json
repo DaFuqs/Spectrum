@@ -14,7 +14,8 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_razor_edge.png"
       ],
-      "text": "Everything here seems to have the livelihood to pierce you open. Not the most inviting place to be."
+      "border": true,
+      "text": "Everything here seems to thrive on stabbing you. Not the most welcoming place to be."
     },
     {
       "type": "patchouli:spotlight",

@@ -1,0 +1,35 @@
+{
+  "name": "Kindlings",
+  "icon": "spectrum:kinding_head",
+  "advancement": "spectrum:unlocks/blocks/kindling_memory",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:kinding_head": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Kindlings",
+      "text": "Gigantic skeletons of magnificent behemoths! Without a doubt, there is still a spark of life in the Dragonbone chunks you broke. Enough to bring these spectacles of Mother Nature back to life? "
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Remembering",
+      "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
+      "text": ""
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "spectrum:lategame/remember_kindling",
+      "entity": "spectrum:kindling",
+      "text": "$(italic)So much for your plans about a Jurassic Park. Maybe you'd rather open a petting zoo instead?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/pluck_effulgent_feather",
+      "anchor": "effulgent_feather",
+      "item": "spectrum:effulgent_feather",
+      "text": "TODO"
+    }
+  ]
+}

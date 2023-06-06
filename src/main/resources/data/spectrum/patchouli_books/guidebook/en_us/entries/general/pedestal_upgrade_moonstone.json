@@ -30,7 +30,7 @@
     {
       "type": "patchouli:text",
       "title": "Checklist (Upgrade)",
-      "text": "$(li)4 Onyx Chiseled Blocks$(li)4 Polished Gemstone Blocks$(li)36 Polished Crests"
+      "text": "$(li)4 Onyx Chiseled Blocks$(li)4 Polished Gemstone Blocks$(li)36 Polished Crests$(li)12 Polished Blocks"
     }
   ]
 }

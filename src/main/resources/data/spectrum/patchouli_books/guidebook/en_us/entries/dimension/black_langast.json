@@ -13,11 +13,12 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_black_langast.png"
       ],
+      "border": true,
       "text": "$(l:magical_blocks/midnight_solution)Midnight Solution$(/l) everywhere."
     },
     {
       "type": "patchouli:text",
-      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have gone through a similar experience as yourself.... only much more tragic.$(br2)The $(italic)things$() that grow here - to call them plants would be an outrage even to $(item)Dead Bushes$() - look anything but healthy."
+      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have had a similar experience to yours.... only much more tragic.$(br2)The $(italic)things$() growing here - calling them plants would be an outrage even to $(item)Dead Bushes$() - look anything but healthy."
     }
   ]
 }

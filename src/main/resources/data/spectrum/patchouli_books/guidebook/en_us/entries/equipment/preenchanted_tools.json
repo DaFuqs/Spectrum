@@ -8,7 +8,8 @@
     "spectrum:lucky_pickaxe": 0,
     "spectrum:razor_falchion": 0,
     "spectrum:oblivion_pickaxe": 0,
-    "spectrum:resonant_pickaxe": 0
+    "spectrum:resonant_pickaxe": 0,
+    "spectrum:dragonrending_pickaxe": 0
   },
   "pages": [
     {
@@ -44,15 +45,16 @@
       "text": "As an outlier in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
     },
     {
-      "type": "patchouli:text",
-      "title": "Resonant Pickaxe",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
       "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
-      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(l:enchanting/resonance)Resonance$(/l)."
+      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br2)Comes pre-enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
-      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe"
+      "recipe": "spectrum:pedestal/tier4/dragonrending_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/dragonrending_pickaxe",
+      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.$(br)Comes pre-enchanted with $(l:enchanting/razing)Razing$(/l)."
     }
   ]
 }

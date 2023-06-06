@@ -9,7 +9,8 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "On the trail of the history of the Deeper Down.$(br)There is no question that, despite the lack of light, there must once have been an advanced civilisation down here. But you found nothing more than ruins.$(br)What had happened? Surely you can find clues to their whereabouts? Demise? Legacy?"
+      "title": "What happened?",
+      "text": "$(italic)On the trail of the history of the Deeper Down$().$(br2)There is no question that, despite the lack of light, there must once have been an advanced civilisation down here. But you found nothing more than ruins.$(br)What had happened? Surely you can find clues to their whereabouts? Demise? Legacy?"
     },
     {
       "type": "spectrum:checklist",
@@ -18,7 +19,14 @@
         "spectrum:lategame/revive_black_sludge_plant": "How did the Black Langast come to be?",
         "spectrum:lategame/break_cracked_dragonbone": "Those bones in the Dragonrot Swamps? Can they be broken?",
         "spectrum:lategame/find_excavation_site": "Who created the ruins that you found in the Overworld?",
-        "spectrum:lategame/find_forgotten_city": "",
+        "spectrum:lategame/find_forgotten_city": "Where did they live?"
+      },
+      "text": ""
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "Where to look",
+      "checklist": {
         "spectrum:lategame/reached_dd_floor": "Now that Bedrock isn't the bottom anymore, what is there to find?",
         "spectrum:lategame/strike_up_hummingstone_hymn": "What about these weird Crystals in the Crystal Gardens?",
         "spectrum:lategame/collect_moonstone_shard": "Can you find Geodes here, too?"

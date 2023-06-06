@@ -1,0 +1,27 @@
+{
+  "name": "Bloodstone",
+  "advancement": "spectrum:unlocks/resources/bloodstone",
+  "icon": "spectrum:bloodstone_cluster",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:small_bloodstone_bud": 0,
+    "spectrum:large_bloodstone_bud": 0,
+    "spectrum:bloodstone_cluster": 0,
+    "spectrum:bloodstone_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Bloodstone",
+      "item": "spectrum:effulgent_feather",
+      "text": "TODO Blablabla Crystallrium + $(l:creating_life/kindlings#effulgent_feather)Effulgent Feather$()."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Refining Bloodstone",
+      "recipe": "spectrum:crystallarieum/bloodstone",
+      "text": "TODO"
+    }
+  ]
+}

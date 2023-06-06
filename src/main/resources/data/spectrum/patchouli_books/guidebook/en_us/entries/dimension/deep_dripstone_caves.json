@@ -11,6 +11,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
       ],
+      "border": true,
       "text": "Same, but different."
     },
     {

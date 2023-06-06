@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Overchanting",
       "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
-      "text": "Being so familiar with both magic and the Enchanter opened new doors for you:$(br)Overchanting.$(br2)Pressing so much magical energy into a single Enchanted Book will be pricey. Maybe even not even worth the hassle, in most cases."
+      "text": "Being so familiar with both magic and the $(l:enchanting/enchanter)Enchanter$() opened new doors for you:$(br)Overchanting.$(br2)Pressing so much magical energy into a single $(item)Enchanted Book$() will be pricey. $(italic)Very pricey()."
     },
     {
       "type": "patchouli:text",
@@ -21,11 +21,11 @@
     {
       "type": "patchouli:text",
       "title": "Vanilla Enchantments",
-      "text": "Bane of Arthropods: 5 => 8$(li)Blast Protection: 4 => 8$(li)Depth Strider: 3 => 3$(li)Efficiency: 5 => 8$(li)Feather Falling: 4 => 6$(li)Fire Aspect: 2 => 4$(li)Fire Protection: 4 => 8$(li)Fortune: 3 => 5$(li)Frost Walker: 2 => 4$(li)Impaling: 5 => 8$(li)Knockback: 2 => 5$(li)Looting: 3 => 6$(li)Loyalty: 3 => 4$(li)Luck of the Sea: 3 => 5"
+      "text": "$(li)Bane of Arthropods: 5 => 8$(li)Blast Protection: 4 => 8$(li)Depth Strider: 3 => 3$(li)Efficiency: 5 => 8$(li)Feather Falling: 4 => 6$(li)Fire Aspect: 2 => 4$(li)Fire Protection: 4 => 8$(li)Fortune: 3 => 5$(li)Frost Walker: 2 => 4$(li)Impaling: 5 => 8$(li)Knockback: 2 => 5$(li)Looting: 3 => 6$(li)Loyalty: 3 => 4$(li)Luck of the Sea: 3 => 5"
     },
     {
       "type": "patchouli:text",
-      "text": "Lure: 3 => 5$(li)Piercing: 4 => 8$(li)Power: 5 => 8$(li)Projectile Protection: 4 => 8$(li)Protection: 4 => 8$(li)Punch: 2 => 5$(li)Quick Charge: 3 => 5$(li)Respiration: 3 => 6$(li)Riptide: 3 => 4$(li)Sharpness: 5 => 8$(li)Smite: 5 => 8$(li)Soul Speed: 3 => 4$(li)Sweeping Edge: 3 => 7$(li)Thorns: 3 => 6$(li)Unbreaking: 3 => 6"
+      "text": "$(li)Lure: 3 => 5$(li)Piercing: 4 => 8$(li)Power: 5 => 8$(li)Proj. Protection: 4 => 8$(li)Protection: 4 => 8$(li)Punch: 2 => 5$(li)Quick Charge: 3 => 5$(li)Respiration: 3 => 6$(li)Riptide: 3 => 4$(li)Sharpness: 5 => 8$(li)Smite: 5 => 8$(li)Soul Speed: 3 => 4$(li)Sweeping Edge: 3 => 7$(li)Thorns: 3 => 6$(li)Unbreaking: 3 => 6"
     }
   ]
 }

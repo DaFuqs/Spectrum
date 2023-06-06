@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "At the deepest parts of the Deeper Down, this stone was waiting for you. Visually, it reminds you a bit of $(item)Preservation Stone$().$(br2)$(italic)Bedrock 2: Electric Boogaloo"
+      "text": "At the deepest parts of the Deeper Down, this stone was waiting for you. Visually, it reminds you a bit of $(item)Preservation Stone$()."
     },
     {
       "type": "patchouli:text",

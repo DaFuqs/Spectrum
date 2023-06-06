@@ -21,6 +21,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_crystal_gardens.png"
       ],
+      "border": true,
       "text": ""
     },
     {
@@ -30,7 +31,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:overgrown_blackslag",
-      "text": "Stone covered with a small layer of Soil. Not much, but more than enough to be covered with a thick carpet of moss."
+      "text": "Stone covered with a small layer of soil. Not much, but more than enough to be covered with a thick carpet of moss."
     },
     {
       "type": "patchouli:spotlight",
@@ -44,7 +45,7 @@
       "title": "Jadeite Blossoms",
       "advancement": "spectrum:hidden/collect_jadeite_petals",
       "item": "spectrum:jadeite_petals",
-      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. Their petals be used as a $(l:brewing/potion_workshop_reagents)Potion Reagent$()"
+      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. Their petals can be used as a $(l:brewing/potion_workshop_reagents)Potion Reagent$()."
     }
   ]
 }

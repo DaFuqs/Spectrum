@@ -34,22 +34,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:damaged_anvil"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:malachite_chiseled_basalt"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:malachite_chiseled_calcite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:azurite_chiseled_calcite"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:azurite_chiseled_basalt"
         }
       ]
     },

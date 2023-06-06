@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "crafted_potion_in_potion_brewery": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+      }
+    },
+    "broken_cracked_dragonbone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
+      }
+    }
+  }
+}

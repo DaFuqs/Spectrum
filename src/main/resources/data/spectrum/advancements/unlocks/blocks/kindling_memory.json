@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:unlocks/blocks/memories"
       }
     },
-    "reached_endgame": {
+    "broken_cracked_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/__todo"
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
       }
     }
   }

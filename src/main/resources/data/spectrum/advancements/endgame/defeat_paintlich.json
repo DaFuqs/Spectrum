@@ -22,7 +22,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "spectrum:dimension/excavation_site"
+                "structure": "spectrum:excavation_site"
               }
             }
           }

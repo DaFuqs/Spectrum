@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "plucked_effulgent_feather": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+      }
+    },
+    "unlocked_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
+      }
+    }
+  }
+}

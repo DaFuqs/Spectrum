@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_malachite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_malachite"
+      }
+    },
+    "plucked_effulgent_feather": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+      }
+    }
+  }
+}

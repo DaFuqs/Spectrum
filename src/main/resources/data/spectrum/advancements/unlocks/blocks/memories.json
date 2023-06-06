@@ -21,9 +21,7 @@
   },
   "requirements": [
     [
-      "unlocked_herding_staff"
-    ],
-    [
+      "unlocked_herding_staff",
       "collected_mob_head",
       "unlocked_spirit_instiller"
     ]

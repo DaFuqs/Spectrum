@@ -25,12 +25,12 @@
       "item": "minecraft:stick"
     },
     "F": {
-      "item": "minecraft:feather"
+      "item": "spectrum:effulgent_feather"
     }
   },
   "result": {
     "item": "spectrum:topaz_glass_arrow",
     "count": 4
   },
-  "required_advancement": "spectrum:unlocks/malachite/malachite_tools"
+  "required_advancement": "spectrum:unlocks/malachite/glass_arrows"
 }

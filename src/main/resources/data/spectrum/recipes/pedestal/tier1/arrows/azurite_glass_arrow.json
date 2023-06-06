@@ -16,7 +16,7 @@
   ],
   "key": {
     "T": {
-      "item": "spectrum:onyx_shard"
+      "item": "spectrum:raw_azurite"
     },
     "M": {
       "item": "spectrum:malachite_crystal"
@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "spectrum:onyx_glass_arrow",
+    "item": "spectrum:malachite_glass_arrow",
     "count": 4
   },
   "required_advancement": "spectrum:unlocks/malachite/glass_arrows"

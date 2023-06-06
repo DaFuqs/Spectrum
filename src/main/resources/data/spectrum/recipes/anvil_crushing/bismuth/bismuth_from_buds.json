@@ -1,8 +1,13 @@
 {
   "type": "spectrum:anvil_crushing",
-  "ingredient": {
-    "item": "spectrum:large_bismuth_bud"
-  },
+  "ingredient": [
+    {
+      "item": "spectrum:small_bismuth_bud"
+    },
+    {
+      "item": "spectrum:large_bismuth_bud"
+    }
+  ],
   "crushedItemsPerPointOfDamage": 0.75,
   "experience": 0.25,
   "result": {

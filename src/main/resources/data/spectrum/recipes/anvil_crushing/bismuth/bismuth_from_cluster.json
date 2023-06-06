@@ -6,7 +6,7 @@
   "crushedItemsPerPointOfDamage": 0.75,
   "experience": 0.5,
   "result": {
-    "item": "spectrum:bismuth_flake",
+    "item": "spectrum:bismuth_crystal",
     "count": 5
   },
   "particleEffectIdentifier": "enchanted_hit",

@@ -18,7 +18,7 @@ public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableB
 	
 	@Override
 	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		crack(world, pos);
+		crack(world, pos); // TODO: at this stage, the DragonboneBlock at that pos is already set to air
 	}
 	
 	@Override
@@ -27,9 +27,12 @@ public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableB
 	}
 	
 	public void crack(World world, BlockPos pos) {
-		world.setBlockState(pos, SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, world.getBlockState(pos).get(PillarBlock.AXIS)));
-		if (world.isClient) {
-			world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
+		BlockState state = world.getBlockState(pos);
+		if (state.getBlock() instanceof DragonboneBlock) {
+			world.setBlockState(pos, SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+			if (world.isClient) {
+				world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
+			}
 		}
 	}
 	

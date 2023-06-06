@@ -47,7 +47,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(ENTITY_TARGETS);
 	
 	private static final float MAX_LIFE_LOST_PER_TICK = 20F;
-	private static final float GET_STRONGER_EVERY_X_TICKS = 400F;
+	private static final int GROW_STRONGER_EVERY_X_TICKS = 400;
 	
 	private Vec3d targetPosition = Vec3d.ZERO;
 	private MovementType movementType = MovementType.SWOOPING_TO_POSITION;
@@ -135,11 +135,11 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.previousHealth = currentHealth;
 		this.tickInvincibility();
 		
-		if (this.age % GET_STRONGER_EVERY_X_TICKS == 0) {
+		if (this.age % GROW_STRONGER_EVERY_X_TICKS == 0) {
 			this.growStronger(1);
 		}
 		
-		destroyBlocks(this.getBoundingBox());
+		//destroyBlocks(this.getBoundingBox());
 		
 		super.mobTick();
 		

@@ -7,18 +7,12 @@ import net.minecraft.entity.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
 public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableBlock {
 	
 	public DragonboneBlock(Settings settings) {
 		super(settings);
-	}
-	
-	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		crack(world, pos); // TODO: at this stage, the DragonboneBlock at that pos is already set to air
 	}
 	
 	@Override
@@ -34,11 +28,6 @@ public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableB
 				world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
 			}
 		}
-	}
-	
-	@Override
-	public float getBlastResistance() {
-		return super.getBlastResistance();
 	}
 	
 }

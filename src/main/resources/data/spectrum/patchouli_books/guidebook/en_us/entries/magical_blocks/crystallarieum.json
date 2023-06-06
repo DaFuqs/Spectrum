@@ -44,110 +44,105 @@
     "spectrum:quartz_cluster": 0,
     "spectrum:small_redstone_bud": 0,
     "spectrum:large_redstone_bud": 0,
-    "spectrum:redstone_cluster": 0,
-    "spectrum:small_certus_quartz_bud": 0,
-    "spectrum:large_certus_quartz_bud": 0,
-    "spectrum:certus_quartz_cluster": 0,
-    "spectrum:small_fluix_bud": 0,
-    "spectrum:large_fluix_bud": 0,
-    "spectrum:fluix_cluster": 0,
-    "spectrum:small_globette_bud": 0,
-    "spectrum:large_globette_bud": 0,
-    "spectrum:globette_cluster": 0,
-    "spectrum:small_globette_end_bud": 0,
-    "spectrum:large_globette_end_bud": 0,
-    "spectrum:globette_end_cluster": 0,
-    "spectrum:small_globette_nether_bud": 0,
-    "spectrum:large_globette_nether_bud": 0,
-    "spectrum:globette_nether_cluster": 0
+    "spectrum:redstone_cluster": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With Budding Blocks in mind you designed the Crystallarieum: an Ink-powered apparatus that turns raw ore and mundane gemstones into sparkling crystals on its top.$(br)While, even after all your efforts, you failed to get it to grow actual $(l:general/shards)Gemstones$(/l), you quickly recognised it's potential for growing all kinds of other resources instead."
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore and mundane gemstones into sparkling crystals.$(br)Even though you failed to grow real $(l:general/shards)gems$(/l) despite all your efforts, you quickly realized that it could grow all sorts of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "It fits a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
+      "text": "Requires a color of Ink depending on the resource you grow. It fits a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Growing Metals",
+      "text": "Metallic resources require unrefined materials such as $(item)Raw Iron$(), resulting in a $(item)Small Iron Bud$() that will grow steadily until it reaches maturity and can be safely harvested."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Growing Crystals",
+      "text": "Crystals such as $(item)Diamonds$() require more Ink, but their nature allows you to grow them over and over again - $(item)Diamond Clusters$() yieling more $(item)Diamonds$()."
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Iron Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/iron",
-      "text": "Metallic resources can be grown by throwing unrefined materials, like $(item)Raw Iron$() on top of it, resulting in a small $(item)Iron Bud$() that steadily grows until it reaches maturity and can safely be harvested."
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Diamond Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/diamond",
-      "text": "Crystal-like blocks, like $(item)Diamonds$() can be grown, too! Albeit most require more Ink than metal ones, their crystal-like nature allows you to grow them again and again - $(item)Diamond Clusters$() yielding $(item)Diamonds$()."
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Copper Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/copper",
-      "text": ""
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Gold Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/gold",
-      "text": ""
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Netherite Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/netherite_scrap",
-      "text": ""
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Coal Growing",
+      "title": "Coal",
       "recipe": "spectrum:crystallarieum/vanilla/coal",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Emerald Growing",
+      "title": "Copper",
+      "recipe": "spectrum:crystallarieum/vanilla/copper",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Diamond",
+      "recipe": "spectrum:crystallarieum/vanilla/diamond",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Echo",
+      "recipe": "spectrum:crystallarieum/vanilla/echo",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Emerald",
       "recipe": "spectrum:crystallarieum/vanilla/emerald",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Glowstone Growing",
+      "title": "Glowstone",
       "recipe": "spectrum:crystallarieum/vanilla/glowstone",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Lapis Growing",
+      "title": "Gold",
+      "recipe": "spectrum:crystallarieum/vanilla/gold",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Iron",
+      "recipe": "spectrum:crystallarieum/vanilla/iron",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Lapis",
       "recipe": "spectrum:crystallarieum/vanilla/lapis",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Prismarine Growing",
+      "title": "Netherite",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite_scrap",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Prismarine",
       "recipe": "spectrum:crystallarieum/vanilla/prismarine_crystal",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Quartz Growing",
+      "title": "Quartz",
       "recipe": "spectrum:crystallarieum/vanilla/quartz",
       "text": ""
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Redstone Growing",
+      "title": "Redstone",
       "recipe": "spectrum:crystallarieum/vanilla/redstone",
-      "text": ""
-    },
-    {
-      "type": "spectrum:crystallarieum_growing",
-      "title": "Echo Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/echo",
       "text": ""
     }
   ]

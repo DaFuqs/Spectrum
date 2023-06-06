@@ -35,13 +35,16 @@ import java.util.function.*;
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
 	
 	private static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
-	private static final Predicate<LivingEntity> SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE = (entity) -> {
+	private static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
-			return !player.isSpectator() && !player.isCreative() && !AdvancementHelper.hasAdvancement(player, KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER);
+			if (player.isSpectator() || player.isCreative()) {
+				return false;
+			}
+			return !AdvancementHelper.hasAdvancement(player, KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER);
 		}
 		return false;
 	};
-	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE);
+	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(ENTITY_TARGETS);
 	
 	private static final float MAX_LIFE_LOST_PER_TICK = 20F;
 	private static final float GET_STRONGER_EVERY_X_TICKS = 400F;
@@ -80,7 +83,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		}*/
 		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
 			// 1 % chance to spawn
-			if (world.getRandom().nextFloat() < 0.1 && SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE.test(playerEntity)) {
+			if (world.getRandom().nextFloat() < 0.1 && ENTITY_TARGETS.test(playerEntity)) {
 				if (currentMonstrosity == null) {
 					currentMonstrosity = new MonstrosityEntity(world, playerEntity.getPos().getX(), playerEntity.getPos().getY() - 100, playerEntity.getPos().getZ());
 					world.spawnEntity(currentMonstrosity);
@@ -119,7 +122,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		// TODO: spawn mines
 		// TODO: dripstone pillar entities from the ground (with short telegraphing)
 		
-		this.targetSelector.add(1, new ActiveTargetGoal<>(this, LivingEntity.class, 0, false, false, SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE));
+		this.targetSelector.add(1, new ActiveTargetGoal<>(this, LivingEntity.class, 0, false, false, ENTITY_TARGETS));
 		this.targetSelector.add(2, new FindTargetGoal());
 	}
 	

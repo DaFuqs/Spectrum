@@ -35,6 +35,8 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		
 		this.repeat = true;
 		this.repeatDelay = 0;
+		
+		updateVolume();
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -69,10 +71,14 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		return true;
 	}
 	
+	private void updateVolume() {
+		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F));
+	}
+	
 	@Override
 	public void tick() {
 		this.ticksPlayed++;
-		this.volume = Math.max(0, SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F);
+		updateVolume();
 		if (this.ticksPlayed == maxDurationTicks) {
 			this.volume /= 2; // ease out
 		}

@@ -277,8 +277,6 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_CHISELED_BASALT = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(12));
 	
 	public static final Block BASALT_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block AZURITE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_BASALT));
-	public static final Block MALACHITE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_BASALT));
 	public static final Block CRACKED_BASALT_TILES = new Block(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_STAIRS = new SpectrumStairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
@@ -309,8 +307,6 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_CHISELED_CALCITE = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
 	
 	public static final Block CALCITE_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
-	public static final Block AZURITE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_CALCITE));
-	public static final Block MALACHITE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_CALCITE));
 	public static final Block CALCITE_TILE_STAIRS = new SpectrumStairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
@@ -1702,9 +1698,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("basalt_tile_wall", BASALT_TILE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("cracked_basalt_tiles", CRACKED_BASALT_TILES, settings, DyeColor.BROWN);
 		
-		registerBlockWithItem("azurite_chiseled_basalt", AZURITE_CHISELED_BASALT, settings, DyeColor.BROWN);
-		registerBlockWithItem("malachite_chiseled_basalt", MALACHITE_CHISELED_BASALT, settings, DyeColor.BROWN);
-		
 		registerBlockWithItem("polished_basalt_button", POLISHED_BASALT_BUTTON, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_pressure_plate", POLISHED_BASALT_PRESSURE_PLATE, settings, DyeColor.BROWN);
 		
@@ -1733,9 +1726,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("calcite_tile_slab", CALCITE_TILE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_tile_wall", CALCITE_TILE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("cracked_calcite_tiles", CRACKED_CALCITE_TILES, settings, DyeColor.BROWN);
-		
-		registerBlockWithItem("azurite_chiseled_calcite", AZURITE_CHISELED_CALCITE, settings, DyeColor.BROWN);
-		registerBlockWithItem("malachite_chiseled_calcite", MALACHITE_CHISELED_CALCITE, settings, DyeColor.BROWN);
 		
 		registerBlockWithItem("polished_calcite_button", POLISHED_CALCITE_BUTTON, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_pressure_plate", POLISHED_CALCITE_PRESSURE_PLATE, settings, DyeColor.BROWN);

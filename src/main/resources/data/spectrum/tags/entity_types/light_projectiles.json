@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:light_shard",
+    "#spectrum:light_spear",
+    "#spectrum:light_mine"
+  ]
+}

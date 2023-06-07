@@ -87,19 +87,18 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 				int i = this.itemPredicates.length;
 				if (i == 0) {
 					return true;
-				} else if (i != 1) {
-					List<ItemPredicate> list = new ObjectArrayList<>(this.itemPredicates);
-					
+				} else {
+					List<ItemPredicate> requiredTrinkets = new ObjectArrayList<>(this.itemPredicates);
 					for (ItemStack trinketStack : trinketStacks) {
-						if (list.isEmpty()) {
+						if (requiredTrinkets.isEmpty()) {
 							return true;
 						}
 						if (!trinketStack.isEmpty()) {
-							list.removeIf((item) -> item.test(trinketStack));
+							requiredTrinkets.removeIf((item) -> item.test(trinketStack));
 						}
 					}
 					
-					return list.isEmpty();
+					return requiredTrinkets.isEmpty();
 				}
 			}
 			return false;

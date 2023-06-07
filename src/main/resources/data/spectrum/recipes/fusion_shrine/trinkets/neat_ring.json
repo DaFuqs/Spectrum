@@ -1,6 +1,6 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 2400,
+  "time": 12000,
   "experience": 8.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
@@ -8,12 +8,12 @@
       "item": "spectrum:fanciful_bismuth_ring"
     },
     {
-      "item": "minecraft:gold_ingot",
+      "item": "minecraft:gold_block",
       "count": 64
     },
     {
       "item": "spectrum:moonstone_shard",
-      "count": 32
+      "count": 64
     },
     {
       "item": "spectrum:resonant_lily"

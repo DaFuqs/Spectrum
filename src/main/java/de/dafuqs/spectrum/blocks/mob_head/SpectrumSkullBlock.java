@@ -195,6 +195,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 		public SkullType getModelType() {
 			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EGG_LAYING_WOOLY_PIG;
+			} else if (this == KINDLING) {
+				return KINDLING;
 			} else if (this == WARDEN) {
 				return WARDEN;
 			} else {
@@ -206,6 +208,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 		public Identifier getTextureIdentifier() {
 			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EggLayingWoolyPigEntityRenderer.TEXTURE;
+			}else if (this == KINDLING) {
+				return KindlingEntityRenderer.TEXTURE;
 			} else if (this == WARDEN) {
 				return new Identifier("textures/entity/warden/warden.png");
 			} else {

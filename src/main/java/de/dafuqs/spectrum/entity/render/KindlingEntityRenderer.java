@@ -13,7 +13,7 @@ import net.minecraft.util.*;
 @Environment(EnvType.CLIENT)
 public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, KindlingEntityModel> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/kindling/kindling_neutral.png");
 	
 	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 1.8F);

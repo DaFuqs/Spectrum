@@ -1,7 +1,7 @@
 {
   "name": "Bloodstone",
   "advancement": "spectrum:unlocks/resources/bloodstone",
-  "icon": "spectrum:bloodstone_cluster",
+  "icon": "spectrum:refined_bloodstone",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:small_bloodstone_bud": 0,
@@ -14,14 +14,14 @@
       "type": "patchouli:spotlight",
       "title": "Bloodstone",
       "item": "spectrum:effulgent_feather",
-      "text": "TODO Blablabla Crystallrium + $(l:creating_life/kindlings#effulgent_feather)Effulgent Feather$()."
+      "text": "The rather $(l:creating_life/kindlings#effulgent_feather)Effulgent Feathers$() of the kindlings are notable, enough so to compel you to regularly give the little bumpkins coat trimmings.$(br2)However, you've noticed that, sadly quite frequently, drops of blood will come along with the feathers. The ichor dries quickly, leaving behind a sparkly, crystalline residue."
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "title": "Refining Bloodstone",
       "recipe": "spectrum:crystallarieum/bloodstone",
-      "text": "TODO"
+      "text": "Set upon the crystallarieum and given a $(bold)$(italic)$(fuck)precarious$() amount of $(item)copper$(), the speck of dragonblood will grow and crystallize into a grand slab of glass, shining in stunning scarlet and bleeding with willful magic!"
     }
   ]
 }

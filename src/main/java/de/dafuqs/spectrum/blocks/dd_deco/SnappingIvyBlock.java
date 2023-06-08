@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.dd_deco;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -93,7 +92,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
-                entity.damage(DamageSource.SWEET_BERRY_BUSH, 5.0F);
+                entity.damage(SpectrumDamageSources.SNAPPING_IVY, 7.0F);
                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
             
                 snap(state, world, pos, true);

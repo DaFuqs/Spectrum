@@ -229,6 +229,7 @@
   "death.attack.spectrum_bristle_sprouts.item": "%1$s was pricked to death",
   "death.attack.spectrum_sawtooth": "%1$s wanted to play a game",
   "death.attack.spectrum_kindling_cough": "%1$s got grilled by %2$s",
+  "death.attack.spectrum_snapping_ivy": "%1$s was held back a bit",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

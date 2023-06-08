@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.VectorCast;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -195,6 +194,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
+		SpectrumTillableBlocks.register();
 		SpectrumCompostableBlocks.register();
 		
 		logInfo("Registering Game Events...");

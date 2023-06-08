@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.enchantments;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -73,7 +72,7 @@ public class FoundryEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE && !GoFishCompat.isDeepfry(other);
+		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && !GoFishCompat.isDeepfry(other);
 	}
 	
 	@Override

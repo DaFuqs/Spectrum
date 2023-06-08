@@ -1,7 +1,7 @@
 {
   "name": "Guardian Turrets",
   "icon": "spectrum:guardian_turret_head",
-  "advancement": "spectrum:hidden/interact_with_guardian_turret",
+  "advancement": "spectrum:hidden/entity_interact/guardian_turret",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:guardian_turret_head": 0

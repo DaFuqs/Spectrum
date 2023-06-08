@@ -1,6 +1,6 @@
 {
   "name": "Glass Arrows",
-  "advancement": "spectrum:unlocks/equipment/glass_arrows",
+  "advancement": "spectrum:unlocks/malachite/glass_arrows",
   "icon": "spectrum:amethyst_glass_arrow",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

@@ -1,7 +1,7 @@
 {
   "name": "Lizards",
   "icon": "spectrum:lizard_head",
-  "advancement": "spectrum:hidden/interact_with_lizard",
+  "advancement": "spectrum:hidden/entity_interact/lizard",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:lizard_head": 0

@@ -3,7 +3,7 @@
   "advancement": "spectrum:lategame/collect_bismuth",
   "icon": "spectrum:bismuth_flake",
   "category": "spectrum:resources_category",
-  "turnin": "spectrum:lategame/grow_bismuth_in_crystallarieum",
+  "turnin": "spectrum:lategame/collect_bismuth_crystal",
   "extra_recipe_mappings": {
     "spectrum:bismuth_flake": 0,
     "spectrum:bismuth_block": 0,

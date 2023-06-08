@@ -81,9 +81,14 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				} else {
 					// hand is full and inventory is empty: add
 					// hand is full and inventory already contains item: exchange them
-					int inputInventorySlotIndex = handStack.getItem() instanceof InkStorageItem<?> ? CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID : CrystallarieumBlockEntity.CATALYST_SLOT_ID;
-					if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, inputInventorySlotIndex)) {
-						crystallarieumBlockEntity.setOwner(player);
+					if (handStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
+						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
+							crystallarieumBlockEntity.setOwner(player);
+						}
+					} else {
+						if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
+							crystallarieumBlockEntity.setOwner(player);
+						}
 					}
 				}
 			}

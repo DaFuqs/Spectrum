@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.enchantments.*;
@@ -13,7 +13,6 @@ import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
-import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -23,7 +22,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

@@ -12,15 +12,58 @@
     }
   },
   "criteria": {
+    "interact_with_existing_pedestal": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:lategame/collect_moonstone_shard": true
+                }
+              }
+            }
+          }
+        ],
+        "location": {
+          "block": {
+            "blocks": [
+              "spectrum:pedestal_moonstone"
+            ]
+          }
+        }
+      }
+    },
     "crafted_moonstone_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_moonstone" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pedestal_moonstone"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "crafted_moonstone_pedestal",
+      "interact_with_existing_pedestal"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

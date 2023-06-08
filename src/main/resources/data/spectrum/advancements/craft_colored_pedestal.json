@@ -12,13 +12,60 @@
     }
   },
   "criteria": {
+    "interact_with_existing_pedestal": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:craft_using_pedestal": true
+                }
+              }
+            }
+          }
+        ],
+        "location": {
+          "block": {
+            "blocks": [
+              "spectrum:pedestal_all_basic",
+              "spectrum:pedestal_onyx",
+              "spectrum:pedestal_moonstone"
+            ]
+          }
+        }
+      }
+    },
     "craft_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_all_basic" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pedestal_all_basic"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_using_pedestal"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "craft_pedestal",
+      "interact_with_existing_pedestal"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

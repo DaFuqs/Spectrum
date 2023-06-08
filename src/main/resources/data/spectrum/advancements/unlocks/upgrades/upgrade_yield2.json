@@ -1,8 +1,22 @@
 {
   "criteria": {
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
     "crafted_previous_upgrade": {
       "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ "spectrum:upgrade_yield2" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:upgrade_yield2"
+            ]
+          }
+        ]
+      }
     },
     "collected_moonstone_shard": {
       "trigger": "revelationary:advancement_gotten",

@@ -11,18 +11,12 @@
       "translate": "advancements.spectrum.fail_to_glitch_into_preservation_ruin.description"
     }
   },
-  "parent": "spectrum:find_preservation_ruins",
+  "parent": "spectrum:spectrum",
   "criteria": {
     "yeet": {
       "trigger": "spectrum:preservation_check",
       "conditions": {
         "check_passed": false
-      }
-    },
-    "gotten_previous": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:find_preservation_ruins"
       }
     }
   }

@@ -1,29 +1,22 @@
 {
   "criteria": {
-    "collected_mob_head": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
-      }
-    },
-    "unlocked_herding_staff": {
+    "unlocked_via_herding_staff": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/items/herding_staff"
       }
     },
-    "unlocked_spirit_instiller": {
+    "unlocked_via_mob_head": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/build_spirit_instiller_structure"
+        "advancement_identifier": "spectrum:unlocks/blocks/memories_via_mob_head"
       }
     }
   },
   "requirements": [
     [
-      "unlocked_herding_staff",
-      "collected_mob_head",
-      "unlocked_spirit_instiller"
+      "unlocked_via_herding_staff",
+      "unlocked_via_mob_head"
     ]
   ]
 }

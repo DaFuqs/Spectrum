@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -23,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 // the use of mixin extras @ModifyReturnValue ensues mods end up compatible when mods use it
-@Mixin(value = Block.class)
+@Mixin(Block.class)
 public abstract class BlockMixin {
 	
 	PlayerEntity spectrum$breakingPlayer;
@@ -38,10 +39,15 @@ public abstract class BlockMixin {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
 			droppedStacks.clear();
 			// Resonance: drop itself
-		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-			droppedStacks.clear();
-			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
+		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+			if ((state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock)) {
+				droppedStacks.clear();
+				droppedStacks.add(state.getBlock().asItem().getDefaultStack());
+			} else if (state.isIn(SpectrumBlockTags.SPAWNERS) && blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
+				droppedStacks.add(SpectrumMobSpawnerItem.toItemStack(mobSpawnerBlockEntity));
+			}
 		}
+		
 		
 		if (droppedStacks.size() > 0) {
 			// Resonance enchant: grant different drops for some items
@@ -87,12 +93,9 @@ public abstract class BlockMixin {
 		return (int) (originalXP * ExuberanceEnchantment.getExuberanceMod(spectrum$breakingPlayer));
 	}
 	
-	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "afterBreak", at = @At("HEAD"))
 	public void spectrum$afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
 		spectrum$breakingPlayer = player;
-		if (ResonanceEnchantment.checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack) && SpectrumEnchantments.RESONANCE.canEntityUse(player)) {
-			callbackInfo.cancel();
-		}
 	}
 	
 }

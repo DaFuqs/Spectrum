@@ -9,22 +9,10 @@ import org.jetbrains.annotations.*;
 
 public class BlockPlacerBlock extends DispenserBlock {
 	
-	public static DispenserBehavior BLOCK_PLACEMENT_BEHAVIOR;
+	public static DispenserBehavior BLOCK_PLACEMENT_BEHAVIOR = new BlockPlacementDispenserBehavior();
 	
 	public BlockPlacerBlock(Settings settings) {
 		super(settings);
-		
-		BLOCK_PLACEMENT_BEHAVIOR = new BlockPlacementDispenserBehavior();
-		/*BLOCK_PLACEMENT_BEHAVIOR = (pointer, stack) -> {
-			if(stack.getItem() instanceof BlockItem blockItem) {
-				Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
-				ActionResult result = blockItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), pointer.getPos().add(direction.getOffsetX(), direction.getOffsetY(), direction.getOffsetZ()), direction, stack, direction.getOpposite()));
-				if(result.isAccepted()) {
-					stack.decrement(1);
-				}
-			}
-			return stack;
-		};*/
 	}
 	
 	@Override

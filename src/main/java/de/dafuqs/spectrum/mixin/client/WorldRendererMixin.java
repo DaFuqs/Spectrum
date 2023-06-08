@@ -49,7 +49,7 @@ public abstract class WorldRendererMixin {
 		if (client.player != null && renderBlockOutline) {
 			for (ItemStack handStack : client.player.getHandItems()) {
 				Item handItem = handStack.getItem();
-				if (handItem instanceof PlacementStaffItem) {
+				if (handItem instanceof ConstructorsStaffItem) {
 					HitResult hitResult = this.client.crosshairTarget;
 					if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
 						renderedExtendedOutline = renderPlacementStaffOutline(matrices, camera, d, e, f, immediate, (BlockHitResult) hitResult);
@@ -83,7 +83,7 @@ public abstract class WorldRendererMixin {
                     Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
                     item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
+					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
 				}
 				
 				boolean sneaking = player.isSneaking();
@@ -93,7 +93,7 @@ public abstract class WorldRendererMixin {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
-					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, PlacementStaffItem.getRange(player), !sneaking);
+					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
 					if (positions.size() > 0) {
 						for (BlockPos newPosition : positions) {
 							if (this.world.getWorldBorder().contains(newPosition)) {

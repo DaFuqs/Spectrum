@@ -13,19 +13,20 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class PlacementStaffItem extends BuildingStaffItem implements InkPowered {
+public class ConstructorsStaffItem extends BuildingStaffItem implements InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.CYAN;
 	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
 	
-	public PlacementStaffItem(Settings settings) {
+	public ConstructorsStaffItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -106,23 +107,26 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 						return ActionResult.FAIL;
 					}
 					
-					int taken = 0;
+					int placed = 0;
 					if (!world.isClient) {
 						for (BlockPos position : targetPositions) {
 							BlockState originalState = world.getBlockState(position);
 							if (originalState.isAir() || !originalState.getFluidState().isEmpty() || (originalState.getMaterial().isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-								world.setBlockState(position, targetBlockState);
-								taken++;
+								BlockState stateToPlace = targetBlock.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(pos), side, pos, false)));
+								if (stateToPlace != null && stateToPlace.canPlaceAt(world, pos)) {
+									world.setBlockState(position, stateToPlace);
+									placed++;
+								}
 							}
 						}
 						
 						if (!player.isCreative()) {
 							Item finalTargetBlockItem = targetBlockItem;
-							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), taken, player.getInventory());
+							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), placed, player.getInventory());
 							InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 						}
 						
-						if (taken > 0) {
+						if (placed > 0) {
 							world.playSound(null, player.getBlockPos(), targetBlockState.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, targetBlockState.getSoundGroup().getVolume(), targetBlockState.getSoundGroup().getPitch());
 						}
 					}

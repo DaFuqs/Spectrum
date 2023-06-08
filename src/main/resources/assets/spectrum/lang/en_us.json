@@ -185,7 +185,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.quitoxic_powder": "Flat +1 Potency for all negative Effects.",
   "spectrum.rei.potion_workshop_reacting.spectrum.raw_azurite": "Negates the duration penalty for Lingering Potions as well as for Tipped Arrows.",
   "spectrum.rei.potion_workshop_reacting.spectrum.shimmerstone_gem": "1.2x multiplicative bonus to both Duration and Potency.",
-  "spectrum.rei.potion_workshop_reacting.spectrum.stardust": "50% chance to add the main Effect of the Potion that was brewed before.",
+  "spectrum.rei.potion_workshop_reacting.spectrum.stardust": "75% chance to add the main Effect of the Potion that was brewed before.",
   "spectrum.rei.potion_workshop_reacting.spectrum.star_fragment": "Guaranteed to add the main Effect of the Potion that was brewed before, but at slightly decreased Potency.",
   "spectrum.rei.potion_workshop_reacting.spectrum.storm_stone": "Dramatically increases the Potions Potency at the beginning, makes it's potency wear off over time.",
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "Flat +1 Potency, at the cost of adding a random negative Effect. Lowers Yield.",

@@ -23,8 +23,8 @@ public class PotionMod {
 	public float additionalRandomNegativeEffectCount = 0;
 	
 	public float chanceToAddLastEffect = 0.0F;
-	public float lastEffectDurationMultiplier = 0.0F;
-	public float lastEffectPotencyMultiplier = 0.0F;
+	public float lastEffectDurationMultiplier = 1.0F;
+	public float lastEffectPotencyMultiplier = 1.0F;
 	
 	public float yield = 0;
 	public int additionalDrinkDurationTicks = 0;
@@ -181,8 +181,8 @@ public class PotionMod {
 		this.additionalRandomPositiveEffectCount += potionMod.additionalRandomPositiveEffectCount;
 		this.additionalRandomNegativeEffectCount += potionMod.additionalRandomNegativeEffectCount;
 		this.chanceToAddLastEffect += potionMod.chanceToAddLastEffect;
-		this.lastEffectPotencyMultiplier += potionMod.lastEffectPotencyMultiplier;
-		this.lastEffectDurationMultiplier += potionMod.lastEffectDurationMultiplier;
+		this.lastEffectPotencyMultiplier += potionMod.lastEffectPotencyMultiplier - 1;
+		this.lastEffectDurationMultiplier += potionMod.lastEffectDurationMultiplier - 1;
 		this.yield += potionMod.yield;
 		this.additionalDrinkDurationTicks += potionMod.additionalDrinkDurationTicks;
 		this.makeSplashing |= potionMod.makeSplashing;

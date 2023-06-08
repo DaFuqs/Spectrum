@@ -39,6 +39,11 @@
       "text": "A sedimentary rock composed of, well, layered shale and clay. Pretty unspectacular, besides being nice to look at."
     },
     {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:tilled_shale_clay",
+      "text": "Looks like farmland, tastes like farmland, but is poorly suited to use as such. Crops can be planted on it, but they do not grow an inch."
+    },
+    {
       "type": "patchouli:smelting",
       "recipe": "spectrum:smelting/shale_clay_to_polished_shale_clay",
       "text": "Creating $)Polished Shale Clay brings out a nice, grayish color. Though it seems to weather over time, when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."

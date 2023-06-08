@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "collected_slush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:slush"
+          }
+        ]
+      }
+    }
+  }
+}

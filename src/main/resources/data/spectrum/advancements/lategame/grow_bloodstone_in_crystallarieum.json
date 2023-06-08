@@ -5,10 +5,10 @@
       "item": "spectrum:refined_bloodstone"
     },
     "title": {
-      "translate": "advancements.spectrum.grow_refined_bloodstone_in_crystallarieum.title"
+      "translate": "advancements.spectrum.grow_bloodstone_in_crystallarieum.title"
     },
     "description": {
-      "translate": "advancements.spectrum.grow_refined_bloodstone_in_crystallarieum.description"
+      "translate": "advancements.spectrum.grow_bloodstone_in_crystallarieum.description"
     }
   },
   "criteria": {

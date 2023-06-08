@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:ink_projectile",
+    "spectrum:mining_projectile",
+    "spectrum:bident"
+  ]
+}

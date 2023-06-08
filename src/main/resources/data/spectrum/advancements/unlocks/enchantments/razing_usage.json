@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_razing_crafting": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/enchantments/razing_crafting"
+      }
+    },
+    "unlocked_dragonrending_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/dragonrending_pickaxe"
+      }
+    }
+  }
+}

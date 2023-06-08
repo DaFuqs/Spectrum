@@ -6,6 +6,7 @@
         "player": [
           {
             "condition": "minecraft:entity_properties",
+            "entity": "this",
             "predicate": {
               "type": "spectrum:guardian_turret"
             }
@@ -29,6 +30,7 @@
         "entity": [
           {
             "condition": "minecraft:entity_properties",
+            "entity": "this",
             "predicate": {
               "type": "spectrum:guardian_turret"
             }

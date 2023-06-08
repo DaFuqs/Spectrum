@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_resonance_crafting": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/enchantments/resonance_crafting"
+      }
+    },
+    "unlocked_resonant_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/resonant_pickaxe"
+      }
+    }
+  }
+}

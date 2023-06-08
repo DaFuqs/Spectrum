@@ -1,7 +1,7 @@
 {
   "name": "Razing",
   "icon": "minecraft:iron_pickaxe",
-  "advancement": "spectrum:unlocks/enchantments/razing",
+  "advancement": "spectrum:unlocks/enchantments/razing_usage",
   "flag": "spectrum:enchantment_exists_spectrum_razing",
   "category": "spectrum:enchanting_category",
   "pages": [
@@ -18,6 +18,7 @@
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
+      "advancement": "spectrum:unlocks/enchantments/razing_crafting",
       "recipe": "spectrum:enchanter/spectrum_books/book_razing",
       "text": "You can infuse a $(item)common Book$() with Razing by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }

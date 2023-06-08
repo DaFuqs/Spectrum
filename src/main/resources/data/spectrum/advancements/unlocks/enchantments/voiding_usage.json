@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_voiding_crafting": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/enchantments/voiding_crafting"
+      }
+    },
+    "unlocked_oblivion_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/oblivion_pickaxe"
+      }
+    }
+  }
+}

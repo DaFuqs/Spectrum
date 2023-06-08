@@ -1,7 +1,7 @@
 {
   "name": "Resonance",
   "icon": "spectrum:resonant_pickaxe",
-  "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/resonance_usage",
   "flag": "spectrum:enchantment_exists_spectrum_resonance",
   "category": "spectrum:enchanting_category",
   "pages": [
@@ -18,7 +18,7 @@
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
-      "advancement": "spectrum:unlocks/enchantments/resonance",
+      "advancement": "spectrum:unlocks/enchantments/resonance_crafting",
       "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
       "text": "You can infuse a $(item)common Book$() with Resonance by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     },

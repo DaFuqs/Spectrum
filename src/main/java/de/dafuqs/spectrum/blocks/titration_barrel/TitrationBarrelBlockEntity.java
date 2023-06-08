@@ -138,7 +138,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	public String getSealRealDays() {
-		return Support.getWithOneDecimalAfterComma(getSealMilliseconds() / 1000 / 60 / 20 / 72);
+		return Support.getWithOneDecimalAfterComma(getSealMilliseconds() / 1000F / 60 / 20 / 72);
 	}
 	
 	private boolean isEmpty(float temperature, int extractedBottles, ITitrationBarrelRecipe recipe) {

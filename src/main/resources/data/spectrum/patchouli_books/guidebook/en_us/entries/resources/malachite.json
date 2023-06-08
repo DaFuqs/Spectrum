@@ -3,6 +3,7 @@
   "advancement": "spectrum:lategame/collect_malachite",
   "icon": "spectrum:raw_malachite",
   "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:malachite_ore": 0,
     "spectrum:deepslate_malachite_ore": 0,

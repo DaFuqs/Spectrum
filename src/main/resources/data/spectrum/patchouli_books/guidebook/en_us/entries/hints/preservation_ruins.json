@@ -4,7 +4,7 @@
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:midgame/break_decayed_bedrock",
   "read_by_default": true,
-  "turnin": "spectrum:generate_preservation_ruins_loot",
+  "turnin": "spectrum:hidden/solve_every_preservation_ruin",
   "pages": [
     {
       "type": "spectrum:hint",

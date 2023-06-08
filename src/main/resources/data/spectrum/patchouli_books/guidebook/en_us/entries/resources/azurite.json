@@ -3,6 +3,7 @@
   "advancement": "spectrum:midgame/collect_azurite",
   "icon": "spectrum:raw_azurite",
   "category": "spectrum:resources_category",
+  "turnin": "spectrum:midgame/create_refined_azurite",
   "extra_recipe_mappings": {
     "spectrum:azurite_ore": 0,
     "spectrum:deepslate_azurite_ore": 0,

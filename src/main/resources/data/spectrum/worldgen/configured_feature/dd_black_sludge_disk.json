@@ -1,7 +1,7 @@
 {
   "type": "spectrum:air_check_disk",
   "config": {
-    "size": 64,
+    "size": 48,
     "discard_chance_on_air_exposure": 0,
     "targets": [
       {

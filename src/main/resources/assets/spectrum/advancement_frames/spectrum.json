@@ -97,6 +97,10 @@
     "advancement": "spectrum:fail_to_glitch_into_preservation_ruin",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:lategame/no_rgb",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:collect_amaranth",

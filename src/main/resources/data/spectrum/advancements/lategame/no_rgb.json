@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:raw_copper",
+      "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.no_rgb.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.no_rgb.description"
+    }
+  },
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "criteria": {
+    "created_a_dud": {
+      "trigger": "spectrum:crafted_with_fusion_shrine",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:raw_copper"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}

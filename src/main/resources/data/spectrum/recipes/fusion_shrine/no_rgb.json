@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 200,
+  "experience": 0.0,
+  "secret": true,
+  "ingredients": [
+    {
+      "item": "spectrum:malachite_crystal"
+    },
+    {
+      "item": "spectrum:refined_azurite"
+    },
+    {
+      "item": "spectrum:refined_bloodstone"
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_copper"
+  },
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [
+    "nothing"
+  ],
+  "finish_crafting_effect": "nothing",
+  "description": "spectrum.recipe.fusion_shrine.explanation.no_rgb"
+}

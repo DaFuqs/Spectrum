@@ -1,0 +1,34 @@
+{
+  "name": "Silver and Ivory",
+  "icon": "spectrum:malachite_workstaff",
+  "sortnum": 19,
+  "advancement": "spectrum:unlocks/malachite/malachite_tools",
+  "category": "spectrum:general_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Malachite tools, they are your pride, and a testament to the intricacies of malachite and the beauty of pigment - What astonishing shades of green shimmer amidst diamantine lattices, sparkling with untold potential. But while malachite may be a wondrous material, and one you've come to understand... there is something else, something you've tried to exploit but are unable to comprehend."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You have not forgotten it.$(br2)You never will.$(br2)You first saw it amidst ruins, a part of the artifacts that inspired your masterwork.$(br)A pale, pale metal, silvery like the moonlight, it buzzes like magic alike malachite, but it is purer, something primal. It emanates this aura of... longing, as if it seeks something, vibrant with emotion that it imparts unto all near it, it makes you yearn for a home not yours - but whose?"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When you've held it... it is bizarre, as light as paltaeria but as hefty as stratine, it shimmers like moonstone but emits no light, it looks like it should be translucent, but it isn't - and yet further, though it echoes metal in its form, whenever you've tried to smelt or forge it, it flakes away like shale.$(br)You've searched so long for something alike it, even slightly.$(br2)The best you've found is quartz."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Silver and Ivory",
+      "resource_path": "spectrum:textures/gui/guidebook/pale_metal.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   clair de lune"
+    }
+  ]
+}

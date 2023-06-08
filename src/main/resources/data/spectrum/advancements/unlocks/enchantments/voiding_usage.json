@@ -12,5 +12,11 @@
         "advancement_identifier": "spectrum:unlocks/equipment/oblivion_pickaxe"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "unlocked_voiding_crafting",
+      "unlocked_oblivion_pickaxe"
+    ]
+  ]
 }

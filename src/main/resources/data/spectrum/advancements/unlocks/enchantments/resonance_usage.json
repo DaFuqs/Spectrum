@@ -12,5 +12,11 @@
         "advancement_identifier": "spectrum:unlocks/equipment/resonant_pickaxe"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "unlocked_resonance_crafting",
+      "unlocked_resonant_pickaxe"
+    ]
+  ]
 }

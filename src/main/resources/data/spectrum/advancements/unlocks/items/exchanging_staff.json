@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "collected_paltaeria_fragments": {
+    "collected_paltaeria": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_paltaeria_fragments"
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria"
       }
     },
     "collected_light_gray_pigment": {

@@ -20,12 +20,12 @@
             "tag": "spectrum:effulgent_feather"
           }
         ]
-      },
-      "gotten_previous": {
-        "trigger": "revelationary:advancement_gotten",
-        "conditions": {
-          "advancement_identifier": "spectrum:lategame/remember_kindling"
-        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/remember_kindling"
       }
     }
   }

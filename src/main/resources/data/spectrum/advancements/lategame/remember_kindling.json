@@ -26,7 +26,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
       }
     }
   }

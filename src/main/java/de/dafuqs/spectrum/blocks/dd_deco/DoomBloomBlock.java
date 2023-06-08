@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.dd_deco;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
@@ -129,7 +130,9 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, state, blockEntity, stack);
-		explode(world, pos, state);
+		if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+			explode(world, pos, state);
+		}
 	}
 	
 	protected static void explode(World world, BlockPos pos, BlockState state) {

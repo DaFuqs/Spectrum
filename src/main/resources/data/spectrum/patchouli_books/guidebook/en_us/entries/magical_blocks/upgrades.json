@@ -94,7 +94,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "advancement": "spectrum:midgame/enter_liquid_crystal",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
       "name": "Enchanter Placement",
       "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
       "enable_visualize": false,

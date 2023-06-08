@@ -11,13 +11,13 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:lategame/collect_malachite",
       "cost": "spectrum:bismuth_crystal#8",
-      "text": "There is a new ore found in the Deeper Down."
+      "text": "There is a new ore that can be found in the Deeper Down."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
       "cost": "spectrum:bismuth_crystal#24",
-      "text": "It is bright green and generates in the deepest depths of the Deeper Down. It's not found exposed to air often, so you may be most successful via branch mining."
+      "text": "It is bright green and is found in the deepest parts of Deeper Down. It's not often found exposed to the air, so the best way to get it is by branch mining."
     }
   ]
 }

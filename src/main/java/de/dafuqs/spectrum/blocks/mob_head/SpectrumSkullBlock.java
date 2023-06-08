@@ -1,11 +1,8 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.entity.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.block.pattern.*;
@@ -14,13 +11,10 @@ import net.minecraft.item.*;
 import net.minecraft.predicate.block.*;
 import net.minecraft.server.network.*;
 import net.minecraft.tag.*;
-import net.minecraft.util.*;
 import net.minecraft.util.function.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-
-import java.util.*;
 
 public class SpectrumSkullBlock extends SkullBlock {
 	
@@ -180,41 +174,30 @@ public class SpectrumSkullBlock extends SkullBlock {
 		WARDEN(EntityType.WARDEN),
 		ALLAY(EntityType.ALLAY),
 		
-		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG),
-		KINDLING(SpectrumEntityTypes.KINDLING),
-		GUARDIAN_TURRET(SpectrumEntityTypes.GUARDIAN_TURRET),
-		MONSTROSITY(SpectrumEntityTypes.MONSTROSITY),
-		LIZARD(SpectrumEntityTypes.LIZARD);
+		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, true),
+		KINDLING(SpectrumEntityTypes.KINDLING, true),
+		GUARDIAN_TURRET(SpectrumEntityTypes.GUARDIAN_TURRET, true),
+		MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
+		LIZARD(SpectrumEntityTypes.LIZARD, true);
 		
 		public final EntityType entityType;
+		public final SkullType modelType;
 		
+		// most mob heads render with the player head renderer using a different texture, but some use unique renderers already
+		// somewhen in the future hopefully all of them get their own unique head block model
 		SpectrumSkullBlockType(EntityType entityType) {
+			this(entityType, true);
+		}
+		
+		// if you use this constructor you will also need to add that unique Renderer
+		// to SpectrumSkullBlockEntityRenderer.getModels()
+		SpectrumSkullBlockType(EntityType entityType, boolean useUniqueRenderer) {
 			this.entityType = entityType;
+			this.modelType = useUniqueRenderer ? this : Type.PLAYER;
 		}
 		
 		public SkullType getModelType() {
-			if (this == EGG_LAYING_WOOLY_PIG) {
-				return EGG_LAYING_WOOLY_PIG;
-			} else if (this == KINDLING) {
-				return KINDLING;
-			} else if (this == WARDEN) {
-				return WARDEN;
-			} else {
-				return Type.PLAYER;
-			}
-		}
-		
-		@Environment(EnvType.CLIENT)
-		public Identifier getTextureIdentifier() {
-			if (this == EGG_LAYING_WOOLY_PIG) {
-				return EggLayingWoolyPigEntityRenderer.TEXTURE;
-			}else if (this == KINDLING) {
-				return KindlingEntityRenderer.TEXTURE;
-			} else if (this == WARDEN) {
-				return new Identifier("textures/entity/warden/warden.png");
-			} else {
-				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");
-			}
+			return this.modelType;
 		}
 		
 	}

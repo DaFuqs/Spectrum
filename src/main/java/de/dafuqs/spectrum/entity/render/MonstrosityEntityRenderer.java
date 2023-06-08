@@ -13,7 +13,7 @@ import net.minecraft.util.*;
 @Environment(EnvType.CLIENT)
 public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEntity, MonstrosityEntityModel> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
 	
 	public MonstrosityEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new MonstrosityEntityModel(context.getPart(SpectrumModelLayers.MONSTROSITY)), 1.8F);

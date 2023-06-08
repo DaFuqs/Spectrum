@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enums.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -300,10 +302,14 @@ public class SpectrumMultiblocks {
 	}
 	
 	@Contract(pure = true)
-	public static @Nullable Identifier getDisplayStructureIdentifierForTier(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+	public static @Nullable Identifier getDisplayStructureIdentifierForTier(@NotNull PedestalRecipeTier pedestalRecipeTier, PlayerEntity player) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
-				return SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK;
+				if (AdvancementHelper.hasAdvancement(player, SpectrumCommon.locate("lategame/build_complex_pedestal_structure_without_moonstone"))) {
+					return SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK;
+				} else {
+					return SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK;
+				}
 			}
 			case ADVANCED -> {
 				return SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK;

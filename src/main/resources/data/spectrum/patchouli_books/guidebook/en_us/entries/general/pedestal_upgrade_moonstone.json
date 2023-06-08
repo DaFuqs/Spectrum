@@ -4,7 +4,7 @@
   "sortnum": 18,
   "advancement": "spectrum:lategame/collect_moonstone_shard",
   "category": "spectrum:general_category",
-  "turnin": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone",
+  "turnin": "spectrum:hidden/build_any_complex_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_moonstone": 0
   },

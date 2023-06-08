@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
@@ -117,7 +118,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		if (mouseOverInformationIcon((int) mouseX, (int) mouseY)) {
 			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant));
+			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant, MinecraftClient.getInstance().player));
 			if (currentMultiBlock == multiblockToDisplay) {
 				PatchouliAPI.get().clearMultiblock();
 			} else {

@@ -97,18 +97,11 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	}
 	
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		super.onDestroyedByExplosion(world, pos, explosion);
-		BlockState state = world.getBlockState(pos);
-		if (state.getBlock() instanceof DoomBloomBlock) {
-			explode(world, pos, state);
-		}
-	}
-	
-	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
-		explode(world, pos, state);
+		if (entity.isSprinting() && world.random.nextBoolean()) {
+			explode(world, pos, state);
+		}
 	}
 	
 	@Override

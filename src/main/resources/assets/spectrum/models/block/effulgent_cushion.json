@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:templates/cushion",
+  "textures": {
+    "top": "spectrum:block/effulgent_cushion_top",
+    "side": "spectrum:block/effulgent_cushion_side",
+    "bottom": "spectrum:block/effulgent_cushion_bottom"
+  }
+}

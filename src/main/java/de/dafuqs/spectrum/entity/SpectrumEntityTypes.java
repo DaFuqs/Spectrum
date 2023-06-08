@@ -11,6 +11,7 @@ public class SpectrumEntityTypes {
 	
 	public static final EntityType<LivingMarkerEntity> LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
 	public static final EntityType<ShootingStarEntity> SHOOTING_STAR = register("shooting_star", 15, 20, true, EntityDimensions.changing(0.8F, 0.8F), true, ShootingStarEntity::new);
+	public static final EntityType<SeatEntity> SEAT = register("seat", 8, 10, false, EntityDimensions.changing(0.01F, 0.01F), true, SeatEntity::new);
 	public static final EntityType<FloatBlockEntity> FLOAT_BLOCK = register("gravity_block", 10, 20, true, EntityDimensions.changing(0.98F, 0.98F), true, FloatBlockEntity::new);
 	public static final EntityType<PhantomFrameEntity> PHANTOM_FRAME = register("phantom_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, PhantomFrameEntity::new);
 	public static final EntityType<PhantomGlowFrameEntity> GLOW_PHANTOM_FRAME = register("glow_phantom_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, PhantomGlowFrameEntity::new);

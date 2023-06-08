@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spectrum:effulgent_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:effulgent_feather",
+    "count": 4
+  }
+}

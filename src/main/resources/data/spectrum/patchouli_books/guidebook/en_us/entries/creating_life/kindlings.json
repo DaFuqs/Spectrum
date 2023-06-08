@@ -10,26 +10,28 @@
     {
       "type": "patchouli:text",
       "title": "Kindlings",
-      "text": "Gigantic skeletons of magnificent behemoths! Without a doubt, there is still a spark of life in the Dragonbone chunks you broke. Enough to bring these spectacles of Mother Nature back to life? "
+      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those $(item)dragonbone chunks$().$(br2)Maybe you will be the one to restore the age of divine dragons?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Remembering",
       "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
-      "text": ""
+      "text": "$(italic)The wooly pigs worked so well, surely this must end similarly."
     },
     {
       "type": "patchouli:entity",
       "advancement": "spectrum:lategame/remember_kindling",
       "entity": "spectrum:kindling",
-      "text": "$(italic)So much for your plans about a Jurassic Park. Maybe you'd rather open a petting zoo instead?"
+      "scale": 0.6,
+      "offset": 0.4,
+      "text": "$(italic)So much for your plans for a jurassic park. Maybe a petting zoo would be more suitable?"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:lategame/pluck_effulgent_feather",
       "anchor": "effulgent_feather",
       "item": "spectrum:effulgent_feather",
-      "text": "TODO"
+      "text": "You really have to envy the Kindlings, spending their days covered in these fluffy, poofy things. The down of the dragon is beyond soft - luxurious both in feel and color, even with the $(c_yellow)golden liveliness$() that flows through them, you could see yourself falling asleep on a $(item)cushion$() made from these!"
     }
   ]
 }

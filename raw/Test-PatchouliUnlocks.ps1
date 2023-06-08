@@ -10,6 +10,7 @@ $bookPages | ForEach-Object {
     $adv = @()
     $adv += $json.advancement
     $adv += $json.pages.advancement
+    $adv += $json.pages.turnin
 
     foreach($ad in $adv) {
         if($ad) {

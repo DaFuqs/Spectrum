@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.*;
+import net.fabricmc.fabric.api.mininglevel.v1.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
@@ -84,6 +85,8 @@ public class SanityCommand {
 						&& !blockState.isIn(BlockTags.AXE_MINEABLE)
 						&& !blockState.isIn(BlockTags.SHOVEL_MINEABLE)
 						&& !blockState.isIn(BlockTags.HOE_MINEABLE)
+						&& !blockState.isIn(FabricMineableTags.SHEARS_MINEABLE)
+						&& !blockState.isIn(FabricMineableTags.SWORD_MINEABLE)
 						&& !blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_MINEABLE_DEBUG_CHECK)) {
 					SpectrumCommon.logWarning("[SANITY: Mineable Tags] Block " + registryKey.getValue() + " is not contained in a any vanilla mineable tag.");
 				}

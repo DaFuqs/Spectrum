@@ -24,7 +24,7 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		if (entity.isSprinting() && !entity.isOnGround()) {
+		if (entity.isSprinting() && !entity.isOnGround() && !entity.isSneaking()) {
 			Vec3d velocity = entity.getVelocity();
 			if (velocity.y < 0) {
 				entity.setVelocity(entity.getVelocity().multiply(1, 0.1, 1));

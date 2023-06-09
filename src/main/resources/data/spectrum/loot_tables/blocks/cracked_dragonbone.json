@@ -5,8 +5,26 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:cracked_dragonbone"
+          "type": "minecraft:sequence",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:cracked_dragonbone"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:dragonbone_chunk",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 1,
+                    "max": 2
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
       "conditions": [

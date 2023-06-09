@@ -9,7 +9,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableBlock {
+public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableBlock, ExplosionReplaced {
 	
 	public DragonboneBlock(Settings settings) {
 		super(settings);
@@ -28,6 +28,14 @@ public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableB
 				world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
 			}
 		}
+	}
+	
+	@Override
+	public BlockState getStateForExplosion(World world, BlockPos blockPos, BlockState stateAtPos) {
+		if (stateAtPos.getBlock() instanceof PillarBlock) {
+			return SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, stateAtPos.get(PillarBlock.AXIS));
+		}
+		return Blocks.AIR.getDefaultState();
 	}
 	
 }

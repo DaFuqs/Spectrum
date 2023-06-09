@@ -49,7 +49,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore and mundane gemstones into sparkling crystals.$(br)Even though you failed to grow real $(l:general/shards)gems$(/l) despite all your efforts, you quickly realized that it could grow all sorts of other resources instead."
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore and small gemstones into sparkling crystals.$(br)Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -65,7 +65,7 @@
     {
       "type": "patchouli:text",
       "title": "Growing Crystals",
-      "text": "Crystals such as $(item)Diamonds$() require more Ink, but their nature allows you to grow them over and over again - $(item)Diamond Clusters$() yieling more $(item)Diamonds$()."
+      "text": "Crystals such as $(item)Diamonds$() require more Ink, but their nature allows you to grow them over and over again - $(item)Diamond Clusters$() yielding more $(item)Diamonds$()."
     },
     {
       "type": "spectrum:crystallarieum_growing",

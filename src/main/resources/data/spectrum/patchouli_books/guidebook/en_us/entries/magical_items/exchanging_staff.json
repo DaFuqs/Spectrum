@@ -9,18 +9,18 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "For all those who don't live in a simple Cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
+      "text": "For all those who don't live in a simple $(item)Cobblestone$() house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/exchanging_staff",
-      "text": "$(italic)Mining just got a whole bunch more fun."
+      "text": "$(italic)Mining just got a whole bunch more fun"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Enchanting - Fortune",
+      "title": "Fortune",
       "item": "spectrum:exchanging_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
       "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
     },
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "advancement": "spectrum:unlocks/enchantments/resonance_usage",
       "title": "Resonance",
       "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
       "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."

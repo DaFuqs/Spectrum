@@ -190,5 +190,5 @@ foreach($entry in $entries.GetEnumerator()) {
 
 foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
-    "`"item.spectrum.native_$name`": `"Native $name`","
+    "`"item.spectrum.native_$name`": `"Pure $name`","
 }

@@ -32,12 +32,11 @@ public class HummingstoneBlockEntity extends BlockEntity implements Hummingstone
     @Override
     public void triggerEvent(World world, GameEventListener listener, HummingstoneEventQueue.EventEntry entry) {
         GameEvent.Message message = entry.message;
-        GameEvent.Emitter emitter = message.getEmitter();
-        
+
         if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING) {
-            HummingstoneBlock.startHumming(world, this.pos, world.getBlockState(this.pos), emitter.sourceEntity(), true);
+            HummingstoneBlock.startHumming(world, this.pos, world.getBlockState(this.pos), message.getEmitter().sourceEntity(), true);
         } else if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HYMN) {
-            HummingstoneBlock.onHymn(world, this.pos, emitter.sourceEntity());
+            HummingstoneBlock.onHymn(world, this.pos, message.getEmitter().sourceEntity());
         }
     }
 

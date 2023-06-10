@@ -54,15 +54,13 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (crystallarieum.canWork && crystallarieum.currentRecipe != null) {
-			int amount = crystallarieum.currentRecipe.getInkPerSecond();
-			if (amount > 0) {
-				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(crystallarieum.currentRecipe.getInkColor().getDyeColor());
-				
-				if (amount > 199 || Support.getIntFromDecimalWithChance(amount / 200.0, world.random) > 0) {
-					double randomX = world.getRandom().nextDouble() * 0.8;
-					double randomZ = world.getRandom().nextDouble() * 0.8;
-					world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
-				}
+			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(crystallarieum.currentRecipe.getInkColor().getDyeColor());
+			
+			int amount = 1 + crystallarieum.currentRecipe.getInkPerSecond();
+			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.random) > 0) {
+				double randomX = world.getRandom().nextDouble() * 0.8;
+				double randomZ = world.getRandom().nextDouble() * 0.8;
+				world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
 			}
 		}
 	}
@@ -292,6 +290,8 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.canWork = false;
 			markDirty();
 			updateInClientWorld();
+			
+			world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.NONE));
 		} else {
 			this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
 			
@@ -307,6 +307,13 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 					world.spawnEntity(itemEntity);
 				}
 			}
+			
+			if (recipe == null) {
+				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.NONE));
+			} else {
+				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.get(recipe.getInkColor().getDyeColor())));
+			}
+			
 			this.canWork = true;
 			inventoryChanged();
 		}

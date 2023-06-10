@@ -3,12 +3,15 @@ package de.dafuqs.spectrum.blocks.crystallarieum;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -17,8 +20,17 @@ import org.jetbrains.annotations.*;
 
 public class CrystallarieumBlock extends InWorldInteractionBlock {
 	
+	public static final EnumProperty<NullableDyeColor> COLOR = EnumProperty.of("color", NullableDyeColor.class);
+	
 	public CrystallarieumBlock(Settings settings) {
 		super(settings);
+		this.setDefaultState((this.stateManager.getDefaultState()).with(COLOR, NullableDyeColor.NONE));
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(COLOR);
 	}
 	
 	@Nullable

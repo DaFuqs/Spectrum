@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:templates/crystallarieum",
+  "textures": {
+    "0": "spectrum:block/crystallarieum_light_blue"
+  }
+}

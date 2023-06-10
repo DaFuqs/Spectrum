@@ -1,13 +1,13 @@
 {
   "credit": "Made with Blockbench",
+  "parent": "block/block",
   "texture_size": [
     32,
     32
   ],
   "textures": {
-    "0": "spectrum:block/crystallarieum",
+    "0": "spectrum:block/crystallarieum_none",
     "1": "spectrum:block/liquid_crystal_still",
-    "2": "spectrum:block/crystallarieum_overlay",
     "particle": "spectrum:block/crystallarieum_breaking"
   },
   "elements": [
@@ -502,132 +502,9 @@
             1,
             1
           ],
-          "texture": "#2"
+          "texture": "#missing"
         }
       }
-    }
-  ],
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [
-        75,
-        45,
-        0
-      ],
-      "translation": [
-        0,
-        2.5,
-        0
-      ],
-      "scale": [
-        0.375,
-        0.375,
-        0.375
-      ]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [
-        75,
-        45,
-        0
-      ],
-      "translation": [
-        0,
-        2.5,
-        0
-      ],
-      "scale": [
-        0.375,
-        0.375,
-        0.375
-      ]
-    },
-    "firstperson_righthand": {
-      "rotation": [
-        0,
-        45,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
-      ]
-    },
-    "firstperson_lefthand": {
-      "rotation": [
-        0,
-        225,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
-      ]
-    },
-    "ground": {
-      "translation": [
-        0,
-        3,
-        0
-      ],
-      "scale": [
-        0.25,
-        0.25,
-        0.25
-      ]
-    },
-    "gui": {
-      "rotation": [
-        30,
-        225,
-        0
-      ],
-      "scale": [
-        0.625,
-        0.625,
-        0.625
-      ]
-    },
-    "fixed": {
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ]
-    }
-  },
-  "groups": [
-    {
-      "name": "body",
-      "origin": [
-        0,
-        0,
-        0
-      ],
-      "color": 0,
-      "children": [
-        0,
-        1,
-        2,
-        {
-          "name": "group",
-          "origin": [
-            0,
-            0,
-            0
-          ],
-          "color": 0,
-          "children": []
-        },
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ]
     }
   ]
 }

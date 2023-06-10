@@ -31,9 +31,13 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		return BlockRenderType.MODEL;
 	}
 	
+	// drop all currently stored stuff
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		scatterContents(world, pos);
+		if (!state.isOf(newState.getBlock())) { // happens when filling with fluid, ...
+			scatterContents(world, pos);
+			world.updateComparators(pos, this);
+		}
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	

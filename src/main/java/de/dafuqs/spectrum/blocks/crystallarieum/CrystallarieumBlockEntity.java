@@ -308,10 +308,10 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				}
 			}
 			
-			if (recipe == null) {
+			if (this.currentRecipe == null) {
 				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.NONE));
 			} else {
-				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.get(recipe.getInkColor().getDyeColor())));
+				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.get(this.currentRecipe.getInkColor().getDyeColor())));
 			}
 			
 			this.canWork = true;

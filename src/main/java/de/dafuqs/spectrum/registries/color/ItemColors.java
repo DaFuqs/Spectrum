@@ -38,7 +38,6 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.BLACKSTONE, DyeColor.BLACK);
 		put(Items.GILDED_BLACKSTONE, DyeColor.BLACK);
 		put(Items.DIAMOND_BLOCK, DyeColor.LIGHT_BLUE);
-		put(Items.COPPER_INGOT, DyeColor.BROWN);
 		put(Items.LEATHER, DyeColor.BROWN);
 		put(Items.BOOK, DyeColor.PURPLE);
 		put(Items.ENCHANTED_BOOK, DyeColor.PURPLE);
@@ -60,6 +59,11 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.EMERALD, DyeColor.LIME);
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
 		put(Items.NETHER_STAR, DyeColor.BLACK);
+		put(Items.COPPER_INGOT, DyeColor.BROWN);
+		put(Items.RAW_COPPER, DyeColor.BROWN);
+		put(Items.COPPER_ORE, DyeColor.BROWN);
+		put(Items.COPPER_BLOCK, DyeColor.BROWN);
+		put(Items.DEEPSLATE_COPPER_ORE, DyeColor.BROWN);
 		
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
 		put(Items.NETHERITE_INGOT, DyeColor.BROWN);

@@ -1,9 +1,10 @@
 {
+  "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
       "item": "spectrum:polished_blackslag"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "title": {
       "translate": "advancements.spectrum.visit_all_deeper_down_biomes.title"
     },
@@ -11,7 +12,6 @@
       "translate": "advancements.spectrum.visit_all_deeper_down_biomes.description"
     }
   },
-  "parent": "spectrum:lategame/spectrum_lategame",
   "criteria": {
     "crystal_gardens": {
       "trigger": "revelationary:advancement_gotten",

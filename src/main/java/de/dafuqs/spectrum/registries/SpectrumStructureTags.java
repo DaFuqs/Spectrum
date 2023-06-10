@@ -7,9 +7,9 @@ import net.minecraft.world.gen.structure.*;
 
 public class SpectrumStructureTags {
 	
-	public static final TagKey<Structure> MYSTERIOUS_COMPASS_LOCATED = getReference("mysterious_compass_located");
+	public static final TagKey<Structure> MYSTERIOUS_COMPASS_LOCATED = of("mysterious_compass_located");
 	
-	private static TagKey<Structure> getReference(String id) {
+	private static TagKey<Structure> of(String id) {
 		return TagKey.of(RegistryKeys.STRUCTURE, SpectrumCommon.locate(id));
 	}
 	

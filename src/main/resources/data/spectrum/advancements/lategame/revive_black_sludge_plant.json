@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:resonant_lily"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.revive_black_sludge_plant.title"
     },

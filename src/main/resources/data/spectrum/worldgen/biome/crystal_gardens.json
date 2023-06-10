@@ -38,15 +38,15 @@
       {
         "type": "minecraft:axolotl",
         "weight": 10,
-        "minCount": 4,
-        "maxCount": 6
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "creature": [
       {
         "type": "minecraft:frog",
         "weight": 5,
-        "minCount": 2,
+        "minCount": 1,
         "maxCount": 2
       }
     ],
@@ -56,16 +56,16 @@
       {
         "type": "minecraft:glow_squid",
         "weight": 10,
-        "minCount": 4,
-        "maxCount": 6
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "water_ambient": [
       {
         "type": "minecraft:tropical_fish",
         "weight": 25,
-        "minCount": 8,
-        "maxCount": 8
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "water_creature": []

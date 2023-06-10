@@ -1,12 +1,6 @@
 {
   "criteria": {
-    "collected_stratine": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:milestones/unlock_shooting_stars"
-      }
-    },
-    "has_stardust": {
+    "collected_shale_clay": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

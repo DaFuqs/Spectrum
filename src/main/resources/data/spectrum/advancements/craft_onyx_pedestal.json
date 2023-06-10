@@ -14,13 +14,59 @@
   },
   "parent": "spectrum:create_onyx_shard",
   "criteria": {
+    "interact_with_existing_pedestal": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:create_onyx_shard": true
+                }
+              }
+            }
+          }
+        ],
+        "location": {
+          "block": {
+            "blocks": [
+              "spectrum:pedestal_onyx",
+              "spectrum:pedestal_moonstone"
+            ]
+          }
+        }
+      }
+    },
     "craft_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ "spectrum:pedestal_onyx" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pedestal_onyx"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:create_onyx_shard" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:create_onyx_shard"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "craft_pedestal",
+      "interact_with_existing_pedestal"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

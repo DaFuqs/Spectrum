@@ -45,7 +45,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 			list.set(getSlotWithSize(recipe.getWidth(), i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
 		}
 		
-		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
+		Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
 		int firstGemstoneSlotId = 3 * 3;
 		
 		int cyan = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);

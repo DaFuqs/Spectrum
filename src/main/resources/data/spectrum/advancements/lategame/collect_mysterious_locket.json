@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:lategame/collect_moonstone_shard",
   "display": {
     "icon": {
       "item": "spectrum:mysterious_locket"
@@ -28,7 +28,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
       }
     }
   }

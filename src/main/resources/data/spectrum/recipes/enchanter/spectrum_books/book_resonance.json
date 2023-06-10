@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:unlocks/enchantments/resonance",
+  "required_advancement": "spectrum:unlocks/enchantments/resonance_crafting",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

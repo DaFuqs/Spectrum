@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:clay",
-    "minecraft:mud"
+    "minecraft:mud",
+    "spectrum:slush"
   ]
 }

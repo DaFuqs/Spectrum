@@ -1,0 +1,37 @@
+{
+  "name": "Kindlings",
+  "icon": "spectrum:kinding_head",
+  "advancement": "spectrum:unlocks/blocks/kindling_memory",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:kinding_head": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Kindlings",
+      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those $(item)dragonbone chunks$().$(br2)Maybe you will be the one to restore the age of divine dragons?"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Remembering",
+      "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
+      "text": "$(italic)The wooly pigs worked so well, surely this must end similarly."
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "spectrum:lategame/remember_kindling",
+      "entity": "spectrum:kindling",
+      "scale": 0.6,
+      "offset": 0.4,
+      "text": "$(italic)So much for your plans for a jurassic park. Maybe a petting zoo would be more suitable?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/pluck_effulgent_feather",
+      "anchor": "effulgent_feather",
+      "item": "spectrum:effulgent_feather",
+      "text": "You really have to envy the Kindlings, spending their days covered in these fluffy, poofy things. The down of the dragon is beyond soft - luxurious both in feel and color, even with the $(c_yellow)golden liveliness$() that flows through them, you could see yourself falling asleep on a $(item)cushion$() made from these!"
+    }
+  ]
+}

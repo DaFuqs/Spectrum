@@ -1,0 +1,21 @@
+{
+  "name": "Lizards",
+  "icon": "spectrum:lizard_head",
+  "advancement": "spectrum:hidden/entity_interact/lizard",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:lizard_head": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Lizards",
+      "text": "Quarrelsome beasts that are always looking for trouble.$(br)Actually, they would be quite cute if they didn't always try to bite off some of your limbs right away.$(br)...maybe you'd better keep them behind a $(items)Glass Pane$(), your extremities will thank you for it."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "spectrum:lizard",
+      "text": "$(italic)Not particularly affable contemporaries."
+    }
+  ]
+}

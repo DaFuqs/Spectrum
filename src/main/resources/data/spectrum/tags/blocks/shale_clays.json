@@ -1,6 +1,7 @@
 {
   "values": [
     "spectrum:shale_clay",
+    "spectrum:tilled_shale_clay",
     "spectrum:polished_shale_clay",
     "spectrum:shale_clay_bricks",
     "spectrum:shale_clay_tiles",

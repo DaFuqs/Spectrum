@@ -1,0 +1,62 @@
+{
+  "name": "Glass Arrows",
+  "advancement": "spectrum:unlocks/malachite/glass_arrows",
+  "icon": "spectrum:amethyst_glass_arrow",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_glass_arrow": 0,
+    "spectrum:amethyst_glass_arrow": 0,
+    "spectrum:citrine_glass_arrow": 0,
+    "spectrum:onyx_glass_arrow": 0,
+    "spectrum:moonstone_glass_arrow": 0,
+    "spectrum:azurite_glass_arrow": 0,
+    "spectrum:malachite_glass_arrow": 0,
+    "spectrum:bloodstone_glass_arrow": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "These razor sharp arrows are able to be shot underwater and are able to pierce translucent blocks like $(item)Glass$() while dealing increased damage.$(br)Each one also has a secondary effect, depending on what you tip them with."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow",
+      "text": "Pulls the target in your direction, ready to be dealt a deadly melee hit."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
+      "text": "Freezes the target, slowing them down. Also deals freezing damage over time."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow",
+      "text": "Hits your foe with enormous force, knocking them far away."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
+      "text": "Deals damage regardless of the target's invincibility frames and resets them. Deals additional damage to armor and shields."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
+      "text": "Explodes in an orb of pure energy, dealing damage to creatures close by."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/azurite_glass_arrow",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/bloodstone_glass_arrow",
+      "text": "Homes in onto your foe."
+    }
+  ]
+}

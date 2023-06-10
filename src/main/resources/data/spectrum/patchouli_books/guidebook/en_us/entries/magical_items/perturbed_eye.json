@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)$(italic)Well, almost. Probably.$(br)You haven't yet figured out how to create such portals yourself, but packing them up and take them home? No problem."
+      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. Probably.$(br)You still haven't figured out how to create such portals yourself, but packing them up and taking them home? $(italic)No problem."
     },
     {
       "type": "patchouli:image",
@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/perturbed_eye",
-      "text": "Due to the extremely robust Portal Frames, those harbor quite the destructive potential. Best to keep a bit of distance after socketing."
+      "text": "Due to the extremely sturdy portal frames, these can be quite destructive. It is best to keep a bit of distance after socketing."
     },
     {
       "type": "patchouli:multiblock",

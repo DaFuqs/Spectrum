@@ -7,14 +7,16 @@
   "pages": [
     {
       "type": "patchouli:image",
+      "title": "Deep Barrens",
       "images": [
         "spectrum:textures/gui/guidebook/dd_deep_barrens.png"
       ],
+      "border": true,
       "text": "A dark, stony wasteland."
     },
     {
       "type": "patchouli:text",
-      "text": "At first glance, there's not much to see here, and yet it's worth a visit:$(br)ores smile at you from every corner - as far as you can see (which isn't far, to be honest). In some places, gigantic veins of ore crisscross this biome. A single vein will last you years."
+      "text": "At first glance, there's not much to see here, and yet it's worth a visit: ores smile at you from every corner - as far as you can see (which isn't far, to be honest).$(br2)In some places, gigantic veins of ore crisscross this biome. A single vein will last you years."
     }
   ]
 }

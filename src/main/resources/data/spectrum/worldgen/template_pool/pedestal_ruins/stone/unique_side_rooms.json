@@ -1,0 +1,15 @@
+{
+  "name": "spectrum:pedestal_ruins/stone/unique_side_rooms",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "spectrum:pedestal_ruins/stone/side_unique/anvil_crushing",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

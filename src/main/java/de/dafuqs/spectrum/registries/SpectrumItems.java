@@ -402,7 +402,7 @@ public class SpectrumItems {
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.RADIANCE_STAFF, Enchantments.INFINITY))));
 	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.NATURES_STAFF, Enchantments.EFFICIENCY))));
 	public static final Item HERDING_STAFF = new HerdingStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item CONSTRUCTORS_STAFF = new PlacementStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> {
 		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.FORTUNE));
 		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.SILK_TOUCH));

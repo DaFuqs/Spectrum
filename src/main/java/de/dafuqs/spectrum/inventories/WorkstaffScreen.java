@@ -36,15 +36,15 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		GridEntry rightClickGridEntry;
 		ItemStack mainHandStack = playerInventory.player.getMainHandStack();
 		if (WorkstaffItem.canTill(mainHandStack.getNbt())) {
-			rightClickGridEntry = GridEntry.item(SpectrumItems.MULTITOOL, "item.spectrum.workstaff.gui.disable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
+			rightClickGridEntry = GridEntry.item(Items.WOODEN_HOE, "item.spectrum.workstaff.gui.disable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
 		} else {
-			rightClickGridEntry = GridEntry.item(Items.WOODEN_HOE, "item.spectrum.workstaff.gui.enable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
+			rightClickGridEntry = GridEntry.item(SpectrumItems.MULTITOOL, "item.spectrum.workstaff.gui.enable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
 		}
 		
 		if (mainHandStack.getItem() instanceof GlassCrestWorkstaffItem) {
 			GridEntry projectileEntry = GlassCrestWorkstaffItem.canShoot(mainHandStack.getNbt())
-					? GridEntry.item(Items.SPECTRAL_ARROW, "item.spectrum.workstaff.gui.enable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
-					: GridEntry.item(Items.ARROW, "item.spectrum.workstaff.gui.disable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
+					? GridEntry.item(Items.SPECTRAL_ARROW, "item.spectrum.workstaff.gui.disable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
+					: GridEntry.item(Items.ARROW, "item.spectrum.workstaff.gui.enable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
 			
 			gridStack.push(new Grid(
 					GridEntry.CLOSE,

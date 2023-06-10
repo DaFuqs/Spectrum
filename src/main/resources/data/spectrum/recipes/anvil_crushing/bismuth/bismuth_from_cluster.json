@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:bismuth_cluster"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.5,
+  "result": {
+    "item": "spectrum:bismuth_crystal",
+    "count": 5
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.chain.break",
+  "group": "bismuth_crushing",
+  "required_advancement": "spectrum:lategame/collect_bismuth"
+}

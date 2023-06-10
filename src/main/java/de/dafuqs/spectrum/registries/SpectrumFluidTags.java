@@ -8,20 +8,20 @@ import net.minecraft.registry.*;
 
 public class SpectrumFluidTags {
 	
-	public static final TagKey<Fluid> SWIMMABLE_FLUID = register("swimmable_fluid");
-	public static final TagKey<Fluid> MIDNIGHT_SOLUTION_CONVERTED = register("midnight_solution_converted");
-	public static final TagKey<Fluid> ACTIVATES_WEEPING_CIRCLET = register("activates_weeping_circlet");
+	public static final TagKey<Fluid> SWIMMABLE_FLUID = of("swimmable_fluid");
+	public static final TagKey<Fluid> MIDNIGHT_SOLUTION_CONVERTED = of("midnight_solution_converted");
+	public static final TagKey<Fluid> ACTIVATES_WEEPING_CIRCLET = of("activates_weeping_circlet");
 	
-	public static final TagKey<Fluid> LAGOON_ROD_FISHABLE_IN = register("lagoon_rod_fishable_in");
-	public static final TagKey<Fluid> MOLTEN_ROD_FISHABLE_IN = register("molten_rod_fishable_in");
-	public static final TagKey<Fluid> BEDROCK_ROD_FISHABLE_IN = register("bedrock_rod_fishable_in");
+	public static final TagKey<Fluid> LAGOON_ROD_FISHABLE_IN = of("lagoon_rod_fishable_in");
+	public static final TagKey<Fluid> MOLTEN_ROD_FISHABLE_IN = of("molten_rod_fishable_in");
+	public static final TagKey<Fluid> BEDROCK_ROD_FISHABLE_IN = of("bedrock_rod_fishable_in");
 	
-	public static final TagKey<Fluid> LIQUID_CRYSTAL = register("liquid_crystal");
-	public static final TagKey<Fluid> MUD = register("mud");
-	public static final TagKey<Fluid> MIDNIGHT_SOLUTION = register("midnight_solution");
-	public static final TagKey<Fluid> DRAGONROT = register("dragonrot");
+	public static final TagKey<Fluid> LIQUID_CRYSTAL = of("liquid_crystal");
+	public static final TagKey<Fluid> MUD = of("mud");
+	public static final TagKey<Fluid> MIDNIGHT_SOLUTION = of("midnight_solution");
+	public static final TagKey<Fluid> DRAGONROT = of("dragonrot");
 	
-	private static TagKey<Fluid> register(String id) {
+	private static TagKey<Fluid> of(String id) {
 		return TagKey.of(Registries.FLUID.getKey(), new Identifier(SpectrumCommon.MOD_ID + ":" + id));
 	}
 	

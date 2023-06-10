@@ -34,7 +34,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
 	protected final PedestalRecipeTier tier;
 	protected final DefaultedList<IngredientStack> craftingInputs;
-	protected final HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs;
+	protected final Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -47,8 +47,8 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
 	public PedestalCraftingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-	                              PedestalRecipeTier tier, int width, int height, DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
-	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
+								  PedestalRecipeTier tier, int width, int height, DefaultedList<IngredientStack> craftingInputs, Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+								  float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.tier = tier;
@@ -274,7 +274,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		return this.experience;
 	}
 	
-	public HashMap<BuiltinGemstoneColor, Integer> getGemstonePowderInputs() {
+	public Map<BuiltinGemstoneColor, Integer> getGemstonePowderInputs() {
 		return this.gemstonePowderInputs;
 	}
 	

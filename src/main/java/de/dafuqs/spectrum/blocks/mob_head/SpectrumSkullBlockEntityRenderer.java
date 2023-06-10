@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.mob_head.models.*;
+import de.dafuqs.spectrum.entity.render.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -27,7 +30,11 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		ImmutableMap.Builder<SkullBlock.SkullType, SkullBlockEntityModel> builder = ImmutableMap.builder();
 		builder.put(SkullBlock.Type.PLAYER, new SkullEntityModel(modelLoader.getModelPart(EntityModelLayers.PLAYER_HEAD)));
 		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG, new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)));
-        builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
+		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
+		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
+		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
+		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.GUARDIAN_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.GUARDIAN_TURRET_HEAD)));
+		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
 		return builder.build();
 	}
 	
@@ -70,12 +77,38 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	}
 	
 	public static RenderLayer getRenderLayer(SpectrumSkullBlock.SpectrumSkullBlockType type) {
-		Identifier identifier = type.getTextureIdentifier();
+		Identifier identifier = getTextureIdentifier(type);
 		RenderLayer renderLayer = RenderLayer.getEntityCutoutNoCullZOffset(identifier);
 		if (renderLayer == null) {
 			return RenderLayer.getEntityCutoutNoCullZOffset(new Identifier("textures/entity/zombie/zombie.png"));
 		} else {
 			return renderLayer;
+		}
+	}
+	
+	protected static Identifier getTextureIdentifier(SpectrumSkullBlock.SpectrumSkullBlockType type) {
+		switch (type) {
+			case EGG_LAYING_WOOLY_PIG -> {
+				return EggLayingWoolyPigEntityRenderer.TEXTURE;
+			}
+			case GUARDIAN_TURRET -> {
+				return GuardianTurretEntityRenderer.TEXTURE;
+			}
+			case MONSTROSITY -> {
+				return MonstrosityEntityRenderer.TEXTURE;
+			}
+			case LIZARD -> {
+				return LizardEntityRenderer.TEXTURE;
+			}
+			case KINDLING -> {
+				return KindlingEntityRenderer.TEXTURE;
+			}
+			case WARDEN -> {
+				return new Identifier("textures/entity/warden/warden.png");
+			}
+			default -> {
+				return SpectrumCommon.locate("textures/entity/mob_head/" + type.toString().toLowerCase(Locale.ROOT) + ".png");
+			}
 		}
 	}
 	

@@ -7,8 +7,8 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import javax.annotation.*;
 import java.util.*;
 
 public class LightSpearEntity extends LightShardBaseEntity {

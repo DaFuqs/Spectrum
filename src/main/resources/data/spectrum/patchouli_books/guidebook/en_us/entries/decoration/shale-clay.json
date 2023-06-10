@@ -1,0 +1,79 @@
+{
+  "name": "Shale Clay",
+  "advancement": "spectrum:hidden/collect_shale_clay",
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:shale_clay": 0,
+    "spectrum:polished_shale_clay": 0,
+    "spectrum:shale_clay_bricks": 0,
+    "spectrum:shale_clay_tiles": 0,
+    "spectrum:shale_clay_brick_slab": 0,
+    "spectrum:shale_clay_brick_stairs": 0,
+    "spectrum:polished_shale_clay_slab": 0,
+    "spectrum:polished_shale_clay_stairs": 0,
+    "spectrum:shale_clay_tile_slab": 0,
+    "spectrum:shale_clay_tile_stairs": 0,
+    "spectrum:exposed_polished_shale_clay": 0,
+    "spectrum:exposed_polished_shale_clay_slab": 0,
+    "spectrum:exposed_polished_shale_clay_stairs": 0,
+    "spectrum:exposed_shale_clay_brick_slab": 0,
+    "spectrum:exposed_shale_clay_brick_stairs": 0,
+    "spectrum:exposed_shale_clay_bricks": 0,
+    "spectrum:exposed_shale_clay_tile_slab": 0,
+    "spectrum:exposed_shale_clay_tile_stairs": 0,
+    "spectrum:exposed_shale_clay_tiles": 0,
+    "spectrum:weathered_polished_shale_clay": 0,
+    "spectrum:weathered_polished_shale_clay_slab": 0,
+    "spectrum:weathered_polished_shale_clay_stairs": 0,
+    "spectrum:weathered_shale_clay_brick_slab": 0,
+    "spectrum:weathered_shale_clay_brick_stairs": 0,
+    "spectrum:weathered_shale_clay_bricks": 0,
+    "spectrum:weathered_shale_clay_tile_slab": 0,
+    "spectrum:weathered_shale_clay_tile_stairs": 0,
+    "spectrum:weathered_shale_clay_tiles": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A sedimentary rock composed of, well, layered shale and clay. Pretty unspectacular, besides being nice to look at."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:tilled_shale_clay",
+      "text": "Looks like farmland, tastes like farmland, but is poorly suited to use as such. Crops can be planted on it, but they do not grow an inch."
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "spectrum:smelting/shale_clay_to_polished_shale_clay",
+      "text": "Creating $)Polished Shale Clay brings out a nice, grayish color. Though it seems to weather over time, when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Polished Shale-Clay",
+      "recipe": "spectrum:crafting_table/shale_clay/shale_clay_bricks",
+      "recipe2": "spectrum:crafting_table/shale_clay/shale_clay_tiles",
+      "text": ""
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Brick & Tile Variants",
+      "recipe": "spectrum:crafting_table/shale_clay/shale_clay_bricks",
+      "recipe2": "spectrum:crafting_table/shale_clay/shale_clay_tiles",
+      "text": ""
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Slabs & Stairs",
+      "recipe": "spectrum:crafting_table/shale_clay/shale_clay_brick_slab",
+      "recipe2": "spectrum:crafting_table/shale_clay/shale_clay_tile_stairs"
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "Smelting them back",
+      "recipe": "spectrum:smelting/shale_clay_unsmelting/shale_clay_brick_stairs_to_polished_shale_clay",
+      "recipe2": "spectrum:smelting/shale_clay_unsmelting/shale_clay_tile_stairs_to_polished_shale_clay",
+      "text": "By applying heat, the blocks can be converted back to their polished versions again."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:effulgent_block"
+    }
+  },
+  "result": {
+    "item": "spectrum:effulgent_carpet",
+    "count": 4
+  }
+}

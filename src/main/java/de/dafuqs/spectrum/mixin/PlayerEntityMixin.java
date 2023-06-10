@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.enchantments.*;
@@ -22,6 +23,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
+import net.minecraft.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -33,7 +35,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
-	
+
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
@@ -135,21 +137,23 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		
 		return value;
 	}
-	
-	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 0))
-	public float applyInexorableAntiWaterSlowdown(float value) {
-		if (isInexorableActive())
-			return 1F;
-		
-		return value;
-	}
-	
-	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 1))
-	public float applyInexorableAntiFlySlowdown(float value) {
-		if (isInexorableActive())
-			return 1F;
-		
-		return value;
+
+	@ModifyReturnValue(method = "getBlockBreakingSpeed", at = @At("RETURN"))
+	public float applyInexorableAntiSlowdowns(float original) {
+		if (isInexorableActive()) {
+			var player = (PlayerEntity) (Object) this;
+			var f = original;
+
+			if (player.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(player))
+				f *= 5;
+
+			if (!player.isOnGround())
+				f *= 5;
+
+			return f;
+		}
+
+		return original;
 	}
 	
 	@Unique

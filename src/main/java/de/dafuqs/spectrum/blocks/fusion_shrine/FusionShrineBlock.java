@@ -2,10 +2,18 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.inventories.storage.DroppedItemStorage;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.fabricmc.fabric.impl.transfer.context.SingleSlotContainerItemContext;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.*;
@@ -130,9 +138,54 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		// do not pick up items that were results of crafting
-		if (!world.isClient && entity.getPos().x % 0.5 != 0 && entity.getPos().z % 0.5 != 0) {
-			super.onLandedUpon(world, state, pos, entity, fallDistance);
+		if(!world.isClient) {
+			// Specially handle fluid items
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if(entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				SingleVariantStorage<FluidVariant> storage = fusionShrineBlockEntity.fluidStorage;
+				ItemStack itemStack = itemEntity.getStack();
+
+				// We're not considering stacked fluid storages for the time being
+				if(itemStack.getCount() == 1) {
+					Item item = itemStack.getItem();
+					SingleSlotStorage<ItemVariant> slot = new DroppedItemStorage(item, itemStack.getNbt());
+					SingleSlotContainerItemContext ctx = new SingleSlotContainerItemContext(slot);
+					Storage<FluidVariant> fluidStorage = FluidStorage.ITEM.find(itemStack, ctx);
+
+					if(fluidStorage != null) {
+						boolean anyInserted = false;
+						for(StorageView<FluidVariant> view : fluidStorage) {
+							try(Transaction transaction = Transaction.openOuter()) {
+								FluidVariant variant = view.getResource();
+								long inserted = variant.isBlank() ? 0 : storage.insert(variant, view.getAmount(), transaction);
+								long extracted = fluidStorage.extract(variant, inserted, transaction);
+								if(inserted == extracted && inserted != 0) {
+									anyInserted = true;
+									transaction.commit();
+								}
+							}
+						}
+
+						if(!anyInserted && !storage.getResource().isBlank()) {
+							try(Transaction transaction = Transaction.openOuter()) {
+								long inserted = fluidStorage.insert(storage.getResource(), storage.getAmount(), transaction);
+								long extracted = storage.extract(storage.getResource(), inserted, transaction);
+								if(inserted == extracted && inserted != 0) {
+									transaction.commit();
+								}
+							}
+						}
+
+						itemEntity.setStack(slot.getResource().toStack(itemStack.getCount()));
+						return;
+					}
+				}
+			}
+
+			// do not pick up items that were results of crafting
+			if(entity.getPos().x % 0.5 != 0 && entity.getPos().z % 0.5 != 0) {
+				super.onLandedUpon(world, state, pos, entity, fallDistance);
+			}
 		}
 	}
 	

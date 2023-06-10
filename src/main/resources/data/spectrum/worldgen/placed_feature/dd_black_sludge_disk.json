@@ -2,22 +2,21 @@
   "feature": "spectrum:dd_black_sludge_disk",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 32
-    },
-    {
-      "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:height_range",
-      "height": {
+      "type": "minecraft:count_on_every_layer",
+      "count": {
         "type": "minecraft:uniform",
-        "min_inclusive": {
-          "above_bottom": 24
-        },
-        "max_inclusive": {
-          "below_top": 0
+        "value": {
+          "min_inclusive": 0,
+          "max_inclusive": 2
         }
+      }
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "down",
+      "max_steps": 2,
+      "target_condition": {
+        "type": "minecraft:solid"
       }
     },
     {

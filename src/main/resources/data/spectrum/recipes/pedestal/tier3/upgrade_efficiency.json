@@ -37,5 +37,5 @@
     "item": "spectrum:upgrade_efficiency",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/upgrades/upgrade_experience"
+  "required_advancement": "spectrum:unlocks/upgrades/upgrade_efficiency"
 }

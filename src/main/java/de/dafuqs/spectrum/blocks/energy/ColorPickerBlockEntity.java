@@ -326,4 +326,15 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
 	}
 	
+	@Override
+	public boolean isValid(int slot, ItemStack stack) {
+		if (slot == INPUT_SLOT_ID) {
+			return InkConvertingRecipe.isInput(stack.getItem());
+		}
+		if (slot == OUTPUT_SLOT_ID) {
+			return stack.getItem() instanceof InkStorageItem<?>;
+		}
+		return true;
+	}
+	
 }

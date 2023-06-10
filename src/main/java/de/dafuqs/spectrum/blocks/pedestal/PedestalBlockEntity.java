@@ -105,7 +105,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-			HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+			Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 			
 			for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 				int amount = entry.getValue();
@@ -128,7 +128,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 			if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-				HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+				Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 				
 				for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 					int amount = entry.getValue();
@@ -783,18 +783,23 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			PedestalRecipeTier highestAvailableRecipeTierForVariant = getHighestAvailableRecipeTierForVariant();
 			
 			boolean found = false;
+			IMultiblock multiblock;
 			PedestalRecipeTier highestAvailableRecipeTier = PedestalRecipeTier.BASIC;
 			if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
-				IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
-				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
-				if (valid) {
+				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
+				if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 					found = true;
+				} else {
+					multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK);
+					if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
+						SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
+					}
 				}
 			}
 			if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
-				IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
+				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
@@ -803,7 +808,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				}
 			}
 			if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
-				IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
+				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
 				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
 				if (valid) {
 					highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;

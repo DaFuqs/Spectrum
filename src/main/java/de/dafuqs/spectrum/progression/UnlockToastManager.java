@@ -152,7 +152,6 @@ public class UnlockToastManager {
 			}
 			
 			if (!groupedRecipes.isEmpty()) {
-				
 				for (String group : groupedRecipes.keySet()) {
 					List<ItemStack> groupedList = groupedRecipes.get(group);
 					if (groupedList.size() == 1) {

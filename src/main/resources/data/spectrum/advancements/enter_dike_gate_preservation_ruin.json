@@ -16,7 +16,7 @@
     "dike_gate_vibe_check_passed": {
       "trigger": "spectrum:preservation_check",
       "conditions": {
-        "check_name": "enter_dike_gate_puzzle_structure",
+        "check_name": "enter_ancient_ruins",
         "check_passed": true
       }
     },

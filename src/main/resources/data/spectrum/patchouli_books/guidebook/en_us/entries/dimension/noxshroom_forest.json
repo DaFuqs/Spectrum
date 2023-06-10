@@ -88,6 +88,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
       ],
+      "border": true,
       "text": "A weird mix between Tree and Mushroom is towering over this biome."
     },
     {

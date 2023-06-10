@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The problem with Onyx Shards is that their creation is bound to very specific conditions. New moon is simply not every day. Every single time you look at the clock the time window, seems to just have passed for two minutes.$(br)Time to break the big guns: Magenta's affinity for time."
+      "text": "The problem with $(l:general/onyx_shards)Onyx Shards$() is that their creation is tied to very specific conditions. It is not every day that there is a new moon. Every time you look at the clock, the window of time seems to have just passed by for two minutes.$(br)Time to break out the big guns: Magenta's affinity for time."
     },
     {
       "type": "spectrum:pedestal_crafting",

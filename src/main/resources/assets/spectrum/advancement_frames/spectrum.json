@@ -101,6 +101,10 @@
     "advancement": "spectrum:fail_to_glitch_into_preservation_ruin",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:lategame/no_rgb",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:collect_amaranth",
@@ -388,6 +392,14 @@
   },
   {
     "advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_downstone_fragments",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/revive_black_sludge_plant",
     "frame": "paginatedadvancements:squircle"
   }
 ]

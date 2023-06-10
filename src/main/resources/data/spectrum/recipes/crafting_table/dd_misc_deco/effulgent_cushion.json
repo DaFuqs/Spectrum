@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "spectrum:effulgent_feather"
+    }
+  },
+  "result": {
+    "item": "spectrum:effulgent_cushion",
+    "count": 1
+  }
+}

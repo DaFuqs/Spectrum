@@ -24,17 +24,16 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	public static final Random RANDOM = new Random();
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/star_candy");
-	public static final float PURPLE_STAR_CANDY_CHANCE = 0.0025F;
-	public static final HashMap<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = new HashMap<>() {{
-		put(BuiltinGemstoneColor.YELLOW, 1);
-	}};
+	public static final float PURPLE_STAR_CANDY_CHANCE = 0.02F;
+	public static final Map<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = Map.of(BuiltinGemstoneColor.YELLOW, 1);
 	
 	public StarCandyRecipe(Identifier id) {
 		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
 	}
-	
+
+	// TODO - Checkem
 	@Override
-	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+	public ItemStack craftAndDecrement(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
 			if (orientation == null) {
@@ -69,7 +68,6 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
-		
 		return inputs;
 	}
 	

@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:lead"
+    },
+    "title": {
+      "translate": "advancements.spectrum.tame_lizard.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tame_lizard.title"
+    },
+    "hidden": true
+  },
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "criteria": {
+    "tamed_lizard": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "spectrum:lizard"
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

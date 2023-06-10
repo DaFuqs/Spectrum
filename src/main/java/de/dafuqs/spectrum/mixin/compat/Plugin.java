@@ -7,14 +7,6 @@ import org.spongepowered.asm.mixin.extensibility.*;
 import java.util.*;
 
 public final class Plugin implements IMixinConfigPlugin {
-	private static final String COMPAT_PACKAGE_ROOT;
-	private static final String COMPAT_PRESENT_KEY = "present";
-	private static final FabricLoader LOADER = FabricLoader.getInstance();
-
-	static {
-		// Shorthand getting the plugin package to ensure not making trouble with other mixins
-		COMPAT_PACKAGE_ROOT = Plugin.class.getPackageName();
-	}
 	
 	@Override
 	public void onLoad(String mixinPackage) {
@@ -27,6 +19,10 @@ public final class Plugin implements IMixinConfigPlugin {
 	
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+		String COMPAT_PACKAGE_ROOT = Plugin.class.getPackageName(); // Shorthand getting the plugin package to ensure not making trouble with other mixins
+		String COMPAT_PRESENT_KEY = "present";
+		FabricLoader LOADER = FabricLoader.getInstance();
+		
 		if (!mixinClassName.startsWith(COMPAT_PACKAGE_ROOT)) {
 			return true; // We do not meddle with the others' work
 		}
@@ -35,7 +31,7 @@ public final class Plugin implements IMixinConfigPlugin {
 		// The id of the mod the mixin depends on
 		String compatModId = mixinPath[compatRoot.length];
 		// Whether the mixin is for when the mod is loaded or not
-		boolean isPresentMixin = mixinPath[compatRoot.length+1].equals(COMPAT_PRESENT_KEY);
+		boolean isPresentMixin = mixinPath[compatRoot.length + 1].equals(COMPAT_PRESENT_KEY);
 
 		if (isPresentMixin) {
 			// We only load the mixin if the mod we want to be present is found

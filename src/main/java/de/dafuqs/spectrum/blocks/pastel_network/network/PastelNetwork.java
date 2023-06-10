@@ -11,11 +11,12 @@ import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 public class PastelNetwork {
-	
-	protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new HashMap<>();
-	protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
+    
+    protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new ConcurrentHashMap<>();
+    protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
 	protected final World world;
 	protected final UUID uuid;
 	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();

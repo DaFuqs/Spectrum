@@ -41,5 +41,5 @@
   "additional_recipe_manager_outputs": [
     "spectrum:refined_bloodstone"
   ],
-  "required_advancement": "spectrum:lategame/todo"
+  "required_advancement": "spectrum:unlocks/resources/bloodstone"
 }

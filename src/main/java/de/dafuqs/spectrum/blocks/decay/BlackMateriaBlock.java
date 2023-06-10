@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -55,6 +57,15 @@ public class BlackMateriaBlock extends FallingBlock {
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(AGE);
+	}
+	
+	@Override
+    public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
+		BlockState state = world.getBlockState(pos);
+		if (!state.getMaterial().isSolid() && state.getMaterial().getPistonBehavior() == PistonBehavior.DESTROY) {
+			world.breakBlock(pos, true, fallingBlockEntity, 4);
+		}
+		super.onDestroyedOnLanding(world, pos, fallingBlockEntity);
 	}
 	
 }

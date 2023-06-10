@@ -12,7 +12,7 @@ import net.minecraft.util.*;
 @Environment(EnvType.CLIENT)
 public class GuardianTurretEntityRenderer extends MobEntityRenderer<GuardianTurretEntity, GuardianTurretEntityModel<GuardianTurretEntity>> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/guardian_turret.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/guardian_turret.png");
 	
 	public GuardianTurretEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new GuardianTurretEntityModel<>(context.getPart(SpectrumModelLayers.GUARDIAN_TURRET)), 0.0F);

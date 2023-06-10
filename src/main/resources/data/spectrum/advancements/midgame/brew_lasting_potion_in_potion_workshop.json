@@ -13,7 +13,7 @@
     }
   },
   "criteria": {
-    "brewed_level_four_potion_in_potion_workshop": {
+    "brewed_lasting_potion_in_potion_workshop": {
       "trigger": "spectrum:potion_workshop_brewing",
       "conditions": {
         "item": {

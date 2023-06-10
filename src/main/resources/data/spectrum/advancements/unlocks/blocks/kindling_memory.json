@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_memories": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/memories"
+      }
+    },
+    "broken_cracked_dragonbone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
+      }
+    }
+  }
+}

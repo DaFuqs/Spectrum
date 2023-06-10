@@ -1,0 +1,34 @@
+{
+  "parent": "spectrum:lategame/pluck_effulgent_feather",
+  "display": {
+    "icon": {
+      "item": "spectrum:refined_bloodstone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.grow_bloodstone_in_crystallarieum.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.grow_bloodstone_in_crystallarieum.description"
+    }
+  },
+  "criteria": {
+    "created_onyx": {
+      "trigger": "spectrum:crafted_with_fusion_shrine",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:refined_bloodstone"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+      }
+    }
+  }
+}

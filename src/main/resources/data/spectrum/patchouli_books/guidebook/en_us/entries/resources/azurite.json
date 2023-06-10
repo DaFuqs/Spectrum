@@ -3,6 +3,7 @@
   "advancement": "spectrum:midgame/collect_azurite",
   "icon": "spectrum:raw_azurite",
   "category": "spectrum:resources_category",
+  "turnin": "spectrum:midgame/create_refined_azurite",
   "extra_recipe_mappings": {
     "spectrum:azurite_ore": 0,
     "spectrum:deepslate_azurite_ore": 0,
@@ -24,6 +25,13 @@
       "title": "Refining Azurite",
       "recipe": "spectrum:fusion_shrine/refined_azurite",
       "text": "Refining Azurite is not a cheap task.$(br)In this refined ingot form Azurite can be used for a lot more recipes."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/resources/azurite_growing",
+      "title": "Growing Azurite",
+      "recipe": "spectrum:crystallarieum/azurite",
+      "text": ""
     }
   ]
 }

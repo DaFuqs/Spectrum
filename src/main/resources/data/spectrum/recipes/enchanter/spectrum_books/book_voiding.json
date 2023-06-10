@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:unlocks/enchantments/voiding",
+  "required_advancement": "spectrum:unlocks/enchantments/voiding_crafting",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

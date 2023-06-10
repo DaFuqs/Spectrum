@@ -3,6 +3,7 @@
   "advancement": "spectrum:lategame/collect_bismuth",
   "icon": "spectrum:bismuth_flake",
   "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/collect_bismuth_crystal",
   "extra_recipe_mappings": {
     "spectrum:bismuth_flake": 0,
     "spectrum:bismuth_block": 0,
@@ -15,7 +16,7 @@
     {
       "type": "patchouli:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br)How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals while you had both in your pocket."
+      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br2)How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals while you had both in your pocket."
     },
     {
       "type": "spectrum:crystallarieum_growing",

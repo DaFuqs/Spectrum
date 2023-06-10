@@ -15,7 +15,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:aloe_leaf",
-      "text": "You can break off individual leaves.$(br)The leaves retain a lot of moisture and are quite nutritious.$(br)Planted, they will grow into a full-fledged new plant over time."
+      "text": "You can break off individual leaves. They retain a lot of moisture and are quite nutritious.$(br)Planted, they will grow into a full-fledged new plant over time."
     }
   ]
 }

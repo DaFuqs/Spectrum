@@ -79,29 +79,34 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(SNAPPED)) {
-            BlockState newState = state.with(SNAPPED, false);
-            world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-            world.playSound(null, pos, SoundEvents.BLOCK_BIG_DRIPLEAF_TILT_UP, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
+            snap(state, world, pos, false);
         }
     }
     
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         boolean snapped = state.get(SNAPPED);
-        
+
+        if (!snapped && entity instanceof ItemEntity) {
+            snap(state, world, pos, true);
+        }
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
+                // TODO - DamageSource
                 entity.damage(world.getDamageSources().sweetBerryBush(), 5.0F);
                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
-                
-                BlockState newState = state.with(SNAPPED, true);
-                world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-                world.playSound(null, pos, SoundEvents.BLOCK_BIG_DRIPLEAF_TILT_DOWN, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
+
+                snap(state, world, pos, true);
             }
         }
+    }
+
+    private static void snap(BlockState state, World world, BlockPos pos, boolean close) {
+        BlockState newState = state.with(SNAPPED, close);
+        world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
+        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
+        world.playSound(null, pos, close ? SoundEvents.BLOCK_BIG_DRIPLEAF_TILT_DOWN : SoundEvents.BLOCK_BIG_DRIPLEAF_TILT_UP, SoundCategory.BLOCKS, 1.0F, MathHelper.nextBetween(world.random, 0.8F, 1.2F));
     }
     
 }

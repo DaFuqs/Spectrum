@@ -26,7 +26,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable, Flutterer {
+public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable /*,Flutterer*/ {
 	
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	protected static final Ingredient FOOD_IF_YOU_WANT_A_BAD_TIME = Ingredient.ofItems(SpectrumItems.BLOODBOIL_SYRUP.asItem());

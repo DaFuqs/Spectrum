@@ -4,6 +4,17 @@
   "flag": "mod:gobber2",
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
+  "extra_recipe_mappings": {
+    "spectrum:small_globette_bud": 0,
+    "spectrum:large_globette_bud": 0,
+    "spectrum:globette_cluster": 0,
+    "spectrum:small_globette_end_bud": 0,
+    "spectrum:large_globette_end_bud": 0,
+    "spectrum:globette_end_cluster": 0,
+    "spectrum:small_globette_nether_bud": 0,
+    "spectrum:large_globette_nether_bud": 0,
+    "spectrum:globette_nether_cluster": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",
@@ -25,7 +36,7 @@
       "type": "spectrum:crystallarieum_growing",
       "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette_end",
       "advancement": "spectrum:unlocks/blocks/crystallarieum",
-      "text": "You are not going to believe this"
+      "text": "You are not going to believe this."
     }
   ]
 }

@@ -41,10 +41,10 @@
       "invalid_blocks": "#minecraft:geode_invalid_blocks"
     },
     "layers": {
-      "filling": 3.8,
-      "inner_layer": 4.5,
-      "middle_layer": 5.9,
-      "outer_layer": 7.0
+      "filling": 2.8,
+      "inner_layer": 3.5,
+      "middle_layer": 4.9,
+      "outer_layer": 6.0
     },
     "crack": {
       "generate_crack_chance": 0.15,
@@ -53,7 +53,7 @@
     },
     "noise_multiplier": 0.05,
     "use_potential_placements_chance": 1.0,
-    "use_alternate_layer0_chance": 0.1,
+    "use_alternate_layer0_chance": 0.08,
     "placements_require_layer0_alternate": true,
     "outer_wall_distance": {
       "type": "minecraft:uniform",

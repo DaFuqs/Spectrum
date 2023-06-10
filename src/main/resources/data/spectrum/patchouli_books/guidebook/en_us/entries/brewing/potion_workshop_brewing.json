@@ -89,6 +89,20 @@
       "advancement": "spectrum:unlocks/potions/toughness",
       "recipe": "spectrum:potion_workshop_brewing/toughness",
       "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Deadly Poison",
+      "advancement": "spectrum:unlocks/potions/deadly_poison",
+      "recipe": "spectrum:potion_workshop_brewing/deadly_poison",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Life Drain",
+      "advancement": "spectrum:unlocks/potions/life_drain",
+      "recipe": "spectrum:potion_workshop_brewing/life_drain",
+      "text": ""
     }
   ]
 }

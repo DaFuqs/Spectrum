@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:dragonbone_chunk"
+  },
+  "ingredient3": {
+    "item": "minecraft:fermented_spider_eye"
+  },
+  "effect": "spectrum:life_drain",
+  "base_duration_ticks": 400,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/life_drain",
+  "ink_color": "gray",
+  "ink_cost": 4
+}

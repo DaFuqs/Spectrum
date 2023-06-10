@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "unlocked_glass_crest_tools": {
+    "unlocked_malachite_tools": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
+        "advancement_identifier": "spectrum:unlocks/malachite/malachite_tools"
       }
     },
     "collected_moonstone_core": {

@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/build_cinderhearth_structure",
   "display": {
     "icon": {
-      "item": "spectrum:cinderhearth"
+      "item": "minecraft:bucket"
     },
     "hidden": true,
     "title": {

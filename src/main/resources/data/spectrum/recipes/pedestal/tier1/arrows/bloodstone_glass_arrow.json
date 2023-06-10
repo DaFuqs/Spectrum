@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "glass_arrows",
+  "time": 200,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "TMT",
+    " S ",
+    " F "
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:refined_bloodstone"
+    },
+    "M": {
+      "item": "spectrum:malachite_crystal"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "spectrum:effulgent_feather"
+    }
+  },
+  "result": {
+    "item": "spectrum:malachite_glass_arrow",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/malachite/glass_arrows"
+}

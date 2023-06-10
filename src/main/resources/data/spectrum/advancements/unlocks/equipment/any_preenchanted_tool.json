@@ -1,5 +1,11 @@
 {
   "criteria": {
+    "unlocked_tender_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/tender_pickaxe"
+      }
+    },
     "unlocked_lucky_pickaxe": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
@@ -12,18 +18,33 @@
         "advancement_identifier": "spectrum:unlocks/equipment/razor_falchion"
       }
     },
-    "unlocked_tender_pickaxe": {
+    "unlocked_oblivion_pickaxe": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/equipment/tender_pickaxe"
+        "advancement_identifier": "spectrum:unlocks/equipment/oblivion_pickaxe"
+      }
+    },
+    "unlocked_resonant_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/resonant_pickaxe"
+      }
+    },
+    "unlocked_dragonrending_pickaxe": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/equipment/dragonrending_pickaxe"
       }
     }
   },
   "requirements": [
     [
+      "unlocked_tender_pickaxe",
       "unlocked_lucky_pickaxe",
       "unlocked_razor_falchion",
-      "unlocked_tender_pickaxe"
+      "unlocked_oblivion_pickaxe",
+      "unlocked_resonant_pickaxe",
+      "unlocked_dragonrending_pickaxe"
     ]
   ]
 }

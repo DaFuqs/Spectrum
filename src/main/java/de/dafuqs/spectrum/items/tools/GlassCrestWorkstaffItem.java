@@ -43,14 +43,20 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
         }
         return result;
     }
-
+    
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        super.useOnBlock(context);
+        return ActionResult.CONSUME; // never shoot projectiles when targeting a block
+    }
+    
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         if (canShoot(stack.getNbt())) {
             tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectile").formatted(Formatting.GRAY));
         } else {
-			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));
+            tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));
         }
     }
 

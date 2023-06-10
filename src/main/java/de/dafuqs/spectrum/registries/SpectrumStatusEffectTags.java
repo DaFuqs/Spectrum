@@ -17,8 +17,12 @@ public class SpectrumStatusEffectTags {
 	}
 	
 	public static void register() {
-		UNCURABLE = getReference("uncurable");
-		NO_DURATION_EXTENSION = getReference("no_duration_extension");
+		UNCURABLE = of("uncurable");
+		NO_DURATION_EXTENSION = of("no_duration_extension");
+	}
+
+	private static TagKey<StatusEffect> of(String id) {
+		return TagKey.of(Registry.MOB_EFFECT_KEY, SpectrumCommon.locate(id));
 	}
 	
 	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {

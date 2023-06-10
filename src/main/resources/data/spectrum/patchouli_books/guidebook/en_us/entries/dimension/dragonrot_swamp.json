@@ -13,11 +13,12 @@
       "images": [
         "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
       ],
+      "border": true,
       "text": ""
     },
     {
       "type": "patchouli:text",
-      "text": "It is not water that gives the biome its distinctive name. Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here. An acidic smell lingers in the air."
+      "text": "It is not water that gives the biome its distinctive name. Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.$(br)An acidic smell lingers in the air."
     },
     {
       "type": "patchouli:spotlight",

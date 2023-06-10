@@ -4,6 +4,7 @@
     "#spectrum:deep_soils",
 
     "spectrum:sacred_soil",
-    "spectrum:rotten_ground"
+    "spectrum:rotten_ground",
+    "spectrum:tilled_slush"
   ]
 }

@@ -19,7 +19,7 @@ public class TranslationStorageMixin {
     @Inject(method = "<init>", at = @At("TAIL"))
     private void addTranslations(Map<String, String> translations, boolean rightToLeft, CallbackInfo ci) {
         Calendar calendar = Calendar.getInstance();
-        if(calendar.get(Calendar.MONTH) != Calendar.APRIL || calendar.get(Calendar.DAY_OF_MONTH) != 14) return;
+        if (calendar.get(Calendar.MONTH) != Calendar.APRIL || calendar.get(Calendar.DAY_OF_MONTH) != 1) return;
 
         Map<String, String> builder = new HashMap<>(translations);
         builder.put("block.spectrum.crystallarieum", getCrystallarieuaeuieueum());

@@ -91,7 +91,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:stardust",
       "advancement": "spectrum:hidden/collect_stardust",
-      "text": "50% chance to add the main Effect of the Potion that was brewed before."
+      "text": "75% chance to add the main Effect of the Potion that was brewed before."
     },
     {
       "type": "patchouli:spotlight",

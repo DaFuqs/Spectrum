@@ -34,25 +34,26 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(input.get(0), 0, 8);
-
+		
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM), 20, 18).drawBack(false);
-
+		
 		widgets.addFillingArrow(40, 9, recipe.getSecondsPerGrowthStage() * 1000);
-
+		
 		List<EmiStack> states = recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).toList();
-		widgets.addSlot(states.get(0), 20, 0);
+		Iterator<EmiStack> it = states.iterator();
+		widgets.addSlot(it.next(), 20, 0);
 		int x = 66;
-		for (EmiStack stack : states) {
-			widgets.addSlot(stack, x, 8).recipeContext(this);
+		while (it.hasNext()) {
+			widgets.addSlot(it.next(), x, 8).recipeContext(this);
 			x += 20;
 		}
-
+		
 		// catalysts
 		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.catalyst"), 0, 42, 0x3f3f3f, false);
 		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.accelerator"), 0, 58, 0x3f3f3f, false);
 		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.ink_consumption"), 0, 68, 0x3f3f3f, false);
 		widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.used_up"), 0, 78, 0x3f3f3f, false);
-
+		
 		List<CrystallarieumCatalyst> catalysts = recipe.getCatalysts();
 		for (int i = 0; i < catalysts.size(); i++) {
 			CrystallarieumCatalyst catalyst = catalysts.get(i);

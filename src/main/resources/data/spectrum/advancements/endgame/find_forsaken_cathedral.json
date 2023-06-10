@@ -22,7 +22,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "spectrum:dimension/forsaken_cathedral"
+                "structure": "spectrum:forsaken_cathedral"
               }
             }
           }

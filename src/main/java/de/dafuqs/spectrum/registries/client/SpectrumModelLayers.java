@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.blocks.mob_head.models.*;
 import de.dafuqs.spectrum.entity.models.*;
 import de.dafuqs.spectrum.render.armor.*;
 import net.fabricmc.api.*;
@@ -32,6 +32,10 @@ public class SpectrumModelLayers {
 	 * Blocks
 	 */
 	public static final EntityModelLayer EGG_LAYING_WOOLY_PIG_HEAD = new EntityModelLayer(SpectrumCommon.locate("egg_laying_wooly_pig_head"), "main");
+	public static final EntityModelLayer MONSTROSITY_HEAD = new EntityModelLayer(SpectrumCommon.locate("monstrosity_head"), "main");
+	public static final EntityModelLayer KINDLING_HEAD = new EntityModelLayer(SpectrumCommon.locate("kindling_head"), "main");
+	public static final EntityModelLayer LIZARD_HEAD = new EntityModelLayer(SpectrumCommon.locate("lizard_head"), "main");
+	public static final EntityModelLayer GUARDIAN_TURRET_HEAD = new EntityModelLayer(SpectrumCommon.locate("guardian_turret_head"), "main");
 	public static final EntityModelLayer WARDEN_HEAD = new EntityModelLayer(SpectrumCommon.locate("warden_head"), "main");
 	
 	/**
@@ -54,9 +58,14 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(EGG_LAYING_WOOLY_PIG_HEAD, EggLayingWoolyPigHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY_HEAD, MonstrosityHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_HEAD, KindlingHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD, LizardHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GUARDIAN_TURRET_HEAD, GuardianTurretHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD, WardenHeadModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(FEET_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 	}
+	
 }

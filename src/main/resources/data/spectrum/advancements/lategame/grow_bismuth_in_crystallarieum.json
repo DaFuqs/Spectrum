@@ -16,7 +16,9 @@
       "trigger": "spectrum:crystallarieum_growing",
       "conditions": {
         "grown_block": {
-          "block": "spectrum:bismuth_cluster"
+          "blocks": [
+            "spectrum:bismuth_cluster"
+          ]
         }
       }
     },

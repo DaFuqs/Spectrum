@@ -12,31 +12,35 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:resources/malachite)Malachite$() as a material does seem perfectly suited for tools, best compared to $(item)Diamond$(), but far more easily combinable with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
+      "text": "$(l:resources/malachite)Malachite$() as a material seems perfect for tools, best compared to $(item)Diamond$(), but much easier to combine with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Workstaff",
       "anchor": "workstaff",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
-      "text": "The perfect $(l:equipment/multitool)Multitool$():$(br)$(k:sneak) + $(k:use) allows you to switch between $(thing)Silk Touch$() and $(thing)Fortune$(), mine large tunnels at once and allows you to $(thing)strip$(), $(thing)till$() and $(thing)flatten$()."
+      "text": "The perfect $(l:equipment/multitool)Multitool$():$(br)$(k:sneak) + $(k:use) allows you to switch between $(thing)Silk Touch$() and $(thing)Fortune$(), mining large tunnels at once and allows you to $(thing)strip$(), $(thing)till$() and $(thing)flatten$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ultra Greatsword",
       "anchor": "greatsword",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
-      "text": "Its sheer size allows you to hit foes at a larger distance.$(br)Would it not be for the $(l:resources/paltaeria)Paltaeria$() you worked in, you probably wouldn't even be able to lift it."
+      "text": "Its sheer size allows you to hit enemies from a greater distance.$(br)If you hadn't included the $(l:resources/paltaeria)Paltaeria$(), you probably wouldn't even be able to lift it."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Bident",
       "anchor": "bident",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
-      "text": "A powerhouse, returning to you almost instantly.$(br2)$(italic)It may have only two prongs compared to a $(item)Trident$()$(italic), but they are twice as pointy!"
+      "text": "A true powerhouse when dealing with aquatic creatures.$(br2)$(italic)It may have only two prongs compared to a $(item)Trident$()$(italic), but those are twice as pointy!"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Crossbow",
       "anchor": "crossbow",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
-      "text": "Shoots projectiles at a higher Speed and precision compared to a mundane $(item)Crossbow$()."
+      "text": "Shoots projectiles at a higher speed and precision compared to a mundane $(item)Crossbow$()."
     }
   ]
 }

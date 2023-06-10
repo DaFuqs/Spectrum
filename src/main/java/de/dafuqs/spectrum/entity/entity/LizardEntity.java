@@ -167,5 +167,9 @@ public class LizardEntity extends TameableEntity {
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return 0.8F * dimensions.height;
 	}
-	
+
+	@Override
+	public EntityView method_48926() {
+		return this.getWorld();
+	}
 }

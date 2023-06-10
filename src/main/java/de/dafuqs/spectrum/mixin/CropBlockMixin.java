@@ -43,8 +43,8 @@ public abstract class CropBlockMixin {
 		}
 	}
 	
-	@Inject(at = @At("HEAD"), method = "isFertilizable(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)Z", cancellable = true)
-	public void isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+	@Inject(at = @At("HEAD"), method = "isFertilizable(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Z)Z", cancellable = true)
+	public void isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
 		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
 			cir.cancel();
 		}

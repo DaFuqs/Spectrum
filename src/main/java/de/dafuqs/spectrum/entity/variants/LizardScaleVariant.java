@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.variants;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public record LizardScaleVariant(Identifier texture) {
 	

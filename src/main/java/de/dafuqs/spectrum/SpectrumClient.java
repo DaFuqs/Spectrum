@@ -181,7 +181,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			if (client.player != null && context.blockOutlines()) {
 				for (ItemStack handStack : client.player.getHandItems()) {
 					Item handItem = handStack.getItem();
-					if (handItem instanceof PlacementStaffItem) {
+					if (handItem instanceof ConstructorsStaffItem) {
 						if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
 							shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
 						}
@@ -235,7 +235,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
+					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
 				}
 
 				boolean sneaking = player.isSneaking();
@@ -245,7 +245,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
-					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, PlacementStaffItem.getRange(player), !sneaking);
+					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
 					if (positions.size() > 0) {
 						for (BlockPos newPosition : positions) {
 							if (world.getWorldBorder().contains(newPosition)) {

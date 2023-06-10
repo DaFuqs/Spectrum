@@ -1,24 +1,14 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
-import de.dafuqs.spectrum.items.tools.GlassArrowVariant;
-import de.dafuqs.spectrum.registries.SpectrumRegistries;
-import de.dafuqs.spectrum.spells.MoonstoneStrike;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -99,7 +89,7 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
 			BlockState state = this.world.getBlockState(hitPos);
-			if (state.isTranslucent(world, hitPos)) {
+			if (state.isTransparent(world, hitPos)) {
 				return;
 			}
 		}

@@ -357,7 +357,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	private boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, Inventory inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
-			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity);
+			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity, pedestalBlockEntity.getWorld().getRegistryManager());
 			ItemStack recipeOutputCopy = recipeOutput.copy();
 			int craftingDuration = pedestalBlockEntity.craftingTimeTotal;
 			
@@ -368,7 +368,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// It is an upgrade recipe (output is a pedestal block item)
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
-				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
+				PedestalBlock.upgradeToVariant(pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos(), newPedestalVariant);
 				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
@@ -376,7 +376,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
 				double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD);
-				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
+				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.getWorld().random);
 				
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = inventory.getStack(OUTPUT_SLOT_ID);

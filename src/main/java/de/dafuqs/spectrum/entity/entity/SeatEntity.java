@@ -10,8 +10,10 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -111,7 +113,7 @@ public class SeatEntity extends Entity {
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         setEmptyTicks(nbt.getInt("emptyTicks"));
 
-        var state = NbtHelper.toBlockState(nbt.getCompound("BlockState"));
+        var state = NbtHelper.toBlockState(this.world.createCommandRegistryWrapper(RegistryKeys.BLOCK), nbt.getCompound("BlockState"));
         dataTracker.set(CUSHION, Optional.ofNullable(state.isAir() ? null : state));
 
         offset = nbt.getDouble("offset");
@@ -125,7 +127,7 @@ public class SeatEntity extends Entity {
     }
 
     @Override
-    public Packet<?> createSpawnPacket() {
+    public Packet<ClientPlayPacketListener> createSpawnPacket() {
         return new EntitySpawnS2CPacket(this);
     }
 

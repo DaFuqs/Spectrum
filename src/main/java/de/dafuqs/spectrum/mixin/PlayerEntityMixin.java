@@ -23,7 +23,6 @@ import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -74,6 +73,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Inject(at = @At("TAIL"), method = "jump()V")
 	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
+
 		if ((Object) this instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}

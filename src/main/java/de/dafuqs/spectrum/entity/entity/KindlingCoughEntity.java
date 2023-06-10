@@ -52,7 +52,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		Entity entity = this.getOwner();
 		if (entity instanceof LivingEntity livingEntity) {
-			entityHitResult.getEntity().damage(SpectrumDamageSources.kindlingCough(this, livingEntity), 6.0F);
+			entityHitResult.getEntity().damage(SpectrumDamageSources.kindlingCough(this.getWorld(), livingEntity), 6.0F);
 		}
 		
 	}

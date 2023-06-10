@@ -45,8 +45,8 @@ public class VectorCast {
     }
 
     public List<CollisionResult<BlockPos>> castForBlocks(ServerWorld world, Entity except, BiPredicate<ServerWorld, BlockPos> preCollisionTestFiltering) {
-        var blockStart = new BlockPos(start);
-        var blockEnd = new BlockPos(end);
+        var blockStart = BlockPos.ofFloored(start);
+        var blockEnd = BlockPos.ofFloored(end);
         var ray = getRelativeToOrigin(end);
 
         var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);

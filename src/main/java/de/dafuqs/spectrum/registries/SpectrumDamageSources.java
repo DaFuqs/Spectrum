@@ -38,6 +38,8 @@ public class SpectrumDamageSources {
 	public static final RegistryKey<DamageType> SAWTOOTH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sawtooth"));
 	public static final RegistryKey<DamageType> SET_HEALTH_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("set_health_damage"));
 	public static final RegistryKey<DamageType> IRRADIANCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("irradiance"));
+	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
+	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
 
 	public static DamageSource sawtooth(World world) {
 		return new DamageSource(world.getDamageSources().registry.getEntry(SAWTOOTH).orElseThrow());
@@ -97,8 +99,12 @@ public class SpectrumDamageSources {
 		return new DamageSource(world.getDamageSources().registry.getEntry(BRISTLE_SPROUTS).orElseThrow());
 	}
 
-	public static DamageSource kindlingCough(World world) {
-		return new DamageSource(world.getDamageSources().registry.getEntry(KINDLING_COUGH))
+	public static DamageSource kindlingCough(World world, LivingEntity attacker) {
+		return new KingdlingCoughDamageSource(world, attacker);
+	}
+
+	public static DamageSource snappingIvy(World world) {
+		return new DamageSource(world.getDamageSources().registry.getEntry(SNAPPING_IVY).orElseThrow());
 	}
 
 	public static class SetHealthDamageSource extends DamageSource {
@@ -129,6 +135,13 @@ public class SpectrumDamageSources {
 
 		public IrradianceDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(IRRADIANCE).orElseThrow(), attacker);
+		}
+	}
+
+	public static class KingdlingCoughDamageSource extends DamageSource {
+
+		public KingdlingCoughDamageSource(World world, @Nullable LivingEntity attacker) {
+			super(world.getDamageSources().registry.getEntry(KINDLING_COUGH).orElseThrow(), attacker);
 		}
 	}
 

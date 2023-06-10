@@ -114,7 +114,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
 	}
 	
-	@Override
 	public boolean hasWings() {
 		return this.isInAir() && this.age % 2 == 0;
 	}
@@ -202,7 +201,12 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	public boolean canBreedWith(AnimalEntity other) {
 		return other != this && other instanceof KindlingEntity otherKindling && this.canBreed() && otherKindling.canBreed();
 	}
-	
+
+	@Override
+	public EntityView method_48926() {
+		return this.getWorld();
+	}
+
 	class CoughRevengeGoal extends RevengeGoal {
 		
 		public CoughRevengeGoal(KindlingEntity kindling) {

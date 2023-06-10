@@ -31,9 +31,8 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
 	}
 
-	// TODO - Checkem
 	@Override
-	public ItemStack craftAndDecrement(Inventory inv, DynamicRegistryManager drm) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
 			if (orientation == null) {

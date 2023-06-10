@@ -171,7 +171,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		return this.output.copy();
 	}
 	
-	public ItemStack craftAndDecrement(Inventory inv) {
+	public ItemStack craftAndDecrement(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
 			if (orientation == null) {
@@ -179,7 +179,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 			}
 			decrementIngredientStacks(pedestal, orientation);
 			
-			ItemStack recipeOutput = craft(inv, pedestal.getWorld().getRegistryManager());
+			ItemStack recipeOutput = craft(inv, drm);
 			PlayerEntity player = pedestal.getOwnerIfOnline();
 			if (player != null) {
 				recipeOutput.onCraft(pedestal.getWorld(), player, recipeOutput.getCount());

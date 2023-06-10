@@ -111,7 +111,7 @@ public class SpectrumBlocks {
 	public static final Block CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0F).nonOpaque().ticksRandomly());
-	
+
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
 	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance(6));
@@ -152,11 +152,6 @@ public class SpectrumBlocks {
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
-	
-	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
-	public static final Block BLOODSTONE_BLOCK = new PillarBlock(AbstractBlock.Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
 
 	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(AbstractBlock.Settings.copy(Blocks.RED_WOOL).strength(5F));
 	public static final Block EFFULGENT_CUSHION = new CushionBlock(AbstractBlock.Settings.copy(EFFULGENT_BLOCK));
@@ -1245,14 +1240,21 @@ public class SpectrumBlocks {
 			// Add all of them to the item group when registered
 			if (SpectrumCommon.minecraftServer != null) {
 				var drm = SpectrumCommon.minecraftServer.getRegistryManager();
-
+				Map<EntityType<?>, ItemStack> uniqueMemories = new HashMap<>();
 
 				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
 				for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-					if (recipe.getOutput(drm).isOf(memoryItem)) {
-						entries.add(recipe.getOutput(drm));
+
+					ItemStack output = recipe.getOutput(drm);
+					Optional<EntityType<?>> type = MemoryItem.getEntityType(output.getNbt());
+
+					if (output.isOf(memoryItem) && type.isPresent()) {
+						uniqueMemories.put(type.get(), recipe.getOutput(drm));
 					}
 				}
+
+				entries.addAll(uniqueMemories.values());
+
 			}
 		})), DyeColor.LIGHT_GRAY);
 		

@@ -12,7 +12,6 @@ public class SpectrumStatusEffectTags {
 	public static TagKey<StatusEffect> NO_DURATION_EXTENSION;
 	
 	private static TagKey<StatusEffect> getReference(String id) {
-		// TODO - Is status effect correct here? Should be, although...
 		return TagKey.of(RegistryKeys.STATUS_EFFECT, SpectrumCommon.locate(id));
 	}
 	
@@ -22,7 +21,7 @@ public class SpectrumStatusEffectTags {
 	}
 
 	private static TagKey<StatusEffect> of(String id) {
-		return TagKey.of(Registry.MOB_EFFECT_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(RegistryKeys.STATUS_EFFECT, SpectrumCommon.locate(id));
 	}
 	
 	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {

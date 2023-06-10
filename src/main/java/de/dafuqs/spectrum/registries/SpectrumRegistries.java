@@ -7,8 +7,7 @@ import net.fabricmc.fabric.api.event.registry.*;
 import net.minecraft.registry.*;
 
 public class SpectrumRegistries {
-	// TODO - Use SimpleRegistry instead
-	public static final RegistryKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT_KEY = SpectrumRegistries.createRegistryKey("glass_arrow_variant");
+	public static final RegistryKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT_KEY = RegistryKey.ofRegistry(SpectrumCommon.locate("glass_arrow_variant"));
 	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = FabricRegistryBuilder.createSimple(GLASS_ARROW_VARIANT_KEY)
 			.attribute(RegistryAttribute.SYNCED)
 			.buildAndRegister();

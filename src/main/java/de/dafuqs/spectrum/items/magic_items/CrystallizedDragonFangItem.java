@@ -1,10 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.LightShardEntity;
 import de.dafuqs.spectrum.helpers.VectorCast;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,7 +43,7 @@ public class CrystallizedDragonFangItem extends Item {
             SpectrumCommon.logError("!!!!!!!!!");
 
             collisions.forEach(entityCollisionResult -> {
-                entityCollisionResult.collision().damage(DamageSource.MAGIC, 5);
+                entityCollisionResult.collision().damage(world.getDamageSources().magic(), 5);
             });
         }
         

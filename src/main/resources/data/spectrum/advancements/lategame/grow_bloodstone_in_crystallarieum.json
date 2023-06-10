@@ -12,16 +12,14 @@
     }
   },
   "criteria": {
-    "created_onyx": {
-      "trigger": "spectrum:crafted_with_fusion_shrine",
+    "fully_grown_bloodstone": {
+      "trigger": "spectrum:crystallarieum_growing",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:refined_bloodstone"
-            ]
-          }
-        ]
+        "grown_block": {
+          "blocks": [
+            "spectrum:bloodstone_cluster"
+          ]
+        }
       }
     },
     "gotten_previous": {

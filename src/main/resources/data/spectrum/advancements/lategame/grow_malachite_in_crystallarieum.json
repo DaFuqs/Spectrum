@@ -16,7 +16,9 @@
       "trigger": "spectrum:crystallarieum_growing",
       "conditions": {
         "grown_block": {
-          "block": "spectrum:malachite_cluster"
+          "blocks": [
+            "spectrum:malachite_cluster"
+          ]
         }
       }
     },

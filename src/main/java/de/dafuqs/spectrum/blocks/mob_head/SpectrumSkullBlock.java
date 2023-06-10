@@ -186,7 +186,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		// most mob heads render with the player head renderer using a different texture, but some use unique renderers already
 		// somewhen in the future hopefully all of them get their own unique head block model
 		SpectrumSkullBlockType(EntityType entityType) {
-			this(entityType, true);
+			this(entityType, false);
 		}
 		
 		// if you use this constructor you will also need to add that unique Renderer

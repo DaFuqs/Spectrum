@@ -1,7 +1,55 @@
 {
 	"variants": {
-		"": {
-			"model": "spectrum:block/crystallarieum"
-		}
-	}
+      "color=white": {
+        "model": "spectrum:block/crystallarieum_white"
+      },
+      "color=orange": {
+        "model": "spectrum:block/crystallarieum_orange"
+      },
+      "color=magenta": {
+        "model": "spectrum:block/crystallarieum_magenta"
+      },
+      "color=light_blue": {
+        "model": "spectrum:block/crystallarieum_light_blue"
+      },
+      "color=yellow": {
+        "model": "spectrum:block/crystallarieum_yellow"
+      },
+      "color=lime": {
+        "model": "spectrum:block/crystallarieum_lime"
+      },
+      "color=pink": {
+        "model": "spectrum:block/crystallarieum_pink"
+      },
+      "color=gray": {
+        "model": "spectrum:block/crystallarieum_gray"
+      },
+      "color=light_gray": {
+        "model": "spectrum:block/crystallarieum_light_gray"
+      },
+      "color=cyan": {
+        "model": "spectrum:block/crystallarieum_cyan"
+      },
+      "color=purple": {
+        "model": "spectrum:block/crystallarieum_purple"
+      },
+      "color=blue": {
+        "model": "spectrum:block/crystallarieum_blue"
+      },
+      "color=brown": {
+        "model": "spectrum:block/crystallarieum_brown"
+      },
+      "color=green": {
+        "model": "spectrum:block/crystallarieum_green"
+      },
+      "color=red": {
+        "model": "spectrum:block/crystallarieum_red"
+      },
+      "color=black": {
+        "model": "spectrum:block/crystallarieum_black"
+      },
+      "color=none": {
+        "model": "spectrum:block/crystallarieum_none"
+      }
+    }
 }

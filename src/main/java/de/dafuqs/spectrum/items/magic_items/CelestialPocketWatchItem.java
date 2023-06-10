@@ -22,7 +22,7 @@ public class CelestialPocketWatchItem extends Item {
 	// Since the watch can be triggered from an item frame, too
 	// and item frames can turn items in 8 directions this fits real fine
 	public static final int TIME_STEP_TICKS = 24000 / 8;
-	public static final InkCost COST = new InkCost(InkColors.MAGENTA, 10000);
+	public static final InkCost COST = new InkCost(InkColors.MAGENTA, 1000);
 
 	enum TimeToggleResult {
 		SUCCESS,

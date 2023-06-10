@@ -1,43 +1,23 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.texture.*;
-import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
-	
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/crystallarieum_overlay"));
-	private final ModelPart body;
-	
+
 	public CrystallarieumBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		TexturedModelData texturedModelData = createBodyLayer();
-		ModelPart root = texturedModelData.createModel();
-		this.body = root.getChild("body");
+
 	}
 	
 	@Override
 	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		CrystallarieumRecipe recipe = entity.getCurrentRecipe();
-		if (recipe != null) {
-			InkColor inkColor = recipe.getInkColor();
-			
-			VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
-			body.render(matrices, vertexConsumer, light, overlay, inkColor.getColor().x(), inkColor.getColor().y(), inkColor.getColor().z(), 1.0F);
-		}
-		
 		ItemStack inkStorageStack = entity.getStack(CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID);
 		if(!inkStorageStack.isEmpty()) {
 			matrices.push();
@@ -92,14 +72,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			matrices.pop();
 		}
 	}
-	
-	public static TexturedModelData createBodyLayer() {
-		ModelData modelData = new ModelData();
-		ModelPartData root = modelData.getRoot();
-		root.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(0.0F, 5.0F, 0.0F, 16.0F, 4.0F, 16.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-		return TexturedModelData.of(modelData, 64, 64);
-	}
-	
+
 	@Override
 	public int getRenderDistance() {
 		return 16;

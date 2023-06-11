@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.cca.*;
 import net.fabricmc.fabric.api.dimension.v1.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -70,6 +71,11 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 			return playerToRevive != null && HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean canPlayerCraft(PlayerEntity playerEntity) {
+		return true;
 	}
 	
 	@Nullable

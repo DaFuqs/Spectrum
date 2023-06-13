@@ -2706,6 +2706,9 @@
   "tag.spectrum.noxwood_amphoras": "Noxwood Amphoras",
   "tag.spectrum.noxwood_buttons": "Noxwood Buttons",
   "tag.spectrum.noxwood_fence_gates": "Noxwood Fence Gates",
+  "tag.spectrum.noxwood": "Noxwood",
+  "tag.spectrum.noxwood_doors": "Noxwood Doors",
+  "tag.spectrum.noxwood_pressure_plates": "Noxwood Pressure Plates",
   "tag.spectrum.noxwood_lanterns": "Noxwood Lanterns",
   "tag.spectrum.pillar_base_blocks": "Pillar Base Blocks",
   "tag.spectrum.polished_base_blocks": "Polished Spectrum Blocks",
@@ -3101,8 +3104,8 @@
   "advancements.spectrum.collect_dd_resources.description": "Collect all the various resources scattered around the Deeper Down",
   "advancements.spectrum.collect_hummingstone.title": "Songbird",
   "advancements.spectrum.collect_hummingstone.description": "Collect Hummingstone",
-  "advancements.spectrum.collect_downstone_fragments.title": "Bedrock 2: Electric Boogaloo",
-  "advancements.spectrum.collect_downstone_fragments.description": "Collect Downstone Fragments",
+  "advancements.spectrum.collect_downstone_fragments.title": "Massive Mechanisms",
+  "advancements.spectrum.collect_downstone_fragments.description": "Harvesting Downstone? The technology was definitely there",
   "advancements.spectrum.place_moonstone_in_preservation_ruins.title": "A Symbol of Healing",
   "advancements.spectrum.place_moonstone_in_preservation_ruins.description": "Restore an Ancient Shrine",
   "advancements.spectrum.start_crafting_time_consuming_pedestal_recipe.title": "Being Paintient",
@@ -3180,6 +3183,5 @@
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
   "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
   "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-  "advancements.spectrum.unused.title": "Massive Mechanisms",
   "advancements.spectrum.unused2.title": "Having a Blast"
 }

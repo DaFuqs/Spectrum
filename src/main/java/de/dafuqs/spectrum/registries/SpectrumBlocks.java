@@ -223,7 +223,9 @@ public class SpectrumBlocks {
 	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	
+
+	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).sounds(BlockSoundGroup.CHAIN));
+
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
 
@@ -1828,6 +1830,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
 
+		registerBlockWithItem("pyrite", PYRITE, Tab.DECORATION.settings(), DyeColor.PURPLE);
+
 		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
@@ -2702,6 +2706,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EBONY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAWTOOTH, RenderLayer.getCutoutMipped());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());

@@ -17,7 +17,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "spectrum:effulgent_feather"
+            "items": [
+              "spectrum:effulgent_feather"
+            ]
           }
         ]
       }

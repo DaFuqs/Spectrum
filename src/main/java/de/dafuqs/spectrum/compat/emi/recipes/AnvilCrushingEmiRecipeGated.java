@@ -22,7 +22,7 @@ public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCru
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(EmiStack.of(Items.ANVIL), 21, 10).drawBack(false);
 		widgets.addSlot(input.get(0), 21, 30);
-		widgets.addSlot(output.get(0), 90, 11).output(true).recipeContext(this);
+		widgets.addSlot(output.get(0), 90, 11).large(true).recipeContext(this);
 		
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 50, 16); // dirt wall
 		widgets.addTexture(WALL_TEXTURE, 0, 0, 16, 48, 0, 0); // falling stripes for anvil

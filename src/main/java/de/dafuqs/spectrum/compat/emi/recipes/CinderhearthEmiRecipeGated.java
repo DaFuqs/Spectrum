@@ -26,9 +26,9 @@ public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<Cinderhea
 		
 		for (int i = 0; i < 3; i++) {
 			if (i >= output.size()) {
-				widgets.addSlot(EmiStack.EMPTY, 50 + i * 26 + xOff, 5).output(true);
+				widgets.addSlot(EmiStack.EMPTY, 50 + i * 26 + xOff, 5).large(true);
 			} else {
-				widgets.addSlot(output.get(i), 50 + i * 26 + xOff, 5).output(true).recipeContext(this);
+				widgets.addSlot(output.get(i), 50 + i * 26 + xOff, 5).large(true).recipeContext(this);
 			}
 		}
 		

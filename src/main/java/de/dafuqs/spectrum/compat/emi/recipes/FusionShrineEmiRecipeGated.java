@@ -22,7 +22,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 			texts = List.of();
 		}
 		input = new ArrayList<>();
-		input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
+		input.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
 		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
 		output = List.of(EmiStack.of(recipe.getOutput()));
 	}
@@ -52,7 +52,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 			widgets.addSlot(input.get(i), startX + i * 20, 0);
 		}
 		
-		widgets.addSlot(output.get(0), 90, 20).output(true).recipeContext(this);
+		widgets.addSlot(output.get(0), 90, 20).large(true).recipeContext(this);
 		
 		widgets.addFillingArrow(60, 25, recipe.getCraftingTime() * 50);
 

@@ -17,6 +17,6 @@ public class FluidConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<FluidC
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 23, 4);
 		widgets.addSlot(input.get(0), 0, 4);
-		widgets.addSlot(output.get(0), 52, 0).output(true).recipeContext(this);
+		widgets.addSlot(output.get(0), 52, 0).large(true).recipeContext(this);
 	}
 }

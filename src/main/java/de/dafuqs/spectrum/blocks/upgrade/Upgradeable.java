@@ -20,16 +20,16 @@ public interface Upgradeable {
 		SPEED(1, InkColors.MAGENTA),     // faster crafting
 		EFFICIENCY(16, InkColors.BLACK), // chance to not use input resources (like gemstone powder)
 		YIELD(16, InkColors.LIGHT_BLUE), // chance to increase output
-		EXPERIENCE(1, InkColors.PURPLE); // increases XP output
-
+		EXPERIENCE(1, InkColors.PURPLE); // increased XP output / decreased XP usage
+		
 		private final int effectivityDivisor; // multiplied on top of crafting speed, chance to double output, ...
 		private final InkColor inkColor;
-
+		
 		UpgradeType(int effectivityDivisor, InkColor inkColor) {
 			this.effectivityDivisor = effectivityDivisor;
 			this.inkColor = inkColor;
 		}
-
+		
 		public int getEffectivityDivisor() {
 			return effectivityDivisor;
 		}
@@ -107,39 +107,39 @@ public interface Upgradeable {
 		}
 
 	}
-
-	static @NotNull UpgradeHolder calculateUpgradeMods4(World world, @NotNull BlockPos blockPos, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+	
+	static @NotNull UpgradeHolder calculateUpgradeMods4(World world, @NotNull BlockPos blockPos, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> posList = new ArrayList<>();
-		posList.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
-		posList.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
-		posList.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-		posList.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
-
+		posList.add(blockPos.add(offsetHorizontal, offsetUp, offsetHorizontal));
+		posList.add(blockPos.add(offsetHorizontal, offsetUp, -offsetHorizontal));
+		posList.add(blockPos.add(-offsetHorizontal, offsetUp, offsetHorizontal));
+		posList.add(blockPos.add(-offsetHorizontal, offsetUp, -offsetHorizontal));
+		
 		return calculateUpgrades(world, blockPos, posList, advancementPlayerUUID);
 	}
-
-	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
-		return calculateUpgradeMods2(world, blockPos, multiblockRotation, horizontalOffset, horizontalOffset, verticalOffset, advancementPlayerUUID);
+	
+	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int offsetHorizontal, int offsetUp, @Nullable UUID advancementPlayerUUID) {
+		return calculateUpgradeMods2(world, blockPos, multiblockRotation, offsetHorizontal, offsetHorizontal, offsetUp, advancementPlayerUUID);
 	}
-
-	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffsetX, int horizontalOffsetZ, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+	
+	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int offsetSide, int offsetBack, int offsetUp, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
-				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
-				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+				positions.add(blockPos.add(-offsetSide, offsetUp, offsetBack));
+				positions.add(blockPos.add(offsetSide, offsetUp, offsetBack));
 			}
 			case CLOCKWISE_90 -> {
-				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
-				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
+				positions.add(blockPos.add(-offsetBack, offsetUp, offsetSide));
+				positions.add(blockPos.add(-offsetBack, offsetUp, -offsetSide));
 			}
 			case CLOCKWISE_180 -> {
-				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
-				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
+				positions.add(blockPos.add(-offsetSide, offsetUp, -offsetBack));
+				positions.add(blockPos.add(offsetSide, offsetUp, -offsetBack));
 			}
 			default -> {
-				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
-				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+				positions.add(blockPos.add(offsetBack, offsetUp, -offsetSide));
+				positions.add(blockPos.add(offsetBack, offsetUp, offsetSide));
 			}
 		}
 		

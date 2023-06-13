@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:large_onyx_bud",
+              "name": "spectrum:large_topaz_bud",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

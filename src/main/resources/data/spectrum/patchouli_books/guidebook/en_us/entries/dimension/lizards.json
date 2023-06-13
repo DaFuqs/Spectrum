@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Lizards",
-      "text": "Quarrelsome beasts that are always looking for trouble.$(br)Actually, they would be quite cute if they didn't always try to bite off some of your limbs right away.$(br)...maybe you'd better keep them behind a $(items)Glass Pane$(), your extremities will thank you for it."
+      "text": "Quarrelsome beasts that are always looking for trouble.$(br2)Actually, they would be quite cute if they didn't always try to bite off some of your limbs right away.$(br)...maybe you'd better keep them behind a $(item)Glass Pane$(), your extremities will thank you for it."
     },
     {
       "type": "patchouli:entity",

@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Kindlings",
-      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those $(item)dragonbone chunks$().$(br2)Maybe you will be the one to restore the age of divine dragons?"
+      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those $(l:dimension/dragonbone#dragonbone_chunks)Dragonbone Chunks$().$(br2)Maybe you will be the one to restore the age of divine dragons?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

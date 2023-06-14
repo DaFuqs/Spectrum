@@ -224,7 +224,15 @@ public class SpectrumBlocks {
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 
-	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).sounds(BlockSoundGroup.CHAIN));
+	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
+	public static final Block PYRITE_PILE = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_TILE = new Block(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_PLATING = new Block(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_TUBING = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_RELIEF = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_STACK = new Block(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_PANNELING = new Block(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE_VENT = new Block(AbstractBlock.Settings.copy(PYRITE));
 
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
@@ -1831,6 +1839,14 @@ public class SpectrumBlocks {
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
 
 		registerBlockWithItem("pyrite", PYRITE, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_pile", PYRITE_PILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tile", PYRITE_TILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_stack", PYRITE_STACK, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_vent", PYRITE_VENT, Tab.DECORATION.settings(), DyeColor.PURPLE);
 
 		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);

@@ -1,5 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.*;
@@ -8,6 +11,9 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -22,9 +28,23 @@ import java.util.*;
 public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFillable {
 	
 	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
+	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
+	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
 	public NightfallsBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);
+
+		var damage = (float) attackDamage + material.getAttackDamage();
+		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
+		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", damage, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", -1.5F, EntityAttributeModifier.Operation.ADDITION));
+		this.attributeModifiers = builder.build();
+	}
+
+	@Override
+	public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
+		return slot == EquipmentSlot.MAINHAND ? attributeModifiers : super.getAttributeModifiers(slot);
 	}
 	
 	@Override
@@ -44,12 +64,12 @@ public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFi
 	
 	@Override
 	public int maxEffectAmplifier() {
-		return 2;
+		return 3;
 	}
 	
 	@Override
 	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
-		return (long) Math.pow(instance.getInkCost().getCost(), 2 + instance.getStatusEffectInstance().getAmplifier());
+		return Math.round(Math.pow(instance.getInkCost().getCost(), 1.75 + instance.getStatusEffectInstance().getAmplifier()));
 	}
 	
 	@Override
@@ -85,5 +105,9 @@ public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFi
 		super.appendTooltip(stack, world, tooltip, context);
 		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.nightfalls_blade.when_struck"), true);
 	}
-	
+
+	@Override
+	public boolean isWeapon() {
+		return true;
+	}
 }

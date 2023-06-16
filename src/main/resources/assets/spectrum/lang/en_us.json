@@ -2727,9 +2727,20 @@
   "tag.spectrum.shovels": "Spectrum Shovels",
   "tag.spectrum.swords": "Spectrum Swords",
 
-  "tag.trinkets.chest/pin": "Pins",
-  "tag.trinkets.head/crown": "Crowns",
-  "tag.trinkets.legs/pigment_palette": "Palettes",
+  "tag.spectrum.mud": "Mud",
+  "tag.spectrum.dragonrot": "Dragonrot",
+  "tag.spectrum.liquid_crystal": "Liquid Crystal",
+  "tag.spectrum.midnight_solution": "Midnight Solution",
+  "tag.spectrum.activates_weeping_circlet": "Activates Weeping Circlet",
+  "tag.spectrum.lagoon_rod_fishable_in": "Lagoon Rod Fishable",
+  "tag.spectrum.molten_rod_fishable_in": "Molten Rod Fishable",
+  "tag.spectrum.bedrock_rod_fishable_in": "Bedrock Rod Fishable",
+  "tag.spectrum.swimmable_fluid": "Additional Swimmable Fluids",
+  "tag.spectrum.midnight_solution_converted": "Midnight Solution Converted",
+
+  "tag.trinkets.chest.pin": "Pins",
+  "tag.trinkets.head.crown": "Crowns",
+  "tag.trinkets.legs.pigment_palette": "Palettes",
 
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",
   "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock",

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
@@ -12,11 +12,10 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
 import java.util.*;
 
-public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<CinderhearthRecipe> {
+public class PageCinderhearthSmelting extends PageGatedRecipe<CinderhearthRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
 	
@@ -36,7 +35,7 @@ public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<Cinderhea
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull CinderhearthRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull CinderhearthRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		
@@ -46,7 +45,7 @@ public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<Cinderhea
 		int backgroundTextureWidth = 34 + possibleOutputs.size() * 24;
 		DrawableHelper.drawTexture(ms, recipeX - 1, recipeY - 2, 0, 0, backgroundTextureWidth, 45, 128, 128);
 		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.drawCenteredStringNoShadow(ms, titleText.asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredient
 		Ingredient ingredient = recipe.getIngredients().get(0);

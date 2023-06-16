@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
 import de.dafuqs.revelationary.api.advancements.*;

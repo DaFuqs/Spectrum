@@ -1,7 +1,8 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
@@ -13,9 +14,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
-public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraftingRecipe> {
+public class PagePedestalCrafting extends PageGatedRecipe<PedestalCraftingRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting1.png");
 	private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting2.png");
@@ -36,12 +36,12 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull PedestalCraftingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull PedestalCraftingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, getBackgroundTextureForTier(recipe.getTier()));
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
 		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());
 		
 		switch (recipe.getTier()) {

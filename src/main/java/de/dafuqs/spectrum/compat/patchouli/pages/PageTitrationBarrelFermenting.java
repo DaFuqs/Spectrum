@@ -1,7 +1,8 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.id.incubus_core.recipe.*;
@@ -14,11 +15,10 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
 import java.util.*;
 
-public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITitrationBarrelRecipe> {
+public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrationBarrelRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/titration_barrel.png");
 	

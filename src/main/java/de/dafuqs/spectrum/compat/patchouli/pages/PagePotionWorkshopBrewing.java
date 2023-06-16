@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import de.dafuqs.spectrum.recipe.*;
 

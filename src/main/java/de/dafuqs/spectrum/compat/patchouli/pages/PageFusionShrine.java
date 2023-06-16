@@ -1,7 +1,8 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import net.id.incubus_core.recipe.*;
@@ -12,11 +13,10 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
 import java.util.*;
 
-public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecipe> {
+public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/fusion_shrine.png");
 	
@@ -34,12 +34,12 @@ public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecip
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull FusionShrineRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull FusionShrineRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
@@ -70,7 +70,7 @@ public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecip
 	
 	@Override
 	protected int getRecipeHeight() {
-		return 73;
+		return 74;
 	}
 	
 }

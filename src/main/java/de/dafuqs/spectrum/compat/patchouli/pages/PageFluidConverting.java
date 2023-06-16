@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -10,11 +10,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
-public abstract class PageFluidConverting<P extends FluidConvertingRecipe> extends PageDoubleRecipeRegistry<P> {
+public abstract class PageFluidConverting<P extends FluidConvertingRecipe> extends PageGatedRecipe<P> {
 	
-	public PageFluidConverting(RecipeType recipeType) {
+	public PageFluidConverting(RecipeType<P> recipeType) {
 		super(recipeType);
 	}
 	
@@ -30,12 +29,12 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, getBackgroundTexture());
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// fluid bucket
 		parent.renderItemStack(ms, recipeX - 1, recipeY + 15, mouseX, mouseY, recipe.createIcon());

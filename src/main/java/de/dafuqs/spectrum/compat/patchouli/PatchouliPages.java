@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.patchouli.pages.*;
 import vazkii.patchouli.client.book.*;
 
 public class PatchouliPages {
@@ -14,7 +15,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("potion_workshop_brewing"), PagePotionWorkshopBrewing.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("potion_workshop_crafting"), PagePotionWorkshopCrafting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("spirit_instiller_crafting"), PageSpiritInstillerCrafting.class);
-		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("liquid_crystal_converting"), de.dafuqs.spectrum.compat.patchouli.PageLiquidCrystalConverting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("liquid_crystal_converting"), PageLiquidCrystalConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("midnight_solution_converting"), PageMidnightSolutionConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("dragonrot_converting"), PageDragonrotConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("crystallarieum_growing"), PageCrystallarieumGrowing.class);

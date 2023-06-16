@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli;
+package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
@@ -14,9 +14,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
-import vazkii.patchouli.client.book.page.abstr.*;
 
-public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecipe> {
+public class PageEnchanterRecipe extends PageGatedRecipe<EnchanterRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/enchanter_crafting.png");
 	
@@ -34,12 +33,12 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull EnchanterRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull EnchanterRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX, recipeY, 0, 0, 100, 80, 256, 256);
 		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();

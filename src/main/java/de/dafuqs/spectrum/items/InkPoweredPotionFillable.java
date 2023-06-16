@@ -91,5 +91,9 @@ public interface InkPoweredPotionFillable {
 			tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Text.translatable("enchantment.level." + (maxEffectAmplifier() + 1))));
 		}
 	}
+
+	default boolean isWeapon() {
+		return false;
+	}
 	
 }

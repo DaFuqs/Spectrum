@@ -72,7 +72,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	protected final boolean applicableToPotions;
 	protected final boolean applicableToTippedArrows;
 	protected final boolean applicableToPotionFillabes;
-	
+	protected final boolean applicableToPotionWeapons;
+
 	protected final InkColor inkColor;
 	protected final int inkAmount;
 	
@@ -80,7 +81,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public PotionWorkshopBrewingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
 									   int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect,
-									   int baseDurationTicks, float potencyModifier, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, InkColor inkColor, int inkAmount) {
+									   int baseDurationTicks, float potencyModifier, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, boolean applicableToPotionWeapons, InkColor inkColor, int inkAmount) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, statusEffect.getColor(), ingredient1, ingredient2, ingredient3);
 		this.statusEffect = statusEffect;
@@ -89,6 +90,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		this.applicableToPotions = applicableToPotions;
 		this.applicableToTippedArrows = applicableToTippedArrows;
 		this.applicableToPotionFillabes = applicableToPotionFillabes;
+		this.applicableToPotionWeapons = applicableToPotionWeapons;
 		this.inkColor = inkColor;
 		this.inkAmount = inkAmount;
 		
@@ -114,7 +116,15 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public boolean isValidBaseIngredient(ItemStack itemStack) {
-		return (applicableToPotions && itemStack.isOf(Items.GLASS_BOTTLE)) || (applicableToTippedArrows && itemStack.isOf(Items.ARROW)) || (applicableToPotionFillabes && itemStack.getItem() instanceof InkPoweredPotionFillable);
+		boolean valid;
+
+		valid = applicableToPotions && itemStack.isOf(Items.GLASS_BOTTLE) || applicableToTippedArrows && itemStack.isOf(Items.ARROW);
+
+		if (itemStack.getItem() instanceof InkPoweredPotionFillable fillable) {
+			valid = (fillable.isWeapon() && applicableToPotionWeapons) || applicableToPotionFillabes;
+		}
+
+		return valid;
 	}
 	
 	@Override
@@ -142,6 +152,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public boolean isApplicableToPotionFillabes() {
 		return applicableToPotionFillabes;
+	}
+
+	public boolean isApplicableToPotionWeapons() {
+		return applicableToPotionWeapons;
 	}
 	
 	@Override

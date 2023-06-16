@@ -32,7 +32,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "advancement": "spectrum:unlocks/food/dragonbone_broth",
       "recipe": "spectrum:pedestal/tier2/food/dragonbone_broth",
       "text": ""
     }

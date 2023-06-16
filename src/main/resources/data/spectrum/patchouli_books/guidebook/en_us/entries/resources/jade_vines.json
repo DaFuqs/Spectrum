@@ -45,7 +45,7 @@
       "title": "Jaramel",
       "anchor": "jaramel",
       "recipe": "spectrum:cinderhearth/jaramel",
-      "advancement": "spectrum:hidden/collect_jade_jelly",
+      "advancement": "spectrum:unlocks/food/jaramel",
       "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.$(br2)$(italic)Fancy a sugar rush?"
     },
     {

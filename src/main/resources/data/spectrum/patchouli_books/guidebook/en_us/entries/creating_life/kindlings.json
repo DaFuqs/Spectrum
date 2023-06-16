@@ -1,10 +1,10 @@
 {
   "name": "Kindlings",
-  "icon": "spectrum:kinding_head",
+  "icon": "spectrum:kindling_head",
   "advancement": "spectrum:unlocks/blocks/kindling_memory",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:kinding_head": 0
+    "spectrum:kindling_head": 0
   },
   "pages": [
     {

@@ -45,7 +45,7 @@
     {
       "type": "spectrum:potion_workshop_crafting",
       "title": "Midnight Solution",
-      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "advancement": "spectrum:unlocks/blocks/midnight_solution",
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
       "text": ""
     },

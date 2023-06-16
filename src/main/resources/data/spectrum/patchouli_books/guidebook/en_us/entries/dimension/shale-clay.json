@@ -2,7 +2,7 @@
   "name": "Shale Clay",
   "advancement": "spectrum:hidden/collect_shale_clay",
   "icon": "spectrum:shale_clay",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:shale_clay": 0,
     "spectrum:polished_shale_clay": 0,

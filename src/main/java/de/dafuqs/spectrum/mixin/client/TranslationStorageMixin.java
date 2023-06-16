@@ -23,6 +23,7 @@ public class TranslationStorageMixin {
 
         Map<String, String> builder = new HashMap<>(translations);
         builder.put("block.spectrum.crystallarieum", getCrystallarieuaeuieueum());
+        builder.put("item.spectrum.ring_of_pursuit", "Ring of Fursuit");
 
         this.translations = builder;
     }
@@ -30,6 +31,7 @@ public class TranslationStorageMixin {
     private static String getCrystallarieuaeuieueum() {
         List<String> possibilities = new ArrayList<>() {{
             add("Crystallarieum");
+            add("Crystallareium");
             add("Crystallerium");
             add("Crystallarium");
             add("Crystallium");

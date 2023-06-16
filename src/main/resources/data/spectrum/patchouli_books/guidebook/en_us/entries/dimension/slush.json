@@ -2,7 +2,7 @@
   "name": "Slush",
   "advancement": "spectrum:hidden/collect_slush",
   "icon": "spectrum:slush",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:slush": 0,
     "spectrum:tilled_slush": 0

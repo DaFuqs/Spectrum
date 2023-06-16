@@ -18,7 +18,7 @@ public interface GatedPatchouliPage {
 			SpectrumCommon.locate("cuisine/trifles"), SpectrumCommon.locate("craft_salted_jaramel_trifle_or_tart"), // secret recipe showing up once crafted
 			SpectrumCommon.locate("resources/bloodstone"), SpectrumCommon.locate("unlocks/blocks/crystallarieum"), // covered by entry adv + page adv
 			SpectrumCommon.locate("resources/malachite"), SpectrumCommon.locate("unlocks/blocks/crystallarieum"), // covered by entry adv + page adv
-			SpectrumCommon.locate("midgame/remember_egg_laying_wooly_pig"), SpectrumCommon.locate("midgame/remember_egg_laying_wooly_pig") // recipe should only be revealed after remembering it
+			SpectrumCommon.locate("creating_life/egg_laying_wooly_pig"), SpectrumCommon.locate("midgame/remember_egg_laying_wooly_pig") // recipe should only be revealed after remembering it
 	);
 	
 	static void runSanityCheck(Identifier entryId, int pageNr, String pageAdvancement, GatedRecipe... recipes) {

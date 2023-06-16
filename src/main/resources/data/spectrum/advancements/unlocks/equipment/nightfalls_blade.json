@@ -1,21 +1,33 @@
 {
   "criteria": {
-    "collected_azurite": {
+    "built_complex_pedestal_structure": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_azurite"
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     },
-    "created_midnight_aberration": {
+    "collected_pyrite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/create_midnight_aberration"
+        "advancement_identifier": "spectrum:hidden/collect_pyrite"
       }
     },
     "collected_quitoxic_reeds": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:collect_quitoxic_reeds"
+      }
+    },
+    "collected_frostbite_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_frostbite_crystal"
+      }
+    },
+    "collected_pure_resource": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_pure_resource"
       }
     }
   }

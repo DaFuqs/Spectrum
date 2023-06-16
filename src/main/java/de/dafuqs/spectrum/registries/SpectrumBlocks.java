@@ -224,7 +224,7 @@ public class SpectrumBlocks {
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 
-	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
+	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
 	public static final Block PYRITE_PILE = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_TILE = new Block(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_PLATING = new Block(AbstractBlock.Settings.copy(PYRITE));

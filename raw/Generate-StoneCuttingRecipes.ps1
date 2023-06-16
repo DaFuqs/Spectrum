@@ -13,18 +13,14 @@
 }
 
 $entries = @(
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_bricks", 1),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_tiles", 1),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_polished_shale_clay_stairs", 1),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_polished_shale_clay_slab", 2),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_brick_stairs", 1),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_brick_slab", 2),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_tile_stairs", 1),
-    [Template]::new("spectrum:weathered_polished_shale_clay", "spectrum:weathered_shale_clay_tile_slab", 2),
-    [Template]::new("spectrum:weathered_shale_clay_bricks", "spectrum:weathered_shale_clay_brick_slab", 2),
-    [Template]::new("spectrum:weathered_shale_clay_bricks", "spectrum:weathered_shale_clay_brick_stairs", 1),
-    [Template]::new("spectrum:weathered_shale_clay_tiles", "spectrum:weathered_shale_clay_tile_stairs", 1),
-    [Template]::new("spectrum:weathered_shale_clay_tiles", "spectrum:weathered_shale_clay_tile_slab", 2)
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_pile", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_tile", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_plating", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_tubing", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_relief", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_stack", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_panneling", 1),
+    [Template]::new("spectrum:pyrite", "spectrum:pyrite_vent", 1)
 )
 
 $entries | ForEach-Object {
@@ -56,7 +52,7 @@ $entries | ForEach-Object {
     "item": "$inFull"
   },
   "result": "$outFull",
-  "count": 2
+  "count": $($_.amount)
 }
 "@
 

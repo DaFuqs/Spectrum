@@ -52,6 +52,7 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 		return this.requiredAdvancementIdentifier;
 	}
 	
+	@Override
 	public abstract Identifier getRecipeTypeUnlockIdentifier();
 	
 	@Override

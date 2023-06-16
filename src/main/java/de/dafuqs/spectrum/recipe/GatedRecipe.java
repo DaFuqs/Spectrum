@@ -13,23 +13,26 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	
 	boolean canPlayerCraft(PlayerEntity playerEntity);
 	
-	Identifier getRequiredAdvancementIdentifier();
-	
 	boolean isSecret();
 	
-	default void registerInToastManager(RecipeType recipeType, GatedRecipe gatedRecipe) {
+	Identifier getRequiredAdvancementIdentifier();
+	
+	Identifier getRecipeTypeUnlockIdentifier();
+	
+	Text getSingleUnlockToastString();
+	
+	Text getMultipleUnlockToastString();
+	
+	default void registerInToastManager(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
 		if (FabricLoader.getInstance().getEnvironmentType() != EnvType.SERVER) {
 			registerInToastManagerClient(recipeType, gatedRecipe);
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
-	private void registerInToastManagerClient(RecipeType recipeType, GatedRecipe gatedRecipe) {
+	private void registerInToastManagerClient(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
-	Text getSingleUnlockToastString();
-	
-	Text getMultipleUnlockToastString();
 	
 }

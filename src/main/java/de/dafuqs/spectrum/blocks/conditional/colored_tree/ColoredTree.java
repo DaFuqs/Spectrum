@@ -13,7 +13,10 @@ public interface ColoredTree {
 	enum TreePart {
 		SAPLING,
 		LOG,
-		LEAVES
+		LEAVES,
+		STRIPPED_LOG,
+		WOOD,
+		STRIPPED_WOOD
 	}
 	
 	static Identifier getTreeCloakAdvancementIdentifier(TreePart treePart, DyeColor color) {

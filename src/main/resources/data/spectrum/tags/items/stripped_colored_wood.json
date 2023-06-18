@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:stripped_black_wood",
+    "spectrum:stripped_blue_wood",
+    "spectrum:stripped_brown_wood",
+    "spectrum:stripped_cyan_wood",
+    "spectrum:stripped_gray_wood",
+    "spectrum:stripped_green_wood",
+    "spectrum:stripped_light_blue_wood",
+    "spectrum:stripped_light_gray_wood",
+    "spectrum:stripped_lime_wood",
+    "spectrum:stripped_magenta_wood",
+    "spectrum:stripped_orange_wood",
+    "spectrum:stripped_pink_wood",
+    "spectrum:stripped_purple_wood",
+    "spectrum:stripped_red_wood",
+    "spectrum:stripped_white_wood",
+    "spectrum:stripped_yellow_wood"
+  ]
+}

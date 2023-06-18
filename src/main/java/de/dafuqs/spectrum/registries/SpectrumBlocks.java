@@ -871,6 +871,57 @@ public class SpectrumBlocks {
 	public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
 	
+	public static final Block STRIPPED_BLACK_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.RED);
+	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	
+	public static final Block BLACK_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.RED);
+	public static final Block WHITE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	
+	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.RED);
+	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	
 	// POTTED PLANTS
 	private static final Settings POTTED_PLANT_SETTINGS = AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque();
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, POTTED_PLANT_SETTINGS);
@@ -1905,6 +1956,57 @@ public class SpectrumBlocks {
 		registerBlockWithItem("green_log", GREEN_LOG, settings, DyeColor.GREEN);
 		registerBlockWithItem("red_log", RED_LOG, settings, DyeColor.RED);
 		registerBlockWithItem("black_log", BLACK_LOG, settings, DyeColor.BLACK);
+		
+		registerBlockWithItem("stripped_black_log", STRIPPED_BLACK_LOG, settings, DyeColor.BLACK);
+		registerBlockWithItem("stripped_blue_log", STRIPPED_BLUE_LOG, settings, DyeColor.BLUE);
+		registerBlockWithItem("stripped_brown_log", STRIPPED_BROWN_LOG, settings, DyeColor.BROWN);
+		registerBlockWithItem("stripped_cyan_log", STRIPPED_CYAN_LOG, settings, DyeColor.CYAN);
+		registerBlockWithItem("stripped_gray_log", STRIPPED_GRAY_LOG, settings, DyeColor.GRAY);
+		registerBlockWithItem("stripped_green_log", STRIPPED_GREEN_LOG, settings, DyeColor.GREEN);
+		registerBlockWithItem("stripped_light_blue_log", STRIPPED_LIGHT_BLUE_LOG, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("stripped_light_gray_log", STRIPPED_LIGHT_GRAY_LOG, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("stripped_lime_log", STRIPPED_LIME_LOG, settings, DyeColor.LIME);
+		registerBlockWithItem("stripped_magenta_log", STRIPPED_MAGENTA_LOG, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("stripped_orange_log", STRIPPED_ORANGE_LOG, settings, DyeColor.ORANGE);
+		registerBlockWithItem("stripped_pink_log", STRIPPED_PINK_LOG, settings, DyeColor.PINK);
+		registerBlockWithItem("stripped_purple_log", STRIPPED_PURPLE_LOG, settings, DyeColor.PURPLE);
+		registerBlockWithItem("stripped_red_log", STRIPPED_RED_LOG, settings, DyeColor.RED);
+		registerBlockWithItem("stripped_white_log", STRIPPED_WHITE_LOG, settings, DyeColor.WHITE);
+		registerBlockWithItem("stripped_yellow_log", STRIPPED_YELLOW_LOG, settings, DyeColor.YELLOW);
+		
+		registerBlockWithItem("black_wood", BLACK_WOOD, settings, DyeColor.BLACK);
+		registerBlockWithItem("blue_wood", BLUE_WOOD, settings, DyeColor.BLUE);
+		registerBlockWithItem("brown_wood", BROWN_WOOD, settings, DyeColor.BROWN);
+		registerBlockWithItem("cyan_wood", CYAN_WOOD, settings, DyeColor.CYAN);
+		registerBlockWithItem("gray_wood", GRAY_WOOD, settings, DyeColor.GRAY);
+		registerBlockWithItem("green_wood", GREEN_WOOD, settings, DyeColor.GREEN);
+		registerBlockWithItem("light_blue_wood", LIGHT_BLUE_WOOD, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("light_gray_wood", LIGHT_GRAY_WOOD, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("lime_wood", LIME_WOOD, settings, DyeColor.LIME);
+		registerBlockWithItem("magenta_wood", MAGENTA_WOOD, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("orange_wood", ORANGE_WOOD, settings, DyeColor.ORANGE);
+		registerBlockWithItem("pink_wood", PINK_WOOD, settings, DyeColor.PINK);
+		registerBlockWithItem("purple_wood", PURPLE_WOOD, settings, DyeColor.PURPLE);
+		registerBlockWithItem("red_wood", RED_WOOD, settings, DyeColor.RED);
+		registerBlockWithItem("white_wood", WHITE_WOOD, settings, DyeColor.WHITE);
+		registerBlockWithItem("yellow_wood", YELLOW_WOOD, settings, DyeColor.YELLOW);
+		
+		registerBlockWithItem("stripped_black_wood", STRIPPED_BLACK_WOOD, settings, DyeColor.BLACK);
+		registerBlockWithItem("stripped_blue_wood", STRIPPED_BLUE_WOOD, settings, DyeColor.BLUE);
+		registerBlockWithItem("stripped_brown_wood", STRIPPED_BROWN_WOOD, settings, DyeColor.BROWN);
+		registerBlockWithItem("stripped_cyan_wood", STRIPPED_CYAN_WOOD, settings, DyeColor.CYAN);
+		registerBlockWithItem("stripped_gray_wood", STRIPPED_GRAY_WOOD, settings, DyeColor.GRAY);
+		registerBlockWithItem("stripped_green_wood", STRIPPED_GREEN_WOOD, settings, DyeColor.GREEN);
+		registerBlockWithItem("stripped_light_blue_wood", STRIPPED_LIGHT_BLUE_WOOD, settings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("stripped_light_gray_wood", STRIPPED_LIGHT_GRAY_WOOD, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("stripped_lime_wood", STRIPPED_LIME_WOOD, settings, DyeColor.LIME);
+		registerBlockWithItem("stripped_magenta_wood", STRIPPED_MAGENTA_WOOD, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("stripped_orange_wood", STRIPPED_ORANGE_WOOD, settings, DyeColor.ORANGE);
+		registerBlockWithItem("stripped_pink_wood", STRIPPED_PINK_WOOD, settings, DyeColor.PINK);
+		registerBlockWithItem("stripped_purple_wood", STRIPPED_PURPLE_WOOD, settings, DyeColor.PURPLE);
+		registerBlockWithItem("stripped_red_wood", STRIPPED_RED_WOOD, settings, DyeColor.RED);
+		registerBlockWithItem("stripped_white_wood", STRIPPED_WHITE_WOOD, settings, DyeColor.WHITE);
+		registerBlockWithItem("stripped_yellow_wood", STRIPPED_YELLOW_WOOD, settings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("white_leaves", WHITE_LEAVES, settings, DyeColor.WHITE);
 		registerBlockWithItem("orange_leaves", ORANGE_LEAVES, settings, DyeColor.ORANGE);

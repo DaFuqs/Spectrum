@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:black_wood",
+    "spectrum:blue_wood",
+    "spectrum:brown_wood",
+    "spectrum:cyan_wood",
+    "spectrum:gray_wood",
+    "spectrum:green_wood",
+    "spectrum:light_blue_wood",
+    "spectrum:light_gray_wood",
+    "spectrum:lime_wood",
+    "spectrum:magenta_wood",
+    "spectrum:orange_wood",
+    "spectrum:pink_wood",
+    "spectrum:purple_wood",
+    "spectrum:red_wood",
+    "spectrum:white_wood",
+    "spectrum:yellow_wood"
+  ]
+}

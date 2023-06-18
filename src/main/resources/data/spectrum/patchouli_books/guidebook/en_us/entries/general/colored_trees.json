@@ -254,7 +254,7 @@
       "anchor": "colored_wood",
       "title": "Colored Wood",
       "recipe": "spectrum:crafting_table/colored_wood/light_blue_planks",
-      "text": "Like their non-colorful, non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
+      "text": "Like their non-colorful, non-magical counterparts, you can also strip the logs and use their wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }
   ]
 }

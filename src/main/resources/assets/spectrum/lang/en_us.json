@@ -2788,6 +2788,9 @@
   "tag.spectrum.pure_resource_blocks": "Pure Resource Blocks",
   "tag.spectrum.shovels": "Spectrum Shovels",
   "tag.spectrum.swords": "Spectrum Swords",
+  "tag.spectrum.colored_wood": "Colored Wood",
+  "tag.spectrum.stripped_colored_logs": "Stripped Colored Logs",
+  "tag.spectrum.stripped_colored_wood": "Stripped Colored Wood",
 
   "tag.spectrum.mud": "Mud",
   "tag.spectrum.dragonrot": "Dragonrot",

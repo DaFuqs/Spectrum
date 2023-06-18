@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "spectrum:block/_top",
+    "end": "spectrum:block/stripped_purple_log_top",
     "side": "spectrum:block/stripped_purple_log"
   }
 }

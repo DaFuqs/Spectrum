@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_saplings"
+    "#spectrum:colored_saplings",
+    "spectrum:ominous_sapling"
   ]
 }

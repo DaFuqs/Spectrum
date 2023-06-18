@@ -30,7 +30,7 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageD
 			return false;
 		}
 		PlayerEntity player = MinecraftClient.getInstance().player;
-		return recipe1.canPlayerCraft(player) && recipe2.canPlayerCraft(player);
+		return (recipe1 != null && recipe1.canPlayerCraft(player)) || (recipe2 != null && recipe2.canPlayerCraft(player));
 	}
 	
 }

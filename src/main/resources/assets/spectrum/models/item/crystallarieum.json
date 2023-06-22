@@ -1,3 +1,107 @@
 {
-  "parent": "spectrum:block/crystallarieum_none"
+  "parent": "spectrum:block/crystallarieum_none",
+  "overrides": [
+    {
+      "predicate": {
+        "color": 0
+      },
+      "model": "spectrum:item/crystallarieum_white"
+    },
+    {
+      "predicate": {
+        "color": 0.0625
+      },
+      "model": "spectrum:item/crystallarieum_orange"
+    },
+    {
+      "predicate": {
+        "color": 0.125
+      },
+      "model": "spectrum:item/crystallarieum_magenta"
+    },
+    {
+      "predicate": {
+        "color": 0.1875
+      },
+      "model": "spectrum:item/crystallarieum_light_blue"
+    },
+    {
+      "predicate": {
+        "color": 0.25
+      },
+      "model": "spectrum:item/crystallarieum_yellow"
+    },
+    {
+      "predicate": {
+        "color": 0.3125
+      },
+      "model": "spectrum:item/crystallarieum_lime"
+    },
+    {
+      "predicate": {
+        "color": 0.375
+      },
+      "model": "spectrum:item/crystallarieum_pink"
+    },
+    {
+      "predicate": {
+        "color": 0.4375
+      },
+      "model": "spectrum:item/crystallarieum_gray"
+    },
+    {
+      "predicate": {
+        "color": 0.5
+      },
+      "model": "spectrum:item/crystallarieum_light_gray"
+    },
+    {
+      "predicate": {
+        "color": 0.5625
+      },
+      "model": "spectrum:item/crystallarieum_cyan"
+    },
+    {
+      "predicate": {
+        "color": 0.625
+      },
+      "model": "spectrum:item/crystallarieum_purple"
+    },
+    {
+      "predicate": {
+        "color": 0.6875
+      },
+      "model": "spectrum:item/crystallarieum_blue"
+    },
+    {
+      "predicate": {
+        "color": 0.75
+      },
+      "model": "spectrum:item/crystallarieum_brown"
+    },
+    {
+      "predicate": {
+        "color": 0.8125
+      },
+      "model": "spectrum:item/crystallarieum_green"
+    },
+    {
+      "predicate": {
+        "color": 0.875
+      },
+      "model": "spectrum:item/crystallarieum_red"
+    },
+    {
+      "predicate": {
+        "color": 0.9375
+      },
+      "model": "spectrum:item/crystallarieum_black"
+    },
+    {
+      "predicate": {
+        "color": 1
+      },
+      "model": "spectrum:item/crystallarieum_none"
+    }
+  ]
 }

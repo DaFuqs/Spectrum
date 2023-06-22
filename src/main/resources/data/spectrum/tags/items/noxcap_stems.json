@@ -1,12 +1,8 @@
 {
   "values": [
-    "spectrum:ivory_noxcap_stem",
-    "spectrum:stripped_ivory_noxcap_stem",
-    "spectrum:slate_noxcap_stem",
-    "spectrum:stripped_slate_noxcap_stem",
-    "spectrum:ebony_noxcap_stem",
-    "spectrum:stripped_ebony_noxcap_stem",
-    "spectrum:chestnut_noxcap_stem",
-    "spectrum:stripped_chestnut_noxcap_stem"
+    "#spectrum:ivory_noxcap_stems",
+    "#spectrum:slate_noxcap_stems",
+    "#spectrum:ebony_noxcap_stems",
+    "#spectrum:chestnut_noxcap_stems"
   ]
 }

@@ -561,6 +561,12 @@ public class SpectrumBlocks {
 	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), SpectrumCommon.locate("noxfungi/ivory"));
 	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), SpectrumCommon.locate("noxfungi/chestnut"));
 	
+	private static final Settings POTTED_PLANT_SETTINGS = AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque();
+	public static final Block POTTED_SLATE_NOXSHROOM = new FlowerPotBlock(SLATE_NOXSHROOM, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_EBONY_NOXSHROOM = new FlowerPotBlock(EBONY_NOXSHROOM, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_IVORY_NOXSHROOM = new FlowerPotBlock(IVORY_NOXSHROOM, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_CHESTNUT_NOXSHROOM = new FlowerPotBlock(CHESTNUT_NOXSHROOM, POTTED_PLANT_SETTINGS);
+	
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 	
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));

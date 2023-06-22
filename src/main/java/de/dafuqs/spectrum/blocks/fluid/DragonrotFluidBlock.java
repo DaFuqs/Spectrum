@@ -125,6 +125,10 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 				world.setBlockState(pos, Blocks.DIORITE.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
+			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+				world.setBlockState(pos, Blocks.GRANITE.getDefaultState());
+				this.playExtinguishSound(world, pos);
+				return false;
 			}
 		}
 		return true;

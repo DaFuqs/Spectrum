@@ -6,12 +6,12 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public class StrippingLootPillarBlock extends PillarBlock implements StrippableDrop {
+public class StrippingLootBlock extends Block implements StrippableDrop {
     
     private final Block sourceBlock;
     private final Identifier strippingLootTableIdentifier;
     
-    public StrippingLootPillarBlock(Settings settings, Block sourceBlock, Identifier strippingLootTableIdentifier) {
+    public StrippingLootBlock(Settings settings, Block sourceBlock, Identifier strippingLootTableIdentifier) {
         super(settings);
         this.sourceBlock = sourceBlock;
         this.strippingLootTableIdentifier = strippingLootTableIdentifier;

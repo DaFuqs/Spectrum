@@ -1,0 +1,144 @@
+{
+  "name": "Noxwood",
+  "advancement": "spectrum:lategame/collect_noxwood",
+  "icon": "spectrum:ebony_noxcap_stem",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Noxwood",
+      "items": [
+        "spectrum:slate_noxshroom",
+        "spectrum:ebony_noxshroom",
+        "spectrum:ivory_noxshroom",
+        "spectrum:chestnut_noxshroom"
+      ],
+      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant light, which qualifies them as an excellent light source."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Lights",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_light",
+      "text": ""
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "So much room",
+      "items": [
+        "spectrum:slate_noxcap_cap",
+        "spectrum:slate_noxcap_stem",
+        "spectrum:stripped_slate_noxcap_stem",
+        "spectrum:slate_noxcap_hyphae",
+        "spectrum:stripped_slate_noxcap_hyphae",
+        "spectrum:slate_noxcap_gills",
+        "spectrum:slate_noxwood_planks",
+        "spectrum:slate_noxwood_stairs",
+        "spectrum:slate_noxwood_slab",
+        "spectrum:slate_noxwood_fence",
+        "spectrum:slate_noxwood_fence_gate",
+        "spectrum:slate_noxwood_door",
+        "spectrum:slate_noxwood_trapdoor",
+        "spectrum:slate_noxwood_pressure_plate",
+        "spectrum:slate_noxwood_button",
+        "spectrum:slate_noxwood_beam",
+        "spectrum:slate_noxwood_amphora",
+        "spectrum:slate_noxwood_lantern",
+        "spectrum:slate_noxwood_light",
+        "spectrum:slate_noxwood_lamp",
+
+        "spectrum:ebony_noxcap_cap",
+        "spectrum:ebony_noxcap_stem",
+        "spectrum:stripped_ebony_noxcap_stem",
+        "spectrum:ebony_noxcap_hyphae",
+        "spectrum:stripped_ebony_noxcap_hyphae",
+        "spectrum:ebony_noxcap_gills",
+        "spectrum:ebony_noxwood_planks",
+        "spectrum:ebony_noxwood_stairs",
+        "spectrum:ebony_noxwood_slab",
+        "spectrum:ebony_noxwood_fence",
+        "spectrum:ebony_noxwood_fence_gate",
+        "spectrum:ebony_noxwood_door",
+        "spectrum:ebony_noxwood_trapdoor",
+        "spectrum:ebony_noxwood_pressure_plate",
+        "spectrum:ebony_noxwood_button",
+        "spectrum:ebony_noxwood_beam",
+        "spectrum:ebony_noxwood_amphora",
+        "spectrum:ebony_noxwood_lantern",
+        "spectrum:ebony_noxwood_light",
+        "spectrum:ebony_noxwood_lamp"
+      ]
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "for activities",
+      "items": [
+        "spectrum:ivory_noxcap_cap",
+        "spectrum:ivory_noxcap_stem",
+        "spectrum:stripped_ivory_noxcap_stem",
+        "spectrum:ivory_noxcap_hyphae",
+        "spectrum:stripped_ivory_noxcap_hyphae",
+        "spectrum:ivory_noxcap_gills",
+        "spectrum:ivory_noxwood_planks",
+        "spectrum:ivory_noxwood_stairs",
+        "spectrum:ivory_noxwood_slab",
+        "spectrum:ivory_noxwood_fence",
+        "spectrum:ivory_noxwood_fence_gate",
+        "spectrum:ivory_noxwood_door",
+        "spectrum:ivory_noxwood_trapdoor",
+        "spectrum:ivory_noxwood_pressure_plate",
+        "spectrum:ivory_noxwood_button",
+        "spectrum:ivory_noxwood_beam",
+        "spectrum:ivory_noxwood_amphora",
+        "spectrum:ivory_noxwood_lantern",
+        "spectrum:ivory_noxwood_light",
+        "spectrum:ivory_noxwood_lamp",
+
+        "spectrum:chestnut_noxcap_cap",
+        "spectrum:chestnut_noxcap_stem",
+        "spectrum:stripped_chestnut_noxcap_stem",
+        "spectrum:chestnut_noxcap_hyphae",
+        "spectrum:stripped_chestnut_noxcap_hyphae",
+        "spectrum:chestnut_noxcap_gills",
+        "spectrum:chestnut_noxwood_planks",
+        "spectrum:chestnut_noxwood_stairs",
+        "spectrum:chestnut_noxwood_slab",
+        "spectrum:chestnut_noxwood_fence",
+        "spectrum:chestnut_noxwood_fence_gate",
+        "spectrum:chestnut_noxwood_door",
+        "spectrum:chestnut_noxwood_trapdoor",
+        "spectrum:chestnut_noxwood_pressure_plate",
+        "spectrum:chestnut_noxwood_button",
+        "spectrum:chestnut_noxwood_beam",
+        "spectrum:chestnut_noxwood_amphora",
+        "spectrum:chestnut_noxwood_lantern",
+        "spectrum:chestnut_noxwood_light",
+        "spectrum:chestnut_noxwood_lamp"
+      ]
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Lamps",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_lamp",
+      "text": "Can be placed standing or hanging. $(thing)Sneak$() to place an alternative variant."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Amphoras",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_amphora",
+      "text": "Kind of similar to $(item)Barrels$(), but with more storage space."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Beams",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_beam",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Lanterns",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_lantern",
+      "text": "Emits light when powered by Redstone."
+    }
+  ]
+}

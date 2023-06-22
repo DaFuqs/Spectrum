@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_clover": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:pyrite"
+          }
+        ]
+      }
+    }
+  }
+}

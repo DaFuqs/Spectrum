@@ -80,7 +80,7 @@ public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<Pedes
 			widgets.addSlot(input.get(GEMSTONE_SLOTS + x), x * 18 + gemstoneSlotStartX, 59).drawBack(false);
 		}
 
-		widgets.addSlot(output.get(0), 90, 14).output(true).drawBack(false).recipeContext(this);
+		widgets.addSlot(output.get(0), 90, 14).large(true).drawBack(false).recipeContext(this);
 
 		widgets.addFillingArrow(60, 18, recipe.getCraftingTime() * 50);
 

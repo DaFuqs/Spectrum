@@ -4,14 +4,18 @@
     "spectrum:smooth_basalt_wall",
     "spectrum:polished_basalt_wall",
     "spectrum:basalt_brick_wall",
-    
+
     "spectrum:calcite_wall",
     "spectrum:polished_calcite_wall",
     "spectrum:calcite_brick_wall",
 
     "spectrum:cobbled_blackslag_wall",
     "spectrum:polished_blackslag_wall",
+    "spectrum:blackslag_brick_wall",
     "spectrum:blackslag_tile_wall",
-    "spectrum:blackslag_brick_wall"
+
+    "spectrum:polished_bone_ash_wall",
+    "spectrum:bone_ash_brick_wall",
+    "spectrum:bone_ash_tile_wall"
   ]
 }

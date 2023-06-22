@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/gray_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/gray_wood"
+    },
+    "axis=z": {
+      "model": "spectrum:block/gray_wood",
+      "x": 90
+    }
+  }
+}

@@ -12,9 +12,9 @@
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:moonstone_core",
-      "text": "Socketing $(l:resources/moonstone_core)Moonstone Cores$(/l) into your $(l:equipment/malachite_tools)Malachite Tools$(/l) grants them powerful new abilities."
+      "type": "patchouli:text",
+      "title": "Glass Crest Tools",
+      "text": "Socketing $(l:resources/moonstone_cores)Moonstone Cores$(/l) into your $(l:equipment/malachite_tools)Malachite Tools$(/l) grants them powerful new abilities."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -42,7 +42,7 @@
       "title": "Ferocious Bident",
       "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
       "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
-      "text": "This is what happens when you combine $(thing)Riptide$() and a pocket thunder storm? Allows flinging yourself in the air, even without rain and in the driest of deserts - as long as you do not run out of Ink, damaging everything in your way.$(br)$(italic)Flying isn't the problem. Landing is.$()"
+      "text": "This is what happens when you combine $(thing)Riptide$() with a Pocket Thunderstorm? Allows you to hurl yourself into the air and damage everything in your path, even without rain and in the driest of deserts - as long as you don't run out of ink.$(br)$(italic)Flying isn't the problem. Landing is.$()"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

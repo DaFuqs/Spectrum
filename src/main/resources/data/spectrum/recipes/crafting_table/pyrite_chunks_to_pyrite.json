@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:pyrite_chunk"
+    }
+  },
+  "result": {
+    "item": "spectrum:pyrite"
+  }
+}

@@ -68,7 +68,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 		widgets.addSlot(input.get(7), 0, 44);
 		widgets.addSlot(input.get(8), 0, 18);
 
-		widgets.addSlot(output.get(0), 106, 26).output(true).recipeContext(this);
+		widgets.addSlot(output.get(0), 106, 26).large(true).recipeContext(this);
 
 		if (craftingTime != 0) {
 			widgets.addFillingArrow(80, 31, craftingTime * 50);

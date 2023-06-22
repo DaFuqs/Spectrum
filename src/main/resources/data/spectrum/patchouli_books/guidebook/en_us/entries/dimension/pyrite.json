@@ -1,0 +1,31 @@
+{
+  "name": "Pyrite",
+  "advancement": "spectrum:hidden/collect_pyrite",
+  "icon": "spectrum:pyrite",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:pyrite": 0,
+    "spectrum:pyrite_pile": 0,
+    "spectrum:pyrite_tile": 0,
+    "spectrum:pyrite_plating": 0,
+    "spectrum:pyrite_tubing": 0,
+    "spectrum:pyrite_relief": 0,
+    "spectrum:pyrite_stack": 0,
+    "spectrum:pyrite_panneling": 0,
+    "spectrum:pyrite_vent": 0,
+
+    "spectrum:pyrite_chunk": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "title": "Slabs & Stairs",
+      "recipe": "spectrum:crafting_table/pyrite_chunks_to_pyrite",
+      "text": "Unless $(thing)silk touched$(), Pyrite drops as item, requiring you to combine it again."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can combine Pyrite into many different decorational blocks using the $(item)Stonecutter$()."
+    }
+  ]
+}

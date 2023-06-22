@@ -1,21 +1,10 @@
-﻿$leaves = @("black_leaves", "blue_leaves", "brown_leaves", "cyan_leaves", "gray_leaves", "green_leaves", "light_blue_leaves", "light_gray_leaves", "lime_leaves", "magenta_leaves", "orange_leaves", "pink_leaves", "purple_leaves", "red_leaves", "white_leaves", "yellow_leaves")
-
-$new = @(
-"shale_clay_brick_slab",
-"polished_shale_clay_slab",
-"shale_clay_tile_slab",
-"exposed_polished_shale_clay_slab",
-"exposed_shale_clay_brick_slab",
-"exposed_shale_clay_tile_slab",
-"weathered_polished_shale_clay_slab",
-"weathered_shale_clay_brick_slab",
-"weathered_shale_clay_tile_slab"
-)
+﻿$new = @("black_wood", "blue_wood", "brown_wood", "cyan_wood", "gray_wood", "green_wood", "light_blue_wood", "light_gray_wood", "lime_wood", "magenta_wood", "orange_wood", "pink_wood", "purple_wood", "red_wood", "white_wood", "yellow_wood")
 
 enum BlockType {
     Default
     Lamp
     Log
+    Wood
     Upgrade
     Crystallarieum
     Stairs
@@ -113,6 +102,28 @@ Function Generate-BlockFiles {
 }
 "@
         }
+
+                function Get-BlockStateWood($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/$Name",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/$Name"
+    },
+    "axis=z": {
+      "model": "spectrum:block/$Name",
+      "x": 90
+    }
+  }
+}
+"@
+        }
+
 
         function Get-BlockStateDefault($Name) {
             Write-Output @"
@@ -898,6 +909,18 @@ function Get-BlockStateSlab($Name) {
 "@
         }
 
+        function Get-BlockModelCubeColumn($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minecraft:block/$Name",
+    "side": "minecraft:block/$Name"
+  }
+}
+"@
+        }
+
 
         ####################################
         #endregion BLOCK MODEL              #
@@ -1031,6 +1054,8 @@ function Get-BlockStateSlab($Name) {
                 $blockState = Get-BlockStateDefault -Name $_
             } elseif ($blockType -eq [BlockType]::Log) {
                 $blockState = Get-BlockStateLog -Name $_
+            } elseif ($blockType -eq [BlockType]::Wood) {
+                $blockState = Get-BlockStateWood -Name $_
             } elseif ($blockType -eq [BlockType]::Lamp) {
                 $blockState = Get-BlockStateLamp -Name $_
             } elseif ($blockType -eq [BlockType]::Upgrade) {
@@ -1056,6 +1081,8 @@ function Get-BlockStateSlab($Name) {
             } elseif ($blockType -eq [BlockType]::Log) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelLog -Name $_) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $(Get-BlockModelLogHorizontal -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Wood) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelCubeColumn -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Lamp) {
                 $blockModelLampOn = Get-BlockModelLampOn -Name $_
                 $blockModelLampOff = Get-BlockModelLampOff -Name $_
@@ -1152,4 +1179,4 @@ function Get-BlockStateSlab($Name) {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Slab)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Wood)

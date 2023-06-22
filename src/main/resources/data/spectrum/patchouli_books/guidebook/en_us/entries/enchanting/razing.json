@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Even with a list of enchantments that you can barely read anymore due to its length, there are still few blocks that escape your gaze of superiority.$(br)$(item)Obsidian, you are getting cancelled today."
+      "text": "Even with a list of enchantments that you can barely read anymore due to its length, there are still few blocks that escape your gaze of superiority.$(br)$(item)Obsidian$(), you are getting cancelled today."
     },
     {
       "type": "patchouli:spotlight",

@@ -20,6 +20,6 @@
     "item": "spectrum:bedrock_dust",
     "count": 9
   },
-  "required_advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "required_advancement": "spectrum:midgame/break_decayed_bedrock",
   "disable_yield_upgrades": true
 }

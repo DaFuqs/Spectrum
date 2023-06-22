@@ -212,7 +212,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 					return false;
 				}
 			} else if (baseIngredient.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
-				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient);
+				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient) ||
+						recipe.isApplicableToPotionWeapons() && inkPoweredPotionFillable.isWeapon();
 			} else if (recipe.getOutput(DynamicRegistryManager.EMPTY).isOf(Items.POTION)) {
 				return recipe.isApplicableToPotions();
 			} else {

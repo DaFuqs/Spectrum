@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:stripped_black_log",
+    "spectrum:stripped_blue_log",
+    "spectrum:stripped_brown_log",
+    "spectrum:stripped_cyan_log",
+    "spectrum:stripped_gray_log",
+    "spectrum:stripped_green_log",
+    "spectrum:stripped_light_blue_log",
+    "spectrum:stripped_light_gray_log",
+    "spectrum:stripped_lime_log",
+    "spectrum:stripped_magenta_log",
+    "spectrum:stripped_orange_log",
+    "spectrum:stripped_pink_log",
+    "spectrum:stripped_purple_log",
+    "spectrum:stripped_red_log",
+    "spectrum:stripped_white_log",
+    "spectrum:stripped_yellow_log"
+  ]
+}

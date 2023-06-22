@@ -15,6 +15,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusing a Head",
+      "advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
       "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
       "text": "What would your creation like to eat? It's relevant, for... $(l:creating_life/memories)reasons$()."
     },

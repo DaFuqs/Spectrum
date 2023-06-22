@@ -4,8 +4,28 @@
     "spectrum:smooth_basalt_slab",
     "spectrum:polished_basalt_slab",
     "spectrum:basalt_brick_slab",
+
     "spectrum:calcite_slab",
     "spectrum:polished_calcite_slab",
-    "spectrum:calcite_brick_slab"
+    "spectrum:calcite_brick_slab",
+
+    "spectrum:cobbled_blackslag_slab",
+    "spectrum:polished_blackslag_slab",
+    "spectrum:blackslag_tile_slab",
+    "spectrum:blackslag_brick_slab",
+
+    "spectrum:polished_shale_clay_slab",
+    "spectrum:exposed_polished_shale_clay_slab",
+    "spectrum:weathered_polished_shale_clay_slab",
+    "spectrum:shale_clay_brick_slab",
+    "spectrum:exposed_shale_clay_brick_slab",
+    "spectrum:weathered_shale_clay_brick_slab",
+    "spectrum:shale_clay_tile_slab",
+    "spectrum:exposed_shale_clay_tile_slab",
+    "spectrum:weathered_shale_clay_tile_slab",
+
+    "spectrum:polished_bone_ash_slab",
+    "spectrum:bone_ash_brick_slab",
+    "spectrum:bone_ash_tile_slab"
   ]
 }

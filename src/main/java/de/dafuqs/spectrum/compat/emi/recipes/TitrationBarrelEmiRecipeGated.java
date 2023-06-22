@@ -19,11 +19,12 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	
 	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
+		input = new ArrayList<>();
 		if (recipe.getFluidInput() != Fluids.EMPTY) {
-			input = new ArrayList<>();
-			input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
-			input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
+			input.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
 		}
+		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
+		
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}
 	
@@ -55,9 +56,9 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		}
 		
 		if (displayedStacks == null) {
-			widgets.addSlot(output.get(0), 100, 5).output(true).recipeContext(this);
+			widgets.addSlot(output.get(0), 100, 5).large(true).recipeContext(this);
 		} else {
-			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (MinecraftClient.getInstance().world.getTime() % displayedStacks.size())), 1, 100, 5).output(true).recipeContext(this);
+			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (MinecraftClient.getInstance().world.getTime() % displayedStacks.size())), 1, 100, 5).large(true).recipeContext(this);
 			
 		}
 		

@@ -22,6 +22,7 @@
     "spectrum:red_sapling": 0,
     "spectrum:white_sapling": 0,
     "spectrum:yellow_sapling": 0,
+
     "spectrum:black_log": 0,
     "spectrum:blue_log": 0,
     "spectrum:brown_log": 0,
@@ -38,6 +39,7 @@
     "spectrum:red_log": 0,
     "spectrum:white_log": 0,
     "spectrum:yellow_log": 0,
+
     "spectrum:black_leaves": 0,
     "spectrum:blue_leaves": 0,
     "spectrum:brown_leaves": 0,
@@ -54,6 +56,7 @@
     "spectrum:red_leaves": 0,
     "spectrum:white_leaves": 0,
     "spectrum:yellow_leaves": 0,
+
     "spectrum:black_planks": 0,
     "spectrum:blue_planks": 0,
     "spectrum:brown_planks": 0,
@@ -70,6 +73,7 @@
     "spectrum:red_planks": 0,
     "spectrum:white_planks": 0,
     "spectrum:yellow_planks": 0,
+
     "spectrum:black_stairs": 0,
     "spectrum:blue_stairs": 0,
     "spectrum:brown_stairs": 0,
@@ -86,6 +90,7 @@
     "spectrum:red_stairs": 0,
     "spectrum:white_stairs": 0,
     "spectrum:yellow_stairs": 0,
+
     "spectrum:black_pressure_plate": 0,
     "spectrum:blue_pressure_plate": 0,
     "spectrum:brown_pressure_plate": 0,
@@ -102,6 +107,7 @@
     "spectrum:red_pressure_plate": 0,
     "spectrum:white_pressure_plate": 0,
     "spectrum:yellow_pressure_plate": 0,
+
     "spectrum:black_fence": 0,
     "spectrum:blue_fence": 0,
     "spectrum:brown_fence": 0,
@@ -118,6 +124,7 @@
     "spectrum:red_fence": 0,
     "spectrum:white_fence": 0,
     "spectrum:yellow_fence": 0,
+
     "spectrum:black_fence_gate": 0,
     "spectrum:blue_fence_gate": 0,
     "spectrum:brown_fence_gate": 0,
@@ -134,6 +141,7 @@
     "spectrum:red_fence_gate": 0,
     "spectrum:white_fence_gate": 0,
     "spectrum:yellow_fence_gate": 0,
+
     "spectrum:black_button": 0,
     "spectrum:blue_button": 0,
     "spectrum:brown_button": 0,
@@ -150,6 +158,7 @@
     "spectrum:red_button": 0,
     "spectrum:white_button": 0,
     "spectrum:yellow_button": 0,
+
     "spectrum:black_slab": 0,
     "spectrum:blue_slab": 0,
     "spectrum:brown_slab": 0,
@@ -165,7 +174,58 @@
     "spectrum:purple_slab": 0,
     "spectrum:red_slab": 0,
     "spectrum:white_slab": 0,
-    "spectrum:yellow_slab": 0
+    "spectrum:yellow_slab": 0,
+
+    "spectrum:black_wood": 0,
+    "spectrum:blue_wood": 0,
+    "spectrum:brown_wood": 0,
+    "spectrum:cyan_wood": 0,
+    "spectrum:gray_wood": 0,
+    "spectrum:green_wood": 0,
+    "spectrum:light_blue_wood": 0,
+    "spectrum:light_gray_wood": 0,
+    "spectrum:lime_wood": 0,
+    "spectrum:magenta_wood": 0,
+    "spectrum:orange_wood": 0,
+    "spectrum:pink_wood": 0,
+    "spectrum:purple_wood": 0,
+    "spectrum:red_wood": 0,
+    "spectrum:white_wood": 0,
+    "spectrum:yellow_wood": 0,
+
+    "spectrum:stripped_black_log": 0,
+    "spectrum:stripped_blue_log": 0,
+    "spectrum:stripped_brown_log": 0,
+    "spectrum:stripped_cyan_log": 0,
+    "spectrum:stripped_gray_log": 0,
+    "spectrum:stripped_green_log": 0,
+    "spectrum:stripped_light_blue_log": 0,
+    "spectrum:stripped_light_gray_log": 0,
+    "spectrum:stripped_lime_log": 0,
+    "spectrum:stripped_magenta_log": 0,
+    "spectrum:stripped_orange_log": 0,
+    "spectrum:stripped_pink_log": 0,
+    "spectrum:stripped_purple_log": 0,
+    "spectrum:stripped_red_log": 0,
+    "spectrum:stripped_white_log": 0,
+    "spectrum:stripped_yellow_log": 0,
+
+    "spectrum:stripped_black_wood": 0,
+    "spectrum:stripped_blue_wood": 0,
+    "spectrum:stripped_brown_wood": 0,
+    "spectrum:stripped_cyan_wood": 0,
+    "spectrum:stripped_gray_wood": 0,
+    "spectrum:stripped_green_wood": 0,
+    "spectrum:stripped_light_blue_wood": 0,
+    "spectrum:stripped_light_gray_wood": 0,
+    "spectrum:stripped_lime_wood": 0,
+    "spectrum:stripped_magenta_wood": 0,
+    "spectrum:stripped_orange_wood": 0,
+    "spectrum:stripped_pink_wood": 0,
+    "spectrum:stripped_purple_wood": 0,
+    "spectrum:stripped_red_wood": 0,
+    "spectrum:stripped_white_wood": 0,
+    "spectrum:stripped_yellow_wood": 0
   },
   "pages": [
     {
@@ -194,7 +254,7 @@
       "anchor": "colored_wood",
       "title": "Colored Wood",
       "recipe": "spectrum:crafting_table/colored_wood/light_blue_planks",
-      "text": "Like their non-colorful, non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
+      "text": "Like their non-colorful, non-magical counterparts, you can also strip the logs and use their wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }
   ]
 }

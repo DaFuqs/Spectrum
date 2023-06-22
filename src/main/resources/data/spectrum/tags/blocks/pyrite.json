@@ -1,0 +1,13 @@
+{
+  "values": [
+    "spectrum:pyrite",
+    "spectrum:pyrite_pile",
+    "spectrum:pyrite_tile",
+    "spectrum:pyrite_plating",
+    "spectrum:pyrite_tubing",
+    "spectrum:pyrite_relief",
+    "spectrum:pyrite_stack",
+    "spectrum:pyrite_panneling",
+    "spectrum:pyrite_vent"
+  ]
+}

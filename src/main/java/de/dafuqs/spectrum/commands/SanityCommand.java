@@ -156,6 +156,21 @@ public class SanityCommand {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
 			}
 		}
+		// recipe groups without localisation
+		Set<String> recipeGroups = new HashSet<>();
+		recipeManager.keys().forEach(identifier -> {
+			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
+			if (recipe.isPresent()) {
+				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe && !gatedSpectrumRecipe.getGroup().isEmpty()) {
+					recipeGroups.add(gatedSpectrumRecipe.getGroup());
+				}
+			}
+		});
+		for (String recipeGroup : recipeGroups) {
+			if (!Language.getInstance().hasTranslation("recipeGroup.spectrum." + recipeGroup)) {
+				SpectrumCommon.logWarning("[SANITY: Recipe Group Lang] Recipe group " + recipeGroup + " is not localized.");
+			}
+		}
 		
 		// Impossible to unlock recipes
 		testRecipeUnlocks(SpectrumRecipeTypes.PEDESTAL, "Pedestal", recipeManager, advancementLoader);

@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/pyrite_pile",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/pyrite_pile"
+		},
+		"axis=z": {
+			"model": "spectrum:block/pyrite_pile",
+			"x": 90
+		}
+	}
+}

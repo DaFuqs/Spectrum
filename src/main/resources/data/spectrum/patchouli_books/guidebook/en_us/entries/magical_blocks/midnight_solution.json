@@ -25,7 +25,7 @@
       "type": "spectrum:potion_workshop_crafting",
       "title": "Midnight Solution Bucket",
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
-      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "advancement": "spectrum:unlocks/blocks/midnight_solution",
       "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
     },	
     {

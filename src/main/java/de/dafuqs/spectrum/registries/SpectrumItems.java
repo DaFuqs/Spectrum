@@ -283,6 +283,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem STRATINE_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16).fireproof(), 1.02F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
+	public static final Item PYRITE_CHUNK = new Item(Tab.RESOURCES.settings());
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
@@ -666,6 +667,7 @@ register("kindling_spawn_egg", KINDLING_SPAWN_EGG, DyeColor.WHITE);
 		register("paltaeria_gem", PALTAERIA_GEM, DyeColor.LIGHT_BLUE);
 		register("stratine_fragments", STRATINE_FRAGMENTS, DyeColor.RED);
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
+		register("pyrite_chunk", PYRITE_CHUNK, DyeColor.PURPLE);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
 		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);

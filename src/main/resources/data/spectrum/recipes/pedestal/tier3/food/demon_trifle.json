@@ -34,5 +34,5 @@
     "item": "spectrum:demon_trifle",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/food/trifles"
+  "required_advancement": "spectrum:unlocks/food/demon_trifle"
 }

@@ -9,7 +9,7 @@
       "type": "patchouli:spotlight",
       "title": "Vein Mining",
       "item": "spectrum:multitool{Enchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}",
-      "text": "$(italic)Still mining each ore individually?$(br)Gravity might make this easier.$()$(br2)Use Gravity to rip out all connected blocks.$(br2)Max Level: 1$(br)Applicable to all tools."
+      "text": "$(italic)Still mining each ore individually? Gravity might make this easier.$()$(br2)Vein Mining rips out all connected blocks.$(br2)Max Level: 1$(br)Applicable to all tools."
     },
     {
       "type": "spectrum:enchanter_crafting",

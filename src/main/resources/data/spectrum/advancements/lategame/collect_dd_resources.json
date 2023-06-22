@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:hover_block"
+      "item": "spectrum:ivory_noxcap_stem"
     },
     "frame": "goal",
     "title": {

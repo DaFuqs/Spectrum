@@ -5,18 +5,18 @@
   "fluid": "spectrum:midnight_solution",
   "ingredients": [
     {
-      "item": "minecraft:diamond_sword"
+      "item": "minecraft:iron_sword"
     },
     {
-      "item": "spectrum:midnight_aberration",
+      "item": "spectrum:pyrite_chunk",
+      "count": 4
+    },
+    {
+      "item": "spectrum:pure_quartz",
       "count": 2
     },
     {
-      "item": "spectrum:midnight_chip",
-      "count": 8
-    },
-    {
-      "item": "spectrum:quitoxic_powder",
+      "item": "spectrum:blizzard_powder",
       "count": 8
     },
     {
@@ -24,7 +24,7 @@
       "count": 4
     },
     {
-      "item": "spectrum:black_pigment",
+      "item": "spectrum:purple_pigment",
       "count": 4
     }
   ],

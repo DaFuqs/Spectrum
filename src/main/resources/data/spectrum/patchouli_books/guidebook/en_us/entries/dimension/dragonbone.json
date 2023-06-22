@@ -32,6 +32,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "anchor": "dragonbone_chunks",
       "item": "spectrum:dragonbone_chunk",
       "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, making you able to finally mine it.$(br)The dropped pieces still retained some of that ancient, magical aura."
     },
@@ -59,15 +60,15 @@
       "type": "patchouli:crafting",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Slabs & Stairs",
-      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_tiles",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
+      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_brick_slab",
+      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tile_stairs"
     },
     {
       "type": "patchouli:crafting",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Walls",
-      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_tiles",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
+      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash_wall",
+      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tile_wall"
     },
     {
       "type": "patchouli:crafting",
@@ -81,7 +82,7 @@
       "title": "Smelting them back",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/dragonbone_unsmelting/bone_ash_brick_stairs",
-      "text": "All blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
+      "text": "Most blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
     }
   ]
 }

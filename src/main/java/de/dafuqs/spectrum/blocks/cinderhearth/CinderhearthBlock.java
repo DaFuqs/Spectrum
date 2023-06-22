@@ -57,18 +57,14 @@ public class CinderhearthBlock extends BlockWithEntity {
 			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
-			if (verifyStructure(world, pos, (ServerPlayerEntity) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
-				this.openScreen(world, pos, player);
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+				cinderhearthBlockEntity.setOwner(player);
+				if (verifyStructure(world, pos, (ServerPlayerEntity) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
+					player.openHandledScreen(cinderhearthBlockEntity);
+				}
 			}
 			return ActionResult.CONSUME;
-		}
-	}
-	
-	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-			cinderhearthBlockEntity.setOwner(player);
-			player.openHandledScreen(cinderhearthBlockEntity);
 		}
 	}
 	
@@ -198,7 +194,9 @@ public class CinderhearthBlock extends BlockWithEntity {
 				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 			} else {
 				if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
+					if (serverPlayerEntity != null) {
+						SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
+					}
 					return CinderhearthBlockEntity.CinderHearthStructureType.WITHOUT_LAVA;
 				}
 				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;

@@ -2,13 +2,13 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "spectrum:orange_log"
+      "tag": "spectrum:orange_logs"
     }
   ],
   "results": [
     {
       "item": "spectrum:orange_pigment",
-      "count": 2,
+      "count": 1,
       "chance": 1.0
     },
     {

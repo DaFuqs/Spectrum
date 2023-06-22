@@ -2,13 +2,13 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "spectrum:green_log"
+      "tag": "spectrum:green_logs"
     }
   ],
   "results": [
     {
       "item": "spectrum:green_pigment",
-      "count": 2,
+      "count": 1,
       "chance": 1.0
     },
     {

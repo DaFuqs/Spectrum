@@ -2,13 +2,13 @@
   "type": "create:crushing",
   "ingredients": [
     {
-      "item": "spectrum:lime_log"
+      "tag": "spectrum:lime_logs"
     }
   ],
   "results": [
     {
       "item": "spectrum:lime_pigment",
-      "count": 2,
+      "count": 1,
       "chance": 1.0
     },
     {

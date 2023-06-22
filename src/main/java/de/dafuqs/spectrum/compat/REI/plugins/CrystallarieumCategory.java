@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.math.*;
@@ -11,6 +12,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
+import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -21,7 +23,6 @@ import java.util.*;
 public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumDisplay> {
 	
 	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
-	private static final EntryIngredient CRYSTALLARIEUM = EntryIngredients.of(SpectrumBlocks.CRYSTALLARIEUM);
 	
 	@Override
 	public CategoryIdentifier<CrystallarieumDisplay> getCategoryIdentifier() {
@@ -45,7 +46,8 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 2, startPoint.y + 1 + 8)).markInput().entries(input));
 		
 		// crystallarieum
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 3 + 16)).entries(CRYSTALLARIEUM).disableBackground());
+		ItemStack crystallarieumStack = SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(NullableDyeColor.get(display.inkColor.getDyeColor()));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 3 + 16)).entries(EntryIngredients.of(crystallarieumStack)).disableBackground());
 		
 		// output arrow
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 39, startPoint.y + 1 + 8)).animationDurationTicks(display.secondsPerStage));

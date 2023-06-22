@@ -1,12 +1,16 @@
 package de.dafuqs.spectrum.helpers;
 
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public enum NullableDyeColor implements StringIdentifiable {
-	
 	WHITE(0, "white", DyeColor.WHITE),
 	ORANGE(1, "orange", DyeColor.ORANGE),
 	MAGENTA(2, "magenta", DyeColor.MAGENTA),
@@ -71,6 +75,27 @@ public enum NullableDyeColor implements StringIdentifiable {
 	@Override
 	public String asString() {
 		return this.name;
+	}
+	
+	
+	public static final String COLOR_NBT_KEY = "color";
+	
+	public static void set(ItemStack stack, NullableDyeColor color) {
+		stack.getOrCreateNbt().putString(NullableDyeColor.COLOR_NBT_KEY, color.getName().toLowerCase(Locale.ROOT));
+	}
+	
+	public static NullableDyeColor get(@Nullable NbtCompound nbt) {
+		if (nbt == null || !nbt.contains(COLOR_NBT_KEY, NbtElement.STRING_TYPE)) {
+			return NullableDyeColor.NONE;
+		}
+		return NullableDyeColor.valueOf(nbt.getString(COLOR_NBT_KEY).toUpperCase(Locale.ROOT));
+	}
+	
+	public static void addTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		NullableDyeColor color = NullableDyeColor.get(stack.getNbt());
+		if (color != NullableDyeColor.NONE) {
+			tooltip.add(Text.translatable("spectrum.ink.color." + color.getName()));
+		}
 	}
 	
 }

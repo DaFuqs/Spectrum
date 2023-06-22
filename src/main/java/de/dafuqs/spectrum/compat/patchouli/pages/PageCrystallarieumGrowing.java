@@ -2,8 +2,10 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
@@ -57,7 +59,7 @@ public class PageCrystallarieumGrowing extends PageGatedRecipe<CrystallarieumRec
 		}
 		
 		// crystallarieum
-		parent.renderItemStack(ms, recipeX + 23, recipeY + 8, mouseX, mouseY, recipe.createIcon());
+		parent.renderItemStack(ms, recipeX + 23, recipeY + 8, mouseX, mouseY, SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(NullableDyeColor.get(recipe.getInkColor().getDyeColor())));
 		
 		// catalyst text
 		if (textRenderer == null) {

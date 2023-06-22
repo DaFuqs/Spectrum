@@ -51,7 +51,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_powder",
-      "text": "1,25x multiplicative Potency bonus."
+      "text": "1.25x multiplicative Potency bonus."
     },
     {
       "type": "patchouli:spotlight",
@@ -103,7 +103,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:storm_stone",
       "advancement": "spectrum:midgame/collect_storm_stone",
-      "text": "Dramatically increases the Potions Potency at the beginning, makes it's potency wear off over time."
+      "text": "Dramatically increases the Potions Potency at the beginning, makes its potency wear off over time."
     },
     {
       "type": "patchouli:spotlight",

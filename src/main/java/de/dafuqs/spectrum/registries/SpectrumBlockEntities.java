@@ -32,9 +32,7 @@ import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.registry.*;
 
 import java.util.*;

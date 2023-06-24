@@ -8,7 +8,8 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
@@ -42,15 +43,15 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	protected T loadRecipe(BookContentsBuilder builder, BookEntry entry, Identifier identifier) {
-		if (identifier == null) {
+		if (identifier == null || MinecraftClient.getInstance().world == null) {
 			return null;
 		}
 		T recipe = getRecipe(identifier);
 		if (recipe != null) {
-			entry.addRelevantStack(builder, recipe.getOutput(), pageNum);
+			entry.addRelevantStack(builder, recipe.getOutput(MinecraftClient.getInstance().world.getRegistryManager()), pageNum);
 			return recipe;
 		}
-		PatchouliAPI.LOGGER.warn("Recipe {} (of type {}) not found", identifier, Registry.RECIPE_TYPE.getId(recipeType));
+		PatchouliAPI.LOGGER.warn("Recipe {} (of type {}) not found", identifier, Registries.RECIPE_TYPE.getId(recipeType));
 		return null;
 	}
 	
@@ -63,13 +64,13 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		recipe = loadRecipe(builder, entry, recipeId);
 		
 		boolean customTitle = title != null && !title.isEmpty();
-		titleText = !customTitle ? getRecipeOutput(recipe).getName() : i18nText(title);
+		titleText = !customTitle ? getRecipeOutput(world, recipe).getName() : i18nText(title);
 		
 		GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, advancement, recipe);
 	}
@@ -96,7 +97,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	
 	protected abstract void drawRecipe(MatrixStack ms, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
 	
-	protected abstract ItemStack getRecipeOutput(T recipe);
+	protected abstract ItemStack getRecipeOutput(World world, T recipe);
 	
 	protected abstract int getRecipeHeight();
 	

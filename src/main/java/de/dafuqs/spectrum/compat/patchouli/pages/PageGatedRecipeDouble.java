@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.recipe.*;
+import net.minecraft.world.World;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.page.abstr.*;
 
@@ -14,8 +15,8 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageD
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		if (recipe2 == null) {
 			GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, this.advancement, recipe1);

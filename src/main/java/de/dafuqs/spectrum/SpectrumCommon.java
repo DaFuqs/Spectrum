@@ -49,7 +49,6 @@ import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.state.property.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;

@@ -67,18 +67,15 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// mine
-	// TODO - Switch to official builds once PR's are merged
-	//modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
-	modImplementation "com.github.Noaaan:Revelationary:${project.revelationary_fork}"
+	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
+	//modImplementation "com.github.Noaaan:Revelationary:${project.revelationary_fork}"
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
-	//modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
-	modImplementation include("com.github.Noaaan:Arrowhead:${project.arrowhead_fork}")
-	//modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
-	modImplementation include("com.github.Noaaan:DimensionalReverb:${project.dimensional_reverb_fork}")
+	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
+	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 
 	// we need a bit of concern
-	//modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
-	modImplementation include("com.github.Noaaan:Incubus-Concern:${project.incubus_core_fork}")
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	//modImplementation include("com.github.Noaaan:Incubus-Concern:${project.incubus_core_fork}")
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
@@ -88,7 +85,7 @@ dependencies {
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
 
 	// todo - remove once official patchouli is out
-	modImplementation "vazkii.patchouli:Patchouli:1.19.4-79-FABRIC-SNAPSHOT"
+	modImplementation "vazkii.patchouli:Patchouli:1.19.4-80-FABRIC-SNAPSHOT"
 	//modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}"

@@ -28,7 +28,7 @@ public class PageHint extends BookPage {
 		final PageHint pageHint;
 		
 		public PaymentButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress, PageHint pageHint) {
-			super(x, y, width, height, message, onPress);
+			super(x, y, width, height, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
 			this.pageHint = pageHint;
 			setMessage(Text.translatable("spectrum.gui.lexicon.reveal_hint_button.text"));
 		}
@@ -38,7 +38,7 @@ public class PageHint extends BookPage {
 			if (pageHint.revealProgress < 0) {
 				super.renderButton(matrices, mouseX, mouseY, delta);
 				if (this.isHovered()) {
-					this.renderTooltip(matrices, mouseX, mouseY);
+					this.drawTooltip(matrices, mouseX, mouseY, 0.1f, delta);
 				}
 			}
 		}

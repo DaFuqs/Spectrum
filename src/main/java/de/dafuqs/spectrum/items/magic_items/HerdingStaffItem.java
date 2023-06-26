@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
@@ -9,9 +11,11 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -27,7 +31,10 @@ public class HerdingStaffItem extends Item implements InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
 	public static final InkCost LURE_COST = new InkCost(USED_COLOR, 5);
-	public static final InkCost TURN_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
+	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
+	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 10000);
+	
+	public static final Identifier UNLOCK_HOSTILE_MEMORIZING_ID = SpectrumCommon.locate("milestones/unlock_hostile_memorizing");
 	
 	public HerdingStaffItem(Settings settings) {
 		super(settings);
@@ -71,8 +78,8 @@ public class HerdingStaffItem extends Item implements InkPowered {
 			return ActionResult.FAIL;
 		}
 		
-		if (!world.isClient) {
-			if (turnEntityToMemory(user, entity)) {
+		if (!world.isClient && entity instanceof MobEntity mobEntity) {
+			if (turnEntityToMemory(user, mobEntity)) {
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
 				SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_EXPLOSION, 1, Vec3d.ZERO);
 				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
@@ -83,20 +90,27 @@ public class HerdingStaffItem extends Item implements InkPowered {
 		return ActionResult.success(world.isClient);
 	}
 	
-	private boolean turnEntityToMemory(PlayerEntity user, LivingEntity entity) {
+	private boolean turnEntityToMemory(PlayerEntity user, MobEntity entity) {
 		if (!entity.isAlive() || entity.isRemoved() || entity.hasPassengers()) {
 			return false;
 		}
-		if (entity.getType().isIn(SpectrumEntityTypeTags.HERDING_STAFF_BLACKLISTED)) {
+		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) || entity.getType().isIn(SpectrumEntityTypeTags.HERDING_STAFF_BLACKLISTED)) {
 			return false;
 		}
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
-		if (spawnGroup == SpawnGroup.MISC || spawnGroup == SpawnGroup.MONSTER) {
+		if (spawnGroup == SpawnGroup.MISC) {
 			return false;
 		}
-		if (!InkPowered.tryDrainEnergy(user, TURN_TO_MEMORY_COST)) {
+		if (spawnGroup == SpawnGroup.MONSTER && (user.isCreative() || AdvancementHelper.hasAdvancement(user, UNLOCK_HOSTILE_MEMORIZING_ID))) {
+			if (!InkPowered.tryDrainEnergy(user, TURN_HOSTILE_TO_MEMORY_COST)) {
+				return false;
+			}
+		} else if (!InkPowered.tryDrainEnergy(user, TURN_NEUTRAL_TO_MEMORY_COST)) {
 			return false;
 		}
+		
+		entity.playAmbientSound();
+		entity.playSpawnEffects();
 		
 		ItemStack memoryStack = MemoryItem.getMemoryForEntity(entity);
 		MemoryItem.setTicksToManifest(memoryStack, 1);
@@ -113,12 +127,12 @@ public class HerdingStaffItem extends Item implements InkPowered {
 	
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
-		MinecraftClient.getInstance().getSoundManager().play(new NaturesStaffUseSoundInstance(user));
+		MinecraftClient.getInstance().getSoundManager().play(new HerdingStaffUseSoundInstance(user));
 	}
 	
 	@Override
 	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.BOW;
+		return UseAction.SPEAR;
 	}
 	
 	@Override

@@ -265,8 +265,8 @@ public class SpectrumItems {
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
+	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
 	
 	public static final Item QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);

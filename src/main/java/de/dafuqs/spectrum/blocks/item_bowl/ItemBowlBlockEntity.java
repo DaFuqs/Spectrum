@@ -12,7 +12,9 @@ import de.dafuqs.spectrum.registries.color.*;
 import net.minecraft.block.*;
 import net.minecraft.client.world.*;
 import net.minecraft.entity.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -29,6 +31,28 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	
 	public ItemBowlBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.ITEM_BOWL, pos, state, INVENTORY_SIZE);
+	}
+
+	@Override
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		if (!this.deserializeLootTable(nbt)) {
+			Inventories.readNbt(nbt, this.items);
+		}
+	}
+
+	@Override
+	public void writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		if (!this.serializeLootTable(nbt)) {
+			Inventories.writeNbt(nbt, this.items);
+		}
+	}
+
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		this.checkLootInteraction(null);
+		return super.toInitialChunkDataNbt();
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {

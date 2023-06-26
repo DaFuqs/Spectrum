@@ -62,6 +62,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
 	public static final SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
 	public static final SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
+	public static final SoundEvent HERDING_STAFF_USE = register("herding_staff_use");
 	public static final SoundEvent EXCHANGING_STAFF_SELECT = register("exchanging_staff_select");
 	public static final SoundEvent RADIANCE_PIN_TRIGGER = register("radiance_pin_trigger");
 	public static final SoundEvent AIR_LAUNCH_BELT_CHARGING = register("air_launch_belt_charging");

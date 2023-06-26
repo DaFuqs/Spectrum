@@ -7,16 +7,16 @@ import net.minecraft.entity.player.*;
 import net.minecraft.sound.*;
 
 @Environment(EnvType.CLIENT)
-public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
+public class HerdingStaffUseSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final PlayerEntity player;
 	private boolean done;
 	
-	public NaturesStaffUseSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS, SoundInstance.createRandom());
+	public HerdingStaffUseSoundInstance(PlayerEntity player) {
+		super(SpectrumSoundEvents.HERDING_STAFF_USE, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = 0.25F;
+		this.volume = 0.9F;
 		this.player = player;
 		this.x = player.getX();
 		this.y = player.getY();
@@ -35,7 +35,7 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 	
 	@Override
 	public void tick() {
-		if (player == null || !player.isUsingItem() || !player.getActiveItem().isOf(SpectrumItems.NATURES_STAFF)) {
+		if (player == null || !player.isUsingItem() || !player.getActiveItem().isOf(SpectrumItems.HERDING_STAFF)) {
 			this.setDone();
 		} else {
 			this.x = ((float) this.player.getX());

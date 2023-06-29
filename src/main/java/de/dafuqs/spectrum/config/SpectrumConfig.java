@@ -79,10 +79,10 @@ public class SpectrumConfig implements ConfigData {
 	public boolean CanPickUpRuin = true;
 	public boolean CanPickUpForfeiture = true;
 	
-	@Comment("Whether decay can take over block entities. Defaults to true.")
-	public boolean FadingCanDestroyBlockEntities = true;
-	public boolean FailingCanDestroyBlockEntities = true;
-	public boolean RuinCanDestroyBlockEntities = true;
+	@Comment("Whether decay can take over block entities. Defaults to false.")
+	public boolean FadingCanDestroyBlockEntities = false;
+	public boolean FailingCanDestroyBlockEntities = false;
+	public boolean RuinCanDestroyBlockEntities = false;
 	public boolean ForfeitureCanDestroyBlockEntities = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")

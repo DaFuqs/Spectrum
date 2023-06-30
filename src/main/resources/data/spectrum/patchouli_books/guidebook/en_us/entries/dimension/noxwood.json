@@ -14,7 +14,7 @@
         "spectrum:ivory_noxshroom",
         "spectrum:chestnut_noxshroom"
       ],
-      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant light, which qualifies them as an excellent light source."
+      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
     },
     {
       "type": "spectrum:pedestal_crafting",

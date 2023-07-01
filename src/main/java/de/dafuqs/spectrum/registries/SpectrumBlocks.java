@@ -1265,7 +1265,7 @@ public class SpectrumBlocks {
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
-	static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
+	public static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
 		Registry.register(Registry.BLOCK, locate(name), block);
 		BlockItem blockItem = new BlockItem(block, itemSettings);
 		Registry.register(Registry.ITEM, locate(name), blockItem);

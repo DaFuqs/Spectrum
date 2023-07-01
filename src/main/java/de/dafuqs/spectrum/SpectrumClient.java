@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
@@ -62,7 +63,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumBlocks.registerClient();
 		
 		logInfo("Setting up client side Mod Compat...");
-		SpectrumModCompat.registerClient();
+		SpectrumIntegrationPacks.registerClient();
 		
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();

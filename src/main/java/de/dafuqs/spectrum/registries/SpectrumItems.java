@@ -38,7 +38,7 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
 public class SpectrumItems {
 	
-	enum Tab {
+	public enum Tab {
 		GENERAL(SpectrumItemGroups.ITEM_GROUP_GENERAL, 0),
 		EQUIPMENT(SpectrumItemGroups.ITEM_GROUP_GENERAL, 1),
 		CONSUMABLES(SpectrumItemGroups.ITEM_GROUP_GENERAL, 2),
@@ -469,7 +469,7 @@ public class SpectrumItems {
 	public static final Item PURE_ECHO = new Item(Tab.RESOURCES.settings());
 	public static final Item PURE_NETHERITE = new Item(Tab.RESOURCES.settings());
 	
-	static void register(String name, Item item, DyeColor dyeColor) {
+	public static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, SpectrumCommon.locate(name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
 	}

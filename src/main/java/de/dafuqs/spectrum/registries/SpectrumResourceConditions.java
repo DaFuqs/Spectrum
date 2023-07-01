@@ -42,6 +42,4 @@ public class SpectrumResourceConditions {
 		return false;
 	}
 	
-	public static final ThreadLocal<DynamicRegistryManager.Immutable> CURRENT_REGISTRIES = new ThreadLocal<>();
-	
 }

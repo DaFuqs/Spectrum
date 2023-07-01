@@ -13,10 +13,12 @@ public class DDDimension {
 	public static final Identifier DIMENSION_ID = SpectrumCommon.locate("deeper_down");
 	public static final RegistryKey<World> DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DIMENSION_ID);
 	
+	public static final RegistryKey<Biome> BLACK_LANGAST = getBiomeKey("black_langast");
 	public static final RegistryKey<Biome> CRYSTAL_GARDENS = getBiomeKey("crystal_gardens");
 	public static final RegistryKey<Biome> DEEP_BARRENS = getBiomeKey("deep_barrens");
+	public static final RegistryKey<Biome> DEEP_DRIPSTONE_CAVES = getBiomeKey("deep_dripstone_caves");
 	public static final RegistryKey<Biome> DRAGONROT_SWAMP = getBiomeKey("dragonrot_swamp");
-	public static final RegistryKey<Biome> BLACK_LANGAST = getBiomeKey("black_langast");
+	public static final RegistryKey<Biome> NOXSHROOM_FOREST = getBiomeKey("noxshroom_forest");
 	public static final RegistryKey<Biome> RAZOR_EDGE = getBiomeKey("razor_edge");
 	
 	private static RegistryKey<Biome> getBiomeKey(String name) {

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.gobber.*;
+import de.dafuqs.spectrum.compat.mythic_metals.*;
 import net.fabricmc.loader.api.*;
 
 import java.util.*;
@@ -14,7 +15,6 @@ public class SpectrumIntegrationPacks {
 	
 	public abstract static class ModIntegrationPack {
 		public abstract void register();
-		
 		public abstract void registerClient();
 	}
 	
@@ -28,6 +28,7 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack("ae2", new AE2Compat());
 		registerIntegrationPack("gobber2", new GobberCompat());
 		registerIntegrationPack("create", new CreateCompat());
+		registerIntegrationPack("mythicmetals", new MythicMetalsCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

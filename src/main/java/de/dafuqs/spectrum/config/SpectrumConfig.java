@@ -18,8 +18,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
 	
-	@Comment("Integration Packs to skip loading on startup (in case of mod compat errors)")
-	public Set<String> IntegrationPacksToSkipLoading = new HashSet<>();
+	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
+	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment

@@ -25,8 +25,9 @@ public class SpectrumIntegrationPacks {
 	}
 	
 	public static void register() {
-		registerContainer("ae2", new AE2Compat());
-		registerContainer("gobber2", new GobberCompat());
+		registerIntegrationPack("ae2", new AE2Compat());
+		registerIntegrationPack("gobber2", new GobberCompat());
+		registerIntegrationPack("create", new CreateCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

@@ -3,7 +3,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "spectrum:light_blue_log"
+      "tag": "spectrum:light_blue_logs"
     }
   ],
   "result": {

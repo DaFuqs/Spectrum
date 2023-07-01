@@ -16,7 +16,7 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = 0.3F;
+		this.volume = 0.25F;
 		this.player = player;
 		this.x = player.getX();
 		this.y = player.getY();
@@ -35,7 +35,7 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 	
 	@Override
 	public void tick() {
-		if (player == null || !player.isUsingItem()) {
+		if (player == null || !player.isUsingItem() || !player.getActiveItem().isOf(SpectrumItems.NATURES_STAFF)) {
 			this.setDone();
 		} else {
 			this.x = ((float) this.player.getX());

@@ -460,6 +460,12 @@
       "spectrum:natures_staff_use"
     ]
   },
+  "herding_staff_use": {
+    "subtitle": "spectrum.subtitles.herding_staff_use",
+    "sounds": [
+      "spectrum:herding_staff_use"
+    ]
+  },
   "unlock": {
     "subtitle": "spectrum.subtitles.unlock",
     "sounds": [

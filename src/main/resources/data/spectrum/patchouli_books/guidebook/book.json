@@ -8,6 +8,7 @@
   "custom_book_item": "spectrum:guidebook",
   "filler_texture": "spectrum:textures/gui/patchouli/page_filler.png",
   "advancements_tab": "spectrum:spectrum",
+  "text_overflow_mode": "overflow",
   "macros": {
     "$(c_black)": "$(#000000)",
     "$(c_blue)": "$(#2c2e8e)",

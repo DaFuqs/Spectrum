@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "noxwood_planks",
+  "time": 40,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "tag": "spectrum:slate_noxcap_stems"
+    }
+  },
+  "result": {
+    "item": "spectrum:slate_noxwood_planks",
+    "count": 4
+  },
+  "required_advancement": "spectrum:lategame/collect_noxwood"
+}

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries.client;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.energy.*;
@@ -67,6 +68,14 @@ public class SpectrumModelPredicateProviders {
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
 		registerMysteriousLocketPredicates(SpectrumItems.MYSTERIOUS_LOCKET);
 		registerStructureCompassPredicates(SpectrumItems.MYSTERIOUS_COMPASS);
+		registerNullableDyeColorPredicate(SpectrumBlocks.CRYSTALLARIEUM.asItem());
+	}
+	
+	private static void registerNullableDyeColorPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
+			NullableDyeColor color = NullableDyeColor.get(itemStack.getNbt());
+			return color.getId() / 16F;
+		});
 	}
 	
 	private static void registerMysteriousLocketPredicates(Item item) {

@@ -19,7 +19,22 @@
           "items": [
             "minecraft:enchanted_book"
           ],
-          "enchantments": [
+          "stored_enchantments": [
+            {
+              "enchantment": "spectrum:resonance"
+            }
+          ]
+        }
+      }
+    },
+    "enchanted_resonance_book": {
+      "trigger": "minecraft:enchanted_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:enchanted_book"
+          ],
+          "stored_enchantments": [
             {
               "enchantment": "spectrum:resonance"
             }
@@ -28,10 +43,19 @@
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/craft_resonant_pickaxe"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "crafted_resonance_book",
+      "enchanted_resonance_book"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

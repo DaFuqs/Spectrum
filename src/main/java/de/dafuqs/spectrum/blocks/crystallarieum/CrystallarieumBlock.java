@@ -7,16 +7,20 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class CrystallarieumBlock extends InWorldInteractionBlock {
 	
@@ -106,6 +110,18 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 			}
 			return ActionResult.CONSUME;
 		}
+	}
+	
+	public ItemStack asStackWithColor(NullableDyeColor color) {
+		ItemStack stack = asItem().getDefaultStack();
+		NullableDyeColor.set(stack, color);
+		return stack;
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		super.appendTooltip(stack, world, tooltip, options);
+		NullableDyeColor.addTooltip(stack, world, tooltip, options);
 	}
 	
 }

@@ -19,6 +19,11 @@
     "spectrum:potted_brown_sapling",
     "spectrum:potted_green_sapling",
     "spectrum:potted_red_sapling",
-    "spectrum:potted_black_sapling"
+    "spectrum:potted_black_sapling",
+
+    "spectrum:potted_slate_noxshroom",
+    "spectrum:potted_ebony_noxshroom",
+    "spectrum:potted_ivory_noxshroom",
+    "spectrum:potted_chestnut_noxshroom"
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "spectrum:citrine_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:citrine_shard",
+      "count": 1
+    },
+    {
+      "item": "spectrum:citrine_shard",
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 150,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

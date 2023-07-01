@@ -1,0 +1,29 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "tag": "spectrum:purple_logs"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:purple_pigment",
+      "count": 1,
+      "chance": 1.0
+    },
+    {
+      "item": "spectrum:purple_pigment",
+      "count": 1,
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 450,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

@@ -11,27 +11,45 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:unlocks/blocks/potion_workshop",
+      "title": "Crushing Gemstones",
+      "advancement": "spectrum:spectrum",
+      "item": "minecraft:amethyst_shard",
+      "text": "$(item)Gemstones$() can be crushed, yielding some $(item)Gemstone Powder$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Milling Leaves",
+      "advancement": "spectrum:collect_pigment",
       "item": "spectrum:magenta_leaves",
-      "text": "$(item)Colored Leaves$() can be crushed, yielding $(item)Pigment$() and $(item)Colored Saplings$()"
+      "text": "$(item)Colored Leaves$() can be crushed, yielding $(item)Pigment$() and a higher chance for $(item)Colored Saplings$()."
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:unlocks/blocks/potion_workshop",
+      "title": "Crushing Colored Logs",
+      "advancement": "spectrum:collect_pigment",
       "item": "spectrum:magenta_log",
-      "text": "Crushing $(thing)Colored Logs$() results in a nice yield of $(thing)Pigment$()."
+      "text": "Crushing $(thing)Colored Logs$() results in some additional $(thing)Pigment$()."
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Milling Quitoxic Reeds",
       "advancement": "spectrum:collect_quitoxic_reeds",
       "item": "spectrum:quitoxic_reeds",
-      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be ground into powder easily."
+      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be milled into powder easily."
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:unlocks/blocks/potion_workshop",
-      "item": "minecraft:amethyst_shard",
-      "text": "Milling $(thing)Gemstone Shards Yields$() results in a higher amount of $(thing)Gemstone Powder$() compared crushing them with an Anvil."
+      "title": "Milling Frostbite Crystal",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "item": "spectrum:frostbite_crystal",
+      "text": "Milling $(l:resources/liquid_crystal_powders)Frostbite Crystal$() will yield you a nice amount of $(item)Blizzard Powder$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Milling Blazing Crystal",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:blazing_crystal",
+      "text": "Milling $(l:resources/liquid_crystal_powders)Blazing Crystal$() will yield you a nice amount of $(item)Fiery Powder$()."
     }
   ]
 }

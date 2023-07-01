@@ -18,8 +18,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
 	
-	@Comment("Integration Packs to skip loading on startup (in case of mod compat errors)")
-	public Set<String> IntegrationPacksToSkipLoading = new HashSet<>();
+	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
+	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
@@ -79,10 +79,10 @@ public class SpectrumConfig implements ConfigData {
 	public boolean CanPickUpRuin = true;
 	public boolean CanPickUpForfeiture = true;
 	
-	@Comment("Whether decay can take over block entities. Defaults to true.")
-	public boolean FadingCanDestroyBlockEntities = true;
-	public boolean FailingCanDestroyBlockEntities = true;
-	public boolean RuinCanDestroyBlockEntities = true;
+	@Comment("Whether decay can take over block entities. Defaults to false.")
+	public boolean FadingCanDestroyBlockEntities = false;
+	public boolean FailingCanDestroyBlockEntities = false;
+	public boolean RuinCanDestroyBlockEntities = false;
 	public boolean ForfeitureCanDestroyBlockEntities = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")

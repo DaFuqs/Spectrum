@@ -298,11 +298,24 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		ItemStack centerStack = enchanterBlockEntity.getStack(0);
 		ItemStack centerStackCopy = centerStack.copy();
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
-
+		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {
 			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 		}
-
+		
+		// START BIOME MAKEOVER COMPAT
+		// If any input item has the "BMCursed" tag, the output item will also get it
+		// This resolves exploits where players are able to indefinitely increase the
+		// enchantment level by transferring the enchantment to new items
+		for (int i = 0; i < 8; i++) {
+			ItemStack bowlStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i);
+			NbtCompound bowlCompound = bowlStack.getNbt();
+			if (bowlCompound != null && bowlCompound.getBoolean("BMCursed")) {
+				centerStackCopy.getOrCreateNbt().putBoolean("BMCursed", true);
+			}
+		}
+		// END BIOME MAKEOVER COMPAT
+		
 		int spentExperience = enchanterBlockEntity.currentItemProcessingTime / EnchanterBlockEntity.REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
 		if (centerStack.getCount() > 1) {
 			centerStackCopy.setCount(1);
@@ -311,7 +324,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		} else {
 			enchanterBlockEntity.setStack(0, centerStackCopy);
 		}
-
+		
 		// vanilla
 		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.ownerUUID, centerStackCopy, spentExperience);
 		

@@ -80,7 +80,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		if (!matchesGrid(inv)) {
+		if (getRecipeOrientation(inv) == null) {
 			return false;
 		}
 		
@@ -95,21 +95,6 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 				&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
 				&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
 				&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
-	}
-	
-	public boolean matchesGrid(Inventory inv) {
-		for (int i = 0; i <= 3 - this.width; ++i) {
-			for (int j = 0; j <= 3 - this.height; ++j) {
-				if (this.matchesPattern(inv, i, j, true)) {
-					return true;
-				}
-				
-				if (this.matchesPattern(inv, i, j, false)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 	
 	public boolean matchesPattern(Inventory inv, int offsetX, int offsetY, boolean flipped) {

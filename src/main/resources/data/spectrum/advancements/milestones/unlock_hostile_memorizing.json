@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "reached_endgame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/__todo"
+      }
+    }
+  }
+}

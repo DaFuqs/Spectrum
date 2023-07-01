@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.*;
 import net.fabricmc.fabric.api.resource.conditions.v1.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.util.*;
@@ -36,7 +37,7 @@ public class SpectrumResourceConditions {
 	
 	private static boolean integrationPackActive(JsonObject object) {
 		if (object.has("integration_pack")) {
-			return SpectrumModCompat.isIntegrationPackActive(object.get("integration_pack").getAsString());
+			return SpectrumIntegrationPacks.isIntegrationPackActive(object.get("integration_pack").getAsString());
 		}
 		return false;
 	}

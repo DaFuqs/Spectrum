@@ -27,6 +27,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("checklist"), PageChecklist.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("confirmation_button"), PageConfirmationButton.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("snippet"), PageSnippet.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("collection"), PageCollection.class);
 	}
 	
 }

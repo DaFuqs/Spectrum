@@ -1,0 +1,34 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "spectrum:blazing_crystal"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:fiery_powder",
+      "count": 12,
+      "chance": 1.0
+    },
+    {
+      "item": "spectrum:fiery_powder",
+      "count": 2,
+      "chance": 0.5
+    },
+    {
+      "item": "spectrum:fiery_powder",
+      "count": 2,
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 450,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

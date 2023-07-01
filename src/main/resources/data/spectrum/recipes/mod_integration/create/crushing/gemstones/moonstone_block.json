@@ -1,0 +1,27 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "spectrum:moonstone_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:moonstone_shard",
+      "count": 1
+    },
+    {
+      "item": "spectrum:moonstone_shard",
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 150,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

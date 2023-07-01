@@ -22,24 +22,36 @@ import java.util.*;
 
 public class SpectrumItemGroups {
 	
-	private static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group.png");
-	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group_button.png");
-	
-	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(SpectrumCommon.locate("general")) {
+	public static abstract class SpectrumItemGroup extends OwoItemGroup {
+		
+		protected static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group.png");
+		protected static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group_button.png");
+		
+		protected SpectrumItemGroup(Identifier id) {
+			super(id);
+		}
 		
 		@Override
 		protected void setup() {
 			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
 			
-			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "equipment", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumItems.RESTORATION_TEA), "consumables", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "resources", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			
 			addButton(ItemGroupButton.discord("https://discord.com/invite/EXU9XFXT8a")); // TODO: Add item group background texture, as soon as owo supports it
 			addButton(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
 			addButton(ItemGroupButton.curseforge("https://www.curseforge.com/minecraft/mc-mods/spectrum"));
 			addButton(ItemGroupButton.modrinth("https://modrinth.com/mod/spectrum"));
+		}
+		
+	}
+	
+	public static final OwoItemGroup ITEM_GROUP_GENERAL = new SpectrumItemGroup(SpectrumCommon.locate("general")) {
+		
+		@Override
+		protected void setup() {
+			super.setup();
+			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "equipment", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.RESTORATION_TEA), "consumables", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "resources", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 		}
 		
 		@Override
@@ -49,21 +61,15 @@ public class SpectrumItemGroups {
 		
 	};
 	
-	public static final OwoItemGroup ITEM_GROUP_BLOCKS = new OwoItemGroup(SpectrumCommon.locate("blocks")) {
+	public static final OwoItemGroup ITEM_GROUP_BLOCKS = new SpectrumItemGroup(SpectrumCommon.locate("blocks")) {
 		
 		@Override
 		protected void setup() {
-			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
-			
+			super.setup();
 			addTab(Icon.of(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE), "decoration", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumBlocks.LIME_LOG), "colored_wood", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PUFFERFISH)), "mob_heads", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			addTab(Icon.of(SpectrumItems.BOTTOMLESS_BUNDLE), "predefined_items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			
-			addButton(ItemGroupButton.discord("https://discord.gg/VHUPpHrj")); // TODO: Add item group background texture, as soon as owo supports it
-			addButton(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
-			addButton(ItemGroupButton.curseforge("https://www.curseforge.com/minecraft/mc-mods/spectrum"));
-			addButton(ItemGroupButton.modrinth("https://modrinth.com/mod/spectrum"));
 		}
 		
 		@Override

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.world.World;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -20,8 +21,8 @@ public class PageCollection extends PageWithText {
 	transient List<Ingredient> stacks;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		stacks = new ArrayList<>();
 		for (IVariable item : items.asList()) {

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.mythic_metals;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
 import net.fabricmc.fabric.api.biome.v1.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.gen.*;
 
 import java.util.function.*;
@@ -23,7 +23,7 @@ public class MythicMetalsCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	}
 	
 	private void addOre(Predicate<BiomeSelectionContext> biomeSelector, String placedFeatureName) {
-		BiomeModifications.addFeature(biomeSelector, GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate(placedFeatureName)));
+		BiomeModifications.addFeature(biomeSelector, GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate(placedFeatureName)));
 	}
 	
 	@Override

@@ -7,10 +7,13 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.*;
@@ -293,6 +296,52 @@ public class SanityCommand {
 			Item i = item.getValue();
 			if (i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
 				SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
+			}
+		}
+		
+		// Enchantments without recipe
+		Map<Enchantment, DyeColor> craftingColors = new HashMap<>();
+		Map<Enchantment, DyeColor> upgradeColors = new HashMap<>();
+		for (EnchanterRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
+			ItemStack output = recipe.getOutput();
+			if (output.getItem() == Items.ENCHANTED_BOOK) {
+				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
+				if (enchantments.size() > 0) {
+					for (Ingredient ingredient : recipe.getIngredients()) {
+						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
+							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
+								craftingColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
+							}
+						}
+					}
+				}
+			}
+		}
+		for (EnchantmentUpgradeRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+			ItemStack output = recipe.getOutput();
+			if (output.getItem() == Items.ENCHANTED_BOOK) {
+				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
+				if (enchantments.size() > 0) {
+					for (Ingredient ingredient : recipe.getIngredients()) {
+						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
+							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
+								upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
+							}
+						}
+					}
+				}
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+			Enchantment enchantment = entry.getValue();
+			if (!craftingColors.containsKey(enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a crafting recipe");
+			}
+			if (!upgradeColors.containsKey(enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a upgrading recipe");
+			}
+			if (craftingColors.containsKey(enchantment) && upgradeColors.containsKey(enchantment) && craftingColors.get(enchantment) != upgradeColors.get(enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment recipes for '" + entry.getKey().getValue() + " use different pigments");
 			}
 		}
 		

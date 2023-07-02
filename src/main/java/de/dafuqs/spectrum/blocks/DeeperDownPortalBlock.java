@@ -112,9 +112,11 @@ public class DeeperDownPortalBlock extends Block {
 						}
 						
 						BlockPos targetPos = portalPos.down(2);
-						makeRoomAround(targetWorld, targetPos, 3);
+						if (entity instanceof PlayerEntity) {
+							makeRoomAround(targetWorld, targetPos, 3);
+						}
 						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
-						teleportToSafePosition(targetWorld, entity, targetPos, 3);
+						teleportToSafePosition(targetWorld, entity, targetPos, 5);
 					}
 				}
 			} else {

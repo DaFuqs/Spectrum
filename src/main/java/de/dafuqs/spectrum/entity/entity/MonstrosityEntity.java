@@ -54,6 +54,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	private float previousHealth;
 	private int timesGottenStronger = 0;
+	private int ticksWithoutTarget = 0;
 	
 	private static @Nullable MonstrosityEntity currentMonstrosity = null;
 	
@@ -78,19 +79,20 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	public static void checkForSpawn(ServerWorld world) {
-		/*if (world.getDifficulty() == Difficulty.PEACEFUL) {
-			return;
-		}*/
 		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
 			// 1 % chance to spawn
 			if (world.getRandom().nextFloat() < 0.1 && ENTITY_TARGETS.test(playerEntity)) {
 				if (currentMonstrosity == null) {
-					currentMonstrosity = new MonstrosityEntity(world, playerEntity.getPos().getX(), playerEntity.getPos().getY() - 100, playerEntity.getPos().getZ());
-					world.spawnEntity(currentMonstrosity);
+					MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.create(world);
+					LocalDifficulty localDifficulty = world.getLocalDifficulty(playerEntity.getBlockPos());
+					monstrosity.initialize(world, localDifficulty, SpawnReason.NATURAL, null, null);
+					world.spawnEntityAndPassengers(monstrosity);
+					
+					currentMonstrosity = monstrosity;
 				}
 				if (currentMonstrosity.getTarget() == null) {
 					currentMonstrosity.setTarget(playerEntity);
-					currentMonstrosity.setPosition(playerEntity.getPos().getX(), playerEntity.getPos().getY() - 100, playerEntity.getPos().getZ());
+					currentMonstrosity.refreshPositionAndAngles(playerEntity.getBlockPos(), 0.0F, 0.0F);
 				}
 				currentMonstrosity.playSound(currentMonstrosity.getAmbientSound(), 4.0F, 1.0F);
 			}
@@ -174,6 +176,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	public void tick() {
 		super.tick();
+		checkDespawn();
 		if (this.hasInvincibilityTicks()) {
 			for (int j = 0; j < 3; ++j) {
 				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
@@ -182,7 +185,24 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	@Override
+	public void checkDespawn() {
+		super.checkDespawn();
+		
+		if (this.getTarget() == null) {
+			this.ticksWithoutTarget++;
+			if (ticksWithoutTarget > 600) {
+				this.discard();
+			}
+		} else {
+			ticksWithoutTarget = 0;
+		}
+	}
+	
+	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+		if (spawnReason == SpawnReason.NATURAL && currentMonstrosity != this) {
+			discard();
+		}
 		this.targetPosition = getPos();
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
@@ -190,7 +210,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	protected EntityNavigation createNavigation(World world) {
 		BirdNavigation birdNavigation = new BirdNavigation(this, world);
-		birdNavigation.setCanPathThroughDoors(false);
+		birdNavigation.setCanPathThroughDoors(true);
 		birdNavigation.setCanSwim(true);
 		birdNavigation.setCanEnterOpenDoors(true);
 		return birdNavigation;

@@ -225,12 +225,6 @@ public class SpectrumBossEntity extends PathAwareEntity {
 		return new LivingEntity.FallSounds(SoundEvents.ENTITY_HOSTILE_SMALL_FALL, SoundEvents.ENTITY_HOSTILE_BIG_FALL);
 	}
 	
-	@Nullable
-	@Override
-	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-	}
-	
 	@Override
 	public boolean canBeLeashedBy(PlayerEntity player) {
 		return false;

@@ -49,15 +49,19 @@ public class SpectrumRecipeTypes {
 	public static final String POTION_WORKSHOP_REACTING_ID = "potion_workshop_reacting";
 	public static RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER;
 	public static RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING;
-
+	
+	public static final String MUD_CONVERTING_ID = "mud_converting";
+	public static FluidConvertingRecipeSerializer<MudConvertingRecipe> MUD_CONVERTING_SERIALIZER;
+	public static RecipeType<MudConvertingRecipe> MUD_CONVERTING;
+	
 	public static final String LIQUID_CRYSTAL_CONVERTING_ID = "liquid_crystal_converting";
 	public static FluidConvertingRecipeSerializer<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING_SERIALIZER;
 	public static RecipeType<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING;
-
+	
 	public static final String MIDNIGHT_SOLUTION_CONVERTING_ID = "midnight_solution_converting";
 	public static FluidConvertingRecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
 	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING;
-
+	
 	public static final String DRAGONROT_CONVERTING_ID = "dragonrot_converting";
 	public static FluidConvertingRecipeSerializer<DragonrotConvertingRecipe> DRAGONROT_CONVERTING_SERIALIZER;
 	public static RecipeType<DragonrotConvertingRecipe> DRAGONROT_CONVERTING;
@@ -116,16 +120,19 @@ public class SpectrumRecipeTypes {
 		
 		POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER = registerSerializer(POTION_WORKSHOP_CRAFTING_ID, new PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipe::new));
 		POTION_WORKSHOP_CRAFTING = registerRecipeType(POTION_WORKSHOP_CRAFTING_ID);
-
+		
 		POTION_WORKSHOP_REACTING_SERIALIZER = registerSerializer(POTION_WORKSHOP_REACTING_ID, new PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipe::new));
 		POTION_WORKSHOP_REACTING = registerRecipeType(POTION_WORKSHOP_REACTING_ID);
-
+		
+		MUD_CONVERTING_SERIALIZER = registerSerializer(MUD_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(MudConvertingRecipe::new));
+		MUD_CONVERTING = registerRecipeType(MUD_CONVERTING_ID);
+		
 		LIQUID_CRYSTAL_CONVERTING_SERIALIZER = registerSerializer(LIQUID_CRYSTAL_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(LiquidCrystalConvertingRecipe::new));
 		LIQUID_CRYSTAL_CONVERTING = registerRecipeType(LIQUID_CRYSTAL_CONVERTING_ID);
-
+		
 		MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = registerSerializer(MIDNIGHT_SOLUTION_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(MidnightSolutionConvertingRecipe::new));
 		MIDNIGHT_SOLUTION_CONVERTING = registerRecipeType(MIDNIGHT_SOLUTION_CONVERTING_ID);
-
+		
 		DRAGONROT_CONVERTING_SERIALIZER = registerSerializer(DRAGONROT_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(DragonrotConvertingRecipe::new));
 		DRAGONROT_CONVERTING = registerRecipeType(DRAGONROT_CONVERTING_ID);
 

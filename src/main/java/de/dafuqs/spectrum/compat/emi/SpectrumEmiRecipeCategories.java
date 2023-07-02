@@ -20,6 +20,7 @@ public class SpectrumEmiRecipeCategories {
 	public static final EmiRecipeCategory POTION_WORKSHOP_CRAFTING = new SpectrumCategory(SpectrumCommon.locate("potion_workshop_crafting"), EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 	public static final EmiRecipeCategory POTION_WORKSHOP_REACTING = new SpectrumCategory(SpectrumCommon.locate("potion_workshop_reacting"), EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 	public static final EmiRecipeCategory SPIRIT_INSTILLER = new SpectrumCategory(SpectrumCommon.locate("spirit_instiller"), EmiStack.of(SpectrumBlocks.SPIRIT_INSTILLER), SpectrumBlocks.SPIRIT_INSTILLER.getTranslationKey());
+	public static final EmiRecipeCategory MUD_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("mud_converting"), EmiStack.of(SpectrumItems.MUD_BUCKET));
 	public static final EmiRecipeCategory LIQUID_CRYSTAL_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("liquid_crystal_converting"), EmiStack.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET));
 	public static final EmiRecipeCategory MIDNIGHT_SOLUTION_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("midnight_solution_converting"), EmiStack.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 	public static final EmiRecipeCategory DRAGONROT_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("dragonrot_converting"), EmiStack.of(SpectrumItems.DRAGONROT_BUCKET), "container.spectrum.rei.dragonrot_converting.title");

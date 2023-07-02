@@ -1,13 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "gem_storage",
   "ingredients": [
     {
       "item": "spectrum:azurite_block"
     }
   ],
   "result": {
-    "item": "spectrum:raw_azurite",
+    "item": "spectrum:refined_azurite",
     "count": 9
   }
 }

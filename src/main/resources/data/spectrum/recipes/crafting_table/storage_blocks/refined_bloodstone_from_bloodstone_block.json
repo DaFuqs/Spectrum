@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "gem_storage",
   "ingredients": [
     {
       "item": "spectrum:bloodstone_block"

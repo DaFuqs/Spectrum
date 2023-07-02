@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -8,6 +10,7 @@ import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -28,6 +31,11 @@ public class MudFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
 		return new Pair<>(SpectrumParticleTypes.MUD_POP, SpectrumParticleTypes.MUD_FISHING);
+	}
+	
+	@Override
+	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
+		return SpectrumRecipeTypes.MUD_CONVERTING;
 	}
 	
 	@Override

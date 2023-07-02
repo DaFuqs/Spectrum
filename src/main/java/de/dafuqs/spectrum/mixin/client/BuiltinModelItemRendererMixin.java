@@ -24,7 +24,7 @@ public abstract class BuiltinModelItemRendererMixin {
 		if (item instanceof BlockItem blockItem) {
 			Block block = blockItem.getBlock();
 			if (block instanceof SpectrumSkullBlock || block instanceof SpectrumWallSkullBlock) {
-				SpectrumSkullBlock.SpectrumSkullBlockType spectrumSkullBlockType = (SpectrumSkullBlock.SpectrumSkullBlockType) ((SpectrumSkullBlock) block).getSkullType();
+				SpectrumSkullBlockType spectrumSkullBlockType = (SpectrumSkullBlockType) ((SpectrumSkullBlock) block).getSkullType();
 				RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(spectrumSkullBlockType);
 				SkullBlockEntityModel model = SpectrumSkullBlockEntityRenderer.getModel(spectrumSkullBlockType);
 				SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, 0.0F, matrices, vertexConsumers, light, model, renderLayer);

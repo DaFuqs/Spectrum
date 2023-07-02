@@ -29,12 +29,12 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	public static Map<SkullBlock.SkullType, SkullBlockEntityModel> getModels(EntityModelLoader modelLoader) {
 		ImmutableMap.Builder<SkullBlock.SkullType, SkullBlockEntityModel> builder = ImmutableMap.builder();
 		builder.put(SkullBlock.Type.PLAYER, new SkullEntityModel(modelLoader.getModelPart(EntityModelLayers.PLAYER_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG, new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.GUARDIAN_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.GUARDIAN_TURRET_HEAD)));
-		builder.put(SpectrumSkullBlock.SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
+		builder.put(SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG, new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)));
+		builder.put(SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
+		builder.put(SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
+		builder.put(SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
+		builder.put(SpectrumSkullBlockType.GUARDIAN_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.GUARDIAN_TURRET_HEAD)));
+		builder.put(SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
 		return builder.build();
 	}
 	
@@ -52,9 +52,9 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		boolean bl = blockState.getBlock() instanceof WallSkullBlock;
 		Direction direction = bl ? blockState.get(WallSkullBlock.FACING) : null;
 		float h = 22.5F * (float) (bl ? (2 + direction.getHorizontal()) * 4 : blockState.get(SkullBlock.ROTATION));
-		SpectrumSkullBlock.SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
+		SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
 		if (skullType == null) {
-			skullType = SpectrumSkullBlock.SpectrumSkullBlockType.PIG;
+			skullType = SpectrumSkullBlockType.PIG;
 		}
 		SkullBlockEntityModel skullBlockEntityModel = MODELS.get(skullType.getModelType());
 		RenderLayer renderLayer = getRenderLayer(skullType);
@@ -76,7 +76,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		matrices.pop();
 	}
 	
-	public static RenderLayer getRenderLayer(SpectrumSkullBlock.SpectrumSkullBlockType type) {
+	public static RenderLayer getRenderLayer(SpectrumSkullBlockType type) {
 		Identifier identifier = getTextureIdentifier(type);
 		RenderLayer renderLayer = RenderLayer.getEntityCutoutNoCullZOffset(identifier);
 		if (renderLayer == null) {
@@ -86,7 +86,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		}
 	}
 	
-	protected static Identifier getTextureIdentifier(SpectrumSkullBlock.SpectrumSkullBlockType type) {
+	protected static Identifier getTextureIdentifier(SpectrumSkullBlockType type) {
 		switch (type) {
 			case EGG_LAYING_WOOLY_PIG -> {
 				return EggLayingWoolyPigEntityRenderer.TEXTURE;

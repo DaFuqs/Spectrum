@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

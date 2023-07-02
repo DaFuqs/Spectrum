@@ -194,8 +194,6 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			}
 		} else {
 			InWorldInteractionBlock.scatterContents(world, pos);
-			world.updateComparators(pos, this);
-			
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}

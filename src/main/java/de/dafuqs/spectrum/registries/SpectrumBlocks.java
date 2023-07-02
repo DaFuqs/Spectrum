@@ -778,7 +778,7 @@ public class SpectrumBlocks {
 	public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
 	public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
 	
-	public static final Block STUCK_STORM_STONE = new StormStoneBlock(FabricBlockSettings.of(Material.SNOW_LAYER, MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
+	public static final Block STUCK_STORM_STONE = new StuckStormStoneBlock(FabricBlockSettings.of(Material.SNOW_LAYER, MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 	
 	public static final Block UPGRADE_SPEED = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 1, DyeColor.MAGENTA);
@@ -1137,8 +1137,8 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
 	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE));
 	
-	public static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
-	public static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
+	public static final BiMap<SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
+	public static final BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 	
 	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
 	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GLISTERING);
@@ -2452,7 +2452,7 @@ public class SpectrumBlocks {
 	
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
 	private static void registerMobHeads(FabricItemSettings settings) {
-		for (SpectrumSkullBlock.SpectrumSkullBlockType type : SpectrumSkullBlock.SpectrumSkullBlockType.values()) {
+		for (SpectrumSkullBlockType type : SpectrumSkullBlockType.values()) {
 			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
@@ -2465,11 +2465,11 @@ public class SpectrumBlocks {
 		}
 	}
 	
-	public static Block getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
+	public static Block getMobHead(SpectrumSkullBlockType skullType) {
 		return MOB_HEADS.get(skullType);
 	}
 	
-	public static SpectrumSkullBlock.SpectrumSkullBlockType getSkullType(Block block) {
+	public static SpectrumSkullBlockType getSkullType(Block block) {
 		if (block instanceof SpectrumWallSkullBlock) {
 			return MOB_WALL_HEADS.inverse().get(block);
 		} else {
@@ -2477,7 +2477,7 @@ public class SpectrumBlocks {
 		}
 	}
 	
-	public static Block getMobWallHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
+	public static Block getMobWallHead(SpectrumSkullBlockType skullType) {
 		return MOB_WALL_HEADS.get(skullType);
 	}
 	

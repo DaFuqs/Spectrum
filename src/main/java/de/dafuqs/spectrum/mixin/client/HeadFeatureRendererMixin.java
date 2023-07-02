@@ -30,7 +30,7 @@ public abstract class HeadFeatureRendererMixin<T extends LivingEntity, M extends
 
 			matrixStack.translate(-0.5D, 0.0D, -0.5D);
 
-			SpectrumSkullBlock.SpectrumSkullBlockType skullType = (SpectrumSkullBlock.SpectrumSkullBlockType) spectrumSkullBlock.getSkullType();
+			SpectrumSkullBlockType skullType = (SpectrumSkullBlockType) spectrumSkullBlock.getSkullType();
 			RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(skullType);
 			SkullBlockEntityModel model = SpectrumSkullBlockEntityRenderer.getModel(skullType);
 			SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, animationProgress, matrixStack, vertexConsumerProvider, light, model, renderLayer);

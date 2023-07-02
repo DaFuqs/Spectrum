@@ -18,4 +18,22 @@ public interface Preenchanted {
 		return itemStack;
 	}
 	
+	/**
+	 * Checks a stack if it only has enchantments that are lower or equal its DefaultEnchantments,
+	 * meaning enchantments had been added on top of the original ones.
+	 */
+	default boolean onlyHasPreEnchantments(ItemStack stack) {
+		Map<Enchantment, Integer> innateEnchantments = getDefaultEnchantments();
+		Map<Enchantment, Integer> stackEnchantments = EnchantmentHelper.get(stack);
+		
+		for (Map.Entry<Enchantment, Integer> stackEnchantment : stackEnchantments.entrySet()) {
+			int innateLevel = innateEnchantments.getOrDefault(stackEnchantment.getKey(), 0);
+			if (stackEnchantment.getValue() > innateLevel) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 }

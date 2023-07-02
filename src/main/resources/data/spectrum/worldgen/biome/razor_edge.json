@@ -91,6 +91,7 @@
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode",
       "spectrum:dd_large_dripstone",
+      "spectrum:dd_pyrite_pillar",
       "spectrum:dd_shale_clay_pillar",
       "spectrum:blackslag_pile"
     ],
@@ -99,6 +100,7 @@
     ],
     [
       "spectrum:dd_sawblade_delta",
+      "spectrum:dd_small_pyrite_columns",
       "spectrum:dd_small_shale_clay_columns"
     ],
     [],
@@ -126,7 +128,7 @@
       "spectrum:dd_shale_clay_crystal_formations"
     ],
     [
-      "spectrum:sawtooth_wall_patch",
+      "spectrum:pyrite_ripper_wall_patch",
       "spectrum:dd_glow_lichen",
       "spectrum:aloe_patch",
       "spectrum:sawblade_holly_bush_patch",

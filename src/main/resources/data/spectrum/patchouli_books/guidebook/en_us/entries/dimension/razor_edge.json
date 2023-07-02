@@ -29,7 +29,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:sawtooth",
+      "item": "spectrum:pyrite_ripper",
       "text": "$(italic)Those are tearing you apart.$()$(br2)Well, your clothes, for the most part. But still, point stands."
     }
   ]

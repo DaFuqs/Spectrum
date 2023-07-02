@@ -19,7 +19,7 @@ public class SpectrumDamageSources {
 	public static final DamageSource DEADLY_POISON = new SpectrumDamageSource("spectrum_deadly_poison").setBypassesArmor().setUsesMagic();
 	public static final DamageSource INCANDESCENCE = new SpectrumDamageSource("spectrum_incandescence").setNeutral().setUsesMagic().setExplosive();
 	public static final DamageSource BRISTLE_SPROUTS = new SpectrumDamageSource("spectrum_bristle_sprouts");
-	public static final DamageSource SAWTOOTH = new SpectrumDamageSource("spectrum_sawtooth");
+	public static final DamageSource RIPPER = new SpectrumDamageSource("spectrum_ripper");
 	public static final DamageSource SNAPPING_IVY = new SpectrumDamageSource("spectrum_snapping_ivy").setUnblockable().setNeutral();
 	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection().setUnblockable();
 	

@@ -19,7 +19,7 @@ public class SpectrumFeatures {
 	public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
 	public static Feature<RandomBlockProximityPatchFeatureConfig> RANDOM_BLOCK_PROXIMITY_PATCH;
 	public static Feature<FossilFeatureConfig> EXPOSED_FOSSIL;
-	public static Feature<WallPatchFeatureConfig> SAWTOOTH_PATCH;
+	public static Feature<WallPatchFeatureConfig> WALL_PATCH;
 
 	public static void register() {
 		WEIGHTED_RANDOM_FEATURE = registerFeature("weighted_random_feature", new WeightedRandomFeature(WeightedRandomFeatureConfig.CODEC));
@@ -34,7 +34,7 @@ public class SpectrumFeatures {
 		BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));
 		RANDOM_BLOCK_PROXIMITY_PATCH = registerFeature("random_block_proximity_patch", new RandomBlockProximityPatchFeature(RandomBlockProximityPatchFeatureConfig.CODEC));
 		EXPOSED_FOSSIL = registerFeature("exposed_fossil", new ExposedFossilFeature(FossilFeatureConfig.CODEC));
-		SAWTOOTH_PATCH = registerFeature("wall_patch", new WallPatchFeature(WallPatchFeatureConfig.CODEC));
+		WALL_PATCH = registerFeature("wall_patch", new WallPatchFeature(WallPatchFeatureConfig.CODEC));
 	}
 	
 }

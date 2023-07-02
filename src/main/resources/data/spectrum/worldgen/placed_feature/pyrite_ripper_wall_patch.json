@@ -1,9 +1,9 @@
 {
-  "feature": "spectrum:dd_shale_clay_pillar",
+  "feature": "spectrum:pyrite_ripper_wall_patch",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 6
+      "count": 36
     },
     {
       "type": "minecraft:in_square"
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "min_inclusive": {
-          "above_bottom": 32
+          "above_bottom": 8
         },
         "max_inclusive": {
-          "below_top": 0
+          "below_top": 8
         }
       }
     },

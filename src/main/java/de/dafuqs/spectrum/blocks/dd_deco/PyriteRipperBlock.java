@@ -13,7 +13,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class SawtoothBlock extends SpectrumFacingBlock {
+public class PyriteRipperBlock extends SpectrumFacingBlock {
 	
 	public static final BooleanProperty MIRRORED = BooleanProperty.of("mirrored");
 	
@@ -34,7 +34,7 @@ public class SawtoothBlock extends SpectrumFacingBlock {
 		put(Direction.WEST, Block.createCuboidShape(10.0D, 0.0D, 5.0D, 16.0D, 16.0D, 11.0D));
 	}};
 	
-	public SawtoothBlock(Settings settings) {
+	public PyriteRipperBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getDefaultState().with(FACING, Direction.EAST).with(MIRRORED, false));
 	}
@@ -83,7 +83,7 @@ public class SawtoothBlock extends SpectrumFacingBlock {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageSources.SAWTOOTH, 2.0F);
+					entity.damage(SpectrumDamageSources.RIPPER, 2.0F);
 				}
 			}
 		}

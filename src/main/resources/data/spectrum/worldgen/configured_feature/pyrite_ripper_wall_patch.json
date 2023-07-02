@@ -1,7 +1,7 @@
 {
   "type": "spectrum:wall_patch",
   "config": {
-    "block": "spectrum:sawtooth",
+    "block": "spectrum:pyrite_ripper",
     "width": {
       "type": "minecraft:uniform",
       "value": {

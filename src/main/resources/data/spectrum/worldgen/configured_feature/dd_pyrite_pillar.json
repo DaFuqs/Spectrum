@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:pillar",
+  "config": {
+    "state": {
+      "Name": "spectrum:pyrite"
+    }
+  }
+}

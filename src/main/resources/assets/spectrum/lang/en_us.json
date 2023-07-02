@@ -229,7 +229,7 @@
   "death.attack.spectrum_set_health.player": "%1$s was sent to the shadow realm by %2$s",
   "death.attack.spectrum_set_health": "%1$s was sent to the shadow realm by %2$s using %3$s",
   "death.attack.spectrum_bristle_sprouts.item": "%1$s was pricked to death",
-  "death.attack.spectrum_sawtooth": "%1$s wanted to play a game",
+  "death.attack.spectrum_ripper": "%1$s wanted to play a game",
   "death.attack.spectrum_kindling_cough": "%1$s got grilled by %2$s",
   "death.attack.spectrum_snapping_ivy": "%1$s was held back a bit",
 
@@ -781,7 +781,7 @@
   "block.spectrum.pyrite_tubing": "Pyrite Tubing",
   "block.spectrum.pyrite_relief": "Pyrite Relief",
   "block.spectrum.pyrite_vent": "Pyrite Vent",
-  "block.spectrum.sawtooth": "Sawtooth",
+  "block.spectrum.pyrite_ripper": "Pyrite Ripper",
   "block.spectrum.slush": "Slush",
   "block.spectrum.tilled_slush": "Tilled Slush",
   "block.spectrum.dragonbone": "Dragonbone",

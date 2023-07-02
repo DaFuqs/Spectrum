@@ -1,13 +1,13 @@
 {
-  "feature": "spectrum:dd_small_shale_clay_columns",
+  "feature": "spectrum:dd_small_pyrite_columns",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
       "count": {
-        "type": "minecraft:uniform",
+        "type": "minecraft:biased_to_bottom",
         "value": {
-          "min_inclusive": 1,
-          "max_inclusive": 2
+          "min_inclusive": 0,
+          "max_inclusive": 1
         }
       }
     },

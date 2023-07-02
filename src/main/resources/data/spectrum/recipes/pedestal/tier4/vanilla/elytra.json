@@ -31,5 +31,5 @@
     "item": "minecraft:elytra",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/collect_paltaeria_gem"
+  "required_advancement": "spectrum:hidden/collect_paltaeria_gem"
 }

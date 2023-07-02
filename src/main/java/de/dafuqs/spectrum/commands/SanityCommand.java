@@ -321,14 +321,8 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput();
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0) {
-					for (Ingredient ingredient : recipe.getIngredients()) {
-						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
-							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
-								upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
-							}
-						}
-					}
+				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+					upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
 				}
 			}
 		}
@@ -337,7 +331,7 @@ public class SanityCommand {
 			if (!craftingColors.containsKey(enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a crafting recipe");
 			}
-			if (!upgradeColors.containsKey(enchantment)) {
+			if (!upgradeColors.containsKey(enchantment) && enchantment.getMaxLevel() > 1) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a upgrading recipe");
 			}
 			if (craftingColors.containsKey(enchantment) && upgradeColors.containsKey(enchantment) && craftingColors.get(enchantment) != upgradeColors.get(enchantment)) {

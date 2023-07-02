@@ -16,11 +16,11 @@ import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
-public class StormStoneBlock extends Block implements RevelationAware {
+public class StuckStormStoneBlock extends Block implements RevelationAware {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 	
-	public StormStoneBlock(Settings settings) {
+	public StuckStormStoneBlock(Settings settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
@@ -28,6 +28,11 @@ public class StormStoneBlock extends Block implements RevelationAware {
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		return world.getBlockState(pos.down()).isSolidBlock(world, pos);
+	}
+	
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
 	@Override

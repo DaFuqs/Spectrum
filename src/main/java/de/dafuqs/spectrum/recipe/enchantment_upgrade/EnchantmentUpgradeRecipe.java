@@ -37,13 +37,13 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe {
 		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
 		
 		ItemStack ingredientStack = new ItemStack(Items.ENCHANTED_BOOK);
-		ingredientStack.addEnchantment(enchantment, enchantmentDestinationLevel - 1);
+		EnchantedBookItem.addEnchantment(ingredientStack, new EnchantmentLevelEntry(enchantment, enchantmentDestinationLevel - 1));
 		inputs.set(0, Ingredient.ofStacks(ingredientStack));
 		inputs.set(1, Ingredient.ofStacks(new ItemStack(requiredItem)));
 		this.inputs = inputs;
 		
 		ItemStack outputStack = new ItemStack(Items.ENCHANTED_BOOK);
-		outputStack.addEnchantment(enchantment, enchantmentDestinationLevel);
+		EnchantedBookItem.addEnchantment(outputStack, new EnchantmentLevelEntry(enchantment, enchantmentDestinationLevel));
 		this.output = outputStack;
 	}
 	

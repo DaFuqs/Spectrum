@@ -27,7 +27,7 @@ import java.util.*;
 @Mixin(Block.class)
 public abstract class BlockMixin {
 	
-	PlayerEntity spectrum$breakingPlayer;
+	@Nullable PlayerEntity spectrum$breakingPlayer;
 	
 	@ModifyReturnValue(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"))
 	private static List<ItemStack> spectrum$getDroppedStacks(List<ItemStack> original, BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack) {
@@ -39,15 +39,14 @@ public abstract class BlockMixin {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
 			droppedStacks.clear();
 			// Resonance: drop itself
-		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-			if ((state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock)) {
-				droppedStacks.clear();
-				droppedStacks.add(state.getBlock().asItem().getDefaultStack());
-			} else if (state.isIn(SpectrumBlockTags.SPAWNERS) && blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
+		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock)) {
+			droppedStacks.clear();
+			if (state.isIn(SpectrumBlockTags.SPAWNERS) && blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
 				droppedStacks.add(SpectrumMobSpawnerItem.toItemStack(mobSpawnerBlockEntity));
+			} else {
+				droppedStacks.add(state.getBlock().asItem().getDefaultStack());
 			}
 		}
-		
 		
 		if (droppedStacks.size() > 0) {
 			// Resonance enchant: grant different drops for some items
@@ -90,6 +89,9 @@ public abstract class BlockMixin {
 	
 	@ModifyArg(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	private int spectrum$applyExuberance(int originalXP) {
+		if (spectrum$breakingPlayer == null) {
+			return originalXP;
+		}
 		return (int) (originalXP * ExuberanceEnchantment.getExuberanceMod(spectrum$breakingPlayer));
 	}
 	

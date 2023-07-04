@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
+    "AbstractBlockStateMixin",
     "AbstractHorseEntityMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",

@@ -34,7 +34,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
+public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPowered {
 	
 	/**
 	 * Blocks that have an effect when a Nature's Staff is used on them

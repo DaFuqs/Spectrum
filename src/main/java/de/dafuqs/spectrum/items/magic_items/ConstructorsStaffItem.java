@@ -114,8 +114,9 @@ public class ConstructorsStaffItem extends BuildingStaffItem implements InkPower
 							if (originalState.isAir() || !originalState.getFluidState().isEmpty() || (originalState.getMaterial().isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
 								BlockState stateToPlace = targetBlock.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(pos), side, pos, false)));
 								if (stateToPlace != null && stateToPlace.canPlaceAt(world, pos)) {
-									world.setBlockState(position, stateToPlace);
-									placed++;
+									if (world.setBlockState(position, stateToPlace)) {
+										placed++;
+									}
 								}
 							}
 						}

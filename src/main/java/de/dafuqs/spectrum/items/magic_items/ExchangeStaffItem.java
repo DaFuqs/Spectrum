@@ -29,7 +29,7 @@ import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnchantable, InkPowered {
+public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnchantable, InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.CYAN;
 	public static final int INK_COST_PER_BLOCK = 5;
@@ -218,6 +218,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		Identifier blockIdentifier = Registry.BLOCK.getId(block);
 		compound.putString("TargetBlock", blockIdentifier.toString());
 		exchangeStaffItemStack.setNbt(compound);
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
 	}
 	
 	@Override

@@ -24,7 +24,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnchantable {
+public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnchantable {
 	
 	public static final int CHARGE_TIME_TICKS = 20;
 	public static final int MAX_CHARGES = 8;

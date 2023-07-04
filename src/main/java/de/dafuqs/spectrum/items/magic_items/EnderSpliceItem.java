@@ -30,7 +30,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class EnderSpliceItem extends Item implements EnchanterEnchantable {
+public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	
 	public EnderSpliceItem(Settings settings) {
 		super(settings);

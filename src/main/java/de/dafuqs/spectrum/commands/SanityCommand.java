@@ -39,32 +39,32 @@ import java.util.*;
 
 public class SanityCommand {
 	
-	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = new ArrayList<>() {{
-		add(SpectrumCommon.locate("collect_mysterious_locket"));
-		add(SpectrumCommon.locate("find_preservation_ruins"));
-		add(SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"));
-		add(SpectrumCommon.locate("place_moonstone_in_preservation_ruins"));
-		
-		add(SpectrumCommon.locate("tap_aged_air"));
-		add(SpectrumCommon.locate("hook_entity_with_molten_rod"));
-		
-		add(SpectrumCommon.locate("midgame/take_off_belt_overcharged"));
-		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"));
-		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"));
-		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
-		add(SpectrumCommon.locate("midgame/tap_chrysocolla"));
-		add(SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"));
-		
-		add(SpectrumCommon.locate("lategame/killed_monstrosity"));
-		add(SpectrumCommon.locate("lategame/collect_doombloom_seed"));
-		add(SpectrumCommon.locate("lategame/collect_noxwood"));
-		add(SpectrumCommon.locate("lategame/break_cracked_dragonbone"));
-		add(SpectrumCommon.locate("lategame/collect_bismuth"));
-		add(SpectrumCommon.locate("lategame/collect_myceylon"));
-		add(SpectrumCommon.locate("lategame/collect_prickly_bayleaf"));
-		add(SpectrumCommon.locate("lategame/collect_hummingstone"));
-		add(SpectrumCommon.locate("lategame/collect_downstone_fragments"));
-	}};
+	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
+			SpectrumCommon.locate("collect_mysterious_locket"),
+			SpectrumCommon.locate("find_preservation_ruins"),
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),
+			SpectrumCommon.locate("place_moonstone_in_preservation_ruins"),
+			
+			SpectrumCommon.locate("tap_aged_air"),
+			SpectrumCommon.locate("hook_entity_with_molten_rod"),
+			
+			SpectrumCommon.locate("midgame/take_off_belt_overcharged"),
+			SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"),
+			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),
+			SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"),
+			SpectrumCommon.locate("midgame/tap_chrysocolla"),
+			SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"),
+			
+			SpectrumCommon.locate("lategame/killed_monstrosity"),
+			SpectrumCommon.locate("lategame/collect_doombloom_seed"),
+			SpectrumCommon.locate("lategame/collect_noxwood"),
+			SpectrumCommon.locate("lategame/break_cracked_dragonbone"),
+			SpectrumCommon.locate("lategame/collect_bismuth"),
+			SpectrumCommon.locate("lategame/collect_myceylon"),
+			SpectrumCommon.locate("lategame/collect_prickly_bayleaf"),
+			SpectrumCommon.locate("lategame/collect_hummingstone"),
+			SpectrumCommon.locate("lategame/collect_downstone_fragments")
+	);
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register((CommandManager.literal("spectrum_sanity").requires((source) -> source.hasPermissionLevel(2)).executes((context) -> execute(context.getSource()))));
@@ -291,11 +291,16 @@ public class SanityCommand {
 			}
 		}
 		
-		// EnchanterEnchantables with enchantability <= 0 (unable to be enchanted)
+		// ExtendedEnchantables with enchantability <= 0 (unable to be enchanted) or not set to be enchantable
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
 			Item i = item.getValue();
-			if (i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
-				SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
+			if (i instanceof ExtendedEnchantable) {
+				if (!new ItemStack(i).isEnchantable()) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is not set to be enchantable.");
+				}
+				if (i.getEnchantability() < 1) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is ExtendedEnchantable, but has enchantability of < 1");
+				}
 			}
 		}
 		

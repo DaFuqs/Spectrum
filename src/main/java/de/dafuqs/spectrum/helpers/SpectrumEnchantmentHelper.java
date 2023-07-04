@@ -37,7 +37,7 @@ public class SpectrumEnchantmentHelper {
 			enchantedBookStack.setNbt(stack.getNbt());
 			stack = enchantedBookStack;
 		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
-			if (stack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) {
+			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.canAcceptEnchantment(enchantment)) {
 				// EnchanterEnchantable explicitly states this enchantment is acceptable
 			} else {
 				// item can not be enchanted with this enchantment

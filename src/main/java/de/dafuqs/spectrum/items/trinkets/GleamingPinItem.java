@@ -21,7 +21,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnchantable {
+public class GleamingPinItem extends SpectrumTrinketItem implements ExtendedEnchantable {
 	
 	public static final int BASE_RANGE = 12;
 	public static final int RANGE_BONUS_PER_LEVEL_OF_SNIPING = 4;

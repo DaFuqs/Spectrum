@@ -20,7 +20,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KnowledgeGemItem extends Item implements ExperienceStorageItem, EnchanterEnchantable, LoomPatternProvider {
+public class KnowledgeGemItem extends Item implements ExperienceStorageItem, ExtendedEnchantable, LoomPatternProvider {
 	
 	private final int maxStorageBase;
 	

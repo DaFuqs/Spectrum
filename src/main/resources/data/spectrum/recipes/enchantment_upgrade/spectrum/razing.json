@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:razing",
+  "levels": [
+    {
+      "experience": 400,
+      "item": "spectrum:gray_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2000,
+      "item": "spectrum:gray_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 10000,
+      "item": "spectrum:gray_pigment",
+      "item_count": 256
+    },
+    {
+      "experience": 10000,
+      "item": "spectrum:gray_pigment",
+      "item_count": 512
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/razing_crafting",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:razing"
+      ]
+    }
+  ]
+}

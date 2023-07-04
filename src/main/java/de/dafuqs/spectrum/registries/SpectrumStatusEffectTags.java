@@ -22,9 +22,12 @@ public class SpectrumStatusEffectTags {
 	}
 	
 	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {
-		int id = Registry.STATUS_EFFECT.getRawId(effect);
-		Optional<RegistryEntry<StatusEffect>> entry = Registry.STATUS_EFFECT.getEntry(id);
-		return entry.map(statusEffectRegistryEntry -> statusEffectRegistryEntry.isIn(tag)).orElse(false);
+		Optional<RegistryKey<StatusEffect>> optionalKey = Registry.STATUS_EFFECT.getKey(effect);
+		if (optionalKey.isEmpty()) {
+			return false;
+		}
+		Optional<RegistryEntry<StatusEffect>> registryEntry = Registry.STATUS_EFFECT.getEntry(optionalKey.get());
+		return registryEntry.map(e -> e.isIn(tag)).orElse(false);
 	}
 	
 	public static boolean isUncurable(StatusEffect statusEffect) {

@@ -70,7 +70,7 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 	
 	@Override
 	protected int getRecipeHeight() {
-		return 74;
+		return 68;
 	}
 	
 }

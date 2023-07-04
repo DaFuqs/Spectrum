@@ -46,6 +46,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
+	
 	protected final AutoCraftingInventory autoCraftingInventory;
 	protected final PropertyDelegate propertyDelegate;
 	protected UUID ownerUUID;

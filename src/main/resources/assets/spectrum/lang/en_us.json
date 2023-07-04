@@ -1826,7 +1826,7 @@
   "item.spectrum.lagoon_rod.tooltip": "The bobber indicates fishing in open waters",
   "item.spectrum.molten_rod": "Molten Rod",
   "item.spectrum.molten_rod.tooltip": "Its Bobber is hot enough to withstand Lava",
-  "item.spectrum.molten_rod.tooltip2": "Sets your catch on fire - and anything else it touches",
+  "item.spectrum.molten_rod.tooltip2": "Sets your catch on fire - or anything else",
   "item.spectrum.glow_vision_goggles": "Glow Vision Goggles",
   "item.spectrum.glow_vision_goggles.tooltip": "§7Powered by §bGlow Ink Sacs",
   "item.spectrum.glow_vision_goggles.tooltip_with_ink": "§7Powered by §bGlow Ink Sacs§r or §3Light Blue Ink§r",

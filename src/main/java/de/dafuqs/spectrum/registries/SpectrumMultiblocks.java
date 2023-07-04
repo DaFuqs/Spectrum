@@ -283,7 +283,7 @@ public class SpectrumMultiblocks {
 				{"_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________"},
 				{"_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________"},
 				{"_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______4______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________"},
-				{"XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXrXrXXXXX", "XXXXrXXXrXXXX", "XXXXXX0XXXXXX", "XXXXrXXXrXXXX", "XXXXXrXrXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX"}
+				{"XXXXXXXXXXXXX", "XX__X___X__XX", "X_XXXXXXXXX_X", "X_XXXXXXXXX_X", "XXXXXrXrXXXXX", "X_XXrXXXrXX_X", "X_XXXX0XXXX_X", "X_XXrXXXrXX_X", "XXXXXrXrXXXXX", "X_XXXXXXXXX_X", "X_XXXXXXXXX_X", "XX__X___X__XX", "XXXXXXXXXXXXX"}
 		};
 		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK, tier3StructureWithoutMoonstone, targetBlocksCheck);
 		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_PLACE, tier3StructureWithoutMoonstone, targetBlocksPlace);

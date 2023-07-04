@@ -479,6 +479,11 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.POWER || enchantment == SpectrumEnchantments.VOIDING;
 	}

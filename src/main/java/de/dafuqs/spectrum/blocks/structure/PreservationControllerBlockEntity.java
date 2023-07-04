@@ -153,12 +153,17 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.SMOKE, 250,
 						new Vec3d(checkBox.getXLength() / 2, checkBox.getYLength() / 2, checkBox.getZLength() / 2),
 						Vec3d.ZERO);
-            }
+			}
 			
 			if (destinationPos != null) {
 				SpectrumS2CPacketSender.playParticles((ServerWorld) world, destinationPos, ParticleTypes.END_ROD, 1);
 			}
 		}
+	}
+	
+	@Override
+	public boolean copyItemDataRequiresOperator() {
+		return true;
 	}
 	
 	public void toggleParticles() {
@@ -168,7 +173,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	public void openExit() {
 		boolean didSomething = false;
 		BlockState state = world.getBlockState(pos);
-		if(!state.isOf(SpectrumBlocks.PRESERVATION_CONTROLLER)) {
+		if (!state.isOf(SpectrumBlocks.PRESERVATION_CONTROLLER)) {
 			return;
 		}
 		

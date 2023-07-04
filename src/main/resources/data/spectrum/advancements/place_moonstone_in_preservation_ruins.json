@@ -15,11 +15,7 @@
   },
   "criteria": {
     "placed_moonstone_in_preservation_ruins": {
-      "trigger": "spectrum:preservation_check",
-      "conditions": {
-        "check_name": "moonstone_secret",
-        "check_passed": true
-      }
+      "trigger": "minecraft:impossible"
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

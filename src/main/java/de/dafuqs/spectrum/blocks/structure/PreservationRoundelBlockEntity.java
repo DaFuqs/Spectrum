@@ -81,6 +81,11 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	@Override
+	public boolean copyItemDataRequiresOperator() {
+		return true;
+	}
+	
+	@Override
 	public void inventoryChanged() {
 		super.inventoryChanged();
 		if (!world.isClient && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {

@@ -54,12 +54,17 @@ public class GleamingPinItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
-	public int getEnchantability() {
-		return 16;
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
 	}
 	
 	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == SpectrumEnchantments.SNIPER;
+	}
+	
+	@Override
+	public int getEnchantability() {
+		return 16;
 	}
 }

@@ -296,6 +296,11 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == SpectrumEnchantments.RESONANCE || enchantment == SpectrumEnchantments.INDESTRUCTIBLE || enchantment == Enchantments.UNBREAKING;
 	}

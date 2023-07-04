@@ -30,7 +30,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, EnchanterEnchantable {
+public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, ExtendedEnchantable {
 	
 	private static final int MAX_STORED_AMOUNT_BASE = 20000;
 	

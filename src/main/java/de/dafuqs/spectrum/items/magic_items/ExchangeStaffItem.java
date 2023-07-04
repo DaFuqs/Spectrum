@@ -222,7 +222,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
-		return true;
+		return stack.getCount() == 1;
 	}
 	
 	@Override

@@ -128,11 +128,6 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		}
 	}
 	
-	@Override
-	public int getEnchantability() {
-		return 5;
-	}
-	
 	public boolean shouldDisplayUsageTooltip(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
 		return nbtCompound == null || !nbtCompound.getBoolean("do_not_display_store_tooltip");
@@ -176,13 +171,23 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 	}
 	
 	@Override
+	public RegistryEntry<BannerPattern> getPattern() {
+		return SpectrumBannerPatterns.KNOWLEDGE_GEM;
+	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.QUICK_CHARGE;
 	}
 	
 	@Override
-	public RegistryEntry<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.KNOWLEDGE_GEM;
+	public int getEnchantability() {
+		return 5;
 	}
 	
 }

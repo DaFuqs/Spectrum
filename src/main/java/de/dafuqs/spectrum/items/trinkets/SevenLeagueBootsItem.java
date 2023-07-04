@@ -34,6 +34,11 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Extende
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
 	public boolean canAcceptEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.POWER;
 	}

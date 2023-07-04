@@ -98,6 +98,12 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	
+	@Override
 	public int getEnchantability() {
 		return 8;
 	}

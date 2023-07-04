@@ -334,13 +334,19 @@ public class SanityCommand {
 		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
 			if (!craftingColors.containsKey(enchantment)) {
-				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a crafting recipe");
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + "' does not have a crafting recipe");
 			}
 			if (!upgradeColors.containsKey(enchantment) && enchantment.getMaxLevel() > 1) {
-				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + " does not have a upgrading recipe");
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + "' does not have a upgrading recipe");
 			}
 			if (craftingColors.containsKey(enchantment) && upgradeColors.containsKey(enchantment) && craftingColors.get(enchantment) != upgradeColors.get(enchantment)) {
-				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment recipes for '" + entry.getKey().getValue() + " use different pigments");
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment recipes for '" + entry.getKey().getValue() + "' use different pigments");
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+			Enchantment enchantment = entry.getValue();
+			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");
 			}
 		}
 		

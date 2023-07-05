@@ -72,6 +72,21 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "spectrum:pure_netherite"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 16
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "minecraft:enchanted_book"
         }
       ],

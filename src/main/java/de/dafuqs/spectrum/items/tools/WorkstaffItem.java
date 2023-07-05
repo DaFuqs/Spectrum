@@ -87,13 +87,14 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		NbtCompound nbt = context.getStack().getNbt();
-		if(canTill(nbt)) {
+		if (canTill(nbt)) {
 			return super.useOnBlock(context);
 		}
 		return ActionResult.PASS;
 	}
 	
-	public static boolean canTill(NbtCompound nbt) {
+	@Override
+	public boolean canTill(NbtCompound nbt) {
 		return nbt == null || !nbt.getBoolean(RIGHT_CLICK_DISABLED_NBT_STRING);
 	}
 	

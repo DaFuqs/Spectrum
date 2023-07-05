@@ -3,6 +3,7 @@
   "values": [
     "#spectrum:deep_soils",
 
+    "spectrum:redstone_sand",
     "spectrum:sacred_soil",
     "spectrum:rotten_ground",
     "spectrum:tilled_slush"

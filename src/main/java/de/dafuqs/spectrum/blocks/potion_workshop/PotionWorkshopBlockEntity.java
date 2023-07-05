@@ -264,13 +264,17 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
-		for (ItemStack potion : results) {
-			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potion, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
-			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potion);
-				
-				Potion potionStack = PotionUtil.getPotion(potion);
-				Criteria.BREWED_POTION.trigger(serverPlayerEntity, potionStack);
+		if (brewedAmount <= 0) {
+			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, ItemStack.EMPTY, 0);
+		} else {
+			for (ItemStack potion : results) {
+				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potion, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+				if (serverPlayerEntity != null) {
+					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potion, brewedAmount);
+					
+					Potion potionStack = PotionUtil.getPotion(potion);
+					Criteria.BREWED_POTION.trigger(serverPlayerEntity, potionStack);
+				}
 			}
 		}
 		
@@ -296,7 +300,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 		if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows);
+			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows, tippedArrows.getCount());
 		}
 		
 		potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
@@ -319,7 +323,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack);
+				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 1);
 			}
 			
 			potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;

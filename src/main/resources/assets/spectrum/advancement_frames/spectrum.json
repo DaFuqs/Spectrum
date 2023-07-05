@@ -101,6 +101,10 @@
     "advancement": "spectrum:lategame/no_rgb",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:midgame/brew_no_potion_in_potion_workshop",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:collect_amaranth",

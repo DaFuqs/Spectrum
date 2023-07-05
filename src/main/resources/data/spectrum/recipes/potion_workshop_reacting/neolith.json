@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:neolith",
   "modifiers": {
-    "flat_yield_bonus": 1.0
+    "flat_yield_bonus": 2.0
   },
   "required_advancement": "spectrum:midgame/collect_neolith"
 }

@@ -42,7 +42,7 @@
       "title": "Ferocious Bident",
       "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
       "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
-      "text": "This is what happens when you combine $(thing)Riptide$() with a Pocket Thunderstorm? Allows you to hurl yourself into the air and damage everything in your path, even without rain and in the driest of deserts - as long as you don't run out of ink.$(br)$(italic)Flying isn't the problem. Landing is.$()"
+      "text": "What happens when you combine $(thing)Riptide$() with a Pocket Thunderstorm? Lets you hurl yourself into the air and damage everything in your path, even in the driest of deserts - as long as you don't run out of ink.$(br)$(italic)Flying isn't the problem. Landing is.$()"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

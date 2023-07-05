@@ -26,9 +26,10 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Blackslag Base",
       "advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
-      "text": "Blackslag can be used, too, resulting in a especially dark variant."
+      "text": "Blackslag can be used, too, resulting in an especially dark variant."
     }
   ]
 }

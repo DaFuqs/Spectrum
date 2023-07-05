@@ -49,23 +49,23 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore and small gemstones into sparkling crystals.$(br)Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead."
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals.$(br)Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "Requires a color of Ink depending on the resource you grow. It fits a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
+      "text": "Simply throw raw ore on top to let it crystallize.$(br)Each resource requires one color of Ink. "
     },
     {
       "type": "patchouli:text",
       "title": "Growing Metals",
-      "text": "Metallic resources require unrefined materials such as $(item)Raw Iron$(), resulting in a $(item)Small Iron Bud$() that will grow steadily until it reaches maturity and can be safely harvested."
+      "text": "Metallic resources require unrefined materials such as $(item)Raw Iron$(), resulting in a $(item)Small Iron Bud$() that will grow steadily until it reaches maturity and can be safely harvested.$(br)For crystalline blocks, an existing one may be used as a seed."
     },
     {
       "type": "patchouli:text",
-      "title": "Growing Crystals",
-      "text": "Crystals such as $(item)Diamonds$() require more Ink, but their nature allows you to grow them over and over again - $(item)Diamond Clusters$() yielding more $(item)Diamonds$()."
+      "title": "Catalysts",
+      "text": "The Crystallarieum also fits a stack of catalysts, speed up the process, or lower Ink consumption. While catalysts are mostly optional, some special materials may require them."
     },
     {
       "type": "spectrum:crystallarieum_growing",

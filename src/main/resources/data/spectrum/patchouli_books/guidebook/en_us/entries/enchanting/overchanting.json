@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Overchanting",
       "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
-      "text": "Being so familiar with both magic and the $(l:enchanting/enchanter)Enchanter$() opened new doors for you:$(br)Overchanting.$(br2)Pressing so much magical energy into a single $(item)Enchanted Book$() will be pricey. $(italic)Very pricey()."
+      "text": "Your familiarity with both magic and the $(l:enchanting/enchanter)Enchanter$() has opened new doors for you:$(br)$(thing)Overchanting$().$(br2)Packing so much magical energy into a single $(item)Enchanted Book$() will be expensive. $(italic)Very expensive$()."
     },
     {
       "type": "patchouli:text",

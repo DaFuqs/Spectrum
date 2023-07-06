@@ -659,6 +659,8 @@
   "block.spectrum.downstone": "Downstone",
 
   "block.spectrum.preservation_stone": "Preservation Stone",
+  "block.spectrum.preservation_stairs": "Preservation Stairs",
+  "block.spectrum.preservation_slab": "Preservation Slab",
   "block.spectrum.preservation_glass": "Preservation Glass",
   "block.spectrum.tinted_preservation_glass": "Tinted Preservation Glass",
   "block.spectrum.preservation_bricks": "Preservation Bricks",

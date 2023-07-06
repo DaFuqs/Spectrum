@@ -77,25 +77,16 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 
 	@Override
-	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
+	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		if (!world.isClient) {
-			int groundSlamStrength = getGroundSlamStrength(itemStack);
+			int groundSlamStrength = getGroundSlamStrength(stack);
 			if (groundSlamStrength > 0) {
 				performGroundSlam(world, user.getPos(), user, groundSlamStrength);
-				
-				world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				
-				//Vec3d particlePos = new Vec3d(user.getParticleX(1.0), user.getY(), user.getParticleZ(1.0));
-				//SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, particlePos, ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
-				//SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.CRIT, 16, Vec3d.ZERO, new Vec3d(7.5D, 0, 7.5D));
-				
-				if (user instanceof ServerPlayerEntity serverPlayer) {
-					serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
-				}
+				stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
 			}
 		}
 		
-		return itemStack;
+		return stack;
 	}
 	
 	public int getGroundSlamStrength(ItemStack stack) {
@@ -105,6 +96,10 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
 		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, new BlockPos(pos.x, pos.y, pos.z));
 		MoonstoneStrike.create(world, attacker, null, attacker.getX(), attacker.getY(), attacker.getZ(), strength, 1.75F);
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		if (attacker instanceof ServerPlayerEntity serverPlayer) {
+			serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
+		}
 	}
 	
 	@Environment(EnvType.CLIENT)

@@ -18,7 +18,7 @@ import java.util.*;
 public class FerociousBidentItem extends MalachiteBidentItem {
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
-	public static final int BUILTIN_RIPTIDE_LEVEL = 3;
+	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
 	
 	public FerociousBidentItem(Settings settings) {
 		super(settings);
@@ -38,15 +38,14 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.usageTick(world, user, stack, remainingUseTicks);
 		if (user.isUsingRiptide() && user instanceof PlayerEntity player) {
-			if (!InkPowered.tryDrainEnergy(player, RIPTIDE_COST)) {
-				return;
-			}
-			
 			int useTime = this.getMaxUseTime(stack) - remainingUseTicks;
 			if (useTime % 10 == 0) {
+				if (!InkPowered.tryDrainEnergy(player, RIPTIDE_COST)) {
+					return;
+				}
 				stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
 			}
-			yeetPlayer(player, getRiptideLevel(stack) / 10F - 0.75F);
+			yeetPlayer(player, getRiptideLevel(stack) / 128F - 0.75F);
 			player.useRiptide(20);
 			for (LivingEntity entityAround : world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), player.getBoundingBox().expand(2), LivingEntity::isAlive)) {
 				if (entityAround != player) {

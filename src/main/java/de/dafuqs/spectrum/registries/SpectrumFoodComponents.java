@@ -230,8 +230,6 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 0, 0), 0.6F)
 			.build();
 
-	public static final FoodComponent SPIKED_POTATOES = new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).build();
-
 	public static final FoodComponent TRIPLE_MEAT_POT_STEW = new FoodComponent.Builder()
 			.hunger(20).saturationModifier(1.2F).meat()
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0f)

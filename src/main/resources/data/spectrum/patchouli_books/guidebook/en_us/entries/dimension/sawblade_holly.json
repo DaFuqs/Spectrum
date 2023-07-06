@@ -6,7 +6,6 @@
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
     "spectrum:sawblade_holly_berry": 0,
-    "spectrum:spiked_potatoes": 0,
     "spectrum:triple_meat_pot_stew": 0
   },
   "pages": [
@@ -19,11 +18,6 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:prickly_bayleaf",
       "text": "Harvested by shearing a Sawblade Holly Bush. Can be used as a $(l:brewing/potion_workshop_reagents#prickly_bayleaf)Potion Reagent$() and in cooking.$(br2)$(italic)Clearly easier to digest cooked than raw..."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/food/spiked_potatoes",
-      "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",

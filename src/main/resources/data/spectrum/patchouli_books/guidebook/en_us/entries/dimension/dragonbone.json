@@ -46,36 +46,28 @@
     {
       "type": "patchouli:crafting",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "Polishing",
-      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash"
-    },
-    {
-      "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "Bricks & Tiles",
-      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_bricks",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
-    },
-    {
-      "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "Slabs & Stairs",
-      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_brick_slab",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tile_stairs"
-    },
-    {
-      "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "Walls",
-      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash_wall",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tile_wall"
-    },
-    {
-      "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "More Variants",
-      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash_pillar",
+      "title": "Bone Ash Blocks",
+      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash",
       "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_shingles"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "All Variants",
+      "items": [
+        "spectrum:polished_bone_ash",
+        "spectrum:polished_bone_ash_slab",
+        "spectrum:polished_bone_ash_stairs",
+        "spectrum:polished_bone_ash_wall",
+        "spectrum:bone_ash_bricks",
+        "spectrum:bone_ash_brick_slab",
+        "spectrum:bone_ash_brick_stairs",
+        "spectrum:bone_ash_brick_wall",
+        "spectrum:bone_ash_tiles",
+        "spectrum:bone_ash_tile_slab",
+        "spectrum:bone_ash_tile_stairs",
+        "spectrum:bone_ash_tile_wall",
+        "spectrum:polished_bone_ash_pillar"
+      ]
     },
     {
       "type": "spectrum:cinderhearth_smelting",

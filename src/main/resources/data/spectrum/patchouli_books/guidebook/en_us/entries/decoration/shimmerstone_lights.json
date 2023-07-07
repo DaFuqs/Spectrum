@@ -4,29 +4,32 @@
   "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
-    "spectrum:andesite_shimmerstone_light": 0,
-    "spectrum:basalt_shimmerstone_light": 0,
-    "spectrum:calcite_shimmerstone_light": 0,
-    "spectrum:deepslate_shimmerstone_light": 0,
-    "spectrum:diorite_shimmerstone_light": 0,
-    "spectrum:granite_shimmerstone_light": 0,
-    "spectrum:stone_shimmerstone_light": 0,
     "spectrum:blackslag_shimmerstone_light": 0
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "During the first nights in this new world you lit your improvised hut with torches. As atmospheric as that was, it was also one thing: primitive.$(br)To turn away from your dark, torch-lit past, you designed lamps based on Shimmerstone.$()"
+      "type": "spectrum:collection",
+      "title": "Shimmerstone Lights",
+      "items": [
+        "spectrum:andesite_shimmerstone_light",
+        "spectrum:basalt_shimmerstone_light",
+        "spectrum:calcite_shimmerstone_light",
+        "spectrum:deepslate_shimmerstone_light",
+        "spectrum:diorite_shimmerstone_light",
+        "spectrum:granite_shimmerstone_light",
+        "spectrum:stone_shimmerstone_light"
+      ],
+      "text": "On your first nights in this new world, you lit your improvised hut with torches. As atmospheric as that was, it was also primitive.$(br)To move away from your dark, torch-lit past, you created lamps based on Shimmerstone."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
-      "text": "You can use $(l:decoration/block_variants)Polished Basalt$(), $(l:decoration/block_variants)Polished Calcite$(), $(item)Smooth Stone$(), $(item)Polished Deepslate$(), $(item)Polished Diorite$(), $(item)Polished Andesite$() or $(item)Polished Granite$() as a base."
+      "text": "There are various variants, depending on what polished block you use as a base."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Blackslag Base",
+      "title": "Blackslag Variant",
       "advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
       "text": "Blackslag can be used, too, resulting in an especially dark variant."

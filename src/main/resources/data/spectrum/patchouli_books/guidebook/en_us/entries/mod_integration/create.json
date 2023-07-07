@@ -35,7 +35,14 @@
       "title": "Milling Quitoxic Reeds",
       "advancement": "spectrum:collect_quitoxic_reeds",
       "item": "spectrum:quitoxic_reeds",
-      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be milled into powder easily."
+      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be milled into powder."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Milling Amaranth",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "item": "spectrum:amaranth_bushel",
+      "text": "$(l:resources/amaranth)Amaranth$() can be milled into grains."
     },
     {
       "type": "patchouli:spotlight",

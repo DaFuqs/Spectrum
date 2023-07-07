@@ -80,10 +80,10 @@ public class PresentItem extends BlockItem {
 		return colors;
 	}
 	
-	public static void wrap(ItemStack itemStack, PresentBlock.Variant variant, Map<DyeColor, Integer> colors) {
+	public static void wrap(ItemStack itemStack, PresentBlock.WrappingPaper wrappingPaper, Map<DyeColor, Integer> colors) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		setWrapped(compound);
-		setVariant(compound, variant);
+		setVariant(compound, wrappingPaper);
 		setColors(compound, colors);
 		itemStack.setNbt(compound);
 	}
@@ -105,15 +105,15 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
-	public static void setVariant(NbtCompound compound, PresentBlock.Variant variant) {
-		compound.putString("Variant", variant.asString());
+	public static void setVariant(NbtCompound compound, PresentBlock.WrappingPaper wrappingPaper) {
+		compound.putString("Variant", wrappingPaper.asString());
 	}
 	
-	public static PresentBlock.Variant getVariant(NbtCompound compound) {
+	public static PresentBlock.WrappingPaper getVariant(NbtCompound compound) {
 		if (compound != null && compound.contains("Variant", NbtElement.STRING_TYPE)) {
-			return PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
+			return PresentBlock.WrappingPaper.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
 		}
-		return PresentBlock.Variant.RED;
+		return PresentBlock.WrappingPaper.RED;
 	}
 	
 	@Override
@@ -195,53 +195,53 @@ public class PresentItem extends BlockItem {
 		return ITEM_BAR_COLOR;
 	}
 	
-	private static int addToPresent(ItemStack bundle, ItemStack stackToBundle) {
-		if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
-			NbtCompound bundleCompound = bundle.getOrCreateNbt();
-			if (!bundleCompound.contains(ITEMS_KEY)) {
-				bundleCompound.put(ITEMS_KEY, new NbtList());
+	private static int addToPresent(ItemStack present, ItemStack stackToAdd) {
+		if (!stackToAdd.isEmpty() && stackToAdd.getItem().canBeNested()) {
+			NbtCompound nbt = present.getOrCreateNbt();
+			if (!nbt.contains(ITEMS_KEY)) {
+				nbt.put(ITEMS_KEY, new NbtList());
 			}
 			
-			NbtList nbtList = bundleCompound.getList(ITEMS_KEY, 10);
+			NbtList nbtList = nbt.getList(ITEMS_KEY, 10);
 			
-			int originalCount = stackToBundle.getCount();
+			int originalCount = stackToAdd.getCount();
 			for (int i = 0; i < MAX_STORAGE_STACKS; i++) {
 				ItemStack storedStack = ItemStack.fromNbt(nbtList.getCompound(i));
 				if (storedStack.isEmpty()) {
 					NbtCompound leftoverCompound = new NbtCompound();
-					stackToBundle.writeNbt(leftoverCompound);
+					stackToAdd.writeNbt(leftoverCompound);
 					nbtList.add(leftoverCompound);
-					bundle.setNbt(bundleCompound);
+					present.setNbt(nbt);
 					return originalCount;
 				}
-				if (ItemStack.canCombine(stackToBundle, storedStack)) {
-					int additionalAmount = Math.min(stackToBundle.getCount(), storedStack.getMaxCount() - storedStack.getCount());
+				if (ItemStack.canCombine(stackToAdd, storedStack)) {
+					int additionalAmount = Math.min(stackToAdd.getCount(), storedStack.getMaxCount() - storedStack.getCount());
 					if (additionalAmount > 0) {
-						stackToBundle.decrement(additionalAmount);
+						stackToAdd.decrement(additionalAmount);
 						storedStack.increment(additionalAmount);
 						
 						NbtCompound newCompound = new NbtCompound();
 						storedStack.writeNbt(newCompound);
 						nbtList.set(i, newCompound);
-						if (stackToBundle.isEmpty()) {
-							bundle.setNbt(bundleCompound);
+						if (stackToAdd.isEmpty()) {
+							present.setNbt(nbt);
 							return originalCount;
 						}
 					}
 				}
 			}
 			
-			return originalCount - stackToBundle.getCount();
+			return originalCount - stackToAdd.getCount();
 		}
 		return 0;
 	}
 	
 	private static Optional<ItemStack> removeFirstStack(ItemStack stack) {
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
-		if (!nbtCompound.contains(ITEMS_KEY)) {
+		NbtCompound nbt = stack.getOrCreateNbt();
+		if (!nbt.contains(ITEMS_KEY)) {
 			return Optional.empty();
 		} else {
-			NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
+			NbtList nbtList = nbt.getList(ITEMS_KEY, 10);
 			if (nbtList.isEmpty()) {
 				return Optional.empty();
 			} else {

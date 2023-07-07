@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.compat.biome_makeover.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
@@ -309,10 +310,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		// enchantment level by transferring the enchantment to new items
 		for (int i = 0; i < 8; i++) {
 			ItemStack bowlStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i);
-			NbtCompound bowlCompound = bowlStack.getNbt();
-			if (bowlCompound != null && bowlCompound.getBoolean("BMCursed")) {
-				centerStackCopy.getOrCreateNbt().putBoolean("BMCursed", true);
-			}
+			BiomeMakeoverCompat.transferBMCursedTag(bowlStack, centerStackCopy);
 		}
 		// END BIOME MAKEOVER COMPAT
 		

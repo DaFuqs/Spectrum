@@ -10,6 +10,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
+      "title": "Blackslag",
       "items": [
         "spectrum:cobbled_blackslag",
         "spectrum:cobbled_blackslag_stairs",
@@ -57,8 +58,7 @@
     {
       "type": "patchouli:smelting",
       "title": "Smelting them back",
-      "recipe": "spectrum:smelting/blackslag_unsmelting/blackslag_brick_stairs_to_polished_blackslag",
-      "recipe2": "spectrum:smelting/blackslag_unsmelting/chiseled_polished_blackslag_to_polished_blackslag",
+      "recipe": "spectrum:smelting/polished_blackslag_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their polished variant again."
     }
   ]

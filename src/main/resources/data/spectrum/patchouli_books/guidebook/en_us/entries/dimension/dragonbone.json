@@ -41,7 +41,7 @@
       "title": "Turning to Ash",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash",
-      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing creating heats hot enough to ash those bones."
+      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates heat hot enough to turn these bones into ash."
     },
     {
       "type": "patchouli:crafting",
@@ -66,14 +66,15 @@
         "spectrum:bone_ash_tile_slab",
         "spectrum:bone_ash_tile_stairs",
         "spectrum:bone_ash_tile_wall",
-        "spectrum:polished_bone_ash_pillar"
+        "spectrum:polished_bone_ash_pillar",
+        "spectrum:bone_ash_shingles"
       ]
     },
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Smelting them back",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "recipe": "spectrum:cinderhearth/dragonbone_unsmelting/bone_ash_brick_stairs",
+      "recipe": "spectrum:cinderhearth/bone_ash_unsmelting",
       "text": "Most blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
     }
   ]

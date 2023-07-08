@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "spectrum:weathered_shale_clay_bricks"
-  },
-  "result": "spectrum:weathered_polished_shale_clay",
-  "experience": 0.1,
-  "cookingtime": 200
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "spectrum:cobbled_blackslag_wall"
-  },
-  "result": "spectrum:cobbled_blackslag",
-  "experience": 0.1,
-  "cookingtime": 100
-}

@@ -50,9 +50,8 @@
     {
       "type": "patchouli:smelting",
       "title": "Smelting them back",
-      "recipe": "spectrum:smelting/shale_clay_unsmelting/shale_clay_brick_stairs_to_polished_shale_clay",
-      "recipe2": "spectrum:smelting/shale_clay_unsmelting/shale_clay_tile_stairs_to_polished_shale_clay",
-      "text": "By applying heat, the blocks can be converted back to their polished versions again."
+      "recipe": "spectrum:smelting/polished_shale_clay_unsmelting",
+      "text": "By applying heat, all blocks can be converted back to their polished variant again."
     },
     {
       "type": "patchouli:spotlight",

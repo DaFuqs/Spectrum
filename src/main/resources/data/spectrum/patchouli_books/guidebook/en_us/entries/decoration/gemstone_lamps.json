@@ -26,7 +26,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
-      "text": "Gemstone Lamps come in all the colors of gemstones available to you. Both $(l:decoration/block_variants#polished_basalt)Chiseled Calcite$() and $(l:decoration/block_variants#polished_calcite)Chiseled Basalt$() can be used as a base."
+      "text": "Gemstone Lamps come in all the colors of gemstones available to you. Both $(l:decoration/block_variants#polished_basalt)Chiseled Calcite$() and $(l:decoration/block_variants#polishing)Chiseled Basalt$() can be used as a base."
     }
   ]
 }

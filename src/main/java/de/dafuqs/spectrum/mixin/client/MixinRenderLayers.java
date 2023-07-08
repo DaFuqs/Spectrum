@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;

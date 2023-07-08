@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.particle.render.*;
 import net.minecraft.client.particle.*;

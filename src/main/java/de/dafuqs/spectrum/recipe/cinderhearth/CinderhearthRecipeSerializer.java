@@ -27,7 +27,7 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
-		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
+		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.hasArray(jsonObject, "ingredient") ? JsonHelper.getArray(jsonObject, "ingredient") : JsonHelper.getObject(jsonObject, "ingredient"));
 		int time = JsonHelper.getInt(jsonObject, "time");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 		

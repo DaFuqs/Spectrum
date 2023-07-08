@@ -47,7 +47,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         super.useOnBlock(context);
-        return ActionResult.CONSUME; // never shoot projectiles when targeting a block
+        return ActionResult.success(context.getWorld().isClient); // never shoot projectiles when targeting a block
     }
     
     @Override

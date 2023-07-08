@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.place_incandescent_amalgam.description"
     }
   },
-  "parent": "spectrum:lategame/collect_doombloom_seed",
+  "parent": "spectrum:tap_titration_barrel",
   "criteria": {
     "placed_incandescent_amalgam": {
       "trigger": "minecraft:placed_block",
@@ -22,7 +22,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
+        "advancement_identifier": "spectrum:midgame/tap_titration_barrel"
       }
     }
   }

@@ -1,0 +1,6 @@
+{
+  "input": {
+    "item": "minecraft:quartz"
+  },
+  "output": "spectrum:pure_quartz"
+}

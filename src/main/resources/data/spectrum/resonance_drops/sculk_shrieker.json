@@ -1,0 +1,8 @@
+{
+  "input": {
+    "item": "minecraft:sculk_shrieker"
+  },
+  "state_tags_to_copy": [
+    "can_summon"
+  ]
+}

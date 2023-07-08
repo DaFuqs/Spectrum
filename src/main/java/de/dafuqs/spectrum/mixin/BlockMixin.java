@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -33,32 +32,27 @@ public abstract class BlockMixin {
 	private static List<ItemStack> spectrum$getDroppedStacks(List<ItemStack> original, BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack) {
 		List<ItemStack> droppedStacks = original;
 		Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
+		boolean resonance = enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity);
 		
 		// Voiding curse: no drops
 		if (enchantmentMap.containsKey(SpectrumEnchantments.VOIDING)) {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
 			droppedStacks.clear();
-			// Resonance: drop itself
-		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock)) {
+			return droppedStacks;
+		} else if (resonance && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock)) {
 			droppedStacks.clear();
-			if (state.isIn(SpectrumBlockTags.SPAWNERS) && blockEntity instanceof MobSpawnerBlockEntity mobSpawnerBlockEntity) {
-				droppedStacks.add(SpectrumMobSpawnerItem.toItemStack(mobSpawnerBlockEntity));
-			} else {
-				droppedStacks.add(state.getBlock().asItem().getDefaultStack());
-			}
+			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
 		}
 		
 		if (droppedStacks.size() > 0) {
 			// Resonance enchant: grant different drops for some items
-			if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-				for (int i = 0; i < droppedStacks.size(); i++) {
-					droppedStacks.set(i, ResonanceDropsDataLoader.applyResonance(droppedStacks.get(i)));
-				}
+			if (resonance) {
+				ResonanceDropsDataLoader.applyResonance(state, blockEntity, droppedStacks);
 			}
 			
 			// Foundry enchant: try smelting recipe for each stack
 			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
-				droppedStacks = FoundryEnchantment.applyAutoSmelt(world, droppedStacks);
+				droppedStacks = FoundryEnchantment.applyFoundry(world, droppedStacks);
 			}
 			
 			// Inventory Insertion enchant? Add it to players inventory if there is room

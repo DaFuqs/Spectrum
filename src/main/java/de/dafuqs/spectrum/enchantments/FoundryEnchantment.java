@@ -35,7 +35,7 @@ public class FoundryEnchantment extends SpectrumEnchantment {
 	}
 	
 	@NotNull
-	public static List<ItemStack> applyAutoSmelt(World world, List<ItemStack> originalStacks) {
+	public static List<ItemStack> applyFoundry(World world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
 		for (ItemStack is : originalStacks) {

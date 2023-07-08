@@ -1,0 +1,8 @@
+{
+  "input": {
+    "item": "minecraft:respawn_anchor"
+  },
+  "state_tags_to_copy": [
+    "charges"
+  ]
+}

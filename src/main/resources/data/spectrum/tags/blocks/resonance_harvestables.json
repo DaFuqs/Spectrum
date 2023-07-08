@@ -8,7 +8,11 @@
     "#spectrum:spawners",
     "spectrum:black_materia",
 
+    "#minecraft:signs",
+    "minecraft:gilded_blackstone",
+    "minecraft:respawn_anchor",
     "minecraft:reinforced_deepslate",
+    "minecraft:sculk_shrieker",
 
     {
       "id": "botania:enchanted_soil",

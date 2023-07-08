@@ -20,12 +20,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "spectrum:crafting_table/special/wrap_present",
-      "title": "Customizing your Present",
+      "title": "Customizing &",
       "text": "$(li)Place a filled Present in a crafting grid to wrap it.$(li)Optional: add $(l:general/pigment)Pigment$() for a colorful particle shower$(li)Optional: add a special item to choose a wrapping paper:$(li2)Red Dye: Red$(li2)Blue Dye: Blue"
     },
     {
       "type": "spectrum:collection",
-      "title": "Wrapping Papers",
+      "title": "Wrapping",
       "items": [
         "spectrum:present{Variant: \"red\", Wrapped: 1b}",
         "spectrum:present{Variant: \"blue\", Wrapped: 1b}",

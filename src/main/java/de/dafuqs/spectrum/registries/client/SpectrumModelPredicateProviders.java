@@ -156,8 +156,8 @@ public class SpectrumModelPredicateProviders {
 			if (compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
 				return 0.0F;
 			
-			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
-			return variant.ordinal() / 10F;
+			PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
+			return wrappingPaper.ordinal() / 10F;
 		});
 	}
 	

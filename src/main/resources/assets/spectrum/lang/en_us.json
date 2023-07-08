@@ -71,7 +71,6 @@
   "recipeGroup.spectrum.block_cracking": "Block Cracking",
   "recipeGroup.spectrum.glass_arrows": "Glass Arrows",
   "recipeGroup.spectrum.crafting_tablet": "Crafting Tablet",
-  "recipeGroup.spectrum.bone_ash_unsmelting": "Bone Ash Unsmelting",
   "recipeGroup.spectrum.noxwood_planks": "Noxwood Planks",
 
   "biome.spectrum.deep_barrens": "Deep Barrens",
@@ -111,7 +110,11 @@
   "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
   "item.spectrum.potion.faster_to_drink": "Faster to drink",
   "item.spectrum.potion.slower_to_drink": "Slower to drink",
-  "spectrum.tooltip.coming_soon": "§4Not available in Survival yet",
+
+  "spectrum.tooltip.coming_soon": "Not available in Survival yet",
+  "spectrum.tooltip.able_to_summon_warden": "Calls out to the Warden",
+  "spectrum.tooltip.biomemakeover_cursed": "Got cursed by a wicked altar",
+
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",

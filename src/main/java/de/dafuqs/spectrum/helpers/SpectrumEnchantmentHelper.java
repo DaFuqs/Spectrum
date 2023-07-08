@@ -38,7 +38,7 @@ public class SpectrumEnchantmentHelper {
 			stack = enchantedBookStack;
 		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
 			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.canAcceptEnchantment(enchantment)) {
-				// EnchanterEnchantable explicitly states this enchantment is acceptable
+				// ExtendedEnchantable explicitly states this enchantment is acceptable
 			} else {
 				// item can not be enchanted with this enchantment
 				return stack;
@@ -160,6 +160,21 @@ public class SpectrumEnchantmentHelper {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Removes the enchantments on a stack of items / enchanted book
+	 *
+	 * @param itemStack    the stack
+	 * @param enchantments the enchantments to remove
+	 * @return if >0 enchantments could be removed
+	 */
+	public static boolean removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
+		boolean anySuccess = false;
+		for (Enchantment enchantment : enchantments) {
+			anySuccess |= removeEnchantment(itemStack, enchantment);
+		}
+		return anySuccess;
 	}
 	
 	public static boolean removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {

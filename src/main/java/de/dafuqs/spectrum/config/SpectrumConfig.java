@@ -21,6 +21,9 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
+	@Comment("Add some advanced tooltips to items, like if Sculk Shriekers are able to summon the Warden")
+	public boolean AddItemTooltips = true;
+	
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped

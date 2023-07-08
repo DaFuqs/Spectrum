@@ -141,45 +141,41 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			// switching to another enchantment
-			// fortune is handled a bit special. Its level is preserved in NBT, should the player enchant a different/higher tier
-			// of fortune onto the tool, so that level can be restored later
+			// fortune handling is a bit special. Its level is preserved in NBT,
+			// to restore the original enchant level when switching back
 			case SELECT_FORTUNE -> {
-				boolean couldRemoveOtherEnchantment = SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.SILK_TOUCH);
-				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, SpectrumEnchantments.RESONANCE);
 				int fortuneLevel = 3;
-				if(nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
+				if (nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
 					fortuneLevel = nbt.getInt("FortuneLevel");
 					nbt.remove("FortuneLevel");
 				}
-				if(couldRemoveOtherEnchantment) {
+				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE)) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.FORTUNE, fortuneLevel, true, true);
 					player.sendMessage(toggle.getTriggerText(), true);
-				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
 			}
 			case SELECT_SILK_TOUCH -> {
 				int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack);
-				boolean couldRemoveOtherEnchantment = SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.FORTUNE);
-				if(couldRemoveOtherEnchantment) {
+				if (fortuneLevel > 0) {
 					nbt.putInt("FortuneLevel", fortuneLevel);
 				}
-				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, SpectrumEnchantments.RESONANCE);
-				if(couldRemoveOtherEnchantment) {
+				
+				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.FORTUNE, SpectrumEnchantments.RESONANCE)) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.SILK_TOUCH, 1, true, true);
 					player.sendMessage(toggle.getTriggerText(), true);
-				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
 			}
 			case SELECT_RESONANCE -> {
 				int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack);
-				boolean couldRemoveOtherEnchantment = SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.FORTUNE);
-				if(couldRemoveOtherEnchantment) {
+				if (fortuneLevel > 0) {
 					nbt.putInt("FortuneLevel", fortuneLevel);
 				}
-				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.SILK_TOUCH);
-				if(couldRemoveOtherEnchantment) {
+				
+				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.FORTUNE, Enchantments.SILK_TOUCH)) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, SpectrumEnchantments.RESONANCE, 1, true, true);
 					player.sendMessage(toggle.getTriggerText(), true);
 				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {

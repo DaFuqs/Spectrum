@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "AbstractHorseEntityMixin",
+    "AllowCopyBlockEntityDataMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",
     "BlockMixin",
@@ -40,7 +41,6 @@
     "LoomScreenHandlerMixin",
     "MiningToolItemMixin",
     "MixinAbstractFireBlock",
-    "MobSpawnerBlockEntityMixin",
     "PiglinBrainMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
@@ -71,8 +71,6 @@
     "accessors.TypeSpecificPredicateDeserializerMixin"
   ],
   "client": [
-    "MixinParticleManager",
-    "MixinRenderLayers",
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
@@ -90,6 +88,8 @@
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
     "client.MinecraftClientMixin",
+    "client.MixinParticleManager",
+    "client.MixinRenderLayers",
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",
     "client.TransparentBlockMixin",

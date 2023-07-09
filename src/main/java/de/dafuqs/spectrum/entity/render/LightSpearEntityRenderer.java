@@ -18,22 +18,18 @@ public class LightSpearEntityRenderer extends EntityRenderer<LightShardBaseEntit
     @Override
     public void render(LightShardBaseEntity shard, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
-        
-        light = 15728850;
+    
         var age = shard.age;
-        
-        matrices.multiply(this.dispatcher.getRotation());
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
-
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, shard.prevYaw, shard.getYaw()) - 90.0F));
-        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(0 + MathHelper.lerp(tickDelta, shard.prevPitch, shard.getPitch())));
-        
         var alpha = MathHelper.clamp(1 - MathHelper.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
         var scaleFactor = MathHelper.sin((age + tickDelta) / 8F) / 6F + shard.getScaleOffset();
-        
+    
+        matrices.multiply(this.dispatcher.getRotation());
+        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, shard.prevYaw, shard.getYaw()) - 45.0F));
+        matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(0 + MathHelper.lerp(tickDelta, shard.prevPitch, shard.getPitch())));
+    
         matrices.scale(scaleFactor, scaleFactor, 1);
         matrices.translate(-0.5F, -0.5F, 0);
-        
+    
         var consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentCull(getTexture(shard)));
         var matrix = matrices.peek();
         var positions = matrix.getPositionMatrix();

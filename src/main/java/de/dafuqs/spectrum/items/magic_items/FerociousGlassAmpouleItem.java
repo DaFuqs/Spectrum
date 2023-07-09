@@ -17,8 +17,8 @@ import java.util.*;
 
 public class FerociousGlassAmpouleItem extends Item {
     
-    protected static final float EXTRA_REACH = 8.0F;
-    protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
+    protected static final float EXTRA_REACH = 12.0F;
+	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
     
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     

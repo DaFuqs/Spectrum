@@ -11,20 +11,14 @@
       "translate": "advancements.spectrum.create_glass_crest_tool.description"
     }
   },
-  "parent": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "parent": "spectrum:lategame/create_malachite_tool",
   "criteria": {
-    "created_spectral_shard": {
+    "created_glass_crest_tool": {
       "trigger": "spectrum:crafted_with_fusion_shrine",
       "conditions": {
         "items": [
           {
-            "items": [
-              "spectrum:glass_crest_workstaff",
-              "spectrum:glass_crest_ultra_greatsword",
-              "spectrum:ferocious_glass_crest_bident",
-              "spectrum:fractal_glass_crest_bident",
-              "spectrum:glass_crest_crossbow"
-            ]
+            "tag": "spectrum:glass_crest_equipment"
           }
         ]
       }
@@ -32,7 +26,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+        "advancement_identifier": "spectrum:lategame/create_malachite_tool"
       }
     }
   },

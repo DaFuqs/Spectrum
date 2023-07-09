@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:malachite_ultra_greatsword",
+      "nbt": "{Enchantments: [{id: \"minecraft:sweeping\", lvl: 4s}]}"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_malachite_tool.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_malachite_tool.description"
+    }
+  },
+  "parent": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "criteria": {
+    "created_malachite_tool": {
+      "trigger": "spectrum:crafted_with_fusion_shrine",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:malachite_equipment"
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      }
+    }
+  }
+}

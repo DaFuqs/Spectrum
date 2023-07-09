@@ -213,11 +213,7 @@ public class SpectrumModelPredicateProviders {
 				return 0.0F;
 			}
 			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
-			
-			
 		});
-		
-		
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

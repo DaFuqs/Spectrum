@@ -9,6 +9,8 @@
     "MinSpawnDelay",
     "MaxSpawnDelay",
     "SpawnRange",
-    "RequiredPlayerRange"
+    "RequiredPlayerRange",
+    "SpawnPotentials",
+    "MaxNearbyEntities"
   ]
 }

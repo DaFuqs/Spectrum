@@ -16,7 +16,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/kindling/kindling_neutral.png");
 	
 	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 1.8F);
+		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 0.7F);
 	}
 	
 	@Override

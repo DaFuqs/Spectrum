@@ -41,8 +41,8 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		this.prevY = y;
 		this.prevZ = z;
 		this.setOrigin(new BlockPos(this.getPos()));
-		if (blockState.getBlock() instanceof FloatBlock) {
-			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
+		if (blockState.getBlock() instanceof FloatBlock floatBlock) {
+			this.gravityModifier = floatBlock.getGravityMod();
 		} else {
 			this.gravityModifier = 1.0F;
 		}
@@ -106,7 +106,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if (player.isSneaking()) {
-			if (!this.world.isClient) {
+			if (this.world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
 				Item item = this.blockState.getBlock().asItem();

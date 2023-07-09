@@ -208,9 +208,16 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerOversizedItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> currentItemRenderMode == ModelTransformation.Mode.GUI
-				|| currentItemRenderMode == ModelTransformation.Mode.GROUND
-				|| currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F);
+		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
+			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
+				return 0.0F;
+			}
+			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
+			
+			
+		});
+		
+		
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

@@ -113,7 +113,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				}
 			}
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.GRAY));
+				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
 			}
 		});
 		

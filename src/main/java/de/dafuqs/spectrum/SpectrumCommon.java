@@ -206,10 +206,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
 
-		logInfo("Initializing Item Groups...");
-		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
-		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
-
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 

@@ -31,7 +31,6 @@ repositories {
 		name = "entity reach attribute"
 		url = "https://maven.jamieswhiteshirt.com/libs-release/"
 	}
-	maven { url 'https://maven.wispforest.io/' } // owo lib
 	maven {
 		url = "https://api.modrinth.com/maven"
 		content {
@@ -81,9 +80,12 @@ dependencies {
 
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
 
-	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
-	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+
+	['core', 'fractal'].each { module ->
+		modApi include("com.unascribed:lib39-${module}:1.5.0-pre2+1.19.2")
+	}
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"

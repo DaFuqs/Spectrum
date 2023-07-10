@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import com.unascribed.lib39.fractal.api.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
@@ -23,7 +24,7 @@ import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.color.*;
-import io.wispforest.owo.itemgroup.*;
+import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -39,36 +40,38 @@ import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 public class SpectrumItems {
 	
 	public enum Tab {
-		GENERAL(SpectrumItemGroups.ITEM_GROUP_GENERAL, 0),
-		EQUIPMENT(SpectrumItemGroups.ITEM_GROUP_GENERAL, 1),
-		CONSUMABLES(SpectrumItemGroups.ITEM_GROUP_GENERAL, 2),
-		RESOURCES(SpectrumItemGroups.ITEM_GROUP_GENERAL, 3),
-		DECORATION(SpectrumItemGroups.ITEM_GROUP_BLOCKS, 0),
-		COLORED_WOOD(SpectrumItemGroups.ITEM_GROUP_BLOCKS, 1),
-		MOB_HEADS(SpectrumItemGroups.ITEM_GROUP_BLOCKS, 2),
-		PREDEFINED(SpectrumItemGroups.ITEM_GROUP_BLOCKS, 3);
+		EQUIPMENT(SpectrumItemGroups.EQUIPMENT),
+		FUNCTIONAL(SpectrumItemGroups.FUNCTIONAL),
+		CONSUMABLES(SpectrumItemGroups.CONSUMABLES),
+		RESOURCES(SpectrumItemGroups.RESOURCES),
+		PURE_RESOURCES(SpectrumItemGroups.PURE_RESOURCES),
+		BLOCKS(SpectrumItemGroups.BLOCKS),
+		DECORATION(SpectrumItemGroups.DECORATION),
+		COLORED_WOOD(SpectrumItemGroups.COLORED_WOOD),
+		MOB_HEADS(SpectrumItemGroups.MOB_HEADS),
+		CREATURES(SpectrumItemGroups.CREATURES),
+		ENERGY(SpectrumItemGroups.ENERGY),
+		CREATIVE(SpectrumItemGroups.CREATIVE);
 		
-		private final OwoItemGroup itemGroup;
-		private final int tab;
+		private final ItemSubGroup subGroup;
 		
-		Tab(OwoItemGroup itemGroup, int tab) {
-			this.itemGroup = itemGroup;
-			this.tab = tab;
+		Tab(ItemSubGroup subGroup) {
+			this.subGroup = subGroup;
 		}
 		
-		public OwoItemSettings settings() {
-			return new OwoItemSettings().group(itemGroup).tab(tab);
+		public FabricItemSettings settings() {
+			return new FabricItemSettings().group(subGroup);
 		}
 		
-		public OwoItemSettings settings(int maxCount) {
+		public FabricItemSettings settings(int maxCount) {
 			return settings().maxCount(maxCount);
 		}
 		
-		public OwoItemSettings settings(Rarity rarity) {
+		public FabricItemSettings settings(Rarity rarity) {
 			return settings().rarity(rarity);
 		}
 		
-		public OwoItemSettings settings(int maxCount, Rarity rarity) {
+		public FabricItemSettings settings(int maxCount, Rarity rarity) {
 			return settings().maxCount(maxCount).rarity(rarity);
 		}
 		
@@ -79,13 +82,13 @@ public class SpectrumItems {
 	public static final Item PAINTBRUSH = new PaintbrushItem(Tab.EQUIPMENT.settings(1));
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(Tab.EQUIPMENT.settings(1));
 	
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("pedestal_simple_structure_place"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("pedestal_advanced_structure_place"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("pedestal_complex_structure_place"));
-	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("fusion_shrine_structure"));
-	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("enchanter_structure"));
-	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("spirit_instiller_structure"));
-	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("cinderhearth_structure"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("pedestal_simple_structure_place"));
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("pedestal_advanced_structure_place"));
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("pedestal_complex_structure_place"));
+	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("fusion_shrine_structure"));
+	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("enchanter_structure"));
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("spirit_instiller_structure"));
+	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(Tab.CREATIVE.settings(1), SpectrumCommon.locate("cinderhearth_structure"));
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(Tab.RESOURCES.settings());
@@ -241,10 +244,10 @@ public class SpectrumItems {
 	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	
 	// Fluid Buckets
-	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	public static final Item DRAGONROT_BUCKET = new BucketItem(DRAGONROT, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item DRAGONROT_BUCKET = new BucketItem(DRAGONROT, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
 	
 	// Decay bottles
 	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, Tab.EQUIPMENT.settings(16), List.of(Text.translatable("item.spectrum.bottle_of_fading.tooltip")));
@@ -390,14 +393,14 @@ public class SpectrumItems {
 	public static final Item SURSTROMMING = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SURSTROMMING));
 	
 	// Banner Patterns
-	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
-	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
-	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
+	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
+	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
+	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
 	
-	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
-	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
-	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
-	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
+	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
+	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
+	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
+	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
 	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
@@ -417,26 +420,26 @@ public class SpectrumItems {
 	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
 	
 	// Catkin
-	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.RESOURCES.settings());
-	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, Tab.RESOURCES.settings());
-	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, Tab.RESOURCES.settings());
-	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, Tab.RESOURCES.settings());
-	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, Tab.RESOURCES.settings());
+	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.CREATIVE.settings());
+	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, Tab.CREATIVE.settings());
+	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, Tab.CREATIVE.settings());
+	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, Tab.CREATIVE.settings());
+	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, Tab.CREATIVE.settings());
 	
-	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
 	
 	// Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.EQUIPMENT.settings(1, Rarity.RARE), 120);
-	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.EQUIPMENT.settings(1, Rarity.RARE), 265);
-	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.EQUIPMENT.settings(1, Rarity.RARE), 289);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 120);
+	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 265);
+	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 289);
 	
-	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.GENERAL.settings(1, Rarity.EPIC));
-	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.EQUIPMENT.settings());
-	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, Tab.EQUIPMENT.settings());
+	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.CREATURES.settings(1, Rarity.EPIC));
+	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.DECORATION.settings());
+	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, Tab.DECORATION.settings());
 	
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(Tab.EQUIPMENT.settings(1));
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 10000);
@@ -471,11 +474,11 @@ public class SpectrumItems {
 	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
-	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
-	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1), 64 * 100);
-	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
-	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
-	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.EQUIPMENT.settings(1, Rarity.EPIC));
+	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.ENERGY.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
+	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.ENERGY.settings(1), 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.ENERGY.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.ENERGY.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
+	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.ENERGY.settings(1, Rarity.EPIC));
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant"));
@@ -488,20 +491,20 @@ public class SpectrumItems {
 	public static final Item NEAT_RING = new NeatRingItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
 	// Pure Clusters
-	public static final Item PURE_EMERALD = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_PRISMARINE = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_COAL = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_REDSTONE = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_GLOWSTONE = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_LAPIS = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_COPPER = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_QUARTZ = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_GOLD = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_DIAMOND = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_IRON = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_NETHERITE_SCRAP = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_ECHO = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_NETHERITE = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_EMERALD = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_PRISMARINE = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_COAL = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_REDSTONE = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_GLOWSTONE = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_LAPIS = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_COPPER = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_QUARTZ = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_GOLD = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_DIAMOND = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_IRON = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_NETHERITE_SCRAP = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_ECHO = new Item(Tab.PURE_RESOURCES.settings());
+	public static final Item PURE_NETHERITE = new Item(Tab.PURE_RESOURCES.settings());
 	
 	public static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, SpectrumCommon.locate(name), item);

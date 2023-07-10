@@ -1281,42 +1281,42 @@ public class SpectrumBlocks {
 	}
 	
 	public static void register() {
-		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, Tab.GENERAL.settings(1), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, Tab.GENERAL.settings(1), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, Tab.GENERAL.settings(1), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
-		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, Tab.GENERAL.settings(1), DyeColor.GRAY);
-		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, Tab.GENERAL.settings(1), DyeColor.GRAY);
-		registerBlockWithItem("enchanter", ENCHANTER, Tab.GENERAL.settings(1), DyeColor.PURPLE);
-		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.GENERAL.settings(1), DyeColor.PURPLE);
-		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.GENERAL.settings(1), DyeColor.WHITE);
-		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, Tab.GENERAL.settings(1), DyeColor.BROWN);
-		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.GENERAL.settings(1).fireproof(), DyeColor.ORANGE);
-		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("inkwell", INKWELL, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("ink_duct", INK_DUCT, Tab.GENERAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
+		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, Tab.FUNCTIONAL.settings(1), DyeColor.GRAY);
+		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, Tab.FUNCTIONAL.settings(1), DyeColor.GRAY);
+		registerBlockWithItem("enchanter", ENCHANTER, Tab.FUNCTIONAL.settings(1), DyeColor.PURPLE);
+		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.FUNCTIONAL.settings(1), DyeColor.PURPLE);
+		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.FUNCTIONAL.settings(1), DyeColor.WHITE);
+		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, Tab.FUNCTIONAL.settings(1), DyeColor.BROWN);
+		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.FUNCTIONAL.settings(1).fireproof(), DyeColor.ORANGE);
+		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("inkwell", INKWELL, Tab.CREATIVE.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("ink_duct", INK_DUCT, Tab.CREATIVE.settings(8), DyeColor.GREEN);
 		
-		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.GENERAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.GENERAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.FUNCTIONAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.FUNCTIONAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.CREATURES.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
 		
 		
-		registerPastelNetworkNodes(Tab.GENERAL.settings(16));
-		registerStoneBlocks(Tab.DECORATION.settings());
+		registerPastelNetworkNodes(Tab.FUNCTIONAL.settings(16));
+		registerStoneBlocks(Tab.BLOCKS.settings());
 		registerGemBlocks(Tab.RESOURCES.settings());
 		
 		registerShootingStarBlocks(Tab.RESOURCES.settings(1, Rarity.UNCOMMON));
@@ -1325,10 +1325,10 @@ public class SpectrumBlocks {
 		registerOreBlocks(Tab.RESOURCES.settings(), Tab.RESOURCES.settings().fireproof());
 		registerOreStorageBlocks(Tab.DECORATION.settings(), Tab.DECORATION.settings().fireproof());
 		registerGemstoneLamps(Tab.DECORATION.settings());
-		registerSparklestoneLights(Tab.DECORATION.settings());
+		registerShimmerstoneLights(Tab.DECORATION.settings());
 		registerRunes(Tab.DECORATION.settings());
 		registerGemstoneGlass(Tab.DECORATION.settings());
-		registerPlayerOnlyGlass(Tab.GENERAL.settings());
+		registerPlayerOnlyGlass(Tab.FUNCTIONAL.settings());
 		registerGemstoneChimes(Tab.DECORATION.settings());
 		registerDecoStones(Tab.DECORATION.settings());
 		registerPigmentStorageBlocks(Tab.DECORATION.settings());
@@ -1336,17 +1336,17 @@ public class SpectrumBlocks {
 		registerGlowBlocks(Tab.DECORATION.settings());
 		registerSporeBlossoms(Tab.DECORATION.settings());
 		registerColoredWood(Tab.COLORED_WOOD.settings());
-		registerDDFlora(Tab.DECORATION.settings());
-		registerRedstone(Tab.GENERAL.settings());
-		registerMagicalBlocks(Tab.GENERAL.settings());
-		registerMobBlocks(Tab.MOB_HEADS.settings());
+		registerDDFlora(Tab.BLOCKS.settings());
+		registerRedstone(Tab.FUNCTIONAL.settings());
+		registerMagicalBlocks(Tab.FUNCTIONAL.settings());
+		registerMobBlocks(Tab.FUNCTIONAL.settings());
 		registerMobHeads(Tab.MOB_HEADS.settings());
-		registerCrystallarieumGrowingBlocks(Tab.RESOURCES.settings());
-		registerPureOreBlocks(Tab.RESOURCES.settings());
-		registerJadeVineBlocks(Tab.DECORATION.settings());
-		registerStructureBlocks(Tab.DECORATION.settings());
+		registerCrystallarieumGrowingBlocks(Tab.PURE_RESOURCES.settings());
+		registerPureOreBlocks(Tab.PURE_RESOURCES.settings());
+		registerJadeVineBlocks(Tab.BLOCKS.settings());
 		registerSugarSticks(Tab.CONSUMABLES.settings());
-		registerSpiritTree(Tab.GENERAL.settings());
+		registerStructureBlocks(Tab.CREATIVE.settings());
+		registerSpiritTree(Tab.CREATIVE.settings());
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -1361,13 +1361,13 @@ public class SpectrumBlocks {
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
 		registerBlock("dragonrot", DRAGONROT);
 		
-		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.GENERAL.settings(), DyeColor.GRAY);
-		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.GENERAL.settings(), DyeColor.LIGHT_BLUE);
-		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.GENERAL.settings(), DyeColor.ORANGE);
-		registerBlockWithItem("resonant_lily", RESONANT_LILY, Tab.GENERAL.settings(), DyeColor.GREEN);
+		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.BLOCKS.settings(), DyeColor.GRAY);
+		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.RESOURCES.settings(), DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.RESOURCES.settings(), DyeColor.ORANGE);
+		registerBlockWithItem("resonant_lily", RESONANT_LILY, Tab.DECORATION.settings(), DyeColor.GREEN);
 		registerBlockWithItem("clover", CLOVER, Tab.RESOURCES.settings(), DyeColor.LIME);
 		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, Tab.RESOURCES.settings(), locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
-		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.EQUIPMENT.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
+		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.FUNCTIONAL.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
 		
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_blood_orchid", POTTED_BLOOD_ORCHID);
@@ -1380,8 +1380,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_amaranth_bushel", POTTED_AMARANTH_BUSHEL);
 		
-		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.GENERAL.settings(), DyeColor.BLACK);
-		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.GENERAL.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.FUNCTIONAL.settings(), DyeColor.BLACK);
+		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.FUNCTIONAL.settings(), DyeColor.PURPLE);
 		
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
 		
@@ -1603,17 +1603,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ender_hopper", ENDER_HOPPER, settings, DyeColor.PURPLE);
 		registerBlockWithItem("ender_dropper", ENDER_DROPPER, settings, DyeColor.PURPLE);
 		registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, settings, DyeColor.PINK);
-		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, Tab.GENERAL.settings(Rarity.EPIC)), DyeColor.PINK);
+		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, Tab.FUNCTIONAL.settings(Rarity.EPIC)), DyeColor.PINK);
 		
 		registerBlockWithItem("glistering_melon", GLISTERING_MELON, settings, DyeColor.LIME);
 		
 		registerBlockWithItem("lava_sponge", LAVA_SPONGE, settings, DyeColor.ORANGE);
-		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, Tab.GENERAL.settings(1).recipeRemainder(LAVA_SPONGE.asItem())), DyeColor.ORANGE);
+		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, Tab.FUNCTIONAL.settings(1).recipeRemainder(LAVA_SPONGE.asItem())), DyeColor.ORANGE);
 		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.GENERAL.settings(1)), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.GENERAL.settings(), DyeColor.MAGENTA);
+		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {
@@ -1683,9 +1683,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		
-		registerBlockWithItem("azurite_cluster", AZURITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
-		registerBlockWithItem("large_azurite_bud", LARGE_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
-		registerBlockWithItem("small_azurite_bud", SMALL_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
 		
 		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_copper_ore", BLACKSLAG_COPPER_ORE, settings, DyeColor.BLACK);
@@ -1695,6 +1692,18 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blackslag_redstone_ore", BLACKSLAG_REDSTONE_ORE, settings, DyeColor.RED);
 		registerBlockWithItem("blackslag_lapis_ore", BLACKSLAG_LAPIS_ORE, settings, DyeColor.BLUE);
 		registerBlockWithItem("blackslag_emerald_ore", BLACKSLAG_EMERALD_ORE, settings, DyeColor.LIME);
+		
+		registerBlockWithItem("azurite_cluster", AZURITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+		registerBlockWithItem("large_azurite_bud", LARGE_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+		registerBlockWithItem("small_azurite_bud", SMALL_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+		
+		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("large_bloodstone_bud", LARGE_BLOODSTONE_BUD, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_cluster", BLOODSTONE_CLUSTER, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_block", BLOODSTONE_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 	}
 	
 	private static void registerOreStorageBlocks(FabricItemSettings settings, FabricItemSettings settingsFireproof) {
@@ -1915,28 +1924,20 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
-
-		registerBlockWithItem("pyrite", PYRITE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_pile", PYRITE_PILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tile", PYRITE_TILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_stack", PYRITE_STACK, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_vent", PYRITE_VENT, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		
+		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tile", PYRITE_TILE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.PURPLE);
 		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
-
-		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
-		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
-		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("large_bloodstone_bud", LARGE_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("bloodstone_cluster", BLOODSTONE_CLUSTER, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("bloodstone_block", BLOODSTONE_BLOCK, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-
+		
+		registerBlockWithItem("dragonbone", DRAGONBONE, settings, DyeColor.GREEN);
+		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, settings, DyeColor.GREEN);
 	}
 	
 	private static void registerRunes(FabricItemSettings settings) {
@@ -2226,7 +2227,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("black_glowblock", BLACK_GLOWBLOCK, settings, DyeColor.BLACK);
 	}
 	
-	public static void registerSparklestoneLights(FabricItemSettings settings) {
+	public static void registerShimmerstoneLights(FabricItemSettings settings) {
 		registerBlockWithItem("basalt_shimmerstone_light", BASALT_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
 		registerBlockWithItem("calcite_shimmerstone_light", CALCITE_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
 		registerBlockWithItem("stone_shimmerstone_light", STONE_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
@@ -2373,9 +2374,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("nephrite_blossom_stem", NEPHRITE_BLOSSOM_STEM, settings, DyeColor.PINK);
 		registerBlockWithItem("nephrite_blossom_leaves", NEPHRITE_BLOSSOM_LEAVES, settings, DyeColor.PINK);
 		registerBlock("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB);
-
+		
 		registerBlockWithItem("jadeite_lotus_stem", JADEITE_LOTUS_STEM, settings, DyeColor.BROWN);
-		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, Tab.DECORATION.settings().maxCount(8), DyeColor.BROWN);
+		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, Tab.BLOCKS.settings().maxCount(8), DyeColor.BROWN);
 		registerBlock("jadeite_lotus_bulb", JADEITE_LOTUS_BULB);
 
 

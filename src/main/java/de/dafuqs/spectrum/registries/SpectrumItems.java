@@ -358,20 +358,20 @@ public class SpectrumItems {
 	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new Item(Tab.CONSUMABLES.settings().maxCount(1));
 	public static final Item IMBRIFER_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
 	public static final Item IMPERIAL_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	public static final Item BREWERS_HANDBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
 	
 	public static final Item AQUA_REGIA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BANYASH));
 	public static final Item BERLINER = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BERLINER));
 	public static final Item BRISTLE_MEAD = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BRISTLE_MEAD));
-	public static final Item CHAUVE_SOURIN_AU_VIN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CHAUVE_SOURIN_AU_VIN));
 	public static final Item CHAUVE_SOURIS_AU_VIN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN));
 	public static final Item CRAWFISH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
 	public static final Item CREAM_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CREAM_PASTRY));
 	public static final Item FADED_KOI = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FADED_KOI));
 	public static final Item FISHCAKE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FISHCAKE));
-	public static final Item FOXMEAT = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FOXMEAT));
+	public static final Item LIZARD_MEAT = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.LIZARD_MEAT));
 	public static final Item GOLDEN_BRISTLE_TEA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
 	public static final Item HARE_ROAST = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
 	public static final Item JUNKET = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JUNKET));
@@ -834,20 +834,20 @@ public class SpectrumItems {
 		register("imperial_cookbook", IMPERIAL_COOKBOOK, DyeColor.PURPLE);
 		register("melochites_cookbook_vol_1", MELOCHITES_COOKBOOK_VOL_1, DyeColor.PURPLE);
 		register("melochites_cookbook_vol_2", MELOCHITES_COOKBOOK_VOL_2, DyeColor.PURPLE);
+		register("brewers_handbook", BREWERS_HANDBOOK, DyeColor.PURPLE);
 		
 		register("aqua_regia", AQUA_REGIA, DyeColor.PINK);
 		register("bagnun", BAGNUN, DyeColor.PINK);
 		register("banyash", BANYASH, DyeColor.PINK);
 		register("berliner", BERLINER, DyeColor.PINK);
 		register("bristle_mead", BRISTLE_MEAD, DyeColor.PINK);
-		register("chauve_sourin_au_vin", CHAUVE_SOURIN_AU_VIN, DyeColor.PINK);
 		register("chauve_souris_au_vin", CHAUVE_SOURIS_AU_VIN, DyeColor.PINK);
 		register("crawfish", CRAWFISH, DyeColor.PINK);
 		register("crawfish_cocktail", CRAWFISH_COCKTAIL, DyeColor.PINK);
 		register("cream_pastry", CREAM_PASTRY, DyeColor.PINK);
 		register("faded_koi", FADED_KOI, DyeColor.PINK);
 		register("fishcake", FISHCAKE, DyeColor.PINK);
-		register("foxmeat", FOXMEAT, DyeColor.PINK);
+		register("lizard_meat", LIZARD_MEAT, DyeColor.PINK);
 		register("golden_bristle_tea", GOLDEN_BRISTLE_TEA, DyeColor.PINK);
 		register("hare_roast", HARE_ROAST, DyeColor.PINK);
 		register("junket", JUNKET, DyeColor.PINK);

@@ -248,14 +248,13 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent BANYASH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent BERLINER = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent BRISTLE_MEAD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
-	public static final FoodComponent CHAUVE_SOURIN_AU_VIN = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent CHAUVE_SOURIS_AU_VIN = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent CRAWFISH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent CRAWFISH_COCKTAIL = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent CREAM_PASTRY = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent FADED_KOI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent FISHCAKE = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
-	public static final FoodComponent FOXMEAT = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent LIZARD_MEAT = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent HARE_ROAST = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	public static final FoodComponent JUNKET = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();

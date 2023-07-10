@@ -1,4 +1,4 @@
-﻿$names = @("aqua_regia", "bagnun", "banyash", "berliner", "bristle_mead", "chauve_sourin_au_vin", "chauve_souris_au_vin", "chrysocolla", "crawfish", "crawfish_cocktail", "cream_pastry", "faded_koi", "fishcake", "foxmeat", "golden_bristle_tea", "hare_roast", "imbrifer_cookbook", "imperial_cookbook", "junket", "koi_fish", "meatloaf", "meatloaf_sandwich", "mellow_shallot_soup", "melochites_cookbook_vol_1", "melochites_cookbook_vol_2", "morchella", "nectered_viognier", "peaches_flambe", "peach_cream", "peach_jam", "rabbit_cream_pie", "sedatives", "slushslide", "surstromming")
+﻿$names = @("brewers_handbook")
 
 Function Generate-ItemFiles {
 

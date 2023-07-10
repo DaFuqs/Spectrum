@@ -354,12 +354,47 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
 	
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	public static final Item IMBRIFER_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	public static final Item IMPERIAL_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	
+	public static final Item AQUA_REGIA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.AQUA_REGIA));
+	public static final Item BAGNUN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BAGNUN));
+	public static final Item BANYASH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BANYASH));
+	public static final Item BERLINER = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BERLINER));
+	public static final Item BRISTLE_MEAD = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BRISTLE_MEAD));
+	public static final Item CHAUVE_SOURIN_AU_VIN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CHAUVE_SOURIN_AU_VIN));
+	public static final Item CHAUVE_SOURIS_AU_VIN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN));
+	public static final Item CRAWFISH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH));
+	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
+	public static final Item CREAM_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CREAM_PASTRY));
+	public static final Item FADED_KOI = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FADED_KOI));
+	public static final Item FISHCAKE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FISHCAKE));
+	public static final Item FOXMEAT = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FOXMEAT));
+	public static final Item GOLDEN_BRISTLE_TEA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
+	public static final Item HARE_ROAST = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
+	public static final Item JUNKET = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JUNKET));
+	public static final Item KOI_FISH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.KOI_FISH));
+	public static final Item MEATLOAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MEATLOAF));
+	public static final Item MEATLOAF_SANDWICH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
+	public static final Item MELLOW_SHALLOT_SOUP = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
+	public static final Item MORCHELLA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MORCHELLA));
+	public static final Item NECTERED_VIOGNIER = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.NECTERED_VIOGNIER));
+	public static final Item PEACHES_FLAMBE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACHES_FLAMBE));
+	public static final Item PEACH_CREAM = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACH_CREAM));
+	public static final Item PEACH_JAM = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACH_JAM));
+	public static final Item RABBIT_CREAM_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.RABBIT_CREAM_PIE));
+	public static final Item SEDATIVES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SEDATIVES));
+	public static final Item SLUSHSLIDE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SLUSHSLIDE));
+	public static final Item SURSTROMMING = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SURSTROMMING));
+	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
 	
-	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings());
+	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
 	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
 	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, Tab.MOB_HEADS.settings()); // TODO: colors
@@ -785,7 +820,7 @@ public class SpectrumItems {
 		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);
 		register("dragonbone_broth", DRAGONBONE_BROTH, DyeColor.GRAY);
 		register("doombloom_seed", DOOMBLOOM_SEED, DyeColor.BLACK);
-
+		
 		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 		register("reprise", REPRISE, DyeColor.PINK);
@@ -794,6 +829,41 @@ public class SpectrumItems {
 		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
+		
+		register("imbrifer_cookbook", IMBRIFER_COOKBOOK, DyeColor.PURPLE);
+		register("imperial_cookbook", IMPERIAL_COOKBOOK, DyeColor.PURPLE);
+		register("melochites_cookbook_vol_1", MELOCHITES_COOKBOOK_VOL_1, DyeColor.PURPLE);
+		register("melochites_cookbook_vol_2", MELOCHITES_COOKBOOK_VOL_2, DyeColor.PURPLE);
+		
+		register("aqua_regia", AQUA_REGIA, DyeColor.PINK);
+		register("bagnun", BAGNUN, DyeColor.PINK);
+		register("banyash", BANYASH, DyeColor.PINK);
+		register("berliner", BERLINER, DyeColor.PINK);
+		register("bristle_mead", BRISTLE_MEAD, DyeColor.PINK);
+		register("chauve_sourin_au_vin", CHAUVE_SOURIN_AU_VIN, DyeColor.PINK);
+		register("chauve_souris_au_vin", CHAUVE_SOURIS_AU_VIN, DyeColor.PINK);
+		register("crawfish", CRAWFISH, DyeColor.PINK);
+		register("crawfish_cocktail", CRAWFISH_COCKTAIL, DyeColor.PINK);
+		register("cream_pastry", CREAM_PASTRY, DyeColor.PINK);
+		register("faded_koi", FADED_KOI, DyeColor.PINK);
+		register("fishcake", FISHCAKE, DyeColor.PINK);
+		register("foxmeat", FOXMEAT, DyeColor.PINK);
+		register("golden_bristle_tea", GOLDEN_BRISTLE_TEA, DyeColor.PINK);
+		register("hare_roast", HARE_ROAST, DyeColor.PINK);
+		register("junket", JUNKET, DyeColor.PINK);
+		register("koi_fish", KOI_FISH, DyeColor.PINK);
+		register("meatloaf", MEATLOAF, DyeColor.PINK);
+		register("meatloaf_sandwich", MEATLOAF_SANDWICH, DyeColor.PINK);
+		register("mellow_shallot_soup", MELLOW_SHALLOT_SOUP, DyeColor.PINK);
+		register("morchella", MORCHELLA, DyeColor.PINK);
+		register("nectered_viognier", NECTERED_VIOGNIER, DyeColor.PINK);
+		register("peaches_flambe", PEACHES_FLAMBE, DyeColor.PINK);
+		register("peach_cream", PEACH_CREAM, DyeColor.PINK);
+		register("peach_jam", PEACH_JAM, DyeColor.PINK);
+		register("rabbit_cream_pie", RABBIT_CREAM_PIE, DyeColor.PINK);
+		register("sedatives", SEDATIVES, DyeColor.PINK);
+		register("slushslide", SLUSHSLIDE, DyeColor.PINK);
+		register("surstromming", SURSTROMMING, DyeColor.PINK);
 	}
 	
 	public static void registerInkStorage() {

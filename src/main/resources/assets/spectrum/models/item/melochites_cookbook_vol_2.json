@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/chrysocolla"
+    "layer0": "spectrum:item/melochites_cookbook_vol_2"
   }
 }

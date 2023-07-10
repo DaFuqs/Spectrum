@@ -1339,7 +1339,7 @@ public class SpectrumBlocks {
 		registerJadeVineBlocks(Tab.BLOCKS.settings());
 		registerSugarSticks(Tab.CUISINE.settings());
 		registerStructureBlocks(Tab.CREATIVE.settings());
-		registerSpiritTree(Tab.CREATIVE.settings());
+		registerSpiritTree(Tab.NONE.settings());
 		
 		// Decay
 		registerBlock("fading", FADING);

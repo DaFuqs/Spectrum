@@ -51,7 +51,8 @@ public class SpectrumItems {
 		MOB_HEADS(SpectrumItemGroups.MOB_HEADS),
 		CREATURES(SpectrumItemGroups.CREATURES),
 		ENERGY(SpectrumItemGroups.ENERGY),
-		CREATIVE(SpectrumItemGroups.CREATIVE);
+		CREATIVE(SpectrumItemGroups.CREATIVE),
+		NONE(null);
 		
 		private final ItemSubGroup subGroup;
 		
@@ -60,7 +61,11 @@ public class SpectrumItems {
 		}
 		
 		public FabricItemSettings settings() {
-			return new FabricItemSettings().group(subGroup);
+			if (subGroup == null) {
+				return new FabricItemSettings();
+			} else {
+				return new FabricItemSettings().group(subGroup);
+			}
 		}
 		
 		public FabricItemSettings settings(int maxCount) {
@@ -418,17 +423,17 @@ public class SpectrumItems {
 	public static final Item MOONSTONE_CORE = new Item(Tab.RESOURCES.settings(8, Rarity.RARE));
 	
 	// Catkin
-	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.CREATIVE.settings());
-	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, Tab.CREATIVE.settings());
-	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, Tab.CREATIVE.settings());
-	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, Tab.CREATIVE.settings());
-	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, Tab.CREATIVE.settings());
+	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.NONE.settings());
+	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, Tab.NONE.settings());
+	public static final Item VIBRANT_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, false, Tab.NONE.settings());
+	public static final Item VIBRANT_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, false, Tab.NONE.settings());
+	public static final Item VIBRANT_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, false, Tab.NONE.settings());
 	
-	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
-	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, true, Tab.NONE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, true, Tab.NONE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_YELLOW_CATKIN = new CatkinItem(BuiltinGemstoneColor.YELLOW, true, Tab.NONE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_BLACK_CATKIN = new CatkinItem(BuiltinGemstoneColor.BLACK, true, Tab.NONE.settings(Rarity.UNCOMMON));
+	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, Tab.NONE.settings(Rarity.UNCOMMON));
 	
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.DECORATION.settings(1, Rarity.RARE), 120);

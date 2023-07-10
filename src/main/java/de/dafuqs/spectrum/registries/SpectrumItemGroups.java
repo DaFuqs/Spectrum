@@ -8,10 +8,10 @@ import net.minecraft.util.*;
 
 public class SpectrumItemGroups {
 	
-	protected static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group.png"); // TODO: unused. Either re-add or remove
-	protected static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group_button.png");
+	public static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group.png"); // TODO: unused. Either re-add or remove
+	public static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group_button.png");
 	
-	protected static final ItemGroup MAIN = FabricItemGroupBuilder.create(SpectrumCommon.locate("main"))
+	public static final ItemGroup MAIN = FabricItemGroupBuilder.create(SpectrumCommon.locate("main"))
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.build()
 			.hideName();

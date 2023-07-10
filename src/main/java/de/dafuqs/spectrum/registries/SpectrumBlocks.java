@@ -424,8 +424,6 @@ public class SpectrumBlocks {
 	
 	// ENERGY
 	public static final Block COLOR_PICKER = new ColorPickerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
-	public static final Block INKWELL = new InkwellBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
-	public static final Block INK_DUCT = new InkDuctBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block CRYSTAL_APOTHECARY = new CrystalApothecaryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
 	public static final Block BLACK_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.BLACK);

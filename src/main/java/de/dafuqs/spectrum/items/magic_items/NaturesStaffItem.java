@@ -24,6 +24,7 @@ import net.minecraft.sound.*;
 import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -338,13 +339,21 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.EFFICIENCY;
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(Enchantments.EFFICIENCY);
 	}
 	
 	@Override
 	public int getEnchantability() {
 		return 10;
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
 	}
 	
 }

@@ -13,7 +13,7 @@ public abstract class EnchantmentMixin {
 	@Inject(method = "isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
 	public void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
 		if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
-			cir.setReturnValue(extendedEnchantable.canAcceptEnchantment((Enchantment) (Object) this));
+			cir.setReturnValue(extendedEnchantable.getAcceptedEnchantments().contains((Enchantment) (Object) this));
 		}
 	}
 	

@@ -18,7 +18,7 @@ public class SpectrumItemGroups {
 	
 	public static final ItemSubGroup EQUIPMENT = ItemSubGroup.create(MAIN, SpectrumCommon.locate("equipment"));
 	public static final ItemSubGroup FUNCTIONAL = ItemSubGroup.create(MAIN, SpectrumCommon.locate("functional"));
-	public static final ItemSubGroup CONSUMABLES = ItemSubGroup.create(MAIN, SpectrumCommon.locate("consumables"));
+	public static final ItemSubGroup CUISINE = ItemSubGroup.create(MAIN, SpectrumCommon.locate("cuisine"));
 	public static final ItemSubGroup RESOURCES = ItemSubGroup.create(MAIN, SpectrumCommon.locate("resources"));
 	public static final ItemSubGroup PURE_RESOURCES = ItemSubGroup.create(MAIN, SpectrumCommon.locate("pure_resources"));
 	public static final ItemSubGroup BLOCKS = ItemSubGroup.create(MAIN, SpectrumCommon.locate("blocks"));

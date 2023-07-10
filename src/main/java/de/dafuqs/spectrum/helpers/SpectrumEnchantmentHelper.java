@@ -37,7 +37,7 @@ public class SpectrumEnchantmentHelper {
 			enchantedBookStack.setNbt(stack.getNbt());
 			stack = enchantedBookStack;
 		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
-			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.canAcceptEnchantment(enchantment)) {
+			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.getAcceptedEnchantments().contains(enchantment)) {
 				// ExtendedEnchantable explicitly states this enchantment is acceptable
 			} else {
 				// item can not be enchanted with this enchantment
@@ -212,9 +212,9 @@ public class SpectrumEnchantmentHelper {
 		return success;
 	}
 	
-	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {
+	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {
 		ItemStack itemStack = item.getDefaultStack();
-		for (Enchantment enchantment : enchantments) {
+		for (Enchantment enchantment : item.getAcceptedEnchantments()) {
 			if (enchantment != null) {
 				int maxLevel = enchantment.getMaxLevel();
 				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);

@@ -1297,8 +1297,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.FUNCTIONAL.settings(1).fireproof(), DyeColor.ORANGE);
 		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
 		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("inkwell", INKWELL, Tab.CREATIVE.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("ink_duct", INK_DUCT, Tab.CREATIVE.settings(8), DyeColor.GREEN);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.FUNCTIONAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
@@ -1309,9 +1307,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.FUNCTIONAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
-		
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.CREATURES.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
-		
 		
 		registerPastelNetworkNodes(Tab.FUNCTIONAL.settings(16));
 		registerStoneBlocks(Tab.BLOCKS.settings());
@@ -1342,7 +1337,7 @@ public class SpectrumBlocks {
 		registerCrystallarieumGrowingBlocks(Tab.PURE_RESOURCES.settings());
 		registerPureOreBlocks(Tab.PURE_RESOURCES.settings());
 		registerJadeVineBlocks(Tab.BLOCKS.settings());
-		registerSugarSticks(Tab.CONSUMABLES.settings());
+		registerSugarSticks(Tab.CUISINE.settings());
 		registerStructureBlocks(Tab.CREATIVE.settings());
 		registerSpiritTree(Tab.CREATIVE.settings());
 		
@@ -1381,7 +1376,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.FUNCTIONAL.settings(), DyeColor.BLACK);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.FUNCTIONAL.settings(), DyeColor.PURPLE);
 		
-		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.CREATURES.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
 		
 		// Technical Blocks without items
 		registerBlock("mermaids_brush", MERMAIDS_BRUSH);
@@ -1860,7 +1855,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("polished_blackslag_pillar", POLISHED_BLACKSLAG_PILLAR, settings, DyeColor.BLACK);
 		registerBlockWithItem("chiseled_polished_blackslag", CHISELED_POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
-		registerBlockWithItem("ancient_chiseled_polished_blackslag", ANCIENT_CHISELED_POLISHED_BLACKSLAG, Tab.DECORATION.settings(Rarity.UNCOMMON), DyeColor.BLACK);
+		registerBlockWithItem("ancient_chiseled_polished_blackslag", ANCIENT_CHISELED_POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_button", POLISHED_BLACKSLAG_BUTTON, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
@@ -1922,6 +1917,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
+		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.BLOCKS.settings(), DyeColor.GRAY);
 		
 		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.PURPLE);
 		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.PURPLE);
@@ -2711,8 +2707,6 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COURIER_STATUE, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COLOR_PICKER, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INK_DUCT, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INKWELL, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());

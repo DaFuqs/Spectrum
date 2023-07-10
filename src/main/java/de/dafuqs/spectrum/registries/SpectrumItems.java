@@ -42,7 +42,7 @@ public class SpectrumItems {
 	public enum Tab {
 		EQUIPMENT(SpectrumItemGroups.EQUIPMENT),
 		FUNCTIONAL(SpectrumItemGroups.FUNCTIONAL),
-		CONSUMABLES(SpectrumItemGroups.CONSUMABLES),
+		CUISINE(SpectrumItemGroups.CUISINE),
 		RESOURCES(SpectrumItemGroups.RESOURCES),
 		PURE_RESOURCES(SpectrumItemGroups.PURE_RESOURCES),
 		BLOCKS(SpectrumItemGroups.BLOCKS),
@@ -163,8 +163,6 @@ public class SpectrumItems {
 	public static final Item BEDROCK_CROSSBOW = new BedrockCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final Item BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final Item BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	
-	public static final Item MOONSTONE_CORE = new Item(Tab.EQUIPMENT.settings(8, Rarity.RARE));
 	
 	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
 	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
@@ -290,107 +288,107 @@ public class SpectrumItems {
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
 	
-	public static final Item ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
-	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
-	public static final Item AMETHYST_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST);
-	public static final Item CITRINE_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE);
-	public static final Item ONYX_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX);
-	public static final Item MOONSTONE_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE);
+	public static final Item ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
+	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Item AMETHYST_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Item CITRINE_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE);
+	public static final Item ONYX_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX);
+	public static final Item MOONSTONE_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE);
 	
-	public static final Item BLOODBOIL_SYRUP = new DrinkItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BLOODBOIL_SYRUP).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item BLOODBOIL_SYRUP = new DrinkItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BLOODBOIL_SYRUP).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Food & drinks
-	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_JELLY = new ItemWithTooltip(Tab.CONSUMABLES.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip");
-	public static final Item GLASS_PEACH = new ItemWithTooltip(Tab.CONSUMABLES.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip");
-	public static final Item RESTORATION_TEA = new RestorationTeaItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.RESTORATION_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS);
-	public static final Item KIMCHI = new KimchiItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.KIMCHI));
-	public static final Item CLOTTED_CREAM = new ClottedCreamItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
-	public static final Item FRESH_CHOCOLATE = new CustomUseTimeItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FRESH_CHOCOLATE), 10);
-	public static final Item HOT_CHOCOLATE = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.HOT_CHOCOLATE), SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS);
-	public static final Item BOCACIOUS_BERRY_BAR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BOCACIOUS_BERRY_BAR));
-	public static final Item DEMON_TEA = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
-	public static final Item SCONE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SCONE));
-
-	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item REPRISE = new RepriseItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_WINE = new JadeWineItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
-
-	public static final Item HONEY_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.HONEY_PASTRY));
-	public static final Item LUCKY_ROLL = new Item(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));
-	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(Tab.CONSUMABLES.settings(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
-	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
-	public static final Item FREIGEIST = new FreigeistItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item DIVINATION_HEART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
-
-	public static final Item STAR_CANDY = new StarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
-	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
+	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_JELLY = new ItemWithTooltip(Tab.CUISINE.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip");
+	public static final Item GLASS_PEACH = new ItemWithTooltip(Tab.CUISINE.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip");
+	public static final Item RESTORATION_TEA = new RestorationTeaItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.RESTORATION_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS);
+	public static final Item KIMCHI = new KimchiItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.KIMCHI));
+	public static final Item CLOTTED_CREAM = new ClottedCreamItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
+	public static final Item FRESH_CHOCOLATE = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.FRESH_CHOCOLATE), 10);
+	public static final Item HOT_CHOCOLATE = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.HOT_CHOCOLATE), SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS);
+	public static final Item BOCACIOUS_BERRY_BAR = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BOCACIOUS_BERRY_BAR));
+	public static final Item DEMON_TEA = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
+	public static final Item SCONE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SCONE));
 	
-	public static final Item JARAMEL = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JARAMEL));
+	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item REPRISE = new RepriseItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_WINE = new JadeWineItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
-	public static final Item JARAMEL_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JARAMEL_TART));
-	public static final Item SALTED_JARAMEL_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SALTED_JARAMEL_TART));
-	public static final Item ASHEN_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ASHEN_TART));
-	public static final Item WEEPING_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.WEEPING_TART));
-	public static final Item WHISPY_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.WHISPY_TART));
-	public static final Item PUFF_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PUFF_TART));
-
-	public static final Item JARAMEL_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JARAMEL_TRIFLE));
-	public static final Item SALTED_JARAMEL_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SALTED_JARAMEL_TRIFLE));
-	public static final Item MONSTER_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MONSTER_TRIFLE));
-	public static final Item DEMON_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
-
-	public static final Item MYCEYLON = new Item(Tab.CONSUMABLES.settings());
-	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
-	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
-	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
-	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF));
-	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, Tab.CONSUMABLES.settings().food(FoodComponents.SWEET_BERRIES));
-	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
-	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
-	public static final Item DRAGONBONE_BROTH = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
+	public static final Item HONEY_PASTRY = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.HONEY_PASTRY));
+	public static final Item LUCKY_ROLL = new Item(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));
+	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(Tab.CUISINE.settings(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
+	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
+	public static final Item FREIGEIST = new FreigeistItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item DIVINATION_HEART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
+	
+	public static final Item STAR_CANDY = new StarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
+	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
+	
+	public static final Item JARAMEL = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JARAMEL));
+	
+	public static final Item JARAMEL_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JARAMEL_TART));
+	public static final Item SALTED_JARAMEL_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SALTED_JARAMEL_TART));
+	public static final Item ASHEN_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.ASHEN_TART));
+	public static final Item WEEPING_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.WEEPING_TART));
+	public static final Item WHISPY_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.WHISPY_TART));
+	public static final Item PUFF_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PUFF_TART));
+	
+	public static final Item JARAMEL_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JARAMEL_TRIFLE));
+	public static final Item SALTED_JARAMEL_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SALTED_JARAMEL_TRIFLE));
+	public static final Item MONSTER_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MONSTER_TRIFLE));
+	public static final Item DEMON_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
+	
+	public static final Item MYCEYLON = new Item(Tab.CUISINE.settings());
+	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
+	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
+	public static final Item MYCEYLON_COOKIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
+	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, Tab.CUISINE.settings().food(SpectrumFoodComponents.ALOE_LEAF));
+	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, Tab.CUISINE.settings().food(FoodComponents.SWEET_BERRIES));
+	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
+	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
+	public static final Item DRAGONBONE_BROTH = new StewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
 	public static final Item DOOMBLOOM_SEED = new AliasedBlockItem(SpectrumBlocks.DOOMBLOOM, Tab.RESOURCES.settings());
 	
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
 	
-	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new Item(Tab.CONSUMABLES.settings().maxCount(1));
-	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new Item(Tab.CONSUMABLES.settings().maxCount(1));
-	public static final Item IMBRIFER_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
-	public static final Item IMPERIAL_COOKBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
-	public static final Item BREWERS_HANDBOOK = new Item(Tab.CONSUMABLES.settings().maxCount(1));
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new Item(Tab.CUISINE.settings().maxCount(1));
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new Item(Tab.CUISINE.settings().maxCount(1));
+	public static final Item IMBRIFER_COOKBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
+	public static final Item IMPERIAL_COOKBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
+	public static final Item BREWERS_HANDBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
 	
-	public static final Item AQUA_REGIA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.AQUA_REGIA));
-	public static final Item BAGNUN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BAGNUN));
-	public static final Item BANYASH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BANYASH));
-	public static final Item BERLINER = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BERLINER));
-	public static final Item BRISTLE_MEAD = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BRISTLE_MEAD));
-	public static final Item CHAUVE_SOURIS_AU_VIN = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN));
-	public static final Item CRAWFISH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH));
-	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
-	public static final Item CREAM_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CREAM_PASTRY));
-	public static final Item FADED_KOI = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FADED_KOI));
-	public static final Item FISHCAKE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FISHCAKE));
-	public static final Item LIZARD_MEAT = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.LIZARD_MEAT));
-	public static final Item GOLDEN_BRISTLE_TEA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
-	public static final Item HARE_ROAST = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
-	public static final Item JUNKET = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JUNKET));
-	public static final Item KOI_FISH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.KOI_FISH));
-	public static final Item MEATLOAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MEATLOAF));
-	public static final Item MEATLOAF_SANDWICH = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
-	public static final Item MELLOW_SHALLOT_SOUP = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
-	public static final Item MORCHELLA = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MORCHELLA));
-	public static final Item NECTERED_VIOGNIER = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.NECTERED_VIOGNIER));
-	public static final Item PEACHES_FLAMBE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACHES_FLAMBE));
-	public static final Item PEACH_CREAM = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACH_CREAM));
-	public static final Item PEACH_JAM = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PEACH_JAM));
-	public static final Item RABBIT_CREAM_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.RABBIT_CREAM_PIE));
-	public static final Item SEDATIVES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SEDATIVES));
-	public static final Item SLUSHSLIDE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SLUSHSLIDE));
-	public static final Item SURSTROMMING = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SURSTROMMING));
+	public static final Item AQUA_REGIA = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.AQUA_REGIA));
+	public static final Item BAGNUN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BAGNUN));
+	public static final Item BANYASH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BANYASH));
+	public static final Item BERLINER = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BERLINER));
+	public static final Item BRISTLE_MEAD = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BRISTLE_MEAD));
+	public static final Item CHAUVE_SOURIS_AU_VIN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN));
+	public static final Item CRAWFISH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH));
+	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
+	public static final Item CREAM_PASTRY = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CREAM_PASTRY));
+	public static final Item FADED_KOI = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.FADED_KOI));
+	public static final Item FISHCAKE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.FISHCAKE));
+	public static final Item LIZARD_MEAT = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.LIZARD_MEAT));
+	public static final Item GOLDEN_BRISTLE_TEA = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
+	public static final Item HARE_ROAST = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
+	public static final Item JUNKET = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JUNKET));
+	public static final Item KOI_FISH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.KOI_FISH));
+	public static final Item MEATLOAF = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MEATLOAF));
+	public static final Item MEATLOAF_SANDWICH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
+	public static final Item MELLOW_SHALLOT_SOUP = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
+	public static final Item MORCHELLA = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MORCHELLA));
+	public static final Item NECTERED_VIOGNIER = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.NECTERED_VIOGNIER));
+	public static final Item PEACHES_FLAMBE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PEACHES_FLAMBE));
+	public static final Item PEACH_CREAM = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PEACH_CREAM));
+	public static final Item PEACH_JAM = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PEACH_JAM));
+	public static final Item RABBIT_CREAM_PIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.RABBIT_CREAM_PIE));
+	public static final Item SEDATIVES = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SEDATIVES));
+	public static final Item SLUSHSLIDE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SLUSHSLIDE));
+	public static final Item SURSTROMMING = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SURSTROMMING));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
@@ -414,10 +412,10 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.RARE));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
-	// Elemental Powder
 	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
 	public static final Item BLIZZARD_POWDER = new Item(Tab.RESOURCES.settings());
 	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
+	public static final Item MOONSTONE_CORE = new Item(Tab.RESOURCES.settings(8, Rarity.RARE));
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.CREATIVE.settings());
@@ -433,9 +431,9 @@ public class SpectrumItems {
 	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, Tab.CREATIVE.settings(Rarity.UNCOMMON));
 	
 	// Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 120);
-	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 265);
-	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.FUNCTIONAL.settings(1, Rarity.RARE), 289);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.DECORATION.settings(1, Rarity.RARE), 120);
+	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.DECORATION.settings(1, Rarity.RARE), 265);
+	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.DECORATION.settings(1, Rarity.RARE), 289);
 	
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.CREATURES.settings(1, Rarity.EPIC));
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.DECORATION.settings());
@@ -528,21 +526,24 @@ public class SpectrumItems {
 		registerFluidBuckets();
 		registerBannerPatterns();
 		registerPureClusters();
-		
+		registerStructurePlacers();
+		registerSpawningStuff();
+		registerMusicDisks();
+	}
+	
+	public static void registerMusicDisks() {
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
 		register("music_disc_everreflective", MUSIC_DISC_EVERREFLECTIVE, DyeColor.GREEN);
-		
+	}
+	
+	public static void registerSpawningStuff() {
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
-		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
-		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
 		
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 		register("guardian_turret_spawn_egg", GUARDIAN_TURRET_SPAWN_EGG, DyeColor.WHITE);
 		register("kindling_spawn_egg", KINDLING_SPAWN_EGG, DyeColor.WHITE);
 		register("lizard_spawn_egg", LIZARD_SPAWN_EGG, DyeColor.WHITE);
-		
-		registerStructurePlacers();
 	}
 	
 	public static void registerPureClusters() {
@@ -657,6 +658,8 @@ public class SpectrumItems {
 		register("jadeite_lotus_bulb", JADEITE_LOTUS_BULB, DyeColor.BROWN);
 		register("jadeite_petals", JADEITE_PETALS, DyeColor.BROWN);
 		
+		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
+		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);

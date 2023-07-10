@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -18,6 +19,7 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -109,7 +111,16 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.POWER || enchantment == Enchantments.FEATHER_FALLING;
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(Enchantments.POWER, Enchantments.FEATHER_FALLING);
 	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
+	}
+	
 }

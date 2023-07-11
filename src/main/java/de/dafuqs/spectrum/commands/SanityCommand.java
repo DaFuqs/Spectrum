@@ -44,6 +44,7 @@ public class SanityCommand {
 			SpectrumCommon.locate("find_preservation_ruins"),
 			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),
 			SpectrumCommon.locate("place_moonstone_in_preservation_ruins"),
+			SpectrumCommon.locate("survive_drinking_incandescent_amalgam"),
 			
 			SpectrumCommon.locate("tap_aged_air"),
 			SpectrumCommon.locate("hook_entity_with_molten_rod"),

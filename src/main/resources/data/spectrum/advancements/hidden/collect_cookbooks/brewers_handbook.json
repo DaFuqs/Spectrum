@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_brewers_handbook": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:brewers_handbook"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

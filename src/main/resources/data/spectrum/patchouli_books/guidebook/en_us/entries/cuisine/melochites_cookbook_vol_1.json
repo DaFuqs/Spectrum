@@ -1,0 +1,15 @@
+{
+  "name": "Melochites Cookbook Vol. 1",
+  "icon": "spectrum:melochites_cookbook_vol_1",
+  "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:melochites_cookbook_vol_1": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

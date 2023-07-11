@@ -360,11 +360,11 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
 	
-	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new Item(Tab.CUISINE.settings().maxCount(1));
-	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new Item(Tab.CUISINE.settings().maxCount(1));
-	public static final Item IMBRIFER_COOKBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
-	public static final Item IMPERIAL_COOKBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
-	public static final Item BREWERS_HANDBOOK = new Item(Tab.CUISINE.settings().maxCount(1));
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(Tab.CUISINE.settings().maxCount(1), "cuisine/melochites_cookbook_vol_1");
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(Tab.CUISINE.settings().maxCount(1), "cuisine/melochites_cookbook_vol_2");
+	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1), "cuisine/imbrifer_cookbook");
+	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1), "cuisine/imperial_cookbook");
+	public static final Item BREWERS_HANDBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1), "cuisine/brewers_handbook");
 	
 	public static final Item AQUA_REGIA = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BAGNUN));

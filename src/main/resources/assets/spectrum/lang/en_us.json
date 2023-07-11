@@ -3244,7 +3244,7 @@
   "advancements.spectrum.hurt_by_monstrosity.title": "An attentive guard awakes",
   "advancements.spectrum.hurt_by_monstrosity.description": "I hope you came prepared. Good luck",
   "advancements.spectrum.killed_monstrosity.title": "Safe... for now",
-  "advancements.spectrum.killed_monstrosity.description": "Fight off the Danger From Below",
+  "advancements.spectrum.killed_monstrosity.description": "Fight off a great Danger",
   "advancements.spectrum.collect_doombloom_seed.title": "Death Candle",
   "advancements.spectrum.collect_doombloom_seed.description": "A howling fire, explosions, death. And a seed or two",
   "advancements.spectrum.collect_dd_resources.title": "Hoarder",
@@ -3288,6 +3288,11 @@
   "advancements.spectrum.no_rgb.description": "What exactly did you expect to happen? We are doing CMY here. Keep the RGB in your keyboard",
   "advancements.spectrum.brew_no_potion_in_potion_workshop.title": "Become too greedy",
   "advancements.spectrum.brew_no_potion_in_potion_workshop.description": "Use so many potion reagents that reduce yield you end up with nothing",
+
+  "advancements.spectrum.collect_one_cookbook.title": "TODO",
+  "advancements.spectrum.collect_one_cookbook.description": "TODO",
+  "advancements.spectrum.collect_all_cookbooks.title": "TODO",
+  "advancements.spectrum.collect_all_cookbooks.description": "TODO",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

@@ -1,0 +1,15 @@
+{
+  "name": "Imperial Cookbook",
+  "icon": "spectrum:imperial_cookbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:imperial_cookbook": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

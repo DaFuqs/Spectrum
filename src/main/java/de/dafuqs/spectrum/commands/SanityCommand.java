@@ -63,7 +63,13 @@ public class SanityCommand {
 			SpectrumCommon.locate("lategame/collect_myceylon"),
 			SpectrumCommon.locate("lategame/collect_prickly_bayleaf"),
 			SpectrumCommon.locate("lategame/collect_hummingstone"),
-			SpectrumCommon.locate("lategame/collect_downstone_fragments")
+			SpectrumCommon.locate("lategame/collect_downstone_fragments"),
+			
+			SpectrumCommon.locate("hidden/collect_cookbooks/brewers_handbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_1"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_2")
 	);
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {

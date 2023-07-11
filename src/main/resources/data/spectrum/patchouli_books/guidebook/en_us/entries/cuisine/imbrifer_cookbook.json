@@ -1,0 +1,15 @@
+{
+  "name": "Imbrifer Cookbook",
+  "icon": "spectrum:imbrifer_cookbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:imbrifer_cookbook": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    }
+  ]
+}

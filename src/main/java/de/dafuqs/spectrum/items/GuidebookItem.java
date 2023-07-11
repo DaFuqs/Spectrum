@@ -22,6 +22,9 @@ import java.util.*;
 
 public class GuidebookItem extends Item implements LoomPatternProvider {
 	
+	public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
+	
+	
 	public GuidebookItem(Settings settings) {
 		super(settings);
 	}
@@ -84,11 +87,11 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity) {
-		PatchouliAPI.get().openBookGUI(serverPlayerEntity, SpectrumCommon.locate("guidebook"));
+		PatchouliAPI.get().openBookGUI(serverPlayerEntity, GUIDEBOOK_ID);
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, SpectrumCommon.locate("guidebook"), entry, page);
+		PatchouliAPI.get().openBookEntry(serverPlayerEntity, GUIDEBOOK_ID, entry, page);
 	}
 	
 	@Override

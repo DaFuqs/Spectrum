@@ -64,6 +64,8 @@ public class SanityCommand {
 			SpectrumCommon.locate("lategame/collect_prickly_bayleaf"),
 			SpectrumCommon.locate("lategame/collect_hummingstone"),
 			SpectrumCommon.locate("lategame/collect_downstone_fragments"),
+			SpectrumCommon.locate("lategame/collect_one_cookbook"),
+			SpectrumCommon.locate("lategame/collect_moonstone_core"),
 			
 			SpectrumCommon.locate("hidden/collect_cookbooks/brewers_handbook"),
 			SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook"),

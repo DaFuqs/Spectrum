@@ -401,5 +401,17 @@
   {
     "advancement": "spectrum:lategame/revive_black_sludge_plant",
     "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/pluck_effulgent_feather",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/grow_bloodstone_in_crystallarieum",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_one_cookbook",
+    "frame": "paginatedadvancements:squircle"
   }
 ]

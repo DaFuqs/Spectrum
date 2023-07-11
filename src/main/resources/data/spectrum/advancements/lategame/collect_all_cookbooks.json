@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_one_cookbook",
   "display": {
     "icon": {
-      "item": "spectrum:brewers_handbook"
+      "item": "spectrum:imbrifier_cookbook"
     },
     "frame": "goal",
     "title": {

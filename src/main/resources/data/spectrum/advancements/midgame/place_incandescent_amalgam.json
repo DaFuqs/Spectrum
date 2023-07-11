@@ -22,7 +22,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/tap_titration_barrel"
+        "advancement_identifier": "spectrum:tap_titration_barrel"
       }
     }
   }

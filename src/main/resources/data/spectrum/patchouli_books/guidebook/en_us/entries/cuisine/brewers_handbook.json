@@ -10,6 +10,11 @@
     {
       "type": "patchouli:text",
       "text": "TODO"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead",
+      "text": ""
     }
   ]
 }

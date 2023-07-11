@@ -79,7 +79,6 @@
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.CreativeInventoryScreenMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",

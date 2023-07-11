@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
-import com.unascribed.lib39.fractal.api.*;
+import de.dafuqs.fractal.api.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;

@@ -1,15 +1,15 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "minecraft:magma_block"
+    "tag": "c:ice"
   },
   "crushedItemsPerPointOfDamage": 1.5,
   "experience": 0.25,
   "result": {
-    "item": "spectrum:fiery_powder",
+    "item": "spectrum:frostbite_essence",
     "count": 1
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,
-  "soundEventIdentifier": "block.stone.break"
+  "soundEventIdentifier": "block.glass.break"
 }

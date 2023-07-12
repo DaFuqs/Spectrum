@@ -15,7 +15,7 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:fiery_powder"
+        "item": "spectrum:incandescent_essence"
       },
       "growth_acceleration_mod": 1.5,
       "ink_consumption_mod": 2.0,

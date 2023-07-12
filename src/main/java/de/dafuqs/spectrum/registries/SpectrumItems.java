@@ -417,8 +417,8 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.RARE));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
-	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
-	public static final Item BLIZZARD_POWDER = new Item(Tab.RESOURCES.settings());
+	public static final Item INCANDESCENT_ESSENCE = new Item(Tab.RESOURCES.settings());
+	public static final Item FROSTBITE_ESSENCE = new Item(Tab.RESOURCES.settings());
 	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
 	public static final Item MOONSTONE_CORE = new Item(Tab.RESOURCES.settings(8, Rarity.RARE));
 	
@@ -678,8 +678,8 @@ public class SpectrumItems {
 		register("raw_malachite", RAW_MALACHITE, DyeColor.GREEN);
 		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.GREEN);
 		
-		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
-		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
+		register("incandescent_essence", INCANDESCENT_ESSENCE, DyeColor.ORANGE);
+		register("frostbite_essence", FROSTBITE_ESSENCE, DyeColor.LIGHT_BLUE);
 		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);

@@ -5,9 +5,9 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:blazing_crystal": 0,
-    "spectrum:fiery_powder": 0,
+    "spectrum:incandescent_essence": 0,
     "spectrum:frostbite_crystal": 0,
-    "spectrum:blizzard_powder": 0
+    "spectrum:frostbite_essence": 0
   },
   "pages": [
     {
@@ -19,7 +19,7 @@
     {
       "type": "spectrum:anvil_crushing",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
-      "recipe": "spectrum:anvil_crushing/fiery_powder_from_blazing_crystal",
+      "recipe": "spectrum:anvil_crushing/incandescent_essence_from_blazing_crystal",
       "text": "Crushing Blazing Crystal with an $(item)Anvil$(), you get this burning hot powder that almost sets your hand on fire when you touch it. Crushing $(item)Magma Blocks$() seems to work, too, albeit with far less yield."
     },
     {
@@ -31,7 +31,7 @@
     {
       "type": "spectrum:anvil_crushing",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
-      "recipe": "spectrum:anvil_crushing/blizzard_powder_from_frostbite_crystal",
+      "recipe": "spectrum:anvil_crushing/frostbite_essence_from_frostbite_crystal",
       "text": "Crushing $(item)Frostbite Crystal$() with an $(item)Anvil$() gave you this ice cold powder, which almost makes your hand freeze just by holding it. Crushing $(item)Ice$() seems to work, too, albeit with far less yield."
     }
   ]

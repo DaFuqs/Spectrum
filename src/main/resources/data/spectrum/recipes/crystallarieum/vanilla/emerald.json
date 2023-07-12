@@ -23,7 +23,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:blizzard_powder"
+        "item": "spectrum:frostbite_essence"
       },
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 0.125,

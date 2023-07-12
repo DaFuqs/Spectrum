@@ -244,7 +244,7 @@ public class SpectrumItems {
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item REFINED_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
@@ -676,7 +676,7 @@ public class SpectrumItems {
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 		
 		register("raw_malachite", RAW_MALACHITE, DyeColor.GREEN);
-		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.GREEN);
+		register("refined_malachite", REFINED_MALACHITE, DyeColor.GREEN);
 		
 		register("incandescent_essence", INCANDESCENT_ESSENCE, DyeColor.ORANGE);
 		register("frostbite_essence", FROSTBITE_ESSENCE, DyeColor.LIGHT_BLUE);

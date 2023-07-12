@@ -23,7 +23,7 @@
     }
   ],
   "additional_recipe_manager_outputs": [
-    "spectrum:malachite_crystal"
+    "spectrum:refined_malachite"
   ],
   "required_advancement": "spectrum:lategame/collect_malachite"
 }

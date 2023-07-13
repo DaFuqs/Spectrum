@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -10,7 +9,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
-import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.sound.*;
@@ -36,6 +34,11 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	}
 
 	@Override
+	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
+		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
+	}
+
+	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
 			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
@@ -46,34 +49,22 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClient) {
-			if (entity instanceof LivingEntity livingEntity) {
-				// just check every 20 ticks for performance
-				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
-					if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-						livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
-					} else {
-						livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
-					}
-					if (!livingEntity.isDead()) {
-						StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
-						if (existingEffect == null || existingEffect.getDuration() < 1000) {
-							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
-						}
-						existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
-						if (existingEffect == null || existingEffect.getDuration() < 80) {
-							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
-						}
-					}
+		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
+			// just check every 20 ticks for performance
+			if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
+				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
+				} else {
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
 				}
-			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-				if (world.random.nextInt(200) == 0) {
-					ItemStack itemStack = itemEntity.getStack();
-					DragonrotConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.DRAGONROT_CONVERTING, world, itemStack);
-					if (recipe != null) {
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(world.getRegistryManager()), recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount(), Vec3d.ZERO);
-						itemEntity.discard();
+				if (!livingEntity.isDead()) {
+					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
+					if (existingEffect == null || existingEffect.getDuration() < 1000) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
+					}
+					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
+					if (existingEffect == null || existingEffect.getDuration() < 80) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
 					}
 				}
 			}

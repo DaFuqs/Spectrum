@@ -39,18 +39,34 @@
       "type": "patchouli:spotlight",
       "title": "Colored Leaves",
       "item": "spectrum:orange_leaves",
-      "text": "Colored Leaves get stimulated in a way to release a lot more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
+      "text": "Colored Leaves get stimulated in a way to release a lot more $(item)saplings$().$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
-      "item": "minecraft:spawner",
-      "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."
+      "item": "spectrum:spawner",
+      "text": "In the depths, you have come across cages that seem to spit out an endless number of enemies. What madman put them there, what purpose they serve, and whether it was worth it is a mystery to you. But you can certainly find some use for them. Their creator hopefully won't miss you packing a few."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:reinforced_deepslate",
       "text": "This immensely sturdy stone found in underground cities can be harvested."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk_shrieker",
+      "text": "Sculk Shriekers retain their ability to summon the Warden."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:respawn_anchor",
+      "text": "Respawn Anchors retain their charges."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Signs",
+      "item": "minecraft:oak_sign",
+      "text": "Signs keep their text & color."
     },
     {
       "type": "patchouli:spotlight",

@@ -1,0 +1,114 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:honey_bottle",
+      "count": 4
+    },
+    {
+      "item": "spectrum:sawblade_holly_berry",
+      "count": 4
+    },
+    {
+      "item": "spectrum:bristle_sprouts",
+      "count": 8
+    },
+    {
+      "item": "spectrum:jaramel",
+      "count": 2
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 24,
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 20,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:strength",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
+          }
+        ]
+      }
+    ]
+  },
+  "tapping_item": "minecraft:glass_bottle",
+  "result": {
+    "item": "spectrum:bristle_mead",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook"
+}

@@ -12,6 +12,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -66,4 +67,12 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 		return SpectrumBannerPatterns.PALETTE;
 	}
 	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(getFullStack());
+		}
+	}
+
 }

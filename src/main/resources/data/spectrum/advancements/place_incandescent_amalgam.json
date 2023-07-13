@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:incandescent_amalgam"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.place_incandescent_amalgam.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.place_incandescent_amalgam.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "placed_incandescent_amalgam": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "spectrum:incandescent_amalgam"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:tap_titration_barrel"
+      }
+    }
+  }
+}

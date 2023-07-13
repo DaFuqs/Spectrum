@@ -57,7 +57,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	
 	@Override
 	public boolean isPageUnlocked() {
-		if (!super.isPageUnlocked()) {
+		if (!super.isPageUnlocked() || recipe == null) {
 			return false;
 		}
 		return recipe.canPlayerCraft(MinecraftClient.getInstance().player);

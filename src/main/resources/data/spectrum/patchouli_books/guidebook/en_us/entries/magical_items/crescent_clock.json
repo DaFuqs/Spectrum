@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "There seems to be something magical about the flow of time.$(br)This clock, formed from witnesses of time, is to show you a way in this never-ending stream of beginning and passing - moon phases."
+      "text": "This clock, made up of witnesses to time, is intended to guide you through this never-ending stream of beginnings and endings - the phases of the moon.$(br2)$(br2)$(italic)If we shadows have offended, Know but this and all is mended."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/crescent_clock",
-      "text": "$(italic)If we shadows have offended, Know but this and all is mended.$(br)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
+      "text": "$(italic)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
     }
   ]
 }

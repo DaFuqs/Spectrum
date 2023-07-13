@@ -2,12 +2,14 @@ package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -25,9 +27,13 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 		return null;
 	}
 	
-	static void spawnExperience(World world, BlockPos blockPos, int spawnedXPAmount) {
-		if (spawnedXPAmount > 0) {
-			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, spawnedXPAmount);
+	static void spawnExperience(World world, BlockPos blockPos, float amount, Random random) {
+		spawnExperience(world, blockPos, Support.getIntFromDecimalWithChance(amount, random));
+	}
+	
+	static void spawnExperience(World world, BlockPos blockPos, int amount) {
+		if (amount > 0) {
+			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, amount);
 			world.spawnEntity(experienceOrbEntity);
 		}
 	}

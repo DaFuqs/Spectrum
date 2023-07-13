@@ -30,7 +30,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		world.createExplosion(user, SpectrumDamageSources.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 10.0F, true, World.ExplosionSourceType.NONE);
 		
 		if (user.isAlive() && user instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isCreative()) {
-			Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
+			Support.grantAdvancementCriterion(serverPlayerEntity, "survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
 		}
 		
 		return stack;

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_melochites_cookbook_vol_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:melochites_cookbook_vol_1"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

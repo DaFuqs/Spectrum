@@ -5,20 +5,22 @@
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general_category",
-  "extra_recipe_mappings": {
-    "spectrum:fusion_shrine_basalt": 1,
-    "spectrum:fusion_shrine_calcite": 0
-  },
+  "extra_recipe_mappings": {},
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "spectrum:collection",
+      "title": "Fusion Shrine",
+      "items": [
+        "spectrum:fusion_shrine_basalt",
+        "spectrum:fusion_shrine_calcite"
+      ],
       "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "Can be constructed out of $(item)Calcite$() or $(item)Basalt$().$(br)Requires a focus structure and clear view of the sky."
+      "text": "Can be constructed using $(item)Calcite$() or $(item)Basalt$().$(br)Requires a focus structure and clear view of the sky."
     },
     {
       "type": "patchouli:multiblock",

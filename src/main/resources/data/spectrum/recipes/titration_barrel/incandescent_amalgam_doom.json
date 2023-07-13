@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "tag": "spectrum:drinkable_spirits",
+      "count": 1
+    },
+    {
+      "item": "spectrum:fiery_powder",
+      "count": 32
+    },
+    {
+      "item": "minecraft:honeycomb",
+      "count": 2
+    },
+    {
+      "item": "spectrum:quitoxic_powder",
+      "count": 16
+    },
+    {
+      "item": "spectrum:doombloom_seed",
+      "count": 4
+    }
+  ],
+  "fluid": "spectrum:midnight_solution",
+  "min_fermentation_time_hours": 24,
+  "fermentation_data": {
+    "angels_share_percent_per_mc_day": -0.02
+  },
+  "result": {
+    "item": "spectrum:incandescent_amalgam",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/items/incandescent_amalgam_doom"
+}

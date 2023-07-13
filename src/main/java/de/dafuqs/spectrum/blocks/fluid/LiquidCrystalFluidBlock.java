@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
@@ -10,9 +9,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
-import net.minecraft.item.*;
 import net.minecraft.particle.*;
-import net.minecraft.sound.*;
+import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -37,6 +35,11 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 		return new Pair<>(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING);
 	}
 	
+	@Override
+	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
+		return SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING;
+	}
+
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
@@ -63,25 +66,13 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (!world.isClient) {
-			if (entity instanceof LivingEntity livingEntity) {
-				// just check every x ticks for performance and slow healing
-				if (world.getTime() % 200 == 0) {
-					StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
-					if (regenerationInstance == null) {
-						StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-						livingEntity.addStatusEffect(newRegenerationInstance);
-					}
-				}
-			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-				if (world.random.nextInt(200) == 0) {
-					ItemStack itemStack = itemEntity.getStack();
-					LiquidCrystalConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, world, itemStack);
-					if (recipe != null) {
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(world.getRegistryManager()), recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount(), Vec3d.ZERO);
-						itemEntity.discard();
-					}
+		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
+			// just check every x ticks for performance and slow healing
+			if (world.getTime() % 200 == 0) {
+				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
+				if (regenerationInstance == null) {
+					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
+					livingEntity.addStatusEffect(newRegenerationInstance);
 				}
 			}
 		}

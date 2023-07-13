@@ -58,50 +58,50 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 		super.writeNbt(nbt);
 		Inventories.writeNbt(nbt, items);
 	}
+	
 	protected boolean deserializeLootTable(NbtCompound nbt) {
 		if (nbt.contains("LootTable", NbtElement.STRING_TYPE)) {
 			this.lootTableId = new Identifier(nbt.getString("LootTable"));
 			this.lootTableSeed = nbt.getLong("LootTableSeed");
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 
 	protected boolean serializeLootTable(NbtCompound nbt) {
 		if (this.lootTableId == null) {
 			return false;
-		} else {
-			nbt.putString("LootTable", this.lootTableId.toString());
-			if (this.lootTableSeed != 0L) {
-				nbt.putLong("LootTableSeed", this.lootTableSeed);
-			}
-
-			return true;
 		}
+		
+		nbt.putString("LootTable", this.lootTableId.toString());
+		if (this.lootTableSeed != 0L) {
+			nbt.putLong("LootTableSeed", this.lootTableSeed);
+		}
+		
+		return true;
 	}
 
 	public void checkLootInteraction(@Nullable PlayerEntity player) {
 		var world = this.getWorld();
 		if (world != null && this.lootTableId != null && world.getServer() != null) {
 			LootTable lootTable = world.getServer().getLootManager().getTable(this.lootTableId);
-			if (player instanceof ServerPlayerEntity) {
-				Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger((ServerPlayerEntity)player, this.lootTableId);
+			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
+				Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger(serverPlayerEntity, this.lootTableId);
 			}
-
+			
 			this.lootTableId = null;
 			LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
-				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos))
-				.random(this.lootTableSeed);
+					.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos))
+					.random(this.lootTableSeed);
 			if (player != null) {
 				builder.luck(player.getLuck()).parameter(LootContextParameters.THIS_ENTITY, player);
 			}
-
+			
 			lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST));
+			this.markDirty();
 		}
-
 	}
-
 	
 	@Nullable
 	@Override

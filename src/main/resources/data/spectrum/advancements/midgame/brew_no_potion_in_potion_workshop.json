@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
+  "display": {
+    "icon": {
+      "item": "spectrum:potion_workshop"
+    },
+    "title": {
+      "translate": "advancements.spectrum.brew_no_potion_in_potion_workshop.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.brew_no_potion_in_potion_workshop.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "brewed_potion": {
+      "trigger": "spectrum:potion_workshop_brewing",
+      "conditions": {
+        "brewed_count": {
+          "max": 0
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+      }
+    }
+  }
+}

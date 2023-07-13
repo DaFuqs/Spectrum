@@ -1526,10 +1526,6 @@
 
   "block.spectrum.color_picker": "Seletor de Cor",
   "block.spectrum.color_picker.tooltip": "Converts §2P§3i§cg§6m§be§en§dt§1o§7 into Ink",
-  "block.spectrum.inkwell": "Tinteiro",
-  "block.spectrum.inkwell.tooltip": "Coloque em um Gerador de Pedra Gema para extrair Tinta",
-  "block.spectrum.ink_duct": "Duto de Tinta",
-  "block.spectrum.ink_duct.tooltip": "Transfere Tinta em uma linha reta",
   "block.spectrum.crystal_apothecary": "Boticário de Cristal",
   "block.spectrum.crystal_apothecary.tooltip": "Coloque em um Geodo para colotar Fragmentos de Pedra Gema",
 

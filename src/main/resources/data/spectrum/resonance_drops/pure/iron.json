@@ -1,0 +1,6 @@
+{
+  "input": {
+    "item": "minecraft:raw_iron"
+  },
+  "output": "spectrum:pure_iron"
+}

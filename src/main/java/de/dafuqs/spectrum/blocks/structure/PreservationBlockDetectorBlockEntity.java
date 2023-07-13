@@ -18,9 +18,9 @@ import java.util.*;
 
 public class PreservationBlockDetectorBlockEntity extends BlockEntity implements CommandOutput {
 	
-	protected @Nullable BlockState detectedState = SpectrumBlocks.MOONSTONE_BLOCK.getDefaultState(); // detect this block. Null: any block
-	protected @Nullable BlockState changeIntoState = SpectrumBlocks.PRESERVATION_STONE.getDefaultState(); // change into this once triggered. Null: stay as is (can be used again and again)
-	protected @Nullable List<String> commands = null; // get executed in order. First command that fails ends the chain
+	protected @Nullable BlockState detectedState; // detect this block. Null: any block
+	protected @Nullable BlockState changeIntoState; // change into this once triggered. Null: stay as is (can be used again and again)
+	protected List<String> commands = List.of(); // get executed in order. First command that fails ends the chain
 	
 	public PreservationBlockDetectorBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.PRESERVATION_BLOCK_DETECTOR, pos, state);
@@ -35,7 +35,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 		if (this.detectedState != null) {
 			nbt.putString("detected_state", BlockArgumentParser.stringifyBlockState(this.detectedState));
 		}
-		if (this.commands != null && !this.commands.isEmpty()) {
+		if (!this.commands.isEmpty()) {
 			NbtList commandList = new NbtList();
 			for (String s : this.commands) {
 				commandList.add(NbtString.of(s));
@@ -47,11 +47,10 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.commands = null;
+		this.commands = new ArrayList<>();
 		this.changeIntoState = null;
 		this.detectedState = null;
 		if (nbt.contains("commands", NbtElement.LIST_TYPE)) {
-			this.commands = new ArrayList<>();
 			for (NbtElement e : nbt.getList("commands", NbtElement.STRING_TYPE)) {
 				this.commands.add(e.asString());
 			}
@@ -59,13 +58,13 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 		if (nbt.contains("change_into_state", NbtElement.STRING_TYPE)) {
 			try {
 				this.changeIntoState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("change_into_state"), false).blockState();
-			} catch (CommandSyntaxException e) {
+			} catch (CommandSyntaxException ignored) {
 			}
 		}
-		if (nbt.contains("change_into_state", NbtElement.STRING_TYPE)) {
+		if (nbt.contains("detected_state", NbtElement.STRING_TYPE)) {
 			try {
 				this.detectedState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("detected_state"), false).blockState();
-			} catch (CommandSyntaxException e) {
+			} catch (CommandSyntaxException ignored) {
 			}
 		}
 	}
@@ -78,7 +77,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	
 	public void execute(ServerWorld serverWorld) {
 		MinecraftServer minecraftServer = serverWorld.getServer();
-		if (minecraftServer.areCommandBlocksEnabled() && this.commands != null && !this.commands.isEmpty()) {
+		if (minecraftServer.areCommandBlocksEnabled() && !this.commands.isEmpty()) {
 			ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(PreservationBlockDetectorBlockEntity.this.pos), Vec2f.ZERO, serverWorld, 2, "PreservationBlockDetector", this.getWorld().getBlockState(this.pos).getBlock().getName(), minecraftServer, null);
 			for (String command : this.commands) {
 				int success = minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command);

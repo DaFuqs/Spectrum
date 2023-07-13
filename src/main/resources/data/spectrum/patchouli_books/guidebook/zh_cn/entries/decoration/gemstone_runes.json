@@ -5,10 +5,10 @@
 			"type":"patchouli:text"
 		},
 		{
-			"recipe":"spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
-			"text":"有各种宝石颜色可供选择。框架可以由$(l:decoration/block_variants#polished_basalt)磨制玄武岩$()或$(l:decoration/block_variants#polished_calcite)磨制方解石$()制成。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
+			"recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
+			"text": "有各种宝石颜色可供选择。框架可以由$(l:decoration/block_variants#polished_basalt)磨制玄武岩$()或$(l:decoration/block_variants#polishing)磨制方解石$()制成。",
+			"type": "spectrum:pedestal_crafting",
+			"title": "基座配方"
 		},
 		{
 			"recipe":"spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_cluster",

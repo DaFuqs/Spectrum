@@ -207,8 +207,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
 			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
-			setCustomPotionEffects(itemStack, effects);
 		}
+		setCustomPotionEffects(itemStack, potionMod, effects);
 		
 		if (potionMod.additionalDrinkDurationTicks != 0) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
@@ -226,7 +226,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
 			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
-			setCustomPotionEffects(itemStack, effects);
+			setCustomPotionEffects(itemStack, potionMod, effects);
 		}
 		
 		return itemStack;
@@ -239,7 +239,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 	}
 	
-	private static void setCustomPotionEffects(ItemStack stack, List<InkPoweredStatusEffectInstance> effects) {
+	private static void setCustomPotionEffects(ItemStack stack, PotionMod potionMod, List<InkPoweredStatusEffectInstance> effects) {
 		List<StatusEffectInstance> instances = new ArrayList<>();
 		for (InkPoweredStatusEffectInstance e : effects) {
 			instances.add(e.getStatusEffectInstance());
@@ -250,6 +250,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				NbtCompound nbtCompound = stack.getOrCreateNbt();
 				nbtCompound.putInt("CustomPotionColor", effect.getColor());
 			}
+		}
+		NbtCompound nbtCompound = stack.getOrCreateNbt();
+		if (potionMod.unidentifiable) {
+			nbtCompound.putBoolean("spectrum_unidentifiable", true); // used in PotionItemMixin
 		}
 	}
 	
@@ -298,17 +302,17 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			for (int i = 0; i < additionalPositiveEffects; i++) {
 				int r;
 				int tries = 0;
-				PotionWorkshopBrewingRecipe selectedStatusEffect;
+				PotionWorkshopBrewingRecipe selectedRecipe;
 				do {
 					r = random.nextInt(positiveRecipes.size());
-					selectedStatusEffect = positiveRecipes.get(r);
-					if (containsEffect(effects, selectedStatusEffect.statusEffect)) {
-						selectedStatusEffect = null;
+					selectedRecipe = positiveRecipes.get(r);
+					if (containsEffect(effects, selectedRecipe.statusEffect)) {
+						selectedRecipe = null;
 						tries++;
 					}
-				} while (selectedStatusEffect == null && tries < 5);
-				if (selectedStatusEffect != null) {
-					InkPoweredStatusEffectInstance statusEffectInstance = getStatusEffectInstance(potionMod, random);
+				} while (selectedRecipe == null && tries < 5);
+				if (selectedRecipe != null) {
+					InkPoweredStatusEffectInstance statusEffectInstance = selectedRecipe.getStatusEffectInstance(potionMod, random);
 					if (statusEffectInstance != null) {
 						effects.add(statusEffectInstance);
 					}
@@ -357,19 +361,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			}
 		}
 		return false;
-	}
-	
-	private void setColor(ItemStack itemStack, PotionMod potionMod, boolean potionWithNoEffects, Random random) {
-		if (potionWithNoEffects) {
-			return;
-		}
-		
-		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-		
-		nbtCompound.putInt("CustomPotionColor", color);
-		if (potionMod.unidentifiable) {
-			nbtCompound.putBoolean("spectrum_unidentifiable", true); // used in PotionItemMixin
-		}
 	}
 	
 	private @Nullable InkPoweredStatusEffectInstance getStatusEffectInstance(@NotNull PotionMod potionMod, Random random) {

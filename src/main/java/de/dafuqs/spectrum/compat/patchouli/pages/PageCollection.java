@@ -1,8 +1,12 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
+import com.mojang.brigadier.*;
+import com.mojang.brigadier.exceptions.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.command.*;
+import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
-import net.minecraft.recipe.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.World;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
@@ -13,12 +17,12 @@ import java.util.*;
 
 public class PageCollection extends PageWithText {
 	
-	private static final int ITEMS_PER_ROW = 6;
+	private static final int ENTRIES_PER_ROW = 6;
 	
 	String title;
 	IVariable items;
 	
-	transient List<Ingredient> stacks;
+	transient List<ItemStack> stacks;
 	
 	@Override
 	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
@@ -26,11 +30,16 @@ public class PageCollection extends PageWithText {
 		
 		stacks = new ArrayList<>();
 		for (IVariable item : items.asList()) {
-			Ingredient ingredient = item.as(Ingredient.class);
-			stacks.add(ingredient);
-			for (ItemStack stack : ingredient.getMatchingStacks()) {
-				entry.addRelevantStack(builder, stack, pageNum);
+			String stackString = item.asString();
+			ItemStack stack;
+			try {
+				stack = new ItemStackArgumentType(new CommandRegistryAccess(DynamicRegistryManager.of(Registry.REGISTRIES))).parse(new StringReader(stackString)).createStack(1, false);
+			} catch (CommandSyntaxException e) {
+				PatchouliAPI.LOGGER.warn("Unable to parse stack {} in collection page", stackString);
+				continue;
 			}
+			stacks.add(stack);
+			entry.addRelevantStack(builder, stack, pageNum);
 		}
 	}
 	
@@ -47,11 +56,11 @@ public class PageCollection extends PageWithText {
 		int startY = hasTitle ? 18 : 0;
 		int row = 0;
 		int column = -1;
-		int firstNonFullRowIndex = (stacks.size()) / ITEMS_PER_ROW;
-		int unusedEntriesInLastRow = ITEMS_PER_ROW - (stacks.size() % ITEMS_PER_ROW);
-		for (Ingredient ingredient : stacks) {
+		int firstNonFullRowIndex = (stacks.size()) / ENTRIES_PER_ROW;
+		int unusedEntriesInLastRow = ENTRIES_PER_ROW - (stacks.size() % ENTRIES_PER_ROW);
+		for (ItemStack stack : stacks) {
 			column++;
-			if (column == ITEMS_PER_ROW) {
+			if (column == ENTRIES_PER_ROW) {
 				column = 0;
 				row++;
 			}
@@ -59,7 +68,7 @@ public class PageCollection extends PageWithText {
 			if (row == firstNonFullRowIndex) {
 				startX += unusedEntriesInLastRow * 9;
 			}
-			parent.renderIngredient(ms, startX, startY + row * 18, mouseX, mouseY, ingredient);
+			parent.renderItemStack(ms, startX, startY + row * 18, mouseX, mouseY, stack);
 		}
 		
 		if (!text.asString().isEmpty()) {
@@ -72,7 +81,7 @@ public class PageCollection extends PageWithText {
 	@Override
 	public int getTextHeight() {
 		boolean hasTitle = title != null && !title.isEmpty();
-		return 8 + (hasTitle ? 18 : 0) + (int) Math.ceil(stacks.size() / (float) ITEMS_PER_ROW) * 18;
+		return 8 + (hasTitle ? 18 : 0) + (int) Math.ceil(stacks.size() / (float) ENTRIES_PER_ROW) * 18;
 	}
 	
 }

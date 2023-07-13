@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "spectrum:block/stripped_pink_log",
+      "model": "spectrum:block/stripped_pink_wood",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "spectrum:block/stripped_pink_log"
+      "model": "spectrum:block/stripped_pink_wood"
     },
     "axis=z": {
-      "model": "spectrum:block/stripped_pink_log",
+      "model": "spectrum:block/stripped_pink_wood",
       "x": 90
     }
   }

@@ -68,7 +68,6 @@
     "arrowhead": "*",
     "cloth-config": ">=8.2.88",
     "patchouli": "*",
-    "owo": "*",
     "trinkets": ">=3.4.0",
     "reverb": "*"
   },

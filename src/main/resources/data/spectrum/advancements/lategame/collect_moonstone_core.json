@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/find_forgotten_city",
   "display": {
     "icon": {
       "item": "spectrum:moonstone_core"

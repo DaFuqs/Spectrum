@@ -71,7 +71,8 @@ public class FractalGlassAmpouleItem extends Item implements InkPoweredPotionFil
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.fractal_glass_ampoule.when_hit"), false);
+        tooltip.add(Text.translatable("item.spectrum.fractal_glass_ampoule.tooltip").formatted(Formatting.GRAY));
+        appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.fractal_glass_ampoule.tooltip"), false);
     }
     
 }

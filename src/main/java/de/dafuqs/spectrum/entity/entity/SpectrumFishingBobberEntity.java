@@ -538,7 +538,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		}
 		
 		if (isAblaze()) {
-			list = FoundryEnchantment.applyAutoSmelt(world, list);
+			list = FoundryEnchantment.applyFoundry(world, list);
 		}
 		
 		float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(this.exuberanceLevel);

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.data.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
@@ -20,25 +21,41 @@ import java.util.function.*;
 
 public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
-	public static final int DEFAULT_MAX_AGE = 200, DECELERATION_PHASE_LENGTH = 25;
+	private static final TrackedData<Integer> MAX_AGE = DataTracker.registerData(LightShardBaseEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	
+	public static final int DECELERATION_PHASE_LENGTH = 25;
 	public static final float DEFAULT_ACCELERATION = 0.03F;
 	protected float scaleOffset, damage, detectionRange;
-	protected long maxAge;
 	protected Optional<UUID> target = Optional.empty();
 	protected Optional<Entity> targetEntity = Optional.empty();
 	protected Vec3d initialVelocity = Vec3d.ZERO;
 	
 	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
-		
-		this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * 1.0); // TODO: sync from server => client
+		this.scaleOffset = world.random.nextFloat() + 0.15F;
 	}
 	
-	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<Entity> target) {
+	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<Entity> target, float detectionRange, float damage, float lifeSpanTicks) {
 		super(entityType, world);
 		
-		target.ifPresent(this::setTarget);
 		this.setOwner(owner);
+		this.detectionRange = detectionRange;
+		this.damage = damage;
+		target.ifPresent(this::setTarget);
+		setMaxAge((int) ((lifeSpanTicks + MathHelper.nextGaussian(world.getRandom(), 10, 7))));
+	}
+	
+	@Override
+	protected void initDataTracker() {
+		this.dataTracker.startTracking(MAX_AGE, 20);
+	}
+	
+	public int getMaxAge() {
+		return this.dataTracker.get(MAX_AGE);
+	}
+	
+	public void setMaxAge(int maxAge) {
+		this.dataTracker.set(MAX_AGE, maxAge);
 	}
 	
 	@Override
@@ -51,7 +68,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 				world.addParticle(SpectrumParticleTypes.LIGHT_TRAIL, true, prevX, prevY, prevZ, 0, 0, 0);
 		}
 		
-		if (age > maxAge) {
+		if (age > getMaxAge()) {
 			playSound(SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_BREAK, random.nextFloat() + 0.25F, 1.2F + random.nextFloat());
 			this.remove(RemovalReason.DISCARDED);
 		}
@@ -220,11 +237,11 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	}
 	
 	public float getVanishingProgress(int age) {
-		return 1 - (float) Math.min(maxAge - age, getVanishingLength()) / getVanishingLength();
+		return 1 - (float) Math.min(getMaxAge() - age, getVanishingLength()) / getVanishingLength();
 	}
 	
 	public int getVanishingLength() {
-		return Math.round(maxAge / 4F);
+		return Math.round(getMaxAge() / 4F);
 	}
 	
 	public void setTarget(@NotNull Entity target) {
@@ -247,10 +264,6 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	}
 	
 	@Override
-	protected void initDataTracker() {
-	}
-	
-	@Override
 	protected void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		target.ifPresent(uuid -> nbt.putUuid("target", uuid));
@@ -260,7 +273,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		
 		nbt.putFloat("damage", damage);
 		nbt.putFloat("scale", scaleOffset);
-		nbt.putLong("maxAge", maxAge);
+		nbt.putInt("maxAge", getMaxAge());
 	}
 	
 	@Override
@@ -278,7 +291,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		
 		damage = nbt.getFloat("damage");
 		scaleOffset = nbt.getFloat("scale");
-		maxAge = nbt.getLong("maxAge");
+		setMaxAge(nbt.getInt("maxAge"));
 	}
 	
 	public abstract Identifier getTexture();

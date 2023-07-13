@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "spectrum:calcite_tile_wall"
-  },
-  "result": "spectrum:polished_calcite",
-  "experience": 0.1,
-  "cookingtime": 100
-}

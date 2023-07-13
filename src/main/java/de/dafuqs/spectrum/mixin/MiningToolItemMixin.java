@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -47,12 +48,11 @@ public abstract class MiningToolItemMixin {
 		}
 	}
 
-	@Inject(at = @At("RETURN"), method = "getMiningSpeedMultiplier(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", cancellable = true)
-	public void applyMiningSpeedMultipliers(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
+	@ModifyReturnValue(method = "getMiningSpeedMultiplier(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", at = @At("RETURN"))
+	public float applyMiningSpeedMultipliers(float original, ItemStack stack, BlockState state) {
 		if (stack != null) { // thank you, gobber
 
 			// INERTIA GAMING
-
 			int inertiaLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack);
 			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
 			if (inertiaLevel > 0) {
@@ -61,34 +61,23 @@ public abstract class MiningToolItemMixin {
 				if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
 					long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
 					double additionalSpeedPercent = 2.0 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
-					cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent));
+					
+					original = original * (0.5F + (float) additionalSpeedPercent);
 				} else {
-					cir.setReturnValue(cir.getReturnValue() / 4.0F);
+					original = original / 4;
 				}
 			}
-
+			
 			// RAZING GAMING
-			var razing = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
-			if (razing > 0) {
-				var hardness = state.getBlock().getHardness();
-				var effectiveness = state.isIn(SpectrumBlockTags.CRUMBLING_SUPER_EFFECTIVE) ? 4.125F : 0.255F;
-				float speedMod;
-
-				if (hardness <= 0) {
-					speedMod = 0F;
-				} else if (hardness < 13) {
-					speedMod = (float) (Math.pow(1.225, hardness) - 0.75);
-				} else {
-					speedMod = (float) (((hardness - 12) / Math.sqrt(1 + Math.pow(hardness, 2.5) / 10000)) * 10);
-					effectiveness = 0.375F;
-				}
-
-				if (cir.getReturnValue() <= 1)
-					speedMod *= 0.25F;
-
-				cir.setReturnValue(Math.max(cir.getReturnValue() * speedMod * effectiveness, 0.125F));
+			int razingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
+			if (razingLevel > 0) {
+				float hardness = state.getBlock().getHardness();
+				original = (float) Math.max(1 + hardness, Math.pow(2, 1 + razingLevel / 8F));
 			}
+
 		}
+
+		return original;
 	}
 
 }

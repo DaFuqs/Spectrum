@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/preservation_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/preservation_slab"
+    },
+    "type=top": {
+      "model": "spectrum:block/preservation_slab_top"
+    }
+  }
+}

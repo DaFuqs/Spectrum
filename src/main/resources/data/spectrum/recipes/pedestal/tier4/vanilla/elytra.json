@@ -9,27 +9,27 @@
   "white": 8,
   "experience": 4.0,
   "pattern": [
-    "CSC",
+    "CGC",
     "MPM",
     "MPM"
   ],
   "key": {
+    "G": {
+      "item": "spectrum:paltaeria_gem"
+    },
     "P": {
       "item": "spectrum:paltaeria_fragments"
-    },
-    "S": {
-      "item": "spectrum:spectral_shard"
     },
     "M": {
       "item": "minecraft:phantom_membrane"
     },
     "C": {
-      "item": "minecraft:chorus_fruit"
+      "item": "minecraft:popped_chorus_fruit"
     }
   },
   "result": {
     "item": "minecraft:elytra",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/collect_paltaeria"
+  "required_advancement": "spectrum:hidden/collect_paltaeria_gem"
 }

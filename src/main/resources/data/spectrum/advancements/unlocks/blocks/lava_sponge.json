@@ -1,12 +1,22 @@
 {
   "criteria": {
-    "crafted_using_pedestal": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
+    "collected_topaz_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard"
+      }
+    },
+    "collected_citrine_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard"
+      }
     },
     "collected_blaze_rod": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "nether/obtain_blaze_rod" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "nether/obtain_blaze_rod"
+      }
     }
   }
 }

@@ -9,13 +9,14 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "TODO"
+      "type": "patchouli:spotlight",
+      "item": "spectrum:slush",
+      "text": "Incredibly soft, moist soil. Smells like earthworm."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:tilled_slush",
-      "text": "Always moist soil, which does not need any water nearby."
+      "text": "Ever-moist farmland, with a lot of nutrients. Plants thrive on it."
     }
   ]
 }

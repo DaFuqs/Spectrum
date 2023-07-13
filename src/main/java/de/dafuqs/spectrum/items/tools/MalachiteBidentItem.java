@@ -156,7 +156,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted {
 	}
 	
 	public boolean requiresRainForRiptide() {
-		return false;
+		return true;
 	}
 	
 	public boolean isThrownAsMirrorImage(ItemStack stack, ServerWorld world, PlayerEntity player) {

@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has a small chamber, which can be filled with a potion's effect. As long as you wear it, you get the effect of that potion.$(br)Since the potions are not ingested, the effects only reach up to Level III."
+      "text": "Potions are handy. Carrying half an inventory of them around, however, is more than a little inconvenient.$(br)The Potion Pendant has a small chamber that can be filled with the effect of a potion. As long as you wear it, you will receive the effects of that potion.$(br)Since the potions are not ingested, the effects will only last up to level III."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
-      "text": "Use the $(l:brewing/potion_workshop)Potion Workshop$(/l) to infuse it with an effect, place it where the $(item)Bottle$() would normally go.$(br)To clear its effect, put it in a crafting grid."
+      "text": "Use the $(l:brewing/potion_workshop)Potion Workshop$(/l) to infuse it, by placing it where the $(item)Bottle$() would normally go.$(br2)To clear its effect, put it in a crafting grid."
     }
   ]
 }

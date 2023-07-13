@@ -10,6 +10,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -61,6 +62,14 @@ public class MidnightAberrationItem extends CloakedItem {
 	@Override
 	public @Nullable Pair<Item, MutableText> getCloakedItemTranslation() {
 		return new Pair<>(this, Text.translatable("item.spectrum.midnight_aberration.cloaked"));
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(getStableStack());
+		}
 	}
 	
 }

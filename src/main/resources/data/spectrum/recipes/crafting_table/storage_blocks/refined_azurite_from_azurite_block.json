@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spectrum:azurite_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:refined_azurite",
+    "count": 9
+  }
+}

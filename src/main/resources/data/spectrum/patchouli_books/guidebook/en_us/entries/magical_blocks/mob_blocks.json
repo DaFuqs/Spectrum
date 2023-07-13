@@ -72,7 +72,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
-      "text": "Sets the creature that triggered it and blocks next to it on fire.$(br)Also converts some blocks to their scorched variants (smelting ore, heating $(item)Netherrack$() to $(item)Magma Blocks$(), ...)"
+      "text": "Smelts ore, heats $(item)Netherrack$() to $(item)Magma Blocks$(), ...)$(br)Also sets the creature that triggered it and blocks next to it on fire."
     },
     {
       "type": "spectrum:pedestal_crafting",

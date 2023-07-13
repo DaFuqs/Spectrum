@@ -182,18 +182,19 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		if (newState.getBlock() instanceof PedestalBlock) {
-			if (!state.isOf(newState.getBlock())) {
+		if (newState.getBlock() instanceof PedestalBlock newStateBlock) {
+			if (!state.isOf(newStateBlock)) {
 				// pedestal is getting upgraded. Keep the blockEntity with its contents
 				BlockEntity blockEntity = world.getBlockEntity(pos);
-				if (blockEntity instanceof PedestalBlockEntity) {
-					if (state.getBlock().equals(newState.getBlock())) {
-						PedestalVariant newVariant = ((PedestalBlock) newState.getBlock()).getVariant();
-						((PedestalBlockEntity) blockEntity).setVariant(newVariant);
+				if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+					if (state.getBlock().equals(newStateBlock)) {
+						PedestalVariant newVariant = newStateBlock.getVariant();
+						pedestalBlockEntity.setVariant(newVariant);
 					}
 				}
 			}
 		} else {
+			InWorldInteractionBlock.scatterContents(world, pos);
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}

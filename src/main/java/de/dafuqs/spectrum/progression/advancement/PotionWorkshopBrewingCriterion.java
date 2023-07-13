@@ -19,8 +19,8 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	
 	static final Identifier ID = SpectrumCommon.locate("potion_workshop_brewing");
 	
-	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
-		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
+	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange brewedCountRange, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
+		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, brewedCountRange, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
 	}
 	
 	@Override
@@ -32,14 +32,15 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	public PotionWorkshopBrewingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		EntityEffectPredicate statusEffectsPredicate = EntityEffectPredicate.fromJson(jsonObject.get("effects"));
+		NumberRange.IntRange brewedCountRange = NumberRange.IntRange.fromJson(jsonObject.get("brewed_count"));
 		NumberRange.IntRange maxAmplifierRange = NumberRange.IntRange.fromJson(jsonObject.get("highest_amplifier"));
 		NumberRange.IntRange maxDurationRange = NumberRange.IntRange.fromJson(jsonObject.get("longest_duration"));
 		NumberRange.IntRange effectCountRange = NumberRange.IntRange.fromJson(jsonObject.get("effect_count"));
 		NumberRange.IntRange uniqueEffectCountRange = NumberRange.IntRange.fromJson(jsonObject.get("unique_effect_count"));
-		return new PotionWorkshopBrewingCriterion.Conditions(extended, itemPredicate, statusEffectsPredicate, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
+		return new PotionWorkshopBrewingCriterion.Conditions(extended, itemPredicate, statusEffectsPredicate, brewedCountRange, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
 	}
 	
-	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
+	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int brewedCount) {
 		this.trigger(player, conditions -> {
 			List<StatusEffectInstance> effects;
 			if (itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
@@ -66,22 +67,24 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 				}
 			}
 			
-			return conditions.matches(itemStack, effects, highestAmplifier, longestDuration, effects.size(), uniqueEffects.size());
+			return conditions.matches(itemStack, effects, brewedCount, highestAmplifier, longestDuration, effects.size(), uniqueEffects.size());
 		});
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate itemPredicate;
 		private final EntityEffectPredicate statusEffectsPredicate;
+		private final NumberRange.IntRange brewedCountRange;
 		private final NumberRange.IntRange highestEffectAmplifierRange;
 		private final NumberRange.IntRange longestEffectDurationRange;
 		private final NumberRange.IntRange effectCountRange;
 		private final NumberRange.IntRange uniqueEffectCountRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, EntityEffectPredicate statusEffectsPredicate, NumberRange.IntRange highestEffectAmplifierRange, NumberRange.IntRange longestEffectDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
+		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, EntityEffectPredicate statusEffectsPredicate, NumberRange.IntRange brewedCountRange, NumberRange.IntRange highestEffectAmplifierRange, NumberRange.IntRange longestEffectDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			this.statusEffectsPredicate = statusEffectsPredicate;
+			this.brewedCountRange = brewedCountRange;
 			this.highestEffectAmplifierRange = highestEffectAmplifierRange;
 			this.longestEffectDurationRange = longestEffectDurationRange;
 			this.effectCountRange = effectCountRange;
@@ -93,6 +96,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("items", this.itemPredicate.toJson());
 			jsonObject.add("effects", this.statusEffectsPredicate.toJson());
+			jsonObject.add("brewed_count", this.brewedCountRange.toJson());
 			jsonObject.add("highest_amplifier", this.highestEffectAmplifierRange.toJson());
 			jsonObject.add("longest_duration", this.longestEffectDurationRange.toJson());
 			jsonObject.add("effect_count", this.effectCountRange.toJson());
@@ -100,8 +104,8 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 			return jsonObject;
 		}
 		
-		public boolean matches(ItemStack stack, List<StatusEffectInstance> effects, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount) {
-			if (this.highestEffectAmplifierRange.test(maxAmplifier) && this.longestEffectDurationRange.test(maxDuration) && this.effectCountRange.test(effectCount) && this.uniqueEffectCountRange.test(uniqueEffectCount)) {
+		public boolean matches(ItemStack stack, List<StatusEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount) {
+			if (this.brewedCountRange.test(brewedCount) && this.highestEffectAmplifierRange.test(maxAmplifier) && this.longestEffectDurationRange.test(maxDuration) && this.effectCountRange.test(effectCount) && this.uniqueEffectCountRange.test(uniqueEffectCount)) {
 				if (!this.itemPredicate.test(stack)) {
 					return false;
 				}

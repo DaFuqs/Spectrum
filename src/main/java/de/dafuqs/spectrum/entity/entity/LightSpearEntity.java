@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
+import net.minecraft.command.argument.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -15,18 +15,17 @@ public class LightSpearEntity extends LightShardBaseEntity {
     
     public LightSpearEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);
-        
-        damage = 8F;
     }
     
-    public LightSpearEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
-        super(SpectrumEntityTypes.LIGHT_SPEAR, world, owner, target);
-		target.ifPresent(this::setTarget);
-        this.setOwner(owner);
+    public LightSpearEntity(World world, LivingEntity owner, Optional<Entity> target, float damage, int lifeSpanTicks) {
+        super(SpectrumEntityTypes.LIGHT_SPEAR, world, owner, target, -1, damage, lifeSpanTicks);
+    }
     
-        this.detectionRange = -1; // needs a target
-        this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
-        this.damage = 8f * damageMod;
+    @Override
+    public void tick() {
+        super.tick();
+        
+        targetEntity.ifPresent(entity -> this.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, entity.getPos()));
     }
     
     @Override
@@ -35,7 +34,7 @@ public class LightSpearEntity extends LightShardBaseEntity {
     }
     
     public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
-        summonBarrageInternal(world, user, () -> new LightSpearEntity(world, user, Optional.ofNullable(target), 0.5F, 1.0F));
+        summonBarrageInternal(world, user, () -> new LightSpearEntity(world, user, Optional.ofNullable(target), 12.0F, 200));
     }
     
 }

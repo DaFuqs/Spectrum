@@ -22,6 +22,7 @@ import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.registry.*;
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class EnderSpliceItem extends Item implements EnchanterEnchantable {
+public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	
 	public EnderSpliceItem(Settings settings) {
 		super(settings);
@@ -296,13 +297,26 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == SpectrumEnchantments.RESONANCE || enchantment == SpectrumEnchantments.INDESTRUCTIBLE || enchantment == Enchantments.UNBREAKING;
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(SpectrumEnchantments.RESONANCE, SpectrumEnchantments.INDESTRUCTIBLE, Enchantments.UNBREAKING);
 	}
 	
 	@Override
 	public int getEnchantability() {
 		return 50;
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
 	}
 	
 }

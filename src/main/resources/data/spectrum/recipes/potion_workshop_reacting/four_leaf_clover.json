@@ -15,7 +15,7 @@
       "potency_multiplier": 2.0
     },
     {
-      "flat_yield_bonus": 2.0
+      "flat_yield_bonus": 3.0
     }
   ],
   "required_advancement": "spectrum:collect_four_leaf_clover"

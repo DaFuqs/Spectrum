@@ -3,16 +3,18 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
 import dev.emi.stepheightentityattribute.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
+import net.minecraft.util.collection.*;
 
 import java.util.*;
 
-public class SevenLeagueBootsItem extends SpectrumTrinketItem implements EnchanterEnchantable {
+public class SevenLeagueBootsItem extends SpectrumTrinketItem implements ExtendedEnchantable {
 	
 	public static final UUID STEP_BOOST_UUID = UUID.fromString("47b19f03-3211-4b4d-abf1-0c544a19dc70");
 	private static final EntityAttributeModifier STEP_BOOST_MODIFIER = new EntityAttributeModifier(STEP_BOOST_UUID, "spectrum:speed_boots", 0.75, EntityAttributeModifier.Operation.ADDITION);
@@ -34,13 +36,26 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Enchant
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.POWER;
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(Enchantments.POWER);
 	}
 	
 	@Override
 	public int getEnchantability() {
 		return 8;
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
 	}
 	
 }

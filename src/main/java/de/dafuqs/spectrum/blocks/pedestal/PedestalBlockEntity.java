@@ -48,6 +48,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
+	
 	protected final AutoCraftingInventory autoCraftingInventory;
 	protected final PropertyDelegate propertyDelegate;
 	protected UUID ownerUUID;
@@ -259,17 +260,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
 		// spawn crafting output
-		ItemEntity itemEntity = new ItemEntity(world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, outputItemStack);
-		itemEntity.addVelocity(0, 0.1, 0);
-		world.spawnEntity(itemEntity);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, pedestalBlockEntity.pos, outputItemStack, outputItemStack.getCount(), new Vec3d(0, 0.1, 0));
 		pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
 		
 		// spawn XP
-		if (pedestalBlockEntity.storedXP > 0) {
-			int spawnedXPAmount = Support.getIntFromDecimalWithChance(pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
-			MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.pos, spawnedXPAmount);
-			pedestalBlockEntity.storedXP = 0;
-		}
+		MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.pos, pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
+		pedestalBlockEntity.storedXP = 0;
 		
 		// only triggered on server side. Therefore, has to be sent to client via S2C packet
 		SpectrumS2CPacketSender.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);

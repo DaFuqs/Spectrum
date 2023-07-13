@@ -11,7 +11,7 @@
   "pattern": [
     "CCC",
     " B ",
-    "AAA"
+    "ACA"
   ],
   "key": {
     "B": {
@@ -21,7 +21,7 @@
       "item": "spectrum:polished_calcite"
     },
     "A": {
-      "item": "spectrum:azurite_block"
+      "item": "spectrum:refined_azurite"
     }
   },
   "result": {

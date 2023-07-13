@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:mud_converting",
+  "ingredient": {
+    "item": "minecraft:leather"
+  },
+  "result": {
+    "item": "minecraft:rabbit_hide",
+    "count": 1
+  }
+}

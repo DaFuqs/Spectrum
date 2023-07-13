@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.compat.biome_makeover.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
@@ -228,7 +229,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	public static boolean isValidCenterEnchantingSetup(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0);
 		boolean isEnchantableBookInCenter = SpectrumEnchantmentHelper.isEnchantableBook(centerStack);
-		if (!centerStack.isEmpty() && (isEnchantableBookInCenter || centerStack.getItem().isEnchantable(centerStack) || centerStack.getItem() instanceof EnchanterEnchantable) && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
+		if (!centerStack.isEmpty() && (isEnchantableBookInCenter || centerStack.getItem().isEnchantable(centerStack)) && enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1).getItem() instanceof ExperienceStorageItem) {
 			// gilded books can copy enchantments from any source item
 			boolean centerStackIsGildedBook = centerStack.isOf(SpectrumItems.GILDED_BOOK);
 			boolean enchantedBookWithAdditionalEnchantmentsFound = false;
@@ -240,7 +241,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				} else if (centerStackIsGildedBook || virtualSlotStack.getItem() instanceof EnchantedBookItem) {
 					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
 					for (Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
-						if ((isEnchantableBookInCenter || (centerStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+						if ((isEnchantableBookInCenter || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
 							if (enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
 								enchantedBookWithAdditionalEnchantmentsFound = true;
 								break;
@@ -309,10 +310,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		// enchantment level by transferring the enchantment to new items
 		for (int i = 0; i < 8; i++) {
 			ItemStack bowlStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i);
-			NbtCompound bowlCompound = bowlStack.getNbt();
-			if (bowlCompound != null && bowlCompound.getBoolean("BMCursed")) {
-				centerStackCopy.getOrCreateNbt().putBoolean("BMCursed", true);
-			}
+			BiomeMakeoverCompat.transferBMCursedTag(bowlStack, centerStackCopy);
 		}
 		// END BIOME MAKEOVER COMPAT
 		
@@ -347,7 +345,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
 		ItemStack centerStack = enchanterBlockEntity.getStack(0);
-		if (!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack) || centerStack.getItem() instanceof EnchanterEnchantable)) {
+		if (!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack))) {
 			ItemStack centerStackCopy = centerStack.copy();
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
@@ -400,7 +398,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	
 	public static Integer getEnchantingPrice(ItemStack itemStack, Enchantment enchantment, int level) {
 		int enchantability = Math.max(1, itemStack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem || (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && (enchanterEnchantable.canAcceptEnchantment(enchantment)))) {
+		if (enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;

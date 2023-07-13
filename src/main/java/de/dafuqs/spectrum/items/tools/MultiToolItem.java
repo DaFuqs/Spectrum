@@ -55,7 +55,7 @@ public class MultiToolItem extends PickaxeItem {
 		}
 	}
 	
-	public static boolean canTill(NbtCompound nbt) {
+	public boolean canTill(NbtCompound nbt) {
 		return true;
 	}
 	

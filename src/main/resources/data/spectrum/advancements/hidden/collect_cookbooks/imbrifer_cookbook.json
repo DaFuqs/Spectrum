@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_imbrifer_cookbook": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:imbrifer_cookbook"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

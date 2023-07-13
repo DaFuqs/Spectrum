@@ -37,8 +37,8 @@ public class SpectrumEnchantmentHelper {
 			enchantedBookStack.setNbt(stack.getNbt());
 			stack = enchantedBookStack;
 		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
-			if (stack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) {
-				// EnchanterEnchantable explicitly states this enchantment is acceptable
+			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.getAcceptedEnchantments().contains(enchantment)) {
+				// ExtendedEnchantable explicitly states this enchantment is acceptable
 			} else {
 				// item can not be enchanted with this enchantment
 				return stack;
@@ -162,6 +162,21 @@ public class SpectrumEnchantmentHelper {
 		return false;
 	}
 	
+	/**
+	 * Removes the enchantments on a stack of items / enchanted book
+	 *
+	 * @param itemStack    the stack
+	 * @param enchantments the enchantments to remove
+	 * @return if >0 enchantments could be removed
+	 */
+	public static boolean removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
+		boolean anySuccess = false;
+		for (Enchantment enchantment : enchantments) {
+			anySuccess |= removeEnchantment(itemStack, enchantment);
+		}
+		return anySuccess;
+	}
+	
 	public static boolean removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound == null) {
@@ -197,9 +212,9 @@ public class SpectrumEnchantmentHelper {
 		return success;
 	}
 	
-	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {
+	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {
 		ItemStack itemStack = item.getDefaultStack();
-		for (Enchantment enchantment : enchantments) {
+		for (Enchantment enchantment : item.getAcceptedEnchantments()) {
 			if (enchantment != null) {
 				int maxLevel = enchantment.getMaxLevel();
 				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);

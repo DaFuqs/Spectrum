@@ -20,13 +20,25 @@
     {
       "type": "patchouli:crafting",
       "recipe": "spectrum:crafting_table/special/wrap_present",
-      "title": "Adding Color",
-      "text": "Place a filled Present in a crafting grid to wrap it.$(br2)You can additionally add $(l:general/pigment)Pigment$() for a colorful particle shower in those pigments colors."
+      "title": "Customizing &",
+      "text": "$(li)Place a filled Present in a crafting grid to wrap it.$(li)Optional: add $(l:general/pigment)Pigment$() for a colorful particle shower$(li)Optional: add a special item to choose a wrapping paper:$(li2)Red Dye: Red$(li2)Blue Dye: Blue"
     },
     {
-      "type": "patchouli:text",
-      "title": "Wrapping Papers",
-      "text": "You can also add a special ingredient to choose from a variety of wrapping papers:$(li2)Red Dye: Red$(li2)Blue Dye: Blue$(li2)Cyan Dye: Cyan$(li2)Green Dye: Green$(li2)Purple Dye: Purple$(li2)Cake: Cake$(li2)Flower: Stripes$(li2)Firework Star: Starry$(li2)Sapling: Winter$(li2)Spore Blossom: Rainbow"
+      "type": "spectrum:collection",
+      "title": "Wrapping",
+      "items": [
+        "spectrum:present{Variant: \"red\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cyan\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"green\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"purple\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cake\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"striped\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"starry\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
+      ],
+      "text": "$(li2)Cyan Dye: Cyan$(li2)Green Dye: Green$(li2)Purple Dye: Purple$(li2)Cake: Cake$(li2)Flower: Stripes$(li2)Firework Star: Starry$(li2)Snowball: Winter$(li2)Spore Blossom: Rainbow"
     }
   ]
 }

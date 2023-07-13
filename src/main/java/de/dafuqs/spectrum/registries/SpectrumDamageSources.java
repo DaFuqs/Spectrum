@@ -35,6 +35,7 @@ public class SpectrumDamageSources {
 	public static final RegistryKey<DamageType> INCANDESCENCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("incandescence"));
 	public static final RegistryKey<DamageType> MOONSTONE_STRIKE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("incandescence"));
 	public static final RegistryKey<DamageType> BRISTLE_SPROUTS = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("bristle_sprouts"));
+	// TODO - Rename SAWTOOTH to RIPPER
 	public static final RegistryKey<DamageType> SAWTOOTH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sawtooth"));
 	public static final RegistryKey<DamageType> SET_HEALTH_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("set_health_damage"));
 	public static final RegistryKey<DamageType> IRRADIANCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("irradiance"));

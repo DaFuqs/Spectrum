@@ -68,6 +68,14 @@
     {
       "id": "spectrum:big_catch",
       "required": false
+    },
+    {
+      "id": "spectrum:inexorable",
+      "required": false
+    },
+    {
+      "id": "spectrum:razing",
+      "required": false
     }
   ]
 }

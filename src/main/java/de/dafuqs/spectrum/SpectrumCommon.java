@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -205,10 +206,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
 
-		logInfo("Initializing Item Groups...");
-		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
-		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
-
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 
@@ -250,11 +247,10 @@ public class SpectrumCommon implements ModInitializer {
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
-
-		ServerTickEvents.END_WORLD_TICK.register(world -> {
+		
+		ServerTickEvents.START_WORLD_TICK.register(world -> {
 			if (world.getTime() % 100 == 0) {
-				long timeOfDay = world.getTimeOfDay() % 24000;
-				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
+				if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
 					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
 						ShootingStarEntity.doShootingStarSpawnsForPlayers(world);
 					}

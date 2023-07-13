@@ -9,24 +9,22 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
-public class LightShardEntityRenderer extends EntityRenderer<LightShardBaseEntity> {
+public class LightShardEntityRenderer extends EntityRenderer<LightShardEntity> {
 
     public LightShardEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
     
     @Override
-    public void render(LightShardBaseEntity shard, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
+    public void render(LightShardEntity shard, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
 
         var age = shard.age;
-        
-        matrices.multiply(this.dispatcher.getRotation());
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180f));
-        
         var alpha = MathHelper.clamp(1 - MathHelper.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
         var scaleFactor = MathHelper.sin((age + tickDelta) / 8F) / 6F + shard.getScaleOffset();
-        
+
+        matrices.multiply(this.dispatcher.getRotation());
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180f));
         matrices.scale(scaleFactor, scaleFactor, 1);
         matrices.translate(-0.5F, -0.5F, 0);
         
@@ -46,7 +44,7 @@ public class LightShardEntityRenderer extends EntityRenderer<LightShardBaseEntit
     }
     
     @Override
-    public Identifier getTexture(LightShardBaseEntity entity) {
+    public Identifier getTexture(LightShardEntity entity) {
         return entity.getTexture();
     }
 }

@@ -12,17 +12,17 @@
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
-      "text": "By using the base colors $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$(), (almost) every color can be created."
+      "text": "By using the basic colours $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$() (almost) any colour can be created."
     },
     {
       "type": "patchouli:text",
-      "text": "Your attempts trying to mix $(l:general/gemstone_powder)Gemstone Powder$(/l) directly were not very successful. But you have another idea now:$(br)The closeness of your gemstones to nature suggests that $(italic)nature$() must be both source and answer!$(br2)Quickly you scribble a few notes with the result being $(l:general/colored_trees)a recipe$(), which looks very promising."
+      "text": "Your attempts to mix $(l:general/gemstone_powder)Gemstone Powder$(/l) directly have not been very successful. But now you have another idea:$(br)The closeness of your gemstones to nature suggests that $(italic)nature$() must be both the source and the answer!$(br2)You quickly scribble some notes, result being $(l:general/coloured_trees)a recipe$(), which looks very promising."
     },
     {
       "type": "patchouli:text",
       "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
       "title": "Brown Pigment?",
-      "text": "You tried and tried, in vain. You could not figure out a way to create $(c_brown)Brown$() by mixing your Gemstone Powder. The closest you came was merely a washed out orange - yuck.$(br)It can't be THAT hard. Like... $(c_brown)dirt is brown$() and it's the most common stuff around.$(br2)There has to be a way...$(br)and you are pretty sure $(c_black)Black$() is the answer."
+      "text": "You have tried and tried, to no avail. You could not find a way to create $(c_brown)brown$() by mixing your gem powder. The closest you came was a washed-out orange - ugh.$(br)It can't be that hard. Like... $(c_brown)Dirt is brown$() and it's the most common stuff around.$(br2)There must be a way... $(br)and you're pretty sure $(c_black)Black$() is the answer."
     },
     {
       "type": "patchouli:link",

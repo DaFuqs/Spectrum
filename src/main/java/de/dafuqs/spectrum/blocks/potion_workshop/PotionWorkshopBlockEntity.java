@@ -225,9 +225,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
 		// consume ingredients
-		decreaseIngredientSlots(potionWorkshopBlockEntity);
+		decrementIngredientSlots(potionWorkshopBlockEntity);
 		if (recipe.consumesBaseIngredient()) {
-			decreaseBaseIngredientSlot(potionWorkshopBlockEntity, 1);
+			decrementBaseIngredientSlot(potionWorkshopBlockEntity, 1);
 		}
 		// if the recipe requires a Knowledge gem as input: remove 10 XP (experience bottle)
 		if (recipe.getRequiredExperience() > 0) {
@@ -253,9 +253,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// consume ingredients
-		decreaseIngredientSlots(potionWorkshopBlockEntity);
-		decreaseBaseIngredientSlot(potionWorkshopBlockEntity, brewedAmount);
-		decreaseReagentSlots(potionWorkshopBlockEntity);
+		decrementIngredientSlots(potionWorkshopBlockEntity);
+		decrementBaseIngredientSlot(potionWorkshopBlockEntity, brewedAmount);
+		decrementReagentSlots(potionWorkshopBlockEntity);
 		
 		// calculate outputs
 		List<ItemStack> results = new ArrayList<>();
@@ -265,13 +265,17 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
-		for (ItemStack potion : results) {
-			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potion, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
-			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potion);
-				
-				Potion potionStack = PotionUtil.getPotion(potion);
-				Criteria.BREWED_POTION.trigger(serverPlayerEntity, potionStack);
+		if (brewedAmount <= 0) {
+			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, ItemStack.EMPTY, 0);
+		} else {
+			for (ItemStack potion : results) {
+				InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potion, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+				if (serverPlayerEntity != null) {
+					SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potion, brewedAmount);
+					
+					Potion potionStack = PotionUtil.getPotion(potion);
+					Criteria.BREWED_POTION.trigger(serverPlayerEntity, potionStack);
+				}
 			}
 		}
 		
@@ -286,9 +290,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// consume ingredients
-		decreaseIngredientSlots(potionWorkshopBlockEntity);
-		decreaseBaseIngredientSlot(potionWorkshopBlockEntity, tippedAmount);
-		decreaseReagentSlots(potionWorkshopBlockEntity);
+		decrementIngredientSlots(potionWorkshopBlockEntity);
+		decrementBaseIngredientSlot(potionWorkshopBlockEntity, tippedAmount);
+		decrementReagentSlots(potionWorkshopBlockEntity);
 		
 		// calculate outputs
 		ItemStack tippedArrows = brewingRecipe.getTippedArrows(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
@@ -297,7 +301,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, tippedArrows, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 		if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows);
+			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows, tippedArrows.getCount());
 		}
 		
 		potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
@@ -310,8 +314,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
 			// consume ingredients
-			decreaseIngredientSlots(potionWorkshopBlockEntity);
-			decreaseReagentSlots(potionWorkshopBlockEntity);
+			decrementIngredientSlots(potionWorkshopBlockEntity);
+			decrementReagentSlots(potionWorkshopBlockEntity);
 			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
 			
 			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
@@ -320,7 +324,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
 			InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, potionFillableStack, FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack);
+				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack, 1);
 			}
 			
 			potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
@@ -338,23 +342,34 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		return potionMod;
 	}
 	
-	public static void decreaseBaseIngredientSlot(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int amount) {
+	public static void decrementBaseIngredientSlot(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity, int amount) {
 		if (amount > 0) {
 			potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID).decrement(amount);
 		}
 	}
 	
-	public static void decreaseIngredientSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	public static void decrementIngredientSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		potionWorkshopBlockEntity.getStack(MERMAIDS_GEM_INPUT_SLOT_ID).decrement(1);
 		for (int i : new int[]{2, 3, 4}) {
 			ItemStack currentStack = potionWorkshopBlockEntity.getStack(i);
-			if (!currentStack.isEmpty() && !(currentStack.getItem() instanceof ExperienceStorageItem)) {
-				currentStack.decrement(1);
+			
+			if (currentStack.getItem() instanceof ExperienceStorageItem) {
+				continue;
+			}
+			
+			ItemStack currentRemainder = currentStack.getRecipeRemainder();
+			currentStack.decrement(1);
+			if (!currentRemainder.isEmpty()) {
+				if (currentStack.isEmpty()) {
+					potionWorkshopBlockEntity.setStack(i, currentRemainder.copy());
+				} else {
+					InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, currentRemainder.copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+				}
 			}
 		}
 	}
 	
-	public static void decreaseReagentSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	public static void decrementReagentSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		for (int i : REGENT_SLOTS) {
 			ItemStack currentStack = potionWorkshopBlockEntity.getStack(i);
 			if (!currentStack.isEmpty()) {

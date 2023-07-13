@@ -46,6 +46,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new PotionWorkshopCraftingCategory());
 		registry.add(new PotionWorkshopReactingCategory());
 		registry.add(new SpiritInstillingCategory());
+		registry.add(new MudConvertingCategory());
 		registry.add(new LiquidCrystalConvertingCategory());
 		registry.add(new MidnightSolutionConvertingCategory());
 		registry.add(new DragonrotConvertingCategory());
@@ -76,6 +77,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.FREEZING, EntryStacks.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER_CRAFTING, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTMENT_UPGRADE, EntryStacks.of(SpectrumBlocks.ENCHANTER));
+		registry.addWorkstations(SpectrumPlugins.MUD_CONVERTING, EntryStacks.of(SpectrumItems.MUD_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.LIQUID_CRYSTAL_CONVERTING, EntryStacks.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 		registry.addWorkstations(SpectrumPlugins.DRAGONROT_CONVERTING, EntryStacks.of(SpectrumItems.DRAGONROT_BUCKET));
@@ -103,6 +105,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(PotionWorkshopBrewingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, PotionWorkshopBrewingDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopCraftingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, PotionWorkshopCraftingDisplay::new);
 		registry.registerRecipeFiller(SpiritInstillerRecipe.class, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingDisplay::new);
+		registry.registerRecipeFiller(MudConvertingRecipe.class, SpectrumRecipeTypes.MUD_CONVERTING, MudConvertingDisplay::new);
 		registry.registerRecipeFiller(LiquidCrystalConvertingRecipe.class, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, LiquidCrystalConvertingDisplay::new);
 		registry.registerRecipeFiller(MidnightSolutionConvertingRecipe.class, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, MidnightSolutionConvertingDisplay::new);
 		registry.registerRecipeFiller(DragonrotConvertingRecipe.class, SpectrumRecipeTypes.DRAGONROT_CONVERTING, DragonrotConvertingDisplay::new);

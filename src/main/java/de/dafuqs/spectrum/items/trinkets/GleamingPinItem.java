@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -15,13 +16,14 @@ import net.minecraft.predicate.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnchantable {
+public class GleamingPinItem extends SpectrumTrinketItem implements ExtendedEnchantable {
 	
 	public static final int BASE_RANGE = 12;
 	public static final int RANGE_BONUS_PER_LEVEL_OF_SNIPING = 4;
@@ -54,12 +56,26 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	}
 	
 	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(SpectrumEnchantments.SNIPER);
+	}
+	
+	@Override
 	public int getEnchantability() {
 		return 16;
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == SpectrumEnchantments.SNIPER;
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
 	}
+	
 }

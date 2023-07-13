@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import io.wispforest.owo.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
@@ -22,6 +21,9 @@ import vazkii.patchouli.api.*;
 import java.util.*;
 
 public class GuidebookItem extends Item implements LoomPatternProvider {
+	
+	public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
+	
 	
 	public GuidebookItem(Settings settings) {
 		super(settings);
@@ -43,7 +45,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
 						if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
-							Advancement advancementCriterionAdvancement = Owo.currentServer().getAdvancementLoader().get(advancementIdentifier);
+							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
 							if (advancementCriterionAdvancement != null) {
 								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
 								if (hasAdvancementCriterionAdvancement.isDone()) {
@@ -85,11 +87,11 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity) {
-		PatchouliAPI.get().openBookGUI(serverPlayerEntity, SpectrumCommon.locate("guidebook"));
+		PatchouliAPI.get().openBookGUI(serverPlayerEntity, GUIDEBOOK_ID);
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, SpectrumCommon.locate("guidebook"), entry, page);
+		PatchouliAPI.get().openBookEntry(serverPlayerEntity, GUIDEBOOK_ID, entry, page);
 	}
 	
 	@Override

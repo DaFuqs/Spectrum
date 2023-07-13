@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#spectrum:blackslags",
-    "#minecraft:base_stone_overworld",
-    "#minecraft:dirt",
-    "#minecraft:sand"
-  ]
-}

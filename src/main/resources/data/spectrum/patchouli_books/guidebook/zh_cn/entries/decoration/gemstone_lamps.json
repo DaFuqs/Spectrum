@@ -7,10 +7,10 @@
 			"title":"宝石灯"
 		},
 		{
-			"recipe":"spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
-			"text":"宝石灯有各种颜色的宝石供您选择。$(l:decoration/block_variants#polished_basalt)錾制方解石$()和$(l:decoration/block_variants#polished_calcite)錾制玄武岩$()均可用作基底。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
+			"recipe": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
+			"text": "宝石灯有各种颜色的宝石供您选择。$(l:decoration/block_variants#polished_basalt)錾制方解石$()和$(l:decoration/block_variants#polishing)錾制玄武岩$()均可用作基底。",
+			"type": "spectrum:pedestal_crafting",
+			"title": "基座配方"
 		}
 	],
 	"advancement":"spectrum:collect_shimmerstone",

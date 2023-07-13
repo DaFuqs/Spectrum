@@ -7,10 +7,13 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.*;
@@ -36,32 +39,41 @@ import java.util.*;
 
 public class SanityCommand {
 	
-	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = new ArrayList<>() {{
-		add(SpectrumCommon.locate("collect_mysterious_locket"));
-		add(SpectrumCommon.locate("find_preservation_ruins"));
-		add(SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"));
-		add(SpectrumCommon.locate("place_moonstone_in_preservation_ruins"));
-		
-		add(SpectrumCommon.locate("tap_aged_air"));
-		add(SpectrumCommon.locate("hook_entity_with_molten_rod"));
-		
-		add(SpectrumCommon.locate("midgame/take_off_belt_overcharged"));
-		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"));
-		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"));
-		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
-		add(SpectrumCommon.locate("midgame/tap_chrysocolla"));
-		add(SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"));
-		
-		add(SpectrumCommon.locate("lategame/killed_monstrosity"));
-		add(SpectrumCommon.locate("lategame/collect_doombloom_seed"));
-		add(SpectrumCommon.locate("lategame/collect_noxwood"));
-		add(SpectrumCommon.locate("lategame/break_cracked_dragonbone"));
-		add(SpectrumCommon.locate("lategame/collect_bismuth"));
-		add(SpectrumCommon.locate("lategame/collect_myceylon"));
-		add(SpectrumCommon.locate("lategame/collect_prickly_bayleaf"));
-		add(SpectrumCommon.locate("lategame/collect_hummingstone"));
-		add(SpectrumCommon.locate("lategame/collect_downstone_fragments"));
-	}};
+	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
+			SpectrumCommon.locate("collect_mysterious_locket"),
+			SpectrumCommon.locate("find_preservation_ruins"),
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),
+			SpectrumCommon.locate("place_moonstone_in_preservation_ruins"),
+			SpectrumCommon.locate("survive_drinking_incandescent_amalgam"),
+
+			SpectrumCommon.locate("tap_aged_air"),
+			SpectrumCommon.locate("hook_entity_with_molten_rod"),
+
+			SpectrumCommon.locate("midgame/take_off_belt_overcharged"),
+			SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"),
+			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),
+			SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"),
+			SpectrumCommon.locate("midgame/tap_chrysocolla"),
+			SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"),
+
+			SpectrumCommon.locate("lategame/killed_monstrosity"),
+			SpectrumCommon.locate("lategame/collect_doombloom_seed"),
+			SpectrumCommon.locate("lategame/collect_noxwood"),
+			SpectrumCommon.locate("lategame/break_cracked_dragonbone"),
+			SpectrumCommon.locate("lategame/collect_bismuth"),
+			SpectrumCommon.locate("lategame/collect_myceylon"),
+			SpectrumCommon.locate("lategame/collect_prickly_bayleaf"),
+			SpectrumCommon.locate("lategame/collect_hummingstone"),
+			SpectrumCommon.locate("lategame/collect_downstone_fragments"),
+			SpectrumCommon.locate("lategame/collect_one_cookbook"),
+			SpectrumCommon.locate("lategame/collect_moonstone_core"),
+
+			SpectrumCommon.locate("hidden/collect_cookbooks/brewers_handbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_1"),
+			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_2")
+	);
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register((CommandManager.literal("spectrum_sanity").requires((source) -> source.hasPermissionLevel(2)).executes((context) -> execute(context.getSource()))));
@@ -288,11 +300,62 @@ public class SanityCommand {
 			}
 		}
 		
-		// EnchanterEnchantables with enchantability <= 0 (unable to be enchanted)
+		// ExtendedEnchantables with enchantability <= 0 (unable to be enchanted) or not set to be enchantable
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			Item i = item.getValue();
-			if (i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
-				SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
+			if (i instanceof ExtendedEnchantable) {
+				if (!new ItemStack(i).isEnchantable()) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is not set to be enchantable.");
+				}
+				if (i.getEnchantability() < 1) {
+					SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is ExtendedEnchantable, but has enchantability of < 1");
+				}
+			}
+		}
+
+		// Enchantments without recipe
+		Map<Enchantment, DyeColor> craftingColors = new HashMap<>();
+		Map<Enchantment, DyeColor> upgradeColors = new HashMap<>();
+		for (EnchanterRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
+			ItemStack output = recipe.getOutput();
+			if (output.getItem() == Items.ENCHANTED_BOOK) {
+				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
+				if (enchantments.size() > 0) {
+					for (Ingredient ingredient : recipe.getIngredients()) {
+						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
+							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
+								craftingColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
+							}
+						}
+					}
+				}
+			}
+		}
+		for (EnchantmentUpgradeRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+			ItemStack output = recipe.getOutput();
+			if (output.getItem() == Items.ENCHANTED_BOOK) {
+				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
+				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+					upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
+				}
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+			Enchantment enchantment = entry.getValue();
+			if (!craftingColors.containsKey(enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + "' does not have a crafting recipe");
+			}
+			if (!upgradeColors.containsKey(enchantment) && enchantment.getMaxLevel() > 1) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + "' does not have a upgrading recipe");
+			}
+			if (craftingColors.containsKey(enchantment) && upgradeColors.containsKey(enchantment) && craftingColors.get(enchantment) != upgradeColors.get(enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment recipes for '" + entry.getKey().getValue() + "' use different pigments");
+			}
+		}
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+			Enchantment enchantment = entry.getValue();
+			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
+				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");
 			}
 		}
 		

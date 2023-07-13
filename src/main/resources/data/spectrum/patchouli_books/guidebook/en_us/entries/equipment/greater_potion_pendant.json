@@ -10,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Works very similar to its $(l:equipment/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support effects up to Level I."
+      "text": "Works very much like its $(l:equipment/lesser_potion_pendant)little brother$(/l).$(br)However, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-      "text": "Use the $(l:brewing/potion_workshop)Potion Workshop$(/l) to fill it with potions.$(br)For each effect your $(l:magic/pigment_palette)Pigment Palette$(/l) will use up specific color energy. The higher the level, the higher the cost."
+      "text": "Use the $(l:brewing/potion_workshop)Potion Workshop$(/l) to infuse it, by placing it where the $(item)Bottle$() would normally go.$(br2)To clear its effect, put it in a crafting grid."
     }
   ]
 }

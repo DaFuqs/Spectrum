@@ -110,8 +110,7 @@ public class SpectrumBlocks {
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final CrystallarieumBlock CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
-	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0F).nonOpaque().ticksRandomly());
-
+	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.AMETHYST).breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
 	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
 	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance(6));
@@ -152,6 +151,11 @@ public class SpectrumBlocks {
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
+
+	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
+	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
+	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
+	public static final Block BLOODSTONE_BLOCK = new PillarBlock(AbstractBlock.Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
 
 	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(AbstractBlock.Settings.copy(Blocks.RED_WOOL).strength(5F));
 	public static final Block EFFULGENT_CUSHION = new CushionBlock(AbstractBlock.Settings.copy(EFFULGENT_BLOCK));
@@ -219,7 +223,8 @@ public class SpectrumBlocks {
 	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
+
+	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
 	public static final Block PYRITE_PILE = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_TILE = new Block(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_PLATING = new Block(AbstractBlock.Settings.copy(PYRITE));
@@ -228,32 +233,28 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block PYRITE_STACK = new Block(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_PANNELING = new Block(AbstractBlock.Settings.copy(PYRITE));
 	public static final Block PYRITE_VENT = new Block(AbstractBlock.Settings.copy(PYRITE));
+
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
-
-	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
-	public static final Block BLOODSTONE_BLOCK = new PillarBlock(AbstractBlock.Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
 
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
-
+	
 	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
 	public static final Block BONE_ASH_BRICK_STAIRS = new StairsBlock(BONE_ASH_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
 	public static final Block BONE_ASH_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
 	public static final Block BONE_ASH_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
-
+	
 	public static final Block BONE_ASH_TILES = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE));
 	public static final Block BONE_ASH_TILE_STAIRS = new StairsBlock(BONE_ASH_TILES.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_TILES));
 	public static final Block BONE_ASH_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
 	public static final Block BONE_ASH_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
-
+	
 	public static final Block POLISHED_BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
-	public static final Block SAWTOOTH = new SawtoothBlock(AbstractBlock.Settings.copy(BLACKSLAG));
+	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	public static final Block TILLED_SLUSH = new TilledSlushBlock(AbstractBlock.Settings.copy(SLUSH), SLUSH.getDefaultState());
 
@@ -422,8 +423,6 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	
 	// ENERGY
 	public static final Block COLOR_PICKER = new ColorPickerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
-	public static final Block INKWELL = new InkwellBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
-	public static final Block INK_DUCT = new InkDuctBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block CRYSTAL_APOTHECARY = new CrystalApothecaryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
 	public static final Block BLACK_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.BLACK);
@@ -563,9 +562,9 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block POTTED_EBONY_NOXSHROOM = new FlowerPotBlock(EBONY_NOXSHROOM, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_IVORY_NOXSHROOM = new FlowerPotBlock(IVORY_NOXSHROOM, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_CHESTNUT_NOXSHROOM = new FlowerPotBlock(CHESTNUT_NOXSHROOM, POTTED_PLANT_SETTINGS);
-
+	
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
-
+	
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final PillarBlock SLATE_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
 	public static final Block STRIPPED_SLATE_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.GRAY));
@@ -585,7 +584,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block SLATE_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(LIT_PROVIDER));
 	public static final Block SLATE_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.GRAY).luminance(15));
-	public static final Block SLATE_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.GRAY).luminance(13));
+	public static final Block SLATE_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 	
 	public static final PillarBlock STRIPPED_EBONY_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final PillarBlock EBONY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.TERRACOTTA_BLACK), STRIPPED_EBONY_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/ebony_noxcap_stripping"));
@@ -606,7 +605,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block EBONY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(LIT_PROVIDER));
 	public static final Block EBONY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(15));
-	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(13));
+	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 	
 	public static final PillarBlock STRIPPED_IVORY_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final PillarBlock IVORY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/ivory_noxcap_stripping"));
@@ -627,7 +626,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block IVORY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(LIT_PROVIDER));
 	public static final Block IVORY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.OFF_WHITE).luminance(15));
-	public static final Block IVORY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.OFF_WHITE).luminance(13));
+	public static final Block IVORY_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 	
 	public static final PillarBlock STRIPPED_CHESTNUT_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.DULL_RED));
 	public static final PillarBlock CHESTNUT_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.DULL_RED), STRIPPED_CHESTNUT_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/chestnut_noxcap_stripping"));
@@ -648,7 +647,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LIT_PROVIDER));
 	public static final Block CHESTNUT_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.DULL_RED).luminance(15));
-	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.DULL_RED).luminance(13));
+	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 	
 	
 	public static AbstractBlock.Settings dragonjag(MapColor color) {
@@ -701,7 +700,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block AZURITE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block LARGE_AZURITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block SMALL_AZURITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
-
+	
 	public static final Block PALTAERIA_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().requiresTool().strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4), locate("milestones/reveal_paltaeria"), Blocks.END_STONE.getDefaultState());
 	public static final Block STRATINE_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().strength(3.0F, 9.0F).requiresTool(), UniformIntProvider.create(3, 5), locate("milestones/reveal_stratine"), Blocks.NETHERRACK.getDefaultState());
 	public static final Block SHIMMERSTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
@@ -775,7 +774,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
 	public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
 	
-	public static final Block STUCK_STORM_STONE = new StormStoneBlock(FabricBlockSettings.of(Material.SNOW_LAYER, MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
+	public static final Block STUCK_STORM_STONE = new StuckStormStoneBlock(FabricBlockSettings.of(Material.SNOW_LAYER, MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 	
 	public static final Block UPGRADE_SPEED = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 1, DyeColor.MAGENTA);
@@ -795,7 +794,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 			.blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
 	public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offset(AbstractBlock.OffsetType.XZ));
 	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offset(AbstractBlock.OffsetType.XZ));
-	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(StatusEffects.BAD_OMEN, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly());
+	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly());
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -898,7 +897,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.RED);
 	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
 	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
-
+	
 	public static final Block BLACK_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
 	public static final Block BLUE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
 	public static final Block BROWN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
@@ -915,7 +914,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block RED_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.RED);
 	public static final Block WHITE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
-
+	
 	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
 	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
 	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
@@ -932,7 +931,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.RED);
 	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
 	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
-
+	
 	// POTTED PLANTS
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, POTTED_PLANT_SETTINGS);
@@ -1105,6 +1104,8 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	
 	public static final Block DOWNSTONE = new Block(PRESERVATION_BLOCK_SETTINGS); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
 	public static final Block PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block PRESERVATION_STAIRS = new StairsBlock(PRESERVATION_STONE.getDefaultState(), PRESERVATION_BLOCK_SETTINGS);
+	public static final Block PRESERVATION_SLAB = new SlabBlock(PRESERVATION_BLOCK_SETTINGS);
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(PRESERVATION_BLOCK_SETTINGS);
@@ -1134,8 +1135,8 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
 	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE));
 	
-	public static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
-	public static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
+	public static final BiMap<SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
+	public static final BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 	
 	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
 	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GLISTERING);
@@ -1276,63 +1277,37 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	}
 	
 	public static void register() {
-		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, Tab.GENERAL.settings(1), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, Tab.GENERAL.settings(1), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, Tab.GENERAL.settings(1), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), DyeColor.WHITE);
-		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, Tab.GENERAL.settings(1), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
-		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, Tab.GENERAL.settings(1), DyeColor.GRAY);
-		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, Tab.GENERAL.settings(1), DyeColor.GRAY);
-		registerBlockWithItem("enchanter", ENCHANTER, Tab.GENERAL.settings(1), DyeColor.PURPLE);
-		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.GENERAL.settings(16), DyeColor.PINK);
-		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.GENERAL.settings(1), DyeColor.PURPLE);
-		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.GENERAL.settings(1), DyeColor.WHITE);
-		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, Tab.GENERAL.settings(1), DyeColor.BROWN);
-		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.GENERAL.settings(1).fireproof(), DyeColor.ORANGE);
-		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("inkwell", INKWELL, Tab.GENERAL.settings(8), DyeColor.GREEN);
-		registerBlockWithItem("ink_duct", INK_DUCT, Tab.GENERAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("pedestal_basic_topaz", PEDESTAL_BASIC_TOPAZ, new PedestalBlockItem(PEDESTAL_BASIC_TOPAZ, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_TOPAZ, "item.spectrum.pedestal.tooltip.basic_topaz"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_amethyst", PEDESTAL_BASIC_AMETHYST, new PedestalBlockItem(PEDESTAL_BASIC_AMETHYST, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_AMETHYST, "item.spectrum.pedestal.tooltip.basic_amethyst"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_basic_citrine", PEDESTAL_BASIC_CITRINE, new PedestalBlockItem(PEDESTAL_BASIC_CITRINE, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.BASIC_CITRINE, "item.spectrum.pedestal.tooltip.basic_citrine"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_all_basic", PEDESTAL_ALL_BASIC, new PedestalBlockItem(PEDESTAL_ALL_BASIC, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.CMY, "item.spectrum.pedestal.tooltip.all_basic"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_onyx", PEDESTAL_ONYX, new PedestalBlockItem(PEDESTAL_ONYX, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.ONYX, "item.spectrum.pedestal.tooltip.onyx"), DyeColor.WHITE);
+		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, Tab.FUNCTIONAL.settings(1), BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
+		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, Tab.FUNCTIONAL.settings(1), DyeColor.GRAY);
+		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, Tab.FUNCTIONAL.settings(1), DyeColor.GRAY);
+		registerBlockWithItem("enchanter", ENCHANTER, Tab.FUNCTIONAL.settings(1), DyeColor.PURPLE);
+		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.FUNCTIONAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.FUNCTIONAL.settings(1), DyeColor.PURPLE);
+		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.FUNCTIONAL.settings(1), DyeColor.WHITE);
+		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, Tab.FUNCTIONAL.settings(1), DyeColor.BROWN);
+		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.FUNCTIONAL.settings(1).fireproof(), DyeColor.ORANGE);
+		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.FUNCTIONAL.settings(8), DyeColor.GREEN);
 		
-		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.GENERAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, Tab.GENERAL.settings(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.GENERAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.FUNCTIONAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_speed3", UPGRADE_SPEED3, new UpgradeBlockItem(UPGRADE_SPEED3, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_speed3"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency", UPGRADE_EFFICIENCY, new UpgradeBlockItem(UPGRADE_EFFICIENCY, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_efficiency"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_efficiency2", UPGRADE_EFFICIENCY2, new UpgradeBlockItem(UPGRADE_EFFICIENCY2, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_efficiency2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield", UPGRADE_YIELD, new UpgradeBlockItem(UPGRADE_YIELD, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_yield"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_yield2", UPGRADE_YIELD2, new UpgradeBlockItem(UPGRADE_YIELD2, Tab.FUNCTIONAL.settings(8, Rarity.RARE), "upgrade_yield2"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.FUNCTIONAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.FUNCTIONAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON).stackGenerator((item, entries) -> {
-			// All memories that have Spirit Instiller recipes
-			// Add all of them to the item group when registered
-			if (SpectrumCommon.minecraftServer != null) {
-				var drm = SpectrumCommon.minecraftServer.getRegistryManager();
-				Map<EntityType<?>, ItemStack> uniqueMemories = new HashMap<>();
-
-				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-
-					ItemStack output = recipe.getOutput(drm);
-					Optional<EntityType<?>> type = MemoryItem.getEntityType(output.getNbt());
-
-					if (output.isOf(memoryItem) && type.isPresent()) {
-						uniqueMemories.put(type.get(), recipe.getOutput(drm));
-					}
-				}
-
-				entries.addAll(uniqueMemories.values());
-
-			}
-		})), DyeColor.LIGHT_GRAY);
-		
-		
-		registerPastelNetworkNodes(Tab.GENERAL.settings(16));
-		registerStoneBlocks(Tab.DECORATION.settings());
+		registerPastelNetworkNodes(Tab.FUNCTIONAL.settings(16));
+		registerStoneBlocks(Tab.BLOCKS.settings());
 		registerGemBlocks(Tab.RESOURCES.settings());
 		
 		registerShootingStarBlocks(Tab.RESOURCES.settings(1, Rarity.UNCOMMON));
@@ -1341,10 +1316,10 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerOreBlocks(Tab.RESOURCES.settings(), Tab.RESOURCES.settings().fireproof());
 		registerOreStorageBlocks(Tab.DECORATION.settings(), Tab.DECORATION.settings().fireproof());
 		registerGemstoneLamps(Tab.DECORATION.settings());
-		registerSparklestoneLights(Tab.DECORATION.settings());
+		registerShimmerstoneLights(Tab.DECORATION.settings());
 		registerRunes(Tab.DECORATION.settings());
 		registerGemstoneGlass(Tab.DECORATION.settings());
-		registerPlayerOnlyGlass(Tab.GENERAL.settings());
+		registerPlayerOnlyGlass(Tab.FUNCTIONAL.settings());
 		registerGemstoneChimes(Tab.DECORATION.settings());
 		registerDecoStones(Tab.DECORATION.settings());
 		registerPigmentStorageBlocks(Tab.DECORATION.settings());
@@ -1352,17 +1327,17 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerGlowBlocks(Tab.DECORATION.settings());
 		registerSporeBlossoms(Tab.DECORATION.settings());
 		registerColoredWood(Tab.COLORED_WOOD.settings());
-		registerDDFlora(Tab.DECORATION.settings());
-		registerRedstone(Tab.GENERAL.settings());
-		registerMagicalBlocks(Tab.GENERAL.settings());
-		registerMobBlocks(Tab.MOB_HEADS.settings());
+		registerDDFlora(Tab.BLOCKS.settings());
+		registerRedstone(Tab.FUNCTIONAL.settings());
+		registerMagicalBlocks(Tab.FUNCTIONAL.settings());
+		registerMobBlocks(Tab.FUNCTIONAL.settings());
 		registerMobHeads(Tab.MOB_HEADS.settings());
-		registerCrystallarieumGrowingBlocks(Tab.RESOURCES.settings());
-		registerPureOreBlocks(Tab.RESOURCES.settings());
-		registerJadeVineBlocks(Tab.DECORATION.settings());
-		registerStructureBlocks(Tab.DECORATION.settings());
-		registerSugarSticks(Tab.CONSUMABLES.settings());
-		registerSpiritTree(Tab.GENERAL.settings());
+		registerCrystallarieumGrowingBlocks(Tab.PURE_RESOURCES.settings());
+		registerPureOreBlocks(Tab.PURE_RESOURCES.settings());
+		registerJadeVineBlocks(Tab.BLOCKS.settings());
+		registerSugarSticks(Tab.CUISINE.settings());
+		registerStructureBlocks(Tab.CREATIVE.settings());
+		registerSpiritTree(Tab.NONE.settings());
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -1377,13 +1352,13 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
 		registerBlock("dragonrot", DRAGONROT);
 		
-		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.GENERAL.settings(), DyeColor.GRAY);
-		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.GENERAL.settings(), DyeColor.LIGHT_BLUE);
-		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.GENERAL.settings(), DyeColor.ORANGE);
-		registerBlockWithItem("resonant_lily", RESONANT_LILY, Tab.GENERAL.settings(), DyeColor.GREEN);
+		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.BLOCKS.settings(), DyeColor.GRAY);
+		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.RESOURCES.settings(), DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.RESOURCES.settings(), DyeColor.ORANGE);
+		registerBlockWithItem("resonant_lily", RESONANT_LILY, Tab.DECORATION.settings(), DyeColor.GREEN);
 		registerBlockWithItem("clover", CLOVER, Tab.RESOURCES.settings(), DyeColor.LIME);
 		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, Tab.RESOURCES.settings(), locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
-		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.EQUIPMENT.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
+		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.FUNCTIONAL.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
 		
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_blood_orchid", POTTED_BLOOD_ORCHID);
@@ -1396,10 +1371,10 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_amaranth_bushel", POTTED_AMARANTH_BUSHEL);
 		
-		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.GENERAL.settings(), DyeColor.BLACK);
-		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.GENERAL.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.FUNCTIONAL.settings(), DyeColor.BLACK);
+		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.FUNCTIONAL.settings(), DyeColor.PURPLE);
 		
-		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.CREATURES.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
 		
 		// Technical Blocks without items
 		registerBlock("mermaids_brush", MERMAIDS_BRUSH);
@@ -1516,7 +1491,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlock("potted_ebony_noxshroom", POTTED_EBONY_NOXSHROOM);
 		registerBlock("potted_ivory_noxshroom", POTTED_IVORY_NOXSHROOM);
 		registerBlock("potted_chestnut_noxshroom", POTTED_CHESTNUT_NOXSHROOM);
-
+		
 		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_yellow_dragonjag", SMALL_YELLOW_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_pink_dragonjag", SMALL_PINK_DRAGONJAG, settings, DyeColor.LIME);
@@ -1619,17 +1594,17 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("ender_hopper", ENDER_HOPPER, settings, DyeColor.PURPLE);
 		registerBlockWithItem("ender_dropper", ENDER_DROPPER, settings, DyeColor.PURPLE);
 		registerBlockWithItem("particle_spawner", PARTICLE_SPAWNER, settings, DyeColor.PINK);
-		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, Tab.GENERAL.settings(Rarity.EPIC)), DyeColor.PINK);
+		registerBlockWithItem("creative_particle_spawner", CREATIVE_PARTICLE_SPAWNER, new BlockItem(CREATIVE_PARTICLE_SPAWNER, Tab.FUNCTIONAL.settings(Rarity.EPIC)), DyeColor.PINK);
 		
 		registerBlockWithItem("glistering_melon", GLISTERING_MELON, settings, DyeColor.LIME);
 		
 		registerBlockWithItem("lava_sponge", LAVA_SPONGE, settings, DyeColor.ORANGE);
-		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, Tab.GENERAL.settings(1).recipeRemainder(LAVA_SPONGE.asItem())), DyeColor.ORANGE);
+		registerBlockWithItem("wet_lava_sponge", WET_LAVA_SPONGE, new WetLavaSpongeItem(WET_LAVA_SPONGE, Tab.FUNCTIONAL.settings(1).recipeRemainder(LAVA_SPONGE.asItem())), DyeColor.ORANGE);
 		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.GENERAL.settings(1)), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.GENERAL.settings(), DyeColor.MAGENTA);
+		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {
@@ -1699,9 +1674,6 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		
-		registerBlockWithItem("azurite_cluster", AZURITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
-		registerBlockWithItem("large_azurite_bud", LARGE_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
-		registerBlockWithItem("small_azurite_bud", SMALL_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
 
 		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_copper_ore", BLACKSLAG_COPPER_ORE, settings, DyeColor.BLACK);
@@ -1711,6 +1683,18 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("blackslag_redstone_ore", BLACKSLAG_REDSTONE_ORE, settings, DyeColor.RED);
 		registerBlockWithItem("blackslag_lapis_ore", BLACKSLAG_LAPIS_ORE, settings, DyeColor.BLUE);
 		registerBlockWithItem("blackslag_emerald_ore", BLACKSLAG_EMERALD_ORE, settings, DyeColor.LIME);
+
+		registerBlockWithItem("azurite_cluster", AZURITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+		registerBlockWithItem("large_azurite_bud", LARGE_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+		registerBlockWithItem("small_azurite_bud", SMALL_AZURITE_BUD, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.BLUE);
+
+		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("large_bloodstone_bud", LARGE_BLOODSTONE_BUD, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_cluster", BLOODSTONE_CLUSTER, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("bloodstone_block", BLOODSTONE_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.RED);
+		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
+		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, settings.rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
 	}
 	
 	private static void registerOreStorageBlocks(FabricItemSettings settings, FabricItemSettings settingsFireproof) {
@@ -1813,10 +1797,10 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("basalt_tile_slab", BASALT_TILE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("basalt_tile_wall", BASALT_TILE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("cracked_basalt_tiles", CRACKED_BASALT_TILES, settings, DyeColor.BROWN);
-
+		
 		registerBlockWithItem("polished_basalt_button", POLISHED_BASALT_BUTTON, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_pressure_plate", POLISHED_BASALT_PRESSURE_PLATE, settings, DyeColor.BROWN);
-
+		
 		registerBlockWithItem("calcite_slab", CALCITE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_wall", CALCITE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_stairs", CALCITE_STAIRS, settings, DyeColor.BROWN);
@@ -1841,10 +1825,10 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("calcite_tile_slab", CALCITE_TILE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_tile_wall", CALCITE_TILE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("cracked_calcite_tiles", CRACKED_CALCITE_TILES, settings, DyeColor.BROWN);
-
+		
 		registerBlockWithItem("polished_calcite_button", POLISHED_CALCITE_BUTTON, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_pressure_plate", POLISHED_CALCITE_PRESSURE_PLATE, settings, DyeColor.BROWN);
-
+		
 		registerBlockWithItem("blackslag", BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("cobbled_blackslag", COBBLED_BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("cobbled_blackslag_stairs", COBBLED_BLACKSLAG_STAIRS, settings, DyeColor.BLACK);
@@ -1869,7 +1853,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		
 		registerBlockWithItem("polished_blackslag_pillar", POLISHED_BLACKSLAG_PILLAR, settings, DyeColor.BLACK);
 		registerBlockWithItem("chiseled_polished_blackslag", CHISELED_POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
-		registerBlockWithItem("ancient_chiseled_polished_blackslag", ANCIENT_CHISELED_POLISHED_BLACKSLAG, Tab.DECORATION.settings(Rarity.UNCOMMON), DyeColor.BLACK);
+		registerBlockWithItem("ancient_chiseled_polished_blackslag", ANCIENT_CHISELED_POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_button", POLISHED_BLACKSLAG_BUTTON, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
@@ -1910,48 +1894,42 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("exposed_shale_clay_tile_slab", EXPOSED_SHALE_CLAY_TILE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("weathered_shale_clay_tile_stairs", WEATHERED_SHALE_CLAY_TILE_STAIRS, settings, DyeColor.BROWN);
 		registerBlockWithItem("weathered_shale_clay_tile_slab", WEATHERED_SHALE_CLAY_TILE_SLAB, settings, DyeColor.BROWN);
-
+		
 		registerBlockWithItem("polished_bone_ash", POLISHED_BONE_ASH, settings, DyeColor.CYAN);
 		registerBlockWithItem("polished_bone_ash_slab", POLISHED_BONE_ASH_SLAB, settings, DyeColor.CYAN);
 		registerBlockWithItem("polished_bone_ash_stairs", POLISHED_BONE_ASH_STAIRS, settings, DyeColor.CYAN);
 		registerBlockWithItem("polished_bone_ash_wall", POLISHED_BONE_ASH_WALL, settings, DyeColor.CYAN);
+		
 		registerBlockWithItem("bone_ash_bricks", BONE_ASH_BRICKS, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_brick_slab", BONE_ASH_BRICK_SLAB, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_brick_stairs", BONE_ASH_BRICK_STAIRS, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_brick_wall", BONE_ASH_BRICK_WALL, settings, DyeColor.CYAN);
-
+		
 		registerBlockWithItem("bone_ash_tiles", BONE_ASH_TILES, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_tile_slab", BONE_ASH_TILE_SLAB, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_tile_stairs", BONE_ASH_TILE_STAIRS, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_tile_wall", BONE_ASH_TILE_WALL, settings, DyeColor.CYAN);
-
+		
 		registerBlockWithItem("polished_bone_ash_pillar", POLISHED_BONE_ASH_PILLAR, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_shingles", BONE_ASH_SHINGLES, settings, DyeColor.CYAN);
 
-		registerBlockWithItem("sawtooth", SAWTOOTH, settings, DyeColor.RED);
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 		registerBlockWithItem("tilled_slush", TILLED_SLUSH, settings, DyeColor.BROWN);
+		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.BLOCKS.settings(), DyeColor.GRAY);
 
-		registerBlockWithItem("pyrite", PYRITE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_pile", PYRITE_PILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tile", PYRITE_TILE, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_stack", PYRITE_STACK, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, Tab.DECORATION.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("pyrite_vent", PYRITE_VENT, Tab.DECORATION.settings(), DyeColor.PURPLE);
+		registerBlockWithItem("pyrite", PYRITE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_pile", PYRITE_PILE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tile", PYRITE_TILE, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_plating", PYRITE_PLATING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_tubing", PYRITE_TUBING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_relief", PYRITE_RELIEF, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_stack", PYRITE_STACK, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_panneling", PYRITE_PANNELING, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_vent", PYRITE_VENT, settings, DyeColor.PURPLE);
+		registerBlockWithItem("pyrite_ripper", PYRITE_RIPPER, settings, DyeColor.RED);
 
-		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
-		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
-		registerBlockWithItem("small_bloodstone_bud", SMALL_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("large_bloodstone_bud", LARGE_BLOODSTONE_BUD, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("bloodstone_cluster", BLOODSTONE_CLUSTER, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("bloodstone_block", BLOODSTONE_BLOCK, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.RED);
-		registerBlockWithItem("effulgent_block", EFFULGENT_BLOCK, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_cushion", EFFULGENT_CUSHION, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-		registerBlockWithItem("effulgent_carpet", EFFULGENT_CARPET, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.YELLOW);
-
+		registerBlockWithItem("dragonbone", DRAGONBONE, settings, DyeColor.GREEN);
+		registerBlockWithItem("cracked_dragonbone", CRACKED_DRAGONBONE, settings, DyeColor.GREEN);
 	}
 	
 	private static void registerRunes(FabricItemSettings settings) {
@@ -2016,7 +1994,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("stripped_green_log", STRIPPED_GREEN_LOG, settings, DyeColor.GREEN);
 		registerBlockWithItem("stripped_red_log", STRIPPED_RED_LOG, settings, DyeColor.RED);
 		registerBlockWithItem("stripped_black_log", STRIPPED_BLACK_LOG, settings, DyeColor.BLACK);
-
+		
 		registerBlockWithItem("white_wood", WHITE_WOOD, settings, DyeColor.WHITE);
 		registerBlockWithItem("orange_wood", ORANGE_WOOD, settings, DyeColor.ORANGE);
 		registerBlockWithItem("magenta_wood", MAGENTA_WOOD, settings, DyeColor.MAGENTA);
@@ -2050,7 +2028,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("stripped_green_wood", STRIPPED_GREEN_WOOD, settings, DyeColor.GREEN);
 		registerBlockWithItem("stripped_red_wood", STRIPPED_RED_WOOD, settings, DyeColor.RED);
 		registerBlockWithItem("stripped_black_wood", STRIPPED_BLACK_WOOD, settings, DyeColor.BLACK);
-
+		
 		registerBlockWithItem("white_leaves", WHITE_LEAVES, settings, DyeColor.WHITE);
 		registerBlockWithItem("orange_leaves", ORANGE_LEAVES, settings, DyeColor.ORANGE);
 		registerBlockWithItem("magenta_leaves", MAGENTA_LEAVES, settings, DyeColor.MAGENTA);
@@ -2241,7 +2219,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("black_glowblock", BLACK_GLOWBLOCK, settings, DyeColor.BLACK);
 	}
 	
-	public static void registerSparklestoneLights(FabricItemSettings settings) {
+	public static void registerShimmerstoneLights(FabricItemSettings settings) {
 		registerBlockWithItem("basalt_shimmerstone_light", BASALT_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
 		registerBlockWithItem("calcite_shimmerstone_light", CALCITE_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
 		registerBlockWithItem("stone_shimmerstone_light", STONE_SHIMMERSTONE_LIGHT, settings, DyeColor.YELLOW);
@@ -2344,6 +2322,8 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlockWithItem("downstone", DOWNSTONE, settings, DyeColor.BLUE);
 		
 		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_stairs", PRESERVATION_STAIRS, settings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_slab", PRESERVATION_SLAB, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("powder_chiseled_preservation_stone", POWDER_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
@@ -2388,7 +2368,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		registerBlock("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB);
 
 		registerBlockWithItem("jadeite_lotus_stem", JADEITE_LOTUS_STEM, settings, DyeColor.BROWN);
-		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, Tab.DECORATION.settings().maxCount(8), DyeColor.BROWN);
+		registerBlockWithItem("jadeite_lotus_flower", JADEITE_LOTUS_FLOWER, Tab.BLOCKS.settings().maxCount(8), DyeColor.BROWN);
 		registerBlock("jadeite_lotus_bulb", JADEITE_LOTUS_BULB);
 
 
@@ -2469,7 +2449,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 	
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
 	private static void registerMobHeads(FabricItemSettings settings) {
-		for (SpectrumSkullBlock.SpectrumSkullBlockType type : SpectrumSkullBlock.SpectrumSkullBlockType.values()) {
+		for (SpectrumSkullBlockType type : SpectrumSkullBlockType.values()) {
 			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
@@ -2482,11 +2462,11 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		}
 	}
 	
-	public static Block getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
+	public static Block getMobHead(SpectrumSkullBlockType skullType) {
 		return MOB_HEADS.get(skullType);
 	}
 	
-	public static SpectrumSkullBlock.SpectrumSkullBlockType getSkullType(Block block) {
+	public static SpectrumSkullBlockType getSkullType(Block block) {
 		if (block instanceof SpectrumWallSkullBlock) {
 			return MOB_WALL_HEADS.inverse().get(block);
 		} else {
@@ -2494,7 +2474,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		}
 	}
 	
-	public static Block getMobWallHead(SpectrumSkullBlock.SpectrumSkullBlockType skullType) {
+	public static Block getMobWallHead(SpectrumSkullBlockType skullType) {
 		return MOB_WALL_HEADS.get(skullType);
 	}
 	
@@ -2638,7 +2618,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_SLATE_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_IVORY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
-
+		
 		// Spore Blossoms
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPORE_BLOSSOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLUE_SPORE_BLOSSOM, RenderLayer.getCutout());
@@ -2725,8 +2705,6 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COURIER_STATUE, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COLOR_PICKER, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INK_DUCT, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INKWELL, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_TIMER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_WIRELESS, RenderLayer.getCutout());
@@ -2840,7 +2818,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_ECHO_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_ECHO_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ECHO_CLUSTER, RenderLayer.getCutout());
-
+		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_AZURITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_AZURITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AZURITE_CLUSTER, RenderLayer.getCutout());
@@ -2850,7 +2828,7 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_BLOODSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_BLOODSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOODSTONE_CLUSTER, RenderLayer.getCutout());
-
+		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_RED_DRAGONJAG, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_PINK_DRAGONJAG, RenderLayer.getCutout());
@@ -2874,8 +2852,8 @@ public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(B
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EBONY_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
 
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAWTOOTH, RenderLayer.getCutoutMipped());
-
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PYRITE_RIPPER, RenderLayer.getCutoutMipped());
+		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
 	}

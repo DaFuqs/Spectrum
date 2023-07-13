@@ -21,7 +21,7 @@ public class SpectrumSkullBlockEntity extends BlockEntity {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public SpectrumSkullBlock.SpectrumSkullBlockType getSkullType() {
+	public SpectrumSkullBlockType getSkullType() {
 		return SpectrumBlocks.getSkullType(world.getBlockState(this.pos).getBlock());
 	}
 	

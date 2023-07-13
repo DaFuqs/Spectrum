@@ -229,18 +229,48 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent PRICKLY_BAYLEAF = new FoodComponent.Builder().hunger(1).saturationModifier(0.3F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 0, 0), 0.6F)
 			.build();
-
-	public static final FoodComponent SPIKED_POTATOES = new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).build();
-
+	
 	public static final FoodComponent TRIPLE_MEAT_POT_STEW = new FoodComponent.Builder()
 			.hunger(20).saturationModifier(1.2F).meat()
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0f)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1), 1.0f)
 			.build();
-
+	
 	public static final FoodComponent DRAGONBONE_BROTH = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.6F).meat()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.MAGIC_ANNULATION, 2400, 1), 1.0f)
 			.build();
-
+	
+	
+	// TODO
+	public static final FoodComponent AQUA_REGIA = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent BAGNUN = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent BANYASH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent BERLINER = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent BRISTLE_MEAD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent CHAUVE_SOURIS_AU_VIN = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent CRAWFISH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent CRAWFISH_COCKTAIL = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent CREAM_PASTRY = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent FADED_KOI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent FISHCAKE = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent LIZARD_MEAT = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent GOLDEN_BRISTLE_TEA = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent HARE_ROAST = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent JUNKET = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent KOI_FISH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent MEATLOAF = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent MEATLOAF_SANDWICH = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent MELLOW_SHALLOT_SOUP = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent MORCHELLA = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent NECTERED_VIOGNIER = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent PEACHES_FLAMBE = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent PEACH_CREAM = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent PEACH_JAM = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent RABBIT_CREAM_PIE = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent SEDATIVES = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent SLUSHSLIDE = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent SURSTROMMING = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	
+	
 }

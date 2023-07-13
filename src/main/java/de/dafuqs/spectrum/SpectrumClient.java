@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.biome_makeover.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
@@ -39,7 +40,9 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.resource.*;
+import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -122,9 +125,37 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				}
 			}
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
+				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
 			}
 		});
+
+		if (CONFIG.AddItemTooltips) {
+			ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+				NbtCompound nbt = stack.getNbt();
+				if (nbt != null) {
+					if (stack.isOf(Blocks.SCULK_SHRIEKER.asItem()) && nbt.contains("BlockStateTag")) {
+						NbtCompound blockStateTag = nbt.getCompound("BlockStateTag");
+						if (Boolean.parseBoolean(blockStateTag.getString("can_summon"))) {
+							lines.add(Text.translatable("spectrum.tooltip.able_to_summon_warden").formatted(Formatting.GRAY));
+						}
+					}
+					if (nbt.getBoolean(BiomeMakeoverCompat.CURSED_TAG)) {
+						lines.add(Text.translatable("spectrum.tooltip.biomemakeover_cursed").formatted(Formatting.GRAY));
+					}
+					if (stack.isIn(ItemTags.SIGNS) && nbt.contains("BlockEntityTag", NbtElement.COMPOUND_TYPE)) {
+						NbtCompound blockEntityTag = nbt.getCompound("BlockEntityTag");
+						Style style = Style.EMPTY.withColor(DyeColor.byName(blockEntityTag.getString("Color"), DyeColor.WHITE).getSignColor());
+						for (String textKey : new String[]{"Text1", "Text2", "Text3", "Text4"}) {
+							MutableText text = Text.Serializer.fromJson(blockEntityTag.getString(textKey));
+							if (text != null) {
+								lines.add(text.setStyle(style));
+							}
+						}
+					}
+				}
+			});
+		}
+
 
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 

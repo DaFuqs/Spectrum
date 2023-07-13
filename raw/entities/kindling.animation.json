@@ -1,0 +1,243 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.kindling.walk_loop": {
+			"loop": true,
+			"animation_length": 0.83333,
+			"bones": {
+				"torso": {
+					"position": {
+						"0.0": {
+							"vector": {
+								"vector": [0, -0.4, 0]
+							}
+						},
+						"0.2083": {
+							"vector": {
+								"vector": [0, 0, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [0, -0.4, 0],
+								"easing": "linear"
+							},
+							"easing": "linear"
+						},
+						"0.625": {
+							"vector": {
+								"vector": [0, 0, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [0, -0.4, 0]
+							}
+						}
+					}
+				},
+				"head": {
+					"position": {
+						"0.0": {
+							"vector": {
+								"vector": [0.375, -1, 0]
+							}
+						},
+						"0.2083": {
+							"vector": {
+								"vector": [0, -0.5, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [-0.375, -1, 0]
+							}
+						},
+						"0.625": {
+							"vector": {
+								"vector": [0, -0.5, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [0.375, -1, 0]
+							}
+						}
+					}
+				},
+				"wingjoint": {
+					"rotation": {
+						"vector": {
+							"vector": [0, 0, 125]
+						}
+					}
+				},
+				"wingjoint2": {
+					"rotation": {
+						"vector": {
+							"vector": [0, 0, -125]
+						}
+					}
+				},
+				"rightforeleg": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						}
+					}
+				},
+				"leftforeleg": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						}
+					}
+				},
+				"rightbackleg": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						}
+					}
+				},
+				"leftbackleg": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [-35, 0, 0]
+							}
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [35, 0, 0]
+							}
+						}
+					}
+				},
+				"tail": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [0, 5, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [0, -5, 0],
+								"easing": "easeInOutElastic",
+								"easingArgs": [0.5]
+							},
+							"easing": "easeInOutElastic",
+							"easingArgs": [0.5]
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [0, 5, 0],
+								"easing": "easeInOutElastic",
+								"easingArgs": [0.5]
+							},
+							"easing": "easeInOutElastic",
+							"easingArgs": [0.5]
+						}
+					}
+				},
+				"midtail": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [0, 10, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [0, -10, 0],
+								"easing": "easeInOutBack",
+								"easingArgs": [0.5]
+							},
+							"easing": "easeInOutBack",
+							"easingArgs": [0.5]
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [0, 10, 0],
+								"easing": "easeInOutBack",
+								"easingArgs": [0.5]
+							},
+							"easing": "easeInOutBack",
+							"easingArgs": [0.5]
+						}
+					}
+				},
+				"fartail": {
+					"rotation": {
+						"0.0": {
+							"vector": {
+								"vector": [0, 10, 0]
+							}
+						},
+						"0.4167": {
+							"vector": {
+								"vector": [0, -10, 0],
+								"easing": "easeInQuad"
+							},
+							"easing": "easeInQuad"
+						},
+						"0.8333": {
+							"vector": {
+								"vector": [0, 10, 0],
+								"easing": "easeInQuad"
+							},
+							"easing": "easeInQuad"
+						}
+					}
+				}
+			}
+		},
+		"animation.kindling.walk_trans_in": {
+			"loop": "hold_on_last_frame"
+		}
+	},
+	"geckolib_format_version": 2,
+	"azurelib_format_version": 2
+}

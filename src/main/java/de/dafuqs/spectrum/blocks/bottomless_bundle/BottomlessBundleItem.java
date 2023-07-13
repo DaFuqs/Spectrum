@@ -22,6 +22,7 @@ import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.registry.*;
 import net.minecraft.world.*;
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, EnchanterEnchantable {
+public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, ExtendedEnchantable {
 	
 	private static final int MAX_STORED_AMOUNT_BASE = 20000;
 	
@@ -479,13 +480,26 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	@Override
-	public boolean canAcceptEnchantment(Enchantment enchantment) {
-		return enchantment == Enchantments.POWER || enchantment == SpectrumEnchantments.VOIDING;
+	public boolean isEnchantable(ItemStack stack) {
+		return stack.getCount() == 1;
+	}
+	
+	@Override
+	public Set<Enchantment> getAcceptedEnchantments() {
+		return Set.of(Enchantments.POWER, SpectrumEnchantments.VOIDING);
 	}
 	
 	@Override
 	public int getEnchantability() {
 		return 5;
+	}
+	
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		super.appendStacks(group, stacks);
+		if (this.isIn(group)) {
+			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
+		}
 	}
 	
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
@@ -509,6 +523,5 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return stack;
 		}
 	}
-	
 	
 }

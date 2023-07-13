@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -33,8 +34,12 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return false;
 		}
 		
-		Optional<EntityType> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
-		if (entityType.isEmpty()) {
+		Optional<EntityType> optionalEntityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
+		if (optionalEntityType.isEmpty()) {
+			return false;
+		}
+		EntityType entityType = optionalEntityType.get();
+		if (entityType.isIn(ConventionalEntityTypeTags.BOSSES)) {
 			return false;
 		}
 		
@@ -43,14 +48,14 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			if (spawnData.contains("entity")) {
 				NbtCompound entity = spawnData.getCompound("entity");
 				if (entity.contains("id")) {
-					Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
+					Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType);
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
 			}
 		}
 		return true;
 	}
-
+	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;

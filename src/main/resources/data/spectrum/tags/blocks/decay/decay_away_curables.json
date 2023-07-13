@@ -1,6 +1,11 @@
 {
   "values": [
     "#spectrum:decay/decay",
-    "spectrum:black_materia"
+    "spectrum:black_materia",
+
+    {
+      "id": "kibe:cursed_dirt",
+      "required": false
+    }
   ]
 }

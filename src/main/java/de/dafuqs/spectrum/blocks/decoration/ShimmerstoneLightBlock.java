@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.particle.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
-import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
@@ -12,20 +11,18 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class ShimmerstoneLightBlock extends Block {
-
-	public static final DirectionProperty FACING = Properties.FACING;
-
+public class ShimmerstoneLightBlock extends FacingBlock {
+	
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(5.0D, 0.0D, 4.0D, 11.0D, 2.0D, 12.0D);
 	protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(5.0D, 14.0D, 4.0D, 11.0D, 16.0D, 12.0D);
 	protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(5.0D, 4.0D, 14.0D, 11.0D, 12.0D, 16.0D);
 	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(5.0D, 4.0D, 0.0D, 11.0D, 12.0D, 2.0D);
 	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 4.0D, 5.0D, 2.0D, 12.0D, 11.0D);
 	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(14.0D, 4.0D, 5.0D, 16.0D, 12.0D, 11.0D);
-
+	
 	public ShimmerstoneLightBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.UP)));
+		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.UP));
 	}
 	
 	@Override
@@ -70,6 +67,18 @@ public class ShimmerstoneLightBlock extends Block {
 	@Override
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
+	}
+	
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		return direction.getOpposite() == state.get(FACING) && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		Direction direction = state.get(FACING);
+		BlockPos blockPos = pos.offset(direction.getOpposite());
+		return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction);
 	}
 	
 	@Override

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_imperial_cookbook": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:imperial_cookbook"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

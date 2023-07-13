@@ -9,12 +9,12 @@ public class SpectrumTooltipComponents {
 	
 	public static void registerTooltipComponents() {
 		TooltipComponentCallback.EVENT.register((data -> {
-			if (data instanceof CraftingTabletTooltipData) {
-				return new CraftingTabletTooltipComponent((CraftingTabletTooltipData) data);
-			} else if (data instanceof VoidBundleTooltipData) {
-				return new VoidBundleTooltipComponent((VoidBundleTooltipData) data);
-			} else if (data instanceof PresentTooltipData) {
-				return new PresentTooltipComponent((PresentTooltipData) data);
+			if (data instanceof CraftingTabletTooltipData craftingTabletTooltipData) {
+				return new CraftingTabletTooltipComponent(craftingTabletTooltipData);
+			} else if (data instanceof VoidBundleTooltipData voidBundleTooltipData) {
+				return new VoidBundleTooltipComponent(voidBundleTooltipData);
+			} else if (data instanceof PresentTooltipData presentTooltipData) {
+				return new PresentTooltipComponent(presentTooltipData);
 			}
 			return null;
 		}));

@@ -1,0 +1,16 @@
+{
+  "input": {
+    "tag": "spectrum:spawners"
+  },
+  "output": "spectrum:spawner",
+  "nbt_to_copy": [
+    "SpawnData",
+    "SpawnCount",
+    "MinSpawnDelay",
+    "MaxSpawnDelay",
+    "SpawnRange",
+    "RequiredPlayerRange",
+    "SpawnPotentials",
+    "MaxNearbyEntities"
+  ]
+}

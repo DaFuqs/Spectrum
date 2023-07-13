@@ -1,0 +1,6 @@
+{
+  "input": {
+    "item": "minecraft:redstone"
+  },
+  "output": "spectrum:pure_redstone"
+}

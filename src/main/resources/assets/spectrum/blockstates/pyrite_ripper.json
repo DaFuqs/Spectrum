@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "facing=east,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 90
+    },
+    "facing=south,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 270
+    },
+    "facing=west,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper"
+    },
+    "facing=down,mirrored=false": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 180
+    },
+
+    "facing=east,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper_mirrored",
+      "y": 180
+    },
+    "facing=north,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper_mirrored",
+      "y": 90
+    },
+    "facing=south,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper_mirrored",
+      "y": 270
+    },
+    "facing=west,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper_mirrored"
+    },
+    "facing=up,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper",
+      "y": 90
+    },
+    "facing=down,mirrored=true": {
+      "model": "spectrum:block/pyrite_ripper",
+      "x": 180,
+      "y": 90
+    }
+  }
+}

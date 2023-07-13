@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:spectral_shard"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.finish_progression.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.finish_progression.description"
+    }
+  },
+  "parent": "spectrum:endgame/defeat_paintlich",
+  "criteria": {
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/defeat_paintlich"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1000
+  }
+}

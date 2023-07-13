@@ -1,0 +1,13 @@
+{
+  "input": {
+    "tag": "minecraft:signs"
+  },
+  "nbt_to_copy": [
+    "GlowingText",
+    "Color",
+    "Text1",
+    "Text2",
+    "Text3",
+    "Text4"
+  ]
+}

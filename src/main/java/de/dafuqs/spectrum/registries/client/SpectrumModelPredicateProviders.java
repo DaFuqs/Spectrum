@@ -156,8 +156,8 @@ public class SpectrumModelPredicateProviders {
 			if (compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
 				return 0.0F;
 			
-			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
-			return variant.ordinal() / 10F;
+			PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
+			return wrappingPaper.ordinal() / 10F;
 		});
 	}
 	
@@ -209,9 +209,10 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerOversizedItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
-			return currentItemRenderMode == ModelTransformationMode.GUI
-					|| currentItemRenderMode == ModelTransformationMode.GROUND
-					|| currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
+			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
+				return 0.0F;
+			}
+			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
 		});
 	}
 	

@@ -1,0 +1,53 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": [
+    {
+      "item": "spectrum:basalt_brick_stairs"
+    },
+    {
+      "item": "spectrum:basalt_brick_wall"
+    },
+    {
+      "item": "spectrum:basalt_bricks"
+    },
+    {
+      "item": "spectrum:basalt_tile_stairs"
+    },
+    {
+      "item": "spectrum:basalt_tile_wall"
+    },
+    {
+      "item": "spectrum:basalt_tiles"
+    },
+    {
+      "item": "spectrum:chiseled_polished_basalt"
+    },
+    {
+      "item": "spectrum:cracked_basalt_tiles"
+    },
+    {
+      "item": "spectrum:notched_polished_basalt"
+    },
+    {
+      "item": "spectrum:polished_basalt_button"
+    },
+    {
+      "item": "spectrum:polished_basalt_crest"
+    },
+    {
+      "item": "spectrum:polished_basalt_pillar"
+    },
+    {
+      "item": "spectrum:polished_basalt_pressure_plate"
+    },
+    {
+      "item": "spectrum:polished_basalt_stairs"
+    },
+    {
+      "item": "spectrum:polished_basalt_wall"
+    }
+  ],
+  "result": "spectrum:polished_basalt",
+  "experience": 0.1,
+  "cookingtime": 200
+}

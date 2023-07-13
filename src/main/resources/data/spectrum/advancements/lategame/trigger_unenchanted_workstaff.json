@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.trigger_unenchanted_workstaff.description"
     }
   },
-  "parent": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "parent": "spectrum:lategame/create_malachite_tool",
   "criteria": {
     "code_triggered": {
       "trigger": "minecraft:impossible"
@@ -19,7 +19,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+        "advancement_identifier": "spectrum:lategame/create_malachite_tool"
       }
     }
   }

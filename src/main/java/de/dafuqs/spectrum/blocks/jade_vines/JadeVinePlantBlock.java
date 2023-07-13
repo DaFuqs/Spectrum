@@ -98,6 +98,8 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
 
 		if (growthStage.isFullyGrown()) {
+			boolean harvested = false;
+			
 			for (ItemStack handStack : player.getHandItems()) {
 				if (handStack.isOf(Items.GLASS_BOTTLE)) {
 					if (world.isClient) {
@@ -114,10 +116,14 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 						for (ItemStack harvestedStack : harvestedStacks) {
 							player.getInventory().offerOrDrop(harvestedStack);
 						}
-						player.sendMessage(Text.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getName()), true);
-						return ActionResult.CONSUME;
+						harvested = true;
+						break;
 					}
 				}
+			}
+			
+			if (!harvested) {
+				player.sendMessage(Text.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getName()), true);
 			}
 			
 			return ActionResult.success(world.isClient);

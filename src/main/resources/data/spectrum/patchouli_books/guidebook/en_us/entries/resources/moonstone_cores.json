@@ -8,16 +8,9 @@
   },
   "pages": [
     {
-      "type": "patchouli:image",
-      "title": "Moonstone Cores",
-      "images": [
-        "spectrum:textures/gui/guidebook/moonstone_core.png"
-      ],
-      "text": "$(italic)A relic of times long gone$()."
-    },
-    {
       "type": "patchouli:text",
-      "text": "This powerhouse of an item is able to funnel huge amounts of $(c_white)White Ink$() with ease. Can be used to boost the capabilities of equipment and devices."
+      "title": "Moonstone Cores",
+      "text": "This powerhouse of an item is able to funnel huge amounts of $(c_white)White Ink$() with ease. Can be used to boost the capabilities of equipment and devices.$(br2)$(italic)A relic of times long gone$()."
     }
   ]
 }

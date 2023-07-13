@@ -5,7 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;

@@ -42,7 +42,7 @@ import net.minecraft.client.world.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.resource.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;

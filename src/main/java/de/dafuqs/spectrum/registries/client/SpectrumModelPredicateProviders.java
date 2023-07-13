@@ -212,7 +212,7 @@ public class SpectrumModelPredicateProviders {
 			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
 				return 0.0F;
 			}
-			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
+			return currentItemRenderMode == ModelTransformationMode.GUI || currentItemRenderMode == ModelTransformationMode.GROUND || currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
 		});
 	}
 	

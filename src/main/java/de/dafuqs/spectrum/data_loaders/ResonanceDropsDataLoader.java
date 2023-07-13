@@ -37,7 +37,7 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 			if (!ingredient.isEmpty()) {
 				Item itemOut = Items.AIR;
 				if (jsonObject.has("output")) {
-					Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
+					Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
 				}
 				List<String> blockPropertiesToCopy = new ArrayList<>();
 				if (jsonObject.has("state_tags_to_copy")) {

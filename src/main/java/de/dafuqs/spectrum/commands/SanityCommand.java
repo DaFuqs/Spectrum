@@ -317,7 +317,7 @@ public class SanityCommand {
 		Map<Enchantment, DyeColor> craftingColors = new HashMap<>();
 		Map<Enchantment, DyeColor> upgradeColors = new HashMap<>();
 		for (EnchanterRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTER)) {
-			ItemStack output = recipe.getOutput();
+			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
 				if (enchantments.size() > 0) {
@@ -332,7 +332,7 @@ public class SanityCommand {
 			}
 		}
 		for (EnchantmentUpgradeRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
-			ItemStack output = recipe.getOutput();
+			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
 				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
@@ -340,7 +340,7 @@ public class SanityCommand {
 				}
 			}
 		}
-		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registries.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
 			if (!craftingColors.containsKey(enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment '" + entry.getKey().getValue() + "' does not have a crafting recipe");
@@ -352,7 +352,7 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Recipes] Enchantment recipes for '" + entry.getKey().getValue() + "' use different pigments");
 			}
 		}
-		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registries.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
 			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");

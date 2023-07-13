@@ -5,8 +5,9 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class InexorableEnchantment extends SpectrumEnchantment {
     
@@ -18,8 +19,8 @@ public class InexorableEnchantment extends SpectrumEnchantment {
         var armorInexorable = isArmorActive(entity);
         var toolInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, entity.getStackInHand(entity.getActiveHand())) > 0;
         
-        var armorAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE);
-        var toolAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE);
+        var armorAttributes = Registries.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE);
+        var toolAttributes = Registries.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE);
         
         if (armorInexorable && armorAttributes.isPresent()) {
             for (RegistryEntry<EntityAttribute> attributeRegistryEntry : armorAttributes.get()) {

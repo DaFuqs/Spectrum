@@ -91,7 +91,7 @@ public class SpectrumFluids {
 		final Identifier stillSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_still");
 		final Identifier flowingSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_flow");
 
-		// TODO - Fix chest textures
+		// TODO - Fix chest textures (how tf did the comment wind up here...?)
 		// If they're not already present, add the sprites to the block atlas
 //		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
 //			registry.register(stillSpriteId);

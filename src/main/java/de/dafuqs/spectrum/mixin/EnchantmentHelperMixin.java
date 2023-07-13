@@ -4,7 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -18,7 +18,7 @@ public class EnchantmentHelperMixin {
 	private static void getPossibleEntries(int power, ItemStack stack, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir) {
 		if (stack.getItem() instanceof ExtendedEnchantable) {
 			List<EnchantmentLevelEntry> list = Lists.newArrayList();
-			Iterator<Enchantment> enchantments = Registry.ENCHANTMENT.iterator();
+			Iterator<Enchantment> enchantments = Registries.ENCHANTMENT.iterator();
 			
 			while (true) {
 				Enchantment enchantment;

@@ -71,7 +71,7 @@ dependencies {
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
-	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
+	modImplementation include("de.dafuqs:Fractal:${project.fractal_version}")
 
 	// we need a bit of concern
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")

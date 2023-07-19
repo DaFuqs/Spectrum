@@ -13,7 +13,6 @@ public class PrintConfigCommand {
 	}
 	
 	private static int execute(ServerCommandSource source) {
-		send(source, "ColoredTreePatchChanceChunk: " + SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk);
 		send(source, "EndermanHoldingEnderTreasureChance: " + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance + " (" + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance + " in the End)");
 		
 		send(source, "ShootingStarWorlds: " + SpectrumCommon.CONFIG.ShootingStarWorlds);
@@ -23,7 +22,7 @@ public class PrintConfigCommand {
 		send(source, "VanillaRecipeCraftingTimeTicks: " + SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks);
 		
 		send(source, "Decay tick rates: " + SpectrumCommon.CONFIG.FadingDecayTickRate + ", " + SpectrumCommon.CONFIG.FailingDecayTickRate + ", " + SpectrumCommon.CONFIG.RuinDecayTickRate + ", " + SpectrumCommon.CONFIG.ForfeitureDecayTickRate);
-		send(source, "Decay pickup ability: " + SpectrumCommon.CONFIG.CanPickUpFading + ", " + SpectrumCommon.CONFIG.CanPickUpFailing + ", " + SpectrumCommon.CONFIG.CanPickUpRuin + ", " + SpectrumCommon.CONFIG.CanPickUpForfeiture);
+		send(source, "Decay pickup ability: " + SpectrumCommon.CONFIG.CanBottleUpFading + ", " + SpectrumCommon.CONFIG.CanBottleUpFailing + ", " + SpectrumCommon.CONFIG.CanBottleUpRuin + ", " + SpectrumCommon.CONFIG.CanBottleUpForfeiture);
 		send(source, "Decay can destroy block entities: " + SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities);
 		
 		String disabledEnchantments = "";

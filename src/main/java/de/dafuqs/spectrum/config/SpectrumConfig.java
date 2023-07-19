@@ -30,9 +30,6 @@ public class SpectrumConfig implements ConfigData {
 			If true the bedrock anvil will not cap the enchantments level to it's natural max level""")
 	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
 	
-	@Comment("The amount of colored tree patches to generate every X chunks")
-	public int ColoredTreePatchChanceChunk = 75;
-	
 	@Comment("""
 			The chance that an Enderman is holding a special treasure block on spawn
 			Separate value for Endermen spawning in the end, since there are LOTS of them there
@@ -77,10 +74,10 @@ public class SpectrumConfig implements ConfigData {
 	public float ForfeitureDecayTickRate = 1.0F;
 	
 	@Comment("Whether bottles can be used to pick up decay. Default is true.")
-	public boolean CanPickUpFading = true;
-	public boolean CanPickUpFailing = true;
-	public boolean CanPickUpRuin = true;
-	public boolean CanPickUpForfeiture = true;
+	public boolean CanBottleUpFading = true;
+	public boolean CanBottleUpFailing = true;
+	public boolean CanBottleUpRuin = true;
+	public boolean CanBottleUpForfeiture = true;
 	
 	@Comment("Whether decay can take over block entities. Defaults to false.")
 	public boolean FadingCanDestroyBlockEntities = false;

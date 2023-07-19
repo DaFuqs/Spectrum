@@ -31,7 +31,7 @@ public abstract class GlassBottleItemMixin {
 		BlockState blockState = world.getBlockState(blockPos);
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)
-				&& SpectrumCommon.CONFIG.CanPickUpFading
+				&& SpectrumCommon.CONFIG.CanBottleUpFading
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_fading"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
@@ -39,7 +39,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
 			
 		} else if (blockState.isOf(SpectrumBlocks.FAILING)
-				&& SpectrumCommon.CONFIG.CanPickUpFailing
+				&& SpectrumCommon.CONFIG.CanBottleUpFailing
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_failing"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
@@ -47,7 +47,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
 			
 		} else if (blockState.isOf(SpectrumBlocks.RUIN)
-				&& SpectrumCommon.CONFIG.CanPickUpRuin
+				&& SpectrumCommon.CONFIG.CanBottleUpRuin
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_ruin"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
@@ -55,7 +55,7 @@ public abstract class GlassBottleItemMixin {
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
 			
 		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE)
-				&& SpectrumCommon.CONFIG.CanPickUpForfeiture
+				&& SpectrumCommon.CONFIG.CanBottleUpForfeiture
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());

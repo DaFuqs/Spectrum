@@ -27,7 +27,7 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Cinderhearth$(li)23 Polished Blocks$(li)6 Crest Blocks$(li)5 Glass-like Blocks$(li)2 Chiseled Blocks$(li)6 Buckets of Lava$(br2)$(italic)Did it really need that $(item)Lava$()$(italic) underneath since you already have $(c_orange)Ink$()$(italic)? No, not really. But it looks so much better."
+      "text": "$(li)1 Cinderhearth$(li)21 Polished Blocks$(li)6 Crest Blocks$(li)5 Glass-like Blocks$(li)2 Chiseled Blocks$(li)6 Buckets of Lava$(br2)$(italic)Did it really need that $(item)Lava$()$(italic) underneath since you already have $(c_orange)Ink$()$(italic)? No, not really. But it looks so much better."
     },
     {
       "type": "patchouli:text",

@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "#spectrum:colored_logs",
-    "#spectrum:noxcap_stems"
+    "#spectrum:noxcap_stems",
+
+    "spectrum:nephrite_blossom_stem",
+    "spectrum:spirit_sallow_log"
   ]
 }

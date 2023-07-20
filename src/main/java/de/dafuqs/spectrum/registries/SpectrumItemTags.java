@@ -26,6 +26,8 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> SHOOTING_STARS = of("shooting_stars");
 	public static final TagKey<Item> GLASS_ARROWS = of("glass_arrows");
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
+	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
+	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
 	
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(Registry.ITEM_KEY, SpectrumCommon.locate(id));

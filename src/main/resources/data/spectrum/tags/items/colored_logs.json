@@ -1,21 +1,20 @@
 {
-  "replace": false,
   "values": [
-    "spectrum:black_log",
-    "spectrum:blue_log",
-    "spectrum:brown_log",
-    "spectrum:cyan_log",
-    "spectrum:gray_log",
-    "spectrum:green_log",
-    "spectrum:light_blue_log",
-    "spectrum:light_gray_log",
-    "spectrum:lime_log",
-    "spectrum:magenta_log",
-    "spectrum:orange_log",
-    "spectrum:pink_log",
-    "spectrum:purple_log",
-    "spectrum:red_log",
-    "spectrum:white_log",
-    "spectrum:yellow_log"
+    "#spectrum:black_logs",
+    "#spectrum:blue_logs",
+    "#spectrum:brown_logs",
+    "#spectrum:cyan_logs",
+    "#spectrum:gray_logs",
+    "#spectrum:green_logs",
+    "#spectrum:light_blue_logs",
+    "#spectrum:light_gray_logs",
+    "#spectrum:lime_logs",
+    "#spectrum:magenta_logs",
+    "#spectrum:orange_logs",
+    "#spectrum:pink_logs",
+    "#spectrum:purple_logs",
+    "#spectrum:red_logs",
+    "#spectrum:white_logs",
+    "#spectrum:yellow_logs"
   ]
 }

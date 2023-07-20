@@ -85,7 +85,6 @@
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
-    "client.MinecraftClientMixin",
     "client.MixinParticleManager",
     "client.MixinRenderLayers",
     "client.PotionItemClientMixin",

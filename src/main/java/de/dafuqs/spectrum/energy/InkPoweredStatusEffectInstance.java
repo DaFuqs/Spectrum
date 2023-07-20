@@ -16,12 +16,14 @@ public class InkPoweredStatusEffectInstance {
 	
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
+	private final boolean unidentifiable;
 	private final int customColor; // -1: use effect default
 	
-	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor) {
+	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor, boolean unidentifiable) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
 		this.customColor = customColor;
+		this.unidentifiable = unidentifiable;
 	}
 	
 	public StatusEffectInstance getStatusEffectInstance() {
@@ -39,6 +41,9 @@ public class InkPoweredStatusEffectInstance {
 		if (customColor != -1) {
 			nbt.putInt("CustomColor", this.customColor);
 		}
+		if (unidentifiable) {
+			nbt.putBoolean("Unidentifiable", true);
+		}
 		return nbt;
 	}
 	
@@ -46,10 +51,14 @@ public class InkPoweredStatusEffectInstance {
 		StatusEffectInstance statusEffectInstance = StatusEffectInstance.fromNbt(nbt);
 		InkCost cost = InkCost.fromNbt(nbt);
 		int customColor = -1;
-		if (nbt.contains("CustomColor")) {
+		if (nbt.contains("CustomColor", NbtElement.INT_TYPE)) {
 			customColor = nbt.getInt("CustomColor");
 		}
-		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor);
+		boolean unidentifiable = false;
+		if (nbt.contains("Unidentifiable")) {
+			unidentifiable = nbt.getBoolean("Unidentifiable");
+		}
+		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable);
 	}
 	
 	public static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
@@ -87,6 +96,11 @@ public class InkPoweredStatusEffectInstance {
 		if (effects.size() > 0) {
 			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (InkPoweredStatusEffectInstance entry : effects) {
+				if (entry.isUnidentifiable()) {
+					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
+					continue;
+				}
+				
 				StatusEffectInstance effect = entry.getStatusEffectInstance();
 				InkCost cost = entry.getInkCost();
 				
@@ -139,6 +153,10 @@ public class InkPoweredStatusEffectInstance {
 			return statusEffectInstance.getEffectType().getColor();
 		}
 		return this.customColor;
+	}
+	
+	public boolean isUnidentifiable() {
+		return this.unidentifiable;
 	}
 	
 }

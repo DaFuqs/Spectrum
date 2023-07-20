@@ -328,7 +328,7 @@ public class SpectrumItems {
 	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(Tab.CUISINE.settings(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
 	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
 	public static final Item FREIGEIST = new FreigeistItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item DIVINATION_HEART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
+	public static final Item DIVINATION_HEART = new Item(Tab.CREATIVE.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
 	
 	public static final Item STAR_CANDY = new StarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
 	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));

@@ -11,8 +11,10 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -30,11 +32,11 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(ITitrationBarrelRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, ITitrationBarrelRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -82,7 +84,7 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 		}
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 		
 		// the duration
 		if (second) {

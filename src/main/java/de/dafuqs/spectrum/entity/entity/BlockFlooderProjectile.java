@@ -77,7 +77,7 @@ public class BlockFlooderProjectile extends ThrownItemEntity {
 	 * @return The "actual" hit block pos
 	 */
 	public BlockPos getCorrectedBlockPos(Vec3d hitPos) {
-		BlockPos hitBlockPos = new BlockPos(hitPos);
+		BlockPos hitBlockPos = BlockPos.ofFloored(hitPos);
 		if (world.getBlockState(hitBlockPos).isSolidBlock(world, hitBlockPos)) {
 			if (hitPos.getX() % 1 < 0.05) {
 				return hitBlockPos.add(-1, 0, 0);

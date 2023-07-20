@@ -8,8 +8,8 @@ import de.dafuqs.spectrum.particle.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -97,7 +97,7 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
 		int g = destination.getX();
 		int h = destination.getY();
 		int i = destination.getZ();
-        return String.format(Locale.ROOT, "%s %d %d %d %d %d %d %d %d %d %d", Registry.PARTICLE_TYPE.getId(this.getType()), this.travelTime, nodeCount, d, e, f, g, h, i, this.color);
+		return String.format(Locale.ROOT, "%s %d %d %d %d %d %d %d %d %d %d", Registries.PARTICLE_TYPE.getId(this.getType()), this.travelTime, nodeCount, d, e, f, g, h, i, this.color);
 	}
 
 	@Override

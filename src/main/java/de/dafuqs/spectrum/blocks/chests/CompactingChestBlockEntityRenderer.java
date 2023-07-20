@@ -52,7 +52,7 @@ public class CompactingChestBlockEntityRenderer<CompactingChestBlockEntity exten
 		matrixStack.push();
 		float f = (blockState.get(ChestBlock.FACING)).asRotation();
 		matrixStack.translate(0.5D, 0.5D, 0.5D);
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.translate(-0.5D, -0.5D, -0.5D);
 		
 		float openFactor = entity.getAnimationProgress(tickDelta);

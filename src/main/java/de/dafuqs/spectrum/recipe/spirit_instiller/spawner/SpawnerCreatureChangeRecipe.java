@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.id.incubus_core.recipe.*;
@@ -8,15 +9,15 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
-	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
+	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.MOB_HEADS)));
@@ -47,7 +48,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			if (spawnData.contains("entity")) {
 				NbtCompound entity = spawnData.getCompound("entity");
 				if (entity.contains("id")) {
-					Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType);
+					Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType);
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
 			}
@@ -81,7 +82,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return spawnerBlockEntityNbt;
 		}
 		
-		Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
+		Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
 		
 		// Default spawner tag:
 		/* BlockEntityTag: {

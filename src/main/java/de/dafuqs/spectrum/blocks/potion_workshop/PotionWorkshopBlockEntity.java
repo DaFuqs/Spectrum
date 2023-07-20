@@ -19,6 +19,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.potion.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
@@ -213,7 +214,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			} else if (baseIngredient.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient) ||
 						recipe.isApplicableToPotionWeapons() && inkPoweredPotionFillable.isWeapon();
-			} else if (recipe.getOutput().isOf(Items.POTION)) {
+			} else if (recipe.getOutput(DynamicRegistryManager.EMPTY).isOf(Items.POTION)) {
 				return recipe.isApplicableToPotions();
 			} else {
 				return true;
@@ -241,7 +242,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		// output
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput().copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(DynamicRegistryManager.EMPTY).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + 12);
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
@@ -515,7 +516,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	@Override
 	public void setStack(int slot, @NotNull ItemStack stack) {
 		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSameItem = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areNbtEqual(stack, itemStack);
+		boolean isSameItem = !stack.isEmpty() && ItemStack.areItemsEqual(stack, itemStack) && ItemStack.areNbtEqual(stack, itemStack);
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());

@@ -15,6 +15,7 @@
       "above_bottom": 16
     }
   },
+  "use_expansion_hack": false,
   "block_target_type": "solid",
   "spawn_overrides": {}
 }

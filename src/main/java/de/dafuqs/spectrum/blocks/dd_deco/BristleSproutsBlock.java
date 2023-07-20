@@ -3,10 +3,10 @@ package de.dafuqs.spectrum.blocks.dd_deco;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -31,16 +31,16 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
                 if (difX >= 0.003 || difZ >= 0.003) {
-                    entity.damage(SpectrumDamageSources.BRISTLE_SPROUTS, 1.0F);
+					entity.damage(SpectrumDamageSources.bristeSprouts(world), 1.0F);
                 }
             }
         }
     }
-
-    @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
-    }
+	
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
@@ -49,7 +49,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 
     @Override

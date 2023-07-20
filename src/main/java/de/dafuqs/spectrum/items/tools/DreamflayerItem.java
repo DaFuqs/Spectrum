@@ -11,7 +11,6 @@ import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
@@ -29,7 +28,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	public static final InkColor USED_COLOR = InkColors.RED;
 	public static final long INK_COST_FOR_ACTIVATION = 200L;
 	public static final long INK_COST_PER_SECOND = 20L;
-	
+
 	/**
 	 * The less armor the attacker with this sword has and the more
 	 * the one that gets attacked, the higher the damage will be
@@ -159,11 +158,11 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		DamageComposition composition = new DamageComposition();
 		if (ActivatableItem.isActivated(stack)) {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.5F);
-			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
-			composition.add(SpectrumDamageSources.setHealth(attacker), newDamage * 0.25F);
+			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
+			composition.add(SpectrumDamageSources.setHealth(attacker.world, attacker), newDamage * 0.25F);
 		} else {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.75F);
-			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
+			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
 		}
 		return composition;
 	}

@@ -11,7 +11,10 @@
     "advancement": "spectrum:midgame/potion_mastery",
     "frame": "paginatedadvancements:heart"
   },
-
+  {
+    "advancement": "spectrum:midgame/potion_mastery",
+    "frame": "paginatedadvancements:heart"
+  },
 
   {
     "advancement": "spectrum:spectrum",

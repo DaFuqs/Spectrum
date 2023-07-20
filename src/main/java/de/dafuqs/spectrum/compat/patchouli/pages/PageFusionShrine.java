@@ -10,7 +10,9 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -25,11 +27,11 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(FusionShrineRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, FusionShrineRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -65,7 +67,7 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 		}
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

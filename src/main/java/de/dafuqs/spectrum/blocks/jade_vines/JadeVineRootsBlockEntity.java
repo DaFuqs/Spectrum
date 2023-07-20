@@ -5,12 +5,12 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -36,7 +36,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		}
 		if (nbt.contains("FenceBlockIdentifier", NbtElement.STRING_TYPE)) {
 			Identifier fenceBlockIdentifier = Identifier.tryParse(nbt.getString("FenceBlockIdentifier"));
-			Block block = Registry.BLOCK.get(fenceBlockIdentifier);
+			Block block = Registries.BLOCK.get(fenceBlockIdentifier);
 			if (block instanceof FenceBlock) {
 				this.fenceBlockState = block.getDefaultState();
 			}
@@ -49,7 +49,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		nbt.putLong("LastGrowthTick", this.lastGrowthTick);
 		nbt.putBoolean("WasExposedToSunlight", this.wasExposedToSunlight);
 		if (this.fenceBlockState != null) {
-			nbt.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
+			nbt.putString("FenceBlockIdentifier", Registries.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		if (this.fenceBlockState != null) {
-			nbtCompound.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
+			nbtCompound.putString("FenceBlockIdentifier", Registries.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 		return nbtCompound;
 	}

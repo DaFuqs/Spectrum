@@ -14,6 +14,7 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.*;
 import org.jetbrains.annotations.*;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
@@ -61,7 +62,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			// remove currently scheduled ticks at the blocks position
 			// and schedule new ticks
 			serverWorld.getBlockTickScheduler().clearNextTicks(new BlockBox(pos));
-			serverWorld.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
+			serverWorld.scheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
 		}
 	}
 	
@@ -70,7 +71,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
 		world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.0F);
-		world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
+		world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
 	}
 	
 	@Override
@@ -88,7 +89,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			} else if (bl) {
 				tickPriority = TickPriority.VERY_HIGH;
 			}
-			world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+			world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
 		}
 	}
 	

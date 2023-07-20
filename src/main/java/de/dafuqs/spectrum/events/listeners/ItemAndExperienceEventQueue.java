@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.events.listeners;
 import de.dafuqs.spectrum.events.*;
 import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
@@ -35,15 +36,15 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	}
 	
 	@Override
-	public boolean listen(ServerWorld world, GameEvent.Message event) {
-		if (event.getEvent() != SpectrumGameEvents.ENTITY_SPAWNED) {
+	public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d emitterPos) {
+		if (event != SpectrumGameEvents.ENTITY_SPAWNED) {
 			return false;
 		}
-		Entity entity = event.getEmitter().sourceEntity();
-		if (entity instanceof ItemEntity && itemQueue.listen(world, event)) {
+		Entity entity = emitter.sourceEntity();
+		if (entity instanceof ItemEntity && itemQueue.listen(world, event, emitter, emitterPos)) {
 			return true;
 		}
-		return entity instanceof ExperienceOrbEntity && experienceQueue.listen(world, event);
+		return entity instanceof ExperienceOrbEntity && experienceQueue.listen(world, event, emitter, emitterPos);
 	}
 	
 	public void tick(World world) {

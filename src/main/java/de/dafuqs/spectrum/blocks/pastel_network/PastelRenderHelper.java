@@ -6,6 +6,8 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.joml.Math;
+import org.joml.*;
 
 public class PastelRenderHelper {
 

@@ -223,7 +223,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
-		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
+		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity, world.getRegistryManager());
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
 			// spawn the result stack in world

@@ -10,7 +10,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -94,14 +93,14 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 	
 	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
-		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, new BlockPos(pos.x, pos.y, pos.z));
+		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, BlockPos.ofFloored(pos.x, pos.y, pos.z));
 		MoonstoneStrike.create(world, attacker, null, attacker.getX(), attacker.getY(), attacker.getZ(), strength, 1.75F);
 		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		if (attacker instanceof ServerPlayerEntity serverPlayer) {
 			serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
 		}
 	}
-	
+
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
 		MinecraftClient.getInstance().getSoundManager().play(new GreatswordChargingSoundInstance(user, this.GROUND_SLAM_CHARGE_TICKS));
@@ -111,7 +110,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		DamageComposition composition = new DamageComposition();
 		composition.addPlayerOrEntity(attacker, damage * (1 - MAGIC_DAMAGE_SHARE));
-		composition.add(DamageSource.magic(attacker, attacker), damage * MAGIC_DAMAGE_SHARE);
+		composition.add(attacker.getDamageSources().magic(), damage * MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
 

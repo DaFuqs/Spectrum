@@ -5,9 +5,9 @@ import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
+import net.minecraft.registry.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;

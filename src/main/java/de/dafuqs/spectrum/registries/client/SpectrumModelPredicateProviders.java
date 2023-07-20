@@ -25,7 +25,7 @@ import java.util.*;
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumModelPredicateProviders {
 	
-	public static ModelTransformation.Mode currentItemRenderMode;
+	public static ModelTransformationMode currentItemRenderMode;
 	
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
@@ -136,7 +136,7 @@ public class SpectrumModelPredicateProviders {
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
-			if (currentItemRenderMode == ModelTransformation.Mode.NONE) {
+			if (currentItemRenderMode == ModelTransformationMode.NONE) {
 				return 1.0F;
 			}
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
@@ -212,7 +212,7 @@ public class SpectrumModelPredicateProviders {
 			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
 				return 0.0F;
 			}
-			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
+			return currentItemRenderMode == ModelTransformationMode.GUI || currentItemRenderMode == ModelTransformationMode.GROUND || currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
 		});
 	}
 	

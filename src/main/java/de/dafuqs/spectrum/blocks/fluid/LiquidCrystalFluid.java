@@ -8,10 +8,10 @@ import net.minecraft.block.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
@@ -84,6 +84,11 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		}
 		
 		@Override
+		protected boolean isInfinite(World world) {
+			return false;
+		}
+		
+		@Override
 		public int getLevel(FluidState fluidState) {
 			return fluidState.get(LEVEL);
 		}
@@ -95,6 +100,11 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	}
 	
 	public static class StillLiquidCrystal extends LiquidCrystalFluid {
+		
+		@Override
+		protected boolean isInfinite(World world) {
+			return false;
+		}
 		
 		@Override
 		public int getLevel(FluidState fluidState) {

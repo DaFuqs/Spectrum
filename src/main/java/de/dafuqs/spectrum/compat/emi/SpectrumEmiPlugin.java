@@ -14,8 +14,8 @@ import dev.emi.emi.api.stack.*;
 import net.minecraft.block.*;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -134,7 +134,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	}
 
 	public static Identifier syntheticId(String type, Block block) {
-		Identifier blockId = Registry.BLOCK.getId(block);
+		Identifier blockId = Registries.BLOCK.getId(block);
 		// Note that all recipe ids here start with "spectrum:/" which is legal, but impossible to represent with real files
 		return new Identifier("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
 	}

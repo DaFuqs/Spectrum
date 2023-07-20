@@ -6,10 +6,10 @@ import de.dafuqs.spectrum.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.*;
 import net.minecraft.resource.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiler.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -46,7 +46,7 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			
 			String particleTypeString = jsonObject.get("particle_type").getAsString();
-			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(Identifier.tryParse(particleTypeString));
+			ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(Identifier.tryParse(particleTypeString));
 			Identifier guiTexture = Identifier.tryParse(jsonObject.get("gui_texture").getAsString());
 			@Nullable Identifier unlockIdentifier = jsonObject.has("unlock_identifier") ? Identifier.tryParse(jsonObject.get("unlock_identifier").getAsString()) : null;
 			boolean supportsColoring = JsonHelper.getBoolean(jsonObject, "supports_coloring", false);

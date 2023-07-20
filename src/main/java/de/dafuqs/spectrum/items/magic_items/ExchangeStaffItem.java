@@ -17,13 +17,13 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
@@ -72,7 +72,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		if (compound.contains("TargetBlock")) {
 			String targetBlockString = compound.getString("TargetBlock");
-			Block targetBlock = Registry.BLOCK.get(new Identifier(targetBlockString));
+			Block targetBlock = Registries.BLOCK.get(new Identifier(targetBlockString));
 			if (targetBlock != Blocks.AIR) {
 				return Optional.of(targetBlock);
 			}
@@ -216,7 +216,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	
 	public void storeBlockAsTarget(@NotNull ItemStack exchangeStaffItemStack, Block block) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
-		Identifier blockIdentifier = Registry.BLOCK.getId(block);
+		Identifier blockIdentifier = Registries.BLOCK.getId(block);
 		compound.putString("TargetBlock", blockIdentifier.toString());
 		exchangeStaffItemStack.setNbt(compound);
 	}

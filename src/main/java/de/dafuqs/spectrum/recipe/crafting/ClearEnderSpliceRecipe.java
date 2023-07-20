@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
@@ -11,8 +13,8 @@ public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearEnderSpliceRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearEnderSpliceRecipe::new);
 	
-	public ClearEnderSpliceRecipe(Identifier identifier) {
-		super(identifier);
+	public ClearEnderSpliceRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	@Override
@@ -38,7 +40,7 @@ public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();

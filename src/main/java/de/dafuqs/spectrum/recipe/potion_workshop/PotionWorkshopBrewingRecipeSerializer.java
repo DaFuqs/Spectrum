@@ -6,8 +6,8 @@ import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopBrewingRecipe> {
 	
@@ -51,10 +51,10 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "effect"));
-		if (!Registry.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
+		if (!Registries.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
 			throw new JsonParseException("Potion Workshop Brewing Recipe " + identifier + " has a status effect set that does not exist or is disabled: " + statusEffectIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing status effect
 		}
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
@@ -73,7 +73,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 		recipe.ingredient1.write(packetByteBuf);
 		recipe.ingredient2.write(packetByteBuf);
 		recipe.ingredient3.write(packetByteBuf);
-		packetByteBuf.writeIdentifier(Registry.STATUS_EFFECT.getId(recipe.statusEffect));
+		packetByteBuf.writeIdentifier(Registries.STATUS_EFFECT.getId(recipe.statusEffect));
 		packetByteBuf.writeInt(recipe.baseDurationTicks);
 		packetByteBuf.writeFloat(recipe.potencyModifier);
 		packetByteBuf.writeBoolean(recipe.applicableToPotions);
@@ -95,7 +95,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
 		Ingredient ingredient3 = Ingredient.fromPacket(packetByteBuf);
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
 		int baseDurationTicks = packetByteBuf.readInt();
 		float potencyModifier = packetByteBuf.readFloat();
 		boolean applicableToPotions = packetByteBuf.readBoolean();

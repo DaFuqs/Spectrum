@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;

@@ -30,27 +30,27 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 			switch (itemFacingDirection) {
 				case NONE -> {
 					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.7);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 				case CLOCKWISE_90 -> {
 					matrixStack.translate(0.3, ITEM_STACK_RENDER_HEIGHT, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 				}
 				case CLOCKWISE_180 -> {
 					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.3);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 				}
 				case COUNTERCLOCKWISE_90 -> {
 					matrixStack.translate(0.7, ITEM_STACK_RENDER_HEIGHT, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 			}
 			
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
 			matrixStack.pop();
 		}
 		

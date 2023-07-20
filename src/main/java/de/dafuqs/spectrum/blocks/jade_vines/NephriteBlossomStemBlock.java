@@ -99,7 +99,7 @@ public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggabl
     private void scheduleBreakAttempt(WorldAccess world, BlockPos pos, boolean force) {
         var down = pos.down();
         if (force || !canPlantOnTop(world.getBlockState(down), world, down))
-            world.createAndScheduleBlockTick(pos.up(), this, 1);
+            world.scheduleBlockTick(pos.up(), this, 1);
     }
 
     @Override

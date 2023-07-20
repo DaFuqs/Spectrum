@@ -8,8 +8,8 @@ import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public class RecipeUtils {
 	
@@ -42,7 +42,7 @@ public class RecipeUtils {
 	}
 	
 	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {
-		return BlockArgumentParser.block(Registry.BLOCK, new StringReader(string), true).blockState();
+		return BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), new StringReader(string), true).blockState();
 	}
 	
 	public static String blockStateToString(BlockState state) {

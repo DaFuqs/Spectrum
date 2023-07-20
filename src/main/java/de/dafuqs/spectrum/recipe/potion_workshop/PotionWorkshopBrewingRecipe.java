@@ -12,6 +12,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.potion.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
@@ -175,7 +176,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		if (this.cachedOutput == null) {
 			this.cachedOutput = getPotion(new PotionMod(), null, Random.create());
 		}
@@ -183,7 +184,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory) {
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
 		ItemStack stack = new ItemStack(Items.POTION);
 		PotionUtil.setCustomPotionEffects(stack, List.of(new StatusEffectInstance(this.statusEffect, this.baseDurationTicks)));
 		return stack;

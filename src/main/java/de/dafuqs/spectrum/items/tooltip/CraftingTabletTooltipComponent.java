@@ -7,7 +7,7 @@ import net.minecraft.client.render.item.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
-import net.minecraft.util.math.*;
+import org.joml.*;
 
 @Environment(EnvType.CLIENT)
 public class CraftingTabletTooltipComponent extends SpectrumTooltipComponent {
@@ -31,16 +31,16 @@ public class CraftingTabletTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer) {
 		int n = x + 1;
 		int o = y + 1;
-		this.drawSlot(n, o, 0, itemStack, textRenderer, matrices, itemRenderer, z);
-		this.drawOutline(x, y, 1, 1, matrices, z);
+		this.drawSlot(n, o, 0, itemStack, textRenderer, matrices, itemRenderer);
+		this.drawOutline(x, y, 1, 1, matrices);
 	}
 	
 	@Override
 	public void drawText(TextRenderer textRenderer, int x, int y, Matrix4f matrix4f, VertexConsumerProvider.Immediate immediate) {
-		textRenderer.draw(this.description, (float) x + 26, (float) y + 6, 11053224, true, matrix4f, immediate, false, 0, 15728880);
+		textRenderer.draw(this.description, (float) x + 26, (float) y + 6, 11053224, true, matrix4f, immediate, TextRenderer.TextLayerType.NORMAL, 15728880, 0);
 	}
 	
 }

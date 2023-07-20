@@ -26,12 +26,13 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class TitrationBarrelBlockEntity extends BlockEntity {
-
+	
 	protected static final int INVENTORY_SIZE = 5;
 	public static final int MAX_ITEM_COUNT = 64;
 	protected SimpleInventory inventory = new SimpleInventory(INVENTORY_SIZE);
-
+	
 	public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
 		@Override
 		protected FluidVariant getBlankVariant() {
@@ -42,21 +43,21 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		protected long getCapacity(FluidVariant variant) {
 			return FluidConstants.BUCKET;
 		}
-
+		
 		@Override
 		protected void onFinalCommit() {
 			super.onFinalCommit();
 			markDirty();
 		}
 	};
-
+	
 	// Times in milliseconds using the Date class
 	protected long sealTime = -1;
 	protected long tapTime = -1;
-
+	
 	protected String recipe;
 	protected int extractedBottles = 0;
-
+	
 	public TitrationBarrelBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.TITRATION_BARREL, pos, state);
 	}
@@ -184,7 +185,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 					}
 					if (canTap) {
 						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-						harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getDownfall());
+						// TODO - Find a way to access the Biome Weather to get its downfall
+						harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getPrecipitation(this.pos).compareTo(Biome.Precipitation.RAIN));
 						
 						int daysSealed = getSealMinecraftDays();
 						int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);

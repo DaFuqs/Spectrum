@@ -26,7 +26,7 @@ public class DecayAwayBlock extends Block {
 	@Override
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClient) {
-			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
+			world.scheduleBlockTick(pos, state.getBlock(), 4);
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class DecayAwayBlock extends Block {
 			
 			if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_CURABLES)) {
 				world.setBlockState(targetBlockPos, getTargetStateForCurable(currentBlockState));
-				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
+				world.scheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
 		

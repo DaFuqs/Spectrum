@@ -14,6 +14,7 @@ import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
+import org.joml.*;
 
 import java.util.*;
 
@@ -47,32 +48,35 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle implemen
 
     @Override
     public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
-        final Vec3d cameraPos = camera.getPos();
-        final float x = (float) (MathHelper.lerp(tickDelta, prevPosX, this.x) - cameraPos.getX());
-        final float y = (float) (MathHelper.lerp(tickDelta, prevPosY, this.y) - cameraPos.getY());
-        final float z = (float) (MathHelper.lerp(tickDelta, prevPosZ, this.z) - cameraPos.getZ());
-        final int light = getBrightness(tickDelta);
-
-        final Quaternion quaternion = camera.getRotation();
-        final Vec3f[] vec3fs = new Vec3f[]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};
-        final float size = getSize(tickDelta);
-
-        for (int k = 0; k < 4; ++k) {
-            final Vec3f vec3f2 = vec3fs[k];
-            vec3f2.rotate(quaternion);
-            vec3f2.scale(size);
-            vec3f2.add(x, y, z);
-        }
-
-        final float minU = getMinU();
-        final float maxU = getMaxU();
-        final float minV = getMinV();
-        final float maxV = getMaxV();
-        vertexConsumer.vertex(vec3fs[0].getX(), vec3fs[0].getY(), vec3fs[0].getZ()).texture(maxU, maxV).color(red, green, blue, alpha).light(light).next();
-        vertexConsumer.vertex(vec3fs[1].getX(), vec3fs[1].getY(), vec3fs[1].getZ()).texture(maxU, minV).color(red, green, blue, alpha).light(light).next();
-        vertexConsumer.vertex(vec3fs[2].getX(), vec3fs[2].getY(), vec3fs[2].getZ()).texture(minU, minV).color(red, green, blue, alpha).light(light).next();
-        vertexConsumer.vertex(vec3fs[3].getX(), vec3fs[3].getY(), vec3fs[3].getZ()).texture(minU, maxV).color(red, green, blue, alpha).light(light).next();
-    }
+		final Vec3d cameraPos = camera.getPos();
+		final float x = (float) (MathHelper.lerp(tickDelta, prevPosX, this.x) - cameraPos.getX());
+		final float y = (float) (MathHelper.lerp(tickDelta, prevPosY, this.y) - cameraPos.getY());
+		final float z = (float) (MathHelper.lerp(tickDelta, prevPosZ, this.z) - cameraPos.getZ());
+		final int light = getBrightness(tickDelta);
+	
+		// TODO - This code is present in all transmission particles. Perhaps a static method to perform all these?
+	
+		// TODO - Test this code to see if the quaternions are calculated correctly
+		final Quaternionf quaternion = camera.getRotation();
+		final Vector3f[] vec3fs = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
+		final float size = getSize(tickDelta);
+	
+		for (int k = 0; k < 4; ++k) {
+			final Vector3f vec2 = vec3fs[k];
+			vec2.rotate(quaternion);
+			vec2.mul(size);
+			vec2.add(x, y, z);
+		}
+	
+		final float minU = getMinU();
+		final float maxU = getMaxU();
+		final float minV = getMinV();
+		final float maxV = getMaxV();
+		vertexConsumer.vertex(vec3fs[0].x(), vec3fs[0].y(), vec3fs[0].z()).texture(maxU, maxV).color(red, green, blue, alpha).light(light).next();
+		vertexConsumer.vertex(vec3fs[1].x(), vec3fs[1].y(), vec3fs[1].z()).texture(maxU, minV).color(red, green, blue, alpha).light(light).next();
+		vertexConsumer.vertex(vec3fs[2].x(), vec3fs[2].y(), vec3fs[2].z()).texture(minU, minV).color(red, green, blue, alpha).light(light).next();
+		vertexConsumer.vertex(vec3fs[3].x(), vec3fs[3].y(), vec3fs[3].z()).texture(minU, maxV).color(red, green, blue, alpha).light(light).next();
+	}
 
     @Override
     public int getBrightness(float tickDelta) {
@@ -129,8 +133,8 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle implemen
 
         SpectrumClient.FORCE_TRANSLUCENT = true;
         BakedModel bakedModel = itemRenderer.getModel(itemStack, world, null, getMaxAge());
-        itemRenderer.renderItem(itemStack, ModelTransformation.Mode.GROUND, false, matrixStack, new TransparentVertexConsumerProvider(vertexConsumers), light, OverlayTexture.DEFAULT_UV, bakedModel);
-        SpectrumClient.FORCE_TRANSLUCENT = false;
+		itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, new TransparentVertexConsumerProvider(vertexConsumers), light, OverlayTexture.DEFAULT_UV, bakedModel);
+		SpectrumClient.FORCE_TRANSLUCENT = false;
         matrixStack.pop();
     }
 }

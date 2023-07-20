@@ -16,8 +16,8 @@ public class BlackslagBlock extends PillarBlock implements Fertilizable {
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-		if (!world.getBlockState(pos.up()).isTranslucent(world, pos)) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		if (!world.getBlockState(pos.up()).isTransparent(world, pos)) {
 			return false;
 		}
 		

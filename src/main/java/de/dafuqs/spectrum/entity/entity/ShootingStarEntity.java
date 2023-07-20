@@ -18,10 +18,12 @@ import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.predicate.entity.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -313,7 +315,7 @@ public class ShootingStarEntity extends Entity {
 		if (!this.world.isClient && !this.dataTracker.get(HARDENED) && !this.onGround && this.getVelocity().getY() < -0.5) {
 			world.playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPacketSender.sendPlayShootingStarParticles(this);
-			player.damage(SpectrumDamageSources.SHOOTING_STAR, 18);
+			player.damage(SpectrumDamageSources.shootingStar(world), 18);
 			
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
@@ -376,7 +378,7 @@ public class ShootingStarEntity extends Entity {
 				.random(world.random)
 				.parameter(LootContextParameters.THIS_ENTITY, this)
 				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
-				.parameter(LootContextParameters.DAMAGE_SOURCE, DamageSource.player(serverPlayerEntity))
+				.parameter(LootContextParameters.DAMAGE_SOURCE, serverPlayerEntity.world.getDamageSources().playerAttack(serverPlayerEntity))
 				.optionalParameter(LootContextParameters.LAST_DAMAGE_PLAYER, serverPlayerEntity)
 				.build(LootContextTypes.ENTITY));
 	}
@@ -387,7 +389,7 @@ public class ShootingStarEntity extends Entity {
 				.random(world.random)
 				.parameter(LootContextParameters.THIS_ENTITY, this)
 				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.getBlockPos()))
-				.parameter(LootContextParameters.DAMAGE_SOURCE, DamageSource.GENERIC)
+				.parameter(LootContextParameters.DAMAGE_SOURCE, serverWorld.getDamageSources().generic())
 				.build(LootContextTypes.ENTITY));
 	}
 	
@@ -454,16 +456,16 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
-		if (damageSource == DamageSource.ANVIL || damageSource == SpectrumDamageSources.FLOATBLOCK) {
+		if (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageSources.FLOATBLOCK)) {
 			return false;
 		} else {
-			return damageSource.isFire() || super.isInvulnerableTo(damageSource);
+			return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
 		}
 	}
 	
 	@Override
 	public boolean damage(DamageSource damageSource, float amount) {
-		if (amount > 5 && (damageSource == DamageSource.ANVIL || damageSource == SpectrumDamageSources.FLOATBLOCK)) {
+		if (amount > 5 && (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageSources.FLOATBLOCK))) {
 			this.playHitParticles();
 			
 			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();
@@ -543,7 +545,7 @@ public class ShootingStarEntity extends Entity {
 	}
 	
 	@Override
-	public Packet<?> createSpawnPacket() {
+	public Packet<ClientPlayPacketListener> createSpawnPacket() {
 		return new EntitySpawnS2CPacket(this);
 	}
 	

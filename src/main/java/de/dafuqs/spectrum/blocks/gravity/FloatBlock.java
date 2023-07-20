@@ -22,12 +22,12 @@ public class FloatBlock extends FallingBlock {
 	
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos blockPos, BlockState oldState, boolean notify) {
-		world.createAndScheduleBlockTick(blockPos, this, this.getFallDelay());
+		world.scheduleBlockTick(blockPos, this, this.getFallDelay());
 	}
 	
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState facingState, WorldAccess world, BlockPos blockPos, BlockPos facingPos) {
-		world.createAndScheduleBlockTick(blockPos, this, this.getFallDelay());
+		world.scheduleBlockTick(blockPos, this, this.getFallDelay());
 		return super.getStateForNeighborUpdate(state, direction, facingState, world, blockPos, facingPos);
 	}
 	

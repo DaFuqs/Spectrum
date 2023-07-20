@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -30,7 +30,7 @@ public class CloverBlock extends FernBlock {
 
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.CLOVER_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.CLOVER_PATCH).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
 	}
 
 }

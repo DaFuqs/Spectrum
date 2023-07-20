@@ -12,9 +12,12 @@ import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -32,18 +35,27 @@ import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
+import net.minecraft.client.network.*;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.client.world.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.resource.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.util.shape.*;
+import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.joml.*;
+import oshi.util.tuples.*;
 
+import java.lang.Math;
 import java.util.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
@@ -105,10 +117,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
-		
+
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
-				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				if (Registries.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
 				}
 			}
@@ -116,7 +128,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
 			}
 		});
-		
+
 		if (CONFIG.AddItemTooltips) {
 			ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 				NbtCompound nbt = stack.getNbt();
@@ -144,12 +156,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			});
 		}
 		
+		
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
+		
+		registerBlockOutlineEvent();
 		if (FabricLoader.getInstance().isModLoaded("ears")) {
 			logInfo("Registering Ears Compat...");
 			EarsCompat.register();
 		}
-		
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
 			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();
@@ -190,12 +204,37 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		logInfo("Client startup completed!");
 	}
-
+	
+	// TODO - consider moving this somewhere else
+	private void registerBlockOutlineEvent() {
+		WorldRenderEvents.BLOCK_OUTLINE.register((context, hitResult) -> {
+			boolean shouldCancel = false;
+			var client = MinecraftClient.getInstance();
+			if (client.player != null && context.blockOutlines()) {
+				for (ItemStack handStack : client.player.getHandItems()) {
+					Item handItem = handStack.getItem();
+					if (handItem instanceof ConstructorsStaffItem) {
+						if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
+							shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
+						}
+						break;
+					} else if (handItem instanceof ExchangeStaffItem) {
+						if (hitResult != null) {
+							shouldCancel = renderExchangeStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), handStack, hitResult);
+						}
+						break;
+					}
+				}
+			}
+			return !shouldCancel;
+		});
+	}
+	
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			for (Block block : blocks) {
-				if (Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				if (Registries.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
 					break;
 				}
@@ -205,9 +244,104 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	
 	@Override
 	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
-		if(!isJoinPacket) {
+		if (!isJoinPacket) {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}
 	
+	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
+		ClientWorld world = MinecraftClient.getInstance().world;
+		BlockPos lookingAtPos = hitResult.getBlockPos();
+		BlockState lookingAtState = world.getBlockState(lookingAtPos);
+		
+		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
+			Block lookingAtBlock = lookingAtState.getBlock();
+			Item item = lookingAtBlock.asItem();
+			VoxelShape shape = VoxelShapes.empty();
+			
+			if (item != Items.AIR) {
+				int itemCountInInventory = Integer.MAX_VALUE;
+				long inkLimit = Long.MAX_VALUE;
+				if (!player.isCreative()) {
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
+					item = inventoryItemAndCount.getB();
+					itemCountInInventory = inventoryItemAndCount.getC();
+					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
+				}
+				
+				boolean sneaking = player.isSneaking();
+				if (itemCountInInventory == 0) {
+					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
+				} else if (inkLimit == 0) {
+					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
+				} else {
+					long usableCount = Math.min(itemCountInInventory, inkLimit);
+					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
+					if (positions.size() > 0) {
+						for (BlockPos newPosition : positions) {
+							if (world.getWorldBorder().contains(newPosition)) {
+								BlockPos testPos = lookingAtPos.subtract(newPosition);
+								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+							}
+						}
+						
+						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
+						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
+						de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
+		ClientWorld world = MinecraftClient.getInstance().world;
+		BlockPos lookingAtPos = hitResult.blockPos();
+		BlockState lookingAtState = hitResult.blockState();
+		
+		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
+			Block lookingAtBlock = lookingAtState.getBlock();
+			Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
+			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
+				Item exchangeBlockItem = exchangeBlock.get().asItem();
+				VoxelShape shape = VoxelShapes.empty();
+				
+				if (exchangeBlockItem != Items.AIR) {
+					int itemCountInInventory = Integer.MAX_VALUE;
+					long inkLimit = Integer.MAX_VALUE;
+					if (!player.isCreative()) {
+						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
+						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
+					}
+					
+					if (itemCountInInventory == 0) {
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0, false);
+					} else if (inkLimit == 0) {
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 1, true);
+					} else {
+						long usableCount = Math.min(itemCountInInventory, inkLimit);
+						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
+						for (BlockPos newPosition : positions) {
+							if (world.getWorldBorder().contains(newPosition)) {
+								BlockPos testPos = lookingAtPos.subtract(newPosition);
+								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+							}
+						}
+						
+						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
+						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
 }

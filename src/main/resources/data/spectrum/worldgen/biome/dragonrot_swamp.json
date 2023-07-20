@@ -1,7 +1,6 @@
 {
   "temperature": 0.6,
   "downfall": 0.8,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 14895399,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 3000,
       "block_search_extent": 8,
       "offset": 2
@@ -136,5 +137,6 @@
       "spectrum:snapping_ivy_patch"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

@@ -7,8 +7,10 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -21,11 +23,11 @@ public abstract class PagePotionWorkshop extends PageGatedRecipe<PotionWorkshopR
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(PotionWorkshopRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, PotionWorkshopRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
@@ -49,7 +51,7 @@ public abstract class PagePotionWorkshop extends PageGatedRecipe<PotionWorkshopR
 		parent.renderItemStack(ms, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(ms, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
@@ -91,7 +90,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 				livingEntity.hurtTime = 0;
 				livingEntityToResetHurtTime = livingEntity;
 				livingEntity.damageShield(20);
-				livingEntity.damageArmor(DamageSource.MAGIC, 20);
+				livingEntity.damageArmor(this.world.getDamageSources().magic(), 20);
 			}
 		} else if (variant == GlassArrowVariant.MOONSTONE) {
 			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
@@ -143,7 +142,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
 			BlockState state = this.world.getBlockState(hitPos);
-			if (state.isTranslucent(world, hitPos)) {
+			if (state.isSolidBlock(world, hitPos)) {
 				return;
 			}
 		}

@@ -6,10 +6,10 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.block.*;
+import net.minecraft.registry.*;
 import net.minecraft.resource.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiler.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -31,7 +31,7 @@ public class NaturesStaffConversionDataLoader extends JsonDataLoader implements 
 		CONVERSIONS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
-			Block input = Registry.BLOCK.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input_block")));
+			Block input = Registries.BLOCK.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input_block")));
 			
 			BlockState output;
 			try {

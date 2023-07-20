@@ -10,6 +10,7 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -26,11 +27,11 @@ public class PageCinderhearthSmelting extends PageGatedRecipe<CinderhearthRecipe
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(CinderhearthRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, CinderhearthRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.spectrum.*;
-import net.fabricmc.fabric.api.client.itemgroup.*;
+import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 
@@ -10,10 +10,10 @@ public class SpectrumItemGroups {
 	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/item_group.png");
 	
-	public static final ItemGroup MAIN = FabricItemGroupBuilder.create(SpectrumCommon.locate("main"))
+	public static final ItemGroup MAIN = FabricItemGroup.builder(SpectrumCommon.locate("main"))
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
-			.build()
-			.hideName();
+			.noRenderedName()
+			.build();
 	
 	public static final ItemSubGroup EQUIPMENT = ItemSubGroup.create(MAIN, SpectrumCommon.locate("equipment"), TEXTURE);
 	public static final ItemSubGroup FUNCTIONAL = ItemSubGroup.create(MAIN, SpectrumCommon.locate("functional"), TEXTURE);

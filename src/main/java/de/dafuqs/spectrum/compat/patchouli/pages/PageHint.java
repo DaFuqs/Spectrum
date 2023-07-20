@@ -12,6 +12,7 @@ import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.base.*;
 import vazkii.patchouli.client.book.*;
@@ -27,7 +28,7 @@ public class PageHint extends BookPage {
 		final PageHint pageHint;
 		
 		public PaymentButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress, PageHint pageHint) {
-			super(x, y, width, height, message, onPress);
+			super(x, y, width, height, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
 			this.pageHint = pageHint;
 			setMessage(Text.translatable("spectrum.gui.lexicon.reveal_hint_button.text"));
 		}
@@ -37,7 +38,7 @@ public class PageHint extends BookPage {
 			if (pageHint.revealProgress < 0) {
 				super.renderButton(matrices, mouseX, mouseY, delta);
 				if (this.isHovered()) {
-					this.renderTooltip(matrices, mouseX, mouseY);
+					this.drawTooltip(matrices, mouseX, mouseY, 0.1f, delta);
 				}
 			}
 		}
@@ -64,8 +65,8 @@ public class PageHint extends BookPage {
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		ingredient = cost.as(Ingredient.class);
 	}
 	

@@ -12,7 +12,7 @@ import net.minecraft.util.math.intprovider.*;
 
 import java.util.*;
 
-public class CloakedOreBlock extends OreBlock implements RevelationAware {
+public class CloakedOreBlock extends ExperienceDroppingBlock implements RevelationAware {
 	
 	protected static boolean dropXP;
 	protected final Identifier cloakAdvancementIdentifier;

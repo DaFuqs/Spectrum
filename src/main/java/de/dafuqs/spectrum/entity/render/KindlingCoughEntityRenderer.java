@@ -25,8 +25,8 @@ public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEnt
 	public void render(KindlingCoughEntity kindlingCoughEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
 		matrixStack.push();
 		matrixStack.translate(0.0, 0.15000000596046448, 0.0);
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(g, kindlingCoughEntity.prevYaw, kindlingCoughEntity.getYaw()) - 90.0F));
-		matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(MathHelper.lerp(g, kindlingCoughEntity.prevPitch, kindlingCoughEntity.getPitch())));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, kindlingCoughEntity.prevYaw, kindlingCoughEntity.getYaw()) - 90.0F));
+		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, kindlingCoughEntity.prevPitch, kindlingCoughEntity.getPitch())));
 		this.model.setAngles(kindlingCoughEntity, g, 0.0F, -0.1F, 0.0F, 0.0F);
 		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(this.model.getLayer(TEXTURE));
 		this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);

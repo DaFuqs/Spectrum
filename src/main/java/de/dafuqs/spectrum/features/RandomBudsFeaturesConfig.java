@@ -4,9 +4,10 @@ import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.block.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.util.dynamic.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
@@ -14,15 +15,15 @@ import java.util.*;
 public class RandomBudsFeaturesConfig implements FeatureConfig {
 
     public static final Codec<RandomBudsFeaturesConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            Codec.intRange(1, 64).fieldOf("xz_spread").orElse(10).forGetter((config) -> config.xzSpread),
-            Codec.intRange(1, 64).fieldOf("y_spread").orElse(10).forGetter((config) -> config.ySpread),
-            Codec.intRange(1, 64).fieldOf("tries").orElse(12).forGetter((config) -> config.tries),
-            Codec.BOOL.fieldOf("can_place_on_floor").orElse(false).forGetter((config) -> config.placeOnFloor),
-            Codec.BOOL.fieldOf("can_place_on_ceiling").orElse(false).forGetter((config) -> config.placeOnCeiling),
-            Codec.BOOL.fieldOf("can_place_on_wall").orElse(false).forGetter((config) -> config.placeOnWalls),
-            RegistryCodecs.entryList(Registry.BLOCK_KEY).fieldOf("can_be_placed_on").forGetter((config) -> config.canPlaceOn),
-            Codecs.nonEmptyList(Registry.BLOCK.getCodec().listOf()).fieldOf("blocks").forGetter((config) -> config.blocks)
-    ).apply(instance, RandomBudsFeaturesConfig::new));
+			Codec.intRange(1, 64).fieldOf("xz_spread").orElse(10).forGetter((config) -> config.xzSpread),
+			Codec.intRange(1, 64).fieldOf("y_spread").orElse(10).forGetter((config) -> config.ySpread),
+			Codec.intRange(1, 64).fieldOf("tries").orElse(12).forGetter((config) -> config.tries),
+			Codec.BOOL.fieldOf("can_place_on_floor").orElse(false).forGetter((config) -> config.placeOnFloor),
+			Codec.BOOL.fieldOf("can_place_on_ceiling").orElse(false).forGetter((config) -> config.placeOnCeiling),
+			Codec.BOOL.fieldOf("can_place_on_wall").orElse(false).forGetter((config) -> config.placeOnWalls),
+			RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("can_be_placed_on").forGetter((config) -> config.canPlaceOn),
+			Codecs.nonEmptyList(Registries.BLOCK.getCodec().listOf()).fieldOf("blocks").forGetter((config) -> config.blocks)
+	).apply(instance, RandomBudsFeaturesConfig::new));
     
     public final int xzSpread;
     public final int ySpread;

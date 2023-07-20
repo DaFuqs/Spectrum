@@ -95,7 +95,7 @@ public class SpectrumC2SPacketReceiver {
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.CONFIRMATION_BUTTON_PRESSED, (server, player, handler, buf, responseSender) -> {
 			String confirmationString = buf.readString();
 			SpectrumAdvancementCriteria.CONFIRMATION_BUTTON_PRESSED.trigger(player, confirmationString);
-			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_BUTTON_CLICK.value(), SoundCategory.PLAYERS, 1.0F, 1.0F);
 		});
 		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.BIND_ENDER_SPLICE_TO_PLAYER, (server, player, handler, buf, responseSender) -> {

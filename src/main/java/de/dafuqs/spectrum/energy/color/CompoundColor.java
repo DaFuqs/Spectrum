@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.energy.color;
 
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import org.joml.*;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ public class CompoundColor extends InkColor {
 	
 	protected final Map<ElementalColor, Float> compoundColors; // colors used to directly mix this
 	
-	public CompoundColor(DyeColor dyeColor, Vec3f color, Identifier requiredAdvancement, Map<ElementalColor, Float> compoundColors) {
+	public CompoundColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement, Map<ElementalColor, Float> compoundColors) {
 		super(dyeColor, color, requiredAdvancement);
 		this.compoundColors = compoundColors;
 		

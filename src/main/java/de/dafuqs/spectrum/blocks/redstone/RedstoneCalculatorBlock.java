@@ -17,6 +17,7 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.*;
 import org.jetbrains.annotations.*;
 
 public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
@@ -130,7 +131,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 		} else if (!bl) {
 			world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
 			if (!bl2) {
-				world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+				world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
 			}
 		}
 	}
@@ -146,7 +147,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		BlockState state = SpectrumBlocks.REDSTONE_CALCULATOR.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+		BlockState state = SpectrumBlocks.REDSTONE_CALCULATOR.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 		int signal = calculateOutputSignal(ctx.getWorld(), ctx.getBlockPos(), state);
 		if (signal == 0) {
 			return state;

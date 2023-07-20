@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.loot.conditions.*;
 import net.minecraft.loot.condition.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public class SpectrumLootConditionTypes {
 
@@ -16,7 +16,7 @@ public class SpectrumLootConditionTypes {
     public static LootConditionType MOOSHROOM_TYPE_CONDITION;
 
     private static LootConditionType register(String id, JsonSerializer<? extends LootCondition> serializer) {
-        return Registry.register(Registry.LOOT_CONDITION_TYPE, new Identifier(id), new LootConditionType(serializer));
+		return Registry.register(Registries.LOOT_CONDITION_TYPE, new Identifier(id), new LootConditionType(serializer));
     }
 
     public static void register() {

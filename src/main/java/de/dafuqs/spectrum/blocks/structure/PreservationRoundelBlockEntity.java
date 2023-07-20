@@ -11,11 +11,11 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		this.requiredItems = new ArrayList<>();
 		if (nbt.contains("RequiredItems", NbtElement.LIST_TYPE)) {
 			for (NbtElement e : nbt.getList("RequiredItems", NbtElement.STRING_TYPE)) {
-				Item item = Registry.ITEM.get(Identifier.tryParse(e.asString()));
+				Item item = Registries.ITEM.get(Identifier.tryParse(e.asString()));
 				if (item != Items.AIR) {
 					this.requiredItems.add(item);
 				}
@@ -64,7 +64,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		if (!this.requiredItems.isEmpty()) {
 			NbtList itemList = new NbtList();
 			for (Item requiredItem : this.requiredItems) {
-				itemList.add(NbtString.of(Registry.ITEM.getId(requiredItem).toString()));
+				itemList.add(NbtString.of(Registries.ITEM.getId(requiredItem).toString()));
 			}
 			nbt.put("RequiredItems", itemList);
 		}

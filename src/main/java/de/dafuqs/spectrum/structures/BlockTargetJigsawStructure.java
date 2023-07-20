@@ -4,11 +4,11 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.structure.pool.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.chunk.*;
 import net.minecraft.world.gen.heightprovider.*;
@@ -66,7 +66,7 @@ public class BlockTargetJigsawStructure extends Structure {
 		}
 		
 		BlockPos blockPos = new BlockPos(x, y, z);
-		StructurePools.initDefaultPools(BuiltinRegistries.STRUCTURE_POOL);
+		//StructurePools.initDefaultPools(BuiltinRegistries.STRUCTURE_POOL);
 		return StructurePoolBasedGenerator.generate(context, this.startPool, this.startJigsawName, this.size, blockPos, false, Optional.empty(), this.maxDistanceFromCenter);
 	}
 	

@@ -9,8 +9,8 @@ import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -63,7 +63,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 			JsonArray additionalOutputArray = JsonHelper.getArray(jsonObject, "additional_recipe_manager_outputs");
 			for (JsonElement jsonElement : additionalOutputArray) {
 				Identifier additionalOutputItemIdentifier = new Identifier(jsonElement.getAsString());
-				ItemStack itemStack = new ItemStack(Registry.ITEM.getOrEmpty(additionalOutputItemIdentifier).orElseThrow(() -> new IllegalStateException("Item: " + additionalOutputItemIdentifier + " does not exist")));
+				ItemStack itemStack = new ItemStack(Registries.ITEM.getOrEmpty(additionalOutputItemIdentifier).orElseThrow(() -> new IllegalStateException("Item: " + additionalOutputItemIdentifier + " does not exist")));
 				additionalOutputs.add(itemStack);
 			}
 		}

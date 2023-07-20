@@ -7,9 +7,9 @@ import net.minecraft.block.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.predicate.entity.EntityPredicate.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion.Conditions> {
@@ -20,7 +20,9 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 	private static Block getBlock(JsonObject obj) {
 		if (obj.has("block")) {
 			Identifier identifier = new Identifier(JsonHelper.getString(obj, "block"));
-			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
+			return Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
+				return new JsonSyntaxException("Unknown block type '" + identifier + "'");
+			});
 		} else {
 			return null;
 		}
@@ -70,7 +72,7 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			if (this.block != null) {
-				jsonObject.addProperty("block", Registry.BLOCK.getId(this.block).toString());
+				jsonObject.addProperty("block", Registries.BLOCK.getId(this.block).toString());
 			}
 			
 			jsonObject.add("state", this.state.toJson());

@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.registries;
 
+import com.google.common.base.*;
 import de.dafuqs.spectrum.*;
-import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.*;
 
-import java.util.function.*;
+import java.util.function.Supplier;
 
 public enum SpectrumArmorMaterials implements ArmorMaterial {
 	
@@ -26,7 +25,7 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
 	private final SoundEvent equipSound;
 	private final float toughness;
 	private final float knockbackResistance;
-	private final Lazy<Ingredient> repairIngredientSupplier;
+	private final Supplier<Ingredient> repairIngredientSupplier;
 	
 	SpectrumArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredientSupplier) {
 		this.name = name;
@@ -36,17 +35,21 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
 		this.equipSound = equipSound;
 		this.toughness = toughness;
 		this.knockbackResistance = knockbackResistance;
-		this.repairIngredientSupplier = new Lazy<>(repairIngredientSupplier);
+		this.repairIngredientSupplier = Suppliers.memoize(repairIngredientSupplier::get);
+	}
+	
+	public int getProtectionAmount(ArmorItem.Type type) {
+		return this.protectionAmounts[type.getEquipmentSlot().getEntitySlotId()];
 	}
 	
 	@Override
-	public int getDurability(EquipmentSlot slot) {
-		return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier;
+	public int getDurability(ArmorItem.Type type) {
+		return BASE_DURABILITY[type.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
 	}
 	
 	@Override
-	public int getProtectionAmount(EquipmentSlot slot) {
-		return this.protectionAmounts[slot.getEntitySlotId()];
+	public int getProtection(ArmorItem.Type type) {
+		return 0;
 	}
 	
 	@Override

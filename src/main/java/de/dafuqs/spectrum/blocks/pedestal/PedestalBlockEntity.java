@@ -23,9 +23,11 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -174,7 +176,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				
 				PlayerEntity player = pedestalBlockEntity.getOwnerIfOnline();
 				if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalCraftingRecipe.craft(pedestalBlockEntity), (int) calculatedPedestalCraftingRecipe.getExperience(), pedestalBlockEntity.craftingTimeTotal);
+					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalCraftingRecipe.craft(pedestalBlockEntity, DynamicRegistryManager.EMPTY), (int) calculatedPedestalCraftingRecipe.getExperience(), pedestalBlockEntity.craftingTimeTotal);
 				}
 			} else {
 				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
@@ -325,10 +327,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (recipe != null) {
 			ItemStack output;
 			if (recipe instanceof PedestalCraftingRecipe) {
-				output = recipe.craft(inventory);
+				output = recipe.craft(inventory, null);
 			} else {
 				autoCraftingInventory.setInputInventory(inventory, 0, 9);
-				output = recipe.craft(autoCraftingInventory);
+				output = recipe.craft(autoCraftingInventory, null);
 			}
 			if (output.isEmpty()) {
 				return false;
@@ -336,7 +338,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				ItemStack existingOutput = this.getStack(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
 					return true;
-				} else if (!existingOutput.isItemEqualIgnoreDamage(output)) {
+				} else if (ItemStack.areItemsEqual(existingOutput, output)) {
 					return false;
 				} else if (existingOutput.getCount() < maxCountPerStack && existingOutput.getCount() < existingOutput.getMaxCount()) {
 					return true;
@@ -351,7 +353,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	private boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, Inventory inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
-			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity);
+			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity, pedestalBlockEntity.getWorld().getRegistryManager());
 			ItemStack recipeOutputCopy = recipeOutput.copy();
 			int craftingDuration = pedestalBlockEntity.craftingTimeTotal;
 			
@@ -362,7 +364,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// It is an upgrade recipe (output is a pedestal block item)
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
-				PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
+				PedestalBlock.upgradeToVariant(pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos(), newPedestalVariant);
 				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
@@ -370,7 +372,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
 				double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD);
-				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
+				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.getWorld().random);
 				
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = inventory.getStack(OUTPUT_SLOT_ID);
@@ -597,7 +599,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			autoCraftingInventory.setInputInventory(inventory, 0, 9);
 			
-			ItemStack recipeOutput = recipe.craft(autoCraftingInventory);
+			ItemStack recipeOutput = recipe.craft(autoCraftingInventory, null);
 			PlayerEntity player = getOwnerIfOnline();
 			if (player != null) { // some recipes may assume the player is never null (since this is the case in vanilla)
 				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
@@ -751,10 +753,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			return ItemStack.EMPTY;
 		} else {
 			if(currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-				return pedestalCraftingRecipe.craft(this);
+				return pedestalCraftingRecipe.craft(this, DynamicRegistryManager.EMPTY);
 			} else {
 				autoCraftingInventory.setInputInventory(this, 0, 9);
-				return this.currentRecipe.craft(autoCraftingInventory);
+				return this.currentRecipe.craft(autoCraftingInventory, null);
 			}
 		}
 	}

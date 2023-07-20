@@ -1,18 +1,13 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.LightShardEntity;
-import de.dafuqs.spectrum.helpers.VectorCast;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class CrystallizedDragonFangItem extends Item {
 
@@ -46,7 +41,7 @@ public class CrystallizedDragonFangItem extends Item {
             SpectrumCommon.logError("!!!!!!!!!");
 
             collisions.forEach(entityCollisionResult -> {
-                entityCollisionResult.collision().damage(DamageSource.MAGIC, 5);
+                entityCollisionResult.collision().damage(world.getDamageSources().magic(), 5);
             });
         }
         

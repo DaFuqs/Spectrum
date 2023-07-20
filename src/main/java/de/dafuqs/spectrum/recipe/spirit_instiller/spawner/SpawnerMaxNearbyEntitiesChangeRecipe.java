@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
 import net.id.incubus_core.recipe.matchbook.*;
@@ -11,7 +12,7 @@ import net.minecraft.util.*;
 
 public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	
-	public static final RecipeSerializer<SpawnerMaxNearbyEntitiesChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerMaxNearbyEntitiesChangeRecipe::new);
+	public static final RecipeSerializer<SpawnerMaxNearbyEntitiesChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerMaxNearbyEntitiesChangeRecipe::new);
 	
 	public SpawnerMaxNearbyEntitiesChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MERMAIDS_GEM), Matchbook.empty(), null, 4));

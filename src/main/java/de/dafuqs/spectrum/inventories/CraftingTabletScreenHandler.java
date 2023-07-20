@@ -124,7 +124,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				lockableCraftingResultSlot.lock();
 				
 				PedestalCraftingRecipe pedestalCraftingRecipe = optionalPedestalCraftingRecipe.get();
-				ItemStack itemStack = pedestalCraftingRecipe.getOutput().copy();
+				ItemStack itemStack = pedestalCraftingRecipe.getOutput(world.getRegistryManager()).copy();
 				craftingResultInventory.setStack(0, itemStack);
 				
 				int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);
@@ -176,7 +176,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 					
 					CraftingRecipe craftingRecipe = optionalCraftingRecipe.get();
 					if (craftingResultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-						itemStack = craftingRecipe.craft(craftingInventory);
+						itemStack = craftingRecipe.craft(craftingInventory, world.getRegistryManager());
 					}
 					
 					CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalCraftingRecipe.get());
@@ -214,7 +214,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 	}
 	
 	@Override
-	public void close(PlayerEntity playerEntity) {
+	public void onClosed(PlayerEntity playerEntity) {
 		// put all items in the crafting grid back into the players inventory
 		for (int i = 0; i < 9; i++) {
 			ItemStack itemStack = this.craftingInventory.getStack(i);
@@ -240,7 +240,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				}
 			}
 		}
-		super.close(player);
+		super.onClosed(player);
 	}
 	
 	@Override
@@ -249,7 +249,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		/*
 			SLOTS:
 			0-8: Crafting Input

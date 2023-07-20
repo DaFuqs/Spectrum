@@ -22,6 +22,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	public final int y;
 	public final int width;
 	public final int height;
+	protected boolean focused;
 	protected boolean hovered;
 	
 	protected final Screen screen;
@@ -40,6 +41,16 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	@Override
 	public boolean isMouseOver(double mouseX, double mouseY) {
 		return mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
+	}
+	
+	@Override
+	public void setFocused(boolean focused) {
+		this.focused = focused;
+	}
+	
+	@Override
+	public boolean isFocused() {
+		return focused;
 	}
 	
 	@Override

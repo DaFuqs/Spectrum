@@ -6,7 +6,7 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.command.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -24,15 +24,15 @@ public class PageCollection extends PageWithText {
 	transient List<ItemStack> stacks;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		stacks = new ArrayList<>();
 		for (IVariable item : items.asList()) {
 			String stackString = item.asString();
 			ItemStack stack;
 			try {
-				stack = new ItemStackArgumentType(new CommandRegistryAccess(DynamicRegistryManager.of(Registry.REGISTRIES))).parse(new StringReader(stackString)).createStack(1, false);
+				stack = new ItemStackArgumentType(CommandRegistryAccess.of(world.getRegistryManager(), world.getEnabledFeatures())).parse(new StringReader(stackString)).createStack(1, false);
 			} catch (CommandSyntaxException e) {
 				PatchouliAPI.LOGGER.warn("Unable to parse stack {} in collection page", stackString);
 				continue;

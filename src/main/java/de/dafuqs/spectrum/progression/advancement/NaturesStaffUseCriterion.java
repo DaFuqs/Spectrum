@@ -6,9 +6,9 @@ import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseCriterion.Conditions> {
@@ -19,7 +19,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 	private static Block getBlock(JsonObject obj, String propertyName) {
 		if (obj.has(propertyName)) {
 			Identifier identifier = new Identifier(JsonHelper.getString(obj, propertyName));
-			return Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
+			return Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
 		} else {
 			return null;
 		}
@@ -77,11 +77,11 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			if (this.sourceBlock != null) {
-				jsonObject.addProperty("source_block", Registry.BLOCK.getId(this.sourceBlock).toString());
+				jsonObject.addProperty("source_block", Registries.BLOCK.getId(this.sourceBlock).toString());
 			}
 			jsonObject.add("source_state:", this.sourceBlockState.toJson());
 			if (this.targetBlock != null) {
-				jsonObject.addProperty("target_block", Registry.BLOCK.getId(this.targetBlock).toString());
+				jsonObject.addProperty("target_block", Registries.BLOCK.getId(this.targetBlock).toString());
 			}
 			jsonObject.add("target_state", this.targetBlockState.toJson());
 			return jsonObject;

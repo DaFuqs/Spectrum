@@ -14,12 +14,12 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -95,7 +95,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		if (InventoryHelper.hasInInventory(ingredients, playerInventory)) {
 			List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, playerInventory);
 			
-			ItemStack craftingResult = recipe.getOutput().copy();
+			ItemStack craftingResult = recipe.getOutput(serverPlayerEntity.getWorld().getRegistryManager()).copy();
 			serverPlayerEntity.getInventory().offerOrDrop(craftingResult);
 			
 			for (ItemStack remainder : remainders) {

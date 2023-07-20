@@ -24,6 +24,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 	public final int width;
 	public final int height;
 	protected boolean hovered;
+	protected boolean focused;
 	
 	protected final Screen screen;
 	protected final InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
@@ -41,6 +42,16 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 	@Override
 	public boolean isMouseOver(double mouseX, double mouseY) {
 		return mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
+	}
+	
+	@Override
+	public void setFocused(boolean focused) {
+		this.focused = focused;
+	}
+	
+	@Override
+	public boolean isFocused() {
+		return focused;
 	}
 	
 	@Override

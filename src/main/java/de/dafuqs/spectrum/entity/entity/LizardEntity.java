@@ -168,4 +168,8 @@ public class LizardEntity extends TameableEntity {
 		return 0.8F * dimensions.height;
 	}
 	
+	@Override
+	public EntityView method_48926() {
+		return this.getWorld();
+	}
 }

@@ -117,9 +117,9 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
     }
     
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return state.get(AGE) < MAX_AGE;
-    }
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return state.get(AGE) < MAX_AGE;
+	}
     
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {

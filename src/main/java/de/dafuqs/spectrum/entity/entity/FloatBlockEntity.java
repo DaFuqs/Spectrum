@@ -16,7 +16,6 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
@@ -40,7 +39,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		this.prevX = x;
 		this.prevY = y;
 		this.prevZ = z;
-		this.setOrigin(new BlockPos(this.getPos()));
+		this.setOrigin(BlockPos.ofFloored(this.getPos()));
 		if (blockState.getBlock() instanceof FloatBlock floatBlock) {
 			this.gravityModifier = floatBlock.getGravityMod();
 		} else {
@@ -90,7 +89,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 					// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
 					List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
 					for (Entity entity : list) {
-						entity.damage(SpectrumDamageSources.FLOATBLOCK, damage);
+						entity.damage(SpectrumDamageSources.floatblock(entity.world), damage);
 					}
 				}
 			}
@@ -140,7 +139,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
 		if (isPaltaeriaStratineCollision(entity)) {
-			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
+			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, World.ExplosionSourceType.NONE);
 			this.discard();
 			entity.discard();
 			

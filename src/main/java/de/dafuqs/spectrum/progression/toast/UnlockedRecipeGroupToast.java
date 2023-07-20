@@ -72,7 +72,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 	
 	@Override
 	public Visibility draw(MatrixStack matrices, @NotNull ToastManager manager, long startTime) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
@@ -91,7 +91,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 		
 		int itemStackIndex = (int) (startTime / Math.max(1, toastTimeMilliseconds / this.itemStacks.size()) % this.itemStacks.size());
 		ItemStack currentItemStack = itemStacks.get(itemStackIndex);
-		manager.getClient().getItemRenderer().renderInGui(currentItemStack, 8, 8);
+		manager.getClient().getItemRenderer().renderInGui(matrices, currentItemStack, 8, 8);
 		
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}

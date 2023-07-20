@@ -8,11 +8,11 @@ import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.resource.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiler.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -37,7 +37,7 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 			if (!ingredient.isEmpty()) {
 				Item itemOut = Items.AIR;
 				if (jsonObject.has("output")) {
-					Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
+					Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
 				}
 				List<String> blockPropertiesToCopy = new ArrayList<>();
 				if (jsonObject.has("state_tags_to_copy")) {

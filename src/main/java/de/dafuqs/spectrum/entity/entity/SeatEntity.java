@@ -1,27 +1,21 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.google.common.collect.UnmodifiableIterator;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.util.Arm;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.data.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class SeatEntity extends Entity {
 
@@ -110,8 +104,8 @@ public class SeatEntity extends Entity {
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         setEmptyTicks(nbt.getInt("emptyTicks"));
-
-        var state = NbtHelper.toBlockState(nbt.getCompound("BlockState"));
+	
+		var state = NbtHelper.toBlockState(this.world.createCommandRegistryWrapper(RegistryKeys.BLOCK), nbt.getCompound("BlockState"));
         dataTracker.set(CUSHION, Optional.ofNullable(state.isAir() ? null : state));
 
         offset = nbt.getDouble("offset");
@@ -123,11 +117,11 @@ public class SeatEntity extends Entity {
         nbt.put("BlockState", NbtHelper.fromBlockState(dataTracker.get(CUSHION).orElse(Blocks.AIR.getDefaultState())));
         nbt.putDouble("offset", offset);
     }
-
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
-    }
+	
+	@Override
+	public Packet<ClientPlayPacketListener> createSpawnPacket() {
+		return new EntitySpawnS2CPacket(this);
+	}
 
     @Override
     public boolean isInvulnerable() {

@@ -21,11 +21,11 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -39,6 +39,7 @@ import java.util.*;
 // yeah, this pretty much is a full reimplementation. Sadge
 // I wanted to use more of FishingBobberEntity for mod compat,
 // but most of FishingRod's methods are either private or are tricky to extend
+// TODO - Why not add an accesswidener for the fishing rod methods?
 public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	private static final Logger LOGGER = LogUtils.getLogger();
@@ -354,7 +355,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				d = this.getX() + (double) (g * (float) this.fishTravelCountdown * 0.1F);
 				e = ((float) MathHelper.floor(this.getY()) + 1.0F);
 				j = this.getZ() + (double) (h * (float) this.fishTravelCountdown * 0.1F);
-				blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
+				blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0D, j));
 				
 				Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
 				if (particles != null) {
@@ -392,7 +393,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					d = this.getX() + (double) (MathHelper.sin(g) * h) * 0.1D;
 					e = ((float) MathHelper.floor(this.getY()) + 1.0F);
 					j = this.getZ() + (double) (MathHelper.cos(g) * h) * 0.1D;
-					blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
+					blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0D, j));
 					
 					Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
 					if (particles != null) {
@@ -501,7 +502,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	private boolean tryCatchEntity(ItemStack usedItem, PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
 		Optional<EntityType<?>> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos, this.bigCatchLevel);
 		if (catchedEntityType.isPresent()) {
-			Entity entity = catchedEntityType.get().spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
+			Entity entity = catchedEntityType.get().spawn(world, null, null, blockPos, SpawnReason.TRIGGERED, false, false);
 			if (entity != null) {
 				double xDif = playerEntity.getX() - this.getX();
 				double yDif = playerEntity.getY() - this.getY();

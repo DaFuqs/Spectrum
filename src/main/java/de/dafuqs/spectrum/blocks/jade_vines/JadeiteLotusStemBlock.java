@@ -118,7 +118,7 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
     private void scheduleBreakAttempt(WorldAccess world, BlockPos pos, boolean inverted, boolean force) {
         var floor = inverted ? pos.down() : pos.up();
         if (force || !canPlantOnTop(world.getBlockState(floor), world, floor))
-            world.createAndScheduleBlockTick(inverted ? pos.up() : pos.down(), this, 1);
+            world.scheduleBlockTick(inverted ? pos.up() : pos.down(), this, 1);
     }
 
     @Override

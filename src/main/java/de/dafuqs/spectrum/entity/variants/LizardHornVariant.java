@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.entity.variants;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public record LizardHornVariant(Identifier texture) {
 	

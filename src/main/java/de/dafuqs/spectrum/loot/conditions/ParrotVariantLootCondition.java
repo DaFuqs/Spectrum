@@ -30,7 +30,7 @@ public class ParrotVariantLootCondition implements LootCondition {
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
 		if (entity instanceof ParrotEntity) {
-			return ((ParrotEntity) entity).getVariant() == variant;
+			return ((ParrotEntity) entity).getVariant().getId() == variant;
 		} else {
 			return false;
 		}

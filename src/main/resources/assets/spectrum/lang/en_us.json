@@ -13,6 +13,12 @@
   "itemGroup.spectrum.energy": "Energy",
   "itemGroup.spectrum.creative": "Creative",
 
+  "gui.spectrum.button.particles": "Particles",
+  "gui.spectrum.button.forward": "Forward",
+  "gui.spectrum.button.back": "Back",
+  "gui.spectrum.button.collisions": "Collisions",
+  "gui.spectrum.button.glowing": "Glowing",
+
   "recipeGroup.spectrum.topaz_lamps": "Topaz Lamps",
   "recipeGroup.spectrum.amethyst_lamps": "Amethyst Lamps",
   "recipeGroup.spectrum.citrine_lamps": "Citrine Lamps",

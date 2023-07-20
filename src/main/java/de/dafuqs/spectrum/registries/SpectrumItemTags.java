@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.item.*;
-import net.minecraft.tag.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 
 public class SpectrumItemTags {
 	
@@ -28,7 +28,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
 	
 	private static TagKey<Item> of(String id) {
-		return TagKey.of(Registry.ITEM_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(Registries.ITEM.getKey(), SpectrumCommon.locate(id));
 	}
 	
 }

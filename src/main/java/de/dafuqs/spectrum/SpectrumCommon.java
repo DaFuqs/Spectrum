@@ -47,13 +47,15 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.slf4j.*;
 
@@ -62,11 +64,9 @@ import java.util.*;
 public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
-	
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
-	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
-	
+	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
@@ -147,7 +147,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumConfiguredFeatures.register();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register();
-		
+
 		// Dimension
 		logInfo("Registering Dimension...");
 		DDDimension.register();
@@ -245,7 +245,7 @@ public class SpectrumCommon implements ModInitializer {
 			Pastel.clearServerInstance();
 			SpectrumCommon.minecraftServer = server;
 		});
-		
+
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
 		
 		ServerTickEvents.START_WORLD_TICK.register(world -> {
@@ -264,7 +264,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 			SpectrumCommon.logInfo("Querying fluid luminance...");
-			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+			for (Iterator<Block> it = Registries.BLOCK.stream().iterator(); it.hasNext(); ) {
 				Block block = it.next();
 				if (block instanceof FluidBlock fluidBlock) {
 					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
@@ -304,7 +304,7 @@ public class SpectrumCommon implements ModInitializer {
 							var attributes = statusEffect.getAttributeModifiers().keySet();
 							return attributes.stream()
 									.anyMatch(attribute -> {
-										var attributeRegistryOptional = Registry.ATTRIBUTE.getEntryList(effectType);
+										var attributeRegistryOptional = Registries.ATTRIBUTE.getEntryList(effectType);
 
 										return attributeRegistryOptional.map(registryEntries -> registryEntries
 												.stream()
@@ -383,18 +383,20 @@ public class SpectrumCommon implements ModInitializer {
 				return id;
 			}
 		});
-
+		
+		//noinspection UnstableApiUsage
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
+		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
+		//noinspection UnstableApiUsage
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
 
 		// Builtin Resource Packs
 		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);
 		if (modContainer.isPresent()) {
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), "Alternate Spectrum textures", ResourcePackActivationType.NORMAL);
-			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), "Spectrum's Programmer Art", ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
 		}
-		
 		logInfo("Common startup completed!");
 	}
 	

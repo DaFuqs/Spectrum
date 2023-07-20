@@ -16,6 +16,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -25,7 +26,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -132,7 +132,7 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 			// If Dimension & Pos stored => Teleport to that position
 			Optional<Pair<String, Vec3d>> teleportTargetPos = getTeleportTargetPos(itemStack);
 			if (teleportTargetPos.isPresent()) {
-				RegistryKey<World> targetWorldKey = RegistryKey.of(Registry.WORLD_KEY, new Identifier(teleportTargetPos.get().getLeft()));
+				RegistryKey<World> targetWorldKey = RegistryKey.of(RegistryKeys.WORLD, new Identifier(teleportTargetPos.get().getLeft()));
 				World targetWorld = world.getServer().getWorld(targetWorldKey);
 				if (teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getRight(), resonance)) {
 					decrementWithChance(itemStack, world, playerEntity);

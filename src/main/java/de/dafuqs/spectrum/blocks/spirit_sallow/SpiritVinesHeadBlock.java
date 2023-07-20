@@ -83,7 +83,7 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 	

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
 import net.id.incubus_core.recipe.matchbook.*;
@@ -11,7 +12,7 @@ import net.minecraft.util.*;
 
 public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
-	public static final RecipeSerializer<SpawnerSpawnDelayChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerSpawnDelayChangeRecipe::new);
+	public static final RecipeSerializer<SpawnerSpawnDelayChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerSpawnDelayChangeRecipe::new);
 	
 	public SpawnerSpawnDelayChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP), Matchbook.empty(), null, 4));

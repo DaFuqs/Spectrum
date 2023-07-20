@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -14,8 +16,8 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 	
 	public static final RecipeSerializer<ColorBondingRibbonRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ColorBondingRibbonRecipe::new);
 	
-	public ColorBondingRibbonRecipe(Identifier identifier) {
-		super(identifier);
+	public ColorBondingRibbonRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	@Override
@@ -51,7 +53,7 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack ribbon = null;
 		PigmentItem pigment = null;
 		

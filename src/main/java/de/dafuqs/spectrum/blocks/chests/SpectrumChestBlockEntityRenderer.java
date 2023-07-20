@@ -37,7 +37,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 			matrices.push();
 			float f = (blockState.get(ChestBlock.FACING)).asRotation();
 			matrices.translate(0.5D, 0.5D, 0.5D);
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 			matrices.translate(-0.5D, -0.5D, -0.5D);
 			
 			float openFactor = entity.getAnimationProgress(tickDelta);

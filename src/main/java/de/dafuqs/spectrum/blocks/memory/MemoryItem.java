@@ -211,7 +211,7 @@ public class MemoryItem extends BlockItem {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
 		}
 	}
-	
+
 	@Override
 	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
 		super.appendStacks(group, stacks);
@@ -219,9 +219,10 @@ public class MemoryItem extends BlockItem {
 		// adding all memories that have spirit instiller recipes
 		if (this.isIn(group) && SpectrumCommon.minecraftServer != null) {
 			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
+			var drm = SpectrumCommon.minecraftServer.getRegistryManager();
 			for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-				if (recipe.getOutput().isOf(memoryItem)) {
-					stacks.add(recipe.getOutput());
+				if (recipe.getOutput(drm).isOf(memoryItem)) {
+					stacks.add(recipe.getOutput(drm));
 				}
 			}
 		}

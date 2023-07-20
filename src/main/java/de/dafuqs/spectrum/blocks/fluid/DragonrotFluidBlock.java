@@ -11,28 +11,28 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
-	
+
 	public DragonrotFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}
-	
+
 	@Override
 	public DefaultParticleType getSplashParticle() {
 		return SpectrumParticleTypes.DRAGONROT;
 	}
-	
+
 	@Override
 	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
 		return new Pair<>(SpectrumParticleTypes.DRAGONROT, SpectrumParticleTypes.DRAGONROT_FISHING);
 	}
-	
+
 	@Override
 	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
 		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
@@ -41,7 +41,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 	
@@ -53,9 +53,9 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			// just check every 20 ticks for performance
 			if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageSources.DRAGONROT, 6);
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
 				} else {
-					livingEntity.damage(SpectrumDamageSources.DRAGONROT, 3);
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
 				}
 				if (!livingEntity.isDead()) {
 					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
@@ -82,7 +82,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 	

@@ -39,7 +39,7 @@ public class RevelationToast implements Toast {
 		Text title = Text.translatable("spectrum.toast.revelation.title");
 		Text text = Text.translatable("spectrum.toast.revelation.text");
 		
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
@@ -78,7 +78,7 @@ public class RevelationToast implements Toast {
 			}
 		}
 		
-		manager.getClient().getItemRenderer().renderInGui(itemStack, 8, 8);
+		manager.getClient().getItemRenderer().renderInGui(matrices, itemStack, 8, 8);
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}
 	

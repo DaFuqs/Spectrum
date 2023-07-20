@@ -1,20 +1,13 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.TypeFilter;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.function.*;
 
 public class VectorCast {
 
@@ -45,18 +38,18 @@ public class VectorCast {
     }
 
     public List<CollisionResult<BlockPos>> castForBlocks(ServerWorld world, Entity except, BiPredicate<ServerWorld, BlockPos> preCollisionTestFiltering) {
-        var blockStart = new BlockPos(start);
-        var blockEnd = new BlockPos(end);
-        var ray = getRelativeToOrigin(end);
-
-        var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);
-        var collisions = new ArrayList<CollisionResult<BlockPos>>();
-
-        iterableBlocks.forEach(blockPos -> {
-            if (!preCollisionTestFiltering.test(world, blockEnd))
-                return;
-
-            var collisionResult = processBlock(ray, blockPos, world);
+		var blockStart = BlockPos.ofFloored(start);
+		var blockEnd = BlockPos.ofFloored(end);
+		var ray = getRelativeToOrigin(end);
+	
+		var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);
+		var collisions = new ArrayList<CollisionResult<BlockPos>>();
+	
+		iterableBlocks.forEach(blockPos -> {
+			if (!preCollisionTestFiltering.test(world, blockEnd))
+				return;
+		
+			var collisionResult = processBlock(ray, blockPos, world);
 
             collisionResult.ifPresent(collisions::add);
         });

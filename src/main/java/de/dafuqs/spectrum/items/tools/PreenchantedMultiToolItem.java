@@ -6,9 +6,8 @@ import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -30,12 +29,6 @@ public class PreenchantedMultiToolItem extends MultiToolItem implements Preencha
 		return getDefaultEnchantedStack(this);
 	}
 	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
-	}
 	
 	@Override
 	public RegistryEntry<BannerPattern> getPattern() {

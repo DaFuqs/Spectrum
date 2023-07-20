@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumEntityTypes {
 	
@@ -35,7 +35,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<LizardEntity> LIZARD = register("lizard", EntityType.Builder.create(LizardEntity::new, SpawnGroup.MONSTER).setDimensions(1.0F, 1.0F).maxTrackingRange(10));
 	public static final EntityType<KindlingEntity> KINDLING = register("kindling", EntityType.Builder.create(KindlingEntity::new, SpawnGroup.CREATURE).setDimensions(1.0F, 1.0F).maxTrackingRange(10));
 	public static final EntityType KINDLING_COUGH = register("kindling_cough", EntityType.Builder.create(KindlingCoughEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(10));
-	
+
 	public static void register() {
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
 		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
@@ -49,11 +49,11 @@ public class SpectrumEntityTypes {
 		if (fireImmune) {
 			builder.fireImmune();
 		}
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
 	}
 	
 	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(id), type.build(id));
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(id), type.build(id));
 	}
 	
 }

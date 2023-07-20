@@ -4,6 +4,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.model.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
+import org.joml.*;
 import org.lwjgl.system.*;
 
 import java.nio.*;
@@ -108,10 +109,10 @@ public class TransparentVertexConsumerProvider implements VertexConsumerProvider
             final float[] fs = new float[]{brightnesses[0], brightnesses[1], brightnesses[2], brightnesses[3]};
             final int[] is = new int[]{lights[0], lights[1], lights[2], lights[3]};
             final int[] js = quad.getVertexData();
-            final Vec3i vec3i = quad.getFace().getVector();
-            final Vec3f vec3f = new Vec3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
-            final Matrix4f matrix4f = matrixEntry.getPositionMatrix();
-            vec3f.transform(matrixEntry.getNormalMatrix());
+			final Vec3i vec3i = quad.getFace().getVector();
+			final Vector3f vec3f = new Vector3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+			final Matrix4f matrix4f = matrixEntry.getPositionMatrix();
+			vec3f.mulTranspose(matrixEntry.getNormalMatrix());
             final int j = js.length / 8;
             final MemoryStack memoryStack = MemoryStack.stackPush();
 
@@ -137,19 +138,20 @@ public class TransparentVertexConsumerProvider implements VertexConsumerProvider
                         o = l * fs[k] * red;
                         p = m * fs[k] * green;
                         q = n * fs[k] * blue;
-                    } else {
-                        o = fs[k] * red;
-                        p = fs[k] * green;
-                        q = fs[k] * blue;
-                    }
-
-                    final int r = is[k];
-                    m = byteBuffer.getFloat(16);
-                    n = byteBuffer.getFloat(20);
-                    final Vector4f vector4f = new Vector4f(f, g, h, 1.0F);
-                    vector4f.transform(matrix4f);
-                    vertex(vector4f.getX(), vector4f.getY(), vector4f.getZ(), o, p, q, 1.0F, m, n, overlay, r, vec3f.getX(), vec3f.getY(), vec3f.getZ());
-                }
+					} else {
+						o = fs[k] * red;
+						p = fs[k] * green;
+						q = fs[k] * blue;
+					}
+	
+					final int r = is[k];
+					m = byteBuffer.getFloat(16);
+					n = byteBuffer.getFloat(20);
+					final Vector4f vector4f = new Vector4f(f, g, h, 1.0F);
+					// TODO - check that this is the correct vector calculation
+					vector4f.mulTranspose(matrix4f);
+					vertex(vector4f.x(), vector4f.y(), vector4f.y(), o, p, q, 1.0F, m, n, overlay, r, vec3f.x(), vec3f.y(), vec3f.y());
+				}
             } catch (final Throwable var33) {
                 try {
                     memoryStack.close();

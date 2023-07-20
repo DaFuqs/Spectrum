@@ -20,7 +20,10 @@ public abstract class ApplyBonusLootFunctionMixin {
 	@Final
 	ApplyBonusLootFunction.Formula formula;
 	
-	@ModifyVariable(method = "process(Lnet/minecraft/item/ItemStack;Lnet/minecraft/loot/context/LootContext;)Lnet/minecraft/item/ItemStack;", at = @At("STORE"), ordinal = 1)
+	@ModifyVariable(
+			method = "process(Lnet/minecraft/item/ItemStack;Lnet/minecraft/loot/context/LootContext;)Lnet/minecraft/item/ItemStack;",
+			at = @At("STORE"),
+			ordinal = 1)
 	public int spectrum$rerollBonusLoot(int oldValue, ItemStack stack, LootContext context) {
 		// if the player has the ANOTHER_DRAW effect the bonus loot of
 		// this function gets rerolled potency+1 times and the best one taken

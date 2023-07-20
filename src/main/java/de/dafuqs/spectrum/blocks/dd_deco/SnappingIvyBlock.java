@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -12,7 +13,6 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
@@ -44,11 +44,11 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(SpectrumBlockTags.SNAPPING_IVY_PLANTABLE);
     }
-    
-    @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
-    }
+	
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
     
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
@@ -57,7 +57,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
     
     @Override
@@ -67,7 +67,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(AXIS, ctx.getPlayerFacing().getAxis());
+		return this.getDefaultState().with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
     }
     
     @Override
@@ -85,22 +85,22 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         boolean snapped = state.get(SNAPPED);
-    
+
         if (!snapped && entity instanceof ItemEntity) {
             snap(state, world, pos, true);
         }
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
-                entity.damage(SpectrumDamageSources.SNAPPING_IVY, 7.0F);
-                livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
-            
-                snap(state, world, pos, true);
+				entity.damage(SpectrumDamageSources.snappingIvy(world), 5.0F);
+				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
+	
+				snap(state, world, pos, true);
             }
         }
     }
-    
-    private static void snap(BlockState state, World world, BlockPos pos, boolean close) {
+	
+	private static void snap(BlockState state, World world, BlockPos pos, boolean close) {
         BlockState newState = state.with(SNAPPED, close);
         world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
         world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));

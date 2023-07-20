@@ -7,8 +7,8 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -56,7 +56,7 @@ public class SpectrumEnchantmentHelper {
 			nbtCompound.put(nbtString, new NbtList());
 		}
 		
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		Identifier enchantmentIdentifier = Registries.ENCHANTMENT.getId(enchantment);
 		NbtList nbtList = nbtCompound.getList(nbtString, 10);
 		for (int i = 0; i < nbtList.size(); i++) {
 			NbtCompound enchantmentCompound = nbtList.getCompound(i);
@@ -190,7 +190,7 @@ public class SpectrumEnchantmentHelper {
 			enchantmentList = compound.getList(ItemStack.ENCHANTMENTS_KEY, 10);
 		}
 		
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		Identifier enchantmentIdentifier = Registries.ENCHANTMENT.getId(enchantment);
 		boolean success = false;
 		for (int i = 0; i < enchantmentList.size(); i++) {
 			NbtCompound currentCompound = enchantmentList.getCompound(i);

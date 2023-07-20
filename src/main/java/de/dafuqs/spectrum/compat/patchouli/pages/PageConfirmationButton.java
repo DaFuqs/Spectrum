@@ -8,6 +8,7 @@ import net.minecraft.client.resource.language.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -28,8 +29,8 @@ public class PageConfirmationButton extends PageWithText {
 	String title;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		this.checkedAdvancementIdentifier = Identifier.tryParse(checked_advancement.asString());
 		this.buttonText = button_text.as(Text.class);
@@ -47,7 +48,10 @@ public class PageConfirmationButton extends PageWithText {
 		
 		boolean completed = isConfirmed();
 		Text buttonText = completed ? buttonTextConfirmed : this.buttonText;
-		ButtonWidget button = new ButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, buttonText, this::confirmationButtonClicked);
+		ButtonWidget button = ButtonWidget.builder(buttonText, this::confirmationButtonClicked)
+				.size(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35)
+				.position(100, 20)
+				.build();
 		button.active = !isConfirmed();
 		addButton(button);
 	}

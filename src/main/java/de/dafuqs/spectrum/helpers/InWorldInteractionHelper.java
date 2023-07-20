@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;

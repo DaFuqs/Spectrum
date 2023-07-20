@@ -19,12 +19,13 @@ import net.minecraft.entity.player.*;
 import net.minecraft.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
 import java.util.function.*;
+import java.lang.Math;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
@@ -80,8 +81,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	@Override
 	protected void init() {
 		super.init();
-		client.keyboard.setRepeatEvents(true);
-		
+
 		this.spriteAtlasTexture = ((ParticleManagerAccessor) client.particleManager).getParticleAtlasTexture();
 		this.displayedParticleEntries = ParticleSpawnerParticlesDataLoader.getAllUnlocked(client.player);
 		
@@ -93,7 +93,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	@Override
 	public void removed() {
 		super.removed();
-		client.keyboard.setRepeatEvents(false);
 	}
 	
 	@Override
@@ -117,7 +116,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		if (focusedElement instanceof TextFieldWidget focusedTextFieldWidget) {
 			if (keyCode == GLFW.GLFW_KEY_TAB) {
 				int currentIndex = selectableWidgets.indexOf(focusedElement);
-				focusedTextFieldWidget.setTextFieldFocused(false);
+				focusedTextFieldWidget.setFocused(false);
 				
 				if (modifiers == 1) {
 					setFocused(selectableWidgets.get((selectableWidgets.size() + currentIndex - 1) % selectableWidgets.size()));
@@ -177,7 +176,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, GUI_TEXTURE);
 		int x = (this.width - this.backgroundWidth) / 2;
@@ -214,44 +213,49 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 				break;
 			}
 			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier());
-			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getHeight() / 2, y + 31 - particleSprite.getHeight() / 2, 0, particleSprite.getWidth(), particleSprite.getHeight(), particleSprite);
+			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getX() / 2, y + 31 - particleSprite.getY() / 2, 0, particleSprite.getX(), particleSprite.getY(), particleSprite);
 		}
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
-		client.keyboard.setRepeatEvents(true);
 		int startX = (this.width - this.backgroundWidth) / 2 + 3;
 		int startY = (this.height - this.backgroundHeight) / 2 + 3;
 		
 		ParticleSpawnerConfiguration configuration = blockEntity.getConfiguration();
-		cyanField = addTextFieldWidget(startX + 16, startY + 51, Text.literal("Cyan"), String.valueOf(configuration.getCmyColor().getX()), this::isPositiveDecimalNumber100);
-		magentaField = addTextFieldWidget(startX + 57, startY + 51, Text.literal("Magenta"), String.valueOf(configuration.getCmyColor().getY()), this::isPositiveDecimalNumber100);
-		yellowField = addTextFieldWidget(startX + 97, startY + 51, Text.literal("Yellow"), String.valueOf(configuration.getCmyColor().getZ()), this::isPositiveDecimalNumber100);
-		glowingButton = new ButtonWidget(startX + 153, startY + 50, 16, 16, Text.literal("Glowing"), this::glowingButtonPressed);
+		cyanField = addTextFieldWidget(startX + 16, startY + 51, Text.literal("Cyan"), String.valueOf(configuration.getCmyColor().x()), this::isPositiveDecimalNumber100);
+		magentaField = addTextFieldWidget(startX + 57, startY + 51, Text.literal("Magenta"), String.valueOf(configuration.getCmyColor().y()), this::isPositiveDecimalNumber100);
+		yellowField = addTextFieldWidget(startX + 97, startY + 51, Text.literal("Yellow"), String.valueOf(configuration.getCmyColor().z()), this::isPositiveDecimalNumber100);
+		glowingButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.glowing"), this::glowingButtonPressed)
+				.size(16, 16)
+				.position(startX + 153, startY + 50)
+				.build();
 		addSelectableChild(glowingButton);
 		this.glowing = configuration.glows();
 		
 		int offset = 23;
 		amountField = addTextFieldWidget(startX + 110, startY + 50 + offset, Text.literal("Particles per Second"), String.valueOf(configuration.getParticlesPerSecond()), this::isPositiveDecimalNumberUnderThousand);
-		positionXField = addTextFieldWidget(startX + 61, startY + 74 + offset, Text.literal("X Position"), String.valueOf(configuration.getSourcePosition().getX()), this::isAbsoluteDecimalNumberThousand);
-		positionYField = addTextFieldWidget(startX + 96, startY + 74 + offset, Text.literal("Y Position"), String.valueOf(configuration.getSourcePosition().getY()), this::isAbsoluteDecimalNumberThousand);
-		positionZField = addTextFieldWidget(startX + 131, startY + 74 + offset, Text.literal("Z Position"), String.valueOf(configuration.getSourcePosition().getZ()), this::isAbsoluteDecimalNumberThousand);
-		positionXVarianceField = addTextFieldWidget(startX + 69, startY + 94 + offset, Text.literal("X Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getX()), this::isAbsoluteDecimalNumberThousand);
-		positionYVarianceField = addTextFieldWidget(startX + 104, startY + 94 + offset, Text.literal("Y Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getY()), this::isAbsoluteDecimalNumberThousand);
-		positionZVarianceField = addTextFieldWidget(startX + 140, startY + 94 + offset, Text.literal("Z Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getZ()), this::isAbsoluteDecimalNumberThousand);
-		velocityXField = addTextFieldWidget(startX + 61, startY + 114 + offset, Text.literal("X Velocity"), String.valueOf(configuration.getVelocity().getX()), this::isAbsoluteDecimalNumberThousand);
-		velocityYField = addTextFieldWidget(startX + 96, startY + 114 + offset, Text.literal("Y Velocity"), String.valueOf(configuration.getVelocity().getY()), this::isAbsoluteDecimalNumberThousand);
-		velocityZField = addTextFieldWidget(startX + 131, startY + 114 + offset, Text.literal("Z Velocity"), String.valueOf(configuration.getVelocity().getZ()), this::isAbsoluteDecimalNumberThousand);
-		velocityXVarianceField = addTextFieldWidget(startX + 69, startY + 134 + offset, Text.literal("X Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getX()), this::isAbsoluteDecimalNumberThousand);
-		velocityYVarianceField = addTextFieldWidget(startX + 104, startY + 134 + offset, Text.literal("Y Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getY()), this::isAbsoluteDecimalNumberThousand);
-		velocityZVarianceField = addTextFieldWidget(startX + 140, startY + 134 + offset, Text.literal("Z Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getZ()), this::isAbsoluteDecimalNumberThousand);
+		positionXField = addTextFieldWidget(startX + 61, startY + 74 + offset, Text.literal("X Position"), String.valueOf(configuration.getSourcePosition().x()), this::isAbsoluteDecimalNumberThousand);
+		positionYField = addTextFieldWidget(startX + 96, startY + 74 + offset, Text.literal("Y Position"), String.valueOf(configuration.getSourcePosition().y()), this::isAbsoluteDecimalNumberThousand);
+		positionZField = addTextFieldWidget(startX + 131, startY + 74 + offset, Text.literal("Z Position"), String.valueOf(configuration.getSourcePosition().z()), this::isAbsoluteDecimalNumberThousand);
+		positionXVarianceField = addTextFieldWidget(startX + 69, startY + 94 + offset, Text.literal("X Position Variance"), String.valueOf(configuration.getSourcePositionVariance().x()), this::isAbsoluteDecimalNumberThousand);
+		positionYVarianceField = addTextFieldWidget(startX + 104, startY + 94 + offset, Text.literal("Y Position Variance"), String.valueOf(configuration.getSourcePositionVariance().y()), this::isAbsoluteDecimalNumberThousand);
+		positionZVarianceField = addTextFieldWidget(startX + 140, startY + 94 + offset, Text.literal("Z Position Variance"), String.valueOf(configuration.getSourcePositionVariance().z()), this::isAbsoluteDecimalNumberThousand);
+		velocityXField = addTextFieldWidget(startX + 61, startY + 114 + offset, Text.literal("X Velocity"), String.valueOf(configuration.getVelocity().x()), this::isAbsoluteDecimalNumberThousand);
+		velocityYField = addTextFieldWidget(startX + 96, startY + 114 + offset, Text.literal("Y Velocity"), String.valueOf(configuration.getVelocity().y()), this::isAbsoluteDecimalNumberThousand);
+		velocityZField = addTextFieldWidget(startX + 131, startY + 114 + offset, Text.literal("Z Velocity"), String.valueOf(configuration.getVelocity().z()), this::isAbsoluteDecimalNumberThousand);
+		velocityXVarianceField = addTextFieldWidget(startX + 69, startY + 134 + offset, Text.literal("X Velocity Variance"), String.valueOf(configuration.getVelocityVariance().x()), this::isAbsoluteDecimalNumberThousand);
+		velocityYVarianceField = addTextFieldWidget(startX + 104, startY + 134 + offset, Text.literal("Y Velocity Variance"), String.valueOf(configuration.getVelocityVariance().y()), this::isAbsoluteDecimalNumberThousand);
+		velocityZVarianceField = addTextFieldWidget(startX + 140, startY + 134 + offset, Text.literal("Z Velocity Variance"), String.valueOf(configuration.getVelocityVariance().z()), this::isAbsoluteDecimalNumberThousand);
 		scale = addTextFieldWidget(startX + 55, startY + 158 + offset, Text.literal("Scale"), String.valueOf(configuration.getScale()), this::isPositiveDecimalNumberUnderTen);
 		scaleVariance = addTextFieldWidget(startX + 139, startY + 158 + offset, Text.literal("Scale Variance"), String.valueOf(configuration.getScaleVariance()), this::isPositiveDecimalNumberUnderTen);
 		duration = addTextFieldWidget(startX + 55, startY + 178 + offset, Text.literal("Duration"), String.valueOf(configuration.getLifetimeTicks()), this::isPositiveWholeNumberUnderThousand);
 		durationVariance = addTextFieldWidget(startX + 139, startY + 178 + offset, Text.literal("Duration Variance"), String.valueOf(configuration.getLifetimeVariance()), this::isPositiveWholeNumberUnderThousand);
 		gravity = addTextFieldWidget(startX + 55, startY + 198 + offset, Text.literal("Gravity"), String.valueOf(configuration.getGravity()), this::isBetweenZeroAndOne);
 		
-		collisionsButton = new ButtonWidget(startX + 142, startY + 194 + offset, 16, 16, Text.literal("Collisions"), this::collisionButtonPressed);
+		collisionsButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.collisions"), this::collisionButtonPressed)
+				.position(startX + 142, startY + 194 + offset)
+				.size(16, 16)
+				.build();
 		collisionsEnabled = configuration.hasCollisions();
 		addSelectableChild(collisionsButton);
 		
@@ -279,9 +283,15 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		selectableWidgets.add(gravity);
 		selectableWidgets.add(collisionsButton);
 		
-		backButton = new ButtonWidget(startX + 11, startY + 19, 12, 14, Text.literal("Back"), this::navigationButtonPressed);
+		backButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.back"), this::navigationButtonPressed)
+				.size(12, 14)
+				.position(startX + 11, startY + 19)
+				.build();
 		addSelectableChild(backButton);
-		forwardButton = new ButtonWidget(startX + 147, startY + 19, 12, 14, Text.literal("Forward"), this::navigationButtonPressed);
+		forwardButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.forward"), this::navigationButtonPressed)
+				.size(12, 14)
+				.position(startX + 147, startY + 19)
+				.build();
 		addSelectableChild(forwardButton);
 		
 		particleButtons = List.of(
@@ -338,7 +348,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private @NotNull ButtonWidget addParticleButton(int x, int y) {
-		ButtonWidget button = new ButtonWidget(x, y, 20, 20, Text.literal("Particles"), this::particleButtonPressed);
+		ButtonWidget button = ButtonWidget.builder(Text.translatable("gui.spectrum.button.particles"), this::particleButtonPressed)
+				.size(20, 20)
+				.position(x, y)
+				.build();
 		addSelectableChild(button);
 		return button;
 	}
@@ -455,13 +468,13 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		try {
 			ParticleSpawnerConfiguration configuration = new ParticleSpawnerConfiguration(
 					displayedParticleEntries.get(particleSelectionIndex).particleType(),
-					selectedParticleSupportsColoring ? new Vec3i(Float.parseFloat(cyanField.getText()), Float.parseFloat(magentaField.getText()), Float.parseFloat(yellowField.getText())) : Vec3i.ZERO,
+					selectedParticleSupportsColoring ? new Vector3i(Float.parseFloat(cyanField.getText()), Float.parseFloat(magentaField.getText()), Float.parseFloat(yellowField.getText()), RoundingMode.HALF_DOWN) : new Vector3i(0, 0, 0),
 					glowing,
 					Float.parseFloat(amountField.getText()),
-					new Vec3f(Float.parseFloat(positionXField.getText()), Float.parseFloat(positionYField.getText()), Float.parseFloat(positionZField.getText())),
-					new Vec3f(Float.parseFloat(positionXVarianceField.getText()), Float.parseFloat(positionYVarianceField.getText()), Float.parseFloat(positionZVarianceField.getText())),
-					new Vec3f(Float.parseFloat(velocityXField.getText()), Float.parseFloat(velocityYField.getText()), Float.parseFloat(velocityZField.getText())),
-					new Vec3f(Float.parseFloat(velocityXVarianceField.getText()), Float.parseFloat(velocityYVarianceField.getText()), Float.parseFloat(velocityZVarianceField.getText())),
+					new Vector3f(Float.parseFloat(positionXField.getText()), Float.parseFloat(positionYField.getText()), Float.parseFloat(positionZField.getText())),
+					new Vector3f(Float.parseFloat(positionXVarianceField.getText()), Float.parseFloat(positionYVarianceField.getText()), Float.parseFloat(positionZVarianceField.getText())),
+					new Vector3f(Float.parseFloat(velocityXField.getText()), Float.parseFloat(velocityYField.getText()), Float.parseFloat(velocityZField.getText())),
+					new Vector3f(Float.parseFloat(velocityXVarianceField.getText()), Float.parseFloat(velocityYVarianceField.getText()), Float.parseFloat(velocityZVarianceField.getText())),
 					Float.parseFloat(scale.getText()),
 					Float.parseFloat(scaleVariance.getText()),
 					Integer.parseInt(duration.getText()),

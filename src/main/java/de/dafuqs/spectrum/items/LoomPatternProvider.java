@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import net.minecraft.block.entity.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 
 import java.util.*;
 

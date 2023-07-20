@@ -20,8 +20,8 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -33,7 +33,7 @@ import java.util.*;
 import java.util.function.*;
 
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
-	
+
 	private static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
 	private static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
@@ -165,7 +165,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			this.setVelocity(this.getVelocity().multiply(f));
 		}
 		
-		this.updateLimbs(this, false);
+		this.updateLimbs(false);
 	}
 	
 	@Override
@@ -293,7 +293,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	private void shootAt(LivingEntity target, float pullProgress, boolean powerful) {
-		ItemStack itemStack = this.getArrowType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
+		ItemStack itemStack = this.getProjectileType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
 		PersistentProjectileEntity persistentProjectileEntity = ProjectileUtil.createArrowProjectile(this, itemStack, pullProgress);
 		double d = target.getX() - this.getX();
 		double e = target.getBodyY(0.3) - persistentProjectileEntity.getY();

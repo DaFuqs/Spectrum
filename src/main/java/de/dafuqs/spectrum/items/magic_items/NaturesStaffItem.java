@@ -235,7 +235,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 				if (!paid) { // try pay with ink
 					paid = InkPowered.tryDrainEnergy(context.getPlayer(), USED_COLOR, getInkCost(context.getStack()));
 				}
-				if (!paid) {  // try pay with item
+				if (!paid && player.getInventory().contains(ITEM_COST)) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
 					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), ITEM_COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), ITEM_COST));
 				}

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_sawblade_holly_berry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sawblade_holly_berry"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

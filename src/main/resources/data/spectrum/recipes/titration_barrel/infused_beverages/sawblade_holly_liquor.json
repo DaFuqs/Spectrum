@@ -3,7 +3,7 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "spectrum:glass_peach",
+      "item": "spectrum:sawblade_holly_berry",
       "count": 6
     },
     {
@@ -18,7 +18,7 @@
     "fermentation_speed_mod": 0.25,
     "effects": [
       {
-        "id": "spectrum:projectile_rebound",
+        "id": "spectrum:toughness",
         "base_duration": 9600,
         "potency": [
           {
@@ -94,7 +94,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"glass_peach_liquor\", Color: 13723654 }"
+    "nbt": "{Variant: \"sawblade_holly_liquor\", Color: 13723654 }"
   },
-  "required_advancement": "spectrum:unlocks/food/glass_peach_titration"
+  "required_advancement": "spectrum:unlocks/food/sawblade_holly_titration"
 }

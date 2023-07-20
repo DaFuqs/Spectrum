@@ -16,24 +16,24 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class FractalGlassAmpouleItem extends BaseGlassAmpouleItem implements InkPoweredPotionFillable {
-	
-	public FractalGlassAmpouleItem(Settings settings) {
-		super(settings);
-	}
-	
-	@Override
-	public boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target) {
-		List<StatusEffectInstance> e = new ArrayList<>();
-		if (attacker instanceof PlayerEntity player) {
-			List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
-			for (InkPoweredStatusEffectInstance effect : effects) {
-				if (InkPowered.tryDrainEnergy(player, effect.getInkCost())) {
-					e.add(effect.getStatusEffectInstance());
-				}
-			}
-		}
-		LightMineEntity.summonBarrage(attacker.getWorld(), attacker, target, e);
-		return true;
+    
+    public FractalGlassAmpouleItem(Settings settings) {
+        super(settings);
+    }
+    
+    @Override
+    public boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target) {
+        List<StatusEffectInstance> e = new ArrayList<>();
+        if (attacker instanceof PlayerEntity player) {
+            List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
+            for (InkPoweredStatusEffectInstance effect : effects) {
+                if (InkPowered.tryDrainEnergy(player, effect.getInkCost())) {
+                    e.add(effect.getStatusEffectInstance());
+                }
+            }
+        }
+        LightMineEntity.summonBarrage(attacker.getWorld(), attacker, target, e);
+        return true;
     }
     
     @Override

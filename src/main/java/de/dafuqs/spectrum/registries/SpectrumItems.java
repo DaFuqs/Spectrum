@@ -540,7 +540,6 @@ public class SpectrumItems {
 		register("pure_prismarine", PURE_PRISMARINE, DyeColor.CYAN);
 		register("pure_netherite_scrap", PURE_NETHERITE_SCRAP, DyeColor.BROWN);
 		register("pure_echo", PURE_ECHO, DyeColor.BROWN);
-		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
 	}
 	
 	public static void registerStructurePlacers() {

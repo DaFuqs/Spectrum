@@ -271,8 +271,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.INCANDESCENT_AMALGAM);
 		entries.add(SpectrumBlocks.BEDROCK_ANVIL);
 		entries.add(SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
-		
 	}).build();
+	
 	public static final ItemSubGroup CUISINE = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.cuisine")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);
@@ -374,8 +374,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.SEDATIVES);
 		entries.add(SpectrumItems.SLUSHSLIDE);
 		entries.add(SpectrumItems.SURSTROMMING);
-		
 	}).build();
+	
 	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.resources")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumBlocks.TOPAZ_BLOCK);
 		entries.add(SpectrumBlocks.BUDDING_TOPAZ);
@@ -539,9 +539,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MUD_BUCKET);
 		entries.add(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 		entries.add(SpectrumItems.DRAGONROT_BUCKET);
-		
-		
 	}).build();
+	
 	public static final ItemSubGroup PURE_RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.pure_resources")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumBlocks.SMALL_COAL_BUD); // TODO: probably reorder those to have items with their buds?
 		entries.add(SpectrumBlocks.LARGE_COAL_BUD);
@@ -644,6 +643,7 @@ public class SpectrumItemGroups {
 		}
 		
 	}).build();
+	
 	public static final ItemSubGroup BLOCKS = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.blocks")).backgroundTexture(TEXTURE).entries(new ItemGroup.EntryCollector() {
 		@Override
 		public void accept(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
@@ -884,6 +884,7 @@ public class SpectrumItemGroups {
 			
 		}
 	}).build();
+	
 	public static final ItemSubGroup DECORATION = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.decoration")).backgroundTexture(TEXTURE).entries(new ItemGroup.EntryCollector() {
 		@Override
 		public void accept(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
@@ -1019,6 +1020,7 @@ public class SpectrumItemGroups {
 			entries.add(SpectrumItems.MUSIC_DISC_EVERREFLECTIVE);
 		}
 	}).build();
+	
 	public static final ItemSubGroup COLORED_WOOD = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.colored_wood")).backgroundTexture(TEXTURE).entries(new ItemGroup.EntryCollector() {
 		@Override
 		public void accept(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
@@ -1232,11 +1234,13 @@ public class SpectrumItemGroups {
 			entries.add(SpectrumBlocks.BLACK_SLAB);
 		}
 	}).build();
+	
 	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.mob_heads")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
 			entries.add(skullBlock.asItem());
 		}
 	}).build();
+	
 	public static final ItemSubGroup CREATURES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.creatures")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.EGG_LAYING_WOOLY_PIG_SPAWN_EGG);
 		entries.add(SpectrumItems.GUARDIAN_TURRET_SPAWN_EGG);
@@ -1253,6 +1257,7 @@ public class SpectrumItemGroups {
 			}
 		}
 	}).build();
+	
 	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.energy")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.INK_FLASK);
 		for (InkColor color : InkColor.all()) {
@@ -1266,6 +1271,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.ARTISTS_PALETTE.getFullStack());
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
 	}).build();
+	
 	public static final ItemSubGroup CREATIVE = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.creative")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumBlocks.DOWNSTONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);

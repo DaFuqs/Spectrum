@@ -62,4 +62,9 @@ public class ForfeitureBlock extends DecayBlock {
 		return this.getDefaultState();
 	}
 	
+	@Override
+	protected boolean canSpreadToAir() {
+		return true;
+	}
+	
 }

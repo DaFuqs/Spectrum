@@ -26,6 +26,12 @@
               "entity": "this"
             }
           ]
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:gameplay/fishing/liquid_crystal/fish",
+          "weight": 80,
+          "quality": -1
         }
       ]
     }

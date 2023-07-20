@@ -105,8 +105,9 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 			Collections.shuffle(entities);
 			var potentialTarget = entities
 					.stream()
-					.filter(entity -> entity instanceof HostileEntity)
-					.filter(entity -> ((HostileEntity) entity).canSee(this))
+					.filter(entity -> entity instanceof Monster)
+					.filter(entity -> entity instanceof LivingEntity)
+					.filter(entity -> ((LivingEntity) entity).canSee(this))
 					.findAny();
 			
 			if (isValidTarget(potentialTarget)) {

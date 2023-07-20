@@ -15,6 +15,7 @@ public class SpectrumIntegrationPacks {
 	
 	public abstract static class ModIntegrationPack {
 		public abstract void register();
+		
 		public abstract void registerClient();
 	}
 	
@@ -24,11 +25,16 @@ public class SpectrumIntegrationPacks {
 		}
 	}
 	
+	public static final String AE2_ID = "ae2";
+	public static final String GOBBER_ID = "gobber2";
+	public static final String CREATE_ID = "create";
+	public static final String MYTHIC_METALS_ID = "mythicmetals";
+	
 	public static void register() {
-		registerIntegrationPack("ae2", new AE2Compat());
-		registerIntegrationPack("gobber2", new GobberCompat());
-		registerIntegrationPack("create", new CreateCompat());
-		registerIntegrationPack("mythicmetals", new MythicMetalsCompat());
+		registerIntegrationPack(AE2_ID, new AE2Compat());
+		registerIntegrationPack(GOBBER_ID, new GobberCompat());
+		registerIntegrationPack(CREATE_ID, new CreateCompat());
+		registerIntegrationPack(MYTHIC_METALS_ID, new MythicMetalsCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

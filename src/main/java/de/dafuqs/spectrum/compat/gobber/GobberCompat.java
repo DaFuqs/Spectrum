@@ -50,7 +50,7 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		PURE_GLOBETTE_NETHER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 		PURE_GLOBETTE_END_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 		
-		FabricItemSettings settings = SpectrumItems.Tab.RESOURCES.settings();
+		FabricItemSettings settings = SpectrumItems.IS.of();
 		registerBlockWithItem("small_globette_bud", SMALL_GLOBETTE_BUD, settings, DyeColor.BLUE);
 		registerBlockWithItem("large_globette_bud", LARGE_GLOBETTE_BUD, settings, DyeColor.BLUE);
 		registerBlockWithItem("globette_cluster", GLOBETTE_CLUSTER, settings, DyeColor.BLUE);
@@ -68,9 +68,9 @@ public class GobberCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		registerBlockWithItem("pure_globette_end_block", PURE_GLOBETTE_END_BLOCK, settings, DyeColor.GREEN);
 		
 		// ITEMS
-		PURE_GLOBETTE = new Item(SpectrumItems.Tab.RESOURCES.settings());
-		PURE_GLOBETTE_NETHER = new Item(SpectrumItems.Tab.RESOURCES.settings());
-		PURE_GLOBETTE_END = new Item(SpectrumItems.Tab.RESOURCES.settings());
+		PURE_GLOBETTE = new Item(SpectrumItems.IS.of());
+		PURE_GLOBETTE_NETHER = new Item(SpectrumItems.IS.of());
+		PURE_GLOBETTE_END = new Item(SpectrumItems.IS.of());
 		
 		SpectrumItems.register("pure_globette", PURE_GLOBETTE, DyeColor.BLUE);
 		SpectrumItems.register("pure_globette_nether", PURE_GLOBETTE_NETHER, DyeColor.RED);

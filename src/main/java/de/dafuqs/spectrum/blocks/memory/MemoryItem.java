@@ -1,8 +1,5 @@
 package de.dafuqs.spectrum.blocks.memory;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
@@ -11,7 +8,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -209,22 +205,6 @@ public class MemoryItem extends BlockItem {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
-		}
-	}
-
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		
-		// adding all memories that have spirit instiller recipes
-		if (this.isIn(group) && SpectrumCommon.minecraftServer != null) {
-			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-			var drm = SpectrumCommon.minecraftServer.getRegistryManager();
-			for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-				if (recipe.getOutput(drm).isOf(memoryItem)) {
-					stacks.add(recipe.getOutput(drm));
-				}
-			}
 		}
 	}
 	

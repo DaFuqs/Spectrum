@@ -23,7 +23,6 @@ import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
@@ -492,14 +491,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	@Override
 	public int getEnchantability() {
 		return 5;
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
-		}
 	}
 	
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {

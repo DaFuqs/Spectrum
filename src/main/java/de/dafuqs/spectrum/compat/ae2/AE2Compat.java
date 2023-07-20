@@ -42,7 +42,7 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		PURE_CERTUS_QUARTZ_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS));
 		PURE_FLUIX_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS));
 		
-		FabricItemSettings settings = SpectrumItems.Tab.RESOURCES.settings();
+		FabricItemSettings settings = SpectrumItems.IS.of();
 		registerBlockWithItem("small_certus_quartz_bud", SMALL_CERTUS_QUARTZ_BUD, settings, DyeColor.YELLOW);
 		registerBlockWithItem("large_certus_quartz_bud", LARGE_CERTUS_QUARTZ_BUD, settings, DyeColor.YELLOW);
 		registerBlockWithItem("certus_quartz_cluster", CERTUS_QUARTZ_CLUSTER, settings, DyeColor.YELLOW);
@@ -55,8 +55,8 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		registerBlockWithItem("pure_fluix_block", PURE_FLUIX_BLOCK, settings, DyeColor.YELLOW);
 		
 		// ITEMS
-		PURE_CERTUS_QUARTZ = new Item(SpectrumItems.Tab.RESOURCES.settings());
-		PURE_FLUIX = new Item(SpectrumItems.Tab.RESOURCES.settings());
+		PURE_CERTUS_QUARTZ = new Item(SpectrumItems.IS.of());
+		PURE_FLUIX = new Item(SpectrumItems.IS.of());
 		SpectrumItems.register("pure_certus_quartz", PURE_CERTUS_QUARTZ, DyeColor.YELLOW);
 		SpectrumItems.register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);
 	}
@@ -70,4 +70,5 @@ public class AE2Compat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		BlockRenderLayerMap.INSTANCE.putBlock(LARGE_FLUIX_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(FLUIX_CLUSTER, RenderLayer.getCutout());
 	}
+	
 }

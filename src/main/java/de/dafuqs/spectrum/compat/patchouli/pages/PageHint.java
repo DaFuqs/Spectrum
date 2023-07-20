@@ -37,9 +37,6 @@ public class PageHint extends BookPage {
 		public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 			if (pageHint.revealProgress < 0) {
 				super.renderButton(matrices, mouseX, mouseY, delta);
-				if (this.isHovered()) {
-					this.drawTooltip(matrices, mouseX, mouseY, 0.1f, delta);
-				}
 			}
 		}
 		

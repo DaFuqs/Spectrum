@@ -23,7 +23,6 @@ import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -309,14 +308,6 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	@Override
 	public int getEnchantability() {
 		return 50;
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
-		}
 	}
 	
 }

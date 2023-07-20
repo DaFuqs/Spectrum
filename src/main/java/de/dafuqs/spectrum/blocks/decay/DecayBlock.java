@@ -139,6 +139,7 @@ public abstract class DecayBlock extends Block {
 		}
 		
 		return (canSpreadToBlockEntities() || world.getBlockEntity(targetBlockPos) == null)
+				&& (canSpreadToAir() || !stateAtTargetPos.getCollisionShape(world, targetBlockPos).isEmpty()) // decay can convert decay of a lower tier
 				&& (!(stateAtTargetPos.getBlock() instanceof DecayBlock decayBlock) || this.tier > decayBlock.tier) // decay can convert decay of a lower tier
 				&& (whiteListBlockTag == null || stateAtTargetPos.isIn(whiteListBlockTag))
 				&& (blackListBlockTag == null || !stateAtTargetPos.isIn(blackListBlockTag))
@@ -209,8 +210,15 @@ public abstract class DecayBlock extends Block {
 	}
 	
 	protected abstract float getSpreadChance();
+	
 	protected abstract boolean canSpread(BlockState blockState);
+	
 	protected abstract boolean canSpreadToBlockEntities();
+	
 	protected abstract BlockState getSpreadState(BlockState previousState);
+	
+	protected boolean canSpreadToAir() {
+		return false;
+	}
 	
 }

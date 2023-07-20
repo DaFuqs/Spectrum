@@ -3,65 +3,49 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "spectrum:glass_peach",
-      "count": 6
-    },
-    {
-      "item": "minecraft:sugar",
-      "count": 4
+      "item": "spectrum:sawblade_holly_berry",
+      "count": 8
     }
   ],
-  "min_fermentation_time_hours": 24,
+  "min_fermentation_time_hours": 12,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.25,
+    "fermentation_speed_mod": 1.25,
     "effects": [
       {
-        "id": "spectrum:projectile_rebound",
+        "id": "spectrum:toughness",
         "base_duration": 9600,
         "potency": [
           {
             "potency": 0
           },
           {
-            "min_alc": 20,
+            "min_alc": 5,
             "potency": 1
           },
           {
-            "min_alc": 28,
+            "min_alc": 8,
             "potency": 2
-          },
-          {
-            "min_alc": 36,
-            "potency": 3
           }
         ]
       },
       {
-        "id": "minecraft:speed",
+        "id": "minecraft:strength",
         "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 25,
+            "min_alc": 3,
             "potency": 0
           },
           {
-            "min_alc": 25,
+            "min_alc": 6,
             "potency": 1
-          },
-          {
-            "min_alc": 30,
-            "potency": 2
-          },
-          {
-            "min_alc": 35,
-            "potency": 3
           }
         ]
       },
       {
-        "id": "minecraft:slowness",
+        "id": "minecraft:weakness",
         "base_duration": 9600,
         "potency": [
           {
@@ -85,7 +69,7 @@
             "min_thickness": 3
           },
           {
-            "min_alc": 30
+            "min_alc": 9
           }
         ]
       }
@@ -94,7 +78,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"glass_peach_liquor\", Color: 13723654 }"
+    "nbt": "{Variant: \"sawblade_holly_cider\", Color: 15573110 }"
   },
-  "required_advancement": "spectrum:unlocks/food/glass_peach_titration"
+  "required_advancement": "spectrum:unlocks/food/sawblade_holly_titration"
 }

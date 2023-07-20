@@ -14,7 +14,7 @@
     "fermentation_speed_mod": 1.25,
     "effects": [
       {
-        "id": "spectrum:toughness",
+        "id": "spectrum:projectile_rebound",
         "base_duration": 9600,
         "potency": [
           {

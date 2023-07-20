@@ -393,7 +393,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		if (potency >= 0 && durationTicks > 0) {
 			int effectColor = potionMod.getColor(random);
-			return new InkPoweredStatusEffectInstance(new StatusEffectInstance(statusEffect, durationTicks, (int) potency, !potionMod.noParticles, !potionMod.noParticles), getInkCost(), effectColor);
+			return new InkPoweredStatusEffectInstance(new StatusEffectInstance(statusEffect, durationTicks, (int) potency, !potionMod.noParticles, !potionMod.noParticles), getInkCost(), effectColor, potionMod.unidentifiable);
 		} else {
 			// the effect is so borked that the effect would be too weak
 			return null;
@@ -409,7 +409,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				int newDuration = (int) (instance.getDuration() * mods.getRight());
 				int newAmplifier = Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getLeft(), random);
 				if (newAmplifier > 0) {
-					splitInstances.add(new InkPoweredStatusEffectInstance(new StatusEffectInstance(instance.getEffectType(), newDuration, newAmplifier, instance.isAmbient(), instance.shouldShowParticles()), poweredInstance.getInkCost(), poweredInstance.getColor()));
+					splitInstances.add(new InkPoweredStatusEffectInstance(new StatusEffectInstance(instance.getEffectType(), newDuration, newAmplifier, instance.isAmbient(), instance.shouldShowParticles()), poweredInstance.getInkCost(), poweredInstance.getColor(), poweredInstance.isUnidentifiable()));
 				}
 			}
 		}

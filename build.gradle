@@ -47,6 +47,13 @@ repositories {
 		name = "Curse"
 		url = 'https://cfa2.cursemaven.com'
 	}
+	maven {
+		name = "Ears"
+		url "https://repo.unascribed.com"
+		content {
+			includeGroup "com.unascribed"
+		}
+	}
 	mavenCentral()
 }
 
@@ -69,7 +76,8 @@ dependencies {
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
-	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
+	//modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
+	modImplementation include("de.dafuqs:fractal:${project.fractal_version}")
 
 	// we need a bit of concern
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")

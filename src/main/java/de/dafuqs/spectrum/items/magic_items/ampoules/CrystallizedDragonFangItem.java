@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.magic_items;
+/*package de.dafuqs.spectrum.items.magic_items.ampoules;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.entity.LightShardEntity;
@@ -53,4 +53,4 @@ public class CrystallizedDragonFangItem extends Item {
         return user.isCreative() ? super.use(world, user, hand) : TypedActionResult.consume(stack);
     }
 
-}
+}*/

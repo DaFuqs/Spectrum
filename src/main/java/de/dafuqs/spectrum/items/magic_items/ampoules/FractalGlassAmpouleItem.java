@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.magic_items;
+package de.dafuqs.spectrum.items.magic_items.ampoules;
 
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -15,32 +15,14 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FractalGlassAmpouleItem extends Item implements InkPoweredPotionFillable {
+public class FractalGlassAmpouleItem extends BaseGlassAmpouleItem implements InkPoweredPotionFillable {
     
     public FractalGlassAmpouleItem(Settings settings) {
         super(settings);
     }
     
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        var stack = user.getStackInHand(hand);
-        
-        List<StatusEffectInstance> e = new ArrayList<>();
-        if (!world.isClient) {
-            List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
-            for (InkPoweredStatusEffectInstance effect : effects) {
-                if (InkPowered.tryDrainEnergy(user, effect.getInkCost())) {
-                    e.add(effect.getStatusEffectInstance());
-                }
-            }
-        }
-        LightMineEntity.summonBarrage(user.getWorld(), user, null, e);
-        
-        return user.isCreative() ? super.use(world, user, hand) : TypedActionResult.consume(stack);
-    }
-    
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target) {
         List<StatusEffectInstance> e = new ArrayList<>();
         if (attacker instanceof PlayerEntity player) {
             List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
@@ -51,11 +33,7 @@ public class FractalGlassAmpouleItem extends Item implements InkPoweredPotionFil
             }
         }
         LightMineEntity.summonBarrage(attacker.getWorld(), attacker, target, e);
-    
-        if (!(attacker instanceof PlayerEntity player && player.isCreative()))
-            stack.decrement(1);
-    
-        return super.postHit(stack, target, attacker);
+        return true;
     }
     
     @Override

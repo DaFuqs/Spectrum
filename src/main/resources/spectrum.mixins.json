@@ -78,7 +78,6 @@
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",
-    "client.ClientPlayNetworkHandlerMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",

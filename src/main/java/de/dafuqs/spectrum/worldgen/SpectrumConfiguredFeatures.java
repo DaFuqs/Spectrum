@@ -194,9 +194,9 @@ public class SpectrumConfiguredFeatures {
 				SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH,
 				new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedTreeFeatures, weightList)),
 				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk), // every x chunks
+				SquarePlacementModifier.of(),
 				HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
-				BiomePlacementModifier.of(),
-				SquarePlacementModifier.of()
+				BiomePlacementModifier.of()
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.COLORED_TREES_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
@@ -284,12 +284,12 @@ public class SpectrumConfiguredFeatures {
 				mermaidsBrushIdentifier,
 				Feature.SIMPLE_BLOCK,
 				new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6))),
-				BiomePlacementModifier.of(),
 				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MermaidsBrushChanceChunk),
 				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
+				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN))),
+				BiomePlacementModifier.of()
 		);
 
 		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
@@ -299,11 +299,11 @@ public class SpectrumConfiguredFeatures {
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN,
 				BlockColumnFeatureConfig.create(BiasedToBottomIntProvider.create(2, 4), BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS)),
-				BiomePlacementModifier.of(),
 				CountPlacementModifier.of(SpectrumCommon.CONFIG.QuitoxicReedsCountPerChunk),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
+				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN))),
+				BiomePlacementModifier.of()
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.QUITOXIC_REEDS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));

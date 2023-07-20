@@ -483,7 +483,6 @@ public class SpectrumItems {
 	public static final Item PURE_IRON = new Item(IS.of());
 	public static final Item PURE_NETHERITE_SCRAP = new Item(IS.of());
 	public static final Item PURE_ECHO = new Item(IS.of());
-	public static final Item PURE_NETHERITE = new Item(IS.of());
 	
 	public static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registries.ITEM, SpectrumCommon.locate(name), item);

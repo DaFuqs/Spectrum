@@ -7,28 +7,28 @@
       "item": "minecraft:book"
     },
     {
-      "item": "spectrum:red_pigment"
+      "item": "spectrum:white_pigment"
     },
     {
-      "item": "spectrum:red_pigment"
-    },
-    {
-      "item": "spectrum:refined_bloodstone"
-    },
-    {
-      "item": "spectrum:pure_netherite"
-    },
-    {
-      "item": "spectrum:red_pigment"
-    },
-    {
-      "item": "spectrum:red_pigment"
+      "item": "spectrum:white_pigment"
     },
     {
       "item": "spectrum:refined_bloodstone"
     },
     {
-      "item": "spectrum:pure_netherite"
+      "item": "spectrum:pure_copper"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:refined_bloodstone"
+    },
+    {
+      "item": "spectrum:pure_copper"
     }
   ],
   "result": {

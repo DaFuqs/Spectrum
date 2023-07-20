@@ -27,6 +27,7 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.registries.color.*;
 import de.dafuqs.spectrum.spells.*;
 import me.shedaniel.autoconfig.*;
@@ -56,7 +57,6 @@ import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -66,7 +66,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static final String MOD_ID = "spectrum";
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
-	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));
+	
 	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
@@ -227,12 +227,19 @@ public class SpectrumCommon implements ModInitializer {
 			return ActionResult.PASS;
 		});
 		
+		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
+			if (client) {
+				SpectrumColorProviders.resetToggleableProviders();
+				SpectrumMultiblocks.register();
+			}
+		});
+		
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 			}
 		});
-
+		
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;

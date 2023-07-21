@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "spectrum:block/polished_blackslag",
+    "front": "alloy_forgery:block/polished_blackslag_forge_controller_front",
+    "side": "spectrum:block/polished_blackslag"
+  }
+}

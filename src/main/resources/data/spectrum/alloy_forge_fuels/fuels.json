@@ -4,6 +4,10 @@
       "item": "spectrum:wet_lava_sponge",
       "return_item": "spectrum:lava_sponge",
       "fuel": 96000
+    },
+    {
+      "item": "spectrum:fiery_powder",
+      "fuel": 2000
     }
   ]
 }

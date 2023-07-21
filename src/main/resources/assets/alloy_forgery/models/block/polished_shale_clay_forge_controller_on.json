@@ -1,0 +1,6 @@
+{
+  "parent": "alloy_forgery:block/polished_shale_clay_forge_controller",
+  "textures": {
+    "front": "alloy_forgery:block/polished_shale_clay_forge_controller_front_on"
+  }
+}

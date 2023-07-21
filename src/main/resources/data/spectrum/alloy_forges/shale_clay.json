@@ -1,0 +1,18 @@
+{
+  "material": "spectrum:polished_shale_clay",
+  "additional_materials": [
+    "spectrum:shale_clay_bricks",
+    "spectrum:shale_clay_tiles",
+
+    "spectrum:exposed_polished_shale_clay",
+    "spectrum:exposed_shale_clay_bricks",
+    "spectrum:exposed_shale_clay_tiles",
+
+    "spectrum:weathered_polished_shale_clay",
+    "spectrum:weathered_shale_clay_bricks",
+    "spectrum:weathered_shale_clay_tiles"
+  ],
+  "tier": 3,
+  "speed_multiplier": 2.5,
+  "fuel_capacity": 192000
+}

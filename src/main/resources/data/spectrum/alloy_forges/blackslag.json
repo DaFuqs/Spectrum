@@ -1,0 +1,15 @@
+{
+  "material": "spectrum:polished_blackslag",
+  "additional_materials": [
+    "spectrum:blackslag_tiles",
+    "spectrum:blackslag_bricks",
+    "spectrum:polished_blackslag_pillar",
+    "spectrum:chiseled_polished_blackslag",
+    "spectrum:ancient_chiseled_polished_blackslag",
+    "spectrum:cracked_blackslag_bricks",
+    "spectrum:cracked_blackslag_tiles"
+  ],
+  "tier": 3,
+  "speed_multiplier": 2,
+  "fuel_capacity": 96000
+}

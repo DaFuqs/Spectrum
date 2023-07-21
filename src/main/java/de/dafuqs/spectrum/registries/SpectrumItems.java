@@ -312,7 +312,7 @@ public class SpectrumItems {
 	public static final Item CLOTTED_CREAM = new ClottedCreamItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
 	public static final Item FRESH_CHOCOLATE = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.FRESH_CHOCOLATE), 10);
 	public static final Item HOT_CHOCOLATE = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.HOT_CHOCOLATE), SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS);
-	public static final Item BOCACIOUS_BERRY_BAR = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BOCACIOUS_BERRY_BAR));
+	public static final Item BODACIOUS_BERRY_BAR = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR));
 	public static final Item DEMON_TEA = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SCONE));
 	
@@ -788,7 +788,7 @@ public class SpectrumItems {
 		
 		register("clotted_cream", CLOTTED_CREAM, DyeColor.PINK);
 		register("fresh_chocolate", FRESH_CHOCOLATE, DyeColor.PINK);
-		register("bodacious_berry_bar", BOCACIOUS_BERRY_BAR, DyeColor.PINK);
+		register("bodacious_berry_bar", BODACIOUS_BERRY_BAR, DyeColor.PINK);
 		
 		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);

@@ -5,6 +5,7 @@ import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 
 public class MoonPhasePredicate implements WorldConditionPredicate {
+	public static final MoonPhasePredicate ANY = new MoonPhasePredicate(null);
 	
 	public final Integer moonPhase;
 	
@@ -13,7 +14,7 @@ public class MoonPhasePredicate implements WorldConditionPredicate {
 	}
 	
 	public static MoonPhasePredicate fromJson(JsonObject json) {
-		if (json == null || json.isJsonNull()) return (MoonPhasePredicate) ANY;
+		if (json == null || json.isJsonNull()) return ANY;
 		JsonElement jsonElement = json.get("moon_phase");
 		String s = jsonElement.getAsString();
 		if ("full_moon".equals(s)) {

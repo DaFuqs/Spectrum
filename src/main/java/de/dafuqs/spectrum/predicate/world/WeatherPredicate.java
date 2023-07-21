@@ -7,6 +7,7 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class WeatherPredicate implements WorldConditionPredicate {
+	public static final WeatherPredicate ANY = new WeatherPredicate(null);
 	
 	public enum WeatherCondition {
 		CLEAR_SKY,
@@ -23,7 +24,7 @@ public class WeatherPredicate implements WorldConditionPredicate {
 	}
 	
 	public static WeatherPredicate fromJson(JsonObject json) {
-		if (json == null || json.isJsonNull()) return (WeatherPredicate) ANY;
+		if (json == null || json.isJsonNull()) return ANY;
 		return new WeatherPredicate(WeatherCondition.valueOf(json.get("weather_condition").getAsString().toUpperCase(Locale.ROOT)));
 	}
 	

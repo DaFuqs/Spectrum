@@ -89,6 +89,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 					// sneaking or empty hand: remove items
 					for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
 						if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, i)) {
+							crystallarieumBlockEntity.updateInClientWorld();
 							crystallarieumBlockEntity.setOwner(player);
 							break;
 						}
@@ -99,10 +100,12 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 					// hand is full and inventory already contains item: exchange them
 					if (handStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
+							crystallarieumBlockEntity.updateInClientWorld();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					} else {
 						if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
+							crystallarieumBlockEntity.updateInClientWorld();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					}

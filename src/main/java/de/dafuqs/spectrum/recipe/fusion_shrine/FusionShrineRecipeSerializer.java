@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.predicate.world.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.fluid.*;

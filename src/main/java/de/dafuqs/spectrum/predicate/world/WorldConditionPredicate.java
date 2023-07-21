@@ -1,7 +1,6 @@
-package de.dafuqs.spectrum.recipe.fusion_shrine;
+package de.dafuqs.spectrum.predicate.world;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.recipe.fusion_shrine.world_conditions.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;

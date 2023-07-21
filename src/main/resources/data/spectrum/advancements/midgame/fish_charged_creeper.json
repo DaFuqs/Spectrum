@@ -1,0 +1,32 @@
+{
+  "parent": "spectrum:midgame/fish_in_many_liquids",
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_fishing_rod"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.fish_charged_creeper.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fish_charged_creeper.description"
+    }
+  },
+  "criteria": {
+    "fished_charged_creeper": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fished_entity": {
+          "type": "minecraft:creeper",
+          "nbt": "{powered:1b}"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
+      }
+    }
+  }
+}

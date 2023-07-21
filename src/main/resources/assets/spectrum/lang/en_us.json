@@ -3289,6 +3289,8 @@
   "advancements.spectrum.no_rgb.description": "What exactly did you expect to happen? We are doing CMY here. Keep the RGB in your keyboard",
   "advancements.spectrum.brew_no_potion_in_potion_workshop.title": "Become too greedy",
   "advancements.spectrum.brew_no_potion_in_potion_workshop.description": "Use so many potion reagents that reduce yield you end up with nothing",
+  "advancements.spectrum.fish_charged_creeper.title": "Dynamite Fishing",
+  "advancements.spectrum.fish_charged_creeper.description": "Fish up a charged Creeper. Sometimes everyone has their bad day",
 
   "advancements.spectrum.collect_one_cookbook.title": "TODO",
   "advancements.spectrum.collect_one_cookbook.description": "TODO",

@@ -1,7 +1,6 @@
-package de.dafuqs.spectrum.recipe.fusion_shrine.world_conditions;
+package de.dafuqs.spectrum.predicate.world;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 
@@ -14,6 +13,7 @@ public class MoonPhasePredicate implements WorldConditionPredicate {
 	}
 	
 	public static MoonPhasePredicate fromJson(JsonObject json) {
+        if (json == null || json.isJsonNull()) return (MoonPhasePredicate)ANY;
 		JsonElement jsonElement = json.get("moon_phase");
 		String s = jsonElement.getAsString();
 		if ("full_moon".equals(s)) {
@@ -28,6 +28,7 @@ public class MoonPhasePredicate implements WorldConditionPredicate {
 	
 	@Override
 	public boolean test(ServerWorld world, BlockPos pos) {
+		if (this == ANY) return true;
 		return this.moonPhase == world.getMoonPhase();
 	}
 	

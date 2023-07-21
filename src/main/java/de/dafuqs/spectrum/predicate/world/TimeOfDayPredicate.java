@@ -1,8 +1,7 @@
-package de.dafuqs.spectrum.recipe.fusion_shrine.world_conditions;
+package de.dafuqs.spectrum.predicate.world;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 
@@ -17,11 +16,13 @@ public class TimeOfDayPredicate implements WorldConditionPredicate {
 	}
 	
 	public static TimeOfDayPredicate fromJson(JsonObject json) {
+        if (json == null || json.isJsonNull()) return (TimeOfDayPredicate)ANY;
 		return new TimeOfDayPredicate(TimeHelper.TimeOfDay.valueOf(json.get("time").getAsString().toUpperCase(Locale.ROOT)));
 	}
 	
 	@Override
 	public boolean test(ServerWorld world, BlockPos pos) {
+		if (this == ANY) return true;
 		TimeHelper.TimeOfDay worldTimeOfDay = TimeHelper.getTimeOfDay(world);
 		switch (this.timeOfDay) {
 			case DAY -> {

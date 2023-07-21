@@ -111,6 +111,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond) {
 					ItemStack catalystStack = crystallarieum.getStack(CATALYST_SLOT_ID);
 					catalystStack.decrement(1);
+					crystallarieum.updateInClientWorld();
 					if (catalystStack.isEmpty()) {
 						crystallarieum.currentCatalyst = null;
 						if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
@@ -134,7 +135,6 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 							// if the stone on top can not grow any further: pause
 							if (!it.hasNext()) {
 								crystallarieum.canWork = false;
-								crystallarieum.updateInClientWorld();
 							}
 							
 							ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();

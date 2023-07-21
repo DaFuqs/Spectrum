@@ -49,6 +49,25 @@
           }
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:melochites_cookbook_vol_1"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:melochites_cookbook_vol_2"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
     }
   ]
 }

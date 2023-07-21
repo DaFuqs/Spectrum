@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.enums.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
@@ -38,7 +39,7 @@ public class SpectrumMultiblocks {
 	public static final Identifier CINDERHEARTH_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("cinderhearth_structure_with_upgrades");
 	public static final Identifier SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("spirit_instiller_structure_with_upgrades");
 	
-	private static void registerMultiBlock(Identifier identifier, String[][] structure, Object[] targetBlocks) {
+	public static void registerMultiBlock(Identifier identifier, String[][] structure, Object[] targetBlocks) {
 		IMultiblock multiblock = PatchouliAPI.get().makeMultiblock(structure, targetBlocks);
 		MULTIBLOCKS.put(identifier, PatchouliAPI.get().registerMultiblock(identifier, multiblock));
 	}
@@ -52,6 +53,8 @@ public class SpectrumMultiblocks {
 			registerEnchanter();
 			registerSpiritInstiller();
 			registerCinderhearth();
+			
+			SpectrumIntegrationPacks.registerMultiblocks();
 			registered = true;
 		}
 	}

@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.1,
+  "pattern": [
+    "XXX",
+    "XBX",
+    "XXX"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:blast_furnace"
+    },
+    "X": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result": {
+    "item": "alloy_forgery:polished_basalt_forge_controller"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alloy_forgery"
+      ]
+    }
+  ]
+}

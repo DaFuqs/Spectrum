@@ -1,0 +1,16 @@
+{
+  "material": "spectrum:polished_basalt",
+  "additional_materials": [
+    "spectrum:basalt_tiles",
+    "spectrum:cracked_basalt_bricks",
+    "spectrum:cracked_basalt_tiles",
+    "spectrum:polished_basalt_pillar",
+    "spectrum:polished_basalt_crest",
+    "spectrum:chiseled_polished_basalt",
+    "spectrum:notched_polished_basalt",
+    "spectrum:basalt_bricks"
+  ],
+  "tier": 2,
+  "speed_multiplier": 1.5,
+  "fuel_capacity": 96000
+}

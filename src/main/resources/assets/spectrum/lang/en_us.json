@@ -1736,6 +1736,13 @@
   "block.spectrum.pure_globette_nether_block": "Pure Nether Gobber Block",
   "block.spectrum.pure_globette_end_block": "Pure End Gobber Block",
 
+  "block.alloy_forgery.polished_basalt_forge_controller": "Basalt Forge Controller",
+  "block.alloy_forgery.polished_calcite_forge_controller": "Calcite Forge Controller",
+  "block.alloy_forgery.polished_shale_clay_forge_controller": "Shale-Clay Forge Controller",
+  "block.alloy_forgery.polished_bone_ash_forge_controller": "Bone Ash Forge Controller",
+  "block.alloy_forgery.pyrite_forge_controller": "Pyrite Forge Controller",
+  "block.alloy_forgery.polished_blackslag_forge_controller": "Blackslag Forge Controller",
+
   "block.spectrum.mob_block.tooltip": "When triggered via use/stepping on/projectile hit:",
   "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertilises a plant next to it",
   "block.spectrum.echolocating_mob_block.tooltip": "§7Echolocates creatures in a %d block radius",

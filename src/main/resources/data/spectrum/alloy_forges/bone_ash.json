@@ -1,0 +1,11 @@
+{
+  "material": "spectrum:polished_bone_ash",
+  "additional_materials": [
+    "spectrum:bone_ash_bricks",
+    "spectrum:bone_ash_tiles",
+    "spectrum:polished_bone_ash_pillar"
+  ],
+  "tier": 3,
+  "speed_multiplier": 3.0,
+  "fuel_capacity": 192000
+}

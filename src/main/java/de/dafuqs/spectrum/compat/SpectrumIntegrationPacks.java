@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
+import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.create.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.mythic_metals.*;
@@ -13,9 +14,16 @@ public class SpectrumIntegrationPacks {
 	
 	protected static final Map<String, ModIntegrationPack> INTEGRATION_PACKS = new HashMap<>();
 	
+	
 	public abstract static class ModIntegrationPack {
 		public abstract void register();
+		
 		public abstract void registerClient();
+		
+		public void registerMultiblocks() {
+		}
+		
+		;
 	}
 	
 	protected static void registerIntegrationPack(String modId, ModIntegrationPack container) {
@@ -29,6 +37,7 @@ public class SpectrumIntegrationPacks {
 		registerIntegrationPack("gobber2", new GobberCompat());
 		registerIntegrationPack("create", new CreateCompat());
 		registerIntegrationPack("mythicmetals", new MythicMetalsCompat());
+		registerIntegrationPack("alloy_forgery", new AlloyForgeryCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();
@@ -38,6 +47,12 @@ public class SpectrumIntegrationPacks {
 	public static void registerClient() {
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();
+		}
+	}
+	
+	public static void registerMultiblocks() {
+		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
+			container.registerMultiblocks();
 		}
 	}
 	

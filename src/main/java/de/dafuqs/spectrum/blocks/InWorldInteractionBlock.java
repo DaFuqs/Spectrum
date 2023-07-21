@@ -95,13 +95,17 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		} else {
 			ItemStack currentStack = blockEntity.getStack(slot);
 			if (!handStack.isEmpty() && !currentStack.isEmpty()) {
-				blockEntity.setStack(slot, handStack);
-				player.setStackInHand(hand, currentStack);
+				if (ItemStack.areItemsEqual(handStack, currentStack)) {
+					InventoryHelper.setOrCombineStack(blockEntity, slot, handStack);
+				} else {
+					blockEntity.setStack(slot, handStack);
+					player.setStackInHand(hand, currentStack);
+				}
 				itemsChanged = true;
 			} else {
 				if (!handStack.isEmpty()) {
-					ItemStack remainingStack = InventoryHelper.setOrCombineStack(blockEntity, slot, handStack);
-					player.setStackInHand(hand, remainingStack);
+					ItemStack singleStack = handStack.split(1);
+					blockEntity.setStack(slot, singleStack);
 					itemsChanged = true;
 				}
 				if (!currentStack.isEmpty()) {

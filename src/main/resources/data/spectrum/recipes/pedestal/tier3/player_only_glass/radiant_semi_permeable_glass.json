@@ -26,7 +26,7 @@
     }
   },
   "result": {
-    "item": "spectrum:glowing_semi_permeable_glass",
+    "item": "spectrum:radiant_semi_permeable_glass",
     "count": 6
   },
   "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"

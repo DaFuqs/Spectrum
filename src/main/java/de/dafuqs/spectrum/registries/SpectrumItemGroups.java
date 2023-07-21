@@ -213,7 +213,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ENDER_GLASS);
 		entries.add(SpectrumBlocks.BLOCK_PLACER);
 		entries.add(SpectrumBlocks.BLOCK_DETECTOR);
-		entries.add(SpectrumBlocks.PRIVATE_CHEST);
+		entries.add(SpectrumBlocks.HEARTBOUND_CHEST);
 		entries.add(SpectrumBlocks.COMPACTING_CHEST);
 		entries.add(SpectrumBlocks.RESTOCKING_CHEST);
 		entries.add(SpectrumBlocks.BLACK_HOLE_CHEST);
@@ -532,9 +532,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.BISMUTH_FLAKE);
 		entries.add(SpectrumItems.BISMUTH_CRYSTAL);
 		entries.add(SpectrumItems.RAW_MALACHITE);
-		entries.add(SpectrumItems.MALACHITE_CRYSTAL);
-		entries.add(SpectrumItems.FIERY_POWDER);
-		entries.add(SpectrumItems.BLIZZARD_POWDER);
+		entries.add(SpectrumItems.REFINED_MALACHITE);
+		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
+		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumItems.BONE_ASH);
 		entries.add(SpectrumItems.MOONSTONE_CORE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);

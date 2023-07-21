@@ -1,6 +1,6 @@
 {
   "name": "魔法方块",
   "description": "只需消耗一些神奇的魔法宝石矿，就可以完成诸多工作的魔法方块！$(br2) 还有一些魔法方块需要某种形式的能量来持续供能。",
-  "icon": "spectrum:private_chest",
+  "icon": "spectrum:heartbound_chest",
   "sortnum": 6
 }

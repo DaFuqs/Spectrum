@@ -22,7 +22,7 @@
     }
   },
   "result": {
-    "item": "spectrum:glowing_glass",
+    "item": "spectrum:radiant_glass",
     "count": 2
   },
   "required_advancement": "spectrum:collect_shimmerstone"

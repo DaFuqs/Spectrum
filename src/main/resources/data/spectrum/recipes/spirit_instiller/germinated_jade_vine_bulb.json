@@ -10,10 +10,10 @@
     "count": 16
   },
   "center_ingredient": {
-    "item": "spectrum:hibernating_jade_vine_seeds"
+    "item": "spectrum:hibernating_jade_vine_bulb"
   },
   "result": {
-    "item": "spectrum:germinated_jade_vine_seeds"
+    "item": "spectrum:germinated_jade_vine_bulb"
   },
-  "required_advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds"
+  "required_advancement": "spectrum:hidden/collect_hibernating_jade_vine_bulb"
 }

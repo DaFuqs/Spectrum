@@ -6,5 +6,5 @@
     "last_effect_duration_modifier": 2.0,
     "last_effect_potency_modifier": 2.0
   },
-  "required_advancement": "spectrum:collect_star_fragment"
+  "required_advancement": "spectrum:lategame/break_cracked_dragonbone"
 }

@@ -6,7 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:vanilla_semi_permeable_glass": 0,
     "spectrum:tinted_semi_permeable_glass": 0,
-    "spectrum:glowing_semi_permeable_glass": 0,
+    "spectrum:radiant_semi_permeable_glass": 0,
     "spectrum:topaz_semi_permeable_glass": 0,
     "spectrum:amethyst_semi_permeable_glass": 0,
     "spectrum:citrine_semi_permeable_glass": 0,
@@ -44,8 +44,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Glowing Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/glowing_semi_permeable_glass",
+      "title": "Radiant Variant",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/radiant_semi_permeable_glass",
       "text": ""
     }
   ]

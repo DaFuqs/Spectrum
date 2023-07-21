@@ -22,15 +22,15 @@
 	],
 	"advancement":"spectrum:midgame/build_advanced_pedestal_structure",
 	"extra_recipe_mappings":{
-		"spectrum:amethyst_semi_permeable_glass":0,
-		"spectrum:topaz_semi_permeable_glass":0,
-		"spectrum:vanilla_semi_permeable_glass":0,
-		"spectrum:glowing_semi_permeable_glass":0,
-		"spectrum:citrine_semi_permeable_glass":0,
-		"spectrum:tinted_semi_permeable_glass":0,
-		"spectrum:moonstone_semi_permeable_glass":0,
-		"spectrum:onyx_semi_permeable_glass":0
-	},
+      "spectrum:amethyst_semi_permeable_glass": 0,
+      "spectrum:topaz_semi_permeable_glass": 0,
+      "spectrum:vanilla_semi_permeable_glass": 0,
+      "spectrum:radiant_semi_permeable_glass": 0,
+      "spectrum:citrine_semi_permeable_glass": 0,
+      "spectrum:tinted_semi_permeable_glass": 0,
+      "spectrum:moonstone_semi_permeable_glass": 0,
+      "spectrum:onyx_semi_permeable_glass": 0
+    },
 	"name":"半渗透玻璃",
 	"icon":"spectrum:amethyst_semi_permeable_glass",
 	"category":"spectrum:magical_blocks_category"

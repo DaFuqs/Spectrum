@@ -256,12 +256,11 @@ public class SpectrumItems {
 	public static final Item STARDUST = new CloakedItemWithLoomPattern(IS.of(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(IS.of(), "item.spectrum.frigid_stardust.tooltip");
 	
-	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
-	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(IS.of(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
+	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(IS.of(16), "item.spectrum.hibernating_jade_vine_bulb.tooltip");
+	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(IS.of(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_bulb"), Items.LIME_DYE);
 	public static final Item JADE_VINE_PETALS = new CloakedItemWithLoomPattern(IS.of(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
 	public static final Item NEPHRITE_BLOSSOM_BULB = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, IS.of(16), "item.spectrum.jade_vine_parents.tooltip");
-	
 	public static final Item JADEITE_LOTUS_BULB = new BlockItemWithTooltip(SpectrumBlocks.JADEITE_LOTUS_BULB, IS.of(16), "item.spectrum.jade_vine_parents.tooltip");
 	public static final Item JADEITE_PETALS = new Item(IS.of(Rarity.UNCOMMON));
 	
@@ -627,8 +626,8 @@ public class SpectrumItems {
 		register("frigid_stardust", FRIGID_STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
 		
-		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY);
-		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_BULB, DyeColor.LIME);
+		register("hibernating_jade_vine_bulb", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY);
+		register("germinated_jade_vine_bulb", GERMINATED_JADE_VINE_BULB, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
 		
 		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB, DyeColor.PINK);

@@ -62,7 +62,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	
 	public static BlockEntityType<CompactingChestBlockEntity> COMPACTING_CHEST;
 	public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
-	public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
+	public static BlockEntityType<HeartboundChestBlockEntity> HEARTBOUND_CHEST;
 	public static BlockEntityType<BlackHoleChestBlockEntity> BLACK_HOLE_CHEST;
 	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
 	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
@@ -100,7 +100,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
 		RESTOCKING_CHEST = register("restocking_chest", RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST);
-		PRIVATE_CHEST = register("private_chest", PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST);
+		HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
 		BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
 		TREASURE_CHEST = register("treasure_chest", TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST);
 		AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA);
@@ -146,7 +146,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	
 	public static void registerClient() {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.TREASURE_CHEST, SpectrumChestBlockEntityRenderer::new);
@@ -162,26 +162,22 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-		
-		registerTextureAtlasCallback();
 	}
 	
 	private static void registerTextureAtlasCallback() {
 		// TODO - Fix chest textures
 		// textures that are only referenced in code have to be added to the texture atlas manually
-		
-		
-		//Register textures in chest atlas
-//		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
-//			registry.register(SpectrumCommon.locate("entity/private_chest"));
-//			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
-//		});
-//
-//		//Register textures in block atlas
-//		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
-//			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
-//			registry.register(SpectrumCommon.locate("entity/pastel_line"));
-//		});
+		// Register textures in chest atlas
+		//		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
+		//			registry.register(SpectrumCommon.locate("entity/private_chest"));
+		//			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
+		//		});
+		//
+		//		//Register textures in block atlas
+		//		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
+		//			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
+		//			registry.register(SpectrumCommon.locate("entity/pastel_line"));
+		//		});
 	}
 	
 }

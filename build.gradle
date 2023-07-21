@@ -14,6 +14,7 @@ repositories {
 	mavenLocal()
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com" }
+	maven { url "https://maven.nucleoid.xyz/" }
 	maven {
 		name = "Enchantment Descriptions"
 		url = 'https://maven.blamejared.com'
@@ -23,12 +24,17 @@ repositories {
 		url = 'https://maven.blamejared.com'
 	}
 	maven {
-		name = "Ladysnake Mods"
-		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+		name = 'Ladysnake Mods'
+		url = 'https://maven.ladysnake.org/releases'
 	}
-	maven {
-		url 'https://api.modrinth.com/maven'
-		content {
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
 			includeGroup "maven.modrinth"
 		}
 	}
@@ -74,7 +80,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// mine
-	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
+	modImplementation "maven.modrinth:Revelationary:${project.revelationary_version}"
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 
@@ -106,7 +112,7 @@ dependencies {
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 
-	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
+	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
 

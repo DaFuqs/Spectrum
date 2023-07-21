@@ -5,7 +5,7 @@
   "secret": true,
   "ingredients": [
     {
-      "item": "spectrum:malachite_crystal"
+      "item": "spectrum:refined_malachite"
     },
     {
       "item": "spectrum:refined_azurite"

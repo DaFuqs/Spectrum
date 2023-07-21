@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/blizzard_powder"
+    "layer0": "spectrum:item/frostbite_essence"
   }
 }

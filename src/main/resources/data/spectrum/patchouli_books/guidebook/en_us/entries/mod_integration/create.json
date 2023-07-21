@@ -49,14 +49,14 @@
       "title": "Milling Frostbite Crystal",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
       "item": "spectrum:frostbite_crystal",
-      "text": "Milling $(l:resources/liquid_crystal_powders)Frostbite Crystal$() will yield you a nice amount of $(item)Blizzard Powder$()."
+      "text": "Milling $(l:resources/liquid_crystal_essences)Frostbite Crystal$() will yield you a nice amount of $(item)Frostbite Essence$()."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Milling Blazing Crystal",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
       "item": "spectrum:blazing_crystal",
-      "text": "Milling $(l:resources/liquid_crystal_powders)Blazing Crystal$() will yield you a nice amount of $(item)Fiery Powder$()."
+      "text": "Milling $(l:resources/liquid_crystal_essences)Blazing Crystal$() will yield you a nice amount of $(item)Incandescent Essence$()."
     }
   ]
 }

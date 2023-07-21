@@ -14,8 +14,8 @@ public class SpectrumToolMaterials {
 		
 		BEDROCK(4, 0, 15.0F, 8.0F, 3, () -> Ingredient.ofItems(SpectrumItems.BEDROCK_DUST)),
 		DRACONIC(5, 10000, 9.0F, 7.0F, 2, () -> Ingredient.ofItems(SpectrumItems.REFINED_BLOODSTONE)),
-		MALACHITE(5, 1536, 9.0F, 5.0F, 20, () -> Ingredient.ofItems(SpectrumItems.MALACHITE_CRYSTAL)),
-		GLASS_CREST(5, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.ofItems(SpectrumItems.MALACHITE_CRYSTAL)),
+		MALACHITE(5, 1536, 9.0F, 5.0F, 20, () -> Ingredient.ofItems(SpectrumItems.REFINED_MALACHITE)),
+		GLASS_CREST(5, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.ofItems(SpectrumItems.REFINED_MALACHITE)),
 		
 		DREAMFLAYER(MiningLevels.IRON, 650, 5.0F, 2.0F, 20, () -> Ingredient.ofItems(SpectrumItems.BISMUTH_CRYSTAL)),
 		NIGHTFALL(MiningLevels.IRON, 650, 2.0F, 1.0F, 0, () -> Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP));

@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_malachite",
   "display": {
     "icon": {
-      "item": "spectrum:malachite_crystal"
+      "item": "spectrum:refined_malachite"
     },
     "title": {
       "translate": "advancements.spectrum.grow_malachite_in_crystallarieum.title"

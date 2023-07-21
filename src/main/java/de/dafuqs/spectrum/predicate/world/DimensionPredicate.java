@@ -10,6 +10,7 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class DimensionPredicate implements WorldConditionPredicate {
+	public static final DimensionPredicate ANY = new DimensionPredicate(null);
 	
 	public final List<RegistryKey<World>> dimensionKeys;
 	
@@ -18,7 +19,7 @@ public class DimensionPredicate implements WorldConditionPredicate {
 	}
 	
 	public static DimensionPredicate fromJson(JsonObject json) {
-        if (json == null || json.isJsonNull()) return (DimensionPredicate)ANY;
+        if (json == null || json.isJsonNull()) return ANY;
 		List<RegistryKey<World>> dimensionKeys = new ArrayList<>();
 		for (JsonElement element : json.get("worlds").getAsJsonArray()) {
 			dimensionKeys.add(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(element.getAsString())));

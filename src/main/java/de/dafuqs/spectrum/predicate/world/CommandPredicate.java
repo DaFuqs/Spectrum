@@ -8,6 +8,8 @@ import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 
 public class CommandPredicate implements WorldConditionPredicate, CommandOutput {
+	public static final CommandPredicate ANY = new CommandPredicate(null);
+	
 	public final String command;
 	
 	public CommandPredicate(String command) {
@@ -15,7 +17,7 @@ public class CommandPredicate implements WorldConditionPredicate, CommandOutput 
 	}
 	
 	public static CommandPredicate fromJson(JsonObject json) {
-        if (json == null || json.isJsonNull()) return (CommandPredicate)ANY;
+        if (json == null || json.isJsonNull()) return ANY;
 		return new CommandPredicate(json.get("command").getAsString());
 	}
 	

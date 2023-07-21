@@ -1,6 +1,13 @@
 {
   "values": [
+    "minecraft:ice",
+    "minecraft:packed_ice",
     "minecraft:blue_ice",
-    "spectrum:frostbite_crystal"
+    "spectrum:frostbite_crystal",
+
+    {
+      "id": "powah:dry_ice",
+      "required": false
+    }
   ]
 }

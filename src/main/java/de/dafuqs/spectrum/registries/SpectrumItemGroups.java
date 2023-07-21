@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.minecraft.block.*;
@@ -29,6 +28,10 @@ public class SpectrumItemGroups {
 			.entries((displayContext, entries) -> entries.add(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.noRenderedName()
 			.build();
+	
+	public static void register() {
+	
+	}
 	
 	public static final ItemSubGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.equipment")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.GUIDEBOOK);
@@ -145,8 +148,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.HERDING_STAFF);
 		entries.add(SpectrumItems.CONSTRUCTORS_STAFF);
 		entries.add(SpectrumItems.EXCHANGING_STAFF);
-		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.FORTUNE, 1, false, false));
-		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.SILK_TOUCH, 3, false, false));
+		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.FORTUNE, 3, false, false));
+		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.SILK_TOUCH, 1, false, false));
 		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), SpectrumEnchantments.RESONANCE, 1, false, false));
 		entries.add(SpectrumItems.BLOCK_FLOODER);
 		entries.add(SpectrumItems.ENDER_SPLICE);
@@ -1247,15 +1250,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.KINDLING_SPAWN_EGG);
 		entries.add(SpectrumItems.LIZARD_SPAWN_EGG);
 		entries.add(SpectrumItems.SPAWNER);
-		
-		// All memories that have recipes
-		Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-		DynamicRegistryManager drm = SpectrumCommon.minecraftServer.getRegistryManager();
-		for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-			if (recipe.getOutput(drm).isOf(memoryItem)) {
-				entries.add(recipe.getOutput(drm));
-			}
-		}
+		entries.add(SpectrumBlocks.MEMORY);
 	}).build();
 	
 	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.energy")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {

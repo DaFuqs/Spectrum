@@ -55,7 +55,6 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "advancement": "spectrum:lategame/collect_pure_resource",
       "title": "Cinderhearth Smelting",
       "recipe": "spectrum:cinderhearth/pure_resources/pure_iron",
       "recipe2": "spectrum:cinderhearth/pure_resources/pure_gold",
@@ -66,6 +65,12 @@
       "title": "Compressing",
       "recipe": "spectrum:crafting_table/storage_blocks/pure_quartz_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/pure_quartz_from_quartz_storage_block"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Creating Netherite",
+      "recipe": "spectrum:fusion_shrine/vanilla/pure_netherite_ingot",
+      "text": "It doesn't get much more efficient or risk-free than that."
     }
   ]
 }

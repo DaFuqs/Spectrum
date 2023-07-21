@@ -81,9 +81,7 @@ dependencies {
 	// we need a bit of concern
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"

@@ -23,7 +23,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:fiery_powder"
+        "item": "spectrum:incandescent_essence"
       },
       "growth_acceleration_mod": 16.0,
       "ink_consumption_mod": 2.0,

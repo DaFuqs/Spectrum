@@ -7,17 +7,17 @@
   ],
   "results": [
     {
-      "item": "spectrum:fiery_powder",
+      "item": "spectrum:incandescent_essence",
       "count": 12,
       "chance": 1.0
     },
     {
-      "item": "spectrum:fiery_powder",
+      "item": "spectrum:incandescent_essence",
       "count": 2,
       "chance": 0.5
     },
     {
-      "item": "spectrum:fiery_powder",
+      "item": "spectrum:incandescent_essence",
       "count": 2,
       "chance": 0.5
     }

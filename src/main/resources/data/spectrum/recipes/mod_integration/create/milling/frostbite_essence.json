@@ -7,17 +7,17 @@
   ],
   "results": [
     {
-      "item": "spectrum:blizzard_powder",
+      "item": "spectrum:frostbite_essence",
       "count": 12,
       "chance": 1.0
     },
     {
-      "item": "spectrum:blizzard_powder",
+      "item": "spectrum:frostbite_essence",
       "count": 2,
       "chance": 0.5
     },
     {
-      "item": "spectrum:blizzard_powder",
+      "item": "spectrum:frostbite_essence",
       "count": 2,
       "chance": 0.5
     }

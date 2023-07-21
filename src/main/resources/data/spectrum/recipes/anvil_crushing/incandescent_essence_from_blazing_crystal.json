@@ -1,16 +1,16 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:frostbite_crystal"
+    "item": "spectrum:blazing_crystal"
   },
   "crushedItemsPerPointOfDamage": 1.5,
   "experience": 4.0,
   "result": {
-    "item": "spectrum:blizzard_powder",
+    "item": "spectrum:incandescent_essence",
     "count": 16
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,
   "soundEventIdentifier": "block.glass.break",
-  "required_advancement": "spectrum:hidden/collect_frostbite_crystal"
+  "required_advancement": "spectrum:hidden/collect_blazing_crystal"
 }

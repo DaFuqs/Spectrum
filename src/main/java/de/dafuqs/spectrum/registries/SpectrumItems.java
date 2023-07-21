@@ -218,9 +218,8 @@ public class SpectrumItems {
 	
 	public static final Item BISMUTH_FLAKE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-	
 	public static final Item RAW_MALACHITE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	public static final Item MALACHITE_CRYSTAL = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item REFINED_MALACHITE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, IS.of(1).recipeRemainder(Items.BUCKET));
@@ -393,8 +392,8 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.RARE));
 	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
 	
-	public static final Item FIERY_POWDER = new Item(IS.of());
-	public static final Item BLIZZARD_POWDER = new Item(IS.of());
+	public static final Item INCANDESCENT_ESSENCE = new Item(IS.of());
+	public static final Item FROSTBITE_ESSENCE = new Item(IS.of());
 	public static final Item BONE_ASH = new Item(IS.of());
 	public static final Item MOONSTONE_CORE = new Item(IS.of(8, Rarity.RARE));
 	
@@ -650,10 +649,10 @@ public class SpectrumItems {
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 		
 		register("raw_malachite", RAW_MALACHITE, DyeColor.GREEN);
-		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.GREEN);
+		register("refined_malachite", REFINED_MALACHITE, DyeColor.GREEN);
 		
-		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
-		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
+		register("incandescent_essence", INCANDESCENT_ESSENCE, DyeColor.ORANGE);
+		register("frostbite_essence", FROSTBITE_ESSENCE, DyeColor.LIGHT_BLUE);
 		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);

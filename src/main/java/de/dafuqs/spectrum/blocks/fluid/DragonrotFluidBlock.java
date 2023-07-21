@@ -8,6 +8,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.effect.*;
+import net.minecraft.entity.mob.*;
 import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
@@ -51,7 +52,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 		
 		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
 			// just check every 20 ticks for performance
-			if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
+			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
 					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
 				} else {

@@ -6,6 +6,8 @@ import net.minecraft.command.argument.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -26,15 +28,19 @@ public class LightSpearEntity extends LightShardBaseEntity {
         super.tick();
         
         targetEntity.ifPresent(entity -> this.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, entity.getPos()));
-    }
-    
-    @Override
-    public Identifier getTexture() {
-        return SpectrumCommon.locate("textures/entity/projectile/light_spear.png");
-    }
-    
-    public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
-        summonBarrageInternal(world, user, () -> new LightSpearEntity(world, user, Optional.ofNullable(target), 12.0F, 200));
-    }
-    
+	}
+	
+	@Override
+	public Identifier getTexture() {
+		return SpectrumCommon.locate("textures/entity/projectile/light_spear.png");
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
+		summonBarrage(world, user, target, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, Vec3d position, IntProvider count) {
+		summonBarrageInternal(world, user, () -> new LightSpearEntity(world, user, Optional.ofNullable(target), 12.0F, 200), position, count);
+	}
+	
 }

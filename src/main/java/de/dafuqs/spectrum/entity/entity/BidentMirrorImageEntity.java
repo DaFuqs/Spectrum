@@ -2,15 +2,14 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
-import net.minecraft.sound.*;
 import net.minecraft.util.hit.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 
-public class BidentMirrorImageEntity extends BidentEntity {
+public class BidentMirrorImageEntity extends BidentBaseEntity {
     
     public BidentMirrorImageEntity(World world) {
         this(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, world);
@@ -32,20 +31,21 @@ public class BidentMirrorImageEntity extends BidentEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 2);
+        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
+        if (!world.isClient) {
+            LightShardEntity.summonBarrage(world, getOwner() instanceof LivingEntity livingOwner ? livingOwner : null, entityHitResult.getEntity(), this.getPos(), UniformIntProvider.create(1, 3));
+        }
         this.discard();
     }
     
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         super.onBlockHit(blockHitResult);
-        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 2);
+        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
+        if (!world.isClient) {
+            LightShardEntity.summonBarrage(world, getOwner() instanceof LivingEntity livingOwner ? livingOwner : null, null, this.getPos(), UniformIntProvider.create(1, 3));
+        }
         this.discard();
-    }
-    
-    @Override
-    protected SoundEvent getHitSound() {
-        return SpectrumSoundEvents.BIDENT_HIT_GROUND;
     }
     
 }

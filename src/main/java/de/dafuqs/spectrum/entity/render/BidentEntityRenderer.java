@@ -15,7 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
-public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
+public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private final ItemRenderer itemRenderer;
 	
@@ -25,31 +25,31 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
 	}
 	
 	@Override
-	public void render(BidentEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		ItemStack itemStack = bidentEntity.getStack();
-		renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
-		super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	public void render(BidentBaseEntity bidentBaseEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		ItemStack itemStack = bidentBaseEntity.getStack();
+		renderAsItemStack(bidentBaseEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
+		super.render(bidentBaseEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 	
-	private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
+	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
 		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformation.Mode.NONE;
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
 		
 		matrixStack.push();
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
-        matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
-
-        float scale = 2.0F;
-        matrixStack.scale(scale, scale, scale);
+		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
+		matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
+		
+		float scale = 2.0F;
+		matrixStack.scale(scale, scale, scale);
 
         this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
 
         matrixStack.pop();
     }
-
-    @Override
-    public Identifier getTexture(BidentEntity entity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
-    }
+	
+	@Override
+	public Identifier getTexture(BidentBaseEntity entity) {
+		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+	}
 
 }

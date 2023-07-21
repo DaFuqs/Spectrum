@@ -1,20 +1,13 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
-import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.*;
+import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.data.*;
 import net.minecraft.entity.projectile.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.sound.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.world.*;
 
-public class BidentEntity extends TridentEntity {
-    
-    private static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+public class BidentEntity extends BidentBaseEntity {
     
     public BidentEntity(World world) {
         this(SpectrumEntityTypes.BIDENT, world);
@@ -25,31 +18,15 @@ public class BidentEntity extends TridentEntity {
     }
     
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(STACK, Items.AIR.getDefaultStack());
-    }
-    
-    public void setStack(ItemStack stack) {
-        this.dataTracker.set(STACK, stack.copy());
-        ((TridentEntityAccessor) this).spectrum$setTridentStack(stack);
-        this.dataTracker.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) EnchantmentHelper.getLoyalty(stack));
-        this.dataTracker.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasGlint());
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 2);
     }
     
     @Override
-    protected SoundEvent getHitSound() {
-        return SpectrumSoundEvents.BIDENT_HIT_GROUND;
-    }
-    
-    public ItemStack getStack() {
-        return this.dataTracker.get(STACK);
-    }
-    
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(STACK, ItemStack.fromNbt(nbt.getCompound("Trident")));
+    protected void onBlockHit(BlockHitResult blockHitResult) {
+        super.onBlockHit(blockHitResult);
+        MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 2);
     }
     
 }

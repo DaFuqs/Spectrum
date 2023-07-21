@@ -1,8 +1,13 @@
 package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
+import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
+import de.dafuqs.spectrum.predicate.block.LightPredicate;
+import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.predicate.entity.*;
+import de.dafuqs.spectrum.predicate.world.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
@@ -32,7 +37,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 	}
 	
 	public record EntityFishingEntry(
-			FluidPredicate fluidPredicate,
+			EntityFishingPredicate predicate,
 			float entityChance,
 			DataPool<EntityFishingEntity> weightedEntities
 	) {
@@ -48,7 +53,17 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			
-			FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
+			EntityFishingPredicate predicate = new EntityFishingPredicate(
+					FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
+					BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
+					LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
+					DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
+					MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),
+					TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "timeOfDay", null)),
+					WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
+					CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
+			);
+			
 			float chance = JsonHelper.getFloat(jsonObject, "chance");
 			JsonArray entityArray = JsonHelper.getArray(jsonObject, "entities");
 			
@@ -63,6 +78,12 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				if (JsonHelper.hasJsonObject(entryObject, "nbt")) {
 					JsonObject nbtObject = JsonHelper.getObject(entryObject, "nbt");
 					nbt = Optional.of(NbtHelper.fromJsonObject(nbtObject));
+				} else if (JsonHelper.hasString(entryObject, "nbt")) {
+					try {
+						nbt = Optional.of(StringNbtReader.parse(JsonHelper.asString(entryObject, "nbt")));
+					} catch (CommandSyntaxException exception) {
+						exception.printStackTrace();
+					}
 				}
 				
 				int weight = 1;
@@ -73,7 +94,11 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				entities.add(new EntityFishingEntity(entityType, nbt), weight);
 			});
 			
-			ENTITY_FISHING_ENTRIES.add(new EntityFishingEntry(fluidPredicate, chance, entities.build()));
+			ENTITY_FISHING_ENTRIES.add(new EntityFishingEntry(
+					predicate,
+					chance,
+					entities.build()
+			));
 		});
 	}
 	
@@ -84,7 +109,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 	
 	public static Optional<EntityFishingEntity> tryCatchEntity(ServerWorld world, BlockPos pos, int bigCatchLevel) {
 		for (EntityFishingEntry entry : ENTITY_FISHING_ENTRIES) {
-			if (entry.fluidPredicate.test(world, pos)) {
+			if (entry.predicate.test(world, pos)) {
 				if (world.random.nextFloat() < entry.entityChance * (1 + bigCatchLevel)) {
 					var x = entry.weightedEntities.getOrEmpty(world.random);
 					if (x.isPresent()) {

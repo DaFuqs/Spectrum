@@ -4,7 +4,9 @@ import com.mojang.logging.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.EntityFishingEntity;
 import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
@@ -19,6 +21,8 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.network.*;
@@ -499,10 +503,19 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	private boolean tryCatchEntity(ItemStack usedItem, PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
-		Optional<EntityType<?>> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos, this.bigCatchLevel);
-		if (catchedEntityType.isPresent()) {
-			Entity entity = catchedEntityType.get().spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
+		Optional<EntityFishingEntity> caughtEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos, this.bigCatchLevel);
+		if (caughtEntityType.isPresent()) {
+			EntityType<?> entityType = caughtEntityType.get().entityType();
+			Optional<NbtCompound> nbt = caughtEntityType.get().nbt();
+			
+			Entity entity = entityType.spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
 			if (entity != null) {
+				if (nbt.isPresent()) {
+					NbtElement originalNbt = (NbtElement)entity.writeNbt(new NbtCompound());
+					NbtElement mergedNbt = NbtHelper.mergeNbt(originalNbt, nbt.get());
+					entity.readNbt((NbtCompound)mergedNbt);
+				}
+				
 				double xDif = playerEntity.getX() - this.getX();
 				double yDif = playerEntity.getY() - this.getY();
 				double zDif = playerEntity.getZ() - this.getZ();
@@ -518,9 +531,11 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					mobEntity.playSpawnEffects();
 				}
 				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, entity, List.of());
+				
+				return true;
 			}
-			return entity != null;
 		}
+		
 		return false;
 	}
 	

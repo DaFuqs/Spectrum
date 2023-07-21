@@ -26,7 +26,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<CapriciousArrowEntity> CAPRICIOUS_ARROW = register("capricious_arrow", EntityType.Builder.<CapriciousArrowEntity>create(CapriciousArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
 	public static final EntityType<MiningProjectileEntity> MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 	public static final EntityType<BidentEntity> BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
-	public static final EntityType<BidentEntity> BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
+	public static final EntityType<BidentMirrorImageEntity> BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
 	public static final EntityType<LightShardEntity> LIGHT_SHARD = register("light_shard", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightShardEntity::new);
 	public static final EntityType<LightSpearEntity> LIGHT_SPEAR = register("light_spear", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightSpearEntity::new);
 	public static final EntityType<LightMineEntity> LIGHT_MINE = register("light_mine", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightMineEntity::new);

@@ -15,7 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
-public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
+public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private final ItemRenderer itemRenderer;
 	
@@ -25,13 +25,13 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
 	}
 	
 	@Override
-	public void render(BidentEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+	public void render(BidentBaseEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		ItemStack itemStack = bidentEntity.getStack();
 		renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
 		super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 	
-	private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
+	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
 		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
 		
@@ -48,8 +48,8 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
 	}
 	
 	@Override
-    public Identifier getTexture(BidentEntity entity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
-    }
+	public Identifier getTexture(BidentBaseEntity entity) {
+		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+	}
 
 }

@@ -13,6 +13,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -21,6 +22,7 @@ import java.util.function.*;
 
 public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
+	protected static final IntProvider DEFAULT_COUNT_PROVIDER = UniformIntProvider.create(7, 13);
 	private static final TrackedData<Integer> MAX_AGE = DataTracker.registerData(LightShardBaseEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
 	public static final int DECELERATION_PHASE_LENGTH = 25;
@@ -187,10 +189,9 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		super.onRemoved();
 	}
 	
-	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier) {
+	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
 		var random = user.getRandom();
-		var projectiles = MathHelper.nextGaussian(random, 13, 5);
-		var pos = user.getEyePos();
+		var projectiles = count.get(random);
 		
 		user.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE.value(), 1, 1.2F + random.nextFloat() * 0.6F);
 		

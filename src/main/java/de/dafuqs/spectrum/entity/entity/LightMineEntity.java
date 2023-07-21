@@ -11,47 +11,53 @@ import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.potion.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class LightMineEntity extends LightShardBaseEntity {
-    
-    private static final int NO_POTION_COLOR = -1;
-    private static final TrackedData<Integer> COLOR = DataTracker.registerData(LightMineEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private boolean colorSet;
-    
-    protected final Set<StatusEffectInstance> effects = Sets.newHashSet();
-    
-    public LightMineEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
-        super(entityType, world);
-    }
-    
-    public LightMineEntity(World world, LivingEntity owner, Optional<Entity> target, float detectionRange, float damage, float lifeSpanTicks) {
-        super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
-    }
-    
-    public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects) {
-        summonBarrageInternal(world, user, () -> {
-            LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 4, 1.0F, 800);
-            entity.setEffects(effects);
-            return entity;
-        });
-    }
-    
-    public void setEffects(List<StatusEffectInstance> effects) {
-        this.effects.addAll(effects);
-        if (this.effects.isEmpty()) {
-            setColor(16777215);
-        } else {
-            setColor(PotionUtil.getColor(this.effects));
-        }
-    }
-    
-    public int getColor() {
-        return this.dataTracker.get(COLOR);
-    }
+	
+	private static final int NO_POTION_COLOR = -1;
+	private static final TrackedData<Integer> COLOR = DataTracker.registerData(LightMineEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private boolean colorSet;
+	
+	protected final Set<StatusEffectInstance> effects = Sets.newHashSet();
+	
+	public LightMineEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
+		super(entityType, world);
+	}
+	
+	public LightMineEntity(World world, LivingEntity owner, Optional<Entity> target, float detectionRange, float damage, float lifeSpanTicks) {
+		super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects) {
+		summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
+		summonBarrageInternal(world, user, () -> {
+			LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 4, 1.0F, 800);
+			entity.setEffects(effects);
+			return entity;
+		}, position, count);
+	}
+	
+	public void setEffects(List<StatusEffectInstance> effects) {
+		this.effects.addAll(effects);
+		if (this.effects.isEmpty()) {
+			setColor(16777215);
+		} else {
+			setColor(PotionUtil.getColor(this.effects));
+		}
+	}
+	
+	public int getColor() {
+		return this.dataTracker.get(COLOR);
+	}
     
     private void setColor(int color) {
         this.colorSet = true;

@@ -122,26 +122,26 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted {
 	protected void throwBident(ItemStack stack, ServerWorld world, PlayerEntity playerEntity) {
 		boolean mirrorImage = isThrownAsMirrorImage(stack, world, playerEntity);
 		
-		BidentEntity bidentEntity = mirrorImage ? new BidentMirrorImageEntity(world) : new BidentEntity(world);
-		bidentEntity.setStack(stack);
-		bidentEntity.setOwner(playerEntity);
-		bidentEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-		bidentEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(), 1.0F);
+		BidentBaseEntity bidentBaseEntity = mirrorImage ? new BidentMirrorImageEntity(world) : new BidentEntity(world);
+		bidentBaseEntity.setStack(stack);
+		bidentBaseEntity.setOwner(playerEntity);
+		bidentBaseEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
+		bidentBaseEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(), 1.0F);
 		if (!mirrorImage && playerEntity.getAbilities().creativeMode) {
-			bidentEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
 		}
 		
-		world.spawnEntity(bidentEntity);
+		world.spawnEntity(bidentBaseEntity);
 		SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_THROW;
 		if (mirrorImage) {
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, bidentEntity.getPos(), SpectrumParticleTypes.MIRROR_IMAGE, 8, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
-			bidentEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, bidentBaseEntity.getPos(), SpectrumParticleTypes.MIRROR_IMAGE, 8, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
+			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
 			soundEvent = SpectrumSoundEvents.BIDENT_MIRROR_IMAGE_THROWN;
 		} else if (playerEntity.getAbilities().creativeMode) {
-			bidentEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
+			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
 		}
 		
-		world.playSoundFromEntity(null, bidentEntity, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		world.playSoundFromEntity(null, bidentBaseEntity, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		if (!playerEntity.getAbilities().creativeMode && !mirrorImage) {
 			playerEntity.getInventory().removeOne(stack);
 		}

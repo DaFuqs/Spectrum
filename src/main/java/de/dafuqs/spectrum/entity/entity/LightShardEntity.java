@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -21,7 +23,11 @@ public class LightShardEntity extends LightShardBaseEntity {
 	}
 	
 	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
-		summonBarrageInternal(world, user, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200));
+		summonBarrage(world, user, target, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, Vec3d position, IntProvider count) {
+		summonBarrageInternal(world, user, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200), position, count);
 	}
 	
 	@Override

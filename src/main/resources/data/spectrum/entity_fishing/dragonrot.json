@@ -1,24 +1,27 @@
 {
   "fluid": {
-    "tag": "minecraft:water"
+    "tag": "spectrum:dragonrot"
   },
-  "chance": 0.05,
+  "chance": 0.1,
   "entities": [
     {
       "id": "minecraft:cod",
-      "weight": 10
+      "weight": 2
     },
     {
       "id": "minecraft:salmon",
-      "weight": 10
+      "weight": 2
     },
     {
       "id": "minecraft:pufferfish",
-      "weight": 5
+      "weight": 10
     },
     {
-      "id": "minecraft:squid",
-      "weight": 2
+      "id": "minecraft:creeper",
+      "weight": 5,
+      "nbt": {
+        "powered": true
+      }
     }
   ]
 }

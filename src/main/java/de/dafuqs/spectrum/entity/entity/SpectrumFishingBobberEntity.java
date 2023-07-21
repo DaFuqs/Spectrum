@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
@@ -507,14 +506,14 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			EntityType<?> entityType = caughtEntityType.get().entityType();
 			Optional<NbtCompound> nbt = caughtEntityType.get().nbt();
 			
-			Entity entity = entityType.spawn(world, null, null, blockPos, SpawnReason.TRIGGERED, false, false);
+			NbtCompound entityNbt = null;
+			if (nbt.isPresent()) {
+				entityNbt = new NbtCompound();
+				entityNbt.put("EntityTag", nbt.get());
+			}
+			
+			Entity entity = entityType.spawn(world, entityNbt, null, blockPos, SpawnReason.TRIGGERED, false, false);
 			if (entity != null) {
-				if (nbt.isPresent()) {
-					NbtElement originalNbt = entity.writeNbt(new NbtCompound());
-					NbtElement mergedNbt = NbtHelper.mergeNbt(originalNbt, nbt.get());
-					entity.readNbt((NbtCompound) mergedNbt);
-				}
-				
 				double xDif = playerEntity.getX() - this.getX();
 				double yDif = playerEntity.getY() - this.getY();
 				double zDif = playerEntity.getZ() - this.getZ();

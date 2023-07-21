@@ -82,6 +82,25 @@
           "name": "spectrum:chests/sub_tables/fancyful_trinkets"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:imperial_cookbook"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:brewers_handbook"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
     }
   ]
 }

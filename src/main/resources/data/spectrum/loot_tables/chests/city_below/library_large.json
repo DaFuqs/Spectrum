@@ -49,26 +49,22 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": {
+        "min": 0,
+        "max": 1
+      },
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:writable_book"
-        }
-      ],
-      "functions": [
+          "name": "spectrum:imbrifer_cookbook"
+        },
         {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 1,
-            "max": 2
-          }
-        }
-      ],
-      "conditions": [
+          "type": "minecraft:item",
+          "name": "spectrum:melochites_cookbook_vol_1"
+        },
         {
-          "condition": "minecraft:random_chance",
-          "chance": 0.5
+          "type": "minecraft:item",
+          "name": "spectrum:melochites_cookbook_vol_2"
         }
       ]
     }

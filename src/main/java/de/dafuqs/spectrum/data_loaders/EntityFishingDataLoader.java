@@ -78,7 +78,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 					nbt = Optional.of(NbtHelper.fromJsonObject(nbtObject));
 				} else if (JsonHelper.hasString(entryObject, "nbt")) {
 					try {
-						nbt = Optional.of(StringNbtReader.parse(JsonHelper.asString(entryObject, "nbt")));
+						nbt = Optional.of(StringNbtReader.parse(JsonHelper.getString(entryObject, "nbt")));
 					} catch(CommandSyntaxException exception) {
 						exception.printStackTrace();
 					}

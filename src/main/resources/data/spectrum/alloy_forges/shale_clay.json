@@ -13,6 +13,6 @@
     "spectrum:weathered_shale_clay_tiles"
   ],
   "tier": 3,
-  "speed_multiplier": 2.5,
-  "fuel_capacity": 192000
+  "speed_multiplier": 2.0,
+  "fuel_capacity": 384000
 }

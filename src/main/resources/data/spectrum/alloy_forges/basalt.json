@@ -11,6 +11,6 @@
     "spectrum:basalt_bricks"
   ],
   "tier": 2,
-  "speed_multiplier": 1.5,
-  "fuel_capacity": 96000
+  "speed_multiplier": 1.0,
+  "fuel_capacity": 192000
 }

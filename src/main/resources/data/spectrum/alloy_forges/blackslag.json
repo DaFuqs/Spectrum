@@ -10,6 +10,6 @@
     "spectrum:cracked_blackslag_tiles"
   ],
   "tier": 3,
-  "speed_multiplier": 2,
+  "speed_multiplier": 2.5,
   "fuel_capacity": 96000
 }

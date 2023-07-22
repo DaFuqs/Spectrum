@@ -5,7 +5,7 @@
     "spectrum:bone_ash_tiles",
     "spectrum:polished_bone_ash_pillar"
   ],
-  "tier": 3,
+  "tier": 4,
   "speed_multiplier": 3.0,
   "fuel_capacity": 192000
 }

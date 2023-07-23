@@ -10,13 +10,13 @@ import net.minecraft.util.collection.*;
 
 public class EnchanterRecipeSerializer implements GatedRecipeSerializer<EnchanterRecipe> {
 	
-	public final EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory;
+	public final EnchanterRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public EnchanterRecipeSerializer(EnchanterRecipeSerializer.RecipeFactory<EnchanterRecipe> recipeFactory) {
+	public EnchanterRecipeSerializer(EnchanterRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<EnchanterRecipe> {
+	public interface RecipeFactory {
 		EnchanterRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, DefaultedList<Ingredient> inputs, ItemStack output, int craftingTime, int requiredExperience, boolean noBenefitsFromYieldAndEfficiencyUpgrades);
 	}
 	

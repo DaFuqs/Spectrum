@@ -16,13 +16,13 @@ import java.util.*;
 
 public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<PedestalCraftingRecipe> {
 	
-	public final PedestalCraftingRecipeSerializer.RecipeFactory<PedestalCraftingRecipe> recipeFactory;
+	public final PedestalCraftingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public PedestalCraftingRecipeSerializer(PedestalCraftingRecipeSerializer.RecipeFactory<PedestalCraftingRecipe> recipeFactory) {
+	public PedestalCraftingRecipeSerializer(PedestalCraftingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<PedestalCraftingRecipe> {
+	public interface RecipeFactory {
 		PedestalCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, PedestalRecipeTier tier, int width, int height,
 		                              DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
 		                              ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);

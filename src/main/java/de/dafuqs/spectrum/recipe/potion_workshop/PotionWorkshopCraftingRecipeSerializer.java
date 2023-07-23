@@ -9,13 +9,13 @@ import net.minecraft.util.*;
 
 public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopCraftingRecipe> {
 	
-	public final PotionWorkshopCraftingRecipeSerializer.RecipeFactory<PotionWorkshopCraftingRecipe> recipeFactory;
+	public final PotionWorkshopCraftingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipeSerializer.RecipeFactory<PotionWorkshopCraftingRecipe> recipeFactory) {
+	public PotionWorkshopCraftingRecipeSerializer(PotionWorkshopCraftingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<PotionWorkshopCraftingRecipe> {
+	public interface RecipeFactory {
 		PotionWorkshopCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color);
 	}
 	

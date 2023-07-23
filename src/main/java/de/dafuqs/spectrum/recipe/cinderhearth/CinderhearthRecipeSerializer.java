@@ -11,13 +11,13 @@ import java.util.*;
 
 public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<CinderhearthRecipe> {
 	
-	public final RecipeFactory<CinderhearthRecipe> recipeFactory;
+	public final RecipeFactory recipeFactory;
 	
-	public CinderhearthRecipeSerializer(RecipeFactory<CinderhearthRecipe> recipeFactory) {
+	public CinderhearthRecipeSerializer(RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<CinderhearthRecipe> {
+	public interface RecipeFactory {
 		CinderhearthRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance);
 	}
 	

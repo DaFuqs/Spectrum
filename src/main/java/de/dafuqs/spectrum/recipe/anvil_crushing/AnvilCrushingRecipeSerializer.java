@@ -9,13 +9,13 @@ import net.minecraft.util.*;
 
 public class AnvilCrushingRecipeSerializer implements GatedRecipeSerializer<AnvilCrushingRecipe> {
 	
-	public final AnvilCrushingRecipeSerializer.RecipeFactory<AnvilCrushingRecipe> recipeFactory;
+	public final AnvilCrushingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public AnvilCrushingRecipeSerializer(AnvilCrushingRecipeSerializer.RecipeFactory<AnvilCrushingRecipe> recipeFactory) {
+	public AnvilCrushingRecipeSerializer(AnvilCrushingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<AnvilCrushingRecipe> {
+	public interface RecipeFactory {
 		AnvilCrushingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
 	}
 	

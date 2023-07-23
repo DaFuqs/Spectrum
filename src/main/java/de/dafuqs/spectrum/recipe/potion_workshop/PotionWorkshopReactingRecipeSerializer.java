@@ -13,13 +13,13 @@ import java.util.stream.*;
 
 public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopReactingRecipe> {
 	
-	public final PotionWorkshopReactingRecipeSerializer.RecipeFactory<PotionWorkshopReactingRecipe> recipeFactory;
+	public final PotionWorkshopReactingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipeSerializer.RecipeFactory<PotionWorkshopReactingRecipe> recipeFactory) {
+	public PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<PotionWorkshopReactingRecipe> {
+	public interface RecipeFactory {
 		PotionWorkshopReactingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Item item, List<PotionMod> mods);
 	}
 	

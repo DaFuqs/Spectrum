@@ -15,13 +15,13 @@ public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer
 	
 	public static final List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
 	
-	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory;
+	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory) {
+	public EnchantmentUpgradeRecipeSerializer(EnchantmentUpgradeRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<EnchantmentUpgradeRecipe> {
+	public interface RecipeFactory {
 		EnchantmentUpgradeRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount);
 	}
 	

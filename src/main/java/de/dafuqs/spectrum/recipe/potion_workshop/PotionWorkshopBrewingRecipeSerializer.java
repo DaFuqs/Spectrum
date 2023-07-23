@@ -11,13 +11,13 @@ import net.minecraft.util.registry.*;
 
 public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopBrewingRecipe> {
 	
-	public final PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory;
+	public final PotionWorkshopBrewingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipeSerializer.RecipeFactory<PotionWorkshopBrewingRecipe> recipeFactory) {
+	public PotionWorkshopBrewingRecipeSerializer(PotionWorkshopBrewingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<PotionWorkshopBrewingRecipe> {
+	public interface RecipeFactory {
 		PotionWorkshopBrewingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3,
 										   StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, boolean applicableToWeapons, InkColor inkColor, int inkCost);
 	}

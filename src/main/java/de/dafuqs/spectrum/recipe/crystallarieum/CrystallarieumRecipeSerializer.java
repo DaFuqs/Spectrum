@@ -16,13 +16,13 @@ import java.util.*;
 
 public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<CrystallarieumRecipe> {
 	
-	public final CrystallarieumRecipeSerializer.RecipeFactory<CrystallarieumRecipe> recipeFactory;
+	public final CrystallarieumRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public CrystallarieumRecipeSerializer(CrystallarieumRecipeSerializer.RecipeFactory<CrystallarieumRecipe> recipeFactory) {
+	public CrystallarieumRecipeSerializer(CrystallarieumRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<CrystallarieumRecipe> {
+	public interface RecipeFactory {
 		CrystallarieumRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, List<ItemStack> additionalOutputs);
 	}
 	

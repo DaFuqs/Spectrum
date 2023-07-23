@@ -16,13 +16,13 @@ import java.util.*;
 
 public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<FusionShrineRecipe> {
 	
-	public final FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory;
+	public final FusionShrineRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public FusionShrineRecipeSerializer(FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory) {
+	public FusionShrineRecipeSerializer(FusionShrineRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 
-	public interface RecipeFactory<FusionShrineRecipe> {
+	public interface RecipeFactory {
 		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
 								  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
 								  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);

@@ -14,13 +14,13 @@ import java.util.*;
 
 public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<TitrationBarrelRecipe> {
 	
-	public final TitrationBarrelRecipeSerializer.RecipeFactory<TitrationBarrelRecipe> recipeFactory;
+	public final TitrationBarrelRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public TitrationBarrelRecipeSerializer(TitrationBarrelRecipeSerializer.RecipeFactory<TitrationBarrelRecipe> recipeFactory) {
+	public TitrationBarrelRecipeSerializer(TitrationBarrelRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<TitrationBarrelRecipe> {
+	public interface RecipeFactory {
 		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minTimeDays, FermentationData fermentationData);
 	}
 	

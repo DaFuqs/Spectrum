@@ -9,13 +9,13 @@ import net.minecraft.util.*;
 
 public class SpiritInstillerRecipeSerializer implements GatedRecipeSerializer<SpiritInstillerRecipe> {
 	
-	public final SpiritInstillerRecipeSerializer.RecipeFactory<SpiritInstillerRecipe> recipeFactory;
+	public final SpiritInstillerRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public SpiritInstillerRecipeSerializer(SpiritInstillerRecipeSerializer.RecipeFactory<SpiritInstillerRecipe> recipeFactory) {
+	public SpiritInstillerRecipeSerializer(SpiritInstillerRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<SpiritInstillerRecipe> {
+	public interface RecipeFactory {
 		SpiritInstillerRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack outputItemStack,
 		                             int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades);
 	}

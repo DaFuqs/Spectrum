@@ -9,13 +9,13 @@ import net.minecraft.util.*;
 
 public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkConvertingRecipe> {
 	
-	public final InkConvertingRecipeSerializer.RecipeFactory<InkConvertingRecipe> recipeFactory;
+	public final InkConvertingRecipeSerializer.RecipeFactory recipeFactory;
 	
-	public InkConvertingRecipeSerializer(InkConvertingRecipeSerializer.RecipeFactory<InkConvertingRecipe> recipeFactory) {
+	public InkConvertingRecipeSerializer(InkConvertingRecipeSerializer.RecipeFactory recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<InkConvertingRecipe> {
+	public interface RecipeFactory {
 		InkConvertingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, InkColor inkColor, long inkAmount);
 	}
 	

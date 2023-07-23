@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe;
 import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
+import de.dafuqs.spectrum.helpers.NbtHelper;
 import net.minecraft.block.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
@@ -10,6 +11,8 @@ import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
+
+import java.util.*;
 
 public class RecipeUtils {
 	
@@ -25,16 +28,8 @@ public class RecipeUtils {
 			} else {
 				ItemStack stack = new ItemStack(item, count);
 				
-				String nbt = JsonHelper.getString(json, "nbt", "");
-				if (!nbt.isEmpty()) {
-					try {
-						NbtCompound compound = NbtHelper.fromNbtProviderString(nbt);
-						compound.remove("palette"); // o_O why is that necessary?
-						stack.setNbt(compound);
-					} catch (CommandSyntaxException e) {
-						throw new JsonSyntaxException("Invalid output nbt: " + nbt);
-					}
-				}
+				Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(json.get("nbt"));
+				if (nbt.isPresent()) stack.setNbt(nbt.get());
 				
 				return stack;
 			}

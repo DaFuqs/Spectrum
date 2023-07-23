@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
-import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.predicate.block.LightPredicate;
@@ -74,17 +73,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				
 				EntityType<?> entityType = Registries.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
 				
-				Optional<NbtCompound> nbt = Optional.empty();
-				if (JsonHelper.hasJsonObject(entryObject, "nbt")) {
-					JsonObject nbtObject = JsonHelper.getObject(entryObject, "nbt");
-					nbt = Optional.of(NbtHelper.fromJsonObject(nbtObject));
-				} else if (JsonHelper.hasString(entryObject, "nbt")) {
-					try {
-						nbt = Optional.of(StringNbtReader.parse(JsonHelper.getString(entryObject, "nbt")));
-					} catch (CommandSyntaxException exception) {
-						exception.printStackTrace();
-					}
-				}
+				Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(entryObject.get("nbt"));
 				
 				int weight = 1;
 				if (JsonHelper.hasNumber(entryObject, "weight")) {

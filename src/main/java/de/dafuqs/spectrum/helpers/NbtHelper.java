@@ -1,11 +1,33 @@
 package de.dafuqs.spectrum.helpers;
 
-import java.math.BigDecimal;
-
 import com.google.gson.*;
+import com.mojang.brigadier.exceptions.*;
 import net.minecraft.nbt.*;
 
+import java.math.*;
+import java.util.*;
+
 public class NbtHelper {
+	public static Optional<NbtCompound> getNbtCompound(JsonElement json) {
+		if (json == null || json.isJsonNull()) {
+			return Optional.empty();
+		}
+		
+		if (json.isJsonObject()) {
+			return Optional.of(fromJsonObject(json.getAsJsonObject()));
+		}
+		
+		if (json.isJsonPrimitive() && json.getAsJsonPrimitive().isString()) {
+			try {
+				return Optional.of(StringNbtReader.parse(json.getAsString()));
+			} catch (CommandSyntaxException exception) {
+				exception.printStackTrace();
+			}
+		}
+		
+		throw new UnsupportedOperationException("Nbt element is not an object or a string");
+	}
+	
 	public static byte getJsonElementType(JsonElement element) {
 		if (element == null)
 			throw new UnsupportedOperationException("Null JSON NBT element");

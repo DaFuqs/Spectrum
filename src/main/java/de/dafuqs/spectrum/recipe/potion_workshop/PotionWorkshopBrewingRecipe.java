@@ -374,6 +374,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				potency += potionMod.flatPotencyBonusNegativeEffects;
 				durationTicks += potionMod.flatDurationBonusNegativeEffects;
 			}
+			default -> { }
 		}
 		durationTicks = statusEffect.isInstant() ? 1 : (int) (durationTicks * potionMod.durationMultiplier);
 		

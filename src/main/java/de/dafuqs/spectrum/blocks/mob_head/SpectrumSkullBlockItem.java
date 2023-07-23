@@ -12,15 +12,15 @@ import java.util.*;
 
 public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 	
-	protected final EntityType entityType;
+	protected final EntityType<?> entityType;
 	protected String artistCached;
 	
-	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType entityType) {
+	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType<?> entityType) {
 		super(standingBlock, wallBlock, settings);
 		this.entityType = entityType;
 	}
 	
-	public static Optional<EntityType> getEntityTypeOfSkullStack(ItemStack itemStack) {
+	public static Optional<EntityType<?>> getEntityTypeOfSkullStack(ItemStack itemStack) {
 		Item item = itemStack.getItem();
 		if (item instanceof SpectrumSkullBlockItem spectrumSkullBlockItem) {
 			return Optional.of(spectrumSkullBlockItem.entityType);

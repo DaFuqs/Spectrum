@@ -33,11 +33,11 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return false;
 		}
 		
-		Optional<EntityType> optionalEntityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
+		Optional<EntityType<?>> optionalEntityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
 		if (optionalEntityType.isEmpty()) {
 			return false;
 		}
-		EntityType entityType = optionalEntityType.get();
+		EntityType<?> entityType = optionalEntityType.get();
 		if (entityType.isIn(ConventionalEntityTypeTags.BOSSES)) {
 			return false;
 		}
@@ -76,7 +76,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return spawnerBlockEntityNbt;
 		}
 		
-		Optional<EntityType> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
+		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
 		if (entityType.isEmpty()) {
 			return spawnerBlockEntityNbt;
 		}

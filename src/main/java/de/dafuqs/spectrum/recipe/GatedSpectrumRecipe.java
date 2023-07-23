@@ -12,7 +12,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRecipe {
+public abstract class GatedSpectrumRecipe implements GatedRecipe {
 	
 	public final Identifier id;
 	public final String group;

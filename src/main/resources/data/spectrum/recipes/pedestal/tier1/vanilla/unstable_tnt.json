@@ -23,7 +23,16 @@
   },
   "result": {
     "item": "minecraft:tnt",
-    "nbt": "{BlockStateTag:{unstable:\"true\"},display: {Lore: ['{\"text\":\"unstable\"}']}}",
+    "nbt": {
+      "BlockStateTag": {
+        "unstable": "true"
+      },
+      "display": {
+        "Lore": [
+          "{\"text\":\"unstable\"}"
+        ]
+      }
+    },
     "count": 2
   },
   "required_advancement": "spectrum:collect_quitoxic_reeds"

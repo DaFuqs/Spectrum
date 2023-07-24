@@ -26,7 +26,14 @@
   ],
   "result": {
     "item": "spectrum:malachite_bident",
-    "nbt": "{Enchantments: [{id: \"minecraft:impaling\", lvl: 6s}]}"
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:impaling",
+          "lvl": "6s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:unlocks/malachite/malachite_tools",
   "world_conditions": [],

@@ -29,7 +29,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"myceylon_apple_juice\", Color: 12018987 }"
+    "nbt": {
+      "Variant": "myceylon_apple_juice",
+      "Color": 12018987
+    }
   },
   "required_advancement": "spectrum:lategame/collect_myceylon"
 }

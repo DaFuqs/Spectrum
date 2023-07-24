@@ -94,7 +94,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"myceylon_liquor\", Color: 16040760 }"
+    "nbt": {
+      "Variant": "myceylon_liquor",
+      "Color": 16040760
+    }
   },
   "required_advancement": "spectrum:unlocks/food/myceylon_liquor"
 }

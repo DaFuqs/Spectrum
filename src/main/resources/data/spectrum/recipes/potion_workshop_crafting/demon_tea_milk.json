@@ -17,7 +17,9 @@
   },
   "result": {
     "item": "spectrum:demon_tea",
-    "nbt": "{Milk:1b}"
+    "nbt": {
+      "Milk": true
+    }
   },
   "required_advancement": "spectrum:unlocks/food/demon_tea"
 }

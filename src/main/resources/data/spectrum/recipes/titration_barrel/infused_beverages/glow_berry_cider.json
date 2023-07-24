@@ -87,7 +87,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"glow_berry_cider\", Color: 16769123 }"
+    "nbt": {
+      "Variant": "glow_berry_cider",
+      "Color": 16769123
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

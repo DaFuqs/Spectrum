@@ -33,7 +33,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "spectrum:inventory_insertion",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:unlocks/enchantments/inventory_insertion",
   "fabric:load_conditions": [

@@ -170,7 +170,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"rabbit_poison\", Color: 9518003 }"
+    "nbt": {
+      "Variant": "rabbit_poison",
+      "Color": 9518003
+    }
   },
   "required_advancement": "spectrum:unlocks/food/rabbit_poison"
 }

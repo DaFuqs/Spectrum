@@ -23,7 +23,14 @@
   },
   "result": {
     "item": "spectrum:multitool",
-    "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:efficiency",
+          "lvl": "1s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:build_basic_pedestal_structure"

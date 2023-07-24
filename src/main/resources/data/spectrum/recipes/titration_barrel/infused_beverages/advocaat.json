@@ -95,7 +95,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"advocaat\", Color: 15191723 }"
+    "nbt": {
+      "Variant": "advocaat",
+      "Color": 15191723
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

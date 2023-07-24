@@ -94,7 +94,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"sawblade_holly_liquor\", Color: 13723654 }"
+    "nbt": {
+      "Variant": "sawblade_holly_liquor",
+      "Color": 13723654
+    }
   },
   "required_advancement": "spectrum:unlocks/food/sawblade_holly_titration"
 }

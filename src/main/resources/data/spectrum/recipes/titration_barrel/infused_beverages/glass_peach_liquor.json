@@ -94,7 +94,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"glass_peach_liquor\", Color: 13723654 }"
+    "nbt": {
+      "Variant": "glass_peach_liquor",
+      "Color": 13723654
+    }
   },
   "required_advancement": "spectrum:unlocks/food/glass_peach_titration"
 }

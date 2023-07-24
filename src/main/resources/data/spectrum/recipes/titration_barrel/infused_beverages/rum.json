@@ -93,7 +93,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"rum\", Color: 10505507 }"
+    "nbt": {
+      "Variant": "rum",
+      "Color": 10505507
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

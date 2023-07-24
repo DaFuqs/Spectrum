@@ -33,7 +33,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "veinmining:vein_mining",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:lategame/collect_paltaeria",
   "fabric:load_conditions": [

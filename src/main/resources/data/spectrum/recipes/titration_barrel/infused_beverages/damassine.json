@@ -105,7 +105,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"damassine\", Color: 7558132 }"
+    "nbt": {
+      "Variant": "damassine",
+      "Color": 7558132
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

@@ -103,7 +103,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"glow_berry_liquor\", Color: 16760721 }"
+    "nbt": {
+      "Variant": "glow_berry_liquor",
+      "Color": 16760721
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

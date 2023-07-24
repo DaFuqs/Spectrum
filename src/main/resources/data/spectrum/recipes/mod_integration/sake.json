@@ -107,7 +107,10 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "nbt": "{Variant: \"sake\", Color: 13751514 }"
+    "nbt": {
+      "Variant": "sake",
+      "Color": 13751514
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age",
   "fabric:load_conditions": [

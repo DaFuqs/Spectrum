@@ -97,7 +97,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"moonshine\", Color: 14151663 }"
+    "nbt": {
+      "Variant": "moonshine",
+      "Color": 14151663
+    }
   },
   "required_advancement": "spectrum:unlocks/food/moonshine"
 }

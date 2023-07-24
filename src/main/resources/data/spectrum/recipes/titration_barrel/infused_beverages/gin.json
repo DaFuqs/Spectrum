@@ -101,7 +101,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"gin\", Color: 16437201 }"
+    "nbt": {
+      "Variant": "gin",
+      "Color": 16437201
+    }
   },
   "required_advancement": "spectrum:unlocks/food/gin"
 }

@@ -23,7 +23,14 @@
   },
   "result": {
     "item": "spectrum:razor_falchion",
-    "nbt": "{Enchantments: [{id: \"minecraft:looting\", lvl: 3s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:looting",
+          "lvl": "3s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/equipment/razor_falchion"

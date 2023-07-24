@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:craft_colored_pedestal",
+  "parent": "spectrum:craft_cmy_pedestal",
   "display": {
     "icon": {
       "item": "spectrum:quitoxic_reeds"
@@ -28,7 +28,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_colored_pedestal" }
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_cmy_pedestal"
+      }
     }
   }
 }

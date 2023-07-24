@@ -11,15 +11,19 @@
       "translate": "advancements.spectrum.build_basic_pedestal_structure.description"
     }
   },
-  "parent": "spectrum:craft_colored_pedestal",
+  "parent": "spectrum:craft_cmy_pedestal",
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:pedestal_simple_structure_check" }
+      "conditions": {
+        "multiblock_identifier": "spectrum:pedestal_simple_structure_check"
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_colored_pedestal" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_cmy_pedestal"
+      }
     }
   },
   "rewards": {

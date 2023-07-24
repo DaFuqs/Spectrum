@@ -1,0 +1,8 @@
+{
+  "input": {
+    "item": "minecraft:cake"
+  },
+  "state_tags_to_copy": [
+    "bites"
+  ]
+}

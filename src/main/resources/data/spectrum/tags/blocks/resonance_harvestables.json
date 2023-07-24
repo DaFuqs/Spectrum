@@ -13,6 +13,7 @@
     "minecraft:respawn_anchor",
     "minecraft:reinforced_deepslate",
     "minecraft:sculk_shrieker",
+    "minecraft:cake",
 
     {
       "id": "botania:enchanted_soil",

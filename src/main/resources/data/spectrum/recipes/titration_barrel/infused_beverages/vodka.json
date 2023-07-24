@@ -101,7 +101,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"vodka\", Color: 14938088 }"
+    "nbt": {
+      "Variant": "vodka",
+      "Color": 14938088
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

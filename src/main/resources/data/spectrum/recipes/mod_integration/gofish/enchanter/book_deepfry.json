@@ -33,7 +33,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"gofish:deepfry\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "gofish:deepfry",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "fabric:load_conditions": [
     {

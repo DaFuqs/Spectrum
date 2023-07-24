@@ -16,7 +16,12 @@
   },
   "result": {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"spectrum:kindling\"}, TicksToManifest: 8}"
+    "nbt": {
+      "EntityTag": {
+        "id": "spectrum:kindling"
+      },
+      "TicksToManifest": 8
+    }
   },
   "required_advancement": "spectrum:unlocks/blocks/kindling_memory"
 }

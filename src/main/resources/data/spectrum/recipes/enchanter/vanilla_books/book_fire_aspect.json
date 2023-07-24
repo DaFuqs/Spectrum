@@ -34,7 +34,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"minecraft:fire_aspect\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "minecraft:fire_aspect",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

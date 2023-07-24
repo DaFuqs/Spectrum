@@ -33,7 +33,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"spectrum:inertia\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "spectrum:inertia",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:unlocks/enchantments/inertia",
   "fabric:load_conditions": [

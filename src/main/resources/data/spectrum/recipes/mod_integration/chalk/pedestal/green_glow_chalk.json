@@ -28,7 +28,9 @@
   "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
   "result": {
     "item": "chalk:green_glow_chalk",
-    "nbt": "{Unbreakable:1}"
+    "nbt": {
+      "Unbreakable": 1
+    }
   },
   "fabric:load_conditions": [
     {

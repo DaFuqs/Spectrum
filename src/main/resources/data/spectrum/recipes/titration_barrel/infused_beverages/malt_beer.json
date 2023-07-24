@@ -30,6 +30,9 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"malt_beer\", Color: 8272724 }"
+    "nbt": {
+      "Variant": "malt_beer",
+      "Color": 8272724
+    }
   }
 }

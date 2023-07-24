@@ -26,7 +26,14 @@
   },
   "result": {
     "item": "spectrum:molten_rod",
-    "nbt": "{Enchantments: [{id: \"spectrum:foundry\", lvl: 1s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "spectrum:foundry",
+          "lvl": "1s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/equipment/molten_rod"

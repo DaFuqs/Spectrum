@@ -120,7 +120,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"fruit_shnaps\", Color: 14450014 }"
+    "nbt": {
+      "Variant": "fruit_shnaps",
+      "Color": 14450014
+    }
   },
   "required_advancement": "spectrum:unlocks/food/glass_peach_titration"
 }

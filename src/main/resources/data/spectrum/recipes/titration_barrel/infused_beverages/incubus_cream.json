@@ -96,7 +96,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"incubus_cream\", Color: 14173082 }"
+    "nbt": {
+      "Variant": "incubus_cream",
+      "Color": 14173082
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

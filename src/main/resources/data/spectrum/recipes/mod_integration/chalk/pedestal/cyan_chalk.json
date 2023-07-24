@@ -25,7 +25,9 @@
   "required_advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
   "result": {
     "item": "chalk:cyan_chalk",
-    "nbt": "{Unbreakable:1}"
+    "nbt": {
+      "Unbreakable": 1
+    }
   },
   "fabric:load_conditions": [
     {

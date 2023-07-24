@@ -26,7 +26,14 @@
   },
   "result": {
     "item": "spectrum:tender_pickaxe",
-    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "minecraft:silk_touch",
+          "lvl": "1s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/equipment/tender_pickaxe"

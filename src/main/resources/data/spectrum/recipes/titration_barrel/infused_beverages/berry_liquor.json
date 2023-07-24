@@ -94,7 +94,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"berry_liquor\", Color: 16729462 }"
+    "nbt": {
+      "Variant": "berry_liquor",
+      "Color": 16729462
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

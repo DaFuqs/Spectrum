@@ -103,7 +103,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"porter\", Color: 4857125 }"
+    "nbt": {
+      "Variant": "porter",
+      "Color": 4857125
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

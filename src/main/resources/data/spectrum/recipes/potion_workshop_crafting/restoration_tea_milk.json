@@ -18,7 +18,9 @@
   },
   "result": {
     "item": "spectrum:restoration_tea",
-    "nbt": "{Milk:1b}",
+    "nbt": {
+      "Milk": true
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/food/restoration_tea"

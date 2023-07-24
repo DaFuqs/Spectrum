@@ -78,7 +78,10 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"berry_cider\", Color: 14819906 }"
+    "nbt": {
+      "Variant": "berry_cider",
+      "Color": 14819906
+    }
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

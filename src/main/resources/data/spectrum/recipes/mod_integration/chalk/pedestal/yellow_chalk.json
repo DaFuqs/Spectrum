@@ -24,7 +24,9 @@
   },
   "result": {
     "item": "chalk:yellow_chalk",
-    "nbt": "{Unbreakable:1}"
+    "nbt": {
+      "Unbreakable": 1
+    }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment",
   "fabric:load_conditions": [

@@ -26,7 +26,14 @@
   },
   "result": {
     "item": "spectrum:dragonrending_pickaxe",
-    "nbt": "{Enchantments: [{id: \"spectrum:razing\", lvl: 1s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "spectrum:razing",
+          "lvl": "1s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/equipment/dragonrending_pickaxe"

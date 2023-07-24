@@ -26,7 +26,14 @@
   },
   "result": {
     "item": "spectrum:oblivion_pickaxe",
-    "nbt": "{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+    "nbt": {
+      "Enchantments": [
+        {
+          "id": "spectrum:voiding",
+          "lvl": "1s"
+        }
+      ]
+    },
     "count": 1
   },
   "required_advancement": "spectrum:unlocks/equipment/oblivion_pickaxe"

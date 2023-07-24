@@ -33,7 +33,14 @@
   ],
   "result": {
     "item": "minecraft:enchanted_book",
-    "nbt": "{StoredEnchantments: [{id: \"spectrum:treasure_hunter\", lvl: 1s}]}"
+    "nbt": {
+      "StoredEnchantments": [
+        {
+          "id": "spectrum:treasure_hunter",
+          "lvl": "1s"
+        }
+      ]
+    }
   },
   "required_advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "fabric:load_conditions": [

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.*;
 import net.minecraft.nbt.*;
+import org.apache.commons.lang3.math.*;
 
 import java.math.*;
 import java.util.*;
@@ -89,13 +90,28 @@ public class NbtHelper {
 		if (primitive.isString()) {
 			String string = primitive.getAsString();
 			if (string.length() > 1) {
-				switch (string.charAt(string.length()-1)) {
-					case 'b': case 'B': return NbtElement.BYTE_TYPE;
-					case 's': case 'S': return NbtElement.SHORT_TYPE;
-					case 'i': case 'I': return NbtElement.INT_TYPE;
-					case 'l': case 'L': return NbtElement.LONG_TYPE;
-					case 'f': case 'F': return NbtElement.FLOAT_TYPE;
-					case 'd': case 'D': return NbtElement.DOUBLE_TYPE;
+				String numStr = string.substring(0, string.length() - 1);
+				if (NumberUtils.isParsable(numStr)) {
+					switch (string.charAt(string.length() - 1)) {
+						case 'b':
+						case 'B':
+							return NbtElement.BYTE_TYPE;
+						case 's':
+						case 'S':
+							return NbtElement.SHORT_TYPE;
+						case 'i':
+						case 'I':
+							return NbtElement.INT_TYPE;
+						case 'l':
+						case 'L':
+							return NbtElement.LONG_TYPE;
+						case 'f':
+						case 'F':
+							return NbtElement.FLOAT_TYPE;
+						case 'd':
+						case 'D':
+							return NbtElement.DOUBLE_TYPE;
+					}
 				}
 			}
 			

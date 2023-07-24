@@ -3,7 +3,14 @@
   "display": {
     "icon": {
       "item": "spectrum:seven_league_boots",
-      "nbt": "{Enchantments: [{id: \"minecraft:power\", lvl: 1s}]}"
+      "nbt": {
+        "Enchantments": [
+          {
+            "id": "minecraft:power",
+            "lvl": "1s"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "advancements.spectrum.enchant_seven_league_boots.title"

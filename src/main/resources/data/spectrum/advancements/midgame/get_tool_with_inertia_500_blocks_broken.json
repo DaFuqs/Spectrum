@@ -3,7 +3,14 @@
   "display": {
     "icon": {
       "item": "minecraft:diamond_pickaxe",
-      "nbt": "{Enchantments: [{lvl: 1s, id: \"spectrum:inertia\"}]}"
+      "nbt": {
+        "Enchantments": [
+          {
+            "id": "spectrum:inertia",
+            "lvl": "1s"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.title"

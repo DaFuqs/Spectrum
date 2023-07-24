@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "AbstractHorseEntityMixin",
+    "AdvancementDisplayMixin",
     "AllowCopyBlockEntityDataMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",

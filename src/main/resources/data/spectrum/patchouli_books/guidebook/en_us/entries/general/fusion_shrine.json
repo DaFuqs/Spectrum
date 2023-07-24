@@ -2,7 +2,7 @@
   "name": "Fusion Shrine",
   "icon": "spectrum:fusion_shrine_basalt",
   "sortnum": 10,
-  "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "advancement": "spectrum:unlocks/blocks/fusion_shrine",
   "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {},

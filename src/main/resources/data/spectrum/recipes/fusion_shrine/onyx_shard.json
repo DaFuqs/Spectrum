@@ -17,7 +17,7 @@
   "result": {
     "item": "spectrum:onyx_shard"
   },
-  "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "required_advancement": "spectrum:unlocks/blocks/fusion_shrine",
   "world_conditions": [
     {
       "type": "time_of_day",

@@ -131,9 +131,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		
 		if (hatchedEntityOptional.isPresent()) {
 			Entity hatchedEntity = hatchedEntityOptional.get();
+			
 			SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, hatchedEntity.getType(), 10);
 			
 			if (hatchedEntity instanceof MobEntity hatchedMobEntity) {
+				hatchedMobEntity.setPersistent();
 				hatchedMobEntity.playAmbientSound();
 				hatchedMobEntity.playSpawnEffects();
 			}

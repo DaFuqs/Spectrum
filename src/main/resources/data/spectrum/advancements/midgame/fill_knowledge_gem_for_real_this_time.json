@@ -25,7 +25,9 @@
             "items": [
               "spectrum:knowledge_gem"
             ],
-            "nbt": "{stored_experience:1000000000}"
+            "nbt": {
+              "stored_experience": 1000000000
+            }
           }
         ],
         "slots": {

@@ -42,6 +42,7 @@
     "LoomScreenHandlerMixin",
     "MiningToolItemMixin",
     "MixinAbstractFireBlock",
+    "NbtPredicateMixin",
     "PiglinBrainMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

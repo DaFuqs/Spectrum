@@ -23,7 +23,9 @@
             ]
           }
         ],
-        "nbt": "{Sweetened: 1b }"
+        "nbt": {
+          "Sweetened": "1b"
+        }
       }
     }
   },

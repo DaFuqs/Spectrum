@@ -22,7 +22,9 @@
             "spectrum:glistering_jelly_tea",
             "spectrum:demon_tea"
           ],
-          "nbt": "{Milk:1b}"
+          "nbt": {
+            "Milk": "1b"
+          }
         }
       }
     },

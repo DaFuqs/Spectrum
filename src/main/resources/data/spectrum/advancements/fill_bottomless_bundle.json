@@ -20,7 +20,11 @@
             "items": [
               "spectrum:bottomless_bundle"
             ],
-            "nbt": "{StoredStack:{Count:20000}}"
+            "nbt": {
+              "StoredStack": {
+                "Count": 20000
+              }
+            }
           }
         ],
         "slots": {

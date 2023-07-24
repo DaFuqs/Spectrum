@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.loot;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.compat.gofish.*;
+import de.dafuqs.spectrum.entity.type_specific_predicates.*;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.loot.v2.*;
@@ -198,7 +199,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(FoxTypeLootCondition.builder(foxType).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(FoxPredicate.of(foxType)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -207,7 +208,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(MooshroomTypeLootCondition.builder(mooshroomType).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(MooshroomPredicate.of(mooshroomType)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -216,7 +217,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(ShulkerColorLootCondition.builder(dyeColor).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(dyeColor)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -225,7 +226,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(AxolotlVariantLootCondition.builder(variant).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(AxolotlPredicate.of(variant)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -243,7 +244,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(ParrotVariantLootCondition.builder(variant).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ParrotPredicate.of(variant)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}

@@ -3,7 +3,9 @@
   "display": {
     "icon": {
       "item": "spectrum:paintbrush",
-      "nbt": "{Color: \"red\"}"
+      "nbt": {
+        "Color": "red"
+      }
     },
     "title": {
       "translate": "advancements.spectrum.kill_entity_with_ink_projectile.title"

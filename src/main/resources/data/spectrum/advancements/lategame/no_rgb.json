@@ -2,7 +2,14 @@
   "display": {
     "icon": {
       "item": "minecraft:raw_copper",
-      "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+      "nbt": {
+        "Enchantments": [
+          {
+            "id": "minecraft:silk_touch",
+            "lvl": "1s"
+          }
+        ]
+      }
     },
     "hidden": true,
     "title": {

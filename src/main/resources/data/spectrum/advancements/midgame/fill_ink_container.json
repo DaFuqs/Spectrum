@@ -3,7 +3,13 @@
   "display": {
     "icon": {
       "item": "spectrum:ink_flask",
-      "nbt": "{EnergyStore: {MaxEnergyTotal: 409600L, Color: \"purple\", Amount: 409600L}}"
+      "nbt": {
+        "EnergyStore": {
+          "MaxEnergyTotal": "409600L",
+          "Color": "purple",
+          "Amount": "409600L"
+        }
+      }
     },
     "title": {
       "translate": "advancements.spectrum.fill_ink_container.title"

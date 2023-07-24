@@ -3,7 +3,9 @@
   "display": {
     "icon": {
       "item": "minecraft:potion",
-      "nbt": "{CustomPotionColor: 16776960}"
+      "nbt": {
+        "CustomPotionColor": 16776960
+      }
     },
     "title": {
       "translate": "advancements.spectrum.brew_powerful_potion_in_potion_workshop.title"

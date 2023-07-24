@@ -3,7 +3,14 @@
   "display": {
     "icon": {
       "item": "spectrum:oblivion_pickaxe",
-      "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}"
+      "nbt": {
+        "Enchantments": [
+          {
+            "id": "minecraft:efficiency",
+            "lvl": "1s"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "advancements.spectrum.use_oblivion_pickaxe_with_efficiency.title"

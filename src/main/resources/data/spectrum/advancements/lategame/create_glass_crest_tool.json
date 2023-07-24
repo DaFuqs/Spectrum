@@ -2,7 +2,14 @@
   "display": {
     "icon": {
       "item": "spectrum:glass_crest_workstaff",
-      "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+      "nbt": {
+        "Enchantments": [
+          {
+            "id": "minecraft:silk_touch",
+            "lvl": "1s"
+          }
+        ]
+      }
     },
     "title": {
       "translate": "advancements.spectrum.create_glass_crest_tool.title"

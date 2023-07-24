@@ -2,7 +2,7 @@
   "name": "Creating Onyx Shards",
   "icon": "spectrum:onyx_shard",
   "sortnum": 11,
-  "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "advancement": "spectrum:unlocks/blocks/fusion_shrine",
   "category": "spectrum:general_category",
   "turnin": "spectrum:create_onyx_shard",
   "extra_recipe_mappings": {

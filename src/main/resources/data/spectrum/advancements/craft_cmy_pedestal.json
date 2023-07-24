@@ -5,10 +5,10 @@
       "item": "spectrum:pedestal_all_basic"
     },
     "title": {
-      "translate": "advancements.spectrum.craft_colored_pedestal.title"
+      "translate": "advancements.spectrum.craft_cmy_pedestal.title"
     },
     "description": {
-      "translate": "advancements.spectrum.craft_colored_pedestal.description"
+      "translate": "advancements.spectrum.craft_cmy_pedestal.description"
     }
   },
   "criteria": {

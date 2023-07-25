@@ -115,6 +115,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		if (mouseOverInformationIcon((int) mouseX, (int) mouseY)) {
 			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();

@@ -46,7 +46,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		}
 	}
 	
-	public static Recipe getStoredRecipe(World world, ItemStack itemStack) {
+	public static Recipe<?> getStoredRecipe(World world, ItemStack itemStack) {
 		if (world != null) {
 			NbtCompound nbtCompound = itemStack.getNbt();
 			

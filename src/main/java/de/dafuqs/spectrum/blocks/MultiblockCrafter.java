@@ -17,7 +17,7 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 	
 	Vec3d RECIPE_STACK_VELOCITY = new Vec3d(0.0, 0.3, 0.0);
 	
-	static @Nullable Recipe getRecipeFromId(@Nullable World world, Identifier recipeIdentifier) {
+	static @Nullable Recipe<?> getRecipeFromId(@Nullable World world, Identifier recipeIdentifier) {
 		if (world != null) {
 			return world.getRecipeManager().get(recipeIdentifier).orElse(null);
 		}

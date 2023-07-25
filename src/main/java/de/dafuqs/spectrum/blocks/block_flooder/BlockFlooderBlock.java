@@ -48,6 +48,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (!world.isClient) {
@@ -66,6 +67,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 		return new BlockFlooderBlockEntity(pos, state);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private boolean calculateTargetBlockAndPropagate(BlockState state, World world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlockFlooderBlockEntity blockFlooderBlockEntity) {
@@ -150,6 +152,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		

@@ -167,10 +167,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		} else {
 			NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 			NbtCompound storedItemCompound = new NbtCompound();
-			boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, voidBundleStack) > 0;
 			int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 			int newAmount = Math.min(maxStoredAmount, amount);
-			int overflowAmount = hasVoiding ? 0 : Math.max(0, amount - maxStoredAmount);
 			
 			Identifier identifier = Registries.ITEM.getId(stackToBundle.getItem());
 			storedItemCompound.putString("ID", identifier.toString());

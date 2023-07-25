@@ -26,7 +26,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 		World world = context.getWorld();
 		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(context.getBlockPos());
-			if (blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
+			if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
 				inkStorageBlockEntity.getEnergyStorage().fillCompletely();
 				inkStorageBlockEntity.setInkDirty();
 				blockEntity.markDirty();
@@ -56,7 +56,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, CreativeInkStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
 	}
 	
 	@Override

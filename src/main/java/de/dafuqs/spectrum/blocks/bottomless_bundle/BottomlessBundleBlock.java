@@ -92,6 +92,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
@@ -119,6 +120,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
     }
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

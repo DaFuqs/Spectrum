@@ -87,6 +87,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -140,7 +141,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 			double e = pos.getY() + 0.4;
 			double f = (double) pos.getZ() + 0.5D;
 			
-			Recipe recipe = cinderhearthBlockEntity.getCurrentRecipe();
+			Recipe<?> recipe = cinderhearthBlockEntity.getCurrentRecipe();
 			if (recipe != null) {
 				if (random.nextDouble() < 0.1D) {
 					world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 0.8F, false);

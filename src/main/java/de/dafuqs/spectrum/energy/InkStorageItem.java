@@ -38,7 +38,7 @@ public interface InkStorageItem<PStorage extends InkStorage> {
 	
 	PStorage getEnergyStorage(ItemStack itemStack);
 	
-	void setEnergyStorage(ItemStack itemStack, PStorage storage);
+	void setEnergyStorage(ItemStack itemStack, InkStorage storage);
 	
 	ItemStack getDefaultStack();
 	

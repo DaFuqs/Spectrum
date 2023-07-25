@@ -56,6 +56,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
+	@SuppressWarnings("resource")
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
 		

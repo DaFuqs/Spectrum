@@ -5,15 +5,16 @@ import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
+
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
-public class BlackHoleChestBlockEntityRenderer<BlackHoleChestBlockEntity extends SpectrumChestBlockEntity> implements BlockEntityRenderer<BlackHoleChestBlockEntity> {
+public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<BlackHoleChestBlockEntity> {
 
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_block"));
+	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_block"));
 	private final ModelPart root;
 
 	public BlackHoleChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {

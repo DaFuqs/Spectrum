@@ -43,9 +43,11 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualCappedInkStorage storage) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.put("EnergyStore", storage.toNbt());
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
+		if (storage instanceof IndividualCappedInkStorage individualCappedInkStorage) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			compound.put("EnergyStore", individualCappedInkStorage.toNbt());
+		}
 	}
 	
 	@Override

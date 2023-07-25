@@ -49,9 +49,11 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, ArtistsPaletteInkStorage storage) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.put("EnergyStore", storage.toNbt());
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
+		if (storage instanceof ArtistsPaletteInkStorage artistsPaletteInkStorage) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			compound.put("EnergyStore", artistsPaletteInkStorage.toNbt());
+		}
 	}
 	
 	@Override

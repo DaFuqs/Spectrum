@@ -87,9 +87,11 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, FixedSingleInkStorage storage) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.put("EnergyStore", storage.toNbt());
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
+		if (storage instanceof FixedSingleInkStorage fixedSingleInkStorage) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			compound.put("EnergyStore", fixedSingleInkStorage.toNbt());
+		}
 	}
 	
 	@Override

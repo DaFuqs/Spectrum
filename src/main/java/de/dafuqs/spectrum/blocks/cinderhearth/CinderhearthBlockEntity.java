@@ -59,7 +59,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 
 	private UUID ownerUUID;
 	private UpgradeHolder upgrades;
-	private Recipe currentRecipe; // blasting & cinderhearth
+	private Recipe<?> currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
 	protected boolean canTransferInk;
@@ -88,7 +88,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
 			case INK_PROVIDER_SLOT_ID -> {
-				return stack.getItem() instanceof InkStorageItem inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
+				return stack.getItem() instanceof InkStorageItem<?> inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
 			}
 			case EXPERIENCE_STORAGE_ITEM_SLOT_ID -> {
 				return stack.getItem() instanceof ExperienceStorageItem;
@@ -221,7 +221,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
+				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				this.currentRecipe = optionalRecipe.orElse(null);
 			} else {
 				this.currentRecipe = null;
@@ -266,7 +266,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (cinderhearthBlockEntity.canTransferInk) {
 			boolean didSomething = false;
 			ItemStack stack = cinderhearthBlockEntity.getStack(INK_PROVIDER_SLOT_ID);
-			if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+			if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 				InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 				didSomething = InkStorage.transferInk(itemStorage, cinderhearthBlockEntity.inkStorage) != 0;
 				if (didSomething) {
@@ -326,8 +326,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	private static void calculateRecipe(@NotNull World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		// test the cached recipe => faster
-		if (cinderhearthBlockEntity.currentRecipe != null) {
-			if (cinderhearthBlockEntity.currentRecipe.matches(cinderhearthBlockEntity, world)) {
+		if (cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe recipe) {
+			if (recipe.matches(cinderhearthBlockEntity, world)) {
 				return;
 			}
 		}
@@ -468,6 +468,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					direction = state.get(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
+				if (direction == null) continue; // Convince Java that direction won't be null
 
 				double d = (double) cinderhearthBlockEntity.pos.getX() + 0.5D;
 				double f = (double) cinderhearthBlockEntity.pos.getZ() + 0.5D;
@@ -564,7 +565,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return this.inkDirty;
 	}
 	
-	public Recipe getCurrentRecipe() {
+	public Recipe<?> getCurrentRecipe() {
 		return currentRecipe;
 	}
 	

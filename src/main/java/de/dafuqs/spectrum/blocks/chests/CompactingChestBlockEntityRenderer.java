@@ -7,17 +7,17 @@ import net.minecraft.block.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
-public class CompactingChestBlockEntityRenderer<CompactingChestBlockEntity extends SpectrumChestBlockEntity> implements BlockEntityRenderer<CompactingChestBlockEntity> {
+public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<CompactingChestBlockEntity> {
 	
-	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/compacting_chest"));
+	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/compacting_chest"));
 	private final ModelPart root;
 	private final ModelPart lid;
 	private final ModelPart column;

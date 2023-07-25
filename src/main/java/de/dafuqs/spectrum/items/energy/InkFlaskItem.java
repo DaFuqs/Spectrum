@@ -48,9 +48,11 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, SingleInkStorage storage) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.put("EnergyStore", storage.toNbt());
+	public void setEnergyStorage(ItemStack itemStack, InkStorage storage) {
+		if (storage instanceof SingleInkStorage singleInkStorage) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			compound.put("EnergyStore", singleInkStorage.toNbt());
+		}
 	}
 	
 	@Override

@@ -34,7 +34,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, int variant, int maxRecipeTier, BlockPos pedestalPos) {
-		this(type, context, recipeBookCategory, i, playerInventory, new SimpleInventory(PedestalBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
+		this(type, context, recipeBookCategory, i, playerInventory, (Inventory)playerInventory.player.world.getBlockEntity(pedestalPos), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
 	}
 	
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
@@ -47,7 +47,6 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.category = recipeBookCategory;
 		this.propertyDelegate = propertyDelegate;
 		this.world = playerInventory.player.world;
-		CraftingResultInventory craftingResultInventory = new CraftingResultInventory();
 		
 		this.pedestalPos = pedestalPos;
 		this.pedestalRecipeTier = PedestalRecipeTier.values()[pedestalRecipeTier];
@@ -95,7 +94,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.addSlot(new StackFilterSlot(inventory, PedestalBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19, SpectrumItems.CRAFTING_TABLET));
 		
 		// preview slot
-		this.addSlot(new PedestalPreviewSlot(craftingResultInventory, 15, 127, 37));
+		this.addSlot(new PedestalPreviewSlot(inventory, 15, 127, 37));
 		
 		// player inventory
 		int l;
@@ -124,16 +123,6 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	public void clearCraftingSlots() {
 		for (int i = 0; i < 9; i++) {
 			this.getSlot(i).setStack(ItemStack.EMPTY);
-		}
-	}
-	
-	// TODO
-	// this gets called every tick to update the stack in the gui preview slot.
-	// This is bad. It should be calculated once only when the inventory changed
-	public void calculateDisplayedSlotStackClient() {
-		BlockEntity blockEntity = world.getBlockEntity(pedestalPos);
-		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
-			this.slots.get(15).setStack(pedestalBlockEntity.getCurrentCraftingRecipeOutput());
 		}
 	}
 	
@@ -175,7 +164,6 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	public boolean isCrafting() {
-		calculateDisplayedSlotStackClient();
 		return this.propertyDelegate.get(0) > 0; // craftingTime
 	}
 	

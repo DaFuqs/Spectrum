@@ -59,6 +59,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
     }
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -92,6 +93,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -116,6 +118,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}

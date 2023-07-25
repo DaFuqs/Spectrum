@@ -79,7 +79,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private boolean tryCraft(RestockingChestBlockEntity restockingChestBlockEntity, int index) {
 		ItemStack craftingTabletItemStack = restockingChestBlockEntity.inventory.get(RECIPE_SLOTS[index]);
 		if (craftingTabletItemStack.isOf(SpectrumItems.CRAFTING_TABLET)) {
-			Recipe recipe = CraftingTabletItem.getStoredRecipe(world, craftingTabletItemStack);
+			Recipe<?> recipe = CraftingTabletItem.getStoredRecipe(world, craftingTabletItemStack);
 			if (recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 				ItemStack outputItemStack = recipe.getOutput();

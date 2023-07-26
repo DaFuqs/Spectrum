@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -21,6 +22,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -53,11 +55,18 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	public static DefaultAttributeContainer.Builder createKindlingAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
+				.add(EntityAttributes.GENERIC_ARMOR, 25.0D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 12.0D)
+				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 6.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.75D)
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
 	}
-	
+
+	@Override
+	protected void initAttributes(Random random) {
+	}
+
 	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));

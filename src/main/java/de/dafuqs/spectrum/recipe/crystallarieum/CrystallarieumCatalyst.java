@@ -7,6 +7,8 @@ import net.minecraft.util.*;
 
 public class CrystallarieumCatalyst {
 	
+	public static final CrystallarieumCatalyst EMPTY = new CrystallarieumCatalyst(Ingredient.EMPTY, 1.0F, 1.0F, 0.0F);
+	
 	public final Ingredient ingredient;
 	public final float growthAccelerationMod;
 	public final float inkConsumptionMod;

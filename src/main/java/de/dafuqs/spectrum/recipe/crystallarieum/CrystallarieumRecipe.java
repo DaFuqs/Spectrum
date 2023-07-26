@@ -128,13 +128,13 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 		return this.inputIngredient;
 	}
 	
-	public Optional<CrystallarieumCatalyst> getCatalyst(ItemStack itemStack) {
+	public CrystallarieumCatalyst getCatalyst(ItemStack itemStack) {
 		for (CrystallarieumCatalyst catalyst : this.catalysts) {
 			if (catalyst.ingredient.test(itemStack)) {
-				return Optional.of(catalyst);
+				return catalyst;
 			}
 		}
-		return Optional.empty();
+		return CrystallarieumCatalyst.EMPTY;
 	}
 	
 	public List<BlockState> getGrowthStages() {

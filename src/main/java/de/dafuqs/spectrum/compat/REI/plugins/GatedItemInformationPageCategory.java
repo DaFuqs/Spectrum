@@ -15,6 +15,7 @@ import java.util.*;
 public abstract class GatedItemInformationPageCategory extends GatedDisplayCategory<GatedItemInformationDisplay> {
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull GatedItemInformationDisplay display) {
 		Item item = display.getItem();
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 5, startPoint.y + 3)).entries(display.getInputEntries().get(0)).markInput());
@@ -34,6 +35,6 @@ public abstract class GatedItemInformationPageCategory extends GatedDisplayCateg
 		return 100;
 	}
 	
-	public abstract EntryStack getBackgroundEntryStack();
+	public abstract EntryStack<?> getBackgroundEntryStack();
 	
 }

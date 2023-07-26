@@ -20,7 +20,7 @@ import vazkii.patchouli.client.book.page.abstr.*;
  */
 public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithText implements GatedPatchouliPage {
 	
-	private final RecipeType<? extends T> recipeType;
+	private final RecipeType<T> recipeType;
 	
 	@SerializedName("recipe")
 	Identifier recipeId;
@@ -29,10 +29,11 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	protected transient T recipe;
 	protected transient Text titleText;
 	
-	public PageGatedRecipe(RecipeType<? extends T> recipeType) {
+	public PageGatedRecipe(RecipeType<T> recipeType) {
 		this.recipeType = recipeType;
 	}
 	
+	@SuppressWarnings("resource")
 	private @Nullable T getRecipe(Identifier id) {
 		if (MinecraftClient.getInstance().world == null) {
 			return null;
@@ -55,6 +56,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isPageUnlocked() {
 		if (!super.isPageUnlocked() || recipe == null) {
 			return false;

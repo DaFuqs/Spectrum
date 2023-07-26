@@ -17,6 +17,7 @@ import terrails.healthoverlay.render.*;
 public abstract class InGameHudMixin {
 
 	// Execute the display after HealthOverlay did its own, to avoid conflict
+	@SuppressWarnings("resource")
 	@Inject(method = "renderPlayerHearts", at = @At("TAIL"), remap = false, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private void renderPlayerHeartsAzureDikeInjector(MatrixStack poseStack, PlayerEntity player, CallbackInfo ci) {
 		InGameHud hud = MinecraftClient.getInstance().inGameHud;

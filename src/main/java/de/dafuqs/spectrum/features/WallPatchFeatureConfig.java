@@ -27,7 +27,7 @@ public class WallPatchFeatureConfig implements FeatureConfig {
 	public final RegistryEntryList<Block> canPlaceOn;
 	private final ObjectArrayList<Direction> directions;
 	
-	public WallPatchFeatureConfig(Block block, int searchRange, boolean placeOnFloor, boolean placeOnCeiling, boolean placeOnWalls, IntProvider width, IntProvider height, RegistryEntryList<Block> canPlaceOn) {
+	public WallPatchFeatureConfig(Block block, Integer searchRange, Boolean placeOnFloor, Boolean placeOnCeiling, Boolean placeOnWalls, IntProvider width, IntProvider height, RegistryEntryList<Block> canPlaceOn) {
 		this.block = block;
 		this.searchRange = searchRange;
 		this.placeOnFloor = placeOnFloor;

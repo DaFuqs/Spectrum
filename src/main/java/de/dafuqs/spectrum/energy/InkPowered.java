@@ -23,6 +23,7 @@ public interface InkPowered {
 	Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	static boolean canUseClient() {
 		return canUse(MinecraftClient.getInstance().player);
 	}
@@ -56,7 +57,7 @@ public interface InkPowered {
 	}
 	
 	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, boolean viaPlayer) {
-		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			if (!inkStorageItem.getDrainability().canDrain(viaPlayer)) {
 				return 0;
 			}
@@ -73,7 +74,7 @@ public interface InkPowered {
 	}
 	
 	private static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
-		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			return inkStorage.getEnergy(color);
 		} else {

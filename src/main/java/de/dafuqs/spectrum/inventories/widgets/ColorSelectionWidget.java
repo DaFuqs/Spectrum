@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.narration.*;
 import net.minecraft.client.gui.widget.*;
@@ -23,7 +22,7 @@ import java.util.function.*;
 import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 @Environment(EnvType.CLIENT)
-public class ColorSelectionWidget extends ClickableWidget implements Drawable, Element {
+public class ColorSelectionWidget extends ClickableWidget {
 	
 	protected final ColorPickerBlockEntity colorPicker;
 	
@@ -59,6 +58,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {

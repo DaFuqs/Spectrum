@@ -37,7 +37,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	@Contract("_ -> new")
-	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType entityType) {
+	public static @NotNull Pair<Integer, Integer> getEggColorsForEntity(EntityType<?> entityType) {
 		SpawnEggItem spawnEggItem = SpawnEggItem.forEntity(entityType);
 		if (spawnEggItem != null) {
 			return new Pair<>(spawnEggItem.getColor(0), spawnEggItem.getColor(1));

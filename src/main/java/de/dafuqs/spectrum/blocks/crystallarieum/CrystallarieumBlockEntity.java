@@ -69,7 +69,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			// transfer ink
 			ItemStack inkStorageStack = crystallarieum.getStack(INK_STORAGE_STACK_SLOT_ID);
-			if(inkStorageStack.getItem() instanceof InkStorageItem inkStorageItem) {
+			if(inkStorageStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 				InkStorage itemInkStorage = inkStorageItem.getEnergyStorage(inkStorageStack);
 				long transferredAmount = InkStorage.transferInk(itemInkStorage, crystallarieum.inkStorage);
 				if (transferredAmount > 0) {
@@ -182,7 +182,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			this.currentGrowthStageDuration = nbt.getInt("CurrentGrowthStageDuration");
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
+				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof CrystallarieumRecipe crystallarieumRecipe)) {
 					this.currentRecipe = crystallarieumRecipe;
 					Optional<CrystallarieumCatalyst> oc = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));

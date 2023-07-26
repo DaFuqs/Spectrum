@@ -40,7 +40,7 @@ public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionPa
 		}
 	};
 	
-	public HummingstoneTransmissionParticleEffect(PositionSource positionSource, int arrivalInTicks) {
+	public HummingstoneTransmissionParticleEffect(PositionSource positionSource, Integer arrivalInTicks) {
 		super(positionSource, arrivalInTicks);
 	}
 	

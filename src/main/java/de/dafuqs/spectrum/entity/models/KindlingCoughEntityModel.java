@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.entity.models;
 
+import de.dafuqs.spectrum.entity.entity.KindlingCoughEntity;
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.*;
-import net.minecraft.entity.*;
 
 @Environment(EnvType.CLIENT)
-public class KindlingCoughEntityModel<T extends Entity> extends SinglePartEntityModel<T> {
+public class KindlingCoughEntityModel extends SinglePartEntityModel<KindlingCoughEntity> {
 	
 	private final ModelPart root;
 	
@@ -29,7 +29,7 @@ public class KindlingCoughEntityModel<T extends Entity> extends SinglePartEntity
 		return TexturedModelData.of(modelData, 64, 32);
 	}
 	
-	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setAngles(KindlingCoughEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 	}
 	
 	public ModelPart getPart() {

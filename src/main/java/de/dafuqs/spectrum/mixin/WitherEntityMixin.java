@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(WitherEntity.class)
 public abstract class WitherEntityMixin {
 	
+	@SuppressWarnings("resource")
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;setCovetedItem()V"),
 			method = "dropEquipment(Lnet/minecraft/entity/damage/DamageSource;IZ)V", locals = LocalCapture.CAPTURE_FAILSOFT)
 	private void spawnEntity(DamageSource source, int lootingMultiplier, boolean allowDrops, CallbackInfo ci, ItemEntity itemEntity) {

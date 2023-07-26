@@ -12,7 +12,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.*;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends ScreenHandler> extends HandledScreen<QuickNavigationGridScreenHandler> {
+public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledScreen<T> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;
 	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/quick_navigation.png");
@@ -61,7 +61,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			this.leftEntry = leftEntry;
 		}
 		
-		void navigate(GUISelection direction, QuickNavigationGridScreen screen) {
+		void navigate(GUISelection direction, QuickNavigationGridScreen<?> screen) {
 			switch (direction) {
 				case BACK -> screen.back();
 				case SELECT -> centerEntry.whenSelected(screen);
@@ -103,13 +103,14 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		public static final GridEntry EMPTY = GridEntry.empty(null);
 		
 		public interface GridEntryCallback {
-			void whenSelected(QuickNavigationGridScreen screen);
+			void whenSelected(QuickNavigationGridScreen<?> screen);
 		}
 		
 		protected final Text text;
 		protected final int halfTextWidth;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
+		@SuppressWarnings("resource")
 		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
 			this.text = Text.translatable(text);
 			this.halfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.text) / 2;
@@ -136,7 +137,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			return new ItemGridEntry(item, text, callback);
 		}
 		
-		public void whenSelected(QuickNavigationGridScreen screen) {
+		public void whenSelected(QuickNavigationGridScreen<?> screen) {
 			if (this.onClickCallback != null) {
 				this.onClickCallback.whenSelected(screen);
 			}
@@ -150,10 +151,12 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			screen.drawTexture(matrices, startX, startY, 48, 0, 28, 28);
 		}
 		
+		@SuppressWarnings("resource")
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR);
 		}
 		
+		@SuppressWarnings("resource")
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR);
 		}
@@ -235,6 +238,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		protected final Text innerText;
 		protected final int innerHalfTextWidth;
 		
+		@SuppressWarnings("resource")
 		private TextGridEntry(Text innerText, @Nullable String text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.innerText = innerText;
@@ -242,11 +246,13 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		}
 		
 		@Override
+		@SuppressWarnings("resource")
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR);
 		}
 		
 		@Override
+		@SuppressWarnings("resource")
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR);
 		}
@@ -277,7 +283,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	
 	public final Stack<Grid> gridStack = new Stack<>();
 	
-	public QuickNavigationGridScreen(QuickNavigationGridScreenHandler handler, PlayerInventory playerInventory, Text title) {
+	public QuickNavigationGridScreen(T handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 256;
 	}
@@ -361,6 +367,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		GameOptions options = MinecraftClient.getInstance().options;
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {

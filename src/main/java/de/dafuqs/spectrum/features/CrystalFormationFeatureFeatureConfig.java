@@ -11,8 +11,8 @@ import net.minecraft.world.gen.stateprovider.*;
 public record CrystalFormationFeatureFeatureConfig(IntProvider iterationCountProvider,
                                                    BlockStateProvider blockStateProvider,
                                                    RegistryEntryList<Block> canStartOnBlocks,
-                                                   RegistryEntryList<Block> canExtendOnBlocks, boolean canGrowUpwards,
-                                                   boolean canGrowDownwards) implements FeatureConfig {
+                                                   RegistryEntryList<Block> canExtendOnBlocks, Boolean canGrowUpwards,
+                                                   Boolean canGrowDownwards) implements FeatureConfig {
     
     public static final Codec<CrystalFormationFeatureFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             IntProvider.POSITIVE_CODEC.fieldOf("iterations").forGetter((config) -> config.iterationCountProvider),

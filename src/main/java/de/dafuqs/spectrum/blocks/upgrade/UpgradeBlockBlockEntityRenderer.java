@@ -7,9 +7,10 @@ import net.minecraft.block.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
+
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
@@ -53,7 +54,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 		
 		switch (upgradeType) {
 			case SPEED -> {
-				spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
+				spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
 				
 				modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 				modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
@@ -62,7 +63,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 				return TexturedModelData.of(modelData, 48, 48);
 			}
 			case YIELD -> {
-				spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_yield"));
+				spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_yield"));
 				
 				modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 				modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
@@ -71,7 +72,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 				return TexturedModelData.of(modelData, 48, 48);
 			}
 			case EFFICIENCY -> {
-				spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_efficiency"));
+				spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_efficiency"));
 				
 				modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 				modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
@@ -80,7 +81,7 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 				return TexturedModelData.of(modelData, 48, 48);
 			}
 			default -> {
-				spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_experience"));
+				spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/pedestal_upgrade_experience"));
 				
 				modelPartData.addChild("bone", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -4.0F, -2.0F, 4.0F, 8.0F, 4.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 				modelPartData.addChild("basalt", ModelPartBuilder.create().uv(20, 2).mirrored().cuboid(-3.0F, -3.0F, -3.0F, 6.0F, 1.0F, 6.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));

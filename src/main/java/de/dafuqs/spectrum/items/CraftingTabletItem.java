@@ -32,7 +32,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		super(settings);
 	}
 	
-	public static void setStoredRecipe(ItemStack craftingTabletItemStack, Recipe recipe) {
+	public static void setStoredRecipe(ItemStack craftingTabletItemStack, Recipe<?> recipe) {
 		NbtCompound nbtCompound = craftingTabletItemStack.getOrCreateNbt();
 		nbtCompound.putString("recipe", recipe.getId().toString());
 		craftingTabletItemStack.setNbt(nbtCompound);
@@ -54,7 +54,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 				String recipeString = nbtCompound.getString("recipe");
 				Identifier recipeIdentifier = new Identifier(recipeString);
 				
-				Optional<? extends Recipe> optional = world.getRecipeManager().get(recipeIdentifier);
+				Optional<? extends Recipe<?>> optional = world.getRecipeManager().get(recipeIdentifier);
 				if (optional.isPresent()) {
 					return optional.get();
 				}
@@ -68,7 +68,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		ItemStack itemStack = user.getStackInHand(hand);
 		
 		if (!world.isClient) {
-			Recipe storedRecipe = getStoredRecipe(world, itemStack);
+			Recipe<?> storedRecipe = getStoredRecipe(world, itemStack);
 			if (storedRecipe == null || user.isSneaking()) {
 				user.openHandledScreen(createScreenHandlerFactory(world, (ServerPlayerEntity) user, itemStack));
 			} else {
@@ -88,7 +88,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingTabletScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), TITLE);
 	}
 	
-	private void tryCraftRecipe(ServerPlayerEntity serverPlayerEntity, Recipe recipe) {
+	private void tryCraftRecipe(ServerPlayerEntity serverPlayerEntity, Recipe<?> recipe) {
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 		
 		Inventory playerInventory = serverPlayerEntity.getInventory();
@@ -107,7 +107,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		Recipe recipe = getStoredRecipe(world, itemStack);
+		Recipe<?> recipe = getStoredRecipe(world, itemStack);
 		if (recipe == null) {
 			tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.no_recipe").formatted(Formatting.GRAY));
 		} else {
@@ -124,8 +124,9 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
+	@SuppressWarnings("resource")
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(MinecraftClient.getInstance().world, stack);
+		Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(MinecraftClient.getInstance().world, stack);
 		if (storedRecipe != null) {
 			return Optional.of(new CraftingTabletTooltipData(storedRecipe));
 		} else {

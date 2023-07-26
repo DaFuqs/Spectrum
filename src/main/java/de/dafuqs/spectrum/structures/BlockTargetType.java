@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.structures;
 
-import net.minecraft.block.*;
-import net.minecraft.util.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.StringIdentifiable;
 
-import java.util.function.*;
+import java.util.function.Predicate;
 
 public enum BlockTargetType implements StringIdentifiable {
 	
@@ -12,7 +13,7 @@ public enum BlockTargetType implements StringIdentifiable {
 	MOTION_BLOCKING("motion_blocking", (state) -> state.getMaterial().blocksMovement() || !state.getFluidState().isEmpty()),
 	SOLID("solid", (state) -> state.getMaterial().isSolid());
 	
-	public static final Codec<BlockTargetType> CODEC = StringIdentifiable.createCodec(BlockTargetType::values);
+	public static final com.mojang.serialization.Codec<BlockTargetType> CODEC = StringIdentifiable.createCodec(BlockTargetType::values);
 	
 	private final String name;
 	private final Predicate<BlockState> blockPredicate;

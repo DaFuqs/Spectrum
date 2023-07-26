@@ -7,10 +7,10 @@ import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.item.*;
 import net.minecraft.client.render.model.*;
 import net.minecraft.client.render.model.json.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
@@ -75,7 +75,7 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
     
     @Override
     public Identifier getTexture(GlassArrowEntity itemEntity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+        return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
     }
     
 }

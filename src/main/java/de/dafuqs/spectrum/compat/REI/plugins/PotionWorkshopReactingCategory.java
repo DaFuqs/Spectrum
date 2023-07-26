@@ -7,12 +7,13 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.fabricmc.api.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.*;
 
 @Environment(EnvType.CLIENT)
 public class PotionWorkshopReactingCategory extends GatedItemInformationPageCategory {
 	
-	public static final EntryStack POTION_WORKSHOP_ENTRY = EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP);
+	public static final EntryStack<ItemStack> POTION_WORKSHOP_ENTRY = EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP);
 	
 	@Override
 	public Renderer getIcon() {
@@ -25,12 +26,12 @@ public class PotionWorkshopReactingCategory extends GatedItemInformationPageCate
 	}
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<PotionWorkshopReactingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_REACTING;
 	}
 	
 	@Override
-	public EntryStack getBackgroundEntryStack() {
+	public EntryStack<?> getBackgroundEntryStack() {
 		return POTION_WORKSHOP_ENTRY;
 	}
 	

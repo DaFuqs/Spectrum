@@ -27,7 +27,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		this(SpectrumBlockEntities.PARTICLE_SPAWNER, blockPos, blockState);
 	}
 	
-	public ParticleSpawnerBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
+	public ParticleSpawnerBlockEntity(BlockEntityType<ParticleSpawnerBlockEntity> blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
 		
 		this.configuration = new ParticleSpawnerConfiguration(

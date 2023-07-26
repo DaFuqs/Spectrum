@@ -24,7 +24,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	private static final TrackedData<GlassArrowVariant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
 	public static final float DAMAGE_MODIFIER = 1.25F;
 	
-	public GlassArrowEntity(EntityType entityType, World world) {
+	public GlassArrowEntity(EntityType<? extends GlassArrowEntity> entityType, World world) {
 		super(entityType, world);
 	}
 	

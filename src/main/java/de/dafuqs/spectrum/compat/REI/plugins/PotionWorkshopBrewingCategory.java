@@ -8,10 +8,10 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
-public class PotionWorkshopBrewingCategory extends PotionWorkshopCategory {
+public class PotionWorkshopBrewingCategory extends PotionWorkshopCategory<PotionWorkshopBrewingDisplay> {
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<PotionWorkshopBrewingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_BREWING;
 	}
 	

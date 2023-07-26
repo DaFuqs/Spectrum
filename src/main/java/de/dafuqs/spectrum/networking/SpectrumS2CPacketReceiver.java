@@ -39,6 +39,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class SpectrumS2CPacketReceiver {
 	
+	@SuppressWarnings("deprecation")
 	public static void registerS2CReceivers() {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_WITH_RANDOM_OFFSET_AND_VELOCITY, (client, handler, buf, responseSender) -> {
 			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
@@ -305,7 +306,7 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				BlockEntity blockEntity = client.world.getBlockEntity(blockPos);
-				if (blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
+				if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
 					inkStorageBlockEntity.getEnergyStorage().setEnergy(colors, colorTotal);
 				}
 			});

@@ -29,7 +29,7 @@ import net.minecraft.world.event.listener.*;
 
 import java.util.*;
 
-public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback {
+public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback<BlockPosEventQueue.EventEntry> {
 	
 	private static final int RANGE = 12;
 	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
@@ -211,9 +211,9 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	@Override
-	public void triggerEvent(World world, GameEventListener listener, Object entry) {
+	public void triggerEvent(World world, GameEventListener listener, BlockPosEventQueue.EventEntry entry) {
 		if (listener instanceof BlockPosEventQueue && this.world != null) {
-			BlockPos eventPos = ((BlockPosEventQueue.EventEntry) entry).eventSourceBlockPos;
+			BlockPos eventPos = entry.eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
 			if (eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest

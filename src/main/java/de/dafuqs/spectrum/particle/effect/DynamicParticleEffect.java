@@ -13,7 +13,16 @@ import net.minecraft.util.registry.*;
 
 public class DynamicParticleEffect implements ParticleEffect {
 	
-	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Vec3f.CODEC.fieldOf("color").forGetter((effect) -> effect.color), Codec.STRING.fieldOf("particle_type").forGetter((effect) -> effect.particleTypeIdentifier.toString()), Codec.FLOAT.fieldOf("scale").forGetter((effect) -> effect.scale), Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> effect.lifetimeTicks), Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> effect.gravity), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> effect.collisions), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)).apply(instance, DynamicParticleEffect::new));
+	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create(
+		(instance) -> instance.group(
+			Vec3f.CODEC.fieldOf("color").forGetter((effect) -> effect.color),
+			Codec.STRING.fieldOf("particle_type").forGetter((effect) -> effect.particleTypeIdentifier.toString()),
+			Codec.FLOAT.fieldOf("scale").forGetter((effect) -> effect.scale),
+			Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> effect.lifetimeTicks),
+			Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> effect.gravity),
+			Codec.BOOL.fieldOf("collisions").forGetter((effect) -> effect.collisions),
+			Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)
+		).apply(instance, DynamicParticleEffect::new));
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
@@ -101,7 +110,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 	}
 	
 	@Override
-	public ParticleType<DynamicParticleEffect> getType() {
+	public ParticleType<?> getType() {
 		return SpectrumParticleTypes.DYNAMIC;
 	}
 	

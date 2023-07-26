@@ -4,8 +4,8 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
@@ -58,7 +58,7 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 
 	@Override
 	public Identifier getTexture(MagicProjectileEntity entity) {
-		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+		return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
 	}
 	
 }

@@ -166,6 +166,7 @@ public abstract class DecayBlock extends Block {
 	 * schedule a tick to convert it faster. => User gets quick reaction
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block previousBlock, BlockPos fromPos, boolean notify) {
 		super.neighborUpdate(state, world, pos, previousBlock, fromPos, notify);
 		

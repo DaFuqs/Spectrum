@@ -120,18 +120,18 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
 	LIZARD(SpectrumEntityTypes.LIZARD, true);
 	
-	public final EntityType entityType;
+	public final EntityType<?> entityType;
 	public final SkullBlock.SkullType modelType;
 	
 	// most mob heads render with the player head renderer using a different texture, but some use unique renderers already
 	// somewhen in the future hopefully all of them get their own unique head block model
-	SpectrumSkullBlockType(EntityType entityType) {
+	SpectrumSkullBlockType(EntityType<?> entityType) {
 		this(entityType, false);
 	}
 	
 	// if you use this constructor you will also need to add that unique Renderer
 	// to SpectrumSkullBlockEntityRenderer.getModels()
-	SpectrumSkullBlockType(EntityType entityType, boolean useUniqueRenderer) {
+	SpectrumSkullBlockType(EntityType<?> entityType, boolean useUniqueRenderer) {
 		this.entityType = entityType;
 		this.modelType = useUniqueRenderer ? this : SkullBlock.Type.PLAYER;
 	}

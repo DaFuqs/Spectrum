@@ -14,6 +14,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.texture.*;
 import net.minecraft.fluid.*;
 import net.minecraft.resource.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
@@ -92,7 +93,7 @@ public class SpectrumFluids {
 		final Identifier flowingSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_flow");
 		
 		// If they're not already present, add the sprites to the block atlas
-		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
+		ClientSpriteRegistryCallback.event(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
 			registry.register(stillSpriteId);
 			registry.register(flowingSpriteId);
 		});
@@ -108,7 +109,7 @@ public class SpectrumFluids {
 			 */
 			@Override
 			public void reload(ResourceManager manager) {
-				final Function<Identifier, Sprite> atlas = MinecraftClient.getInstance().getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE);
+				final Function<Identifier, Sprite> atlas = MinecraftClient.getInstance().getSpriteAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE);
 				fluidSprites[0] = atlas.apply(stillSpriteId);
 				fluidSprites[1] = atlas.apply(flowingSpriteId);
 			}

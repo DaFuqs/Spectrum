@@ -18,7 +18,7 @@ public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay impleme
 		this.chance = chance;
 	}
 	
-	public static EntryStack blockToEntryStack(Block block) {
+	public static EntryStack<?> blockToEntryStack(Block block) {
 		if (block instanceof FluidBlock inFluidBlock) {
 			return EntryStacks.of(((FluidBlockAccessor) inFluidBlock).getFlowableFluid());
 		} else {

@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.id.incubus_core.blocklikeentities.api.*;
-import net.id.incubus_core.blocklikeentities.util.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
@@ -20,7 +19,7 @@ import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
-public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity {
+public class FloatBlockEntity extends BlockLikeEntity {
 	
 	private static final float MAX_DAMAGE = 5.0F;
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;

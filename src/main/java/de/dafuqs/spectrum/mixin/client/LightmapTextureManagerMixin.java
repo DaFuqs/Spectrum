@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.*;
 
 public class LightmapTextureManagerMixin {
 
+	@SuppressWarnings("resource")
     @ModifyReturnValue(method = "getDarkness(Lnet/minecraft/entity/LivingEntity;FF)F", at = @At("RETURN"))
     private static float spectrum$getDarkness(float original) {
         if (DDDimension.DIMENSION_KEY.equals(MinecraftClient.getInstance().player.world.getRegistryKey())) {

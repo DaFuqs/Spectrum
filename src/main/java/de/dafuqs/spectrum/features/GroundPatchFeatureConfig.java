@@ -12,9 +12,9 @@ import net.minecraft.world.gen.stateprovider.*;
 
 public record GroundPatchFeatureConfig(TagKey<Block> replaceable, BlockStateProvider groundState,
                                        RegistryEntry<PlacedFeature> vegetationFeature, VerticalSurfaceType surface,
-                                       IntProvider depth, float extraBottomBlockChance, int verticalRange,
-                                       float vegetationChance, IntProvider horizontalRadius,
-                                       float extraEdgeColumnChance) implements FeatureConfig {
+                                       IntProvider depth, Float extraBottomBlockChance, Integer verticalRange,
+                                       Float vegetationChance, IntProvider horizontalRadius,
+                                       Float extraEdgeColumnChance) implements FeatureConfig {
     
     public static final Codec<GroundPatchFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             TagKey.codec(Registry.BLOCK_KEY).fieldOf("replaceable").forGetter((config) -> config.replaceable),

@@ -7,8 +7,8 @@ import net.minecraft.client.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.*;
 import net.minecraft.client.render.entity.*;
-import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -23,6 +23,7 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void render(ShootingStarEntity shootingStarEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		BlockState blockState = shootingStarEntity.getShootingStarType().getBlock().getDefaultState();
 		
@@ -46,6 +47,6 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 	
 	@Override
 	public Identifier getTexture(ShootingStarEntity entityIn) {
-		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+		return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;
 	}
 }

@@ -258,7 +258,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		long transferredAmount = 0;
 		
 		ItemStack stack = inventory.get(OUTPUT_SLOT_ID);
-		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 			InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 			
 			if (this.selectedColor == null) {

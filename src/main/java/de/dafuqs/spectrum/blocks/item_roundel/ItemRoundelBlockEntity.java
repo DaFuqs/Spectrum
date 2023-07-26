@@ -16,7 +16,7 @@ public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 		this(SpectrumBlockEntities.ITEM_ROUNDEL, pos, state, INVENTORY_SIZE);
 	}
 	
-	public ItemRoundelBlockEntity(BlockEntityType blockEntityType, BlockPos pos, BlockState state, int inventorySize) {
+	public ItemRoundelBlockEntity(BlockEntityType<? extends ItemRoundelBlockEntity> blockEntityType, BlockPos pos, BlockState state, int inventorySize) {
 		super(blockEntityType, pos, state, inventorySize);
 	}
 	

@@ -20,11 +20,13 @@ public class WeatherDetectorBlock extends DetectorBlock {
 			switch (precipitation) {
 				case RAIN -> power = 15;
 				case SNOW -> power = 8;
+				case NONE -> power = 0;
 			}
 		} else if (world.isRaining()) {
 			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation();
 			switch (precipitation) {
 				case RAIN, SNOW -> power = 8;
+				case NONE -> power = 0;
 			}
 		}
 		

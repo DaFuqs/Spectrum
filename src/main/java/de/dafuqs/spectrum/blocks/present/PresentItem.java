@@ -267,7 +267,7 @@ public class PresentItem extends BlockItem {
 			return Stream.empty();
 		} else {
 			NbtList nbtList = nbtCompound.getList(ITEMS_KEY, 10);
-			Stream stream = nbtList.stream();
+			Stream<NbtElement> stream = nbtList.stream();
 			Objects.requireNonNull(NbtCompound.class);
 			return stream.map(NbtCompound.class::cast).map(c -> ItemStack.fromNbt((NbtCompound) c));
 		}

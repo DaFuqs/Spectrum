@@ -10,7 +10,7 @@ import net.minecraft.world.event.*;
 
 public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.EventEntry> {
 	
-	public ExperienceOrbEventQueue(PositionSource positionSource, int range, Callback listener) {
+	public ExperienceOrbEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
 		super(positionSource, range, listener);
 	}
 	

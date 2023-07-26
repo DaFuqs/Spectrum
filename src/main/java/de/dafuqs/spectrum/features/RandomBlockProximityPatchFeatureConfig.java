@@ -7,8 +7,8 @@ import net.minecraft.util.dynamic.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.*;
 
-public record RandomBlockProximityPatchFeatureConfig(int tries, int xzSpread, int ySpread,
-                                                     RegistryEntryList<Block> blocksToCheckFor, int blockScanRange,
+public record RandomBlockProximityPatchFeatureConfig(Integer tries, Integer xzSpread, Integer ySpread,
+                                                     RegistryEntryList<Block> blocksToCheckFor, Integer blockScanRange,
                                                      RegistryEntry<PlacedFeature> closeToBlockFeature,
                                                      RegistryEntry<PlacedFeature> fallbackFeature) implements FeatureConfig {
 

@@ -14,12 +14,12 @@ import java.util.*;
 
 public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 
-    public RandomBudsFeature(Codec configCodec) {
+    public RandomBudsFeature(Codec<RandomBudsFeaturesConfig> configCodec) {
         super(configCodec);
     }
 
     @Override
-    public boolean generate(FeatureContext context) {
+    public boolean generate(FeatureContext<RandomBudsFeaturesConfig> context) {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         BlockPos blockPos = context.getOrigin();
         Random random = context.getRandom();

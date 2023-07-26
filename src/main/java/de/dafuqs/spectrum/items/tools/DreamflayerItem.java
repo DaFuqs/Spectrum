@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
@@ -24,7 +23,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered, ActivatableItem, SplitDamageItem {
+public class DreamflayerItem extends SwordItem implements InkPowered, ActivatableItem, SplitDamageItem {
 
 	public static final InkColor USED_COLOR = InkColors.RED;
 	public static final long INK_COST_FOR_ACTIVATION = 200L;

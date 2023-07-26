@@ -12,7 +12,7 @@ import net.minecraft.util.registry.*;
 
 public class SpectrumCustomRecipeSerializers {
 	
-	private static void register(RecipeSerializer recipeSerializer, String id) {
+	private static void register(RecipeSerializer<?> recipeSerializer, String id) {
 		Registry.register(Registry.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
 	}
 	

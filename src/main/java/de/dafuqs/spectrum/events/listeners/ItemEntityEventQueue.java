@@ -10,7 +10,7 @@ import net.minecraft.world.event.*;
 
 public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventEntry> {
 	
-	public ItemEntityEventQueue(PositionSource positionSource, int range, Callback listener) {
+	public ItemEntityEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
 		super(positionSource, range, listener);
 	}
 	

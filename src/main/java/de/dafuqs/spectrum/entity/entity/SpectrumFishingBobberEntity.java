@@ -67,7 +67,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	public static final Identifier LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/universal_fishing");
 	
-	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
+	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
 		super(type, world);
 		this.velocityRandom = Random.create();
 		this.inTheOpen = true;
@@ -81,11 +81,11 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.getDataTracker().set(ABLAZE, ablaze);
 	}
 	
-	public SpectrumFishingBobberEntity(EntityType entityType, World world) {
+	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, World world) {
 		this(entityType, world, 0, 0, 0, 0, false, false);
 	}
 	
-	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
+	public SpectrumFishingBobberEntity(EntityType<? extends SpectrumFishingBobberEntity> entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
 		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, ablaze);
 		this.setOwner(thrower);
 		float f = thrower.getPitch();

@@ -6,10 +6,10 @@ import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
-public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory {
+public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory<PotionWorkshopCraftingDisplay> {
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<PotionWorkshopCraftingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_CRAFTING;
 	}
 	

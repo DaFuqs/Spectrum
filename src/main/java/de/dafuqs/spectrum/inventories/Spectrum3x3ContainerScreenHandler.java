@@ -18,7 +18,7 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), progressionStage);
 	}
 	
-	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ProgressionStage progressionStage) {
+	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ProgressionStage progressionStage) {
 		super(screenHandlerType, syncId);
 		checkSize(inventory, 9);
 		this.tier = progressionStage;

@@ -10,7 +10,7 @@ import net.minecraft.world.event.*;
 
 public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
-	public WirelessRedstoneSignalEventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
+	public WirelessRedstoneSignalEventQueue(PositionSource positionSource, int range, EventQueue.Callback<EventEntry> listener) {
 		super(positionSource, range, listener);
 	}
 	

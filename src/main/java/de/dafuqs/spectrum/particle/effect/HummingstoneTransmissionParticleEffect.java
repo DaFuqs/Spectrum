@@ -17,6 +17,7 @@ public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionPa
 			Codec.INT.fieldOf("arrival_in_ticks").forGetter((effect) -> effect.arrivalInTicks)
 	).apply(instance, HummingstoneTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final Factory<HummingstoneTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public HummingstoneTransmissionParticleEffect read(ParticleType<HummingstoneTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

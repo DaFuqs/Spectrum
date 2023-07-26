@@ -34,7 +34,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		this.recipeType = recipeType;
 	}
 	
-	@SuppressWarnings("resource")
+	@SuppressWarnings({"resource", "unchecked"})
 	private @Nullable T getRecipe(Identifier id) {
 		if (MinecraftClient.getInstance().world == null) {
 			return null;

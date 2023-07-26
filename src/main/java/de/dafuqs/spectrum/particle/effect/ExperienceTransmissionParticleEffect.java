@@ -18,6 +18,7 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 					Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
 			).apply(instance, ExperienceTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final Factory<ExperienceTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public ExperienceTransmissionParticleEffect read(ParticleType<ExperienceTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

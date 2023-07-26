@@ -22,6 +22,7 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
             Codec.INT.fieldOf("color").forGetter((particleEffect) -> particleEffect.color)
     ).apply(instance, PastelTransmissionParticleEffect::new));
 
+	@SuppressWarnings("deprecation")
 	public static final Factory<PastelTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public PastelTransmissionParticleEffect read(ParticleType<PastelTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

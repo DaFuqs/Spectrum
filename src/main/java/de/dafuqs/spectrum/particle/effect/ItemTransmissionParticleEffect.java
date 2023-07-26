@@ -18,6 +18,7 @@ public class ItemTransmissionParticleEffect extends SimpleTransmissionParticleEf
 					Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
 			).apply(instance, ItemTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final Factory<ItemTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public ItemTransmissionParticleEffect read(ParticleType<ItemTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

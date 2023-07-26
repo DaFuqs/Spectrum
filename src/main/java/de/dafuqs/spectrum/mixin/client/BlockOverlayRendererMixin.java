@@ -32,6 +32,7 @@ public abstract class BlockOverlayRendererMixin {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private static void renderOverlay(MinecraftClient client, MatrixStack matrixStack, Identifier textureIdentifier, float alpha) {
 		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		// TODO - Test this

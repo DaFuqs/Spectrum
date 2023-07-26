@@ -26,35 +26,36 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable /*,Flutterer*/ {
+public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable /*,Flutterer*/ {
 	
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
-	protected static final Ingredient FOOD_IF_YOU_WANT_A_BAD_TIME = Ingredient.ofItems(SpectrumItems.BLOODBOIL_SYRUP.asItem());
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
-	private @Nullable UUID angryAt;
-	protected boolean coughed;
+	protected @Nullable UUID angryAt;
+	
+	// flying animation
+	public float flapProgress;
+	public float maxWingDeviation;
+	public float prevMaxWingDeviation;
+	public float prevFlapProgress;
+	public float flapSpeed = 1.0F;
+	private float field_28639 = 1.0F;
 	
 	public KindlingEntity(EntityType<? extends KindlingEntity> entityType, World world) {
 		super(entityType, world);
-		this.setPathfindingPenalty(PathNodeType.WATER, -0.2F);
-		this.setPathfindingPenalty(PathNodeType.LAVA, 8.0F);
-		this.setPathfindingPenalty(PathNodeType.DANGER_FIRE, 0.0F);
-		this.setPathfindingPenalty(PathNodeType.DAMAGE_FIRE, 0.0F);
+		
+		this.setPathfindingPenalty(PathNodeType.WATER, -0.75F);
+		
 		this.experiencePoints = 8;
 	}
 	
 	public static DefaultAttributeContainer.Builder createKindlingAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-	}
-	
-	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return FOOD.test(stack);
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.75D)
+				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
 	}
 	
 	@Override
@@ -63,13 +64,14 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
 		this.goalSelector.add(2, new ProjectileAttackGoal(this, 1.25, 40, 20.0F));
 		this.goalSelector.add(3, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(4, new TemptGoal(this, 1.25, Ingredient.ofItems(Items.HAY_BLOCK), false));
+		this.goalSelector.add(4, new TemptGoal(this, 1.25, FOOD, false));
 		this.goalSelector.add(5, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
 		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new CoughRevengeGoal(this));
+		this.targetSelector.add(2, new UniversalAngerGoal(this, false));
 	}
 	
 	@Override
@@ -78,14 +80,21 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		this.dataTracker.startTracking(ANGER, 0);
 	}
 	
+	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		this.writeAngerToNbt(nbt);
 	}
 	
+	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.world, nbt);
+	}
+	
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		return FOOD.test(stack);
 	}
 	
 	@Nullable
@@ -115,11 +124,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	}
 	
 	@Override
-	public boolean hasWings() {
-		return this.isInAir() && this.age % 2 == 0;
-	}
-	
-	@Override
 	public boolean isInAir() {
 		return !this.onGround;
 	}
@@ -135,19 +139,66 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	}
 	
 	@Override
-	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		if (this.isAngry()) {
-			return super.interactMob(player, hand);
-		}
+	protected void mobTick() {
+		super.mobTick();
+		
 		if (!this.world.isClient) {
-			player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
-			return ActionResult.CONSUME;
-		} else {
-			return ActionResult.PASS;
+			this.tickAngerLogic((ServerWorld) this.world, false);
 		}
 	}
 	
-	private void coughAt(LivingEntity target) {
+	@Override
+	public void tickMovement() {
+		super.tickMovement();
+		
+		this.prevFlapProgress = this.flapProgress;
+		this.prevMaxWingDeviation = this.maxWingDeviation;
+		this.maxWingDeviation += (this.onGround ? -1.0F : 4.0F) * 0.3F;
+		this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
+		if (!this.onGround && this.flapSpeed < 1.0F) {
+			this.flapSpeed = 1.0F;
+		}
+		
+		this.flapSpeed *= 0.9F;
+		Vec3d vec3d = this.getVelocity();
+		if (!this.onGround && vec3d.y < 0.0) {
+			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
+		}
+		
+		this.flapProgress += this.flapSpeed * 2.0F;
+	}
+	
+	@Override
+	protected boolean hasWings() {
+		return this.speed > this.field_28639;
+	}
+	
+	@Override
+	protected void addFlapEffects() {
+		this.field_28639 = this.speed + this.maxWingDeviation / 2.0F;
+	}
+	
+	@Override
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		if (this.isAngry()) {
+			return ActionResult.success(this.world.isClient);
+		}
+		
+		if (player.isSneaking()) {
+			if (!this.world.isClient) {
+				player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
+				
+				setTarget(player);
+				setAngryAt(player.getUuid());
+				chooseRandomAngerTime();
+			}
+			return ActionResult.success(this.world.isClient);
+		}
+		
+		return super.interactMob(player, hand);
+	}
+	
+	protected void coughAt(LivingEntity target) {
 		KindlingCoughEntity kindlingCoughEntity = new KindlingCoughEntity(this.world, this);
 		double d = target.getX() - this.getX();
 		double e = target.getBodyY(0.33F) - kindlingCoughEntity.getY();
@@ -159,7 +210,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		}
 		
 		this.world.spawnEntity(kindlingCoughEntity);
-		this.coughed = true;
 	}
 	
 	@Override
@@ -187,7 +237,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		this.setAngerTime(ANGER_TIME_RANGE.get(this.random));
 	}
 	
-	
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 		this.coughAt(target);
@@ -203,7 +252,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		return other != this && other instanceof KindlingEntity otherKindling && this.canBreed() && otherKindling.canBreed();
 	}
 	
-	class CoughRevengeGoal extends RevengeGoal {
+	protected class CoughRevengeGoal extends RevengeGoal {
 		
 		public CoughRevengeGoal(KindlingEntity kindling) {
 			super(kindling);

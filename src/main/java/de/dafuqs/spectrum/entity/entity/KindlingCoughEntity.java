@@ -13,6 +13,8 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
+	protected static final float DAMAGE = 8.0F;
+	
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -52,7 +54,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		Entity entity = this.getOwner();
 		if (entity instanceof LivingEntity livingEntity) {
-			entityHitResult.getEntity().damage(SpectrumDamageSources.kindlingCough(this, livingEntity), 6.0F);
+			entityHitResult.getEntity().damage(SpectrumDamageSources.kindlingCough(this, livingEntity), DAMAGE);
 		}
 		
 	}

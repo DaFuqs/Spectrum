@@ -20,6 +20,7 @@ public class ColoredTransmissionParticleEffect extends SimpleTransmissionParticl
 			Codec.INT.fieldOf("dye_color").forGetter((effect) -> effect.dyeColor.getId())
 		).apply(instance, ColoredTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final ParticleEffect.Factory<ColoredTransmissionParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
 		public ColoredTransmissionParticleEffect read(ParticleType<ColoredTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

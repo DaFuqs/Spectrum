@@ -31,6 +31,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	}
 
 	@Nullable
+	@SuppressWarnings("unchecked")
 	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
 		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
 	}

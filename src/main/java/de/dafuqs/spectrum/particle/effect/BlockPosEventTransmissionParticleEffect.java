@@ -18,6 +18,7 @@ public class BlockPosEventTransmissionParticleEffect extends SimpleTransmissionP
 			Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
 		).apply(instance, BlockPosEventTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final Factory<BlockPosEventTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public BlockPosEventTransmissionParticleEffect read(ParticleType<BlockPosEventTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

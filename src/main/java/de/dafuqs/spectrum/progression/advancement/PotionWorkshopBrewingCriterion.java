@@ -40,6 +40,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 		return new PotionWorkshopBrewingCriterion.Conditions(extended, itemPredicate, statusEffectsPredicate, brewedCountRange, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int brewedCount) {
 		this.trigger(player, conditions -> {
 			List<StatusEffectInstance> effects;

@@ -40,6 +40,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	}
 	
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		stopPlayingOnPos(sourceBlockPos);
 		
@@ -71,6 +72,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		return true;
 	}
 	
+	@SuppressWarnings("resource")
 	private void updateVolume() {
 		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F));
 	}
@@ -92,6 +94,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private boolean shouldStopPlaying() {
 		BlockState blockState = MinecraftClient.getInstance().world.getBlockState(sourceBlockPos);
 		return !blockState.getBlock().equals(sourceBlock);

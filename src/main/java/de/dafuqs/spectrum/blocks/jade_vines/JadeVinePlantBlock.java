@@ -70,6 +70,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
 			world.scheduleBlockTick(pos, this, 1);
@@ -92,8 +93,9 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 			return !(belowState.getBlock() instanceof JadeVinePlantBlock);
 		}
 	}
-
+	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
 

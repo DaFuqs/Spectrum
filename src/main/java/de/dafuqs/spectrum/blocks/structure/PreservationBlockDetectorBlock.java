@@ -37,6 +37,7 @@ public class PreservationBlockDetectorBlock extends FacingBlock implements Block
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (state.get(FACING) == direction && world.getBlockEntity(pos) instanceof PreservationBlockDetectorBlockEntity blockEntity) {
 			blockEntity.triggerForNeighbor(neighborState);

@@ -52,6 +52,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onEquip(stack, slot, entity);
 		if (!entity.getWorld().isClient && entity instanceof PlayerEntity player) {
@@ -60,6 +61,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {

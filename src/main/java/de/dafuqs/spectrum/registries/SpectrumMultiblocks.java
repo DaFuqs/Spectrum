@@ -320,8 +320,10 @@ public class SpectrumMultiblocks {
 			case SIMPLE -> {
 				return SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK;
 			}
+			default -> {
+				return null;
+			}
 		}
-		return null;
 	}
 	
 	public static @Nullable Text getPedestalStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
@@ -335,8 +337,10 @@ public class SpectrumMultiblocks {
 			case SIMPLE -> {
 				return Text.translatable("multiblock.spectrum.pedestal.simple_structure");
 			}
+			default -> {
+				return null;
+			}
 		}
-		return null;
 	}
 	
 }

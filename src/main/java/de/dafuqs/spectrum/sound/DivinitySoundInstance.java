@@ -36,6 +36,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void tick() {
 		time++;
 		if (time > AscensionStatusEffect.MUSIC_INTRO_TICKS) {

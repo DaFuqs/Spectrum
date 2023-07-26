@@ -17,6 +17,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	private final long lastParticleTick;
 	private boolean done;
 	
+	@SuppressWarnings("resource")
 	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		PlayerEntity player = MinecraftClient.getInstance().player;
@@ -48,6 +49,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void tick() {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if (player == null || !player.isSneaking() || !player.isOnGround()) {
@@ -65,6 +67,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private void spawnParticles(PlayerEntity player) {
 		Random random = player.getEntityWorld().random;
 		

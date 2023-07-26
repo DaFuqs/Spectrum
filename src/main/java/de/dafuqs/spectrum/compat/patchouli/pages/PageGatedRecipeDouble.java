@@ -26,6 +26,7 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageD
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isPageUnlocked() {
 		if (!super.isPageUnlocked()) {
 			return false;

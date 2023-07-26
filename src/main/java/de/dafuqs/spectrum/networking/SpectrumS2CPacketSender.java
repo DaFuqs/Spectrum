@@ -289,6 +289,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void updateBlockEntityInk(BlockPos pos, InkStorage inkStorage, ServerPlayerEntity player) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(pos);

@@ -90,6 +90,7 @@ public class PageHint extends BookPage {
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
 	}
 	
+	@SuppressWarnings("resource")
 	private Text calculateTextToRender(Text text) {
 		if (revealProgress == 0) {
 			return text;
@@ -119,6 +120,7 @@ public class PageHint extends BookPage {
 		return new Identifier(entry.getId().getNamespace(), entry.getId().getPath() + "_" + this.pageNum);
 	}
 	
+	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	protected void paymentButtonClicked(ButtonWidget button) {
 		if (revealProgress > -1) {

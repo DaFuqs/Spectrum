@@ -73,6 +73,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
     }
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!(newState.getBlock() instanceof PotionWorkshopBlock)) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

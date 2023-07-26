@@ -65,6 +65,8 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
 					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
+				default -> {
+				}
 			}
 			
 			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);

@@ -25,6 +25,7 @@ public class RedstoneTransparencyBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
 		return (state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
 	}
@@ -65,6 +66,7 @@ public class RedstoneTransparencyBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		if ((state.get(TRANSPARENCY_STATE) == TransparencyState.SOLID)) {
 			return world.getMaxLightLevel();
@@ -90,6 +92,7 @@ public class RedstoneTransparencyBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClient) {
 			BlockState fromPosBlockState = world.getBlockState(fromPos);

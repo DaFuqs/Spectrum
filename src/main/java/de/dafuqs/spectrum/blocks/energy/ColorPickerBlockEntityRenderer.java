@@ -17,6 +17,7 @@ public class ColorPickerBlockEntityRenderer<T extends ColorPickerBlockEntity> im
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void render(ColorPickerBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		// The item on top
 		ItemStack stack = blockEntity.getStack(0);

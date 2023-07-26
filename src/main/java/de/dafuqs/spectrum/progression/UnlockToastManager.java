@@ -59,6 +59,7 @@ public class UnlockToastManager {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public static void processAdvancements(Set<Identifier> doneAdvancements) {
 		HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
@@ -170,6 +171,7 @@ public class UnlockToastManager {
 	 *
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
+	@SuppressWarnings("resource")
 	private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		

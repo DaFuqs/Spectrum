@@ -46,6 +46,7 @@ public class InkSpellEffects {
 			}
 			
 			@Override
+			@SuppressWarnings("resource")
 			void affectEntity(Entity entity, Vec3d origin, float potency) {
 				// heal living entities
 				if (entity instanceof LivingEntity livingEntity && (livingEntity.getHealth() < livingEntity.getMaxHealth() || livingEntity.isUndead())) {
@@ -89,6 +90,7 @@ public class InkSpellEffects {
 			}
 			
 			@Override
+			@SuppressWarnings("resource")
 			void affectEntity(Entity entity, Vec3d origin, float potency) {
 				// set entities on fire
 				if (!entity.isFireImmune()) {

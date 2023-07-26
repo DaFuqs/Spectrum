@@ -33,6 +33,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
 	// drop all currently stored stuff
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) { // happens when filling with fluid, ...
 			scatterContents(world, pos);

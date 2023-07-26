@@ -183,6 +183,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	}
 	
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	public void usageTickClient() {
 		if (MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
 			MinecraftClient.getInstance().interactionManager.interactBlock(

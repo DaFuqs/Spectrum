@@ -16,6 +16,7 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void render(JadeVineRootsBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		if (entity.getWorld() != null) {
 			BlockState fenceBlockState = entity.getFenceBlockState();

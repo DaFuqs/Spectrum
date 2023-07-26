@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.energy.*;
-import de.dafuqs.spectrum.items.tools.NightfallsBladeItem;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;

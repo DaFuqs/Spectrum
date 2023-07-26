@@ -106,6 +106,7 @@ public class PaintbrushItem extends Item {
 	}
 
 	@Override
+	@SuppressWarnings("resource")
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(context.getWorld().isClient);
@@ -136,25 +137,26 @@ public class PaintbrushItem extends Item {
 
 		return cursedColor(context);
 	}
-
+	
+	@SuppressWarnings("resource")
 	private boolean cursedColor(ItemUsageContext context) {
 		if (context.getPlayer() == null) {
 			return false;
 		}
-
+		
 		Optional<InkColor> optionalInkColor = getColor(context.getStack());
 		if (optionalInkColor.isEmpty()) {
 			return false;
 		}
-
+		
 		InkColor inkColor = optionalInkColor.get();
 		DyeColor dyeColor = inkColor.getDyeColor();
-
+		
 		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 		if (newBlockState.isAir()) {
 			return false;
 		}
-
+		
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
 			if (!context.getWorld().isClient) {
 				context.getWorld().setBlockState(context.getBlockPos(), newBlockState);

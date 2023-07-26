@@ -67,6 +67,7 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
     }
     
     @Override
+	@SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(AGE) <= MAX_TINY_AGE) {
             return SMALL_SHAPE;
@@ -74,8 +75,9 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
             return state.get(AGE) <= MAX_SMALL_AGE ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
         }
     }
-    
-    @Override
+	
+	@Override
+	@SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         int age = state.get(AGE);
         

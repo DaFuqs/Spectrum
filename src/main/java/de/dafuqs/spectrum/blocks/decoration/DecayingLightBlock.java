@@ -19,6 +19,7 @@ public class DecayingLightBlock extends WandLightBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		int light = state.get(LightBlock.LEVEL_15);

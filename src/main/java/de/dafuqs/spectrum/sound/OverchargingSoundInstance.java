@@ -56,15 +56,16 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
             }
         }
     }
-
-    private void spawnParticles(PlayerEntity player) {
-        Random random = player.getEntityWorld().random;
-
-        Vec3d pos = player.getPos();
-        player.getEntityWorld().addParticle(SpectrumParticleTypes.WHITE_CRAFTING,
-                pos.x + random.nextDouble() * 0.8 - 0.4, pos.y, pos.z + random.nextDouble() * 0.8 - 0.4,
-                0, random.nextDouble() * 0.5, 0);
-    }
+	
+	@SuppressWarnings("resource")
+	private void spawnParticles(PlayerEntity player) {
+		Random random = player.getEntityWorld().random;
+		
+		Vec3d pos = player.getPos();
+		player.getEntityWorld().addParticle(SpectrumParticleTypes.WHITE_CRAFTING,
+				pos.x + random.nextDouble() * 0.8 - 0.4, pos.y, pos.z + random.nextDouble() * 0.8 - 0.4,
+				0, random.nextDouble() * 0.5, 0);
+	}
 
     protected final void setDone() {
         this.done = true;

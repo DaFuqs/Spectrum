@@ -42,6 +42,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
     }
 
     @Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
     public static void startSoundInstance(MagicProjectileEntity inkProjectile) {
         MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(MinecraftClient.getInstance().world.getRegistryKey(), inkProjectile);
         MinecraftClient.getInstance().getSoundManager().play(newInstance);
@@ -58,6 +59,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void tick() {
         this.ticksPlayed++;
 
@@ -75,17 +77,18 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
         }
     }
 	
+	@SuppressWarnings("resource")
 	protected final void setDone() {
 		this.ticksPlayed = this.maxDurationTicks;
-        this.done = true;
-        this.repeat = false;
-
-        if (projectile.isRemoved() && !playedExplosion) {
-            MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 0.9F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
-            spawnImpactParticles(this.projectile);
-            playedExplosion = true;
-        }
-    }
+		this.done = true;
+		this.repeat = false;
+		
+		if (projectile.isRemoved() && !playedExplosion) {
+			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 0.9F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
+			spawnImpactParticles(this.projectile);
+			playedExplosion = true;
+		}
+	}
 
     private void spawnImpactParticles(MagicProjectileEntity projectile) {
         DyeColor dyeColor = projectile.getDyeColor();

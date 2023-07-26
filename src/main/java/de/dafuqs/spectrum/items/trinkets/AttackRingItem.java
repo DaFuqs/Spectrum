@@ -45,6 +45,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
+	@SuppressWarnings("resource")
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		long mod = Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100);

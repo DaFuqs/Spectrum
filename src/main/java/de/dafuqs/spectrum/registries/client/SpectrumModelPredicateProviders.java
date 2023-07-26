@@ -176,6 +176,7 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
+	@SuppressWarnings("resource")
 	private static void registerMoonPhasePredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
 			Entity entity = livingEntity != null ? livingEntity : itemStack.getHolder();

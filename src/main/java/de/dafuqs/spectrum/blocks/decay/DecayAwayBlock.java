@@ -36,6 +36,7 @@ public class DecayAwayBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		

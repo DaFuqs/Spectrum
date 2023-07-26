@@ -28,6 +28,7 @@ public class InkConvertingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

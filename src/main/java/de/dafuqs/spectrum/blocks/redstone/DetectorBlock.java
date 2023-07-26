@@ -24,6 +24,7 @@ public abstract class DetectorBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (player.canModifyBlocks()) {
 			if (world.isClient) {

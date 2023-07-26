@@ -45,6 +45,7 @@ public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		if (tinted) {
 			return world.getMaxLightLevel();

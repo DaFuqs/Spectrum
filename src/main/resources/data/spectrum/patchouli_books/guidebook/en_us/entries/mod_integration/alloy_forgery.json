@@ -36,7 +36,6 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Forge Controller",
-      "advancement": "spectrum:hidden/collect_blazing_crystal",
       "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge",
       "text": "Double as fast as the Basalt variant, but you will have to restock on fuel quite more often."
     },

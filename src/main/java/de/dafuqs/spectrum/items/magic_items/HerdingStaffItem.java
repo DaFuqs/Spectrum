@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -27,7 +28,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class HerdingStaffItem extends Item implements InkPowered {
+public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEntityInteraction {
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
 	public static final InkCost LURE_COST = new InkCost(USED_COLOR, 5);

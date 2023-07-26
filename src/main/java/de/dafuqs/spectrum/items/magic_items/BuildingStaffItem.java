@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -10,8 +11,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class BuildingStaffItem extends Item {
-
+public class BuildingStaffItem extends Item implements PrioritizedBlockInteraction {
+	
 	public BuildingStaffItem(Settings settings) {
 		super(settings);
 	}
@@ -25,7 +26,7 @@ public class BuildingStaffItem extends Item {
 		return hardness >= 0 && hardness < 20;
 	}
 	
-	public class BuildingStaffPlacementContext extends ItemPlacementContext {
+	public static class BuildingStaffPlacementContext extends ItemPlacementContext {
 		
 		public BuildingStaffPlacementContext(World world, @Nullable PlayerEntity playerEntity, BlockHitResult blockHitResult) {
 			super(world, playerEntity, Hand.MAIN_HAND, ItemStack.EMPTY, blockHitResult);

@@ -24,6 +24,7 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 			Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)
 		).apply(instance, DynamicParticleEffectAlwaysShow::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final ParticleEffect.Factory<DynamicParticleEffectAlwaysShow> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
 		public DynamicParticleEffectAlwaysShow read(ParticleType<DynamicParticleEffectAlwaysShow> particleType, StringReader stringReader) throws CommandSyntaxException {

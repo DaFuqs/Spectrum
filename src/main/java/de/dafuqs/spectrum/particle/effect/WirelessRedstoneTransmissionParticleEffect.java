@@ -18,6 +18,7 @@ public class WirelessRedstoneTransmissionParticleEffect extends SimpleTransmissi
 			Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
 		).apply(instance, WirelessRedstoneTransmissionParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final ParticleEffect.Factory<WirelessRedstoneTransmissionParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
 		public WirelessRedstoneTransmissionParticleEffect read(ParticleType<WirelessRedstoneTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

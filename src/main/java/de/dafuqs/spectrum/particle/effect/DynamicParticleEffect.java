@@ -24,6 +24,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 			Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)
 		).apply(instance, DynamicParticleEffect::new));
 	
+	@SuppressWarnings("deprecation")
 	public static final ParticleEffect.Factory<DynamicParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
 		public DynamicParticleEffect read(ParticleType<DynamicParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {

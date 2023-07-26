@@ -186,6 +186,7 @@ public class SpectrumParticleTypes {
 	}
 	
 	// complex particles
+	@SuppressWarnings("deprecation")
 	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
 		return Registry.register(Registry.PARTICLE_TYPE, SpectrumCommon.locate(name), new ParticleType<T>(alwaysShow, factory) {
 			@Override

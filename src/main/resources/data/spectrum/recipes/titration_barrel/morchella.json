@@ -1,0 +1,127 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "spectrum:fiery_powder",
+      "count": 4
+    },
+    {
+      "item": "spectrum:myceylon",
+      "count": 8
+    },
+    {
+      "item": "spectrum:amaranth_grains",
+      "count": 4
+    },
+    {
+      "tag": "c:mushrooms",
+      "count": 2
+    },
+    {
+      "item": "spectrum:jaramel",
+      "count": 2
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 24,
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.5,
+    "effects": [
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:night_vision",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 30,
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "spectrum:swiftness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:haste",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 45,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 45,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 45,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "spectrum:vulnerability",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
+          }
+        ]
+      }
+    ]
+  },
+  "tapping_item": "minecraft:glass_bottle",
+  "result": {
+    "item": "spectrum:morchella",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook"
+}

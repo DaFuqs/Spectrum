@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:sawblade_holly_berry",
+      "count": 16
+    },
+    {
+      "item": "spectrum:aloe_leaf",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 1,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "result": {
+    "item": "minecraft:honey_bottle",
+    "count": 4
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar",
+      "count": 64
+    },
+    {
+      "item": "spectrum:glass_peach",
+      "count": 24
+    },
+    {
+      "item": "spectrum:jade_vine_petals",
+      "count": 24
+    },
+    {
+      "item": "spectrum:blood_orchid_petal",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 4,
+  "fluid": "spectrum:liquid_crystal",
+  "result": {
+    "item": "spectrum:peach_jam",
+    "count": 8
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "KVK",
+    "AEA",
+    "FPF"
+  ],
+  "key": {
+    "V": {
+      "item": "spectrum:nectered_viognier"
+    },
+    "F": {
+      "item": "spectrum:myceylon"
+    },
+    "K": {
+      "item": "spectrum:fiery_powder"
+    },
+    "A": {
+      "item": "spectrum:peach_jam"
+    },
+    "E": {
+      "item": "spectrum:clotted_cream"
+    },
+    "P": {
+      "item": "spectrum:glass_peach"
+    }
+  },
+  "result": {
+    "item": "spectrum:peaches_flambe",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
+}

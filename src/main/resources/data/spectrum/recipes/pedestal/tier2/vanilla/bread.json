@@ -17,7 +17,8 @@
     }
   },
   "result": {
-    "item": "minecraft:bread"
+    "item": "minecraft:bread",
+    "count": 2
   },
   "required_advancement": "spectrum:collect_amaranth_bushel"
 }

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -19,23 +18,23 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class JadeWineRecipe extends TitrationBarrelRecipe {
+public class AquaRegiaRecipe extends TitrationBarrelRecipe {
 	
-	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new EmptyRecipeSerializer<>(JadeWineRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/jade_wine");
+	public static final RecipeSerializer<AquaRegiaRecipe> SERIALIZER = new SpecialRecipeSerializer<>(AquaRegiaRecipe::new);
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
-	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.AQUA_REGIA, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS), Matchbook.empty(), null, 3));
+		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_LOTUS_BULB)));
+		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADEITE_PETALS), Matchbook.empty(), null, 3));
 	}};
 	
-	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "jade_vine_wines", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.075F, 0.1F, List.of()));
+	public AquaRegiaRecipe(Identifier identifier) {
+		super(identifier, "jade_vine_wines", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.2F, 0.1F, List.of()));
 	}
-
+	
 	@Override
 	public ItemStack getDefaultTap(int timeMultiplier) {
 		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
@@ -45,8 +44,8 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_BULB);
-		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_LOTUS_BULB);
+		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADEITE_PETALS);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount);
@@ -61,7 +60,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		double bloominess = getBloominess(bulbCount, petalCount);
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		if (nectar) {
-			ageIngameDays *= 1.5;
+			bloominess *= 1.5;
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
@@ -69,21 +68,22 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		} else {
 			List<StatusEffectInstance> effects = new ArrayList<>();
 			
-			int effectDuration = 1200;
+			int effectDuration = 1800;
 			if (alcPercent >= 80) {
-				effects.add(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, effectDuration));
 				effectDuration *= 2;
+				effects.add(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, effectDuration, 3));
+				effectDuration *= 1.5;
 			}
 			if (alcPercent >= 70) {
-				effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration));
+				effects.add(new StatusEffectInstance(SpectrumStatusEffects.SWIFTNESS, effectDuration, (int) (alcPercent / 15)));
 				effectDuration *= 2;
 			}
 			if (alcPercent >= 60) {
-				effects.add(new StatusEffectInstance(StatusEffects.HASTE, effectDuration));
-				effectDuration *= 2;
+				effects.add(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, effectDuration));
+				effectDuration *= 3;
 			}
 			if (alcPercent >= 40) {
-				effects.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, effectDuration));
+				effects.add(new StatusEffectInstance(StatusEffects.ABSORPTION, effectDuration, (int) (alcPercent / 10)));
 				effectDuration *= 2;
 			}
 			if (alcPercent >= 20) {
@@ -91,7 +91,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 				effectDuration *= 2;
 			}
 			if (nectar) {
-				effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration));
+				effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration / 2));
 			}
 			
 			int nectarMod = nectar ? 3 : 1;
@@ -118,7 +118,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(outputStack);
 		}
 	}
-
+	
 	// bloominess reduces the possibility of negative effects to trigger (better on the tongue)
 	// but also reduces the potency of positive effects a bit
 	protected static double getBloominess(int bulbCount, int petalCount) {
@@ -153,9 +153,9 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			if (stack.isEmpty()) {
 				continue;
 			}
-			if (stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_BULB)) {
+			if (stack.isOf(SpectrumItems.JADEITE_LOTUS_BULB)) {
 				bulbsFound = true;
-			} else if (!stack.isOf(SpectrumItems.JADE_VINE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
+			} else if (!stack.isOf(SpectrumItems.JADEITE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				return false;
 			}
 		}

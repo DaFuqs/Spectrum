@@ -334,39 +334,39 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, IS.of());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, IS.of());
 	
-	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(IS.of().maxCount(1), "cuisine/melochites_cookbook_vol_1");
-	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(IS.of().maxCount(1), "cuisine/melochites_cookbook_vol_2");
-	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1), "cuisine/imbrifer_cookbook");
-	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1), "cuisine/imperial_cookbook");
-	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1), "cuisine/brewers_handbook");
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.RARE), "cuisine/melochites_cookbook_vol_1");
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.RARE), "cuisine/melochites_cookbook_vol_2");
+	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.RARE), "cuisine/imbrifer_cookbook");
+	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.RARE), "cuisine/imperial_cookbook");
+	public static final Item BREWERS_HANDBOOK = new CookbookItem(IS.of().maxCount(1).rarity(Rarity.RARE), "cuisine/brewers_handbook");
 	
-	public static final Item AQUA_REGIA = new Item(IS.of().food(SpectrumFoodComponents.AQUA_REGIA));
+	public static final Item AQUA_REGIA = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(IS.of().food(SpectrumFoodComponents.BANYASH));
-	public static final Item BERLINER = new Item(IS.of().food(SpectrumFoodComponents.BERLINER));
+	public static final Item BERLINER = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.BERLINER), 48);
 	public static final Item BRISTLE_MEAD = new Item(IS.of().food(SpectrumFoodComponents.BRISTLE_MEAD));
-	public static final Item CHAUVE_SOURIS_AU_VIN = new Item(IS.of().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN));
+	public static final Item CHAUVE_SOURIS_AU_VIN = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN), 96);
 	public static final Item CRAWFISH = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
-	public static final Item CREAM_PASTRY = new Item(IS.of().food(SpectrumFoodComponents.CREAM_PASTRY));
+	public static final Item CREAM_PASTRY = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.CREAM_PASTRY), 24);
 	public static final Item FADED_KOI = new Item(IS.of().food(SpectrumFoodComponents.FADED_KOI));
 	public static final Item FISHCAKE = new Item(IS.of().food(SpectrumFoodComponents.FISHCAKE));
 	public static final Item LIZARD_MEAT = new Item(IS.of().food(SpectrumFoodComponents.LIZARD_MEAT));
-	public static final Item GOLDEN_BRISTLE_TEA = new Item(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
-	public static final Item HARE_ROAST = new Item(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA));
+	public static final Item GOLDEN_BRISTLE_TEA = new TeaItem(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA), SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS);
+	public static final Item HARE_ROAST = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.HARE_ROAST), 64);
 	public static final Item JUNKET = new Item(IS.of().food(SpectrumFoodComponents.JUNKET));
 	public static final Item KOI_FISH = new Item(IS.of().food(SpectrumFoodComponents.KOI_FISH));
 	public static final Item MEATLOAF = new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF));
 	public static final Item MEATLOAF_SANDWICH = new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
 	public static final Item MELLOW_SHALLOT_SOUP = new Item(IS.of().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
-	public static final Item MORCHELLA = new Item(IS.of().food(SpectrumFoodComponents.MORCHELLA));
-	public static final Item NECTERED_VIOGNIER = new Item(IS.of().food(SpectrumFoodComponents.NECTERED_VIOGNIER));
-	public static final Item PEACHES_FLAMBE = new Item(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE));
-	public static final Item PEACH_CREAM = new Item(IS.of().food(SpectrumFoodComponents.PEACH_CREAM));
+	public static final Item MORCHELLA = new Item(IS.of(16).food(SpectrumFoodComponents.MORCHELLA));
+	public static final Item NECTERED_VIOGNIER = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER));
+	public static final Item PEACHES_FLAMBE = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE), 64);
+	public static final Item PEACH_CREAM = new TeaItem(IS.of().food(SpectrumFoodComponents.PEACH_CREAM), SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS);
 	public static final Item PEACH_JAM = new Item(IS.of().food(SpectrumFoodComponents.PEACH_JAM));
-	public static final Item RABBIT_CREAM_PIE = new Item(IS.of().food(SpectrumFoodComponents.RABBIT_CREAM_PIE));
-	public static final Item SEDATIVES = new Item(IS.of().food(SpectrumFoodComponents.SEDATIVES));
-	public static final Item SLUSHSLIDE = new Item(IS.of().food(SpectrumFoodComponents.SLUSHSLIDE));
+	public static final Item RABBIT_CREAM_PIE = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.RABBIT_CREAM_PIE), "item.spectrum.rabbit_cream_pie.tooltip");
+	public static final Item SEDATIVES = new SedativesItem(IS.of().food(SpectrumFoodComponents.SEDATIVES), "item.spectrum.sedatives.tooltip");
+	public static final Item SLUSHSLIDE = new ItemWithTooltip(IS.of().food(SpectrumFoodComponents.SLUSHSLIDE), "item.spectrum.slushslide.tooltip");
 	public static final Item SURSTROMMING = new Item(IS.of().food(SpectrumFoodComponents.SURSTROMMING));
 	
 	// Banner Patterns

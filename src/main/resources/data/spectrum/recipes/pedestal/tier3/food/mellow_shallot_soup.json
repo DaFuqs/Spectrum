@@ -1,0 +1,41 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    " R ",
+    "ABC",
+    "JEJ"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:germinated_jade_vine_seeds"
+    },
+    "B": {
+      "item": "spectrum:jadeite_lotus_bulb"
+    },
+    "C": {
+      "item": "spectrum:nephrite_blossom_bulb"
+    },
+    "J": {
+      "item": "spectrum:blizzard_powder"
+    },
+    "E": {
+      "item": "spectrum:moonstruck_nectar"
+    },
+    "R": {
+      "item": "spectrum:aqua_regia"
+    }
+  },
+  "result": {
+    "item": "spectrum:mellow_shallot_soup",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook"
+}

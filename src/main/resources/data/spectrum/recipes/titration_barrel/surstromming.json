@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "tag": "c:raw_fish",
+      "count": 16
+    },
+    {
+      "item": "spectrum:prickly_bayleaf",
+      "count": 16
+    },
+    {
+      "item": "spectrum:midnight_chip",
+      "count": 1
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "spectrum:midnight_solution",
+  "result": {
+    "item": "spectrum:surstromming",
+    "count": 16
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "parent": "spectrum:lategame/collect_all_cookbooks",
+  "display": {
+    "icon": {
+      "item": "spectrum:berliner"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.eat_each_cookbook_heavy_meal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.eat_each_cookbook_heavy_meal.description"
+    }
+  },
+  "criteria": {
+    "chauve_souris_au_vin": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:chauve_souris_au_vin" ] } }
+    },
+    "nectered_viognier": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:nectered_viognier" ] } }
+    },
+    "banyash": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:banyash" ] } }
+    },
+    "meatloaf": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:meatloaf" ] } }
+    },
+    "slushslide": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:slushslide" ] } }
+    },
+    "rabbit_cream_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:rabbit_cream_pie" ] } }
+    },
+    "mellow_shallot_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:mellow_shallot_soup" ] } }
+    },
+    "aqua_regia": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:aqua_regia" ] } }
+    },
+    "golden_bristle_tea": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:golden_bristle_tea" ] } }
+    },
+    "bristle_mead": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:bristle_mead" ] } }
+    },
+    "morchella": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:morchella" ] } }
+    },
+    "sedatives": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:sedatives" ] } }
+    },
+    "peach_cream": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "spectrum:peach_cream" ] } }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_all_cookbooks"
+      }
+    }
+  }
+}

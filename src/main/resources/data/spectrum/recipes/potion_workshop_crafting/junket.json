@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "deserts",
+  "base_ingredient": {
+    "item": "spectrum:peach_jam"
+  },
+  "use_up_base_ingredient": true,
+  "color": 16754073,
+  "ingredient1": {
+    "item": "spectrum:clotted_cream"
+  },
+  "ingredient2": {
+    "item": "spectrum:jade_vine_petals"
+  },
+  "ingredient3": {
+    "item": "spectrum:jadeite_petals"
+  },
+  "result": {
+    "item": "spectrum:junket"
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
+}

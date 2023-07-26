@@ -8,8 +8,71 @@
   },
   "pages": [
     {
+      "type": "spectrum:snippet",
+      "title": "Imbrifer Fine Dining",
+      "resource_path": "spectrum:textures/gui/guidebook/aeverstrone.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)  Chef Aeverstrone of the$(br)     Scarlet Moon Court"
+    },
+    {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "Hello young one! I hope you've come to share in this little old man's love for cooking.$(br2)To introduce myself, I am Aeverstrone of Kurivinda, and I have served the $(o)$(fuck)scarlet moon court$() for the last 80 years, serving as head imperial chef, though nowadays I mostly personally cook for the imperial family. Do forgive me if I digress a bit throughout this book, having been around for over 170 years gives you a lot to reminisce over!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Journey to the West",
+      "text": "$(br)Imperators and peaches, they are practically inseparable! Those nephrite trees that grow in these regions did not originate here, rather, they are endemic to a land far beyond this one, deep to the east. The love my imperators have for glass peaches is so great that they've brought them everywhere they've gone - You could map out where they've reigned just by following the nephrite blossoms!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/food/peaches_flambe",
+      "text": "$(italic)The Shura have gold, graceless humans have purple, but for us? The color of royalty is pink! Hahahah!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Luxurious Stew",
+      "text": "$(br)This dish of lizard meat braised in wine and petals is a delicacy, and one that I would not blame you for messing up the first 2 or 20 times you cook it. To this day this stands to be one of the hardest dishes I cook regularly, it is a protracted process that deals with a lot of delicate ingredients. But the result is something truly wonderful."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/food/chauve_souris_au_vin",
+      "text": "$(italic)Honestly, I never remember how to spell its name."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Fanciful Sweets",
+      "text": "$(br)The humble Junket, variants of this sweet, glutinous snack exist in all forms, though this one is a particularly eccentric one! I honestly do not enjoy preparing these very much, extracting the oils from the petals is a long and tedious process, but the children of the court always get so excited when they see the stuff - it makes my old heart swell."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/junket",
+      "text": "$(italic)Imperator Aava loved this when he was a wee kitten.$(br2)I'm pretty sure the goober still does."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Lotus of the Sea",
+      "text": "$(br)I have a fun story tied to this recipe. Koi, past being gorgeous creatures, make for the basis of some of the most unique and stunning imperial recipes. These recipes however often require odd and exotic ingredients, and one day we were clean out the night before a banquet. Thinking swiftly, I swapped out the ferment for $(l:creating_life/fading)mother of moor$(), resulting in this flower-like dish."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/faded_koi",
+      "text": "$(italic)Don't let this ferment for too long or the mother is going to start eating away at the fish!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Pudding Wine",
+      "text": "$(br)Ah, wine, what a diverse and vibrant world. This recipe long predates me - I know, it may be surprising to hear there are things older than me, heh - it is a type of desert wine, popular in my court and used in many recipes as you've may have seen.$(br2)I'll tell you, go easy on it, this stuff hits a lot harder than you'd expect."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/special/nectered_viognier",
+      "text": "$(italic)Reminiscent of mead, but closer to an alcoholic nectar."
     }
   ]
 }

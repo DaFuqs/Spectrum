@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "deserts",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 15853164,
+  "ingredient1": {
+    "item": "spectrum:sawblade_holly_berry"
+  },
+  "ingredient2": {
+    "item": "minecraft:honey_bottle"
+  },
+  "result": {
+    "item": "spectrum:golden_bristle_tea"
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook"
+}

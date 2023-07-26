@@ -43,6 +43,8 @@ public class SpectrumCustomRecipeSerializers {
 		
 		// Titration Barrel
 		register(JadeWineRecipe.SERIALIZER, "titration_barrel_jade_wine");
+		register(AquaRegiaRecipe.SERIALIZER, "titration_barrel_aqua_regia");
+		register(NecteredViognierRecipe.SERIALIZER, "titration_barrel_nectered_viognier");
 		register(SuspiciousBrewRecipe.SERIALIZER, "titration_barrel_suspicious_brew");
 	}
 	

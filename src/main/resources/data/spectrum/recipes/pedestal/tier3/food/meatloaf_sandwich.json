@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.2,
+  "pattern": [
+    "SU",
+    "UC"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:meatloaf"
+    },
+    "U": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "item": "spectrum:clotted_cream"
+    }
+  },
+  "result": {
+    "item": "spectrum:meatloaf_sandwich",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1"
+}

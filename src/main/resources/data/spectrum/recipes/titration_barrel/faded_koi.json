@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "spectrum:koi_fish",
+      "count": 8
+    },
+    {
+      "item": "spectrum:bottle_of_fading"
+    }
+  ],
+  "min_fermentation_time_hours": 2,
+  "fluid": "spectrum:liquid_crystal",
+  "tapping_item": "spectrum:aloe_leaf",
+  "result": {
+    "item": "spectrum:faded_koi",
+    "count": 4
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
+}

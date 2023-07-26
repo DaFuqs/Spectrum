@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.2,
+  "pattern": [
+    "SXS",
+    "CMC",
+    "EEE"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:myceylon"
+    },
+    "E": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "C": {
+      "item": "spectrum:clotted_cream"
+    },
+    "X": {
+      "item": "spectrum:jadeite_petals"
+    },
+    "M": {
+      "item": "spectrum:jade_wine"
+      }
+  },
+  "result": {
+    "item": "spectrum:rabbit_cream_pie",
+    "count": 2
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2"
+}

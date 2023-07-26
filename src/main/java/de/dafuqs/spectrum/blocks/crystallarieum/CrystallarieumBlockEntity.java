@@ -42,7 +42,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Nullable
 	protected CrystallarieumRecipe currentRecipe;
-	protected CrystallarieumCatalyst currentCatalyst;
+	protected CrystallarieumCatalyst currentCatalyst = CrystallarieumCatalyst.EMPTY;
 	protected int currentGrowthStageDuration;
 	protected boolean canWork;
 	
@@ -77,46 +77,31 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				}
 			}
 			
+			if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+				return;
+			}
+			
 			// advance growing
-			if (crystallarieum.currentCatalyst == null) {
-				if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
-					return;
-				}
-				
-				// running without catalyst
-				int consumedInk = crystallarieum.currentRecipe.getInkPerSecond();
-				if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
-					crystallarieum.canWork = false;
-					crystallarieum.setInkDirty();
-					crystallarieum.updateInClientWorld();
-					return;
-				}
-				
+			int consumedInk = (int) (crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod * crystallarieum.currentCatalyst.inkConsumptionMod);
+			if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
+				crystallarieum.canWork = false;
 				crystallarieum.setInkDirty();
-				crystallarieum.currentGrowthStageDuration += 20;
-			} else {
-				// running with catalyst
-				int consumedInk = (int) Math.ceil(crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.inkConsumptionMod);
-				if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
-					crystallarieum.canWork = false;
-					crystallarieum.setInkDirty();
-					crystallarieum.updateInClientWorld();
-					return;
-				}
-				
-				crystallarieum.setInkDirty();
-				crystallarieum.currentGrowthStageDuration += 20 * crystallarieum.currentCatalyst.growthAccelerationMod;
-				
-				// check if a catalyst should get used up
-				if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond) {
-					ItemStack catalystStack = crystallarieum.getStack(CATALYST_SLOT_ID);
-					catalystStack.decrement(1);
-					crystallarieum.updateInClientWorld();
-					if (catalystStack.isEmpty()) {
-						crystallarieum.currentCatalyst = null;
-						if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
-							crystallarieum.canWork = false;
-						}
+				crystallarieum.updateInClientWorld();
+				return;
+			}
+			
+			crystallarieum.setInkDirty();
+			crystallarieum.currentGrowthStageDuration += 20 * crystallarieum.currentCatalyst.growthAccelerationMod;
+			
+			// check if a catalyst should get used up
+			if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond) {
+				ItemStack catalystStack = crystallarieum.getStack(CATALYST_SLOT_ID);
+				catalystStack.decrement(1);
+				crystallarieum.updateInClientWorld();
+				if (catalystStack.isEmpty()) {
+					crystallarieum.currentCatalyst = CrystallarieumCatalyst.EMPTY;
+					if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+						crystallarieum.canWork = false;
 					}
 				}
 			}
@@ -152,11 +137,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Override
 	public void inventoryChanged() {
-		if(this.currentRecipe != null) {
-			Optional<CrystallarieumCatalyst> optionalCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
-			optionalCatalyst.ifPresent(crystallarieumCatalyst -> this.currentCatalyst = crystallarieumCatalyst);
-		}
-		
+		this.currentCatalyst = this.currentRecipe == null ? CrystallarieumCatalyst.EMPTY : this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
 		this.canWork = true;
 		super.inventoryChanged();
 	}
@@ -178,6 +159,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		
 		this.currentRecipe = null;
+		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
 		if (nbt.contains("CurrentRecipe")) {
 			this.currentGrowthStageDuration = nbt.getInt("CurrentGrowthStageDuration");
 			String recipeString = nbt.getString("CurrentRecipe");
@@ -185,14 +167,11 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof CrystallarieumRecipe crystallarieumRecipe)) {
 					this.currentRecipe = crystallarieumRecipe;
-					Optional<CrystallarieumCatalyst> oc = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
-					oc.ifPresent(crystallarieumCatalyst -> this.currentCatalyst = crystallarieumCatalyst);
+					this.currentCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
 				}
 			}
 		} else {
 			this.currentGrowthStageDuration = 0;
-			this.currentRecipe = null;
-			this.currentCatalyst = null;
 		}
 	}
 	
@@ -219,11 +198,6 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-	}
-	
-	@Nullable
-	public CrystallarieumRecipe getCurrentRecipe() {
-		return this.currentRecipe;
 	}
 	
 	/**
@@ -260,13 +234,13 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (this.currentRecipe != null) {
 			ItemStack currentCatalystStack = getStack(CATALYST_SLOT_ID);
 			if (currentCatalystStack.isEmpty()) {
-				Optional<CrystallarieumCatalyst> optionalCatalyst = this.currentRecipe.getCatalyst(itemStack);
-				if (optionalCatalyst.isPresent()) {
+				CrystallarieumCatalyst catalyst = this.currentRecipe.getCatalyst(itemStack);
+				if (catalyst != CrystallarieumCatalyst.EMPTY) {
 					setStack(CATALYST_SLOT_ID, itemStack.copy());
 					if (!creative) {
 						itemStack.setCount(0);
 					}
-					this.currentCatalyst = optionalCatalyst.get();
+					this.currentCatalyst = catalyst;
 					inventoryChanged();
 				}
 			} else if (ItemStack.canCombine(currentCatalystStack, itemStack)) {
@@ -295,23 +269,20 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		} else {
 			this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
 			
-			ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
-			if (!catalystStack.isEmpty()) {
-				Optional<CrystallarieumCatalyst> newCatalyst = this.currentRecipe.getCatalyst(catalystStack);
-				if (newCatalyst.isPresent()) {
-					this.currentCatalyst = newCatalyst.get();
-				} else {
-					this.currentCatalyst = null;
-					ItemEntity itemEntity = new ItemEntity(world, this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5, catalystStack);
-					this.setStack(CATALYST_SLOT_ID, ItemStack.EMPTY);
-					world.spawnEntity(itemEntity);
-				}
-			}
-			
 			if (this.currentRecipe == null) {
 				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.NONE));
 			} else {
 				world.setBlockState(pos, world.getBlockState(pos).with(CrystallarieumBlock.COLOR, NullableDyeColor.get(this.currentRecipe.getInkColor().getDyeColor())));
+				
+				ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
+				if (!catalystStack.isEmpty()) {
+					this.currentCatalyst = this.currentRecipe.getCatalyst(catalystStack);
+					if (this.currentCatalyst == CrystallarieumCatalyst.EMPTY) {
+						ItemEntity itemEntity = new ItemEntity(world, this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5, catalystStack);
+						this.setStack(CATALYST_SLOT_ID, ItemStack.EMPTY);
+						world.spawnEntity(itemEntity);
+					}
+				}
 			}
 			
 			this.canWork = true;
@@ -339,7 +310,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (slot == INK_STORAGE_STACK_SLOT_ID) {
 			return stack.getItem() instanceof InkStorageItem;
 		} else if (this.currentRecipe != null) {
-			return this.currentRecipe.getCatalyst(stack).isPresent();
+			return this.currentRecipe.getCatalyst(stack) != CrystallarieumCatalyst.EMPTY;
 		}
 		return false;
 	}

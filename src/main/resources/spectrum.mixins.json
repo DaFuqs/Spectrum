@@ -50,7 +50,6 @@
     "ProjectileEntityMixin",
     "RandomChanceLootConditionMixin",
     "RandomChanceWithLootingLootConditionMixin",
-    "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
     "ServerPlayerGameModeFabricMixin",
     "ServerPlayerInteractionManagerMixin",

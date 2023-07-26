@@ -123,8 +123,7 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 			if (getTeleportTargetPos(itemStack).isEmpty() && getTeleportTargetPlayerUUID(itemStack).isEmpty()) {
 				interactWithEntityClient();
 			}
-		} else {
-			ServerPlayerEntity playerEntity = user instanceof ServerPlayerEntity ? (ServerPlayerEntity) user : null;
+		} else if (user instanceof ServerPlayerEntity playerEntity) {
 			Criteria.CONSUME_ITEM.trigger(playerEntity, itemStack);
 			
 			boolean resonance = EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, itemStack) > 0;
@@ -171,6 +170,7 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	}
 	
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	public void interactWithEntityClient() {
 		// If aiming at an entity: trigger entity interaction
 		HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;

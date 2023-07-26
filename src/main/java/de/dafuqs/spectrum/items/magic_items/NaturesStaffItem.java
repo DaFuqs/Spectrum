@@ -288,7 +288,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 						
 						BlockPos targetPos = context.getBlockPos().up(i - 1);
 						BlockState targetState = blockState.getBlock().getPlacementState(new AutomaticItemPlacementContext(world, blockPos, Direction.DOWN, null, Direction.UP));
-						if (world.getBlockState(targetPos).isAir() && !world.isOutOfHeightLimit(targetPos.getY()) && blockState.getBlock().canPlaceAt(targetState, world, targetPos)) {
+						if (world.getBlockState(targetPos).isAir() && !world.isOutOfHeightLimit(targetPos.getY()) && targetState.canPlaceAt(world, targetPos)) {
 							world.setBlockState(targetPos, targetState);
 							for (int j = 0; j < 20; j++) {
 								((ServerWorld) world).spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, targetState), targetPos.getX() + world.getRandom().nextFloat(), targetPos.getY() + world.getRandom().nextFloat(), targetPos.getZ() + world.getRandom().nextFloat(), 1, 0, 0, 0, 0.1);

@@ -9,7 +9,6 @@ import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.narration.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
-import org.apache.commons.lang3.*;
 
 import java.util.*;
 
@@ -25,9 +24,9 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	protected boolean hovered;
 	
 	protected final Screen screen;
-	protected final InkStorageBlockEntity blockEntity;
+	protected final InkStorageBlockEntity<?> blockEntity;
 	
-	public InkGaugeWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity blockEntity) {
+	public InkGaugeWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity<?> blockEntity) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -59,15 +58,10 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		List<Text> tooltip = new ArrayList<>();
-		int padding = 0;
-		Map<InkColor, Long> energy = blockEntity.getEnergyStorage().getEnergy();
-		for (Long color : energy.values()) {
-			padding = Math.max(padding, StringUtils.length(String.valueOf(color)));
-		}
-		for (Map.Entry<InkColor, Long> entry : energy.entrySet()) {
-			long amount = entry.getValue();
+		for (InkColor color : InkColor.all()) {
+			long amount = blockEntity.getEnergyStorage().getEnergy(color);
 			if (amount > 0) {
-				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + entry.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
 			}
 		}
 		if (tooltip.size() == 0) {
@@ -79,7 +73,6 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);
 	}
 	
-	
 	public void draw(MatrixStack matrices) {
 		long totalInk = blockEntity.getEnergyStorage().getCurrentTotal();
 		
@@ -89,10 +82,8 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 			int radius = 22;
 			
 			double startRad = -0.5 * Math.PI;
-			for (Map.Entry<InkColor, Long> entry : blockEntity.getEnergyStorage().getEnergy().entrySet()) {
-				InkColor color = entry.getKey();
-				long currentInk = entry.getValue();
-				
+			for (InkColor color : InkColor.all()) {
+				long currentInk = blockEntity.getEnergyStorage().getEnergy(color);
 				if (currentInk > 0) {
 					double thisPart = ((double) currentInk / (double) totalInk);
 					while (thisPart > 0) {
@@ -127,5 +118,4 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 			}
 		}
 	}
-	
 }

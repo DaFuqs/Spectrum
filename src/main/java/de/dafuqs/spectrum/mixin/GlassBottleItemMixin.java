@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
@@ -27,7 +28,7 @@ public abstract class GlassBottleItemMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z"),
 			cancellable = true,
 			locals = LocalCapture.CAPTURE_FAILHARD)
-	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult> cir, List list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
+	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, List<AreaEffectCloudEntity> list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)

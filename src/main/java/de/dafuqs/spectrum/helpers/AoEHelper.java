@@ -95,18 +95,18 @@ public class AoEHelper {
 	}
 
 	public static void breakBlockWithDrops(PlayerEntity player, ItemStack stack, World world, BlockPos pos, Predicate<BlockState> filter) {
-		if (!world.isChunkLoaded(pos)) {
-			return;
+		ChunkPos chunkPos = world.getChunk(pos).getPos();
+		if (world.isChunkLoaded(chunkPos.x, chunkPos.z)) {
+			BlockState blockstate = world.getBlockState(pos);
+			if (!world.isClient && !blockstate.isAir() && blockstate.calcBlockBreakingDelta(player, world, pos) > 0 && filter.test(blockstate)) {
+				ItemStack save = player.getMainHandStack();
+				player.setStackInHand(Hand.MAIN_HAND, stack);
+				((ServerPlayerEntity) player).networkHandler.sendPacket(new WorldEventS2CPacket(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(blockstate), false));
+				((ServerPlayerEntity) player).interactionManager.tryBreakBlock(pos);
+				player.setStackInHand(Hand.MAIN_HAND, save);
+			}
 		}
 
-		BlockState blockstate = world.getBlockState(pos);
-		if (!world.isClient && !blockstate.isAir() && blockstate.calcBlockBreakingDelta(player, world, pos) > 0 && filter.test(blockstate)) {
-			ItemStack save = player.getMainHandStack();
-			player.setStackInHand(Hand.MAIN_HAND, stack);
-			((ServerPlayerEntity) player).networkHandler.sendPacket(new WorldEventS2CPacket(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(blockstate), false));
-			((ServerPlayerEntity) player).interactionManager.tryBreakBlock(pos);
-			player.setStackInHand(Hand.MAIN_HAND, save);
-		}
 	}
 	
 }

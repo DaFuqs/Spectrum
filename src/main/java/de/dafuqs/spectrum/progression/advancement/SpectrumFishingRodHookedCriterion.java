@@ -78,35 +78,28 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 		}
 		
 		public boolean matches(ItemStack rod, LootContext bobberContext, LootContext hookedEntityContext, LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerWorld world, BlockPos blockPos) {
-			if (!this.rod.test(rod)) {
-				return false;
-			} else if (!this.bobber.test(bobberContext)) {
-				return false;
-			} else if ((hookedEntityContext == null && !hookedEntity.equals(EntityPredicate.Extended.EMPTY)) || !this.hookedEntity.test(hookedEntityContext)) {
-				return false;
-			} else if ((fishedEntityContext == null && !fishedEntity.equals(EntityPredicate.Extended.EMPTY)) || !this.fishedEntity.test(fishedEntityContext)) {
-				return false;
-			} else if (!this.fluidPredicate.test(world, blockPos)) {
-				return false;
-			} else {
-				if (this.caughtItem != ItemPredicate.ANY) {
-					boolean bl = false;
+			if (!this.rod.test(rod)) return false;
+			if (!this.bobber.test(bobberContext)) return false;
+			if (!this.fluidPredicate.test(world, blockPos)) return false;
+			if (fishedEntityContext == null && !fishedEntity.equals(EntityPredicate.Extended.EMPTY) ||
+				!this.fishedEntity.test(fishedEntityContext)) return false;
+			if (hookedEntityContext == null && !hookedEntity.equals(EntityPredicate.Extended.EMPTY) ||
+				!this.hookedEntity.test(hookedEntityContext)) return false;
+			
+			if (this.caughtItem != ItemPredicate.ANY) {
+				if (hookedEntityContext != null) {
 					Entity entity = hookedEntityContext.get(LootContextParameters.THIS_ENTITY);
-					if (entity instanceof ItemEntity itemEntity) {
-						if (this.caughtItem.test(itemEntity.getStack())) {
-							bl = true;
-						}
-					}
-					for (ItemStack itemStack : fishingLoots) {
-						if (this.caughtItem.test(itemStack)) {
-							bl = true;
-							break;
-						}
-					}
-					return bl;
+					if (entity instanceof ItemEntity itemEntity &&
+						this.caughtItem.test(itemEntity.getStack())) return true;
 				}
-				return true;
+				for (ItemStack itemStack : fishingLoots) {
+					if (this.caughtItem.test(itemStack)) return true;
+				}
+				
+				return false;
 			}
+			
+			return true;
 		}
 		
 		@Override

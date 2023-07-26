@@ -23,16 +23,13 @@ public abstract class EventQueue<D> implements GameEventListener {
 	}
 	
 	public void tick(World world) {
-		if (!eventQueue.isEmpty()) {
-			D[] keys = (D[]) eventQueue.keySet().toArray(); // protection from ConcurrentModificationExceptions
-			for (D key : keys) {
-				Integer tickCounter = eventQueue.get(key);
-				if (tickCounter >= 1) {
-					eventQueue.put(key, tickCounter - 1);
-				} else {
-					this.callback.triggerEvent(world, this, key);
-					eventQueue.remove(key);
-				}
+		for (D key : new HashSet<>(eventQueue.keySet())) {
+			Integer tickCounter = eventQueue.get(key);
+			if (tickCounter >= 1) {
+				eventQueue.put(key, tickCounter - 1);
+			} else {
+				this.callback.triggerEvent(world, this, key);
+				eventQueue.remove(key);
 			}
 		}
 	}

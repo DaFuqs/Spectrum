@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
+import com.google.common.base.*;
 import net.fabricmc.yarn.constants.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.*;
 
-import java.util.function.*;
+import java.util.function.Supplier;
 
 public class SpectrumToolMaterials {
 	
@@ -25,7 +25,7 @@ public class SpectrumToolMaterials {
 		private final float miningSpeed;
 		private final float attackDamage;
 		private final int enchantability;
-		private final Lazy<Ingredient> repairIngredient;
+		private final Supplier<Ingredient> repairIngredient;
 		
 		ToolMaterial(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
 			this.miningLevel = miningLevel;
@@ -33,7 +33,7 @@ public class SpectrumToolMaterials {
 			this.miningSpeed = miningSpeed;
 			this.attackDamage = attackDamage;
 			this.enchantability = enchantability;
-			this.repairIngredient = new Lazy<>(repairIngredient);
+			this.repairIngredient = Suppliers.memoize(repairIngredient::get);
 		}
 		
 		@Override

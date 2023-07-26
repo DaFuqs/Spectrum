@@ -23,9 +23,9 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 	protected boolean focused;
 	
 	protected final Screen screen;
-	protected final InkStorageBlockEntity blockEntity;
+	protected final InkStorageBlockEntity<?> blockEntity;
 	
-	public StackedInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity blockEntity) {
+	public StackedInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity<?> blockEntity) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -83,12 +83,12 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 			long maxTotal = inkStorage.getMaxTotal();
 			
 			int currentHeight = this.y + this.height;
-			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
-				long amount = entry.getValue();
+			for (InkColor color : InkColor.all()) {
+				long amount = inkStorage.getEnergy(color);
 				if (amount > 0) {
-					int height = Math.round(((float) amount / ((float) maxTotal / this.height)));
-					if(height > 0) {
-						RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
+					int height = Math.round(((float) amount / (float) maxTotal * this.height));
+					if (height > 0) {
+						RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, color.getColor());
 					}
 					currentHeight -= height;
 				}

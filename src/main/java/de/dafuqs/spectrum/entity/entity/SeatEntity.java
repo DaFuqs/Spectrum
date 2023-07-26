@@ -141,34 +141,34 @@ public class SeatEntity extends Entity {
 
     @Nullable
     private Vec3d locateSafeDismountingPos(Vec3d offset, LivingEntity passenger) {
-        double d = this.getX() + offset.x;
-        double e = this.getBoundingBox().minY + 0.5;
-        double f = this.getZ() + offset.z;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-		UnmodifiableIterator<EntityPose> var10 = passenger.getPoses().iterator();
-
-        while(var10.hasNext()) {
-            EntityPose entityPose = (EntityPose)var10.next();
-            mutable.set(d, e, f);
-            double g = this.getBoundingBox().maxY + 0.75;
-
-            while(true) {
-                double h = this.world.getDismountHeight(mutable);
-                if ((double)mutable.getY() + h > g) {
+        double x = this.getX() + offset.x;
+        double y = this.getBoundingBox().minY + 0.5;
+        double z = this.getZ() + offset.z;
+        BlockPos.Mutable testPos = new BlockPos.Mutable();
+        UnmodifiableIterator<EntityPose> poses = passenger.getPoses().iterator();
+    
+        while (poses.hasNext()) {
+            EntityPose pose = poses.next();
+            testPos.set(x, y, z);
+            double maxHeight = this.getBoundingBox().maxY + 0.75;
+        
+            while (true) {
+                double height = this.world.getDismountHeight(testPos);
+                if ((double) testPos.getY() + height > maxHeight) {
                     break;
                 }
-
-                if (Dismounting.canDismountInBlock(h)) {
-                    Box box = passenger.getBoundingBox(entityPose);
-                    Vec3d vec3d = new Vec3d(d, (double)mutable.getY() + h, f);
-                    if (Dismounting.canPlaceEntityAt(this.world, passenger, box.offset(vec3d))) {
-                        passenger.setPose(entityPose);
-                        return vec3d;
+            
+                if (Dismounting.canDismountInBlock(height)) {
+                    Box boundingBox = passenger.getBoundingBox(pose);
+                    Vec3d pos = new Vec3d(x, (double) testPos.getY() + height, z);
+                    if (Dismounting.canPlaceEntityAt(this.world, passenger, boundingBox.offset(pos))) {
+                        passenger.setPose(pose);
+                        return pos;
                     }
                 }
-
-                mutable.move(Direction.UP);
-                if (!((double)mutable.getY() < g)) {
+            
+                testPos.move(Direction.UP);
+                if (testPos.getY() >= maxHeight) {
                     break;
                 }
             }

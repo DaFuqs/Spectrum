@@ -38,10 +38,6 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
 		this.repairIngredientSupplier = Suppliers.memoize(repairIngredientSupplier::get);
 	}
 	
-	public int getProtectionAmount(ArmorItem.Type type) {
-		return this.protectionAmounts[type.getEquipmentSlot().getEntitySlotId()];
-	}
-	
 	@Override
 	public int getDurability(ArmorItem.Type type) {
 		return BASE_DURABILITY[type.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;

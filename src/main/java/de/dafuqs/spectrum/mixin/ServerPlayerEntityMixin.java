@@ -59,6 +59,7 @@ public abstract class ServerPlayerEntityMixin {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$damageReturn(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (!this.getWorld().isClient) {

@@ -12,12 +12,12 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.*;
 
 public record GroundPatchFeatureConfig(TagKey<Block> replaceable, BlockStateProvider groundState,
-                                       RegistryEntry<PlacedFeature> vegetationFeature, VerticalSurfaceType surface,
-                                       IntProvider depth, float extraBottomBlockChance, int verticalRange,
-                                       float vegetationChance, IntProvider horizontalRadius,
-                                       float extraEdgeColumnChance) implements FeatureConfig {
-    
-    public static final Codec<GroundPatchFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+									   RegistryEntry<PlacedFeature> vegetationFeature, VerticalSurfaceType surface,
+									   IntProvider depth, Float extraBottomBlockChance, Integer verticalRange,
+									   Float vegetationChance, IntProvider horizontalRadius,
+									   Float extraEdgeColumnChance) implements FeatureConfig {
+	
+	public static final Codec<GroundPatchFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			TagKey.codec(RegistryKeys.BLOCK).fieldOf("replaceable").forGetter((config) -> config.replaceable),
 			BlockStateProvider.TYPE_CODEC.fieldOf("ground_state").forGetter((config) -> config.groundState),
 			PlacedFeature.REGISTRY_CODEC.fieldOf("vegetation_feature").forGetter((config) -> config.vegetationFeature),

@@ -75,7 +75,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	protected boolean inventoryChanged;
 	private UpgradeHolder upgrades;
 	
-	private Recipe currentRecipe;
+	private GatedSpectrumRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	private int currentItemProcessingTime;
@@ -549,7 +549,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 		
 		enchanterBlockEntity.craftingTime = 0;
-		Recipe previousRecipe = enchanterBlockEntity.currentRecipe;
+		GatedSpectrumRecipe previousRecipe = enchanterBlockEntity.currentRecipe;
 		enchanterBlockEntity.currentRecipe = null;
 		int previousOrientation = enchanterBlockEntity.virtualInventoryRecipeOrientation;
 		
@@ -633,9 +633,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe)) {
-					this.currentRecipe = optionalRecipe.get();
+				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
+				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+					if (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe) {
+						this.currentRecipe = gatedSpectrumRecipe;
+					}
 				}
 			}
 		}

@@ -14,23 +14,16 @@ import org.joml.*;
 
 public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 	
-	public static final Codec<DynamicParticleEffectAlwaysShow> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> {
-			return effect.color;
-		}), Codec.STRING.fieldOf("particle_type_identifier").forGetter((effect) -> {
-			return effect.particleTypeIdentifier.toString();
-		}), Codec.FLOAT.fieldOf("scale").forGetter((effect) -> {
-			return effect.scale;
-		}), Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> {
-			return effect.lifetimeTicks;
-		}), Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> {
-			return effect.gravity;
-		}), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> {
-			return effect.collisions;
-		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> {
-			return effect.glowing;
-		})).apply(instance, DynamicParticleEffectAlwaysShow::new);
-	});
+	public static final Codec<DynamicParticleEffectAlwaysShow> CODEC = RecordCodecBuilder.create(
+			(instance) -> instance.group(
+					Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> effect.color),
+					Codec.STRING.fieldOf("particle_type_identifier").forGetter((effect) -> effect.particleTypeIdentifier.toString()),
+					Codec.FLOAT.fieldOf("scale").forGetter((effect) -> effect.scale),
+					Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> effect.lifetimeTicks),
+					Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> effect.gravity),
+					Codec.BOOL.fieldOf("collisions").forGetter((effect) -> effect.collisions),
+					Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)
+			).apply(instance, DynamicParticleEffectAlwaysShow::new));
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffectAlwaysShow> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
@@ -87,7 +80,7 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 	}
 	
 	@Override
-	public ParticleType getType() {
+	public ParticleType<DynamicParticleEffectAlwaysShow> getType() {
 		return SpectrumParticleTypes.DYNAMIC_ALWAYS_SHOW;
 	}
 	

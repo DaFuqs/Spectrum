@@ -7,11 +7,11 @@ import net.minecraft.world.*;
 
 public class LagoonFishingBobberEntity extends SpectrumFishingBobberEntity {
 	
-	public LagoonFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
+	public LagoonFishingBobberEntity(EntityType<? extends LagoonFishingBobberEntity> type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
 		super(type, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 	}
 	
-	public LagoonFishingBobberEntity(EntityType entityType, World world) {
+	public LagoonFishingBobberEntity(EntityType<? extends LagoonFishingBobberEntity> entityType, World world) {
 		super(entityType, world);
 	}
 	

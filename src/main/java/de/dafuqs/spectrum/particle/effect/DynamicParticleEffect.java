@@ -14,23 +14,16 @@ import org.joml.*;
 
 public class DynamicParticleEffect implements ParticleEffect {
 	
-	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> {
-			return effect.color;
-		}), Codec.STRING.fieldOf("particle_type").forGetter((effect) -> {
-			return effect.particleTypeIdentifier.toString();
-		}), Codec.FLOAT.fieldOf("scale").forGetter((effect) -> {
-			return effect.scale;
-		}), Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> {
-			return effect.lifetimeTicks;
-		}), Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> {
-			return effect.gravity;
-		}), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> {
-			return effect.collisions;
-		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> {
-			return effect.glowing;
-		})).apply(instance, DynamicParticleEffect::new);
-	});
+	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create(
+			(instance) -> instance.group(
+					Codecs.VECTOR_3F.fieldOf("color").forGetter((effect) -> effect.color),
+					Codec.STRING.fieldOf("particle_type").forGetter((effect) -> effect.particleTypeIdentifier.toString()),
+					Codec.FLOAT.fieldOf("scale").forGetter((effect) -> effect.scale),
+					Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> effect.lifetimeTicks),
+					Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> effect.gravity),
+					Codec.BOOL.fieldOf("collisions").forGetter((effect) -> effect.collisions),
+					Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)
+			).apply(instance, DynamicParticleEffect::new));
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		@Override
@@ -118,7 +111,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 	}
 	
 	@Override
-	public ParticleType<DynamicParticleEffect> getType() {
+	public ParticleType<?> getType() {
 		return SpectrumParticleTypes.DYNAMIC;
 	}
 	

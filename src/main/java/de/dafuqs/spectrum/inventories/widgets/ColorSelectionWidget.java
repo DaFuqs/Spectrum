@@ -64,6 +64,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {

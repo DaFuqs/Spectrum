@@ -18,12 +18,12 @@ import java.util.*;
 
 public abstract class ProjectileMobBlock extends MobBlock {
 	
-	protected final EntityType entityType;
+	protected final EntityType<?> entityType;
 	protected final SoundEvent triggerSoundEvent;
 	protected final float speed;
 	protected final float divergence;
 	
-	public ProjectileMobBlock(Settings settings, ParticleEffect particleEffect, EntityType entityType, SoundEvent triggerSoundEvent, float speed, float divergence) {
+	public ProjectileMobBlock(Settings settings, ParticleEffect particleEffect, EntityType<?> entityType, SoundEvent triggerSoundEvent, float speed, float divergence) {
 		super(settings, particleEffect);
 		this.entityType = entityType;
 		this.triggerSoundEvent = triggerSoundEvent;

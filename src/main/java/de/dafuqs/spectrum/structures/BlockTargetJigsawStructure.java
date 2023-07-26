@@ -41,7 +41,7 @@ public class BlockTargetJigsawStructure extends Structure {
 	protected final BlockTargetType blockTargetType;
 	protected final int maxDistanceFromCenter;
 	
-	public BlockTargetJigsawStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, int size, HeightProvider startHeight, BlockTargetType blockTargetType, int maxDistanceFromCenter) {
+	public BlockTargetJigsawStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, Integer size, HeightProvider startHeight, BlockTargetType blockTargetType, Integer maxDistanceFromCenter) {
 		super(config);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;

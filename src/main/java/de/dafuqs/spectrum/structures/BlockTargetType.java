@@ -12,7 +12,7 @@ public enum BlockTargetType implements StringIdentifiable {
 	MOTION_BLOCKING("motion_blocking", (state) -> state.getMaterial().blocksMovement() || !state.getFluidState().isEmpty()),
 	SOLID("solid", (state) -> state.getMaterial().isSolid());
 	
-	public static final Codec<BlockTargetType> CODEC = StringIdentifiable.createCodec(BlockTargetType::values);
+	public static final com.mojang.serialization.Codec<BlockTargetType> CODEC = StringIdentifiable.createCodec(BlockTargetType::values);
 	
 	private final String name;
 	private final Predicate<BlockState> blockPredicate;

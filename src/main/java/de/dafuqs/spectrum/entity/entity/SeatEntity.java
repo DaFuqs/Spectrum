@@ -145,7 +145,7 @@ public class SeatEntity extends Entity {
         double e = this.getBoundingBox().minY + 0.5;
         double f = this.getZ() + offset.z;
         BlockPos.Mutable mutable = new BlockPos.Mutable();
-        UnmodifiableIterator var10 = passenger.getPoses().iterator();
+		UnmodifiableIterator<EntityPose> var10 = passenger.getPoses().iterator();
 
         while(var10.hasNext()) {
             EntityPose entityPose = (EntityPose)var10.next();

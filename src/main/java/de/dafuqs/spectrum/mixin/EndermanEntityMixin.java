@@ -21,6 +21,7 @@ public abstract class EndermanEntityMixin {
 	@Nullable
 	public abstract BlockState getCarriedBlock();
 	
+	@SuppressWarnings("resource")
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
 		EndermanEntity endermanEntity = ((EndermanEntity) (Object) this);

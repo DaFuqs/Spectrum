@@ -74,7 +74,7 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
 	private final int travelTime;
 	private final int color;
 	
-	public PastelTransmissionParticleEffect(List<BlockPos> nodePositions, ItemStack stack, int travelTime, int color) {
+	public PastelTransmissionParticleEffect(List<BlockPos> nodePositions, ItemStack stack, Integer travelTime, Integer color) {
 		this.nodePositions = nodePositions;
 		this.stack = stack;
 		this.travelTime = travelTime;
@@ -82,7 +82,7 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
 	}
 	
 	@Override
-	public ParticleType getType() {
+	public ParticleType<PastelTransmissionParticleEffect> getType() {
 		return SpectrumParticleTypes.PASTEL_TRANSMISSION;
 	}
 	

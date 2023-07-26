@@ -14,21 +14,21 @@ import java.util.*;
 
 public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 
-    public RandomBudsFeature(Codec configCodec) {
-        super(configCodec);
-    }
-
-    @Override
-    public boolean generate(FeatureContext context) {
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos blockPos = context.getOrigin();
-        Random random = context.getRandom();
-        RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig) context.getConfig();
-    
-        int placedCount = 0;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        int j = randomBudsFeaturesConfig.xzSpread + 1;
-        int k = randomBudsFeaturesConfig.ySpread + 1;
+    public RandomBudsFeature(Codec<RandomBudsFeaturesConfig> configCodec) {
+		super(configCodec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<RandomBudsFeaturesConfig> context) {
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		BlockPos blockPos = context.getOrigin();
+		Random random = context.getRandom();
+		RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig) context.getConfig();
+		
+		int placedCount = 0;
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		int j = randomBudsFeaturesConfig.xzSpread + 1;
+		int k = randomBudsFeaturesConfig.ySpread + 1;
     
         for (int l = 0; l < randomBudsFeaturesConfig.tries; ++l) {
             mutable.set(blockPos, random.nextInt(j) - random.nextInt(j), random.nextInt(k) - random.nextInt(k), random.nextInt(j) - random.nextInt(j));

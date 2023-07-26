@@ -22,7 +22,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class UnlockToastManager {
 	// Advancement Identifier + Recipe Type => Recipe
-	public static final Map<Identifier, Map<RecipeType, List<GatedRecipe>>> gatedRecipes = new HashMap<>();
+	public static final Map<Identifier, Map<RecipeType<?>, List<GatedRecipe>>> gatedRecipes = new HashMap<>();
 	
 	public static final HashMap<Identifier, Pair<ItemStack, String>> messageToasts = new HashMap<>() {{
 		put(SpectrumCommon.locate("milestones/unlock_shooting_stars"), new Pair<>(Items.SPYGLASS.getDefaultStack(), "shooting_stars_unlocked"));
@@ -35,11 +35,11 @@ public class UnlockToastManager {
 		put(PaintbrushItem.UNLOCK_INK_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
 	}};
 	
-	public static void registerGatedRecipe(RecipeType recipeType, GatedRecipe gatedRecipe) {
+	public static void registerGatedRecipe(RecipeType<?> recipeType, GatedRecipe gatedRecipe) {
 		Identifier requiredAdvancementIdentifier = gatedRecipe.getRequiredAdvancementIdentifier();
 		
 		if (gatedRecipes.containsKey(requiredAdvancementIdentifier)) {
-			Map<RecipeType, List<GatedRecipe>> recipeTypeListMap = gatedRecipes.get(requiredAdvancementIdentifier);
+			Map<RecipeType<?>, List<GatedRecipe>> recipeTypeListMap = gatedRecipes.get(requiredAdvancementIdentifier);
 			if (recipeTypeListMap.containsKey(recipeType)) {
 				List<GatedRecipe> existingList = recipeTypeListMap.get(recipeType);
 				if (!existingList.contains(gatedRecipe)) {
@@ -51,7 +51,7 @@ public class UnlockToastManager {
 				recipeTypeListMap.put(recipeType, newList);
 			}
 		} else {
-			Map<RecipeType, List<GatedRecipe>> recipeTypeListMap = new HashMap<>();
+			Map<RecipeType<?>, List<GatedRecipe>> recipeTypeListMap = new HashMap<>();
 			List<GatedRecipe> newList = new ArrayList<>();
 			newList.add(gatedRecipe);
 			recipeTypeListMap.put(recipeType, newList);
@@ -61,14 +61,14 @@ public class UnlockToastManager {
 	
 	@SuppressWarnings("resource")
 	public static void processAdvancements(Set<Identifier> doneAdvancements) {
-		HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
+		HashMap<RecipeType<?>, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
 		
 		for (Identifier doneAdvancement : doneAdvancements) {
 			if (gatedRecipes.containsKey(doneAdvancement)) {
-				Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
+				Map<RecipeType<?>, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
 				
-				for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
+				for (Map.Entry<RecipeType<?>, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
 					List<GatedRecipe> newRecipes;
 					if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
 						newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
@@ -96,7 +96,7 @@ public class UnlockToastManager {
 					unlockedPedestalRecipes = new ArrayList<>();
 				}
 				List<GatedRecipe> pedestalRecipes = new ArrayList<>();
-				for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
+				for (Map<RecipeType<?>, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
 					if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
 						pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
 					}

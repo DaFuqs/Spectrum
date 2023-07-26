@@ -15,7 +15,7 @@ import net.minecraft.util.math.*;
 public class KindlingCoughEntityRenderer extends EntityRenderer<KindlingCoughEntity> {
 	
 	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/kindling/cough.png");
-	private final KindlingCoughEntityModel<KindlingCoughEntity> model;
+	private final KindlingCoughEntityModel model;
 	
 	public KindlingCoughEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);

@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 
 import java.util.*;
 
-public class BedrockPickaxeItem extends SpectrumPickaxeItem implements Preenchanted {
+public class BedrockPickaxeItem extends SpectrumPickaxeItem {
 	
 	public BedrockPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);

@@ -105,20 +105,22 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 		}
 		
 		public boolean matches(ItemStack stack, List<StatusEffectInstance> effects, int brewedCount, int maxAmplifier, int maxDuration, int effectCount, int uniqueEffectCount) {
-			if (this.brewedCountRange.test(brewedCount) && this.highestEffectAmplifierRange.test(maxAmplifier) && this.longestEffectDurationRange.test(maxDuration) && this.effectCountRange.test(effectCount) && this.uniqueEffectCountRange.test(uniqueEffectCount)) {
-				if (!this.itemPredicate.test(stack)) {
-					return false;
-				}
-				
+			if (this.brewedCountRange.test(brewedCount) &&
+					this.highestEffectAmplifierRange.test(maxAmplifier) &&
+					this.longestEffectDurationRange.test(maxDuration) &&
+					this.effectCountRange.test(effectCount) &&
+					this.uniqueEffectCountRange.test(uniqueEffectCount) &&
+					this.itemPredicate.test(stack)) {
 				Map<StatusEffect, StatusEffectInstance> effectMap = new HashMap<>();
 				for (StatusEffectInstance instance : effects) {
-					if (!effectMap.containsKey(instance)) {
+					if (!effectMap.containsKey(instance.getEffectType())) {
 						effectMap.put(instance.getEffectType(), instance);
 					}
 				}
 				
 				return this.statusEffectsPredicate.test(effectMap);
 			}
+			
 			return false;
 		}
 	}

@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public abstract class PotionWorkshopCategory extends GatedDisplayCategory<PotionWorkshopRecipeDisplay> {
+public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDisplay> extends GatedDisplayCategory<T> {
 	
 	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
 	
@@ -26,7 +26,7 @@ public abstract class PotionWorkshopCategory extends GatedDisplayCategory<Potion
 	
 	
 	@Override
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull PotionWorkshopRecipeDisplay display) {
+	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull T display) {
 		// bubbles
 		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y + 1 + 19, 197, 0, 10, 27));
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));

@@ -12,7 +12,12 @@ import net.minecraft.world.event.*;
 
 public class ExperienceTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
-	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination), Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)).apply(instance, ExperienceTransmissionParticleEffect::new));
+	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create(
+			(instance) -> instance.group(
+					PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
+					Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
+			).apply(instance, ExperienceTransmissionParticleEffect::new));
+	
 	public static final Factory<ExperienceTransmissionParticleEffect> FACTORY = new Factory<>() {
 		@Override
 		public ExperienceTransmissionParticleEffect read(ParticleType<ExperienceTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
@@ -36,12 +41,12 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 		}
 	};
 	
-	public ExperienceTransmissionParticleEffect(PositionSource positionSource, int arrivalInTicks) {
+	public ExperienceTransmissionParticleEffect(PositionSource positionSource, Integer arrivalInTicks) {
 		super(positionSource, arrivalInTicks);
 	}
 	
 	@Override
-	public ParticleType getType() {
+	public ParticleType<ExperienceTransmissionParticleEffect> getType() {
 		return SpectrumParticleTypes.EXPERIENCE_TRANSMISSION;
 	}
 	

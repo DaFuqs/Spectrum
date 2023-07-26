@@ -16,7 +16,7 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 	public static final Identifier BACKGROUND3 = SpectrumCommon.locate("textures/gui/container/crafting_tablet3.png");
 	public static final Identifier BACKGROUND4 = SpectrumCommon.locate("textures/gui/container/crafting_tablet4.png");
 	
-	public static Identifier BACKGROUND = BACKGROUND1;
+	public Identifier BACKGROUND;
 	
 	public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
@@ -27,6 +27,7 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 				case COMPLEX -> BACKGROUND = BACKGROUND4;
 				case ADVANCED -> BACKGROUND = BACKGROUND3;
 				case SIMPLE -> BACKGROUND = BACKGROUND2;
+				case BASIC -> BACKGROUND = BACKGROUND1;
 			}
 		}
 	}

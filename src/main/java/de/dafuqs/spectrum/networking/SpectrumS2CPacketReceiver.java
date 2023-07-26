@@ -40,6 +40,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class SpectrumS2CPacketReceiver {
 	
+	@SuppressWarnings("deprecation")
 	public static void registerS2CReceivers() {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_WITH_RANDOM_OFFSET_AND_VELOCITY, (client, handler, buf, responseSender) -> {
 			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
@@ -249,16 +250,11 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				switch (transmission.getVariant()) {
-					case BLOCK_POS ->
-							client.world.addImportantParticle(new BlockPosEventTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-					case ITEM ->
-							client.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-					case EXPERIENCE ->
-							client.world.addImportantParticle(new ExperienceTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-					case HUMMINGSTONE ->
-							client.world.addImportantParticle(new HummingstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-					case REDSTONE ->
-							client.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+					case BLOCK_POS -> client.world.addImportantParticle(new BlockPosEventTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+					case ITEM -> client.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+					case EXPERIENCE -> client.world.addImportantParticle(new ExperienceTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+					case HUMMINGSTONE -> client.world.addImportantParticle(new HummingstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+					case REDSTONE -> client.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 				}
 			});
 		});
@@ -306,7 +302,7 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				BlockEntity blockEntity = client.world.getBlockEntity(blockPos);
-				if (blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
+				if (blockEntity instanceof InkStorageBlockEntity<?> inkStorageBlockEntity) {
 					inkStorageBlockEntity.getEnergyStorage().setEnergy(colors, colorTotal);
 				}
 			});

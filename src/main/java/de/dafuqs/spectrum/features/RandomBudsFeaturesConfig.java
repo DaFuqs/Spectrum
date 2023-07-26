@@ -35,17 +35,17 @@ public class RandomBudsFeaturesConfig implements FeatureConfig {
     public final List<Direction> directions;
     public final List<Block> blocks;
     
-    public RandomBudsFeaturesConfig(int xzSpread, int ySpread, int tries, boolean placeOnFloor, boolean placeOnCeiling, boolean placeOnWalls, RegistryEntryList<Block> canPlaceOn, List<Block> blocks) {
-        this.xzSpread = xzSpread;
-        this.ySpread = ySpread;
-        this.tries = tries;
-        this.placeOnFloor = placeOnFloor;
-        this.placeOnCeiling = placeOnCeiling;
-        this.placeOnWalls = placeOnWalls;
-        this.canPlaceOn = canPlaceOn;
-        this.blocks = blocks;
-        List<Direction> list = Lists.newArrayList();
-        if (placeOnCeiling) {
+    public RandomBudsFeaturesConfig(Integer xzSpread, Integer ySpread, Integer tries, Boolean placeOnFloor, Boolean placeOnCeiling, Boolean placeOnWalls, RegistryEntryList<Block> canPlaceOn, List<Block> blocks) {
+		this.xzSpread = xzSpread;
+		this.ySpread = ySpread;
+		this.tries = tries;
+		this.placeOnFloor = placeOnFloor;
+		this.placeOnCeiling = placeOnCeiling;
+		this.placeOnWalls = placeOnWalls;
+		this.canPlaceOn = canPlaceOn;
+		this.blocks = blocks;
+		List<Direction> list = Lists.newArrayList();
+		if (placeOnCeiling) {
             list.add(Direction.UP);
         }
         if (placeOnFloor) {

@@ -16,9 +16,9 @@ import java.util.*;
 
 public abstract class EntitySummoningMobBlock extends MobBlock {
 	
-	protected final EntityType entityType;
+	protected final EntityType<?> entityType;
 	
-	public EntitySummoningMobBlock(Settings settings, ParticleEffect particleEffect, EntityType entityType) {
+	public EntitySummoningMobBlock(Settings settings, ParticleEffect particleEffect, EntityType<?> entityType) {
 		super(settings, particleEffect);
 		this.entityType = entityType;
 	}

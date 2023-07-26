@@ -13,7 +13,7 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
-	public KindlingCoughEntity(EntityType entityType, World world) {
+	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
 	}
 	

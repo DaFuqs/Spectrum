@@ -13,7 +13,7 @@ import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
 
-public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback {
+public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
 	private static final int RANGE = 16;
 	private final WirelessRedstoneSignalEventQueue listener;
@@ -81,8 +81,8 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	}
 	
 	@Override
-	public void triggerEvent(World world, GameEventListener listener, Object entry) {
-		if (!isSender(this.world, this.pos) && entry instanceof WirelessRedstoneSignalEventQueue.EventEntry redstoneEvent && redstoneEvent.gameEvent.getDyeColor() == getChannel(this.world, this.pos)) {
+	public void triggerEvent(World world, GameEventListener listener, WirelessRedstoneSignalEventQueue.EventEntry redstoneEvent) {
+		if (!isSender(this.world, this.pos) && redstoneEvent.gameEvent.getDyeColor() == getChannel(this.world, this.pos)) {
 			int receivedSignal = redstoneEvent.gameEvent.getPower();
 			this.currentSignal = receivedSignal;
 			// trigger a block update in all cases, even when powered does not change. That way connected blocks

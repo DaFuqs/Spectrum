@@ -39,7 +39,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	private static final int MAX_GRASS_TIMER = 40;
 	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final Map<DyeColor, float[]> COLORS = Maps.newEnumMap((Map) Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
+	private static final Map<DyeColor, float[]> COLORS = Maps.<DyeColor, float[]>newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
 	private static final Identifier SHEARING_LOOT_TABLE_ID = SpectrumCommon.locate("entities/egg_laying_wooly_pig_shearing");
 	
 	private int eatGrassTimer;

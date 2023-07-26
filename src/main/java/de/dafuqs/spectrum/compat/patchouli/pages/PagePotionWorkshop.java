@@ -14,11 +14,11 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
-public abstract class PagePotionWorkshop extends PageGatedRecipe<PotionWorkshopRecipe> {
+public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends PageGatedRecipe<T> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/potion_workshop.png");
 	
-	public PagePotionWorkshop(RecipeType recipeType) {
+	public PagePotionWorkshop(RecipeType<T> recipeType) {
 		super(recipeType);
 	}
 	

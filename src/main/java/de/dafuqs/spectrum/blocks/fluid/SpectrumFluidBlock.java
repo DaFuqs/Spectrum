@@ -40,6 +40,7 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		

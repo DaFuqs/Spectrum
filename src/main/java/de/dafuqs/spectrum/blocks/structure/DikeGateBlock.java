@@ -50,18 +50,21 @@ public class DikeGateBlock extends AbstractGlassBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		punishEntityWithoutAzureDike(world, pos, player, false);
 		return super.onUse(state, world, pos, player, hand, hit);
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos) {
 		punishEntityWithoutAzureDike(world, pos, player, true);
 		return super.calcBlockBreakingDelta(state, player, world, pos);
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		punishEntityWithoutAzureDike(world, pos, entity, true);
 		super.onEntityCollision(state, world, pos, entity);

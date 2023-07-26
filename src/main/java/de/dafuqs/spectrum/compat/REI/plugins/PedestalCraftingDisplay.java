@@ -98,6 +98,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && super.isUnlocked();
 	}

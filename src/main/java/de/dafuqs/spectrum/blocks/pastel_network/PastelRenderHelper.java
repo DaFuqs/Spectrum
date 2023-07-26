@@ -12,6 +12,7 @@ public class PastelRenderHelper {
     public static final Identifier BEAM_TEXTURE_ID = SpectrumCommon.locate("textures/entity/pastel_line.png");
     public static final float BEAM_WIDTH = 0.05F;
 
+    @SuppressWarnings("resource")
     public static void renderLineTo(final MatrixStack matrices, final VertexConsumerProvider vertexConsumers, final float[] color, final BlockPos thisPos, final BlockPos pos) {
         matrices.push();
 

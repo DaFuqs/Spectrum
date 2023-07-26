@@ -28,6 +28,7 @@ public class StrippingLootPillarBlock extends PillarBlock implements StrippableD
     }
     
     @Override
+	@SuppressWarnings("deprecation")
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         checkAndDropStrippedLoot(state, world, pos, newState, moved);
         super.onStateReplaced(state, world, pos, newState, moved);

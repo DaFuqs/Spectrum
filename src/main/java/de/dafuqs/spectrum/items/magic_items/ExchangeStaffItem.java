@@ -163,6 +163,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	
 	@Override
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);

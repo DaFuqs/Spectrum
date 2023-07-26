@@ -35,6 +35,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
+	@SuppressWarnings("resource")
 	public Text getName(int level) {
 		MutableText mutableText = Text.translatable(this.getTranslationKey());
 		if (this.isCursed()) {

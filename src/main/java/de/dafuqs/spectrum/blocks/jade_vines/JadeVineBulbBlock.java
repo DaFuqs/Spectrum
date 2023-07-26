@@ -32,6 +32,7 @@ public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffIt
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos)) {
 			world.createAndScheduleBlockTick(pos, this, 1);

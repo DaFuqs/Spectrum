@@ -38,11 +38,13 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(@NotNull BlockState state) {
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(@NotNull BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (state.get(WATERLOGGED)) {
 			world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
@@ -109,6 +111,7 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		super.onProjectileHit(world, state, hit, projectile);
 		if (!state.get(WATERLOGGED)) {
@@ -117,6 +120,7 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		super.neighborUpdate(state, world, pos, block, fromPos, notify);
 		if (!state.get(WATERLOGGED) && world.random.nextInt(10) == 0) {

@@ -42,6 +42,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
     }
     
     @Override
+	@SuppressWarnings("deprecation")
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         world.createAndScheduleBlockTick(pos, this, 1);
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -59,6 +60,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
     }
 
     @Override
+	@SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         var handStack = player.getStackInHand(hand);
         var random = world.getRandom();
@@ -104,6 +106,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
     }
     
     @Override
+	@SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }

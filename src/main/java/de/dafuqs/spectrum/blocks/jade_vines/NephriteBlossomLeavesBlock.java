@@ -28,6 +28,7 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
     }
     
     @Override
+	@SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(AGE) == MAX_AGE) {
 			ItemStack handStack = player.getStackInHand(hand);

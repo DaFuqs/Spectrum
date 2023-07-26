@@ -17,6 +17,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		ItemStack inkStorageStack = entity.getStack(CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID);
 		if(!inkStorageStack.isEmpty()) {

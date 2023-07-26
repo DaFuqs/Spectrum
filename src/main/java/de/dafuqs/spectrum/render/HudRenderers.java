@@ -132,6 +132,7 @@ public class HudRenderers {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private static void renderSelectedStaffStack(MatrixStack matrixStack) {
 		if (amount > -1 && itemStackToRender != null) {
 			// Render the item stack next to the cursor

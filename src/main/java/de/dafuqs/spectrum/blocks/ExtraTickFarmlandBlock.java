@@ -23,6 +23,7 @@ public class ExtraTickFarmlandBlock extends FarmlandBlock {
 	 * => the crop grows faster
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockPos topPos = pos.up();
 		BlockState topBlockState = world.getBlockState(topPos);

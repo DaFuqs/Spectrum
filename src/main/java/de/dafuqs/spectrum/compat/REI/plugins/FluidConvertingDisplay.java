@@ -22,6 +22,7 @@ public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, getUnlockIdentifier()) && super.isUnlocked();
 	}

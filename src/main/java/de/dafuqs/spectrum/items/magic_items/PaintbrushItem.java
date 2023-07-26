@@ -106,6 +106,7 @@ public class PaintbrushItem extends Item {
 	}
 
 	@Override
+	@SuppressWarnings("resource")
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(context.getWorld().isClient);
@@ -137,6 +138,7 @@ public class PaintbrushItem extends Item {
 		return cursedColor(context);
 	}
 
+	@SuppressWarnings("resource")
 	private boolean cursedColor(ItemUsageContext context) {
 		if (context.getPlayer() == null) {
 			return false;

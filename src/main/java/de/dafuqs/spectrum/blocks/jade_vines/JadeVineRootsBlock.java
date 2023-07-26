@@ -54,6 +54,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
+    @SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (oldState.getBlock() instanceof FenceBlock) {
@@ -65,6 +66,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
+    @SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!newState.isOf(this)) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -97,6 +99,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
+    @SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		

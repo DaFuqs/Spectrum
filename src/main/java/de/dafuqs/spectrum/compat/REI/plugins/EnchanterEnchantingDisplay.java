@@ -37,6 +37,7 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

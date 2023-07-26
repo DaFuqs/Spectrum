@@ -74,6 +74,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!state.get(HUMMING)) {
 			startHumming(world, pos, state, player, false);
@@ -83,6 +84,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		if (state.get(HUMMING)) {
@@ -91,6 +93,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		startHumming(world, pos, state, entity, false);

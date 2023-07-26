@@ -37,6 +37,7 @@ public class PageConfirmationButton extends PageWithText {
 		this.confirmationString = confirmation.asString();
 	}
 	
+	@SuppressWarnings("resource")
 	public boolean isConfirmed() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, checkedAdvancementIdentifier);
 	}

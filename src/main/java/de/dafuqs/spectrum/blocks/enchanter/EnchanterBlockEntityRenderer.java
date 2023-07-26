@@ -63,6 +63,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
 				}
+				default -> { }
 			}
 			
 			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);

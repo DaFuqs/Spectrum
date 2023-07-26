@@ -42,6 +42,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
     }
 
     @Environment(EnvType.CLIENT)
+    @SuppressWarnings("resource")
     public static void startSoundInstance(MagicProjectileEntity inkProjectile) {
         MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(MinecraftClient.getInstance().world.getRegistryKey(), inkProjectile);
         MinecraftClient.getInstance().getSoundManager().play(newInstance);
@@ -58,6 +59,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 	}
 	
 	@Override
+    @SuppressWarnings("resource")
 	public void tick() {
         this.ticksPlayed++;
 
@@ -75,6 +77,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
         }
     }
 	
+    @SuppressWarnings("resource")
 	protected final void setDone() {
 		this.ticksPlayed = this.maxDurationTicks;
         this.done = true;

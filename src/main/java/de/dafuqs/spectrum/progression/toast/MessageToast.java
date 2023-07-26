@@ -40,6 +40,7 @@ public class MessageToast implements Toast {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, TEXTURE);

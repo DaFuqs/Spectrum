@@ -60,6 +60,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem implements InkPower
 	
 	@Override
 	@Environment(EnvType.CLIENT)
+	@SuppressWarnings("resource")
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);

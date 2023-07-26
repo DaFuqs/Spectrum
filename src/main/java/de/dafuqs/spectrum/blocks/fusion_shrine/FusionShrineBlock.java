@@ -52,6 +52,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);

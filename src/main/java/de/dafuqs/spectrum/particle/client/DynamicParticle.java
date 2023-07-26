@@ -57,6 +57,7 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		}
 		
 		@Override
+		@SuppressWarnings("resource")
 		public Particle createParticle(P parameters, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			DynamicParticle particle = new DynamicParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 			

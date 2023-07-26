@@ -54,6 +54,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		doEffects(entity, false);
 	}
 	
+	@SuppressWarnings("resource")
 	private void doEffects(LivingEntity entity, boolean always) {
 		if (!entity.getWorld().isClient) {
 			long time = entity.getWorld().getTime();
@@ -70,6 +71,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private void healLovingAxolotls(@NotNull ServerPlayerEntity entity) {
 		List<AxolotlEntity> nearbyAxolotls = entity.getWorld().getEntitiesByType(EntityType.AXOLOTL, Box.of(entity.getPos(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
 		for (AxolotlEntity axolotlEntity : nearbyAxolotls) {

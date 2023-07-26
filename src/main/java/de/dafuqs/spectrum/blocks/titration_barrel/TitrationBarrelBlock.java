@@ -255,6 +255,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	
 	// drop all currently stored items
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!newState.isOf(this) && state.get(BARREL_STATE) == BarrelState.FILLED) {
 			scatterContents(world, pos);

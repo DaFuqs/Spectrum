@@ -35,6 +35,7 @@ public class RevelationToast implements Toast {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
 		Text title = Text.translatable("spectrum.toast.revelation.title");
 		Text text = Text.translatable("spectrum.toast.revelation.text");

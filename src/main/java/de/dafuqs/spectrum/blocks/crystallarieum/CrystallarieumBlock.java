@@ -50,6 +50,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!world.isClient() && direction == Direction.UP) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

@@ -59,6 +59,7 @@ public abstract class MobBlock extends Block {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		world.setBlockState(pos, world.getBlockState(pos).with(COOLDOWN, false));

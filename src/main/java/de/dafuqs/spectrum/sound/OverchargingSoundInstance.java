@@ -57,6 +57,7 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
         }
     }
 
+    @SuppressWarnings("resource")
     private void spawnParticles(PlayerEntity player) {
         Random random = player.getEntityWorld().random;
 

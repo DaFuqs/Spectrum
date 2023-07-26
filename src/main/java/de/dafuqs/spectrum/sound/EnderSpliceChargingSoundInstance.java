@@ -49,6 +49,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	private void showParticles() {
 		Vec3d pos = player.getPos();
 		Random random = player.getEntityWorld().random;

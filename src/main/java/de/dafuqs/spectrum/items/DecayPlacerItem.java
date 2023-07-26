@@ -21,6 +21,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		ActionResult actionResult = super.useOnBlock(context);
 		if (actionResult.isAccepted()) {

@@ -100,6 +100,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		FluidLogging.State fluidLog = state.get(LOGGED);
 		if (fluidLog == FluidLogging.State.WATER) {

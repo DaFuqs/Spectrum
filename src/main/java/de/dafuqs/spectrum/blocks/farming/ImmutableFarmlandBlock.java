@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.farming;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

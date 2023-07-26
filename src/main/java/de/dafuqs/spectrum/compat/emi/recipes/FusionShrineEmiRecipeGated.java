@@ -14,6 +14,7 @@ import java.util.*;
 public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShrineRecipe> {
 	private final List<OrderedText> texts;
 	
+	@SuppressWarnings("resource")
 	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 138, 60);
 		if (recipe.getDescription().isPresent()) {

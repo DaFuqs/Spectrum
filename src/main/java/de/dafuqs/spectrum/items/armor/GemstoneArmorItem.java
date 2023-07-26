@@ -73,6 +73,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 				statusEffectInstance = new StatusEffectInstance(StatusEffects.INVISIBILITY, 5 * 20, 0);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
+			case MAINHAND, OFFHAND -> { }
 		}
 	}
 	
@@ -85,6 +86,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 			case LEGS ->
 					tooltip.add(Text.translatable("item.spectrum.sylph_leggings.tooltip").formatted(Formatting.GRAY));
 			case FEET -> tooltip.add(Text.translatable("item.spectrum.oread_boots.tooltip").formatted(Formatting.GRAY));
+			case MAINHAND, OFFHAND -> { }
 		}
 	}
 	

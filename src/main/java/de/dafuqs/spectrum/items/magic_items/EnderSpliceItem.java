@@ -302,10 +302,8 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(SpectrumEnchantments.RESONANCE);
-		enchantments.add(SpectrumEnchantments.INDESTRUCTIBLE);
-		enchantments.add(Enchantments.UNBREAKING);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == SpectrumEnchantments.RESONANCE || enchantment == SpectrumEnchantments.INDESTRUCTIBLE || enchantment == Enchantments.UNBREAKING;
 	}
 	
 	@Override

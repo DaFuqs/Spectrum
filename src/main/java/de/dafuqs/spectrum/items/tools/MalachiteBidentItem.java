@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
-import de.dafuqs.spectrum.blocks.enchanter.ExtendedEnchantable;
+import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
@@ -173,14 +173,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.SHARPNESS);
-		enchantments.add(Enchantments.SMITE);
-		enchantments.add(Enchantments.BANE_OF_ARTHROPODS);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS;
 	}
 
-	@Override
-	public boolean soft() {
-		return true;
-	}
 }

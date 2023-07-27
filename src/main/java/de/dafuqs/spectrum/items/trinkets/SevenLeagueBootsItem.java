@@ -41,8 +41,8 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Extende
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.POWER);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.POWER;
 	}
 	
 	@Override

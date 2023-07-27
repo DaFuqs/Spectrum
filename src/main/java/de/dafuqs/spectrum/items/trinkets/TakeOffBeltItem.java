@@ -112,9 +112,8 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.POWER);
-		enchantments.add(Enchantments.FEATHER_FALLING);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.POWER || enchantment == Enchantments.FEATHER_FALLING;
 	}
 	
 	@Override

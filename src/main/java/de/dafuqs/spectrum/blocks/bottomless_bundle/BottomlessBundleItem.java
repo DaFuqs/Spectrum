@@ -483,9 +483,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.POWER);
-		enchantments.add(SpectrumEnchantments.VOIDING);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.POWER || enchantment == SpectrumEnchantments.VOIDING;
 	}
 	
 	@Override

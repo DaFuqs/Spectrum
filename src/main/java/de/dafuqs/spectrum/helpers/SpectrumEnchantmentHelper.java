@@ -39,10 +39,9 @@ public class SpectrumEnchantmentHelper {
 		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
 			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
 				// ExtendedEnchantable explicitly states this enchantment is acceptable
-				var set = new HashSet<Enchantment>();
-				extendedEnchantable.appendAcceptedEnchants(set);
-				if(!set.contains(enchantment))
+				if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
 					return stack;
+				}
 			}
 		}
 		
@@ -215,10 +214,8 @@ public class SpectrumEnchantmentHelper {
 	
 	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {
 		ItemStack itemStack = item.getDefaultStack();
-		var set = new HashSet<Enchantment>();
-		item.appendAcceptedEnchants(set);
-		for (Enchantment enchantment : set) {
-			if (enchantment != null) {
+		for (Enchantment enchantment : Registry.ENCHANTMENT.stream().toList()) {
+			if (item.acceptsEnchantment(enchantment)) {
 				int maxLevel = enchantment.getMaxLevel();
 				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
 			}

@@ -61,8 +61,8 @@ public class GleamingPinItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(SpectrumEnchantments.SNIPER);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == SpectrumEnchantments.SNIPER;
 	}
 	
 	@Override

@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.blocks.enchanter;
 
 import net.minecraft.enchantment.*;
 
-import java.util.*;
-
 /**
  * Items with that Interface will be able to be enchanted with the given enchants
  * Most notably for items that do not match an existing net.minecraft.enchantment.EnchantmentTarget
@@ -14,9 +12,6 @@ import java.util.*;
  */
 public interface ExtendedEnchantable {
 	
-	void appendAcceptedEnchants(Set<Enchantment> enchantments);
+	boolean acceptsEnchantment(Enchantment enchantment);
 
-	default boolean soft() {
-		return false;
-	}
 }

@@ -3,8 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import net.minecraft.client.item.*;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -42,11 +41,10 @@ public class FractalBidentItem extends MalachiteBidentItem {
 		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
 	}
-
+	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		super.appendAcceptedEnchants(enchantments);
-		enchantments.add(Enchantments.EFFICIENCY);
-		enchantments.add(Enchantments.POWER);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return super.acceptsEnchantment(enchantment) || enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.POWER;
 	}
+	
 }

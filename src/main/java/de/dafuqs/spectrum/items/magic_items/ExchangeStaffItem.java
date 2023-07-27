@@ -228,10 +228,8 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.FORTUNE);
-		enchantments.add(Enchantments.SILK_TOUCH);
-		enchantments.add(SpectrumEnchantments.RESONANCE);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.FORTUNE || enchantment == Enchantments.SILK_TOUCH || enchantment == SpectrumEnchantments.RESONANCE;
 	}
 	
 	@Override

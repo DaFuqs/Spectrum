@@ -25,7 +25,7 @@ public class SedativesItem extends ItemWithTooltip {
 				if (world.getRandom().nextInt((int) (frenzy.getAmplifier() + Math.round(duration / 30.0) + 1)) == 0) {
 					user.removeStatusEffect(SpectrumStatusEffects.FRENZY);
 					if (frenzy.getAmplifier() > 0) {
-						user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1));
+						user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, duration, level - 1, frenzy.isAmbient(), frenzy.shouldShowParticles(), frenzy.shouldShowIcon()));
 					}
 				}
 				

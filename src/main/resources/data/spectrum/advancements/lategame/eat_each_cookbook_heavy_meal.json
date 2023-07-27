@@ -4,7 +4,7 @@
     "icon": {
       "item": "spectrum:berliner"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "title": {
       "translate": "advancements.spectrum.eat_each_cookbook_heavy_meal.title"
     },
@@ -146,7 +146,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_all_cookbooks"
+        "advancement_identifier": "spectrum:lategame/collect_all_cookbooks"
       }
     }
   }

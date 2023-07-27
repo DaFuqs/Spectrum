@@ -344,7 +344,7 @@ public class SpectrumItems {
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(IS.of().food(SpectrumFoodComponents.BANYASH));
 	public static final Item BERLINER = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.BERLINER), 48);
-	public static final Item BRISTLE_MEAD = new Item(IS.of().food(SpectrumFoodComponents.BRISTLE_MEAD));
+	public static final Item BRISTLE_MEAD = new InfusedBeverageItem(IS.of().food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item CHAUVE_SOURIS_AU_VIN = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN), 96);
 	public static final Item CRAWFISH = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
@@ -355,11 +355,11 @@ public class SpectrumItems {
 	public static final Item GOLDEN_BRISTLE_TEA = new TeaItem(IS.of().food(SpectrumFoodComponents.GOLDEN_BRISTLE_TEA), SpectrumFoodComponents.GOLDEN_BRISTLE_TEA_SCONE_BONUS);
 	public static final Item HARE_ROAST = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.HARE_ROAST), 64);
 	public static final Item JUNKET = new Item(IS.of().food(SpectrumFoodComponents.JUNKET));
-	public static final Item KOI_FISH = new Item(IS.of().food(SpectrumFoodComponents.KOI_FISH));
+	public static final Item KOI = new Item(IS.of().food(SpectrumFoodComponents.KOI));
 	public static final Item MEATLOAF = new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF));
 	public static final Item MEATLOAF_SANDWICH = new Item(IS.of().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
 	public static final Item MELLOW_SHALLOT_SOUP = new Item(IS.of().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
-	public static final Item MORCHELLA = new Item(IS.of(16).food(SpectrumFoodComponents.MORCHELLA));
+	public static final Item MORCHELLA = new InfusedBeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item NECTERED_VIOGNIER = new JadeWineItem(IS.of(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER));
 	public static final Item PEACHES_FLAMBE = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.PEACHES_FLAMBE), 64);
 	public static final Item PEACH_CREAM = new TeaItem(IS.of().food(SpectrumFoodComponents.PEACH_CREAM), SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS);
@@ -374,9 +374,9 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(IS.of(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(IS.of(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
 	
-	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
+	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of());
 	public static final Item GUARDIAN_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.GUARDIAN_TURRET, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
-	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
+	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of());
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	
 	// Magical Tools
@@ -833,7 +833,7 @@ public class SpectrumItems {
 		register("golden_bristle_tea", GOLDEN_BRISTLE_TEA, DyeColor.PINK);
 		register("hare_roast", HARE_ROAST, DyeColor.PINK);
 		register("junket", JUNKET, DyeColor.PINK);
-		register("koi_fish", KOI_FISH, DyeColor.PINK);
+		register("koi", KOI, DyeColor.PINK);
 		register("meatloaf", MEATLOAF, DyeColor.PINK);
 		register("meatloaf_sandwich", MEATLOAF_SANDWICH, DyeColor.PINK);
 		register("mellow_shallot_soup", MELLOW_SHALLOT_SOUP, DyeColor.PINK);

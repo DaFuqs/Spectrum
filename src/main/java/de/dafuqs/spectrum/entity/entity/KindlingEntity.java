@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
+import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -59,7 +59,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				.add(EntityAttributes.GENERIC_ARMOR, 25.0D)
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 12.0D)
 				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 6.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.75D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6D)
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
 	}
 
@@ -189,7 +189,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		if (this.isAngry()) {
+		if (this.getAngerTime() > 0) {
 			return ActionResult.success(this.world.isClient);
 		}
 		
@@ -200,8 +200,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				setTarget(player);
 				setAngryAt(player.getUuid());
 				chooseRandomAngerTime();
+				
+				return ActionResult.SUCCESS;
 			}
-			return ActionResult.success(this.world.isClient);
+			return ActionResult.CONSUME;
 		}
 		
 		return super.interactMob(player, hand);

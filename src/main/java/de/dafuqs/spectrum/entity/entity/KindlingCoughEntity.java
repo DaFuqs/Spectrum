@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.blocks.mob_blocks.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -7,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -14,6 +16,7 @@ import net.minecraft.world.*;
 public class KindlingCoughEntity extends ProjectileEntity {
 	
 	protected static final float DAMAGE = 8.0F;
+	protected static final int FIRE_TICKS_ON_HIT = 80;
 	
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
@@ -52,9 +55,12 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
-		Entity entity = this.getOwner();
-		if (entity instanceof LivingEntity livingEntity) {
-			entityHitResult.getEntity().damage(SpectrumDamageSources.kindlingCough(this, livingEntity), DAMAGE);
+		
+		Entity hitEntity = entityHitResult.getEntity();
+		hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
+		
+		if (this.getOwner() instanceof LivingEntity owner) {
+			hitEntity.damage(SpectrumDamageSources.kindlingCough(this, owner), DAMAGE);
 		}
 		
 	}
@@ -62,7 +68,9 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
+		
 		if (!this.world.isClient) {
+			FirestarterMobBlock.causeFire((ServerWorld) this.world, blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
 			this.discard();
 		}
 	}

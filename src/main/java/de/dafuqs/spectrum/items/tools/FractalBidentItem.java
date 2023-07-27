@@ -43,9 +43,8 @@ public class FractalBidentItem extends MalachiteBidentItem {
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		super.appendAcceptedEnchants(enchantments);
-		enchantments.add(Enchantments.EFFICIENCY);
-		enchantments.add(Enchantments.POWER);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return super.acceptsEnchantment(enchantment) || enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.POWER;
 	}
+	
 }

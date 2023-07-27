@@ -165,14 +165,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	@Override
-	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
-		enchantments.add(Enchantments.SHARPNESS);
-		enchantments.add(Enchantments.SMITE);
-		enchantments.add(Enchantments.BANE_OF_ARTHROPODS);
+	public boolean acceptsEnchantment(Enchantment enchantment) {
+		return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS;
 	}
 	
-	@Override
-	public boolean soft() {
-		return true;
-	}
 }

@@ -155,6 +155,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
 			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();
 			for (PastelNetwork network : networkManager.getNetworks()) {
+				if (network.getWorld().getDimension() != context.world().getDimension()) continue;
 				Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
 				int color = network.getColor();
 				float[] colors = PastelRenderHelper.unpackNormalizedColor(color);

@@ -1,5 +1,9 @@
 {
   "values": [
-    "spectrum:blazing_crystal"
+    "spectrum:blazing_crystal",
+    {
+      "id": "botania:blaze_block",
+      "required": false
+    }
   ]
 }

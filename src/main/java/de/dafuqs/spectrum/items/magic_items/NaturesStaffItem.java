@@ -340,8 +340,8 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	}
 	
 	@Override
-	public Set<Enchantment> getAcceptedEnchantments() {
-		return Set.of(Enchantments.EFFICIENCY);
+	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
+		enchantments.add(Enchantments.EFFICIENCY);
 	}
 	
 	@Override

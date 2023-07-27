@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
@@ -21,14 +22,14 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class MalachiteBidentItem extends TridentItem implements Preenchanted {
+public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExtendedEnchantable {
 	
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
-	public MalachiteBidentItem(Settings settings) {
+	public MalachiteBidentItem(Settings settings, double damage) {
 		super(settings);
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 12.0, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage, EntityAttributeModifier.Operation.ADDITION));
 		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.6, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
 	}
@@ -163,4 +164,15 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted {
 		return false;
 	}
 	
+	@Override
+	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
+		enchantments.add(Enchantments.SHARPNESS);
+		enchantments.add(Enchantments.SMITE);
+		enchantments.add(Enchantments.BANE_OF_ARTHROPODS);
+	}
+	
+	@Override
+	public boolean soft() {
+		return true;
+	}
 }

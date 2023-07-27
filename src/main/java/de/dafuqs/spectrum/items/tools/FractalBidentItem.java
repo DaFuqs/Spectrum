@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -18,8 +19,8 @@ public class FractalBidentItem extends MalachiteBidentItem {
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
-	public FractalBidentItem(Settings settings) {
-		super(settings);
+	public FractalBidentItem(Settings settings, double damage) {
+		super(settings, damage);
 	}
 	
 	@Override
@@ -41,4 +42,10 @@ public class FractalBidentItem extends MalachiteBidentItem {
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
 	}
 	
+	@Override
+	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
+		super.appendAcceptedEnchants(enchantments);
+		enchantments.add(Enchantments.EFFICIENCY);
+		enchantments.add(Enchantments.POWER);
+	}
 }

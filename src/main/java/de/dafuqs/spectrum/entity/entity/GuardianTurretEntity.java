@@ -14,7 +14,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.predicate.entity.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -46,16 +45,16 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	
 	public GuardianTurretEntity(EntityType<? extends GuardianTurretEntity> entityType, World world) {
 		super(entityType, world);
-		this.experiencePoints = 16;
+		this.experiencePoints = 12;
 		this.lookControl = new TurretLookControl(this);
 	}
 	
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.02F, true));
+		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
 		this.goalSelector.add(4, new RatatatataGoal());
-		this.goalSelector.add(7, new PeekGoal());
-		this.goalSelector.add(8, new LookAroundGoal(this));
+		//this.goalSelector.add(8, new LookAroundGoal(this));
+		
 		this.targetSelector.add(1, new RevengeGoal(this, this.getClass()).setGroupRevenge());
 		this.targetSelector.add(2, new TargetPlayerGoal(this));
 		this.targetSelector.add(3, new TargetOtherTeamGoal(this));
@@ -131,73 +130,26 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			this.tryAttachOrTeleport();
 		}
 		
-		if (this.tickOpenProgress()) {
-			this.moveEntities();
-		}
+		this.tickOpenProgress();
 	}
 	
 	private void tryAttachOrTeleport() {
 		Direction direction = this.findAttachSide(this.getBlockPos());
 		if (direction != null) {
 			this.setAttachedFace(direction);
-		} else {
-			// this.tryTeleport();
 		}
-		
 	}
 	
-	@Override
-	protected Box calculateBoundingBox() {
-		float f = getExtraLength(this.openProgress);
-		Direction direction = this.getAttachedFace().getOpposite();
-		float g = this.getType().getWidth() / 2.0F;
-		return calculateBoundingBox(direction, f).offset(this.getX() - (double) g, this.getY(), this.getZ() - (double) g);
-	}
-	
-	private static float getExtraLength(float openProgress) {
-		return 0.5F - MathHelper.sin((0.5F + openProgress) * 3.1415927F) * 0.5F;
-	}
-	
-	private boolean tickOpenProgress() {
+	private void tickOpenProgress() {
 		this.prevOpenProgress = this.openProgress;
 		float peekAmount = (float) this.getPeekAmount() * 0.01F;
-		if (this.openProgress == peekAmount) {
-			return false;
-		} else {
+		if (this.openProgress != peekAmount) {
 			if (this.openProgress > peekAmount) {
 				this.openProgress = MathHelper.clamp(this.openProgress - 0.05F, peekAmount, 1.0F);
 			} else {
 				this.openProgress = MathHelper.clamp(this.openProgress + 0.05F, 0.0F, peekAmount);
 			}
-			
-			return true;
 		}
-	}
-	
-	private void moveEntities() {
-		this.refreshPosition();
-		float extraLength = getExtraLength(this.openProgress);
-		float previousExtraLength = getExtraLength(this.prevOpenProgress);
-		Direction direction = this.getAttachedFace().getOpposite();
-		float extraLengthDif = extraLength - previousExtraLength;
-		if (!(extraLengthDif <= 0.0F)) {
-			List<Entity> entitiesOnTop = this.world.getOtherEntities(this, calculateBoundingBox(direction, previousExtraLength, extraLength).offset(this.getX() - 0.5, this.getY(), this.getZ() - 0.5), EntityPredicates.EXCEPT_SPECTATOR.and((entity) -> !entity.isConnectedThroughVehicle(this)));
-			for (Entity entity : entitiesOnTop) {
-				if (!(entity instanceof GuardianTurretEntity) && !entity.noClip) {
-					entity.move(MovementType.SHULKER, new Vec3d((extraLengthDif * (float) direction.getOffsetX()), (extraLengthDif * (float) direction.getOffsetY()), (extraLengthDif * (float) direction.getOffsetZ())));
-				}
-			}
-		}
-	}
-	
-	public static Box calculateBoundingBox(Direction direction, float extraLength) {
-		return calculateBoundingBox(direction, -1.0F, extraLength);
-	}
-	
-	public static Box calculateBoundingBox(Direction direction, float prevExtraLength, float extraLength) {
-		double d = Math.max(prevExtraLength, extraLength);
-		double e = Math.min(prevExtraLength, extraLength);
-		return (new Box(BlockPos.ORIGIN)).stretch((double) direction.getOffsetX() * d, (double) direction.getOffsetY() * d, (double) direction.getOffsetZ() * d).shrink((double) (-direction.getOffsetX()) * (1.0 + e), (double) (-direction.getOffsetY()) * (1.0 + e), (double) (-direction.getOffsetZ()) * (1.0 + e));
 	}
 	
 	@Override
@@ -234,15 +186,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		this.headYaw = this.getYaw();
 		this.resetPosition();
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
-	}
-	
-	@Override
-	public Vec3d getVelocity() {
-		return Vec3d.ZERO;
-	}
-	
-	@Override
-	public void setVelocity(Vec3d velocity) {
 	}
 	
 	@Override
@@ -288,8 +231,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			if (!this.world.isDirectionSolid(pos.offset(direction), this, direction2)) {
 				return false;
 			} else {
-				Box box = calculateBoundingBox(direction2, 1.0F).offset(pos).contract(1.0E-6);
-				return this.world.isSpaceEmpty(this, box);
+				return this.world.isSpaceEmpty(this, getBoundingBox());
 			}
 		}
 	}
@@ -398,6 +340,21 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	}
 	
 	@Override
+	public boolean canSee(Entity entity) {
+		if (entity.world != this.world) {
+			return false;
+		} else {
+			Vec3d vec3d = new Vec3d(this.getX(), this.getEyeY(), this.getZ());
+			Vec3d vec3d2 = new Vec3d(entity.getX(), entity.getEyeY(), entity.getZ());
+			if (vec3d2.distanceTo(vec3d) > 32) {
+				return false;
+			} else {
+				return this.world.raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
+			}
+		}
+	}
+	
+	@Override
 	public float getTargetingMargin() {
 		return 0.0F;
 	}
@@ -438,7 +395,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	 * This does the ouch
 	 */
 	private class RatatatataGoal extends Goal {
-		private int counter;
 		
 		public RatatatataGoal() {
 			this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
@@ -456,7 +412,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		
 		@Override
 		public void start() {
-			this.counter = 20;
 			GuardianTurretEntity.this.setPeekAmount(100);
 		}
 		
@@ -473,23 +428,15 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		@Override
 		public void tick() {
 			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
-				--this.counter;
 				LivingEntity target = GuardianTurretEntity.this.getTarget();
-				if (target != null) {
+				if (target != null && GuardianTurretEntity.this.canSee(target)) {
 					GuardianTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
-					double squaredDistanceToTarget = GuardianTurretEntity.this.squaredDistanceTo(target);
-					if (squaredDistanceToTarget < 400.0) {
-						if (this.counter <= 0) {
-							this.counter = 20 + GuardianTurretEntity.this.random.nextInt(10) * 20 / 2;
-							target.damage(world.getDamageSources().mobAttack(GuardianTurretEntity.this), 4F);
-							GuardianTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
-							target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
-						}
-					} else {
-						GuardianTurretEntity.this.setTarget(null);
-					}
-					
+					target.damage(world.getDamageSources().mobAttack(GuardianTurretEntity.this), 2F);
+					GuardianTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
+					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
 					super.tick();
+				} else {
+					GuardianTurretEntity.this.setTarget(null);
 				}
 			}
 		}

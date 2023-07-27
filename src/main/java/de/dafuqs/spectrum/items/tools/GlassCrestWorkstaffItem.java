@@ -3,11 +3,13 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -36,6 +38,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
             if (canShoot(stack.getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
                 user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
                 if (!world.isClient) {
+                    user.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
                     MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
                 }
                 stack.damage(2, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));

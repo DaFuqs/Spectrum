@@ -51,6 +51,19 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent GROUND_SLAM_CHARGE = register("ground_slam_charge");
 	public static final SoundEvent GROUND_SLAM = register("ground_slam");
+
+	public static final SoundEvent DEEP_CRYSTAL_RING = register("deep_crystal_ring");
+	public static final SoundEvent MEDIUM_CRYSTAL_RING = register("mid_crystal_ring");
+	public static final SoundEvent LIGHT_CRYSTAL_RING = register("light_crystal_ring");
+
+	public static final SoundEvent CRYSTAL_STRIKE = register("crystal_strike");
+
+	public static final SoundEvent SHATTER_LIGHT = register("shatter_light");
+	public static final SoundEvent SHATTER_HEAVY = register("shatter_heavy");
+	public static final SoundEvent GLASS_SHIMMER = register("glass_shimmer");
+	public static final SoundEvent SOFT_HUM = register("soft_hum");
+
+
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");

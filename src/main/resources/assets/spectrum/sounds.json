@@ -66,6 +66,55 @@
       "spectrum:moonstone_strike"
     ]
   },
+  "deep_crystal_ring": {
+    "subtitle": "spectrum.subtitles.deep_crystal_ring",
+    "sounds": [
+      "spectrum:crystal_ring_deep"
+    ]
+  },
+  "mid_crystal_ring": {
+    "subtitle": "spectrum.subtitles.mid_crystal_ring",
+    "sounds": [
+      "spectrum:crystal_ring_mid"
+    ]
+  },
+  "light_crystal_ring": {
+    "subtitle": "spectrum.subtitles.light_crystal_ring",
+    "sounds": [
+      "spectrum:crystal_ring_light"
+    ]
+  },
+  "crystal_strike": {
+    "subtitle": "spectrum.subtitles.crystal_strike",
+    "sounds": [
+      "spectrum:crystal_strike_a",
+      "spectrum:crystal_strike_b"
+    ]
+  },
+  "glass_shimmer": {
+    "subtitle": "spectrum.subtitles.glass_shimmer",
+    "sounds": [
+      "spectrum:glass_shimmer"
+    ]
+  },
+  "shatter_light": {
+    "subtitle": "spectrum.subtitles.shatter_light",
+    "sounds": [
+      "spectrum:shatter_light"
+    ]
+  },
+  "shatter_heavy": {
+    "subtitle": "spectrum.subtitles.shatter_heavy",
+    "sounds": [
+      "spectrum:shatter_heavy"
+    ]
+  },
+  "soft_hum": {
+    "subtitle": "spectrum.subtitles.soft_hum",
+    "sounds": [
+      "spectrum:soft_hum"
+    ]
+  },
   "hummingstone_hum": {
     "subtitle": "spectrum.subtitles.hummingstone_hum",
     "sounds": [

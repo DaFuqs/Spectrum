@@ -84,7 +84,7 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
         this.repeat = false;
 
         if (projectile.isRemoved() && !playedExplosion) {
-            MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 0.9F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
+            MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 1.1F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
             spawnImpactParticles(this.projectile);
             playedExplosion = true;
         }

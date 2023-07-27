@@ -71,7 +71,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		}
 		
 		if (age > getMaxAge()) {
-			playSound(SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_BREAK, random.nextFloat() + 0.25F, 1.2F + random.nextFloat());
+			playSound(SpectrumSoundEvents.SOFT_HUM, random.nextFloat() + 0.25F, 1F + random.nextFloat());
 			this.remove(RemovalReason.DISCARDED);
 		}
 		
@@ -164,8 +164,8 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		attacked.timeUntilRegen = 0;
 		attacked.damage(SpectrumDamageSources.irradiance(owner), finalDamage);
 		
-		attacked.playSound(SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_BREAK, 2, 0.8F + random.nextFloat());
-		attacked.playSound(SoundEvents.BLOCK_GLASS_BREAK, random.nextFloat() * 0.5F + 0.2F, 0.8F + random.nextFloat());
+		attacked.playSound(SpectrumSoundEvents.SOFT_HUM, 1.334F, 0.9F + random.nextFloat());
+		attacked.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, random.nextFloat() * 0.4F + 0.2F, 0.8F + random.nextFloat());
 	}
 	
 	@Override
@@ -192,8 +192,8 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
 		var random = user.getRandom();
 		var projectiles = count.get(random);
-		
-		user.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1, 1.2F + random.nextFloat() * 0.6F);
+
+		world.playSound(null, new BlockPos(pos), SpectrumSoundEvents.GLASS_SHIMMER, SoundCategory.AMBIENT, 1F, 0.9F + random.nextFloat() * 0.5F);
 		
 		for (int i = 0; i < projectiles; i++) {
 			LightShardBaseEntity shard = supplier.get();

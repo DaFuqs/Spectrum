@@ -97,6 +97,10 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, new BlockPos(pos.x, pos.y, pos.z));
 		MoonstoneStrike.create(world, attacker, null, attacker.getX(), attacker.getY(), attacker.getZ(), strength, 1.75F);
 		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 1.35F, 1.0F);
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.8F, 0.334F);
+
+
 		if (attacker instanceof ServerPlayerEntity serverPlayer) {
 			serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
 		}

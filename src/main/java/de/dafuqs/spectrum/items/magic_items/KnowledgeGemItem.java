@@ -183,8 +183,9 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 	}
 	
 	@Override
-	public Set<Enchantment> getAcceptedEnchantments() {
-		return Set.of(Enchantments.EFFICIENCY, Enchantments.QUICK_CHARGE);
+	public void appendAcceptedEnchants(Set<Enchantment> enchantments) {
+		enchantments.add(Enchantments.EFFICIENCY);
+		enchantments.add(Enchantments.QUICK_CHARGE);
 	}
 	
 	@Override

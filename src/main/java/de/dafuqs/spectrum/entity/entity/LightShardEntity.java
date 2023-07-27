@@ -11,6 +11,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class LightShardEntity extends LightShardBaseEntity {
 	
@@ -27,7 +28,11 @@ public class LightShardEntity extends LightShardBaseEntity {
 	}
 	
 	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, Vec3d position, IntProvider count) {
-		summonBarrageInternal(world, user, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200), position, count);
+		summonBarrage(world, user, position, count, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200));
+	}
+
+	public static void summonBarrage(World world, LivingEntity user, Vec3d position, IntProvider count, Supplier<LightShardBaseEntity> supplier) {
+		summonBarrageInternal(world, user, supplier, position, count);
 	}
 	
 	@Override

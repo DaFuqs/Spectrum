@@ -16,22 +16,20 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Remembering",
       "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
-      "text": "$(italic)The wooly pigs worked so well, surely this must end similarly."
+      "text": "$(italic)Your own personal fierce dragon. This will be great."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A small Surprise",
+      "text": "$(italic)So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?$()$(br2)The result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?"
     },
     {
       "type": "patchouli:entity",
       "advancement": "spectrum:lategame/remember_kindling",
       "entity": "spectrum:kindling",
-      "scale": 0.6,
+      "scale": 0.5,
       "offset": 0.4,
-      "text": "$(italic)So much for your plans for a jurassic park. Maybe a petting zoo would be more suitable?"
-    },
-    {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/pluck_effulgent_feather",
-      "anchor": "effulgent_feather",
-      "item": "spectrum:effulgent_feather",
-      "text": "You really have to envy the Kindlings, spending their days covered in these fluffy, poofy things. The down of the dragon is beyond soft - luxurious both in feel and color, even with the $(c_yellow)golden liveliness$() that flows through them, you could see yourself falling asleep on a $(item)cushion$() made from these!"
+      "text": "Their down looks beyond soft.$(br)$(italic)Maybe, if you sneak up to one, you are able to pluck a feather?$()"
     }
   ]
 }

@@ -344,7 +344,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		} else {
 			Vec3d vec3d = new Vec3d(this.getX(), this.getEyeY(), this.getZ());
 			Vec3d vec3d2 = new Vec3d(entity.getX(), entity.getEyeY(), entity.getZ());
-			if (vec3d2.distanceTo(vec3d) > 32) {
+			if (vec3d2.distanceTo(vec3d) > 32) { // todo: they only have a very limited vertical field of sight
 				return false;
 			} else {
 				return this.world.raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
@@ -426,7 +426,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		
 		@Override
 		public void tick() {
-			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
+			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL && GuardianTurretEntity.this.openProgress == 1.0) {
 				LivingEntity target = GuardianTurretEntity.this.getTarget();
 				if (target != null && GuardianTurretEntity.this.canSee(target)) {
 					GuardianTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);

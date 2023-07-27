@@ -2,7 +2,7 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "item": "spectrum:koi_fish",
+      "item": "spectrum:koi",
       "count": 8
     },
     {

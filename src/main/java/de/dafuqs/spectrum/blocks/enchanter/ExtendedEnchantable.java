@@ -14,6 +14,9 @@ import java.util.*;
  */
 public interface ExtendedEnchantable {
 	
-	Set<Enchantment> getAcceptedEnchantments();
-	
+	void appendAcceptedEnchants(Set<Enchantment> enchantments);
+
+	default boolean soft() {
+		return false;
+	}
 }

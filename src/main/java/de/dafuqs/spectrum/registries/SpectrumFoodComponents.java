@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
-import net.minecraft.stat.Stat;
 
 public class SpectrumFoodComponents {
 	

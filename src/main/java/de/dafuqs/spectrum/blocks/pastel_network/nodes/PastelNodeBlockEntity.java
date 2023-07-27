@@ -229,4 +229,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         FilterConfigurable.writeScreenOpeningData(buf, filterItems);
     }
 
+    public boolean equals(Object obj) {
+        return obj instanceof PastelNodeBlockEntity blockEntity && this.pos.equals(blockEntity.pos);
+    }
+    
+    public int hashCode() {
+        return this.pos.hashCode();
+    }
 }

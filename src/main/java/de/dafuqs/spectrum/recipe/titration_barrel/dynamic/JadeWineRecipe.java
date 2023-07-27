@@ -128,8 +128,6 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}
 	
 	// the amount of solid to liquid
-	// adding more water will increase the amount of bottles the player can harvest from the barrel
-	// but too much water will - who would have thought - water it down
 	protected float getThickness(int bulbCount, int petalCount) {
 		return bulbCount + petalCount / 8F;
 	}
@@ -138,7 +136,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	// it generally increases the longer the wine has fermented
 	//
 	// another detail: the more rainy the weather (downfall) the more water evaporates
-	// in contrast to alcohol, making the drink stronger / weaker in return
+	// compared to alcohol, making the drink stronger / weaker in return
 	private double getAlcPercentWithBloominess(float ageIngameDays, float downfall, double bloominess, double thickness) {
 		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod(), ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D)) - bloominess;
 	}

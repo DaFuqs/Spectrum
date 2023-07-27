@@ -1,31 +1,22 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.items.food.beverages.properties.JadeWineBeverageProperties;
-import de.dafuqs.spectrum.recipe.titration_barrel.FermentationData;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.id.incubus_core.recipe.matchbook.Matchbook;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.id.incubus_core.recipe.matchbook.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 
@@ -136,8 +127,6 @@ public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 	}
 	
 	// the amount of solid to liquid
-	// adding more water will increase the amount of bottles the player can harvest from the barrel
-	// but too much water will - who would have thought - water it down
 	protected float getThickness(int bulbCount, int petalCount) {
 		return bulbCount + petalCount / 8F;
 	}
@@ -146,7 +135,7 @@ public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 	// it generally increases the longer the wine has fermented
 	//
 	// another detail: the more rainy the weather (downfall) the more water evaporates
-	// in contrast to alcohol, making the drink stronger / weaker in return
+	// compared to alcohol, making the drink stronger / weaker in return
 	private double getAlcPercentWithBloominess(float ageIngameDays, float downfall, double bloominess, double thickness) {
 		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod(), ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D)) - bloominess;
 	}

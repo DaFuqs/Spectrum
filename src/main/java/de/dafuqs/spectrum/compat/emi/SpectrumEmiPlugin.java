@@ -59,9 +59,8 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				EmiStack.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		));
 		
-		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(SpectrumItems.CRAFTING_TABLET));
 		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, pedestals);
-		registry.addWorkstation(VanillaEmiRecipeCategories.BREWING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
+		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(SpectrumItems.CRAFTING_TABLET));
 		registry.addWorkstation(VanillaEmiRecipeCategories.BLASTING, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
 		
 		registry.addWorkstation(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, pedestals);

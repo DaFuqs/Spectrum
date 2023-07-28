@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.arguments.*;
-import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.spawners.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.server.command.*;
 import net.minecraft.server.network.*;
@@ -20,7 +20,7 @@ public class ShootingStarCommand {
 	private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
 		for (ServerPlayerEntity entity : targets) {
 			for (int i = 0; i < amount; i++) {
-				ShootingStarEntity.spawnShootingStar((ServerWorld) entity.world, entity);
+				ShootingStarSpawner.spawnShootingStar((ServerWorld) entity.world, entity);
 			}
 		}
 		source.sendFeedback(Text.translatable("commands.spectrum.spawn_shooting_star.success", amount), false);

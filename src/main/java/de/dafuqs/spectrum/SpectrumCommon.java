@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -275,15 +275,19 @@ public class SpectrumCommon implements ModInitializer {
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
 		
 		ServerTickEvents.START_WORLD_TICK.register(world -> {
+			// these would actually be nicer to have as Spawners in ServerWorld
+			// to have them run in tickSpawners()
+			// but getting them in there would require some ugly mixins
+			
 			if (world.getTime() % 100 == 0) {
 				if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
 					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
-						ShootingStarEntity.doShootingStarSpawnsForPlayers(world);
+						ShootingStarSpawner.INSTANCE.spawn(world, true, true);
 					}
 				}
 				
 				if (world.getRegistryKey().equals(DDDimension.DIMENSION_KEY)) {
-					MonstrosityEntity.checkForSpawn(world);
+					MonstrositySpawner.INSTANCE.spawn(world, true, true);
 				}
 			}
 		});

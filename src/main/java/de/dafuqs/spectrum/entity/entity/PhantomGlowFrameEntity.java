@@ -53,4 +53,9 @@ public class PhantomGlowFrameEntity extends PhantomFrameEntity {
 		return SoundEvents.ENTITY_GLOW_ITEM_FRAME_ROTATE_ITEM;
 	}
 	
+	@Override
+	public boolean shouldRenderAtMaxLight() {
+		return !isRedstonePowered();
+	}
+	
 }

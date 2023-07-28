@@ -32,38 +32,37 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
     }
 
     private void renderAsItemStack(PersistentProjectileEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
-		boolean hasDepth = bakedModel.hasDepth();
-	
-		matrixStack.push();
-		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
-		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(getAdditionalPitch() + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch())));
-	
-		float yScale = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
-		matrixStack.translate(0.0, (0.25F * yScale), 0.0);
-	
-		float scale = getScale();
-		matrixStack.scale(scale, scale, scale);
-		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation(0));
-	
-		float scaleX = bakedModel.getTransformation().ground.scale.x();
-		float scaleY = bakedModel.getTransformation().ground.scale.y();
-		float scaleZ = bakedModel.getTransformation().ground.scale.z();
-		if (!hasDepth) {
-			float r = -0.0F * (float) (0) * 0.5F * scaleX;
-			float s = -0.0F * (float) (0) * 0.5F * scaleY;
-			float t = -0.09375F * (float) (0) * 0.5F * scaleZ;
-			matrixStack.translate(r, s, t);
-		}
-		float shake = (float) entity.shake - tickDelta;
-		if (shake > 0.0F) {
-			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-MathHelper.sin(shake * 3.0F) * shake));
-		}
-	
-		this.itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
-	
-		matrixStack.pop();
-	}
+        BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
+        boolean hasDepth = bakedModel.hasDepth();
+    
+        matrixStack.push();
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(getAdditionalPitch() + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch())));
+    
+        float yScale = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
+        matrixStack.translate(0.0, (0.25F * yScale), 0.0);
+    
+        float scale = getScale();
+        matrixStack.scale(scale, scale, scale);
+    
+        float scaleX = bakedModel.getTransformation().ground.scale.x();
+        float scaleY = bakedModel.getTransformation().ground.scale.y();
+        float scaleZ = bakedModel.getTransformation().ground.scale.z();
+        if (!hasDepth) {
+            float r = -0.0F * (float) (0) * 0.5F * scaleX;
+            float s = -0.0F * (float) (0) * 0.5F * scaleY;
+            float t = -0.09375F * (float) (0) * 0.5F * scaleZ;
+            matrixStack.translate(r, s, t);
+        }
+        float shake = (float) entity.shake - tickDelta;
+        if (shake > 0.0F) {
+            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-MathHelper.sin(shake * 3.0F) * shake));
+        }
+    
+        this.itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
+    
+        matrixStack.pop();
+    }
     
     public float getScale() {
         return 1.5F;

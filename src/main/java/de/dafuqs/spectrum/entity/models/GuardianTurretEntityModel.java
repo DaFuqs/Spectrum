@@ -24,14 +24,13 @@ public class GuardianTurretEntityModel<T extends GuardianTurretEntity> extends C
 	
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
 		
-		ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create()
+		ModelPartData body = modelData.getRoot().addChild(EntityModelPartNames.BODY, ModelPartBuilder.create()
 				.uv(0, 0).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F, Dilation.NONE)
 				.uv(0, 24).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 2.0F, 16.0F, Dilation.NONE), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 		
+		body.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(48, 0).cuboid(-5.0F, -14.0F, -5.0F, 10.0F, 6.0F, 10.0F, Dilation.NONE), ModelTransform.NONE);
 		body.addChild("cover", ModelPartBuilder.create().uv(0, 42).cuboid(-7.0F, -14.0F, -7.0F, 14.0F, 6.0F, 14.0F, Dilation.NONE), ModelTransform.NONE);
-		body.addChild("head", ModelPartBuilder.create().uv(48, 0).cuboid(-5.0F, -14.0F, -5.0F, 10.0F, 6.0F, 10.0F, Dilation.NONE), ModelTransform.NONE);
 		
 		return TexturedModelData.of(modelData, 128, 128);
 	}
@@ -54,7 +53,7 @@ public class GuardianTurretEntityModel<T extends GuardianTurretEntity> extends C
 	
 	@Override
 	public Iterable<ModelPart> getParts() {
-		return ImmutableList.of(this.body, this.head);
+		return ImmutableList.of(this.body);
 	}
 	
 	public ModelPart getHead() {

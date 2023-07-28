@@ -63,9 +63,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 	protected void initGoals() {
 		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
 		this.goalSelector.add(4, new RatatatataGoal());
-		//this.goalSelector.add(8, new LookAroundGoal(this));
-		
-		//this.targetSelector.add(1, new RevengeGoal(this, this.getClass()).setGroupRevenge());
 	}
 	
 	@Override

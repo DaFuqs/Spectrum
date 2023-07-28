@@ -20,7 +20,6 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
 import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -34,8 +33,10 @@ import java.util.function.*;
 
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
 	
-	private static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
-	private static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
+	public static @Nullable MonstrosityEntity theOneAndOnly = null;
+	
+	public static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
+	public static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
 			if (player.isSpectator() || player.isCreative()) {
 				return false;
@@ -55,8 +56,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	private float previousHealth;
 	private int timesGottenStronger = 0;
 	private int ticksWithoutTarget = 0;
-	
-	private static @Nullable MonstrosityEntity currentMonstrosity = null;
 	
 	public MonstrosityEntity(EntityType<? extends MonstrosityEntity> entityType, World world) {
 		super(entityType, world);
@@ -78,32 +77,10 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.setInvincibilityTicks(200);
 	}
 	
-	public static void checkForSpawn(ServerWorld world) {
-		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-			// 1 % chance to spawn
-			if (world.getRandom().nextFloat() < 0.1 && ENTITY_TARGETS.test(playerEntity)) {
-				if (currentMonstrosity == null) {
-					MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.create(world);
-					LocalDifficulty localDifficulty = world.getLocalDifficulty(playerEntity.getBlockPos());
-					monstrosity.initialize(world, localDifficulty, SpawnReason.NATURAL, null, null);
-					world.spawnEntityAndPassengers(monstrosity);
-					
-					currentMonstrosity = monstrosity;
-				}
-				if (currentMonstrosity.getTarget() == null) {
-					currentMonstrosity.setTarget(playerEntity);
-					currentMonstrosity.refreshPositionAndAngles(playerEntity.getBlockPos(), 0.0F, 0.0F);
-				}
-				currentMonstrosity.playSound(currentMonstrosity.getAmbientSound(), 4.0F, 1.0F);
-			}
-			break;
-		}
-	}
-	
 	@Override
 	public void onRemoved() {
-		if (currentMonstrosity == this) {
-			currentMonstrosity = null;
+		if (theOneAndOnly == this) {
+			theOneAndOnly = null;
 		}
 		super.onRemoved();
 	}
@@ -188,19 +165,24 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void checkDespawn() {
 		super.checkDespawn();
 		
-		if (this.getTarget() == null) {
+		if (hasValidTarget()) {
+			ticksWithoutTarget = 0;
+		} else {
 			this.ticksWithoutTarget++;
 			if (ticksWithoutTarget > 600) {
 				this.discard();
 			}
-		} else {
-			ticksWithoutTarget = 0;
 		}
+	}
+	
+	public boolean hasValidTarget() {
+		LivingEntity target = getTarget();
+		return target != null && isTarget(this, TARGET_PREDICATE);
 	}
 	
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		if (spawnReason == SpawnReason.NATURAL && currentMonstrosity != this) {
+		if (spawnReason == SpawnReason.NATURAL && theOneAndOnly != null && theOneAndOnly != this) {
 			discard();
 		}
 		this.targetPosition = getPos();
@@ -275,6 +257,14 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
 			this.world.syncWorldEvent(2008, randomPos, 0);
 		}
+	}
+	
+	@Override
+	public boolean canSee(Entity entity) {
+		if (entity.world != this.world) {
+			return false;
+		}
+		return entity.getPos().distanceTo(this.getPos()) < 128;
 	}
 	
 	@Override
@@ -475,12 +465,12 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			
 			this.delay = toGoalTicks(60);
 			PlayerEntity newTarget = MonstrosityEntity.this.world.getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
-			if (newTarget != null && MonstrosityEntity.this.isTarget(newTarget, TARGET_PREDICATE)) {
-				MonstrosityEntity.this.setTarget(newTarget);
-				return true;
+			if (newTarget == null) {
+				return false;
 			}
 			
-			return false;
+			MonstrosityEntity.this.setTarget(newTarget);
+			return true;
 		}
 		
 		@Override

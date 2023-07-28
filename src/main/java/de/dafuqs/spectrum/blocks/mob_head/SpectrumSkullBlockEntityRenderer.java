@@ -28,13 +28,16 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	
 	public static Map<SkullBlock.SkullType, SkullBlockEntityModel> getModels(EntityModelLoader modelLoader) {
 		ImmutableMap.Builder<SkullBlock.SkullType, SkullBlockEntityModel> builder = ImmutableMap.builder();
+		
 		builder.put(SkullBlock.Type.PLAYER, new SkullEntityModel(modelLoader.getModelPart(EntityModelLayers.PLAYER_HEAD)));
+		
 		builder.put(SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG, new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)));
 		builder.put(SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
 		builder.put(SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
 		builder.put(SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
 		builder.put(SpectrumSkullBlockType.GUARDIAN_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.GUARDIAN_TURRET_HEAD)));
 		builder.put(SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
+		
 		return builder.build();
 	}
 	
@@ -50,12 +53,12 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	public void render(SpectrumSkullBlockEntity spectrumSkullBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int j) {
 		BlockState blockState = spectrumSkullBlockEntity.getCachedState();
 		Direction direction = null;
-		float h = 22.5F;
+		float yaw = 22.5F;
 		if (blockState.getBlock() instanceof WallSkullBlock) {
 			direction = blockState.get(WallSkullBlock.FACING);
-			h *= (2 + direction.getHorizontal()) * 4;
+			yaw *= (2 + direction.getHorizontal()) * 4;
 		} else {
-			h *= blockState.get(SkullBlock.ROTATION);
+			yaw *= blockState.get(SkullBlock.ROTATION);
 		}
 		SpectrumSkullBlockType skullType = spectrumSkullBlockEntity.getSkullType();
 		if (skullType == null) {
@@ -63,7 +66,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		}
 		SkullBlockEntityModel skullBlockEntityModel = MODELS.get(skullType.getModelType());
 		RenderLayer renderLayer = getRenderLayer(skullType);
-		renderSkull(direction, h, 0, matrixStack, vertexConsumerProvider, light, skullBlockEntityModel, renderLayer);
+		renderSkull(direction, yaw, 0, matrixStack, vertexConsumerProvider, light, skullBlockEntityModel, renderLayer);
 	}
 	
 	public static void renderSkull(@Nullable Direction direction, float yaw, float animationProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, SkullBlockEntityModel model, RenderLayer renderLayer) {

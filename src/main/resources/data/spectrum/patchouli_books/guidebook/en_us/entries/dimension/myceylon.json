@@ -22,19 +22,19 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/food/myceylon_pastries",
-      "recipe": "spectrum:pedestal/tier2/food/myceylon_pumpkin_pie",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_pumpkin_pie",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/food/myceylon_pastries",
-      "recipe": "spectrum:pedestal/tier2/food/myceylon_apple_pie",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_apple_pie",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/food/myceylon_pastries",
-      "recipe": "spectrum:pedestal/tier2/food/myceylon_cookie",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_cookie",
       "text": ""
     }
   ]

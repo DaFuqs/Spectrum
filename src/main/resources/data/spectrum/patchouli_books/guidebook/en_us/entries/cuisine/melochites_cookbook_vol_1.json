@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/banyash",
+      "recipe": "spectrum:pedestal/tier1/food/banyash",
       "text": "$(italic)A sweet and savory Banyash, with notes of the woods. made with crawfish and love~"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/hare_roast_malt",
+      "recipe": "spectrum:pedestal/tier1/food/hare_roast_malt",
       "text": "$(italic)While a malt beer is traditional, any good, artisanal brew will do"
     },
     {
@@ -51,13 +51,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/meatloaf",
+      "recipe": "spectrum:pedestal/tier1/food/meatloaf",
       "text": "$(italic)A lovely way to feed your own nieces and nephews... $(br2) you are planning to feed a family right?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Stuffing Buns with Meat",
-      "recipe": "spectrum:pedestal/tier3/food/meatloaf_sandwich",
+      "recipe": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
       "text": "$(italic)Much more suitable for a single person.$(br2) Though admittedly, it is still too big to fit in me."
     }
   ]

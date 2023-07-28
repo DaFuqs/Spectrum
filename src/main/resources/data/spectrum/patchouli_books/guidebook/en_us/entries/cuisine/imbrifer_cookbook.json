@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/crawfish_cocktail",
+      "recipe": "spectrum:pedestal/tier1/food/crawfish_cocktail",
       "text": "$(italic)It can take hundreds of tries to get it right the first time.$(br2)Many will crack before that."
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/bagnun",
+      "recipe": "spectrum:pedestal/tier1/food/bagnun",
       "text": "$(italic)    ....."
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/mellow_shallot_soup",
+      "recipe": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
       "text": "$(italic)I've heard Jade Vine nectar has restorative properties...$(br2)what a curious crossbreed."
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/fishcake",
+      "recipe": "spectrum:pedestal/tier1/food/fishcake",
       "text": "$(italic)The finest fishcake cures for months, if not years."
     },
     {

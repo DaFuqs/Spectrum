@@ -15,7 +15,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/food/star_candy",
+      "recipe": "spectrum:pedestal/tier1/food/star_candy",
       "text": "Perhaps the speckles are the source of their restorative properties? You are left to wonder if it is possible to create a fully purple one."
     },
     {

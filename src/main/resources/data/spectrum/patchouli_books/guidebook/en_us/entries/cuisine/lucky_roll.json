@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/lucky_roll",
+      "recipe": "spectrum:pedestal/tier1/food/lucky_roll",
       "text": "$(italic)Lucky Roll, get it???"
     }
   ]

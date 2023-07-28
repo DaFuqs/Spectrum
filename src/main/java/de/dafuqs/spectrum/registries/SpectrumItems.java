@@ -149,7 +149,7 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
-	public static final Item DRAGONRENDING_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability())) {
+	public static final Item DRAGONRENDING_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(SpectrumEnchantments.RAZING, 1);
@@ -160,36 +160,36 @@ public class SpectrumItems {
 	
 	// Bedrock Tools
 	public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
-	public static final Item BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_BOW = new BedrockBowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_CROSSBOW = new BedrockCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final Item BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_BOW = new BedrockBowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_CROSSBOW = new BedrockCrossbowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	
 	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
-	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item MALACHITE_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 4, -3.0F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item MALACHITE_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()));
-	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), 9);
+	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item MALACHITE_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 4, -3.0F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item MALACHITE_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).fireproof().maxDamage(MALACHITE.getDurability()));
+	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).maxDamage(MALACHITE.getDurability()), 9);
 	
 	// variants by socketing a moonstone core
 	public static final SpectrumToolMaterials.ToolMaterial GLASS_CREST = SpectrumToolMaterials.ToolMaterial.GLASS_CREST;
-	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
-	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()), 12);
-	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()), 6.0);
+	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).fireproof().maxDamage(GLASS_CREST.getDurability()));
+	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), 12);
+	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), 6.0);
 	
-	public static final Item MALACHITE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.MALACHITE, SpectrumParticleTypes.LIME_CRAFTING);
-	public static final Item TOPAZ_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.TOPAZ, SpectrumParticleTypes.CYAN_CRAFTING);
-	public static final Item AMETHYST_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.AMETHYST, SpectrumParticleTypes.MAGENTA_CRAFTING);
-	public static final Item CITRINE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.CITRINE, SpectrumParticleTypes.YELLOW_CRAFTING);
-	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
-	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
+	public static final Item MALACHITE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.MALACHITE, SpectrumParticleTypes.LIME_CRAFTING);
+	public static final Item TOPAZ_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.TOPAZ, SpectrumParticleTypes.CYAN_CRAFTING);
+	public static final Item AMETHYST_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.AMETHYST, SpectrumParticleTypes.MAGENTA_CRAFTING);
+	public static final Item CITRINE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.CITRINE, SpectrumParticleTypes.YELLOW_CRAFTING);
+	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
+	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
 	
 	public static final Item GLASS_AMPOULE = new GlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(16));
 	public static final Item FRACTAL_GLASS_AMPOULE = new FractalGlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(16));
@@ -202,25 +202,25 @@ public class SpectrumItems {
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
 	// Bedrock Armor
-	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
+	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.PROJECTILE_PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_CHESTPLATE = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.CHEST, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
+	public static final Item BEDROCK_CHESTPLATE = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.CHEST, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_LEGGINGS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.LEGS, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
+	public static final Item BEDROCK_LEGGINGS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.LEGS, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.BLAST_PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_BOOTS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.FEET, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
+	public static final Item BEDROCK_BOOTS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.FEET, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FIRE_PROTECTION, 5);
@@ -228,10 +228,10 @@ public class SpectrumItems {
 	};
 	
 	// Armor
-	public static final Item FETCHLING_HELMET = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.HEAD)));
-	public static final Item FEROCIOUS_CHESTPLATE = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.CHEST, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.CHEST)));
-	public static final Item SYLPH_LEGGINGS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.LEGS, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.LEGS)));
-	public static final Item OREAD_BOOTS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.FEET, Tab.EQUIPMENT.settings(Rarity.RARE).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.FEET)));
+	public static final Item FETCHLING_HELMET = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.HEAD)));
+	public static final Item FEROCIOUS_CHESTPLATE = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.CHEST, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.CHEST)));
+	public static final Item SYLPH_LEGGINGS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.LEGS, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.LEGS)));
+	public static final Item OREAD_BOOTS = new GemstoneArmorItem(SpectrumArmorMaterials.GEMSTONE, EquipmentSlot.FEET, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumArmorMaterials.GEMSTONE.getDurability(EquipmentSlot.FEET)));
 	
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);
@@ -361,11 +361,11 @@ public class SpectrumItems {
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
 	
-	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.RARE), "cuisine/melochites_cookbook_vol_1");
-	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.RARE), "cuisine/melochites_cookbook_vol_2");
-	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.RARE), "cuisine/imbrifer_cookbook");
-	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.RARE), "cuisine/imperial_cookbook");
-	public static final Item BREWERS_HANDBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.RARE), "cuisine/brewers_handbook");
+	public static final Item MELOCHITES_COOKBOOK_VOL_1 = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/melochites_cookbook_vol_1");
+	public static final Item MELOCHITES_COOKBOOK_VOL_2 = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/melochites_cookbook_vol_2");
+	public static final Item IMBRIFER_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imbrifer_cookbook");
+	public static final Item IMPERIAL_COOKBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/imperial_cookbook");
+	public static final Item BREWERS_HANDBOOK = new CookbookItem(Tab.CUISINE.settings().maxCount(1).rarity(Rarity.UNCOMMON), "cuisine/brewers_handbook");
 	
 	public static final Item AQUA_REGIA = new JadeWineItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.AQUA_REGIA));
 	public static final Item BAGNUN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BAGNUN));
@@ -397,7 +397,7 @@ public class SpectrumItems {
 	public static final Item SURSTROMMING = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SURSTROMMING));
 	
 	// Banner Patterns
-	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
+	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1, Rarity.UNCOMMON), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.DECORATION.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
 	
@@ -415,7 +415,7 @@ public class SpectrumItems {
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
-	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.RARE));
+	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
 	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
@@ -441,7 +441,7 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.DECORATION.settings(1, Rarity.RARE), 265);
 	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.DECORATION.settings(1, Rarity.RARE), 289);
 	
-	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.CREATURES.settings(1, Rarity.EPIC));
+	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.CREATURES.settings(1, Rarity.RARE));
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.DECORATION.settings());
 	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, Tab.DECORATION.settings());
 	
@@ -491,8 +491,8 @@ public class SpectrumItems {
 	public static final Item WEEPING_CIRCLET = new WeepingCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item CIRCLET_OF_ARROGANCE = new CircletOfArroganceItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
-	public static final Item NEAT_RING = new NeatRingItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item CIRCLET_OF_ARROGANCE = new CircletOfArroganceItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item NEAT_RING = new NeatRingItem(Tab.EQUIPMENT.settings(1, Rarity.EPIC));
 	
 	// Pure Clusters
 	public static final Item PURE_EMERALD = new Item(Tab.PURE_RESOURCES.settings());

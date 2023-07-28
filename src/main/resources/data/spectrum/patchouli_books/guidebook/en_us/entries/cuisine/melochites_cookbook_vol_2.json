@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/slushslide",
+      "recipe": "spectrum:pedestal/tier1/food/slushslide",
       "text": "$(italic)Leaves you feeling cozy inside"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/berliner",
+      "recipe": "spectrum:pedestal/tier1/food/berliner",
       "text": "$(italic)If there is any proof that the Shura are still watching over us and life is good, this is it."
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/cream_pastry",
+      "recipe": "spectrum:pedestal/tier1/food/cream_pastry",
       "text": "$(italic)Sweet, crispy and delicate. $(br2)Goes great with tea!"
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/rabbit_cream_pie",
+      "recipe": "spectrum:pedestal/tier1/food/rabbit_cream_pie",
       "text": "$(italic)A pound of eggs, a pound of sugar, a pound of flour, and a pound of cream."
     }
   ]

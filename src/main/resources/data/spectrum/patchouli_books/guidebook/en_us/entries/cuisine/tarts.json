@@ -19,33 +19,33 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Jaramel Tart",
-      "recipe": "spectrum:pedestal/tier3/food/jaramel_tart",
+      "recipe": "spectrum:pedestal/tier1/food/jaramel_tart",
       "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
-      "recipe": "spectrum:pedestal/tier3/food/salted_jaramel_tart",
+      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
       "text": "$(italic)Extra Salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/ashen_tart",
+      "recipe": "spectrum:pedestal/tier1/food/ashen_tart",
       "text": "Makes you able to see & swim in Lava as were it Water.$(br)However, does NOT make you fire immune."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/weeping_tart",
+      "recipe": "spectrum:pedestal/tier1/food/weeping_tart",
       "text": "Makes you able to swim at light speed and greatly increases your underwater mining rate."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/whispy_tart",
+      "recipe": "spectrum:pedestal/tier1/food/whispy_tart",
       "text": "Makes you feel well rested, like after a good nights sleep. Scares away creatures of nightmares."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/puff_tart",
+      "recipe": "spectrum:pedestal/tier1/food/puff_tart",
       "text": "Small chance for projectiles to simply deflect off of you."
     }
   ]

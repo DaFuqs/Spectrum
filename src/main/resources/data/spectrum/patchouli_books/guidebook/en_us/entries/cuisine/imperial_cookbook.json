@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/peaches_flambe",
+      "recipe": "spectrum:pedestal/tier1/food/peaches_flambe",
       "text": "$(italic)The Shura have gold, graceless humans have purple, but for us? The color of royalty is pink! Hahahah!"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/chauve_souris_au_vin",
+      "recipe": "spectrum:pedestal/tier1/food/chauve_souris_au_vin",
       "text": "$(italic)Honestly, I never remember how to spell its name."
     },
     {

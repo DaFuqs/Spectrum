@@ -26,7 +26,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/food/sugar_stick",
+      "recipe": "spectrum:pedestal/tier1/food/sugar_stick",
       "text": "You might even be able to add more stuff than just plain Sugar when immersed? Liquid $(italic)Crystal$() and all that..."
     },
     {

@@ -28,7 +28,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/food/demon_trifle",
-      "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
+      "recipe": "spectrum:pedestal/tier1/food/demon_trifle",
       "text": "The $(thing)Frenzy$() effect you may get is starts out low, but lasts a bit longer."
     },
     {

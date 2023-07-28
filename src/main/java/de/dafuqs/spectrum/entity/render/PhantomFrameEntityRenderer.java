@@ -25,12 +25,12 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 	
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;
-	
+
 	public PhantomFrameEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
 	}
-	
+
 	@Override
 	protected int getBlockLight(PhantomFrameEntity itemFrameEntity, BlockPos blockPos) {
 		return itemFrameEntity.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
@@ -38,8 +38,8 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 
 	@Override
 	public void render(PhantomFrameEntity itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		super.render(itemFrameEntity, f, g, matrixStack, vertexConsumerProvider, light);
 		matrixStack.push();
+		
 		Direction direction = itemFrameEntity.getHorizontalFacing();
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
 		matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
@@ -67,6 +67,8 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				matrixStack.translate(0.0D, 0.0D, 0.4375D);
 			}
 			
+			int renderLight = itemFrameEntity.shouldRenderAtMaxLight() ? LightmapTextureManager.MAX_LIGHT_COORDINATE : light;
+			
 			int bakedModelManager = isRenderingMap ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
 			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) bakedModelManager * 360.0F / 8.0F));
 			if (isRenderingMap) {
@@ -78,14 +80,12 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.world);
 				matrixStack.translate(0.0D, 0.0D, -1.0D);
 				if (mapState != null) {
-					int finalLight = this.getLight(itemFrameEntity, light);
-					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, mapId, mapState, true, finalLight);
+					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, mapId, mapState, true, renderLight);
 				}
 			} else {
-				int finalLight = this.getLight(itemFrameEntity, light);
 				float scale = 0.75F;
 				matrixStack.scale(scale, scale, scale);
-				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.world, itemFrameEntity.getId());
+				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, renderLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.world, itemFrameEntity.getId());
 			}
 		}
 

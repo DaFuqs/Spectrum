@@ -59,9 +59,13 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 		}
 		return success;
 	}
-
+	
 	public boolean isRedstonePowered() {
 		return this.getWorld().getReceivedRedstonePower(this.getBlockPos()) > 0;
 	}
-
+	
+	public boolean shouldRenderAtMaxLight() {
+		return isRedstonePowered();
+	}
+	
 }

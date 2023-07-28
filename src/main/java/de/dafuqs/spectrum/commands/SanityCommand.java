@@ -40,39 +40,10 @@ import java.util.*;
 public class SanityCommand {
 	
 	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = List.of(
-			SpectrumCommon.locate("collect_mysterious_locket"),
-			SpectrumCommon.locate("find_preservation_ruins"),
-			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),
-			SpectrumCommon.locate("place_moonstone_in_preservation_ruins"),
-			SpectrumCommon.locate("survive_drinking_incandescent_amalgam"),
-			
-			SpectrumCommon.locate("tap_aged_air"),
-			SpectrumCommon.locate("hook_entity_with_molten_rod"),
-			
-			SpectrumCommon.locate("midgame/take_off_belt_overcharged"),
-			SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"),
-			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),
-			SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"),
-			SpectrumCommon.locate("midgame/tap_chrysocolla"),
-			SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"),
-			
-			SpectrumCommon.locate("lategame/killed_monstrosity"),
-			SpectrumCommon.locate("lategame/collect_doombloom_seed"),
-			SpectrumCommon.locate("lategame/collect_noxwood"),
-			SpectrumCommon.locate("lategame/break_cracked_dragonbone"),
-			SpectrumCommon.locate("lategame/collect_bismuth"),
-			SpectrumCommon.locate("lategame/collect_myceylon"),
-			SpectrumCommon.locate("lategame/collect_prickly_bayleaf"),
-			SpectrumCommon.locate("lategame/collect_hummingstone"),
-			SpectrumCommon.locate("lategame/collect_downstone_fragments"),
-			SpectrumCommon.locate("lategame/collect_one_cookbook"),
-			SpectrumCommon.locate("lategame/collect_moonstone_core"),
-			
-			SpectrumCommon.locate("hidden/collect_cookbooks/brewers_handbook"),
-			SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook"),
-			SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook"),
-			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_1"),
-			SpectrumCommon.locate("hidden/collect_cookbooks/melochites_cookbook_vol_2")
+			SpectrumCommon.locate("find_preservation_ruins"),                    // does not have a prerequisite
+			SpectrumCommon.locate("fail_to_glitch_into_preservation_ruin"),        // does not have a prerequisite
+			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),    // its parent is 2 parents in
+			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
 	);
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -237,7 +208,8 @@ public class SanityCommand {
 		
 		// advancements that dont require parent
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !advancement.getId().getPath().contains("hidden") && !advancement.getId().getPath().contains("progression") && !advancement.getId().getPath().contains("milestones") && advancement.getParent() != null) {
+			String path = advancement.getId().getPath();
+			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
 				Identifier previousAdvancementIdentifier = null;
 				for (String[] requirement : advancement.getRequirements()) {
 					if (requirement.length > 0 && requirement[0].equals("gotten_previous")) {
@@ -246,7 +218,7 @@ public class SanityCommand {
 							previousAdvancementIdentifier = advancementConditions.getAdvancementIdentifier();
 							break;
 						} else {
-							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has a \"gotten_previous\" requirement, but its not spectrum:has_advancement?");
+							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has a \"gotten_previous\" requirement, but its not revelationary:advancement_gotten");
 						}
 					}
 				}
@@ -254,9 +226,14 @@ public class SanityCommand {
 					if (previousAdvancementIdentifier == null) {
 						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' does not have its parent set as requirement");
 					} else {
-						if (!advancement.getParent().getId().equals(previousAdvancementIdentifier)) {
-							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
+						Advancement parent = advancement.getParent();
+						if (parent.getId().equals(previousAdvancementIdentifier)) {
+							continue;
 						}
+						if (parent.getParent() != null && parent.getParent().getId().equals(previousAdvancementIdentifier)) {
+							continue; // "collect stuff" advancements with its 2nd parent being the requirement
+						}
+						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");
 					}
 				}
 			}
@@ -265,19 +242,19 @@ public class SanityCommand {
 		// Pedestal Recipes in wrong data folder
 		for (PedestalCraftingRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
-			if (id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
+			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
 					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {
 				continue;
 			}
 			
 			if (recipe.getTier() == PedestalRecipeTier.BASIC && !id.getPath().contains("/tier1/")) {
-				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] BASIC Recipe not in the correct tier folder: '" + id + "'");
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] BASIC recipe not in the correct tier folder: '" + id + "'");
 			} else if (recipe.getTier() == PedestalRecipeTier.SIMPLE && !id.getPath().contains("/tier2/")) {
-				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] SIMPLE Recipe not in the correct tier folder: '" + id + "'");
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] SIMPLE recipe not in the correct tier folder: '" + id + "'");
 			} else if (recipe.getTier() == PedestalRecipeTier.ADVANCED && !id.getPath().contains("/tier3/")) {
-				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] ADVANCED Recipe not in the correct tier folder: '" + id + "'");
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] ADVANCED recipe not in the correct tier folder: '" + id + "'");
 			} else if (recipe.getTier() == PedestalRecipeTier.COMPLEX && !id.getPath().contains("/tier4/")) {
-				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] COMPLEX Recipe not in the correct tier folder: '" + id + "'");
+				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] COMPLEX recipe not in the correct tier folder: '" + id + "'");
 			}
 		}
 		

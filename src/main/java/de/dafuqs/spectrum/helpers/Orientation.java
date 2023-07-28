@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import net.minecraft.util.math.*;
 
 /**
- * NOTE: Relative to Z axis, Longitude is the azimuth
+ * NOTE: Longitude is on the XZ plane. Latitude is on the radius-Y plane.
  */
 public class Orientation {
 	
@@ -21,9 +21,21 @@ public class Orientation {
 	public static Orientation fromVector(Vec3d vector) {
 		return getVectorOrientation(vector);
 	}
+
+	public Vec3d toVector(double r) {
+		return new Vec3d(
+				r * Math.sin(latitude) * Math.cos(longitude),
+				r * Math.cos(latitude),
+				r * Math.sin(latitude) * Math.sin(longitude)
+		);
+	}
 	
 	public Orientation add(Orientation other) {
 		return new Orientation(longitude + other.longitude, latitude + other.latitude);
+	}
+
+	public Orientation add(double longitude, double latitude) {
+		return new Orientation(this.longitude + longitude, this.latitude + latitude);
 	}
 	
 	public Orientation subtract(Orientation other) {
@@ -37,18 +49,22 @@ public class Orientation {
 	public double getLatitude() {
 		return latitude;
 	}
-	
+
+	/**
+	 * <a href="http://www.vias.org/comp_geometry/math_coord_sphere.htm">Phi my phucking phnuts</a>
+	 */
 	public static Orientation getVectorOrientation(Vec3d vector) {
 		var r = vector.length();
-		var orientationX = Math.acos(vector.z / Math.sqrt(vector.z * vector.z + vector.x * vector.x)) * (vector.x < 0 ? -1 : 1);
-		var orientationY = Math.acos(vector.y / r);
+		var longitude = MathHelper.atan2(vector.z, vector.x);
+		var latitude = Math.acos(vector.y / r) - (Math.PI / 2);
+		latitude *= -1;
 		
-		return Orientation.create(orientationX, orientationY);
+		return Orientation.create(longitude, latitude);
 	}
 	
 	@Override
 	public String toString() {
-		return "{ Lat: " + latitude + " rads | Long: " + longitude + " rads }";
+		return "{ Longitude: " + longitude + " rads | Latitude: " + latitude + " rads }";
 	}
 	
 }

@@ -170,25 +170,31 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
 	@Override
 	public void onRemoved() {
+	}
+
+	@Override
+	public void remove(RemovalReason reason) {
+		super.remove(reason);
 		var bound = random.nextInt(11);
-		for (int i = 0; i < bound + 5; i++) {
-			if (random.nextFloat() < 0.665) {
-				world.addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
-						random.nextFloat() * 0.25F - 0.125F,
-						random.nextFloat() * 0.25F - 0.125F,
-						random.nextFloat() * 0.25F - 0.125F
-				);
-			} else {
-				world.addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
-						random.nextFloat() * 0.5F - 0.25F,
-						random.nextFloat() * 0.5F - 0.25F,
-						random.nextFloat() * 0.5F - 0.25F
-				);
+		if(reason.shouldDestroy()) {
+			for (int i = 0; i < bound + 5; i++) {
+				if (random.nextFloat() < 0.665) {
+					world.addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
+							random.nextFloat() * 0.25F - 0.125F,
+							random.nextFloat() * 0.25F - 0.125F,
+							random.nextFloat() * 0.25F - 0.125F
+					);
+				} else {
+					world.addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
+							random.nextFloat() * 0.5F - 0.25F,
+							random.nextFloat() * 0.5F - 0.25F,
+							random.nextFloat() * 0.5F - 0.25F
+					);
+				}
 			}
 		}
-		super.onRemoved();
 	}
-	
+
 	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
 		var random = user.getRandom();
 		var projectiles = count.get(random);

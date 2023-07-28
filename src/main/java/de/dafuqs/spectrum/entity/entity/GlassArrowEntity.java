@@ -21,7 +21,9 @@ import net.minecraft.world.*;
 
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
+	private static final String VARIANT_STRING = "variant";
 	private static final TrackedData<GlassArrowVariant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
+	
 	public static final float DAMAGE_MODIFIER = 1.25F;
 	
 	public GlassArrowEntity(EntityType<? extends GlassArrowEntity> entityType, World world) {
@@ -46,7 +48,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	public void tick() {
 		super.tick();
 		if (this.world.isClient) {
-			if (!this.onGround || world.getTime() % 8 == 0) {
+			if (!this.inGround || world.getTime() % 8 == 0) {
 				spawnParticles(1);
 			}
 		}
@@ -178,13 +180,13 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		nbt.putString("Variant", SpectrumRegistries.GLASS_ARROW_VARIANT.getId(this.getVariant()).toString());
+		nbt.putString(VARIANT_STRING, SpectrumRegistries.GLASS_ARROW_VARIANT.getId(this.getVariant()).toString());
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		GlassArrowVariant variant = SpectrumRegistries.GLASS_ARROW_VARIANT.get(Identifier.tryParse(nbt.getString("variant")));
+		GlassArrowVariant variant = SpectrumRegistries.GLASS_ARROW_VARIANT.get(Identifier.tryParse(nbt.getString(VARIANT_STRING)));
 		if (variant != null) {
 			this.setVariant(variant);
 		}

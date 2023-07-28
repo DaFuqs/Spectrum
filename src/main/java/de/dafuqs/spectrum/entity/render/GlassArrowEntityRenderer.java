@@ -10,7 +10,7 @@ import net.minecraft.client.render.model.json.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
@@ -44,7 +44,6 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
 
         float scale = getScale();
         matrixStack.scale(scale, scale, scale);
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getRadialQuaternion(0)); // TODO: needed?
 
         float scaleX = bakedModel.getTransformation().ground.scale.getX();
         float scaleY = bakedModel.getTransformation().ground.scale.getY();

@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -91,7 +89,7 @@ public enum NullableDyeColor implements StringIdentifiable {
 		return NullableDyeColor.valueOf(nbt.getString(COLOR_NBT_KEY).toUpperCase(Locale.ROOT));
 	}
 	
-	public static void addTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+	public static void addTooltip(ItemStack stack, List<Text> tooltip) {
 		NullableDyeColor color = NullableDyeColor.get(stack.getNbt());
 		if (color != NullableDyeColor.NONE) {
 			tooltip.add(Text.translatable("spectrum.ink.color." + color.getName()));

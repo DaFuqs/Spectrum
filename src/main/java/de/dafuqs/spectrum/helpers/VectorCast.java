@@ -83,12 +83,12 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * entityOrigin.length()));
             var entityOffset = Math.abs(Math.cos(vectorAngle) * entityOrigin.length());
-
-            closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLattitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLattitude()) + start.y,
-                    entityOffset * Math.cos(orientation.getLongitude()) + start.z
-            );
+	
+			closestPointToIntercept = new Vec3d(
+					entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLatitude()) + start.x,
+					entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLatitude()) + start.y,
+					entityOffset * Math.cos(orientation.getLongitude()) + start.z
+			);
 
             hit = hitbox.contains(closestPointToIntercept);
         }
@@ -125,12 +125,12 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * blockCenter.length()));
             var entityOffset = Math.cos(vectorAngle) * blockCenter.length();
-
-            closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLattitude()) * Math.cos(orientation.getLongitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLattitude()) * Math.sin(orientation.getLongitude()) + start.y,
-                    entityOffset * Math.cos(orientation.getLattitude()) + start.z
-            );
+	
+			closestPointToIntercept = new Vec3d(
+					entityOffset * Math.sin(orientation.getLatitude()) * Math.cos(orientation.getLongitude()) + start.x,
+					entityOffset * Math.sin(orientation.getLatitude()) * Math.sin(orientation.getLongitude()) + start.y,
+					entityOffset * Math.cos(orientation.getLatitude()) + start.z
+			);
 
             hit = blockContains(pos, closestPointToIntercept);
         }

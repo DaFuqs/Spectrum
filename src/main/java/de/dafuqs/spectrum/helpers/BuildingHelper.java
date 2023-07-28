@@ -32,10 +32,10 @@ public class BuildingHelper {
 		add(Direction.EAST.getVector());
 		add(Direction.SOUTH.getVector());
 		add(Direction.WEST.getVector());
-		add(Direction.WEST.getVector().offset(Direction.NORTH, 1));
-		add(Direction.NORTH.getVector().offset(Direction.EAST, 1));
-		add(Direction.EAST.getVector().offset(Direction.SOUTH, 1));
-		add(Direction.SOUTH.getVector().offset(Direction.WEST, 1));
+		add(Direction.WEST.getVector().offset(Direction.NORTH));
+		add(Direction.NORTH.getVector().offset(Direction.EAST));
+		add(Direction.EAST.getVector().offset(Direction.SOUTH));
+		add(Direction.SOUTH.getVector().offset(Direction.WEST));
 	}};
 	
 	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {

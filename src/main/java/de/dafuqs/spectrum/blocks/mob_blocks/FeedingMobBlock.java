@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -35,17 +36,19 @@ public class FeedingMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		int boxSize = range + range;
 		
-		// Query both at once. Otherwise it will get computationally expensive
-		List<AnimalEntity> animalEntities = world.getNonSpectatingEntities(AnimalEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
-		List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
+		// Query entities once and reuse below. Otherwise, it will get computationally expensive
+		Box box = Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize);
+		List<AnimalEntity> animalEntities = world.getNonSpectatingEntities(AnimalEntity.class, box);
+		List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, box);
 		
 		// put grown animals in love
 		for (AnimalEntity animalEntity : animalEntities) {
-			if (animalEntity.getBreedingAge() == 0 && !animalEntity.isInLove()) { // getBreedingAge() automatically checks for isChild (-1)
+			if (animalEntity.getBreedingAge() == 0 && !animalEntity.isInLove()) { // getBreedingAge() automatically checks for !isChild()
 				for (ItemEntity itemEntity : itemEntities) {
 					ItemStack stack = itemEntity.getStack();
 					if (animalEntity.isBreedingItem(stack)) {
-						stack.decrement(1);
+						InWorldInteractionHelper.decrementAndSpawnRemainder(itemEntity, 1);
+						
 						animalEntity.setLoveTicks(LOVE_TICKS);
 						world.sendEntityStatus(animalEntity, (byte) 18);
 					}
@@ -59,9 +62,9 @@ public class FeedingMobBlock extends MobBlock {
 				for (ItemEntity itemEntity : itemEntities) {
 					ItemStack stack = itemEntity.getStack();
 					if (animalEntity.isBreedingItem(stack)) {
-						stack.decrement(1);
-						int i = animalEntity.getBreedingAge();
-						animalEntity.growUp((int) ((float) (-i / 20) * 0.1F), true);
+						InWorldInteractionHelper.decrementAndSpawnRemainder(itemEntity, 1);
+						
+						animalEntity.growUp((int) ((float) (-animalEntity.getBreedingAge() / 20) * 0.1F), true);
 						animalEntity.emitGameEvent(GameEvent.ENTITY_INTERACT);
 					}
 				}

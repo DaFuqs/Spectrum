@@ -1,5 +1,8 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -14,18 +17,24 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
 import org.joml.Math;
 import org.joml.*;
 
 import java.util.*;
+import java.util.function.*;
 
-public class GuardianTurretEntity extends GolemEntity implements Monster {
+public class GuardianTurretEntity extends GolemEntity implements Monster, VibrationListener.Callback {
+	
+	protected float DAMAGE = 4.0F;
 	
 	protected static final UUID COVERED_ARMOR_BONUS_ID = UUID.fromString("7E0292F2-9434-48D5-A29F-9583AF7DF27F");
 	protected static final UUID COVERED_TOUGHNESS_BONUS_ID = UUID.fromString("8ED24DFF-221F-4ADB-9DD2-7EA92574628C");
@@ -38,6 +47,8 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		Vec3i vec3i = Direction.SOUTH.getVector();
 		return new Vector3f((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
 	});
+	
+	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this));
 	
 	protected float prevOpenProgress;
 	protected float openProgress;
@@ -53,11 +64,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	protected void initGoals() {
 		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
 		this.goalSelector.add(4, new RatatatataGoal());
-		//this.goalSelector.add(8, new LookAroundGoal(this));
-		
-		this.targetSelector.add(1, new RevengeGoal(this, this.getClass()).setGroupRevenge());
-		this.targetSelector.add(2, new TargetPlayerGoal(this));
-		this.targetSelector.add(3, new TargetOtherTeamGoal(this));
 	}
 	
 	@Override
@@ -73,13 +79,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	@Override
 	protected SoundEvent getAmbientSound() {
 		return SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_AMBIENT;
-	}
-	
-	@Override
-	public void playAmbientSound() {
-		if (!this.isClosed()) {
-			super.playAmbientSound();
-		}
 	}
 	
 	@Override
@@ -106,14 +105,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	
 	@Override
 	protected BodyControl createBodyControl() {
-		return new TurretBodyControl(this);
-	}
-	
-	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.setAttachedFace(Direction.byId(nbt.getByte("AttachFace")));
-		this.dataTracker.set(PEEK_AMOUNT, nbt.getByte("Peek"));
+		return new FixedBodyControl(this);
 	}
 	
 	@Override
@@ -121,22 +113,45 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putByte("AttachFace", (byte) this.getAttachedFace().getId());
 		nbt.putByte("Peek", this.dataTracker.get(PEEK_AMOUNT));
+		
+		DataResult<NbtElement> dataResult = VibrationListener.createCodec(this).encodeStart(NbtOps.INSTANCE, this.gameEventHandler.getListener());
+		dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
+	}
+	
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+		this.setAttachedFace(Direction.byId(nbt.getByte("AttachFace")));
+		this.dataTracker.set(PEEK_AMOUNT, nbt.getByte("Peek"));
+		
+		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
+			DataResult<VibrationListener> result = VibrationListener.createCodec(this).parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
+			result.result().ifPresent((vibrationListener) -> this.gameEventHandler.setListener(vibrationListener, this.world));
+		}
 	}
 	
 	@Override
 	public void tick() {
 		super.tick();
+		
+		if (this.world instanceof ServerWorld serverWorld) {
+			(this.gameEventHandler.getListener()).tick(serverWorld);
+		}
+		
 		if (!this.world.isClient && !this.hasVehicle() && !this.canStay(this.getBlockPos(), this.getAttachedFace())) {
-			this.tryAttachOrTeleport();
+			Direction direction = this.findAttachSide(this.getBlockPos());
+			if (direction != null) {
+				this.setAttachedFace(direction);
+			}
 		}
 		
 		this.tickOpenProgress();
 	}
 	
-	private void tryAttachOrTeleport() {
-		Direction direction = this.findAttachSide(this.getBlockPos());
-		if (direction != null) {
-			this.setAttachedFace(direction);
+	@Override
+	public void updateEventHandler(BiConsumer<EntityGameEventHandler<?>, ServerWorld> callback) {
+		if (this.world instanceof ServerWorld serverWorld) {
+			callback.accept(this.gameEventHandler, serverWorld);
 		}
 	}
 	
@@ -314,11 +329,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	}
 	
 	@Override
-	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-		return 0.5F;
-	}
-	
-	@Override
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
 		this.bodyYaw = 0.0F;
@@ -343,20 +353,54 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 	public boolean canSee(Entity entity) {
 		if (entity.world != this.world) {
 			return false;
-		} else {
-			Vec3d vec3d = new Vec3d(this.getX(), this.getEyeY(), this.getZ());
-			Vec3d vec3d2 = new Vec3d(entity.getX(), entity.getEyeY(), entity.getZ());
-			if (vec3d2.distanceTo(vec3d) > 32) { // todo: they only have a very limited vertical field of sight
-				return false;
-			} else {
-				return this.world.raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
-			}
 		}
+		
+		Vec3d thisEyePos = this.getEyePos();
+		Vec3d entityEyePos = entity.getEyePos();
+		double distance = entityEyePos.distanceTo(thisEyePos);
+		
+		// they only have a very limited vertical field of sight
+		// a valid strategy would be to sneak to their top / bottom, since they can't shoot there
+		return distance < 32
+				&& (Math.abs(this.getEyeY() - entity.getEyeY()) < distance / 2 || Math.abs(this.getEyeY() - entity.getY()) < distance / 2)
+				&& this.world.raycast(new RaycastContext(thisEyePos, entityEyePos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
 	}
 	
 	@Override
 	public float getTargetingMargin() {
 		return 0.0F;
+	}
+	
+	@Override
+	public boolean accepts(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, GameEvent.Emitter emitter) {
+		return !this.isRemoved()
+				&& !this.isDead()
+				&& !this.isAiDisabled()
+				&& world.getWorldBorder().contains(pos)
+				&& this.world == world
+				&& emitter.sourceEntity() instanceof LivingEntity livingEntity
+				&& this.isValidTarget(livingEntity);
+	}
+	
+	@Contract("null->false")
+	public boolean isValidTarget(@Nullable Entity entity) {
+		return entity instanceof LivingEntity livingEntity
+				&& this.world == entity.world
+				&& EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity)
+				&& !this.isTeammate(entity)
+				&& livingEntity.getType() != EntityType.ARMOR_STAND
+				&& livingEntity.getType() != SpectrumEntityTypes.GUARDIAN_TURRET
+				&& !livingEntity.isInvulnerable()
+				&& !livingEntity.isDead()
+				&& this.world.getWorldBorder().contains(livingEntity.getBoundingBox());
+	}
+	
+	@Override
+	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
+		if (!this.isDead() && entity instanceof LivingEntity livingEntity) {
+			this.setTarget(livingEntity);
+			GuardianTurretEntity.this.setPeekAmount(100);
+		}
 	}
 	
 	private class TurretLookControl extends LookControl {
@@ -376,10 +420,10 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			Vec3i vec3i = attachedDirection.getVector();
 			Vector3f vec3f2 = new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			vec3f2.cross(southVectorCopy);
-			double d = this.x - this.entity.getX();
-			double e = this.y - this.entity.getEyeY();
-			double f = this.z - this.entity.getZ();
-			Vector3f vec3f3 = new Vector3f((float) d, (float) e, (float) f);
+			double xOffset = this.x - this.entity.getX();
+			double yOffset = this.y - this.entity.getEyeY();
+			double zOffset = this.z - this.entity.getZ();
+			Vector3f vec3f3 = new Vector3f((float) xOffset, (float) yOffset, (float) zOffset);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
 			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (MathHelper.atan2((-g), h) * 57.2957763671875));
@@ -402,17 +446,11 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		
 		@Override
 		public boolean canStart() {
-			LivingEntity livingEntity = GuardianTurretEntity.this.getTarget();
-			if (livingEntity != null && livingEntity.isAlive()) {
-				return GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL;
-			} else {
-				return false;
-			}
-		}
-		
-		@Override
-		public void start() {
-			GuardianTurretEntity.this.setPeekAmount(100);
+			LivingEntity target = GuardianTurretEntity.this.getTarget();
+			return target != null
+					&& target.isAlive()
+					&& GuardianTurretEntity.this.openProgress == 1.0
+					&& GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL;
 		}
 		
 		@Override
@@ -421,17 +459,12 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		}
 		
 		@Override
-		public boolean shouldRunEveryTick() {
-			return true;
-		}
-		
-		@Override
 		public void tick() {
-			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL && GuardianTurretEntity.this.openProgress == 1.0) {
+			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
 				LivingEntity target = GuardianTurretEntity.this.getTarget();
 				if (target != null && GuardianTurretEntity.this.canSee(target)) {
 					GuardianTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
-					target.damage(world.getDamageSources().mobAttack(GuardianTurretEntity.this), 2F);
+					target.damage(world.getDamageSources().mobAttack(GuardianTurretEntity.this), DAMAGE);
 					GuardianTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
 					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
 					super.tick();
@@ -439,100 +472,6 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 					GuardianTurretEntity.this.setTarget(null);
 				}
 			}
-		}
-	}
-	
-	private class PeekGoal extends Goal {
-		private int counter;
-		
-		PeekGoal() {
-		}
-		
-		@Override
-		public boolean canStart() {
-			return GuardianTurretEntity.this.getTarget() == null && GuardianTurretEntity.this.random.nextInt(toGoalTicks(40)) == 0 && GuardianTurretEntity.this.canStay(GuardianTurretEntity.this.getBlockPos(), GuardianTurretEntity.this.getAttachedFace());
-		}
-		
-		@Override
-		public boolean shouldContinue() {
-			return GuardianTurretEntity.this.getTarget() == null && this.counter > 0;
-		}
-		
-		@Override
-		public void start() {
-			this.counter = this.getTickCount(20 * (1 + GuardianTurretEntity.this.random.nextInt(3)));
-			GuardianTurretEntity.this.setPeekAmount(30);
-		}
-		
-		@Override
-		public void stop() {
-			if (GuardianTurretEntity.this.getTarget() == null) {
-				GuardianTurretEntity.this.setPeekAmount(0);
-			}
-			
-		}
-		
-		@Override
-		public void tick() {
-			--this.counter;
-		}
-	}
-	
-	/**
-	 * A hostile target goal on players.
-	 */
-	private class TargetPlayerGoal extends ActiveTargetGoal<PlayerEntity> {
-		public TargetPlayerGoal(GuardianTurretEntity turret) {
-			super(turret, PlayerEntity.class, true);
-		}
-		
-		@Override
-		public boolean canStart() {
-			return GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL && super.canStart();
-		}
-		
-		@Override
-		protected Box getSearchBox(double distance) {
-			Direction direction = ((GuardianTurretEntity) this.mob).getAttachedFace();
-			if (direction.getAxis() == Direction.Axis.X) {
-				return this.mob.getBoundingBox().expand(4.0, distance, distance);
-			} else {
-				return direction.getAxis() == Direction.Axis.Z ? this.mob.getBoundingBox().expand(distance, distance, 4.0) : this.mob.getBoundingBox().expand(distance, 4.0, distance);
-			}
-		}
-	}
-	
-	/**
-	 * A target goal on other teams' entities if this turret belongs to a team.
-	 */
-	private static class TargetOtherTeamGoal extends ActiveTargetGoal<LivingEntity> {
-		public TargetOtherTeamGoal(GuardianTurretEntity turret) {
-			super(turret, LivingEntity.class, 10, true, false, (entity) -> entity instanceof Monster);
-		}
-		
-		@Override
-		public boolean canStart() {
-			return this.mob.getScoreboardTeam() != null && super.canStart();
-		}
-		
-		@Override
-		protected Box getSearchBox(double distance) {
-			Direction direction = ((GuardianTurretEntity) this.mob).getAttachedFace();
-			if (direction.getAxis() == Direction.Axis.X) {
-				return this.mob.getBoundingBox().expand(4.0, distance, distance);
-			} else {
-				return direction.getAxis() == Direction.Axis.Z ? this.mob.getBoundingBox().expand(distance, distance, 4.0) : this.mob.getBoundingBox().expand(distance, 4.0, distance);
-			}
-		}
-	}
-	
-	private static class TurretBodyControl extends BodyControl {
-		public TurretBodyControl(MobEntity mobEntity) {
-			super(mobEntity);
-		}
-		
-		@Override
-		public void tick() {
 		}
 	}
 	

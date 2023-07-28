@@ -178,11 +178,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	@Override
-	protected boolean hasWings() {
-		return this.speed > this.field_28639;
-	}
-	
-	@Override
 	protected void addFlapEffects() {
 		this.field_28639 = this.speed + this.maxWingDeviation / 2.0F;
 	}

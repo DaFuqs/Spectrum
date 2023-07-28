@@ -107,6 +107,10 @@
   },
 
   {
+    "advancement": "spectrum:lategame/collect_one_cookbook",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
     "advancement": "spectrum:collect_amaranth",
     "frame": "paginatedadvancements:squircle"
   },
@@ -384,10 +388,6 @@
   },
   {
     "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
-    "frame": "paginatedadvancements:squircle"
-  },
-  {
-    "advancement": "spectrum:lategame/hurt_by_monstrosity",
     "frame": "paginatedadvancements:squircle"
   },
   {

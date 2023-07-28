@@ -2,24 +2,19 @@ package de.dafuqs.spectrum.blocks.mob_head.models;
 
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.render.entity.model.*;
 
 @Environment(EnvType.CLIENT)
-public class KindlingHeadModel extends SkullBlockEntityModel {
-	
-	private final ModelPart head;
+public class KindlingHeadModel extends SpectrumHeadModel {
 	
 	public KindlingHeadModel(ModelPart root) {
-		this.head = root.getChild("head");
+		super(root);
 	}
 	
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
-		ModelPartData modelPartData = modelData.getRoot();
 		
-		ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 48)
+		ModelPartData head = modelData.getRoot().addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 48)
 				.cuboid(-3.5F, -8.0F, -3.5F, 7.0F, 8.0F, 7.0F, new Dilation(0.0F))
 				.uv(30, 76).cuboid(-4.0F, -8.5F, -4.0F, 8.0F, 9.0F, 8.0F, new Dilation(0.0F))
 				.uv(29, 21).cuboid(-1.5F, -3.01F, -5.5F, 3.0F, 3.0F, 2.0F, new Dilation(0.0F)), ModelTransform.NONE);
@@ -38,17 +33,8 @@ public class KindlingHeadModel extends SkullBlockEntityModel {
 	}
 	
 	@Override
-	public void setHeadRotation(float animationProgress, float yaw, float pitch) {
-		this.head.yaw = yaw * 0.017453292F;
-		this.head.pitch = pitch * 0.017453292F;
-	}
-	
-	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-		matrices.push();
-		matrices.scale(0.86F, 0.86F, 0.86F);
-		this.head.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		matrices.pop();
+	public float getScale() {
+		return 0.86F;
 	}
 	
 }

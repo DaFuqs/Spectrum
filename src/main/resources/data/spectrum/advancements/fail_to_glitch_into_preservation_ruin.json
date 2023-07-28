@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.fail_to_glitch_into_preservation_ruin.description"
     }
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:find_preservation_ruins",
   "criteria": {
     "yeet": {
       "trigger": "spectrum:preservation_check",

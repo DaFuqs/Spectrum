@@ -1,0 +1,26 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "boss_memories",
+  "time": 8000,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:monstrosity_head"
+  },
+  "ingredient2": {
+    "item": "spectrum:bone_ash"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": {
+      "EntityTag": {
+        "id": "spectrum:monstosity"
+      },
+      "TicksToManifest": 128
+    }
+  },
+  "required_advancement": "spectrum:milestones/unlock_remembering_boss_memories"
+}

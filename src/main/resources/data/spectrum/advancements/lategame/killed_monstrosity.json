@@ -2,8 +2,9 @@
   "parent": "spectrum:lategame/hurt_by_monstrosity",
   "display": {
     "icon": {
-      "item": "spectrum:bedrock_dust"
+      "item": "spectrum:monstrosity_head"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.killed_monstrosity.title"
     },

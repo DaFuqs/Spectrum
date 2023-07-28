@@ -15,12 +15,8 @@ public class InWorldInteractionHelper {
 	public static boolean findAndDecreaseClosestItemEntityOfItem(@NotNull ServerWorld world, Vec3d pos, Item item, int range) {
 		List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(pos, range, range, range));
 		for (ItemEntity itemEntity : itemEntities) {
-			ItemStack stack = itemEntity.getStack();
-			if (stack.isOf(item)) {
-				stack.decrement(1);
-				if (stack.isEmpty()) {
-					itemEntity.discard();
-				}
+			if (itemEntity.getStack().isOf(item)) {
+				decrementAndSpawnRemainder(itemEntity, 1);
 				return true;
 			}
 		}
@@ -48,11 +44,8 @@ public class InWorldInteractionHelper {
 			ItemStack stack = itemEntity.getStack();
 			if (stack.isIn(tag)) {
 				int decrementCount = Math.min(stack.getCount(), count);
-				stack.decrement(decrementCount);
+				decrementAndSpawnRemainder(itemEntity, decrementCount);
 				count -= decrementCount;
-				if (stack.isEmpty()) {
-					itemEntity.discard();
-				}
 				if (count == 0) {
 					return true;
 				}
@@ -82,11 +75,8 @@ public class InWorldInteractionHelper {
 			ItemStack stack = itemEntity.getStack();
 			if (stack.isOf(item)) {
 				int decrementCount = Math.min(stack.getCount(), count);
-				stack.decrement(decrementCount);
+				decrementAndSpawnRemainder(itemEntity, decrementCount);
 				count -= decrementCount;
-				if (stack.isEmpty()) {
-					itemEntity.discard();
-				}
 				if (count == 0) {
 					return true;
 				}
@@ -94,4 +84,17 @@ public class InWorldInteractionHelper {
 		}
 		return false;
 	}
+	
+	public static void decrementAndSpawnRemainder(ItemEntity itemEntity, int amount) {
+		ItemStack stack = itemEntity.getStack();
+		ItemStack remainder = stack.getItem() instanceof EntityBucketItem ? Items.BUCKET.getDefaultStack() : stack.getRecipeRemainder(); // looking at you, Mojang
+		if (!remainder.isEmpty()) {
+			remainder.setCount(amount);
+			ItemEntity remainderEntity = new ItemEntity(itemEntity.world, itemEntity.getPos().getX(), itemEntity.getPos().getY(), itemEntity.getPos().getZ(), remainder);
+			itemEntity.world.spawnEntity(remainderEntity);
+		}
+		stack.decrement(amount);
+	}
+	
+	
 }

@@ -78,48 +78,4 @@ public class TooltipHelper {
 		}
 	}
 	
-	public static void buildEffectTooltip(List<Text> tooltip, List<StatusEffectInstance> effects, MutableText attributeModifierText) {
-		if (effects.size() > 0) {
-			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
-			for (StatusEffectInstance effect : effects) {
-				MutableText mutableText = Text.translatable(effect.getTranslationKey());
-				
-				if (effect.getAmplifier() > 0) {
-					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
-				}
-				tooltip.add(mutableText.formatted(effect.getEffectType().getCategory().getFormatting()));
-				
-				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();
-				for (Map.Entry<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierEntry : map.entrySet()) {
-					EntityAttributeModifier entityAttributeModifier = entityAttributeEntityAttributeModifierEntry.getValue();
-					EntityAttributeModifier entityAttributeModifier2 = new EntityAttributeModifier(entityAttributeModifier.getName(), effect.getEffectType().adjustModifierAmount(effect.getAmplifier(), entityAttributeModifier), entityAttributeModifier.getOperation());
-					attributeModifiers.add(new Pair<>(entityAttributeEntityAttributeModifierEntry.getKey(), entityAttributeModifier2));
-				}
-			}
-			
-			if (!attributeModifiers.isEmpty()) {
-				tooltip.add(Text.empty());
-				tooltip.add(attributeModifierText.formatted(Formatting.DARK_PURPLE));
-				
-				for (Pair<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierPair : attributeModifiers) {
-					EntityAttributeModifier mutableText = entityAttributeEntityAttributeModifierPair.getSecond();
-					double statusEffect = mutableText.getValue();
-					double d;
-					if (mutableText.getOperation() != EntityAttributeModifier.Operation.MULTIPLY_BASE && mutableText.getOperation() != EntityAttributeModifier.Operation.MULTIPLY_TOTAL) {
-						d = mutableText.getValue();
-					} else {
-						d = mutableText.getValue() * 100.0D;
-					}
-					
-					if (statusEffect > 0.0D) {
-						tooltip.add((Text.translatable("attribute.modifier.plus." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.BLUE));
-					} else if (statusEffect < 0.0D) {
-						d *= -1.0D;
-						tooltip.add((Text.translatable("attribute.modifier.take." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.RED));
-					}
-				}
-			}
-		}
-	}
-	
 }

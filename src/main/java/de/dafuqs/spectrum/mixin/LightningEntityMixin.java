@@ -28,6 +28,7 @@ public abstract class LightningEntityMixin {
 		}
 	}
 	
+	@Unique
 	private void spawnLightningStone(@NotNull World world, BlockPos affectedBlockPos) {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;

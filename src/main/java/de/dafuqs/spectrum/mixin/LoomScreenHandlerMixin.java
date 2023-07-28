@@ -41,7 +41,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
 			),
 			cancellable = true
 	)
-	private void attemptBppPatternItemTransfer(PlayerEntity player, int slotIdx, CallbackInfoReturnable<ItemStack> info) {
+	private void attemptPatternItemTransfer(PlayerEntity player, int slotIdx, CallbackInfoReturnable<ItemStack> info) {
 		ItemStack stack = this.slots.get(slotIdx).getStack();
 		
 		if (stack.getItem() instanceof LoomPatternProvider) {

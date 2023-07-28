@@ -125,7 +125,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		NullableDyeColor.addTooltip(stack, world, tooltip, options);
+		NullableDyeColor.addTooltip(stack, tooltip);
 	}
 	
 }

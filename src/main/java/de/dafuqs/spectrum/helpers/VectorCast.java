@@ -1,20 +1,13 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.TypeFilter;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.function.*;
 
 public class VectorCast {
 
@@ -90,10 +83,10 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * entityOrigin.length()));
             var entityOffset = Math.abs(Math.cos(vectorAngle) * entityOrigin.length());
-
+    
             closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLattitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLattitude()) + start.y,
+                    entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLatitude()) + start.x,
+                    entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLatitude()) + start.y,
                     entityOffset * Math.cos(orientation.getLongitude()) + start.z
             );
 
@@ -132,11 +125,11 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * blockCenter.length()));
             var entityOffset = Math.cos(vectorAngle) * blockCenter.length();
-
+    
             closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLattitude()) * Math.cos(orientation.getLongitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLattitude()) * Math.sin(orientation.getLongitude()) + start.y,
-                    entityOffset * Math.cos(orientation.getLattitude()) + start.z
+                    entityOffset * Math.sin(orientation.getLatitude()) * Math.cos(orientation.getLongitude()) + start.x,
+                    entityOffset * Math.sin(orientation.getLatitude()) * Math.sin(orientation.getLongitude()) + start.y,
+                    entityOffset * Math.cos(orientation.getLatitude()) + start.z
             );
 
             hit = blockContains(pos, closestPointToIntercept);

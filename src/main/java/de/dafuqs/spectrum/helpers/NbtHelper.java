@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.helpers;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-
-import org.apache.commons.lang3.math.NumberUtils;
-
 import com.google.gson.*;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-
+import com.mojang.brigadier.exceptions.*;
 import net.minecraft.nbt.*;
+import org.apache.commons.lang3.math.*;
+
+import java.math.*;
+import java.util.*;
 
 public class NbtHelper {
 	public static Optional<NbtCompound> getNbtCompound(JsonElement json) {
@@ -55,9 +53,15 @@ public class NbtHelper {
 			
 			if (type == NbtElement.STRING_TYPE) {
 				switch (first.getAsString()) {
-					case "B;": return NbtElement.BYTE_ARRAY_TYPE;
-					case "I;": return NbtElement.INT_ARRAY_TYPE;
-					case "L;": return NbtElement.LONG_ARRAY_TYPE;
+					case "B;" -> {
+						return NbtElement.BYTE_ARRAY_TYPE;
+					}
+					case "I;" -> {
+						return NbtElement.INT_ARRAY_TYPE;
+					}
+					case "L;" -> {
+						return NbtElement.LONG_ARRAY_TYPE;
+					}
 				}
 			}
 		}
@@ -94,13 +98,25 @@ public class NbtHelper {
 			if (string.length() > 1) {
 				String numStr = string.substring(0, string.length()-1);
 				if (NumberUtils.isParsable(numStr)) {
-					switch (string.charAt(string.length()-1)) {
-						case 'b': case 'B': return NbtElement.BYTE_TYPE;
-						case 's': case 'S': return NbtElement.SHORT_TYPE;
-						case 'i': case 'I': return NbtElement.INT_TYPE;
-						case 'l': case 'L': return NbtElement.LONG_TYPE;
-						case 'f': case 'F': return NbtElement.FLOAT_TYPE;
-						case 'd': case 'D': return NbtElement.DOUBLE_TYPE;
+					switch (string.charAt(string.length() - 1)) {
+						case 'b', 'B' -> {
+							return NbtElement.BYTE_TYPE;
+						}
+						case 's', 'S' -> {
+							return NbtElement.SHORT_TYPE;
+						}
+						case 'i', 'I' -> {
+							return NbtElement.INT_TYPE;
+						}
+						case 'l', 'L' -> {
+							return NbtElement.LONG_TYPE;
+						}
+						case 'f', 'F' -> {
+							return NbtElement.FLOAT_TYPE;
+						}
+						case 'd', 'D' -> {
+							return NbtElement.DOUBLE_TYPE;
+						}
 					}
 				}
 			}
@@ -153,16 +169,15 @@ public class NbtHelper {
 			return list;
 		}
 		
-		AbstractNbtList<?> nbtArray;
-		switch (type) {
-			case NbtElement.BYTE_ARRAY_TYPE: nbtArray = new NbtByteArray(new byte[0]); break;
-			case NbtElement.INT_ARRAY_TYPE: nbtArray = new NbtIntArray(new int[0]); break;
-			case NbtElement.LONG_ARRAY_TYPE: nbtArray = new NbtLongArray(new long[0]); break;
-			default: throw new UnsupportedOperationException("Unknown JSON NBT list type");
-		}
+		AbstractNbtList<?> nbtArray = switch (type) {
+			case NbtElement.BYTE_ARRAY_TYPE -> new NbtByteArray(new byte[0]);
+			case NbtElement.INT_ARRAY_TYPE -> new NbtIntArray(new int[0]);
+			case NbtElement.LONG_ARRAY_TYPE -> new NbtLongArray(new long[0]);
+			default -> throw new UnsupportedOperationException("Unknown JSON NBT list type");
+		};
 		
 		for (int i = 1; i < array.size(); i++) {
-			nbtArray.addElement(i-1, fromJson(array.get(i)));
+			nbtArray.addElement(i - 1, fromJson(array.get(i)));
 		}
 		
 		return nbtArray;
@@ -177,8 +192,12 @@ public class NbtHelper {
 		
 		if (primitive.isNumber()) {
 			switch (type) {
-				case NbtElement.INT_TYPE: return NbtInt.of(primitive.getAsInt());
-				case NbtElement.DOUBLE_TYPE: return NbtDouble.of(primitive.getAsDouble());
+				case NbtElement.INT_TYPE -> {
+					return NbtInt.of(primitive.getAsInt());
+				}
+				case NbtElement.DOUBLE_TYPE -> {
+					return NbtDouble.of(primitive.getAsDouble());
+				}
 			}
 		}
 		
@@ -187,12 +206,24 @@ public class NbtHelper {
 			if (string.length() > 1) {
 				String numStr = string.substring(0, string.length()-1);
 				switch (type) {
-					case NbtElement.BYTE_TYPE: return NbtByte.of(Byte.valueOf(numStr));
-					case NbtElement.SHORT_TYPE: return NbtShort.of(Short.valueOf(numStr));
-					case NbtElement.INT_TYPE: return NbtInt.of(Integer.valueOf(numStr));
-					case NbtElement.LONG_TYPE: return NbtLong.of(Long.valueOf(numStr));
-					case NbtElement.FLOAT_TYPE: return NbtFloat.of(Float.valueOf(numStr));
-					case NbtElement.DOUBLE_TYPE: return NbtDouble.of(Double.valueOf(numStr));
+					case NbtElement.BYTE_TYPE -> {
+						return NbtByte.of(Byte.parseByte(numStr));
+					}
+					case NbtElement.SHORT_TYPE -> {
+						return NbtShort.of(Short.parseShort(numStr));
+					}
+					case NbtElement.INT_TYPE -> {
+						return NbtInt.of(Integer.parseInt(numStr));
+					}
+					case NbtElement.LONG_TYPE -> {
+						return NbtLong.of(Long.parseLong(numStr));
+					}
+					case NbtElement.FLOAT_TYPE -> {
+						return NbtFloat.of(Float.parseFloat(numStr));
+					}
+					case NbtElement.DOUBLE_TYPE -> {
+						return NbtDouble.of(Double.parseDouble(numStr));
+					}
 				}
 			}
 			
@@ -205,38 +236,26 @@ public class NbtHelper {
 	/**
 	 * Writes the delta into the original, maintaining the previous data unless
 	 * overwritten.
-	 * 
+	 * <p>
 	 * If the provided elements are primitives, the delta will be returned.
 	 * If the provided elements are arrays or lists, the delta will be returned.
 	 * If the provided elements are compound, new keys will be added and existing
 	 * keys will be merged.
 	 * Otherwise, the original will be returned.
 	 */
-	public static NbtElement mergeNbt(NbtElement original, NbtElement delta) {
+	public static void mergeNbt(NbtElement original, NbtElement delta) {
 		if (original.getType() != delta.getType()) {
-			return original;
+			return;
 		}
 		
 		switch (original.getType()) {
-			case NbtElement.BYTE_TYPE:
-			case NbtElement.SHORT_TYPE:
-			case NbtElement.INT_TYPE:
-			case NbtElement.LONG_TYPE:
-			case NbtElement.FLOAT_TYPE:
-			case NbtElement.DOUBLE_TYPE:
-			case NbtElement.STRING_TYPE:
-			case NbtElement.END_TYPE:
-				return delta;
-			
-			case NbtElement.BYTE_ARRAY_TYPE:
-			case NbtElement.INT_ARRAY_TYPE:
-			case NbtElement.LONG_ARRAY_TYPE:
-			case NbtElement.LIST_TYPE:
-				return delta;
-			
-			case NbtElement.COMPOUND_TYPE: {
-				NbtCompound originalCompound = (NbtCompound)original;
-				NbtCompound deltaCompound = (NbtCompound)delta;
+			case NbtElement.BYTE_TYPE, NbtElement.SHORT_TYPE, NbtElement.INT_TYPE, NbtElement.LONG_TYPE, NbtElement.FLOAT_TYPE, NbtElement.DOUBLE_TYPE, NbtElement.STRING_TYPE, NbtElement.END_TYPE,
+					NbtElement.BYTE_ARRAY_TYPE, NbtElement.INT_ARRAY_TYPE, NbtElement.LONG_ARRAY_TYPE, NbtElement.LIST_TYPE -> {
+				
+			}
+			case NbtElement.COMPOUND_TYPE -> {
+				NbtCompound originalCompound = (NbtCompound) original;
+				NbtCompound deltaCompound = (NbtCompound) delta;
 				
 				deltaCompound.getKeys().forEach(key -> {
 					NbtElement value = deltaCompound.get(key);
@@ -248,10 +267,9 @@ public class NbtHelper {
 					}
 				});
 				
-				return original;
 			}
-			
-			default: return original;
+			default -> {
+			}
 		}
 	}
 }

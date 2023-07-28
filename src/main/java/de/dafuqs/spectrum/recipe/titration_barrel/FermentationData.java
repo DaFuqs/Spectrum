@@ -9,12 +9,16 @@ import java.util.*;
 public record FermentationData(float fermentationSpeedMod, float angelsSharePercentPerMcDay,
 							   List<FermentationStatusEffectEntry> statusEffectEntries) {
 	
+	private static final String FERMENTATION_SPEED_MOD_STRING = "fermentation_speed_mod";
+	private static final String ANGELS_SHARE_STRING = "angels_share_percent_per_mc_day";
+	private static final String EFFECTS_STRING = "effects";
+	
 	public static FermentationData fromJson(JsonObject jsonObject) {
-		float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, "fermentation_speed_mod", 1.0F);
-		float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, "angels_share_percent_per_mc_day", 0.1F);
+		float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, FERMENTATION_SPEED_MOD_STRING, 1.0F);
+		float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, ANGELS_SHARE_STRING, 0.1F);
 		List<FermentationStatusEffectEntry> statusEffectEntries = new ArrayList<>();
-		if (JsonHelper.hasArray(jsonObject, "effects")) {
-			JsonArray effectsArray = JsonHelper.getArray(jsonObject, "effects");
+		if (JsonHelper.hasArray(jsonObject, EFFECTS_STRING)) {
+			JsonArray effectsArray = JsonHelper.getArray(jsonObject, EFFECTS_STRING);
 			for (int i = 0; i < effectsArray.size(); i++) {
 				JsonObject object = effectsArray.get(i).getAsJsonObject();
 				statusEffectEntries.add(FermentationStatusEffectEntry.fromJson(object));
@@ -44,8 +48,17 @@ public record FermentationData(float fermentationSpeedMod, float angelsSharePerc
 	}
 	
 	public JsonObject toJson() {
-		// TODO: not necessary, but nice to have
-		return new JsonObject();
+		JsonObject json = new JsonObject();
+		
+		json.addProperty(FERMENTATION_SPEED_MOD_STRING, this.fermentationSpeedMod);
+		json.addProperty(ANGELS_SHARE_STRING, this.angelsSharePercentPerMcDay);
+		JsonArray effects = new JsonArray();
+		for (FermentationStatusEffectEntry entry : this.statusEffectEntries) {
+			effects.add(entry.toJson());
+		}
+		json.add(EFFECTS_STRING, effects);
+		
+		return json;
 	}
 	
 }

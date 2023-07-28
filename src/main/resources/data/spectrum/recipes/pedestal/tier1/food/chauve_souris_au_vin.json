@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "EEE",
+    "APA",
+    "FVF"
+  ],
+  "key": {
+    "V": {
+      "item": "spectrum:jade_wine"
+    },
+    "F": {
+      "item": "spectrum:lizard_meat"
+    },
+    "A": {
+      "item": "spectrum:glass_peach"
+    },
+    "E": {
+      "item": "spectrum:jadeite_petals"
+    },
+    "P": {
+      "item": "spectrum:fresh_chocolate"
+    }
+  },
+  "result": {
+    "item": "spectrum:chauve_souris_au_vin",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
+}

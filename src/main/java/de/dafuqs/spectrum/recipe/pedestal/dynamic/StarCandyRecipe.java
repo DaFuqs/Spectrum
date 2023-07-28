@@ -26,7 +26,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	public static final Map<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = Map.of(BuiltinGemstoneColor.YELLOW, 1);
 	
 	public StarCandyRecipe(Identifier id) {
-		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
+		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.BASIC, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
 	}
 	
 	@Override

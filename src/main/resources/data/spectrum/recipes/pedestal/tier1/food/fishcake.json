@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "KAK",
+    "AEA",
+    "FFF"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:crawfish"
+    },
+    "K": {
+      "item": "spectrum:koi"
+    },
+    "F": {
+      "tag": "c:raw_fish"
+    },
+    "E": {
+      "item": "spectrum:myceylon"
+    }
+  },
+  "result": {
+    "item": "spectrum:fishcake",
+    "count": 3
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook"
+}

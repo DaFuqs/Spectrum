@@ -16,18 +16,22 @@ public class ShulkerPredicate implements TypeSpecificPredicate {
 	
 	private static final String COLOR_KEY = "color";
 	
-	private final DyeColor color;
+	private final Optional<DyeColor> color;
 	
-	private ShulkerPredicate(DyeColor color) {
+	private ShulkerPredicate(Optional<DyeColor> color) {
 		this.color = color;
 	}
 	
-	public static ShulkerPredicate of(DyeColor color) {
+	public static ShulkerPredicate of(Optional<DyeColor> color) {
 		return new ShulkerPredicate(color);
 	}
 	
 	public static ShulkerPredicate fromJson(JsonObject json) {
-		return new ShulkerPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
+		String colorString = json.get(COLOR_KEY).getAsString();
+		if (colorString.isBlank()) {
+			return new ShulkerPredicate(Optional.empty());
+		}
+		return new ShulkerPredicate(Optional.of(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT))));
 	}
 	
 	@Override
@@ -47,7 +51,8 @@ public class ShulkerPredicate implements TypeSpecificPredicate {
 		if (!(entity instanceof ShulkerEntity shulkerEntity)) {
 			return false;
 		} else {
-			return this.color.equals(shulkerEntity.getColor());
+			return this.color.equals(shulkerEntity.getVariant());
 		}
 	}
+	
 }

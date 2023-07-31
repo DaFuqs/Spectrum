@@ -16,6 +16,7 @@ import net.minecraft.loot.entry.*;
 import net.minecraft.loot.provider.number.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -154,11 +155,11 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.LUCY, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_LEUCISTIC).asItem(), 0.02F));
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_BROWN).asItem(), 0.02F));
 			} else if (id.equals(new Identifier("entities/parrot"))) {
-				tableBuilder.pool(getParrotLootPool(0, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_RED).asItem(), 0.02F));
-				tableBuilder.pool(getParrotLootPool(1, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_BLUE).asItem(), 0.02F));
-				tableBuilder.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.02F));
-				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.02F));
-				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.02F));
+				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.RED_BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_RED).asItem(), 0.02F));
+				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_BLUE).asItem(), 0.02F));
+				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.GREEN, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.02F));
+				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.YELLOW_BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.02F));
+				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.GRAY, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.02F));
 			} else if (id.equals(new Identifier("entities/frog"))) {
 				tableBuilder.pool(getFrogLootPool(FrogVariant.TEMPERATE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.FROG_TEMPERATE).asItem(), 0.02F));
 				tableBuilder.pool(getFrogLootPool(FrogVariant.COLD, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.FROG_COLD).asItem(), 0.02F));
@@ -199,7 +200,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(FoxPredicate.of(foxType)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(TypeSpecificPredicate.Deserializers.FOX.createPredicate(foxType)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -208,25 +209,27 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(MooshroomPredicate.of(mooshroomType)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(TypeSpecificPredicate.Deserializers.MOOSHROOM.createPredicate(mooshroomType)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
 	
-	private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
+	private static LootPool getShulkerLootPool(@Nullable DyeColor dyeColor, Item item, float chance) {
+		Optional<DyeColor> c = dyeColor == null ? Optional.empty() : Optional.of(dyeColor);
+		
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(dyeColor)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(c)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
-
+	
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(AxolotlPredicate.of(variant)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(TypeSpecificPredicate.Deserializers.AXOLOTL.createPredicate(variant)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
@@ -239,12 +242,12 @@ public class SpectrumLootPoolModifiers {
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
-
-	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
+	
+	private static LootPool getParrotLootPool(ParrotEntity.Variant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ParrotPredicate.of(variant)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(TypeSpecificPredicate.Deserializers.PARROT.createPredicate(variant)).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -20,7 +21,7 @@ import java.util.*;
 
 public class AquaRegiaRecipe extends TitrationBarrelRecipe {
 	
-	public static final RecipeSerializer<AquaRegiaRecipe> SERIALIZER = new SpecialRecipeSerializer<>(AquaRegiaRecipe::new);
+	public static final RecipeSerializer<AquaRegiaRecipe> SERIALIZER = new EmptyRecipeSerializer<>(AquaRegiaRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imbrifer_cookbook");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;

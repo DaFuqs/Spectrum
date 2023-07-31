@@ -364,7 +364,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.GOLDEN_BRISTLE_TEA);
 		entries.add(SpectrumItems.HARE_ROAST);
 		entries.add(SpectrumItems.JUNKET);
-		entries.add(SpectrumItems.KOI_FISH);
+		entries.add(SpectrumItems.KOI);
 		entries.add(SpectrumItems.MEATLOAF);
 		entries.add(SpectrumItems.MEATLOAF_SANDWICH);
 		entries.add(SpectrumItems.MELLOW_SHALLOT_SOUP);

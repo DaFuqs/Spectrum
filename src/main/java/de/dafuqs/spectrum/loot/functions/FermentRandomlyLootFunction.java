@@ -61,8 +61,11 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 			fermentationData = this.fermentationData;
 		}
 		if (fermentationData != null) {
-			Biome biome = context.getWorld().getBiome(new BlockPos(context.get(LootContextParameters.ORIGIN))).value();
-			return TitrationBarrelRecipe.getFermentedStack(fermentationData, this.thickness.nextInt(context), TimeHelper.secondsFromMinecraftDays(this.daysFermented.nextInt(context)), biome.getDownfall(), stack);
+			// TODO - can this be null and fail?
+			BlockPos pos = BlockPos.ofFloored(context.get(LootContextParameters.ORIGIN));
+			Biome biome = context.getWorld().getBiome(pos).value();
+			// TODO - Find a way to access the Biome Weather to get its downfall
+			return TitrationBarrelRecipe.getFermentedStack(fermentationData, this.thickness.nextInt(context), TimeHelper.secondsFromMinecraftDays(this.daysFermented.nextInt(context)), biome.getPrecipitation(pos).compareTo(Biome.Precipitation.RAIN), stack);
 		}
 		return stack;
 	}

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -20,7 +21,7 @@ import java.util.*;
 
 public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 	
-	public static final RecipeSerializer<NecteredViognierRecipe> SERIALIZER = new SpecialRecipeSerializer<>(NecteredViognierRecipe::new);
+	public static final RecipeSerializer<NecteredViognierRecipe> SERIALIZER = new EmptyRecipeSerializer<>(NecteredViognierRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;

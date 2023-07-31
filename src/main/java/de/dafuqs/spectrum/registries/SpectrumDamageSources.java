@@ -21,7 +21,7 @@ public class SpectrumDamageSources {
 	public static final DamageSource BRISTLE_SPROUTS = new SpectrumDamageSource("spectrum_bristle_sprouts");
 	public static final DamageSource RIPPER = new SpectrumDamageSource("spectrum_ripper");
 	public static final DamageSource SNAPPING_IVY = new SpectrumDamageSource("spectrum_snapping_ivy").setUnblockable().setNeutral();
-	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection().setUnblockable();
+	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection();
 	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
@@ -37,7 +37,7 @@ public class SpectrumDamageSources {
 	
 	public static DamageSource irradiance(@Nullable LivingEntity attacker) {
 		return attacker == null ? IRRADIANCE_DEFAULT :
-				new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection().setUnblockable();
+				new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection();
 	}
 	
 	public static DamageSource setHealth(LivingEntity attacker) {

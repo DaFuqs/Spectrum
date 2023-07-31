@@ -78,7 +78,7 @@ public class InexorableEnchantment extends SpectrumEnchantment {
         if (item instanceof ArmorItem armor)
             return armor.getSlotType() == EquipmentSlot.CHEST;
 
-        return item instanceof ToolItem;
+        return item instanceof ToolItem || item instanceof TridentItem;
     }
 
     public static boolean isArmorActive(LivingEntity entity) {

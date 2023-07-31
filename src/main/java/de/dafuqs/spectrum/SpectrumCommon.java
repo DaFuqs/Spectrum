@@ -93,6 +93,21 @@ public class SpectrumCommon implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
+
+		//var zero = Orientation.fromVector(new Vec3d(1, 0, 0));
+		//var back = Orientation.fromVector(new Vec3d(-1, 0, 0));
+		//var up = Orientation.fromVector(new Vec3d(0, 1, 0));
+		//var down = Orientation.fromVector(new Vec3d(0, -1, 0));
+		//var zee = Orientation.fromVector(new Vec3d(0, 0, 1));
+		//var zoo = Orientation.fromVector(new Vec3d(0, 0, -1));
+		//var uwu = Orientation.fromVector(new Vec3d(1, 1, 1));
+		//logError("ZERO " + zero);
+		//logError("BACK " + back);
+		//logError("UP " + up);
+		//logError("DOWN " + down);
+		//logError("ZEE" + zee);
+		//logError("ZOO" + zoo);
+		//logError("UWU " + uwu);
 		
 		logInfo("Starting Common Startup");
 		

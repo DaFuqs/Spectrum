@@ -10,12 +10,12 @@
 			"title":"对着星星许愿"
 		},
 		{
-			"item":"spectrum:shooting_star_glistering",
-			"advancement":"spectrum:collect_star_fragment",
-			"text":"这些小流星是由迄今为止你还不知道的材料制成的。$(br2)你能从天上抓一个吗？$(br2)$(italic)提示：当使用望远镜或夜视仪时，流星更容易被发现。$()",
-			"type":"patchouli:spotlight",
-			"title":"流星"
-		},
+          "item": "spectrum:glistering_shooting_star",
+          "advancement": "spectrum:collect_star_fragment",
+          "text": "这些小流星是由迄今为止你还不知道的材料制成的。$(br2)你能从天上抓一个吗？$(br2)$(italic)提示：当使用望远镜或夜视仪时，流星更容易被发现。$()",
+          "type": "patchouli:spotlight",
+          "title": "流星"
+        },
 		{
 			"item":"spectrum:star_fragment",
 			"advancement":"spectrum:collect_star_fragment",
@@ -32,15 +32,15 @@
 		}
 	],
 	"advancement":"spectrum:milestones/unlock_shooting_stars",
-	"extra_recipe_mappings":{
-		"spectrum:shooting_star_fiery":0,
-		"spectrum:shooting_star_colorful":0,
-		"spectrum:shooting_star_gemstone":0,
-		"spectrum:shooting_star_glistering":0,
-		"spectrum:shooting_star_pristine":0,
-		"spectrum:star_fragment":0,
-		"spectrum:stardust":0
-	},
+	"extra_recipe_mappings": {
+      "spectrum:fiery_shooting_star": 0,
+      "spectrum:colorful_shooting_star": 0,
+      "spectrum:gemstone_shooting_star": 0,
+      "spectrum:glistering_shooting_star": 0,
+      "spectrum:pristine_shooting_star": 0,
+      "spectrum:star_fragment": 0,
+      "spectrum:stardust": 0
+    },
 	"name":"凝视星空",
 	"icon":"minecraft:spyglass",
 	"category":"spectrum:resources_category"

@@ -719,11 +719,11 @@
   "block.spectrum.stratine_fragment_block": "Bloco Flutuante de Carmesim",
   "block.spectrum.hover_block": "Bloco Flutuante",
 
-  "block.spectrum.shooting_star_glistering": "Estrela Cadente Reluzente",
-  "block.spectrum.shooting_star_fiery": "Estrela Cadente Ardente",
-  "block.spectrum.shooting_star_colorful": "Estrela Cadente Colorida",
-  "block.spectrum.shooting_star_pristine": "Estrela Cadente Pristina",
-  "block.spectrum.shooting_star_gemstone": "Estrela Cadente de Pedra Preciosa",
+  "block.spectrum.glistering_shooting_star": "Estrela Cadente Reluzente",
+  "block.spectrum.fiery_shooting_star": "Estrela Cadente Ardente",
+  "block.spectrum.colorful_shooting_star": "Estrela Cadente Colorida",
+  "block.spectrum.pristine_shooting_star": "Estrela Cadente Pristina",
+  "block.spectrum.gemstone_shooting_star": "Estrela Cadente de Pedra Preciosa",
 
   "block.spectrum.glistering_melon": "Melancia Reluzente",
   "block.spectrum.glistering_melon_stem": "Caule de Melancia Reluzente",

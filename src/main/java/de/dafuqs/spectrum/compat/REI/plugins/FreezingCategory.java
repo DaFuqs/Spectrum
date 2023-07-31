@@ -18,7 +18,7 @@ public class FreezingCategory extends BlockToBlockWithChanceCategory {
 	
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK);
+		return EntryStacks.of(SpectrumBlocks.POLAR_BEAR_IDOL);
 	}
 	
 	@Override

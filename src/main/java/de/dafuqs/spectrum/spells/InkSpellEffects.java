@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.spells;
 
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
@@ -112,7 +112,7 @@ public class InkSpellEffects {
 						int distance = 1 + blockPos.getManhattanDistance(origin);
 						float div = (float) range / distance;
 						if (div >= 1 || world.random.nextFloat() < div) {
-							FirestarterMobBlock.causeFire(serverWorld, blockPos, Direction.random(world.random));
+							FirestarterIdolBlock.causeFire(serverWorld, blockPos, Direction.random(world.random));
 						}
 					}
 				}

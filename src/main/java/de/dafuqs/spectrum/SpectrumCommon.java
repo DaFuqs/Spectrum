@@ -3,7 +3,7 @@ package de.dafuqs.spectrum;
 import com.google.common.collect.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
@@ -302,7 +302,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			
 			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterMobBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			FirestarterIdolBlock.addBlockSmeltingRecipes(server.getRecipeManager());
 			injectEnchantmentUpgradeRecipes(server);
 		});
 		
@@ -404,7 +404,7 @@ public class SpectrumCommon implements ModInitializer {
 
                 if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}
 			}
 

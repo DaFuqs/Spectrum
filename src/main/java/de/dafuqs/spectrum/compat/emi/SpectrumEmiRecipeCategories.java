@@ -24,18 +24,18 @@ public class SpectrumEmiRecipeCategories {
 	public static final EmiRecipeCategory LIQUID_CRYSTAL_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("liquid_crystal_converting"), EmiStack.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET));
 	public static final EmiRecipeCategory MIDNIGHT_SOLUTION_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("midnight_solution_converting"), EmiStack.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
 	public static final EmiRecipeCategory DRAGONROT_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("dragonrot_converting"), EmiStack.of(SpectrumItems.DRAGONROT_BUCKET), "container.spectrum.rei.dragonrot_converting.title");
-	public static final EmiRecipeCategory HEATING = new SpectrumCategory(SpectrumCommon.locate("heating"), EmiStack.of(SpectrumBlocks.BLAZE_MOB_BLOCK));
-	public static final EmiRecipeCategory FREEZING = new SpectrumCategory(SpectrumCommon.locate("freezing"), EmiStack.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK));
+	public static final EmiRecipeCategory HEATING = new SpectrumCategory(SpectrumCommon.locate("heating"), EmiStack.of(SpectrumBlocks.BLAZE_IDOL));
+	public static final EmiRecipeCategory FREEZING = new SpectrumCategory(SpectrumCommon.locate("freezing"), EmiStack.of(SpectrumBlocks.POLAR_BEAR_IDOL));
 	public static final EmiRecipeCategory INK_CONVERTING = new SpectrumCategory(SpectrumCommon.locate("ink_converting"), EmiStack.of(SpectrumBlocks.COLOR_PICKER));
 	public static final EmiRecipeCategory CRYSTALLARIEUM = new SpectrumCategory(SpectrumCommon.locate("crystallarieum"), EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM), "block.spectrum.crystallarieum");
 	public static final EmiRecipeCategory CINDERHEARTH = new SpectrumCategory(SpectrumCommon.locate("cinderhearth"), EmiStack.of(SpectrumBlocks.CINDERHEARTH), SpectrumBlocks.CINDERHEARTH.getTranslationKey());
 	public static final EmiRecipeCategory TITRATION_BARREL = new SpectrumCategory(SpectrumCommon.locate("titration_barrel"), EmiStack.of(SpectrumBlocks.TITRATION_BARREL), SpectrumBlocks.TITRATION_BARREL.getTranslationKey());
-
+	
 	private static class SpectrumCategory extends EmiRecipeCategory {
 		private final String key;
-
+		
 		public SpectrumCategory(Identifier id, EmiRenderable icon) {
-			this(id, icon, "container."  + id.getNamespace() + ".rei." + id.getPath() + ".title");
+			this(id, icon, "container." + id.getNamespace() + ".rei." + id.getPath() + ".title");
 		}
 
 		public SpectrumCategory(Identifier id, EmiRenderable icon, String key) {

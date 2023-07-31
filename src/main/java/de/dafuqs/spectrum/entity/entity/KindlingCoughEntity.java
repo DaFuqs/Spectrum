@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -70,7 +70,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		super.onBlockHit(blockHitResult);
 		
 		if (!this.world.isClient) {
-			FirestarterMobBlock.causeFire((ServerWorld) this.world, blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
+			FirestarterIdolBlock.causeFire((ServerWorld) this.world, blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
 			this.discard();
 		}
 	}

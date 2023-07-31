@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -22,7 +22,7 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 	public void tick() {
 		super.tick();
 		if (!world.isClient && age % 20 == 0 && isOnGround()) {
-			FirestarterMobBlock.causeFire((ServerWorld) world, getBlockPos(), Direction.DOWN);
+			FirestarterIdolBlock.causeFire((ServerWorld) world, getBlockPos(), Direction.DOWN);
 		}
 	}
 	

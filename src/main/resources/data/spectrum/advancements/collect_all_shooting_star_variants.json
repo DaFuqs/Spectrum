@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:shooting_star_gemstone"
+      "item": "spectrum:gemstone_shooting_star"
     },
     "frame": "goal",
     "title": {
@@ -15,23 +15,63 @@
   "criteria": {
     "has_glistering_shooting_star": {
       "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_glistering" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:glistering_shooting_star"
+            ]
+          }
+        ]
+      }
     },
     "has_fiery_shooting_star": {
       "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_fiery" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:fiery_shooting_star"
+            ]
+          }
+        ]
+      }
     },
     "has_colorful_shooting_star": {
       "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_colorful" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:colorful_shooting_star"
+            ]
+          }
+        ]
+      }
     },
     "has_pristine_shooting_star": {
       "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_pristine" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pristine_shooting_star"
+            ]
+          }
+        ]
+      }
     },
     "has_gemstone_shooting_star": {
       "trigger":"minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shooting_star_gemstone" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:gemstone_shooting_star"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

@@ -141,19 +141,19 @@ public class ShootingStarBlock extends BlockWithEntity {
 		public static @NotNull Identifier getLootTableIdentifier(@NotNull Type type) {
 			switch (type) {
 				case FIERY -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_fiery");
+					return SpectrumCommon.locate("entity/shooting_star/fiery_shooting_star");
 				}
 				case COLORFUL -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_colorful");
+					return SpectrumCommon.locate("entity/shooting_star/colorful_shooting_star");
 				}
 				case GEMSTONE -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_gemstone");
+					return SpectrumCommon.locate("entity/shooting_star/gemstone_shooting_star");
 				}
 				case PRISTINE -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_pristine");
+					return SpectrumCommon.locate("entity/shooting_star/pristine_shooting_star");
 				}
 				default -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_glistering");
+					return SpectrumCommon.locate("entity/shooting_star/glistering_shooting_star");
 				}
 			}
 		}

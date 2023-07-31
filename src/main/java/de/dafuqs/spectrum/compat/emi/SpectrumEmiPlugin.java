@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -71,8 +71,8 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.FUSION_SHRINE, EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.FUSION_SHRINE, EmiStack.of(SpectrumBlocks.FUSION_SHRINE_CALCITE));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.NATURES_STAFF, EmiStack.of(SpectrumItems.NATURES_STAFF));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.HEATING, EmiStack.of(SpectrumBlocks.BLAZE_MOB_BLOCK));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.FREEZING, EmiStack.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.HEATING, EmiStack.of(SpectrumBlocks.BLAZE_IDOL));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.FREEZING, EmiStack.of(SpectrumBlocks.POLAR_BEAR_IDOL));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTER, EmiStack.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.ENCHANTMENT_UPGRADE, EmiStack.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.MUD_CONVERTING, EmiStack.of(SpectrumItems.MUD_BUCKET));
@@ -109,18 +109,18 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.TITRATION_BARREL, TitrationBarrelEmiRecipeGated::new);
 		
-		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> {
+		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> {
 			// The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
 			Identifier id = syntheticId("freezing", key.getBlock());
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key.getBlock()),
 					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));
 		});
-		FreezingMobBlock.FREEZING_MAP.forEach((key, value) -> {
+		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
 			Identifier id = syntheticId("freezing", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key),
 					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));
 		});
-		FirestarterMobBlock.BURNING_MAP.forEach((key, value) -> {
+		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
 			Identifier id = syntheticId("heating", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, blockStack(key),
 					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));

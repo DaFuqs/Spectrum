@@ -30,7 +30,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	private Vec3i controllerOffset;
 	
 	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.TREASURE_CHEST, pos, state);
+		super(SpectrumBlockEntities.PRESERVATION_CHEST, pos, state);
 	}
 	
 	@Override
@@ -60,7 +60,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	@Override
 	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.treasure_chest");
+		return Text.translatable("block.spectrum.preservation_chest");
 	}
 	
 	@Override

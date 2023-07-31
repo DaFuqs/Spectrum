@@ -1301,7 +1301,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.YELLOW_CHISELED_PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
-		entries.add(SpectrumBlocks.TREASURE_CHEST);
+		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		entries.add(SpectrumItems.DIVINATION_HEART);
 		entries.add(SpectrumItems.PEDESTAL_TIER_1_STRUCTURE_PLACER);
 		entries.add(SpectrumItems.PEDESTAL_TIER_2_STRUCTURE_PLACER);

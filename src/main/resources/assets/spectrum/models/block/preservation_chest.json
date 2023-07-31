@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/chest",
   "textures": {
-    "0": "spectrum:entity/treasure_chest",
-    "particle": "spectrum:entity/treasure_chest"
+    "0": "spectrum:entity/preservation_chest",
+    "particle": "spectrum:entity/preservation_chest"
   },
   "elements": [
     {

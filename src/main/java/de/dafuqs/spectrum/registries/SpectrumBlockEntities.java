@@ -64,7 +64,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<RestockingChestBlockEntity> RESTOCKING_CHEST;
 	public static BlockEntityType<HeartboundChestBlockEntity> HEARTBOUND_CHEST;
 	public static BlockEntityType<BlackHoleChestBlockEntity> BLACK_HOLE_CHEST;
-	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
+	public static BlockEntityType<TreasureChestBlockEntity> PRESERVATION_CHEST;
 	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
 
 	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
@@ -102,7 +102,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		RESTOCKING_CHEST = register("restocking_chest", RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST);
 		HEARTBOUND_CHEST = register("heartbound_chest", HeartboundChestBlockEntity::new, SpectrumBlocks.HEARTBOUND_CHEST);
 		BLACK_HOLE_CHEST = register("black_hole_chest", BlackHoleChestBlockEntity::new, SpectrumBlocks.BLACK_HOLE_CHEST);
-		TREASURE_CHEST = register("treasure_chest", TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST);
+		PRESERVATION_CHEST = register("preservation_chest", TreasureChestBlockEntity::new, SpectrumBlocks.PRESERVATION_CHEST);
 		AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA);
 		PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
 		REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
@@ -149,7 +149,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.HEARTBOUND_CHEST, HeartboundChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
-		BlockEntityRendererFactories.register(SpectrumBlockEntities.TREASURE_CHEST, SpectrumChestBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.PRESERVATION_CHEST, SpectrumChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
@@ -170,7 +170,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		// Register textures in chest atlas
 		//		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
 		//			registry.register(SpectrumCommon.locate("entity/private_chest"));
-		//			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
+		//			registry.register(SpectrumCommon.locate("entity/preservation_chest"));
 		//		});
 		//
 		//		//Register textures in block atlas

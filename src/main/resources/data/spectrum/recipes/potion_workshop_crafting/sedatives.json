@@ -10,10 +10,10 @@
     "item": "spectrum:aloe_leaf"
   },
   "ingredient2": {
-    "item": "spectrum:blizzard_powder"
+    "item": "spectrum:frostbite_essence"
   },
   "ingredient3": {
-    "item": "spectrum:blizzard_powder"
+    "item": "spectrum:frostbite_essence"
   },
   "result": {
     "item": "spectrum:sedatives"

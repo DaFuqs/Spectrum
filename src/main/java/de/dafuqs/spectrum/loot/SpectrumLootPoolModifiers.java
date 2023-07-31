@@ -16,6 +16,7 @@ import net.minecraft.loot.entry.*;
 import net.minecraft.loot.provider.number.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -213,7 +214,7 @@ public class SpectrumLootPoolModifiers {
 				.build();
 	}
 	
-	private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
+	private static LootPool getShulkerLootPool(@Nullable DyeColor dyeColor, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())

@@ -16,24 +16,25 @@ public class ShulkerPredicate implements TypeSpecificPredicate {
 	
 	private static final String COLOR_KEY = "color";
 	
-	private final DyeColor color;
+	private final @Nullable DyeColor color;
 	
-	private ShulkerPredicate(DyeColor color) {
+	private ShulkerPredicate(@Nullable DyeColor color) {
 		this.color = color;
 	}
 	
-	public static ShulkerPredicate of(DyeColor color) {
+	public static ShulkerPredicate of(@Nullable DyeColor color) {
 		return new ShulkerPredicate(color);
 	}
 	
 	public static ShulkerPredicate fromJson(JsonObject json) {
-		return new ShulkerPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
+		String c = json.get(COLOR_KEY).getAsString();
+		return new ShulkerPredicate(DyeColor.valueOf(c.isBlank() ? null : c.toUpperCase(Locale.ROOT)));
 	}
 	
 	@Override
 	public JsonObject typeSpecificToJson() {
 		JsonObject jsonObject = new JsonObject();
-		jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color.toString().toLowerCase(Locale.ROOT)));
+		jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color == null ? "" : this.color.toString().toLowerCase(Locale.ROOT)));
 		return jsonObject;
 	}
 	
@@ -46,8 +47,10 @@ public class ShulkerPredicate implements TypeSpecificPredicate {
 	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
 		if (!(entity instanceof ShulkerEntity shulkerEntity)) {
 			return false;
+		} else if (shulkerEntity.getColor() == null) {
+			return this.color == null;
 		} else {
-			return this.color.equals(shulkerEntity.getColor());
+			return shulkerEntity.getColor().equals(this.color);
 		}
 	}
 }

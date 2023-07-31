@@ -75,7 +75,7 @@ public class PiglinTradeIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.piglin_trade_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.piglin_trade_idol.tooltip"));
 	}
 	
 }

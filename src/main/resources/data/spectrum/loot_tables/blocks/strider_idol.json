@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:strider_mob_block"
+          "name": "spectrum:strider_idol"
         }
       ],
       "conditions": [

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:cat_mob_block"
+          "name": "spectrum:cat_idol"
         }
       ],
       "conditions": [

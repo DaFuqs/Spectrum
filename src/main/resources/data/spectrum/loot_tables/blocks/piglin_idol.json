@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:piglin_mob_block"
+          "name": "spectrum:piglin_idol"
         }
       ],
       "conditions": [

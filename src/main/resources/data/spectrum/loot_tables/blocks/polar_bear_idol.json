@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:polar_bear_mob_block"
+          "name": "spectrum:polar_bear_idol"
         }
       ],
       "conditions": [

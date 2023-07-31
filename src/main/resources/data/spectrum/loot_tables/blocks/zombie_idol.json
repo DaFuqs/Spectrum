@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:zombie_mob_block"
+          "name": "spectrum:zombie_idol"
         }
       ],
       "conditions": [

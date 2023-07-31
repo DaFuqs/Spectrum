@@ -12,7 +12,7 @@ import java.util.*;
 
 public class FreezingDisplay extends BlockToBlockWithChanceDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/mob_blocks");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/idols");
 	
 	public FreezingDisplay(EntryStack<?> in, EntryStack<?> out, float chance) {
 		super(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)), chance);

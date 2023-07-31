@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:witch_mob_block"
+          "name": "spectrum:witch_idol"
         }
       ],
       "conditions": [

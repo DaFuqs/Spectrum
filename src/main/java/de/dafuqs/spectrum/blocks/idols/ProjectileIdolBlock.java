@@ -34,7 +34,7 @@ public abstract class ProjectileIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.projectile_mob_block.tooltip", this.entityType.getName()));
+		tooltip.add(Text.translatable("block.spectrum.projectile_idol.tooltip", this.entityType.getName()));
 	}
 	
 	@Override

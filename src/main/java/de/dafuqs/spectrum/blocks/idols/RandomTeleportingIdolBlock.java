@@ -70,7 +70,7 @@ public class RandomTeleportingIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
+		tooltip.add(Text.translatable("block.spectrum.random_teleporting_idol.tooltip", horizontalRange));
 	}
 	
 	@Override

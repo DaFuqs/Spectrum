@@ -30,7 +30,7 @@ public class StatusEffectIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.potion_effect_mob_block.tooltip", this.statusEffect.getName()));
+		tooltip.add(Text.translatable("block.spectrum.potion_effect_idol.tooltip", this.statusEffect.getName()));
 	}
 	
 	@Override

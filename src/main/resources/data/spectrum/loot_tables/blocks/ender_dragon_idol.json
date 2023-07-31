@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:ender_dragon_mob_block"
+          "name": "spectrum:ender_dragon_idol"
         }
       ],
       "conditions": [

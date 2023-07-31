@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:bee_mob_block"
+          "name": "spectrum:bee_idol"
         }
       ],
       "conditions": [

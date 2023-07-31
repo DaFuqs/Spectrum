@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:pufferfish_mob_block"
+          "name": "spectrum:pufferfish_idol"
         }
       ],
       "conditions": [

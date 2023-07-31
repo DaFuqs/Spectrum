@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:pig_mob_block"
+          "name": "spectrum:pig_idol"
         }
       ],
       "conditions": [

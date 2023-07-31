@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:creeper_mob_block"
+          "name": "spectrum:creeper_idol"
         }
       ],
       "conditions": [

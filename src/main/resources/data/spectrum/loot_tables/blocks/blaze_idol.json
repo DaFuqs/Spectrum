@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:blaze_mob_block"
+          "name": "spectrum:blaze_idol"
         }
       ],
       "conditions": [

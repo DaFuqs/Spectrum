@@ -70,7 +70,7 @@ public class InsomniaIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.insomnia_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.insomnia_idol.tooltip"));
 	}
 	
 }

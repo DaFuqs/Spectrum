@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:slime_mob_block"
+          "name": "spectrum:slime_idol"
         }
       ],
       "conditions": [

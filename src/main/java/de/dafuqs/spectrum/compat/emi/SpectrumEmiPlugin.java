@@ -113,17 +113,17 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			// The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
 			Identifier id = syntheticId("freezing", key.getBlock());
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key.getBlock()),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));
+					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
 			Identifier id = syntheticId("freezing", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));
+					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
 			Identifier id = syntheticId("heating", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, blockStack(key),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/mob_blocks")));
+					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
 			Identifier id = syntheticId("natures_staff", key);

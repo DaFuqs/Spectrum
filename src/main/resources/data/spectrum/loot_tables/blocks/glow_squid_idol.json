@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:glow_squid_mob_block"
+          "name": "spectrum:glow_squid_idol"
         }
       ],
       "conditions": [

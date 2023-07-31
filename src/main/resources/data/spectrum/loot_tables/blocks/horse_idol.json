@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:horse_mob_block"
+          "name": "spectrum:horse_idol"
         }
       ],
       "conditions": [

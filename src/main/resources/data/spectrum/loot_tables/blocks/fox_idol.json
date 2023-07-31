@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:fox_mob_block"
+          "name": "spectrum:fox_idol"
         }
       ],
       "conditions": [

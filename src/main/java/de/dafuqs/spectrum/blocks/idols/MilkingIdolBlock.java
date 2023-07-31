@@ -108,8 +108,8 @@ public class MilkingIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.milking_mob_block.tooltip", this.milkingRange));
-		tooltip.add(Text.translatable("block.spectrum.milking_mob_block.tooltip2"));
+		tooltip.add(Text.translatable("block.spectrum.milking_idol.tooltip", this.milkingRange));
+		tooltip.add(Text.translatable("block.spectrum.milking_idol.tooltip2"));
 	}
 	
 }

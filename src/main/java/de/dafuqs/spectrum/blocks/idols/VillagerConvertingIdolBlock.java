@@ -25,7 +25,7 @@ public class VillagerConvertingIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.villager_converting_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.villager_converting_idol.tooltip"));
 	}
 	
 	@Override

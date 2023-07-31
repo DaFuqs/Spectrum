@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:axolotl_mob_block"
+          "name": "spectrum:axolotl_idol"
         }
       ],
       "conditions": [

@@ -26,7 +26,7 @@ public abstract class EntitySummoningIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.entity_summoning_mob_block.tooltip", entityType.getName()));
+		tooltip.add(Text.translatable("block.spectrum.entity_summoning_idol.tooltip", entityType.getName()));
 	}
 	
 	@Override

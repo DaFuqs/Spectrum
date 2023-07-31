@@ -29,7 +29,7 @@ public class FeedingIdolBlock extends IdolBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(Text.translatable("block.spectrum.feeding_mob_block.tooltip", this.range));
+		tooltip.add(Text.translatable("block.spectrum.feeding_idol.tooltip", this.range));
 	}
 	
 	@Override

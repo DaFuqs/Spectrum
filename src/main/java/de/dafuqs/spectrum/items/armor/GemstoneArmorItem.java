@@ -16,35 +16,25 @@ import java.util.*;
 
 public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 	
-	private final ArmorItem.Type armorType;
-	private final int armorSlotID;
-	
 	public GemstoneArmorItem(ArmorMaterial material, ArmorItem.Type type, Settings settings) {
 		super(material, type, settings);
-		this.armorType = type;
-		switch (type) {
-			case HELMET -> this.armorSlotID = 0;
-			case CHESTPLATE -> this.armorSlotID = 1;
-			case LEGGINGS -> this.armorSlotID = 2;
-			default -> this.armorSlotID = 3;
-		}
 	}
 	
 	@Override
 	public void onHit(ItemStack itemStack, DamageSource source, LivingEntity targetEntity, float amount) {
 		// While mostly useful against mobs, being able to trigger this effect for all kinds of damage
 		// like fall damage seems like an awesome mechanic
-		process(armorType, source, targetEntity);
+		process(type, source, targetEntity);
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		
-		itemStack.damage(2, targetEntity, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID)));
+		itemStack.damage(2, targetEntity, (e) -> e.sendEquipmentBreakStatus(type.getEquipmentSlot()));
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		addTooltip(tooltip, armorType);
+		addTooltip(tooltip, type);
 	}
 	
 	private void process(@NotNull ArmorItem.Type type, DamageSource source, LivingEntity targetEntity) {

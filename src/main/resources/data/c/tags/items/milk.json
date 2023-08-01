@@ -2,6 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:milk_bucket",
-    "#c:milks"
+    "spectrum:clotted_cream"
   ]
 }

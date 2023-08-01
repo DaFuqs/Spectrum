@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "spectrum:treasure_chest",
     "spectrum:private_chest",
     "spectrum:compacting_chest",
     "spectrum:restocking_chest",

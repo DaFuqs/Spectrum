@@ -7,7 +7,22 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_copper"
+          "name": "spectrum:small_copper_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
         }
       ]
     }

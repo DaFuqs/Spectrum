@@ -7,7 +7,22 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_iron"
+          "name": "spectrum:small_iron_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
         }
       ]
     }

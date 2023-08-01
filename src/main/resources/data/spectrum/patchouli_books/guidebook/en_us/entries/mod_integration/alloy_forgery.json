@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Forge Controller",
       "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_basalt_alloy_forge",
-      "text": "Quite slot, but packs a lot of fuel."
+      "text": "Quite slow, but packs a lot of fuel."
     },
     {
       "type": "patchouli:multiblock",
@@ -37,7 +37,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Forge Controller",
       "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge",
-      "text": "Double as fast as the Basalt variant, but you will have to restock on fuel quite more often."
+      "text": "Twice as fast as the Basalt variant, but you will have to restock on fuel quite more often."
     },
     {
       "type": "patchouli:multiblock",
@@ -101,15 +101,9 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:unlocks/blocks/lava_sponge",
-      "item": "spectrum:wet_lava_sponge",
-      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your Alloy Forge for quite some time."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "advancement": "spectrum:hidden/collect_blazing_crystal",
-      "item": "spectrum:fiery_powder",
-      "text": "Also a good heat source for your Alloy Forges."
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "Pure resources can be turned into their mundane counterpart, with a nice multiplier."
     },
     {
       "type": "patchouli:spotlight",
@@ -122,6 +116,18 @@
       "item": "spectrum:paltaeria_ore",
       "advancement": "spectrum:lategame/collect_paltaeria",
       "text": "...same is true for $(l:resources/paltaeria)Paltaeria$(/l), of course."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/blocks/lava_sponge",
+      "item": "spectrum:wet_lava_sponge",
+      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your Alloy Forge for quite some time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:fiery_powder",
+      "text": "Also a good heat source for your Alloy Forges."
     }
   ]
 }

@@ -4,5 +4,5 @@
   "modifiers": {
     "potency_multiplier": 1.25
   },
-  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_citrine_powder"
+  "required_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard"
 }

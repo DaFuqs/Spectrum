@@ -8,6 +8,18 @@
     {
       "item": "spectrum:fiery_powder",
       "fuel": 2000
+    },
+    {
+      "item": "spectrum:fiery_powder",
+      "fuel": 2000
+    },
+    {
+      "item": "spectrum:pure_coal",
+      "fuel": 2000
+    },
+    {
+      "item": "spectrum:pure_coal_block",
+      "fuel": 18000
     }
   ]
 }

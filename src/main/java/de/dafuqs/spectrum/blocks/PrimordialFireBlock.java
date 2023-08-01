@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
@@ -119,7 +120,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
 
             BlockState blockState = world.getBlockState(pos.down());
             boolean isAboveInfiniburnBlock = blockState.isIn(world.getDimension().infiniburn()) || blockState.isIn(SpectrumBlockTags.PRIMORDIAL_FIRE_BASE_BLOCKS);
-            if (!isAboveInfiniburnBlock && random.nextFloat() < 0.005F) {
+            if (!isAboveInfiniburnBlock && random.nextFloat() < 0.01F) {
                 world.removeBlock(pos, false);
             } else {
                 if (!isAboveInfiniburnBlock) {
@@ -177,6 +178,10 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     }
 
     private void trySpreadingFire(World world, BlockPos pos, int spreadFactor, Random random) {
+        if (GenericClaimModsCompat.isProtected(world, pos, null)) {
+            return;
+        }
+    
         int spreadChance = this.getSpreadChance(world.getBlockState(pos));
         if (random.nextInt(spreadFactor) < spreadChance) {
             BlockState blockState = world.getBlockState(pos);

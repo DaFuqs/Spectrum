@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.items.*;
-import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
+public class ClearPotionFillableRecipe extends SingleItemCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearPotionFillableRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearPotionFillableRecipe::new);
 	
@@ -16,44 +15,16 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
-		boolean potionFillableFound = false;
-		
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			ItemStack itemStack = craftingInventory.getStack(j);
-			if (!itemStack.isEmpty()) {
-				if (itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
-					if (inkPoweredPotionFillable.isAtLeastPartiallyFilled(itemStack)) {
-						potionFillableFound = true;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-		}
-		
-		return potionFillableFound;
+	public boolean matches(World world, ItemStack stack) {
+		return stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable && inkPoweredPotionFillable.isAtLeastPartiallyFilled(stack);
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
-		ItemStack itemStack;
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			itemStack = craftingInventory.getStack(j).copy();
-			if (!itemStack.isEmpty() && itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
-				inkPoweredPotionFillable.removeEffects(itemStack);
-				return itemStack;
-			}
+	public ItemStack craft(ItemStack stack) {
+		if (stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
+			inkPoweredPotionFillable.clearEffects(stack);
 		}
-		
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public boolean fits(int width, int height) {
-		return width * height >= 1;
+		return stack;
 	}
 	
 	@Override

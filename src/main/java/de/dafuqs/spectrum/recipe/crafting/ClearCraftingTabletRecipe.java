@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.items.*;
-import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class ClearCraftingTabletRecipe extends SpecialCraftingRecipe {
+public class ClearCraftingTabletRecipe extends SingleItemCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearCraftingTabletRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearCraftingTabletRecipe::new);
 	
@@ -16,44 +15,14 @@ public class ClearCraftingTabletRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
-		boolean craftingTabletWithStoredRecipeFound = false;
-		
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			ItemStack itemStack = craftingInventory.getStack(j);
-			if (!itemStack.isEmpty()) {
-				if (itemStack.getItem() instanceof CraftingTabletItem) {
-					if (!craftingTabletWithStoredRecipeFound && CraftingTabletItem.getStoredRecipe(world, itemStack) != null) {
-						craftingTabletWithStoredRecipeFound = true;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-		}
-		
-		return craftingTabletWithStoredRecipeFound;
+	public boolean matches(World world, ItemStack stack) {
+		return stack.getItem() instanceof CraftingTabletItem && CraftingTabletItem.getStoredRecipe(world, stack) != null;
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
-		ItemStack itemStack;
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			itemStack = craftingInventory.getStack(j).copy();
-			if (!itemStack.isEmpty() && itemStack.getItem() instanceof CraftingTabletItem) {
-				CraftingTabletItem.clearStoredRecipe(itemStack);
-				return itemStack;
-			}
-		}
-		
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public boolean fits(int width, int height) {
-		return width * height >= 1;
+	public ItemStack craft(ItemStack stack) {
+		CraftingTabletItem.clearStoredRecipe(stack);
+		return stack;
 	}
 	
 	@Override

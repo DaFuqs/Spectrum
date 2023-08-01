@@ -4,13 +4,9 @@ import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
-import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.tag.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-
+import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -24,11 +20,10 @@ public abstract class EntityApplyFluidsMixin {
 	@Shadow
 	private Set<TagKey<Fluid>> submergedFluidTag;
 	
+	@Unique
 	private boolean actuallyTouchingWater = false;
 	
-	@Shadow
-	public abstract void readNbt(NbtCompound nbt);
-	
+	@Unique
 	public boolean isActuallyTouchingWater() {
 		return this.actuallyTouchingWater;
 	}
@@ -45,6 +40,7 @@ public abstract class EntityApplyFluidsMixin {
 		return isInFluid(fluidState, tag);
 	}
 	
+	@Unique
 	private boolean isInFluid(FluidState fluidState, TagKey<Fluid> tag) {
 		if (tag == FluidTags.WATER) {
 			return (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.SWIMMABLE_FLUID));

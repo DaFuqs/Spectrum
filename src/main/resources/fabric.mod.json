@@ -80,7 +80,8 @@
     "paginatedadvancements": "*",
     "ants": "*",
     "bettercombat": "*",
-    "continuity": "*"
+    "continuity": "*",
+    "advdebug": "*"
   },
   "breaks": {
     "Dashloader": "<=3.0.9",

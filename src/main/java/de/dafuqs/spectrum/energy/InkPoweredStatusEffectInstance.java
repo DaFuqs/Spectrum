@@ -14,6 +14,10 @@ import java.util.*;
 
 public class InkPoweredStatusEffectInstance {
 	
+	public static final String NBT_KEY = "InkPoweredStatusEffects";
+	public static final String UNIDENTIFIABLE_NBT_KEY = "Unidentifiable";
+	public static final String CUSTOM_COLOR_NBT_KEY = "CustomColor";
+	
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final boolean unidentifiable;
@@ -39,10 +43,10 @@ public class InkPoweredStatusEffectInstance {
 		this.statusEffectInstance.writeNbt(nbt);
 		this.cost.writeNbt(nbt);
 		if (customColor != -1) {
-			nbt.putInt("CustomColor", this.customColor);
+			nbt.putInt(CUSTOM_COLOR_NBT_KEY, this.customColor);
 		}
 		if (unidentifiable) {
-			nbt.putBoolean("Unidentifiable", true);
+			nbt.putBoolean(UNIDENTIFIABLE_NBT_KEY, true);
 		}
 		return nbt;
 	}
@@ -51,12 +55,12 @@ public class InkPoweredStatusEffectInstance {
 		StatusEffectInstance statusEffectInstance = StatusEffectInstance.fromNbt(nbt);
 		InkCost cost = InkCost.fromNbt(nbt);
 		int customColor = -1;
-		if (nbt.contains("CustomColor", NbtElement.INT_TYPE)) {
-			customColor = nbt.getInt("CustomColor");
+		if (nbt.contains(CUSTOM_COLOR_NBT_KEY, NbtElement.INT_TYPE)) {
+			customColor = nbt.getInt(CUSTOM_COLOR_NBT_KEY);
 		}
 		boolean unidentifiable = false;
-		if (nbt.contains("Unidentifiable")) {
-			unidentifiable = nbt.getBoolean("Unidentifiable");
+		if (nbt.contains(UNIDENTIFIABLE_NBT_KEY)) {
+			unidentifiable = nbt.getBoolean(UNIDENTIFIABLE_NBT_KEY);
 		}
 		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor, unidentifiable);
 	}
@@ -67,8 +71,8 @@ public class InkPoweredStatusEffectInstance {
 	
 	public static List<InkPoweredStatusEffectInstance> getEffects(@Nullable NbtCompound nbt) {
 		List<InkPoweredStatusEffectInstance> list = new ArrayList<>();
-		if (nbt != null && nbt.contains("InkPoweredStatusEffects", NbtElement.LIST_TYPE)) {
-			NbtList nbtList = nbt.getList("InkPoweredStatusEffects", NbtElement.COMPOUND_TYPE);
+		if (nbt != null && nbt.contains(NBT_KEY, NbtElement.LIST_TYPE)) {
+			NbtList nbtList = nbt.getList(NBT_KEY, NbtElement.COMPOUND_TYPE);
 			
 			for (int i = 0; i < nbtList.size(); ++i) {
 				NbtCompound nbtCompound = nbtList.getCompound(i);
@@ -82,13 +86,13 @@ public class InkPoweredStatusEffectInstance {
 	public static void setEffects(ItemStack stack, Collection<InkPoweredStatusEffectInstance> effects) {
 		if (!effects.isEmpty()) {
 			NbtCompound nbtCompound = stack.getOrCreateNbt();
-			NbtList nbtList = nbtCompound.getList("InkPoweredStatusEffects", NbtElement.LIST_TYPE);
+			NbtList nbtList = nbtCompound.getList(NBT_KEY, NbtElement.LIST_TYPE);
 			
 			for (InkPoweredStatusEffectInstance effect : effects) {
 				nbtList.add(effect.toNbt());
 			}
 			
-			nbtCompound.put("InkPoweredStatusEffects", nbtList);
+			nbtCompound.put(NBT_KEY, nbtList);
 		}
 	}
 	

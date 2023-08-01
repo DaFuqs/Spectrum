@@ -81,16 +81,16 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 			if (!this.rod.test(rod)) return false;
 			if (!this.bobber.test(bobberContext)) return false;
 			if (!this.fluidPredicate.test(world, blockPos)) return false;
-			if (fishedEntityContext == null && !fishedEntity.equals(EntityPredicate.Extended.EMPTY) ||
-				!this.fishedEntity.test(fishedEntityContext)) return false;
-			if (hookedEntityContext == null && !hookedEntity.equals(EntityPredicate.Extended.EMPTY) ||
-				!this.hookedEntity.test(hookedEntityContext)) return false;
+			if (fishedEntityContext == null && !fishedEntity.equals(EntityPredicate.Extended.EMPTY) || !this.fishedEntity.test(fishedEntityContext))
+				return false;
+			if (hookedEntityContext == null && !hookedEntity.equals(EntityPredicate.Extended.EMPTY) || !this.hookedEntity.test(hookedEntityContext))
+				return false;
 			
 			if (this.caughtItem != ItemPredicate.ANY) {
 				if (hookedEntityContext != null) {
 					Entity entity = hookedEntityContext.get(LootContextParameters.THIS_ENTITY);
 					if (entity instanceof ItemEntity itemEntity &&
-						this.caughtItem.test(itemEntity.getStack())) return true;
+							this.caughtItem.test(itemEntity.getStack())) return true;
 				}
 				for (ItemStack itemStack : fishingLoots) {
 					if (this.caughtItem.test(itemStack)) return true;

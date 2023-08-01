@@ -54,7 +54,7 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 			if (recipe.isPresent() && recipe.get() instanceof TitrationBarrelRecipe titrationBarrelRecipe) {
 				fermentationData = titrationBarrelRecipe.getFermentationData();
 			} else {
-				SpectrumCommon.logError("A 'spectrum:ferment_randomly' loot function has set an invalid 'fermentation_recipe_id': " + this.fermentationRecipeIdentifier + " It has to match an existing Titration Barrel recipe. ");
+				SpectrumCommon.logError("A 'spectrum:ferment_randomly' loot function has set an invalid 'fermentation_recipe_id': " + this.fermentationRecipeIdentifier + " It has to match an existing Titration Barrel recipe.");
 			}
 		}
 		if (fermentationData == null) {

@@ -333,6 +333,7 @@ public class SpectrumItems {
 	public static final Item STAR_CANDY = new StarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
 	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
 	
+	public static final Item ENCHANTED_GOLDEN_CARROT = new ItemWithGlint(Tab.CUISINE.settings(Rarity.EPIC).food(SpectrumFoodComponents.ENCHANTED_GOLDEN_CARROT));
 	public static final Item JARAMEL = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JARAMEL));
 	
 	public static final Item JARAMEL_TART = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.JARAMEL_TART));
@@ -794,7 +795,8 @@ public class SpectrumItems {
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		register("demon_tea", DEMON_TEA, DyeColor.RED);
-
+		
+		register("enchanted_golden_carrot", ENCHANTED_GOLDEN_CARROT, DyeColor.PINK);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);

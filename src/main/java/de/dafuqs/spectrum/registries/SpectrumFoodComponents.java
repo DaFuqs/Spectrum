@@ -29,6 +29,14 @@ public class SpectrumFoodComponents {
 			.hunger(20).saturationModifier(1.2F).snack()
 			.build();
 	
+	public static final FoodComponent ENCHANTED_GOLDEN_CARROT = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(1.2F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 0), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 2400, 0), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 1), 1.0F)
+			.build();
+	
 	public static final FoodComponent JARAMEL = new FoodComponent.Builder()
 			.hunger(1).saturationModifier(0.2F).snack().alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1), 1.0F)

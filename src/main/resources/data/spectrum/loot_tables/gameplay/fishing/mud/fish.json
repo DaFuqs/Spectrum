@@ -1,21 +1,20 @@
-{
   "type": "minecraft:fishing",
   "pools": [
     {
       "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
-        {
-          "type": "minecraft:item",
-          "weight": 60,
-          "name": "minecraft:cod"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 12,
-          "name": "spectrum:crawfish"
-        }
-      ]
-    }
+  {
+  "type": "minecraft:item",
+  "weight": 60,
+  "name": "spectrum:crawfish"
+  },
+  {
+  "type": "minecraft:item",
+  "weight": 12,
+  "name": "minecraft:cod"
+  }
+  ]
+  }
   ]
 }

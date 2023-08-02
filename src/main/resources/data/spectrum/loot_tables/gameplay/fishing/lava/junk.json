@@ -4,22 +4,22 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:nether_sprouts",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:bone",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:netherrack",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:nether_brick",
           "weight": 1
         },
@@ -38,42 +38,42 @@
           ]
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:nether_wart",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:gravel",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:crimson_fungus",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:crimson_roots",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:warped_fungus",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:warped_roots",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:twisting_vines",
           "weight": 1
         },
         {
-          "type": "item",
+          "type": "minecraft:item",
           "name": "minecraft:weeping_vines",
           "weight": 1
         }

@@ -25,6 +25,7 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1,
           "name": "minecraft:leather"
         },
         {
@@ -40,72 +41,22 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:wooden_pickaxe",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5
-              }
-            }
-          ]
+          "name": "spectrum:slate_noxshroom"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:wooden_axe",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5
-              }
-            }
-          ]
+          "name": "spectrum:ebony_noxshroom"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:wooden_sword",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5
-              }
-            }
-          ]
+          "name": "spectrum:ivory_noxshroom"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:wooden_shovel",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:wooden_hoe",
-          "functions": [
-            {
-              "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5
-              }
-            }
-          ]
+          "name": "spectrum:chestnut_noxshroom"
         },
         {
           "type": "minecraft:item",
@@ -120,6 +71,11 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "spectrum:pyrite_chunk"
         }
       ]
     }

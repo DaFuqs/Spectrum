@@ -8,22 +8,22 @@
         {
           "type": "minecraft:item",
           "weight": 40,
-          "name": "minecraft:cod"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
           "name": "spectrum:koi"
         },
         {
           "type": "minecraft:item",
-          "weight": 2,
-          "name": "spectrum:crawfish"
+          "weight": 25,
+          "name": "minecraft:cod"
         },
         {
           "type": "minecraft:item",
           "weight": 4,
           "name": "minecraft:pufferfish"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "spectrum:crawfish"
         }
       ]
     }

@@ -92,16 +92,17 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	@Override
 	public void onDeath(DamageSource damageSource) {
 		super.onDeath(damageSource);
-		
+
+		// FIXME - DamageRecord does not seem not track entities anymore
 		// grant the kill to all players that attacked recently
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
 		List<DamageRecord> recentDamage = ((DamageTrackerAccessor) this.getDamageTracker()).getRecentDamage();
-		for (DamageRecord damageRecord : recentDamage) {
-			if (damageRecord.getAttacker() instanceof ServerPlayerEntity player) {
-				Criteria.ENTITY_KILLED_PLAYER.trigger(player, this, damageSource);
-			}
-		}
+//		for (DamageRecord damageRecord : recentDamage) {
+//			if (damageRecord.getAttacker() instanceof ServerPlayerEntity player) {
+//				Criteria.ENTITY_KILLED_PLAYER.trigger(player, this, damageSource);
+//			}
+//		}
 	}
 	
 	@Override
@@ -152,7 +153,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	public void checkDespawn() {
-		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+		if (this.getWorld().getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
 			this.discard();
 		} else {
 			this.despawnCounter = 0;

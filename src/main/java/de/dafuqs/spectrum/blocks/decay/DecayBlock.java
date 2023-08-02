@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.particle.*;
@@ -155,12 +154,6 @@ public abstract class DecayBlock extends Block {
 		}
 		return getSpreadState(stateToSpread);
 	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.BLOCK;
-	}
-	
 	
 	/**
 	 * If a neighboring block is updated (placed by a player?), and that can be converted

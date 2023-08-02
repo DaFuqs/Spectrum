@@ -38,7 +38,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		double e = this.getY() + vec3d.y;
 		double f = this.getZ() + vec3d.z;
 		this.updateRotation();
-		if (this.world.getStatesInBox(this.getBoundingBox()).noneMatch(AbstractBlock.AbstractBlockState::isAir)) {
+		if (this.getWorld().getStatesInBox(this.getBoundingBox()).noneMatch(AbstractBlock.AbstractBlockState::isAir)) {
 			this.discard();
 		} else if (this.isInsideWaterOrBubbleColumn()) {
 			this.discard();
@@ -69,8 +69,8 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
 		
-		if (!this.world.isClient) {
-			FirestarterIdolBlock.causeFire((ServerWorld) this.world, blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
+		if (!this.getWorld().isClient()) {
+			FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
 			this.discard();
 		}
 	}
@@ -88,7 +88,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		
 		for (int i = 0; i < 7; ++i) {
 			double g = 0.4 + 0.1 * (double) i;
-			this.world.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), velX * g, velY, velZ * g);
+			this.getWorld().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), velX * g, velY, velZ * g);
 		}
 		
 		this.setVelocity(velX, velY, velZ);

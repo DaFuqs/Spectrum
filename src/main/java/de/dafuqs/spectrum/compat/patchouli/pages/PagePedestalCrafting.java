@@ -38,27 +38,27 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalCraftingRecipe
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull PedestalCraftingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, @NotNull PedestalCraftingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, getBackgroundTextureForTier(recipe.getTier()));
 		RenderSystem.enableBlend();
-		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
-		
-		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		drawContext.drawTexture(getBackgroundTextureForTier(recipe.getTier()), recipeX - 2, recipeY - 2, 0 ,0, 106, 97, 128, 256);
+
+		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 		
 		switch (recipe.getTier()) {
 			case COMPLEX ->
-					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 3, recipeX, recipeY, mouseX, mouseY);
+					drawGemstonePowderSlots(drawContext, recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()),3, recipeX, recipeY, mouseX, mouseY);
 			case ADVANCED ->
-					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 12, recipeX, recipeY, mouseX, mouseY);
+					drawGemstonePowderSlots(drawContext, recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()),12, recipeX, recipeY, mouseX, mouseY);
 			default ->
-					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 22, recipeX, recipeY, mouseX, mouseY);
+					drawGemstonePowderSlots(drawContext, recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()),22, recipeX, recipeY, mouseX, mouseY);
 		}
 		
 		DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int wrap = recipe.getWidth();
 		for (int i = 0; i < ingredients.size(); i++) {
-			PatchouliHelper.renderIngredientStack(parent, ms, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
+			PatchouliHelper.renderIngredientStack(drawContext, parent, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
 		}
 	}
 	
@@ -85,14 +85,14 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalCraftingRecipe
 		return 108;
 	}
 	
-	private void drawGemstonePowderSlots(PedestalCraftingRecipe recipe, GemstoneColor @NotNull [] colors, MatrixStack ms, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
+	private void drawGemstonePowderSlots(DrawContext drawContext, PedestalCraftingRecipe recipe, GemstoneColor @NotNull [] colors, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
 		int h = 0;
 		for (GemstoneColor color : colors) {
 			int amount = recipe.getGemstonePowderInputs().getOrDefault(color, 0);
 			if (amount > 0) {
 				ItemStack stack = color.getGemstonePowderItem().getDefaultStack();
 				stack.setCount(amount);
-				parent.renderItemStack(ms, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, stack);
+				parent.renderItemStack(drawContext, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, stack);
 			}
 			h++;
 		}

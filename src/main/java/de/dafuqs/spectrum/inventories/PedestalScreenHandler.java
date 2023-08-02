@@ -34,7 +34,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, int variant, int maxRecipeTier, BlockPos pedestalPos) {
-		this(type, context, recipeBookCategory, i, playerInventory, (Inventory) playerInventory.player.world.getBlockEntity(pedestalPos), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
+		this(type, context, recipeBookCategory, i, playerInventory, (Inventory) playerInventory.player.getWorld().getBlockEntity(pedestalPos), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
 	}
 	
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
@@ -46,7 +46,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.inventory = inventory;
 		this.category = recipeBookCategory;
 		this.propertyDelegate = propertyDelegate;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		this.pedestalPos = pedestalPos;
 		this.pedestalRecipeTier = PedestalRecipeTier.values()[pedestalRecipeTier];

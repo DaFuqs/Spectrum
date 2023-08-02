@@ -23,10 +23,11 @@ public class SpectrumItemGroups {
 	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/item_group.png");
 	
-	public static final ItemGroup MAIN = FabricItemGroup.builder(SpectrumCommon.locate("main"))
+	public static final ItemGroup MAIN = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.entries((displayContext, entries) -> entries.add(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.noRenderedName()
+			.displayName(Text.translatable("itemgroup.spectrum"))
 			.build();
 	
 	public static void register() {

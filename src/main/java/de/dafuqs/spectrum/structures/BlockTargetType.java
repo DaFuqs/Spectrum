@@ -5,12 +5,13 @@ import net.minecraft.util.*;
 
 import java.util.function.*;
 
+@SuppressWarnings("deprecation")
 public enum BlockTargetType implements StringIdentifiable {
 	
 	AIR("air", AbstractBlock.AbstractBlockState::isAir),
 	FLUID("fluid", (state) -> state.getFluidState().isEmpty()),
-	MOTION_BLOCKING("motion_blocking", (state) -> state.getMaterial().blocksMovement() || !state.getFluidState().isEmpty()),
-	SOLID("solid", (state) -> state.getMaterial().isSolid());
+	MOTION_BLOCKING("motion_blocking", (state) -> state.blocksMovement() || !state.getFluidState().isEmpty()),
+	SOLID("solid", AbstractBlock.AbstractBlockState::isSolid);
 	
 	public static final com.mojang.serialization.Codec<BlockTargetType> CODEC = StringIdentifiable.createCodec(BlockTargetType::values);
 	

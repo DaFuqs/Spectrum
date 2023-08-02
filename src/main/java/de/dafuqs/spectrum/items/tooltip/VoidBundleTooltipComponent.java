@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import net.fabricmc.api.*;
 import net.minecraft.client.font.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.item.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
@@ -46,30 +47,31 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext drawContext) {
 		int n = x + 1;
 		int o = y + 1;
+		var matrices = drawContext.getMatrices();
 		
 		for (int i = 0; i < Math.min(MAX_DISPLAYED_SLOTS + 1, displayedSlotCount); i++) {
 			if (i == displayedSlotCount - 1) {
 				if (displayedSlotCount == MAX_DISPLAYED_SLOTS + 1) {
 					if (drawDots) {
-						this.drawDottedSlot(n + 5 * 18, o, matrices);
+						this.drawDottedSlot(n + 5 * 18, o, drawContext);
 					} else {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, drawContext);
 					}
 				} else {
 					if (this.itemStacks.size() - 1 < i) {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, drawContext);
 					} else {
-						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer);
+						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, drawContext);
 					}
 				}
 			} else {
-				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer);
+				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, drawContext);
 			}
 		}
-		this.drawOutline(x, y, displayedSlotCount, 1, matrices);
+		this.drawOutline(x, y, displayedSlotCount, 1, drawContext);
 	}
 	
 }

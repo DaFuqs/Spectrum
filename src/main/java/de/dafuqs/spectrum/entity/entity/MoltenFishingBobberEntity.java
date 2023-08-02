@@ -21,8 +21,8 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (!world.isClient && age % 20 == 0 && isOnGround()) {
-			FirestarterIdolBlock.causeFire((ServerWorld) world, getBlockPos(), Direction.DOWN);
+		if (!this.getWorld().isClient && age % 20 == 0 && isOnGround()) {
+			FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), getBlockPos(), Direction.DOWN);
 		}
 	}
 	

@@ -147,12 +147,12 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			if (enchanterBlockEntity.craftingTime % 60 == 1) {
 				if (!checkRecipeRequirements(world, blockPos, enchanterBlockEntity)) {
 					enchanterBlockEntity.craftingTime = 0;
-					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
 					return;
 				}
 			}
 			if (enchanterBlockEntity.craftingTime == 1) {
-				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos, Integer.MAX_VALUE);
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.ENCHANTER_WORKING, (ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos, Integer.MAX_VALUE);
 			}
 			
 			if (enchanterBlockEntity.currentRecipe instanceof EnchanterRecipe enchanterRecipe) {
@@ -215,7 +215,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanterBlockEntity.inventoryChanged();
 			}
 		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
+			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -261,9 +261,9 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		enchanterBlockEntity.world.playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		enchanterBlockEntity.getWorld().playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		
-		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.world,
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) enchanterBlockEntity.getWorld(),
 				new Vec3d(enchanterBlockEntity.pos.getX() + 0.5D, enchanterBlockEntity.pos.getY() + 0.5, enchanterBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIME_SPARKLE_RISING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
 				new Vec3d(0.1D, -0.1D, 0.1D));
@@ -286,8 +286,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
-				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.world.random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F);
 				EnchanterBlock.scatterContents(world, blockPos);
 			}
 			return false;
@@ -317,7 +317,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		int spentExperience = enchanterBlockEntity.currentItemProcessingTime / EnchanterBlockEntity.REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT;
 		if (centerStack.getCount() > 1) {
 			centerStackCopy.setCount(1);
-			MultiblockCrafter.spawnOutputAsItemEntity(enchanterBlockEntity.world, enchanterBlockEntity.pos, centerStackCopy);
+			MultiblockCrafter.spawnOutputAsItemEntity(enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos, centerStackCopy);
 			centerStack.decrement(1);
 		} else {
 			enchanterBlockEntity.setStack(0, centerStackCopy);
@@ -440,7 +440,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			int resultAmountAfterEfficiencyMod = 1;
 			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
 				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
-				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.world.random);
+				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.getWorld().random);
 			}
 
 			if (resultAmountAfterEfficiencyMod > 0) {
@@ -734,14 +734,14 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		virtualInventoryIncludingBowlStacks.setStack(0, this.getStack(0)); // center item
 		virtualInventoryIncludingBowlStacks.setStack(1, this.getStack(1)); // knowledge gem
-		virtualInventoryIncludingBowlStacks.setStack(2, getItemBowlStack(this.world, pos.add(5, 0, -3)));
-		virtualInventoryIncludingBowlStacks.setStack(3, getItemBowlStack(this.world, pos.add(5, 0, 3)));
-		virtualInventoryIncludingBowlStacks.setStack(4, getItemBowlStack(this.world, pos.add(3, 0, 5)));
-		virtualInventoryIncludingBowlStacks.setStack(5, getItemBowlStack(this.world, pos.add(-3, 0, 5)));
-		virtualInventoryIncludingBowlStacks.setStack(6, getItemBowlStack(this.world, pos.add(-5, 0, 3)));
-		virtualInventoryIncludingBowlStacks.setStack(7, getItemBowlStack(this.world, pos.add(-5, 0, -3)));
-		virtualInventoryIncludingBowlStacks.setStack(8, getItemBowlStack(this.world, pos.add(-3, 0, -5)));
-		virtualInventoryIncludingBowlStacks.setStack(9, getItemBowlStack(this.world, pos.add(3, 0, -5)));
+		virtualInventoryIncludingBowlStacks.setStack(2, getItemBowlStack(this.getWorld(), pos.add(5, 0, -3)));
+		virtualInventoryIncludingBowlStacks.setStack(3, getItemBowlStack(this.getWorld(), pos.add(5, 0, 3)));
+		virtualInventoryIncludingBowlStacks.setStack(4, getItemBowlStack(this.getWorld(), pos.add(3, 0, 5)));
+		virtualInventoryIncludingBowlStacks.setStack(5, getItemBowlStack(this.getWorld(), pos.add(-3, 0, 5)));
+		virtualInventoryIncludingBowlStacks.setStack(6, getItemBowlStack(this.getWorld(), pos.add(-5, 0, 3)));
+		virtualInventoryIncludingBowlStacks.setStack(7, getItemBowlStack(this.getWorld(), pos.add(-5, 0, -3)));
+		virtualInventoryIncludingBowlStacks.setStack(8, getItemBowlStack(this.getWorld(), pos.add(-3, 0, -5)));
+		virtualInventoryIncludingBowlStacks.setStack(9, getItemBowlStack(this.getWorld(), pos.add(3, 0, -5)));
 		
 		virtualInventoryIncludingBowlStacks.markDirty();
 		inventoryChanged = true;

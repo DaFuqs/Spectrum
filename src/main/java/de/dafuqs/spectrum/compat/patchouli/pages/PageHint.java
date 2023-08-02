@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
 import net.minecraft.client.util.math.*;
@@ -34,9 +35,9 @@ public class PageHint extends BookPage {
 		}
 		
 		@Override
-		public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+		public void renderButton(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 			if (pageHint.revealProgress < 0) {
-				super.renderButton(matrices, mouseX, mouseY, delta);
+				super.renderButton(drawContext, mouseX, mouseY, delta);
 			}
 		}
 		
@@ -144,19 +145,19 @@ public class PageHint extends BookPage {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
 		if (revealProgress >= 0) {
 			textRender = new BookTextRenderer(parent, calculateTextToRender(rawText), 0, getTextHeight());
 		}
-		textRender.render(ms, mouseX, mouseY);
+		textRender.render(drawContext, mouseX, mouseY);
 		if (revealProgress == -1) {
-			parent.renderIngredient(ms, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
+			parent.renderIngredient(drawContext, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
 		}
 		
-		parent.drawCenteredStringNoShadow(ms, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-		GuiBook.drawSeparator(ms, book, 0, 12);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		GuiBook.drawSeparator(drawContext, book, 0, 12);
 	}
 	
 }

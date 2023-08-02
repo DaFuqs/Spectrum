@@ -41,7 +41,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 	@Override
 	public void onTakeItem(PlayerEntity player, ItemStack stack) {
 		this.onCrafted(stack);
-		DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(RecipeType.CRAFTING, this.input, player.world);
+		DefaultedList<ItemStack> defaultedList = player.getWorld().getRecipeManager().getRemainingStacks(RecipeType.CRAFTING, this.input, player.getWorld());
 		
 		for (int i = craftingGridStartIndex; i < craftingGridEndIndex + 1; ++i) {
 			ItemStack slotStack = this.input.getStack(i);
@@ -54,7 +54,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 			if (!remainingStacks.isEmpty()) {
 				if (slotStack.isEmpty()) {
 					this.input.setStack(i, remainingStacks);
-				} else if (ItemStack.areItemsEqual(slotStack, remainingStacks) && ItemStack.areNbtEqual(slotStack, remainingStacks)) {
+				} else if (ItemStack.areItemsEqual(slotStack, remainingStacks) && ItemStack.canCombine(slotStack, remainingStacks)) {
 					remainingStacks.increment(slotStack.getCount());
 					this.input.setStack(i, remainingStacks);
 				} else if (!this.player.getInventory().insertStack(remainingStacks)) {

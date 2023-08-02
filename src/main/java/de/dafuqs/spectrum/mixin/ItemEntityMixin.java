@@ -47,8 +47,8 @@ public abstract class ItemEntityMixin {
 	public void tick(CallbackInfo ci) {
 		// protect damage proof enchanted item stacks from the void by letting them float above it
 		ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
-		if (!thisItemEntity.hasNoGravity() && thisItemEntity.world.getTime() % 8 == 0) {
-			int worldMinY = thisItemEntity.world.getDimension().minY();
+		if (!thisItemEntity.hasNoGravity() && thisItemEntity.getWorld().getTime() % 8 == 0) {
+			int worldMinY = thisItemEntity.getWorld().getDimension().minY();
 			if (!thisItemEntity.isOnGround()
 					&& thisItemEntity.getPos().getY() < worldMinY + 2
 					&& EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, thisItemEntity.getStack()) > 0) {

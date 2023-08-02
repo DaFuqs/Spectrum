@@ -60,11 +60,6 @@ public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
-	}
-	
-	@Override
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);

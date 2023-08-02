@@ -165,8 +165,8 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.putBoolean("ListenerPaused", this.listenerPaused);
-		if (this.world != null) {
-			nbt.putLong("LastWorldTime", this.world.getTime());
+		if (this.getWorld() != null) {
+			nbt.putLong("LastWorldTime", this.getWorld().getTime());
 		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -212,18 +212,17 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public void triggerEvent(World world, GameEventListener listener, BlockPosEventQueue.EventEntry entry) {
-		if (listener instanceof BlockPosEventQueue && this.world != null) {
+		if (listener instanceof BlockPosEventQueue && this.getWorld() != null) {
 			BlockPos eventPos = entry.eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
 			if (eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
-				LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world))
-						.random(this.world.random)
-						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
-						.parameter(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
-						.optionalParameter(LootContextParameters.THIS_ENTITY, getOwnerIfOnline())
-						.optionalParameter(LootContextParameters.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null);
-				
+				LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
+					.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
+					.add(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
+					.addOptional(LootContextParameters.THIS_ENTITY, getOwnerIfOnline())
+					.addOptional(LootContextParameters.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.getWorld().getBlockEntity(eventPos) : null);
+
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
 				boolean anyDropsUsed = drops.size() == 0;
 				for (ItemStack drop : drops) {

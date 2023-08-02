@@ -90,8 +90,8 @@ public class InWorldInteractionHelper {
 		ItemStack remainder = stack.getItem() instanceof EntityBucketItem ? Items.BUCKET.getDefaultStack() : stack.getRecipeRemainder(); // looking at you, Mojang
 		if (!remainder.isEmpty()) {
 			remainder.setCount(amount);
-			ItemEntity remainderEntity = new ItemEntity(itemEntity.world, itemEntity.getPos().getX(), itemEntity.getPos().getY(), itemEntity.getPos().getZ(), remainder);
-			itemEntity.world.spawnEntity(remainderEntity);
+			ItemEntity remainderEntity = new ItemEntity(itemEntity.getWorld(), itemEntity.getPos().getX(), itemEntity.getPos().getY(), itemEntity.getPos().getZ(), remainder);
+			itemEntity.getWorld().spawnEntity(remainderEntity);
 		}
 		stack.decrement(amount);
 	}

@@ -83,15 +83,15 @@ public class LizardEntity extends TameableEntity {
 	}
 	
 	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
+		return this.getWorld().random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
 	}
 	
 	private LizardScaleVariant getChildScales(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getScales() : secondParent.getScales();
+		return this.getWorld().random.nextBoolean() ? firstParent.getScales() : secondParent.getScales();
 	}
 	
 	private LizardHornVariant getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
+		return this.getWorld().random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}
 	
 	@Override

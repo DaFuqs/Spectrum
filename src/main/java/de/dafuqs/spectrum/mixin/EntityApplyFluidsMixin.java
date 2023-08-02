@@ -45,7 +45,7 @@ public abstract class EntityApplyFluidsMixin {
 	
 	@ModifyArg(method = "onSwimmingStart()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), index = 0)
 	private ParticleEffect spectrum$modifySwimmingStartParticles(ParticleEffect particleEffect) {
-		Fluid fluid = ((Entity) (Object) this).world.getFluidState(((Entity) (Object) this).getBlockPos()).getFluid();
+		Fluid fluid = ((Entity) (Object) this).getWorld().getFluidState(((Entity) (Object) this).getBlockPos()).getFluid();
 		if (fluid instanceof SpectrumFluid spectrumFluid) {
 			return spectrumFluid.getSplashParticle();
 		}

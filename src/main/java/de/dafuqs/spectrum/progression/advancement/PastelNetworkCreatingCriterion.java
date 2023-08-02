@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -21,7 +20,7 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 	}
 	
 	@Override
-	public PastelNetworkCreatingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PastelNetworkCreatingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.IntRange totalNodes = NumberRange.IntRange.fromJson(jsonObject.get("total_nodes"));
 		NumberRange.IntRange connectionNodes = NumberRange.IntRange.fromJson(jsonObject.get("connection_nodes"));
 		NumberRange.IntRange providerNodes = NumberRange.IntRange.fromJson(jsonObject.get("provider_nodes"));
@@ -29,7 +28,7 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 		NumberRange.IntRange senderNodes = NumberRange.IntRange.fromJson(jsonObject.get("sender_nodes"));
 		NumberRange.IntRange gatherNodes = NumberRange.IntRange.fromJson(jsonObject.get("gather_nodes"));
 		
-		return new PastelNetworkCreatingCriterion.Conditions(extended, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
+		return new PastelNetworkCreatingCriterion.Conditions(predicate, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
 	}
 
 	public void trigger(ServerPlayerEntity player, ServerPastelNetwork network) {
@@ -46,8 +45,8 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 		private final NumberRange.IntRange senderNodes;
 		private final NumberRange.IntRange gatherNodes;
 
-		public Conditions(Extended player, NumberRange.IntRange totalNodes, NumberRange.IntRange connectionNodes, NumberRange.IntRange providerNodes, NumberRange.IntRange storageNodes, NumberRange.IntRange senderNodes, NumberRange.IntRange gatherNodes) {
-			super(PastelNetworkCreatingCriterion.ID, player);
+		public Conditions(LootContextPredicate playerPredicate, NumberRange.IntRange totalNodes, NumberRange.IntRange connectionNodes, NumberRange.IntRange providerNodes, NumberRange.IntRange storageNodes, NumberRange.IntRange senderNodes, NumberRange.IntRange gatherNodes) {
+			super(PastelNetworkCreatingCriterion.ID, playerPredicate);
 			this.totalNodes = totalNodes;
 			this.connectionNodes = connectionNodes;
 			this.providerNodes = providerNodes;

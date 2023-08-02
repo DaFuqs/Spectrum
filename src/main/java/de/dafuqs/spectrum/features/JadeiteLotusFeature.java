@@ -57,7 +57,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
     }
     
     private static boolean isReplaceable(WorldAccess world, BlockPos pos) {
-        return world.getBlockState(pos).getMaterial().isReplaceable();
+        return world.getBlockState(pos).isReplaceable();
     }
     
     private void generateStem(WorldAccess world, BlockPos origin, int stemHeight, boolean inverted) {

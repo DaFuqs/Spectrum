@@ -14,7 +14,7 @@ public class ConsumedTeaWithSconeCriterion extends AbstractCriterion<ConsumedTea
 	static final Identifier ID = SpectrumCommon.locate("consumed_tea_with_scone");
 	
 	public static Conditions create(ItemPredicate teaItemPredicate, ItemPredicate sconeItemPredicate) {
-		return new Conditions(EntityPredicate.Extended.EMPTY, teaItemPredicate, sconeItemPredicate);
+		return new Conditions(LootContextPredicate.EMPTY, teaItemPredicate, sconeItemPredicate);
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class ConsumedTeaWithSconeCriterion extends AbstractCriterion<ConsumedTea
 	}
 	
 	@Override
-	public Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer deserializer) {
+	public Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer deserializer) {
 		ItemPredicate teaItemPredicate = ItemPredicate.fromJson(jsonObject.get("tea_items"));
 		ItemPredicate sconeItemPredicate = ItemPredicate.fromJson(jsonObject.get("scone_items"));
 		return new Conditions(extended, teaItemPredicate, sconeItemPredicate);
@@ -37,7 +37,7 @@ public class ConsumedTeaWithSconeCriterion extends AbstractCriterion<ConsumedTea
 		private final ItemPredicate teaItemPredicate;
 		private final ItemPredicate sconeItemPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate teaItemPredicate, ItemPredicate sconeItemPredicate) {
+		public Conditions(LootContextPredicate player, ItemPredicate teaItemPredicate, ItemPredicate sconeItemPredicate) {
 			super(ID, player);
 			this.teaItemPredicate = teaItemPredicate;
 			this.sconeItemPredicate = sconeItemPredicate;

@@ -110,7 +110,7 @@ public abstract class LivingEntityMixin {
 							
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
+							if (thisEntity.getWorld().isClient) { // it is split here so the particles spawn immediately, without network lag
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.EIGHT, 0.4);
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, VectorPattern.EIGHT_OFFSET, 0.5);
 							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -160,7 +160,7 @@ public abstract class LivingEntityMixin {
 		if (amount > 0 && source instanceof SpectrumDamageSources.SetHealthDamageSource) {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
-			target.getDamageTracker().onDamage(source, h, amount);
+			target.getDamageTracker().onDamage(source, amount);
 			if (target.isDead()) {
 				target.onDeath(source);
 			}
@@ -202,7 +202,7 @@ public abstract class LivingEntityMixin {
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						thisEntity.world.sendEntityStatus(thisEntity, (byte) 35);
+						thisEntity.getWorld().sendEntityStatus(thisEntity, (byte) 35);
 
 						// override the previous return value
 						cir.setReturnValue(true);
@@ -214,7 +214,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (!((LivingEntity) (Object) this).world.isClient) {
+		if (!((LivingEntity) (Object) this).getWorld().isClient) {
 			if (((Object) this) instanceof MobEntity thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
@@ -294,8 +294,8 @@ public abstract class LivingEntityMixin {
 			MemoryItem.markAsBrokenPromise(memoryStack, true);
 
 			Vec3d entityPos = thisEntity.getPos();
-			ItemEntity itemEntity = new ItemEntity(thisEntity.world, entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
-			thisEntity.world.spawnEntity(itemEntity);
+			ItemEntity itemEntity = new ItemEntity(thisEntity.getWorld(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
+			thisEntity.getWorld().spawnEntity(itemEntity);
 
 			ci.cancel();
 		}
@@ -305,7 +305,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "tick", at = @At("TAIL"))
 	protected void applyInexorableEffects(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		if (entity.world != null && entity.world.getTime() % 20 == 0) {
+		if (entity.getWorld() != null && entity.getWorld().getTime() % 20 == 0) {
 			InexorableEnchantment.checkAndRemoveSlowdownModifiers(entity);
 		}
 	}

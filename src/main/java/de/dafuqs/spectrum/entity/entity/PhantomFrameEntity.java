@@ -44,18 +44,18 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 	@Override
 	public void setHeldItemStack(ItemStack value, boolean update) {
 		super.setHeldItemStack(value, update);
-		if (update && this.isAlive() && !this.world.isClient) {
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
-			world.playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
+		if (update && this.isAlive() && !this.getWorld().isClient()) {
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) this.getWorld(), getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
+			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		}
 	}
 
 	@Override
 	public boolean damage(DamageSource source, float amount) {
 		boolean success = super.damage(source, amount);
-		if (success && this.isAlive() && !this.world.isClient) {
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
-			world.playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
+		if (success && this.isAlive() && !this.getWorld().isClient()) {
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) this.getWorld(), getPos(), ParticleTypes.END_ROD, 10, new Vec3d(0, 0, 0), new Vec3d(0.1, 0.1, 0.1));
+			this.getWorld().playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		}
 		return success;
 	}

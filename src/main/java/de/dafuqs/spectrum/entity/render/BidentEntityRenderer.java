@@ -33,7 +33,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
 		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
-		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
 		
 		matrixStack.push();
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));

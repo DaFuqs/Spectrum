@@ -15,7 +15,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	static final Identifier ID = SpectrumCommon.locate("enchantment_upgraded");
 	
 	public static EnchantmentUpgradedCriterion.Conditions create(Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
-		return new EnchantmentUpgradedCriterion.Conditions(EntityPredicate.Extended.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
+		return new EnchantmentUpgradedCriterion.Conditions(LootContextPredicate.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	}
 	
 	@Override
-	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "enchantment_identifier"));
 		Enchantment enchantment = Registries.ENCHANTMENT.get(identifier);
 		NumberRange.IntRange enchantmentLevelRange = NumberRange.IntRange.fromJson(jsonObject.get("enchantment_level"));
@@ -41,7 +41,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		private final NumberRange.IntRange enchantmentLevelRange;
 		private final NumberRange.IntRange experienceRange;
 		
-		public Conditions(EntityPredicate.Extended player, Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
+		public Conditions(LootContextPredicate player, Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.enchantment = enchantment;
 			this.enchantmentLevelRange = enchantmentLevelRange;

@@ -18,7 +18,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
+	public boolean matches(RecipeInputInventory craftingInventory, World world) {
 		boolean inkStorageItemFound = false;
 		
 		for (int j = 0; j < craftingInventory.size(); ++j) {
@@ -36,7 +36,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
+	public ItemStack craft(RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();

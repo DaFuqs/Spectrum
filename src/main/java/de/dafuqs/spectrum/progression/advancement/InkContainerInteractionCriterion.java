@@ -16,7 +16,7 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 	static final Identifier ID = SpectrumCommon.locate("ink_container_interaction");
 	
 	public static InkContainerInteractionCriterion.Conditions create(ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
-		return new InkContainerInteractionCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
+		return new InkContainerInteractionCriterion.Conditions(LootContextPredicate.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 	}
 	
 	@Override
-	public InkContainerInteractionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public InkContainerInteractionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		LongRange blackRange = LongRange.fromJson(jsonObject.get("black"));
 		LongRange blueRange = LongRange.fromJson(jsonObject.get("blue"));
 		LongRange brownRange = LongRange.fromJson(jsonObject.get("brown"));
@@ -96,7 +96,7 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 		private final ColorPredicate changeColor;
 		private final LongRange changeRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate itemPredicate, LongRange blackRange, LongRange blueRange, LongRange brownRange, LongRange cyanRange, LongRange grayRange, LongRange greenRange, LongRange lightBlueRange, LongRange lightGrayRange, LongRange limeRange, LongRange magentaRange, LongRange orangeRange, LongRange pinkRange, LongRange purpleRange, LongRange redRange, LongRange whiteRange, LongRange yellowRange, ColorPredicate changeColor, LongRange changeRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			

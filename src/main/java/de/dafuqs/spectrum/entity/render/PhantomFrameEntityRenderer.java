@@ -77,7 +77,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				matrixStack.scale(scale, scale, scale);
 				matrixStack.translate(-64.0D, -64.0D, 0.0D);
 				Integer mapId = FilledMapItem.getMapId(itemStack);
-				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.world);
+				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.getWorld());
 				matrixStack.translate(0.0D, 0.0D, -1.0D);
 				if (mapState != null) {
 					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, mapId, mapState, true, renderLight);
@@ -85,7 +85,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			} else {
 				float scale = 0.75F;
 				matrixStack.scale(scale, scale, scale);
-				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, renderLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.world, itemFrameEntity.getId());
+				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, renderLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getWorld(), itemFrameEntity.getId());
 			}
 		}
 

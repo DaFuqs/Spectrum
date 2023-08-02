@@ -30,7 +30,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	
 	private BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, Inventory filterInventory) {
 		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, new SimpleInventory(BlackHoleChestBlockEntity.INVENTORY_SIZE), filterInventory);
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
 			this.blackHoleChestBlockEntity = blackHoleChestBlockEntity;
 		}
@@ -45,7 +45,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	protected BlackHoleChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, Inventory filterInventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.filterInventory = filterInventory;
 
 		checkSize(inventory, BlackHoleChestBlockEntity.INVENTORY_SIZE);

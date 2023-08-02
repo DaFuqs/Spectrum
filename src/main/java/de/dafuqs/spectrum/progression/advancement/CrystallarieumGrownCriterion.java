@@ -17,7 +17,7 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 	static final Identifier ID = SpectrumCommon.locate("crystallarieum_growing");
 	
 	public static CrystallarieumGrownCriterion.Conditions create(ItemPredicate item, BlockPredicate blockPredicate) {
-		return new CrystallarieumGrownCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, blockPredicate);
+		return new CrystallarieumGrownCriterion.Conditions(LootContextPredicate.EMPTY, item, blockPredicate);
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 	}
 	
 	@Override
-	public CrystallarieumGrownCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public CrystallarieumGrownCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		BlockPredicate grownBlockPredicate = BlockPredicate.fromJson(jsonObject.get("grown_block"));
 		ItemPredicate catalystPredicate = ItemPredicate.fromJson(jsonObject.get("used_catalyst"));
 		return new CrystallarieumGrownCriterion.Conditions(extended, catalystPredicate, grownBlockPredicate);
@@ -40,7 +40,7 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 		private final ItemPredicate catalystPredicate;
 		private final BlockPredicate blockPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate catalystPredicate, BlockPredicate blockPredicate) {
+		public Conditions(LootContextPredicate player, ItemPredicate catalystPredicate, BlockPredicate blockPredicate) {
 			super(ID, player);
 			this.catalystPredicate = catalystPredicate;
 			this.blockPredicate = blockPredicate;

@@ -47,7 +47,7 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction targetDirection = state.get(FACING).getOpposite();
-		return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
+		return world.getBlockState(pos.offset(targetDirection)).isSolid();
 	}
 	
 	@Override

@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.widget.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.network.*;
 import net.minecraft.text.*;
@@ -52,42 +52,40 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
 		int titleY = 6;
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 83;
-		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
+
+		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderTexture(0, BACKGROUND);
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
-		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-		
+		drawContext.drawTexture(BACKGROUND, x, y, 0 ,0, backgroundWidth, backgroundHeight);
+
 		// the selected crafting mode
-		drawTexture(matrices, x + 154, y + 6, 176, 16 * autoCraftingMode.ordinal(), 16, 16);
-		
+		drawContext.drawTexture(BACKGROUND, x + 154, y + 6, 176, 16 * autoCraftingMode.ordinal(), 16, 16);
+
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
 		
 		if (mouseX > x + 153 && mouseX < x + 153 + 16 && mouseY > y + 5 && mouseY < y + 5 + 16) {
-			this.renderTooltip(matrices, Text.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
+			drawContext.drawTooltip(this.textRenderer, Text.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
 		} else {
-			drawMouseoverTooltip(matrices, mouseX, mouseY);
+			drawMouseoverTooltip(drawContext, mouseX, mouseY);
 		}
 	}
 	

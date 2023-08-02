@@ -24,7 +24,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		World world = entity.getWorld();
 		if (world.isClient) {
-			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.EIGHT, 0.2);
+			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.getWorld(), entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.EIGHT, 0.2);
 		}
 		if (entity instanceof PlayerEntity player) {
 			if (!world.isClient) {
@@ -59,7 +59,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 				if (instance != null && !instance.isAmbient()) {
 					SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
 				}
-			} else if (entity.world.isClient) {
+			} else if (entity.getWorld().isClient) {
 				FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
 			}
 		}
@@ -68,7 +68,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		if (entity instanceof PlayerEntity && entity.world.isClient) {
+		if (entity instanceof PlayerEntity && entity.getWorld().isClient) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
 		}
 	}

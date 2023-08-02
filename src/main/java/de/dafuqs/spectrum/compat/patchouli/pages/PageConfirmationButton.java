@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.networking.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
 import net.minecraft.client.util.math.*;
@@ -69,12 +70,12 @@ public class PageConfirmationButton extends PageWithText {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
-		parent.drawCenteredStringNoShadow(ms, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-		GuiBook.drawSeparator(ms, book, 0, 12);
-		GuiBook.drawSeparator(ms, book, 0, GuiBook.PAGE_HEIGHT - 44);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		GuiBook.drawSeparator(drawContext, book, 0, 12);
+		GuiBook.drawSeparator(drawContext, book, 0, GuiBook.PAGE_HEIGHT - 44);
 	}
 	
 }

@@ -19,7 +19,7 @@ public abstract class LightningEntityMixin {
 	
 	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidation(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
 	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
-		World world = ((LightningEntity) (Object) this).world;
+		World world = ((LightningEntity) (Object) this).getWorld();
 		
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering

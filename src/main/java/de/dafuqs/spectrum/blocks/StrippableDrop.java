@@ -37,14 +37,14 @@ public interface StrippableDrop {
 	}
 	
 	static List<ItemStack> getStrippedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
-		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
-				.parameter(LootContextParameters.BLOCK_STATE, state)
-				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-				.parameter(LootContextParameters.TOOL, stack)
-				.optionalParameter(LootContextParameters.THIS_ENTITY, entity)
-				.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
+		var builder = (new LootContextParameterSet.Builder(world))
+				.add(LootContextParameters.BLOCK_STATE, state)
+				.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+				.add(LootContextParameters.TOOL, stack)
+				.addOptional(LootContextParameters.THIS_ENTITY, entity)
+				.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
 		
-		LootTable lootTable = world.getServer().getLootManager().getTable(lootTableIdentifier);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(lootTableIdentifier);
 		return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));
 	}
 	

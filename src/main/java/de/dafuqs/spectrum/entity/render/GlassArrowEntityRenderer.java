@@ -32,7 +32,7 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
     }
 
     private void renderAsItemStack(PersistentProjectileEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-        BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
+        BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
         boolean hasDepth = bakedModel.hasDepth();
     
         matrixStack.push();

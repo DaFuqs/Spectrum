@@ -17,7 +17,7 @@ public class NourishingStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if (!entity.world.isClient && entity instanceof PlayerEntity playerEntity) {
+		if (!entity.getWorld().isClient && entity instanceof PlayerEntity playerEntity) {
 			playerEntity.getHungerManager().add(1, 0.25F);
 		}
 	}

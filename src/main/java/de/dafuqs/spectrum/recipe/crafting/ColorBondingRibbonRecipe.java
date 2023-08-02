@@ -21,7 +21,7 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
+	public boolean matches(RecipeInputInventory craftingInventory, World world) {
 		boolean ribbonFound = false;
 		boolean pigmentFound = false;
 		
@@ -53,7 +53,7 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
+	public ItemStack craft(RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack ribbon = null;
 		PigmentItem pigment = null;
 		

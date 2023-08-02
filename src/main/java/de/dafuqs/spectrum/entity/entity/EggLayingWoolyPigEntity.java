@@ -54,21 +54,21 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack handStack = player.getStackInHand(hand);
-		
+
 		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getColor()) {
-			world.playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			if (!world.isClient) {
+			this.getWorld().playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			if (!this.getWorld().isClient) {
 				setColor(dyeItem.getColor());
 				handStack.decrement(1);
 			}
-			return ActionResult.success(player.world.isClient);
+			return ActionResult.success(player.getWorld().isClient);
 		} else if (handStack.isOf(Items.BUCKET) && !this.isBaby()) {
 			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
 			ItemStack itemStack2 = ItemUsage.exchangeStack(handStack, player, Items.MILK_BUCKET.getDefaultStack());
 			player.setStackInHand(hand, itemStack2);
-			return ActionResult.success(this.world.isClient);
+			return ActionResult.success(this.getWorld().isClient());
 		} else if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-			if (!this.world.isClient && this.isShearable()) {
+			if (!this.getWorld().isClient() && this.isShearable()) {
 				this.sheared(SoundCategory.PLAYERS);
 				this.emitGameEvent(GameEvent.SHEAR, player);
 				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
@@ -123,11 +123,11 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	@Override
 	public void tickMovement() {
-		if (this.world.isClient) {
+		if (this.getWorld().isClient()) {
 			this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
 		}
 		
-		if (!this.world.isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
+		if (!this.getWorld().isClient() && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
 			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.dropItem(Items.EGG);
 			this.eggLayTime = this.random.nextInt(6000) + 6000;
@@ -231,7 +231,8 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	@Override
 	public void sheared(SoundCategory shearedSoundCategory) {
-		this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
+		var world = this.getWorld();
+		world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
 		this.setSheared(true);
 		
 		for (ItemStack droppedStack : getShearedStacks((ServerWorld) world)) {
@@ -243,11 +244,11 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	public List<ItemStack> getShearedStacks(ServerWorld world) {
-		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
-				.parameter(LootContextParameters.THIS_ENTITY, this)
-				.parameter(LootContextParameters.ORIGIN, this.getPos());
+		var builder = (new LootContextParameterSet.Builder(world))
+				.add(LootContextParameters.THIS_ENTITY, this)
+				.add(LootContextParameters.ORIGIN, this.getPos());
 		
-		LootTable lootTable = world.getServer().getLootManager().getTable(SHEARING_LOOT_TABLE_ID);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(SHEARING_LOOT_TABLE_ID);
 		return lootTable.generateLoot(builder.build(LootContextTypes.GIFT));
 	}
 	
@@ -301,15 +302,16 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	}
 	
 	private DyeColor getChildColor(AnimalEntity firstParent, AnimalEntity secondParent) {
+		World world = this.getWorld();
 		DyeColor dyeColor = ((EggLayingWoolyPigEntity) firstParent).getColor();
 		DyeColor dyeColor2 = ((EggLayingWoolyPigEntity) secondParent).getColor();
 		CraftingInventory craftingInventory = createDyeMixingCraftingInventory(dyeColor, dyeColor2);
-		Optional<Item> optionalItem = this.world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, this.world).map((recipe) -> recipe.craft(craftingInventory, this.world.getRegistryManager())).map(ItemStack::getItem);
+		Optional<Item> optionalItem = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world).map((recipe) -> recipe.craft(craftingInventory, world.getRegistryManager())).map(ItemStack::getItem);
 		
 		if (optionalItem.isPresent() && optionalItem.get() instanceof DyeItem dyeItem) {
 			return dyeItem.getColor();
 		}
-		return this.world.random.nextBoolean() ? dyeColor : dyeColor2;
+		return world.random.nextBoolean() ? dyeColor : dyeColor2;
 	}
 	
 	private static CraftingInventory createDyeMixingCraftingInventory(DyeColor firstColor, DyeColor secondColor) {

@@ -3,10 +3,11 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.inventories.widgets.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -33,60 +34,59 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 		int titleY = 6;
 		Text title = this.title;
 		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, 3289650);
+		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderTexture(0, BACKGROUND);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
 		// main background
-		drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.drawTexture(BACKGROUND, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 		
-		this.inkMeterWidget.draw(matrices);
+		this.inkMeterWidget.draw(drawContext);
 		
 		int craftingTime = this.handler.getCraftingTime();
 		int craftingTimeTotal = this.handler.getCraftingTimeTotal();
 		
 		if (this.handler.getBlockEntity().getEnergyStorage().getEnergy(InkColors.ORANGE) > 0) {
-			this.drawTexture(matrices, this.x + 14, this.y + 62, 176, 14, 15, 2);
+			drawContext.drawTexture(BACKGROUND, this.x + 14, this.y + 62, 176, 14, 15, 2);
 		}
 		
 		if (craftingTimeTotal > 0) {
 			// the fire
-			this.drawTexture(matrices, this.x + 15, this.y + 48, 176, 0, 14, 14);
+			drawContext.drawTexture(BACKGROUND, this.x + 15, this.y + 48, 176, 0, 14, 14);
 			
 			// the arrow
-			this.drawTexture(matrices, this.x + 35, this.y + 32, 176, 16, (craftingTime * 22) / craftingTimeTotal, 16);
+			drawContext.drawTexture(BACKGROUND, this.x + 35, this.y + 32, 176, 16, (craftingTime * 22) / craftingTimeTotal, 16);
 		}
 		
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
+		drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
 	@Override
-	protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
+	protected void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
 		if (this.inkMeterWidget.isMouseOver(x, y)) {
-			this.inkMeterWidget.drawMouseoverTooltip(matrices, x, y);
+			this.inkMeterWidget.drawMouseoverTooltip(drawContext, x, y);
 		} else {
-			super.drawMouseoverTooltip(matrices, x, y);
+			super.drawMouseoverTooltip(drawContext, x, y);
 		}
 	}
 	

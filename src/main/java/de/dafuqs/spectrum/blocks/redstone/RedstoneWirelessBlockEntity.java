@@ -36,7 +36,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		if (isSender(world, pos)) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;
-				blockEntity.world.emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
+				blockEntity.getWorld().emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
 			}
 		} else {
 			blockEntity.listener.tick(world);
@@ -76,13 +76,13 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
 		return !this.isRemoved()
 				&& message.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent
-				&& !isSender(this.world, this.pos)
-				&& redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
+				&& !isSender(this.getWorld(), this.pos)
+				&& redstoneTransferGameEvent.getDyeColor() == getChannel(this.getWorld(), this.pos);
 	}
 	
 	@Override
 	public void triggerEvent(World world, GameEventListener listener, WirelessRedstoneSignalEventQueue.EventEntry redstoneEvent) {
-		if (!isSender(this.world, this.pos) && redstoneEvent.gameEvent.getDyeColor() == getChannel(this.world, this.pos)) {
+		if (!isSender(this.getWorld(), this.pos) && redstoneEvent.gameEvent.getDyeColor() == getChannel(this.getWorld(), this.pos)) {
 			int receivedSignal = redstoneEvent.gameEvent.getPower();
 			this.currentSignal = receivedSignal;
 			// trigger a block update in all cases, even when powered does not change. That way connected blocks
@@ -101,7 +101,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	// multiple times a tick (because neighboring redstone updates > 1/tick)
 	// and therefore receivers receiving a wrong (because old) signal
 	public void setSignalStrength(int newSignal) {
-		if (isSender(this.world, this.pos)) {
+		if (isSender(this.getWorld(), this.pos)) {
 			this.cachedSignal = newSignal;
 		} else {
 			this.currentSignal = newSignal;
@@ -109,7 +109,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	}
 	
 	public int getCurrentSignal() {
-		if (isSender(this.world, this.pos)) {
+		if (isSender(this.getWorld(), this.pos)) {
 			return 0;
 		}
 		return this.currentSignal;

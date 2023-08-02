@@ -39,8 +39,8 @@ public class FerociousGlassAmpouleItem extends BaseGlassAmpouleItem {
 		if (target == null) {
 			return false;
 		}
-		if (!attacker.world.isClient) {
-			LightSpearEntity.summonBarrage(attacker.world, attacker, target);
+		if (!attacker.getWorld().isClient) {
+			LightSpearEntity.summonBarrage(attacker.getWorld(), attacker, target);
 		}
 		return true;
 	}

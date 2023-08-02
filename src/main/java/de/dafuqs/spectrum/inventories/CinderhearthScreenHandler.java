@@ -40,9 +40,9 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, PropertyDelegate propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.propertyDelegate = propertyDelegate;
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 			this.blockEntity = cinderhearthBlockEntity;
 		} else {

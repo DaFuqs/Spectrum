@@ -31,7 +31,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 	}
 	
 	@Override
-	public NaturesStaffUseCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public NaturesStaffUseCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Block sourceBlock = getBlock(jsonObject, "source_block");
 		StatePredicate sourceStatePredicate = StatePredicate.fromJson(jsonObject.get("source_state"));
 		
@@ -65,7 +65,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 		private final Block targetBlock;
 		private final StatePredicate targetBlockState;
 		
-		public Conditions(EntityPredicate.Extended player, Block sourceBlock, StatePredicate sourceBlockState, Block targetBlock, StatePredicate targetBlockState) {
+		public Conditions(LootContextPredicate player, Block sourceBlock, StatePredicate sourceBlockState, Block targetBlock, StatePredicate targetBlockState) {
 			super(ID, player);
 			this.sourceBlock = sourceBlock;
 			this.sourceBlockState = sourceBlockState;

@@ -100,7 +100,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
-		((ServerWorld) pedestalBlockEntity.world).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
+		((ServerWorld) pedestalBlockEntity.getWorld()).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
@@ -218,7 +218,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		if (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1) {
-			SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
+			SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
 		}
 		
 		// try to output the currently stored output stack
@@ -289,7 +289,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	public static void playCraftingFinishedSoundEvent(PedestalBlockEntity pedestalBlockEntity, Recipe<?> craftingRecipe) {
 		if (craftingRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
-			pedestalBlockEntity.playSound(pedestalCraftingRecipe.getSoundEvent(pedestalBlockEntity.world.random));
+			pedestalBlockEntity.playSound(pedestalCraftingRecipe.getSoundEvent(pedestalBlockEntity.getWorld().random));
 		} else {
 			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC);
 		}
@@ -373,7 +373,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// => Upgrade
 				pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 				PedestalBlock.upgradeToVariant(pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos(), newPedestalVariant);
-				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
+				SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.getWorld(), pedestalBlockEntity.pos, newPedestalVariant);
 				
 				pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 				pedestalBlockEntity.currentRecipe = null; // reset the recipe, otherwise pedestal would remember crafting the update
@@ -505,7 +505,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	@Override
 	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
+		if (this.getWorld().getBlockEntity(this.pos) != this) {
 			return false;
 		} else {
 			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
@@ -564,7 +564,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			Identifier recipeIdentifier = new Identifier(nbt.getString("CurrentRecipe"));
-			this.currentRecipe = MultiblockCrafter.getRecipeFromId(this.world, recipeIdentifier);
+			this.currentRecipe = MultiblockCrafter.getRecipeFromId(this.getWorld(), recipeIdentifier);
 		}
 	}
 	
@@ -610,7 +610,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			ItemStack recipeOutput = recipe.craft(autoCraftingInventory, null);
 			PlayerEntity player = getOwnerIfOnline();
 			if (player != null) { // some recipes may assume the player is never null (since this is the case in vanilla)
-				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
+				recipeOutput.onCraft(this.getWorld(), player, recipeOutput.getCount());
 			}
 			
 			// -1 for all crafting inputs
@@ -705,7 +705,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				return false;
 			}
 
-			Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(this.world, craftingTabletItem);
+			Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(this.getWorld(), craftingTabletItem);
 			
 			int width = 3;
 			if (storedRecipe instanceof ShapedRecipe shapedRecipe) {
@@ -785,7 +785,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public PedestalRecipeTier getHighestAvailableRecipeTierWithStructure() {
-		if (this.world.getTime() == this.cachedMaxPedestalTierTick) {
+		if (this.getWorld().getTime() == this.cachedMaxPedestalTierTick) {
 			return cachedMaxPedestalTier;
 		} else {
 			PedestalRecipeTier highestAvailableRecipeTierForVariant = getHighestAvailableRecipeTierForVariant();

@@ -62,7 +62,7 @@ public class BlackMateriaBlock extends FallingBlock {
 	@Override
     public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
 		BlockState state = world.getBlockState(pos);
-		if (!state.getMaterial().isSolid() && state.getMaterial().getPistonBehavior() == PistonBehavior.DESTROY) {
+		if (!state.isSolid() && state.getPistonBehavior() == PistonBehavior.DESTROY) {
 			world.breakBlock(pos, true, fallingBlockEntity, 4);
 		}
 		super.onDestroyedOnLanding(world, pos, fallingBlockEntity);

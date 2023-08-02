@@ -364,7 +364,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		
 		cinderhearthBlockEntity.structure = CinderhearthBlock.verifyStructure(world, blockPos, null);
 		if (cinderhearthBlockEntity.structure == CinderHearthStructureType.NONE) {
-			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F);
+			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.getWorld().random.nextFloat() * 0.2F);
 			return false;
 		}
 
@@ -465,7 +465,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		for (Map.Entry<UpgradeType, Integer> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
 			if (entry.getValue() > 1) {
 				if (axis == null) {
-					BlockState state = cinderhearthBlockEntity.world.getBlockState(cinderhearthBlockEntity.pos);
+					BlockState state = cinderhearthBlockEntity.getWorld().getBlockState(cinderhearthBlockEntity.pos);
 					direction = state.get(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
@@ -477,7 +477,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				double h2 = 4D / 16D;
 				double i2 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g2 : h2;
 				double k2 = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g2 : h2;
-				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) cinderhearthBlockEntity.world,
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) cinderhearthBlockEntity.getWorld(),
 						new Vec3d(d + i2, cinderhearthBlockEntity.pos.getY() + 1.1, f + k2),
 						ParticleTypes.CAMPFIRE_COSY_SMOKE,
 						3,
@@ -527,7 +527,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
+		if (this.getWorld().getBlockEntity(this.pos) != this) {
 			return false;
 		} else {
 			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;

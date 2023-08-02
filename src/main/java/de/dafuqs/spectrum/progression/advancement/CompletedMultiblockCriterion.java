@@ -13,7 +13,7 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 	static final Identifier ID = SpectrumCommon.locate("completed_multiblock");
 	
 	public static CompletedMultiblockCriterion.Conditions create(Identifier id) {
-		return new CompletedMultiblockCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);
+		return new CompletedMultiblockCriterion.Conditions(LootContextPredicate.EMPTY, id);
 	}
 	
 	@Override
@@ -22,7 +22,7 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 	}
 	
 	@Override
-	public CompletedMultiblockCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public CompletedMultiblockCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "multiblock_identifier"));
 		return new CompletedMultiblockCriterion.Conditions(extended, identifier);
 	}
@@ -34,7 +34,7 @@ public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMul
 	public static class Conditions extends AbstractCriterionConditions {
 		private final Identifier identifier;
 		
-		public Conditions(EntityPredicate.Extended player, Identifier identifier) {
+		public Conditions(LootContextPredicate player, Identifier identifier) {
 			super(ID, player);
 			this.identifier = identifier;
 		}

@@ -80,15 +80,16 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	
 	@Override
 	public boolean handleFallDamage(float distance, float damageMultiplier, DamageSource damageSource) {
+		World world = this.getWorld();
 		if (!world.isClient) {
 			int traveledDistance = MathHelper.ceil(distance - 1.0F);
 			if (traveledDistance > 0) {
 				int damage = (int) Math.min(MathHelper.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
 				if (damage > 0) {
 					// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
-					List<Entity> list = Lists.newArrayList(this.world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
+					List<Entity> list = Lists.newArrayList(world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
 					for (Entity entity : list) {
-						entity.damage(SpectrumDamageSources.floatblock(entity.world), damage);
+						entity.damage(SpectrumDamageSources.floatblock(entity.getWorld()), damage);
 					}
 				}
 			}
@@ -104,7 +105,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if (player.isSneaking()) {
-			if (this.world.isClient) {
+			if (this.getWorld().isClient()) {
 				return ActionResult.SUCCESS;
 			} else {
 				Item item = this.blockState.getBlock().asItem();
@@ -137,13 +138,14 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	@Override
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
+		World world = this.getWorld();
 		if (isPaltaeriaStratineCollision(entity)) {
 			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, World.ExplosionSourceType.NONE);
 			this.discard();
 			entity.discard();
 			
 			ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultStack();
-			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), collisionStack);
+			ItemEntity itemEntity = new ItemEntity(world, this.getX(), this.getY(), this.getZ(), collisionStack);
 			itemEntity.addVelocity(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
 			world.spawnEntity(itemEntity);
 		}

@@ -15,7 +15,7 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 	static final Identifier ID = SpectrumCommon.locate("enchanter_crafting");
 	
 	public static EnchanterCraftingCriterion.Conditions create(ItemPredicate item, NumberRange.IntRange experienceRange) {
-		return new EnchanterCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+		return new EnchanterCraftingCriterion.Conditions(LootContextPredicate.EMPTY, item, experienceRange);
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 	}
 	
 	@Override
-	public EnchanterCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public EnchanterCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("spent_experience"));
 		return new EnchanterCraftingCriterion.Conditions(extended, itemPredicate, experienceRange);
@@ -38,7 +38,7 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 		private final ItemPredicate itemPredicate;
 		private final NumberRange.IntRange experienceRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, NumberRange.IntRange experienceRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate itemPredicate, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			this.experienceRange = experienceRange;

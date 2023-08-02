@@ -112,7 +112,7 @@ public class LightMineEntity extends LightShardBaseEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.world.isClient && this.age % 4 == 0) {
+        if (this.getWorld().isClient() && this.age % 4 == 0) {
             this.spawnParticles();
         }
     }
@@ -123,7 +123,7 @@ public class LightMineEntity extends LightShardBaseEntity {
             double d = (double) (color >> 16 & 255) / 255.0;
             double e = (double) (color >> 8 & 255) / 255.0;
             double f = (double) (color & 255) / 255.0;
-            this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+            this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
         }
     }
     

@@ -72,7 +72,7 @@ public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEnt
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		World world = user.world;
+		World world = user.getWorld();
 		Vec3d pos = entity.getPos();
 		
 		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
@@ -118,9 +118,9 @@ public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEnt
 		MemoryItem.setSpawnAsAdult(memoryStack, true);
 		
 		Vec3d entityPos = entity.getPos();
-		ItemEntity itemEntity = new ItemEntity(entity.world, entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
+		ItemEntity itemEntity = new ItemEntity(entity.getWorld(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
 		itemEntity.setVelocity(new Vec3d(0.0, 0.15, 0.0));
-		entity.world.spawnEntity(itemEntity);
+		entity.getWorld().spawnEntity(itemEntity);
 		entity.remove(Entity.RemovalReason.DISCARDED);
 		
 		return true;

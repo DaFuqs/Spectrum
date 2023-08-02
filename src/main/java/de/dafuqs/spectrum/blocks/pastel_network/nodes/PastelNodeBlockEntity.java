@@ -78,11 +78,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     public boolean canTransfer() {
-        long time = this.world.getTime();
+        long time = this.getWorld().getTime();
         if (time > this.cachedRedstonePowerTick) {
             this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
         }
-        return this.world.getTime() > lastTransferTick && this.cachedNoRedstonePower;
+        return this.getWorld().getTime() > lastTransferTick && this.cachedNoRedstonePower;
     }
 
     public void markTransferred() {
@@ -95,7 +95,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         super.readNbt(nbt);
         if (nbt.contains("Network")) {
             UUID networkUUID = nbt.getUuid("Network");
-            if (this.world == null) {
+            if (this.getWorld() == null) {
                 this.networkUUIDToMerge = networkUUID;
             } else {
                 this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
@@ -138,7 +138,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     @Override
     public void markRemoved() {
         super.markRemoved();
-        if (this.network != null && this.world != null) {
+        if (this.network != null && this.getWorld() != null) {
             this.network.removeNode(this, NodeRemovalReason.UNLOADED);
             this.network = null;
         }
@@ -168,7 +168,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     public void setNetwork(PastelNetwork network) {
         this.network = network;
-        if (this.world != null && !this.world.isClient) {
+        if (this.getWorld() != null && !this.getWorld().isClient()) {
             updateInClientWorld();
             this.markDirty();
         }

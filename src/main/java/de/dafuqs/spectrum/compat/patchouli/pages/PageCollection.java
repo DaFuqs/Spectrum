@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.*;
 import net.minecraft.command.*;
 import net.minecraft.command.argument.*;
@@ -43,13 +44,13 @@ public class PageCollection extends PageWithText {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
 		boolean hasTitle = title != null && !title.isEmpty();
 		if (hasTitle) {
-			parent.drawCenteredStringNoShadow(ms, i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-			GuiBook.drawSeparator(ms, book, 0, 12);
+			parent.drawCenteredStringNoShadow(drawContext, i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+			GuiBook.drawSeparator(drawContext, book, 0, 12);
 		}
 		
 		int startY = hasTitle ? 18 : 0;
@@ -67,14 +68,14 @@ public class PageCollection extends PageWithText {
 			if (row == firstNonFullRowIndex) {
 				startX += unusedEntriesInLastRow * 9;
 			}
-			parent.renderItemStack(ms, startX, startY + row * 18, mouseX, mouseY, stack);
+			parent.renderItemStack(drawContext, startX, startY + row * 18, mouseX, mouseY, stack);
 		}
 		
 		if (!text.asString().isEmpty()) {
-			GuiBook.drawSeparator(ms, book, 0, startY + 20 + row * 18);
+			GuiBook.drawSeparator(drawContext, book, 0, startY + 20 + row * 18);
 		}
 		
-		super.render(ms, mouseX, mouseY, pticks);
+		super.render(drawContext, mouseX, mouseY, pticks);
 	}
 	
 	@Override

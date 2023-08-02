@@ -228,8 +228,8 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 					if (itemEntity != null) {
 						itemEntity.setDespawnImmediately();
 					}
-					
-					playerEntity.world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+
+					playerEntity.getWorld().playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 					playerEntity.currentScreenHandler.sendContentUpdates();
 				} else {
 					itemEntity = playerEntity.dropItem(itemStack, false);

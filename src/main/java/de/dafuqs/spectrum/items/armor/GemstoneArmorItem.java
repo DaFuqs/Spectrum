@@ -25,8 +25,8 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		// While mostly useful against mobs, being able to trigger this effect for all kinds of damage
 		// like fall damage seems like an awesome mechanic
 		process(type, source, targetEntity);
-		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		targetEntity.getWorld().playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		targetEntity.getWorld().playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		
 		itemStack.damage(2, targetEntity, (e) -> e.sendEquipmentBreakStatus(type.getEquipmentSlot()));
 	}

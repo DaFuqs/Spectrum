@@ -24,13 +24,13 @@ public class EverpromiseRibbonItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if (!GenericClaimModsCompat.canInteractWith(user.world, entity, user)) {
+		if (!GenericClaimModsCompat.canInteractWith(user.getWorld(), entity, user)) {
 			return ActionResult.FAIL;
 		}
 		
 		if (stack.hasCustomName() && !(entity instanceof PlayerEntity)) {
 			if (entity.isAlive()) {
-				if (user.world.isClient) {
+				if (user.getWorld().isClient) {
 					World world = entity.getWorld();
 					Random random = world.random;
 					for (int i = 0; i < 7; ++i) {
@@ -54,7 +54,7 @@ public class EverpromiseRibbonItem extends Item {
 				stack.decrement(1);
 			}
 			
-			return ActionResult.success(user.world.isClient);
+			return ActionResult.success(user.getWorld().isClient);
 		} else {
 			return ActionResult.PASS;
 		}

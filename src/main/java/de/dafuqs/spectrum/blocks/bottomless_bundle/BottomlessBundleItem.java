@@ -355,7 +355,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	@Override
 	public void onItemEntityDestroyed(ItemEntity entity) {
-		World world = entity.world;
+		World world = entity.getWorld();
 		if (!world.isClient) {
 			ItemStack voidBundleItemStack = entity.getStack();
 			int currentAmount = getStoredAmount(voidBundleItemStack);

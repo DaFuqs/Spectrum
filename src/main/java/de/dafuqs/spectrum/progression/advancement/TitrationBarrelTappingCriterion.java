@@ -18,7 +18,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 	static final Identifier ID = SpectrumCommon.locate("titration_barrel_tapping");
 	
 	public static TitrationBarrelTappingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange ingameDaysAgeRange, NumberRange.IntRange ingredientCountRange) {
-		return new TitrationBarrelTappingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, ingameDaysAgeRange, ingredientCountRange);
+		return new TitrationBarrelTappingCriterion.Conditions(LootContextPredicate.EMPTY, item, ingameDaysAgeRange, ingredientCountRange);
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 	}
 	
 	@Override
-	public TitrationBarrelTappingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public TitrationBarrelTappingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] tappedItemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange ingameDaysAgeRange = NumberRange.IntRange.fromJson(jsonObject.get("age_ingame_days"));
 		NumberRange.IntRange ingredientCountRange = NumberRange.IntRange.fromJson(jsonObject.get("ingredient_count"));
@@ -43,7 +43,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 		private final NumberRange.IntRange ingameDaysAgeRange;
 		private final NumberRange.IntRange ingredientCountRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] tappedItemPredicates, NumberRange.IntRange ingameDaysAgeRange, NumberRange.IntRange ingredientCountRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate[] tappedItemPredicates, NumberRange.IntRange ingameDaysAgeRange, NumberRange.IntRange ingredientCountRange) {
 			super(ID, player);
 			this.tappedItemPredicates = tappedItemPredicates;
 			this.ingameDaysAgeRange = ingameDaysAgeRange;

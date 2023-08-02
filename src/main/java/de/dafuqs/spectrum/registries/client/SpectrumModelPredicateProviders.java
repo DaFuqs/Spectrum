@@ -183,7 +183,7 @@ public class SpectrumModelPredicateProviders {
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				if (clientWorld == null && entity.world instanceof ClientWorld clientWorld1) {
+				if (clientWorld == null && entity.getWorld() instanceof ClientWorld clientWorld1) {
 					clientWorld = clientWorld1;
 				}
 				
@@ -278,7 +278,7 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerAshenCircletPredicates(Item ashenCircletItem) {
 		ModelPredicateProviderRegistry.register(ashenCircletItem, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
-			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.world) == 0) {
+			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.getWorld()) == 0) {
 				return 0.0F;
 			} else {
 				return 1.0F;

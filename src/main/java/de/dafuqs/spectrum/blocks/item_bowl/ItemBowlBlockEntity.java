@@ -124,14 +124,14 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 			if (optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				
-				if (this.world instanceof ServerWorld serverWorld) {
+				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
 							new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
 					SpectrumS2CPacketSender.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, optionalItemColor.get()));
-				} else if (this.world instanceof ClientWorld clientWorld) {
+				} else if (this.getWorld() instanceof ClientWorld clientWorld) {
 					for (int i = 0; i < 50; i++) {
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
 						float randomOffsetY = pos.getY() + 0.3F + world.random.nextFloat() * 0.6F;
@@ -149,7 +149,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, (orbTargetPos.getX() - this.pos.getX()) * 0.045, 0, (orbTargetPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				
-				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + this.world.random.nextFloat() * 0.6F);
+				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + this.getWorld().random.nextFloat() * 0.6F);
 			}
 		}
 	}

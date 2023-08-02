@@ -85,20 +85,24 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	public void checkLootInteraction(@Nullable PlayerEntity player) {
 		var world = this.getWorld();
 		if (world != null && this.lootTableId != null && world.getServer() != null) {
-			LootTable lootTable = world.getServer().getLootManager().getTable(this.lootTableId);
+			LootTable lootTable = world.getServer().getLootManager().getLootTable(this.lootTableId);
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger(serverPlayerEntity, this.lootTableId);
 			}
 			
 			this.lootTableId = null;
-			LootContext.Builder builder = new LootContext.Builder((ServerWorld) world)
-					.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos))
-					.random(this.lootTableSeed);
+			var builder = new LootContextParameterSet.Builder((ServerWorld) world)
+					.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos));
 			if (player != null) {
-				builder.luck(player.getLuck()).parameter(LootContextParameters.THIS_ENTITY, player);
+				builder.luck(player.getLuck()).add(LootContextParameters.THIS_ENTITY, player);
 			}
-			
-			lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST));
+
+			if (lootTableSeed != 0) {
+				lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST), lootTableSeed);
+			} else {
+				lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST), this.getWorld().getRandom().nextLong());
+			}
+
 			this.markDirty();
 		}
 	}

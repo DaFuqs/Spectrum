@@ -43,7 +43,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			return;
 		}
 		
-		int randomIndex = entity.world.random.nextInt(negativeEffects.size());
+		int randomIndex = entity.getWorld().random.nextInt(negativeEffects.size());
 		entity.removeStatusEffect(negativeEffects.get(randomIndex).getEffectType());
 	}
 	
@@ -106,7 +106,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if (!entity.world.isClient) {
+		if (!entity.getWorld().isClient) {
 			long time = entity.getWorld().getTime();
 			if (time % TRIGGER_EVERY_X_TICKS == 0) {
 				shortenNegativeStatusEffects(entity, NEGATIVE_EFFECT_SHORTENING_TICKS);

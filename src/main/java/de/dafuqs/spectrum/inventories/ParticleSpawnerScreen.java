@@ -131,51 +131,52 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
 		
 		RenderSystem.disableBlend();
-		renderForeground(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
+		renderForeground(drawContext, mouseX, mouseY, delta);
+		drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
-	public void renderForeground(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+	public void renderForeground(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 		for (ClickableWidget widget : selectableWidgets) {
 			if (widget instanceof TextFieldWidget) {
-				widget.render(matrices, mouseX, mouseY, delta);
+				widget.render(drawContext, mouseX, mouseY, delta);
 			}
 		}
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-		this.textRenderer.draw(matrices, this.title, (float) this.titleX, (float) this.titleY, 2236962);
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
+		var tr = this.textRenderer;
+		drawContext.drawText(tr, this.title, this.titleX, this.titleY, 2236962, false);
 		
-		this.textRenderer.draw(matrices, Text.literal("C").formatted(Formatting.AQUA), 7, 54, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("M").formatted(Formatting.LIGHT_PURPLE), 47, 54, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("Y").formatted(Formatting.GOLD), 90, 54, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("Glow"), 130, 54, TEXT_COLOR);
+		drawContext.drawText(tr, Text.literal("C").formatted(Formatting.AQUA), 7, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("M").formatted(Formatting.LIGHT_PURPLE), 47, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("Y").formatted(Formatting.GOLD), 90, 54, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("Glow"), 130, 54, TEXT_COLOR, false);
 		
 		int offset = 23;
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.particle_count"), 10, 53 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("x"), 66, 64 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("y"), 99, 64 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.literal("z"), 134, 64 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.offset"), 10, 78 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 97 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.velocity"), 10, 117 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 137 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.scale"), 10, 161 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 161 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.duration"), 10, 181 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 181 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.gravity"), 10, 201 + offset, TEXT_COLOR);
-		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.collisions"), 90, 201 + offset, TEXT_COLOR);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.particle_count"), 10, 53 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("x"), 66, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("y"), 99, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.literal("z"), 134, 64 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.offset"), 10, 78 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 97 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.velocity"), 10, 117 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 137 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.scale"), 10, 161 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 161 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.duration"), 10, 181 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 181 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.gravity"), 10, 201 + offset, TEXT_COLOR, false);
+		drawContext.drawText(tr, Text.translatable("block.spectrum.particle_spawner.collisions"), 90, 201 + offset, TEXT_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, GUI_TEXTURE);
@@ -183,26 +184,26 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		int y = (this.height - this.backgroundHeight) / 2;
 		
 		// the background
-		drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+		drawContext.drawTexture(GUI_TEXTURE, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
 		
 		// disabled coloring text field backgrounds
 		if (!selectedParticleSupportsColoring) {
-			drawTexture(matrices, x + 15, y + 50, 214, 0, 31, 16);
-			drawTexture(matrices, x + 56, y + 50, 214, 0, 31, 16);
-			drawTexture(matrices, x + 97, y + 50, 214, 0, 31, 16);
+			drawContext.drawTexture(GUI_TEXTURE, x + 15, y + 50, 214, 0, 31, 16);
+			drawContext.drawTexture(GUI_TEXTURE, x + 56, y + 50, 214, 0, 31, 16);
+			drawContext.drawTexture(GUI_TEXTURE, x + 97, y + 50, 214, 0, 31, 16);
 		}
 		
 		// the checked & collision buttons checkmarks, if enabled
 		if (collisionsEnabled) {
-			drawTexture(matrices, x + 146, y + 220, 176, 0, 16, 16);
+			drawContext.drawTexture(GUI_TEXTURE, x + 146, y + 220, 176, 0, 16, 16);
 		}
 		if (glowing) {
-			drawTexture(matrices, x + 153, y + 50, 176, 0, 16, 16);
+			drawContext.drawTexture(GUI_TEXTURE, x + 153, y + 50, 176, 0, 16, 16);
 		}
 		
 		// particle selection outline
 		if (particleSelectionIndex / PARTICLES_PER_PAGE == activeParticlePage) {
-			drawTexture(matrices, x + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), y + 19, 192, 0, 22, 22);
+			drawContext.drawTexture(GUI_TEXTURE, x + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), y + 19, 192, 0, 22, 22);
 		}
 		
 		RenderSystem.setShaderTexture(0, spriteAtlasTexture.getId());
@@ -213,7 +214,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 				break;
 			}
 			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier());
-			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getX() / 2, y + 31 - particleSprite.getY() / 2, 0, particleSprite.getX(), particleSprite.getY(), particleSprite);
+			drawContext.drawSprite(x + 38 + j * 20 - particleSprite.getX() / 2, y + 31 - particleSprite.getY() / 2, 0, particleSprite.getX(), particleSprite.getY(), particleSprite);
 		}
 	}
 	

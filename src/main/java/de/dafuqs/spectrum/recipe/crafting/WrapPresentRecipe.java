@@ -38,7 +38,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull CraftingInventory craftingInventory, World world) {
+	public boolean matches(@NotNull RecipeInputInventory craftingInventory, World world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
@@ -62,7 +62,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(@NotNull CraftingInventory craftingInventory, DynamicRegistryManager drm) {
+	public ItemStack craft(@NotNull RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
 		Map<DyeColor, Integer> colors = new HashMap<>();

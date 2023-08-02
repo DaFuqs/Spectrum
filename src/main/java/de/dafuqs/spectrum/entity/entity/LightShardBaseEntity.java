@@ -65,9 +65,9 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		super.tick();
 		
 		age++;
-		if (world.isClient() && age > DECELERATION_PHASE_LENGTH - 1 && getVelocity().length() > 0.075) {
-			if (getVelocity().length() > 0.2 || world.getTime() % 2 == 0)
-				world.addParticle(SpectrumParticleTypes.LIGHT_TRAIL, true, prevX, prevY, prevZ, 0, 0, 0);
+		if (this.getWorld().isClient() && age > DECELERATION_PHASE_LENGTH - 1 && getVelocity().length() > 0.075) {
+			if (getVelocity().length() > 0.2 || this.getWorld().getTime() % 2 == 0)
+				this.getWorld().addParticle(SpectrumParticleTypes.LIGHT_TRAIL, true, prevX, prevY, prevZ, 0, 0, 0);
 		}
 		
 		if (age > getMaxAge()) {
@@ -94,13 +94,13 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		onCollision(hitResult);
 		
 		if (detectionRange > 0 && !isValidTarget(targetEntity)) {
-			if (world.isClient)
+			if (this.getWorld().isClient)
 				return;
 			
 			if (random.nextFloat() > 0.25)
 				return;
 			
-			var serverWorld = (ServerWorld) world;
+			var serverWorld = (ServerWorld) this.getWorld();
 			
 			var entities = serverWorld.getOtherEntities(this, Box.of(getPos(), detectionRange, detectionRange, detectionRange));
 			
@@ -162,7 +162,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	protected void onHitEntity(LivingEntity owner, Entity attacked) {
 		float finalDamage = damage * (random.nextFloat() + 0.5F) * (1 - getVanishingProgress(age));
 		attacked.timeUntilRegen = 0;
-		attacked.damage(SpectrumDamageSources.irradiance(this.world, owner), finalDamage);
+		attacked.damage(SpectrumDamageSources.irradiance(this.getWorld(), owner), finalDamage);
 		
 		attacked.playSound(SpectrumSoundEvents.SOFT_HUM, 1.334F, 0.9F + random.nextFloat());
 		attacked.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, random.nextFloat() * 0.4F + 0.2F, 0.8F + random.nextFloat());
@@ -173,13 +173,13 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		var bound = random.nextInt(11);
 		for (int i = 0; i < bound + 5; i++) {
 			if (random.nextFloat() < 0.665) {
-				world.addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
+				this.getWorld().addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
 						random.nextFloat() * 0.25F - 0.125F,
 						random.nextFloat() * 0.25F - 0.125F,
 						random.nextFloat() * 0.25F - 0.125F
 				);
 			} else {
-				world.addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
+				this.getWorld().addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
 						random.nextFloat() * 0.5F - 0.25F,
 						random.nextFloat() * 0.5F - 0.25F,
 						random.nextFloat() * 0.5F - 0.25F

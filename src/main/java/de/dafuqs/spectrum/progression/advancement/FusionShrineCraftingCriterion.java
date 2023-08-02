@@ -18,7 +18,7 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 	static final Identifier ID = SpectrumCommon.locate("crafted_with_fusion_shrine");
 	
 	public static FusionShrineCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
-		return new FusionShrineCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+		return new FusionShrineCraftingCriterion.Conditions(LootContextPredicate.EMPTY, item, experienceRange);
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 	}
 	
 	@Override
-	public FusionShrineCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public FusionShrineCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
 		return new FusionShrineCraftingCriterion.Conditions(extended, itemPredicates, experienceRange);
@@ -41,7 +41,7 @@ public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrin
 		private final ItemPredicate[] itemPredicates;
 		private final NumberRange.IntRange experienceRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.itemPredicates = itemPredicates;
 			this.experienceRange = experienceRange;

@@ -50,11 +50,6 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
-	}
-	
-	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient) {
 			if (player.isSneaking()) {
@@ -93,8 +88,8 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 			return List.of(bottomlessBundleBlockEntity.retrieveBundle());
 		} else {

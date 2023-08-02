@@ -41,10 +41,9 @@ public class CloakedOreBlock extends ExperienceDroppingBlock implements Revelati
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), cloakBlockState.getBlock().asItem());
 	}
-	
+
 	@Override
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
 		// workaround: since onStacksDropped() has no way of checking if it was
 		// triggered by a player we have to cache that information here
 		PlayerEntity lootPlayerEntity = RevelationAware.getLootPlayerEntity(builder);
@@ -52,6 +51,8 @@ public class CloakedOreBlock extends ExperienceDroppingBlock implements Revelati
 		
 		return super.getDroppedStacks(state, builder);
 	}
+
+
 	
 	@Override
 	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean dropExperience) {

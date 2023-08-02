@@ -20,7 +20,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	static final Identifier ID = SpectrumCommon.locate("potion_workshop_brewing");
 	
 	public static PotionWorkshopBrewingCriterion.Conditions create(ItemPredicate itemPredicate, EntityEffectPredicate effectsPredicate, NumberRange.IntRange brewedCountRange, NumberRange.IntRange maxAmplifierRange, NumberRange.IntRange maxDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
-		return new PotionWorkshopBrewingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, effectsPredicate, brewedCountRange, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
+		return new PotionWorkshopBrewingCriterion.Conditions(LootContextPredicate.EMPTY, itemPredicate, effectsPredicate, brewedCountRange, maxAmplifierRange, maxDurationRange, effectCountRange, uniqueEffectCountRange);
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	}
 	
 	@Override
-	public PotionWorkshopBrewingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PotionWorkshopBrewingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		EntityEffectPredicate statusEffectsPredicate = EntityEffectPredicate.fromJson(jsonObject.get("effects"));
 		NumberRange.IntRange brewedCountRange = NumberRange.IntRange.fromJson(jsonObject.get("brewed_count"));
@@ -81,7 +81,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 		private final NumberRange.IntRange effectCountRange;
 		private final NumberRange.IntRange uniqueEffectCountRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, EntityEffectPredicate statusEffectsPredicate, NumberRange.IntRange brewedCountRange, NumberRange.IntRange highestEffectAmplifierRange, NumberRange.IntRange longestEffectDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate itemPredicate, EntityEffectPredicate statusEffectsPredicate, NumberRange.IntRange brewedCountRange, NumberRange.IntRange highestEffectAmplifierRange, NumberRange.IntRange longestEffectDurationRange, NumberRange.IntRange effectCountRange, NumberRange.IntRange uniqueEffectCountRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			this.statusEffectsPredicate = statusEffectsPredicate;

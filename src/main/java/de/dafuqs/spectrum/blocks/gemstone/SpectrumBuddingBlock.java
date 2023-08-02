@@ -26,11 +26,6 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
-	}
-	
-	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextInt(5) == 0) {
 			Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];

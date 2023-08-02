@@ -47,7 +47,7 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		Vec3d vec3d2;
 		Vec3d thisPos = this.getPos();
 		vec3d2 = thisPos.add(thisVelocity);
-		HitResult hitResult = this.world.raycast(new RaycastContext(thisPos, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
+		HitResult hitResult = this.getWorld().raycast(new RaycastContext(thisPos, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
 		if ((hitResult).getType() != HitResult.Type.MISS) {
 			vec3d2 = (hitResult).getPos();
 		}
@@ -93,7 +93,7 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 
 		if (this.isTouchingWater()) {
 			for (int o = 0; o < 4; ++o) {
-				this.world.addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
+				this.getWorld().addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
 			}
 		}
 
@@ -110,7 +110,7 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 	}
 
 	public boolean isNoClip() {
-		if (!this.world.isClient) {
+		if (!this.getWorld().isClient()) {
 			return this.noClip;
 		} else {
 			return true;
@@ -123,7 +123,7 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 
 	@Nullable
 	protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
-		return ProjectileUtil.getEntityCollision(this.world, this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
+		return ProjectileUtil.getEntityCollision(this.getWorld(), this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
 	}
 
     public abstract DyeColor getDyeColor();

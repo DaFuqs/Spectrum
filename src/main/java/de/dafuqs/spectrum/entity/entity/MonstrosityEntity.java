@@ -137,7 +137,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			float f = 0.91F;
 			float g = 0.16277137F / (f * f * f);
 			
-			this.updateVelocity(this.onGround ? 0.1F * g : 0.02F, movementInput);
+			this.updateVelocity(this.isOnGround() ? 0.1F * g : 0.02F, movementInput);
 			this.move(net.minecraft.entity.MovementType.SELF, this.getVelocity());
 			this.setVelocity(this.getVelocity().multiply(f));
 		}
@@ -156,7 +156,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		checkDespawn();
 		if (this.hasInvincibilityTicks()) {
 			for (int j = 0; j < 3; ++j) {
-				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
+				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
 			}
 		}
 	}
@@ -243,10 +243,10 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			for (int y = minY; y <= maxY; ++y) {
 				for (int z = minZ; z <= maxZ; ++z) {
 					BlockPos blockPos = new BlockPos(x, y, z);
-					BlockState blockState = this.world.getBlockState(blockPos);
+					BlockState blockState = this.getWorld().getBlockState(blockPos);
 					if (!blockState.isAir() && !blockState.isIn(BlockTags.DRAGON_TRANSPARENT)) {
-						if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && !blockState.isIn(BlockTags.DRAGON_IMMUNE)) {
-							blockDestroyed = this.world.removeBlock(blockPos, false) || blockDestroyed;
+						if (this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && !blockState.isIn(BlockTags.DRAGON_IMMUNE)) {
+							blockDestroyed = this.getWorld().removeBlock(blockPos, false) || blockDestroyed;
 						}
 					}
 				}
@@ -255,13 +255,13 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		if (blockDestroyed) {
 			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
-			this.world.syncWorldEvent(2008, randomPos, 0);
+			this.getWorld().syncWorldEvent(2008, randomPos, 0);
 		}
 	}
 	
 	@Override
 	public boolean canSee(Entity entity) {
-		if (entity.world != this.world) {
+		if (entity.getWorld() != this.getWorld()) {
 			return false;
 		}
 		return entity.getPos().distanceTo(this.getPos()) < 128;
@@ -289,9 +289,9 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		double e = target.getBodyY(0.3) - persistentProjectileEntity.getY();
 		double f = target.getZ() - this.getZ();
 		double g = Math.sqrt(d * d + f * f);
-		persistentProjectileEntity.setVelocity(d, e + g * 0.2, f, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+		persistentProjectileEntity.setVelocity(d, e + g * 0.2, f, 1.6F, (float) (14 - this.getWorld().getDifficulty().getId() * 4));
 		this.playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-		this.world.spawnEntity(persistentProjectileEntity);
+		this.getWorld().spawnEntity(persistentProjectileEntity);
 	}
 	
 	@Override
@@ -439,7 +439,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 					MonstrosityEntity.this.tryAttack(livingEntity);
 					MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 					if (!MonstrosityEntity.this.isSilent()) {
-						MonstrosityEntity.this.world.syncWorldEvent(WorldEvents.PHANTOM_BITES, MonstrosityEntity.this.getBlockPos(), 0);
+						MonstrosityEntity.this.getWorld().syncWorldEvent(WorldEvents.PHANTOM_BITES, MonstrosityEntity.this.getBlockPos(), 0);
 					}
 				} else if (MonstrosityEntity.this.horizontalCollision || MonstrosityEntity.this.hurtTime > 0) {
 					// the player hit monstrosity
@@ -464,7 +464,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			}
 			
 			this.delay = toGoalTicks(60);
-			PlayerEntity newTarget = MonstrosityEntity.this.world.getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
+			PlayerEntity newTarget = MonstrosityEntity.this.getWorld().getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
 			if (newTarget == null) {
 				return false;
 			}
@@ -493,7 +493,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		@Override
 		public boolean canStart() {
-			return MonstrosityEntity.this.movementType == MovementType.START_SWOOPING && mob.getTarget() != null && world.random.nextBoolean() && mob.distanceTo(mob.getTarget()) < retreatDistance - 4;
+			return MonstrosityEntity.this.movementType == MovementType.START_SWOOPING && mob.getTarget() != null && mob.getWorld().random.nextBoolean() && mob.distanceTo(mob.getTarget()) < retreatDistance - 4;
 		}
 		
 		@Override
@@ -514,7 +514,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public void stop() {
 			LivingEntity target = mob.getTarget();
 			if (target != null && mob.isTarget(target, TARGET_PREDICATE)) {
-				LightShardEntity.summonBarrage(world, mob, target);
+				LightShardEntity.summonBarrage(mob.getWorld(), mob, target);
 			}
 			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 			super.stop();

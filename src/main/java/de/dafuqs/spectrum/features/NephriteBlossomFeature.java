@@ -122,10 +122,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     }
 
     private static boolean isReplaceable(WorldAccess world, BlockPos pos, boolean replacePlants) {
-        return world.testBlockState(pos, (state) -> {
-            Material material = state.getMaterial();
-            return state.getMaterial().isReplaceable() || replacePlants && material == Material.PLANT;
-        });
+        return world.testBlockState(pos, (state) -> state.isReplaceable() || replacePlants);
     }
 
     static {

@@ -80,7 +80,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	@Override
 	public void onScheduledTick() {
 		super.onScheduledTick();
-		this.updateRedstone(this.getPos(), this.world.getBlockState(pos));
+		this.updateRedstone(this.getPos(), this.getWorld().getBlockState(pos));
 	}
 	
 	@Override
@@ -139,9 +139,9 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	public boolean checkUnlocked(PlayerEntity player) {
 		boolean isOwner = this.getOwnerUUID().equals(player.getUuid());
 		
-		if (!isOwner && this.world != null) {
-			this.lastNonOwnerOpenedTick = this.world.getTime();
-			updateRedstone(this.pos, this.world.getBlockState(pos));
+		if (!isOwner && this.getWorld() != null) {
+			this.lastNonOwnerOpenedTick = this.getWorld().getTime();
+			updateRedstone(this.pos, this.getWorld().getBlockState(pos));
 			player.sendMessage(Text.translatable("block.spectrum.heartbound_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), true);
 		}
 		
@@ -149,8 +149,8 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	public boolean wasRecentlyTriedToOpenByNonOwner() {
-		if (this.world != null) {
-			return this.lastNonOwnerOpenedTick > 0 && this.lastNonOwnerOpenedTick + 20 > this.world.getTime();
+		if (this.getWorld() != null) {
+			return this.lastNonOwnerOpenedTick > 0 && this.lastNonOwnerOpenedTick + 20 > this.getWorld().getTime();
 		}
 		return false;
 	}

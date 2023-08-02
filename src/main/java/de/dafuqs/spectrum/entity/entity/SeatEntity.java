@@ -37,7 +37,7 @@ public class SeatEntity extends Entity {
     public void tick() {
         super.tick();
 
-        var block = world.getBlockState(getBlockPos()).getBlock();
+        var block = this.getWorld().getBlockState(getBlockPos()).getBlock();
         var cushion = getCushion();
 
         if (cushion.isEmpty()) {
@@ -52,7 +52,7 @@ public class SeatEntity extends Entity {
             var fail = true;
 
             for (BlockPos pos : iter) {
-                var check = world.getBlockState(pos).getBlock();
+                var check = this.getWorld().getBlockState(pos).getBlock();
                 if (state.isOf(check)) {
                     updatePosition(pos.getX() + 0.5, pos.getY() + offset, pos.getZ() + 0.5);
                     fail = false;
@@ -105,7 +105,7 @@ public class SeatEntity extends Entity {
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         setEmptyTicks(nbt.getInt("emptyTicks"));
 	
-		var state = NbtHelper.toBlockState(this.world.createCommandRegistryWrapper(RegistryKeys.BLOCK), nbt.getCompound("BlockState"));
+		var state = NbtHelper.toBlockState(this.getWorld().createCommandRegistryWrapper(RegistryKeys.BLOCK), nbt.getCompound("BlockState"));
         dataTracker.set(CUSHION, Optional.ofNullable(state.isAir() ? null : state));
 
         offset = nbt.getDouble("offset");
@@ -153,7 +153,7 @@ public class SeatEntity extends Entity {
             double maxHeight = this.getBoundingBox().maxY + 0.75;
         
             while (true) {
-                double height = this.world.getDismountHeight(testPos);
+                double height = this.getWorld().getDismountHeight(testPos);
                 if ((double) testPos.getY() + height > maxHeight) {
                     break;
                 }
@@ -161,7 +161,7 @@ public class SeatEntity extends Entity {
                 if (Dismounting.canDismountInBlock(height)) {
                     Box boundingBox = passenger.getBoundingBox(pose);
                     Vec3d pos = new Vec3d(x, (double) testPos.getY() + height, z);
-                    if (Dismounting.canPlaceEntityAt(this.world, passenger, boundingBox.offset(pos))) {
+                    if (Dismounting.canPlaceEntityAt(this.getWorld(), passenger, boundingBox.offset(pos))) {
                         passenger.setPose(pose);
                         return pos;
                     }

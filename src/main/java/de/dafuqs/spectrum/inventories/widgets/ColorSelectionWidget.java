@@ -57,12 +57,12 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			this.changedListener.accept(newColor);
 		}
 	}
-	
+
 	@Override
-	public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-	
+	protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+
 	}
-	
+
 	@Override
 	@SuppressWarnings("resource")
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -101,14 +101,14 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		builder.put(NarrationPart.TITLE, Text.translatable("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
 	}
 
-	public void draw(MatrixStack matrices) {
+	public void draw(DrawContext drawContext) {
 		// draw selection icons
 		int i = -1;
 		int currentX = this.getX() + 1;
 		int currentY = this.getY() + 1;
 		for (Pair<InkColor, Boolean> color : usableColors) {
 			if (color.getRight()) {
-				fillQuad(matrices, currentX, currentY, 5, 5, color.getLeft().getColor());
+				fillQuad(drawContext.getMatrices(), currentX, currentY, 5, 5, color.getLeft().getColor());
 			}
 			i = i + 1;
 			currentX = currentX + 7;
@@ -121,14 +121,14 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		// draw currently selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
 		if (selectedColor != null) {
-			fillQuad(matrices, selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
+			fillQuad(drawContext.getMatrices(), selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
 		}
 	}
 	
-	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+	public void drawMouseoverTooltip(DrawContext drawContext, int mouseX, int mouseY) {
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (overUnselection) {
-			screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
+			drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			
 			int xOffset = MathHelper.floor(mouseX) - this.getX();
@@ -140,9 +140,9 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			
 			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), getX(), getY());
+				drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(newColor.getName()), Optional.empty(), getX(), getY());
 			} else {
-				screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
+				drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}
 		}
 	}

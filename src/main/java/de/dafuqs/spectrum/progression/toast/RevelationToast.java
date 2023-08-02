@@ -2,8 +2,10 @@ package de.dafuqs.spectrum.progression.toast;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.client.toast.*;
@@ -36,16 +38,16 @@ public class RevelationToast implements Toast {
 	
 	@Override
 	@SuppressWarnings("resource")
-	public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
+	public Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
 		Text title = Text.translatable("spectrum.toast.revelation.title");
 		Text text = Text.translatable("spectrum.toast.revelation.text");
 		
 		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
-		manager.drawTexture(matrices, 0, 0, 0, 0, this.getWidth(), this.getHeight());
-		
+
+		drawContext.drawTexture(TEXTURE, 0, 0, 0, 0, this.getWidth(), this.getHeight());
+
 		List<OrderedText> wrappedText = manager.getClient().textRenderer.wrapLines(text, 125);
 		List<OrderedText> wrappedTitle = manager.getClient().textRenderer.wrapLines(title, 125);
 		int l;
@@ -58,7 +60,8 @@ public class RevelationToast implements Toast {
 			
 			for (Iterator<OrderedText> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				manager.getClient().textRenderer.draw(matrices, orderedText, 30.0F, (float) m, 3289650 | l);
+
+				drawContext.drawText(manager.getClient().textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
 			}
 		} else {
 			l = MathHelper.floor(MathHelper.clamp((float) (startTime - toastTimeMilliseconds / 2) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
@@ -68,7 +71,7 @@ public class RevelationToast implements Toast {
 			
 			for (Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				manager.getClient().textRenderer.draw(matrices, orderedText, 30.0F, (float) m, l);
+				drawContext.drawText(manager.getClient().textRenderer, orderedText, 30, m, l, false);
 			}
 		}
 		
@@ -78,8 +81,8 @@ public class RevelationToast implements Toast {
 				manager.getClient().getSoundManager().play(PositionedSoundInstance.master(this.soundEvent, 1.0F, 0.6F));
 			}
 		}
-		
-		manager.getClient().getItemRenderer().renderInGui(matrices, itemStack, 8, 8);
+
+		drawContext.drawItemInSlot(manager.getClient().textRenderer, itemStack, 8,8);
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}
 	

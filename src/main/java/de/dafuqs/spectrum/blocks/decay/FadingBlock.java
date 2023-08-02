@@ -25,11 +25,6 @@ public class FadingBlock extends DecayBlock {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.NORMAL;
-	}
-	
-	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		

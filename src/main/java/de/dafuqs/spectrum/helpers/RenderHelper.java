@@ -6,8 +6,9 @@ import net.minecraft.client.util.math.*;
 import org.joml.*;
 
 public class RenderHelper {
-	
-	protected static final BufferBuilder builder = Tessellator.getInstance().getBuffer();
+
+	public static final int GREEN_COLOR = 3289650;
+    protected static final BufferBuilder builder = Tessellator.getInstance().getBuffer();
 	
 	/**
 	 * Draws a filled triangle

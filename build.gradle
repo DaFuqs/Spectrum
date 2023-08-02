@@ -59,7 +59,7 @@ repositories {
 
 dependencies {
 	// jetbrains annotations
-	implementation 'org.jetbrains:annotations:23.1.0'
+	implementation 'org.jetbrains:annotations:24.0.1'
 
 	// graph api and its dependencies
 	implementation include('org.jgrapht:jgrapht-core:1.5.1')
@@ -82,6 +82,7 @@ dependencies {
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
+	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
@@ -91,7 +92,6 @@ dependencies {
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 
 	// https://github.com/emilyploszaj/emi
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}"
@@ -115,12 +115,12 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
-	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
+	implementation include("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixin_extras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
-	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
+	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 
 	// Ears compact by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")

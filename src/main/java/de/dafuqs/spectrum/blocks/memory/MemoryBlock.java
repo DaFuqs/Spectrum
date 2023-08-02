@@ -77,8 +77,8 @@ public class MemoryBlock extends BlockWithEntity implements Waterloggable {
 	// drop the memory when broken
 	@Override
 	@SuppressWarnings("deprecation")
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.@NotNull Builder builder) {
-		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
 			return List.of(memoryBlockEntity.getMemoryItemStack());
 		} else {

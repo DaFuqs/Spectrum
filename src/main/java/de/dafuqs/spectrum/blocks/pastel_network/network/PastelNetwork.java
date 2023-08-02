@@ -31,7 +31,7 @@ public class PastelNetwork {
 	}
 
     public World getWorld() {
-        return this.world;
+        return this.getWorld();
     }
 
     public Graph<PastelNodeBlockEntity, DefaultEdge> getGraph() {
@@ -93,7 +93,7 @@ public class PastelNetwork {
         }
 
         if (!this.hasNodes()) {
-            Pastel.getInstance(this.world.isClient).remove(this);
+            Pastel.getInstance(this.getWorld().isClient()).remove(this);
         }
         return true;
     }
@@ -132,7 +132,7 @@ public class PastelNetwork {
     }
 
     public boolean canConnect(PastelNodeBlockEntity newNode) {
-        if (newNode.getWorld() != this.world) {
+        if (newNode.getWorld() != this.getWorld()) {
             return false;
         }
 
@@ -186,7 +186,7 @@ public class PastelNetwork {
     }
 
     public PastelNodeBlockEntity getNodeAt(BlockPos blockPos) {
-        BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
+        BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
         if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
             return pastelNodeBlockEntity;
         }

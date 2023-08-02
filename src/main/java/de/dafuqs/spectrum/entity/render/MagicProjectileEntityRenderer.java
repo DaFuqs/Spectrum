@@ -22,11 +22,11 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 	}
 
 	@Override
-	public void render(MagicProjectileEntity tEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+	public void render(MagicProjectileEntity magicProjectileEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
-		Vector3f starColor = InkColor.of(tEntity.getDyeColor()).getColor();
+		Vector3f starColor = InkColor.of(magicProjectileEntity.getDyeColor()).getColor();
 		
-		double time = (tEntity.world.getTime() % 24000) + tickDelta + Random.create(tEntity.getId()).nextInt(200);
+		double time = (magicProjectileEntity.getWorld().getTime() % 24000) + tickDelta + Random.create(magicProjectileEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);
 		matrixStack.scale(scale, scale, scale);
 		

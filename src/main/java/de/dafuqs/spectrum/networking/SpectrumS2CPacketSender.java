@@ -248,7 +248,7 @@ public class SpectrumS2CPacketSender {
 		buf.writeDouble(shootingStarEntity.getPos().getZ());
 		buf.writeInt(shootingStarEntity.getShootingStarType().ordinal());
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) shootingStarEntity.world, shootingStarEntity.getBlockPos())) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) shootingStarEntity.getWorld(), shootingStarEntity.getBlockPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_SHOOTING_STAR_PARTICLES, buf);
 		}
 	}

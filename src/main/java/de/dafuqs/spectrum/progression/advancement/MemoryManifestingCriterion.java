@@ -20,8 +20,8 @@ public class MemoryManifestingCriterion extends AbstractCriterion<MemoryManifest
 	}
 	
 	@Override
-	public MemoryManifestingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		return new MemoryManifestingCriterion.Conditions(ID, extended, Extended.getInJson(jsonObject, "manifested_entity", advancementEntityPredicateDeserializer));
+	public MemoryManifestingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+		return new MemoryManifestingCriterion.Conditions(ID, extended, LootContextPredicate.fromJson("manifseted_entity", advancementEntityPredicateDeserializer, jsonObject, LootContextTypes.FISHING));
 	}
 	
 	public void trigger(ServerPlayerEntity player, Entity manifestedEntity) {
@@ -30,9 +30,9 @@ public class MemoryManifestingCriterion extends AbstractCriterion<MemoryManifest
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
-		private final Extended manifestedEntity;
+		private final LootContextPredicate manifestedEntity;
 		
-		public Conditions(Identifier id, Extended player, Extended manifestedEntity) {
+		public Conditions(Identifier id, LootContextPredicate player, LootContextPredicate manifestedEntity) {
 			super(id, player);
 			this.manifestedEntity = manifestedEntity;
 		}

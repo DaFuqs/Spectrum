@@ -98,7 +98,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		this.readAngerFromNbt(this.world, nbt);
+		this.readAngerFromNbt(this.getWorld(), nbt);
 	}
 	
 	@Override
@@ -134,7 +134,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public boolean isInAir() {
-		return !this.onGround;
+		return !this.isOnGround();
 	}
 	
 	@Override
@@ -151,8 +151,8 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected void mobTick() {
 		super.mobTick();
 		
-		if (!this.world.isClient) {
-			this.tickAngerLogic((ServerWorld) this.world, false);
+		if (!this.getWorld().isClient()) {
+			this.tickAngerLogic((ServerWorld) this.getWorld(), false);
 		}
 	}
 	
@@ -162,15 +162,15 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		
 		this.prevFlapProgress = this.flapProgress;
 		this.prevMaxWingDeviation = this.maxWingDeviation;
-		this.maxWingDeviation += (this.onGround ? -1.0F : 4.0F) * 0.3F;
+		this.maxWingDeviation += (this.isOnGround() ? -1.0F : 4.0F) * 0.3F;
 		this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
-		if (!this.onGround && this.flapSpeed < 1.0F) {
+		if (!this.isOnGround() && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
 		
 		this.flapSpeed *= 0.9F;
 		Vec3d vec3d = this.getVelocity();
-		if (!this.onGround && vec3d.y < 0.0) {
+		if (!this.isOnGround() && vec3d.y < 0.0) {
 			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
 		}
 		
@@ -185,11 +185,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		if (this.getAngerTime() > 0) {
-			return ActionResult.success(this.world.isClient);
+			return ActionResult.success(this.getWorld().isClient());
 		}
 		
 		if (player.isSneaking()) {
-			if (!this.world.isClient) {
+			if (!this.getWorld().isClient()) {
 				player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
 				
 				setTarget(player);
@@ -205,17 +205,17 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	protected void coughAt(LivingEntity target) {
-		KindlingCoughEntity kindlingCoughEntity = new KindlingCoughEntity(this.world, this);
+		KindlingCoughEntity kindlingCoughEntity = new KindlingCoughEntity(this.getWorld(), this);
 		double d = target.getX() - this.getX();
 		double e = target.getBodyY(0.33F) - kindlingCoughEntity.getY();
 		double f = target.getZ() - this.getZ();
 		double g = Math.sqrt(d * d + f * f) * 0.2;
 		kindlingCoughEntity.setVelocity(d, e + g, f, 1.5F, 10.0F);
 		if (!this.isSilent()) {
-			this.world.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, this.getSoundCategory(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, this.getSoundCategory(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 		}
 		
-		this.world.spawnEntity(kindlingCoughEntity);
+		this.getWorld().spawnEntity(kindlingCoughEntity);
 	}
 	
 	@Override

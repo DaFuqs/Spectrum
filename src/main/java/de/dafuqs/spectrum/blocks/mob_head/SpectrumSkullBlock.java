@@ -10,7 +10,6 @@ import net.minecraft.item.*;
 import net.minecraft.predicate.block.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
-import net.minecraft.util.function.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -30,7 +29,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 							pos.getBlockState().isIn(BlockTags.WITHER_SUMMON_BASE_BLOCKS))
 					.where('^', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.WITHER))
 							.or(BlockStatePredicate.forBlock(SpectrumBlocks.getMobWallHead(SpectrumSkullBlockType.WITHER)))))
-					.where('~', CachedBlockPosition.matchesBlockState(MaterialPredicate.create(Material.AIR))).build();
+					.where('~', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(Blocks.AIR))).build();
 		}
 		
 		return witherBossPattern;

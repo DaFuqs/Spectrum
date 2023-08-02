@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -32,24 +31,24 @@ public class PageAnvilCrushing extends PageGatedRecipe<AnvilCrushingRecipe> {
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull AnvilCrushingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, @NotNull AnvilCrushingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		
 		// dirt  wall
-		DrawableHelper.drawTexture(ms, recipeX, recipeY + 4, 0, 0, 84, 48, 256, 256);
-		
-		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY + 4, 0, 0, 84, 48, 256,256);
+
+		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
 		Ingredient ingredient = recipe.getIngredients().get(0);
-		parent.renderIngredient(ms, recipeX + 16, recipeY + 35, mouseX, mouseY, ingredient);
+		parent.renderIngredient(drawContext, recipeX + 16, recipeY + 35, mouseX, mouseY, ingredient);
 		
 		// the anvil
-		parent.renderItemStack(ms, recipeX + 16, recipeY + 15, mouseX, mouseY, recipe.createIcon());
+		parent.renderItemStack(drawContext, recipeX + 16, recipeY + 15, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
 	}
 	
 	@Override

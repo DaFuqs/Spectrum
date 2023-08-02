@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.option.*;
@@ -73,26 +74,24 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			}
 		}
 		
-		void drawForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			centerEntry.drawSmallForeground(screen, matrices, startX - 15, startY - 15);
+		void drawForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			centerEntry.drawSmallForeground(screen, drawContext, startX - 15, startY - 15);
 			
-			topEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
-			rightEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
-			bottomEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
-			leftEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
+			topEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
+			rightEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
+			bottomEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
+			leftEntry.drawBigForeground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
 		}
 		
-		void drawBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-			RenderSystem.setShaderTexture(0, BACKGROUND);
+		void drawBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
+			centerEntry.drawSmallBackground(screen, drawContext, startX - 15, startY - 15);
 			
-			centerEntry.drawSmallBackground(screen, matrices, startX - 15, startY - 15);
-			
-			topEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
-			rightEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
-			bottomEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
-			leftEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
+			topEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
+			rightEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
+			bottomEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
+			leftEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
 		}
 		
 	}
@@ -111,7 +110,6 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final int halfTextWidth;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		@SuppressWarnings("resource")
 		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
 			this.text = Text.translatable(text);
 			this.halfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.text) / 2;
@@ -144,22 +142,20 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			}
 		}
 		
-		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			screen.drawTexture(matrices, startX, startY, 10, 0, 38, 38);
+		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawTexture(BACKGROUND, startX, startY, 10, 0, 38, 38);
 		}
 		
-		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			screen.drawTexture(matrices, startX, startY, 48, 0, 28, 28);
+		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawTexture(BACKGROUND, startX, startY, 48, 0, 28, 28);
 		}
 		
-		@SuppressWarnings("resource")
-		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR);
+		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR, false);
 		}
 		
-		@SuppressWarnings("resource")
-		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR);
+		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR, false);
 		}
 		
 	}
@@ -170,20 +166,20 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		@Override
-		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
 		}
 		
 		@Override
-		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			screen.drawTexture(matrices, startX + 9, startY + 9, 0, 0, 10, 10);
+		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawTexture(BACKGROUND, startX + 9, startY + 9, 0, 0, 10, 10);
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 		}
 	}
 	
@@ -196,15 +192,15 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawBigForeground(screen, matrices, startX, startY);
-			RenderHelper.fillQuad(matrices, startX + 3, startY + 3, 32, 32, color);
+		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawBigForeground(screen, drawContext, startX, startY);
+			RenderHelper.fillQuad(drawContext.getMatrices(), startX + 3, startY + 3, 32, 32, color);
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawSmallForeground(screen, matrices, startX, startY);
-			RenderHelper.fillQuad(matrices, startX + 2, startY + 2, 24, 24, color);
+		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawSmallForeground(screen, drawContext, startX, startY);
+			RenderHelper.fillQuad(drawContext.getMatrices(), startX + 2, startY + 2, 24, 24, color);
 		}
 		
 	}
@@ -221,15 +217,15 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		@Override
-		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawBigBackground(screen, matrices, startX, startY);
-			screen.drawTexture(matrices, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
+		void drawBigBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawBigBackground(screen, drawContext, startX, startY);
+			drawContext.drawTexture(BACKGROUND, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
 		}
 		
 		@Override
-		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawSmallBackground(screen, matrices, startX, startY);
-			screen.drawTexture(matrices, startX, startY, textureStartX, textureStartY, 20, 20);
+		void drawSmallBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawSmallBackground(screen, drawContext, startX, startY);
+			drawContext.drawTexture(BACKGROUND, startX, startY, textureStartX, textureStartY, 20, 20);
 		}
 		
 	}
@@ -248,14 +244,15 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		
 		@Override
 		@SuppressWarnings("resource")
-		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR);
+		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+
+			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR, false);
 		}
 		
 		@Override
 		@SuppressWarnings("resource")
-		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR);
+		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR, false);
 		}
 	}
 	
@@ -269,15 +266,15 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		@Override
-		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawBigForeground(screen, matrices, startX, startY);
-			MinecraftClient.getInstance().getItemRenderer().renderInGui(matrices, stack, startX + 10, startY + 10);
+		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawBigForeground(screen, drawContext, startX, startY);
+			drawContext.drawItemInSlot(MinecraftClient.getInstance().textRenderer, stack, startX + 10, startY + 10);
 		}
 		
 		@Override
-		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
-			super.drawBigForeground(screen, matrices, startX, startY);
-			MinecraftClient.getInstance().getItemRenderer().renderInGui(matrices, stack, startX + 5, startY + 5);
+		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			super.drawSmallForeground(screen, drawContext, startX, startY);
+			drawContext.drawItemInSlot(MinecraftClient.getInstance().textRenderer, stack, startX + 5, startY + 5);
 		}
 		
 	}
@@ -308,16 +305,16 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-		current().drawBackground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
-		current().drawForeground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
-		
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR);
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR);
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
+		current().drawBackground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
+		current().drawForeground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
+
+		drawContext.drawText(this.textRenderer, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR, false);
+		drawContext.drawText(this.textRenderer, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 	
 	}
 	

@@ -28,7 +28,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 
 	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory filterInventory) {
 		super(type, syncId);
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.filterInventory = filterInventory;
 
 		// filter slots

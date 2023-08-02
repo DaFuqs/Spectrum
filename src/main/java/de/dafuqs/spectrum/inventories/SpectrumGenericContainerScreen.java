@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
@@ -30,34 +32,34 @@ public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectru
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		this.renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
-		this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		this.renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
+		this.drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
 		int titleY = 7;
 		Text title = this.title;
 		int inventoryX = 8;
-		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, playerInventoryTitleY, 3289650);
+
+		var tr = this.textRenderer;
+
+		drawContext.drawText(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(tr, this.playerInventoryTitle, inventoryX, playerInventoryTitleY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, backgroundTexture);
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
-		this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
-		this.drawTexture(matrices, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
+		drawContext.drawTexture(backgroundTexture, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);
+		drawContext.drawTexture(backgroundTexture, i, j + this.rows * 18 + 17, 0, 126, this.backgroundWidth, 96);
 	}
 	
 	@Contract(pure = true)

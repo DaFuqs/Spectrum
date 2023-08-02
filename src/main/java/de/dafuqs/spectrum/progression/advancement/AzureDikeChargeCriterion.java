@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -17,16 +16,16 @@ public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeC
 	public Identifier getId() {
 		return ID;
 	}
-	
+
 	@Override
-	public AzureDikeChargeCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate lootContextPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		NumberRange.IntRange chargesRange = NumberRange.IntRange.fromJson(jsonObject.get("charges"));
 		NumberRange.IntRange rechargeRateRange = NumberRange.IntRange.fromJson(jsonObject.get("recharge_rate"));
 		NumberRange.IntRange changeRange = NumberRange.IntRange.fromJson(jsonObject.get("change"));
-		
-		return new AzureDikeChargeCriterion.Conditions(extended, chargesRange, rechargeRateRange, changeRange);
+
+		return new AzureDikeChargeCriterion.Conditions(lootContextPredicate, chargesRange, rechargeRateRange, changeRange);
 	}
-	
+
 	public void trigger(ServerPlayerEntity player, int charges, int rechargeRate, int change) {
 		this.trigger(player, (conditions) -> conditions.matches(charges, rechargeRate, change));
 	}
@@ -37,8 +36,8 @@ public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeC
 		private final NumberRange.IntRange rechargeRateRange;
 		private final NumberRange.IntRange changeRange;
 		
-		public Conditions(Extended player, NumberRange.IntRange chargesRange, NumberRange.IntRange rechargeRateRange, NumberRange.IntRange changeRange) {
-			super(AzureDikeChargeCriterion.ID, player);
+		public Conditions(LootContextPredicate predicate, NumberRange.IntRange chargesRange, NumberRange.IntRange rechargeRateRange, NumberRange.IntRange changeRange) {
+			super(AzureDikeChargeCriterion.ID, predicate);
 			this.chargesRange = chargesRange;
 			this.rechargeRateRange = rechargeRateRange;
 			this.changeRange = changeRange;

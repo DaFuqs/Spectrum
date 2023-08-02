@@ -12,7 +12,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public class CompactingChestScreenHandler extends ScreenHandler {
-	
+	// TODO - Is this world allocation needed?
 	protected final World world;
 	private final Inventory inventory;
 	protected final int ROWS = 3;
@@ -26,7 +26,7 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 	public CompactingChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, int currentCraftingMode) {
 		this(SpectrumScreenHandlerTypes.COMPACTING_CHEST, syncId, playerInventory);
 		
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {
 			this.compactingChestBlockEntity = compactingChestBlockEntity;
 		}
@@ -49,7 +49,7 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 	protected CompactingChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		checkSize(inventory, 27);
 		inventory.onOpen(playerInventory.player);

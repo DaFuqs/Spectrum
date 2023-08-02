@@ -110,7 +110,7 @@ public class MoonstoneStrike {
                         double o = MathHelper.lerp(l, box.minY, box.maxY);
                         double p = MathHelper.lerp(m, box.minZ, box.maxZ);
                         Vec3d vec3d = new Vec3d(n + g, o, p + h);
-                        if (entity.world.raycast(new RaycastContext(vec3d, source, ShapeType.COLLIDER, FluidHandling.NONE, entity)).getType() == Type.MISS) {
+                        if (entity.getWorld().raycast(new RaycastContext(vec3d, source, ShapeType.COLLIDER, FluidHandling.NONE, entity)).getType() == Type.MISS) {
                             ++i;
                         }
 	
@@ -137,7 +137,7 @@ public class MoonstoneStrike {
         int maxZ = MathHelper.floor(this.z + (double) power2 + 1.0);
         Vec3d center = new Vec3d(this.x, this.y, this.z);
 		
-		for (Entity entity : this.world.getOtherEntities(this.entity, new Box(minX, minY, minZ, maxX, maxY, maxZ))) {
+		for (Entity entity : world.getOtherEntities(this.entity, new Box(minX, minY, minZ, maxX, maxY, maxZ))) {
             if (!entity.isImmuneToExplosion()) {
                 double w = Math.sqrt(entity.squaredDistanceTo(center)) / (double) power2;
                 if (w <= 1.0) {
@@ -173,10 +173,10 @@ public class MoonstoneStrike {
         LivingEntity cause = getCausingEntity();
         int range = (int) this.power / 2;
 		for (BlockPos pos : BlockPos.iterateOutwards(BlockPos.ofFloored(this.x, this.y, this.z), range, range, range)) {
-			BlockState blockState = this.world.getBlockState(pos);
+			BlockState blockState = world.getBlockState(pos);
 			Block block = blockState.getBlock();
 			if (block instanceof MoonstoneStrikeableBlock moonstoneStrikeableBlock) {
-				moonstoneStrikeableBlock.onMoonstoneStrike(this.world, pos, cause);
+				moonstoneStrikeableBlock.onMoonstoneStrike(world, pos, cause);
 			}
 		}
     }

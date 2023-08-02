@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -72,45 +72,44 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
 		int titleY = 7;
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 100;
-		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
+		var tr = this.textRenderer;
+
+		drawContext.drawText(tr, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(tr, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR, false);
 		
 		// if structure could be improved:
 		// show red blinking information icon
 		if (structureUpdateAvailable) {
-			if ((client.world.getTime() >> 4) % 2 == 0) {
-				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 11010048);
+			if (client != null && (client.world.getTime() >> 4) % 2 == 0) {
+				drawContext.drawText(tr, "ℹ", informationIconX, informationIconY, 11010048, false);
 			} else {
-				this.textRenderer.draw(matrices, "ℹ", informationIconX, informationIconY, 16252928);
+				drawContext.drawText(tr, "ℹ", informationIconX, informationIconY, 16252928, false);
 			}
 		}
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, backgroundTexture);
-		
+
 		// background
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
-		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.drawTexture(backgroundTexture, x, y, 0, 0, backgroundWidth, backgroundHeight);
 		
 		// crafting arrow
 		boolean isCrafting = this.handler.isCrafting();
 		if (isCrafting) {
 			int progressWidth = (this.handler).getCraftingProgress();
 			// x+y: destination, u+v: original coordinates in texture file
-			this.drawTexture(matrices, x + 88, y + 37, 176, 0, progressWidth + 1, 16);
+			drawContext.drawTexture(backgroundTexture, x + 88, y + 37, 176, 0, progressWidth + 1, 16);
 		}
 	}
 	
@@ -132,14 +131,14 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
 		
 		if (mouseOverInformationIcon(mouseX, mouseY)) {
-			this.renderTooltip(matrices, Text.translatable("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
+			drawContext.drawTooltip(this.textRenderer, Text.translatable("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
 		} else {
-			drawMouseoverTooltip(matrices, mouseX, mouseY);
+			drawMouseoverTooltip(drawContext, mouseX, mouseY);
 		}
 	}
 	

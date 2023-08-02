@@ -70,7 +70,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 	}
 	
 	public void triggerForNeighbor(BlockState state) {
-		if ((this.detectedState == null || state.equals(this.detectedState)) && this.world instanceof ServerWorld serverWorld) {
+		if ((this.detectedState == null || state.equals(this.detectedState)) && this.getWorld() instanceof ServerWorld serverWorld) {
 			this.execute(serverWorld);
 		}
 	}

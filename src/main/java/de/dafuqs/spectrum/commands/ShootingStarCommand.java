@@ -20,10 +20,10 @@ public class ShootingStarCommand {
 	private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
 		for (ServerPlayerEntity entity : targets) {
 			for (int i = 0; i < amount; i++) {
-				ShootingStarSpawner.spawnShootingStar((ServerWorld) entity.world, entity);
+				ShootingStarSpawner.spawnShootingStar((ServerWorld) entity.getWorld(), entity);
 			}
 		}
-		source.sendFeedback(Text.translatable("commands.spectrum.spawn_shooting_star.success", amount), false);
+		source.sendFeedback(() -> Text.translatable("commands.spectrum.spawn_shooting_star.success", amount), false);
 		return amount;
 	}
 	

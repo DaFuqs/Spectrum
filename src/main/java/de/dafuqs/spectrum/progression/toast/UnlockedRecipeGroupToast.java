@@ -2,13 +2,13 @@ package de.dafuqs.spectrum.progression.toast;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.render.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.sound.*;
 import net.minecraft.client.toast.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
@@ -71,17 +71,15 @@ public class UnlockedRecipeGroupToast implements Toast {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public Visibility draw(MatrixStack matrices, @NotNull ToastManager manager, long startTime) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderTexture(0, TEXTURE);
+	public Visibility draw(DrawContext drawContext, @NotNull ToastManager manager, long startTime) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
-		manager.drawTexture(matrices, 0, 0, 0, 32, this.getWidth(), this.getHeight());
-		
-		manager.getClient().textRenderer.draw(matrices, title, 30.0F, 7.0F, 3289650); // => #323232: dark gray
-		manager.getClient().textRenderer.draw(matrices, text, 30.0F, 18.0F, 0);
-		
+
+		drawContext.drawTexture(TEXTURE, 0, 0, 0, 32, this.getWidth(),this.getHeight());
+
+		var tr = manager.getClient().textRenderer;
+		drawContext.drawText(tr, title, 30, 7, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(tr, title, 30, 18, 0, false);
+
 		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
@@ -92,8 +90,8 @@ public class UnlockedRecipeGroupToast implements Toast {
 		
 		int itemStackIndex = (int) (startTime / Math.max(1, toastTimeMilliseconds / this.itemStacks.size()) % this.itemStacks.size());
 		ItemStack currentItemStack = itemStacks.get(itemStackIndex);
-		manager.getClient().getItemRenderer().renderInGui(matrices, currentItemStack, 8, 8);
-		
+		drawContext.drawItemInSlot(tr, currentItemStack, 8, 8);
+
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}
 	

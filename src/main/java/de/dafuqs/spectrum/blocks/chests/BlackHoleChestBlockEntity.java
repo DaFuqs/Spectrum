@@ -61,14 +61,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 
 	private static void searchForNearbyEntities(@NotNull BlackHoleChestBlockEntity blockEntity) {
-		List<ItemEntity> itemEntities = blockEntity.world.getEntitiesByType(EntityType.ITEM, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
+		List<ItemEntity> itemEntities = blockEntity.getWorld().getEntitiesByType(EntityType.ITEM, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 		for (ItemEntity itemEntity : itemEntities) {
 			if (itemEntity.isAlive() && !itemEntity.getStack().isEmpty()) {
 				itemEntity.emitGameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 			}
 		}
 
-		List<ExperienceOrbEntity> experienceOrbEntities = blockEntity.world.getEntitiesByType(EntityType.EXPERIENCE_ORB, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
+		List<ExperienceOrbEntity> experienceOrbEntities = blockEntity.getWorld().getEntitiesByType(EntityType.EXPERIENCE_ORB, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 		for (ExperienceOrbEntity experienceOrbEntity : experienceOrbEntities) {
 			if (experienceOrbEntity.isAlive()) {
 				experienceOrbEntity.emitGameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
@@ -142,7 +142,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
 
 				sendPlayExperienceOrbEntityAbsorbedParticle((ServerWorld) world, experienceOrbEntity);
-				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
+				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
 				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
@@ -153,13 +153,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				
 				if (remainingStack.isEmpty()) {
 					sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
-					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
 					itemEntity.setStack(ItemStack.EMPTY);
 					itemEntity.discard();
 				} else {
 					if (remainingStack.getCount() != previousAmount) {
 						sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
 						itemEntity.setStack(remainingStack);
 					}
 				}

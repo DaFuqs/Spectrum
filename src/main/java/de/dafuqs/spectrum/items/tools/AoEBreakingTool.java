@@ -10,7 +10,7 @@ public interface AoEBreakingTool {
 	
 	default void onTryBreakBlock(ItemStack stack, BlockPos pos, PlayerEntity player) {
 		BlockHitResult hitResult = (BlockHitResult) player.raycast(10, 1, false);
-		if (!player.world.isClient && hitResult.getType() == HitResult.Type.BLOCK) {
+		if (!player.getWorld().isClient && hitResult.getType() == HitResult.Type.BLOCK) {
 			Direction side = hitResult.getSide();
 			if (canUseAoE(player, stack)) {
 				AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getAoERange(stack));

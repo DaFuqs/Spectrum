@@ -60,19 +60,19 @@ public class ColorHelper {
 	public static boolean tryColorEntity(PlayerEntity user, Entity entity, DyeColor dyeColor) {
 		if (entity instanceof SheepEntity sheepEntity && sheepEntity.isAlive() && !sheepEntity.isSheared()) {
 			if (sheepEntity.getColor() != dyeColor) {
-				sheepEntity.world.playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				sheepEntity.getWorld().playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				sheepEntity.setColor(dyeColor);
 				return true;
 			}
 		} else if (entity instanceof EggLayingWoolyPigEntity woolyPig && woolyPig.isAlive()) {
 			if (woolyPig.getColor() != dyeColor) {
-				woolyPig.world.playSoundFromEntity(user, woolyPig, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				woolyPig.getWorld().playSoundFromEntity(user, woolyPig, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				woolyPig.setColor(dyeColor);
 				return true;
 			}
 		} else if (entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
 			if (shulkerEntity.getColor() != dyeColor) {
-				shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				shulkerEntity.getWorld().playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				shulkerEntity.setVariant(Optional.of(dyeColor));
 				return true;
 			}

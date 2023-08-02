@@ -38,7 +38,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public static boolean isReplaceableBlock(World world, BlockPos blockPos) {
 		BlockState state = world.getBlockState(blockPos);
 		Block block = state.getBlock();
-		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.getMaterial().isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
+		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
 	}
 	
 	public static boolean isValidCornerBlock(World world, BlockPos blockPos) {

@@ -143,7 +143,7 @@ public class BuildingHelper {
 			BlockState targetState = world.getBlockState(targetPos);
 			BlockState facingAgainstState = world.getBlockState(targetPos.offset(facingDirection.getOpposite()));
 			
-			if ((targetState.getMaterial().isReplaceable() || !targetState.getFluidState().isEmpty()) && world.canPlace(originState, targetPos, ShapeContext.absent())) {
+			if ((targetState.isReplaceable() || !targetState.getFluidState().isEmpty()) && world.canPlace(originState, targetPos, ShapeContext.absent())) {
 				if (sameBlockOnly) {
 					if (facingAgainstState.equals(originState) || (SIMILAR_BLOCKS.containsKey(facingAgainstState.getBlock()) && SIMILAR_BLOCKS.get(facingAgainstState.getBlock()) == originState.getBlock())) {
 						foundNeighbors.add(targetPos);

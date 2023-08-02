@@ -34,19 +34,19 @@ public class RandomTeleportingIdolBlock extends IdolBlock {
 	public static boolean teleportTo(ServerWorld world, Entity entity, BlockPos blockPos) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		// if in solid: move up
-		while (mutable.getY() < world.getTopY() && world.getBlockState(mutable).getMaterial().blocksMovement()) {
+		while (mutable.getY() < world.getTopY() && world.getBlockState(mutable).blocksMovement()) {
 			mutable.move(Direction.UP);
 		}
 		// if in air: move down
-		while (mutable.getY() > world.getBottomY() && !world.getBlockState(mutable).getMaterial().blocksMovement()) {
+		while (mutable.getY() > world.getBottomY() && !world.getBlockState(mutable).blocksMovement()) {
 			mutable.move(Direction.DOWN);
 		}
 		
 		BlockState blockState = world.getBlockState(mutable);
-		if (blockState.getMaterial().blocksMovement()) {
+		if (blockState.blocksMovement()) {
 			double boundingBoxY = entity.getBoundingBox().getYLength(); // bouncy
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.world, mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
+				serverPlayerEntity.teleport((ServerWorld) serverPlayerEntity.getWorld(), mutable.getX() + 0.5, mutable.getY() + boundingBoxY, mutable.getZ() + 0.5, serverPlayerEntity.getYaw(), serverPlayerEntity.getPitch());
 				world.sendEntityStatus(serverPlayerEntity, (byte) 46); // particles
 				return true;
 			} else if (entity instanceof LivingEntity livingEntity) {

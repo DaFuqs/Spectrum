@@ -12,7 +12,7 @@ public class ZigZagParticle extends SpriteBillboardParticle {
 		super(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 		
 		this.gravityStrength = 0.0F;
-		this.field_28787 = true;
+		this.ascending = true;
 		this.scale *= 0.75F;
 		this.collidesWithWorld = false;
 	}

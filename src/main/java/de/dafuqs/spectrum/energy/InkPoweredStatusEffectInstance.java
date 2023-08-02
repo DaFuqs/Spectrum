@@ -109,7 +109,7 @@ public class InkPoweredStatusEffectInstance {
 					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
 				}
 				if (showDuration && effect.getDuration() > 20) {
-					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.durationToString(effect, 1.0F));
+					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.getDurationText(effect, 1.0F));
 				}
 				mutableText.formatted(effect.getEffectType().getCategory().getFormatting());
 				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost." + cost.getColor().toString().toLowerCase(Locale.ROOT), Support.getShortenedNumberString(cost.getCost())).formatted(Formatting.GRAY));

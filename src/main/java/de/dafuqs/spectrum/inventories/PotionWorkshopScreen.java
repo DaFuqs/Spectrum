@@ -4,6 +4,8 @@ import com.mojang.blaze3d.systems.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
+import de.dafuqs.spectrum.helpers.RenderHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
@@ -33,7 +35,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 		int titleY = 6;
@@ -41,28 +43,26 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		int playerInventoryX = 8;
 		int playerInventoryY = 109;
 		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, playerInventoryX, playerInventoryY, 3289650);
+		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, playerInventoryX, playerInventoryY, RenderHelper.GREEN_COLOR, false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderTexture(0, background);
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
 		// main background
-		drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.drawTexture(background, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 		
 		int brewTime = (this.handler).getBrewTime();
 		if (brewTime > 0) {
 			// the rising bubbles
 			int n = BUBBLE_PROGRESS[brewTime / 2 % 13];
 			if (n > 0) {
-				this.drawTexture(matrices, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 11, n);
+				drawContext.drawTexture(background, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 11, n);
 			}
 			
 			int maxBrewTime = (this.handler).getMaxBrewTime();
@@ -72,16 +72,16 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 			n = (int) (100.0F * ((float) brewTime / maxBrewTime));
 			// the brew
 			if (n > 0) {
-				this.drawTexture(matrices, startX + 45, startY + 22, 0, 212, n, 44);
+				drawContext.drawTexture(background, startX + 45, startY + 22, 0, 212, n, 44);
 			}
 		}
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
+		drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
 }

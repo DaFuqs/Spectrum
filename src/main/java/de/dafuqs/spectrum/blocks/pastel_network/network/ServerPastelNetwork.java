@@ -93,7 +93,7 @@ public class ServerPastelNetwork extends PastelNetwork {
             if (connectedSets.size() != 1) {
                 for (int i = 1; i < connectedSets.size(); i++) {
                     Set<PastelNodeBlockEntity> disconnectedNodes = connectedSets.get(i);
-                    PastelNetwork newNetwork = Pastel.getServerInstance().createNetwork(this.world, null);
+                    PastelNetwork newNetwork = Pastel.getServerInstance().createNetwork(this.getWorld(), null);
                     for (PastelNodeBlockEntity disconnectedNode : disconnectedNodes) {
                         this.nodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
                         getGraph().removeVertex(disconnectedNode);
@@ -124,7 +124,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putUuid("UUID", this.uuid);
-		compound.putString("World", this.world.getRegistryKey().getValue().toString());
+		compound.putString("World", this.getWorld().getRegistryKey().getValue().toString());
 		
 		NbtList transmissionList = new NbtList();
         for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {

@@ -93,7 +93,7 @@ public class SanityCommand {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
 						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");
 					} else {
-						LootTable lootTable = source.getWorld().getServer().getLootManager().getTable(lootTableID);
+						LootTable lootTable = source.getWorld().getServer().getLootManager().getLootTable(lootTableID);
 						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
 						if (lootPools.length == 0) {
 							SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");

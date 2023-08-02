@@ -4,10 +4,10 @@ import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.narration.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 
 import java.util.*;
@@ -15,7 +15,7 @@ import java.util.*;
 import static de.dafuqs.spectrum.helpers.Support.*;
 
 @Environment(EnvType.CLIENT)
-public class InkGaugeWidget extends DrawableHelper implements Drawable, Element, Selectable {
+public class InkGaugeWidget implements Drawable, Element, Selectable {
 	
 	public final int x;
 	public final int y;
@@ -53,7 +53,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	
@@ -67,7 +67,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	
 	}
 	
-	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
+	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
 		List<Text> tooltip = new ArrayList<>();
 		for (InkColor color : InkColor.all()) {
 			long amount = blockEntity.getEnergyStorage().getEnergy(color);
@@ -80,11 +80,10 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 		} else {
 			tooltip.add(0, Text.translatable("spectrum.tooltip.ink_powered.stored"));
 		}
-		
-		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);
+		drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltip, Optional.empty(), x, y);
 	}
 	
-	public void draw(MatrixStack matrices) {
+	public void draw(DrawContext drawContext) {
 		long totalInk = blockEntity.getEnergyStorage().getCurrentTotal();
 		
 		if (totalInk > 0) {
@@ -108,7 +107,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 						int p3x = (int) (radius * Math.cos(endRad));
 						int p3y = (int) (radius * Math.sin(endRad));
 						
-						RenderHelper.fillTriangle(matrices,
+						RenderHelper.fillTriangle(drawContext.getMatrices(),
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
@@ -117,7 +116,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
 						int pmy = (int) (radius * Math.sin(middleRad));
-						RenderHelper.fillTriangle(matrices,
+						RenderHelper.fillTriangle(drawContext.getMatrices(),
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,

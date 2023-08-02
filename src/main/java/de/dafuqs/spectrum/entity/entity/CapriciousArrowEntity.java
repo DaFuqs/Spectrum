@@ -36,8 +36,8 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.world.isClient) {
-			if (!this.onGround || world.getTime() % 8 == 0) {
+		if (this.getWorld().isClient()) {
+			if (!this.isOnGround() || this.getWorld().getTime() % 8 == 0) {
 				spawnParticles(1);
 			}
 		}
@@ -83,8 +83,8 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 		HitResult.Type type = hitResult.getType();
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
-			BlockState state = this.world.getBlockState(hitPos);
-			if (state.isTransparent(world, hitPos)) {
+			BlockState state = this.getWorld().getBlockState(hitPos);
+			if (state.isTransparent(this.getWorld(), hitPos)) {
 				return;
 			}
 		}

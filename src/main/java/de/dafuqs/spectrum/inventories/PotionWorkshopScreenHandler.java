@@ -32,7 +32,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	protected PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		checkDataCount(propertyDelegate, 3);
 		this.propertyDelegate = propertyDelegate;

@@ -110,7 +110,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		if (colorOrdinal != -1 && amount > 0) {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			for (int j = 0; j < amount; ++j) {
-				this.world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0, 0, 0);
+				this.getWorld().addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0, 0, 0);
 			}
 		}
 	}
@@ -140,7 +140,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		if (entity.damage(damageSource, (float) damage)) {
 			if (entity instanceof LivingEntity livingEntity) {
 				
-				if (!this.world.isClient && entity2 instanceof LivingEntity) {
+				if (!this.getWorld().isClient() && entity2 instanceof LivingEntity) {
 					EnchantmentHelper.onUserDamaged(livingEntity, entity2);
 					EnchantmentHelper.onTargetDamaged((LivingEntity) entity2, livingEntity);
 				}
@@ -151,7 +151,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 					((ServerPlayerEntity) entity2).networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.PROJECTILE_HIT_PLAYER, 0.0F));
 				}
 				
-				if (!this.world.isClient && entity2 instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (!this.getWorld().isClient() && entity2 instanceof ServerPlayerEntity serverPlayerEntity) {
 					if (!entity.isAlive()) {
 						SpectrumAdvancementCriteria.KILLED_BY_INK_PROJECTILE.trigger(serverPlayerEntity, List.of(entity));
 					}
@@ -164,7 +164,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			this.setVelocity(this.getVelocity().multiply(-0.1D));
 			this.setYaw(this.getYaw() + 180.0F);
 			this.prevYaw += 180.0F;
-			if (!this.world.isClient && this.getVelocity().lengthSquared() < 1.0E-7D) {
+			if (!this.getWorld().isClient() && this.getVelocity().lengthSquared() < 1.0E-7D) {
 				this.discard();
 			}
 		}
@@ -185,23 +185,23 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-				if (world.getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
-					if (GenericClaimModsCompat.isProtected(world, blockPos, this.getOwner())) {
+				if (this.getWorld().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
+					if (GenericClaimModsCompat.isProtected(this.getWorld(), blockPos, this.getOwner())) {
 						continue;
 					}
-					colorableBlock.color(world, blockPos, dyeColor);
+					colorableBlock.color(this.getWorld(), blockPos, dyeColor);
 					continue;
 				}
-				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, dyeColor);
+				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.getWorld(), blockPos, dyeColor);
 				if (!coloredBlockState.isAir()) {
-					this.world.setBlockState(blockPos, coloredBlockState);
+					this.getWorld().setBlockState(blockPos, coloredBlockState);
 				}
 			}
 			
 			affectEntitiesInRange(this.getOwner());
 			
 			// TODO: uncomment this when all 16 ink effects are finished
-			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
+			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.getWorld(), blockHitResult.getPos(), SPELL_POTENCY);
 		}
 		
 		this.discard();
@@ -245,7 +245,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 	
 	public void affectEntitiesInRange(Entity attacker) {
-		this.world.emitGameEvent(this, GameEvent.PROJECTILE_LAND, BlockPos.ofFloored(this.getPos().x, this.getPos().y, this.getPos().z));
+		this.getWorld().emitGameEvent(this, GameEvent.PROJECTILE_LAND, BlockPos.ofFloored(this.getPos().x, this.getPos().y, this.getPos().z));
 		
 		double posX = this.getPos().x;
 		double posY = this.getPos().y;
@@ -258,11 +258,11 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		int s = MathHelper.floor(posY + (double) q + 1.0D);
 		int t = MathHelper.floor(posZ - (double) q - 1.0D);
 		int u = MathHelper.floor(posZ + (double) q + 1.0D);
-		List<Entity> list = this.world.getOtherEntities(this, new Box(k, r, t, l, s, u));
+		List<Entity> list = this.getWorld().getOtherEntities(this, new Box(k, r, t, l, s, u));
 		Vec3d vec3d = new Vec3d(posX, posY, posZ);
 		
 		for (Entity entity : list) {
-			if (!GenericClaimModsCompat.canInteractWith(world, entity, attacker)) {
+			if (!GenericClaimModsCompat.canInteractWith(this.getWorld(), entity, attacker)) {
 				continue;
 			}
 			

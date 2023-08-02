@@ -116,8 +116,8 @@ public class PresentBlock extends BlockWithEntity {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 			return List.of(presentBlockEntity.retrievePresent(state.get(VARIANT)));
 		} else {

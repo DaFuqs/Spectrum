@@ -75,7 +75,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						}
 						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
 						doneStuff = true;
-					} else if (additionStack.isItemEqual(currentStack)) {
+					} else if (ItemStack.areEqual(currentStack, additionStack)) {
 						// add to stack;
 						int maxStackCount = currentStack.getMaxCount();
 						int canAcceptCount = maxStackCount - currentStack.getCount();

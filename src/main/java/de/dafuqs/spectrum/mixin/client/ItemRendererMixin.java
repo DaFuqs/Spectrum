@@ -27,10 +27,11 @@ public abstract class ItemRendererMixin {
 	private void spectrum$storeItemRenderMode2(ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
 		SpectrumModelPredicateProviders.currentItemRenderMode = renderMode;
 	}
-	
-	@Inject(at = @At("HEAD"), method = "innerRenderInGui(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;III)V")
-	private void spectrum$storeItemRenderMode3(MatrixStack matrices, LivingEntity entity, World world, ItemStack stack, int x, int y, int seed, CallbackInfo ci) {
-		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.GUI;
-	}
+
+	// TODO - Verify
+//	@Inject(at = @At("HEAD"), method = "ren")
+//	private void spectrum$storeItemRenderMode3(MatrixStack matrices, LivingEntity entity, World world, ItemStack stack, int x, int y, int seed, CallbackInfo ci) {
+//		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.GUI;
+//	}
 	
 }

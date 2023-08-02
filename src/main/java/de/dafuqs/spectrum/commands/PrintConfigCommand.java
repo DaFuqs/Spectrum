@@ -138,7 +138,7 @@ public class PrintConfigCommand {
 	}
 	
 	private static void send(ServerCommandSource source, String s) {
-		source.sendFeedback(Text.literal(s), false);
+		source.sendFeedback(() -> Text.literal(s), false);
 	}
 	
 	

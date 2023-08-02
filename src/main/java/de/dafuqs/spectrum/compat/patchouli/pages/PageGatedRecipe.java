@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.google.gson.annotations.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -78,13 +79,13 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float tickDelta) {
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float tickDelta) {
 		if (recipe != null) {
 			int recipeX = getX();
 			int recipeY = getY();
-			drawRecipe(ms, recipe, recipeX, recipeY, mouseX, mouseY);
+			drawRecipe(drawContext, recipe, recipeX, recipeY, mouseX, mouseY);
 		}
-		super.render(ms, mouseX, mouseY, tickDelta);
+		super.render(drawContext, mouseX, mouseY, tickDelta);
 	}
 	
 	@Override
@@ -97,7 +98,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		return getTextHeight() + 10 < GuiBook.PAGE_HEIGHT;
 	}
 	
-	protected abstract void drawRecipe(MatrixStack ms, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
+	protected abstract void drawRecipe(DrawContext drawContext, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
 	
 	protected abstract ItemStack getRecipeOutput(World world, T recipe);
 	

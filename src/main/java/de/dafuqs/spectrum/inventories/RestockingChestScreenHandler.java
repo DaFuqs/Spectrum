@@ -30,7 +30,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 	protected RestockingChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		checkSize(inventory, RestockingChestBlockEntity.INVENTORY_SIZE);
 		inventory.onOpen(playerInventory.player);

@@ -66,7 +66,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			this.memoryItemStack = creatureSpawnItemStack.copy();
 			this.memoryItemStack.setCount(1);
 		}
-		if (!livingEntity.world.isClient) {
+		if (!livingEntity.getWorld().isClient()) {
 			this.updateInClientWorld();
 		}
 		this.markDirty();

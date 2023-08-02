@@ -22,7 +22,7 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 		if (!thisEntity.isSpectator() && source.getAttacker() instanceof LivingEntity) {
 			int damageSourceTreasureHunt = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity) source.getAttacker());
 			if (damageSourceTreasureHunt > 0) {
-				ServerWorld serverWorld = thisEntity.getWorld();
+				ServerWorld serverWorld = ((ServerWorld) thisEntity.getWorld());
 				boolean shouldDropHead = serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
 				if (shouldDropHead) {
 					ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);

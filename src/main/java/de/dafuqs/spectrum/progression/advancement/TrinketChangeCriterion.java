@@ -9,7 +9,6 @@ import net.minecraft.advancement.criterion.*;
 import net.minecraft.item.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.predicate.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
@@ -24,16 +23,16 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 	public Identifier getId() {
 		return ID;
 	}
-	
+
 	@Override
-	public TrinketChangeCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange totalCountRange = NumberRange.IntRange.fromJson(jsonObject.get("total_count"));
 		NumberRange.IntRange spectrumCountRange = NumberRange.IntRange.fromJson(jsonObject.get("spectrum_count"));
-		
-		return new TrinketChangeCriterion.Conditions(extended, itemPredicates, totalCountRange, spectrumCountRange);
+
+		return new TrinketChangeCriterion.Conditions(playerPredicate, itemPredicates, totalCountRange, spectrumCountRange);
 	}
-	
+
 	public void trigger(ServerPlayerEntity player) {
 		this.trigger(player, (conditions) -> {
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(player);
@@ -58,8 +57,8 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 		private final NumberRange.IntRange totalCountRange;
 		private final NumberRange.IntRange spectrumCountRange;
 		
-		public Conditions(Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange totalCountRange, NumberRange.IntRange spectrumCountRange) {
-			super(TrinketChangeCriterion.ID, player);
+		public Conditions(LootContextPredicate playerPredicate, ItemPredicate[] itemPredicates, NumberRange.IntRange totalCountRange, NumberRange.IntRange spectrumCountRange) {
+			super(TrinketChangeCriterion.ID, playerPredicate);
 			this.itemPredicates = itemPredicates;
 			this.totalCountRange = totalCountRange;
 			this.spectrumCountRange = spectrumCountRange;

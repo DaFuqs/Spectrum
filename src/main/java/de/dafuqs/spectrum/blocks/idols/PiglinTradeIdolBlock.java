@@ -27,8 +27,8 @@ public class PiglinTradeIdolBlock extends IdolBlock {
 		PiglinEntity piglin = new PiglinEntity(EntityType.PIGLIN, world);
 		piglin.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 		
-		LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
-		List<ItemStack> loot = lootTable.generateLoot(new LootContext.Builder(world).parameter(LootContextParameters.THIS_ENTITY, piglin).random(world.random).build(LootContextTypes.BARTER));
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
+		List<ItemStack> loot = lootTable.generateLoot(new LootContextParameterSet.Builder(world).add(LootContextParameters.THIS_ENTITY, piglin).build(LootContextTypes.BARTER));
 		
 		piglin.discard();
 		

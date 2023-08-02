@@ -18,21 +18,21 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 		return ID;
 	}
 	
-	@Override
-	public BlockBrokenCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		BrokenBlockPredicate brokenBlockPredicate = BrokenBlockPredicate.fromJson(jsonObject.get("broken_block"));
-		return new BlockBrokenCriterion.Conditions(extended, brokenBlockPredicate);
-	}
-	
 	public void trigger(ServerPlayerEntity player, BlockState minedBlock) {
 		this.trigger(player, (conditions) -> conditions.matches(minedBlock));
 	}
-	
+
+	@Override
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+		BrokenBlockPredicate brokenBlockPredicate = BrokenBlockPredicate.fromJson(jsonObject.get("broken_block"));
+		return new BlockBrokenCriterion.Conditions(playerPredicate, brokenBlockPredicate);
+	}
+
 	public static class Conditions extends AbstractCriterionConditions {
 		
 		private final BrokenBlockPredicate brokenBlockPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
+		public Conditions(LootContextPredicate player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
 			super(ID, player);
 			this.brokenBlockPredicate = brokenBlockPredicate;
 		}

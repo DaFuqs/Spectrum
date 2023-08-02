@@ -30,7 +30,7 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	public ParticleSpawnerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
 		super(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, syncId);
 		this.player = playerInventory.player;
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
 			this.particleSpawnerBlockEntity = particleSpawnerBlockEntity;
 		} else {

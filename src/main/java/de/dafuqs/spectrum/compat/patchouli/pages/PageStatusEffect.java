@@ -31,12 +31,12 @@ public class PageStatusEffect extends PageWithText {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
 		RenderSystem.setShaderTexture(0, statusEffectSprite.getContents().getId());
 		RenderSystem.enableBlend();
-		DrawableHelper.drawSprite(ms, 49, 14, 0, 18, 18, statusEffectSprite);
+		drawContext.drawSprite(49, 14, 0, 18, 18, statusEffectSprite);
 		RenderSystem.setShaderTexture(0, book.craftingTexture);
-		DrawableHelper.drawTexture(ms, GuiBook.PAGE_WIDTH / 2 - 66 / 2, 10, 0, 128 - 26, 68, 28, 128, 256);
+		drawContext.drawTexture(statusEffectSprite.getContents().getId(), GuiBook.PAGE_WIDTH / 2 - 66 / 2, 10, 0, 128 - 26, 68, 28, 128, 256);
 		
 		Text toDraw;
 		if (title != null && !title.isEmpty()) {
@@ -44,9 +44,9 @@ public class PageStatusEffect extends PageWithText {
 		} else {
 			toDraw = statusEffect.getName();
 		}
-		parent.drawCenteredStringNoShadow(ms, toDraw.asOrderedText(), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		parent.drawCenteredStringNoShadow(drawContext, toDraw.asOrderedText(), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
 		
-		super.render(ms, mouseX, mouseY, pticks);
+		super.render(drawContext, mouseX, mouseY, pticks);
 	}
 	
 	@Override

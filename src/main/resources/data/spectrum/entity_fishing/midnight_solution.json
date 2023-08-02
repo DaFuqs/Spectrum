@@ -1,11 +1,13 @@
 {
-  "fluid": {
-    "tag": "spectrum:midnight_solution"
+  "location": {
+    "fluid": {
+      "tag": "spectrum:midnight_solution"
+    }
   },
   "chance": 0.25,
   "entities": [
     {
-      "id": "minecraft:skeleton",
+      "id": "minecraft:wither_skeleton",
       "weight": 5
     },
     {
@@ -17,16 +19,12 @@
       "weight": 5
     },
     {
-      "id": "minecraft:creeper",
+      "id": "minecraft:skeleton",
       "weight": 5
     },
     {
-      "id": "minecraft:wither_skeleton",
+      "id": "minecraft:creeper",
       "weight": 2
-    },
-    {
-      "id": "minecraft:zombie_horse",
-      "weight": 1
     }
   ]
 }

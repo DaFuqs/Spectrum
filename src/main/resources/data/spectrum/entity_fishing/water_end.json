@@ -1,0 +1,36 @@
+{
+  "location": {
+    "dimension": {
+      "worlds": [
+        "minecraft:the_end"
+      ]
+    },
+    "fluid": {
+      "tag": "minecraft:water"
+    }
+  },
+  "dimension": "minecraft:the_end",
+  "chance": 0.02,
+  "entities": [
+    {
+      "id": "minecraft:cod",
+      "weight": 10
+    },
+    {
+      "id": "minecraft:salmon",
+      "weight": 10
+    },
+    {
+      "id": "minecraft:pufferfish",
+      "weight": 1
+    },
+    {
+      "id": "minecraft:shulker",
+      "weight": 1
+    },
+    {
+      "id": "minecraft:enderman",
+      "weight": 1
+    }
+  ]
+}

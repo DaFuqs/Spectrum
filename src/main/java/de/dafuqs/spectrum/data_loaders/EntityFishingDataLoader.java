@@ -1,16 +1,12 @@
 package de.dafuqs.spectrum.data_loaders;
 
 import com.google.gson.*;
-
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
-import de.dafuqs.spectrum.predicate.block.*;
-import de.dafuqs.spectrum.predicate.entity.EntityFishingPredicate;
-import de.dafuqs.spectrum.predicate.world.*;
+import de.dafuqs.spectrum.predicate.entity.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.predicate.FluidPredicate;
 import net.minecraft.resource.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
@@ -20,7 +16,6 @@ import net.minecraft.util.profiler.*;
 import net.minecraft.util.registry.*;
 
 import java.util.*;
-import java.util.concurrent.atomic.*;
 
 public class EntityFishingDataLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
 	
@@ -50,21 +45,10 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			
-			EntityFishingPredicate predicate = new EntityFishingPredicate(
-				FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
-				BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
-				LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
-				DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
-				MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),
-				TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "timeOfDay", null)),
-				WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
-				CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
-			);
-			
+			EntityFishingPredicate predicate = EntityFishingPredicate.fromJson(jsonObject.get("location").getAsJsonObject());
 			float chance = JsonHelper.getFloat(jsonObject, "chance");
 			JsonArray entityArray = JsonHelper.getArray(jsonObject, "entities");
 			
-			AtomicInteger weightSum = new AtomicInteger();
 			DataPool.Builder<EntityFishingEntity> entities = DataPool.builder();
 			entityArray.forEach(entryElement -> {
 				JsonObject entryObject = entryElement.getAsJsonObject();
@@ -77,7 +61,6 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				if (JsonHelper.hasNumber(entryObject, "weight")) {
 					weight = JsonHelper.getInt(entryObject, "weight");
 				}
-				weightSum.addAndGet(weight);
 				entities.add(new EntityFishingEntity(entityType, nbt), weight);
 			});
 			

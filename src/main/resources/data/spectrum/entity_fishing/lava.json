@@ -1,8 +1,10 @@
 {
-  "fluid": {
-    "tag": "minecraft:lava"
+  "location": {
+    "fluid": {
+      "tag": "minecraft:lava"
+    }
   },
-  "chance": 0.04,
+  "chance": 0.02,
   "entities": [
     {
       "id": "minecraft:magma_cube",

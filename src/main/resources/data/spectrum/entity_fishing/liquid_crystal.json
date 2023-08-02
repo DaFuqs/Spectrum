@@ -1,6 +1,8 @@
 {
-  "fluid": {
-    "tag": "spectrum:liquid_crystal"
+  "location": {
+    "fluid": {
+      "tag": "spectrum:liquid_crystal"
+    }
   },
   "chance": 0.05,
   "entities": [
@@ -10,6 +12,10 @@
     },
     {
       "id": "minecraft:glow_squid",
+      "weight": 4
+    },
+    {
+      "id": "minecraft:allay",
       "weight": 1
     }
   ]

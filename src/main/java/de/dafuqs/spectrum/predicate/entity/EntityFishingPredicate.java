@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.predicate.entity;
 
-import de.dafuqs.spectrum.predicate.block.BiomePredicate;
+import com.google.gson.*;
 import de.dafuqs.spectrum.predicate.block.LightPredicate;
-import de.dafuqs.spectrum.predicate.world.CommandPredicate;
-import de.dafuqs.spectrum.predicate.world.DimensionPredicate;
-import de.dafuqs.spectrum.predicate.world.MoonPhasePredicate;
-import de.dafuqs.spectrum.predicate.world.TimeOfDayPredicate;
-import de.dafuqs.spectrum.predicate.world.WeatherPredicate;
-import net.minecraft.predicate.FluidPredicate;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.predicate.world.*;
+import net.minecraft.predicate.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 
 public class EntityFishingPredicate {
 	private final FluidPredicate fluidPredicate;
@@ -41,16 +39,29 @@ public class EntityFishingPredicate {
 		this.commandPredicate = commandPredicate;
 	}
 	
+	public static EntityFishingPredicate fromJson(JsonObject jsonObject) {
+		return new EntityFishingPredicate(
+				FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
+				BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
+				LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
+				DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
+				MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moon_phase", null)),
+				TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "time_of_day", null)),
+				WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
+				CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
+		);
+	}
+	
 	public boolean test(ServerWorld world, BlockPos pos) {
 		return (
-			this.fluidPredicate.test(world, pos) &&
-			this.biomePredicate.test(world, pos) &&
-			this.lightPredicate.test(world, pos) &&
-			this.dimensionPredicate.test(world, pos) &&
-			this.moonPhasePredicate.test(world, pos) &&
-			this.timeOfDayPredicate.test(world, pos) &&
-			this.weatherPredicate.test(world, pos) &&
-			this.commandPredicate.test(world, pos)
+				this.fluidPredicate.test(world, pos) &&
+						this.biomePredicate.test(world, pos) &&
+						this.lightPredicate.test(world, pos) &&
+						this.dimensionPredicate.test(world, pos) &&
+						this.moonPhasePredicate.test(world, pos) &&
+						this.timeOfDayPredicate.test(world, pos) &&
+						this.weatherPredicate.test(world, pos) &&
+						this.commandPredicate.test(world, pos)
 		);
 	}
 }

@@ -28,12 +28,12 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int distance = 1; distance < 8; distance++) {
-			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
-			hashtable.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true));
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true));
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

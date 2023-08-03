@@ -27,9 +27,7 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		hashtable.put(this.getDefaultState(), cloakBlockState);
-		return hashtable;
+		return Map.of(this.getDefaultState(), cloakBlockState);
 	}
 	
 	@Override

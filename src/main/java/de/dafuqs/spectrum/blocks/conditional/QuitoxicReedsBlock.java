@@ -47,13 +47,13 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int i = 0; i <= Properties.AGE_7_MAX; i++) {
-			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.NOT_LOGGED).with(AGE, i), Blocks.AIR.getDefaultState());
-			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.WATER).with(AGE, i), Blocks.WATER.getDefaultState());
-			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL).with(AGE, i), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
+			map.put(this.getDefaultState().with(LOGGED, FluidLogging.State.NOT_LOGGED).with(AGE, i), Blocks.AIR.getDefaultState());
+			map.put(this.getDefaultState().with(LOGGED, FluidLogging.State.WATER).with(AGE, i), Blocks.WATER.getDefaultState());
+			map.put(this.getDefaultState().with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL).with(AGE, i), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

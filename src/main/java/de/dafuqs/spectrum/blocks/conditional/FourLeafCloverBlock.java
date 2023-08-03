@@ -24,9 +24,9 @@ public class FourLeafCloverBlock extends CloverBlock implements RevelationAware 
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		hashtable.put(this.getDefaultState(), SpectrumBlocks.CLOVER.getDefaultState());
-		return hashtable;
+		Map<BlockState, BlockState> map = new Hashtable<>();
+		map.put(this.getDefaultState(), SpectrumBlocks.CLOVER.getDefaultState());
+		return map;
 	}
 	
 	@Override

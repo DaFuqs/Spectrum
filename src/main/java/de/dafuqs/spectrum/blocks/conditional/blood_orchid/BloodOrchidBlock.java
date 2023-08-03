@@ -77,11 +77,11 @@ public class BloodOrchidBlock extends FlowerBlock implements Fertilizable, Revel
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int i = 0; i <= Properties.AGE_5_MAX; i++) {
-			hashtable.put(this.getDefaultState().with(AGE, i), Blocks.RED_TULIP.getDefaultState());
+			map.put(this.getDefaultState().with(AGE, i), Blocks.RED_TULIP.getDefaultState());
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

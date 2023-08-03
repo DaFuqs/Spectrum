@@ -22,9 +22,7 @@ public class RadiatingEnderBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		hashtable.put(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
-		return hashtable;
+		return Map.of(this.getDefaultState(), Blocks.COBBLESTONE.getDefaultState());
 	}
 	
 	@Override

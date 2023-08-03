@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.structure;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -31,6 +32,11 @@ public class StatueBlock extends DecoStoneBlock {
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+	}
+	
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		world.setBlockState(pos.up(), state.with(HALF, DoubleBlockHalf.UPPER), 3);
 	}
 	
 	@Override

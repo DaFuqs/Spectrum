@@ -28,7 +28,7 @@ import vazkii.patchouli.api.*;
 
 public class CinderhearthBlock extends BlockWithEntity {
 	
-	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	
 	public CinderhearthBlock(Settings settings) {
 		super(settings);

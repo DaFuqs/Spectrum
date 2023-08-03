@@ -29,7 +29,7 @@ public class CloakedItemWithLoomPattern extends CloakedItem implements LoomPatte
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
+		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 }

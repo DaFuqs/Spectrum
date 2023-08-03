@@ -60,7 +60,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		getEnergyStorage(stack).addTooltip(tooltip, true);
-		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
+		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	public ItemStack getFullStack(InkColor color) {

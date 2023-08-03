@@ -61,7 +61,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		getEnergyStorage(stack).addTooltip(tooltip, true);
-		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
+		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	@Override

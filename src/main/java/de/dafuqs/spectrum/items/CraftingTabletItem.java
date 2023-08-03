@@ -119,7 +119,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 			tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.shift_to_view_gui").formatted(Formatting.GRAY));
 		}
 		
-		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
+		addBannerPatternProviderTooltip(tooltip);
 	}
 	
 	@Environment(EnvType.CLIENT)

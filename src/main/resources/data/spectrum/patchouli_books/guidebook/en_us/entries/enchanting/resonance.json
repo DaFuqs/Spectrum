@@ -44,7 +44,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
-      "item": "spectrum:spawner",
+      "item": "minecraft:spawner",
       "text": "In the depths, you have come across cages that seem to spit out an endless number of enemies. What madman put them there, what purpose they serve, and whether it was worth it is a mystery to you. But you can certainly find some use for them. Their creator hopefully won't miss you packing a few."
     },
     {

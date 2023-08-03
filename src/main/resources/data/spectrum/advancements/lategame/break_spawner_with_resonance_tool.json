@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/craft_resonant_pickaxe",
   "display": {
     "icon": {
-      "item": "spectrum:spawner"
+      "item": "minecraft:spawner"
     },
     "title": {
       "translate": "advancements.spectrum.break_spawner_with_resonance_tool.title"

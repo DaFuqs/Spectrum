@@ -17,18 +17,18 @@ public class InexorableEnchantment extends SpectrumEnchantment {
     public static void checkAndRemoveSlowdownModifiers(LivingEntity entity) {
         var armorInexorable = isArmorActive(entity);
         var toolInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, entity.getStackInHand(entity.getActiveHand())) > 0;
-        
-        var armorAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE);
-        var toolAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE);
-        
+    
+        var armorAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE);
+        var toolAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE);
+    
         if (armorInexorable && armorAttributes.isPresent()) {
             for (RegistryEntry<EntityAttribute> attributeRegistryEntry : armorAttributes.get()) {
-                
+            
                 var attributeInstance = entity.getAttributeInstance(attributeRegistryEntry.value());
-                
+            
                 if (attributeInstance == null)
                     continue;
-                
+            
                 var badMods = attributeInstance.getModifiers()
                         .stream()
                         .filter(modifier -> modifier.getValue() < 0)

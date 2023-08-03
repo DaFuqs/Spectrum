@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -150,7 +149,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		// Dimension
 		logInfo("Registering Dimension...");
-		DDDimension.register();
+		SpectrumDimensions.register();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
@@ -283,7 +282,7 @@ public class SpectrumCommon implements ModInitializer {
 					}
 				}
 				
-				if (world.getRegistryKey().equals(DDDimension.DIMENSION_KEY)) {
+				if (world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
 					MonstrositySpawner.INSTANCE.spawn(world, true, true);
 				}
 			}
@@ -321,7 +320,7 @@ public class SpectrumCommon implements ModInitializer {
 			var oldInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, previousStack);
 			var newInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, currentStack);
 			
-			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE;
+			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
 			
 			if (oldInexorable > 0 && newInexorable <= 0) {
 				livingEntity.getStatusEffects()

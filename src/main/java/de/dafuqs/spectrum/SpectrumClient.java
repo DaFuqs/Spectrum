@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -97,7 +96,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		PatchouliFlags.register();
 		
 		logInfo("Registering Dimension Effects...");
-		DDDimension.registerClient();
+		SpectrumDimensions.registerClient();
 		DimensionReverb.setup();
 		
 		logInfo("Registering Event Listeners...");

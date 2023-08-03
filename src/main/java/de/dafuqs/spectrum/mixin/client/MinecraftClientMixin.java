@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
@@ -22,7 +21,7 @@ public abstract class MinecraftClientMixin {
 	
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/util/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
 	public void spectrum$getMusicType(CallbackInfoReturnable<MusicSound> cir) {
-		if (player.world.getRegistryKey() == DDDimension.DIMENSION_KEY) {
+		if (player.world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY) {
 			if (Support.hasPlayerFinishedMod(player)) {
 				cir.setReturnValue(SpectrumMusicType.SPECTRUM_THEME);
 			} else {

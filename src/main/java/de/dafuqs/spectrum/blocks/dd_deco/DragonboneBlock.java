@@ -9,7 +9,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class DragonboneBlock extends PillarBlock implements MoonstoneStrikeableBlock, ExplosionReplaced {
+public class DragonboneBlock extends CrackedDragonboneBlock implements MoonstoneStrikeableBlock {
 	
 	public DragonboneBlock(Settings settings) {
 		super(settings);

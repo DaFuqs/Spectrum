@@ -36,7 +36,9 @@ public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigE
 		
 		ModelPartData head = torso.addChild("head", ModelPartBuilder.create()
 				.uv(56, 24).cuboid(-4.0F, -6.0F, -6.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F))
-				.uv(0, 44).cuboid(-2.5F, -2.0F, -7.0F, 5.0F, 3.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -13.0F, -7.0F));
+				.uv(0, 44).cuboid(-2.5F, -2.0F, -7.0F, 5.0F, 3.0F, 1.0F, new Dilation(0.0F))
+				.uv(0, 73).cuboid(2.5F, -8.0F, -5.0F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F))
+				.uv(4, 73).cuboid(-3.5F, -8.0F, -5.0F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -13.0F, -7.0F));
 		
 		head.addChild("ear_r1", ModelPartBuilder.create()
 				.uv(0, 0).cuboid(7.0964F, -13.0939F, -10.5F, 3.0F, 7.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 10.0F, 6.0F, 0.0F, 0.0F, -0.3927F));

@@ -11,11 +11,11 @@ import net.minecraft.util.*;
 @Environment(EnvType.CLIENT)
 public class LizardEntityRenderer extends MobEntityRenderer<LizardEntity, LizardEntityModel> {
 	
-	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/lizard.png");
-	public static final Identifier TEXTURE_BLINKING = SpectrumCommon.locate("textures/entity/lizard_blinking.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/lizard/lizard.png");
+	public static final Identifier TEXTURE_BLINKING = SpectrumCommon.locate("textures/entity/lizard/lizard_blinking.png");
 	
 	public LizardEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new LizardEntityModel(context.getPart(SpectrumModelLayers.LIZARD_SCALES)), 1.8F);
+		super(context, new LizardEntityModel(context.getPart(SpectrumModelLayers.LIZARD_SCALES)), 0.8F);
 		this.addFeature(new LizardEyesFeatureRenderer<>(this));
 	}
 	

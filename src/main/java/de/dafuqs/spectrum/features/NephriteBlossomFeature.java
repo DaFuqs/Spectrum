@@ -15,7 +15,7 @@ import java.util.*;
 
 public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig> {
 
-    private static final List<Direction> VALID_DIRS;
+    private static final List<Direction> VALID_DIRS = List.of(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
     public NephriteBlossomFeature(Codec<NephriteBlossomFeatureConfig> configCodec) {
         super(configCodec);
@@ -63,7 +63,6 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     }
 
     private void genereateLeaves(WorldAccess world, BlockPos origin, Random random, int stemHeight, boolean flowering) {
-
         var leafHeight = Math.round(MathHelper.nextGaussian(random, 2.5F, 0.9F) + 1.85F);
         var leafPointer = origin.mutableCopy().move(0, stemHeight, 0);
         var leafDirection = VALID_DIRS.get(random.nextInt(4));
@@ -91,8 +90,10 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
         }
     }
     
-    private static void setBlockStateWithoutUpdatingNeighbors(ModifiableWorld world, BlockPos pos, BlockState state) {
-        world.setBlockState(pos, state, 19);
+    private static void setBlockStateWithoutUpdatingNeighbors(WorldAccess world, BlockPos pos, BlockState state) {
+        if (isReplaceable(world, pos, false)) {
+            world.setBlockState(pos, state, Block.FORCE_STATE | Block.NOTIFY_ALL);
+        }
     }
     
     private BlockState getLeafState(Random random, boolean allowFlowering) {
@@ -128,11 +129,4 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
         });
     }
 
-    static {
-        VALID_DIRS = new ArrayList<>();
-        VALID_DIRS.add(Direction.NORTH);
-        VALID_DIRS.add(Direction.EAST);
-        VALID_DIRS.add(Direction.SOUTH);
-        VALID_DIRS.add(Direction.WEST);
-    }
 }

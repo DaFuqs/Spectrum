@@ -21,7 +21,7 @@ public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigE
 	public EggLayingWoolyPigEntityModel(ModelPart root) {
 		super();
 		this.torso = root.getChild("torso");
-		this.head = torso.getChild("head");
+		this.head = torso.getChild(EntityModelPartNames.HEAD);
 		this.left_foreleg = torso.getChild("left_foreleg");
 		this.right_foreleg = torso.getChild("right_foreleg");
 		this.left_backleg = torso.getChild("left_backleg");

@@ -11,6 +11,7 @@ import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
@@ -20,11 +21,16 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class LizardEntity extends TameableEntity {
+import java.util.stream.*;
+
+public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity> {
 	
 	private static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
 	private static final TrackedData<LizardFrillVariant> FRILL_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
 	private static final TrackedData<LizardHornVariant> HORN_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
+	
+	private @Nullable LizardEntity leader;
+	private int groupSize = 1;
 	
 	public LizardEntity(EntityType<? extends LizardEntity> entityType, World world) {
 		super(entityType, world);
@@ -33,14 +39,35 @@ public class LizardEntity extends TameableEntity {
 	
 	public static DefaultAttributeContainer.Builder createLizardAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0D)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.12D);
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 16.0D)
+				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2.0D)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);
 	}
 	
 	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		FoodComponent food = stack.getItem().getFoodComponent();
-		return food != null && food.isMeat();
+	protected void initGoals() {
+		super.initGoals();
+		this.goalSelector.add(1, new SwimGoal(this));
+		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
+		this.goalSelector.add(3, new AttackGoal(this));
+		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.add(4, new FollowClanLeaderGoal<>(this));
+		this.goalSelector.add(5, new WanderAroundGoal(this, 0.8));
+		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.add(8, new LookAroundGoal(this));
+		
+		this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
+		this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true, livingEntity -> !LizardEntity.this.isOwner(livingEntity)));
+		this.targetSelector.add(3, new ActiveTargetGoal<>(this, LivingEntity.class, true, // different clans attacking each other
+				livingEntity -> {
+					if (livingEntity instanceof LizardEntity other) {
+						return LizardEntity.this.hasLeader() && other.hasLeader() && LizardEntity.this.leader != other.leader;
+					}
+					return !livingEntity.isBaby();
+				}));
 	}
 	
 	@Override
@@ -49,49 +76,11 @@ public class LizardEntity extends TameableEntity {
 	}
 	
 	@Override
-	protected void initGoals() {
-		this.goalSelector.add(0, new SwimGoal(this));
-		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(7, new LookAtEntityGoal(this, LivingEntity.class, 8.0F));
-		this.goalSelector.add(8, new LookAroundGoal(this));
-		
-		this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
-		this.targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, false));
-	}
-	
-	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(SCALE_VARIANT, LizardScaleVariant.CYAN);
 		this.dataTracker.startTracking(FRILL_VARIANT, LizardFrillVariant.SIMPLE);
 		this.dataTracker.startTracking(HORN_VARIANT, LizardHornVariant.HORNY);
-	}
-	
-	@Nullable
-	@Override
-	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		LizardEntity other = (LizardEntity) entity;
-		LizardEntity child = SpectrumEntityTypes.LIZARD.create(world);
-		if (child != null) {
-			child.setScales(getChildScales(this, other));
-			child.setFrills(getChildFrills(this, other));
-			child.setHorns(getChildHorns(this, other));
-		}
-		return child;
-	}
-	
-	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
-	}
-	
-	private LizardScaleVariant getChildScales(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getScales() : secondParent.getScales();
-	}
-	
-	private LizardHornVariant getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}
 	
 	@Override
@@ -117,6 +106,11 @@ public class LizardEntity extends TameableEntity {
 		if (horns != null) {
 			this.setHorns(horns);
 		}
+	}
+	
+	@Override
+	public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
+		return super.canAttackWithOwner(target, owner);
 	}
 	
 	public LizardScaleVariant getScales() {
@@ -166,6 +160,97 @@ public class LizardEntity extends TameableEntity {
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return 0.8F * dimensions.height;
+	}
+	
+	// Breeding
+	
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
+		FoodComponent food = stack.getItem().getFoodComponent();
+		return food != null && food.isMeat();
+	}
+	
+	@Override
+	public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+		LizardEntity other = (LizardEntity) entity;
+		LizardEntity child = SpectrumEntityTypes.LIZARD.create(world);
+		if (child != null) {
+			child.setScales(getChildScales(this, other));
+			child.setFrills(getChildFrills(this, other));
+			child.setHorns(getChildHorns(this, other));
+		}
+		return child;
+	}
+	
+	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
+		return this.world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
+	}
+	
+	private LizardScaleVariant getChildScales(LizardEntity firstParent, LizardEntity secondParent) {
+		return this.world.random.nextBoolean() ? firstParent.getScales() : secondParent.getScales();
+	}
+	
+	private LizardHornVariant getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
+		return this.world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
+	}
+	
+	// PackEntity
+	
+	@Override
+	public boolean hasOthersInGroup() {
+		return this.groupSize > 1;
+	}
+	
+	@Override
+	public boolean hasLeader() {
+		return this.leader != null && this.leader.isAlive();
+	}
+	
+	@Override
+	public boolean isCloseEnoughToLeader() {
+		return this.squaredDistanceTo(this.leader) <= 121.0;
+	}
+	
+	@Override
+	public void leaveGroup() {
+		this.leader.decreaseGroupSize();
+		this.leader = null;
+	}
+	
+	@Override
+	public void moveTowardLeader() {
+		if (this.hasLeader()) {
+			this.getNavigation().startMovingTo(this.leader, 1.0);
+		}
+	}
+	
+	@Override
+	public int getMaxGroupSize() {
+		return super.getLimitPerChunk();
+	}
+	
+	@Override
+	public void joinGroupOf(LizardEntity groupLeader) {
+		this.leader = groupLeader;
+		groupLeader.increaseGroupSize();
+	}
+	
+	@Override
+	public boolean canHaveMoreInGroup() {
+		return this.hasOthersInGroup() && this.groupSize < this.getMaxGroupSize();
+	}
+	
+	@Override
+	public void pullInOthers(Stream<? extends PackEntity> stream) {
+		stream.limit((this.getMaxGroupSize() - this.groupSize)).filter((e) -> e != this).forEach((e) -> e.joinGroupOf(this));
+	}
+	
+	protected void increaseGroupSize() {
+		++this.groupSize;
+	}
+	
+	protected void decreaseGroupSize() {
+		--this.groupSize;
 	}
 	
 }

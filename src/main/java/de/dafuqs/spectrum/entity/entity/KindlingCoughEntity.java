@@ -15,8 +15,8 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
-	protected static final float DAMAGE = 8.0F;
-	protected static final int FIRE_TICKS_ON_HIT = 80;
+	protected static final float DAMAGE = 12.0F;
+	protected static final int FIRE_TICKS_ON_HIT = 120;
 	
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);

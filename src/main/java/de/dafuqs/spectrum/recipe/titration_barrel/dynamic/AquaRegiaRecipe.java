@@ -34,12 +34,10 @@ public class AquaRegiaRecipe extends TitrationBarrelRecipe {
 	public AquaRegiaRecipe(Identifier identifier) {
 		super(identifier, "jade_vine_wines", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.2F, 0.1F, List.of()));
 	}
-
+	
 	@Override
-	public ItemStack getDefaultTap(int timeMultiplier) {
-		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
-		stack.setCount(this.outputItemStack.getCount());
-		return stack;
+	public ItemStack getPreviewTap(int timeMultiplier) {
+		return tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F);
 	}
 	
 	@Override

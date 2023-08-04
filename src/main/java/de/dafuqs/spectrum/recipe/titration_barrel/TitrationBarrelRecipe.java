@@ -87,9 +87,14 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return ItemStack.EMPTY;
 	}
 	
+	public ItemStack getPreviewTap(int timeMultiplier) {
+		return tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
+	}
+	
 	public ItemStack getDefaultTap(int timeMultiplier) {
-		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
+		ItemStack stack = getPreviewTap(timeMultiplier);
 		stack.setCount(this.outputItemStack.getCount());
+		BeverageItem.setPreviewStack(stack);
 		return stack;
 	}
 	

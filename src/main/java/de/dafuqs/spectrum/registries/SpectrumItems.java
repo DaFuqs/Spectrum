@@ -316,7 +316,7 @@ public class SpectrumItems {
 	public static final Item DEMON_TEA = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.SCONE));
 	
-	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item INFUSED_BEVERAGE = new VariantBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
@@ -372,7 +372,7 @@ public class SpectrumItems {
 	public static final Item BAGNUN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BANYASH));
 	public static final Item BERLINER = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.BERLINER), 48);
-	public static final Item BRISTLE_MEAD = new InfusedBeverageItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.BEVERAGE));
+	public static final Item BRISTLE_MEAD = new SimpleBeverageItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item CHAUVE_SOURIS_AU_VIN = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN), 96);
 	public static final Item CRAWFISH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
@@ -387,7 +387,7 @@ public class SpectrumItems {
 	public static final Item MEATLOAF = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MEATLOAF));
 	public static final Item MEATLOAF_SANDWICH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MEATLOAF_SANDWICH));
 	public static final Item MELLOW_SHALLOT_SOUP = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MELLOW_SHALLOT_SOUP));
-	public static final Item MORCHELLA = new InfusedBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE));
+	public static final Item MORCHELLA = new SimpleBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item NECTERED_VIOGNIER = new JadeWineItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.NECTERED_VIOGNIER));
 	public static final Item PEACHES_FLAMBE = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.PEACHES_FLAMBE), 64);
 	public static final Item PEACH_CREAM = new TeaItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.PEACH_CREAM), SpectrumFoodComponents.PEACH_CREAM_SCONE_BONUS);

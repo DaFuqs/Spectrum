@@ -7,9 +7,9 @@ import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.item.*;
 import net.minecraft.util.collection.*;
 
-public class InfusedBeverageItem extends BeverageItem {
+public class VariantBeverageItem extends BeverageItem {
 	
-	public InfusedBeverageItem(Settings settings) {
+	public VariantBeverageItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -26,7 +26,7 @@ public class InfusedBeverageItem extends BeverageItem {
 		if (this.isIn(group) && SpectrumCommon.minecraftServer != null) {
 			for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
 				ItemStack output = recipe.getOutput().copy();
-				if (output.getItem() instanceof InfusedBeverageItem) {
+				if (output.getItem() instanceof VariantBeverageItem) {
 					output.setCount(1);
 					stacks.add(output);
 				}

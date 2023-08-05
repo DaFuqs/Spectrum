@@ -23,6 +23,8 @@ import org.jetbrains.annotations.*;
 
 import java.util.stream.*;
 
+// funny little creatures
+// always out for trouble
 public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity> {
 	
 	private static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
@@ -41,8 +43,9 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		return MobEntity.createMobAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 16.0D)
-				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0D)
-				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 2.0D)
+				.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+				.add(EntityAttributes.GENERIC_ARMOR, 6.0D)
+				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 1.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 12.0D);
 	}

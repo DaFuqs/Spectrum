@@ -53,26 +53,31 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		this.goalSelector.add(1, new SwimGoal(this));
 		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
 		this.goalSelector.add(3, new AttackGoal(this));
-		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.add(4, new FollowParentGoal(this, 1.2D));
 		this.goalSelector.add(4, new FollowClanLeaderGoal<>(this));
-		this.goalSelector.add(5, new WanderAroundGoal(this, 0.8));
+		this.goalSelector.add(5, new ClanLeaderWanderAroundGoal(this, 0.8));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
-		this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true, livingEntity -> !LizardEntity.this.isOwner(livingEntity)));
+		this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true, target -> !LizardEntity.this.isOwner(target)));
 		this.targetSelector.add(3, new ActiveTargetGoal<>(this, LivingEntity.class, true, // different clans attacking each other
-				livingEntity -> {
-					if (livingEntity instanceof LizardEntity other) {
+				target -> {
+					if (target instanceof LizardEntity other) {
 						return LizardEntity.this.hasLeader() && other.hasLeader() && LizardEntity.this.leader != other.leader;
 					}
-					return !livingEntity.isBaby();
+					return !target.isBaby();
 				}));
 	}
 	
 	@Override
 	public float getBrightnessAtEyes() {
 		return 1.0F;
+	}
+	
+	@Override
+	public boolean isOwner(LivingEntity entity) {
+		return entity == this.getOwner() || this.leader != null && entity == this.leader.getOwner();
 	}
 	
 	@Override
@@ -109,8 +114,11 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
-	public boolean canAttackWithOwner(LivingEntity target, LivingEntity owner) {
-		return super.canAttackWithOwner(target, owner);
+	protected void eat(PlayerEntity player, Hand hand, ItemStack stack) {
+		super.eat(player, hand, stack);
+		// yes, this also overrides the existing owner
+		// there is no god besides the new god
+		setOwner(player);
 	}
 	
 	public LizardScaleVariant getScales() {
@@ -159,7 +167,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-		return 0.8F * dimensions.height;
+		return 0.5F * dimensions.height;
 	}
 	
 	// Breeding
@@ -255,5 +263,19 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	protected void decreaseGroupSize() {
 		--this.groupSize;
 	}
+	
+	protected class ClanLeaderWanderAroundGoal extends WanderAroundGoal {
+		
+		public ClanLeaderWanderAroundGoal(PathAwareEntity mob, double speed) {
+			super(mob, speed);
+		}
+		
+		@Override
+		public boolean canStart() {
+			return !LizardEntity.this.hasLeader() && super.canStart();
+		}
+		
+	}
+	
 	
 }

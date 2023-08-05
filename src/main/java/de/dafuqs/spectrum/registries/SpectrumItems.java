@@ -21,7 +21,6 @@ import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.color.*;
@@ -286,11 +285,9 @@ public class SpectrumItems {
 	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
 	public static final Item JADE_VINE_PETALS = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
-	public static final Item NEPHRITE_BLOSSOM_BULB = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
-	
-	public static final Item JADEITE_LOTUS_BULB = new BlockItemWithTooltip(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
+	public static final Item NEPHRITE_BLOSSOM_BULB = new BlockItem(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16));
+	public static final Item JADEITE_LOTUS_BULB = new BlockItem(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16));
 	public static final Item JADEITE_PETALS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
 	

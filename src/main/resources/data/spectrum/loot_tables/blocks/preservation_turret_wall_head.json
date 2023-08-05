@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:guardian_turret_head"
+          "name": "spectrum:preservation_turret_head"
         }
       ],
       "conditions": [

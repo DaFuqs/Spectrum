@@ -9,13 +9,13 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
-public class GuardianTurretEntityModel<T extends GuardianTurretEntity> extends CompositeEntityModel<T> {
+public class PreservationTurretEntityModel<T extends PreservationTurretEntity> extends CompositeEntityModel<T> {
 	
 	private final ModelPart body;
 	private final ModelPart head;
 	private final ModelPart cover;
 	
-	public GuardianTurretEntityModel(ModelPart root) {
+	public PreservationTurretEntityModel(ModelPart root) {
 		super(RenderLayer::getEntityCutoutNoCullZOffset);
 		this.body = root.getChild(EntityModelPartNames.BODY);
 		this.head = body.getChild(EntityModelPartNames.HEAD);

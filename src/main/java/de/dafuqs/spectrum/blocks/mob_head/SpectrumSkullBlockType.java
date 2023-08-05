@@ -116,7 +116,7 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	
 	EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, true),
 	KINDLING(SpectrumEntityTypes.KINDLING, true),
-	GUARDIAN_TURRET(SpectrumEntityTypes.GUARDIAN_TURRET, true),
+	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, true),
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
 	LIZARD(SpectrumEntityTypes.LIZARD, true);
 	

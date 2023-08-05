@@ -4,7 +4,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:guardian_turret_head"
+    "item": "spectrum:preservation_turret_head"
   },
   "ingredient2": {
     "item": "spectrum:moonstone_shard"
@@ -17,7 +17,7 @@
     "item": "spectrum:memory",
     "nbt": {
       "EntityTag": {
-        "id": "spectrum:guardian_turret"
+        "id": "spectrum:preservation_turret"
       },
       "TicksToManifest": 16
     }

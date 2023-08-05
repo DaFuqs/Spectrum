@@ -30,7 +30,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 import java.util.function.*;
 
-public class GuardianTurretEntity extends GolemEntity implements Monster, VibrationListener.Callback {
+public class PreservationTurretEntity extends GolemEntity implements Monster, VibrationListener.Callback {
 	
 	protected float DAMAGE = 4.0F;
 	
@@ -39,8 +39,8 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 	protected static final EntityAttributeModifier COVERED_ARMOR_BONUS = new EntityAttributeModifier(COVERED_ARMOR_BONUS_ID, "Covered armor bonus", 20.0, EntityAttributeModifier.Operation.ADDITION);
 	protected static final EntityAttributeModifier COVERED_TOUGHNESS_BONUS = new EntityAttributeModifier(COVERED_TOUGHNESS_BONUS_ID, "Covered toughness bonus", 6.0, EntityAttributeModifier.Operation.ADDITION);
 	
-	protected static final TrackedData<Direction> ATTACHED_FACE = DataTracker.registerData(GuardianTurretEntity.class, TrackedDataHandlerRegistry.FACING);
-	protected static final TrackedData<Byte> PEEK_AMOUNT = DataTracker.registerData(GuardianTurretEntity.class, TrackedDataHandlerRegistry.BYTE);
+	protected static final TrackedData<Direction> ATTACHED_FACE = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.FACING);
+	protected static final TrackedData<Byte> PEEK_AMOUNT = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.BYTE);
 	
 	protected static final Vec3f SOUTH_VECTOR = Util.make(() -> {
 		Vec3i vec3i = Direction.SOUTH.getVector();
@@ -53,7 +53,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 	protected float openProgress;
 	protected @Nullable BlockPos prevAttachedBlock;
 	
-	public GuardianTurretEntity(EntityType<? extends GuardianTurretEntity> entityType, World world) {
+	public PreservationTurretEntity(EntityType<? extends PreservationTurretEntity> entityType, World world) {
 		super(entityType, world);
 		this.experiencePoints = 12;
 		this.lookControl = new TurretLookControl(this);
@@ -77,17 +77,17 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_DEATH;
+		return SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_DEATH;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return this.isClosed() ? SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_HURT_CLOSED : SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_HURT;
+		return this.isClosed() ? SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_HURT_CLOSED : SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_HURT;
 	}
 	
 	@Override
@@ -312,10 +312,10 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 			if (peekAmount == 0) {
 				this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).addPersistentModifier(COVERED_ARMOR_BONUS);
 				this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).addPersistentModifier(COVERED_TOUGHNESS_BONUS);
-				this.playSound(SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_CLOSE, 1.0F, 1.0F);
+				this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_CLOSE, 1.0F, 1.0F);
 				this.emitGameEvent(GameEvent.CONTAINER_CLOSE);
 			} else {
-				this.playSound(SpectrumSoundEvents.ENTITY_GUARDIAN_TURRET_OPEN, 1.0F, 1.0F);
+				this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_OPEN, 1.0F, 1.0F);
 				this.emitGameEvent(GameEvent.CONTAINER_OPEN);
 			}
 		}
@@ -388,7 +388,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 				&& EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity)
 				&& !this.isTeammate(entity)
 				&& livingEntity.getType() != EntityType.ARMOR_STAND
-				&& livingEntity.getType() != SpectrumEntityTypes.GUARDIAN_TURRET
+				&& livingEntity.getType() != SpectrumEntityTypes.PRESERVATION_TURRET
 				&& !livingEntity.isInvulnerable()
 				&& !livingEntity.isDead()
 				&& this.world.getWorldBorder().contains(livingEntity.getBoundingBox());
@@ -398,7 +398,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
 		if (!this.isDead() && entity instanceof LivingEntity livingEntity) {
 			this.setTarget(livingEntity);
-			GuardianTurretEntity.this.setPeekAmount(100);
+			PreservationTurretEntity.this.setPeekAmount(100);
 		}
 	}
 	
@@ -413,8 +413,8 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 		
 		@Override
 		protected Optional<Float> getTargetYaw() {
-			Direction attachedDirection = GuardianTurretEntity.this.getAttachedFace().getOpposite();
-			Vec3f southVectorCopy = GuardianTurretEntity.SOUTH_VECTOR.copy();
+			Direction attachedDirection = PreservationTurretEntity.this.getAttachedFace().getOpposite();
+			Vec3f southVectorCopy = PreservationTurretEntity.SOUTH_VECTOR.copy();
 			southVectorCopy.rotate(attachedDirection.getRotationQuaternion());
 			Vec3i vec3i = attachedDirection.getVector();
 			Vec3f vec3f2 = new Vec3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
@@ -445,30 +445,30 @@ public class GuardianTurretEntity extends GolemEntity implements Monster, Vibrat
 		
 		@Override
 		public boolean canStart() {
-			LivingEntity target = GuardianTurretEntity.this.getTarget();
+			LivingEntity target = PreservationTurretEntity.this.getTarget();
 			return target != null
 					&& target.isAlive()
-					&& GuardianTurretEntity.this.openProgress == 1.0
-					&& GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL;
+					&& PreservationTurretEntity.this.openProgress == 1.0
+					&& PreservationTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL;
 		}
 		
 		@Override
 		public void stop() {
-			GuardianTurretEntity.this.setPeekAmount(0);
+			PreservationTurretEntity.this.setPeekAmount(0);
 		}
 		
 		@Override
 		public void tick() {
-			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
-				LivingEntity target = GuardianTurretEntity.this.getTarget();
-				if (target != null && GuardianTurretEntity.this.canSee(target)) {
-					GuardianTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
-					target.damage(EntityDamageSource.mob(GuardianTurretEntity.this), DAMAGE);
-					GuardianTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
-					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (GuardianTurretEntity.this.random.nextFloat() - GuardianTurretEntity.this.random.nextFloat()));
+			if (PreservationTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
+				LivingEntity target = PreservationTurretEntity.this.getTarget();
+				if (target != null && PreservationTurretEntity.this.canSee(target)) {
+					PreservationTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
+					target.damage(EntityDamageSource.mob(PreservationTurretEntity.this), DAMAGE);
+					PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
 					super.tick();
 				} else {
-					GuardianTurretEntity.this.setTarget(null);
+					PreservationTurretEntity.this.setTarget(null);
 				}
 			}
 		}

@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
@@ -16,21 +17,27 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
+import net.minecraft.world.poi.*;
 import org.jetbrains.annotations.*;
 
 // funny little creatures
 // always out for trouble
-public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity> {
+public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity>, POIMemorized {
 	
-	private static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
-	private static final TrackedData<LizardFrillVariant> FRILL_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
-	private static final TrackedData<LizardHornVariant> HORN_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
+	protected static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
+	protected static final TrackedData<LizardFrillVariant> FRILL_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
+	protected static final TrackedData<LizardHornVariant> HORN_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
 	
-	private @Nullable LizardEntity leader;
-	private int groupSize = 1;
+	protected @Nullable LizardEntity leader;
+	protected int groupSize = 1;
+	
+	protected int ticksLeftToFindPOI;
+	protected @Nullable BlockPos poiPos;
 	
 	public LizardEntity(EntityType<? extends LizardEntity> entityType, World world) {
 		super(entityType, world);
@@ -56,8 +63,9 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		this.goalSelector.add(3, new AttackGoal(this));
 		this.goalSelector.add(4, new FollowParentGoal(this, 1.2D));
 		this.goalSelector.add(4, new FollowClanLeaderGoal<>(this));
-		this.goalSelector.add(5, new ClanLeaderWanderAroundGoal(this, 0.8));
-		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+		this.goalSelector.add(5, new FindPOIGoal(PointOfInterestTypes.LODESTONE, 32));
+		this.goalSelector.add(6, new ClanLeaderWanderAroundGoal(this, 0.8, 20, 10, 4));
+		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
@@ -95,6 +103,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		nbt.putString("Scales", SpectrumRegistries.LIZARD_SCALE_VARIANT.getId(this.getScales()).toString());
 		nbt.putString("Frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
 		nbt.putString("Horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
+		writePOIPosToNbt(nbt);
 	}
 	
 	@Override
@@ -111,6 +120,15 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		LizardHornVariant horns = SpectrumRegistries.LIZARD_HORN_VARIANT.get(Identifier.tryParse(nbt.getString("Horns")));
 		if (horns != null) {
 			this.setHorns(horns);
+		}
+		readPOIPosFromNbt(nbt);
+	}
+	
+	@Override
+	public void tickMovement() {
+		super.tickMovement();
+		if (!this.world.isClient && this.ticksLeftToFindPOI > 0) {
+			--this.ticksLeftToFindPOI;
 		}
 	}
 	
@@ -260,15 +278,76 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		--this.groupSize;
 	}
 	
+	// POIMemorized
+	@Override
+	public TagKey<PointOfInterestType> getPOITag() {
+		return SpectrumPointOfInterestTypeTags.LIZARD_DENS;
+	}
+	
+	@Override
+	public @Nullable BlockPos getPOIPos() {
+		return this.poiPos;
+	}
+	
+	@Override
+	public void setPOIPos(@Nullable BlockPos blockPos) {
+		this.poiPos = blockPos;
+	}
+	
+	// Goals
 	protected class ClanLeaderWanderAroundGoal extends WanderAroundGoal {
 		
-		public ClanLeaderWanderAroundGoal(PathAwareEntity mob, double speed) {
-			super(mob, speed);
+		int chanceToNavigateToPOI;
+		int maxDistanceFromPOI;
+		
+		public ClanLeaderWanderAroundGoal(PathAwareEntity mob, double speed, int chance, int chanceToNavigateToPOI, int maxDistanceFromPOI) {
+			super(mob, speed, chance);
+			this.chanceToNavigateToPOI = chanceToNavigateToPOI;
+			this.maxDistanceFromPOI = maxDistanceFromPOI;
 		}
 		
 		@Override
 		public boolean canStart() {
 			return !LizardEntity.this.hasLeader() && super.canStart();
+		}
+		
+		@Override
+		protected @Nullable Vec3d getWanderTarget() {
+			// when we are away from our poi (their den) there is a chance they navigate back to it, so they always stay near
+			if (random.nextFloat() < 0.1
+					&& LizardEntity.this.isPOIValid((ServerWorld) LizardEntity.this.world)
+					&& !LizardEntity.this.getBlockPos().isWithinDistance(LizardEntity.this.poiPos, maxDistanceFromPOI)) {
+				
+				return Vec3d.ofCenter(LizardEntity.this.poiPos);
+			}
+			
+			return NoPenaltyTargeting.find(LizardEntity.this, 8, 7);
+		}
+		
+	}
+	
+	private class FindPOIGoal extends Goal {
+		
+		RegistryKey<PointOfInterestType> poiType;
+		int maxDistance;
+		
+		FindPOIGoal(RegistryKey<PointOfInterestType> poiType, int maxDistance) {
+			super();
+			this.poiType = poiType;
+			this.maxDistance = maxDistance;
+		}
+		
+		@Override
+		public boolean canStart() {
+			return LizardEntity.this.hasOthersInGroup()
+					&& LizardEntity.this.ticksLeftToFindPOI == 0
+					&& !LizardEntity.this.isPOIValid((ServerWorld) LizardEntity.this.world);
+		}
+		
+		@Override
+		public void start() {
+			LizardEntity.this.ticksLeftToFindPOI = 200;
+			LizardEntity.this.poiPos = LizardEntity.this.findNearestPOI((ServerWorld) LizardEntity.this.world, LizardEntity.this.getBlockPos(), 40);
 		}
 		
 	}

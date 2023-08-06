@@ -82,9 +82,18 @@ public interface PackEntity<T extends MobEntity & PackEntity<T>> {
 			List<E> possiblePackmates = this.entity.world.getEntitiesByClass((Class<E>) this.entity.getClass(), this.entity.getBoundingBox().expand(8.0, 8.0, 8.0),
 					(Predicate<LivingEntity>) livingEntity -> livingEntity instanceof PackEntity<?> packEntity && (packEntity.canHaveMoreInGroup() || !packEntity.hasLeader())
 			);
+			
+			// search for an existing leader with a non-full group
 			Optional<E> newLeader = possiblePackmates.stream()
 					.filter(E::canHaveMoreInGroup)
 					.findAny();
+			
+			if (newLeader.isEmpty()) {
+				// promote a new creature to leader
+				newLeader = possiblePackmates.stream()
+						.filter(e -> !e.hasLeader())
+						.findAny();
+			}
 			
 			if (newLeader.isPresent()) {
 				E leader = newLeader.get();
@@ -120,4 +129,5 @@ public interface PackEntity<T extends MobEntity & PackEntity<T>> {
 		}
 		
 	}
+	
 }

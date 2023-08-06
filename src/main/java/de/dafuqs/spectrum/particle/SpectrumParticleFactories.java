@@ -60,7 +60,13 @@ public class SpectrumParticleFactories {
 			MoonstoneStrikeParticle.Factory factory = new MoonstoneStrikeParticle.Factory();
 			return factory.createParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, world, x, y, z, velocityX, velocityY, velocityZ);
 		});
-		
+
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PRIMORDIAL_COSY_SMOKE, LargePrimordialSmokeParticle.CosySmokeFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PRIMORDIAL_SIGNAL_SMOKE, LargePrimordialSmokeParticle.SignalSmokeFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PRIMORDIAL_SMOKE, PrimordialSmokeParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PRIMORDIAL_FLAME, FlameParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, FlameParticle.SmallFactory::new);
+
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHOOTING_STAR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, LitParticle.Factory::new);

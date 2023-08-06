@@ -54,7 +54,12 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 			stacks.add(getDefaultEnchantedStack(this));
 		}
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return false;
+	}
+
 	@Environment(EnvType.CLIENT)
 	protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
 		var models = MinecraftClient.getInstance().getEntityModelLoader();

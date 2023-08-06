@@ -412,6 +412,8 @@ public class SpectrumItems {
 	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
+	public static final Item PIPE_BOMB = new PipeBombItem(Tab.EQUIPMENT.settings(1));
+	public static final Item HYPE = new HypeItem(Tab.EQUIPMENT.settings(16), "item.spectrum.hype.tooltip");
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
@@ -765,6 +767,8 @@ public class SpectrumItems {
 		register("constructors_staff", CONSTRUCTORS_STAFF, DyeColor.LIGHT_GRAY);
 		register("exchanging_staff", EXCHANGING_STAFF, DyeColor.LIGHT_GRAY);
 		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);
+		register("pipe_bomb", PIPE_BOMB, DyeColor.ORANGE);
+		register("hype", HYPE, DyeColor.ORANGE);
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("perturbed_eye", PERTURBED_EYE, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);

@@ -61,6 +61,10 @@ public abstract class ItemEntityMixin {
 				thisItemEntity.setNoGravity(true);
 			}
 		}
+
+		if (thisItemEntity.getStack().getItem() instanceof TickAwareItem tickingItem) {
+			tickingItem.onItemEntityTicked(thisItemEntity);
+		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)

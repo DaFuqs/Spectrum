@@ -4,6 +4,18 @@
     "minecraft:bee",
     "minecraft:fox",
     "spectrum:lizard",
-    "spectrum:eraser"
+    "spectrum:eraser",
+    "minecraft:ocelot",
+    "minecraft:cat",
+    "minecraft:wolf",
+    "minecraft:skeleton",
+    "minecraft:stray",
+
+    "c:bosses",
+
+    {
+      "id": "ants:ant",
+      "required": false
+    }
   ]
 }

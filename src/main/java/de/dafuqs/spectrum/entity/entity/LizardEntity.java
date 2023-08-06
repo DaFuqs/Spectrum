@@ -64,7 +64,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		this.goalSelector.add(4, new FollowParentGoal(this, 1.2D));
 		this.goalSelector.add(4, new FollowClanLeaderGoal<>(this));
 		this.goalSelector.add(5, new FindPOIGoal(PointOfInterestTypes.LODESTONE, 32));
-		this.goalSelector.add(6, new ClanLeaderWanderAroundGoal(this, 0.8, 20, 10, 4));
+		this.goalSelector.add(6, new ClanLeaderWanderAroundGoal(this, 0.8, 20, 8, 4));
 		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		
@@ -314,9 +314,9 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		@Override
 		protected @Nullable Vec3d getWanderTarget() {
 			// when we are away from our poi (their den) there is a chance they navigate back to it, so they always stay near
-			if (random.nextFloat() < 0.1
+			if (random.nextFloat() < this.chanceToNavigateToPOI
 					&& LizardEntity.this.isPOIValid((ServerWorld) LizardEntity.this.world)
-					&& !LizardEntity.this.getBlockPos().isWithinDistance(LizardEntity.this.poiPos, maxDistanceFromPOI)) {
+					&& !LizardEntity.this.getBlockPos().isWithinDistance(LizardEntity.this.poiPos, this.maxDistanceFromPOI)) {
 				
 				return Vec3d.ofCenter(LizardEntity.this.poiPos);
 			}

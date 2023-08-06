@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bee",
+    "minecraft:fox",
+    "spectrum:lizard",
+    "spectrum:eraser"
+  ]
+}

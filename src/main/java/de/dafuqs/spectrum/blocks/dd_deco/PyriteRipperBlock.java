@@ -84,7 +84,7 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity) {
+		if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
 			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);

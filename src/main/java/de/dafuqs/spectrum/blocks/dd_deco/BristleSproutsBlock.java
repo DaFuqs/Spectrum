@@ -25,16 +25,16 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 	
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
+		if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
 			entity.slowMovement(state, new Vec3d(0.8, 0.75, 0.8));
 			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
-                if (difX >= 0.003 || difZ >= 0.003) {
-                    entity.damage(SpectrumDamageSources.BRISTLE_SPROUTS, 1.0F);
-                }
-            }
-        }
+				if (difX >= 0.003 || difZ >= 0.003) {
+					entity.damage(SpectrumDamageSources.BRISTLE_SPROUTS, 1.0F);
+				}
+			}
+		}
     }
 
     @Override

@@ -24,7 +24,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
+public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	
@@ -82,18 +82,7 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLING_SERIALIZER;
 	}
 	
-	// Use getIngredientStacks() instead
-	// that includes counts in stacks
-	@Deprecated
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.centerIngredient.getIngredient());
-		defaultedList.add(this.bowlIngredient1.getIngredient());
-		defaultedList.add(this.bowlIngredient2.getIngredient());
-		return defaultedList;
-	}
-	
 	public List<IngredientStack> getIngredientStacks() {
 		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
 		defaultedList.add(this.centerIngredient);

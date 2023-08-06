@@ -4,12 +4,12 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import me.shedaniel.rei.api.common.category.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.client.*;
-import net.minecraft.recipe.*;
 
 public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	
-	protected final Ingredient baseIngredient;
+	protected final IngredientStack baseIngredient;
 	protected final boolean consumeBaseIngredient;
 	
 	/**

@@ -17,8 +17,8 @@ public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<Pedes
 	private static final int GEMSTONE_SLOTS = 9;
 	
 	public PedestalCraftingEmiRecipeGated(PedestalCraftingRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, recipe, 124, 90);
-		input = getIngredients(recipe);
+		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, null, recipe, 124, 90);
+		this.input = getIngredients(recipe);
 	}
 	
 	@Override

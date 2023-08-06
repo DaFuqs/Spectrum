@@ -24,7 +24,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FusionShrineRecipe extends GatedSpectrumRecipe {
+public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
@@ -114,13 +114,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}
 	
-	// should not be used. Instead, use getIngredientStacks(), which includes item counts
 	@Override
-	@Deprecated
-	public DefaultedList<Ingredient> getIngredients() {
-		return IngredientStack.listIngredients(this.craftingInputs);
-	}
-	
 	public List<IngredientStack> getIngredientStacks() {
 		return this.craftingInputs;
 	}

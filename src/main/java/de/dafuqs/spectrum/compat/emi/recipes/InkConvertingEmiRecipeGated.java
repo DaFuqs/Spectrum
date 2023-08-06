@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.emi.recipes;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.ink_converting.*;
 import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
 
@@ -10,6 +11,7 @@ public class InkConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<InkConve
 	
 	public InkConvertingEmiRecipeGated(InkConvertingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
+		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override

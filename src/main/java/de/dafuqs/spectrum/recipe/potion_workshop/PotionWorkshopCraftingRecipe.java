@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -12,15 +13,17 @@ import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	
-	protected final Ingredient baseIngredient;
+	protected final IngredientStack baseIngredient;
 	protected final boolean consumeBaseIngredient;
 	protected final int requiredExperience;
 	protected final ItemStack output;
 	
 	public PotionWorkshopCraftingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-	                                    Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color) {
+										IngredientStack baseIngredient, boolean consumeBaseIngredient, int requiredExperience, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3, ItemStack output, int craftingTime, int color) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, color, ingredient1, ingredient2, ingredient3);
 		this.output = output;
@@ -31,7 +34,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		registerInToastManager(getType(), this);
 	}
 	
-	public Ingredient getBaseIngredient() {
+	public IngredientStack getBaseIngredient() {
 		return baseIngredient;
 	}
 	
@@ -69,13 +72,11 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(Ingredient.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
+	public List<IngredientStack> getIngredientStacks() {
+		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
+		defaultedList.add(IngredientStack.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
 		defaultedList.add(this.baseIngredient);
-		defaultedList.add(this.ingredient1);
-		defaultedList.add(this.ingredient2);
-		defaultedList.add(this.ingredient3);
+		addIngredientStacks(defaultedList);
 		return defaultedList;
 	}
 	

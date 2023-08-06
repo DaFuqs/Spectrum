@@ -14,13 +14,12 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
+public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
 	
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
@@ -53,13 +52,6 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	@Override
 	public boolean matches(Inventory inventory, World world) {
 		return matchIngredientStacksExclusively(inventory, getIngredientStacks());
-	}
-	
-	// should not be used. Instead, use getIngredientStacks(), which includes item counts
-	@Override
-	@Deprecated
-	public DefaultedList<Ingredient> getIngredients() {
-		return IngredientStack.listIngredients(this.inputStacks);
 	}
 	
 	@Override

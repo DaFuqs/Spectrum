@@ -34,17 +34,17 @@ public class LightMineEntity extends LightShardBaseEntity {
 		super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
 	}
 	
-	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects) {
-		summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
-	}
-	
-	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
-		summonBarrageInternal(world, user, () -> {
-			LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 4, 1.0F, 800);
-			entity.setEffects(effects);
-			return entity;
-		}, position, count);
-	}
+	public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects) {
+        summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
+    }
+    
+    public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
+        summonBarrageInternal(world, user, () -> {
+            LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 4, 1.0F, 800);
+            entity.setEffects(effects);
+            return entity;
+        }, position, count);
+    }
 	
 	public void setEffects(List<StatusEffectInstance> effects) {
 		this.effects.addAll(effects);

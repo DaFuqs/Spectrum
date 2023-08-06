@@ -194,49 +194,36 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 			}
 		}
 	}
-
-	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
-		var random = user.getRandom();
+	
+	protected static void summonBarrageInternal(World world, @Nullable LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
+		var random = world.getRandom();
 		var projectiles = count.get(random);
-
+		
 		world.playSound(null, new BlockPos(pos), SpectrumSoundEvents.GLASS_SHIMMER, SoundCategory.AMBIENT, 1F, 0.9F + random.nextFloat() * 0.5F);
 		
 		for (int i = 0; i < projectiles; i++) {
+			// spawn the shard
 			LightShardBaseEntity shard = supplier.get();
-			
-			var velocityY = 0.0;
-			if (user.isOnGround()) {
-				velocityY = random.nextFloat() * 0.75;
-			} else {
-				velocityY = random.nextFloat() - 0.5;
-			}
-			
-			var initVel = new Vec3d(
-					random.nextFloat() * 2 - 1,
-					velocityY,
-					random.nextFloat() * 2 - 1
-			);
-			
 			shard.setPosition(pos);
-			shard.setInitialVelocity(initVel.add(user.getVelocity()));
-			world.spawnEntity(shard);
-		}
-		
-		for (int i = 0; i < projectiles * 3; i++) {
-			
 			var velocityY = 0.0;
-			
-			if (user.isOnGround()) {
+			if (user != null && user.isOnGround()) {
 				velocityY = random.nextFloat() * 0.75;
+				shard.setInitialVelocity(new Vec3d(random.nextFloat() * 2 - 1, velocityY, random.nextFloat() * 2 - 1).add(user.getVelocity()));
 			} else {
 				velocityY = random.nextFloat() - 0.5;
+				shard.setInitialVelocity(new Vec3d(random.nextFloat() * 2 - 1, velocityY, random.nextFloat() * 2 - 1));
 			}
 			
-			world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, pos.x, pos.y, pos.z,
-					random.nextFloat() * 0.8F - 0.4F,
-					velocityY * 2,
-					random.nextFloat() * 0.8F - 0.4F
-			);
+			world.spawnEntity(shard);
+			
+			// spawn particles
+			for (int j = 0; j < 3; j++) {
+				world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, pos.x, pos.y, pos.z,
+						random.nextFloat() * 0.8F - 0.4F,
+						velocityY * 2,
+						random.nextFloat() * 0.8F - 0.4F
+				);
+			}
 		}
 	}
 	

@@ -14,8 +14,6 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.stream.*;
-
 public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntity> {
 	
 	private @Nullable StatusEffectInstance effectOnHit;
@@ -96,8 +94,8 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
-	public boolean hasLeader() {
-		return this.leader != null && this.leader.isAlive();
+	public @Nullable EraserEntity getLeader() {
+		return this.leader;
 	}
 	
 	@Override
@@ -130,13 +128,8 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
-	public boolean canHaveMoreInGroup() {
-		return this.hasOthersInGroup() && this.groupSize < this.getMaxGroupSize();
-	}
-	
-	@Override
-	public void pullInOthers(Stream<? extends PackEntity> stream) {
-		stream.limit((this.getMaxGroupSize() - this.groupSize)).filter((e) -> e != this).forEach((e) -> e.joinGroupOf(this));
+	public int getGroupSize() {
+		return this.groupSize;
 	}
 	
 	protected void increaseGroupSize() {

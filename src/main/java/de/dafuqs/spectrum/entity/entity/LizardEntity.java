@@ -21,8 +21,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.stream.*;
-
 // funny little creatures
 // always out for trouble
 public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity> {
@@ -67,7 +65,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		this.targetSelector.add(3, new ActiveTargetGoal<>(this, LivingEntity.class, true, // different clans attacking each other
 				target -> {
 					if (target instanceof LizardEntity other) {
-						return LizardEntity.this.hasLeader() && other.hasLeader() && LizardEntity.this.leader != other.leader;
+						return isDifferentPack(other);
 					}
 					return !target.isBaby();
 				}));
@@ -216,8 +214,8 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
-	public boolean hasLeader() {
-		return this.leader != null && this.leader.isAlive();
+	public @Nullable LizardEntity getLeader() {
+		return this.leader;
 	}
 	
 	@Override
@@ -250,13 +248,8 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
-	public boolean canHaveMoreInGroup() {
-		return this.hasOthersInGroup() && this.groupSize < this.getMaxGroupSize();
-	}
-	
-	@Override
-	public void pullInOthers(Stream<? extends PackEntity> stream) {
-		stream.limit((this.getMaxGroupSize() - this.groupSize)).filter((e) -> e != this).forEach((e) -> e.joinGroupOf(this));
+	public int getGroupSize() {
+		return this.groupSize;
 	}
 	
 	protected void increaseGroupSize() {

@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.mojang.datafixers.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.mob.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
-import java.util.stream.*;
 
-public interface PackEntity<T extends LivingEntity> {
+public interface PackEntity<T extends MobEntity & PackEntity<T>> {
 	boolean hasOthersInGroup();
 	
-	boolean hasLeader();
+	@Nullable T getLeader();
 	
 	boolean isCloseEnoughToLeader();
 	
@@ -21,27 +21,44 @@ public interface PackEntity<T extends LivingEntity> {
 	
 	int getMaxGroupSize();
 	
+	int getGroupSize();
+	
 	void joinGroupOf(T groupLeader);
 	
-	default boolean canHaveMoreInGroup() {
-		return true;
+	default boolean hasLeader() {
+		T leader = getLeader();
+		return leader != null && leader.isAlive();
 	}
 	
-	void pullInOthers(Stream<? extends PackEntity> stream);
+	default boolean isDifferentPack(PackEntity<T> other) {
+		T thisLeader = getLeader();
+		if (thisLeader == null) {
+			return false;
+		}
+		T otherLeader = other.getLeader();
+		if (otherLeader == null) {
+			return false;
+		}
+		return !Objects.equals(getLeader(), other.getLeader());
+	}
 	
-	class FollowClanLeaderGoal<T extends LivingEntity & PackEntity<? super T>> extends Goal {
+	default boolean canHaveMoreInGroup() {
+		return this.hasOthersInGroup() && getGroupSize() < this.getMaxGroupSize();
+	}
+	
+	class FollowClanLeaderGoal<E extends MobEntity & PackEntity<E>> extends Goal {
 		
 		private static final int MIN_SEARCH_DELAY = 200;
-		private final T entity;
+		private final E entity;
 		private int moveDelay;
 		private int checkSurroundingDelay;
 		
-		public FollowClanLeaderGoal(T entity) {
+		public FollowClanLeaderGoal(E entity) {
 			this.entity = entity;
 			this.checkSurroundingDelay = this.getSurroundingSearchDelay(entity);
 		}
 		
-		protected int getSurroundingSearchDelay(T fish) {
+		protected int getSurroundingSearchDelay(E fish) {
 			return toGoalTicks(MIN_SEARCH_DELAY + fish.getRandom().nextInt(MIN_SEARCH_DELAY) % 20);
 		}
 		
@@ -56,12 +73,26 @@ public interface PackEntity<T extends LivingEntity> {
 				return false;
 			} else {
 				this.checkSurroundingDelay = this.getSurroundingSearchDelay(this.entity);
-				List<T> list = (List<T>) this.entity.world.getEntitiesByClass(this.entity.getClass(), this.entity.getBoundingBox().expand(8.0, 8.0, 8.0),
-						(Predicate<LivingEntity>) livingEntity -> livingEntity instanceof PackEntity packEntity && (packEntity.canHaveMoreInGroup() || !packEntity.hasLeader())
-				);
-				T packEntity = DataFixUtils.orElse(list.stream().filter(T::canHaveMoreInGroup).findAny(), this.entity);
-				packEntity.pullInOthers(list.stream().filter((e) -> !e.hasLeader()));
+				createNewPack();
 				return this.entity.hasLeader();
+			}
+		}
+		
+		private void createNewPack() {
+			List<E> possiblePackmates = this.entity.world.getEntitiesByClass((Class<E>) this.entity.getClass(), this.entity.getBoundingBox().expand(8.0, 8.0, 8.0),
+					(Predicate<LivingEntity>) livingEntity -> livingEntity instanceof PackEntity<?> packEntity && (packEntity.canHaveMoreInGroup() || !packEntity.hasLeader())
+			);
+			Optional<E> newLeader = possiblePackmates.stream()
+					.filter(E::canHaveMoreInGroup)
+					.findAny();
+			
+			if (newLeader.isPresent()) {
+				E leader = newLeader.get();
+				possiblePackmates.stream()
+						.filter((e) -> e != leader)
+						.filter((e) -> !e.hasLeader())
+						.limit(leader.getMaxGroupSize() - leader.getGroupSize())
+						.forEach((e) -> e.joinGroupOf(leader));
 			}
 		}
 		

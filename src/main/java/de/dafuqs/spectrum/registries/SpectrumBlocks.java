@@ -1714,10 +1714,11 @@ public class SpectrumBlocks {
 		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, settings, DyeColor.YELLOW);
 		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, settings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, settings, DyeColor.WHITE);
-		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, Tab.DECORATION.settings(Rarity.RARE), DyeColor.WHITE);
+		
+		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, Tab.CREATIVE.settings(Rarity.RARE), DyeColor.WHITE);
+		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, Tab.CREATIVE.settings(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, Tab.DECORATION.settings(Rarity.UNCOMMON), DyeColor.BLACK);
-		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, Tab.DECORATION.settings(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, Tab.DECORATION.settings(), DyeColor.BLUE);
 		registerBlockWithItem("shimmerstone_block", SHIMMERSTONE_BLOCK, Tab.DECORATION.settings(), DyeColor.YELLOW);

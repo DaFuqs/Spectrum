@@ -100,7 +100,7 @@ public class SpectrumItems {
 	public static final Item CITRINE_SHARD = new Item(Tab.RESOURCES.settings());
 	public static final Item ONYX_SHARD = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("collect_all_basic_pigments_besides_brown"), Items.BLACK_DYE);
 	public static final Item MOONSTONE_SHARD = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.WHITE_DYE);
-	public static final Item SPECTRAL_SHARD = new CloakedItem(Tab.RESOURCES.settings(Rarity.RARE), SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
+	public static final Item SPECTRAL_SHARD = new CloakedItem(Tab.CREATIVE.settings(Rarity.RARE), SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
 	public static final Item TOPAZ_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_topaz_shard"), BuiltinGemstoneColor.CYAN);
 	public static final Item AMETHYST_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);
@@ -279,7 +279,7 @@ public class SpectrumItems {
 	public static final Item MERMAIDS_GEM = new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH, Tab.RESOURCES.settings(16));
 	public static final CloakedItem STAR_FRAGMENT = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final Item STARDUST = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
-	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(Tab.RESOURCES.settings(), "item.spectrum.frigid_stardust.tooltip");
+	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(Tab.CREATIVE.settings(), "item.spectrum.frigid_stardust.tooltip");
 	
 	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(Tab.RESOURCES.settings(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
 	public static final Item GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
@@ -482,8 +482,8 @@ public class SpectrumItems {
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.ENERGY.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.ENERGY.settings(1), 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.ENERGY.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
-	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.ENERGY.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
-	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.ENERGY.settings(1, Rarity.EPIC));
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.CREATIVE.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
+	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.CREATIVE.settings(1, Rarity.EPIC));
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant"));

@@ -4,7 +4,8 @@
   "advancement": "spectrum:unlocks/blocks/kindling_memory",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:kindling_head": 0
+    "spectrum:kindling_head": 0,
+    "spectrum:kindling_spawn_egg": 0
   },
   "pages": [
     {
@@ -27,8 +28,8 @@
       "type": "patchouli:entity",
       "advancement": "spectrum:lategame/remember_kindling",
       "entity": "spectrum:kindling",
-      "scale": 0.5,
-      "offset": 0.4,
+      "scale": 0.45,
+      "offset": 0.5,
       "text": "Their down looks beyond soft.$(br)$(italic)Maybe, if you sneak up to one, you are able to pluck a feather?$()"
     }
   ]

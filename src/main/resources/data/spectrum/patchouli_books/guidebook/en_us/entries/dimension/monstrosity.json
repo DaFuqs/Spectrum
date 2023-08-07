@@ -5,7 +5,9 @@
   "sortnum": 1,
   "advancement": "spectrum:lategame/hurt_by_monstrosity",
   "category": "spectrum:dimension_category",
-  "extra_recipe_mappings": {},
+  "extra_recipe_mappings": {
+    "spectrum:monstrosity_head": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",

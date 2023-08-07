@@ -113,6 +113,7 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("spectrum:entities/preservation_turret"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PRESERVATION_TURRET).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/monstrosity"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.MONSTROSITY).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/lizard"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.LIZARD).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/eraser"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ERASER).asItem(), 0.1F));
 	}};
 	
 	public static void setup() {

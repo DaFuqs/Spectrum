@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.*;
 
 public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
+	// Vanilla
 	AXOLOTL_BLUE(EntityType.AXOLOTL),
 	AXOLOTL_BROWN(EntityType.AXOLOTL),
 	AXOLOTL_CYAN(EntityType.AXOLOTL),
@@ -114,23 +115,25 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	ALLAY(EntityType.ALLAY),
 	WARDEN(EntityType.WARDEN, true),
 	
+	// Spectrum
 	EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, true),
 	KINDLING(SpectrumEntityTypes.KINDLING, true),
 	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, true),
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
-	LIZARD(SpectrumEntityTypes.LIZARD, true);
+	LIZARD(SpectrumEntityTypes.LIZARD, true),
+	ERASER(SpectrumEntityTypes.ERASER);
 	
 	public final EntityType<?> entityType;
 	public final SkullBlock.SkullType modelType;
 	
-	// most mob heads render with the player head renderer using a different texture, but some use unique renderers already
-	// somewhen in the future hopefully all of them get their own unique head block model
+	// Most mob heads render with the player head renderer using a different texture, but some use unique renderers already.
+	// Somewhen in the future hopefully all of them will get their own unique head block model
 	SpectrumSkullBlockType(EntityType<?> entityType) {
 		this(entityType, false);
 	}
 	
-	// if you use this constructor you will also need to add that unique Renderer
-	// to SpectrumSkullBlockEntityRenderer.getModels()
+	// if you use this constructor without crausing a crash you will also need to add that unique Renderer
+	// in SpectrumSkullBlockEntityRenderer.getModels()
 	SpectrumSkullBlockType(EntityType<?> entityType, boolean useUniqueRenderer) {
 		this.entityType = entityType;
 		this.modelType = useUniqueRenderer ? this : SkullBlock.Type.PLAYER;

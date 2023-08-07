@@ -403,6 +403,7 @@ public class SpectrumItems {
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
 	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, Tab.CREATURES.settings());
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
+	public static final Item ERASER_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
 	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
@@ -549,6 +550,7 @@ public class SpectrumItems {
 		register("preservation_turret_spawn_egg", PRESERVATION_TURRET_SPAWN_EGG, DyeColor.WHITE);
 		register("kindling_spawn_egg", KINDLING_SPAWN_EGG, DyeColor.WHITE);
 		register("lizard_spawn_egg", LIZARD_SPAWN_EGG, DyeColor.WHITE);
+		register("eraser_spawn_egg", ERASER_SPAWN_EGG, DyeColor.WHITE);
 	}
 	
 	public static void registerPureClusters() {

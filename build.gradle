@@ -88,7 +88,9 @@ dependencies {
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
 
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
+	// TODO - Remove deprecated FAPI once Patchouli patches old API usage
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"

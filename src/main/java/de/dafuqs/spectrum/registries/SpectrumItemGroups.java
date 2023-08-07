@@ -31,10 +31,12 @@ public class SpectrumItemGroups {
 			.build();
 	
 	public static void register() {
-	
+		Registry.register(Registries.ITEM_GROUP, SpectrumCommon.locate("main"), MAIN);
 	}
 	
-	public static final ItemSubGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.equipment")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+	public static final ItemSubGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.equipment"))
+		.backgroundTexture(TEXTURE)
+		.entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.GUIDEBOOK);
 		entries.add(SpectrumItems.PAINTBRUSH);
 		entries.add(SpectrumItems.BOTTLE_OF_FADING);
@@ -161,7 +163,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
 	}).build();
 	
-	public static final ItemSubGroup FUNCTIONAL = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.functional")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+	public static final ItemSubGroup FUNCTIONAL = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.functional")).backgroundTexture(TEXTURE)
+		.entries((displayContext, entries) -> {
 		entries.add(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ);
 		entries.add(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
 		entries.add(SpectrumBlocks.PEDESTAL_BASIC_CITRINE);

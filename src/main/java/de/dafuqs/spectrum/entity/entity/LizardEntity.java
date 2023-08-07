@@ -141,11 +141,36 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
-	protected void eat(PlayerEntity player, Hand hand, ItemStack stack) {
-		super.eat(player, hand, stack);
-		// yes, this also overrides the existing owner
-		// there is no god besides the new god
-		setOwner(player);
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		ItemStack itemStack = player.getStackInHand(hand);
+		if (this.isBreedingItem(itemStack)) {
+			int i = this.getBreedingAge();
+			if (!this.world.isClient && i == 0 && this.canEat() && this.random.nextInt(5) == 0) {
+				// yes, this also overrides the existing owner
+				// there is no god besides the new god
+				this.eat(player, hand, itemStack);
+				this.setOwner(player);
+				this.lovePlayer(player);
+				return ActionResult.SUCCESS;
+			}
+			
+			if (this.isBaby()) {
+				this.eat(player, hand, itemStack);
+				this.growUp(toGrowUpAge(-i), true);
+				return ActionResult.success(this.world.isClient);
+			}
+			
+			if (this.world.isClient) {
+				return ActionResult.CONSUME;
+			}
+		}
+		
+		return ActionResult.PASS;
+	}
+	
+	@Override
+	public boolean canEat() {
+		return super.canEat() || getOwner() != null;
 	}
 	
 	public LizardScaleVariant getScales() {

@@ -85,6 +85,7 @@
     "client.ElytraFeatureRendererMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
+    "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
     "client.MinecraftClientMixin",

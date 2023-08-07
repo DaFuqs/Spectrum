@@ -121,6 +121,18 @@
       "spectrum:hummingstone_hum"
     ]
   },
+  "charge": {
+    "subtitle": "spectrum.subtitles.charge",
+    "sounds": [
+      "spectrum:charge"
+    ]
+  },
+  "incandescent_arm": {
+    "subtitle": "spectrum.subtitles.incandescent_arm",
+    "sounds": [
+      "spectrum:incandescent_arm"
+    ]
+  },
   "squeaker": {
     "subtitle": "spectrum.subtitles.squeaker",
     "sounds": [

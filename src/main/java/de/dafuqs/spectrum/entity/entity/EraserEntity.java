@@ -183,7 +183,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 			}
 		}
 		
-		int duration = difficulty == Difficulty.HARD ? 60 : difficulty == Difficulty.NORMAL ? 40 : 20;
+		int duration = 20 * difficulty.getId();
 		return new StatusEffectInstance(statusEffect, duration * 20, amplifier);
 	}
 	

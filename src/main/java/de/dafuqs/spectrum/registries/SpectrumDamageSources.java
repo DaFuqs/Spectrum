@@ -22,7 +22,11 @@ public class SpectrumDamageSources {
 	public static final DamageSource RIPPER = new SpectrumDamageSource("spectrum_ripper");
 	public static final DamageSource SNAPPING_IVY = new SpectrumDamageSource("spectrum_snapping_ivy").setUnblockable().setNeutral();
 	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection();
-	
+
+	public static DamageSource incandescence(@Nullable Entity attacker) {
+		return attacker == null ? INCANDESCENCE : new EntityDamageSource("spectrum_incandescence.player", attacker).setUsesMagic().setExplosive();
+	}
+
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
 	}

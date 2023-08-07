@@ -15,6 +15,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.SEAT, SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME, PhantomFrameEntityRenderer::new);
+		register(SpectrumEntityTypes.HYPE_ENTITY, FlyingItemEntityRenderer::new);
 		register(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, PhantomFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
 		register(SpectrumEntityTypes.INK_PROJECTILE, MagicProjectileEntityRenderer::new);

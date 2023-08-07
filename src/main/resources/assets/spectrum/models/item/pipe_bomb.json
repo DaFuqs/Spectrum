@@ -1,0 +1,14 @@
+{
+  "parent": "item/bow",
+  "textures": {
+    "layer0": "spectrum:item/pipe_bomb"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "armed": 1
+      },
+      "model": "spectrum:item/pipe_bomb_armed"
+    }
+  ]
+}

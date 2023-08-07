@@ -2,11 +2,15 @@ package de.dafuqs.spectrum.blocks;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.compat.claims.*;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.*;
@@ -230,6 +234,84 @@ public class PrimordialFireBlock extends AbstractFireBlock {
 
     private static int getFireTickDelay(Random random) {
         return 20 + random.nextInt(10);
+    }
+
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (random.nextInt(24) == 0) {
+            world.playSound((double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+        }
+
+        BlockPos blockPos = pos.down();
+        BlockState blockState = world.getBlockState(blockPos);
+        int i;
+        double d;
+        double e;
+        double f;
+
+        if (blockState.isSideSolidFullSquare(world, blockPos, Direction.UP)) {
+            var particle = this.isFlammable(blockState) ? SpectrumParticleTypes.PRIMORDIAL_SIGNAL_SMOKE : SpectrumParticleTypes.PRIMORDIAL_COSY_SMOKE;
+            for(i = 0; i < 2; ++i) {
+                d = (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1);
+                e = (double)pos.getY() + 0.15;
+                f = (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1);
+                world.addParticle(particle, d, e, f, 0.0015, 0.07, 0.0015);
+            }
+        }
+
+        if (!this.isFlammable(blockState) && !blockState.isSideSolidFullSquare(world, blockPos, Direction.UP)) {
+            if (this.isFlammable(world.getBlockState(pos.west()))) {
+                for(i = 0; i < 2; ++i) {
+                    d = (double)pos.getX() + random.nextDouble() * 0.10000000149011612;
+                    e = (double)pos.getY() + random.nextDouble();
+                    f = (double)pos.getZ() + random.nextDouble();
+                    world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+                }
+            }
+
+            if (this.isFlammable(world.getBlockState(pos.east()))) {
+                for(i = 0; i < 2; ++i) {
+                    d = (double)(pos.getX() + 1) - random.nextDouble() * 0.10000000149011612;
+                    e = (double)pos.getY() + random.nextDouble();
+                    f = (double)pos.getZ() + random.nextDouble();
+                    world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+                }
+            }
+
+            if (this.isFlammable(world.getBlockState(pos.north()))) {
+                for(i = 0; i < 2; ++i) {
+                    d = (double)pos.getX() + random.nextDouble();
+                    e = (double)pos.getY() + random.nextDouble();
+                    f = (double)pos.getZ() + random.nextDouble() * 0.10000000149011612;
+                    world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+                }
+            }
+
+            if (this.isFlammable(world.getBlockState(pos.south()))) {
+                for(i = 0; i < 2; ++i) {
+                    d = (double)pos.getX() + random.nextDouble();
+                    e = (double)pos.getY() + random.nextDouble();
+                    f = (double)(pos.getZ() + 1) - random.nextDouble() * 0.10000000149011612;
+                    world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+                }
+            }
+
+            if (this.isFlammable(world.getBlockState(pos.up()))) {
+                for(i = 0; i < 2; ++i) {
+                    d = (double)pos.getX() + random.nextDouble();
+                    e = (double)(pos.getY() + 1) - random.nextDouble() * 0.10000000149011612;
+                    f = (double)pos.getZ() + random.nextDouble();
+                    world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+                }
+            }
+        } else {
+            for(i = 0; i < 3; ++i) {
+                d = (double)pos.getX() + random.nextDouble();
+                e = (double)pos.getY() + random.nextDouble() * 0.5 + 0.5;
+                f = (double)pos.getZ() + random.nextDouble();
+                world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, d, e, f, 0.0, 0.0, 0.0);
+            }
+        }
+
     }
 
 }

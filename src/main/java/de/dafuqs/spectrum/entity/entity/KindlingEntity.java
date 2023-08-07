@@ -55,7 +55,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	public static DefaultAttributeContainer.Builder createKindlingAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
 				.add(EntityAttributes.GENERIC_ARMOR, 25.0D)
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 12.0D)
 				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 6.0D)

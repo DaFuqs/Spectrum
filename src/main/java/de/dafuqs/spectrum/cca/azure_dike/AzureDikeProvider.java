@@ -2,10 +2,9 @@ package de.dafuqs.spectrum.cca.azure_dike;
 
 import de.dafuqs.spectrum.*;
 import dev.onyxstudios.cca.api.v3.component.*;
-import dev.onyxstudios.cca.api.v3.entity.*;
 import net.minecraft.entity.*;
 
-public class AzureDikeProvider implements EntityComponentInitializer {
+public class AzureDikeProvider {
 	
 	public static final ComponentKey<AzureDikeComponent> AZURE_DIKE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("azure_dike"), AzureDikeComponent.class); // See the "Registering your component" section
 	
@@ -32,9 +31,4 @@ public class AzureDikeProvider implements EntityComponentInitializer {
 		return AZURE_DIKE_COMPONENT.get(provider);
 	}
 	
-	@Override
-	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerFor(LivingEntity.class, AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new);
-		registry.registerForPlayers(AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
-	}
 }

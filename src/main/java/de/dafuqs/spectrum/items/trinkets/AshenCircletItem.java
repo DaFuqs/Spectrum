@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -60,6 +61,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		if (entity.isOnFire()) {
 			entity.setFireTicks(0);
 		}
+		OnPrimordialFireComponent.putOut(entity);
 	}
 	
 	@Override

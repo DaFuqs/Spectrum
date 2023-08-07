@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.*;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.*;
@@ -100,19 +100,29 @@ public class PrimordialFireBlock extends AbstractFireBlock {
                     blockState2 = blockState2.with(booleanProperty, this.isFlammable(world.getBlockState(pos.offset(direction))));
                 }
             }
-
+    
             return blockState2;
         } else {
             return this.getDefaultState();
         }
     }
-
+    
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!entity.isFireImmune() && entity instanceof LivingEntity livingEntity) {
+            OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
+        }
+        
+        entity.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE);
+        super.onEntityCollision(state, world, pos, entity);
+    }
+    
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos blockPos = pos.down();
         return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, Direction.UP) || this.areBlocksAroundFlammable(world, pos);
     }
-
+    
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         world.createAndScheduleBlockTick(pos, this, getFireTickDelay(world.random));

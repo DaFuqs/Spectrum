@@ -44,10 +44,7 @@
       "de.dafuqs.spectrum.compat.emi.SpectrumEmiPlugin"
     ],
     "cardinal-components": [
-      "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
-      "de.dafuqs.spectrum.cca.HardcoreDeathComponent",
-      "de.dafuqs.spectrum.cca.LastKillComponent",
-      "de.dafuqs.spectrum.cca.BondingRibbonComponent"
+      "de.dafuqs.spectrum.cca.SpectrumComponentInitializers"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
@@ -59,7 +56,8 @@
       "spectrum:azure_dike",
       "spectrum:hardcore_deaths",
       "spectrum:last_kill",
-      "spectrum:bonding_ribbon"
+      "spectrum:bonding_ribbon",
+      "spectrum:on_primordial_fire"
     ]
   },
   "depends": {

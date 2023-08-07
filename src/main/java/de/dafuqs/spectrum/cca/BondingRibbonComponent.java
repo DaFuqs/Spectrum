@@ -2,12 +2,11 @@ package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
 import dev.onyxstudios.cca.api.v3.component.*;
-import dev.onyxstudios.cca.api.v3.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.*;
 
-public class BondingRibbonComponent implements Component, EntityComponentInitializer {
+public class BondingRibbonComponent implements Component {
 	
 	public static final ComponentKey<BondingRibbonComponent> BONDING_RIBBON_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("bonding_ribbon"), BondingRibbonComponent.class);
 	
@@ -21,11 +20,6 @@ public class BondingRibbonComponent implements Component, EntityComponentInitial
 	
 	public BondingRibbonComponent(LivingEntity entity) {
 	
-	}
-	
-	@Override
-	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerFor(LivingEntity.class, BONDING_RIBBON_COMPONENT, BondingRibbonComponent::new);
 	}
 	
 	@Override

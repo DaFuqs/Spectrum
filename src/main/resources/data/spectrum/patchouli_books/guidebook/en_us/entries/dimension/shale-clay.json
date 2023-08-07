@@ -3,7 +3,9 @@
   "advancement": "spectrum:hidden/collect_shale_clay",
   "icon": "spectrum:shale_clay",
   "category": "spectrum:dimension_category",
-  "extra_recipe_mappings": {},
+  "extra_recipe_mappings": {
+    "spectrum:tilled_shale_clay": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",
@@ -54,7 +56,7 @@
       "type": "patchouli:smelting",
       "title": "Smelting them back",
       "recipe": "spectrum:smelting/polished_shale_clay_unsmelting",
-      "text": "By applying heat, all blocks can be converted back to their polished variant again."
+      "text": "By applying heat, all blocks can be converted back to their clean, polished variant again."
     },
     {
       "type": "patchouli:spotlight",

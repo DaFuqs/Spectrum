@@ -121,10 +121,10 @@
       "spectrum:hummingstone_hum"
     ]
   },
-  "charge": {
-    "subtitle": "spectrum.subtitles.charge",
+  "incandescent_charge": {
+    "subtitle": "spectrum.subtitles.incandescent_charge",
     "sounds": [
-      "spectrum:charge"
+      "spectrum:incandescent_charge"
     ]
   },
   "incandescent_arm": {

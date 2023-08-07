@@ -10,7 +10,11 @@
     "spectrum:blackslag_azurite_ore": 0,
     "spectrum:raw_azurite": 0,
     "spectrum:refined_azurite": 0,
-    "spectrum:azurite_block": 0
+    "spectrum:azurite_block": 0,
+
+    "spectrum:small_azurite_bud": 0,
+    "spectrum:large_azurite_bud": 0,
+    "spectrum:azurite_cluster": 0
   },
   "pages": [
     {

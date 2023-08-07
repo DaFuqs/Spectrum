@@ -425,6 +425,7 @@
   "spectrum.subtitles.light_crystal_ring": "Radiance resonates quietly",
   "spectrum.subtitles.mid_crystal_ring": "Radiance resonates",
   "spectrum.subtitles.heavy_crystal_ring": "Radiance resonates loudly",
+  "spectrum.subtitles.deep_crystal_ring": "Radiance resonates deeply",
   "spectrum.subtitles.crystal_strike": "Radiant magic strikes",
   "spectrum.subtitles.shatter_light": "Something gently shatters",
   "spectrum.subtitles.shatter_heavy": "Something shatters violently",
@@ -470,6 +471,8 @@
   "spectrum.subtitles.dreamflayer_activates": "Dreamflayer activates",
   "spectrum.subtitles.dreamflayer_deactivates": "Dreamflayer deactivates",
   "spectrum.subtitles.deeper_down_portal_open": "Portal opens",
+  "spectrum.subtitles.incandescent_charge": "Apparatus charges",
+  "spectrum.subtitles.incandescent_arm": "Apparatus arms",
 
   "spectrum.subtitles.entity.preservation_turret.ambient": "Preservation Turret lurks",
   "spectrum.subtitles.entity.preservation_turret.death": "Preservation Turret dies",

@@ -19,15 +19,15 @@ public class LightShardEntity extends LightShardBaseEntity {
 		super(entityType, world);
 	}
 	
-	public LightShardEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifeSpanTicks) {
+	public LightShardEntity(World world, LivingEntity owner, Optional<LivingEntity> target, float damageMod, float lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target, 48, damageMod, lifeSpanTicks);
 	}
 	
-	public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable Entity target) {
+	public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target) {
 		summonBarrage(world, user, target, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
 	}
 	
-	public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable Entity target, Vec3d position, IntProvider count) {
+	public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, Vec3d position, IntProvider count) {
 		summonBarrage(world, user, position, count, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200));
 	}
 	

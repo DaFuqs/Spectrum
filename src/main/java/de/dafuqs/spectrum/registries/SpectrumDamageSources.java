@@ -40,8 +40,11 @@ public class SpectrumDamageSources {
 	}
 	
 	public static DamageSource irradiance(@Nullable LivingEntity attacker) {
-		return attacker == null ? IRRADIANCE_DEFAULT :
-				new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection();
+		return attacker == null ? IRRADIANCE_DEFAULT : new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection();
+	}
+	
+	public static DamageSource irradiance(LightShardBaseEntity projectile, @Nullable Entity attacker) {
+		return (new ProjectileDamageSource("spectrum_irradiance.projectile", projectile, attacker)).setBypassesArmor().setBypassesProtection().setProjectile();
 	}
 	
 	public static DamageSource setHealth(LivingEntity attacker) {

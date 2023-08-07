@@ -168,23 +168,23 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 		switch (world.random.nextInt(8)) {
 			case 1 -> {
 				statusEffect = SpectrumStatusEffects.STIFFNESS;
-				amplifier = 2;
+				amplifier = random.nextInt(2);
 			}
 			case 2 -> {
 				statusEffect = SpectrumStatusEffects.FRENZY;
-				amplifier = 2;
+				amplifier = random.nextInt(2);
 			}
 			case 3 -> {
 				statusEffect = SpectrumStatusEffects.SCARRED;
 			}
 			default -> {
 				statusEffect = SpectrumStatusEffects.DEADLY_POISON;
-				amplifier = 2;
+				amplifier = random.nextInt(2);
 			}
 		}
 		
-		int duration = 20 * difficulty.getId();
-		return new StatusEffectInstance(statusEffect, duration * 20, amplifier);
+		int duration = 120 * difficulty.getId();
+		return new StatusEffectInstance(statusEffect, duration, amplifier);
 	}
 	
 	@Override
@@ -204,15 +204,15 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 			switch (random.nextInt(5)) {
 				case 0 -> {
 					this.effect = StatusEffects.SPEED;
-					this.amplifier = 1 + random.nextInt(2);
+					this.amplifier = random.nextInt(2);
 				}
 				case 1 -> {
 					this.effect = StatusEffects.STRENGTH;
-					this.amplifier = 1 + random.nextInt(2);
+					this.amplifier = random.nextInt(2);
 				}
 				case 2 -> {
 					this.effect = StatusEffects.REGENERATION;
-					this.amplifier = 1 + random.nextInt(2);
+					this.amplifier = random.nextInt(2);
 				}
 				case 3 -> {
 					this.effect = StatusEffects.INVISIBILITY;

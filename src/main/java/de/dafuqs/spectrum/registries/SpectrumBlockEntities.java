@@ -27,6 +27,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
+import de.dafuqs.spectrum.blocks.threat_conflux.ThreatConfluxBlockEntity;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.fabricmc.fabric.api.event.client.*;
@@ -40,7 +41,7 @@ import net.minecraft.util.registry.*;
 
 import java.util.*;
 
-public class SpectrumBlockEntities<T extends BlockEntity> {
+public class SpectrumBlockEntities {
 
 	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
@@ -80,6 +81,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
+	public static BlockEntityType<ThreatConfluxBlockEntity> THREAT_CONFLUX;
 	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
 	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
 	
@@ -124,6 +126,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
+		THREAT_CONFLUX = register("threat_conflux", ThreatConfluxBlockEntity::new, SpectrumBlocks.THREAT_CONFLUX);
 		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
 		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
 		

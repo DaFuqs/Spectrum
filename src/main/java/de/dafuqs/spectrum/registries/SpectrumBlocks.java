@@ -44,6 +44,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
+import de.dafuqs.spectrum.blocks.threat_conflux.ThreatConfluxBlock;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
@@ -381,6 +382,7 @@ public class SpectrumBlocks {
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
 	public static final Block TITRATION_BARREL = new TitrationBarrelBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
+	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).breakInstantly());
 	
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
@@ -1607,6 +1609,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, Tab.FUNCTIONAL.settings(8), DyeColor.ORANGE);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

@@ -739,6 +739,8 @@
   "block.spectrum.blackslag_malachite_ore": "Blackslag Malachite Ore",
 
   "block.spectrum.shale_clay": "Shale Clay",
+  "block.spectrum.exposed_shale_clay": "Exposed Shale Clay",
+  "block.spectrum.weathered_shale_clay": "Weathered Shale Clay",
   "block.spectrum.tilled_shale_clay": "Tilled Shale Clay",
   "block.spectrum.polished_shale_clay": "Polished Shale Clay",
   "block.spectrum.shale_clay_bricks": "Shale Clay Bricks",

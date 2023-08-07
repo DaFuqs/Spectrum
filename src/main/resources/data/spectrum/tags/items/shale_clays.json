@@ -1,6 +1,7 @@
 {
   "values": [
     "spectrum:shale_clay",
+
     "spectrum:polished_shale_clay",
     "spectrum:shale_clay_bricks",
     "spectrum:shale_clay_tiles",
@@ -12,6 +13,7 @@
     "spectrum:shale_clay_tile_slab",
     "spectrum:shale_clay_tile_stairs",
 
+    "spectrum:exposed_shale_clay",
     "spectrum:exposed_polished_shale_clay",
     "spectrum:exposed_polished_shale_clay_slab",
     "spectrum:exposed_polished_shale_clay_stairs",
@@ -22,6 +24,7 @@
     "spectrum:exposed_shale_clay_tile_stairs",
     "spectrum:exposed_shale_clay_tiles",
 
+    "spectrum:weathered_shale_clay",
     "spectrum:weathered_polished_shale_clay",
     "spectrum:weathered_polished_shale_clay_slab",
     "spectrum:weathered_polished_shale_clay_stairs",

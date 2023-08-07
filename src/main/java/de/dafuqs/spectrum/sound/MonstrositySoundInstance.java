@@ -5,17 +5,20 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.sound.*;
 
 @Environment(EnvType.CLIENT)
 public class MonstrositySoundInstance extends MovingSoundInstance {
 	
+	private static int instances = 0;
 	private final SpectrumBossEntity bossEntity;
 	
 	private MonstrositySoundInstance(SpectrumBossEntity bossEntity) {
 		super(SpectrumSoundEvents.BOSS_THEME, SoundCategory.RECORDS, SoundInstance.createRandom());
 		this.bossEntity = bossEntity;
 		this.repeat = true;
+		instances++;
 	}
 	
 	public static void startSoundInstance(SpectrumBossEntity bossEntity) {
@@ -24,12 +27,17 @@ public class MonstrositySoundInstance extends MovingSoundInstance {
 	
 	@Override
 	public void tick() {
-		if (!bossEntity.isAlive() && !bossEntity.isRemoved()) {
+		if (instances > 1 || (!bossEntity.isAlive() || bossEntity.isRemoved())) {
+			instances--;
 			this.setDone();
-		} else {
-			this.x = bossEntity.getX();
-			this.y = bossEntity.getY();
-			this.z = bossEntity.getZ();
+			return;
+		}
+		
+		PlayerEntity player = MinecraftClient.getInstance().player;
+		if (player != null) {
+			this.x = player.getX();
+			this.y = player.getY();
+			this.z = player.getZ();
 		}
 	}
 	

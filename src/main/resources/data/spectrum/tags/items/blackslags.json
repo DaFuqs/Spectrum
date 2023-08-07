@@ -2,10 +2,15 @@
   "replace": false,
   "values": [
     "spectrum:blackslag",
+    "spectrum:blackslag_stairs",
+    "spectrum:blackslag_slab",
+    "spectrum:blackslag_wall",
+
     "spectrum:cobbled_blackslag",
     "spectrum:cobbled_blackslag_stairs",
     "spectrum:cobbled_blackslag_slab",
     "spectrum:cobbled_blackslag_wall",
+
     "spectrum:polished_blackslag",
     "spectrum:polished_blackslag_stairs",
     "spectrum:polished_blackslag_slab",
@@ -24,10 +29,11 @@
     "spectrum:cracked_blackslag_bricks",
 
     "spectrum:polished_blackslag_pillar",
-    "spectrum:chiseled_polished_blackslag",
-    "spectrum:ancient_chiseled_polished_blackslag",
     "spectrum:polished_blackslag_button",
     "spectrum:polished_blackslag_pressure_plate",
+    "spectrum:chiseled_polished_blackslag",
+    "spectrum:ancient_chiseled_polished_blackslag",
+
     "spectrum:infested_blackslag"
   ]
 }

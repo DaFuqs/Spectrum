@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/blackslag_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/blackslag_slab"
+    },
+    "type=top": {
+      "model": "spectrum:block/blackslag_slab_top"
+    }
+  }
+}

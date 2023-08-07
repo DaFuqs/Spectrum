@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.enchantments;
 import de.dafuqs.spectrum.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 
 public class FirstStrikeEnchantment extends SpectrumEnchantment {
@@ -29,6 +30,11 @@ public class FirstStrikeEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other);
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return stack.getItem() instanceof AxeItem || super.isAcceptableItem(stack);
 	}
 	
 }

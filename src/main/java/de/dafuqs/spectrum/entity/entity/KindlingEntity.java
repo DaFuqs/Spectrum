@@ -154,6 +154,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (!this.world.isClient) {
 			this.tickAngerLogic((ServerWorld) this.world, false);
 		}
+		if (this.age % 600 == 0) {
+			this.heal(1.0F);
+		}
 	}
 	
 	@Override

@@ -90,6 +90,14 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
+	protected void mobTick() {
+		super.mobTick();
+		if (this.age % 1200 == 0) {
+			this.heal(1.0F);
+		}
+	}
+	
+	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(SCALE_VARIANT, LizardScaleVariant.CYAN);

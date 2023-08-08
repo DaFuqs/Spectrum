@@ -3,17 +3,23 @@ package de.dafuqs.spectrum.recipe.crafting;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
 public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
 	
 	public SingleItemCraftingRecipe(Identifier identifier) {
-		super(identifier);
+		super(identifier, CraftingRecipeCategory.MISC);
+	}
+
+	public SingleItemCraftingRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
+	public boolean matches(RecipeInputInventory craftingInventory, World world) {
 		boolean matchingItemFound = false;
 		
 		for (int slot = 0; slot < craftingInventory.size(); ++slot) {
@@ -33,7 +39,7 @@ public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack stack;
 		for (int slot = 0; slot < craftingInventory.size(); ++slot) {
 			stack = craftingInventory.getStack(slot);

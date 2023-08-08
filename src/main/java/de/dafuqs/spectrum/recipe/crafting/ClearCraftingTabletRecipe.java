@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
@@ -8,7 +9,7 @@ import net.minecraft.world.*;
 
 public class ClearCraftingTabletRecipe extends SingleItemCraftingRecipe {
 	
-	public static final RecipeSerializer<ClearCraftingTabletRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearCraftingTabletRecipe::new);
+	public static final RecipeSerializer<ClearCraftingTabletRecipe> SERIALIZER = new EmptyRecipeSerializer<>(ClearCraftingTabletRecipe::new);
 	
 	public ClearCraftingTabletRecipe(Identifier identifier) {
 		super(identifier);

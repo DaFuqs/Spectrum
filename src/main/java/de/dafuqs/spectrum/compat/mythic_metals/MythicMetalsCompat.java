@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.mythic_metals;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.minecraft.registry.*;
@@ -15,7 +14,7 @@ public class MythicMetalsCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	@Override
 	public void register() {
 		addOre(BiomeSelectors.tag(SpectrumBiomeTags.DD_BIOMES), "mod_integration/mythicmetals/dd_ore_adamantite");
-		addOre(BiomeSelectors.includeByKey(DDDimension.DEEP_DRIPSTONE_CAVES), "mod_integration/mythicmetals/dd_ore_aquarium");
+		addOre(BiomeSelectors.includeByKey(SpectrumBiomes.DEEP_DRIPSTONE_CAVES), "mod_integration/mythicmetals/dd_ore_aquarium");
 		addOre(BiomeSelectors.tag(SpectrumBiomeTags.DD_BIOMES), "mod_integration/mythicmetals/dd_ore_calcite_kyber");
 		addOre(BiomeSelectors.tag(SpectrumBiomeTags.DD_BIOMES), "mod_integration/mythicmetals/dd_ore_deepslate_runite");
 		addOre(BiomeSelectors.tag(SpectrumBiomeTags.DD_BIOMES), "mod_integration/mythicmetals/dd_ore_mythril");

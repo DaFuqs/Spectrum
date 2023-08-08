@@ -23,6 +23,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -110,7 +111,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.previousHealth = currentHealth;
 		this.tickInvincibility();
 		
-		if (!this.world.isClient && this.age % GROW_STRONGER_EVERY_X_TICKS == 0) {
+		if (!this.getWorld().isClient() && this.age % GROW_STRONGER_EVERY_X_TICKS == 0) {
 			this.growStronger(1);
 		}
 		
@@ -150,7 +151,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void tick() {
 		super.tick();
 
-		if (this.world.isClient) {
+		if (this.getWorld().isClient()) {
 			if (this.age == 0) {
 				MonstrositySoundInstance.startSoundInstance(this);
 			}
@@ -214,7 +215,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 
 		// TODO: spawn effects
 		for (float i = 0; i <= 1.0; i += 0.2) {
-			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_EXPLOSION, VectorPattern.SIXTEEN, 0.05F);
+			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) this.getWorld(), new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_EXPLOSION, VectorPattern.SIXTEEN, 0.05F);
 		}
 	}
 	
@@ -232,12 +233,12 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	@Override
 	public boolean damage(DamageSource source, float amount) {
-		if (!this.world.isClient && isNonVanillaKillCommandDamage(source, amount)) {
+		if (!this.getWorld().isClient() && isNonVanillaKillCommandDamage(source, amount)) {
 			// na, we do not feel like dying rn
 			// we ballin
 			this.setHealth(this.getHealth() + this.getMaxHealth() / 2);
 			this.growStronger(8);
-			this.playSound(getHurtSound(DamageSource.OUT_OF_WORLD), 2.0F, 1.5F);
+			this.playSound(getHurtSound(source), 2.0F, 1.5F);
 			return false;
 		}
 		return super.damage(source, amount);
@@ -281,14 +282,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 
 	@Override
-	public boolean canSee(Entity entity) {
-		if (entity.world != this.world) {
-			return false;
-		}
-		return entity.getPos().distanceTo(this.getPos()) < 128;
-	}
-
-	@Override
 	public EntityGroup getGroup() {
 		return EntityGroup.UNDEAD;
 	}
@@ -300,6 +293,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
+		var world = target.getWorld();
 		if (world.random.nextBoolean()) {
 			LightShardBaseEntity.summonBarrageInternal(world, this, () -> {
 				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 12.0F, 800);
@@ -538,7 +532,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public boolean canStart() {
 			return MonstrosityEntity.this.movementType == MovementType.START_SWOOPING
 					&& MonstrosityEntity.this.getTarget() != null
-					&& mob.getWorld().random.nextBoolean() && MonstrosityEntity.this.distanceTo(MonstrosityEntity.this.getTarget()) < retreatDistance - 4;
+					&& MonstrosityEntity.this.getWorld().random.nextBoolean() && MonstrosityEntity.this.distanceTo(MonstrosityEntity.this.getTarget()) < retreatDistance - 4;
 		}
 		
 		@Override
@@ -561,7 +555,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public void stop() {
 			LivingEntity target = MonstrosityEntity.this.getTarget();
 			if (target != null && MonstrosityEntity.this.isTarget(target, TARGET_PREDICATE)) {
-				LightShardEntity.summonBarrage(mob.getWorld(), MonstrosityEntity.this, target);
+				LightShardEntity.summonBarrage(MonstrosityEntity.this.getWorld(), MonstrosityEntity.this, target);
 			}
 			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 			super.stop();

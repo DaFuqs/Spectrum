@@ -9,7 +9,11 @@
       "tag": "minecraft:water"
     }
   },
-  "dimension": "minecraft:the_end",
+  "dimension": {
+    "worlds": [
+      "minecraft:the_end"
+    ]
+  },
   "chance": 0.02,
   "entities": [
     {

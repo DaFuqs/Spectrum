@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
@@ -8,7 +9,7 @@ import net.minecraft.world.*;
 
 public class ClearEnderSpliceRecipe extends SingleItemCraftingRecipe {
 	
-	public static final RecipeSerializer<ClearEnderSpliceRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearEnderSpliceRecipe::new);
+	public static final RecipeSerializer<ClearEnderSpliceRecipe> SERIALIZER = new EmptyRecipeSerializer<>(ClearEnderSpliceRecipe::new);
 	
 	public ClearEnderSpliceRecipe(Identifier identifier) {
 		super(identifier);

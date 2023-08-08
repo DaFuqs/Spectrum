@@ -161,11 +161,11 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	public StatusEffectInstance getRandomOnHitEffect() {
-		Difficulty difficulty = this.world.getDifficulty();
+		Difficulty difficulty = this.getWorld().getDifficulty();
 		
 		StatusEffect statusEffect;
 		int amplifier = 0;
-		switch (world.random.nextInt(8)) {
+		switch (this.getWorld().random.nextInt(8)) {
 			case 1 -> {
 				statusEffect = SpectrumStatusEffects.STIFFNESS;
 				amplifier = random.nextInt(2);

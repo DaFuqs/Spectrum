@@ -288,7 +288,7 @@ public class SpectrumCommon implements ModInitializer {
 					}
 				}
 				
-				if (world.getRegistryKey().isOf(SpectrumDimensions.DIMENSION_KEY)) {
+				if (world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
 					MonstrositySpawner.INSTANCE.spawn(world, true, true);
 				}
 			}

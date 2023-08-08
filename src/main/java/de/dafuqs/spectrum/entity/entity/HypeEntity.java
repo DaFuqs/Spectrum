@@ -9,16 +9,14 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -32,6 +30,7 @@ import net.minecraft.world.explosion.Explosion;
 public class HypeEntity extends ThrownItemEntity {
 
     private static final ItemStack MINING_STACK;
+    private static final float EXPLOSION_RADIUS = 10.0F;
 
     public HypeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
@@ -53,17 +52,21 @@ public class HypeEntity extends ThrownItemEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         var target = entityHitResult.getEntity();
-        target.damage(SpectrumDamageSources.incandescence(getOwner()), 20);
+        target.damage(SpectrumDamageSources.incandescence(target.getWorld(), getOwner()), 20);
         super.onEntityHit(entityHitResult);
     }
 
     private void processExplosion(BlockPos center) {
-        if (world.isClient())
+        var world = this.getWorld();
+        if (world.isClient()) {
             return;
+        }
+
+
 
         world.sendEntityStatus(this, (byte) 1);
 
-        var explosion = new Explosion(world, getOwner(), center.getX(), center.getY(), center.getZ(), 10);
+        var explosion = new Explosion(world, getOwner(), center.getX(), center.getY(), center.getZ(), 10, false, Explosion.DestructionType.KEEP);
         var blastRadius = BlockPos.iterateOutwards(center, 5, 5, 5);
 
         ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
@@ -85,6 +88,7 @@ public class HypeEntity extends ThrownItemEntity {
     @Override
     public void handleStatus(byte status) {
         var pos = getPos();
+        var world = this.getWorld();
 
         if (status == 1) {
             for (int i = 0; i < 20; i++) {
@@ -106,9 +110,10 @@ public class HypeEntity extends ThrownItemEntity {
     private void processBlock(BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, Explosion explosion) {
         if (Math.pow(pos.getX() - center.getX(), 2) + Math.pow(pos.getY() - center.getY(), 2) + Math.pow(pos.getZ() - center.getZ(), 2) < 4 * 4) {
 
+            var world = this.getWorld();
             var state = world.getBlockState(pos);
             var block = state.getBlock();
-            var blockEntity = state.hasBlockEntity() ? this.world.getBlockEntity(pos) : null;
+            var blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
 
             if (state.getBlock().getBlastResistance() <= 9) {
                 if (random.nextFloat() < 0.15F) {
@@ -116,16 +121,20 @@ public class HypeEntity extends ThrownItemEntity {
                 }
 
                 if (block.shouldDropItemsOnExplosion(explosion)) {
-                    LootContext.Builder builder = (new LootContext.Builder((ServerWorld) world)).random(this.world.random).parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos)).parameter(LootContextParameters.TOOL, MINING_STACK).optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity).optionalParameter(LootContextParameters.THIS_ENTITY, getOwner());
-                    builder.parameter(LootContextParameters.EXPLOSION_RADIUS, 10F);
+                   var builder = (new LootContextParameterSet.Builder((ServerWorld) world))
+                       .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                       .add(LootContextParameters.TOOL, MINING_STACK)
+                       .add(LootContextParameters.EXPLOSION_RADIUS, EXPLOSION_RADIUS)
+                       .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
+                       .addOptional(LootContextParameters.THIS_ENTITY, getOwner());
                     state.onStacksDropped((ServerWorld) world, pos, MINING_STACK, true);
                     state.getDroppedStacks(builder).forEach((stack) -> {
                         tryMergeStack(drops, stack, pos.toImmutable());
                     });
                 }
 
-                this.world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-                block.onDestroyedByExplosion(this.world, pos, explosion);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+                block.onDestroyedByExplosion(world, pos, explosion);
             }
         }
     }

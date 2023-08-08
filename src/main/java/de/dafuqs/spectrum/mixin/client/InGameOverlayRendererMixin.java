@@ -9,6 +9,7 @@ import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.joml.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -31,18 +32,19 @@ public class InGameOverlayRendererMixin {
             ci.cancel();
         }
     }
-    
+
+    // [VanillaCopy] uses different texture for fire overlay
     @Unique
     private static void renderPrimordialFireOverlay(MinecraftClient client, MatrixStack matrices) {
         BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexProgram);
         RenderSystem.depthFunc(519);
         RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.enableTexture();
+        //RenderSystem.enableTexture();
         Sprite sprite = client.getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).apply(new Identifier("spectrum", "block/primordial_fire_1"));
-        RenderSystem.setShaderTexture(0, sprite.getAtlas().getId());
+        RenderSystem.setShaderTexture(0, sprite.getAtlasId());
         float f = sprite.getMinU();
         float g = sprite.getMaxU();
         float h = (f + g) / 2.0F;
@@ -58,14 +60,14 @@ public class InGameOverlayRendererMixin {
         for (int r = 0; r < 2; ++r) {
             matrices.push();
             matrices.translate(((float) (-(r * 2 - 1)) * 0.24F), -0.3, 0.0);
-            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) (r * 2 - 1) * 10.0F));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((float) (r * 2 - 1) * 10.0F));
             Matrix4f matrix4f = matrices.peek().getPositionMatrix();
             bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR_TEXTURE);
             bufferBuilder.vertex(matrix4f, -0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).texture(n, p).next();
             bufferBuilder.vertex(matrix4f, 0.5F, -0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).texture(m, p).next();
             bufferBuilder.vertex(matrix4f, 0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).texture(m, o).next();
             bufferBuilder.vertex(matrix4f, -0.5F, 0.5F, -0.5F).color(1.0F, 1.0F, 1.0F, 0.9F).texture(n, o).next();
-            BufferRenderer.drawWithShader(bufferBuilder.end());
+            BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
             matrices.pop();
         }
         

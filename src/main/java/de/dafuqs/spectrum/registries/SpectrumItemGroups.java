@@ -19,6 +19,7 @@ import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
+@SuppressWarnings("unused")
 public class SpectrumItemGroups {
 	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/item_group.png");
@@ -336,7 +337,7 @@ public class SpectrumItemGroups {
 		// adding all beverages from recipes
 		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
 			ItemStack output = recipe.getOutput(DynamicRegistryManager.EMPTY).copy();
-			if (output.getItem() instanceof InfusedBeverageItem) {
+			if (output.getItem() instanceof SimpleBeverageItem) {
 				output.setCount(1);
 				entries.add(output);
 			}
@@ -888,7 +889,7 @@ public class SpectrumItemGroups {
 			entries.add(SpectrumBlocks.JADE_VINE_PETAL_BLOCK);
 			entries.add(SpectrumBlocks.JADE_VINE_PETAL_CARPET);
 			entries.add(SpectrumBlocks.BLACK_MATERIA);
-			
+
 		}
 	}).build();
 	
@@ -1250,7 +1251,7 @@ public class SpectrumItemGroups {
 	
 	public static final ItemSubGroup CREATURES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.creatures")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
 		entries.add(SpectrumItems.EGG_LAYING_WOOLY_PIG_SPAWN_EGG);
-		entries.add(SpectrumItems.GUARDIAN_TURRET_SPAWN_EGG);
+		entries.add(SpectrumItems.PRESERVATION_TURRET_SPAWN_EGG);
 		entries.add(SpectrumItems.KINDLING_SPAWN_EGG);
 		entries.add(SpectrumItems.LIZARD_SPAWN_EGG);
 		entries.add(SpectrumItems.SPAWNER);

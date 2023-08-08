@@ -3,9 +3,9 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.poi.*;
 import org.jetbrains.annotations.*;
 

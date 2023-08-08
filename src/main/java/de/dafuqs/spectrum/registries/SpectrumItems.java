@@ -370,9 +370,9 @@ public class SpectrumItems {
 	public static final Item SURSTROMMING = new Item(IS.of().food(SpectrumFoodComponents.SURSTROMMING));
 	
 	// Banner Patterns
-	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(IS.of(1, Rarity.UNCOMMON), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
-	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(IS.of(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
-	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(IS.of(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
+	public static final Item LOGO_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, IS.of(1, Rarity.UNCOMMON));
+	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, IS.of(1));
+	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, IS.of(1));
 	
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of());
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors

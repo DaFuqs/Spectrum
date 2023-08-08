@@ -60,7 +60,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	@Override
 	public void serverTick() {
 		if (this.primordialFireTicks > 0 && this.primordialFireTicks % 4 == 0) {
-			provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, 4);
+			provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), 4);
 		}
 	}
 	

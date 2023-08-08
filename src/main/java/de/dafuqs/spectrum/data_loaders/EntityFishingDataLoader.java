@@ -53,7 +53,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 
 			EntityFishingPredicate predicate = new EntityFishingPredicate(
 				FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
-				BiomePredicate.ANY,
+				BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
 				LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
 				DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
 				MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),

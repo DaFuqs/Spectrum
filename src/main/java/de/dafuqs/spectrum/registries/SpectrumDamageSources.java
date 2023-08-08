@@ -40,8 +40,7 @@ public class SpectrumDamageSources {
 	public static final RegistryKey<DamageType> IRRADIANCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("irradiance"));
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
-	// TODO - Port to 1.20 format
-	public static final DamageSource PRIMORDIAL_FIRE = new SpectrumDamageSource("spectrum_primordial_fire").setFire().setUsesMagic();
+	public static final RegistryKey<DamageType> PRIMORDIAL_FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("primordial_fire"));
 
 	public static DamageSource ripper(World world) {
 		return new DamageSource(world.getDamageSources().registry.getEntry(RIPPER).orElseThrow());
@@ -67,7 +66,7 @@ public class SpectrumDamageSources {
 		return new IrradianceDamageSource(world, attacker);
 	}
 	
-	public static DamageSource setHealth(World world, LivingEntity attacker) {
+	public static DamageSource setHealth(World world, @Nullable LivingEntity attacker) {
 		return new SetHealthDamageSource(world, attacker);
 	}
 	
@@ -80,7 +79,11 @@ public class SpectrumDamageSources {
 	}
 	
 	public static DamageSource incandescence(World world) {
-		return new DamageSource(world.getDamageSources().registry.getEntry(INCANDESCENCE).orElseThrow());
+		return incandescence(world, null);
+	}
+
+	public static DamageSource incandescence(World world, @Nullable Entity attacker) {
+		return new DamageSource(world.getDamageSources().registry.getEntry(INCANDESCENCE).orElseThrow(), attacker);
 	}
 	
 	public static DamageSource midnightSolution(World world) {
@@ -103,17 +106,25 @@ public class SpectrumDamageSources {
 		return new DamageSource(world.getDamageSources().registry.getEntry(BRISTLE_SPROUTS).orElseThrow());
 	}
 	
-	public static DamageSource kindlingCough(World world, LivingEntity attacker) {
-		return new KingdlingCoughDamageSource(world, attacker);
+	public static DamageSource kindlingCough(World world, @Nullable LivingEntity attacker) {
+		return new KindlingCoughDamageSource(world, attacker);
 	}
 	
 	public static DamageSource snappingIvy(World world) {
 		return new DamageSource(world.getDamageSources().registry.getEntry(SNAPPING_IVY).orElseThrow());
 	}
+
+	public static DamageSource primordialFire(World world) {
+		return new PrimordialFireDamageSource(world, null);
+	}
+
+	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
+		return new PrimordialFireDamageSource(world, attacker);
+	}
 	
 	public static class SetHealthDamageSource extends DamageSource {
 		
-		public SetHealthDamageSource(World world, LivingEntity attacker) {
+		public SetHealthDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(SET_HEALTH_DAMAGE).orElseThrow(), attacker);
 		}
 	}
@@ -142,10 +153,17 @@ public class SpectrumDamageSources {
 		}
 	}
 	
-	public static class KingdlingCoughDamageSource extends DamageSource {
+	public static class KindlingCoughDamageSource extends DamageSource {
 		
-		public KingdlingCoughDamageSource(World world, @Nullable LivingEntity attacker) {
+		public KindlingCoughDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(KINDLING_COUGH).orElseThrow(), attacker);
+		}
+	}
+
+	public static class PrimordialFireDamageSource extends DamageSource {
+
+		public PrimordialFireDamageSource(World world, @Nullable LivingEntity attacker) {
+			super(world.getDamageSources().registry.getEntry(PRIMORDIAL_FIRE).orElseThrow(), attacker);
 		}
 	}
 	

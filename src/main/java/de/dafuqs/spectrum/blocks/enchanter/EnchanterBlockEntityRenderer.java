@@ -65,8 +65,6 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
 					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
-				default -> {
-				}
 				default -> { }
 			}
 			

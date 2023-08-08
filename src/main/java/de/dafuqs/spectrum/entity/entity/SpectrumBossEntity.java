@@ -68,7 +68,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	protected boolean isNonVanillaKillCommandDamage(DamageSource source, float amount) {
-		if (source != DamageSource.OUT_OF_WORLD || amount != Float.MAX_VALUE) {
+		if (source.isOf(DamageTypes.OUT_OF_WORLD) || amount != Float.MAX_VALUE) {
 			return false;
 		}
 		

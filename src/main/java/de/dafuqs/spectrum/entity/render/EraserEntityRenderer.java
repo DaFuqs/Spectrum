@@ -28,7 +28,7 @@ public class EraserEntityRenderer extends SpiderEntityRenderer<EraserEntity> {
 	
 	@Override
 	public Identifier getTexture(EraserEntity entity) {
-		return entity.world.getTime() % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // TODO: base this on the entities id, so not all blink at the same time
+		return entity.getWorld().getTime() % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // TODO: base this on the entities id, so not all blink at the same time
 	}
 	
 }

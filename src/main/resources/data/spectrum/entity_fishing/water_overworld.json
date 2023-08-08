@@ -9,7 +9,11 @@
       "tag": "minecraft:water"
     }
   },
-  "dimension": "minecraft:overworld",
+  "dimension": {
+    "worlds": [
+      "minecraft:overworld"
+    ]
+  },
   "chance": 0.05,
   "entities": [
     {

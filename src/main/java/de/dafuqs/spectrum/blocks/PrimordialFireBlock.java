@@ -113,7 +113,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
         }
         
-        entity.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE);
+        entity.damage(SpectrumDamageSources.primordialFire(world, null), DAMAGE);
         super.onEntityCollision(state, world, pos, entity);
     }
     

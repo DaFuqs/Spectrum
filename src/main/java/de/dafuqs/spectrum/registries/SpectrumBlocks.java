@@ -1613,7 +1613,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, IS.of(1)), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("titration_barrel", TITRATION_BARREL, IS.of(), DyeColor.MAGENTA);
-		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, Tab.FUNCTIONAL.settings(8), DyeColor.ORANGE);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, IS.of(8), DyeColor.ORANGE);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

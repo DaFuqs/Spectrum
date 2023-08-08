@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.item.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 

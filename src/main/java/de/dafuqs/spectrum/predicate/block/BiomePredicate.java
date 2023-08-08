@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.predicate.block;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
+import com.google.gson.*;
+import net.minecraft.server.world.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.registry.*;
+import net.minecraft.world.biome.*;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -47,14 +44,15 @@ public class BiomePredicate {
         
         Biome biome = null;
         if (biomeObject.has("biome")) {
+            // TODO - Review this lookup
             Identifier biomeId = new Identifier(JsonHelper.getString(biomeObject, "biome"));
-            biome = BuiltinRegistries.BIOME.get(biomeId);
+            biome = BuiltinRegistries.createWrapperLookup().getWrapperOrThrow(RegistryKeys.BIOME).getOrThrow(RegistryKey.of(RegistryKeys.BIOME, biomeId)).value();
         }
         
         TagKey<Biome> tagKey = null;
         if (biomeObject.has("tag")) {
             Identifier tagId = new Identifier(JsonHelper.getString(biomeObject, "tag"));
-            tagKey = TagKey.of(Registry.BIOME_KEY, tagId);
+            tagKey = TagKey.of(RegistryKeys.BIOME, tagId);
         }
         
         return new BiomePredicate(tagKey, biome);

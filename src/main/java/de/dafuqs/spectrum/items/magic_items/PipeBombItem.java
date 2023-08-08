@@ -19,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
@@ -28,7 +29,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.Nullable;
 
@@ -94,7 +94,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 
     @Override
     public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
-        if ((source.isFire() || source.isExplosive()) && !itemEntity.getWorld().isClient()) {
+        if ((source.isIn(DamageTypeTags.IS_FIRE) || source.isIn(DamageTypeTags.IS_EXPLOSION)) && !itemEntity.getWorld().isClient()) {
             explode(itemEntity.getStack(), (ServerWorld) itemEntity.getWorld(), itemEntity.getPos(), Optional.empty());
         }
     }
@@ -103,8 +103,8 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
         stack.decrement(1);
         var owner = tryGetOwner(stack, world);
 
-        target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(owner), 200F));
-        world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, Explosion.DestructionType.NONE);
+        target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F));
+        world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, World.ExplosionSourceType.NONE);
     }
 
     public Entity tryGetOwner(ItemStack stack, ServerWorld world) {

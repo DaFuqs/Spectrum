@@ -221,7 +221,7 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(c)).build()).build())
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(ShulkerPredicate.of(c.orElse(null))).build()).build())
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}

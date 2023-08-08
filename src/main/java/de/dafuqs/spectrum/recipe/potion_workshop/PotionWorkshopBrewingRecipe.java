@@ -405,6 +405,13 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		for (InkPoweredStatusEffectInstance poweredInstance : statusEffectInstances) {
 			StatusEffectInstance instance = poweredInstance.getStatusEffectInstance();
+			
+			// instant effects, like harming do not get split (that would apply harming 3x
+			if (instance.getEffectType().isInstant()) {
+				splitInstances.add(poweredInstance);
+				continue;
+			}
+			
 			for (Pair<Float, Float> mods : SPLIT_EFFECT_POTENCY_AND_DURATION) {
 				int newDuration = (int) (instance.getDuration() * mods.getRight());
 				int newAmplifier = Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getLeft(), random);

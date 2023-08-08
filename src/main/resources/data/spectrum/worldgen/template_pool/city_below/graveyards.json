@@ -1,5 +1,5 @@
 {
-  "name": "spectrum:city_below/streets",
+  "name": "spectrum:city_below/graveyards",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "spectrum:city_below/streets/simple",
+        "location": "spectrum:city_below/graveyard/amethyst",
         "processors": "minecraft:empty"
       }
     },
@@ -16,7 +16,16 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "spectrum:city_below/streets/fish",
+        "location": "spectrum:city_below/graveyard/citrine",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/graveyard/topaz",
         "processors": "minecraft:empty"
       }
     }

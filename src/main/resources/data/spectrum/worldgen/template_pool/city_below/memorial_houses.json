@@ -1,5 +1,5 @@
 {
-  "name": "spectrum:city_below/streets",
+  "name": "spectrum:city_below/memorial_houses",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "spectrum:city_below/streets/simple",
+        "location": "spectrum:city_below/memorial/house",
         "processors": "minecraft:empty"
       }
     },
@@ -16,7 +16,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "spectrum:city_below/streets/fish",
+        "location": "spectrum:city_below/memorial/house_blazing",
         "processors": "minecraft:empty"
       }
     }

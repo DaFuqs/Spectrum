@@ -1,7 +1,16 @@
 {
-  "name": "spectrum:city_below",
+  "name": "spectrum:city_below/buildings",
   "fallback": "minecraft:empty",
   "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/memorial/yard",
+        "processors": "minecraft:empty"
+      }
+    },
     {
       "weight": 1,
       "element": {
@@ -17,6 +26,33 @@
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
         "location": "spectrum:city_below/waterfall",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/diner",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/trading_hall",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/moonstone_temple",
         "processors": "minecraft:empty"
       }
     }

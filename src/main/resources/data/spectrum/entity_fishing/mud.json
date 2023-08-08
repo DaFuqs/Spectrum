@@ -1,6 +1,8 @@
 {
-  "fluid": {
-    "tag": "spectrum:mud"
+  "location": {
+    "fluid": {
+      "tag": "spectrum:mud"
+    }
   },
   "chance": 0.05,
   "entities": [
@@ -13,7 +15,15 @@
       "weight": 5
     },
     {
+      "id": "minecraft:tadpole",
+      "weight": 2
+    },
+    {
       "id": "minecraft:drowned",
+      "weight": 1
+    },
+    {
+      "id": "minecraft:slime",
       "weight": 1
     }
   ]

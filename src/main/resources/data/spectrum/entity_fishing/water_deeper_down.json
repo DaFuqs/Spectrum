@@ -1,0 +1,44 @@
+{
+  "location": {
+    "dimension": {
+      "worlds": [
+        "spectrum:deeper_down"
+      ]
+    },
+    "fluid": {
+      "tag": "minecraft:water"
+    }
+  },
+  "dimension": "spectrum:deeper_down",
+  "chance": 0.05,
+  "entities": [
+    {
+      "id": "minecraft:cod",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:salmon",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:pufferfish",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:tropical_fish",
+      "weight": 3
+    },
+    {
+      "id": "minecraft:glow_squid",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:axolotl",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:drowned",
+      "weight": 2
+    }
+  ]
+}

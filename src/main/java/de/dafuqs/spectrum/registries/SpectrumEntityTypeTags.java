@@ -8,6 +8,7 @@ import net.minecraft.registry.tag.*;
 public class SpectrumEntityTypeTags {
 	
 	public static final TagKey<EntityType<?>> HERDING_STAFF_BLACKLISTED = getReference("herding_staff_blacklisted");
+	public static final TagKey<EntityType<?>> POKING_DAMAGE_IMMUNE = getReference("poking_damage_immune");
 	
 	
 	private static TagKey<EntityType<?>> getReference(String id) {

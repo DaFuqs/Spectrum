@@ -3,17 +3,17 @@
   "pools": [
     {
       "rolls": 1,
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:item",
           "weight": 40,
-          "name": "minecraft:cod"
+          "name": "spectrum:crawfish"
         },
         {
           "type": "minecraft:item",
           "weight": 25,
-          "name": "spectrum:crawfish"
+          "name": "minecraft:cod"
         },
         {
           "type": "minecraft:item",

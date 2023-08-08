@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -37,6 +38,11 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	public PyriteRipperBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getDefaultState().with(FACING, Direction.EAST).with(MIRRORED, false));
+	}
+	
+	@Override
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
 	}
 	
 	@Override
@@ -78,7 +84,7 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		if (entity instanceof LivingEntity) {
+		if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
 			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);

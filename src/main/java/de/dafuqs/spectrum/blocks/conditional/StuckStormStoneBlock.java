@@ -81,9 +81,9 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		hashtable.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
-		return hashtable;
+		Map<BlockState, BlockState> map = new Hashtable<>();
+		map.put(this.getDefaultState(), Blocks.AIR.getDefaultState());
+		return map;
 	}
 	
 	@Override

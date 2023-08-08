@@ -1,0 +1,24 @@
+{
+  "name": "Preservation Turrets",
+  "icon": "spectrum:preservation_turret_head",
+  "advancement": "spectrum:hidden/entity_interact/preservation_turret",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:preservation_turret_head": 0,
+    "spectrum:preservation_turret_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Preservation Turrets",
+      "entity": "spectrum:preservation_turret",
+      "scale": 0.5,
+      "offset": 0.4,
+      "text": "$(italic)True engineering excellence. But boy does it hurt."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.$(br2)Ready to poke holes in you any time you make your presence known."
+    }
+  ]
+}

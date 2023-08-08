@@ -21,8 +21,8 @@ public class GreatswordChargingSoundInstance extends AbstractSoundInstance imple
         this.repeat = false;
         this.ticks = 0;
         this.repeatDelay = 0;
-        this.volume = 0.6F;
-        this.player = player;
+		this.volume = 0.5F;
+		this.player = player;
         this.x = player.getX();
         this.y = player.getY();
         this.z = player.getZ();

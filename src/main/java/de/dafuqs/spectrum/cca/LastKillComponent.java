@@ -2,12 +2,11 @@ package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
 import dev.onyxstudios.cca.api.v3.component.*;
-import dev.onyxstudios.cca.api.v3.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.*;
 
-public class LastKillComponent implements Component, EntityComponentInitializer {
+public class LastKillComponent implements Component {
 	
 	public static final ComponentKey<LastKillComponent> LAST_KILL_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("last_kill"), LastKillComponent.class);
 	
@@ -21,12 +20,6 @@ public class LastKillComponent implements Component, EntityComponentInitializer 
 	
 	public LastKillComponent(LivingEntity entity) {
 	
-	}
-	
-	@Override
-	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerFor(LivingEntity.class, LAST_KILL_COMPONENT, LastKillComponent::new);
-		registry.registerForPlayers(LAST_KILL_COMPONENT, LastKillComponent::new, RespawnCopyStrategy.NEVER_COPY);
 	}
 	
 	@Override

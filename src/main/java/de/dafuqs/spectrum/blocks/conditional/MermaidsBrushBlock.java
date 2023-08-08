@@ -71,13 +71,13 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		BlockState cloakState = Blocks.SEAGRASS.getDefaultState();
 		for (int i = 0; i < 8; i++) {
-			hashtable.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.WATER), cloakState);
-			hashtable.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL), cloakState);
+			map.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.WATER), cloakState);
+			map.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL), cloakState);
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

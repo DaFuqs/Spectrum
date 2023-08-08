@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "spectrum:heartbound_chest",
-    "spectrum:compacting_chest",
-    "spectrum:restocking_chest",
-    "spectrum:black_hole_chest"
-  ]
-}

@@ -16,7 +16,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Your attempts to mix $(l:general/gemstone_powder)Gemstone Powder$(/l) directly have not been very successful. But now you have another idea:$(br)The closeness of your gemstones to nature suggests that $(italic)nature$() must be both the source and the answer!$(br2)You quickly scribble some notes, result being $(l:general/coloured_trees)a recipe$(), which looks very promising."
+      "text": "Your attempts to mix $(l:general/gemstone_powder)Gemstone Powder$(/l) directly have not been very successful. But now you have another idea:$(br)The closeness of your gemstones to nature suggests that $(italic)nature$() must be both the source and the answer!$(br2)You quickly scribble some notes, result being $(l:general/colored_trees)a recipe$(), which looks very promising."
     },
     {
       "type": "patchouli:text",

@@ -32,17 +32,16 @@
 		},
 		{
 			"recipe":"spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
-			"text":"增加你可以站立的范围，使怪物笼仍然可以生成生物。",
-			"type":"spectrum:spirit_instiller_crafting",
-			"title":"激活范围"
-		}
-	],
-	"advancement":"spectrum:milestones/unlock_spawner_manipulation",
-	"extra_recipe_mappings":{
-		"spectrum:spawner":0,
-		"minecraft:spawner":0
-	},
-	"name":"怪物笼操作",
-	"icon":"spectrum:spawner",
-	"category":"spectrum:creating_life_category"
+          "text": "增加你可以站立的范围，使怪物笼仍然可以生成生物。",
+          "type": "spectrum:spirit_instiller_crafting",
+          "title": "激活范围"
+        }
+    ],
+  "advancement": "spectrum:milestones/unlock_spawner_manipulation",
+  "extra_recipe_mappings": {
+    "minecraft:spawner": 0
+  },
+  "name": "怪物笼操作",
+  "icon": "minecraft:spawner",
+  "category": "spectrum:creating_life_category"
 }

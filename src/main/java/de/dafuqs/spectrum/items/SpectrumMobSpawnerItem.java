@@ -1,41 +1,23 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
-import net.minecraft.client.item.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
-import net.minecraft.state.property.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 
-import java.util.*;
-
+// TODO: this item and the `spectrum:spawners` tag can be removed in 1.19.4, since resonance now drops vanilla mob spawners instead
+@Deprecated
 public class SpectrumMobSpawnerItem extends Item {
 	
 	public SpectrumMobSpawnerItem(FabricItemSettings fabricItemSettings) {
 		super(fabricItemSettings);
-	}
-	
-	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		ActionResult actionResult = this.place(new ItemPlacementContext(context));
-		if (!actionResult.isAccepted() && this.isFood()) {
-			ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
-			return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
-		} else {
-			return actionResult;
-		}
 	}
 	
 	public ActionResult place(ItemPlacementContext context) {
@@ -69,73 +51,6 @@ public class SpectrumMobSpawnerItem extends Item {
 				}
 				
 				return ActionResult.success(world.isClient);
-			}
-		}
-	}
-	
-	private static <T extends Comparable<T>> BlockState with(BlockState state, Property<T> property, String name) {
-		return property.parse(name).map((value) -> state.with(property, value)).orElse(state);
-	}
-	
-	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
-		ItemStack itemStack = new ItemStack(SpectrumItems.SPAWNER, 1);
-		
-		NbtCompound blockEntityTag = mobSpawnerBlockEntity.createNbt();
-		blockEntityTag.remove("x");
-		blockEntityTag.remove("y");
-		blockEntityTag.remove("z");
-		blockEntityTag.remove("id");
-		blockEntityTag.remove("delay");
-		
-		NbtCompound itemStackTag = new NbtCompound();
-		itemStackTag.put("BlockEntityTag", blockEntityTag);
-		itemStack.setNbt(itemStackTag);
-		return itemStack;
-	}
-	
-	@Override
-	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-		if (itemStack.getNbt() != null && itemStack.getNbt().get("BlockEntityTag") != null) {
-			Optional<EntityType<?>> entityType = Optional.empty();
-			
-			NbtCompound blockEntityTag = itemStack.getNbt().getCompound("BlockEntityTag");
-			
-			if (blockEntityTag.contains("SpawnData", NbtElement.COMPOUND_TYPE)
-					&& blockEntityTag.getCompound("SpawnData").contains("entity", NbtElement.COMPOUND_TYPE)
-					&& blockEntityTag.getCompound("SpawnData").getCompound("entity").contains("id", NbtElement.STRING_TYPE)) {
-				String spawningEntityType = blockEntityTag.getCompound("SpawnData").getCompound("entity").getString("id");
-				entityType = EntityType.get(spawningEntityType);
-			}
-			
-			try {
-				short spawnCount = blockEntityTag.getShort("SpawnCount");
-				short minSpawnDelay = blockEntityTag.getShort("MinSpawnDelay");
-				short maxSpawnDelay = blockEntityTag.getShort("MaxSpawnDelay");
-				short spawnRange = blockEntityTag.getShort("SpawnRange");
-				short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
-				
-				if (entityType.isPresent()) {
-					tooltip.add(Text.translatable(entityType.get().getTranslationKey()));
-				} else {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
-				}
-				if (spawnCount > 0) {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.spawn_count", spawnCount).formatted(Formatting.GRAY));
-				}
-				if (minSpawnDelay > 0) {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).formatted(Formatting.GRAY));
-				}
-				if (maxSpawnDelay > 0) {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).formatted(Formatting.GRAY));
-				}
-				if (spawnRange > 0) {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.spawn_range", spawnRange).formatted(Formatting.GRAY));
-				}
-				if (requiredPlayerRange > 0) {
-					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
-				}
-			} catch (Exception e) {
-				tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
 			}
 		}
 	}

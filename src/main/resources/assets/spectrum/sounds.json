@@ -121,6 +121,18 @@
       "spectrum:hummingstone_hum"
     ]
   },
+  "incandescent_charge": {
+    "subtitle": "spectrum.subtitles.incandescent_charge",
+    "sounds": [
+      "spectrum:incandescent_charge"
+    ]
+  },
+  "incandescent_arm": {
+    "subtitle": "spectrum.subtitles.incandescent_arm",
+    "sounds": [
+      "spectrum:incandescent_arm"
+    ]
+  },
   "squeaker": {
     "subtitle": "spectrum.subtitles.squeaker",
     "sounds": [
@@ -1563,8 +1575,8 @@
     ]
   },
 
-  "entity.guardian_turret.ambient": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.ambient",
+  "entity.preservation_turret.ambient": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",
     "sounds": [
       "entity/shulker/ambient1",
       "entity/shulker/ambient2",
@@ -1575,8 +1587,8 @@
       "entity/shulker/ambient7"
     ]
   },
-  "entity.guardian_turret.death": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.death",
+  "entity.preservation_turret.death": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.death",
     "sounds": [
       "entity/shulker/death1",
       "entity/shulker/death2",
@@ -1584,8 +1596,8 @@
       "entity/shulker/death4"
     ]
   },
-  "entity.guardian_turret.hurt_closed": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.hurt",
+  "entity.preservation_turret.hurt_closed": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.hurt",
     "sounds": [
       "entity/shulker/hurt_closed1",
       "entity/shulker/hurt_closed2",
@@ -1594,8 +1606,8 @@
       "entity/shulker/hurt_closed5"
     ]
   },
-  "entity.guardian_turret.hurt": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.hurt",
+  "entity.preservation_turret.hurt": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.hurt",
     "sounds": [
       "entity/shulker/hurt1",
       "entity/shulker/hurt2",
@@ -1603,8 +1615,8 @@
       "entity/shulker/hurt4"
     ]
   },
-  "entity.guardian_turret.close": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.close",
+  "entity.preservation_turret.close": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.close",
     "sounds": [
       "entity/shulker/close1",
       "entity/shulker/close2",
@@ -1613,8 +1625,8 @@
       "entity/shulker/close5"
     ]
   },
-  "entity.guardian_turret.open": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.open",
+  "entity.preservation_turret.open": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.open",
     "sounds": [
       "entity/shulker/open1",
       "entity/shulker/open2",
@@ -1623,8 +1635,8 @@
       "entity/shulker/open5"
     ]
   },
-  "entity.guardian_turret.shoot": {
-    "subtitle": "spectrum.subtitles.entity.guardian_turret.shoot",
+  "entity.preservation_turret.shoot": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.shoot",
     "sounds": [
       "entity/shulker/shoot1",
       "entity/shulker/shoot2",

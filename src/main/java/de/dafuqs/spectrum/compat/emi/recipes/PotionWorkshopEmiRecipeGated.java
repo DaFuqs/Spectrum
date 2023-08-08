@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -13,6 +14,8 @@ public class PotionWorkshopEmiRecipeGated extends GatedSpectrumEmiRecipe<PotionW
 	
 	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, PotionWorkshopRecipe recipe) {
 		super(category, PotionWorkshopRecipe.UNLOCK_IDENTIFIER, recipe, 112, 66);
+		
+		this.input = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
 	}
 	
 	@Override

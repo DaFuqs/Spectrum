@@ -48,7 +48,13 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType MALACHITE_DIKE_RUNES_MAJOR;
 	
 	public static DefaultParticleType LAVA_FISHING;
-	
+
+	public static DefaultParticleType PRIMORDIAL_COSY_SMOKE;
+	public static DefaultParticleType PRIMORDIAL_SIGNAL_SMOKE;
+	public static DefaultParticleType PRIMORDIAL_SMOKE;
+	public static DefaultParticleType PRIMORDIAL_FLAME;
+	public static DefaultParticleType PRIMORDIAL_FLAME_SMALL;
+
 	public static DefaultParticleType MUD_SPLASH;
 	public static DefaultParticleType LANDING_MUD;
 	public static DefaultParticleType FALLING_MUD;
@@ -231,7 +237,13 @@ public class SpectrumParticleTypes {
 		MIRROR_IMAGE = register("mirror_image", true);
 		
 		LAVA_FISHING = register("lava_fishing", false);
-		
+
+		PRIMORDIAL_COSY_SMOKE = register("primordial_cosy_smoke", true);
+		PRIMORDIAL_SIGNAL_SMOKE = register("primordial_signal_smoke", true);
+		PRIMORDIAL_SMOKE = register("primordial_smoke", true);
+		PRIMORDIAL_FLAME = register("primordial_flame", true);
+		PRIMORDIAL_FLAME_SMALL = register("primordial_flame_small", true);
+
 		MUD_SPLASH = register("mud_splash", false);
 		DRIPPING_MUD = register("dripping_mud", false);
 		FALLING_MUD = register("falling_mud", false);

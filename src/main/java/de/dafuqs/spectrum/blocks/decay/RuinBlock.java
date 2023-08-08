@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -70,7 +69,7 @@ public class RuinBlock extends DecayBlock {
 		if (state.get(RuinBlock.CONVERSION) != Conversion.NONE && newState.isAir()) {
 			if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
-			} else if (world.getRegistryKey() == DDDimension.DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
+			} else if (world.getRegistryKey() == SpectrumDimensions.DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
 			}
 		}

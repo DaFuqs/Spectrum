@@ -13,7 +13,7 @@
       "type": "spectrum:anvil_crushing",
       "title": "Edified Leaves Crushing",
       "recipe": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
-      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(italic)Clearly$() these cyan-coloured leaves have the essence of $(item)Topaz$()..."
+      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(italic)Clearly$() these cyan-colored leaves have the essence of $(item)Topaz$()..."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

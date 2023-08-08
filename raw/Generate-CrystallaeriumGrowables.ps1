@@ -7,12 +7,12 @@
     "gold" = "minecraft:gold_ingot"
     "iron" = "minecraft:iron_ingot"
     "lapis" = "minecraft:lapis_lazuli"
-    "netherite" = "minecraft:netherite_scrap"
+    "netherite_scrap" = "minecraft:netherite_scrap"
     "prismarine" = "minecraft:prismarine_crystals"
     "quartz" = "minecraft:quartz"
     "redstone" = "minecraft:redstone"
-    "certus_quartz" = "ae2:certus_quartz_crystal"
-    "fluix" = "ae2:fluix_crystal"
+    "certus_quartz" = "ae2:certus_quartz_dust"
+    "fluix" = "ae2:fluix_dust"
     "globette" = "gobber2:gobber2_globette"
     "globette_nether" = "gobber2:gobber2_globette_nether"
     "globette_end" = "gobber2:gobber2_globette_end"
@@ -23,7 +23,7 @@ foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
     $res = $entry.Value
 
-    New-Item -Path ".\loot\$name`_cluster.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\loot\small_$name`_bud.json" -ItemType File -Force -Value @"
 {
   "type": "minecraft:block",
   "pools": [
@@ -33,15 +33,135 @@ foreach($entry in $entries.GetEnumerator()) {
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_$name",
-          "functions": [
+          "name": "spectrum:small_$name`_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+"@
+
+    New-Item -Path ".\loot\large_$name`_bud.json" -ItemType File -Force -Value @"
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:large_$name`_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+"@
+
+    New-Item -Path ".\loot\$name`_cluster.json" -ItemType File -Force -Value @"
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 5,
-                "max": 7
-              },
-              "add": false
+              "type": "minecraft:item",
+              "name": "spectrum:$name`_cluster",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:alternatives",
+              "children": [
+                {
+                  "type": "minecraft:item",
+                  "name": "spectrum:pure_$name",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": {
+                        "min": 3,
+                        "max": 5
+                      },
+                      "add": false
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "tag": "minecraft:cluster_max_harvestables"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "spectrum:pure_$name",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": {
+                        "min": 1,
+                        "max": 2
+                      },
+                      "add": false
+                    },
+                    {
+                      "function": "minecraft:explosion_decay"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -49,9 +169,7 @@ foreach($entry in $entries.GetEnumerator()) {
     }
   ]
 }
-
 "@
-
 
     New-Item -Path ".\anvil_crushing\$name`_from_buds.json" -ItemType File -Force -Value @"
 {
@@ -59,9 +177,6 @@ foreach($entry in $entries.GetEnumerator()) {
   "ingredient": [
     {
       "item": "spectrum:small_$name`_bud"
-    },
-    {
-      "item": "spectrum:medium_$name`_bud"
     },
     {
       "item": "spectrum:large_$name`_bud"
@@ -74,7 +189,8 @@ foreach($entry in $entries.GetEnumerator()) {
     "count": 2
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break"
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
 }
 "@
 
@@ -91,7 +207,8 @@ foreach($entry in $entries.GetEnumerator()) {
     "count": 6
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break"
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
 }
 "@
 
@@ -100,15 +217,6 @@ foreach($entry in $entries.GetEnumerator()) {
   "parent": "minecraft:item/small_amethyst_bud",
   "textures": {
     "layer0": "spectrum:block/small_$name`_bud"
-  }
-}
-"@
-
-    New-Item -Path ".\item_models\medium_$name`_bud.json" -ItemType File -Force -Value @"
-{
-  "parent": "minecraft:item/medium_amethyst_bud",
-  "textures": {
-    "layer0": "spectrum:block/medium_$name`_bud"
   }
 }
 "@
@@ -122,7 +230,6 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-
     New-Item -Path ".\item_models\$name`_cluster.json" -ItemType File -Force -Value @"
 {
   "parent": "minecraft:item/amethyst_cluster",
@@ -132,23 +239,20 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-    New-Item -Path ".\item_models\native_$name`.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\item_models\pure_$name`.json" -ItemType File -Force -Value @"
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/native_$name"
+    "layer0": "spectrum:item/pure_$name"
   }
 }
 "@
 
-
-
-
-    New-Item -Path ".\blasting_recipes\native_$name`.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\blasting_recipes\pure_$name`.json" -ItemType File -Force -Value @"
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "spectrum:native_$name"
+    "item": "spectrum:pure_$name"
   },
   "result": "$res",
   "experience": 0.5,
@@ -156,11 +260,11 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-    New-Item -Path ".\cinderhearth_recipes\native_$name`.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\cinderhearth_recipes\pure_$name`.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:cinderhearth",
   "ingredient": {
-    "item": "spectrum:native_$name"
+    "item": "spectrum:pure_$name"
   },
   "results": [
     {
@@ -169,26 +273,57 @@ foreach($entry in $entries.GetEnumerator()) {
     }
   ],
   "experience": 0.5,
-  "time": 200
+  "time": 200,
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
 }
 "@
 
-
+    New-Item -Path ".\alloy_forgery_recipes\pure_$name`.json" -ItemType File -Force -Value @"
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "item": "spectrum:pure_$name",
+      "count": 2
+    }
+  ],
+  "output": {
+    "id": "$res",
+    "count": 4
+  },
+  "overrides": {
+    "4+": {
+      "id": "$res",
+      "count": 5
+    }
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 10,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alloy_forgery"
+      ]
+    }
+  ]
+}
+"@
 
 }
 
 
 foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
-    "public static final Item $("NATIVE_" + $name.toUpper()) = new Item(resourcesItemSettings);"
+    "public static final Item $("pure_" + $name.toUpper()) = new Item(resourcesItemSettings);"
 }
 
 foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
-    "register(`"native_$name`", $("NATIVE_"+ $name.toUpper()), DyeColor.XXX);"
+    "register(`"pure_$name`", $("pure_"+ $name.toUpper()), DyeColor.XXX);"
 }
 
 foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
-    "`"item.spectrum.native_$name`": `"Pure $name`","
+    "`"item.spectrum.pure_$name`": `"Pure $name`","
 }

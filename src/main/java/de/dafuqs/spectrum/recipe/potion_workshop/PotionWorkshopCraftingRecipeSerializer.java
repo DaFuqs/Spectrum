@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.recipe.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
-import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 
 public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopCraftingRecipe> {
@@ -16,7 +16,7 @@ public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerial
 	}
 	
 	public interface RecipeFactory {
-		PotionWorkshopCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color);
+		PotionWorkshopCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, IngredientStack baseIngredient, boolean consumeBaseIngredient, int requiredExperience, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3, ItemStack output, int craftingTime, int color);
 	}
 	
 	@Override
@@ -25,19 +25,19 @@ public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerial
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
-		Ingredient baseIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "base_ingredient"));
-		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
-		Ingredient ingredient2;
+		IngredientStack baseIngredient = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "base_ingredient"));
+		IngredientStack ingredient1 = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
+		IngredientStack ingredient2;
 		if (JsonHelper.hasJsonObject(jsonObject, "ingredient2")) {
-			ingredient2 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
+			ingredient2 = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
 		} else {
-			ingredient2 = Ingredient.EMPTY;
+			ingredient2 = IngredientStack.EMPTY;
 		}
-		Ingredient ingredient3;
+		IngredientStack ingredient3;
 		if (JsonHelper.hasJsonObject(jsonObject, "ingredient3")) {
-			ingredient3 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient3"));
+			ingredient3 = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient3"));
 		} else {
-			ingredient3 = Ingredient.EMPTY;
+			ingredient3 = IngredientStack.EMPTY;
 		}
 		
 		int requiredExperience = JsonHelper.getInt(jsonObject, "required_experience", 0);
@@ -72,12 +72,12 @@ public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerial
 		boolean secret = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		
-		Ingredient baseIngredient = Ingredient.fromPacket(packetByteBuf);
+		IngredientStack baseIngredient = IngredientStack.fromByteBuf(packetByteBuf);
 		boolean consumeBaseIngredient = packetByteBuf.readBoolean();
 		int requiredExperience = packetByteBuf.readInt();
-		Ingredient ingredient1 = Ingredient.fromPacket(packetByteBuf);
-		Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
-		Ingredient ingredient3 = Ingredient.fromPacket(packetByteBuf);
+		IngredientStack ingredient1 = IngredientStack.fromByteBuf(packetByteBuf);
+		IngredientStack ingredient2 = IngredientStack.fromByteBuf(packetByteBuf);
+		IngredientStack ingredient3 = IngredientStack.fromByteBuf(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
 		int color = packetByteBuf.readInt();

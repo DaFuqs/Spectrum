@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -81,7 +82,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	protected ItemStack cachedOutput;
 	
 	public PotionWorkshopBrewingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-									   int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect,
+									   int craftingTime, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3, StatusEffect statusEffect,
 									   int baseDurationTicks, float potencyModifier, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, boolean applicableToPotionWeapons, InkColor inkColor, int inkAmount) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, statusEffect.getColor(), ingredient1, ingredient2, ingredient3);
@@ -165,13 +166,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(Ingredient.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
-		defaultedList.add(Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack()));
-		defaultedList.add(this.ingredient1);
-		defaultedList.add(this.ingredient2);
-		defaultedList.add(this.ingredient3);
+	public List<IngredientStack> getIngredientStacks() {
+		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
+		defaultedList.add(IngredientStack.ofStacks(SpectrumItems.MERMAIDS_GEM.getDefaultStack()));
+		defaultedList.add(IngredientStack.ofStacks(Items.GLASS_BOTTLE.getDefaultStack()));
+		addIngredientStacks(defaultedList);
 		return defaultedList;
 	}
 	
@@ -375,8 +374,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				potency += potionMod.flatPotencyBonusNegativeEffects;
 				durationTicks += potionMod.flatDurationBonusNegativeEffects;
 			}
-			default -> {
-			}
+			default -> { }
 		}
 		durationTicks = statusEffect.isInstant() ? 1 : (int) (durationTicks * potionMod.durationMultiplier);
 		

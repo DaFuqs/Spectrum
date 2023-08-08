@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "minecraft:shears",
     "spectrum:bedrock_shears"
   ]
 }

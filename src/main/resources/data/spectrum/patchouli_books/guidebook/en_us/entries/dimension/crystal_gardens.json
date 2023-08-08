@@ -22,23 +22,18 @@
         "spectrum:textures/gui/guidebook/dd_crystal_gardens.png"
       ],
       "border": true,
-      "text": ""
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The many natural light sources in this biome allow plants to grow here that you might find on the surface, unlike most other biomes.$(br2)Lakes of $(l:magical_blocks/liquid_crystal)Liquid Crystal$() and giant $(l:dimension/hummingstone)crystalline structures$() define its look."
+      "text": "Lakes of $(l:magical_blocks/liquid_crystal)Liquid Crystal$() and giant $(l:dimension/hummingstone)crystalline structures$() define its look."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:overgrown_blackslag",
-      "text": "Stone covered with a small layer of soil. Not much, but more than enough to be covered with a thick carpet of moss."
+      "text": "The ground is covered with a small layer of soil. Not much, but more than enough to be covered with a thick carpet of moss. The many natural light sources in this biome allow plants to grow here that you might find on the surface, unlike most other biomes."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:text",
       "title": "Nephrite Blossoms",
       "advancement": "spectrum:hidden/collect_glass_peach",
-      "item": "spectrum:glass_peach",
-      "text": "Small little trees, as big as they get down here. Actually it's more like a big bush.$(br)...or giant shrub.$(br2)Eeeeh, details.$(br)Anyways, they look pretty. No, their fruit are not made out of glass, but very much shimmer like they are. They are very much edible, and tasty, too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which will decrease the damage hard-hitting attacks deal to you. They can also be $(l:magical_items/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew Potions$()."
+      "text": "Little trees, as big as they get down here - more like a big bush. ...or giant shrub.$(br)Eeeeh, details.$(br2)Their fruit isn't made of glass, but it shimmers very much like it would be. They are very tasty too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which reduces the damage you take from hard attacks. They can also be $(l:cuisine/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew potions$()."
     },
     {
       "type": "patchouli:spotlight",

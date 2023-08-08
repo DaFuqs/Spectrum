@@ -55,7 +55,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "Simply throw raw ore on top to let it crystallize.$(br)Each resource requires one color of Ink. "
+      "text": "Throw raw ore on top to let it crystallize.$(br)Each resource requires one color of Ink."
     },
     {
       "type": "patchouli:text",

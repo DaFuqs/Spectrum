@@ -110,9 +110,10 @@ public class SpectrumLootPoolModifiers {
 		
 		put(new Identifier("spectrum:entities/egg_laying_wooly_pig"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/kindling"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.KINDLING).asItem(), 0.1F));
-		put(new Identifier("spectrum:entities/guardian_turret"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.GUARDIAN_TURRET).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/preservation_turret"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PRESERVATION_TURRET).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/monstrosity"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.MONSTROSITY).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/lizard"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.LIZARD).asItem(), 0.1F));
+		put(new Identifier("spectrum:entities/eraser"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ERASER).asItem(), 0.1F));
 	}};
 	
 	public static void setup() {
@@ -216,7 +217,7 @@ public class SpectrumLootPoolModifiers {
 	
 	private static LootPool getShulkerLootPool(@Nullable DyeColor dyeColor, Item item, float chance) {
 		Optional<DyeColor> c = dyeColor == null ? Optional.empty() : Optional.of(dyeColor);
-		
+
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
@@ -224,7 +225,7 @@ public class SpectrumLootPoolModifiers {
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
-	
+
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
@@ -242,7 +243,7 @@ public class SpectrumLootPoolModifiers {
 				.with(ItemEntry.builder(item).build())
 				.build();
 	}
-	
+
 	private static LootPool getParrotLootPool(ParrotEntity.Variant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))

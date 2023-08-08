@@ -20,7 +20,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.profiler.*;
 
 import java.util.*;
-import java.util.concurrent.atomic.*;
 
 public class EntityFishingDataLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
 	
@@ -34,7 +33,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 			Optional<NbtCompound> nbt
 	) {
 	}
-	
+
 	public record EntityFishingEntry(
 			EntityFishingPredicate predicate,
 			float entityChance,
@@ -51,35 +50,32 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 		ENTITY_FISHING_ENTRIES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
-			
+
 			EntityFishingPredicate predicate = new EntityFishingPredicate(
-					FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
-					BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
-					LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
-					DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
-					MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),
-					TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "timeOfDay", null)),
-					WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
-					CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
+				FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
+				BiomePredicate.ANY,
+				LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
+				DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
+				MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),
+				TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "timeOfDay", null)),
+				WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
+				CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
 			);
-			
 			float chance = JsonHelper.getFloat(jsonObject, "chance");
 			JsonArray entityArray = JsonHelper.getArray(jsonObject, "entities");
 			
-			AtomicInteger weightSum = new AtomicInteger();
 			DataPool.Builder<EntityFishingEntity> entities = DataPool.builder();
 			entityArray.forEach(entryElement -> {
 				JsonObject entryObject = entryElement.getAsJsonObject();
 				
 				EntityType<?> entityType = Registries.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
-				
+
 				Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(entryObject.get("nbt"));
-				
+
 				int weight = 1;
 				if (JsonHelper.hasNumber(entryObject, "weight")) {
 					weight = JsonHelper.getInt(entryObject, "weight");
 				}
-				weightSum.addAndGet(weight);
 				entities.add(new EntityFishingEntity(entityType, nbt), weight);
 			});
 			

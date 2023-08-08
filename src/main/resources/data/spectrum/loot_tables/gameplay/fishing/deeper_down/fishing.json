@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/mud/junk",
+          "name": "spectrum:gameplay/fishing/deeper_down/junk",
           "weight": 10,
           "quality": -2
         },
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/mud/treasure",
+          "name": "spectrum:gameplay/fishing/deeper_down/treasure",
           "weight": 5,
           "quality": 2,
           "conditions": [
@@ -29,7 +29,7 @@
         },
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/mud/fish",
+          "name": "spectrum:gameplay/fishing/deeper_down/fish",
           "weight": 80,
           "quality": -1
         }

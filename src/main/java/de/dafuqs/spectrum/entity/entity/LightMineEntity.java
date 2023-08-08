@@ -19,45 +19,45 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class LightMineEntity extends LightShardBaseEntity {
-	
-	private static final int NO_POTION_COLOR = -1;
-	private static final TrackedData<Integer> COLOR = DataTracker.registerData(LightMineEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private boolean colorSet;
-	
-	protected final Set<StatusEffectInstance> effects = Sets.newHashSet();
-	
+
+    private static final int NO_POTION_COLOR = -1;
+    private static final TrackedData<Integer> COLOR = DataTracker.registerData(LightMineEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private boolean colorSet;
+
+    protected final Set<StatusEffectInstance> effects = Sets.newHashSet();
+
 	public LightMineEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	
-	public LightMineEntity(World world, LivingEntity owner, Optional<Entity> target, float detectionRange, float damage, float lifeSpanTicks) {
-		super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
-	}
-	
-	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects) {
-		summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
-	}
-	
-	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
-		summonBarrageInternal(world, user, () -> {
-			LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 4, 1.0F, 800);
-			entity.setEffects(effects);
-			return entity;
-		}, position, count);
-	}
-	
-	public void setEffects(List<StatusEffectInstance> effects) {
-		this.effects.addAll(effects);
-		if (this.effects.isEmpty()) {
-			setColor(16777215);
-		} else {
-			setColor(PotionUtil.getColor(this.effects));
-		}
-	}
-	
-	public int getColor() {
-		return this.dataTracker.get(COLOR);
-	}
+
+    public LightMineEntity(World world, LivingEntity owner, Optional<LivingEntity> target, float detectionRange, float damage, float lifeSpanTicks) {
+        super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
+    }
+
+    public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects) {
+        summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
+    }
+
+    public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
+        summonBarrageInternal(world, user, () -> {
+            LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 8, 1.0F, 800);
+            entity.setEffects(effects);
+            return entity;
+        }, position, count);
+    }
+
+    public void setEffects(List<StatusEffectInstance> effects) {
+        this.effects.addAll(effects);
+        if (this.effects.isEmpty()) {
+            setColor(16777215);
+        } else {
+            setColor(PotionUtil.getColor(this.effects));
+        }
+    }
+
+    public int getColor() {
+        return this.dataTracker.get(COLOR);
+    }
     
     private void setColor(int color) {
         this.colorSet = true;
@@ -128,24 +128,22 @@ public class LightMineEntity extends LightShardBaseEntity {
     }
     
     @Override
-    protected void onHitEntity(LivingEntity owner, Entity attacked) {
-        super.onHitEntity(owner, attacked);
+    protected void onHitEntity(LivingEntity attacked) {
+        super.onHitEntity(attacked);
         
-        if (attacked instanceof LivingEntity livingEntity) {
-            Entity entity = this.getEffectCause();
-            
-            Iterator<StatusEffectInstance> var3 = this.effects.iterator();
-            StatusEffectInstance statusEffectInstance;
+        Entity attacker = this.getEffectCause();
+
+        Iterator<StatusEffectInstance> var3 = this.effects.iterator();
+        StatusEffectInstance statusEffectInstance;
+        while (var3.hasNext()) {
+            statusEffectInstance = var3.next();
+            attacked.addStatusEffect(new StatusEffectInstance(statusEffectInstance.getEffectType(), Math.max(statusEffectInstance.getDuration() / 8, 1), statusEffectInstance.getAmplifier(), statusEffectInstance.isAmbient(), statusEffectInstance.shouldShowParticles()), attacker);
+        }
+        if (!this.effects.isEmpty()) {
+            var3 = this.effects.iterator();
             while (var3.hasNext()) {
                 statusEffectInstance = var3.next();
-                livingEntity.addStatusEffect(new StatusEffectInstance(statusEffectInstance.getEffectType(), Math.max(statusEffectInstance.getDuration() / 8, 1), statusEffectInstance.getAmplifier(), statusEffectInstance.isAmbient(), statusEffectInstance.shouldShowParticles()), entity);
-            }
-            if (!this.effects.isEmpty()) {
-                var3 = this.effects.iterator();
-                while (var3.hasNext()) {
-                    statusEffectInstance = var3.next();
-                    livingEntity.addStatusEffect(statusEffectInstance, entity);
-                }
+                attacked.addStatusEffect(statusEffectInstance, attacker);
             }
         }
     }

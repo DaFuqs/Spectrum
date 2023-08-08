@@ -25,10 +25,10 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	}
 	
 	@Override
-	public void render(BidentBaseEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		ItemStack itemStack = bidentEntity.getStack();
-		renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
-		super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	public void render(BidentBaseEntity bidentBaseEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		ItemStack itemStack = bidentBaseEntity.getStack();
+		renderAsItemStack(bidentBaseEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
+		super.render(bidentBaseEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
 	
 	private void renderAsItemStack(BidentBaseEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
@@ -38,15 +38,15 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 		matrixStack.push();
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
 		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
-		
+
 		float scale = 2.0F;
 		matrixStack.scale(scale, scale, scale);
-		
+
 		this.itemRenderer.renderItem(itemStack, ModelTransformationMode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
-		
+
 		matrixStack.pop();
 	}
-	
+
 	@Override
 	public Identifier getTexture(BidentBaseEntity entity) {
 		return PlayerScreenHandler.BLOCK_ATLAS_TEXTURE;

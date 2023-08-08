@@ -23,7 +23,7 @@
             "spectrum:demon_tea"
           ],
           "nbt": {
-            "Milk": "1b"
+            "Milk": true
           }
         }
       }

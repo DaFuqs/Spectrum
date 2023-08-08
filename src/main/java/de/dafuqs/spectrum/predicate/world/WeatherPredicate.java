@@ -8,7 +8,7 @@ import java.util.*;
 
 public class WeatherPredicate implements WorldConditionPredicate {
 	public static final WeatherPredicate ANY = new WeatherPredicate(null);
-	
+
 	public enum WeatherCondition {
 		CLEAR_SKY,
 		RAIN, // rain or thunder
@@ -24,7 +24,7 @@ public class WeatherPredicate implements WorldConditionPredicate {
 	}
 	
 	public static WeatherPredicate fromJson(JsonObject json) {
-		if (json == null || json.isJsonNull()) return ANY;
+        if (json == null || json.isJsonNull()) return ANY;
 		return new WeatherPredicate(WeatherCondition.valueOf(json.get("weather_condition").getAsString().toUpperCase(Locale.ROOT)));
 	}
 	

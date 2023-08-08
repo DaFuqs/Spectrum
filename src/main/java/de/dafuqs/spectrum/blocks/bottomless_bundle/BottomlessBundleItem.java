@@ -147,7 +147,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 		int newAmount = Math.min(maxStoredAmount, storedItemCompound.getInt("Count") + amount);
 		int overflowAmount = hasVoiding ? 0 : Math.max(0, amount - maxStoredAmount);
-		
+
 		Identifier identifier = Registries.ITEM.getId(stackToBundle.getItem());
 		storedItemCompound.putString("ID", identifier.toString());
 		storedItemCompound.putInt("Count", newAmount);
@@ -169,7 +169,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			NbtCompound storedItemCompound = new NbtCompound();
 			int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 			int newAmount = Math.min(maxStoredAmount, amount);
-			
+
 			Identifier identifier = Registries.ITEM.getId(stackToBundle.getItem());
 			storedItemCompound.putString("ID", identifier.toString());
 			storedItemCompound.putInt("Count", newAmount);
@@ -490,7 +490,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public int getEnchantability() {
 		return 5;
 	}
-	
+
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
 		
 		@Override

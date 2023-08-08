@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.client.toast.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
@@ -37,7 +36,6 @@ public class RevelationToast implements Toast {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
 	public Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
 		Text title = Text.translatable("spectrum.toast.revelation.title");
 		Text text = Text.translatable("spectrum.toast.revelation.text");

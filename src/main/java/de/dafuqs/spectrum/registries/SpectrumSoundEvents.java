@@ -51,19 +51,21 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent GROUND_SLAM_CHARGE = register("ground_slam_charge");
 	public static final SoundEvent GROUND_SLAM = register("ground_slam");
-	
+
 	public static final SoundEvent DEEP_CRYSTAL_RING = register("deep_crystal_ring");
 	public static final SoundEvent MEDIUM_CRYSTAL_RING = register("mid_crystal_ring");
 	public static final SoundEvent LIGHT_CRYSTAL_RING = register("light_crystal_ring");
-	
+
 	public static final SoundEvent CRYSTAL_STRIKE = register("crystal_strike");
-	
+
 	public static final SoundEvent SHATTER_LIGHT = register("shatter_light");
 	public static final SoundEvent SHATTER_HEAVY = register("shatter_heavy");
 	public static final SoundEvent GLASS_SHIMMER = register("glass_shimmer");
 	public static final SoundEvent SOFT_HUM = register("soft_hum");
-	
-	
+
+	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");
+	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
+
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
@@ -188,13 +190,13 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
 	
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_AMBIENT = register("entity.guardian_turret.ambient");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_DEATH = register("entity.guardian_turret.death");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_HURT_CLOSED = register("entity.guardian_turret.hurt_closed");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_HURT = register("entity.guardian_turret.hurt");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_CLOSE = register("entity.guardian_turret.close");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_OPEN = register("entity.guardian_turret.open");
-	public static final SoundEvent ENTITY_GUARDIAN_TURRET_SHOOT = register("entity.guardian_turret.shoot");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_AMBIENT = register("entity.preservation_turret.ambient");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_DEATH = register("entity.preservation_turret.death");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_HURT_CLOSED = register("entity.preservation_turret.hurt_closed");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_HURT = register("entity.preservation_turret.hurt");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_CLOSE = register("entity.preservation_turret.close");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_OPEN = register("entity.preservation_turret.open");
+	public static final SoundEvent ENTITY_PRESERVATION_TURRET_SHOOT = register("entity.preservation_turret.shoot");
 	
 	public static final SoundEvent ENTITY_MONSTROSITY_SHOOT = register("entity.monstrosity.shoot");
 	public static final SoundEvent ENTITY_MONSTROSITY_SWOOP = register("entity.monstrosity.swoop");

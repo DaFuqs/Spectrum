@@ -16,7 +16,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/kindling/kindling_neutral.png");
 	public static final Identifier TEXTURE_BLINKING = SpectrumCommon.locate("textures/entity/kindling/kindling_blink.png");
 	public static final Identifier TEXTURE_ANGRY = SpectrumCommon.locate("textures/entity/kindling/kindling_angry.png");
-	
+
 	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 0.7F);
 		this.addFeature(new KindlingEntityArmorFeatureRenderer(this, context.getModelLoader()));
@@ -32,7 +32,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 		if (entity.isAngry()) {
 			return TEXTURE_ANGRY;
 		}
-		return entity.getWorld().getTime() % 120 == 0 ? TEXTURE_BLINKING : TEXTURE;
+		return entity.world.getTime() % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // TODO: base this on the entities id, so not all blink at the same time
 	}
 	
 }

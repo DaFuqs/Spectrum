@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -105,7 +104,7 @@ public class DeeperDownPortalBlock extends Block {
 					entity.resetPortalCooldown();
 					
 					// => teleport to DD
-					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(DDDimension.DIMENSION_KEY);
+					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(SpectrumDimensions.DIMENSION_KEY);
 					if (targetWorld != null) {
 						BlockPos portalPos = new BlockPos(pos.getX(), targetWorld.getTopY() - 1, pos.getZ());
 						if (!targetWorld.getBlockState(portalPos).isOf(SpectrumBlocks.DEEPER_DOWN_PORTAL)) {

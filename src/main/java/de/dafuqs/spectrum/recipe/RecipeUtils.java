@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.recipe;
 
+import java.util.Optional;
+
 import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
@@ -7,7 +9,7 @@ import de.dafuqs.spectrum.helpers.NbtHelper;
 import net.minecraft.block.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;

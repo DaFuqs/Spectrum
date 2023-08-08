@@ -7,26 +7,30 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ae2:fluix_crystal",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
+          "name": "spectrum:large_fluix_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       ]
     }
   ],
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "ae2"
-      ]
+      "condition": "spectrum:integration_pack_active",
+      "integration_pack": "ae2"
     }
   ]
 }

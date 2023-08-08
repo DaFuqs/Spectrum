@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;

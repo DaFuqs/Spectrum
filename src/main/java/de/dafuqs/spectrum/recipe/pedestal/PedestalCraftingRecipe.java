@@ -25,7 +25,7 @@ import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
+public class PedestalCraftingRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
 	
@@ -124,14 +124,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
 	}
 	
-	@Deprecated
 	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		var defList = DefaultedList.<Ingredient>of();
-		craftingInputs.stream().map(IngredientStack::getIngredient).forEach(defList::add);
-		return defList;
-	}
-	
 	public DefaultedList<IngredientStack> getIngredientStacks() {
 		return craftingInputs;
 	}

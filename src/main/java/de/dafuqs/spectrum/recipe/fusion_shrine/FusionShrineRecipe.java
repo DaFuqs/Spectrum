@@ -18,14 +18,13 @@ import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FusionShrineRecipe extends GatedSpectrumRecipe {
+public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
@@ -115,13 +114,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}
 	
-	// should not be used. Instead, use getIngredientStacks(), which includes item counts
 	@Override
-	@Deprecated
-	public DefaultedList<Ingredient> getIngredients() {
-		return IngredientStack.listIngredients(this.craftingInputs);
-	}
-	
 	public List<IngredientStack> getIngredientStacks() {
 		return this.craftingInputs;
 	}
@@ -220,21 +213,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 
 			double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
-				for (IngredientStack ingredientStack : getIngredientStacks()) {
-					for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
-						ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
-						if (ingredientStack.test(currentStack)) {
-							int reducedAmount = maxAmount * ingredientStack.getCount();
-							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
-							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
-								fusionShrineBlockEntity.setStack(i, ItemStack.EMPTY);
-							} else {
-								currentStack.decrement(reducedAmountAfterMod);
-							}
-							break;
-						}
-					}
-				}
+				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
 			}
 		} else {
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
@@ -265,6 +244,29 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
+	}
+	
+	private void decrementIngredients(World world, FusionShrineBlockEntity fusionShrineBlockEntity, int maxAmount, double efficiencyModifier) {
+		for (IngredientStack ingredientStack : getIngredientStacks()) {
+			for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+				ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
+				if (ingredientStack.test(currentStack)) {
+					int reducedAmount = maxAmount * ingredientStack.getCount();
+					int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+					
+					ItemStack currentRemainder = currentStack.getRecipeRemainder();
+					currentStack.decrement(reducedAmountAfterMod);
+					
+					if (!currentRemainder.isEmpty()) {
+						currentRemainder = currentRemainder.copy();
+						currentRemainder.setCount(ingredientStack.getCount());
+						InventoryHelper.smartAddToInventory(currentRemainder, fusionShrineBlockEntity, null);
+					}
+					
+					break;
+				}
+			}
+		}
 	}
 	
 	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {

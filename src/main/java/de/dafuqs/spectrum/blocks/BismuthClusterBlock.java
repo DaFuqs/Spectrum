@@ -19,27 +19,26 @@ public class BismuthClusterBlock extends AmethystClusterBlock {
 	public static final BlockState CONSUMED_TARGET_STATE = Blocks.COBBLESTONE.getDefaultState();
 	
 	public final int height;
+	public final @Nullable AmethystClusterBlock grownBlock;
 	
-	@Nullable
-	public final BlockState grownBlockState;
-	
-	public BismuthClusterBlock(int height, int xzOffset, @Nullable BlockState grownBlockState, Settings settings) {
+	public BismuthClusterBlock(int height, int xzOffset, @Nullable AmethystClusterBlock grownBlock, Settings settings) {
 		super(height, xzOffset, settings);
 		this.height = height;
-		this.grownBlockState = grownBlockState;
+		this.grownBlock = grownBlock;
 	}
 	
 	@Override
 	public boolean hasRandomTicks(BlockState state) {
-		return grownBlockState != null;
+		return grownBlock != null;
 	}
 	
 	@Override
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
-		if (!world.isClient && grownBlockState != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
-			world.setBlockState(pos, grownBlockState);
+		if (!world.isClient && grownBlock != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
+			BlockState newState = grownBlock.getDefaultState().with(FACING, state.get(FACING)).with(WATERLOGGED, state.get(WATERLOGGED));
+			world.setBlockState(pos, newState);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CHAIN_PLACE, SoundCategory.BLOCKS, 0.8F, 0.9F + random.nextFloat() * 0.2F);
 			
 			Vec3d sourcePos = new Vec3d(pos.getX() + 0.5D, pos.getY() + height / 16.0, pos.getZ() + 0.5D);

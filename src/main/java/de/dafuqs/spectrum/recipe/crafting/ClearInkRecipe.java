@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.energy.*;
-import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.*;
@@ -9,7 +8,7 @@ import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class ClearInkRecipe extends SpecialCraftingRecipe {
+public class ClearInkRecipe extends SingleItemCraftingRecipe {
 	
 	public static final RecipeSerializer<ClearInkRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearInkRecipe::new);
 	
@@ -18,40 +17,16 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(RecipeInputInventory craftingInventory, World world) {
-		boolean inkStorageItemFound = false;
-		
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			ItemStack itemStack = craftingInventory.getStack(j);
-			if (!itemStack.isEmpty()) {
-				if (itemStack.getItem() instanceof InkStorageItem) {
-					inkStorageItemFound = true;
-				} else {
-					return false;
-				}
-			}
-		}
-		
-		return inkStorageItemFound;
+	public boolean matches(World world, ItemStack stack) {
+		return stack.getItem() instanceof InkStorageItem;
 	}
 	
 	@Override
-	public ItemStack craft(RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
-		ItemStack itemStack;
-		for (int j = 0; j < craftingInventory.size(); ++j) {
-			itemStack = craftingInventory.getStack(j).copy();
-			if (!itemStack.isEmpty() && itemStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-				inkStorageItem.clearEnergyStorage(itemStack);
-				return itemStack;
-			}
+	public ItemStack craft(ItemStack stack) {
+		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
+			inkStorageItem.clearEnergyStorage(stack);
 		}
-		
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public boolean fits(int width, int height) {
-		return width * height >= 1;
+		return stack;
 	}
 	
 	@Override

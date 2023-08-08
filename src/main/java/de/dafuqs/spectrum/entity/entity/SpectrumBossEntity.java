@@ -18,6 +18,7 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -64,6 +65,31 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	@Override
 	public boolean canTarget(EntityType<?> type) {
 		return true;
+	}
+	
+	protected boolean isNonVanillaKillCommandDamage(DamageSource source, float amount) {
+		if (source != DamageSource.OUT_OF_WORLD || amount != Float.MAX_VALUE) {
+			return false;
+		}
+		
+		Thread currentThread = Thread.currentThread();
+		StackTraceElement[] stackTrace = currentThread.getStackTrace();
+		
+		int i = 0;
+		for (StackTraceElement element : stackTrace) {
+			if (element.getClassName().contains("net.minecraft")) {
+				// this is a vanilla or admin /kill
+				this.remove(RemovalReason.KILLED);
+				this.emitGameEvent(GameEvent.ENTITY_DIE);
+				return false;
+			}
+			if (i > 3) {
+				// not called from KillCommand? heresy
+				return true;
+			}
+			i++;
+		}
+		return false;
 	}
 	
 	@Override

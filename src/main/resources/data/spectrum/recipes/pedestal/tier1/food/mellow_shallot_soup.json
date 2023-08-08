@@ -15,7 +15,7 @@
   ],
   "key": {
     "A": {
-      "item": "spectrum:germinated_jade_vine_bulb"
+      "item": "spectrum:germinated_jade_vine_seeds"
     },
     "B": {
       "item": "spectrum:jadeite_lotus_bulb"
@@ -24,7 +24,7 @@
       "item": "spectrum:nephrite_blossom_bulb"
     },
     "J": {
-      "item": "spectrum:frostbite_essence"
+      "item": "spectrum:blizzard_powder"
     },
     "E": {
       "item": "spectrum:moonstruck_nectar"

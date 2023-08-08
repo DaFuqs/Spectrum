@@ -28,7 +28,7 @@ import java.util.*;
 
 public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem {
 	
-	private static final InkCost GROUND_SLAM_COST_PER_TICK = new InkCost(InkColors.WHITE, 2);
+	private static final InkCost GROUND_SLAM_COST = new InkCost(InkColors.WHITE, 25);
 	public static final float MAGIC_DAMAGE_SHARE = 0.25F;
 	public final int GROUND_SLAM_CHARGE_TICKS = 32;
 	
@@ -46,10 +46,13 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (world.isClient) {
-			startSoundInstance(user);
+		if (getGroundSlamStrength(user.getStackInHand(hand)) > 0 && InkPowered.tryDrainEnergy(user, GROUND_SLAM_COST)) {
+			if (world.isClient) {
+				startSoundInstance(user);
+			}
+			return ItemUsage.consumeHeldItem(world, user, hand);
 		}
-		return ItemUsage.consumeHeldItem(world, user, hand);
+		return TypedActionResult.pass(user.getStackInHand(hand));
 	}
 	
 	@Override
@@ -65,7 +68,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.usageTick(world, user, stack, remainingUseTicks);
-		if (world.isClient && getGroundSlamStrength(stack) > 0 && user instanceof PlayerEntity player && InkPowered.tryDrainEnergy(player, GROUND_SLAM_COST_PER_TICK)) {
+		if (world.isClient) {
 			Random random = world.random;
 			for (int i = 0; i < (GROUND_SLAM_CHARGE_TICKS - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
@@ -95,11 +98,10 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
 		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, BlockPos.ofFloored(pos.x, pos.y, pos.z));
 		MoonstoneStrike.create(world, attacker, null, attacker.getX(), attacker.getY(), attacker.getZ(), strength, 1.75F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 1.35F, 1.0F);
-		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.8F, 0.334F);
-		
-		
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 0.7F, 1.0F);
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.7F, 1.0F);
+		world.playSound(null, attacker.getBlockPos(), SpectrumSoundEvents.DEEP_CRYSTAL_RING, SoundCategory.PLAYERS, 0.4F, 0.334F);
+
 		if (attacker instanceof ServerPlayerEntity serverPlayer) {
 			serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
 		}

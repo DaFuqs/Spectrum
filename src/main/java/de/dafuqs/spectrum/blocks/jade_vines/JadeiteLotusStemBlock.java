@@ -40,7 +40,7 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
 	}
 	
 	@Override
-	@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		var handStack = player.getStackInHand(hand);
 		
@@ -136,7 +136,7 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
 	}
 	
 	@Override
-	@SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}

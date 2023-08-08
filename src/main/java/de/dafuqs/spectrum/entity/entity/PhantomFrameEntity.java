@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
@@ -17,10 +16,6 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 
 	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
 		super(entityType, world);
-	}
-
-	public PhantomFrameEntity(World world, BlockPos pos, Direction facing) {
-		this(SpectrumEntityTypes.PHANTOM_FRAME, world, pos, facing);
 	}
 
 	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {

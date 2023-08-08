@@ -9,7 +9,7 @@ import java.util.*;
 
 public class TimeOfDayPredicate implements WorldConditionPredicate {
 	public static final TimeOfDayPredicate ANY = new TimeOfDayPredicate(null);
-	
+
 	public final TimeHelper.TimeOfDay timeOfDay;
 	
 	public TimeOfDayPredicate(TimeHelper.TimeOfDay timeOfDay) {
@@ -17,7 +17,7 @@ public class TimeOfDayPredicate implements WorldConditionPredicate {
 	}
 	
 	public static TimeOfDayPredicate fromJson(JsonObject json) {
-		if (json == null || json.isJsonNull()) return ANY;
+        if (json == null || json.isJsonNull()) return ANY;
 		return new TimeOfDayPredicate(TimeHelper.TimeOfDay.valueOf(json.get("time").getAsString().toUpperCase(Locale.ROOT)));
 	}
 	

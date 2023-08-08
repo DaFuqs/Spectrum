@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.biome_makeover.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
@@ -112,7 +111,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		PatchouliFlags.register();
 		
 		logInfo("Registering Dimension Effects...");
-		DDDimension.registerClient();
+		SpectrumDimensions.registerClient();
 		DimensionReverb.setup();
 		
 		logInfo("Registering Event Listeners...");
@@ -131,41 +130,18 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		});
 
 		if (CONFIG.AddItemTooltips) {
-			ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-				NbtCompound nbt = stack.getNbt();
-				if (nbt != null) {
-					if (stack.isOf(Blocks.SCULK_SHRIEKER.asItem()) && nbt.contains("BlockStateTag")) {
-						NbtCompound blockStateTag = nbt.getCompound("BlockStateTag");
-						if (Boolean.parseBoolean(blockStateTag.getString("can_summon"))) {
-							lines.add(Text.translatable("spectrum.tooltip.able_to_summon_warden").formatted(Formatting.GRAY));
-						}
-					}
-					if (nbt.getBoolean(BiomeMakeoverCompat.CURSED_TAG)) {
-						lines.add(Text.translatable("spectrum.tooltip.biomemakeover_cursed").formatted(Formatting.GRAY));
-					}
-					if (stack.isIn(ItemTags.SIGNS) && nbt.contains("BlockEntityTag", NbtElement.COMPOUND_TYPE)) {
-						NbtCompound blockEntityTag = nbt.getCompound("BlockEntityTag");
-						Style style = Style.EMPTY.withColor(DyeColor.byName(blockEntityTag.getString("Color"), DyeColor.WHITE).getSignColor());
-						for (String textKey : new String[]{"Text1", "Text2", "Text3", "Text4"}) {
-							MutableText text = Text.Serializer.fromJson(blockEntityTag.getString(textKey));
-							if (text != null) {
-								lines.add(text.setStyle(style));
-							}
-						}
-					}
-				}
-			});
+			SpectrumTooltips.register();
 		}
 		
-		
+
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
-		
+
 		registerBlockOutlineEvent();
 		if (FabricLoader.getInstance().isModLoaded("ears")) {
 			logInfo("Registering Ears Compat...");
 			EarsCompat.register();
 		}
-		
+
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
 			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();
 			for (PastelNetwork network : networkManager.getNetworks()) {
@@ -206,7 +182,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		logInfo("Client startup completed!");
 	}
-	
+
 	// TODO - consider moving this somewhere else
 	private void registerBlockOutlineEvent() {
 		WorldRenderEvents.BLOCK_OUTLINE.register((context, hitResult) -> {
@@ -231,7 +207,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			return !shouldCancel;
 		});
 	}
-	
+
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {
@@ -255,13 +231,13 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		ClientWorld world = MinecraftClient.getInstance().world;
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
-		
+
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
 			VoxelShape shape = VoxelShapes.empty();
-			
+
 			if (item != Items.AIR) {
 				int itemCountInInventory = Integer.MAX_VALUE;
 				long inkLimit = Long.MAX_VALUE;
@@ -271,7 +247,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					itemCountInInventory = inventoryItemAndCount.getC();
 					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
 				}
-				
+
 				boolean sneaking = player.isSneaking();
 				if (itemCountInInventory == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
@@ -287,7 +263,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
-						
+
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
 						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
 						de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
@@ -296,15 +272,15 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				}
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
 		ClientWorld world = MinecraftClient.getInstance().world;
 		BlockPos lookingAtPos = hitResult.blockPos();
 		BlockState lookingAtState = hitResult.blockState();
-		
+
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
 			Block lookingAtBlock = lookingAtState.getBlock();
@@ -312,7 +288,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
 				Item exchangeBlockItem = exchangeBlock.get().asItem();
 				VoxelShape shape = VoxelShapes.empty();
-				
+
 				if (exchangeBlockItem != Items.AIR) {
 					int itemCountInInventory = Integer.MAX_VALUE;
 					long inkLimit = Integer.MAX_VALUE;
@@ -320,7 +296,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
 						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}
-					
+
 					if (itemCountInInventory == 0) {
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0, false);
 					} else if (inkLimit == 0) {
@@ -334,7 +310,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
-						
+
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
 						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
 						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
@@ -343,7 +319,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				}
 			}
 		}
-		
+
 		return false;
 	}
 }

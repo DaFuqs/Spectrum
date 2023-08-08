@@ -20,10 +20,10 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class NecteredViognierRecipe extends TitrationBarrelRecipe {
-	
+
 	public static final RecipeSerializer<NecteredViognierRecipe> SERIALIZER = new EmptyRecipeSerializer<>(NecteredViognierRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/collect_cookbooks/imperial_cookbook");
-	
+
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.NECTERED_VIOGNIER, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
@@ -31,16 +31,14 @@ public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEPHRITE_BLOSSOM_BULB)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GLASS_PEACH), Matchbook.empty(), null, 4));
 	}};
-	
+
 	public NecteredViognierRecipe(Identifier identifier) {
 		super(identifier, "jade_vine_wines", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.15F, 0.1F, List.of()));
 	}
 	
 	@Override
-	public ItemStack getDefaultTap(int timeMultiplier) {
-		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
-		stack.setCount(this.outputItemStack.getCount());
-		return stack;
+	public ItemStack getPreviewTap(int timeMultiplier) {
+		return tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F);
 	}
 	
 	@Override
@@ -117,7 +115,7 @@ public class NecteredViognierRecipe extends TitrationBarrelRecipe {
 			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(outputStack);
 		}
 	}
-	
+
 	// bloominess reduces the possibility of negative effects to trigger (better on the tongue)
 	// but also reduces the potency of positive effects a bit
 	protected static double getBloominess(int bulbCount, int petalCount) {

@@ -67,6 +67,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 				}
 				default -> {
 				}
+				default -> { }
 			}
 			
 			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);

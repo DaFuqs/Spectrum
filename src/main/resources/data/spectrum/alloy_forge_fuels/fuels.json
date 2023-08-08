@@ -6,8 +6,16 @@
       "fuel": 96000
     },
     {
-      "item": "spectrum:incandescent_essence",
+      "item": "spectrum:fiery_powder",
       "fuel": 2000
+    },
+    {
+      "item": "spectrum:pure_coal",
+      "fuel": 2000
+    },
+    {
+      "item": "spectrum:pure_coal_block",
+      "fuel": 18000
     }
   ]
 }

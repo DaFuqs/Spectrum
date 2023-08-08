@@ -8,15 +8,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-/**
- * Items with this interface should support Potion nbt like
- * set via PotionUtil.setCustomPotionEffects
- * Think Custom Potions or Trinkets
- */
 public interface InkPoweredPotionFillable {
 	
 	int maxEffectCount();
-	
 	int maxEffectAmplifier();
 	
 	// used for calculating the items cost to apply a certain effect
@@ -72,9 +66,8 @@ public interface InkPoweredPotionFillable {
 		return InkPoweredStatusEffectInstance.getEffects(itemStack).size() > 0;
 	}
 	
-	default void removeEffects(ItemStack itemStack) {
-		itemStack.removeSubNbt("InkPoweredStatusEffects");
-		itemStack.removeSubNbt("spectrum_unidentifiable");
+	default void clearEffects(ItemStack itemStack) {
+		itemStack.removeSubNbt(InkPoweredStatusEffectInstance.NBT_KEY);
 	}
 	
 	default void appendPotionFillableTooltip(ItemStack stack, List<Text> tooltip, MutableText attributeModifierText, boolean showDuration) {

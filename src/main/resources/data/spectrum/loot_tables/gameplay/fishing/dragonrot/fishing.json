@@ -6,32 +6,22 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/dragonrot/junk",
           "weight": 10,
-          "quality": -2
+          "quality": -2,
+          "name": "spectrum:gameplay/fishing/dragonrot/junk"
         },
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/dragonrot/treasure",
           "weight": 5,
           "quality": 2,
+          "name": "spectrum:gameplay/fishing/dragonrot/treasure",
           "conditions": [
             {
               "condition": "minecraft:entity_properties",
-              "predicate": {
-                "fishing_hook": {
-                  "in_open_water": true
-                }
-              },
-              "entity": "this"
+              "entity": "this",
+              "predicate": {}
             }
           ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "spectrum:gameplay/fishing/dragonrot/fish",
-          "weight": 80,
-          "quality": -1
         }
       ]
     }

@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -153,7 +152,7 @@ public class SpectrumCommon implements ModInitializer {
 
 		// Dimension
 		logInfo("Registering Dimension...");
-		DDDimension.register();
+		SpectrumDimensions.register();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
@@ -209,6 +208,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
 
+		logInfo("Registering Explosion Effects...");
+		SpectrumExplosionEffects.register();
+
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 
@@ -236,13 +238,13 @@ public class SpectrumCommon implements ModInitializer {
 				SpectrumMultiblocks.register();
 			}
 		});
-		
+
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 			}
 		});
-		
+
 		UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 			ItemStack handStack = player.getStackInHand(hand);
 			if (handStack.getItem() instanceof PrioritizedEntityInteraction && entity instanceof LivingEntity livingEntity) {
@@ -250,7 +252,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-		
+
 		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
 			ItemStack handStack = player.getStackInHand(hand);
 			if (handStack.getItem() instanceof PrioritizedBlockInteraction) {
@@ -258,15 +260,15 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-		
+
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;
-			
+
 			logInfo("Registering MultiBlocks...");
 			SpectrumMultiblocks.register();
 		});
-		
+
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 			Pastel.clearServerInstance();
 			SpectrumCommon.minecraftServer = server;
@@ -278,7 +280,7 @@ public class SpectrumCommon implements ModInitializer {
 			// these would actually be nicer to have as Spawners in ServerWorld
 			// to have them run in tickSpawners()
 			// but getting them in there would require some ugly mixins
-			
+
 			if (world.getTime() % 100 == 0) {
 				if (TimeHelper.getTimeOfDay(world).isNight()) { // 90 chances in a night
 					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
@@ -286,7 +288,7 @@ public class SpectrumCommon implements ModInitializer {
 					}
 				}
 				
-				if (world.getRegistryKey().equals(DDDimension.DIMENSION_KEY)) {
+				if (world.getRegistryKey().isOf(SpectrumDimensions.DIMENSION_KEY)) {
 					MonstrositySpawner.INSTANCE.spawn(world, true, true);
 				}
 			}
@@ -309,23 +311,23 @@ public class SpectrumCommon implements ModInitializer {
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
 			// If the player wears a Whispy Cirlcet and sleeps
 			// it gets fully healed and all negative status effects removed
-			
+
 			// When the sleep timer reached 100 the player is fully asleep
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity
 					&& serverPlayerEntity.getSleepTimer() == 100
 					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
-				
+
 				entity.setHealth(entity.getMaxHealth());
 				WhispyCircletItem.removeNegativeStatusEffects(entity);
 			}
 		});
-		
+
 		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
 			var oldInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, previousStack);
 			var newInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, currentStack);
-			
-			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE;
-			
+
+			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumAttributeTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumAttributeTags.INEXORABLE_HANDHELD_EFFECTIVE;
+
 			if (oldInexorable > 0 && newInexorable <= 0) {
 				livingEntity.getStatusEffects()
 						.stream()
@@ -356,8 +358,8 @@ public class SpectrumCommon implements ModInitializer {
 
 		});
 
-        CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
-            if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
+		CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
+			if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
 				if (!world.isClient) { // only fired on the client, but making sure mods aren't doing anything weird
 					Vec3d particleVelocity = projectileEntity.getVelocity().multiply(0.05);
 
@@ -392,17 +394,17 @@ public class SpectrumCommon implements ModInitializer {
 					GlassCrestCrossbowItem.unOvercharge(crossbow);
 				}
 			}
-        });
+		});
 
-        logInfo("Registering RecipeCache reload listener");
-        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-            private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
+		logInfo("Registering RecipeCache reload listener");
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
 
-            @Override
-            public void reload(ResourceManager manager) {
-                CompactingChestBlockEntity.clearCache();
+			@Override
+			public void reload(ResourceManager manager) {
+				CompactingChestBlockEntity.clearCache();
 
-                if (minecraftServer != null) {
+				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
 					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}
@@ -413,7 +415,7 @@ public class SpectrumCommon implements ModInitializer {
 				return id;
 			}
 		});
-		
+
 		//noinspection UnstableApiUsage
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
 		//noinspection UnstableApiUsage

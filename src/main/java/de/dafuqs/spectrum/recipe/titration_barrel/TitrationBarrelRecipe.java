@@ -15,13 +15,12 @@ import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
+public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
 	
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
@@ -56,13 +55,6 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return matchIngredientStacksExclusively(inventory, getIngredientStacks());
 	}
 	
-	// should not be used. Instead, use getIngredientStacks(), which includes item counts
-	@Override
-	@Deprecated
-	public DefaultedList<Ingredient> getIngredients() {
-		return IngredientStack.listIngredients(this.inputStacks);
-	}
-	
 	@Override
 	public List<IngredientStack> getIngredientStacks() {
 		return this.inputStacks;
@@ -88,9 +80,14 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return ItemStack.EMPTY;
 	}
 	
+	public ItemStack getPreviewTap(int timeMultiplier) {
+		return tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
+	}
+	
 	public ItemStack getDefaultTap(int timeMultiplier) {
-		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
+		ItemStack stack = getPreviewTap(timeMultiplier);
 		stack.setCount(this.outputItemStack.getCount());
+		BeverageItem.setPreviewStack(stack);
 		return stack;
 	}
 	

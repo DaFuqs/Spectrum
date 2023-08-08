@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.items.UnpackingSurprise;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.block.*;
@@ -142,6 +143,7 @@ public class PresentBlock extends BlockWithEntity {
 						} else {
 							world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 4.0F);
 							SpectrumS2CPacketSender.playParticleWithExactVelocity(world, posVec, ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
+							processInteractions(presentBlockEntity.stacks, presentBlockEntity, world, pos, random);
 							ItemScatterer.spawn(world, pos, presentBlockEntity.stacks);
 						}
 						world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -154,7 +156,14 @@ public class PresentBlock extends BlockWithEntity {
 			}
 		}
 	}
-	
+
+	public void processInteractions(List<ItemStack> stacks, PresentBlockEntity present, ServerWorld world, BlockPos pos, Random random) {
+		for (ItemStack stack : stacks) {
+			if (stack.getItem() instanceof UnpackingSurprise surprise)
+				surprise.unpackSurprise(stack, present, world, pos, random);
+		}
+	}
+
 	public static void spawnParticles(ServerWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
 		SpectrumS2CPacketSender.playPresentOpeningParticles(world, pos, colors);
 	}

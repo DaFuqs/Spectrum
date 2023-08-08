@@ -28,11 +28,11 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		// Colored Logs => Oak logs
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int stage = 0; stage < 2; stage++) {
-			hashtable.put(this.getDefaultState().with(SaplingBlock.STAGE, stage), Blocks.OAK_SAPLING.getDefaultState().with(SaplingBlock.STAGE, stage));
+			map.put(this.getDefaultState().with(SaplingBlock.STAGE, stage), Blocks.OAK_SAPLING.getDefaultState().with(SaplingBlock.STAGE, stage));
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

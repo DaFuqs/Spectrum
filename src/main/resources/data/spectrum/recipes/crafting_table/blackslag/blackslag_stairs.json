@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:blackslag"
+    }
+  },
+  "result": {
+    "item": "spectrum:blackslag_stairs",
+    "count": 6
+  }
+}

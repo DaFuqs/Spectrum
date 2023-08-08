@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.enchantments;
 import de.dafuqs.spectrum.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -37,6 +38,11 @@ public class ImprovedCriticalEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean canAccept(Enchantment other) {
 		return other != Enchantments.SHARPNESS && super.canAccept(other);
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return stack.getItem() instanceof AxeItem || super.isAcceptableItem(stack);
 	}
 	
 }

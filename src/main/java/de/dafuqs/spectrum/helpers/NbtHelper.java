@@ -96,7 +96,7 @@ public class NbtHelper {
 		if (primitive.isString()) {
 			String string = primitive.getAsString();
 			if (string.length() > 1) {
-				String numStr = string.substring(0, string.length() - 1);
+				String numStr = string.substring(0, string.length()-1);
 				if (NumberUtils.isParsable(numStr)) {
 					switch (string.charAt(string.length() - 1)) {
 						case 'b', 'B' -> {

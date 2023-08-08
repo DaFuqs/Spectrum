@@ -15,9 +15,9 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
-	protected static final float DAMAGE = 8.0F;
-	protected static final int FIRE_TICKS_ON_HIT = 80;
-	
+	protected static final float DAMAGE = 20.0F;
+	protected static final int FIRE_TICKS_ON_HIT = 120;
+
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -55,10 +55,10 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
-		
+
 		Entity hitEntity = entityHitResult.getEntity();
 		hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
-		
+
 		if (this.getOwner() instanceof LivingEntity owner) {
 			hitEntity.damage(SpectrumDamageSources.kindlingCough(this.getWorld(), owner), DAMAGE);
 		}
@@ -68,7 +68,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		
+
 		if (!this.getWorld().isClient()) {
 			FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
 			this.discard();

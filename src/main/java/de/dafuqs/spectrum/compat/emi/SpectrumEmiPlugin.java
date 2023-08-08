@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
@@ -58,7 +57,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 				EmiStack.of(SpectrumBlocks.PEDESTAL_ONYX),
 				EmiStack.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		));
-		
+
 		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, pedestals);
 		registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(SpectrumItems.CRAFTING_TABLET));
 		registry.addWorkstation(VanillaEmiRecipeCategories.BLASTING, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
@@ -110,25 +109,40 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.TITRATION_BARREL, TitrationBarrelEmiRecipeGated::new);
 		
 		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> {
-			// The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
-			Identifier id = syntheticId("freezing", key.getBlock());
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key.getBlock()),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
+			EmiStack in = EmiStack.of(key.getBlock());
+			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			if (in.isEmpty() || out.isEmpty()) {
+				return;
+			}
+			Identifier id = syntheticId("freezing", key.getBlock()); // The synthetic IDs generated here assume there will never be multiple conversions of the same block with different states
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
+			EmiStack in = EmiStack.of(key);
+			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			if (in.isEmpty() || out.isEmpty()) {
+				return;
+			}
 			Identifier id = syntheticId("freezing", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, blockStack(key),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.FREEZING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
+			EmiStack in = EmiStack.of(key);
+			EmiStack out = EmiStack.of(value.getLeft().getBlock()).setChance(value.getRight());
+			if (in.isEmpty() || out.isEmpty()) {
+				return;
+			}
 			Identifier id = syntheticId("heating", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, blockStack(key),
-					blockStack(value.getLeft().getBlock()).setChance(value.getRight()), SpectrumCommon.locate("unlocks/blocks/idols")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.HEATING, id, in, out, SpectrumCommon.locate("unlocks/blocks/idols")));
 		});
 		NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
+			EmiStack in = EmiStack.of(key);
+			EmiStack out = EmiStack.of(value.getBlock());
+			if (in.isEmpty() || out.isEmpty()) {
+				return;
+			}
 			Identifier id = syntheticId("natures_staff", key);
-			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, blockStack(key),
-					blockStack(value.getBlock()), SpectrumCommon.locate("unlocks/items/natures_staff")));
+			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumCommon.locate("unlocks/items/natures_staff")));
 		});
 	}
 
@@ -136,15 +150,6 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		Identifier blockId = Registries.BLOCK.getId(block);
 		// Note that all recipe ids here start with "spectrum:/" which is legal, but impossible to represent with real files
 		return new Identifier("spectrum:/" + type + "/" + blockId.getNamespace() + "/" + blockId.getPath());
-	}
-
-	public static EmiStack blockStack(Block block) {
-		if (block instanceof FluidBlock fluid) {
-			return EmiStack.of(((FluidBlockAccessor) fluid).getFlowableFluid());
-		} else {
-			return EmiStack.of(block);
-		}
-		
 	}
 
 	public <C extends Inventory, T extends Recipe<C>> void addAll(EmiRegistry registry, RecipeType<T> type, Function<T, EmiRecipe> constructor) {

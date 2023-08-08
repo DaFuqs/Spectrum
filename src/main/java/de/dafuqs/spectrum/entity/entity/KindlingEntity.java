@@ -36,7 +36,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
 	protected @Nullable UUID angryAt;
-	
+
 	// flying animation
 	public float flapProgress;
 	public float maxWingDeviation;
@@ -47,15 +47,15 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	public KindlingEntity(EntityType<? extends KindlingEntity> entityType, World world) {
 		super(entityType, world);
-		
+
 		this.setPathfindingPenalty(PathNodeType.WATER, -0.75F);
-		
+
 		this.experiencePoints = 8;
 	}
 	
 	public static DefaultAttributeContainer.Builder createKindlingAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
 				.add(EntityAttributes.GENERIC_ARMOR, 25.0D)
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 12.0D)
 				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 6.0D)
@@ -100,12 +100,12 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.getWorld(), nbt);
 	}
-	
+
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return FOOD.test(stack);
 	}
-	
+
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -131,7 +131,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
 	}
-	
+
 	@Override
 	public boolean isInAir() {
 		return !this.isOnGround();
@@ -150,16 +150,19 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	protected void mobTick() {
 		super.mobTick();
-		
+
 		if (!this.getWorld().isClient()) {
 			this.tickAngerLogic((ServerWorld) this.getWorld(), false);
 		}
+		if (this.age % 600 == 0) {
+			this.heal(1.0F);
+		}
 	}
-	
+
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
-		
+
 		this.prevFlapProgress = this.flapProgress;
 		this.prevMaxWingDeviation = this.maxWingDeviation;
 		this.maxWingDeviation += (this.isOnGround() ? -1.0F : 4.0F) * 0.3F;
@@ -167,40 +170,40 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (!this.isOnGround() && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
-		
+
 		this.flapSpeed *= 0.9F;
 		Vec3d vec3d = this.getVelocity();
 		if (!this.isOnGround() && vec3d.y < 0.0) {
 			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
 		}
-		
+
 		this.flapProgress += this.flapSpeed * 2.0F;
 	}
-	
+
 	@Override
 	protected void addFlapEffects() {
 		this.field_28639 = this.speed + this.maxWingDeviation / 2.0F;
 	}
-	
+
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		if (this.getAngerTime() > 0) {
 			return ActionResult.success(this.getWorld().isClient());
 		}
-		
+
 		if (player.isSneaking()) {
 			if (!this.getWorld().isClient()) {
 				player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
-				
+
 				setTarget(player);
 				setAngryAt(player.getUuid());
 				chooseRandomAngerTime();
-				
+
 				return ActionResult.SUCCESS;
 			}
 			return ActionResult.CONSUME;
 		}
-		
+
 		return super.interactMob(player, hand);
 	}
 	
@@ -242,7 +245,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override void chooseRandomAngerTime() {
 		this.setAngerTime(ANGER_TIME_RANGE.get(this.random));
 	}
-	
+
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 		this.coughAt(target);
@@ -262,9 +265,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public EntityView method_48926() {
 		return this.getWorld();
 	}
-	
+
 	protected class CoughRevengeGoal extends RevengeGoal {
-		
+
 		public CoughRevengeGoal(KindlingEntity kindling) {
 			super(kindling);
 		}

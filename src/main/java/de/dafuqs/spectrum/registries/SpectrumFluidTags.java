@@ -10,6 +10,7 @@ public class SpectrumFluidTags {
 	public static final TagKey<Fluid> SWIMMABLE_FLUID = of("swimmable_fluid");
 	public static final TagKey<Fluid> MIDNIGHT_SOLUTION_CONVERTED = of("midnight_solution_converted");
 	public static final TagKey<Fluid> ACTIVATES_WEEPING_CIRCLET = of("activates_weeping_circlet");
+	public static final TagKey<Fluid> USES_WATER_PATHFINDING = of("uses_water_pathfinding");
 	
 	public static final TagKey<Fluid> LAGOON_ROD_FISHABLE_IN = of("lagoon_rod_fishable_in");
 	public static final TagKey<Fluid> MOLTEN_ROD_FISHABLE_IN = of("molten_rod_fishable_in");

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.util.*;
 
@@ -11,6 +12,7 @@ public class FluidConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<FluidC
 	
 	public FluidConvertingEmiRecipeGated(EmiRecipeCategory category, FluidConvertingRecipe recipe, Identifier recipeTypeUnlockIdentifier) {
 		super(category, recipeTypeUnlockIdentifier, recipe, 78, 26);
+		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override

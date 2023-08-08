@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.data.*;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
@@ -22,28 +21,39 @@ import java.util.function.*;
 
 public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
+	protected static final Predicate<LivingEntity> EVERYTHING_TARGET = livingEntity -> true;
+	protected static final Predicate<LivingEntity> MONSTER_TARGET = livingEntity -> livingEntity instanceof Monster;
+
 	protected static final IntProvider DEFAULT_COUNT_PROVIDER = UniformIntProvider.create(7, 13);
 	private static final TrackedData<Integer> MAX_AGE = DataTracker.registerData(LightShardBaseEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
 	public static final int DECELERATION_PHASE_LENGTH = 25;
 	public static final float DEFAULT_ACCELERATION = 0.03F;
+
 	protected float scaleOffset, damage, detectionRange;
 	protected Optional<UUID> target = Optional.empty();
-	protected Optional<Entity> targetEntity = Optional.empty();
+	protected Optional<LivingEntity> targetEntity = Optional.empty();
 	protected Vec3d initialVelocity = Vec3d.ZERO;
-	
+	protected Predicate<LivingEntity> targetPredicate;
+
 	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
 		this.scaleOffset = world.random.nextFloat() + 0.15F;
 	}
 	
-	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<Entity> target, float detectionRange, float damage, float lifeSpanTicks) {
+	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<LivingEntity> target, float detectionRange, float damage, float lifeSpanTicks) {
 		super(entityType, world);
 		
 		this.setOwner(owner);
 		this.detectionRange = detectionRange;
 		this.damage = damage;
-		target.ifPresent(this::setTarget);
+
+		if (target.isPresent()) {
+			setTarget(target.get());
+			this.targetPredicate = EVERYTHING_TARGET;
+		} else {
+			this.targetPredicate = MONSTER_TARGET;
+		}
 		setMaxAge((int) ((lifeSpanTicks + MathHelper.nextGaussian(world.getRandom(), 10, 7))));
 	}
 	
@@ -93,31 +103,17 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		var hitResult = ProjectileUtil.getCollision(this, this::canHit);
 		onCollision(hitResult);
 		
-		if (detectionRange > 0 && !isValidTarget(targetEntity)) {
+		if (detectionRange > 0 && (this.targetEntity.isEmpty() || !isValidTarget(targetEntity.get()))) {
 			if (this.getWorld().isClient)
 				return;
 			
 			if (random.nextFloat() > 0.25)
 				return;
 			
-			var serverWorld = (ServerWorld) this.getWorld();
-			
-			var entities = serverWorld.getOtherEntities(this, Box.of(getPos(), detectionRange, detectionRange, detectionRange));
-			
-			Collections.shuffle(entities);
-			var potentialTarget = entities
-					.stream()
-					.filter(entity -> entity instanceof Monster)
-					.filter(entity -> entity instanceof LivingEntity)
-					.filter(entity -> ((LivingEntity) entity).canSee(this))
-					.findAny();
-			
-			if (isValidTarget(potentialTarget)) {
-				setTarget(potentialTarget.get());
-			}
+			findSuitableTargets((ServerWorld) this.getWorld());
 		}
 		
-		if (isValidTarget(targetEntity)) {
+		if (this.targetEntity.isPresent() && isValidTarget(targetEntity.get())) {
 			var entity = targetEntity.get();
 			
 			var transformVector = entity
@@ -131,38 +127,85 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		}
 	}
 	
-	public void setInitialVelocity(Vec3d vector) {
+	protected void setTargetPredicate(@NotNull Predicate<LivingEntity> targetPredicate) {
+		this.targetPredicate = targetPredicate;
+	}
+
+	protected void findSuitableTargets(ServerWorld serverWorld) {
+		List<LivingEntity> potentialTargets = serverWorld.getEntitiesByClass(LivingEntity.class, Box.of(getPos(), detectionRange, detectionRange, detectionRange), this.targetPredicate);
+
+		Collections.shuffle(potentialTargets);
+
+		for (LivingEntity potentialTarget : potentialTargets) {
+			if (this.canSee(potentialTarget) && isValidTarget(potentialTarget)) {
+				setTarget(potentialTarget);
+				return;
+			}
+		}
+	}
+
+	public boolean canSee(Entity entity) {
+		if (entity.getWorld() != this.getWorld()) {
+			return false;
+		} else {
+			if (entity.getPos().distanceTo(this.getPos()) > 128.0) {
+				return false;
+			} else {
+				return this.getWorld().raycast(new RaycastContext(this.getPos(), entity.getPos(), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
+			}
+		}
+	}
+
+	protected boolean isValidTarget(LivingEntity entity) {
+		Entity owner = getOwner();
+		if (entity == owner) {
+			return false;
+		}
+		if (owner != null && entity.isTeammate(owner)) {
+			return false;
+		}
+		if (!this.targetPredicate.test(entity)) {
+			return false;
+		}
+		if (entity instanceof Tameable pet) {
+			Entity petOwner = pet.getOwner();
+			if (petOwner instanceof LivingEntity livingEntity) {
+				if (this.targetPredicate.test(livingEntity)) {
+					return false;
+				}
+			}
+		}
+		return !entity.isRemoved() && entity.isAlive() && !entity.isInvisible() && !entity.isInvulnerable();
+	}
+
+	protected void setInitialVelocity(Vec3d vector) {
 		initialVelocity = vector;
 		setVelocity(vector);
 	}
 	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
-		var attacked = entityHitResult.getEntity();
-		
-		if (attacked == getOwner())
-			return;
-		
-		if (attacked instanceof Tameable pet && pet.getOwner() == getOwner())
-			return;
-		
-		if (attacked instanceof PlayerEntity player && targetEntity.<Boolean>map(entity -> entity == player).orElse(false)) {
-			return;
+		if (!this.getWorld().isClient()) {
+			var hitEntity = entityHitResult.getEntity();
+
+			if (!(hitEntity instanceof LivingEntity livingEntity)) {
+				return;
+			}
+			if (!isValidTarget(livingEntity)) {
+				return;
+			}
+
+			onHitEntity(livingEntity);
 		}
-		
-		if (!(attacked instanceof LivingEntity owner))
-			return;
-		
-		onHitEntity(owner, attacked);
-		
+
 		this.remove(RemovalReason.DISCARDED);
 		super.onEntityHit(entityHitResult);
 	}
 	
-	protected void onHitEntity(LivingEntity owner, Entity attacked) {
+	protected void onHitEntity(LivingEntity attacked) {
 		float finalDamage = damage * (random.nextFloat() + 0.5F) * (1 - getVanishingProgress(age));
 		attacked.timeUntilRegen = 0;
-		attacked.damage(SpectrumDamageSources.irradiance(this.getWorld(), owner), finalDamage);
+		attacked.damage(SpectrumDamageSources.irradiance(this.getWorld(), getOwner()), finalDamage);
 		
 		attacked.playSound(SpectrumSoundEvents.SOFT_HUM, 1.334F, 0.9F + random.nextFloat());
 		attacked.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, random.nextFloat() * 0.4F + 0.2F, 0.8F + random.nextFloat());
@@ -170,67 +213,60 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
 	@Override
 	public void onRemoved() {
+	}
+
+	@Override
+	public void remove(RemovalReason reason) {
+		super.remove(reason);
 		var bound = random.nextInt(11);
-		for (int i = 0; i < bound + 5; i++) {
-			if (random.nextFloat() < 0.665) {
-				this.getWorld().addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
-						random.nextFloat() * 0.25F - 0.125F,
-						random.nextFloat() * 0.25F - 0.125F,
-						random.nextFloat() * 0.25F - 0.125F
-				);
-			} else {
-				this.getWorld().addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
-						random.nextFloat() * 0.5F - 0.25F,
-						random.nextFloat() * 0.5F - 0.25F,
-						random.nextFloat() * 0.5F - 0.25F
-				);
+		if(reason.shouldDestroy()) {
+			for (int i = 0; i < bound + 5; i++) {
+				if (random.nextFloat() < 0.665) {
+					this.getWorld().addImportantParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, true, getX(), getY(), getZ(),
+							random.nextFloat() * 0.25F - 0.125F,
+							random.nextFloat() * 0.25F - 0.125F,
+							random.nextFloat() * 0.25F - 0.125F
+					);
+				} else {
+					this.getWorld().addImportantParticle(SpectrumParticleTypes.SHOOTING_STAR, true, getX(), getY(), getZ(),
+							random.nextFloat() * 0.5F - 0.25F,
+							random.nextFloat() * 0.5F - 0.25F,
+							random.nextFloat() * 0.5F - 0.25F
+					);
+				}
 			}
 		}
-		super.onRemoved();
 	}
 	
-	protected static void summonBarrageInternal(World world, LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
-		var random = user.getRandom();
+	public static void summonBarrageInternal(World world, @Nullable LivingEntity user, Supplier<LightShardBaseEntity> supplier, Vec3d pos, IntProvider count) {
+		var random = world.getRandom();
 		var projectiles = count.get(random);
 		
 		world.playSound(null, BlockPos.ofFloored(pos), SpectrumSoundEvents.GLASS_SHIMMER, SoundCategory.AMBIENT, 1F, 0.9F + random.nextFloat() * 0.5F);
 		
 		for (int i = 0; i < projectiles; i++) {
+			// spawn the shard
 			LightShardBaseEntity shard = supplier.get();
-			
-			var velocityY = 0.0;
-			if (user.isOnGround()) {
-				velocityY = random.nextFloat() * 0.75;
-			} else {
-				velocityY = random.nextFloat() - 0.5;
-			}
-			
-			var initVel = new Vec3d(
-					random.nextFloat() * 2 - 1,
-					velocityY,
-					random.nextFloat() * 2 - 1
-			);
-			
 			shard.setPosition(pos);
-			shard.setInitialVelocity(initVel.add(user.getVelocity()));
-			world.spawnEntity(shard);
-		}
-		
-		for (int i = 0; i < projectiles * 3; i++) {
-			
 			var velocityY = 0.0;
-			
-			if (user.isOnGround()) {
+			if (user != null && user.isOnGround()) {
 				velocityY = random.nextFloat() * 0.75;
+				shard.setInitialVelocity(new Vec3d(random.nextFloat() * 2 - 1, velocityY, random.nextFloat() * 2 - 1).add(user.getVelocity()));
 			} else {
 				velocityY = random.nextFloat() - 0.5;
+				shard.setInitialVelocity(new Vec3d(random.nextFloat() * 2 - 1, velocityY, random.nextFloat() * 2 - 1));
 			}
+
+			world.spawnEntity(shard);
 			
-			world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, pos.x, pos.y, pos.z,
-					random.nextFloat() * 0.8F - 0.4F,
-					velocityY * 2,
-					random.nextFloat() * 0.8F - 0.4F
-			);
+			// spawn particles
+			for (int j = 0; j < 3; j++) {
+				world.addParticle(SpectrumParticleTypes.SHOOTING_STAR, pos.x, pos.y, pos.z,
+						random.nextFloat() * 0.8F - 0.4F,
+						velocityY * 2,
+						random.nextFloat() * 0.8F - 0.4F
+				);
+			}
 		}
 	}
 	
@@ -246,25 +282,11 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		return Math.round(getMaxAge() / 4F);
 	}
 	
-	public void setTarget(@NotNull Entity target) {
+	public void setTarget(@NotNull LivingEntity target) {
 		this.target = Optional.ofNullable(target.getUuid());
 		this.targetEntity = Optional.of(target);
 	}
-	
-	// this should probably be a target predicate
-	public boolean isValidTarget(Optional<Entity> entityOptional) {
-		if (entityOptional.isEmpty())
-			return false;
-		
-		var entity = entityOptional.get();
-		Entity owner = getOwner();
-		if (owner != null && entity.isTeammate(owner)) {
-			return false;
-		}
-		
-		return !entity.isRemoved() && entity.isAlive() && !entity.isInvisible() && !entity.isInvulnerable();
-	}
-	
+
 	@Override
 	protected void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);

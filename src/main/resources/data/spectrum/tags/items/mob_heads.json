@@ -1,16 +1,11 @@
 {
   "values": [
-    "minecraft:skeleton_skull",
-    "minecraft:wither_skeleton_skull",
-    "minecraft:zombie_head",
-    "minecraft:creeper_head",
-    "minecraft:dragon_head",
-
     "spectrum:egg_laying_wooly_pig_head",
     "spectrum:kindling_head",
-    "spectrum:guardian_turret_head",
+    "spectrum:preservation_turret_head",
     "spectrum:monstrosity_head",
     "spectrum:lizard_head",
+    "spectrum:eraser_head",
 
     "spectrum:axolotl_blue_head",
     "spectrum:axolotl_brown_head",

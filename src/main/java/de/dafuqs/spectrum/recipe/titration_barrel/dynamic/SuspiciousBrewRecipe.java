@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -42,13 +41,10 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 
 	@Override
-	public ItemStack getDefaultTap(int timeMultiplier) {
+	public ItemStack getPreviewTap(int timeMultiplier) {
 		ItemStack flowerStack = Items.POPPY.getDefaultStack();
 		flowerStack.setCount(4);
-		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
-		BeverageItem.setPreviewStack(tappedStack);
-		tappedStack.setCount(OUTPUT_STACK.getCount());
-		return tappedStack;
+		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F);
 	}
 	
 	@Override

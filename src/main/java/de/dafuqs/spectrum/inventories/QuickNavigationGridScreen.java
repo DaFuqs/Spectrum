@@ -13,7 +13,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.*;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -110,6 +110,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final int halfTextWidth;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
+		@SuppressWarnings("resource")
 		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
 			this.text = Text.translatable(text);
 			this.halfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.text) / 2;
@@ -150,10 +151,12 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			drawContext.drawTexture(BACKGROUND, startX, startY, 48, 0, 28, 28);
 		}
 		
+		@SuppressWarnings("resource")
 		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR, false);
 		}
 		
+		@SuppressWarnings("resource")
 		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR, false);
 		}
@@ -315,7 +318,7 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-	
+
 	}
 	
 	@Override

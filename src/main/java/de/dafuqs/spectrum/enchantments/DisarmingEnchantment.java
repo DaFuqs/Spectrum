@@ -108,4 +108,9 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 		return super.canAccept(other);
 	}
 	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return stack.getItem() instanceof AxeItem || super.isAcceptableItem(stack);
+	}
+	
 }

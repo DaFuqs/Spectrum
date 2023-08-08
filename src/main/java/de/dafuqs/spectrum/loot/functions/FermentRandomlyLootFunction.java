@@ -54,7 +54,7 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 			if (recipe.isPresent() && recipe.get() instanceof TitrationBarrelRecipe titrationBarrelRecipe) {
 				fermentationData = titrationBarrelRecipe.getFermentationData();
 			} else {
-				SpectrumCommon.logError("A 'spectrum:ferment_randomly' loot function has set an invalid 'fermentation_recipe_id': " + this.fermentationRecipeIdentifier + " It has to match an existing Titration Barrel recipe. ");
+				SpectrumCommon.logError("A 'spectrum:ferment_randomly' loot function has set an invalid 'fermentation_recipe_id': " + this.fermentationRecipeIdentifier + " It has to match an existing Titration Barrel recipe.");
 			}
 		}
 		if (fermentationData == null) {
@@ -84,7 +84,7 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 		private static final String FERMENTATION_DATA_STRING = "fermentation_data";
 		private static final String DAYS_FERMENTED_STRING = "days_fermented";
 		private static final String THICKNESS_STRING = "thickness";
-		
+
 		@Override
 		public void toJson(JsonObject jsonObject, FermentRandomlyLootFunction lootFunction, JsonSerializationContext jsonSerializationContext) {
 			super.toJson(jsonObject, lootFunction, jsonSerializationContext);

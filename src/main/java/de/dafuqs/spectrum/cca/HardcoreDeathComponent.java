@@ -4,7 +4,6 @@ import com.mojang.authlib.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
-import dev.onyxstudios.cca.api.v3.level.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.world.*;
@@ -12,16 +11,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class HardcoreDeathComponent implements Component, LevelComponentInitializer {
+public class HardcoreDeathComponent implements Component {
 	
 	public static final ComponentKey<HardcoreDeathComponent> HARDCORE_DEATHS_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("hardcore_deaths"), HardcoreDeathComponent.class);
 	
 	private final static List<UUID> playersThatDiedInHardcore = new ArrayList<>();
-	
-	@Override
-	public void registerLevelComponentFactories(LevelComponentFactoryRegistry registry) {
-		registry.register(HARDCORE_DEATHS_COMPONENT, e -> new HardcoreDeathComponent());
-	}
 	
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {

@@ -111,7 +111,8 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 					this.longestEffectDurationRange.test(maxDuration) &&
 					this.effectCountRange.test(effectCount) &&
 					this.uniqueEffectCountRange.test(uniqueEffectCount) &&
-					this.itemPredicate.test(stack)) {
+					this.itemPredicate.test(stack))
+			{
 				Map<StatusEffect, StatusEffectInstance> effectMap = new HashMap<>();
 				for (StatusEffectInstance instance : effects) {
 					if (!effectMap.containsKey(instance.getEffectType())) {
@@ -121,7 +122,7 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 				
 				return this.statusEffectsPredicate.test(effectMap);
 			}
-			
+
 			return false;
 		}
 	}

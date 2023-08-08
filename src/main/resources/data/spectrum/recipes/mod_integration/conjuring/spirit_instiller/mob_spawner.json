@@ -14,7 +14,7 @@
     "item": "conjuring:conjuration_essence"
   },
   "result": {
-    "item": "spectrum:spawner"
+    "item": "minecraft:spawner"
   },
   "fabric:load_conditions": [
     {

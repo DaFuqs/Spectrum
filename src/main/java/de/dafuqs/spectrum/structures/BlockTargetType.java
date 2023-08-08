@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.structures;
 
-import net.minecraft.block.*;
-import net.minecraft.util.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.StringIdentifiable;
 
-import java.util.function.*;
+import java.util.function.Predicate;
 
 @SuppressWarnings("deprecation")
 public enum BlockTargetType implements StringIdentifiable {

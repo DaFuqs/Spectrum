@@ -71,6 +71,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 	}
 	
 	@Override
+	@SuppressWarnings("resource")
 	public Visibility draw(DrawContext drawContext, @NotNull ToastManager manager, long startTime) {
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 

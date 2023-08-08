@@ -35,7 +35,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
 		builder.put(SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
 		builder.put(SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
-		builder.put(SpectrumSkullBlockType.GUARDIAN_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.GUARDIAN_TURRET_HEAD)));
+		builder.put(SpectrumSkullBlockType.PRESERVATION_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)));
 		builder.put(SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
 		
 		return builder.build();
@@ -99,8 +99,8 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 			case EGG_LAYING_WOOLY_PIG -> {
 				return EggLayingWoolyPigEntityRenderer.TEXTURE;
 			}
-			case GUARDIAN_TURRET -> {
-				return GuardianTurretEntityRenderer.TEXTURE;
+			case PRESERVATION_TURRET -> {
+				return PreservationTurretEntityRenderer.TEXTURE;
 			}
 			case MONSTROSITY -> {
 				return MonstrosityEntityRenderer.TEXTURE;

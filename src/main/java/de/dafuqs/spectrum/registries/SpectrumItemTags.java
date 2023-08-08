@@ -3,10 +3,15 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.util.*;
 import net.minecraft.registry.tag.*;
 
 public class SpectrumItemTags {
 	
+	public static final TagKey<Item> AMETHYST_POWDERS = common("amethyst_powders");
+	public static final TagKey<Item> CITRINE_POWDERS = common("citrine_powders");
+	public static final TagKey<Item> TOPAZ_POWDERS = common("topaz_powders");
+
 	public static final TagKey<Item> COLORED_SAPLINGS = of("colored_saplings");
 	public static final TagKey<Item> COLORED_PLANKS = of("colored_planks");
 	public static final TagKey<Item> GEMSTONE_SHARDS = of("gemstone_shards");
@@ -28,9 +33,13 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
 	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
 	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
-	
+
 	private static TagKey<Item> of(String id) {
-		return TagKey.of(Registries.ITEM.getKey(), SpectrumCommon.locate(id));
+		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
 	}
 	
+	private static TagKey<Item> common(String id) {
+		return TagKey.of(RegistryKeys.ITEM, new Identifier("c", id));
+	}
+
 }

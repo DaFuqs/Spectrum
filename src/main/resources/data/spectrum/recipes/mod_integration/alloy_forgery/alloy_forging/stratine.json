@@ -10,17 +10,13 @@
     "count": 3
   },
   "overrides": {
-    "2": {
+    "3": {
       "id": "spectrum:stratine_fragments",
       "count": 4
     },
-    "3+": {
-      "id": "spectrum:stratine_fragments",
-      "count": 5
-    },
     "4+": {
       "id": "spectrum:stratine_fragments",
-      "count": 6
+      "count": 5
     }
   },
   "min_forge_tier": 2,

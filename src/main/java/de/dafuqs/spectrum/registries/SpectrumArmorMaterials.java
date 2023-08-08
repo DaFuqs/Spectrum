@@ -10,6 +10,8 @@ import net.minecraft.sound.*;
 import java.util.*;
 import java.util.function.Supplier;
 
+import com.google.common.base.Suppliers;
+
 public enum SpectrumArmorMaterials implements ArmorMaterial {
 	
 	GEMSTONE("gemstone", 9, SpectrumCommon.CONFIG.GemstoneArmorBootsProtection, SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection, SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection, SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection,

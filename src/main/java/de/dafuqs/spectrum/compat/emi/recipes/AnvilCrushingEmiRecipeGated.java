@@ -15,7 +15,8 @@ public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCru
 	private final static Identifier WALL_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	
 	public AnvilCrushingEmiRecipeGated(AnvilCrushingRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, recipe, 116, 64);
+		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, null, recipe, 116, 64);
+		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override

@@ -17,12 +17,12 @@ import net.minecraft.item.map.*;
 import net.minecraft.util.math.*;
 
 public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<PhantomFrameEntity> {
-	
+
 	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=false");
 	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=true");
 	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=false");
 	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=true");
-	
+
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;
 
@@ -39,7 +39,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 	@Override
 	public void render(PhantomFrameEntity itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
-		
+
 		Direction direction = itemFrameEntity.getHorizontalFacing();
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
 		matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
@@ -68,7 +68,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			}
 			
 			int renderLight = itemFrameEntity.shouldRenderAtMaxLight() ? LightmapTextureManager.MAX_LIGHT_COORDINATE : light;
-			
+
 			int bakedModelManager = isRenderingMap ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
 			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) bakedModelManager * 360.0F / 8.0F));
 			if (isRenderingMap) {
@@ -90,12 +90,6 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 		}
 
 		matrixStack.pop();
-	}
-
-	private int getLight(PhantomFrameEntity itemFrame, int regularLight) {
-		boolean isGlowPhantomFrame = itemFrame.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME;
-		boolean isRedstonePowered = itemFrame.isRedstonePowered();
-		return isGlowPhantomFrame == isRedstonePowered ? regularLight : 15728850;
 	}
 
 	private ModelIdentifier getModelId(PhantomFrameEntity entity, ItemStack stack) {

@@ -1,0 +1,39 @@
+{
+  "location": {
+    "dimension": {
+      "worlds": [
+        "minecraft:the_nether"
+      ]
+    },
+    "fluid": {
+      "tag": "minecraft:lava"
+    }
+  },
+  "dimension": {
+    "worlds": [
+      "minecraft:nether"
+    ]
+  },
+  "chance": 0.02,
+  "entities": [
+    {
+      "id": "minecraft:magma_cube",
+      "weight": 1,
+      "nbt": {
+        "Size": 4
+      }
+    },
+    {
+      "id": "minecraft:blaze",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:strider",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:fireball",
+      "weight": 1
+    }
+  ]
+}

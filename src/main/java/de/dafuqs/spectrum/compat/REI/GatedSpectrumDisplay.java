@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -36,25 +35,6 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 	}
 
 	@Override
-	public List<EntryIngredient> getInputEntries() {
-		if (this.isUnlocked()) {
-			return super.getInputEntries();
-		} else {
-			return List.of();
-		}
-	}
-
-	@Override
-	public List<EntryIngredient> getOutputEntries() {
-		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
-			return super.getOutputEntries();
-		} else {
-			return List.of();
-		}
-	}
-
-	@Override
-	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}

@@ -136,8 +136,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() - 0.1, 0.0D, 0.05D, 0.0D);
 				}
 			}
-			case BASIC -> {
-			}
+			case BASIC -> { }
 		}
 	}
 	

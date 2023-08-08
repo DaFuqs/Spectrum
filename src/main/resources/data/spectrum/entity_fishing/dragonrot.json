@@ -1,13 +1,11 @@
 {
-  "fluid": {
-    "tag": "spectrum:dragonrot"
+  "location": {
+    "fluid": {
+      "tag": "spectrum:dragonrot"
+    }
   },
   "chance": 0.5,
   "entities": [
-    {
-      "id": "minecraft:pufferfish",
-      "weight": 10
-    },
     {
       "id": "minecraft:creeper",
       "weight": 5,
@@ -16,12 +14,28 @@
       }
     },
     {
-      "id": "minecraft:cod",
+      "id": "minecraft:creeper",
       "weight": 2
     },
     {
-      "id": "minecraft:salmon",
+      "id": "minecraft:drowned",
       "weight": 2
+    },
+    {
+      "id": "minecraft:skeleton",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:wither_skeleton",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:zombie_horse",
+      "weight": 1
+    },
+    {
+      "id": "minecraft:skeleton_horse",
+      "weight": 1
     }
   ]
 }

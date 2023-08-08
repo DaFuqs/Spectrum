@@ -12,6 +12,11 @@
       "type": "spectrum:collection",
       "title": "Blackslag",
       "items": [
+        "spectrum:blackslag",
+        "spectrum:blackslag_stairs",
+        "spectrum:blackslag_slab",
+        "spectrum:blackslag_wall",
+
         "spectrum:cobbled_blackslag",
         "spectrum:cobbled_blackslag_stairs",
         "spectrum:cobbled_blackslag_slab",

@@ -4,5 +4,5 @@
   "modifiers": {
     "unidentifiable": true
   },
-  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_onyx_powder"
+  "required_advancement": "spectrum:create_onyx_shard"
 }

@@ -124,7 +124,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		}
 		if (shouldDisplayUsageTooltip(itemStack)) {
 			tooltip.add(Text.translatable("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
-			SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
+			addBannerPatternProviderTooltip(tooltip);
 		}
 	}
 	

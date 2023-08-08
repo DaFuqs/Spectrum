@@ -74,5 +74,9 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 			return SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
 		}
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return false;
+	}
 }

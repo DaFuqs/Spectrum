@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color. "
+      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

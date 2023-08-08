@@ -24,7 +24,7 @@
           }
         ],
         "nbt": {
-          "Sweetened": "1b"
+          "Sweetened": true
         }
       }
     },

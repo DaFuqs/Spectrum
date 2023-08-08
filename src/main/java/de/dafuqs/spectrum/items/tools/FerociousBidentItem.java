@@ -18,7 +18,7 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
-	
+
 	public FerociousBidentItem(Settings settings, double damage) {
 		super(settings, damage);
 	}

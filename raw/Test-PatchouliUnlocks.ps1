@@ -36,5 +36,11 @@ $bookPages | ForEach-Object {
         }
     }
 
+    $categorySet = $json.category
+    $categoryFolder = ((Split-Path -Path $_ -Parent) -split "\\")[-1]
+    if(($categorySet -replace "spectrum:", "" -replace "_category", "") -ne ($categoryFolder)) {
+        Write-Warning "Wrong Category: is in folder: `"$categoryFolder`" - but is assigned to: `"$categorySet`""
+    }
+
 
 }

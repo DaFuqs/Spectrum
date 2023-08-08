@@ -11,7 +11,8 @@ public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<Cinderhea
 	
 	public CinderhearthEmiRecipeGated(CinderhearthRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.CINDERHEARTH, CinderhearthRecipe.UNLOCK_IDENTIFIER, recipe, 136, 48);
-		output = recipe.getOutputsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
+		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
+		this.output = recipe.getOutputsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
 	}
 	
 	@Override

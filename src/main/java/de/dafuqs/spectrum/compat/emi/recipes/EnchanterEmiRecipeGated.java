@@ -45,6 +45,8 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 80);
 		this.craftingTime = craftingTime;
 		this.description = description;
+		
+		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 
 	@Override

@@ -4,5 +4,5 @@
   "modifiers": {
     "no_particles": true
   },
-  "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_topaz_powder"
+  "required_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard"
 }

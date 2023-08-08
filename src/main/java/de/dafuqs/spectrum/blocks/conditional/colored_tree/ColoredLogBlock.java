@@ -28,11 +28,11 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware, Col
 	
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
-		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
+		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (Direction.Axis axis : PillarBlock.AXIS.getValues()) {
-			hashtable.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
+			map.put(this.getDefaultState().with(PillarBlock.AXIS, axis), Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis));
 		}
-		return hashtable;
+		return map;
 	}
 	
 	@Override

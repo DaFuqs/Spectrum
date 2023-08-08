@@ -4,7 +4,8 @@
   "advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "spectrum:egg_laying_wooly_pig_head": 0
+    "spectrum:egg_laying_wooly_pig_head": 0,
+    "spectrum:egg_laying_wooly_pig_spawn_egg": 0
   },
   "pages": [
     {

@@ -40,7 +40,9 @@ public class SpectrumDamageSources {
 	public static final RegistryKey<DamageType> IRRADIANCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("irradiance"));
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
-	
+	// TODO - Port to 1.20 format
+	public static final DamageSource PRIMORDIAL_FIRE = new SpectrumDamageSource("spectrum_primordial_fire").setFire().setUsesMagic();
+
 	public static DamageSource ripper(World world) {
 		return new DamageSource(world.getDamageSources().registry.getEntry(RIPPER).orElseThrow());
 	}

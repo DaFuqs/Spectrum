@@ -1,11 +1,10 @@
 {
   "name": "Spawner Manipulation",
   "advancement": "spectrum:milestones/unlock_spawner_manipulation",
-  "icon": "spectrum:spawner",
+  "icon": "minecraft:spawner",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
-    "minecraft:spawner": 0,
-    "spectrum:spawner": 0
+    "minecraft:spawner": 0
   },
   "pages": [
     {

@@ -230,5 +230,5 @@ public class SpectrumEnchantmentHelper {
 		}
 		return level;
 	}
-	
+
 }

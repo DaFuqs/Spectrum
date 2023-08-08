@@ -10,20 +10,16 @@
     "count": 3
   },
   "overrides": {
-    "2": {
+    "3": {
       "id": "spectrum:paltaeria_fragments",
       "count": 4
     },
-    "3+": {
-      "id": "spectrum:paltaeria_fragments",
-      "count": 5
-    },
     "4+": {
       "id": "spectrum:paltaeria_fragments",
-      "count": 6
+      "count": 5
     }
   },
-  "min_forge_tier": 3,
+  "min_forge_tier": 1,
   "fuel_per_tick": 5,
   "fabric:load_conditions": [
     {

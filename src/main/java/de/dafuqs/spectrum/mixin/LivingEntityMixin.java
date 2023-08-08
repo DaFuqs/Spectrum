@@ -339,5 +339,9 @@ public abstract class LivingEntityMixin {
 		}
 		return par1;
 	}
-
+	
+	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
+	public boolean spectrum$isWet(LivingEntity livingEntity) {
+		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object)livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
+	}
 }

@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 600,
+  "required_experience": 50,
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    {
+      "item": "spectrum:pure_gold"
+    },
+    {
+      "item": "spectrum:pure_gold"
+    },
+    {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    {
+      "item": "spectrum:pure_gold"
+    },
+    {
+      "item": "spectrum:pure_gold"
+    }
+  ],
+  "result": {
+    "item": "spectrum:enchanted_golden_carrot"
+  },
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

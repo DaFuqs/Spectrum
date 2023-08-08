@@ -5,7 +5,6 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -128,7 +127,7 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 		return true;
 	}
 	
-	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<Ingredient> ingredients, int[] slots) {
+	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredients, int[] slots) {
 		int inputStackCount = 0;
 		for (int slot : slots) {
 			if (!inv.getStack(slot).isEmpty()) {
@@ -139,7 +138,7 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 			return false;
 		}
 		
-		for (Ingredient ingredient : ingredients) {
+		for (IngredientStack ingredient : ingredients) {
 			boolean found = false;
 			for (int slot : slots) {
 				if (ingredient.test(inv.getStack(slot))) {

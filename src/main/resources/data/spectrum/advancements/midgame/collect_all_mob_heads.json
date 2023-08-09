@@ -587,6 +587,66 @@
         ]
       }
     },
+    "has_monstrosity_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:monstrosity_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_kindling_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:kindling_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_egg_laying_Wooly_pig_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:egg_laying_wooly_pig_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_preservation_turret_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:preservation_turret_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_lizard_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:lizard_head"
+            ]
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

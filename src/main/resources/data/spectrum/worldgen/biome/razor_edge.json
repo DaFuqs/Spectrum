@@ -120,12 +120,12 @@
       "spectrum:dd_stone"
     ],
     [
-      "spectrum:dd_pointed_dripstone"
+      "spectrum:dd_pointed_dripstone",
+      "spectrum:dd_shale_clay_crystal_formations"
     ],
     [
       "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs",
-      "spectrum:dd_shale_clay_crystal_formations"
+      "spectrum:dd_lava_springs"
     ],
     [
       "spectrum:pyrite_ripper_wall_patch",

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 0,
+        "max": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:slate_noxshroom"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:ebony_noxshroom"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:ivory_noxshroom"
+        }
+      ]
+    }
+  ]
+}

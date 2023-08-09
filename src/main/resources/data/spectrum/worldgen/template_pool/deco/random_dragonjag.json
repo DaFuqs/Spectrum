@@ -1,5 +1,5 @@
 {
-  "name": "spectrum:deco/random_flower",
+  "name": "spectrum:deco/random_dragonjag",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:feature_pool_element",
         "projection": "rigid",
-        "feature": "minecraft:flower_default"
+        "feature": "spectrum:dragonjags/random_single"
       }
     }
   ]

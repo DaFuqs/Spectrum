@@ -163,6 +163,15 @@
         "location": "spectrum:city_below/trading_hall_stalls/tools",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/trading_hall_stalls/heads",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }

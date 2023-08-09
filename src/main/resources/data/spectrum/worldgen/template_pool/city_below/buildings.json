@@ -34,7 +34,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "spectrum:city_below/diner",
+        "location": "spectrum:city_below/restaurant",
         "processors": "minecraft:empty"
       }
     },
@@ -44,15 +44,6 @@
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
         "location": "spectrum:city_below/trading_hall",
-        "processors": "minecraft:empty"
-      }
-    },
-    {
-      "weight": 1,
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "projection": "rigid",
-        "location": "spectrum:city_below/moonstone_temple",
         "processors": "minecraft:empty"
       }
     }

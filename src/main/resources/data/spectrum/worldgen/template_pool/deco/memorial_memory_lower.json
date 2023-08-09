@@ -1,5 +1,5 @@
 {
-  "name": "spectrum:deco/graveyard_memory",
+  "name": "spectrum:deco/random_memory_lower",
   "fallback": "minecraft:empty",
   "elements": [
     {

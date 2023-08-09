@@ -86,6 +86,7 @@ public abstract class LivingEntityMixin {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
 	}
 	
+	@Unique
 	private float spectrum$getExuberanceMod(PlayerEntity attackingPlayer) {
 		if (attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);

@@ -25,7 +25,7 @@ public class SpectrumConfiguredFeatures {
 	
 	// OVERWORLD
 	public static final Identifier CLOVER_PATCH = SpectrumCommon.locate("clover_patch");
-	public static final HashMap<DyeColor, RegistryEntry<ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
+	public static final Map<DyeColor, RegistryEntry<ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
 	
 	// DEEPER DOWN
 	public static final Identifier SNAPPING_IVY_PATCH = SpectrumCommon.locate("snapping_ivy_patch");

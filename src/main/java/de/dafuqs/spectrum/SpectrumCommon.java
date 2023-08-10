@@ -217,6 +217,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();
 		
+		logInfo("Registering Structure Pool Element Types...");
+		SpectrumStructurePoolElementTypes.register();
+		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
 				ItemStack mainHandStack = player.getMainHandStack();

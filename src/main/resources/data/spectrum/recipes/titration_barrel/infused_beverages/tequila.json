@@ -39,7 +39,7 @@
         ]
       },
       {
-        "id": "spectrum:swiftness",
+        "id": "spectrum:resistance",
         "base_duration": 9600,
         "potency": [
           {

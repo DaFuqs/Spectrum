@@ -1,0 +1,14 @@
+{
+  "feature": "minecraft:flower_flower_forest",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "minecraft:poppy"
+        }
+      }
+    }
+  ]
+}

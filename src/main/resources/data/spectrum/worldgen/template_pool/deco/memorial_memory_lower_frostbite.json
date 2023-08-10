@@ -1,0 +1,39 @@
+{
+  "name": "spectrum:deco/memorial_memory_lower_frostbite",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\"},TicksToManifest:-1}"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{EntityTag:{id:\"minecraft:zombie\",HandDropChances:[1.0f,1.0f],HandItems:[{Count:1b,id:\"minecraft:diamond\"},{}],},TicksToManifest:5}}}"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{EntityTag:{id:\"minecraft:fox\",HandDropChances:[1.0f,1.0f],HandItems:[{Count:1b,id:\"minecraft:diamond\"},{}],},TicksToManifest:5}}}"
+      }
+    }
+  ]
+}

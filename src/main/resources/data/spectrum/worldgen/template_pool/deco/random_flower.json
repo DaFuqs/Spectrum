@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:feature_pool_element",
         "projection": "rigid",
-        "feature": "minecraft:flower_default"
+        "feature": "spectrum:no_placement/random_flower"
       }
     }
   ]

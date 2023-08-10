@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:feature_pool_element",
         "projection": "rigid",
-        "feature": "spectrum:dragonjags/random_single"
+        "feature": "spectrum:no_placement/random_dragonjag"
       }
     }
   ]

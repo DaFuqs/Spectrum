@@ -1,5 +1,5 @@
 {
-  "name": "spectrum:deco/memorial_memory_lower",
+  "name": "spectrum:deco/memorial_memory_lower_blazing",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -8,9 +8,9 @@
         "element_type": "spectrum:single_block_element",
         "projection": "rigid",
         "block": {
-          "Name": "spectrum:memory"
+          "Name": "minecraft:air"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\"},TicksToManifest:-1}"
+        "nbt": ""
       }
     }
   ]

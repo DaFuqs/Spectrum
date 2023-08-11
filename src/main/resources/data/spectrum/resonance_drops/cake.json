@@ -1,7 +1,6 @@
 {
-  "input": {
-    "item": "minecraft:cake"
-  },
+  "block": "minecraft:cake",
+  "drop_self": true,
   "state_tags_to_copy": [
     "bites"
   ]

@@ -1,7 +1,6 @@
 {
-  "input": {
-    "item": "minecraft:sculk_shrieker"
-  },
+  "block": "minecraft:sculk_shrieker",
+  "drop_self": true,
   "state_tags_to_copy": [
     "can_summon"
   ]

@@ -1,7 +1,6 @@
 {
-  "input": {
-    "tag": "minecraft:signs"
-  },
+  "block": "#minecraft:signs",
+  "drop_self": true,
   "nbt_to_copy": [
     "GlowingText",
     "Color",

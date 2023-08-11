@@ -1,7 +1,6 @@
 {
-  "input": {
-    "item": "minecraft:respawn_anchor"
-  },
+  "block": "minecraft:respawn_anchor",
+  "drop_self": true,
   "state_tags_to_copy": [
     "charges"
   ]

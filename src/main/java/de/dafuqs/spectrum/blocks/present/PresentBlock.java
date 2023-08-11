@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.UnpackingSurprise;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.world.*;
@@ -29,6 +30,16 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class PresentBlock extends BlockWithEntity {
+	
+	protected static Map<Item, PresentUnpackBehavior> BEHAVIORS = new Object2ObjectOpenHashMap<>();
+	
+	public @Nullable PresentUnpackBehavior getBehaviorFor(ItemStack stack) {
+		return BEHAVIORS.getOrDefault(stack.getItem(), null);
+	}
+	
+	public static void registerBehavior(ItemConvertible provider, PresentUnpackBehavior behavior) {
+		BEHAVIORS.put(provider.asItem(), behavior);
+	}
 	
 	public enum WrappingPaper implements StringIdentifiable {
 		RED,
@@ -133,7 +144,7 @@ public class PresentBlock extends BlockWithEntity {
 				if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 					int openingTick = presentBlockEntity.openingTick();
 					Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
-					if (openingTick == OPENING_STEPS) {
+					if (openingTick >= OPENING_STEPS) {
 						spawnParticles(world, pos, presentBlockEntity.colors);
 						presentBlockEntity.triggerAdvancement();
 						if (presentBlockEntity.isEmpty()) {
@@ -157,9 +168,12 @@ public class PresentBlock extends BlockWithEntity {
 	}
 
 	public void processInteractions(List<ItemStack> stacks, PresentBlockEntity present, ServerWorld world, BlockPos pos, Random random) {
-		for (ItemStack stack : stacks) {
-			if (stack.getItem() instanceof UnpackingSurprise surprise)
-				surprise.unpackSurprise(stack, present, world, pos, random);
+		for (int i = 0; i < stacks.size(); i++) {
+			ItemStack stack = stacks.get(i);
+			@Nullable PresentUnpackBehavior behavior = getBehaviorFor(stack);
+			if (behavior != null) {
+				stacks.set(i, behavior.onPresentUnpack(stack, present, world, pos, random));
+			}
 		}
 	}
 	

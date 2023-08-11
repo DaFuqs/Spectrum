@@ -70,8 +70,6 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		/*this.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, 0.5F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
-		this.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, 1.15F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));*/
 		
 		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
 		

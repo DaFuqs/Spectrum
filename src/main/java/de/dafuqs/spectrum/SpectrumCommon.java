@@ -211,8 +211,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 		
-		logInfo("Registering Dispenser Behaviors...");
+		logInfo("Registering Dispenser & Present Unwrap Behaviors...");
 		SpectrumDispenserBehaviors.register();
+		SpectrumPresentUnpackBehaviors.register();
 		
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();

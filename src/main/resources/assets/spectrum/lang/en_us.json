@@ -1792,6 +1792,8 @@
   "block.spectrum.villager_converting_mob_block.tooltip": "§7Converts Villagers to Zombie Villagers",
   "block.spectrum.incandescent_amalgam": "Incandescent Amalgam",
   "block.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
+  "block.spectrum.incandescent_amalgam.tooltip_power": "Explosion Power: %d",
+  "block.spectrum.incandescent_amalgam.tooltip.preview": "Gets more explosive with age",
   "item.spectrum.pipe_bomb": "Pipe Bomb",
   "item.spectrum.hype": "HYPE",
   "item.spectrum.hype.tooltip": "§7Explodes! Safe for mining.",

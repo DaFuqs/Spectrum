@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
@@ -27,7 +28,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
-import de.dafuqs.spectrum.blocks.threat_conflux.ThreatConfluxBlockEntity;
+import de.dafuqs.spectrum.blocks.threat_conflux.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.fabricmc.fabric.api.event.client.*;
@@ -35,8 +36,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.screen.*;
 import net.minecraft.util.registry.*;
 
 import java.util.*;
@@ -84,6 +85,7 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<ThreatConfluxBlockEntity> THREAT_CONFLUX;
 	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
 	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
+	public static BlockEntityType<PlacedItemBlockEntity> PLACED_ITEM;
 	
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
@@ -129,6 +131,7 @@ public class SpectrumBlockEntities {
 		THREAT_CONFLUX = register("threat_conflux", ThreatConfluxBlockEntity::new, SpectrumBlocks.THREAT_CONFLUX);
 		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
 		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
+		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM);
 		
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);

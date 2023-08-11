@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.incandescent_amalgam;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -21,7 +22,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class IncandescentAmalgamBlock extends Block implements Waterloggable {
+public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Waterloggable {
 	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 	
@@ -141,7 +142,14 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8.0F, true, Explosion.DestructionType.DESTROY);
+			float power = 8.0F;
+			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
+				ItemStack stack = placedItemBlockEntity.getStack();
+				if (stack.getItem() instanceof IncandescentAmalgamItem item) {
+					power = item.getExplosionPower(stack);
+				}
+			}
+			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 		}
 	}
 	

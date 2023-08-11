@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.networking.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -25,10 +24,7 @@ public class ServerPastelTransmissionLogic {
     }
 
     public static final int MAX_TRANSFER_AMOUNT = 1;
-    public static final int START_TRANSFER_EVERY_X_TICKS = 10;
     public static final int TRANSFER_TICKS_PER_NODE = 30;
-
-    private final TickLooper tickLooper = new TickLooper(START_TRANSFER_EVERY_X_TICKS);
     private final ServerPastelNetwork network;
     private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
     private Map<PastelNodeBlockEntity, Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>>> pathCache = new HashMap<>();
@@ -71,17 +67,10 @@ public class ServerPastelTransmissionLogic {
     }
 
     public void tick() {
-		tickLooper.tick();
-		if (!tickLooper.reachedCap()) {
-			return;
-		}
-		tickLooper.reset();
-	
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL);
 		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL);
 		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL);
 		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH);
-	
 	}
 
     private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode) {

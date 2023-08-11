@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -153,16 +154,24 @@ public class PastelNetwork {
     public UUID getUUID() {
         return this.uuid;
     }
-
+    
     public void addTransmission(PastelTransmission transmission, int travelTime) {
         transmission.setNetwork(this);
         this.transmissions.put(transmission, travelTime);
     }
-
+    
     public int getColor() {
         return ColorHelper.getRandomColor(this.uuid.hashCode());
     }
-
+    
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof PastelNetwork p) {
+            return this.uuid.equals(p.uuid);
+        }
+        return false;
+    }
+    
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(this.uuid.toString());
@@ -171,7 +180,7 @@ public class PastelNetwork {
         }
         return builder.toString();
     }
-
+    
     public String getNodeDebugText() {
         return "Prov: " +
                 getNodes(PastelNodeType.PROVIDER).size() +

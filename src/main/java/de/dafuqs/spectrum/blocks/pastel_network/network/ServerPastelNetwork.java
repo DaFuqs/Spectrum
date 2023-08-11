@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
@@ -15,16 +16,19 @@ import org.jgrapht.graph.*;
 import java.util.*;
 
 public class ServerPastelNetwork extends PastelNetwork {
-
-    protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
+	
+	public static final int START_TRANSFER_EVERY_X_TICKS = 10;
+	private final TickLooper tickLooper = new TickLooper(START_TRANSFER_EVERY_X_TICKS);
+	
+	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
 	protected final ServerPastelTransmissionLogic serverPastelTransmissionLogic;
-
-    public ServerPastelNetwork(World world, @Nullable UUID uuid) {
-        super(world, uuid);
-        this.serverPastelTransmissionLogic = new ServerPastelTransmissionLogic(this);
-    }
-
-    public void checkNetworkMergesForNewNode(PastelNodeBlockEntity newNode) {
+	
+	public ServerPastelNetwork(World world, @Nullable UUID uuid) {
+		super(world, uuid);
+		this.serverPastelTransmissionLogic = new ServerPastelTransmissionLogic(this);
+	}
+	
+	public void checkNetworkMergesForNewNode(PastelNodeBlockEntity newNode) {
         int biggestNetworkNodeCount = this.getNodeCount();
         PastelNetwork biggestNetwork = this;
         List<PastelNetwork> networksToMerge = new ArrayList<>();
@@ -112,7 +116,12 @@ public class ServerPastelNetwork extends PastelNetwork {
 	@Override
 	public void tick() {
 		this.transmissions.tick();
-		this.serverPastelTransmissionLogic.tick();
+		
+		this.tickLooper.tick();
+		if (this.tickLooper.reachedCap()) {
+			this.tickLooper.reset();
+			this.serverPastelTransmissionLogic.tick();
+		}
 	}
 	
 	@Override
@@ -125,6 +134,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 		NbtCompound compound = new NbtCompound();
 		compound.putUuid("UUID", this.uuid);
 		compound.putString("World", this.world.getRegistryKey().getValue().toString());
+		compound.put("Looper", this.tickLooper.toNbt());
 		
 		NbtList transmissionList = new NbtList();
         for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
@@ -139,17 +149,21 @@ public class ServerPastelNetwork extends PastelNetwork {
     }
 
     public static ServerPastelNetwork fromNbt(NbtCompound compound) {
-        World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(compound.getString("World"))));
-        UUID uuid = compound.getUuid("UUID");
-        ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
-
-        for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
-            NbtCompound t = (NbtCompound) e;
-            int delay = t.getInt("Delay");
-            PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
-            network.addTransmission(transmission, delay);
-        }
-        return network;
-    }
+		World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(compound.getString("World"))));
+		UUID uuid = compound.getUuid("UUID");
+	
+		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
+		if (compound.contains("Looper", NbtElement.COMPOUND_TYPE)) {
+			network.tickLooper.readNbt(compound.getCompound("Looper"));
+		}
+	
+		for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
+			NbtCompound t = (NbtCompound) e;
+			int delay = t.getInt("Delay");
+			PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
+			network.addTransmission(transmission, delay);
+		}
+		return network;
+	}
 
 }

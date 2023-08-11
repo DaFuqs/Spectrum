@@ -30,21 +30,20 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        NbtList networkList = new NbtList();
-        for (ServerPastelNetwork network : this.networks) {
-            NbtCompound compound = network.toNbt();
-            networkList.add(compound);
-        }
-        tag.put("Networks", networkList);
-        return tag;
-    }
+	public NbtCompound writeNbt(NbtCompound nbt) {
+		NbtList networkList = new NbtList();
+		for (ServerPastelNetwork network : this.networks) {
+			NbtCompound compound = network.toNbt();
+			networkList.add(compound);
+		}
+		nbt.put("Networks", networkList);
+		return nbt;
+	}
 	
 	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
 		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
-		for (NbtElement element : nbt.getList("Networks", NbtElement.LIST_TYPE)) {
-			NbtCompound compound = (NbtCompound) element;
-			manager.networks.add(ServerPastelNetwork.fromNbt(compound));
+		for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
+			manager.networks.add(ServerPastelNetwork.fromNbt((NbtCompound) element));
 		}
 		return manager;
 	}

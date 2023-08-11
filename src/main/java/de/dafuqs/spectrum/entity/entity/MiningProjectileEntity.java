@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -31,7 +31,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 	}
 
 	public MiningProjectileEntity(World world, LivingEntity owner) {
-		this(owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
+		this(owner.getX(), owner.getEyeY() - 0.1, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
@@ -63,15 +63,18 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
+		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
 		this.discard();
 	}
 
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		this.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, 0.5F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
-		this.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, 1.15F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
-
+		/*this.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, 0.5F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+		this.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, 1.15F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));*/
+		
+		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
+		
 		Entity entity = getOwner();
 		if (entity instanceof PlayerEntity player) {
 			Predicate<BlockState> minablePredicate = state -> {
@@ -81,7 +84,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 			};
 			AoEHelper.breakBlocksAround(player, this.toolStack, blockHitResult.getBlockPos(), MINING_RANGE, minablePredicate);
 		}
-
+		
 		this.discard();
 	}
 

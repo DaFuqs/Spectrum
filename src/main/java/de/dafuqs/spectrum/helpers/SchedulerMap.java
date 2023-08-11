@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.pastel_network;
+package de.dafuqs.spectrum.helpers;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.pastel_network;
+package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.nbt.*;
 
@@ -34,20 +34,21 @@ public final class TickLooper {
     public float getProgress() {
         return (float) currentTick / (float) maxTick;
     }
-
+    
     @Override
     public String toString() {
         return "TickLooper (" + currentTick + "/" + maxTick + ")";
     }
-
+    
     public void readNbt(NbtCompound nbt) {
         maxTick = nbt.getInt("max");
         currentTick = nbt.getInt("current");
     }
-
-    public void writeNbt(NbtCompound nbt) {
+    
+    public NbtElement toNbt() {
+        NbtCompound nbt = new NbtCompound();
         nbt.putInt("max", maxTick);
         nbt.putInt("current", currentTick);
+        return nbt;
     }
-
 }

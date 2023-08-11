@@ -308,21 +308,19 @@ public class InventoryHelper {
 					int currentStackCount = currentStack.getCount();
 					if (requiredIngredients.get(j).test(currentStack)) {
 						int ingredientCount = requiredIngredientAmounts.get(j);
-						Item remainder = currentStack.getItem().getRecipeRemainder();
+						ItemStack remainder = currentStack.getRecipeRemainder();
 						if (currentStackCount >= ingredientCount) {
-							if (remainder != null && remainder != Items.AIR) {
-								ItemStack remainderStack = remainder.getDefaultStack();
-								remainderStack.setCount(requiredIngredientAmounts.get(j));
-								remainders.add(remainderStack);
+							if (!remainder.isEmpty()) {
+								remainder.setCount(requiredIngredientAmounts.get(j));
+								remainders.add(remainder);
 							}
 							requiredIngredients.remove(j);
 							requiredIngredientAmounts.remove(j);
 							j--;
 						} else {
-							if (remainder != null && remainder != Items.AIR) {
-								ItemStack remainderStack = remainder.getDefaultStack();
-								remainderStack.setCount(currentStackCount);
-								remainders.add(remainderStack);
+							if (!remainder.isEmpty()) {
+								remainder.setCount(currentStackCount);
+								remainders.add(remainder);
 							}
 							
 							requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - currentStackCount);
@@ -345,16 +343,15 @@ public class InventoryHelper {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (removeItemStack.isItemEqual(currentStack)) {
-				Item remainder = currentStack.getItem().getRecipeRemainder();
+				ItemStack remainder = currentStack.getRecipeRemainder();
 				
 				int amountAbleToDecrement = Math.min(currentStack.getCount(), removeItemStackCount);
 				currentStack.decrement(amountAbleToDecrement);
 				removeItemStackCount -= amountAbleToDecrement;
 				
-				if (remainder != null && remainder != Items.AIR) {
-					ItemStack remainderStack = remainder.getDefaultStack();
-					remainderStack.setCount(amountAbleToDecrement);
-					remainders.add(remainderStack);
+				if (!remainder.isEmpty()) {
+					remainder.setCount(amountAbleToDecrement);
+					remainders.add(remainder);
 				}
 			}
 			if (removeItemStackCount == 0) {

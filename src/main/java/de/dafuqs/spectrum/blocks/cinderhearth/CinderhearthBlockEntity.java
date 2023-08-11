@@ -414,22 +414,22 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		if (couldAdd) {
-			Item remainder = inputStack.getItem().getRecipeRemainder();
+			ItemStack remainder = inputStack.getRecipeRemainder();
 			
 			// use up input ingredient
 			ItemStack inputStackCopy = inputStack.copy();
 			inputStack.decrement(1);
-
-			if (remainder != null) {
-				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder.getDefaultStack(), FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+			
+			if (remainder.isEmpty()) {
+				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 				if (!remainderAdded) {
-					cinderhearth.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder.getDefaultStack());
+					cinderhearth.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
 				}
 			}
-
+			
 			// effects
 			playCraftingFinishedEffects(cinderhearth);
-
+			
 			// reset
 			cinderhearth.craftingTime = 0;
 			cinderhearth.inventoryChanged();

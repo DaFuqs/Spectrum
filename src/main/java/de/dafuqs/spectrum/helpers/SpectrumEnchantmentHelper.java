@@ -24,6 +24,11 @@ public class SpectrumEnchantmentHelper {
 	 * @return the enchanted stack
 	 */
 	public static ItemStack addOrExchangeEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
+		// can this enchant even go on that tool?
+		if (!enchantment.isAcceptableItem(stack)) {
+			return stack;
+		}
+		
 		// if not forced check if the stack already has enchantments
 		// that conflict with the new one
 		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(stack, enchantment)) {

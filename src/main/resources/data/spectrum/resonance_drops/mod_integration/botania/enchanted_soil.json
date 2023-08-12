@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:drop_self",
+  "block": "botania:enchanted_soil",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

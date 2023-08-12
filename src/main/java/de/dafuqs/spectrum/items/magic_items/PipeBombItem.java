@@ -1,40 +1,25 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.present.PresentBlockEntity;
-import de.dafuqs.spectrum.items.DamageAwareItem;
-import de.dafuqs.spectrum.items.UnpackingSurprise;
-import de.dafuqs.spectrum.items.TickAwareItem;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.sound.PipeBombChargingSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
-public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem, UnpackingSurprise {
+public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem {
 
     public PipeBombItem(Settings settings) {
         super(settings);
@@ -133,13 +118,4 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
         return UseAction.BOW;
     }
 
-    @Override
-    public void unpackSurprise(ItemStack stack, PresentBlockEntity presentBlockEntity, ServerWorld world, BlockPos pos, Random random) {
-        var nbt = stack.getOrCreateNbt();
-
-        nbt.putBoolean("armed", true);
-        nbt.putLong("timestamp", world.getTime() - 70);
-        nbt.putUuid("owner", presentBlockEntity.getOwnerUUID());
-        world.playSound(null, pos, SpectrumSoundEvents.INCANDESCENT_ARM, SoundCategory.BLOCKS, 2F, 0.9F);
-    }
 }

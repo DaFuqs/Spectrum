@@ -1,8 +1,7 @@
 {
-  "input": {
-    "item": "minecraft:cake"
-  },
-  "state_tags_to_copy": [
+  "type": "spectrum:drop_self",
+  "block": "minecraft:cake",
+  "state_properties_to_copy": [
     "bites"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "armed=false": {
+      "model": "spectrum:block/threat_conflux"
+    },
+    "armed=true": {
+      "model": "spectrum:block/threat_conflux_armed"
+    }
+  }
+}

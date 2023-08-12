@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.pastel_network;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.particle.render.*;
 import net.fabricmc.api.*;
 
 public class Pastel {
@@ -32,9 +33,11 @@ public class Pastel {
             return getServerInstance();
         }
     }
-
+    
+    @Environment(EnvType.CLIENT)
     public static void clearClientInstance() {
         clientManager = null;
+        EarlyRenderingParticleContainer.clear();
     }
 
     public static void clearServerInstance() {

@@ -46,8 +46,6 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE = of("crystal_apothecary_harvestable");
 	public static final TagKey<Block> BASE_STONE_DEEPER_DOWN = of("base_stone_deeper_down");
 	public static final TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = of("unbreakable_structure_blocks");
-	public static final TagKey<Block> RESONANCE_HARVESTABLES = of("resonance_harvestables");
-	public static final TagKey<Block> SPAWNERS = of("spawners");
 	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = of("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
 	public static final TagKey<Block> SPREADS_TO_BLACKSLAG = of("spreads_to_blackslag");
 	

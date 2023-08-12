@@ -181,19 +181,17 @@ public class PedestalCraftingRecipe extends GatedStackSpectrumRecipe {
 				}
 				
 				if (!invStack.isEmpty()) {
-					Item recipeReminderItem = this.skipRecipeRemainders() ? null : invStack.getItem().getRecipeRemainder();
-					if (recipeReminderItem == null) {
+					ItemStack remainder = this.skipRecipeRemainders() ? ItemStack.EMPTY : invStack.getRecipeRemainder();
+					if (remainder.isEmpty()) {
 						invStack.decrement(ingredientStackAtPos.getCount());
 					} else {
 						if (pedestal.getStack(invStackId).getCount() == ingredientStackAtPos.getCount()) {
-							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-							remainderStack.setCount(ingredientStackAtPos.getCount());
-							pedestal.setStack(invStackId, remainderStack);
+							remainder.setCount(ingredientStackAtPos.getCount());
+							pedestal.setStack(invStackId, remainder);
 						} else {
 							pedestal.getStack(invStackId).decrement(ingredientStackAtPos.getCount());
 							
-							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-							ItemEntity itemEntity = new ItemEntity(pedestal.getWorld(), pedestal.getPos().getX() + 0.5, pedestal.getPos().getY() + 1, pedestal.getPos().getZ() + 0.5, remainderStack);
+							ItemEntity itemEntity = new ItemEntity(pedestal.getWorld(), pedestal.getPos().getX() + 0.5, pedestal.getPos().getY() + 1, pedestal.getPos().getZ() + 0.5, remainder);
 							itemEntity.addVelocity(0, 0.05, 0);
 							pedestal.getWorld().spawnEntity(itemEntity);
 						}

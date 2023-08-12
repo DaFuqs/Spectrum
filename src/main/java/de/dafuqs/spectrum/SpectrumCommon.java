@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.data_loaders.resonance.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -191,10 +192,10 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Data Loaders...");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(NaturesStaffConversionDataLoader.INSTANCE);
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceDropsDataLoader.INSTANCE);
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(EntityFishingDataLoader.INSTANCE);
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(CrystalApothecarySimulationsDataLoader.INSTANCE);
-		
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceDropsDataLoader.INSTANCE);
+
 		logInfo("Adding to Fabric's Registries...");
 		SpectrumFlammableBlocks.register();
 		SpectrumStrippableBlocks.register();
@@ -214,11 +215,15 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 
-		logInfo("Registering Dispenser Behaviors...");
+		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		SpectrumDispenserBehaviors.register();
+        SpectrumPresentUnpackBehaviors.register();
+		SpectrumResonanceProcessors.register();
 
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();
+        logInfo("Registering Structure Pool Element Types...");
+		SpectrumStructurePoolElementTypes.register();
 
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {

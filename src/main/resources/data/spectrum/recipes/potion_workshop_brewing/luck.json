@@ -8,7 +8,7 @@
   },
   "effect": "minecraft:luck",
   "base_duration_ticks": 6000,
-  "potency_modifier": 1.5,
+  "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,

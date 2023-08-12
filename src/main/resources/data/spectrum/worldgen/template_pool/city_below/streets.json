@@ -1,13 +1,13 @@
 {
-  "name": "spectrum:city_below",
+  "name": "spectrum:city_below/streets",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "projection": "terrain_matching",
-        "location": "spectrum:city_below/path1",
+        "projection": "rigid",
+        "location": "spectrum:city_below/streets/simple",
         "processors": "minecraft:empty"
       }
     },
@@ -15,8 +15,8 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "projection": "terrain_matching",
-        "location": "spectrum:city_below/path2",
+        "projection": "rigid",
+        "location": "spectrum:city_below/streets/fish",
         "processors": "minecraft:empty"
       }
     }

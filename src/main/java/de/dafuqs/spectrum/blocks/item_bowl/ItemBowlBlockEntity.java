@@ -88,17 +88,15 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		}
 		
 		int decrementAmount = Math.min(amount, storedStack.getCount());
-		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
-		if (recipeRemainderItem != null) {
+		ItemStack remainder = storedStack.getRecipeRemainder();
+		if (!remainder.isEmpty()) {
 			if (storedStack.getCount() == 1) {
-				setStack(0, recipeRemainderItem.getDefaultStack());
+				setStack(0, remainder);
 			} else {
 				getStack(0).decrement(decrementAmount);
+				remainder.setCount(decrementAmount);
 				
-				ItemStack remainderStack = recipeRemainderItem.getDefaultStack();
-				remainderStack.setCount(decrementAmount);
-				
-				ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+				ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainder);
 				itemEntity.addVelocity(0, 0.1, 0);
 				world.spawnEntity(itemEntity);
 			}

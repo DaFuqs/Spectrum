@@ -1,0 +1,17 @@
+{
+  "name": "spectrum:deco/memorial_memory_upper",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\"},TicksToManifest:-1}"
+      }
+    }
+  ]
+}

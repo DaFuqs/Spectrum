@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.food.beverages.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
@@ -87,7 +87,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	public ItemStack getDefaultTap(int timeMultiplier) {
 		ItemStack stack = getPreviewTap(timeMultiplier);
 		stack.setCount(this.outputItemStack.getCount());
-		BeverageItem.setPreviewStack(stack);
+		FermentedItem.setPreviewStack(stack);
 		return stack;
 	}
 	
@@ -153,8 +153,8 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		}
 		
 		BeverageProperties properties;
-		if (inputStack.getItem() instanceof BeverageItem beverageItem) {
-			properties = beverageItem.getBeverageProperties(inputStack);
+		if (inputStack.getItem() instanceof FermentedItem fermentedItem) {
+			properties = fermentedItem.getBeverageProperties(inputStack);
 		} else {
 			// if it's not a set beverage (custom recipe) assume VariantBeverage to add that tag
 			properties = VariantBeverageProperties.getFromStack(inputStack);

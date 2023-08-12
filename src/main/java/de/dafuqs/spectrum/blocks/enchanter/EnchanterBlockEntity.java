@@ -352,8 +352,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			for (Enchantment enchantment : highestEnchantmentLevels.keySet()) {
 				int enchantmentLevel = highestEnchantmentLevels.get(enchantment);
 				int currentRequired = getRequiredExperienceToEnchantWithEnchantment(centerStackCopy, enchantment, enchantmentLevel, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
-				centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 				if (currentRequired > 0) {
+					centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 					requiredExperience += currentRequired;
 					valid = true;
 				} else {
@@ -379,6 +379,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
 	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
+		if (!enchantment.isAcceptableItem(itemStack)) {
+			return -1;
+		}
+		
 		int existingLevel = EnchantmentHelper.getLevel(enchantment, itemStack);
 		if (existingLevel >= level) {
 			return -1;

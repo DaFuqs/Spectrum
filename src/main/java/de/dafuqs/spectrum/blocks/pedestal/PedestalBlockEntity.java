@@ -634,17 +634,15 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		for (int i = 0; i < 9; i++) {
 			ItemStack itemStack = inventory.getStack(i);
 			if (!itemStack.isEmpty()) {
-				Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
-				if (recipeReminderItem == null) {
+				ItemStack remainder = itemStack.getRecipeRemainder();
+				if (remainder.isEmpty()) {
 					itemStack.decrement(1);
 				} else {
 					if (this.inventory.get(i).getCount() == 1) {
-						this.inventory.set(i, new ItemStack(recipeReminderItem, 1));
+						this.inventory.set(i, remainder);
 					} else {
 						this.inventory.get(i).decrement(1);
-						
-						ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-						ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+						ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainder);
 						itemEntity.addVelocity(0, 0.05, 0);
 						world.spawnEntity(itemEntity);
 					}

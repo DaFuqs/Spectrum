@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -81,7 +81,7 @@ public class PastelNetwork {
         }
     }
 
-    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+    protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
         boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
         if (!hadNode) {
             return false;
@@ -92,9 +92,6 @@ public class PastelNetwork {
             this.graph.removeVertex(node);
         }
 
-        if (!this.hasNodes()) {
-            Pastel.getInstance(this.getWorld().isClient()).remove(this);
-        }
         return true;
     }
 
@@ -161,6 +158,14 @@ public class PastelNetwork {
 
     public int getColor() {
         return ColorHelper.getRandomColor(this.uuid.hashCode());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof PastelNetwork p) {
+            return this.uuid.equals(p.uuid);
+        }
+        return false;
     }
 
     @Override

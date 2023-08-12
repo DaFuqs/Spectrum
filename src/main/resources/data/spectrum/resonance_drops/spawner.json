@@ -1,7 +1,6 @@
 {
-  "input": {
-    "tag": "spectrum:spawners"
-  },
+  "type": "spectrum:drop_self",
+  "block": "#spectrum:spawners",
   "nbt_to_copy": [
     "SpawnData",
     "SpawnCount",

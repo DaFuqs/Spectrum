@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
@@ -20,8 +19,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
-
-import java.util.*;
 
 public class SpectrumBossEntity extends PathAwareEntity {
 	
@@ -119,13 +116,12 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	public void onDeath(DamageSource damageSource) {
 		super.onDeath(damageSource);
 
-		// grant the kill to all players that attacked recently
+		// grant the kill to all players close by players
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
-		List<DamageRecord> recentDamage = ((DamageTrackerAccessor) this.getDamageTracker()).getRecentDamage();
-		for (DamageRecord damageRecord : recentDamage) {
-			if (damageRecord.damageSource().getAttacker() instanceof ServerPlayerEntity player) {
-				Criteria.ENTITY_KILLED_PLAYER.trigger(player, this, damageSource);
+		if (!world.isClient) {
+			for (PlayerEntity closeByPlayer : world.getEntitiesByType(EntityType.PLAYER, getBoundingBox().expand(24), Entity::isAlive)) {
+				Criteria.ENTITY_KILLED_PLAYER.trigger((ServerPlayerEntity) closeByPlayer, this, damageSource);
 			}
 		}
 	}

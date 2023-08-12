@@ -19,4 +19,9 @@ public class ExplosionEffectFamily {
     public boolean acceptsArchetype(Archetype archetype) {
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

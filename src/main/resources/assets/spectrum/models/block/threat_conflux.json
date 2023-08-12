@@ -1,0 +1,67 @@
+{
+	"credit": "~ XOXO Azzyypaaras ~",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "spectrum:block/threat_conflux",
+		"particle": "spectrum:block/threat_conflux"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [0, 0, 0],
+			"to": [16, 3, 16],
+			"faces": {
+				"north": {"uv": [8, 6.5, 16, 8], "texture": "#0"},
+				"east": {"uv": [8, 6.5, 16, 8], "texture": "#0"},
+				"south": {"uv": [8, 6.5, 16, 8], "texture": "#0"},
+				"west": {"uv": [8, 6.5, 16, 8], "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"down": {"uv": [0, 8.5, 8, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "core",
+			"from": [5, 3, 5],
+			"to": [11, 7, 11],
+			"faces": {
+				"north": {"uv": [11.5, 1, 14.5, 3], "texture": "#0"},
+				"east": {"uv": [11.5, 1, 14.5, 3], "texture": "#0"},
+				"south": {"uv": [11.5, 1, 14.5, 3], "texture": "#0"},
+				"west": {"uv": [11.5, 1, 14.5, 3], "texture": "#0"},
+				"up": {"uv": [8.5, 1, 11.5, 4], "texture": "#0"},
+				"down": {"uv": [8.5, 1, 11.5, 4], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

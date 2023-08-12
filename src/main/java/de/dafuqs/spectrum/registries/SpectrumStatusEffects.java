@@ -88,7 +88,7 @@ public class SpectrumStatusEffects {
 	/**
 	 * Ouch.
 	 */
-	public static final StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222)
+	public static final StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.HARMFUL, 0x222222)
 			.addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, LifeDrainStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**

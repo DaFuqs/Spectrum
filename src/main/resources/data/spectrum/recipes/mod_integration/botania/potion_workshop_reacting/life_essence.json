@@ -3,7 +3,7 @@
   "item": "botania:life_essence",
   "modifiers": {
     "flat_potency_bonus": 3.0,
-    "flat_duration_bonus_ticks": -3600
+    "flat_yield_bonus": -3.0
   },
   "fabric:load_conditions": [
     {

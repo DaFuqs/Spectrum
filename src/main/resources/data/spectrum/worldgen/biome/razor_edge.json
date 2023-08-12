@@ -39,12 +39,6 @@
     "misc": [],
     "monster": [
       {
-        "type": "spectrum:eraser",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
         "type": "minecraft:zombie",
         "weight": 100,
         "minCount": 4,
@@ -121,12 +115,12 @@
       "spectrum:dd_stone"
     ],
     [
-      "spectrum:dd_pointed_dripstone"
+      "spectrum:dd_pointed_dripstone",
+      "spectrum:dd_shale_clay_crystal_formations"
     ],
     [
       "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs",
-      "spectrum:dd_shale_clay_crystal_formations"
+      "spectrum:dd_lava_springs"
     ],
     [
       "spectrum:pyrite_ripper_wall_patch",

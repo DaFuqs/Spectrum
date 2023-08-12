@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:noise_provider",
+      "seed": 3456,
+      "noise": {
+        "firstOctave": 0,
+        "amplitudes": [
+          1
+        ]
+      },
+      "scale": 0.020833334,
+      "states": [
+        {
+          "Name": "spectrum:small_black_dragonjag"
+        },
+        {
+          "Name": "spectrum:small_red_dragonjag"
+        },
+        {
+          "Name": "spectrum:small_yellow_dragonjag"
+        },
+        {
+          "Name": "spectrum:small_pink_dragonjag"
+        },
+        {
+          "Name": "spectrum:small_purple_dragonjag"
+        }
+      ]
+    }
+  }
+}

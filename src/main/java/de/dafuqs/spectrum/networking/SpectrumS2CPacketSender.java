@@ -158,13 +158,13 @@ public class SpectrumS2CPacketSender {
         }
     }
 
-    public static void sendPastelTransmissionParticle(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
+    public static void sendPastelTransmissionParticle(ServerPastelNetwork network, int travelTime, @NotNull PastelTransmission transmission) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeUuid(network.getUUID());
 		buf.writeInt(travelTime);
-		PastelTransmission.writeToBuf(buf, transfer);
+		PastelTransmission.writeToBuf(buf, transmission);
 	
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transfer.getStartPos())) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transmission.getStartPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
 		}
 	}

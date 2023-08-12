@@ -39,7 +39,7 @@
         ]
       },
       {
-        "id": "spectrum:swiftness",
+        "id": "minecraft:resistance",
         "base_duration": 9600,
         "potency": [
           {

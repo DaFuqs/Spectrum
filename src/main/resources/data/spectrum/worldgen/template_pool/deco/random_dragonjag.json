@@ -1,0 +1,14 @@
+{
+  "name": "spectrum:deco/random_dragonjag",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:feature_pool_element",
+        "projection": "rigid",
+        "feature": "spectrum:no_placement/random_dragonjag"
+      }
+    }
+  ]
+}

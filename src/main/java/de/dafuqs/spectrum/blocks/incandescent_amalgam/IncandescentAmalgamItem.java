@@ -59,8 +59,9 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		
 		int stackCount = stack.getCount();
 		float explosionPower = getExplosionPower(stack) + stackCount / 8F;
-		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, Explosion.DestructionType.DESTROY);
-		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, Explosion.DestructionType.NONE);
+		var world = itemEntity.getWorld();
+		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
 	}
 
 	@Override

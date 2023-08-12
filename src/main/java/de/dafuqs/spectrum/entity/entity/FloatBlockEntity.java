@@ -60,7 +60,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	}
 
 	private void moveEntitiesOnTop() {
-		this.world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0)
+		this.getWorld().getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0)
 						.union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))
 				.stream()
 				.filter(entity -> !(entity instanceof BlockLikeEntity) && entity.isPushable())

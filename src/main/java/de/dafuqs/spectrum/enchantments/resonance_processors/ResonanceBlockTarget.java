@@ -1,26 +1,27 @@
 package de.dafuqs.spectrum.enchantments.resonance_processors;
 
+import com.google.common.base.*;
 import com.mojang.brigadier.exceptions.*;
 import com.mojang.datafixers.util.*;
 import net.minecraft.block.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class ResonanceBlockTarget {
 	
 	// we have to use a lazy here, since at the stage this is needed
 	// block tags are not initialized yet
-	public Lazy<Either<BlockArgumentParser.BlockResult, BlockArgumentParser.TagResult>> block;
+	public Supplier<Either<BlockArgumentParser.BlockResult, BlockArgumentParser.TagResult>> block;
 	
 	public ResonanceBlockTarget(String string) {
-		block = new Lazy<>(() -> {
+		block = Suppliers.memoize(() -> {
 			try {
-				return BlockArgumentParser.blockOrTag(Registry.BLOCK, string, false);
+				return BlockArgumentParser.blockOrTag(Registries.BLOCK.getReadOnlyWrapper(), string, false);
 			} catch (CommandSyntaxException e) {
-				throw new RuntimeException(e);
-			}
-		});
+                throw new RuntimeException(e);
+            }
+        });
 	}
 	
 	public boolean test(BlockState state) {

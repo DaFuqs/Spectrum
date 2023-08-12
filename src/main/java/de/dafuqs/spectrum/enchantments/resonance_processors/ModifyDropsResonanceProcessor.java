@@ -6,7 +6,7 @@ import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -25,7 +25,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceDropProcessor {
 					throw new JsonSyntaxException("modify_drops is not an json object");
 				}
 				Ingredient ingredient = Ingredient.fromJson(entryObject.get("input"));
-				Item output = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(entryObject, "output")));
+				Item output = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(entryObject, "output")));
 				modifiedDrops.put(ingredient, output);
 			}
 			

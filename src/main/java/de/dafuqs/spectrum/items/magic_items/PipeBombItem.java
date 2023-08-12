@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;

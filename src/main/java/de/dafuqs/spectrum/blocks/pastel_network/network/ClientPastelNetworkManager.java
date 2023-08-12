@@ -10,6 +10,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.joml.*;
 
 import java.util.*;
 

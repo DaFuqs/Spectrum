@@ -40,13 +40,12 @@ public class PlaceableItemBlock extends BlockWithEntity {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 			return List.of(placedItemBlockEntity.getStack());
 		} else {
 			return super.getDroppedStacks(state, builder);
 		}
 	}
-	
 }

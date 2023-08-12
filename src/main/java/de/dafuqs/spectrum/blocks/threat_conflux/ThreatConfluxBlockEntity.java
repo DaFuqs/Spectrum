@@ -72,7 +72,7 @@ public class ThreatConfluxBlockEntity extends BlockEntity {
         var killRadius = KILL_ZONE_RADIUS;
         var blastRadius = BASE_EXPLOSION_RADIUS;
         var blastDamage = BASE_EXPLOSION_DAMAGE;
-        var damageSource = SpectrumDamageSources.INCANDESCENCE;
+        var damageSource = SpectrumDamageSources.incandescence(world);
 
         for (ExplosionEffectModifier explosionEffect : explosionEffects) {
             var radiusMod = explosionEffect.getBlastRadiusModifer(ARCHETYPE, this);

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.spells.MoonstoneStrike;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -63,7 +64,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
-		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
+		MoonstoneStrike.create(this.getWorld(), this, null, this.getX(), this.getY(), this.getZ(), 1);
 		this.discard();
 	}
 
@@ -71,7 +72,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
 
-		MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 1);
+		MoonstoneStrike.create(this.getWorld(), this, null, this.getX(), this.getY(), this.getZ(), 1);
 
 		Entity entity = getOwner();
 		if (entity instanceof PlayerEntity player) {

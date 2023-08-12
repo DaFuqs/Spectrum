@@ -12,17 +12,90 @@
   },
   "parent": "spectrum:spectrum",
   "criteria": {
-    "used_pedestal": {
+    "used_pedestal1": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "item": {
-          "tag": "spectrum:pedestals"
-        }
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_basic_topaz"
+          }
+        ]
+      }
+    },
+    "used_pedestal2": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_basic_amethyst"
+          }
+        ]
+      }
+    },
+    "used_pedestal3": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_basic_citrine"
+          }
+        ]
+      }
+    },
+    "used_pedestal4": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_all_basic"
+          }
+        ]
+      }
+    },
+    "used_pedestal5": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_onyx"
+          }
+        ]
+      }
+    },
+    "used_pedestal6": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_moonstone"
+          }
+        ]
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:spectrum"
+      }
     }
-  }
+  },
+  "requirements": [
+    [
+      "used_pedestal1",
+      "used_pedestal2",
+      "used_pedestal3",
+      "used_pedestal4",
+      "used_pedestal5",
+      "used_pedestal6"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

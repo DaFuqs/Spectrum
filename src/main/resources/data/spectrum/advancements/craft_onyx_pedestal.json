@@ -31,14 +31,19 @@
             }
           }
         ],
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:pedestal_onyx",
-              "spectrum:pedestal_moonstone"
-            ]
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "spectrum:pedestal_onyx",
+                  "spectrum:pedestal_moonstone"
+                ]
+              }
+            }
           }
-        }
+        ]
       }
     },
     "craft_pedestal": {

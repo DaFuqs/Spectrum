@@ -126,7 +126,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
-      "item": "spectrum:fiery_powder",
+      "item": "spectrum:incandescent_essence",
       "text": "Also a good heat source for your Alloy Forges."
     }
   ]

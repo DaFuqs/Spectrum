@@ -13,7 +13,7 @@
               "name": "spectrum:jadeite_lotus_flower",
               "conditions": [
                 {
-                  "condition": "minecraft:alternative",
+                  "condition": "minecraft:any_of",
                   "terms": [
                     {
                       "condition": "minecraft:match_tool",

@@ -15,6 +15,12 @@
     "used_jade_vines_on_fence": {
       "trigger": "minecraft:placed_block",
       "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:jade_vine_roots"
+          }
+        ],
         "item": {
           "items": [
             "spectrum:germinated_jade_vine_bulb"

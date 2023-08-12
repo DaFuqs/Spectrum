@@ -15,7 +15,7 @@
     "interact_with_existing_pedestal": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "player": [
+        "location": [
           {
             "condition": "minecraft:entity_properties",
             "entity": "this",
@@ -27,17 +27,20 @@
                 }
               }
             }
+          },
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "spectrum:pedestal_all_basic",
+                  "spectrum:pedestal_onyx",
+                  "spectrum:pedestal_moonstone"
+                ]
+              }
+            }
           }
-        ],
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:pedestal_all_basic",
-              "spectrum:pedestal_onyx",
-              "spectrum:pedestal_moonstone"
-            ]
-          }
-        }
+        ]
       }
     },
     "craft_pedestal": {

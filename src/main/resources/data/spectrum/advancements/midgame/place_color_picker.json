@@ -15,14 +15,25 @@
     "placed_color_picker": {
       "trigger": "minecraft:placed_block",
       "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:color_picker"
+          }
+        ],
         "item": {
-          "items": [ "spectrum:color_picker" ]
+          "items": [
+            "spectrum:color_picker"
+          ]
         }
       }
-    },
-    "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+    }
+  },
+  "gotten_previous": {
+    "trigger": "revelationary:advancement_gotten",
+    "conditions": {
+      "advancement_identifier": "spectrum:midgame/spectrum_midgame"
     }
   }
+}
 }

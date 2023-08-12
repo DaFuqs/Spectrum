@@ -15,18 +15,23 @@
     "used": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:end_portal_frame",
+                  "spectrum:cracked_end_portal_frame"
+                ]
+              }
+            }
+          }
+        ],
         "item": {
           "items": [
             "spectrum:perturbed_eye"
           ]
-        },
-        "location": {
-          "block": {
-            "blocks": [
-              "minecraft:end_portal_frame",
-              "spectrum:cracked_end_portal_frame"
-            ]
-          }
         }
       }
     },

@@ -20,21 +20,28 @@
             "spectrum:radiance_staff"
           ]
         },
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:wand_light"
-            ],
-            "state": {
-              "level": "1"
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "spectrum:wand_light"
+                ],
+                "state": {
+                  "level": "1"
+                }
+              }
             }
           }
-        }
+        ]
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:build_basic_pedestal_structure" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:build_basic_pedestal_structure"
+      }
     }
   }
 }

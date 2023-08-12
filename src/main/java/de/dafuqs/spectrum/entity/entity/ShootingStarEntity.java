@@ -247,7 +247,6 @@ public class ShootingStarEntity extends Entity {
 			}
 			
 			// push other entities away
-			this.checkBlockCollision();
 			List<Entity> otherEntities = this.world.getOtherEntities(this, this.getBoundingBox().expand(0.2D, -0.01D, 0.2D), EntityPredicates.canBePushedBy(this));
 			if (!otherEntities.isEmpty()) {
 				for (Entity d : otherEntities) {

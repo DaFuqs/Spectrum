@@ -21,7 +21,7 @@ import java.util.*;
 
 public class FloatBlockEntity extends BlockLikeEntity {
 	
-	private static final float MAX_DAMAGE = 5.0F;
+	private static final float MAX_DAMAGE = 8.0F;
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;
 	
 	private float gravityModifier = 1.0F;
@@ -31,49 +31,71 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	}
 	
 	public FloatBlockEntity(World world, double x, double y, double z, BlockState blockState) {
-		this(SpectrumEntityTypes.FLOAT_BLOCK, world);
-		this.blockState = blockState;
-		this.intersectionChecked = true;
-		this.setPosition(x, y, z);
-		this.setVelocity(Vec3d.ZERO);
-		this.prevX = x;
-		this.prevY = y;
-		this.prevZ = z;
-		this.setOrigin(new BlockPos(this.getPos()));
+		super(SpectrumEntityTypes.FLOAT_BLOCK, world, x, y, z, blockState);
 		if (blockState.getBlock() instanceof FloatBlock floatBlock) {
 			this.gravityModifier = floatBlock.getGravityMod();
-		} else {
-			this.gravityModifier = 1.0F;
 		}
 	}
-
+	
+	@Override
+	public void postTickMoveEntities() {
+	
+	}
+	
+	@Override
+	public void postTickMovement() {
+	
+	}
+	
 	@Override
 	public void move(MovementType movementType, Vec3d movement) {
 		super.move(movementType, movement);
+		
 		if (movementType != MovementType.SELF) {
 			this.setVelocity(movement);
 		}
-	}
-
-	@Override
-	public void postTickMovement() {
-		if (!this.hasNoGravity()) {
-			if (this.gravityModifier != 0) {
-				if (this.moveTime > 100) {
-					this.addVelocity(0.0D, (this.gravityModifier / 10), 0.0D);
-				} else {
-					this.addVelocity(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (this.gravityModifier / 10), 0.0D);
-				}
-			}
-			this.move(MovementType.SELF, this.getVelocity());
+		
+		if (movement.length() > 0) {
+			moveEntitiesOnTop();
 		}
 	}
-
+	
+	private void moveEntitiesOnTop() {
+		this.world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0)
+						.union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))
+				.stream()
+				.filter(entity -> !(entity instanceof BlockLikeEntity) && entity.isPushable())
+				.forEach(entity -> {
+					entity.fallDistance = 0F;
+					if (this.canHit()) {
+						entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
+					}
+					entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+					entity.setOnGround(true);
+				});
+	}
+	
 	@Override
 	public void tick() {
-	
+		if (!this.hasNoGravity()) {
+			if (this.moveTime > 100) {
+				this.addVelocity(0.0D, (this.gravityModifier / 10), 0.0D);
+			} else {
+				this.addVelocity(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (this.gravityModifier / 10), 0.0D);
+			}
+		}
+		
+		this.move(MovementType.SELF, this.getVelocity());
+		
+		this.checkBlockCollision();
+		this.updateWaterState();
 	}
-
+	
+	@Override
+	public boolean hasNoGravity() {
+		return this.gravityModifier != 0.0 && super.hasNoGravity();
+	}
+	
 	@Override
 	public boolean shouldCease() {
 		return this.verticalCollision || super.shouldCease();
@@ -96,12 +118,12 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean canHit() {
 		return !this.isRemoved();
 	}
-
+	
 	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if (player.isSneaking()) {
@@ -118,26 +140,25 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		}
 		return ActionResult.PASS;
 	}
-
+	
 	@Override
 	public ItemStack getPickBlockStack() {
 		return this.blockState.getBlock().asItem().getDefaultStack();
 	}
-
+	
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
-		if (this.blockState.getBlock() instanceof FloatBlock) {
-			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
-		} else {
-			this.gravityModifier = 1.0F;
+		if (this.blockState.getBlock() instanceof FloatBlock floatBlock) {
+			this.gravityModifier = floatBlock.getGravityMod();
 		}
 	}
 	
 	@Override
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
+		
 		if (isPaltaeriaStratineCollision(entity)) {
 			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
 			this.discard();
@@ -149,7 +170,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 			world.spawnEntity(itemEntity);
 		}
 	}
-
+	
 	public boolean isPaltaeriaStratineCollision(Entity other) {
 		if (other instanceof BlockLikeEntity otherBlockLikeEntity) {
 			Block thisBlock = this.blockState.getBlock();
@@ -159,10 +180,10 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		}
 		return false;
 	}
-
+	
 	@Override
 	public boolean collidesWith(Entity other) {
 		return other.isCollidable() && !this.isConnectedThroughVehicle(other);
 	}
-
+	
 }

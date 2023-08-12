@@ -3,8 +3,6 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.network.*;
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
@@ -30,15 +28,11 @@ import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
 
 import java.util.*;
 
@@ -126,33 +120,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();
-			for (PastelNetwork network : networkManager.getNetworks()) {
-				if (network.getWorld().getDimension() != context.world().getDimension()) continue;
-				Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
-				int color = network.getColor();
-				float[] colors = PastelRenderHelper.unpackNormalizedColor(color);
-
-				for (DefaultEdge edge : graph.edgeSet()) {
-					PastelNodeBlockEntity source = graph.getEdgeSource(edge);
-					PastelNodeBlockEntity target = graph.getEdgeTarget(edge);
-
-					final MatrixStack matrices = context.matrixStack();
-					final Vec3d pos = context.camera().getPos();
-					matrices.push();
-					matrices.translate(-pos.x, -pos.y, -pos.z);
-					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source.getPos(), target.getPos());
-					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
-					
-					if (MinecraftClient.getInstance().options.debugEnabled) {
-						Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(source.getPos()));
-						Vec3d normalized = offset.normalize();
-						Matrix4f positionMatrix = context.matrixStack().peek().getPositionMatrix();
-						PastelRenderHelper.renderDebugLine(context.consumers(), color, offset, normalized, positionMatrix);
-					}
-					matrices.pop();
-				}
-			}
+			Pastel.getClientInstance().renderLines(context);
 		});
 		
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
@@ -165,7 +133,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		logInfo("Client startup completed!");
 	}
-
+	
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {

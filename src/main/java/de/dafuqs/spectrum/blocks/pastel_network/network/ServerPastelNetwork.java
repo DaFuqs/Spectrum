@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.nbt.*;
@@ -9,55 +8,23 @@ import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import org.jgrapht.*;
-import org.jgrapht.alg.connectivity.*;
-import org.jgrapht.graph.*;
 
 import java.util.*;
 
 public class ServerPastelNetwork extends PastelNetwork {
 	
-	public static final int START_TRANSFER_EVERY_X_TICKS = 10;
-	private final TickLooper tickLooper = new TickLooper(START_TRANSFER_EVERY_X_TICKS);
+	// new transfers are checked for every 10 ticks
+	private final TickLooper transferLooper = new TickLooper(10);
 	
 	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
-	protected final ServerPastelTransmissionLogic serverPastelTransmissionLogic;
+	protected final PastelTransmissionLogic transmissionLogic;
 	
 	public ServerPastelNetwork(World world, @Nullable UUID uuid) {
 		super(world, uuid);
-		this.serverPastelTransmissionLogic = new ServerPastelTransmissionLogic(this);
+		this.transmissionLogic = new PastelTransmissionLogic(this);
 	}
 	
-	public void checkNetworkMergesForNewNode(PastelNodeBlockEntity newNode) {
-        int biggestNetworkNodeCount = this.getNodeCount();
-        PastelNetwork biggestNetwork = this;
-        List<PastelNetwork> networksToMerge = new ArrayList<>();
-
-        for (PastelNetwork currentNetwork : Pastel.getServerInstance().networks) {
-            if (currentNetwork == this) {
-                continue;
-            }
-            if (currentNetwork.canConnect(newNode)) {
-                if (currentNetwork.getNodeCount() > biggestNetworkNodeCount) {
-                    networksToMerge.add(biggestNetwork);
-                    biggestNetwork = currentNetwork;
-                } else {
-                    networksToMerge.add(currentNetwork);
-                }
-                break;
-            }
-        }
-
-        if (networksToMerge.size() == 0) {
-            return;
-        }
-
-        for (PastelNetwork networkToMerge : networksToMerge) {
-            ((ServerPastelNetwork) biggestNetwork).incorporate(networkToMerge);
-        }
-    }
-
-    public void incorporate(PastelNetwork networkToIncorporate) {
+	public void incorporate(PastelNetwork networkToIncorporate) {
         for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
             PastelNodeType type = nodesToIncorporate.getKey();
             for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
@@ -65,62 +32,31 @@ public class ServerPastelNetwork extends PastelNetwork {
                 nodeToIncorporate.setNetwork(this);
             }
         }
-        this.graph = null;
-		serverPastelTransmissionLogic.invalidateCache();
-		Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
+		this.graph = null;
+		this.transmissionLogic.invalidateCache();
 	}
 	
 	@Override
 	public void addNode(PastelNodeBlockEntity node) {
 		super.addNode(node);
-		serverPastelTransmissionLogic.invalidateCache();
+		this.transmissionLogic.invalidateCache();
 	}
 	
 	@Override
 	public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
-		if (!hadNode) {
-			return false;
-		}
-		
-		if (hasNodes()) {
-			if (this.graph != null) {
-				// delete the now removed node from this networks graph
-				this.graph.removeVertex(node);
-				serverPastelTransmissionLogic.invalidateCache();
-            }
-            Graph<PastelNodeBlockEntity, DefaultEdge> graph = getGraph();
-
-            // check if the removed node split the network into subnetworks
-            ConnectivityInspector<PastelNodeBlockEntity, DefaultEdge> connectivityInspector = new ConnectivityInspector<>(graph);
-            List<Set<PastelNodeBlockEntity>> connectedSets = connectivityInspector.connectedSets();
-            if (connectedSets.size() != 1) {
-                for (int i = 1; i < connectedSets.size(); i++) {
-                    Set<PastelNodeBlockEntity> disconnectedNodes = connectedSets.get(i);
-                    PastelNetwork newNetwork = Pastel.getServerInstance().createNetwork(this.world, null);
-                    for (PastelNodeBlockEntity disconnectedNode : disconnectedNodes) {
-                        this.nodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
-                        getGraph().removeVertex(disconnectedNode);
-                        newNetwork.addNode(disconnectedNode);
-                        disconnectedNode.setNetwork(newNetwork);
-					}
-				}
-			}
-			return true;
-		} else if (reason == NodeRemovalReason.BROKEN || reason == NodeRemovalReason.MOVED) {
-			Pastel.getServerInstance().remove(this);
-		}
-		return false;
+		boolean result = super.removeNode(node, reason);
+		this.transmissionLogic.invalidateCache();
+		return result;
 	}
 	
 	@Override
 	public void tick() {
 		this.transmissions.tick();
 		
-		this.tickLooper.tick();
-		if (this.tickLooper.reachedCap()) {
-			this.tickLooper.reset();
-			this.serverPastelTransmissionLogic.tick();
+		this.transferLooper.tick();
+		if (this.transferLooper.reachedCap()) {
+			this.transferLooper.reset();
+			this.transmissionLogic.tick();
 		}
 	}
 	
@@ -134,7 +70,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 		NbtCompound compound = new NbtCompound();
 		compound.putUuid("UUID", this.uuid);
 		compound.putString("World", this.world.getRegistryKey().getValue().toString());
-		compound.put("Looper", this.tickLooper.toNbt());
+		compound.put("Looper", this.transferLooper.toNbt());
 		
 		NbtList transmissionList = new NbtList();
         for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
@@ -154,7 +90,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 	
 		ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
 		if (compound.contains("Looper", NbtElement.COMPOUND_TYPE)) {
-			network.tickLooper.readNbt(compound.getCompound("Looper"));
+			network.transferLooper.readNbt(compound.getCompound("Looper"));
 		}
 	
 		for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {

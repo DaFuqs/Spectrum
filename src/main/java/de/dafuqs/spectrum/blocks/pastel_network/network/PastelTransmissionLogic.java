@@ -15,22 +15,23 @@ import org.jgrapht.graph.*;
 
 import java.util.*;
 
-public class ServerPastelTransmissionLogic {
-
+public class PastelTransmissionLogic {
+    
     private enum TransferMode {
         PUSH,
         PULL,
         PUSH_PULL
     }
-
+    
     public static final int MAX_TRANSFER_AMOUNT = 1;
     public static final int TRANSFER_TICKS_PER_NODE = 30;
     private final ServerPastelNetwork network;
+    
     private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
     private Map<PastelNodeBlockEntity, Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>>> pathCache = new HashMap<>();
-
-
-    public ServerPastelTransmissionLogic(ServerPastelNetwork network) {
+    
+    
+    public PastelTransmissionLogic(ServerPastelNetwork network) {
         this.network = network;
     }
 
@@ -45,24 +46,24 @@ public class ServerPastelTransmissionLogic {
         }
 
         // cache hit?
-        Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> e = pathCache.getOrDefault(source, null);
+        Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> e = this.pathCache.getOrDefault(source, null);
         if (e != null) {
             if (e.containsKey(destination)) {
                 return e.get(destination);
             }
         }
-
+    
         // calculate and cache
-        ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = dijkstra.getPaths(source);
+        ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = this.dijkstra.getPaths(source);
         GraphPath<PastelNodeBlockEntity, DefaultEdge> path = paths.getPath(destination);
-        if (pathCache.containsKey(source)) {
-            pathCache.get(source).put(destination, path);
+        if (this.pathCache.containsKey(source)) {
+            this.pathCache.get(source).put(destination, path);
         } else {
             Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> newMap = new HashMap<>();
             newMap.put(destination, path);
-            pathCache.put(source, newMap);
+            this.pathCache.put(source, newMap);
         }
-
+    
         return path;
     }
 
@@ -74,11 +75,11 @@ public class ServerPastelTransmissionLogic {
 	}
 
     private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode) {
-        for (PastelNodeBlockEntity sourceNode : network.getNodes(sourceType)) {
+        for (PastelNodeBlockEntity sourceNode : this.network.getNodes(sourceType)) {
             if (!sourceNode.canTransfer()) {
                 continue;
             }
-
+        
             Storage<ItemVariant> sourceStorage = sourceNode.getConnectedStorage();
             if (sourceStorage != null && sourceStorage.supportsExtraction()) {
                 tryTransferToType(sourceNode, sourceStorage, destinationType, transferMode);
@@ -104,20 +105,20 @@ public class ServerPastelTransmissionLogic {
 
     private boolean transferBetween(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, Storage<ItemVariant> destinationStorage, TransferMode transferMode) {
         try (Transaction transaction = Transaction.openOuter()) {
-            ResourceAmount<ItemVariant> resourceAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
-            if (resourceAmount != null) {
-                int validAmount = (int) Math.min(resourceAmount.amount(), MAX_TRANSFER_AMOUNT);
-                validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount + destinationNode.getItemCountUnderway(), transaction);
-                validAmount = validAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
-                if (validAmount > 0) {
-                    sourceStorage.extract(resourceAmount.resource(), validAmount, transaction);
-                    Optional<PastelTransmission> optionalTransmission = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
+            ResourceAmount<ItemVariant> extractableAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
+            if (extractableAmount != null) {
+                int transferrableAmount = (int) Math.min(extractableAmount.amount(), MAX_TRANSFER_AMOUNT);
+                transferrableAmount = (int) destinationStorage.simulateInsert(extractableAmount.resource(), transferrableAmount + destinationNode.getItemCountUnderway(), transaction);
+                transferrableAmount = transferrableAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
+                if (transferrableAmount > 0) {
+                    sourceStorage.extract(extractableAmount.resource(), transferrableAmount, transaction);
+                    Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, extractableAmount.resource(), transferrableAmount);
                     if (optionalTransmission.isPresent()) {
                         PastelTransmission transmission = optionalTransmission.get();
                         int verticesCount = transmission.getNodePositions().size() - 1;
                         int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
                         this.network.addTransmission(transmission, travelTime);
-						SpectrumS2CPacketSender.sendPastelTransmissionParticle(network, travelTime, transmission);
+                        SpectrumS2CPacketSender.sendPastelTransmissionParticle(this.network, travelTime, transmission);
                         if (transferMode == TransferMode.PULL) {
                             destinationNode.markTransferred();
                         } else if (transferMode == TransferMode.PUSH) {
@@ -126,8 +127,8 @@ public class ServerPastelTransmissionLogic {
                             destinationNode.markTransferred();
                             sourceNode.markTransferred();
                         }
-
-                        destinationNode.addItemCountUnderway(validAmount);
+                
+                        destinationNode.addItemCountUnderway(transferrableAmount);
                         transaction.commit();
                         return true;
                     }
@@ -137,9 +138,9 @@ public class ServerPastelTransmissionLogic {
         }
         return false;
     }
-
-    public Optional<PastelTransmission> buildTransfer(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, int amount) {
-        GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(network.getGraph(), source, destination);
+    
+    public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, int amount) {
+        GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(this.network.getGraph(), source, destination);
         if (graphPath != null) {
             List<BlockPos> vertexPositions = new ArrayList<>();
             for (PastelNodeBlockEntity vertex : graphPath.getVertexList()) {

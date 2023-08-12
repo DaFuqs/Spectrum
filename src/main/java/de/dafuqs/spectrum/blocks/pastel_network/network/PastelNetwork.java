@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
@@ -82,20 +81,17 @@ public class PastelNetwork {
         }
     }
 
-    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+    protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
         boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
         if (!hadNode) {
             return false;
         }
-
+    
         if (this.graph != null) {
             // delete the now removed node from this networks graph
             this.graph.removeVertex(node);
         }
-
-        if (!this.hasNodes()) {
-            Pastel.getInstance(this.world.isClient).remove(this);
-        }
+    
         return true;
     }
 

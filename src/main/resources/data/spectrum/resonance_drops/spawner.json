@@ -1,6 +1,6 @@
 {
+  "type": "spectrum:drop_self",
   "block": "#spectrum:spawners",
-  "drop_self": true,
   "nbt_to_copy": [
     "SpawnData",
     "SpawnCount",

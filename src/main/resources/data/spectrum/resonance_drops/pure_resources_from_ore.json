@@ -1,4 +1,5 @@
 {
+  "type": "spectrum:modify_drops",
   "block": "#c:ores",
   "modify_drops": [
     {

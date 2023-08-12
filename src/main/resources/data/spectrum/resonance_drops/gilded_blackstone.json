@@ -1,4 +1,4 @@
 {
-  "block": "minecraft:gilded_blackstone",
-  "drop_self": true
+  "type": "spectrum:drop_self",
+  "block": "minecraft:gilded_blackstone"
 }

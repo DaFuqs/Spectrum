@@ -1,7 +1,7 @@
 {
+  "type": "spectrum:drop_self",
   "block": "minecraft:respawn_anchor",
-  "drop_self": true,
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "charges"
   ]
 }

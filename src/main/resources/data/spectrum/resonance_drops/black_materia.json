@@ -1,4 +1,4 @@
 {
-  "block": "spectrum:black_materia",
-  "drop_self": true
+  "type": "spectrum:drop_self",
+  "block": "spectrum:black_materia"
 }

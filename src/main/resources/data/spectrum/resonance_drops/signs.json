@@ -1,6 +1,6 @@
 {
+  "type": "spectrum:drop_self",
   "block": "#minecraft:signs",
-  "drop_self": true,
   "nbt_to_copy": [
     "GlowingText",
     "Color",

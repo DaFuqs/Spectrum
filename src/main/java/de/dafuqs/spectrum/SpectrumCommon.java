@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.data_loaders.resonance.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
@@ -211,9 +212,10 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 		
-		logInfo("Registering Dispenser & Present Unwrap Behaviors...");
+		logInfo("Registering Dispenser, Resonance & Present Unwrap Behaviors...");
 		SpectrumDispenserBehaviors.register();
 		SpectrumPresentUnpackBehaviors.register();
+		SpectrumResonanceProcessors.register();
 		
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();

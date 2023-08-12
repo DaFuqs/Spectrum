@@ -25,7 +25,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	public SpawnerChangeRecipe(Identifier identifier, IngredientStack ingredient) {
 		super(identifier, "spawner_manipulation", false, SpectrumCommon.locate("milestones/unlock_spawner_manipulation"),
 				IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)), ingredient, IngredientStack.of(Ingredient.ofItems(SpectrumItems.VEGETAL), Matchbook.empty(), null, 4),
-				SpectrumItems.SPAWNER.getDefaultStack(), 200, 0, true);
+				Items.SPAWNER.getDefaultStack(), 200, 0, true);
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 				
 				blockEntityTag = getSpawnerResultNbt(blockEntityTag, firstBowlStack, secondBowlStack);
 				
-				resultStack = SpectrumItems.SPAWNER.getDefaultStack();
+				resultStack = Items.SPAWNER.getDefaultStack();
 				NbtCompound outputNbt = resultStack.getOrCreateNbt();
 				outputNbt.put("BlockEntityTag", blockEntityTag);
 				resultStack.setNbt(outputNbt);

@@ -10,7 +10,7 @@
     "item": "minecraft:fermented_spider_eye"
   },
   "effect": "minecraft:darkness",
-  "base_duration_ticks": 400,
+  "base_duration_ticks": 600,
   "potency_modifier": 0.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,

@@ -39,7 +39,7 @@
     "monster": [
       {
         "type": "spectrum:eraser",
-        "weight": 100,
+        "weight": 50,
         "minCount": 4,
         "maxCount": 8
       },

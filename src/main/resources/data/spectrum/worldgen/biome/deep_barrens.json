@@ -38,12 +38,6 @@
     "misc": [],
     "monster": [
       {
-        "type": "spectrum:eraser",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
         "type": "minecraft:zombie",
         "weight": 100,
         "minCount": 4,

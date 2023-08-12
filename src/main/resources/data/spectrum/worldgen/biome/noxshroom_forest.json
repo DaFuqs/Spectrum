@@ -38,7 +38,7 @@
     "misc": [],
     "monster": [
       {
-        "type": "spectrum:eraser",
+        "type": "minecraft:cave_spider",
         "weight": 100,
         "minCount": 4,
         "maxCount": 8
@@ -52,12 +52,6 @@
       {
         "type": "minecraft:skeleton",
         "weight": 100,
-        "minCount": 4,
-        "maxCount": 4
-      },
-      {
-        "type": "minecraft:spider",
-        "weight": 10,
         "minCount": 4,
         "maxCount": 4
       }

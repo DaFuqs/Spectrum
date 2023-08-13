@@ -1,0 +1,24 @@
+{
+  "input": [
+    {
+      "item": "brewinandchewin:flaxen_cheese_wheel"
+    },
+    {
+      "item": "brewinandchewin:scarlet_cheese_wheel"
+    },
+    {
+      "item": "brewinandchewin:pizza"
+    }
+  ],
+  "state_tags_to_copy": [
+    "servings"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "brewinandchewin"
+      ]
+    }
+  ]
+}

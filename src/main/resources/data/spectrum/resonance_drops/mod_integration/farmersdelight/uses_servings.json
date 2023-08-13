@@ -1,0 +1,30 @@
+{
+  "input": [
+    {
+      "item": "farmersdelight:roast_chicken_block"
+    },
+    {
+      "item": "farmersdelight:stuffed_pumpkin_block"
+    },
+    {
+      "item": "farmersdelight:honey_glazed_ham_block"
+    },
+    {
+      "item": "farmersdelight:shepherds_pie_block"
+    },
+    {
+      "item": "farmersdelight:rice_roll_medley_block"
+    }
+  ],
+  "state_tags_to_copy": [
+    "servings"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ]
+}

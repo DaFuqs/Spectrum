@@ -1,0 +1,48 @@
+{
+  "input": [
+    {
+      "item": "bakery:bread_crate"
+    },
+    {
+      "item": "bakery:chocolate_box"
+    },
+    {
+      "item": "bakery:strawberry_cake"
+    },
+    {
+      "item": "bakery:sweetberry_cake"
+    },
+    {
+      "item": "bakery:chocolate_cake"
+    },
+    {
+      "item": "bakery:pudding"
+    },
+    {
+      "item": "bakery:bundt_cake"
+    },
+    {
+      "item": "bakery:linzer_tart"
+    },
+    {
+      "item": "bakery:apple_pie"
+    },
+    {
+      "item": "bakery:glowberry_tart"
+    },
+    {
+      "item": "bakery:chocolate_tart"
+    }
+  ],
+  "state_tags_to_copy": [
+    "cuts"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "bakery"
+      ]
+    }
+  ]
+}

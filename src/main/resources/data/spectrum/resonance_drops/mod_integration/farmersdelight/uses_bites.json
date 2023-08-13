@@ -1,0 +1,24 @@
+{
+  "input": [
+    {
+      "item": "farmersdelight:apple_pie"
+    },
+    {
+      "item": "farmersdelight:sweet_berry_cheesecake"
+    },
+    {
+      "item": "farmersdelight:chocolate_pie"
+    }
+  ],
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ]
+}

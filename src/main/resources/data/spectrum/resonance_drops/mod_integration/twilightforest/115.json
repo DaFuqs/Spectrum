@@ -1,0 +1,17 @@
+{
+  "input": {
+    "item": "twilightforest:experiment_115"
+  },
+  "state_tags_to_copy": [
+    "omnomnom",
+    "regenerate"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "twilightforest"
+      ]
+    }
+  ]
+}

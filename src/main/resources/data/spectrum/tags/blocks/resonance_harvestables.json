@@ -1,0 +1,252 @@
+{
+  "values": [
+    "#c:budding_blocks",
+    "#c:buds",
+    "#c:clusters",
+
+    "#spectrum:infested_blocks",
+    "#spectrum:spawners",
+    "spectrum:black_materia",
+
+    "#minecraft:signs",
+    "minecraft:gilded_blackstone",
+    "minecraft:respawn_anchor",
+    "minecraft:reinforced_deepslate",
+    "minecraft:sculk_shrieker",
+    "minecraft:cake",
+    "minecraft:frogspawn",
+
+    {
+      "id": "botania:enchanted_soil",
+      "required": false
+    },
+    {
+      "id": "#botania:floating_flowers",
+      "required": false
+    },
+
+    {
+      "id": "dishes:potatoeswithcurdcheese",
+      "required": false
+    },
+    {
+      "id": "dishes:tinypotatoeswithcurdcheese",
+      "required": false
+    },
+    {
+      "id": "dishes:schnitzel",
+      "required": false
+    },
+    {
+      "id": "dishes:spaghetti_bolognese",
+      "required": false
+    },
+    {
+      "id": "dishes:steak",
+      "required": false
+    },
+    {
+      "id": "dishes:hamburger",
+      "required": false
+    },
+    {
+      "id": "dishes:chickenburger",
+      "required": false
+    },
+    {
+      "id": "dishes:cheeseburger",
+      "required": false
+    },
+    {
+      "id": "dishes:spaceburger",
+      "required": false
+    },
+    {
+      "id": "dishes:fishandchips",
+      "required": false
+    },
+    {
+      "id": "dishes:borscht",
+      "required": false
+    },
+    {
+      "id": "dishes:pizzamargherita",
+      "required": false
+    },
+    {
+      "id": "dishes:pizzasalami",
+      "required": false
+    },
+    {
+      "id": "dishes:pizzaham",
+      "required": false
+    },
+    {
+      "id": "dishes:pizzatuna",
+      "required": false
+    },
+    {
+      "id": "dishes:pizzabacon",
+      "required": false
+    },
+
+    {
+      "id": "fabricaeexnihilo:end_cake",
+      "required": false
+    },
+
+    {
+      "id": "farmersdelight:organic_compost",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:apple_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cheesecake",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chocolate_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:roast_chicken_block",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:stuffed_pumpkin_block",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:honey_glazed_ham_block",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:shepherds_pie_block",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_roll_medley_block",
+      "required": false
+    },
+
+    {
+      "id": "bakery:bread_crate",
+      "required": false
+    },
+    {
+      "id": "bakery:chocolate_box",
+      "required": false
+    },
+    {
+      "id": "bakery:strawberry_cake",
+      "required": false
+    },
+    {
+      "id": "bakery:sweetberry_cake",
+      "required": false
+    },
+    {
+      "id": "bakery:chocolate_cake",
+      "required": false
+    },
+    {
+      "id": "bakery:pudding",
+      "required": false
+    },
+    {
+      "id": "bakery:bundt_cake",
+      "required": false
+    },
+    {
+      "id": "bakery:linzer_tart",
+      "required": false
+    },
+    {
+      "id": "bakery:apple_pie",
+      "required": false
+    },
+    {
+      "id": "bakery:glowberry_tart",
+      "required": false
+    },
+    {
+      "id": "bakery:chocolate_tart",
+      "required": false
+    },
+
+    {
+      "id": "brewinandchewin:quiche",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:fiery_fondue_pot",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:flaxen_cheese_wheel",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:scarlet_cheese_wheel",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:pizza",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:unripe_flaxen_cheese_wheel",
+      "required": false
+    },
+    {
+      "id": "brewinandchewin:unripe_scarlet_cheese_wheel",
+      "required": false
+    },
+
+    {
+      "id": "cacao:chocolate_cake",
+      "required": false
+    },
+
+    {
+      "id": "createaddition:chocolate_cake",
+      "required": false
+    },
+    {
+      "id": "createaddition:honey_cake",
+      "required": false
+    },
+
+    {
+      "id": "farmersrespite:coffee_cake",
+      "required": false
+    },
+    {
+      "id": "farmersrespite:rose_hip_pie",
+      "required": false
+    },
+
+    {
+      "id": "netherdepthsupgrade:nether_rice_roll_medley_block",
+      "required": false
+    },
+
+    {
+      "id": "nethersdelight:soul_compost",
+      "required": false
+    },
+
+    {
+      "id": "twilightforest:experiment_115",
+      "required": false
+    },
+
+    {
+      "id": "supplementaries:fodder",
+      "required": false
+    }
+  ]
+}

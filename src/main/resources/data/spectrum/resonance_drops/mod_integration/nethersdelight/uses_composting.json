@@ -1,0 +1,16 @@
+{
+  "input": {
+    "item": "nethersdelight:soul_compost"
+  },
+  "state_tags_to_copy": [
+    "composting"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "nethersdelight"
+      ]
+    }
+  ]
+}

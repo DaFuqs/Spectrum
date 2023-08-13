@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:explosion_modifier",
+  "time": 320,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "TTT",
+    "TMT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "spectrum:threat_conflux"
+    },
+    "M": {
+      "item": "spectrum:neolith"
+    }
+  },
+  "result": {
+    "item": "spectrum:threat_conflux",
+    "nbt": "{outputDisplay: \"spectrum:magic_damage\"}",
+    "count": 8
+  }
+}

@@ -1,6 +1,7 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.entity.entity.HypeEntity;
+import de.dafuqs.spectrum.items.ItemWithTooltip;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

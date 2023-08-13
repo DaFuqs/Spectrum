@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -27,8 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ThreatConfluxBlockEntity extends BlockEntity {
 
@@ -82,6 +80,9 @@ public class ThreatConfluxBlockEntity extends BlockEntity {
             blastDamage *= damageMod;
             killRadius *= Math.max((radiusMod - 1) / 3 + 1, 1);
             killDamage *= (damageMod - 1) / 2 + 1;
+            var effectDamage = explosionEffect.getDamageSource(ARCHETYPE, this);
+            if (effectDamage.isPresent())
+                damageSource = effectDamage.get();
         }
 
         var center = Vec3d.ofCenter(pos);
@@ -90,7 +91,7 @@ public class ThreatConfluxBlockEntity extends BlockEntity {
         world.playSound(null, center.getX(), center.getY(), center.getZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2F, 0.7F + world.getRandom().nextFloat() * 0.3F);
 
         if (world.isClient()) {
-            handleExplosionEffects(center, blastRadius);
+            handleExplosionEffects(center, explosionEffects, blastRadius);
             return;
         }
 
@@ -103,36 +104,40 @@ public class ThreatConfluxBlockEntity extends BlockEntity {
         affectedEntities = affectedEntities.stream().filter(entity -> entity.getPos().distanceTo(center) < finalBlastRadius).toList();
 
         for (Entity entity : affectedEntities) {
-            var entityDistance = entity.getPos().distanceTo(center);
+            var entityDistance = Math.max(entity.getPos().distanceTo(center) - entity.getWidth() / 2, 0);
             if (entityDistance <= killRadius) {
-                entity.damage(damageSource, entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) ? killDamage / 50F : killDamage);
+                entity.damage(damageSource, entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) ? killDamage / 25F : killDamage);
             }
             else {
-                var finalDamage = MathHelper.lerp(entity.getPos().distanceTo(center) / blastRadius, blastDamage, blastDamage / 2);
+                var finalDamage = MathHelper.lerp(entityDistance / blastRadius, blastDamage, blastDamage / 2);
                 entity.damage(damageSource, (float) finalDamage);
             }
         }
 
         for (ExplosionEffectModifier explosionEffect : explosionEffects) {
+            explosionEffect.applyToWorld(ARCHETYPE, world, center);
             explosionEffect.applyToBlocks(ARCHETYPE, world, blocks);
             explosionEffect.applyToEntities(ARCHETYPE, affectedEntities);
         }
     }
 
     @Environment(EnvType.CLIENT)
-    private void handleExplosionEffects(Vec3d center, double blastRadius) {
+    private void handleExplosionEffects(Vec3d center, List<ExplosionEffectModifier> effectModifiers, double blastRadius) {
         var random = world.getRandom();
+        var types = new ArrayList<>(effectModifiers.stream().map(mod -> mod.getParticleEffects(ARCHETYPE)).filter(Optional::isPresent).map(Optional::get).toList());
+        types.add(SpectrumParticleTypes.PRIMORDIAL_SMOKE);
 
         for (int i = 0; i < 30; i++) {
             world.addImportantParticle(SpectrumParticleTypes.PRIMORDIAL_FLAME, true, center.getX(), center.getY(), center.getZ(), random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25, random.nextFloat() * 0.5 - 0.25);
         }
 
-        var particles = blastRadius * 2 + random.nextInt((int) (blastRadius * blastRadius));
+        var particles = blastRadius * blastRadius + random.nextInt((int) (blastRadius * 2)) * (types.size() / 2 + 0.5);
         for (int i = 0; i < particles; i++) {
             var r = random.nextDouble() * blastRadius;
             var orientation = Orientation.create(random.nextDouble() * Math.PI * 2, random.nextDouble() * Math.PI * 2);
             var particle = orientation.toVector(r).add(center);
-            world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, particle.getX(), particle.getY(), particle.getZ(), 0, 0, 0);
+            Collections.shuffle(types);
+            world.addParticle(types.get(0), particle.getX(), particle.getY(), particle.getZ(), 0, 0, 0);
         }
     }
 

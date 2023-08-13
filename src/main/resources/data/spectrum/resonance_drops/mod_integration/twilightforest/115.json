@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "twilightforest:experiment_115"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "twilightforest:experiment_115"
+    ]
   },
   "state_tags_to_copy": [
     "omnomnom",

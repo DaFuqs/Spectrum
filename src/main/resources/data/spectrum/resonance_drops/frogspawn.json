@@ -1,6 +1,8 @@
 {
   "type": "spectrum:drop_self",
   "block": {
-    "tag": "c:clusters"
+    "blocks": [
+      "minecraft:frogspawn"
+    ]
   }
 }

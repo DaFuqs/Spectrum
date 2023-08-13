@@ -1,15 +1,12 @@
 {
-  "input": [
-    {
-      "item": "farmersdelight:apple_pie"
-    },
-    {
-      "item": "farmersdelight:sweet_berry_cheesecake"
-    },
-    {
-      "item": "farmersdelight:chocolate_pie"
-    }
-  ],
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "farmersdelight:apple_pie",
+      "farmersdelight:sweet_berry_cheesecake",
+      "farmersdelight:chocolate_pie"
+    ]
+  },
   "state_tags_to_copy": [
     "bites"
   ],

@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "nethersdelight:soul_compost"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "nethersdelight:soul_compost"
+    ]
   },
   "state_tags_to_copy": [
     "composting"

@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "fabricaeexnihilo:end_cake"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "fabricaeexnihilo:end_cake"
+    ]
   },
   "state_tags_to_copy": [
     "bites"

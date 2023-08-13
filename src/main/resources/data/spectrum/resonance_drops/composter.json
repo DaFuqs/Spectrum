@@ -2,10 +2,10 @@
   "type": "spectrum:drop_self",
   "block": {
     "blocks": [
-      "minecraft:cake"
+      "minecraft:composter"
     ]
   },
   "state_properties_to_copy": [
-    "bites"
+    "level"
   ]
 }

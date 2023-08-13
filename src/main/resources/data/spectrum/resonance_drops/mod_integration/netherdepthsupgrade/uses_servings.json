@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "netherdepthsupgrade:nether_rice_roll_medley_block"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "netherdepthsupgrade:nether_rice_roll_medley_block"
+    ]
   },
   "state_tags_to_copy": [
     "servings"

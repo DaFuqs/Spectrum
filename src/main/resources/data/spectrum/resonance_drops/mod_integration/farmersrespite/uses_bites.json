@@ -1,12 +1,11 @@
 {
-  "input": [
-    {
-      "item": "farmersrespite:coffee_cake"
-    },
-    {
-      "item": "farmersrespite:rose_hip_pie"
-    }
-  ],
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "farmersrespite:coffee_cake",
+      "farmersrespite:rose_hip_pie"
+    ]
+  },
   "state_tags_to_copy": [
     "bites"
   ],

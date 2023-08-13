@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "dishes:borscht"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "dishes:borscht"
+    ]
   },
   "state_tags_to_copy": [
     "sips"

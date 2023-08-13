@@ -1,12 +1,11 @@
 {
-  "input": [
-    {
-      "item": "brewinandchewin:unripe_flaxen_cheese_wheel"
-    },
-    {
-      "item": "brewinandchewin:unripe_scarlet_cheese_wheel"
-    }
-  ],
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "brewinandchewin:unripe_flaxen_cheese_wheel",
+      "brewinandchewin:unripe_scarlet_cheese_wheel"
+    ]
+  },
   "state_tags_to_copy": [
     "age"
   ],

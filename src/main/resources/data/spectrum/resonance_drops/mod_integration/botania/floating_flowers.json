@@ -1,5 +1,6 @@
 {
-  "input": {
+  "type": "spectrum:drop_self",
+  "block": {
     "tag": "botania:floating_flowers"
   },
   "nbt_to_copy": [

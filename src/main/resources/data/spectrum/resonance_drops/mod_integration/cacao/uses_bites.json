@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "cacao:chocolate_cake"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "cacao:chocolate_cake"
+    ]
   },
   "state_tags_to_copy": [
     "bites"

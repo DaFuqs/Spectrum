@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "supplementaries:fodder"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "supplementaries:fodder"
+    ]
   },
   "state_tags_to_copy": [
     "layers"

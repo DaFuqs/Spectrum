@@ -1,4 +1,6 @@
 {
   "type": "spectrum:drop_self",
-  "block": "#c:infested_blocks"
+  "block": {
+    "tag": "c:infested_blocks"
+  }
 }

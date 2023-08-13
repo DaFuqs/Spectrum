@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "brewinandchewin:quiche"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "brewinandchewin:quiche"
+    ]
   },
   "state_tags_to_copy": [
     "bites"

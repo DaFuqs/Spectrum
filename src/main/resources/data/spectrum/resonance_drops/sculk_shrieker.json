@@ -1,6 +1,10 @@
 {
   "type": "spectrum:drop_self",
-  "block": "minecraft:sculk_shrieker",
+  "block": {
+    "blocks": [
+      "minecraft:sculk_shrieker"
+    ]
+  },
   "state_properties_to_copy": [
     "can_summon"
   ]

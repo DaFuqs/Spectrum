@@ -1,6 +1,10 @@
 {
   "type": "spectrum:drop_self",
-  "block": "minecraft:respawn_anchor",
+  "block": {
+    "blocks": [
+      "minecraft:respawn_anchor"
+    ]
+  },
   "state_properties_to_copy": [
     "charges"
   ]

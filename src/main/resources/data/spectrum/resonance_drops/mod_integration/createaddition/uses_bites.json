@@ -1,12 +1,11 @@
 {
-  "input": [
-    {
-      "item": "createaddition:chocolate_cake"
-    },
-    {
-      "item": "createaddition:honey_cake"
-    }
-  ],
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "createaddition:chocolate_cake",
+      "createaddition:honey_cake"
+    ]
+  },
   "state_tags_to_copy": [
     "bites"
   ],

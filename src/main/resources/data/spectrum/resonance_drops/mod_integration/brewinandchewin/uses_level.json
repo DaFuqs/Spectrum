@@ -1,6 +1,9 @@
 {
-  "input": {
-    "item": "brewinandchewin:fiery_fondue_pot"
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "brewinandchewin:fiery_fondue_pot"
+    ]
   },
   "state_tags_to_copy": [
     "level"

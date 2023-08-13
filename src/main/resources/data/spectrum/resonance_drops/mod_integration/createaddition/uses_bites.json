@@ -1,0 +1,21 @@
+{
+  "input": [
+    {
+      "item": "createaddition:chocolate_cake"
+    },
+    {
+      "item": "createaddition:honey_cake"
+    }
+  ],
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "createaddition"
+      ]
+    }
+  ]
+}

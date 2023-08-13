@@ -1,0 +1,60 @@
+{
+  "input": [
+    {
+      "item": "dishes:potatoeswithcurdcheese"
+    },
+    {
+      "item": "dishes:tinypotatoeswithcurdcheese"
+    },
+    {
+      "item": "dishes:schnitzel"
+    },
+    {
+      "item": "dishes:spaghetti_bolognese"
+    },
+    {
+      "item": "dishes:steak"
+    },
+    {
+      "item": "dishes:hamburger"
+    },
+    {
+      "item": "dishes:chickenburger"
+    },
+    {
+      "item": "dishes:cheeseburger"
+    },
+    {
+      "item": "dishes:spaceburger"
+    },
+    {
+      "item": "dishes:fishandchips"
+    },
+    {
+      "item": "dishes:pizzamargherita"
+    },
+    {
+      "item": "dishes:pizzasalami"
+    },
+    {
+      "item": "dishes:pizzaham"
+    },
+    {
+      "item": "dishes:pizzatuna"
+    },
+    {
+      "item": "dishes:pizzabacon"
+    }
+  ],
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "dishes"
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.recipe.ink_converting.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.dynamic.ExplosionModifierRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -21,6 +22,9 @@ public class SpectrumRecipeTypes {
 	public static final String PEDESTAL_RECIPE_ID = "pedestal";
 	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
 	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
+
+	public static final String PEDESTAL_EXPLOSION_MODIFIER_RECIPE_ID = "explosion_modifier";
+	public static RecipeType<ExplosionModifierRecipe> PEDESTAL_EXPLOSION_MODIFIER;
 	
 	public static final String ANVIL_CRUSHING_ID = "anvil_crushing";
 	public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
@@ -102,6 +106,9 @@ public class SpectrumRecipeTypes {
 	public static void registerSerializer() {
 		PEDESTAL_RECIPE_SERIALIZER = registerSerializer(PEDESTAL_RECIPE_ID, new PedestalCraftingRecipeSerializer(PedestalCraftingRecipe::new));
 		PEDESTAL = registerRecipeType(PEDESTAL_RECIPE_ID);
+
+		PEDESTAL_RECIPE_SERIALIZER = registerSerializer(PEDESTAL_EXPLOSION_MODIFIER_RECIPE_ID, new PedestalCraftingRecipeSerializer(ExplosionModifierRecipe::new));
+		PEDESTAL_EXPLOSION_MODIFIER = registerRecipeType(PEDESTAL_EXPLOSION_MODIFIER_RECIPE_ID);
 		
 		ANVIL_CRUSHING_RECIPE_SERIALIZER = registerSerializer(ANVIL_CRUSHING_ID, new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
 		ANVIL_CRUSHING = registerRecipeType(ANVIL_CRUSHING_ID);

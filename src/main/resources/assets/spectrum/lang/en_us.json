@@ -3417,6 +3417,14 @@
   "potion.potency.29": "XXIX",
   "potion.potency.30": "XXX",
 
+  "exMod.spectrum.amalgam": "Empowered Payload",
+  "exMod.spectrum.starry": "Starry",
+  "exMod.spectrum.lightning_damage": "Zappy",
+  "exMod.spectrum.magic_damage": "Enscrollserating",
+  "exMod.spectrum.looting_damage": "Payday",
+  "exMod.spectrum.primordial_fire_damage": "This is a bad idea",
+
+
   "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger That",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",

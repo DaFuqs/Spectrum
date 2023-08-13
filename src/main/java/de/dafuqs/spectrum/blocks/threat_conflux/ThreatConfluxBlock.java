@@ -2,16 +2,21 @@ package de.dafuqs.spectrum.blocks.threat_conflux;
 
 import de.dafuqs.spectrum.blocks.FluidLogging;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -27,6 +32,31 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
     public ThreatConfluxBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(ARMED, false).with(LOGGED, FluidLogging.State.NOT_LOGGED));
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (state.get(ARMED)) {
+            var be = world.getBlockEntity(pos);
+            if (be instanceof ThreatConfluxBlockEntity threatConflux)
+                threatConflux.explode(world, pos);
+        }
+        super.onBreak(world, pos, state, player);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        var handStack = player.getStackInHand(hand);
+        if (handStack.isOf(SpectrumItems.MIDNIGHT_CHIP)) {
+            world.setBlockState(pos, state.with(ARMED, false));
+            world.breakBlock(pos, false);
+
+            if (!player.isCreative())
+                handStack.decrement(1);
+
+            return ActionResult.success(world.isClient());
+        }
+        return super.onUse(state, world, pos, player, hand, hit);
     }
 
     @Override
@@ -51,6 +81,11 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, SpectrumBlockEntities.THREAT_CONFLUX, ThreatConfluxBlockEntity::tick);
+    }
+
+    @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return true;
     }
 
     @Nullable

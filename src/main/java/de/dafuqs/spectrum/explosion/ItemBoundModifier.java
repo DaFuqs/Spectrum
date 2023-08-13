@@ -14,8 +14,8 @@ public abstract class ItemBoundModifier extends ExplosionEffectModifier {
     @Immutable
     public final List<Item> mappingItems;
 
-    protected ItemBoundModifier(Identifier id, ExplosionEffectFamily family, Item ... mappings) {
-        super(id, family);
+    protected ItemBoundModifier(Identifier id, ExplosionEffectFamily family, int color, Item ... mappings) {
+        super(id, family, color);
         mappingItems = List.of(mappings);
         mappingItems.forEach(item -> addMapping(item, this));
     }

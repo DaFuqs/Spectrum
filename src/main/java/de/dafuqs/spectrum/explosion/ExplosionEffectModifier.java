@@ -6,8 +6,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -20,10 +25,14 @@ public abstract class ExplosionEffectModifier {
 
     public final Identifier id;
     public final ExplosionEffectFamily family;
+    public final String translationKey;
+    public final int displayColor;
 
-    protected ExplosionEffectModifier(Identifier id, ExplosionEffectFamily family) {
+    protected ExplosionEffectModifier(Identifier id, ExplosionEffectFamily family, int color) {
         this.id = id;
         this.family = family;
+        this.translationKey = Util.createTranslationKey("exMod", id);
+        this.displayColor = color;
     }
 
     @ApiStatus.OverrideOnly
@@ -36,6 +45,9 @@ public abstract class ExplosionEffectModifier {
 
     @ApiStatus.OverrideOnly
     public abstract void applyToBlocks(Archetype archetype, @NotNull World world, @NotNull List<BlockPos> blocks);
+
+    @ApiStatus.OverrideOnly
+    public abstract void applyToWorld(Archetype archetype, @NotNull World world, @NotNull Vec3d center);
 
     @ApiStatus.OverrideOnly
     public float getBlastPowerModifer(Archetype archetype, BlockEntity blockEntity) {
@@ -60,6 +72,15 @@ public abstract class ExplosionEffectModifier {
     @ApiStatus.OverrideOnly
     public Optional<DamageSource> getDamageSource(Archetype archetype, BlockEntity blockEntity) {
         return Optional.empty();
+    }
+
+    @ApiStatus.OverrideOnly
+    public Optional<ParticleEffect> getParticleEffects(Archetype archetype) {
+        return Optional.empty();
+    }
+
+    public Text getName() {
+        return Text.translatable(translationKey).styled(style -> style.withColor(displayColor).withItalic(true));
     }
 
     public static List<ExplosionEffectModifier> decode(NbtCompound nbt) {
@@ -99,7 +120,7 @@ public abstract class ExplosionEffectModifier {
     }
 
     public static void encodeStack(ItemStack stack, List<ExplosionEffectModifier> effectModifiers) {
-        encode(stack.getNbt(), effectModifiers);
+        encode(stack.getOrCreateNbt(), effectModifiers);
     }
 
     @Override

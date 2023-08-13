@@ -29,8 +29,6 @@ public abstract class BlockMixin {
 	@Unique
 	@Nullable PlayerEntity spectrum$breakingPlayer;
 	
-	private static boolean spectrum$resonanceDrop;
-	
 	@ModifyReturnValue(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"))
 	private static List<ItemStack> spectrum$getDroppedStacks(List<ItemStack> original, BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack) {
 		List<ItemStack> droppedStacks = original;
@@ -45,7 +43,6 @@ public abstract class BlockMixin {
 		
 		// Resonance: drop self or modify drops for some items
 		if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-			
 			ResonanceDropsDataLoader.applyResonance(state, blockEntity, droppedStacks);
 		}
 		

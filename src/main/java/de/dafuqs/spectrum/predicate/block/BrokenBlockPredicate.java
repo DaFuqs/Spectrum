@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.progression.advancement;
+package de.dafuqs.spectrum.predicate.block;
 
 import com.google.common.collect.*;
 import com.google.gson.*;
@@ -20,11 +20,7 @@ import java.util.*;
  */
 public class BrokenBlockPredicate {
 	
-	public static final BrokenBlockPredicate ANY;
-	
-	static {
-		ANY = new BrokenBlockPredicate(null, null, StatePredicate.ANY);
-	}
+	public static final BrokenBlockPredicate ANY = new BrokenBlockPredicate(null, null, StatePredicate.ANY);
 	
 	@Nullable
 	private final TagKey<Block> tag;
@@ -106,10 +102,8 @@ public class BrokenBlockPredicate {
 	}
 	
 	public static class Builder {
-		@Nullable
-		private Set<Block> blocks;
-		@Nullable
-		private TagKey<Block> tag;
+		private @Nullable Set<Block> blocks;
+		private @Nullable TagKey<Block> tag;
 		private StatePredicate state;
 		
 		private Builder() {

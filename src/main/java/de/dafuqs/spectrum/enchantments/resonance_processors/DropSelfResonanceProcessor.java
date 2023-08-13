@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.enchantments.resonance_processors;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.data_loaders.resonance.*;
+import de.dafuqs.spectrum.predicate.block.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
@@ -17,7 +18,7 @@ public class DropSelfResonanceProcessor extends ResonanceDropProcessor {
 		
 		@Override
 		public ResonanceDropProcessor fromJson(JsonObject json) {
-			ResonanceBlockTarget blockTarget = new ResonanceBlockTarget(json.get("block").getAsString());
+			BrokenBlockPredicate blockTarget = BrokenBlockPredicate.fromJson(json.get("block"));
 			
 			List<String> statePropertiesToCopy = new ArrayList<>();
 			if (json.has("state_properties_to_copy")) {
@@ -43,7 +44,7 @@ public class DropSelfResonanceProcessor extends ResonanceDropProcessor {
 	public List<String> statePropertiesToCopy;
 	public boolean includeDefaultStateProperties;
 	
-	public DropSelfResonanceProcessor(ResonanceBlockTarget blockTarget, List<String> nbtToCopy, List<String> statePropertiesToCopy, boolean includeDefaultStateProperties) {
+	public DropSelfResonanceProcessor(BrokenBlockPredicate blockTarget, List<String> nbtToCopy, List<String> statePropertiesToCopy, boolean includeDefaultStateProperties) {
 		super(blockTarget);
 		this.nbtToCopy = nbtToCopy;
 		this.statePropertiesToCopy = statePropertiesToCopy;
@@ -51,9 +52,9 @@ public class DropSelfResonanceProcessor extends ResonanceDropProcessor {
 	}
 	
 	@Override
-	public boolean process(BlockState minedState, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
-		if (blockTarget.test(minedState)) {
-			dropSelf(minedState, blockEntity, droppedStacks);
+	public boolean process(BlockState state, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
+		if (blockPredicate.test(state)) {
+			dropSelf(state, blockEntity, droppedStacks);
 			ResonanceDropsDataLoader.preventNextXPDrop = true;
 			return true;
 		}

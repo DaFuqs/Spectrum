@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_koi": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:koi"
+          }
+        ]
+      }
+    }
+  }
+}

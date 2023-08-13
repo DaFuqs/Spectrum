@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "has_crawfish": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:crawfish"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
 {
   "name": "Dragonrot Swamp",
   "advancement": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp",
-  "icon": "spectrum:dragonrot_bucket",
+  "icon": "spectrum:rotten_ground",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
-    "spectrum:snapping_ivy": 0
+    "spectrum:snapping_ivy": 0,
+    "spectrum:rotten_ground": 0
   },
   "pages": [
     {
@@ -14,16 +15,17 @@
         "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
       ],
       "border": true,
-      "text": ""
-    },
-    {
-      "type": "patchouli:text",
-      "text": "It is not water that gives the biome its distinctive name. Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.$(br)An acidic smell lingers in the air."
+      "text": "Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.$(br)An acidic smell lingers in the air."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:snapping_ivy",
       "text": "These small plants spread over the ground like ivy. In small clusters they grow in a clump of snapping green. When you fertilize them, they spread even further."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:rotten_ground",
+      "text": "It's not dirt, it's not mud, it's... something - You don't know what. In any case, one sinks in a bit."
     }
   ]
 }

@@ -14,20 +14,20 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FerociousGlassAmpouleItem extends BaseGlassAmpouleItem {
+public class BloodstoneGlassAmpouleItem extends BaseGlassAmpouleItem {
 	
 	protected static final float EXTRA_REACH = 12.0F;
 	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
 	
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
-	public FerociousGlassAmpouleItem(Settings settings) {
+	public BloodstoneGlassAmpouleItem(Settings settings) {
 		super(settings);
 		
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", EXTRA_REACH, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
-    }
+	}
     
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
@@ -47,8 +47,8 @@ public class FerociousGlassAmpouleItem extends BaseGlassAmpouleItem {
     
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.translatable("item.spectrum.ferocious_glass_ampoule.tooltip").formatted(Formatting.GRAY));
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.bloodstone_glass_ampoule.tooltip").formatted(Formatting.GRAY));
     }
     
 }

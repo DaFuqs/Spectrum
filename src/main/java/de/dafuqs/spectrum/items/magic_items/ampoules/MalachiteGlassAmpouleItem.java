@@ -15,9 +15,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FractalGlassAmpouleItem extends BaseGlassAmpouleItem implements InkPoweredPotionFillable {
+public class MalachiteGlassAmpouleItem extends BaseGlassAmpouleItem implements InkPoweredPotionFillable {
     
-    public FractalGlassAmpouleItem(Settings settings) {
+    public MalachiteGlassAmpouleItem(Settings settings) {
         super(settings);
     }
     
@@ -49,8 +49,8 @@ public class FractalGlassAmpouleItem extends BaseGlassAmpouleItem implements Ink
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.translatable("item.spectrum.fractal_glass_ampoule.tooltip").formatted(Formatting.GRAY));
-        appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.fractal_glass_ampoule.tooltip"), false);
+        tooltip.add(Text.translatable("item.spectrum.malachite_glass_ampoule.tooltip").formatted(Formatting.GRAY));
+        appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.malachite_glass_ampoule.tooltip"), false);
     }
     
 }

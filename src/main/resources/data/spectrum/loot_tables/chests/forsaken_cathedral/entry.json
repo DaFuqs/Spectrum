@@ -42,7 +42,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:glass_ampoule"
+          "name": "spectrum:azurite_glass_ampoule"
         }
       ],
       "functions": [

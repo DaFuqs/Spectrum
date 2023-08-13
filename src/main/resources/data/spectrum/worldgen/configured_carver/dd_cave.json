@@ -21,7 +21,7 @@
     "lava_level": {
       "above_bottom": 0
     },
-    "replaceable": "#minecraft:overworld_carver_replaceables",
+    "replaceable": "#spectrum:deeper_down_carver_replaceables",
     "debug_settings": {
       "air_state": {
         "Name": "minecraft:crimson_button",

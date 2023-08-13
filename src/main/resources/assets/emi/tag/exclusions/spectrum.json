@@ -4,6 +4,7 @@
     "spectrum:indestructible_blacklisted",
     "spectrum:no_cinderhearth_doubling",
     "spectrum:trinkets",
+    "spectrum:uses_water_pathfinding",
     "things:hardening_catalyst_blacklist"
   ]
 }

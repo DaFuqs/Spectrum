@@ -1,117 +1,157 @@
 package de.dafuqs.spectrum.blocks.threat_conflux;
 
-import de.dafuqs.spectrum.blocks.FluidLogging;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.SpectrumFluidLoggable {
-
-    public static final BooleanProperty ARMED = BooleanProperty.of("armed");
-    public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
-    public static final VoxelShape UNARMED_SHAPE, ARMED_SHAPE;
-
-    public ThreatConfluxBlock(Settings settings) {
-        super(settings);
-        setDefaultState(getDefaultState().with(ARMED, false).with(LOGGED, FluidLogging.State.NOT_LOGGED));
-    }
-
-    @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(ARMED)) {
-            var be = world.getBlockEntity(pos);
-            if (be instanceof ThreatConfluxBlockEntity threatConflux)
-                threatConflux.explode(world, pos);
-        }
-        super.onBreak(world, pos, state, player);
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        var handStack = player.getStackInHand(hand);
-        if (handStack.isOf(SpectrumItems.MIDNIGHT_CHIP)) {
-            world.setBlockState(pos, state.with(ARMED, false));
-            world.breakBlock(pos, false);
-
-            if (!player.isCreative())
-                handStack.decrement(1);
-
-            return ActionResult.success(world.isClient());
-        }
-        return super.onUse(state, world, pos, player, hand, hit);
-    }
-
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        var be = world.getBlockEntity(pos);
-        if (be instanceof ThreatConfluxBlockEntity conflux) {
-            conflux.parseStack(itemStack);
-        }
-        super.onPlaced(world, pos, state, placer, itemStack);
-    }
-
-    @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        var be = world.getBlockEntity(pos);
-        if (be instanceof ThreatConfluxBlockEntity conflux) {
-            conflux.tryDetonate(state);
-        }
-        super.onEntityCollision(state, world, pos, entity);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, SpectrumBlockEntities.THREAT_CONFLUX, ThreatConfluxBlockEntity::tick);
-    }
-
-    @Override
-    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new ThreatConfluxBlockEntity(pos, state);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return state.get(ARMED) ? ARMED_SHAPE : UNARMED_SHAPE;
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(ARMED, LOGGED);
-    }
-
-    static {
-        UNARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 3, 16);
-        ARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 0.125, 16);
-    }
+	
+	public enum ArmedState implements StringIdentifiable {
+		NOT_ARMED("not_armed", false),
+		ARMED("armed", true),
+		FUSED("fused", true);
+		
+		private final String name;
+		private final boolean explodesWhenBroken;
+		
+		ArmedState(String name, boolean explodesWhenBroken) {
+			this.name = name;
+			this.explodesWhenBroken = explodesWhenBroken;
+		}
+		
+		@Override
+		public String asString() {
+			return this.name;
+		}
+		
+		public boolean explodesWhenBroken() {
+			return this.explodesWhenBroken;
+		}
+	}
+	
+	private static final int TICKS_TO_ARM = 50;
+	private static final int TICKS_TO_DETONATE = 20;
+	
+	public static final VoxelShape UNARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 3, 16);
+	public static final VoxelShape ARMED_SHAPE = Block.createCuboidShape(0, 0, 0, 16, 0.125, 16);
+	
+	public static final EnumProperty<ArmedState> ARMED = EnumProperty.of("armed", ArmedState.class);
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
+	
+	public ThreatConfluxBlock(Settings settings) {
+		super(settings);
+		setDefaultState(getDefaultState().with(ARMED, ArmedState.NOT_ARMED).with(LOGGED, FluidLogging.State.NOT_LOGGED));
+	}
+	
+	@Override
+	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!world.isClient && state.get(ARMED).explodesWhenBroken() && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity threatConflux) {
+			threatConflux.explode((ServerWorld) world, pos);
+		}
+		super.onBreak(world, pos, state, player);
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		var handStack = player.getStackInHand(hand);
+		if (state.get(ARMED).explodesWhenBroken() && handStack.isOf(SpectrumItems.MIDNIGHT_CHIP)) {
+			world.setBlockState(pos, state.with(ARMED, ArmedState.NOT_ARMED));
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_DISARM, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			
+			if (!world.isClient) {
+				ServerWorld serverWorld = ((ServerWorld) world);
+				for (int i = 0; i < 5; ++i) {
+					serverWorld.spawnParticles(ParticleTypes.SMOKE,
+							pos.getX() + serverWorld.random.nextDouble(), pos.getY() + serverWorld.random.nextDouble(), pos.getZ() + serverWorld.random.nextDouble(),
+							5, 0.0, 0.0, 0.0, 0.05);
+				}
+			}
+			
+			if (!player.isCreative()) {
+				handStack.decrement(1);
+			}
+			
+			return ActionResult.success(world.isClient());
+		}
+		
+		return super.onUse(state, world, pos, player, hand, hit);
+	}
+	
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		if (!world.isClient && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity conflux) {
+			conflux.parseStack(itemStack);
+			world.createAndScheduleBlockTick(pos, this, TICKS_TO_ARM);
+		}
+		
+		super.onPlaced(world, pos, state, placer, itemStack);
+	}
+	
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		if (state.get(ARMED) == ArmedState.ARMED) {
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundCategory.BLOCKS, 1, 2F);
+			world.setBlockState(pos, state.with(ARMED, ArmedState.FUSED));
+			world.createAndScheduleBlockTick(pos, this, TICKS_TO_DETONATE);
+		}
+		
+		super.onEntityCollision(state, world, pos, entity);
+	}
+	
+	@Override
+	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+		return true;
+	}
+	
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new ThreatConfluxBlockEntity(pos, state);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return state.get(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
+	}
+	
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.scheduledTick(state, world, pos, random);
+		
+		ArmedState s = state.get(ARMED);
+		if (s == ArmedState.NOT_ARMED) {
+			world.setBlockState(pos, state.with(ARMED, ArmedState.ARMED));
+			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_ARM, SoundCategory.BLOCKS, 2F, 0.1F + world.getRandom().nextFloat() * 0.3F);
+		} else if (s == ArmedState.FUSED && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity conflux) {
+			conflux.explode(world, pos);
+		}
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(ARMED, LOGGED);
+	}
+	
 }

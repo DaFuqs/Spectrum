@@ -45,6 +45,30 @@
       "spectrum:ground_slam4"
     ]
   },
+  "block.threat_conflux.arm": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.arm",
+    "sounds": [
+      "spectrum:crystal_ring_light"
+    ]
+  },
+  "block.threat_conflux.prime": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.prime",
+    "sounds": [
+      "spectrum:incandescent_charge"
+    ]
+  },
+  "block.threat_conflux.disarm": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.disarm",
+    "sounds": [
+      "random/fizz"
+    ]
+  },
+  "block.threat_conflux.explode": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.explode",
+    "sounds": [
+      "spectrum:threat_conflux.explode"
+    ]
+  },
   "bident_mirror_image_thrown": {
     "subtitle": "spectrum.subtitles.bident_mirror_image_thrown",
     "sounds": [

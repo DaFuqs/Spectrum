@@ -492,6 +492,11 @@
   "spectrum.subtitles.block.onyx_block.chime": "Onyx chimes",
   "spectrum.subtitles.block.moonstone_block.chime": "Moonstone chimes",
 
+  "spectrum.subtitles.block.threat_conflux.arm": "Threat Conflux arms",
+  "spectrum.subtitles.block.threat_conflux.prime": "Threat Conflux primes",
+  "spectrum.subtitles.block.threat_conflux.disarm": "Threat Conflux disarms",
+  "spectrum.subtitles.block.threat_conflux.explode": "Threat Conflux explodes",
+
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",

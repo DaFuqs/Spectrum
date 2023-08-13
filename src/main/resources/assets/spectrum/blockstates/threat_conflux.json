@@ -1,9 +1,12 @@
 {
   "variants": {
-    "armed=false": {
+    "armed=not_armed": {
       "model": "spectrum:block/threat_conflux"
     },
-    "armed=true": {
+    "armed=armed": {
+      "model": "spectrum:block/threat_conflux_armed"
+    },
+    "armed=fused": {
       "model": "spectrum:block/threat_conflux_armed"
     }
   }

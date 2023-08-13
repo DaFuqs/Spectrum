@@ -25,6 +25,7 @@ import de.dafuqs.spectrum.blocks.furniture.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
+import de.dafuqs.spectrum.blocks.incandescent_amalgam.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -51,7 +52,7 @@ import de.dafuqs.spectrum.blocks.weathering.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.enums.*;
-import de.dafuqs.spectrum.explosion.Archetype;
+import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
@@ -89,7 +90,6 @@ import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
 	
-	// PEDESTALS
 	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_TOPAZ);
 	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_AMETHYST);
@@ -112,7 +112,6 @@ public class SpectrumBlocks {
 	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.AMETHYST).breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
 	
-	// GEMS
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
 	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance(6));
 	public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_TOPAZ_BUD).luminance(4));
@@ -165,7 +164,6 @@ public class SpectrumBlocks {
 	// DD BLOCKS
 	private static final float BLACKSLAG_HARDNESS = 5.0F;
 	private static final float BLACKSLAG_BLAST_RESISTANCE = 7.0F;
-	
 	public static final Block BLACKSLAG = new BlackslagBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
 	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG));
@@ -195,7 +193,6 @@ public class SpectrumBlocks {
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
-	
 	
 	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
 	public static final Block EXPOSED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));

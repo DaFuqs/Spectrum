@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "required_advancement": "spectrum:lategame/pluck_effulgent_feather",
+  "ingredient": {
+    "item": "spectrum:effulgent_feather"
+  },
+  "result": {
+    "item": "spectrum:raw_bloodstone",
+    "count": 1
+  }
+}

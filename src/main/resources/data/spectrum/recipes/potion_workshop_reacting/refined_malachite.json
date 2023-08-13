@@ -1,6 +1,6 @@
 {
   "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:malachite_crystal",
+  "item": "spectrum:refined_malachite",
   "modifiers": {
     "duration_multiplier": 3.0,
     "additional_drink_duration_ticks": 54

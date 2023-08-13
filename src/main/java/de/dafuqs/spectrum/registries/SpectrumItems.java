@@ -244,7 +244,7 @@ public class SpectrumItems {
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item REFINED_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.RESOURCES.settings(1).recipeRemainder(Items.BUCKET));
@@ -270,6 +270,7 @@ public class SpectrumItems {
 	public static final Item PYRITE_CHUNK = new Item(Tab.RESOURCES.settings());
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item RAW_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
@@ -644,6 +645,7 @@ public class SpectrumItems {
 		register("pyrite_chunk", PYRITE_CHUNK, DyeColor.PURPLE);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
 		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
+		register("raw_bloodstone", RAW_BLOODSTONE, DyeColor.RED);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
@@ -678,7 +680,7 @@ public class SpectrumItems {
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 		
 		register("raw_malachite", RAW_MALACHITE, DyeColor.GREEN);
-		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.GREEN);
+		register("refined_malachite", REFINED_MALACHITE, DyeColor.GREEN);
 		
 		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
 		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);

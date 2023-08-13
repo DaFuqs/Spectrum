@@ -8,12 +8,14 @@
     "spectrum:malachite_ore": 0,
     "spectrum:deepslate_malachite_ore": 0,
     "spectrum:blackslag_malachite_ore": 0,
+
     "spectrum:raw_malachite": 0,
+    "spectrum:refined_malachite": 0,
     "spectrum:malachite_block": 0,
+
     "spectrum:small_malachite_bud": 0,
     "spectrum:large_malachite_bud": 0,
-    "spectrum:malachite_cluster": 0,
-    "spectrum:malachite_crystal": 0
+    "spectrum:malachite_cluster": 0
   },
   "pages": [
     {

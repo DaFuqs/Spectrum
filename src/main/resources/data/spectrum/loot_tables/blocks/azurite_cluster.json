@@ -34,7 +34,20 @@
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:refined_azurite"
+              "name": "spectrum:refined_azurite",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 3,
+                    "max": 5
+                  },
+                  "add": false
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ]
             }
           ]
         }

@@ -4,18 +4,15 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "spectrum:downstone_fragments"
+    "item": "spectrum:bone_ash"
   },
-  "ingredient3": {
-    "item": "minecraft:fermented_spider_eye"
-  },
-  "effect": "spectrum:life_drain",
-  "base_duration_ticks": 600,
-  "potency_modifier": 1.0,
+  "effect": "spectrum:scarred",
+  "base_duration_ticks": 6000,
+  "potency_modifier": 0.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:unlocks/potions/life_drain",
+  "required_advancement": "spectrum:unlocks/potions/scarred",
   "ink_color": "gray",
   "ink_cost": 4
 }

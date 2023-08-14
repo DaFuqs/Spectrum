@@ -103,6 +103,13 @@
       "advancement": "spectrum:unlocks/potions/life_drain",
       "recipe": "spectrum:potion_workshop_brewing/life_drain",
       "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Scarred",
+      "advancement": "spectrum:unlocks/potions/scarred",
+      "recipe": "spectrum:potion_workshop_brewing/scarred",
+      "text": ""
     }
   ]
 }

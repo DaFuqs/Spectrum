@@ -83,6 +83,7 @@
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",
+    "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
     "client.InGameOverlayRendererMixin",

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -30,18 +29,15 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 			if (!world.isClient) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
 			}
-			if(world.getTime() % 20 == 0) {
+			if (world.getTime() % 40 == 0) {
 				player.getHungerManager().add(1 + amplifier, 0.25F);
 			}
 		}
-
-		if(world.getTime() % 20 == 0) {
+		
+		if (world.getTime() % 40 == 0) {
 			if (entity.getHealth() < entity.getMaxHealth()) {
 				entity.heal(amplifier / 2F);
 			}
-		}
-		if(world.getTime() % 200 == 0) {
-			WhispyCircletItem.removeSingleStatusEffect(entity, StatusEffectCategory.HARMFUL);
 		}
 	}
 	

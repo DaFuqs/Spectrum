@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.enchantment.*;
@@ -132,15 +133,17 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, state, blockEntity, stack);
-		if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+		if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0 && !stack.isIn(ConventionalItemTags.SHEARS)) {
 			explode(world, pos, state);
 		}
 	}
 	
 	protected static void explode(World world, BlockPos pos, BlockState state) {
-		if (!world.isClient && state.get(AGE) == AGE_MAX) {
+		if (state.get(AGE) == AGE_MAX) {
 			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, Explosion.DestructionType.DESTROY);
-			dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(2, 4)));
+			if (!world.isClient) {
+				dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(2, 4)));
+			}
 		}
 	}
 	

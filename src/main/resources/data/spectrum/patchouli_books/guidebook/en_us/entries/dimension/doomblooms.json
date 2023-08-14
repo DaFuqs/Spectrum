@@ -15,12 +15,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:doombloom_seed",
-      "text": "When fully grown, interacting with it yields gunpowder. Harvesting it without blowing it up requires a Silk Touch tool."
+      "text": "When fully grown, you can harvest $(item)Gunpowder$() from it. Breaking it without blowing it up requires a Silk Touch tool or Shears."
     },
     {
       "type": "patchouli:text",
       "title": "Primordial Fire",
-      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with insatiable blazing heat."
+      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with an insatiable, blazing heat."
     }
   ]
 }

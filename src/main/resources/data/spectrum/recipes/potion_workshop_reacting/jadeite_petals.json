@@ -4,5 +4,5 @@
   "modifiers": {
     "flat_duration_bonus_positive_effects": 2400
   },
-  "required_advancement": "spectrum:hidden/collect_jadeite_petals"
+  "required_advancement": "spectrum:hidden/collect_jadeite"
 }

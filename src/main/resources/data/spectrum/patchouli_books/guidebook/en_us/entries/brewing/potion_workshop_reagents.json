@@ -170,7 +170,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:jadeite_petals",
       "anchor": "jadeite_petals",
-      "advancement": "spectrum:hidden/collect_jadeite_petals",
+      "advancement": "spectrum:hidden/collect_jadeite",
       "text": "Increases the Duration of positive effects by 120 seconds."
     },
     {

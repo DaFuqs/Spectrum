@@ -7,6 +7,13 @@
     "spectrum:lizard_head",
     "spectrum:eraser_head",
 
+    "spectrum:egg_laying_wooly_pig_wall_head",
+    "spectrum:kindling_wall_head",
+    "spectrum:preservation_turret_wall_head",
+    "spectrum:monstrosity_wall_head",
+    "spectrum:lizard_wall_head",
+    "spectrum:eraser_wall_head",
+
     "spectrum:axolotl_blue_head",
     "spectrum:axolotl_brown_head",
     "spectrum:axolotl_cyan_head",
@@ -115,12 +122,6 @@
     "spectrum:allay_head",
     "spectrum:warden_head",
     "spectrum:tadpole_head",
-
-    "spectrum:egg_laying_wooly_pig_wall_head",
-    "spectrum:kindling_wall_head",
-    "spectrum:preservation_turret_wall_head",
-    "spectrum:monstrosity_wall_head",
-    "spectrum:lizard_wall_head",
 
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_brown_wall_head",

@@ -38,9 +38,9 @@
     {
       "type": "patchouli:spotlight",
       "title": "Jadeite Blossoms",
-      "advancement": "spectrum:hidden/collect_jadeite_petals",
+      "advancement": "spectrum:hidden/collect_jadeite",
       "item": "spectrum:jadeite_petals",
-      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. Their petals can be used as a $(l:brewing/potion_workshop_reagents)Potion Reagent$()."
+      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. You can shear them to get $(item)Petals$(). They can be used as a $(l:brewing/potion_workshop_reagents)Potion Reagent$()."
     }
   ]
 }

@@ -12,6 +12,8 @@
         "items": [
           {
             "items": [
+              "spectrum:jadeite_lotus_flower",
+              "spectrum:jadeite_lotus_bulb",
               "spectrum:jadeite_petals"
             ]
           }

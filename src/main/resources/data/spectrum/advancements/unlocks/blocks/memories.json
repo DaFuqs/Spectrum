@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "unlocked_via_herding_staff": {
+    "unlocked_via_staff_of_remembrance": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/items/herding_staff"
+        "advancement_identifier": "spectrum:unlocks/items/staff_of_remembrance"
       }
     },
     "unlocked_via_mob_head": {
@@ -15,7 +15,7 @@
   },
   "requirements": [
     [
-      "unlocked_via_herding_staff",
+      "unlocked_via_staff_of_remembrance",
       "unlocked_via_mob_head"
     ]
   ]

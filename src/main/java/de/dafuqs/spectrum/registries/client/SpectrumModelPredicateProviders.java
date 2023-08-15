@@ -36,7 +36,7 @@ public class SpectrumModelPredicateProviders {
 		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
-		registerAnimatedWandPredicates(SpectrumItems.HERDING_STAFF);
+		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);

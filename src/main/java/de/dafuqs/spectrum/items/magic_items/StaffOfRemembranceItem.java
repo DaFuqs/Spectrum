@@ -10,10 +10,8 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -28,25 +26,16 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEntityInteraction {
+public class StaffOfRemembranceItem extends Item implements InkPowered, PrioritizedEntityInteraction {
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
-	public static final InkCost LURE_COST = new InkCost(USED_COLOR, 5);
 	public static final InkCost TURN_NEUTRAL_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
 	public static final InkCost TURN_HOSTILE_TO_MEMORY_COST = new InkCost(USED_COLOR, 10000);
 	
 	public static final Identifier UNLOCK_HOSTILE_MEMORIZING_ID = SpectrumCommon.locate("milestones/unlock_hostile_memorizing");
 	
-	public HerdingStaffItem(Settings settings) {
+	public StaffOfRemembranceItem(Settings settings) {
 		super(settings);
-	}
-	
-	@Override
-	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		super.usageTick(world, user, stack, remainingUseTicks);
-		if (user instanceof PlayerEntity player && !InkPowered.tryDrainEnergy(player, LURE_COST)) {
-			user.stopUsingItem();
-		}
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -54,20 +43,8 @@ public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEnt
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
-		tooltip.add(Text.translatable("item.spectrum.herding_staff.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.herding_staff.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.staff_of_remembrance.tooltip").formatted(Formatting.GRAY));
 		addInkPoweredTooltip(tooltip);
-	}
-	
-	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (InkPowered.tryDrainEnergy(user, LURE_COST)) {
-			if (world.isClient) {
-				startSoundInstance(user);
-			}
-			return ItemUsage.consumeHeldItem(world, user, hand);
-		}
-		return super.use(world, user, hand);
 	}
 	
 	@Override
@@ -95,7 +72,7 @@ public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEnt
 		if (!entity.isAlive() || entity.isRemoved() || entity.hasPassengers()) {
 			return false;
 		}
-		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) || entity.getType().isIn(SpectrumEntityTypeTags.HERDING_STAFF_BLACKLISTED)) {
+		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) || entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
 			return false;
 		}
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
@@ -124,11 +101,6 @@ public class HerdingStaffItem extends Item implements InkPowered, PrioritizedEnt
 		entity.remove(Entity.RemovalReason.DISCARDED);
 		
 		return true;
-	}
-	
-	@Environment(EnvType.CLIENT)
-	public void startSoundInstance(PlayerEntity user) {
-		MinecraftClient.getInstance().getSoundManager().play(new HerdingStaffUseSoundInstance(user));
 	}
 	
 	@Override

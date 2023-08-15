@@ -25,8 +25,8 @@
     }
   },
   "result": {
-    "item": "spectrum:herding_staff",
+    "item": "spectrum:staff_of_remembrance",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/items/herding_staff"
+  "required_advancement": "spectrum:unlocks/items/staff_of_remembrance"
 }

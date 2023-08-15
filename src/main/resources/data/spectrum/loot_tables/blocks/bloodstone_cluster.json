@@ -11,18 +11,13 @@
             {
               "type": "minecraft:item",
               "name": "spectrum:bloodstone_cluster",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "spectrum:resonance",
+                        "enchantment": "minecraft:silk_touch",
                         "levels": {
                           "min": 1
                         }
@@ -43,18 +38,10 @@
                     "max": 5
                   },
                   "add": false
-                },
-                {
-                  "function": "minecraft:explosion_decay"
                 }
               ]
             }
           ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

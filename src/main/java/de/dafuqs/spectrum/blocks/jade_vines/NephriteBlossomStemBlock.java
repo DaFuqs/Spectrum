@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -18,15 +17,13 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
-public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggable {
-
-    public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
+public class NephriteBlossomStemBlock extends PlantBlock {
 	
-	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+	public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
 	
 	public NephriteBlossomStemBlock(Settings settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(WATERLOGGED, false));
+		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE));
 	}
 	
 	public static BlockState getStemVariant(boolean top) {
@@ -86,39 +83,26 @@ public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggabl
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        scheduleBreakAttempt(world, pos, true);
-        super.onBreak(world, pos, state, player);
-    }
-
-    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        scheduleBreakAttempt(world, pos, false);
-        return state;
-    }
-
-    private void scheduleBreakAttempt(WorldAccess world, BlockPos pos, boolean force) {
-        var down = pos.down();
-        if (force || !canPlantOnTop(world.getBlockState(down), world, down))
-            world.createAndScheduleBlockTick(pos.up(), this, 1);
-    }
+		if (!state.canPlaceAt(world, pos)) {
+			world.createAndScheduleBlockTick(pos, this, 1);
+		}
+	
+		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	}
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        var down = pos.down();
-        if (!canPlantOnTop(world.getBlockState(down), world, down))
-            world.breakBlock(pos, true);
-    }
-    
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(STEM_PART, WATERLOGGED);
-        super.appendProperties(builder);
-    }
-    
-    @Override
-	@SuppressWarnings("deprecation")
-    public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		super.scheduledTick(state, world, pos, random);
+		if (!state.canPlaceAt(world, pos)) {
+			world.breakBlock(pos, true);
+		}
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(STEM_PART);
+	}
+	
 }

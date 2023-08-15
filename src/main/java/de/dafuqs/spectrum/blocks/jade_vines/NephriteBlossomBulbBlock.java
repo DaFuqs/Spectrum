@@ -13,6 +13,7 @@ public class NephriteBlossomBulbBlock extends PlantBlock implements Fertilizable
 	
 	public NephriteBlossomBulbBlock(Settings settings) {
 		super(settings);
+		setDefaultState(getDefaultState());
 	}
 	
 	@Override

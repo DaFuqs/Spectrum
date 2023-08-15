@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -18,16 +17,14 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
-public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
-
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-
-    public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
+public class JadeiteLotusStemBlock extends PlantBlock {
+	
+	public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
 	public static final BooleanProperty INVERTED = BooleanProperty.of("inverted");
 	
 	public JadeiteLotusStemBlock(Settings settings) {
 		super(settings);
-		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(INVERTED, false).with(WATERLOGGED, false));
+		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(INVERTED, false));
 	}
 	
 	public static BlockState getStemVariant(boolean top, boolean inverted) {
@@ -105,39 +102,25 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        scheduleBreakAttempt(world, pos, state.get(INVERTED), true);
-        super.onBreak(world, pos, state, player);
-    }
-
-    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        scheduleBreakAttempt(world, pos, state.get(INVERTED), false);
-        return state;
-    }
-
-    private void scheduleBreakAttempt(WorldAccess world, BlockPos pos, boolean inverted, boolean force) {
-        var floor = inverted ? pos.down() : pos.up();
-        if (force || !canPlantOnTop(world.getBlockState(floor), world, floor))
-            world.createAndScheduleBlockTick(inverted ? pos.up() : pos.down(), this, 1);
-    }
+		if (!state.canPlaceAt(world, pos)) {
+			world.createAndScheduleBlockTick(pos, this, 1);
+		}
+	
+		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+	}
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		var floor = state.get(INVERTED) ? pos.down() : pos.up();
-		if (!canPlantOnTop(world.getBlockState(floor), world, floor))
+		super.scheduledTick(state, world, pos, random);
+		if (!state.canPlaceAt(world, pos)) {
 			world.breakBlock(pos, true);
+		}
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(STEM_PART, INVERTED, WATERLOGGED);
 		super.appendProperties(builder);
-	}
-	
-	@Override
-    @SuppressWarnings("deprecation")
-	public FluidState getFluidState(BlockState state) {
-		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		builder.add(STEM_PART, INVERTED);
 	}
 }

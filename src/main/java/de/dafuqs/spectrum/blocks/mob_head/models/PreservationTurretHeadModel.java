@@ -5,9 +5,9 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.*;
 
 @Environment(EnvType.CLIENT)
-public class GuardianTurretHeadModel extends SpectrumHeadModel {
+public class PreservationTurretHeadModel extends SpectrumHeadModel {
 	
-	public GuardianTurretHeadModel(ModelPart root) {
+	public PreservationTurretHeadModel(ModelPart root) {
 		super(root);
 	}
 	

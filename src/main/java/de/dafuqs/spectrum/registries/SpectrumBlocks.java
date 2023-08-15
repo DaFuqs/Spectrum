@@ -2585,7 +2585,7 @@ public class SpectrumBlocks {
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);
 			Block wallHead = new SpectrumWallSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL).dropsLike(head));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_wall_head", wallHead);
-			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (settings), type.entityType);
+			BlockItem headItem = new SpectrumSkullBlockItem(head, wallHead, (settings), type.getEntityType());
 			registerBlockItem(type.name().toLowerCase(Locale.ROOT) + "_head", headItem, DyeColor.GRAY);
 			
 			MOB_HEADS.put(type, head);

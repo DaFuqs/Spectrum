@@ -2,14 +2,11 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "item": "minecraft:milk_bucket",
-      "count": 1
-    },
-    {
       "item": "minecraft:sugar",
       "count": 4
     }
   ],
+  "fluid": "milk:still_milk",
   "min_fermentation_time_hours": 1,
   "result": {
     "item": "spectrum:clotted_cream",
@@ -17,13 +14,10 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:all_mods_loaded",
-        "values": [
-          "milk"
-        ]
-      }
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "milk"
+      ]
     }
   ]
 }

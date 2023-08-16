@@ -294,7 +294,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		super.readNbt(nbt);
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
+		this.inventoryChanged = true;
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
@@ -331,7 +331,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		super.writeNbt(nbt);
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", this.upgrades.toNbt());

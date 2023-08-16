@@ -13,7 +13,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:divinity",
-      "text": "Gives you major buffs to all your main attributes.$(br)At the ($(l:creating_life/hardcore_player_revival)close to$(/l)) irreversible cost of your life, should you die."
+      "text": "Gives you major buffs to all your main attributes.$(br)At the ($(l:creating_life/hardcore_player_revival)close to$(/l)) irreversible cost of your life, should you die nonetheless."
     }
   ]
 }

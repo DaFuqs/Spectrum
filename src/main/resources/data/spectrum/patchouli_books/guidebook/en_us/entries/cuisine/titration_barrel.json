@@ -44,6 +44,13 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
+      "title": "Clotted Cream",
+      "anchor": "clotted_cream",
+      "recipe": "spectrum:titration_barrel/clotted_cream_fluid",
+      "text": "Slightly fermented, it still keeps the properties of $(item)Milk$(). Eating will remove currently active Status Effects."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
       "title": "Fresh Chocolate",
       "anchor": "fresh_chocolate",
       "recipe": "spectrum:titration_barrel/fresh_chocolate",

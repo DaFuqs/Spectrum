@@ -8,7 +8,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:effect_prolonging",
-      "text": ""
+      "text": "Increases the duration of other status effects applied to you."
     },
     {
       "type": "patchouli:text",

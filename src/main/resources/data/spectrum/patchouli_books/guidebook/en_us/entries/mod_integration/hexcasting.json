@@ -31,10 +31,10 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Potion Reagent",
+      "title": "New Potion Reagent",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "item": "hexcasting:charged_amethyst",
-      "text": "As you expected, $(item)Charged Amethyst$() serves as a more potent, but also more fluctuate, $(item)Amethyst$() reagent in regards to prolonging effect durations."
+      "text": "$(li)+15-120s duration. Sometimes more, sometimes less$(br2)As you expected, $(item)Charged Amethyst$() serves as a more potent, but also more fluctuate, $(item)Amethyst$() reagent in regards to prolonging durations."
     }
   ]
 }

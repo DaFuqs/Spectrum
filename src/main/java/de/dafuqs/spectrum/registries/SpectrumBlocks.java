@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
+import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
@@ -25,7 +26,6 @@ import de.dafuqs.spectrum.blocks.furniture.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
-import de.dafuqs.spectrum.blocks.incandescent_amalgam.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -45,7 +45,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
-import de.dafuqs.spectrum.blocks.threat_conflux.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
@@ -53,7 +52,6 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.explosion.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.color.*;
@@ -386,6 +384,8 @@ public class SpectrumBlocks {
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
 	public static final Block TITRATION_BARREL = new TitrationBarrelBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
+	
+	public static final Block PARAMETRIC_MINING_DEVICE = new ParametricMiningDeviceBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 	
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
@@ -1613,7 +1613,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
-		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new EffectModifierCarryingBlockItem(THREAT_CONFLUX, Archetype.DEFENSIVE, Tab.FUNCTIONAL.settings(8)), DyeColor.ORANGE);
+		
+		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, ExplosionArchetype.DESTROY_BLOCKS, Tab.FUNCTIONAL.settings(8), new String[]{"block.spectrum.parametric_mining_device.tooltip", "block.spectrum.parametric_mining_device.tooltip2"}), DyeColor.RED);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ExplosionEffectModifierCarryingBlockItem(THREAT_CONFLUX, ExplosionArchetype.DAMAGE_ENTITIES, Tab.FUNCTIONAL.settings(8), new String[]{"block.spectrum.threat_conflux.tooltip", "block.spectrum.threat_conflux.tooltip2"}), DyeColor.RED);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

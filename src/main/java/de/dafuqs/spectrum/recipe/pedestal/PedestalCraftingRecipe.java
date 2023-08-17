@@ -28,6 +28,8 @@ public class PedestalCraftingRecipe extends GatedStackSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
 	
+	protected final int PEDESTAL_CRAFTING_GRID_SIZE = 9;
+	
 	protected final int width;
 	protected final int height;
 	
@@ -82,18 +84,21 @@ public class PedestalCraftingRecipe extends GatedStackSpectrumRecipe {
 		if (getRecipeOrientation(inv) == null) {
 			return false;
 		}
-		
+		return enoughPowderPresent(inv);
+	}
+	
+	protected boolean enoughPowderPresent(Inventory inventory) {
 		int topazPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
 		int amethystPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0);
 		int citrinePowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0);
 		int onyxPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
 		int moonstonePowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 		
-		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
-				&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
-				&& (citrinePowderAmount == 0 || isStackAtLeast(inv.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
-				&& (onyxPowderAmount == 0 || isStackAtLeast(inv.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
-				&& (moonstonePowderAmount == 0 || isStackAtLeast(inv.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
+		return ((topazPowderAmount == 0 || isStackAtLeast(inventory.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
+				&& (amethystPowderAmount == 0 || isStackAtLeast(inventory.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
+				&& (citrinePowderAmount == 0 || isStackAtLeast(inventory.getStack(11), SpectrumItems.CITRINE_POWDER, citrinePowderAmount))
+				&& (onyxPowderAmount == 0 || isStackAtLeast(inventory.getStack(12), SpectrumItems.ONYX_POWDER, onyxPowderAmount))
+				&& (moonstonePowderAmount == 0 || isStackAtLeast(inventory.getStack(13), SpectrumItems.MOONSTONE_POWDER, moonstonePowderAmount)));
 	}
 	
 	public boolean matchesPattern(Inventory inv, int offsetX, int offsetY, boolean flipped) {

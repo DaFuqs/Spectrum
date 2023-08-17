@@ -1,55 +1,45 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.helpers.Orientation;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
+import com.mojang.datafixers.util.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.projectile.thrown.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
 
-public class HypeEntity extends ThrownItemEntity {
-
+public class ParametricMiningDeviceEntity extends ThrownItemEntity {
+    
     private static final ItemStack MINING_STACK;
-
-    public HypeEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    
+    public ParametricMiningDeviceEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    public HypeEntity(World world, LivingEntity owner) {
-        super(SpectrumEntityTypes.HYPE_ENTITY, owner, world);
+    
+    public ParametricMiningDeviceEntity(World world, LivingEntity owner) {
+        super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, owner, world);
     }
-
-    public HypeEntity(World world, double x, double y, double z) {
-        super(SpectrumEntityTypes.HYPE_ENTITY, x, y, z, world);
+    
+    public ParametricMiningDeviceEntity(World world, double x, double y, double z) {
+        super(SpectrumEntityTypes.PARAMETRIC_MINING_DEVICE_ENTITY, x, y, z, world);
     }
-
+    
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
         processExplosion(blockHitResult.getBlockPos());
     }
-
+    
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         var target = entityHitResult.getEntity();
@@ -135,7 +125,7 @@ public class HypeEntity extends ThrownItemEntity {
 
         for(int j = 0; j < i; ++j) {
             Pair<ItemStack, BlockPos> pair = stacks.get(j);
-            ItemStack itemStack = (ItemStack)pair.getFirst();
+            ItemStack itemStack = pair.getFirst();
             if (ItemEntity.canMerge(itemStack, stack)) {
                 ItemStack itemStack2 = ItemEntity.merge(itemStack, stack, 16);
                 stacks.set(j, Pair.of(itemStack2, pair.getSecond()));
@@ -150,7 +140,7 @@ public class HypeEntity extends ThrownItemEntity {
 
     @Override
     protected Item getDefaultItem() {
-        return SpectrumItems.HYPE;
+        return SpectrumBlocks.PARAMETRIC_MINING_DEVICE.asItem();
     }
 
     static {

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.incandescent_amalgam;
+package de.dafuqs.spectrum.blocks.boom;
 
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,6 +11,7 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -142,15 +143,19 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 	
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
-			float power = 8.0F;
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 				ItemStack stack = placedItemBlockEntity.getStack();
-				if (stack.getItem() instanceof IncandescentAmalgamItem item) {
-					power = item.getExplosionPower(stack);
-				}
+				explode((ServerWorld) world, pos, stack);
 			}
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 		}
+	}
+	
+	public static void explode(ServerWorld world, BlockPos pos, ItemStack stack) {
+		float power = 8.0F;
+		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
+			power = item.getExplosionPower(stack);
+		}
+		world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 	}
 	
 }

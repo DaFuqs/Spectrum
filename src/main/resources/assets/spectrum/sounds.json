@@ -69,6 +69,12 @@
       "spectrum:threat_conflux.explode"
     ]
   },
+  "block.parametric_mining_device.throw": {
+    "subtitle": "spectrum.subtitles.block.parametric_mining_device.throw",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
   "bident_mirror_image_thrown": {
     "subtitle": "spectrum.subtitles.bident_mirror_image_thrown",
     "sounds": [

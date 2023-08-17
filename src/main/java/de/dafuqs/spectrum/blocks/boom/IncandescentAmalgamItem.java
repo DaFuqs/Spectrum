@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.incandescent_amalgam;
+package de.dafuqs.spectrum.blocks.boom;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
@@ -57,8 +57,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		ItemStack stack = itemEntity.getStack();
 		itemEntity.remove(Entity.RemovalReason.KILLED);
 		
-		int stackCount = stack.getCount();
-		float explosionPower = getExplosionPower(stack) + stackCount / 8F;
+		float explosionPower = getExplosionPower(stack);
 		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, Explosion.DestructionType.DESTROY);
 		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, Explosion.DestructionType.NONE);
 	}
@@ -69,7 +68,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 	}
 	
 	public float getExplosionPower(ItemStack stack) {
-		return getBeverageProperties(stack).alcPercent;
+		return getBeverageProperties(stack).alcPercent + stack.getCount() / 8F;
 	}
 	
 }

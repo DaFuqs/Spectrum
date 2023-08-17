@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.blocks.threat_conflux;
+package de.dafuqs.spectrum.blocks.boom;
 
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -20,7 +20,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.SpectrumFluidLoggable {
+public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLogging.SpectrumFluidLoggable {
 	
 	public enum ArmedState implements StringIdentifiable {
 		NOT_ARMED("not_armed", false),
@@ -61,8 +61,8 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
 	
 	@Override
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient && state.get(ARMED).explodesWhenBroken() && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity threatConflux) {
-			threatConflux.explode((ServerWorld) world, pos);
+		if (!world.isClient && state.get(ARMED).explodesWhenBroken()) {
+			explode((ServerWorld) world, pos);
 		}
 		super.onBreak(world, pos, state, player);
 	}
@@ -95,12 +95,11 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-		if (!world.isClient && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity conflux) {
-			conflux.parseStack(itemStack);
+		super.onPlaced(world, pos, state, placer, itemStack);
+		
+		if (!world.isClient) {
 			world.createAndScheduleBlockTick(pos, this, TICKS_TO_ARM);
 		}
-		
-		super.onPlaced(world, pos, state, placer, itemStack);
 	}
 	
 	@Override
@@ -119,12 +118,6 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
 		return true;
 	}
 	
-	@Nullable
-	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new ThreatConfluxBlockEntity(pos, state);
-	}
-	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(ARMED).explodesWhenBroken() ? ARMED_SHAPE : UNARMED_SHAPE;
@@ -138,20 +131,25 @@ public class ThreatConfluxBlock extends BlockWithEntity implements FluidLogging.
 		if (s == ArmedState.NOT_ARMED) {
 			world.setBlockState(pos, state.with(ARMED, ArmedState.ARMED));
 			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_ARM, SoundCategory.BLOCKS, 2F, 0.1F + world.getRandom().nextFloat() * 0.3F);
-		} else if (s == ArmedState.FUSED && world.getBlockEntity(pos) instanceof ThreatConfluxBlockEntity conflux) {
-			conflux.explode(world, pos);
+		} else if (s == ArmedState.FUSED) {
+			explode(world, pos);
 		}
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		super.appendProperties(builder);
 		builder.add(ARMED, LOGGED);
+	}
+	
+	public void explode(@NotNull ServerWorld world, BlockPos pos) {
+		if (!(world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+			return;
+		}
+		ItemStack stack = blockEntity.getStack();
+		world.removeBlock(pos, false);
+		ExplosionModifierSet set = ExplosionModifierSet.getFromStack(stack);
+		set.explode(world, pos);
 	}
 	
 }

@@ -1,48 +1,46 @@
 package de.dafuqs.spectrum.explosion.modifier;
 
-import de.dafuqs.spectrum.explosion.Archetype;
-import de.dafuqs.spectrum.explosion.ExplosionEffectFamily;
-import de.dafuqs.spectrum.explosion.ItemBoundModifier;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.explosion.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
-public class AmalgamModifier extends ItemBoundModifier {
-
-    public AmalgamModifier(Identifier id, ExplosionEffectFamily family, int color, Item... mappings) {
-        super(id, family, color, mappings);
+public class AmalgamModifier extends ExplosionModifier {
+    
+    public AmalgamModifier(Identifier id, ExplosionModifierType type, int displayColor) {
+        super(id, type, displayColor);
     }
-
+    
     @Override
-    public void applyToEntities(Archetype archetype, @NotNull List<Entity> entity) {}
-
+    public void applyToEntities(@NotNull List<Entity> entity) {
+    }
+    
     @Override
-    public void applyToBlocks(Archetype archetype, @NotNull World world, @NotNull List<BlockPos> blocks) {}
-
+    public void applyToBlocks(@NotNull World world, @NotNull List<BlockPos> blocks) {
+    }
+    
     @Override
-    public void applyToWorld(Archetype archetype, @NotNull World world, @NotNull Vec3d center) {}
-
+    public void applyToWorld(@NotNull World world, @NotNull Vec3d center) {
+    }
+    
     /**
-     * This number exists exclusively so that the total amonut of damage dealt by a maxed out conflux is 6k flat<p>
-     * 2500 * (1.3389 ** 3) = 6000.45
+     * This number exists exclusively so that the total amount of damage dealt by a maxed out conflux is 6k flat<p>
+     * 2500 * (1.3389 * 3) = 6000.45
      * <p> <p>
      * Autism gaming
      */
     @Override
-    public float getDamageModifer(Archetype archetype, BlockEntity blockEntity) {
+    public float getDamageModifier() {
         return 1.6778F;
     }
-
+    
     @Override
-    public float getBlastRadiusModifer(Archetype archetype, BlockEntity blockEntity) {
+    public float getBlastRadiusModifier() {
         return 1.5F;
     }
+    
 }

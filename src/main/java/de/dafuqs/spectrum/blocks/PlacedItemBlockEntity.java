@@ -11,6 +11,10 @@ public class PlacedItemBlockEntity extends BlockEntity {
 	
 	protected ItemStack stack = ItemStack.EMPTY;
 	
+	public PlacedItemBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
+	}
+	
 	public PlacedItemBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.PLACED_ITEM, pos, state);
 	}

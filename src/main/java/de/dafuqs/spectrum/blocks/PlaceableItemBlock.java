@@ -29,7 +29,7 @@ public class PlaceableItemBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 			ItemStack placedStack = stack.copy();

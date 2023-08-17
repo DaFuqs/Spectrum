@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -205,9 +206,10 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
-
-		logInfo("Registering Explosion Effects...");
+		
+		logInfo("Registering Explosion Effects & Providers...");
 		SpectrumExplosionEffects.register();
+		ExplosionModifierProviders.register();
 		
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();

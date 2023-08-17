@@ -274,7 +274,7 @@ public class SpectrumBlocks {
 	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
-	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
+	public static final Block SMOOTH_BASALT_STAIRS = new StairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 	
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).requiresTool());
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -283,11 +283,11 @@ public class SpectrumBlocks {
 	public static final Block NOTCHED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block POLISHED_BASALT_STAIRS = new SpectrumStairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_BASALT_STAIRS = new StairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).strength(2.5F, 6.0F));
 	public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block BASALT_BRICK_STAIRS = new SpectrumStairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
+	public static final Block BASALT_BRICK_STAIRS = new StairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(6));
 	public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5));
 	public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(7));
@@ -296,7 +296,7 @@ public class SpectrumBlocks {
 	
 	public static final Block BASALT_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CRACKED_BASALT_TILES = new Block(FabricBlockSettings.copyOf(BASALT_TILES));
-	public static final Block BASALT_TILE_STAIRS = new SpectrumStairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block BASALT_TILE_STAIRS = new StairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
@@ -305,9 +305,9 @@ public class SpectrumBlocks {
 	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
-	public static final Block CALCITE_STAIRS = new SpectrumStairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
+	public static final Block CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block POLISHED_CALCITE_STAIRS = new SpectrumStairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_CALCITE_STAIRS = new StairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -315,7 +315,7 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block CALCITE_BRICK_STAIRS = new SpectrumStairsBlock(CALCITE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
+	public static final Block CALCITE_BRICK_STAIRS = new StairsBlock(CALCITE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block CALCITE_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block CALCITE_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block TOPAZ_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(6));
@@ -325,7 +325,7 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_CHISELED_CALCITE = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
 	
 	public static final Block CALCITE_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
-	public static final Block CALCITE_TILE_STAIRS = new SpectrumStairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CALCITE_TILE_STAIRS = new StairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));

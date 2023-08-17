@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
@@ -16,10 +17,12 @@ import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class ExplosionModifierRecipe extends PedestalCraftingRecipe {
-
-    public ExplosionModifierRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, PedestalRecipeTier tier, int width, int height, DefaultedList<IngredientStack> craftingInputs, Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
-        super(id, group, secret, requiredAdvancementIdentifier, tier, width, height, craftingInputs, gemstonePowderInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
+public class ExplosionModificationRecipe extends PedestalCraftingRecipe {
+    
+    public static final RecipeSerializer<ExplosionModificationRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ExplosionModificationRecipe::new);
+    
+    public ExplosionModificationRecipe(Identifier id) {
+        super(id, "", false, SpectrumCommon.locate("unlocks/blocks/advanced_explosives"), PedestalRecipeTier.BASIC, 1, 1, DefaultedList.ofSize(0), Map.of(), ItemStack.EMPTY, 0.0F, 200, false, true);
     }
     
     @Override
@@ -43,7 +46,7 @@ public class ExplosionModifierRecipe extends PedestalCraftingRecipe {
         }
         
         ExplosionModifierSet currentModifiers = ExplosionModifierSet.getFromStack(nonModStack);
-        return currentModifiers.canAcceptModifier(newModifier);
+        return currentModifiers.canAcceptModifier(newModifier, archetypeProvider);
     }
 
     @Override
@@ -74,9 +77,9 @@ public class ExplosionModifierRecipe extends PedestalCraftingRecipe {
     }
     
     public ItemStack getFirstNonModStack(Inventory inventory) {
-        for (int i = 0; i < 9; i++) {
-            var stack = inventory.getStack(i);
-            if (ExplosionModifierProviders.get(stack) == null) {
+        for (int i = 0; i < PEDESTAL_CRAFTING_GRID_SIZE; i++) {
+            ItemStack stack = inventory.getStack(i);
+            if (!stack.isEmpty() && ExplosionModifierProviders.get(stack) == null) {
                 return stack;
             }
         }

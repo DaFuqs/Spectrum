@@ -43,7 +43,11 @@ public class ExplosionModifierSet {
 		this.modifiers.add(modifier);
 	}
 	
-	public boolean canAcceptModifier(ExplosionModifier modifier) {
+	public boolean canAcceptModifier(ExplosionModifier modifier, ExplosionArchetypeProvider provider) {
+		if (this.modifiers.size() >= provider.getMaxModifierCount()) {
+			return false;
+		}
+		
 		int occurrences = 0;
 		for (ExplosionModifier explosionModifier : modifiers) {
 			if (explosionModifier.type == modifier.type) {
@@ -91,9 +95,19 @@ public class ExplosionModifierSet {
 	}
 	
 	// Tooltips
-	public void appendTooltip(List<Text> tooltip) {
-		for (ExplosionModifier explosionModifier : modifiers) {
-			tooltip.add(explosionModifier.getName());
+	public void appendTooltip(List<Text> tooltip, ExplosionArchetypeProvider provider) {
+		if (this.modifiers.isEmpty()) {
+			tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.modifiers").formatted(Formatting.GRAY));
+		} else {
+			for (ExplosionModifier explosionModifier : modifiers) {
+				tooltip.add(explosionModifier.getName());
+			}
+		}
+		
+		int maxModifierCount = provider.getMaxModifierCount();
+		int remainingModifierSlots = maxModifierCount - this.modifiers.size();
+		if (remainingModifierSlots > 0) {
+			tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.remaining_slots", remainingModifierSlots, maxModifierCount).formatted(Formatting.GRAY));
 		}
 	}
 	

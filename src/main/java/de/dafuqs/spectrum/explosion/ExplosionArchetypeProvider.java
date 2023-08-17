@@ -7,4 +7,6 @@ public interface ExplosionArchetypeProvider {
 	
 	ExplosionArchetype getArchetype();
 	
+	int getMaxModifierCount();
+	
 }

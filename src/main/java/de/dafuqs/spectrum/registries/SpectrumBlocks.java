@@ -51,7 +51,6 @@ import de.dafuqs.spectrum.blocks.weathering.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.enums.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.color.*;
@@ -1614,8 +1613,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
 		
-		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, ExplosionArchetype.DESTROY_BLOCKS, Tab.FUNCTIONAL.settings(8), new String[]{"block.spectrum.parametric_mining_device.tooltip", "block.spectrum.parametric_mining_device.tooltip2"}), DyeColor.RED);
-		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ExplosionEffectModifierCarryingBlockItem(THREAT_CONFLUX, ExplosionArchetype.DAMAGE_ENTITIES, Tab.FUNCTIONAL.settings(8), new String[]{"block.spectrum.threat_conflux.tooltip", "block.spectrum.threat_conflux.tooltip2"}), DyeColor.RED);
+		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ThreatConfluxItem(THREAT_CONFLUX, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

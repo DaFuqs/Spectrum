@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
@@ -29,6 +28,7 @@ public class SpectrumCustomRecipeSerializers {
 		
 		// Pedestal
 		register(StarCandyRecipe.SERIALIZER, "pedestal_star_candy");
+		register(ExplosionModificationRecipe.SERIALIZER, "pedestal_explosion_modification");
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");

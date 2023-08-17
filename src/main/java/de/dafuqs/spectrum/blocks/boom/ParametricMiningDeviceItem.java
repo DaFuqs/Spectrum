@@ -4,16 +4,28 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-public class ParametricMiningDeviceItem extends ExplosionEffectModifierCarryingBlockItem {
+import java.util.*;
+
+public class ParametricMiningDeviceItem extends ExplosionArchetypeBlockItem {
 	
-	public ParametricMiningDeviceItem(Block block, ExplosionArchetype archetype, Settings settings, String[] tooltips) {
-		super(block, archetype, settings, tooltips);
+	public ParametricMiningDeviceItem(Block block, Settings settings) {
+		super(block, ExplosionArchetype.DESTROY_BLOCKS, 5, settings);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip2"));
+		super.appendTooltip(stack, world, tooltip, context);
 	}
 	
 	@Override

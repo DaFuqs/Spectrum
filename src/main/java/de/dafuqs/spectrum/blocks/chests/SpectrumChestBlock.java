@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -52,6 +53,17 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	
 	public abstract void openScreen(World world, BlockPos pos, PlayerEntity player);
 	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
+	
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

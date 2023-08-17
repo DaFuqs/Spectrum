@@ -1,22 +1,17 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.decoration.ItemFrameEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.decoration.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class InvisibleGlowItemFrameEntity extends ItemFrameEntity {
 	
@@ -68,7 +63,7 @@ public class InvisibleGlowItemFrameEntity extends ItemFrameEntity {
 	
 	@Override
 	protected ItemStack getAsItemStack() {
-		return new ItemStack(SpectrumItems.INVISIBLE_ITEM_FRAME);
+		return new ItemStack(SpectrumItems.INVISIBLE_GLOW_ITEM_FRAME);
 	}
 	
 	@Override

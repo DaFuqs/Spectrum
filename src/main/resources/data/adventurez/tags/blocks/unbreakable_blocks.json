@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:unbreakable",
-    "spectrum:downstone"
+    "#spectrum:unbreakable"
   ]
 }

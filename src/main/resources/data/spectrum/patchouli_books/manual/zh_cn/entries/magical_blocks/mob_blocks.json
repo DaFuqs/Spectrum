@@ -72,7 +72,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
-      "text": "点燃方块的四周并融化四周的冰块。"
+      "text": "将方块的四周以及触发魔盒的生物点燃。有几率加热甚至灼焦周围的方块（如烧炼矿物、把下界岩变为岩浆块等……）。"
     },
     {
       "type": "spectrum:pedestal_crafting",

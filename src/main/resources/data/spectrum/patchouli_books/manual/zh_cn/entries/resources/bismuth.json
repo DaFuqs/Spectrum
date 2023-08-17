@@ -16,7 +16,7 @@
     {
       "type": "patchouli:text",
       "title": "铋",
-      "text": "虹色的金属。$(br)你手头的晶片太小，用处不大，但这种金属似乎能靠吸收周围金属的能量，缓慢成长。"
+      "text": "虹色的金属。$(br)你手头的晶片太小，用处不大，但这种金属似乎能靠吸收周围金属的能量，缓慢生长。"
     },
     {
       "type": "spectrum:crystallarieum_growing",

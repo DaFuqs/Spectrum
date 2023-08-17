@@ -15,7 +15,7 @@
       "type": "patchouli:spotlight",
       "title": "石青",
       "item": "spectrum:raw_azurite",
-      "text": "外观与青金石神似的湛蓝矿石。其天然形态存在杂质，进行精炼之后方可使用。$(br2)这种矿石存在于地下深处，并且似乎能放大颜料的能量。"
+      "text": "外观与青金石神似的湛蓝矿石。其天然形态存在杂质，精炼之后方可使用。$(br2)这种矿石存在于地下深处，似乎能放大颜料内蕴的能量。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

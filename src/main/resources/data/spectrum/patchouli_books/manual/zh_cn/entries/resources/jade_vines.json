@@ -15,42 +15,42 @@
       "type": "patchouli:spotlight",
       "title": "玉藤种子",
       "item": "spectrum:hibernating_jade_vine_seeds",
-      "text": "你手中的种子沉眠了无数个纪元，能被感知的能量已经所剩无几。这气息如此的轻柔而脆弱，你害怕稍有的闪失便会夺走它残余的生命力。$(br2)$(italic)难道这植物的故事永远只能是个谜吗？"
+      "text": "你手中的种子沉眠了无数个纪元，能被感知的能量已经所剩无几。这气息如此的轻柔而脆弱，你害怕稍有闪失便会夺走它残余的生命力。$(br2)$(italic)难道这植物的故事只能是个永远的谜吗？"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "复苏玉藤",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
-      "text": "一场差点无可挽回的事故给了你一张王牌：$(br)有了$(l:creating_life/spirit_instiller)灵魂灌注器$(/l)，你一定能让种子重焕生机！"
+      "text": "一场差点无可挽回的事故意外地给了你一张王牌：$(br)有了$(l:creating_life/spirit_instiller)灵魂灌注器$(/l)，你一定能让种子重焕生机！"
     },
     {
       "type": "patchouli:spotlight",
       "title": "玉藤种植",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "脆弱而美丽的垂挂植物自栅栏蜿蜒而下。$(br)$(c_red)自古沉睡至今，习惯了黑暗的玉藤经过阳光暴晒就会立即枯萎。$(br)$(c_lime)它仅能靠沐浴在夜里轻柔的月光下生长，且每夜只生长一个阶段。"
+      "text": "脆弱而美丽的垂挂植物自栅栏蜿蜒而下。$(br)$(c_red)自古沉睡至今，习惯了黑暗的玉藤经过阳光暴晒就会立即枯萎。$(br)$(c_lime)它仅能沐浴在夜里轻柔的月光下，以此生长，且每夜只生长一个阶段。"
     },
     {
       "type": "patchouli:spotlight",
       "title": "玉藤果冻",
       "item": "spectrum:jade_jelly",
       "advancement": "spectrum:hidden/collect_jade_jelly",
-      "text": "暴露在阳光下的玉藤果真凋零了。但凋落的枝叶中不仅藏着新种子，还有这个凝胶果冻。$(br)$(italic)意料之外的美味啊$()。"
+      "text": "暴露在阳光下的玉藤真的凋萎了。但凋落的枝叶中不仅藏着新种子，还有这个凝胶果冻。$(br)$(italic)意料之外的美味啊$()。"
     },
     {
       "type": "patchouli:spotlight",
       "title": "玉藤花瓣",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "玉藤仍在生长的时候，偶有花瓣闪耀在枝叶之间，可以被小心地裁剪采集。$(br)花瓣可以用于$(l:decoration/jade_vine_petal_blocks)装点$()。$(br)Rarely, when searching the petals, another Bulb can be found."
+      "text": "玉藤生长期间，偶然会有花瓣闪耀在枝叶之间，可以用剪刀小心地裁剪收集。$(br)花瓣可以用于$(l:decoration/jade_vine_petal_blocks)装饰和点缀$()。$(br)虽然少见，但花瓣之间兴许会藏着种子哦！"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Moonstruck Nectar",
+      "title": "望舒琼浆",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)$(italic)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
+      "text": "不知过去了几个满月，玉藤终于长成了。成熟花瓣之间流溢的甘露可以用玻璃瓶收集。$(br)$(italic)这玉液有着强大的再生与修复能力：$(li)饮用可以治疗，(li)且能修复任何受损的物品$()。"
     }
   ]
 }

@@ -51,7 +51,7 @@
         "spectrum:hidden/collect_pigment/collect_blue_pigment": "$(c_blue)蓝色",
         "spectrum:hidden/collect_pigment/collect_brown_pigment": "$(c_brown)棕色",
         "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)青色",
-        "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)棕色",
+        "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)灰色",
         "spectrum:hidden/collect_pigment/collect_green_pigment": "$(c_green)绿色",
         "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)淡蓝色",
         "spectrum:hidden/collect_pigment/collect_light_gray_pigment": "$(c_light_gray)淡灰色",

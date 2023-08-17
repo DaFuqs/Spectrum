@@ -44,7 +44,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip_power", getExplosionPower(stack)).formatted(Formatting.GRAY));
 		if (FermentedItem.isPreviewStack(stack)) {
 			tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip.preview").formatted(Formatting.GRAY));

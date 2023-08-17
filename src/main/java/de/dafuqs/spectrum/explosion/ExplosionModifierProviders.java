@@ -15,18 +15,18 @@ public class ExplosionModifierProviders {
 		return PROVIDERS.getOrDefault(stack.getItem(), null);
 	}
 	
-	public static void registerModifier(ItemConvertible provider, ExplosionModifier behavior) {
-		PROVIDERS.put(provider.asItem(), behavior);
+	public static void registerModifier(ItemConvertible provider, ExplosionModifier modifier) {
+		PROVIDERS.put(provider.asItem(), modifier);
 	}
 	
 	public static void register() {
-		registerModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumExplosionEffects.AMALGAM_MODIFIER);
+		registerModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumExplosionEffects.AMALGAM);
 		registerModifier(SpectrumItems.STORM_STONE, SpectrumExplosionEffects.LIGHTNING);
 		registerModifier(SpectrumItems.NEOLITH, SpectrumExplosionEffects.MAGIC);
 		registerModifier(SpectrumItems.MIDNIGHT_CHIP, SpectrumExplosionEffects.LOOTING);
 		registerModifier(SpectrumItems.MIDNIGHT_ABERRATION, SpectrumExplosionEffects.LOOTING);
 		registerModifier(SpectrumItems.REFINED_BLOODSTONE, SpectrumExplosionEffects.PRIMORDIAL_FIRE);
-		registerModifier(Items.CHORUS_FRUIT, SpectrumExplosionEffects.STARRY_MODIFIER);
+		registerModifier(Items.CHORUS_FRUIT, SpectrumExplosionEffects.STARRY);
 	}
 	
 }

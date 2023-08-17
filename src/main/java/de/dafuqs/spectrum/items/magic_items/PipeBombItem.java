@@ -122,9 +122,9 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip"));
-		tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2"));
-	}
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2").formatted(Formatting.GRAY));
+    }
 	
 }

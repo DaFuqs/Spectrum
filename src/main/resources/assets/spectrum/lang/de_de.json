@@ -1,23 +1,4 @@
 {
-    "itemGroup.spectrum.general": "Spectrum",
-    "itemGroup.spectrum.general.tab.general": "Spectrum",
-    "itemGroup.spectrum.general.tab.tools": "Werkzeug",
-    "itemGroup.spectrum.general.tab.worldgen": "Worldgen",
-    "itemGroup.spectrum.general.tab.items": "Ressourcen",
-    "itemGroup.spectrum.blocks": "Spectrum Dekorationen",
-    "itemGroup.spectrum.blocks.tab.decoration": "Baublöcke",
-    "itemGroup.spectrum.blocks.tab.colored_wood": "Farbiges Holz",
-    "itemGroup.spectrum.blocks.tab.mob_heads": "Mobköpfe",
-
-    "itemGroup.spectrum.general.button.discord": "Trete Spectrums Discord bei",
-    "itemGroup.spectrum.general.button.github": "Spectrum auf Github",
-    "itemGroup.spectrum.general.button.curseforge": "Spectrum auf CurseForge",
-    "itemGroup.spectrum.general.button.modrinth": "Spectrum auf Modrinth",
-    "itemGroup.spectrum.blocks.button.discord": "Trete Spectrums Discord bei",
-    "itemGroup.spectrum.blocks.button.github": "Spectrum auf Github",
-    "itemGroup.spectrum.blocks.button.curseforge": "Spectrum auf CurseForge",
-    "itemGroup.spectrum.blocks.button.modrinth": "Spectrum auf Modrinth",
-
     "recipeGroup.spectrum.topaz_lamps": "Topas Lampen",
     "recipeGroup.spectrum.amethyst_lamps": "Amethyst Lampen",
     "recipeGroup.spectrum.citrine_lamps": "Citrin Lampen",

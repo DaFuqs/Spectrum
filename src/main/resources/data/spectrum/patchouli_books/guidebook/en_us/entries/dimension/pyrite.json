@@ -27,7 +27,7 @@
     {
       "type": "patchouli:crafting",
       "title": "Slabs & Stairs",
-      "recipe": "spectrum:crafting_table/pyrite_chunks_to_pyrite",
+      "recipe": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
       "text": "Unless $(thing)silk touched$(), Pyrite shatters into items, requiring you to combine them again."
     },
     {

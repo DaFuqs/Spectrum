@@ -4,6 +4,7 @@ import com.mojang.brigadier.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
@@ -81,6 +82,11 @@ public class SanityCommand {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
+				
+				if (block instanceof PlaceableItemBlock) {
+					continue; // that one always drops itself via code
+				}
+				
 				BlockState blockState = entry.getValue().getDefaultState();
 				Identifier lootTableID = block.getLootTableId();
 				

@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:bone_ash_bricks"
+    }
+  },
+  "result": {
+    "item": "spectrum:bone_ash_brick_slab",
+    "count": 6
+  },
+  "required_advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "disable_yield_upgrades": true
+}

@@ -1,7 +1,8 @@
 {
   "type": "spectrum:pedestal_shapeless",
-  "time": 120,
-  "tier": "advanced",
+  "group": "compacting",
+  "time": 20,
+  "tier": "basic",
   "magenta": 0,
   "yellow": 0,
   "cyan": 0,

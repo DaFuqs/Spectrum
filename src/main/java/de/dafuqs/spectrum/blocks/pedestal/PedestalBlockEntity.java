@@ -772,58 +772,59 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeInt(this.pedestalVariant.getRecipeTier().ordinal());
-		buf.writeInt(this.getHighestAvailableRecipeTierWithStructure().ordinal());
+		buf.writeInt(this.getHighestAvailableRecipeTier().ordinal());
 		buf.writeBlockPos(this.pos);
 	}
 	
-	private PedestalRecipeTier getHighestAvailableRecipeTierForVariant() {
+	public PedestalRecipeTier getHighestAvailableRecipeTier() {
+		if (this.world.getTime() <= this.cachedMaxPedestalTierTick + 20) {
+			return cachedMaxPedestalTier;
+		} else {
+			PedestalRecipeTier pedestalTier = getPedestalTier();
+			PedestalRecipeTier structureTier = getStructureTier();
+			
+			PedestalRecipeTier denominator = PedestalRecipeTier.values()[Math.min(pedestalTier.ordinal(), structureTier.ordinal())];
+			this.cachedMaxPedestalTier = denominator;
+			this.cachedMaxPedestalTierTick = world.getTime();
+			
+			return denominator;
+		}
+	}
+	
+	private PedestalRecipeTier getPedestalTier() {
 		return this.pedestalVariant.getRecipeTier();
 	}
 	
-	public PedestalRecipeTier getHighestAvailableRecipeTierWithStructure() {
-		if (this.world.getTime() == this.cachedMaxPedestalTierTick) {
-			return cachedMaxPedestalTier;
-		} else {
-			PedestalRecipeTier highestAvailableRecipeTierForVariant = getHighestAvailableRecipeTierForVariant();
-			
-			boolean found = false;
-			IMultiblock multiblock;
-			PedestalRecipeTier highestAvailableRecipeTier = PedestalRecipeTier.BASIC;
-			if (highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.COMPLEX.ordinal()) {
-				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
-				if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
-					highestAvailableRecipeTier = PedestalRecipeTier.COMPLEX;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
-					found = true;
-				} else {
-					multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK);
-					if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
-						SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
-					}
-				}
-			}
-			if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.ADVANCED.ordinal()) {
-				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
-				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
-				if (valid) {
-					highestAvailableRecipeTier = PedestalRecipeTier.ADVANCED;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
-					found = true;
-				}
-			}
-			if (!found && highestAvailableRecipeTierForVariant.ordinal() >= PedestalRecipeTier.SIMPLE.ordinal()) {
-				multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
-				boolean valid = multiblock.validate(world, pos.down(), BlockRotation.NONE);
-				if (valid) {
-					highestAvailableRecipeTier = PedestalRecipeTier.SIMPLE;
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
-				}
-			}
-
-			this.cachedMaxPedestalTier = highestAvailableRecipeTier;
-			this.cachedMaxPedestalTierTick = world.getTime();
-			return highestAvailableRecipeTier;
+	
+	@NotNull
+	private PedestalRecipeTier getStructureTier() {
+		IMultiblock multiblock;
+		
+		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
+		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
+			return PedestalRecipeTier.COMPLEX;
 		}
+		
+		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK);
+		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
+			return PedestalRecipeTier.ADVANCED;
+		}
+		
+		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
+		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
+			return PedestalRecipeTier.ADVANCED;
+		}
+		
+		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
+		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
+			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
+			return PedestalRecipeTier.SIMPLE;
+		}
+		
+		return PedestalRecipeTier.BASIC;
 	}
 
 	@Override

@@ -14,7 +14,10 @@ repositories {
 	mavenLocal()
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com" }
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
 	maven { url "https://maven.nucleoid.xyz/" }
 	/*maven {
 		name = "Enchantment Descriptions"
@@ -25,7 +28,7 @@ repositories {
 		url = 'https://maven.blamejared.com'
 	}
 	maven {
-		name = 'Ladysnake Mods'
+		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
 	maven {

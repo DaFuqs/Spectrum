@@ -24,7 +24,7 @@ public class ExplosionArchetypeBlockItem extends BlockItem implements ExplosionA
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		ExplosionModifierSet.fromNbt(stack.getNbt()).appendTooltip(tooltip, this);
+		ExplosionModifierSet.getFromStack(stack).appendTooltip(tooltip, this);
 	}
 	
 	@Override

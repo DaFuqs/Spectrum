@@ -59,64 +59,67 @@ public class ExplosionModifierSet {
 		return occurrences < modifier.type.maxModifiersForType();
 	}
 	
+	protected static String NBT_KEY = "explosion_modifiers";
+	protected static String NBT_MODIFIER_LIST_KEY = "l";
+	
 	// Serialization
-	// TODO
 	public NbtCompound toNbt() {
 		NbtCompound nbt = new NbtCompound();
+		
+		NbtList modifierList = new NbtList();
+		for (ExplosionModifier modifier : this.modifiers) {
+			modifierList.add(NbtString.of(modifier.getId().toString()));
+		}
+		nbt.put(NBT_MODIFIER_LIST_KEY, modifierList);
 		
 		return nbt;
 	}
 	
-	// TODO
 	public static ExplosionModifierSet fromNbt(NbtCompound nbt) {
 		ExplosionModifierSet set = new ExplosionModifierSet();
-		
-		if (nbt == null || !nbt.contains("modifiers"))
+		if (nbt == null) {
 			return set;
+		}
 		
-		var encodedModifiers = (NbtCompound) nbt.get("modifiers");
-		var count = encodedModifiers.getInt("count");
-		
-		for (int i = 0; i < count; i++) {
-			set.modifiers.add(SpectrumRegistries.EXPLOSION_EFFECT_MODIFIERS.get(Identifier.tryParse(encodedModifiers.getString("exMod_" + i))));
+		NbtList modifierList = nbt.getList(NBT_MODIFIER_LIST_KEY, NbtElement.STRING_TYPE);
+		for (NbtElement e : modifierList) {
+			ExplosionModifier mod = SpectrumRegistries.EXPLOSION_MODIFIERS.get(Identifier.tryParse(e.asString()));
+			set.modifiers.add(mod);
 		}
 		
 		return set;
 	}
-	
-	protected static String NBT_KEY = "explosion_modifiers";
 	
 	public static ExplosionModifierSet getFromStack(ItemStack stack) {
 		return fromNbt(stack.getSubNbt(NBT_KEY));
 	}
 	
 	public void attachToStack(ItemStack stack) {
-		stack.getOrCreateSubNbt(NBT_KEY);
+		NbtCompound nbt = toNbt();
+		stack.setSubNbt(NBT_KEY, nbt);
 	}
 	
 	// Tooltips
 	public void appendTooltip(List<Text> tooltip, ExplosionArchetypeProvider provider) {
-		if (this.modifiers.isEmpty()) {
+		int modifierCount = this.modifiers.size();
+		int maxModifierCount = provider.getMaxModifierCount();
+		tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.remaining_slots", modifierCount, maxModifierCount).formatted(Formatting.GRAY));
+		
+		if (modifierCount == 0) {
 			tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.modifiers").formatted(Formatting.GRAY));
 		} else {
 			for (ExplosionModifier explosionModifier : modifiers) {
 				tooltip.add(explosionModifier.getName());
 			}
 		}
-		
-		int maxModifierCount = provider.getMaxModifierCount();
-		int remainingModifierSlots = maxModifierCount - this.modifiers.size();
-		if (remainingModifierSlots > 0) {
-			tooltip.add(Text.translatable("item.spectrum.tooltip.explosives.remaining_slots", remainingModifierSlots, maxModifierCount).formatted(Formatting.GRAY));
-		}
 	}
 	
 	// Explosion logic
 	public void explode(@NotNull ServerWorld world, BlockPos pos) {
-		var killDamage = BASE_KILL_ZONE_DAMAGE;
-		var killRadius = BASE_KILL_ZONE_RADIUS;
-		var blastRadius = BASE_EXPLOSION_RADIUS;
-		var blastDamage = BASE_EXPLOSION_DAMAGE;
+		float killDamage = BASE_KILL_ZONE_DAMAGE;
+		double killRadius = BASE_KILL_ZONE_RADIUS;
+		double blastRadius = BASE_EXPLOSION_RADIUS;
+		float blastDamage = BASE_EXPLOSION_DAMAGE;
 		var damageSource = SpectrumDamageSources.INCANDESCENCE;
 		
 		for (ExplosionModifier explosionEffect : modifiers) {
@@ -136,6 +139,7 @@ public class ExplosionModifierSet {
 		world.playSound(null, center.getX(), center.getY(), center.getZ(), SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_EXPLODE, SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.3F);
 		
 		// I feel like this should be called for each Modifier separately, similar to applyToWorld(), applyToBlocks() & applyToEntities()
+		// or even moved to use a modifier that uses applyToEntities(Map<affectedEntities, distance>);
 		spawnParticles(world, center, modifiers, blastRadius);
 		
 		var blastBox = Box.of(center, blastRadius * 2, blastRadius * 2, blastRadius * 2);

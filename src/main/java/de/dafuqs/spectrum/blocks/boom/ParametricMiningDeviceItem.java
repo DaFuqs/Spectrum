@@ -23,8 +23,8 @@ public class ParametricMiningDeviceItem extends ExplosionArchetypeBlockItem {
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip"));
-		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip2"));
+		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip2").formatted(Formatting.GRAY));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	

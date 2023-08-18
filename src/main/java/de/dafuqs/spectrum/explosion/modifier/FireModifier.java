@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.explosion.modifier;
 
-import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.explosion.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
@@ -12,10 +11,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PrimordialFireModifier extends DamageChangingModifier {
+public class FireModifier extends DamageChangingModifier {
 	
-	
-	public PrimordialFireModifier(ExplosionModifierType type, DamageSource damageSource, ParticleEffect effect, int displayColor) {
+	public FireModifier(ExplosionModifierType type, DamageSource damageSource, ParticleEffect effect, int displayColor) {
 		super(type, damageSource, effect, displayColor);
 	}
 	
@@ -23,7 +21,7 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	public void applyToBlocks(@NotNull World world, @NotNull List<BlockPos> blocks) {
 		for (BlockPos pos : blocks) {
 			if (world.getRandom().nextInt(3) == 0 && world.getBlockState(pos).isAir() && world.getBlockState(pos.down()).isOpaqueFullCube(world, pos.down())) {
-				world.setBlockState(pos, PrimordialFireBlock.getState(world, pos));
+				world.setBlockState(pos, FireBlock.getState(world, pos));
 			}
 		}
 		super.applyToBlocks(world, blocks);
@@ -32,15 +30,8 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	@Override
 	public void applyToEntities(@NotNull List<Entity> entities) {
 		for (Entity entity : entities) {
-			if (entity instanceof LivingEntity livingEntity) {
-				OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
-			}
+			entity.setFireTicks(20);
 		}
-	}
-	
-	@Override
-	public float getBlastRadiusModifier() {
-		return 1.25F;
 	}
 	
 }

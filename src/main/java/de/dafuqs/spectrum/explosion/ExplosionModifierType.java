@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.explosion;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;
 
-/**
- * @param id
- * @param maxModifiersForType
- */
-public record ExplosionModifierType(Identifier id, int maxModifiersForType) {
+public record ExplosionModifierType(int maxModifiersForType) {
 	
 	public boolean isCompatibleWith(ExplosionModifierType type) {
 		return true;
@@ -16,9 +13,8 @@ public record ExplosionModifierType(Identifier id, int maxModifiersForType) {
 		return true;
 	}
 	
-	@Override
-	public int hashCode() {
-		return id.hashCode();
+	public Identifier getId() {
+		return SpectrumRegistries.EXPLOSION_MODIFIER_TYPES.getId(this);
 	}
 	
 }

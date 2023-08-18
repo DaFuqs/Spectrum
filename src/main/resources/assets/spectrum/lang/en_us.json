@@ -1811,8 +1811,8 @@
   "block.spectrum.threat_conflux": "Threat Conflux",
   "block.spectrum.threat_conflux.tooltip": "Explodes! When something steps on it...",
   "block.spectrum.threat_conflux.tooltip2": "Disarm it with a ",
-  "item.spectrum.tooltip.explosives.modifiers": "Use the Pigment Pedestal to add explosion modifiers",
-  "item.spectrum.tooltip.explosives.remaining_slots": "Modifier slots remaining: %d/%d",
+  "item.spectrum.tooltip.explosives.remaining_slots": "Modifier slots used: %d/%d",
+  "item.spectrum.tooltip.explosives.modifiers": "Use the Pigment Pedestal to add modifiers",
 
   "item.spectrum.tooltip.loom_pattern_available": "✿ Usable as Banner Pattern",
   "item.spectrum.exchanging_staff": "Exchanging Staff",
@@ -2969,6 +2969,15 @@
   "tag.trinkets.head.crown": "Crowns",
   "tag.trinkets.legs.pigment_palette": "Palettes",
 
+  "explosion_modifier.spectrum.amalgam": "Incandescent",
+  "explosion_modifier.spectrum.starry": "Starry",
+  "explosion_modifier.spectrum.lightning_damage": "Zappy",
+  "explosion_modifier.spectrum.magic_damage": "Enscrollserating",
+  "explosion_modifier.spectrum.looting_damage": "Looting",
+  "explosion_modifier.spectrum.fire": "Fire",
+  "explosion_modifier.spectrum.soul_fire": "Soul Fire",
+  "explosion_modifier.spectrum.primordial_fire": "Primordial Fire",
+
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",
   "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock",
   "advancements.spectrum.break_budding_block_with_resonance_tool.title": "Budding Friendship",
@@ -3430,13 +3439,6 @@
   "potion.potency.28": "XXVIII",
   "potion.potency.29": "XXIX",
   "potion.potency.30": "XXX",
-
-  "explosion_effect_modifier.spectrum.amalgam": "Empowered Payload",
-  "explosion_effect_modifier.spectrum.starry": "Starry",
-  "explosion_effect_modifier.spectrum.lightning_damage": "Zappy",
-  "explosion_effect_modifier.spectrum.magic_damage": "Enscrollserating",
-  "explosion_effect_modifier.spectrum.looting_damage": "Payday",
-  "explosion_effect_modifier.spectrum.primordial_fire_damage": "This is a bad idea",
 
   "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger That",

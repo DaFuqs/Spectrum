@@ -19,8 +19,14 @@ public class ExplosionModifierProviders {
 		PROVIDERS.put(provider.asItem(), modifier);
 	}
 	
+	public static Set<Item> getProviders() {
+		return PROVIDERS.keySet();
+	}
+	
 	public static void register() {
-		registerModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumExplosionEffects.AMALGAM);
+		registerModifier(Items.FIRE_CHARGE, SpectrumExplosionEffects.FIRE);
+		registerModifier(Items.SOUL_SAND, SpectrumExplosionEffects.SOUL_FIRE);
+		registerModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumExplosionEffects.EXPLOSION_BOOST);
 		registerModifier(SpectrumItems.STORM_STONE, SpectrumExplosionEffects.LIGHTNING);
 		registerModifier(SpectrumItems.NEOLITH, SpectrumExplosionEffects.MAGIC);
 		registerModifier(SpectrumItems.MIDNIGHT_CHIP, SpectrumExplosionEffects.LOOTING);

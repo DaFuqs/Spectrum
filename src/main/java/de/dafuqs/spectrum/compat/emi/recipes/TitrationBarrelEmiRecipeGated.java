@@ -19,11 +19,11 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	
 	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
-		input = new ArrayList<>();
+		inputs = new ArrayList<>();
 		if (recipe.getFluidInput() != Fluids.EMPTY) {
-			input.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
+			inputs.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
 		}
-		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
+		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
 		
 		displayedStacks = buildFermentationOutputVariations(recipe);
 	}
@@ -39,12 +39,12 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	@Environment(EnvType.CLIENT)
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// input slots
-		int startX = Math.max(10, 40 - input.size() * 10);
-		int startY = (input.size() > 3 ? 0 : 10);
-		for (int i = 0; i < input.size(); i++) {
+		int startX = Math.max(10, 40 - inputs.size() * 10);
+		int startY = (inputs.size() > 3 ? 0 : 10);
+		for (int i = 0; i < inputs.size(); i++) {
 			int x = startX + (i % 3) * 20;
 			int y = startY + (i / 3) * 20;
-			widgets.addSlot(input.get(i), x, y);
+			widgets.addSlot(inputs.get(i), x, y);
 		}
 		
 		EmiIngredient tapping = EmiStack.of(recipe.getTappingItem());
@@ -56,7 +56,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		}
 		
 		if (displayedStacks == null) {
-			widgets.addSlot(output.get(0), 100, 5).large(true).recipeContext(this);
+			widgets.addSlot(outputs.get(0), 100, 5).large(true).recipeContext(this);
 		} else {
 			widgets.addGeneratedSlot(random -> displayedStacks.get((int) (MinecraftClient.getInstance().world.getTime() % displayedStacks.size())), 1, 100, 5).large(true).recipeContext(this);
 			

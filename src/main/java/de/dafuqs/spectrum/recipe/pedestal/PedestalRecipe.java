@@ -123,7 +123,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 		return SpectrumRecipeTypes.PEDESTAL;
 	}
 	
-	public int getGemstonePowderAmount(GemstoneColor gemstoneColor) {
+	public int getGemstonePowderAmount(BuiltinGemstoneColor gemstoneColor) {
 		return powderInputs.getOrDefault(gemstoneColor, 0);
 	}
 	
@@ -255,6 +255,13 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	
 	public boolean isShapeless() {
 		return true;
+	}
+	
+	public int getGridSlotId(int index) {
+		int width = getWidth();
+		int x = index % width;
+		int y = (index - x) / width;
+		return 3 * y + x;
 	}
 	
 }

@@ -18,22 +18,22 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	
 	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
-		input = List.of(
+		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().get(0).getBlock())
 		);
-		output = Stream.concat(
+		outputs = Stream.concat(
 				Stream.concat(
 								Stream.of(recipe.getOutput()),
 								recipe.getAdditionalOutputs().stream())
 						.map(EmiStack::of),
-			recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
+				recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
 		).toList();
 	}
 
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		widgets.addSlot(input.get(0), 0, 8);
+		widgets.addSlot(inputs.get(0), 0, 8);
 		
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(NullableDyeColor.get(recipe.getInkColor().getDyeColor()))), 20, 18).drawBack(false);
 		

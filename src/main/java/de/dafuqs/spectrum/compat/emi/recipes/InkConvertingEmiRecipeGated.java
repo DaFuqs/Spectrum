@@ -11,12 +11,12 @@ public class InkConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<InkConve
 	
 	public InkConvertingEmiRecipeGated(InkConvertingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
-		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
+		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		widgets.addSlot(input.get(0), 0, 1);
+		widgets.addSlot(inputs.get(0), 0, 1);
 		
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 22, 1);
 

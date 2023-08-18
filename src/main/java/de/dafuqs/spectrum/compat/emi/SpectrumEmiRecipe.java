@@ -18,8 +18,8 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 	public final EmiRecipeCategory category;
 	public final Identifier recipeTypeUnlockIdentifier, recipeIdentifier;
 	public final int width, height;
-	public List<EmiIngredient> input = List.of();
-	public List<EmiStack> output = List.of();
+	public List<EmiIngredient> inputs = List.of();
+	public List<EmiStack> outputs = List.of();
 	
 	public SpectrumEmiRecipe(EmiRecipeCategory category, Identifier recipeTypeUnlockIdentifier, Identifier recipeIdentifier, int width, int height) {
 		this.category = category;
@@ -69,12 +69,12 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 	
 	@Override
 	public List<EmiIngredient> getInputs() {
-		return input;
+		return inputs;
 	}
 	
 	@Override
 	public List<EmiStack> getOutputs() {
-		return output;
+		return outputs;
 	}
 	
 	@Override

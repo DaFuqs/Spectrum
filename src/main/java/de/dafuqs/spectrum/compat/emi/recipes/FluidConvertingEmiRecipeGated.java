@@ -12,13 +12,13 @@ public class FluidConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<FluidC
 	
 	public FluidConvertingEmiRecipeGated(EmiRecipeCategory category, FluidConvertingRecipe recipe, Identifier recipeTypeUnlockIdentifier) {
 		super(category, recipeTypeUnlockIdentifier, recipe, 78, 26);
-		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
+		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 23, 4);
-		widgets.addSlot(input.get(0), 0, 4);
-		widgets.addSlot(output.get(0), 52, 0).large(true).recipeContext(this);
+		widgets.addSlot(inputs.get(0), 0, 4);
+		widgets.addSlot(outputs.get(0), 52, 0).large(true).recipeContext(this);
 	}
 }

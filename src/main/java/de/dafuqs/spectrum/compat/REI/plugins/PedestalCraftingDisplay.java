@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
@@ -24,7 +24,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	 *
 	 * @param recipe The recipe
 	 */
-	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
+	public PedestalCraftingDisplay(PedestalRecipe recipe) {
 		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		this.pedestalRecipeTier = recipe.getTier();
 		this.width = recipe.getWidth();
@@ -33,18 +33,18 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		this.craftingTime = recipe.getCraftingTime();
 	}
 	
-	private static List<EntryIngredient> mapIngredients(PedestalCraftingRecipe recipe) {
-		int shownGemstoneSlotCount = recipe.getTier() == PedestalRecipeTier.COMPLEX ? 5 : recipe.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
+	private static List<EntryIngredient> mapIngredients(PedestalRecipe recipe) {
+		int powderSlotCount = recipe.getTier().getPowderSlotCount();
 		
-		List<EntryIngredient> list = new ArrayList<>(9 + shownGemstoneSlotCount);
-		for (int i = 0; i < 9 + shownGemstoneSlotCount; i++) {
+		List<EntryIngredient> list = new ArrayList<>(9 + powderSlotCount);
+		for (int i = 0; i < 9 + powderSlotCount; i++) {
 			list.add(EntryIngredient.empty());
 		}
 		for (int i = 0; i < recipe.getIngredientStacks().size(); i++) {
 			list.set(getSlotWithSize(recipe.getWidth(), i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
 		}
 		
-		Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
+		Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getPowderInputs();
 		int firstGemstoneSlotId = 3 * 3;
 		
 		int cyan = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
@@ -59,12 +59,12 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		if (yellow > 0) {
 			list.set(firstGemstoneSlotId + 2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
 		}
-		if (shownGemstoneSlotCount >= 4) {
+		if (powderSlotCount >= 4) {
 			int black = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
 			if (black > 0) {
 				list.set(firstGemstoneSlotId + 3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
 			}
-			if (shownGemstoneSlotCount == 5) {
+			if (powderSlotCount == 5) {
 				int white = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 				if (white > 0) {
 					list.set(firstGemstoneSlotId + 4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
@@ -100,7 +100,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	@Override
 	@SuppressWarnings("resource")
 	public boolean isUnlocked() {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && super.isUnlocked();
+		return this.pedestalRecipeTier.hasUnlocked(MinecraftClient.getInstance().player) && super.isUnlocked();
 	}
 	
 	public PedestalRecipeTier getTier() {

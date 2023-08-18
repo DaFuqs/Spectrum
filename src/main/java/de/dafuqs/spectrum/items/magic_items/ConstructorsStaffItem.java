@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.enums.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
@@ -61,7 +60,7 @@ public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectru
 	}
 	
 	@Contract(pure = true)
-	private Identifier getBackground(int rows, @NotNull ProgressionStage tier) {
+	private Identifier getBackground(int rows, @NotNull ScreenBackgroundVariant tier) {
 		switch (tier) {
 			case EARLYGAME -> {
 				return TIER_1_TEXTURE_6x9;

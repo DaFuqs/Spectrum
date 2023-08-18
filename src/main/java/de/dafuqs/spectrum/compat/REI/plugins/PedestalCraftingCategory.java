@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.math.*;
@@ -55,7 +54,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		
 		// set crafting slot contents
 		List<EntryIngredient> input = display.getInputEntries();
-		int shownGemstoneSlotCount = display.getTier() == PedestalRecipeTier.COMPLEX ? 5 : display.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
+		int powderSlotCount = display.getTier().getPowderSlotCount();
 		int gemstoneDustStartSlot = 9;
 		for (int i = 0; i < 9; i++) {
 			if (!input.get(i).isEmpty()) {
@@ -64,9 +63,9 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		}
 		
 		// gemstone dust slots
-		int gemstoneSlotStartX = shownGemstoneSlotCount == 5 ? -45 : shownGemstoneSlotCount == 4 ? -40 : -31;
-		int gemstoneSlotTextureStartX = shownGemstoneSlotCount == 5 ? 43 : shownGemstoneSlotCount == 4 ? 52 : 61;
-		for (int x = 0; x < shownGemstoneSlotCount; x++) {
+		int gemstoneSlotStartX = powderSlotCount == 5 ? -45 : powderSlotCount == 4 ? -40 : -31;
+		int gemstoneSlotTextureStartX = powderSlotCount == 5 ? 43 : powderSlotCount == 4 ? 52 : 61;
+		for (int x = 0; x < powderSlotCount; x++) {
 			slots.add(Widgets.createSlot(new Point(bounds.getCenterX() + x * 18 + gemstoneSlotStartX, startPoint.y + 1 + 60)).disableBackground().markInput());
 			if (!input.get(gemstoneDustStartSlot + x).isEmpty()) {
 				slots.get(9 + x).entries(input.get(gemstoneDustStartSlot + x));
@@ -80,7 +79,7 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 1 + 19)).entries(result).disableBackground().markOutput());
 		
 		// the gemstone slot background texture				  destinationX				 destinationY	   sourceX, sourceY, width, height
-		widgets.add(Widgets.createTexturedWidget(backgroundTexture, bounds.getCenterX() + gemstoneSlotStartX - 1, startPoint.y + 1 + 59, gemstoneSlotTextureStartX, 76, 18 * shownGemstoneSlotCount, 18));
+		widgets.add(Widgets.createTexturedWidget(backgroundTexture, bounds.getCenterX() + gemstoneSlotStartX - 1, startPoint.y + 1 + 59, gemstoneSlotTextureStartX, 76, 18 * powderSlotCount, 18));
 		// crafting input texture
 		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x, startPoint.y + 1, 29, 18, 54, 54));
 		// crafting output texture

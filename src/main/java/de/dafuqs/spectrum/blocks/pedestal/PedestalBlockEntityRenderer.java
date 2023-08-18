@@ -44,7 +44,7 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 		
 		// render floating item stacks
 		Recipe<?> currentRecipe = entity.getCurrentRecipe();
-		if (currentRecipe instanceof PedestalCraftingRecipe) {
+		if (currentRecipe instanceof PedestalRecipe) {
 			float time = entity.getWorld().getTime() % 50000 + tickDelta;
 			circle.yaw = time / 25.0F;
 			circle.render(matrixStack, vertexConsumerProvider.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);

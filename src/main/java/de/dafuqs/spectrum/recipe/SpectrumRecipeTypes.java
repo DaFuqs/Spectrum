@@ -18,9 +18,11 @@ import net.minecraft.util.registry.*;
 
 public class SpectrumRecipeTypes {
 	
-	public static final String PEDESTAL_RECIPE_ID = "pedestal";
-	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
-	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
+	public static final String SHAPED_PEDESTAL_RECIPE_ID = "pedestal";
+	public static final String SHAPELESS_PEDESTAL_RECIPE_ID = "pedestal_shapeless";
+	public static RecipeSerializer<ShapedPedestalRecipe> SHAPED_PEDESTAL_RECIPE_SERIALIZER;
+	public static RecipeSerializer<ShapelessPedestalRecipe> SHAPELESS_PEDESTAL_RECIPE_SERIALIZER;
+	public static RecipeType<PedestalRecipe> PEDESTAL;
 	
 	public static final String ANVIL_CRUSHING_ID = "anvil_crushing";
 	public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
@@ -100,8 +102,9 @@ public class SpectrumRecipeTypes {
 	}
 	
 	public static void registerSerializer() {
-		PEDESTAL_RECIPE_SERIALIZER = registerSerializer(PEDESTAL_RECIPE_ID, new PedestalCraftingRecipeSerializer(PedestalCraftingRecipe::new));
-		PEDESTAL = registerRecipeType(PEDESTAL_RECIPE_ID);
+		SHAPED_PEDESTAL_RECIPE_SERIALIZER = registerSerializer(SHAPED_PEDESTAL_RECIPE_ID, new ShapedPedestalRecipeSerializer(ShapedPedestalRecipe::new));
+		SHAPELESS_PEDESTAL_RECIPE_SERIALIZER = registerSerializer(SHAPELESS_PEDESTAL_RECIPE_ID, new ShapelessPedestalRecipeSerializer(ShapelessPedestalRecipe::new));
+		PEDESTAL = registerRecipeType(SHAPED_PEDESTAL_RECIPE_ID);
 		
 		ANVIL_CRUSHING_RECIPE_SERIALIZER = registerSerializer(ANVIL_CRUSHING_ID, new AnvilCrushingRecipeSerializer(AnvilCrushingRecipe::new));
 		ANVIL_CRUSHING = registerRecipeType(ANVIL_CRUSHING_ID);

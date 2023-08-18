@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.minecraft.block.*;
 
 public interface PedestalVariant {

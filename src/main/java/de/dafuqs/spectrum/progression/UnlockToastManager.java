@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -101,7 +100,7 @@ public class UnlockToastManager {
 					}
 				}
 				
-				for (PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
+				for (PedestalRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
 					if (!unlockedPedestalRecipes.contains(alreadyUnlockedRecipe)) {
 						unlockedPedestalRecipes.add(alreadyUnlockedRecipe);
 					}
@@ -171,14 +170,14 @@ public class UnlockToastManager {
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
 	@SuppressWarnings("resource")
-	private static @NotNull List<PedestalCraftingRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
+	private static @NotNull List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 		
-		List<PedestalCraftingRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
+		List<PedestalRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
 		for (GatedRecipe recipe : pedestalRecipes) {
-			PedestalCraftingRecipe pedestalCraftingRecipe = (PedestalCraftingRecipe) recipe;
-			if (pedestalCraftingRecipe.getTier() == pedestalRecipeTier && !alreadyUnlockedRecipesAtNewTier.contains(recipe) && recipe.canPlayerCraft(player)) {
-				alreadyUnlockedRecipesAtNewTier.add(pedestalCraftingRecipe);
+			PedestalRecipe pedestalRecipe = (PedestalRecipe) recipe;
+			if (pedestalRecipe.getTier() == pedestalRecipeTier && !alreadyUnlockedRecipesAtNewTier.contains(recipe) && recipe.canPlayerCraft(player)) {
+				alreadyUnlockedRecipesAtNewTier.add(pedestalRecipe);
 			}
 		}
 		return alreadyUnlockedRecipesAtNewTier;

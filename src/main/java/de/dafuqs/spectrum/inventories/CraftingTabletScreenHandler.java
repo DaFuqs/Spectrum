@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -119,39 +119,39 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, 64));
 			inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, 64));
 			inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, 64));
-			Optional<PedestalCraftingRecipe> optionalPedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, inventory, world);
+			Optional<PedestalRecipe> optionalPedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, inventory, world);
 			if (optionalPedestalCraftingRecipe.isPresent()) {
 				lockableCraftingResultSlot.lock();
 				
-				PedestalCraftingRecipe pedestalCraftingRecipe = optionalPedestalCraftingRecipe.get();
-				ItemStack itemStack = pedestalCraftingRecipe.getOutput().copy();
+				PedestalRecipe pedestalRecipe = optionalPedestalCraftingRecipe.get();
+				ItemStack itemStack = pedestalRecipe.getOutput().copy();
 				craftingResultInventory.setStack(0, itemStack);
 				
-				int magenta = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);
+				int magenta = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN);
 				if (magenta > 0) {
 					inventory.setStack(9, new ItemStack(SpectrumItems.TOPAZ_POWDER, magenta));
 				} else {
 					inventory.setStack(9, ItemStack.EMPTY);
 				}
-				int yellow = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA);
+				int yellow = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA);
 				if (yellow > 0) {
 					inventory.setStack(10, new ItemStack(SpectrumItems.AMETHYST_POWDER, yellow));
 				} else {
 					inventory.setStack(10, ItemStack.EMPTY);
 				}
-				int cyan = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW);
+				int cyan = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW);
 				if (cyan > 0) {
 					inventory.setStack(11, new ItemStack(SpectrumItems.CITRINE_POWDER, cyan));
 				} else {
 					inventory.setStack(11, ItemStack.EMPTY);
 				}
-				int black = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK);
+				int black = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK);
 				if (black > 0) {
 					inventory.setStack(12, new ItemStack(SpectrumItems.ONYX_POWDER, black));
 				} else {
 					inventory.setStack(12, ItemStack.EMPTY);
 				}
-				int white = pedestalCraftingRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE);
+				int white = pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE);
 				if (white > 0) {
 					inventory.setStack(13, new ItemStack(SpectrumItems.MOONSTONE_POWDER, white));
 				} else {

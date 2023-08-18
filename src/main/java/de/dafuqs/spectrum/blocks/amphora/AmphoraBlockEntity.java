@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.amphora;
 
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -93,7 +92,7 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, ProgressionStage.EARLYGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Override

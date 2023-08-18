@@ -2,70 +2,49 @@ package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class StarCandyRecipe extends PedestalCraftingRecipe {
+public class StarCandyRecipe extends ShapedPedestalRecipe {
 	
 	public static final RecipeSerializer<StarCandyRecipe> SERIALIZER = new SpecialRecipeSerializer<>(StarCandyRecipe::new);
-	public static final Random RANDOM = new Random();
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/star_candy");
 	public static final float PURPLE_STAR_CANDY_CHANCE = 0.02F;
-	public static final Map<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = Map.of(BuiltinGemstoneColor.YELLOW, 1);
 	
 	public StarCandyRecipe(Identifier id) {
-		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.BASIC, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
+		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.BASIC, 3, 3, generateInputs(), Map.of(BuiltinGemstoneColor.YELLOW, 1), SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
 	}
 	
 	@Override
-	public ItemStack craftAndDecrement(Inventory inv) {
+	public ItemStack craft(Inventory inv) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
-			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
-			if (orientation == null) {
-				return ItemStack.EMPTY;
+			if (pedestal.getWorld().random.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
+				return SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 			}
-			decrementIngredientStacks(pedestal, orientation);
-			
-			ItemStack recipeOutput;
-			if (RANDOM.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
-				recipeOutput = SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
-			} else {
-				recipeOutput = this.output.copy();
-			}
-			
-			PlayerEntity player = pedestal.getOwnerIfOnline();
-			if (player != null) {
-				recipeOutput.onCraft(pedestal.getWorld(), player, recipeOutput.getCount());
-			}
-			return recipeOutput;
 		}
-		return ItemStack.EMPTY;
+		return this.output.copy();
 	}
 	
-	private static DefaultedList<IngredientStack> generateInputs() {
-		DefaultedList<IngredientStack> inputs = DefaultedList.ofSize(9);
-		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
-		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
-		return inputs;
+	private static List<IngredientStack> generateInputs() {
+		return List.of(
+				IngredientStack.of(Ingredient.ofItems(Items.SUGAR)),
+				IngredientStack.of(Ingredient.ofItems(Items.SUGAR)),
+				IngredientStack.of(Ingredient.ofItems(Items.SUGAR)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)),
+				IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
 	}
 	
 	

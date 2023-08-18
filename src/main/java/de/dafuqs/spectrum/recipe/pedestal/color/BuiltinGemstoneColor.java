@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.enums;
+package de.dafuqs.spectrum.recipe.pedestal.color;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.item.*;
@@ -11,7 +11,7 @@ public enum BuiltinGemstoneColor implements GemstoneColor {
 	BLACK(DyeColor.BLACK),
 	WHITE(DyeColor.WHITE);
 	
-	final DyeColor dyeColor;
+	private final DyeColor dyeColor;
 	
 	BuiltinGemstoneColor(DyeColor dyeColor) {
 		this.dyeColor = dyeColor;

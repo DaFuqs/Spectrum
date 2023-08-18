@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 3600,
   "tier": "advanced",
   "cyan": 4,
@@ -8,18 +8,14 @@
   "black": 0,
   "white": 0,
   "experience": 16.0,
-  "pattern": [
-    "S",
-    "U"
-  ],
-  "key": {
-    "U": {
+  "ingredients": [
+    {
       "item": "spectrum:upgrade_experience"
     },
-    "S": {
+    {
       "item": "spectrum:moonstone_shard"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:upgrade_experience2",
     "count": 1

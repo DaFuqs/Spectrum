@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "group": "noxwood_decorations",
   "time": 80,
   "tier": "basic",
@@ -9,14 +9,11 @@
   "white": 0,
   "black": 0,
   "experience": 0.1,
-  "pattern": [
-    "S"
-  ],
-  "key": {
-    "S": {
+  "ingredients": [
+    {
       "item": "spectrum:chestnut_noxwood_planks"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:chestnut_noxwood_button",
     "count": 4

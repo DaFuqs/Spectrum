@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 3600,
   "tier": "advanced",
   "cyan": 4,
@@ -12,14 +12,14 @@
     "S",
     "U"
   ],
-  "key": {
-    "S": {
+  "ingredients": [
+    {
       "item": "spectrum:storm_stone"
     },
-    "U": {
+    {
       "item": "spectrum:upgrade_speed"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:upgrade_speed2",
     "count": 1

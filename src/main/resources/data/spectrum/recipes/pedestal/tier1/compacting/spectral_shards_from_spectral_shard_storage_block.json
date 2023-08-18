@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 100,
   "tier": "basic",
   "cyan": 0,
@@ -8,14 +8,11 @@
   "black": 0,
   "white": 0,
   "experience": 0.0,
-  "pattern": [
-    "S"
-  ],
-  "key": {
-    "S": {
+  "ingredients": [
+    {
       "item": "spectrum:spectral_shard_storage_block"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:spectral_shard",
     "count": 9

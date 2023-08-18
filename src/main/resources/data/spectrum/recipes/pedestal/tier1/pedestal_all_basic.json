@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 200,
   "tier": "basic",
   "cyan": 0,
@@ -8,22 +8,17 @@
   "white": 0,
   "black": 0,
   "experience": 4.0,
-  "pattern": [
-    "   ",
-    "TAC",
-    "   "
-  ],
-  "key": {
-    "T": {
+  "ingredients": [
+    {
       "item": "spectrum:topaz_shard"
     },
-    "A": {
+    {
       "item": "minecraft:amethyst_shard"
     },
-    "C": {
+    {
       "item": "spectrum:citrine_shard"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:pedestal_all_basic",
     "count": 1

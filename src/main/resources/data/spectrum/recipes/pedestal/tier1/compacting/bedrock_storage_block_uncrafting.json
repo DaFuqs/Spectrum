@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 120,
   "tier": "advanced",
   "magenta": 0,
@@ -8,14 +8,11 @@
   "black": 0,
   "white": 0,
   "experience": 0.0,
-  "pattern": [
-    "B"
-  ],
-  "key": {
-    "B": {
+  "ingredients": [
+    {
       "item": "spectrum:bedrock_storage_block"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:bedrock_dust",
     "count": 9

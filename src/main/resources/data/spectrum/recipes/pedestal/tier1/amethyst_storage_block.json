@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "spectrum:amethyst_storage_block",
+    "count": 1
+  }
+}

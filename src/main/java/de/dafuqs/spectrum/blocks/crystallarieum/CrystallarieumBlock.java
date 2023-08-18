@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -88,12 +87,9 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				ItemStack handStack = player.getStackInHand(hand);
 				if (player.isSneaking() || handStack.isEmpty()) {
 					// sneaking or empty hand: remove items
-					for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-						if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, i)) {
-							crystallarieumBlockEntity.updateInClientWorld();
-							crystallarieumBlockEntity.setOwner(player);
-							break;
-						}
+					if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 1) || retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 0)) {
+						crystallarieumBlockEntity.updateInClientWorld();
+						crystallarieumBlockEntity.setOwner(player);
 					}
 					return ActionResult.CONSUME;
 				} else {

@@ -28,6 +28,8 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer KINDLING = new EntityModelLayer(SpectrumCommon.locate("kindling"), "main");
 	public static final EntityModelLayer KINDLING_ARMOR = new EntityModelLayer(SpectrumCommon.locate("kindling_armor"), "main");
 	public static final EntityModelLayer KINDLING_COUGH = new EntityModelLayer(SpectrumCommon.locate("kindling_cough"), "main");
+	public static final EntityModelLayer ERASER = new EntityModelLayer(SpectrumCommon.locate("eraser"), "body");
+
 	
 	/**
 	 * Blocks
@@ -58,6 +60,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(KINDLING, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(ERASER, EraserEntityModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(EGG_LAYING_WOOLY_PIG_HEAD, EggLayingWoolyPigHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY_HEAD, MonstrosityHeadModel::getTexturedModelData);

@@ -121,7 +121,7 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, true),
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
 	LIZARD(SpectrumEntityTypes.LIZARD, true),
-	ERASER(SpectrumEntityTypes.ERASER);
+	ERASER(SpectrumEntityTypes.ERASER, true);
 	
 	public final EntityType<?> entityType;
 	public final SkullBlock.SkullType modelType;

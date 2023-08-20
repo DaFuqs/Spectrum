@@ -1,12 +1,12 @@
 {
-  "name": "spectrum:lizard_den/centers",
+  "name": "spectrum:lizard_den/centers_blackslag",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:lizard_den/lizard_den",
+        "location": "spectrum:lizard_den/center_blackslag",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

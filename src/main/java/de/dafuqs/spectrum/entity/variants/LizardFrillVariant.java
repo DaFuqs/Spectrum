@@ -13,8 +13,8 @@ public record LizardFrillVariant(Identifier texture) {
 	public static final LizardFrillVariant MODEST = register("modest", "textures/entity/lizard/frills_modest.png");
 	public static final LizardFrillVariant NONE = register("none", "textures/entity/lizard/frills_none.png");
 	
-	private static LizardFrillVariant register(String id, String textureId) {
-		return Registry.register(SpectrumRegistries.LIZARD_FRILL_VARIANT, id, new LizardFrillVariant(SpectrumCommon.locate(textureId)));
+	private static LizardFrillVariant register(String name, String textureId) {
+		return Registry.register(SpectrumRegistries.LIZARD_FRILL_VARIANT, SpectrumCommon.locate(name), new LizardFrillVariant(SpectrumCommon.locate(textureId)));
 	}
 	
 	public static void init() {

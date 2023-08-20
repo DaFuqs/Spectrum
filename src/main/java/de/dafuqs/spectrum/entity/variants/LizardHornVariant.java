@@ -14,8 +14,8 @@ public record LizardHornVariant(Identifier texture) {
 	public static final LizardHornVariant POLY = register("poly", "textures/entity/lizard/horns_poly.png");
 	public static final LizardHornVariant ONLY_LIKES_YOU_AS_A_FRIEND = register("friendzoned", "textures/entity/lizard/horns_friendzoned.png");
 	
-	private static LizardHornVariant register(String id, String textureId) {
-		return Registry.register(SpectrumRegistries.LIZARD_HORN_VARIANT, id, new LizardHornVariant(SpectrumCommon.locate(textureId)));
+	private static LizardHornVariant register(String name, String textureId) {
+		return Registry.register(SpectrumRegistries.LIZARD_HORN_VARIANT, SpectrumCommon.locate(name), new LizardHornVariant(SpectrumCommon.locate(textureId)));
 	}
 	
 	public static void init() {

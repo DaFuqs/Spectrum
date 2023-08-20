@@ -1,7 +1,15 @@
 {
   "structures": [
     {
-      "structure": "spectrum:lizard_den",
+      "structure": "spectrum:lizard_den/blackslag",
+      "weight": 1
+    },
+    {
+      "structure": "spectrum:lizard_den/shalerite",
+      "weight": 1
+    },
+    {
+      "structure": "spectrum:lizard_den/dripstone",
       "weight": 1
     }
   ],

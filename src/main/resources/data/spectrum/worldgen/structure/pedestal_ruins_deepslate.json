@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:block_target_jigsaw",
+  "type": "spectrum:underground_jigsaw",
   "start_pool": "spectrum:pedestal_ruins/deepslate/centers",
   "size": 2,
   "max_distance_from_center": 80,
@@ -15,6 +15,9 @@
       "above_bottom": 16
     }
   },
-  "block_target_type": "solid",
+  "placement_type": "on_solid_ground",
+  "placement_check_width": 10,
+  "placement_check_height": 5,
+  "placement_required": false,
   "spawn_overrides": {}
 }

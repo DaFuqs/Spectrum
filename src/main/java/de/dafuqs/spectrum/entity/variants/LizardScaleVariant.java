@@ -13,8 +13,8 @@ public record LizardScaleVariant(Identifier texture) {
 	public static final LizardScaleVariant BLACK = register("black", "textures/entity/lizard/scales_black.png");
 	public static final LizardScaleVariant WHITE = register("white", "textures/entity/lizard/scales_white.png");
 	
-	private static LizardScaleVariant register(String id, String textureId) {
-		return Registry.register(SpectrumRegistries.LIZARD_SCALE_VARIANT, id, new LizardScaleVariant(SpectrumCommon.locate(textureId)));
+	private static LizardScaleVariant register(String name, String textureId) {
+		return Registry.register(SpectrumRegistries.LIZARD_SCALE_VARIANT, SpectrumCommon.locate(name), new LizardScaleVariant(SpectrumCommon.locate(textureId)));
 	}
 	
 	public static void init() {

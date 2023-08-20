@@ -15,13 +15,26 @@ import net.minecraft.world.*;
 public class BlackMateriaBlock extends FallingBlock {
 	
 	public static final int PROPAGATION_TRIES = 3;
-
+	
 	public static final int MAX_AGE = Properties.AGE_3_MAX;
 	public static final IntProperty AGE = Properties.AGE_3;
 	
 	public BlackMateriaBlock(Settings settings) {
 		super(settings);
-		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 3));
+		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, Properties.AGE_3_MAX));
+	}
+	
+	@Override
+	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+		world.createAndScheduleBlockTick(pos, this, this.getFallDelay());
+	}
+	
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (direction == Direction.DOWN) {
+			super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		}
+		return state;
 	}
 	
 	public static boolean spreadBlackMateria(World world, BlockPos pos, Random random, BlockState targetState) {

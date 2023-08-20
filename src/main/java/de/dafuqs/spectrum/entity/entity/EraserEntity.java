@@ -1,20 +1,30 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntity> {
+import java.util.*;
+
+public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntity>, Bucketable {
+	
+	private static final TrackedData<Boolean> FROM_BUCKET = DataTracker.registerData(EraserEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	
 	private @Nullable StatusEffectInstance effectOnHit;
 	
@@ -28,7 +38,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	public static DefaultAttributeContainer.Builder createEraserAttributes() {
 		return HostileEntity.createHostileAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0);
 	}
 	
@@ -70,6 +80,12 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 		}
 		
 		return entityData;
+	}
+	
+	@Override
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(FROM_BUCKET, false);
 	}
 	
 	@Override
@@ -144,6 +160,11 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		
+		nbt.putBoolean("FromBucket", this.isFromBucket());
+		putEffectOnHit(nbt);
+	}
+	
+	private void putEffectOnHit(NbtCompound nbt) {
 		if (this.effectOnHit != null) {
 			NbtCompound effectNbt = new NbtCompound();
 			this.effectOnHit.writeNbt(effectNbt);
@@ -155,6 +176,11 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		
+		this.setFromBucket(nbt.getBoolean("FromBucket"));
+		readEffectOnHit(nbt);
+	}
+	
+	private void readEffectOnHit(NbtCompound nbt) {
 		if (nbt.contains("EffectOnHit", NbtElement.COMPOUND_TYPE)) {
 			this.effectOnHit = StatusEffectInstance.fromNbt(nbt.getCompound("EffectOnHit"));
 		}
@@ -190,6 +216,77 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return 0.2F;
+	}
+	
+	// Bucketable
+	@Override
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		return tryBucket(player, hand, this).orElse(super.interactMob(player, hand));
+	}
+	
+	// Bucketable.tryBucket() has a dedicated check for WATER_BUCKET in there
+	// since we are bucketing with Fluids.EMPTY we have to use a custom implementation
+	static <T extends LivingEntity & Bucketable> Optional<ActionResult> tryBucket(PlayerEntity player, Hand hand, T entity) {
+		ItemStack handStack = player.getStackInHand(hand);
+		if (handStack.getItem() == Items.BUCKET && entity.isAlive()) {
+			entity.playSound(entity.getBucketFillSound(), 1.0F, 1.0F);
+			ItemStack bucketedStack = entity.getBucketItem();
+			entity.copyDataToStack(bucketedStack);
+			ItemStack exchangedStack = ItemUsage.exchangeStack(handStack, player, bucketedStack, false);
+			player.setStackInHand(hand, exchangedStack);
+			World world = entity.world;
+			if (!world.isClient) {
+				Criteria.FILLED_BUCKET.trigger((ServerPlayerEntity) player, bucketedStack);
+			}
+			
+			entity.discard();
+			return Optional.of(ActionResult.success(world.isClient));
+		} else {
+			return Optional.empty();
+		}
+	}
+	
+	@Override
+	public boolean cannotDespawn() {
+		return super.cannotDespawn() || this.isFromBucket();
+	}
+	
+	@Override
+	public boolean canImmediatelyDespawn(double distanceSquared) {
+		return !this.isFromBucket() && !this.hasCustomName();
+	}
+	
+	@Override
+	public boolean isFromBucket() {
+		return this.dataTracker.get(FROM_BUCKET);
+	}
+	
+	@Override
+	public void setFromBucket(boolean fromBucket) {
+		this.dataTracker.set(FROM_BUCKET, fromBucket);
+	}
+	
+	@Override
+	public void copyDataToStack(ItemStack stack) {
+		Bucketable.copyDataToStack(this, stack);
+		NbtCompound nbtCompound = stack.getOrCreateNbt();
+		putEffectOnHit(nbtCompound);
+	}
+	
+	@Override
+	public void copyDataFromNbt(NbtCompound nbt) {
+		Bucketable.copyDataFromNbt(this, nbt);
+		readEffectOnHit(nbt);
+	}
+	
+	@Override
+	public ItemStack getBucketItem() {
+		return new ItemStack(SpectrumItems.BUCKET_OF_ERASER);
+	}
+	
+	@Override
+	public SoundEvent getBucketFillSound() {
+		return SoundEvents.ITEM_BUCKET_FILL;
 	}
 	
 	public static class SwarmingSpiderData extends SpiderData {

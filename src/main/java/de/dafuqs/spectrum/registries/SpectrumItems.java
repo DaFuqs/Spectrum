@@ -28,7 +28,9 @@ import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
@@ -400,6 +402,8 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, Tab.DECORATION.settings(1));
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, Tab.DECORATION.settings(1));
 	
+	public static final Item BUCKET_OF_ERASER = new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.ITEM_BUCKET_EMPTY, Tab.CREATURES.settings());
+	
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, Tab.CREATURES.settings());
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, Tab.CREATURES.settings()); // TODO: colors
 	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, Tab.CREATURES.settings());
@@ -546,6 +550,8 @@ public class SpectrumItems {
 	
 	public static void registerSpawningStuff() {
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
+		
+		register("bucket_of_eraser", BUCKET_OF_ERASER, DyeColor.PINK);
 		
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 		register("preservation_turret_spawn_egg", PRESERVATION_TURRET_SPAWN_EGG, DyeColor.WHITE);

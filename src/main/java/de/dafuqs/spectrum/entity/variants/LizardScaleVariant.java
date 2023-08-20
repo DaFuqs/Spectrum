@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.variants;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
@@ -15,6 +16,12 @@ public record LizardScaleVariant(Identifier texture) {
 	
 	private static LizardScaleVariant register(String name, String textureId) {
 		return Registry.register(SpectrumRegistries.LIZARD_SCALE_VARIANT, SpectrumCommon.locate(name), new LizardScaleVariant(SpectrumCommon.locate(textureId)));
+	}
+	
+	public static final TagKey<LizardScaleVariant> NATURAL_VARIANT = getReference("natural");
+	
+	private static TagKey<LizardScaleVariant> getReference(String name) {
+		return TagKey.of(SpectrumRegistries.LIZARD_SCALE_VARIANT_KEY, SpectrumCommon.locate(name));
 	}
 	
 	public static void init() {

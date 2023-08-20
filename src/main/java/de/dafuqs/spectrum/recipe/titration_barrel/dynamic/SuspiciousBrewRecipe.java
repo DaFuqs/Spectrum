@@ -100,12 +100,8 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	// taken from SuspiciousStewItem
 	private Optional<Pair<StatusEffect, Integer>> getStewEffectFrom(ItemStack stack) {
-		Item item = stack.getItem();
-		if (item instanceof BlockItem blockItem) {
-			Block block = blockItem.getBlock();
-			if (block instanceof FlowerBlock flowerBlock) {
-				return Optional.of(Pair.of(flowerBlock.getEffectInStew(), flowerBlock.getEffectInStewDuration()));
-			}
+		if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
+			return Optional.of(Pair.of(flowerBlock.getEffectInStew(), flowerBlock.getEffectInStewDuration()));
 		}
 		return Optional.empty();
 	}
@@ -116,7 +112,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
 			if (!stack.isEmpty()) {
-				if (stack.isIn(ItemTags.SMALL_FLOWERS)) {
+				if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock) {
 					flowerFound = true;
 				} else {
 					return false;

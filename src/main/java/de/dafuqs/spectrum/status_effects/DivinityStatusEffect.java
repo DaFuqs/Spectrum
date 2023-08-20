@@ -15,6 +15,9 @@ import net.minecraft.world.*;
 
 public class DivinityStatusEffect extends SpectrumStatusEffect {
 	
+	public static final int CIRCLET_AMPLIFIER = 0;
+	public static final int ASCENSION_AMPLIFIER = 1;
+	
 	public DivinityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
@@ -22,19 +25,20 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		World world = entity.getWorld();
-		if (world.isClient) {
+		if (amplifier > CIRCLET_AMPLIFIER && world.isClient) { // the circlet gives divinity 0, not showing effects; the ascension one does
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.EIGHT, 0.2);
 		}
+		boolean doEffects = 40 >> amplifier == 0;
 		if (entity instanceof PlayerEntity player) {
 			if (!world.isClient) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
 			}
-			if (world.getTime() % 40 == 0) {
+			if (doEffects) {
 				player.getHungerManager().add(1 + amplifier, 0.25F);
 			}
 		}
 		
-		if (world.getTime() % 40 == 0) {
+		if (doEffects) {
 			if (entity.getHealth() < entity.getMaxHealth()) {
 				entity.heal(amplifier / 2F);
 			}
@@ -64,7 +68,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		if (entity instanceof PlayerEntity && entity.world.isClient) {
+		if (entity.world.isClient) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
 		}
 	}

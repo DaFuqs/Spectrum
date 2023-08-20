@@ -23,7 +23,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class DoomBloomBlock extends PlantBlock implements Fertilizable {
+public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 	
 	public static final IntProperty AGE = Properties.AGE_4;
 	public static final int AGE_MAX = Properties.AGE_4_MAX;
@@ -31,7 +31,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	protected static final double GROW_CHANCE = 0.2;
 	
 	public DoomBloomBlock(Settings settings) {
-		super(settings);
+		super(SpectrumStatusEffects.STIFFNESS, 8, settings);
 	}
 	
 	@Override

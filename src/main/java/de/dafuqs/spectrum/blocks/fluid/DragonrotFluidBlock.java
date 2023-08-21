@@ -102,7 +102,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 		for (Direction direction : Direction.values()) {
 			BlockPos blockPos = pos.offset(direction);
 			if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-				world.setBlockState(pos, Blocks.ANDESITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.SLUSH.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
@@ -110,15 +110,15 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MUD)) {
-				world.setBlockState(pos, Blocks.MUD.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.MUD.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-				world.setBlockState(pos, Blocks.DIORITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.ROTTEN_GROUND.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-				world.setBlockState(pos, Blocks.GRANITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.BLACK_SLUDGE.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			}

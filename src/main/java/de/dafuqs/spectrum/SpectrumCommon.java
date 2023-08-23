@@ -54,6 +54,7 @@ import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
@@ -227,11 +228,24 @@ public class SpectrumCommon implements ModInitializer {
 		
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
+				
 				ItemStack mainHandStack = player.getMainHandStack();
 				if (mainHandStack.isOf(SpectrumItems.EXCHANGING_STAFF)) {
-					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
-					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
-					return ActionResult.SUCCESS;
+					
+					BlockState targetBlockState = world.getBlockState(pos);
+					if (BuildingStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
+						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandStack());
+						
+						if (storedBlock.isPresent()
+								&& storedBlock.get() != targetBlockState.getBlock()
+								&& storedBlock.get().asItem() != Items.AIR
+								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandStack(), true, direction)) {
+							
+							return ActionResult.SUCCESS;
+						}
+					}
+					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					return ActionResult.FAIL;
 				}
 			}
 			return ActionResult.PASS;

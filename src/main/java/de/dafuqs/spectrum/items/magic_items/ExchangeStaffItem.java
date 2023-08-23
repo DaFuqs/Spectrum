@@ -148,7 +148,6 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
 		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.crouch").formatted(Formatting.GRAY));
 		
 		Optional<Block> optionalBlock = getStoredBlock(stack);
 		if (optionalBlock.isPresent()) {

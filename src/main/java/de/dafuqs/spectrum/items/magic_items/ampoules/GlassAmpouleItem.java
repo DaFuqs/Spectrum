@@ -32,7 +32,7 @@ public class GlassAmpouleItem extends BaseGlassAmpouleItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(Text.translatable("item.spectrum.glass_ampoule.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.azurite_glass_ampoule.tooltip").formatted(Formatting.GRAY));
     }
     
 }

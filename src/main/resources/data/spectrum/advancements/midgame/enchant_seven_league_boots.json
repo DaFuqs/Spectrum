@@ -20,20 +20,19 @@
     }
   },
   "criteria": {
-    "enchanted_seven_league_boots_with_": {
-      "trigger": "spectrum:enchanter_enchanting",
+    "enchanted_seven_league_boots_with_power": {
+      "trigger": "minecraft:enchanted_item",
       "conditions": {
         "item": {
           "items": [
             "spectrum:seven_league_boots"
+          ],
+          "enchantments": [
+            {
+              "enchantment": "minecraft:power"
+            }
           ]
-        },
-        "enchantments": [{
-          "enchantment": "minecraft:power",
-            "levels": {
-              "min": 5
-          }
-        }]
+        }
       }
     },
     "gotten_previous": {

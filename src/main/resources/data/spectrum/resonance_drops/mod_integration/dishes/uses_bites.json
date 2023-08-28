@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "dishes:potatoeswithcurdcheese",
+      "dishes:tinypotatoeswithcurdcheese",
+      "dishes:schnitzel",
+      "dishes:spaghetti_bolognese",
+      "dishes:steak",
+      "dishes:hamburger",
+      "dishes:chickenburger",
+      "dishes:cheeseburger",
+      "dishes:spaceburger",
+      "dishes:fishandchips",
+      "dishes:pizzamargherita",
+      "dishes:pizzasalami",
+      "dishes:pizzaham",
+      "dishes:pizzatuna",
+      "dishes:pizzabacon"
+    ]
+  },
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "dishes"
+      ]
+    }
+  ]
+}

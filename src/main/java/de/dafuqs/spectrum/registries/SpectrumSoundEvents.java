@@ -77,7 +77,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
 	public static final SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
 	public static final SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
-	public static final SoundEvent HERDING_STAFF_USE = register("herding_staff_use");
 	public static final SoundEvent EXCHANGING_STAFF_SELECT = register("exchanging_staff_select");
 	public static final SoundEvent RADIANCE_PIN_TRIGGER = register("radiance_pin_trigger");
 	public static final SoundEvent AIR_LAUNCH_BELT_CHARGING = register("air_launch_belt_charging");
@@ -110,6 +109,12 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SQUEAKER = register("squeaker");
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
+	
+	public static final SoundEvent BLOCK_THREAT_CONFLUX_ARM = register("block.threat_conflux.arm");
+	public static final SoundEvent BLOCK_THREAT_CONFLUX_PRIME = register("block.threat_conflux.prime");
+	public static final SoundEvent BLOCK_THREAT_CONFLUX_DISARM = register("block.threat_conflux.disarm");
+	public static final SoundEvent BLOCK_PARAMETRIC_MINING_DEVICE_THROWN = register("block.parametric_mining_device.throw");
+	public static final SoundEvent BLOCK_MODULAR_EXPLOSIVE_EXPLODE = register("block.modular_explosive.explode");
 	
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block.citrine_block.break");
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block.citrine_block.step");

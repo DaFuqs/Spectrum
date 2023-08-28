@@ -2,8 +2,8 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "botania:black_lotus",
   "modifiers": {
-    "additional_random_positive_effect_count": 1.5,
-    "additional_random_negative_effect_count": 1.5,
+    "additional_random_positive_effect_count": 2.0,
+    "additional_random_negative_effect_count": 1.0,
     "unidentifiable": true
   },
   "fabric:load_conditions": [

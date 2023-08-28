@@ -4,9 +4,9 @@ import com.mojang.brigadier.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.mininglevel.v1.*;
@@ -81,6 +82,11 @@ public class SanityCommand {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
+				
+				if (block instanceof PlaceableItemBlock) {
+					continue; // that one always drops itself via code
+				}
+				
 				BlockState blockState = entry.getValue().getDefaultState();
 				Identifier lootTableID = block.getLootTableId();
 				
@@ -119,24 +125,24 @@ public class SanityCommand {
 		ServerAdvancementLoader advancementLoader = minecraftServer.getAdvancementLoader();
 		
 		// Pedestal recipes that use gemstone powder not available at that tier yet
-		for (PedestalCraftingRecipe pedestalRecipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
+		for (PedestalRecipe pedestalRecipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			/* There are some recipes that use advanced ingredients by design
 			   despite being of a low tier, like black colored lamps.
 			   While the player does not have access to that yet it is no problem at all
 			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			*/
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {
+				if (pedestalRecipe.getPowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 				}
 			}
 			if (pedestalRecipe.getTier() != PedestalRecipeTier.COMPLEX) {
-				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
+				if (pedestalRecipe.getPowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
-			for (Map.Entry<BuiltinGemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getGemstonePowderInputs().entrySet()) {
-				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
+			for (Map.Entry<BuiltinGemstoneColor, Integer> powderInput : pedestalRecipe.getPowderInputs().entrySet()) {
+				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
 		// recipe groups without localisation
@@ -144,8 +150,13 @@ public class SanityCommand {
 		recipeManager.keys().forEach(identifier -> {
 			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
 			if (recipe.isPresent()) {
-				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe && !gatedSpectrumRecipe.getGroup().isEmpty()) {
-					recipeGroups.add(gatedSpectrumRecipe.getGroup());
+				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+					String group = gatedSpectrumRecipe.getGroup();
+					if (group == null) {
+						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getId());
+					} else if (!group.isEmpty()) {
+						recipeGroups.add(group);
+					}
 				}
 			}
 		});
@@ -240,7 +251,7 @@ public class SanityCommand {
 		}
 		
 		// Pedestal Recipes in wrong data folder
-		for (PedestalCraftingRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
+		for (PedestalRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
 			if (id.getPath().startsWith("mod_integration/") || id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
 					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {

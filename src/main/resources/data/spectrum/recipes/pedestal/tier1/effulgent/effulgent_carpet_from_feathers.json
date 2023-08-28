@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "effulgent_decorations",
+  "time": 40,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "FF"
+  ],
+  "key": {
+    "F": {
+      "item": "spectrum:effulgent_feather"
+    }
+  },
+  "result": {
+    "item": "spectrum:effulgent_carpet",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/pluck_effulgent_feather"
+}

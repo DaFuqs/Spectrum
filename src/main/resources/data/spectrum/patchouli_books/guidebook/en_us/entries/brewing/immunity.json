@@ -8,7 +8,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:immunity",
-      "text": "Removes all negative status effects, when applied. Also prevents you from getting any new ones, as long as Immunity is active"
+      "text": "$(thing)Removes all negative status effects$(), when applied. Also prevents you from getting any new ones, as long as Immunity is active"
     },
     {
       "type": "patchouli:text",

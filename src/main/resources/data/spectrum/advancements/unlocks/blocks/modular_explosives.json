@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_stratine_gem": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_stratine_gem"
+      }
+    },
+    "reached_midgame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
+    }
+  }
+}

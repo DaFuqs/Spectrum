@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 

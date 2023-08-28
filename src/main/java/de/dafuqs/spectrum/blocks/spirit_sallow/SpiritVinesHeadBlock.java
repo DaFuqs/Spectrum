@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;

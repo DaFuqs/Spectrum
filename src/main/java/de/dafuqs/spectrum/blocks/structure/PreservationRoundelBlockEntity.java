@@ -163,6 +163,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.lastInteractedPlayer = playerEntity.getUuid();
+		markDirty();
 	}
 	
 }

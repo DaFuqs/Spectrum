@@ -113,6 +113,19 @@
     {
       "id": "geode:wrappist_cluster",
       "required": false
+    },
+
+    {
+      "id": "byg:budding_subzero_crystal",
+      "required": false
+    },
+    {
+      "id": "byg:budding_therium_crystal",
+      "required": false
+    },
+    {
+      "id": "byg:budding_ametrine_ore",
+      "required": false
     }
   ]
 }

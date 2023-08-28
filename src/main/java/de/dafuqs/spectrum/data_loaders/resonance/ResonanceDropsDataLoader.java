@@ -35,9 +35,14 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 			Identifier processorType = Identifier.tryParse(JsonHelper.getString(json, "type"));
 			ResonanceDropProcessor.Serializer serializer = ResonanceDropProcessors.get(processorType);
 			if (serializer == null) {
-				throw new JsonParseException("Unknown ResonanceDropProcessor " + processorType);
+				SpectrumCommon.logError("Unknown ResonanceDropProcessor " + processorType + " in file " + identifier);
+				return;
 			}
-			RESONANCE_DROPS.add(serializer.fromJson(json));
+			try {
+				RESONANCE_DROPS.add(serializer.fromJson(json));
+			} catch (Exception e) {
+				SpectrumCommon.logError("Error parsing ResonanceDropProcessor " + identifier + ": " + e.getLocalizedMessage());
+			}
 		});
 	}
 	

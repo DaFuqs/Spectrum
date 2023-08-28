@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "collected_koi": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_koi"
+      }
+    },
+    "collected_crawfish": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_crawfish"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "collected_koi",
+      "collected_crawfish"
+    ]
+  ]
+}

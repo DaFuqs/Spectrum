@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "group": "noxwood_planks",
   "time": 40,
   "tier": "basic",
@@ -9,14 +9,11 @@
   "white": 0,
   "black": 0,
   "experience": 0.0,
-  "pattern": [
-    "#"
-  ],
-  "key": {
-    "#": {
+  "ingredients": [
+    {
       "tag": "spectrum:ivory_noxcap_stems"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:ivory_noxwood_planks",
     "count": 4

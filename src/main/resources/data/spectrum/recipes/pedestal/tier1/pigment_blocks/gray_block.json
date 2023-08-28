@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "pigment_compacting",
+  "time": 20,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "spectrum:gray_pigment"
+    }
+  },
+  "result": {
+    "item": "spectrum:gray_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment",
+  "disable_yield_upgrades": true
+}
+}

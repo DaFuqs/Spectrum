@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.variants;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 
 public record LizardScaleVariant(Identifier texture) {
@@ -13,8 +14,14 @@ public record LizardScaleVariant(Identifier texture) {
 	public static final LizardScaleVariant BLACK = register("black", "textures/entity/lizard/scales_black.png");
 	public static final LizardScaleVariant WHITE = register("white", "textures/entity/lizard/scales_white.png");
 	
-	private static LizardScaleVariant register(String id, String textureId) {
-		return Registry.register(SpectrumRegistries.LIZARD_SCALE_VARIANT, id, new LizardScaleVariant(SpectrumCommon.locate(textureId)));
+	private static LizardScaleVariant register(String name, String textureId) {
+		return Registry.register(SpectrumRegistries.LIZARD_SCALE_VARIANT, SpectrumCommon.locate(name), new LizardScaleVariant(SpectrumCommon.locate(textureId)));
+	}
+
+	public static final TagKey<LizardScaleVariant> NATURAL_VARIANT = getReference("natural");
+
+	private static TagKey<LizardScaleVariant> getReference(String name) {
+		return TagKey.of(SpectrumRegistries.LIZARD_SCALE_VARIANT_KEY, SpectrumCommon.locate(name));
 	}
 	
 	public static void init() {

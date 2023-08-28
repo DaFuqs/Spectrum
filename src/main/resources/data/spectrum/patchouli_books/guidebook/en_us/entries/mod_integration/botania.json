@@ -67,35 +67,35 @@
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:black_lotus",
-      "text": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but its black color also makes it completely unidentifiable. What might you get?"
+      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
     },
     {
       "type": "patchouli:spotlight",
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:blacker_lotus",
-      "text": "Infuses the Potion with a huge amount of additional - mostly positive - effects, but it's black color also makes it completely unidentifiable. What might you get?"
+      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
     },
     {
       "type": "patchouli:spotlight",
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:life_essence",
-      "text": "Makes your Potions much more potent, but requires other reagents to increase the yield, otherwise you end up with nothing..."
+      "text": "$(li)+3 potency$(li)-3 yield$(br2)Requires other reagents to increase the yield, otherwise you will end up with nothing..."
     },
     {
       "type": "patchouli:spotlight",
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:mana_powder",
-      "text": "Gives a small multiplicative boost to Duration and a tiny chance to add the last brewed effect, too."
+      "text": "$(li)+25% duration$(li)15% chance to add last effect"
     },
     {
       "type": "patchouli:spotlight",
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:pixie_dust",
-      "text": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create $(thing)Tipped Arrows$(), too!"
+      "text": "$(li)creates Lingering Potions & Tipped Arrows$(li)-25% potency"
     }
   ]
 }

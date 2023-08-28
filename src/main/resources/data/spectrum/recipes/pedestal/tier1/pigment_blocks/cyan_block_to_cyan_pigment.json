@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "pigment_compacting",
+  "time": 20,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "ingredients": [
+    {
+      "item": "spectrum:cyan_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:cyan_pigment",
+    "count": 9
+  },
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
+  "disable_yield_upgrades": true
+}

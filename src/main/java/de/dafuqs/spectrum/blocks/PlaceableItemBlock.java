@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.util.math.*;
@@ -29,12 +30,15 @@ public class PlaceableItemBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 			ItemStack placedStack = stack.copy();
 			placedStack.setCount(1);
 			placedItemBlockEntity.setStack(placedStack);
+			if (placer instanceof PlayerEntity playerPlacer) {
+				placedItemBlockEntity.setOwner(playerPlacer);
+			}
 		}
 	}
 	

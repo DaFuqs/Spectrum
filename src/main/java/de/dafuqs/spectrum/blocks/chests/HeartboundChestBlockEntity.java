@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
@@ -69,7 +68,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, ProgressionStage.EARLYGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Override
@@ -133,6 +132,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 	@Override

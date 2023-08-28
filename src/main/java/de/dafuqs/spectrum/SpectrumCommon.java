@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -37,6 +38,7 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
+import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -44,6 +46,7 @@ import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -56,6 +59,7 @@ import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.slf4j.*;
@@ -209,9 +213,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
 
-		logInfo("Registering Explosion Effects...");
-		SpectrumExplosionEffects.register();
-
+		logInfo("Registering Explosion Effects & Providers...");
+		ExplosionModifiers.register();
+		ExplosionModifierProviders.register();
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 
@@ -227,11 +231,24 @@ public class SpectrumCommon implements ModInitializer {
 
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
+
 				ItemStack mainHandStack = player.getMainHandStack();
 				if (mainHandStack.isOf(SpectrumItems.EXCHANGING_STAFF)) {
-					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
-					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
-					return ActionResult.SUCCESS;
+
+					BlockState targetBlockState = world.getBlockState(pos);
+					if (BuildingStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
+						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandStack());
+
+						if (storedBlock.isPresent()
+								&& storedBlock.get() != targetBlockState.getBlock()
+								&& storedBlock.get().asItem() != Items.AIR
+								&& ExchangeStaffItem.exchange(world, pos, player, storedBlock.get(), player.getMainHandStack(), true, direction)) {
+
+							return ActionResult.SUCCESS;
+						}
+					}
+					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					return ActionResult.FAIL;
 				}
 			}
 			return ActionResult.PASS;
@@ -361,6 +378,16 @@ public class SpectrumCommon implements ModInitializer {
 						.forEach(instance -> instance.getEffectType().onApplied(livingEntity, livingEntity.getAttributes(), instance.getAmplifier()));
 			}
 
+		});
+ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModifiers) -> {
+			if (slot == EquipmentSlot.MAINHAND) {
+				int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, stack);
+				if (tightGripLevel > 0) {
+					float attackSpeedBonus = tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel;
+					EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString("b09d9b57-eefb-4499-9150-5d8d3e644a40"), "Tight Grip modifier", attackSpeedBonus, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+					attributeModifiers.put(EntityAttributes.GENERIC_ATTACK_SPEED, mod);
+				}
+			}
 		});
 
 		CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {

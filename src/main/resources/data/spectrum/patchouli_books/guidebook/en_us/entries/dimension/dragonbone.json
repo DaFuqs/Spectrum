@@ -8,6 +8,7 @@
     "spectrum:cracked_dragonbone": 0,
 
     "spectrum:dragonbone_chunk": 0,
+    "spectrum:bone_ash": 0,
 
     "spectrum:polished_bone_ash": 0,
     "spectrum:polished_bone_ash_slab": 0,
@@ -27,7 +28,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Is it really dragons these giant remains come from?$(br)You don't know, honestly. But judging by the size, it could very well be! Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
+      "text": "Is it really dragons these giant remains come from?$(br)You don't know, honestly. But judging by the size, it could very well be!$(br2)Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
     },
     {
       "type": "patchouli:spotlight",
@@ -44,11 +45,14 @@
       "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates heat hot enough to turn these bones into ash."
     },
     {
-      "type": "patchouli:crafting",
+      "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "title": "Bone Ash Blocks",
-      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash",
-      "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_shingles"
+      "recipe": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
     {
       "type": "spectrum:collection",

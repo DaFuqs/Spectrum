@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "compacting",
+  "time": 20,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "ingredients": [
+    {
+      "item": "spectrum:bedrock_storage_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:bedrock_dust",
+    "count": 9
+  },
+  "required_advancement": "spectrum:midgame/break_decayed_bedrock",
+  "disable_yield_upgrades": true
+}

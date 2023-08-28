@@ -2,7 +2,7 @@
 
 
 $c | Foreach-Object {
-New-Item -Name "native_$_`_storage_block`.json" -ItemType File -Value @"
+New-Item -Name "pure_$_`_block`.json" -ItemType File -Value @"
 {
   "type": "minecraft:crafting_shaped",
   "group": "native_ore_storage",
@@ -17,23 +17,23 @@ New-Item -Name "native_$_`_storage_block`.json" -ItemType File -Value @"
     }
   },
   "result": {
-    "item": "spectrum:native_$_`_block",
+    "item": "spectrum:pure_$_`_block",
     "count": 1
   }
 }
 "@
 
-New-Item -Name "native_$_`_from_$_`_storage_block`.json" -ItemType File -Value @"
+New-Item -Name "pure_$_`_from_pure_$_`_block`.json" -ItemType File -Value @"
 {
   "type": "minecraft:crafting_shapeless",
   "group": "native_ore_storage",
   "ingredients": [
     {
-      "item": "spectrum:native_$_`_block"
+      "item": "spectrum:pure_$_`_block"
     }
   ],
   "result": {
-    "item": "spectrum:native_$_",
+    "item": "spectrum:pure_$_",
     "count": 9
   }
 }

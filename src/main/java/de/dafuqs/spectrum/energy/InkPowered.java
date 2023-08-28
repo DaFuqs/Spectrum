@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.energy;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
@@ -105,6 +106,10 @@ public interface InkPowered {
 		return tryDrainEnergy(player, inkCost.getColor(), inkCost.getCost());
 	}
 	
+	static boolean tryDrainEnergy(@NotNull PlayerEntity player, @NotNull InkCost inkCost, float costModifier) {
+		return tryDrainEnergy(player, inkCost.getColor(), Support.getIntFromDecimalWithChance(inkCost.getCost() * costModifier, player.getRandom()));
+	}
+	
 	/**
 	 * Searches the players Trinkets for energy storage first and inventory second
 	 * for PigmentEnergyStorageItem and tries to drain the color energy.
@@ -184,6 +189,10 @@ public interface InkPowered {
 			available += tryGetEnergy(itemStack, color);
 		}
 		return available;
+	}
+	
+	static boolean hasAvailableInk(PlayerEntity player, InkCost inkCost) {
+		return hasAvailableInk(player, inkCost.getColor(), inkCost.getCost());
 	}
 	
 	static boolean hasAvailableInk(PlayerEntity player, InkColor color, long amount) {

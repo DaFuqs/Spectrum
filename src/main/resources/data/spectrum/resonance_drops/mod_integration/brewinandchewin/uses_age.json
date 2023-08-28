@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "brewinandchewin:unripe_flaxen_cheese_wheel",
+      "brewinandchewin:unripe_scarlet_cheese_wheel"
+    ]
+  },
+  "state_tags_to_copy": [
+    "age"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "brewinandchewin"
+      ]
+    }
+  ]
+}

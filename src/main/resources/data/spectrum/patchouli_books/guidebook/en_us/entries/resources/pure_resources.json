@@ -64,10 +64,10 @@
       "text": "However, smelting these in the $(l:magical_blocks/cinderhearth)Cinderhearth$() yields a much more decent output."
     },
     {
-      "type": "patchouli:crafting",
-      "title": "Compressing",
-      "recipe": "spectrum:crafting_table/storage_blocks/pure_quartz_storage_block",
-      "recipe2": "spectrum:crafting_table/storage_blocks/pure_quartz_from_quartz_storage_block"
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compacting",
+      "recipe": "spectrum:pedestal/tier1/compacting/pure_quartz_block",
+      "text": "Can be crafted back into $(item)Pure Resources$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

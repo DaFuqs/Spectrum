@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.item.*;
 import net.minecraft.client.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
@@ -12,6 +13,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -117,6 +119,12 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.BOW;
+    }
+@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2").formatted(Formatting.GRAY));
     }
 
 }

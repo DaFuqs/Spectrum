@@ -375,7 +375,10 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "spectrum:black_materia"
+                  "Name": "spectrum:black_materia",
+                  "Properties": {
+                    "age": "3"
+                  }
                 }
               }
             }

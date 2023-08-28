@@ -45,6 +45,36 @@
       "spectrum:ground_slam4"
     ]
   },
+  "block.threat_conflux.arm": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.arm",
+    "sounds": [
+      "spectrum:crystal_ring_light"
+    ]
+  },
+  "block.threat_conflux.prime": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.prime",
+    "sounds": [
+      "spectrum:incandescent_charge"
+    ]
+  },
+  "block.threat_conflux.disarm": {
+    "subtitle": "spectrum.subtitles.block.threat_conflux.disarm",
+    "sounds": [
+      "random/fizz"
+    ]
+  },
+  "block.modular_explosive.explode": {
+    "subtitle": "spectrum.subtitles.block.modular_explosive.explode",
+    "sounds": [
+      "spectrum:threat_conflux.explode"
+    ]
+  },
+  "block.parametric_mining_device.throw": {
+    "subtitle": "spectrum.subtitles.block.parametric_mining_device.throw",
+    "sounds": [
+      "minecraft:random/bow"
+    ]
+  },
   "bident_mirror_image_thrown": {
     "subtitle": "spectrum.subtitles.bident_mirror_image_thrown",
     "sounds": [
@@ -519,12 +549,6 @@
     "subtitle": "spectrum.subtitles.natures_staff_use",
     "sounds": [
       "spectrum:natures_staff_use"
-    ]
-  },
-  "herding_staff_use": {
-    "subtitle": "spectrum.subtitles.herding_staff_use",
-    "sounds": [
-      "spectrum:herding_staff_use"
     ]
   },
   "unlock": {

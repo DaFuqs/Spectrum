@@ -6,8 +6,6 @@ import net.minecraft.recipe.*;
 
 import java.util.function.Supplier;
 
-import com.google.common.base.Suppliers;
-
 public class SpectrumToolMaterials {
 	
 	public enum ToolMaterial implements net.minecraft.item.ToolMaterial {

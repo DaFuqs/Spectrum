@@ -18,9 +18,7 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "items": [
-                          "minecraft:shears"
-                        ]
+                        "tag": "c:shears"
                       }
                     },
                     {
@@ -42,11 +40,19 @@
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:jadeite_petals",
+              "name": "spectrum:jadeite_lotus_bulb",
               "functions": [
                 {
                   "function": "minecraft:set_count",
-                  "count": 1
+                  "count": {
+                    "min": 2,
+                    "max": 4
+                  }
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
                 }
               ]
             }

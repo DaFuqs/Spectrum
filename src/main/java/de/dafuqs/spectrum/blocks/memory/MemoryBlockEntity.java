@@ -120,6 +120,10 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	public void manifest(@NotNull ServerWorld world, BlockPos blockPos) {
+		manifest(world, blockPos, this.memoryItemStack, this.ownerUUID);
+	}
+	
+	public static void manifest(@NotNull ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack, @Nullable UUID ownerUUID) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (blockState.getBlock() instanceof Waterloggable && blockState.get(Properties.WATERLOGGED)) {
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
@@ -127,7 +131,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 		}
 		
-		Optional<Entity> hatchedEntityOptional = hatchEntity(world, blockPos, this.memoryItemStack);
+		Optional<Entity> hatchedEntityOptional = hatchEntity(world, blockPos, memoryItemStack);
 		
 		if (hatchedEntityOptional.isPresent()) {
 			Entity hatchedEntity = hatchedEntityOptional.get();
@@ -139,19 +143,19 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 				hatchedMobEntity.playAmbientSound();
 				hatchedMobEntity.playSpawnEffects();
 			}
-			if (this.ownerUUID != null) {
-				EntityHelper.addPlayerTrust(hatchedEntity, this.ownerUUID);
+			if (ownerUUID != null) {
+				EntityHelper.addPlayerTrust(hatchedEntity, ownerUUID);
 			}
 			
-			triggerManifestingAdvancementCriterion(hatchedEntity);
+			PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
+			if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
+				SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
+			}
 		}
 	}
 	
 	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
-		PlayerEntity owner = getOwnerIfOnline();
-		if (owner instanceof ServerPlayerEntity serverPlayerEntity) {
-			SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
-		}
+
 	}
 	
 	public int getEggColor(int tintIndex) {
@@ -184,7 +188,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return nbtCompound;
 	}
 	
-	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
+	protected static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
 		NbtCompound nbt = memoryItemStack.getNbt();
 		if (nbt == null) {
 			return Optional.empty();
@@ -199,8 +203,8 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 					if (!nbt.getBoolean("SpawnAsAdult")) {
 						mobEntity.setBaby(true);
 					}
-					if (itemStack.hasCustomName()) {
-						mobEntity.setCustomName(itemStack.getName());
+					if (memoryItemStack.hasCustomName()) {
+						mobEntity.setCustomName(memoryItemStack.getName());
 					}
 				}
 				return Optional.of(entity);
@@ -217,6 +221,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	@Override
 	public void setOwner(@NotNull PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	public ItemStack getMemoryItemStack() {

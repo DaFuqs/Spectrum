@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
@@ -13,16 +12,14 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
 
-public class ConstructorsStaffItem extends BuildingStaffItem implements InkPowered {
-	
-	public static final InkColor USED_COLOR = InkColors.CYAN;
+public class ConstructorsStaffItem extends BuildingStaffItem {
+
 	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
 	
@@ -30,7 +27,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem implements InkPower
 		super(settings);
 	}
 	
-	// The range grows with the players' progression
+	// The range grows with the players progression
 	// this way the item is not overpowered at the start
 	// but not useless at the end
 	// this way the player does not need to craft 5 tiers
@@ -75,66 +72,36 @@ public class ConstructorsStaffItem extends BuildingStaffItem implements InkPower
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
 
-		if ((player != null && (player.isCreative()) || canProcess(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
-			Block targetBlock = targetBlockState.getBlock();
-			Item targetBlockItem = targetBlock.asItem();
+		if ((player != null && canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
+			Block blockToPlace = targetBlockState.getBlock();
+			Item itemToConsume;
 
-			if (player != null && targetBlockItem != Items.AIR) {
-				long count;
-				if (player.isCreative()) {
-					count = Integer.MAX_VALUE;
-				} else {
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock);
-					if (targetBlock != inventoryItemAndCount.getA()) {
-						targetBlockState = inventoryItemAndCount.getA().getDefaultState();
-					}
-					targetBlockItem = inventoryItemAndCount.getB();
-					count = inventoryItemAndCount.getC();
-					
-					if (InkPowered.canUse(player)) {
-						count = Math.min(count, 1 + InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
-					} else {
-						count = 0;
-					}
+			long count;
+			if (player.isCreative()) {
+				itemToConsume = blockToPlace.asItem();
+				count = Integer.MAX_VALUE;
+			} else {
+				Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, blockToPlace, false, INK_COST_PER_BLOCK);
+				blockToPlace = replaceData.getA();
+				itemToConsume = replaceData.getB();
+				count = replaceData.getC();
+			}
+
+			if (count > 0) {
+				Direction side = context.getSide();
+				int maxRange = getRange(player);
+				int range = (int) Math.min(maxRange, player.isCreative() ? maxRange : count);
+				boolean sneaking = player.isSneaking();
+				List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
+				if (targetPositions.isEmpty()) {
+					return ActionResult.FAIL;
 				}
-				
-				if (count > 0) {
-					Direction side = context.getSide();
-					int maxRange = getRange(player);
-					int range = (int) Math.min(maxRange, player.isCreative() ? maxRange : count);
-					boolean sneaking = player.isSneaking();
-					List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
-					if (targetPositions.isEmpty()) {
-						return ActionResult.FAIL;
-					}
-					
-					int placed = 0;
-					if (!world.isClient) {
-						for (BlockPos position : targetPositions) {
-							BlockState originalState = world.getBlockState(position);
-							if (originalState.isAir() || !originalState.getFluidState().isEmpty() || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-								BlockState stateToPlace = targetBlock.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(pos), side, pos, false)));
-								if (stateToPlace != null && stateToPlace.canPlaceAt(world, pos)) {
-									if (world.setBlockState(position, stateToPlace)) {
-										placed++;
-									}
-								}
-							}
-						}
-						
-						if (!player.isCreative()) {
-							Item finalTargetBlockItem = targetBlockItem;
-							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), placed, player.getInventory());
-							InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
-						}
-						
-						if (placed > 0) {
-							world.playSound(null, player.getBlockPos(), targetBlockState.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, targetBlockState.getSoundGroup().getVolume(), targetBlockState.getSoundGroup().getPitch());
-						}
-					}
-					
-					return ActionResult.SUCCESS;
+
+				if (!world.isClient) {
+					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions, INK_COST_PER_BLOCK);
 				}
+
+				return ActionResult.SUCCESS;
 			}
 		} else {
 			if (player != null) {

@@ -306,6 +306,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	// UPGRADEABLE

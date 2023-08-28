@@ -1,4 +1,6 @@
 {
   "type": "spectrum:drop_self",
-  "block": "#c:buds"
+  "block": {
+    "tag": "c:buds"
+  }
 }

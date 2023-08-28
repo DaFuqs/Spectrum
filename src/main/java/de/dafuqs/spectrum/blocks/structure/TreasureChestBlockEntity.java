@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.structure;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
@@ -65,7 +64,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ProgressionStage.LATEGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override

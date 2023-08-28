@@ -1,4 +1,8 @@
 {
   "type": "spectrum:drop_self",
-  "block": "minecraft:reinforced_deepslate"
+  "block": {
+    "blocks": [
+      "minecraft:reinforced_deepslate"
+    ]
+  }
 }

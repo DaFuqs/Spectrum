@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -12,19 +13,9 @@ import java.util.*;
 
 public class BuildingHelper {
 	
-	private static final Map<Block, Block> SIMILAR_BLOCKS = new HashMap<>() {{
-		put(Blocks.DIRT, Blocks.GRASS_BLOCK);
-		put(Blocks.GRASS_BLOCK, Blocks.DIRT);
-		put(Blocks.PODZOL, Blocks.DIRT);
-		put(Blocks.MYCELIUM, Blocks.DIRT);
-		put(Blocks.COARSE_DIRT, Blocks.DIRT);
-		put(Blocks.INFESTED_STONE, Blocks.STONE);
-		put(Blocks.INFESTED_STONE_BRICKS, Blocks.STONE);
-		put(Blocks.INFESTED_MOSSY_STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS);
-		put(Blocks.INFESTED_CHISELED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS);
-		put(Blocks.INFESTED_COBBLESTONE, Blocks.COBBLESTONE);
-		put(Blocks.INFESTED_CRACKED_STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS);
-		put(Blocks.INFESTED_DEEPSLATE, Blocks.DEEPSLATE);
+	private static final Map<TagKey<Block>, Block> SIMILAR_BLOCKS = new HashMap<>() {{
+		put(BlockTags.DIRT, Blocks.GRASS_BLOCK);
+		put(BlockTags.NYLIUM, Blocks.NETHERRACK);
 	}};
 	
 	private static final ArrayList<Vec3i> NEIGHBOR_VECTORS_Y = new ArrayList<>() {{
@@ -38,12 +29,12 @@ public class BuildingHelper {
 		add(Direction.SOUTH.getVector().offset(Direction.WEST));
 	}};
 	
-	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {
+	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block, int maxCount) {
 		Item blockItem = block.asItem();
-		if (blockItem instanceof AliasedBlockItem) {
+		if (blockItem instanceof AliasedBlockItem aliasedBlockItem) {
 			// do not process seeds and similar stuff
 			// otherwise players could place fully grown crops
-			return new Triplet<>(block, blockItem, 0);
+			return new Triplet<>(block, aliasedBlockItem, 0);
 		} else {
 			int count = player.getInventory().count(block.asItem());
 			if (count == 0) {
@@ -52,11 +43,11 @@ public class BuildingHelper {
 					Item similarBlockItem = similarBlock.asItem();
 					int similarCount = player.getInventory().count(similarBlockItem);
 					if (similarCount > 0) {
-						return new Triplet<>(similarBlock, similarBlockItem, similarCount);
+						return new Triplet<>(similarBlock, similarBlockItem, Math.min(similarCount, maxCount));
 					}
 				}
 			}
-			return new Triplet<>(block, blockItem, count);
+			return new Triplet<>(block, blockItem, Math.min(count, maxCount));
 		}
 	}
 	

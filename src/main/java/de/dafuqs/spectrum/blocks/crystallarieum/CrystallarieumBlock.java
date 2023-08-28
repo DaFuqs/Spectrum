@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
@@ -68,7 +67,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 					ItemStack stack = itemEntity.getStack();
-					crystallarieumBlockEntity.acceptStack(stack, false);
+					crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getThrower());
 				}
 			}
 		} else {
@@ -88,12 +87,9 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				ItemStack handStack = player.getStackInHand(hand);
 				if (player.isSneaking() || handStack.isEmpty()) {
 					// sneaking or empty hand: remove items
-					for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-						if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, i)) {
-							crystallarieumBlockEntity.updateInClientWorld();
-							crystallarieumBlockEntity.setOwner(player);
-							break;
-						}
+					if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 1) || retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 0)) {
+						crystallarieumBlockEntity.inventoryChanged();
+						crystallarieumBlockEntity.setOwner(player);
 					}
 					return ActionResult.CONSUME;
 				} else {
@@ -101,12 +97,12 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 					// hand is full and inventory already contains item: exchange them
 					if (handStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
-							crystallarieumBlockEntity.updateInClientWorld();
+							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					} else {
 						if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
-							crystallarieumBlockEntity.updateInClientWorld();
+							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					}

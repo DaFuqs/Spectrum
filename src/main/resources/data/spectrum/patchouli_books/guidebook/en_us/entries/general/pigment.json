@@ -180,10 +180,10 @@
       "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)Energy$() and $(italic)Joy$()."
     },
     {
-      "title": "Colored Blocks",
-      "type": "patchouli:crafting",
-      "recipe": "spectrum:crafting_table/pigment_storage_blocks/magenta_block",
-      "recipe2": "spectrum:crafting_table/pigment_storage_blocks/magenta_block_to_magenta_pigment"
+      "title": "Pigment Blocks",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/pigment_blocks/magenta_block",
+      "text": "They can get crafted back into $(item)Pigment$()."
     }
   ]
 }

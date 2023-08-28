@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import me.shedaniel.math.*;
@@ -47,46 +46,35 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(display.getTier());
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));
 		
+		int powderSlotCount = display.getTier().getPowderSlotCount();
+		int gemstoneSlotStartX = startPoint.x + 58 - powderSlotCount * 9;
+		int gemstoneSlotTextureU = 88 - powderSlotCount * 9;
+		
+		List<EntryIngredient> input = display.getInputEntries();
+		int gemstoneDustStartSlot = 9;
+		
 		// crafting grid slots
 		List<Slot> slots = Lists.newArrayList();
-		for (int y = 0; y < 3; y++)
-			for (int x = 0; x < 3; x++)
-				slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 1 + 1 + y * 18)).disableBackground().markInput());
-		
-		// set crafting slot contents
-		List<EntryIngredient> input = display.getInputEntries();
-		int shownGemstoneSlotCount = display.getTier() == PedestalRecipeTier.COMPLEX ? 5 : display.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
-		int gemstoneDustStartSlot = 9;
-		for (int i = 0; i < 9; i++) {
-			if (!input.get(i).isEmpty()) {
-				slots.get(i).disableBackground().entries(input.get(i));
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				slots.add(Widgets.createSlot(new Point(startPoint.x + 1 + x * 18, startPoint.y + 2 + y * 18)).disableBackground().markInput().disableBackground().entries(input.get(y * 3 + x)));
 			}
 		}
 		
-		// gemstone dust slots
-		int gemstoneSlotStartX = shownGemstoneSlotCount == 5 ? -45 : shownGemstoneSlotCount == 4 ? -40 : -31;
-		int gemstoneSlotTextureStartX = shownGemstoneSlotCount == 5 ? 43 : shownGemstoneSlotCount == 4 ? 52 : 61;
-		for (int x = 0; x < shownGemstoneSlotCount; x++) {
-			slots.add(Widgets.createSlot(new Point(bounds.getCenterX() + x * 18 + gemstoneSlotStartX, startPoint.y + 1 + 60)).disableBackground().markInput());
-			if (!input.get(gemstoneDustStartSlot + x).isEmpty()) {
-				slots.get(9 + x).entries(input.get(gemstoneDustStartSlot + x));
-			}
+		// powder slots
+		for (int i = 0; i < powderSlotCount; i++) {
+			slots.add(Widgets.createSlot(new Point(gemstoneSlotStartX + 1 + i * 18, startPoint.y + 61)).disableBackground().markInput().entries(input.get(gemstoneDustStartSlot + i)));
 		}
 		widgets.addAll(slots);
 		
-		// output
-		List<EntryIngredient> results = display.getOutputEntries();
-		EntryIngredient result = EntryIngredient.of(results.get(0));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 1 + 19)).entries(result).disableBackground().markOutput());
-		
 		// the gemstone slot background texture				  destinationX				 destinationY	   sourceX, sourceY, width, height
-		widgets.add(Widgets.createTexturedWidget(backgroundTexture, bounds.getCenterX() + gemstoneSlotStartX - 1, startPoint.y + 1 + 59, gemstoneSlotTextureStartX, 76, 18 * shownGemstoneSlotCount, 18));
+		widgets.add(Widgets.createTexturedWidget(backgroundTexture, gemstoneSlotStartX, startPoint.y + 60, gemstoneSlotTextureU, 76, powderSlotCount * 18, 18));
 		// crafting input texture
 		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x, startPoint.y + 1, 29, 18, 54, 54));
 		// crafting output texture
-		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 94 - 4, startPoint.y + 1 + 18 - 4, 122, 32, 26, 26));
+		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 90, startPoint.y + 15, 122, 32, 26, 26));
 		// miniature gemstones texture
-		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 94 - 12, startPoint.y + 1 + 18 + 20, 200, 0, 40, 16));
+		widgets.add(Widgets.createTexturedWidget(backgroundTexture, startPoint.x + 82, startPoint.y + 39, 200, 0, 40, 16));
 		
 		// description text
 		// special handling for "1 second". Looks nicer
@@ -96,7 +84,16 @@ public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraft
 		} else {
 			text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 		}
-		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 82), text).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(bounds.getCenterX(), startPoint.y + 82), text).centered().color(0x3f3f3f).noShadow());
+		
+		if (display.shapeless) {
+			widgets.add(Widgets.createShapelessIcon(new Point(startPoint.x + 108, startPoint.y + 4)));
+		}
+		
+		// output
+		List<EntryIngredient> results = display.getOutputEntries();
+		EntryIngredient result = EntryIngredient.of(results.get(0));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 20)).entries(result).disableBackground().markOutput());
 	}
 	
 	@Override

@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "farmersdelight:apple_pie",
+      "farmersdelight:sweet_berry_cheesecake",
+      "farmersdelight:chocolate_pie"
+    ]
+  },
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ]
+}

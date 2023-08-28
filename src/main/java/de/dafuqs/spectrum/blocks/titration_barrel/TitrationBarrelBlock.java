@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.context.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -102,29 +103,35 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), true);
 									}
 									return ActionResult.CONSUME;
-								} else if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
-									if (barrelEntity.getFluidVariant().isBlank()) {
-										if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.inventory.isEmpty()) {
-											world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
-										}
-									} else {
-										if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
-											world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
+								}
+								
+								if (ContainerItemContext.forPlayerInteraction(player, hand).find(FluidStorage.ITEM) != null) {
+									if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
+										if (barrelEntity.getFluidVariant().isBlank()) {
+											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.inventory.isEmpty()) {
+												world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
+											}
+										} else {
+											if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
+												world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
+											}
 										}
 									}
-								} else {
-									int countBefore = handStack.getCount();
-									ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
-									player.setStackInHand(hand, leftoverStack);
-									if (countBefore != leftoverStack.getCount()) {
-										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-										if (barrelState == BarrelState.EMPTY) {
-											world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
-										} else {
-											world.updateComparators(pos, this);
-										}
+									return ActionResult.CONSUME;
+								}
+								
+								int countBefore = handStack.getCount();
+								ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
+								player.setStackInHand(hand, leftoverStack);
+								if (countBefore != leftoverStack.getCount()) {
+									world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+									if (barrelState == BarrelState.EMPTY) {
+										world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
+									} else {
+										world.updateComparators(pos, this);
 									}
 								}
+								
 							}
 						}
 					}
@@ -210,13 +217,13 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	}
 	
 	@Override
-    public boolean hasComparatorOutput(BlockState state) {
-        return true;
-    }
+	public boolean hasComparatorOutput(BlockState state) {
+		return true;
+	}
 	
 	@Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		if(world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if (world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
 			switch (state.get(BARREL_STATE)) {
 				case EMPTY -> {
 					return 0;
@@ -251,7 +258,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		}
 		
 		return 0;
-    }
+	}
 	
 	// drop all currently stored items
 	@Override

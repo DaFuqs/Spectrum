@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "minecraft:composter"
+    ]
+  },
+  "state_properties_to_copy": [
+    "level"
+  ]
+}

@@ -135,6 +135,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	@Override

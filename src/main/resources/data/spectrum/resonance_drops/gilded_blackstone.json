@@ -1,4 +1,8 @@
 {
   "type": "spectrum:drop_self",
-  "block": "minecraft:gilded_blackstone"
+  "block": {
+    "blocks": [
+      "minecraft:gilded_blackstone"
+    ]
+  }
 }

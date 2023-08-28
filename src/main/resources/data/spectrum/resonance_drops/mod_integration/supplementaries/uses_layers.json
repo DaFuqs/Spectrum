@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "supplementaries:fodder"
+    ]
+  },
+  "state_tags_to_copy": [
+    "layers"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "supplementaries"
+      ]
+    }
+  ]
+}

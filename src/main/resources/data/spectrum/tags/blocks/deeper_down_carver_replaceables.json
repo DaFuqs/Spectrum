@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:overworld_carver_replaceables",
+    "#spectrum:blackslag_ores",
+    "minecraft:raw_gold_block",
+    "minecraft:lapis_block",
+    "minecraft:coal_block",
+    "minecraft:redstone_block"
+  ]
+}

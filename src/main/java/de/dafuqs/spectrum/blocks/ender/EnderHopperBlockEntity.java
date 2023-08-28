@@ -209,6 +209,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 	@Override

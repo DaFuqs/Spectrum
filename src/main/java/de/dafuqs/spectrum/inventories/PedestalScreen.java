@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
@@ -31,28 +31,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		this.backgroundHeight = 194;
 		
 		this.maxPedestalRecipeTierForVariant = handler.getPedestalRecipeTier();
-		this.backgroundTexture = getBackgroundTextureForVariant(this.maxPedestalRecipeTierForVariant);
+		this.backgroundTexture = getBackgroundTextureForTier(this.maxPedestalRecipeTierForVariant);
 		PedestalRecipeTier maxPedestalRecipeTier = handler.getMaxPedestalRecipeTier();
 		this.structureUpdateAvailable = this.maxPedestalRecipeTierForVariant != maxPedestalRecipeTier;
 	}
-	
-	public static Identifier getBackgroundTextureForVariant(PedestalRecipeTier pedestalRecipeTier) {
-		switch (pedestalRecipeTier) {
-			case COMPLEX -> {
-				return BACKGROUND4;
-			}
-			case ADVANCED -> {
-				return BACKGROUND3;
-			}
-			case SIMPLE -> {
-				return BACKGROUND2;
-			}
-			default -> {
-				return BACKGROUND1;
-			}
-		}
-	}
-	
+
 	@Contract(pure = true)
 	public static Identifier getBackgroundTextureForTier(@NotNull PedestalRecipeTier recipeTier) {
 		switch (recipeTier) {

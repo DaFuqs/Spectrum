@@ -15,7 +15,8 @@
       "minecraft:dripstone_block",
       "minecraft:deepslate",
       "spectrum:blackslag",
-      "spectrum:shale_clay"
+      "spectrum:shale_clay",
+      "spectrum:pyrite"
     ]
   }
 }

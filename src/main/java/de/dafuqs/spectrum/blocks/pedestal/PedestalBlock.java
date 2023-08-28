@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -136,7 +136,8 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() - 0.1, 0.0D, 0.05D, 0.0D);
 				}
 			}
-			case BASIC -> { }
+			case BASIC -> {
+			}
 		}
 	}
 	

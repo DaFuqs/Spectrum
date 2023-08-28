@@ -14,20 +14,26 @@
     "spectrum:pyrite_panneling": 0,
     "spectrum:pyrite_vent": 0,
 
+    "spectrum:pyrite_ripper": 0,
+
     "spectrum:pyrite_chunk": 0
   },
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pyrite",
+      "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in $(l:dimension/razor_edge)Razor Edge$(/l)."
+    },
+    {
       "type": "patchouli:crafting",
       "title": "Slabs & Stairs",
-      "recipe": "spectrum:crafting_table/pyrite_chunks_to_pyrite",
+      "recipe": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
       "text": "Unless $(thing)silk touched$(), Pyrite shatters into items, requiring you to combine them again."
     },
     {
       "type": "spectrum:collection",
       "title": "All Variants",
       "items": [
-        "spectrum:pyrite",
         "spectrum:pyrite_pile",
         "spectrum:pyrite_tile",
         "spectrum:pyrite_plating",

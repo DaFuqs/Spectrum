@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
+import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
@@ -25,8 +26,6 @@ import de.dafuqs.spectrum.blocks.furniture.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
-import de.dafuqs.spectrum.blocks.idols.*;
-import de.dafuqs.spectrum.blocks.incandescent_amalgam.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -45,15 +44,14 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
-import de.dafuqs.spectrum.blocks.threat_conflux.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.blocks.weathering.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
@@ -89,7 +87,6 @@ import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
 	
-	// PEDESTALS
 	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.create().sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_TOPAZ);
 	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_AMETHYST);
@@ -111,7 +108,7 @@ public class SpectrumBlocks {
 	public static final CrystallarieumBlock CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
 	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
 	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.create().breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
-	// GEMS
+
 	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
 	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance(6));
 	public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_TOPAZ_BUD).luminance(4));
@@ -164,7 +161,6 @@ public class SpectrumBlocks {
 	// DD BLOCKS
 	private static final float BLACKSLAG_HARDNESS = 5.0F;
 	private static final float BLACKSLAG_BLAST_RESISTANCE = 7.0F;
-
 	public static final Block BLACKSLAG = new BlackslagBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
 	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG));
@@ -194,8 +190,7 @@ public class SpectrumBlocks {
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new ButtonBlock(AbstractBlock.Settings.create().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG, 5, false);
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.create().mapColor(MapColor.BLACK).requiresTool().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG);
-	
-	
+
 	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
 	public static final Block EXPOSED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
@@ -243,23 +238,23 @@ public class SpectrumBlocks {
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.create().strength(-1.0F, 25.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(AbstractBlock.Settings.create().mapColor(MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
 
-	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
+	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
-	
-	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500F).mapColor(DyeColor.WHITE));
+	public static final Block POLISHED_BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
+	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
+
+	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_BRICK_STAIRS = new StairsBlock(BONE_ASH_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
 	public static final Block BONE_ASH_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
 	public static final Block BONE_ASH_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
 	
-	public static final Block BONE_ASH_TILES = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE));
+	public static final Block BONE_ASH_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_TILE_STAIRS = new StairsBlock(BONE_ASH_TILES.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_TILES));
 	public static final Block BONE_ASH_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
 	public static final Block BONE_ASH_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
-	
-	public static final Block POLISHED_BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
-	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
+
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	public static final Block TILLED_SLUSH = new TilledSlushBlock(AbstractBlock.Settings.copy(SLUSH), SLUSH.getDefaultState());
@@ -274,7 +269,7 @@ public class SpectrumBlocks {
 	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
-	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
+	public static final Block SMOOTH_BASALT_STAIRS = new StairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 	
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.create().strength(2.0F, 5.0F).requiresTool());
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -283,11 +278,11 @@ public class SpectrumBlocks {
 	public static final Block NOTCHED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block POLISHED_BASALT_STAIRS = new SpectrumStairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_BASALT_STAIRS = new StairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.create().strength(2.5F, 6.0F));
 	public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block BASALT_BRICK_STAIRS = new SpectrumStairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
+	public static final Block BASALT_BRICK_STAIRS = new StairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block TOPAZ_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(6));
 	public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5));
 	public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(7));
@@ -296,7 +291,7 @@ public class SpectrumBlocks {
 	
 	public static final Block BASALT_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CRACKED_BASALT_TILES = new Block(FabricBlockSettings.copyOf(BASALT_TILES));
-	public static final Block BASALT_TILE_STAIRS = new SpectrumStairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block BASALT_TILE_STAIRS = new StairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
@@ -305,9 +300,9 @@ public class SpectrumBlocks {
 	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
-	public static final Block CALCITE_STAIRS = new SpectrumStairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
+	public static final Block CALCITE_STAIRS = new StairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block POLISHED_CALCITE_STAIRS = new SpectrumStairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block POLISHED_CALCITE_STAIRS = new StairsBlock(POLISHED_CALCITE.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_CALCITE = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -315,7 +310,7 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block CALCITE_BRICK_STAIRS = new SpectrumStairsBlock(CALCITE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
+	public static final Block CALCITE_BRICK_STAIRS = new StairsBlock(CALCITE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block CALCITE_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block CALCITE_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block TOPAZ_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(6));
@@ -325,7 +320,7 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_CHISELED_CALCITE = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
 	
 	public static final Block CALCITE_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
-	public static final Block CALCITE_TILE_STAIRS = new SpectrumStairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CALCITE_TILE_STAIRS = new StairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));
@@ -386,8 +381,9 @@ public class SpectrumBlocks {
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
 	public static final Block TITRATION_BARREL = new TitrationBarrelBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).breakInstantly());
 
+	public static final Block PARAMETRIC_MINING_DEVICE = new ParametricMiningDeviceBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
+	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.create());
 	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_PURPLE).hardness(1.0F).nonOpaque().pistonBehavior(PistonBehavior.DESTROY));
@@ -1611,9 +1607,11 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, IS.of(1)), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("titration_barrel", TITRATION_BARREL, IS.of(), DyeColor.MAGENTA);
-		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, IS.of(8), DyeColor.ORANGE);
+		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
+
+		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ThreatConfluxItem(THREAT_CONFLUX, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

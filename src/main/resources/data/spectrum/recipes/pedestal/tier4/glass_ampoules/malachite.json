@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "glass_ampoules",
+  "time": 1200,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 1,
+  "white": 4,
+  "experience": 1.0,
+  "pattern": [
+    "SPS",
+    "PRP",
+    "SPS"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:paltaeria_fragments"
+    },
+    "S": {
+      "item": "spectrum:raw_malachite"
+    },
+    "R": {
+      "item": "spectrum:resonance_shard"
+    }
+  },
+  "result": {
+    "item": "spectrum:malachite_glass_ampoule",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/items/glass_ampoules"
+}

@@ -1,89 +1,87 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.compat.emi.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 
 import java.util.*;
 
-public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalCraftingRecipe> {
-	private static final int GEMSTONE_SLOTS = 9;
+public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalRecipe> {
 	
-	public PedestalCraftingEmiRecipeGated(PedestalCraftingRecipe recipe) {
+	public PedestalCraftingEmiRecipeGated(PedestalRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, null, recipe, 124, 90);
-		this.input = getIngredients(recipe);
+		this.inputs = getIngredients(recipe);
 	}
 	
 	@Override
 	public boolean isUnlocked() {
 		MinecraftClient client = MinecraftClient.getInstance();
-		return PedestalRecipeTier.hasUnlockedRequiredTier(client.player, recipe.getTier()) && super.isUnlocked();
+		return recipe.getTier().hasUnlocked(client.player) && super.isUnlocked();
 	}
-
-	private static List<EmiIngredient> getIngredients(PedestalCraftingRecipe recipe) {
-		int shownGemstoneSlotCount = recipe.getTier() == PedestalRecipeTier.COMPLEX ? 5 : recipe.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
+	
+	private static List<EmiIngredient> getIngredients(PedestalRecipe recipe) {
+		int powderSlotCount = recipe.getTier().getPowderSlotCount();
+		List<IngredientStack> ingredients = recipe.getIngredientStacks();
+		int ingredientCount = ingredients.size();
 		
-		List<EmiIngredient> list = new ArrayList<>(9 + shownGemstoneSlotCount);
-		for (int i = 0; i < 9 + shownGemstoneSlotCount; i++) {
-			list.add(EmiStack.EMPTY);
+		List<EmiIngredient> list = DefaultedList.ofSize(9 + powderSlotCount, EmiStack.EMPTY);
+		
+		for (int i = 0; i < ingredientCount; i++) {
+			list.set(recipe.getGridSlotId(i), EmiIngredient.of(ingredients.get(i).getStacks().stream().map(EmiStack::of).toList()));
 		}
-		for (int i = 0; i < recipe.getIngredientStacks().size(); i++) {
-			list.set(getSlotWithSize(recipe.getWidth(), i), EmiIngredient.of(recipe.getIngredientStacks().get(i).getStacks().stream().map(EmiStack::of).toList()));
-		}
-
-		for (int i = 0; i < shownGemstoneSlotCount; i++) {
-			int amount = recipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.values()[i], 0);
-			if (amount > 0) {
-				list.set(GEMSTONE_SLOTS + i, EmiStack.of(PedestalBlockEntity.getGemstonePowderItemForSlot(GEMSTONE_SLOTS + i), amount));
+		for (int i = 0; i < powderSlotCount; i++) {
+			BuiltinGemstoneColor color = BuiltinGemstoneColor.values()[i];
+			int powderAmount = recipe.getPowderInputs().getOrDefault(color, 0);
+			if (powderAmount > 0) {
+				list.set(9 + i, EmiStack.of(color.getGemstonePowderItem(), powderAmount));
 			}
 		}
 		return list;
 	}
-	
-	public static int getSlotWithSize(int recipeWidth, int index) {
-		int x = index % recipeWidth;
-		int y = (index - x) / recipeWidth;
-		return 3 * y + x;
-	}
 
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		int shownGemstoneSlotCount = recipe.getTier() == PedestalRecipeTier.COMPLEX ? 5 : recipe.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
-		int gemstoneSlotStartX = width / 2 + (shownGemstoneSlotCount == 5 ? -45 : shownGemstoneSlotCount == 4 ? -40 : -31);
-		int gemstoneSlotTextureStartX = shownGemstoneSlotCount == 5 ? 43 : shownGemstoneSlotCount == 4 ? 52 : 61;
-
+		int powderSlotCount = recipe.getTier().getPowderSlotCount();
+		int gemstoneSlotStartX = 62 - powderSlotCount * 9;
+		int gemstoneSlotTextureStartU = 88 - powderSlotCount * 9;
+		
 		Identifier backgroundTexture = PedestalScreen.getBackgroundTextureForTier(recipe.getTier());
-		// the gemstone slot background texture
-		widgets.addTexture(backgroundTexture, gemstoneSlotStartX, 59, 18 * shownGemstoneSlotCount, 18, gemstoneSlotTextureStartX, 76);
-		// crafting input texture
+		// gemstone slot background
+		widgets.addTexture(backgroundTexture, gemstoneSlotStartX, 59, 18 * powderSlotCount, 18, gemstoneSlotTextureStartU, 76);
+		// crafting input
 		widgets.addTexture(backgroundTexture, 0, 0, 54, 54, 29, 18);
-		// crafting output texture
+		// crafting output
 		widgets.addTexture(backgroundTexture, 90, 14, 26, 26, 122, 32);
-		// miniature gemstones texture
+		// miniature gemstones
 		widgets.addTexture(backgroundTexture, 82, 38, 40, 16, 200, 0);
-
+		
+		// crafting grid slots
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
-				widgets.addSlot(input.get(y * 3 + x), x * 18, y * 18).drawBack(false);
+				widgets.addSlot(inputs.get(y * 3 + x), x * 18, y * 18).drawBack(false);
 			}
 		}
-
-		// gemstone dust slots
-		for (int x = 0; x < shownGemstoneSlotCount; x++) {
-			widgets.addSlot(input.get(GEMSTONE_SLOTS + x), x * 18 + gemstoneSlotStartX, 59).drawBack(false);
+		
+		// powder slots
+		for (int i = 0; i < powderSlotCount; i++) {
+			widgets.addSlot(inputs.get(9 + i), i * 18 + gemstoneSlotStartX, 59).drawBack(false);
 		}
-
-		widgets.addSlot(output.get(0), 90, 14).large(true).drawBack(false).recipeContext(this);
-
+		
+		if (recipe.isShapeless()) {
+			widgets.addTexture(EmiTexture.SHAPELESS, 94, 0);
+		}
+		
+		widgets.addSlot(outputs.get(0), 90, 14).large(true).drawBack(false).recipeContext(this);
 		widgets.addFillingArrow(60, 18, recipe.getCraftingTime() * 50);
-
 		widgets.addText(getCraftingTimeText(recipe.getCraftingTime(), recipe.getExperience()), width / 2, 80, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
 	}
 }

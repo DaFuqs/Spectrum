@@ -56,4 +56,5 @@ public class JadeiteLotusBulbBlock extends PlantBlock implements Fertilizable {
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.JADEITE_LOTUS).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
+	
 }

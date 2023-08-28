@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "bakery:bread_crate",
+      "bakery:chocolate_box",
+      "bakery:strawberry_cake",
+      "bakery:sweetberry_cake",
+      "bakery:chocolate_cake",
+      "bakery:pudding",
+      "bakery:bundt_cake",
+      "bakery:linzer_tart",
+      "bakery:apple_pie",
+      "bakery:glowberry_tart",
+      "bakery:chocolate_tart"
+    ]
+  },
+  "state_tags_to_copy": [
+    "cuts"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "bakery"
+      ]
+    }
+  ]
+}

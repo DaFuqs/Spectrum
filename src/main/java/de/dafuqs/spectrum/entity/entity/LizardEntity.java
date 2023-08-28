@@ -108,27 +108,25 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		nbt.putString("Scales", SpectrumRegistries.LIZARD_SCALE_VARIANT.getId(this.getScales()).toString());
-		nbt.putString("Frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
-		nbt.putString("Horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
+		nbt.putString("scales", SpectrumRegistries.LIZARD_SCALE_VARIANT.getId(this.getScales()).toString());
+		nbt.putString("frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
+		nbt.putString("horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
 		writePOIPosToNbt(nbt);
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		LizardScaleVariant scales = SpectrumRegistries.LIZARD_SCALE_VARIANT.get(Identifier.tryParse(nbt.getString("Scales")));
-		if (scales != null) {
-			this.setScales(scales);
-		}
-		LizardFrillVariant frills = SpectrumRegistries.LIZARD_FRILL_VARIANT.get(Identifier.tryParse(nbt.getString("Frills")));
-		if (frills != null) {
-			this.setFrills(frills);
-		}
-		LizardHornVariant horns = SpectrumRegistries.LIZARD_HORN_VARIANT.get(Identifier.tryParse(nbt.getString("Horns")));
-		if (horns != null) {
-			this.setHorns(horns);
-		}
+		
+		LizardScaleVariant scales = SpectrumRegistries.LIZARD_SCALE_VARIANT.get(Identifier.tryParse(nbt.getString("scales")));
+		this.setScales(scales == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_SCALE_VARIANT, LizardScaleVariant.NATURAL_VARIANT, world.random, LizardScaleVariant.CYAN) : scales);
+		
+		LizardFrillVariant frills = SpectrumRegistries.LIZARD_FRILL_VARIANT.get(Identifier.tryParse(nbt.getString("frills")));
+		this.setFrills(frills == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, world.random, LizardFrillVariant.SIMPLE) : frills);
+		
+		LizardHornVariant horns = SpectrumRegistries.LIZARD_HORN_VARIANT.get(Identifier.tryParse(nbt.getString("horns")));
+		this.setHorns(horns == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, world.random, LizardHornVariant.HORNY) : horns);
+		
 		readPOIPosFromNbt(nbt);
 	}
 

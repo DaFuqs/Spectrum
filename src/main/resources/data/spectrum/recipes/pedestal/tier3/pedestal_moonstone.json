@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 200,
   "tier": "advanced",
   "cyan": 0,
@@ -8,16 +8,11 @@
   "white": 0,
   "black": 0,
   "experience": 16.0,
-  "pattern": [
-    "   ",
-    " M ",
-    "   "
-  ],
-  "key": {
-    "M": {
+  "ingredients": [
+    {
       "item": "spectrum:moonstone_shard"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:pedestal_moonstone",
     "count": 1

@@ -7,7 +7,22 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:echo_shard"
+          "name": "spectrum:small_echo_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
         }
       ]
     }

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -16,6 +15,9 @@ import net.minecraft.world.*;
 
 public class DivinityStatusEffect extends SpectrumStatusEffect {
 	
+	public static final int CIRCLET_AMPLIFIER = 0;
+	public static final int ASCENSION_AMPLIFIER = 1;
+
 	public DivinityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
 	}
@@ -23,25 +25,23 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		World world = entity.getWorld();
-		if (world.isClient) {
+		if (amplifier > CIRCLET_AMPLIFIER && world.isClient) { // the circlet gives divinity 0, not showing effects; the ascension one does
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.getWorld(), entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.EIGHT, 0.2);
 		}
+		boolean doEffects = 40 >> amplifier == 0;
 		if (entity instanceof PlayerEntity player) {
 			if (!world.isClient) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
 			}
-			if(world.getTime() % 20 == 0) {
+			if (doEffects) {
 				player.getHungerManager().add(1 + amplifier, 0.25F);
 			}
 		}
 
-		if(world.getTime() % 20 == 0) {
+		if (doEffects) {
 			if (entity.getHealth() < entity.getMaxHealth()) {
 				entity.heal(amplifier / 2F);
 			}
-		}
-		if(world.getTime() % 200 == 0) {
-			WhispyCircletItem.removeSingleStatusEffect(entity, StatusEffectCategory.HARMFUL);
 		}
 	}
 	
@@ -68,7 +68,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		if (entity instanceof PlayerEntity && entity.getWorld().isClient) {
+		if (entity.getWorld().isClient) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
 		}
 	}

@@ -4,7 +4,7 @@
       "model": "spectrum:block/polished_bone_ash_slab"
     },
     "type=double": {
-      "model": "spectrum:block/polished_bone_ash_slab"
+      "model": "spectrum:block/polished_bone_ash"
     },
     "type=top": {
       "model": "spectrum:block/polished_bone_ash_slab_top"

@@ -5,12 +5,19 @@ import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.component.tick.*;
+import net.minecraft.client.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent {
+public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
 	
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
@@ -38,6 +45,8 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	public void readFromNbt(NbtCompound tag) {
 		if (tag.contains("ticks", NbtElement.LONG_TYPE)) {
 			this.primordialFireTicks = tag.getLong("ticks");
+		} else {
+			this.primordialFireTicks = 0;
 		}
 	}
 	
@@ -45,6 +54,11 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
 		ticks = ProtectionEnchantment.transformFireDuration(livingEntity, ticks);
 		component.primordialFireTicks += ticks;
+
+		// wasn't on fire, but is now
+		if (component.primordialFireTicks == ticks) {
+			ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
+		}
 	}
 	
 	public static boolean isOnPrimordialFire(LivingEntity livingEntity) {
@@ -55,13 +69,44 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	public static void putOut(LivingEntity livingEntity) {
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
 		component.primordialFireTicks = 0;
+		ON_PRIMORDIAL_FIRE_COMPONENT.sync(component);
 	}
 	
 	@Override
 	public void serverTick() {
-		if (this.primordialFireTicks > 0 && this.primordialFireTicks % 4 == 0) {
-			provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), 4);
+		if (this.primordialFireTicks > 0) {
+			if (this.primordialFireTicks % 10 == 0 && !provider.isInLava()) {
+				provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), 4);
+			}
+
+			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 4 : 1;
+
+			// was on fire, but is not any longer
+			if (this.primordialFireTicks == 0) {
+				ON_PRIMORDIAL_FIRE_COMPONENT.sync(this.provider);
+			}
 		}
 	}
-	
+
+	@Override
+	public void clientTick() {
+		if (this.primordialFireTicks > 0) {
+			double fluidHeight = this.provider.getFluidHeight(FluidTags.WATER);
+			if (fluidHeight > 0) {
+
+				World world = this.provider.world;
+				Random random = world.random;
+				Vec3d pos = this.provider.getPos();
+
+				for (int i = 0; i < 2; i++) {
+					world.addParticle(ParticleTypes.BUBBLE_POP, this.provider.getParticleX(1), pos.getY() + Math.min(fluidHeight, provider.getHeight()) * random.nextFloat(), this.provider.getParticleZ(1), 0.0, 0.04, 0.0);
+					world.addParticle(ParticleTypes.SMOKE, this.provider.getParticleX(1), pos.getY() + Math.min(fluidHeight, provider.getHeight()) * random.nextFloat(), this.provider.getParticleZ(1), 0.0, 0.04, 0.0);
+				}
+				if (world.random.nextInt(12) == 0) {
+					world.playSoundFromEntity(MinecraftClient.getInstance().player, this.provider, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
+				}
+			}
+		}
+	}
+
 }

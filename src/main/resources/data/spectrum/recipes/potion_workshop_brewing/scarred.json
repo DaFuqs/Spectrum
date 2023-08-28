@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:bone_ash"
+  },
+  "effect": "spectrum:scarred",
+  "base_duration_ticks": 6000,
+  "potency_modifier": 0.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "required_advancement": "spectrum:unlocks/potions/scarred",
+  "ink_color": "gray",
+  "ink_cost": 4
+}

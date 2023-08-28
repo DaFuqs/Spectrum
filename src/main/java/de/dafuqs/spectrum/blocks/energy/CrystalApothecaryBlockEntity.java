@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -202,7 +201,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ProgressionStage.MIDGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Override
@@ -267,6 +266,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 	public void harvestExistingClusters() {

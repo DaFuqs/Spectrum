@@ -15,23 +15,23 @@ public class PotionWorkshopEmiRecipeGated extends GatedSpectrumEmiRecipe<PotionW
 	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, PotionWorkshopRecipe recipe) {
 		super(category, PotionWorkshopRecipe.UNLOCK_IDENTIFIER, recipe, 112, 66);
 		
-		this.input = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
+		this.inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		widgets.addSlot(input.get(0), 18, 48);
-		widgets.addSlot(input.get(1), 65, 4);
-		widgets.addSlot(input.get(2), 18, 0);
-		widgets.addSlot(input.get(3), 0, 24);
-		widgets.addSlot(input.get(4), 36, 24);
-
-		widgets.addSlot(output.get(0), 94, 24).recipeContext(this);
+		widgets.addSlot(inputs.get(0), 18, 48);
+		widgets.addSlot(inputs.get(1), 65, 4);
+		widgets.addSlot(inputs.get(2), 18, 0);
+		widgets.addSlot(inputs.get(3), 0, 24);
+		widgets.addSlot(inputs.get(4), 36, 24);
+		
+		widgets.addSlot(outputs.get(0), 94, 24).recipeContext(this);
 		
 		// bubbles
 		widgets.addTexture(BACKGROUND_TEXTURE, 21, 20, 10, 27, 197, 0);
 		widgets.addFillingArrow(62, 25, recipe.getCraftingTime() * 50);
-
+		
 		// description text
 		Text text = Text.translatable("container.spectrum.rei.potion_workshop.crafting_time", (recipe.getCraftingTime() / 20));
 		widgets.addText(text, 40, 53, 0x3f3f3f, false);

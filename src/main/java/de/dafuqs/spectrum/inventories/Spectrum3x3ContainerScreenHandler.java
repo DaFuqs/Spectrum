@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.redstone.*;
-import de.dafuqs.spectrum.enums.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -11,17 +10,17 @@ import org.jetbrains.annotations.*;
 
 public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	
-	private final ProgressionStage tier;
+	private final ScreenBackgroundVariant tier;
 	private final Inventory inventory;
 	
-	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, ProgressionStage progressionStage) {
-		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), progressionStage);
+	public Spectrum3x3ContainerScreenHandler(int syncId, PlayerInventory playerInventory, ScreenBackgroundVariant screenBackgroundVariant) {
+		this(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, new SimpleInventory(9), screenBackgroundVariant);
 	}
 	
-	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ProgressionStage progressionStage) {
+	public Spectrum3x3ContainerScreenHandler(ScreenHandlerType<Spectrum3x3ContainerScreenHandler> screenHandlerType, int syncId, PlayerInventory playerInventory, Inventory inventory, ScreenBackgroundVariant screenBackgroundVariant) {
 		super(screenHandlerType, syncId);
 		checkSize(inventory, 9);
-		this.tier = progressionStage;
+		this.tier = screenBackgroundVariant;
 		this.inventory = inventory;
 		inventory.onOpen(playerInventory.player);
 		
@@ -46,32 +45,32 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier1(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.EARLYGAME);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.EARLYGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier2(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.MIDGAME);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.MIDGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _ -> new")
 	public static @NotNull Spectrum3x3ContainerScreenHandler createTier3(int syncId, PlayerInventory playerInventory) {
-		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ProgressionStage.LATEGAME);
+		return new Spectrum3x3ContainerScreenHandler(syncId, playerInventory, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Contract("_, _, _ -> new")
 	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.LATEGAME);
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override
@@ -116,7 +115,7 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 		this.inventory.onClose(player);
 	}
 	
-	public ProgressionStage getTier() {
+	public ScreenBackgroundVariant getTier() {
 		return this.tier;
 	}
 	

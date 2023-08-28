@@ -10,20 +10,23 @@
       "text": "You really have to envy the $(l:creating_life/kindlings)Kindlings$(), spending their days covered in these fluffy, poofy things. Beyond soft - luxurious both in feel and color, even with the $(c_yellow)golden liveliness$() that flows through them.$(br)You could see yourself falling asleep on a cushion made from these."
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "spectrum:crafting_table/effulgent/effulgent_block",
-      "recipe2": "spectrum:crafting_table/effulgent/effulgent_feathers_from_block",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_block",
+      "text": "Can be crafted back into $(item)Feathers$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_cushion",
       "text": ""
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "spectrum:crafting_table/effulgent/effulgent_cushion",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers",
       "text": ""
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "spectrum:crafting_table/effulgent/effulgent_carpet_from_feathers",
-      "recipe2": "spectrum:crafting_table/effulgent/effulgent_carpet_from_blocks",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks",
       "text": ""
     }
   ]

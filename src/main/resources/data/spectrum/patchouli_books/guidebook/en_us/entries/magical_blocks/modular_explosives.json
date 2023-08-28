@@ -1,0 +1,33 @@
+{
+  "name": "Modular Explosives",
+  "advancement": "spectrum:unlocks/blocks/modular_explosives",
+  "icon": "spectrum:threat_conflux",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:threat_conflux": 0,
+    "spectrum:parametric_mining_device": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/boom/threat_conflux",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/boom/parametric_mining_device",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Adding Modifiers",
+      "recipe": "spectrum:pedestal/tier1/modular_explosive_modification",
+      "text": "Every modular explosive consists an Archetype specifying what it does (damaging entities, destroying blocks, both, or just pure visuals) and can then accept a list of modifiers for further customisation. A Modifier can be the lighting of fire, changing the explosions damage type, increasing the blast radius, damage and much more."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Specifying an Archetype",
+      "text": "All modular explosives come with a suitable archetype builtin. Though if you "
+    }
+  ]
+}

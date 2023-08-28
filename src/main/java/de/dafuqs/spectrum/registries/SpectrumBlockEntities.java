@@ -28,7 +28,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
-import de.dafuqs.spectrum.blocks.threat_conflux.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
@@ -81,7 +80,6 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
-	public static BlockEntityType<ThreatConfluxBlockEntity> THREAT_CONFLUX;
 	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
 	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
 	public static BlockEntityType<PlacedItemBlockEntity> PLACED_ITEM;
@@ -115,7 +113,7 @@ public class SpectrumBlockEntities {
 		REDSTONE_WIRELESS = register("redstone_wireless", RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS);
 		BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
 		BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
-		SHOOTING_STAR = register("shooting_star", ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR);
+		SHOOTING_STAR = register("shooting_star", ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR); // TODO: move to PlacedItemBlockEntity in 1.20 (so players won't lose their stuff)
 		BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
 		POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
 		SPIRIT_INSTILLER = register("spirit_instiller", SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER);
@@ -127,11 +125,9 @@ public class SpectrumBlockEntities {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-		THREAT_CONFLUX = register("threat_conflux", ThreatConfluxBlockEntity::new, SpectrumBlocks.THREAT_CONFLUX);
 		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
 		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
-		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM);
-
+		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
 		PRESERVATION_BLOCK_DETECTOR = register("preservation_block_detector", PreservationBlockDetectorBlockEntity::new, SpectrumBlocks.PRESERVATION_BLOCK_DETECTOR);

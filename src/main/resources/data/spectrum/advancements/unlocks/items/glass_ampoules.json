@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "killed_monstrosity": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/killed_monstrosity"
+      }
+    },
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "created_refined_azurite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+      }
+    },
+    "grown_bloodstone_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_bloodstone_in_crystallarieum"
+      }
+    },
+    "grown_malachite_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      }
+    }
+  }
+}

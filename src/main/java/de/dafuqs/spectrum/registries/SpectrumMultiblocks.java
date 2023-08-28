@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;

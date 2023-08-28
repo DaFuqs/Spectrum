@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "spectrum:slush"
+            "items": [
+              "spectrum:slush"
+            ]
           }
         ]
       }

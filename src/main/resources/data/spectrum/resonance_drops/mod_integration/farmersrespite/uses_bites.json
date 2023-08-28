@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "farmersrespite:coffee_cake",
+      "farmersrespite:rose_hip_pie"
+    ]
+  },
+  "state_tags_to_copy": [
+    "bites"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersrespite"
+      ]
+    }
+  ]
+}

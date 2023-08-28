@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.blocks.decoration.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class BlockDetectorBlock extends FacingBlock {
+public class BlockDetectorBlock extends SpectrumFacingBlock {
 	
 	public static final BooleanProperty POWERED = Properties.POWERED;
 	
@@ -22,16 +22,6 @@ public class BlockDetectorBlock extends FacingBlock {
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED);
-	}
-	
-	@Override
-	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return state.with(FACING, rotation.rotate(state.get(FACING)));
-	}
-	
-	@Override
-	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}
 	
 	@Override

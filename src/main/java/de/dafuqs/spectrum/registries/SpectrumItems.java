@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
@@ -22,12 +21,16 @@ import de.dafuqs.spectrum.items.magic_items.ampoules.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -165,11 +168,10 @@ public class SpectrumItems {
 	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
 	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
 	
-	public static final Item GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.RARE).maxCount(16));
-	public static final Item FRACTAL_GLASS_AMPOULE = new FractalGlassAmpouleItem(IS.of(Rarity.RARE).maxCount(16));
-	public static final Item FEROCIOUS_GLASS_AMPOULE = new FerociousGlassAmpouleItem(IS.of(Rarity.RARE).maxCount(16));
-	//public static final Item CRYSTALLIZED_DRAGON_FANG = new CrystallizedDragonFangItem(IS.of(Rarity.RARE).maxCount(16));
-
+	public static final Item AZURITE_GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.UNCOMMON));
+	public static final Item MALACHITE_GLASS_AMPOULE = new MalachiteGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
+	public static final Item BLOODSTONE_GLASS_AMPOULE = new BloodstoneGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
+	//public static final Item CRYSTALLIZED_DRAGON_FANG = new CrystallizedDragonFangItem(IS.of(Rarity.UNCOMMON));
 	
 	// Special tools
 	public static final Item DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON));
@@ -244,6 +246,7 @@ public class SpectrumItems {
 	public static final Item PYRITE_CHUNK = new Item(IS.of());
 	public static final Item DRAGONBONE_CHUNK = new Item(IS.of(Rarity.UNCOMMON));
 	public static final Item EFFULGENT_FEATHER = new Item(IS.of(Rarity.UNCOMMON));
+	public static final Item RAW_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(IS.of(Rarity.UNCOMMON));
 	public static final Item DOWNSTONE_FRAGMENTS = new Item(IS.of(16, Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(IS.of(16, Rarity.UNCOMMON));
@@ -291,9 +294,9 @@ public class SpectrumItems {
 	public static final Item INFUSED_BEVERAGE = new VariantBeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new PureAlcoholItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item CHRYSOCOLLA = new PureAlcoholItem(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item CHRYSOCOLLA = new Item(IS.of(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	public static final Item HONEY_PASTRY = new Item(IS.of().food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(IS.of(16).food(SpectrumFoodComponents.LUCKY_ROLL));
@@ -374,25 +377,25 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, IS.of(1));
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, IS.of(1));
 	
+	public static final Item BUCKET_OF_ERASER = new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.ITEM_BUCKET_EMPTY, Tab.CREATURES.settings());
+
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of());
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of());
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	public static final Item ERASER_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
-
 	// Magical Tools
-	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(IS.of(1));
-	public static final RadianceStaffItem RADIANCE_STAFF = new RadianceStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final NaturesStaffItem NATURES_STAFF = new NaturesStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final HerdingStaffItem HERDING_STAFF = new HerdingStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item BLOCK_FLOODER = new BlockFlooderItem(IS.of(Rarity.UNCOMMON));
-	public static final Item PIPE_BOMB = new PipeBombItem(IS.of());
-	public static final Item HYPE = new HypeItem(IS.of(16), "item.spectrum.hype.tooltip");
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(IS.of(16, Rarity.UNCOMMON));
-	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
-	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
+	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
+	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item STAFF_OF_REMEMBRANCE = new StaffOfRemembranceItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
+	public static final Item PIPE_BOMB = new PipeBombItem(Tab.EQUIPMENT.settings(1));
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
+	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
+	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
 	public static final Item INCANDESCENT_ESSENCE = new Item(IS.of());
 	public static final Item FROSTBITE_ESSENCE = new Item(IS.of());
@@ -522,6 +525,8 @@ public class SpectrumItems {
 	public static void registerSpawningStuff() {
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		
+		register("bucket_of_eraser", BUCKET_OF_ERASER, DyeColor.PINK);
+
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 		register("preservation_turret_spawn_egg", PRESERVATION_TURRET_SPAWN_EGG, DyeColor.WHITE);
 		register("kindling_spawn_egg", KINDLING_SPAWN_EGG, DyeColor.WHITE);
@@ -619,6 +624,7 @@ public class SpectrumItems {
 		register("pyrite_chunk", PYRITE_CHUNK, DyeColor.PURPLE);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
 		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
+		register("raw_bloodstone", RAW_BLOODSTONE, DyeColor.RED);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
@@ -719,9 +725,9 @@ public class SpectrumItems {
 		register("onyx_glass_arrow", ONYX_GLASS_ARROW, DyeColor.BLACK);
 		register("moonstone_glass_arrow", MOONSTONE_GLASS_ARROW, DyeColor.WHITE);
 		
-		register("glass_ampoule", GLASS_AMPOULE, DyeColor.WHITE);
-		register("ferocious_glass_ampoule", FEROCIOUS_GLASS_AMPOULE, DyeColor.WHITE);
-		register("fractal_glass_ampoule", FRACTAL_GLASS_AMPOULE, DyeColor.WHITE);
+		register("azurite_glass_ampoule", AZURITE_GLASS_AMPOULE, DyeColor.BLUE);
+		register("bloodstone_glass_ampoule", BLOODSTONE_GLASS_AMPOULE, DyeColor.RED);
+		register("malachite_glass_ampoule", MALACHITE_GLASS_AMPOULE, DyeColor.GREEN);
 		//register("crystallized_dragon_fang", CRYSTALLIZED_DRAGON_FANG, DyeColor.WHITE);
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
@@ -741,12 +747,11 @@ public class SpectrumItems {
 		register("bag_of_holding", BAG_OF_HOLDING, DyeColor.PURPLE);
 		register("radiance_staff", RADIANCE_STAFF, DyeColor.YELLOW);
 		register("natures_staff", NATURES_STAFF, DyeColor.LIME);
-		register("herding_staff", HERDING_STAFF, DyeColor.LIME);
+		register("staff_of_remembrance", STAFF_OF_REMEMBRANCE, DyeColor.LIME);
 		register("constructors_staff", CONSTRUCTORS_STAFF, DyeColor.LIGHT_GRAY);
 		register("exchanging_staff", EXCHANGING_STAFF, DyeColor.LIGHT_GRAY);
 		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);
 		register("pipe_bomb", PIPE_BOMB, DyeColor.ORANGE);
-		register("hype", HYPE, DyeColor.ORANGE);
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("perturbed_eye", PERTURBED_EYE, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);

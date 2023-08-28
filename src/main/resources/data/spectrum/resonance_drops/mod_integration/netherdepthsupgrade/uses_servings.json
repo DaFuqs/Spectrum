@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "blocks": [
+      "netherdepthsupgrade:nether_rice_roll_medley_block"
+    ]
+  },
+  "state_tags_to_copy": [
+    "servings"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "netherdepthsupgrade"
+      ]
+    }
+  ]
+}

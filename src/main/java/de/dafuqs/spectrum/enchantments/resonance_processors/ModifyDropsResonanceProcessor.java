@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.enchantments.resonance_processors;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.predicate.block.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
@@ -16,7 +17,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceDropProcessor {
 		
 		@Override
 		public ResonanceDropProcessor fromJson(JsonObject json) {
-			ResonanceBlockTarget blockTarget = new ResonanceBlockTarget(json.get("block").getAsString());
+			BrokenBlockPredicate blockTarget = BrokenBlockPredicate.fromJson(json.get("block"));
 			
 			Map<Ingredient, Item> modifiedDrops = new HashMap<>();
 			JsonArray modifyDropsArray = JsonHelper.getArray(json, "modify_drops");
@@ -36,14 +37,14 @@ public class ModifyDropsResonanceProcessor extends ResonanceDropProcessor {
 	
 	public Map<Ingredient, Item> modifiedDrops;
 	
-	public ModifyDropsResonanceProcessor(ResonanceBlockTarget blockTarget, Map<Ingredient, Item> modifiedDrops) {
+	public ModifyDropsResonanceProcessor(BrokenBlockPredicate blockTarget, Map<Ingredient, Item> modifiedDrops) {
 		super(blockTarget);
 		this.modifiedDrops = modifiedDrops;
 	}
 	
 	@Override
-	public boolean process(BlockState minedState, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
-		if (blockTarget.test(minedState)) {
+	public boolean process(BlockState state, BlockEntity blockEntity, List<ItemStack> droppedStacks) {
+		if (blockPredicate.test(state)) {
 			modifyDrops(droppedStacks);
 			return true;
 		}

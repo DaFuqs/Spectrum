@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.boom;
 
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
@@ -15,16 +14,15 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ParametricMiningDeviceItem extends ExplosionArchetypeBlockItem {
+public class ParametricMiningDeviceItem extends ModularExplosionBlockItem {
 	
 	public ParametricMiningDeviceItem(Block block, Settings settings) {
-		super(block, ExplosionArchetype.DESTROY_BLOCKS, 5, settings);
+		super(block, 5, 0, 3, settings);
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("block.spectrum.parametric_mining_device.tooltip2").formatted(Formatting.GRAY));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	

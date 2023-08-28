@@ -3,14 +3,26 @@ package de.dafuqs.spectrum.explosion;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.util.*;
 
-public record ExplosionModifierType(int maxModifiersForType) {
+public class ExplosionModifierType {
 	
-	public boolean isCompatibleWith(ExplosionModifierType type) {
-		return true;
+	protected ExplosionArchetype applicableArchetype;
+	protected int maxModifiersForType;
+	
+	public ExplosionModifierType(ExplosionArchetype applicableArchetype, int maxModifiersForType) {
+		this.applicableArchetype = applicableArchetype;
+		this.maxModifiersForType = maxModifiersForType;
 	}
 	
 	public boolean acceptsArchetype(ExplosionArchetype archetype) {
-		return true;
+		return switch (this.applicableArchetype) {
+			case ALL, COSMETIC -> true;
+			case DESTROY_BLOCKS -> archetype.affectsBlocks;
+			case DAMAGE_ENTITIES -> archetype.affectsEntities;
+		};
+	}
+	
+	public int getMaxModifiersForType() {
+		return maxModifiersForType;
 	}
 	
 	public Identifier getId() {

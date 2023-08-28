@@ -57,6 +57,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		return false;
 	}
 	
+	@Override
 	public int getRequiredExperience() {
 		return this.requiredExperience;
 	}

@@ -267,6 +267,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 	public void harvestExistingClusters() {

@@ -15,7 +15,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "Capable of storing sizable amounts of $(l:magic/ink)Ink$(), making you able to supply all your magical devices and equipment.$(br)$(italic)Now you are a true Artist of Color."
+      "text": "Capable of storing sizable amounts of $(l:magic/ink)Ink$(), making you able to supply all your magical equipment. It is not suited for powering your machines, though.$(br)$(italic)Now you are a true Artist of Color."
     }
   ]
 }

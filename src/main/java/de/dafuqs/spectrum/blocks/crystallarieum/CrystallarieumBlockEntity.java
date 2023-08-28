@@ -223,6 +223,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	/**
@@ -230,20 +231,19 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 *
 	 * @param itemStack stack that is tried to plant on top, if a valid recipe
 	 */
-	public void acceptStack(ItemStack itemStack, boolean creative) {
-		if (itemStack.getItem() instanceof InkStorageItem) {
+	public void acceptStack(ItemStack itemStack, boolean creative, @Nullable UUID player) {
+		boolean changed = false;
+		
+		if (itemStack.getItem() instanceof InkStorageItem<?> inkStorageItem && inkStorageItem.getDrainability().canDrain(false)) {
 			ItemStack currentInkStorageStack = getStack(INK_STORAGE_STACK_SLOT_ID);
 			if (currentInkStorageStack.isEmpty()) {
-				setStack(INK_STORAGE_STACK_SLOT_ID, currentInkStorageStack.copy());
+				setStack(INK_STORAGE_STACK_SLOT_ID, itemStack.copy());
 				if (!creative) {
 					itemStack.setCount(0);
 				}
-				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+				changed = true;
 			}
-			return;
-		}
-		
-		if (world.getBlockState(pos.up()).isAir()) {
+		} else if (world.getBlockState(pos.up()).isAir()) {
 			CrystallarieumRecipe recipe = CrystallarieumRecipe.getRecipeForStack(itemStack);
 			if (recipe != null) {
 				if (!creative) {
@@ -252,11 +252,9 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				BlockState placedState = recipe.getGrowthStages().get(0);
 				world.setBlockState(pos.up(), placedState);
 				onTopBlockChange(placedState, recipe);
-				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-				return;
+				changed = true;
 			}
-		}
-		if (this.currentRecipe != null) {
+		} else if (this.currentRecipe != null) {
 			ItemStack currentCatalystStack = getStack(CATALYST_SLOT_ID);
 			if (currentCatalystStack.isEmpty()) {
 				CrystallarieumCatalyst catalyst = this.currentRecipe.getCatalyst(itemStack);
@@ -266,13 +264,20 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 						itemStack.setCount(0);
 					}
 					this.currentCatalyst = catalyst;
-					inventoryChanged();
+					changed = true;
 				}
 			} else if (ItemStack.canCombine(currentCatalystStack, itemStack)) {
 				InventoryHelper.combineStacks(currentCatalystStack, itemStack);
-				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-				inventoryChanged();
+				changed = true;
 			}
+		}
+		
+		if (changed) {
+			world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			if (player != null) {
+				this.ownerUUID = player;
+			}
+			inventoryChanged();
 		}
 	}
 	
@@ -310,7 +315,6 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 				}
 			}
 			
-			this.canWork = true;
 			inventoryChanged();
 		}
 	}

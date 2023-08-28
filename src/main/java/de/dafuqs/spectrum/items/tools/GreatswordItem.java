@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class GreatswordItem extends SwordItem implements Preenchanted {
 
-	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
+	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("3b9a13c8-a9a7-4545-8c32-e60baf25823e");
 
 	// shadowing SwordItem's properties in a way, since those are private final
 	private final float attackDamage;

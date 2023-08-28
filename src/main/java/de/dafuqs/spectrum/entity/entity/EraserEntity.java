@@ -37,9 +37,9 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	
 	public static DefaultAttributeContainer.Builder createEraserAttributes() {
 		return HostileEntity.createHostileAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 28.0)
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
-				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0);
+				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 28.0);
 	}
 	
 	@Override

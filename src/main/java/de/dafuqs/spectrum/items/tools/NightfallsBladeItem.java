@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import com.google.common.collect.*;
+import com.jamieswhiteshirt.reachentityattributes.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.*;
@@ -11,9 +10,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -28,7 +25,7 @@ import java.util.*;
 public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFillable {
 	
 	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
-	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
+	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("8e2e05ef-a48a-4e2d-9633-388edcb21ea3");
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
 	public NightfallsBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {

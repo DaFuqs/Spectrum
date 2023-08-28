@@ -47,8 +47,6 @@ public abstract class DecayBlock extends Block {
 	
 	public static final EnumProperty<Conversion> CONVERSION = EnumProperty.of("conversion", Conversion.class);
 	
-	private static final boolean CREATE_DD_PORTALS = true;
-	
 	/**
 	 * Since Tag is not comparable we can not use a SortedMap for decayConversions
 	 * here and therefore have to use an additional list for check order

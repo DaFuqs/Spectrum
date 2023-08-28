@@ -68,7 +68,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
-			return getPureAlcohol(ageIngameDays);
+			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 		} else {
 			// add up all stew effects with their durations from the input stacks
 			Map<StatusEffect, Integer> stewEffects = new HashMap<>();

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.boom;
 
-import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
@@ -12,10 +11,10 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ThreatConfluxItem extends ExplosionArchetypeBlockItem {
+public class ThreatConfluxItem extends ModularExplosionBlockItem {
 	
 	public ThreatConfluxItem(Block block, Settings settings) {
-		super(block, ExplosionArchetype.DAMAGE_ENTITIES, 5, settings);
+		super(block, 5, 20, 5, settings);
 	}
 	
 	@Override

@@ -41,7 +41,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
-
+	
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int INK_PROVIDER_SLOT_ID = 1;
@@ -49,14 +49,14 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static final int FIRST_OUTPUT_SLOT_ID = 3;
 	public static final int LAST_OUTPUT_SLOT_ID = 10;
 	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10, 10};
-
+	
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
-
+	
 	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.PURPLE, InkColors.BLACK);
 	public static final long INK_STORAGE_SIZE = 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
-
+	
 	private UUID ownerUUID;
 	private UpgradeHolder upgrades;
 	private Recipe<?> currentRecipe; // blasting & cinderhearth
@@ -64,11 +64,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	private int craftingTimeTotal;
 	protected boolean canTransferInk;
 	protected boolean inkDirty;
-
+	
 	protected CinderHearthStructureType structure = CinderHearthStructureType.NONE;
-
+	
 	protected final PropertyDelegate propertyDelegate;
-
+	
 	@Override
 	public int[] getAvailableSlots(Direction side) {
 		switch (side) {
@@ -83,7 +83,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			}
 		}
 	}
-
+	
 	@Override
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
@@ -98,18 +98,18 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			}
 		}
 	}
-
+	
 	@Override
 	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
 		return slot >= FIRST_OUTPUT_SLOT_ID;
 	}
-
+	
 	enum CinderHearthStructureType {
 		NONE,
 		WITH_LAVA,
 		WITHOUT_LAVA
 	}
-
+	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
@@ -288,46 +288,79 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		}
 		
 		if (cinderhearthBlockEntity.currentRecipe != null) {
-			if (cinderhearthBlockEntity.craftingTime % 60 == 1) {
-				if (!checkRecipeRequirements(world, blockPos, cinderhearthBlockEntity)) {
-					cinderhearthBlockEntity.craftingTime = 0;
-					return;
+			if (!canContinue(world, blockPos, cinderhearthBlockEntity)) {
+				cinderhearthBlockEntity.currentRecipe = null;
+				cinderhearthBlockEntity.craftingTime = 0;
+				cinderhearthBlockEntity.craftingTimeTotal = 0;
+				cinderhearthBlockEntity.markDirty();
+				return;
+			}
+			cinderhearthBlockEntity.craftingTime++;
+			
+			
+			if (cinderhearthBlockEntity.craftingTime == cinderhearthBlockEntity.craftingTimeTotal) {
+				if (cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
+					craftCinderhearthRecipe(world, cinderhearthBlockEntity, cinderhearthRecipe);
+				} else if (cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
+					craftBlastingRecipe(world, cinderhearthBlockEntity, blastingRecipe);
 				}
 			}
 			
-			if (cinderhearthBlockEntity.currentRecipe != null) {
-				if (world.getTime() % 20 == 0) {
-					float effectiveEfficiencyMod = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.EFFICIENCY, false);
-					int orangeInkToDrain = (int) (4 / effectiveEfficiencyMod);
-					if (cinderhearthBlockEntity.inkStorage.drainEnergy(InkColors.ORANGE, orangeInkToDrain) != orangeInkToDrain) {
-						cinderhearthBlockEntity.currentRecipe = null;
-						cinderhearthBlockEntity.craftingTime = 0;
-						cinderhearthBlockEntity.craftingTimeTotal = 0;
-						cinderhearthBlockEntity.markDirty();
-						return;
+			cinderhearthBlockEntity.markDirty();
+		}
+	}
+	
+	private static boolean canContinue(World world, BlockPos blockPos, CinderhearthBlockEntity cinderhearthBlockEntity) {
+		if (!canAcceptRecipeOutput(cinderhearthBlockEntity.currentRecipe, cinderhearthBlockEntity)) {
+			return false;
+		}
+		
+		if (cinderhearthBlockEntity.craftingTime % 20 == 0) {
+			if (!checkRecipeRequirements(world, blockPos, cinderhearthBlockEntity)) {
+				return false;
+			}
+			// consume orange ink
+			return cinderhearthBlockEntity.drainInkForUpdatesRequired(cinderhearthBlockEntity, UpgradeType.EFFICIENCY, InkColors.ORANGE, true);
+		}
+		
+		return true;
+	}
+	
+	protected static boolean canAcceptRecipeOutput(Recipe<?> recipe, Inventory inventory) {
+		if (recipe != null) {
+			ItemStack outputStack = recipe.getOutput();
+			if (outputStack.isEmpty()) {
+				return false;
+			} else {
+				int outputSpaceFound = 0;
+				for (int slot : OUTPUT_SLOT_IDS) {
+					ItemStack slotStack = inventory.getStack(slot);
+					if (slotStack.isEmpty()) {
+						return true;
+					} else if (slotStack.isItemEqualIgnoreDamage(outputStack)) {
+						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount() - outputStack.getCount();
+						if (outputSpaceFound >= outputStack.getCount()) {
+							return true;
+						}
 					}
-					cinderhearthBlockEntity.setInkDirty();
 				}
-				cinderhearthBlockEntity.craftingTime++;
-				
-				
-				if (cinderhearthBlockEntity.craftingTime == cinderhearthBlockEntity.craftingTimeTotal) {
-					if (cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
-						craftCinderhearthRecipe(world, cinderhearthBlockEntity, cinderhearthRecipe);
-					} else if (cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
-						craftBlastingRecipe(world, cinderhearthBlockEntity, blastingRecipe);
-					}
-				}
-				
-				cinderhearthBlockEntity.markDirty();
 			}
 		}
+		return false;
 	}
 	
 	private static void calculateRecipe(@NotNull World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		// test the cached recipe => faster
 		if (cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe recipe) {
 			if (recipe.matches(cinderhearthBlockEntity, world)) {
+				float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, true);
+				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCraftingTime() / speedModifier);
+				return;
+			}
+		} else if (cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe recipe) {
+			if (recipe.matches(cinderhearthBlockEntity, world)) {
+				float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, true);
+				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(recipe.getCookTime() / speedModifier);
 				return;
 			}
 		}
@@ -337,22 +370,23 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		cinderhearthBlockEntity.craftingTimeTotal = 0;
 		
 		// cached recipe did not match => calculate new
-		ItemStack instillerStack = cinderhearthBlockEntity.getStack(0);
-		if (!instillerStack.isEmpty()) {
+		ItemStack inputStack = cinderhearthBlockEntity.getStack(0);
+		if (!inputStack.isEmpty()) {
 			CinderhearthRecipe cinderhearthRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.CINDERHEARTH, cinderhearthBlockEntity, world).orElse(null);
 			if (cinderhearthRecipe == null) {
 				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, cinderhearthBlockEntity, world).orElse(null);
 				if (blastingRecipe != null) {
 					cinderhearthBlockEntity.currentRecipe = blastingRecipe;
-					float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.SPEED, true);
+					float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, true);
 					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / speedModifier);
 				}
 			} else {
 				cinderhearthBlockEntity.currentRecipe = cinderhearthRecipe;
-				float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.SPEED, true);
+				float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, true);
 				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(cinderhearthRecipe.getCraftingTime() / speedModifier);
 			}
 		}
+		
 	}
 	
 	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
@@ -366,17 +400,17 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F);
 			return false;
 		}
-
+		
 		if (cinderhearthBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe) {
 			return gatedRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
 		return true;
 	}
-
+	
 	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth, UpgradeType.YIELD, true);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, true);
 		ItemStack output = blastingRecipe.getOutput().copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
@@ -391,17 +425,17 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		} else {
 			outputs.add(output.copy());
 		}
-
+		
 		// craft
 		craftRecipe(cinderhearth, inputStack, outputs, blastingRecipe.getExperience());
 	}
-
+	
 	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth, UpgradeType.YIELD, true);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, true);
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
-
+		
 		// craft
 		craftRecipe(cinderhearth, inputStack, outputs, cinderhearthRecipe.getExperience());
 	}
@@ -433,34 +467,33 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			// reset
 			cinderhearth.craftingTime = 0;
 			cinderhearth.inventoryChanged();
-
+			
 			// grant experience & advancements
-			float experienceMod = cinderhearth.drainInkForMod(cinderhearth, UpgradeType.EXPERIENCE, true);
+			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, true);
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, cinderhearth.world.random);
 			ExperienceStorageItem.addStoredExperience(cinderhearth.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
-			
 		} else {
 			cinderhearth.inventory = backupInventory;
-
+			
 			// prevents trying to craft more until the inventory is freed up
 			cinderhearth.craftingTimeTotal = 0;
 			cinderhearth.currentRecipe = null;
 			cinderhearth.inventoryChanged = false;
 		}
 	}
-
+	
 	public void grantPlayerCinderhearthSmeltingAdvancement(ItemStack input, List<ItemStack> outputs, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.CINDERHEARTH_SMELTING.trigger(serverPlayerEntity, input, outputs, experience, this.upgrades);
 		}
 	}
-
+	
 	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		Direction.Axis axis = null;
 		Direction direction = null;
-
+		
 		for (Map.Entry<UpgradeType, Integer> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
 			if (entry.getValue() > 1) {
 				if (axis == null) {
@@ -468,8 +501,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					direction = state.get(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
-				if (direction == null) continue; // Convince Java that direction won't be null
-
+				
 				double d = (double) cinderhearthBlockEntity.pos.getX() + 0.5D;
 				double f = (double) cinderhearthBlockEntity.pos.getZ() + 0.5D;
 				double g2 = -3D / 16D;
@@ -538,23 +570,23 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.canTransferInk = true;
 		this.markDirty();
 	}
-
+	
 	@Override
 	public void clear() {
 		this.inventory.clear();
 		this.inventoryChanged();
 	}
-
+	
 	@Override
 	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
 	}
-
+	
 	@Override
 	public IndividualCappedInkStorage getEnergyStorage() {
 		return this.inkStorage;
 	}
-
+	
 	@Override
 	public void setInkDirty() {
 		this.inkDirty = true;

@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.explosion.modifier;
 
 import de.dafuqs.spectrum.explosion.*;
 
-public class ExplosionBoostModifier extends ExplosionModifier {
+public class MoreBoomModifier extends ExplosionModifier {
 	
-	public ExplosionBoostModifier(ExplosionModifierType type, int displayColor) {
+	public MoreBoomModifier(ExplosionModifierType type, int displayColor) {
 		super(type, displayColor);
 	}
 	

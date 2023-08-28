@@ -10,30 +10,37 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ExplosionArchetypeBlockItem extends BlockItem implements ExplosionArchetypeProvider {
+public class ModularExplosionBlockItem extends BlockItem implements ModularExplosionProvider {
 	
-	private final ExplosionArchetype archetype;
 	private final int maxModifierCount;
+	private final double baseBlastRadius;
+	private final float baseDamage;
 	
-	public ExplosionArchetypeBlockItem(Block block, ExplosionArchetype archetype, int maxModifierCount, Settings settings) {
+	public ModularExplosionBlockItem(Block block, double baseBlastRadius, float baseDamage, int maxModifierCount, Settings settings) {
 		super(block, settings);
-		this.archetype = archetype;
 		this.maxModifierCount = maxModifierCount;
+		this.baseBlastRadius = baseBlastRadius;
+		this.baseDamage = baseDamage;
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		ExplosionModifierSet.getFromStack(stack).appendTooltip(tooltip, this);
+		ModularExplosionDefinition.getFromStack(stack).appendTooltip(tooltip, this);
 	}
 	
 	@Override
-	public ExplosionArchetype getArchetype() {
-		return archetype;
+	public double getBaseExplosionBlastRadius() {
+		return baseBlastRadius;
 	}
 	
 	@Override
-	public int getMaxModifierCount() {
+	public float getBaseExplosionDamage() {
+		return baseDamage;
+	}
+	
+	@Override
+	public int getMaxExplosionModifiers() {
 		return maxModifierCount;
 	}
 	

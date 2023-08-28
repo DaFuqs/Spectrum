@@ -141,8 +141,8 @@ public class SanityCommand {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
-			for (Map.Entry<BuiltinGemstoneColor, Integer> gemstoneDustInput : pedestalRecipe.getPowderInputs().entrySet()) {
-				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(gemstoneDustInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(gemstoneDustInput.getKey()) + gemstoneDustInput.getValue());
+			for (Map.Entry<BuiltinGemstoneColor, Integer> powderInput : pedestalRecipe.getPowderInputs().entrySet()) {
+				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
 		// recipe groups without localisation
@@ -150,8 +150,13 @@ public class SanityCommand {
 		recipeManager.keys().forEach(identifier -> {
 			Optional<? extends Recipe<?>> recipe = recipeManager.get(identifier);
 			if (recipe.isPresent()) {
-				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe && !gatedSpectrumRecipe.getGroup().isEmpty()) {
-					recipeGroups.add(gatedSpectrumRecipe.getGroup());
+				if (recipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+					String group = gatedSpectrumRecipe.getGroup();
+					if (group == null) {
+						SpectrumCommon.logWarning("Recipe with null group found! :" + gatedSpectrumRecipe.getId());
+					} else if (!group.isEmpty()) {
+						recipeGroups.add(group);
+					}
 				}
 			}
 		});

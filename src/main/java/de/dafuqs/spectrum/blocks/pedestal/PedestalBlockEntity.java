@@ -853,6 +853,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	public void setInventoryChanged() {

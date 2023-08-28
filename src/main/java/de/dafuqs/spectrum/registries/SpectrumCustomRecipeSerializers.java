@@ -28,7 +28,7 @@ public class SpectrumCustomRecipeSerializers {
 		
 		// Pedestal
 		register(StarCandyRecipe.SERIALIZER, "pedestal_star_candy");
-		register(ExplosionModificationRecipe.SERIALIZER, "pedestal_explosion_modification");
+		register(ExplosionModificationRecipe.SERIALIZER, "modular_explosive_modification");
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");

@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 0,
+  "white": 0,
+  "black": 2,
+  "experience": 1.0,
+  "pattern": [
+    "PPP",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "spectrum:parametric_mining_device",
+    "count": 8,
+    "nbt": {
+      "explosion_data": {
+        "archetype": "destroy_blocks"
+      }
+    }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
+}

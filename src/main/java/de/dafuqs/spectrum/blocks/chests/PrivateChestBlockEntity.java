@@ -132,6 +132,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 	@Override

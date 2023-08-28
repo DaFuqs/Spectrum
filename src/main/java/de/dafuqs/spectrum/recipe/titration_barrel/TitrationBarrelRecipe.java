@@ -148,7 +148,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		}
 		
 		if (alcPercent >= 100) {
-			return getPureAlcohol(ageIngameDays);
+			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 		}
 		
 		BeverageProperties properties;
@@ -184,14 +184,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		properties.ageDays = (long) ageIngameDays;
 		properties.thickness = thickness;
 		return properties.getStack(inputStack);
-	}
-	
-	protected static ItemStack getPureAlcohol(float ageIngameDays) {
-		ItemStack stack = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
-		BeverageProperties properties = BeverageProperties.getFromStack(stack);
-		properties.ageDays = (long) ageIngameDays;
-		properties.getStack(stack);
-		return stack;
 	}
 	
 	protected static double getAlcPercent(float fermentationSpeedMod, float thickness, float downfall, float ageIngameDays) {

@@ -91,11 +91,20 @@ public class ParametricMiningDeviceBlock extends PlaceableItemBlock {
 	// press to boom
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (!world.isClient) {
-			ExplosionModifierSet set = ExplosionModifierSet.getFromStack(player.getStackInHand(hand));
-			set.explode((ServerWorld) world, pos);
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
 		}
-		return ActionResult.success(world.isClient);
+		
+		if ((world.getBlockEntity(pos) instanceof PlacedItemBlockEntity blockEntity)) {
+			ItemStack stack = blockEntity.getStack();
+			PlayerEntity owner = blockEntity.getOwnerIfOnline();
+			
+			world.removeBlock(pos, false);
+			
+			ModularExplosionDefinition.explode((ServerWorld) world, pos, state.get(FACING).getOpposite(), owner, stack);
+		}
+		
+		return ActionResult.CONSUME;
 	}
 	
 }

@@ -38,6 +38,7 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
+import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -45,6 +46,7 @@ import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -209,7 +211,7 @@ public class SpectrumCommon implements ModInitializer {
 		InkSpellEffects.register();
 		
 		logInfo("Registering Explosion Effects & Providers...");
-		SpectrumExplosionEffects.register();
+		ExplosionModifiers.register();
 		ExplosionModifierProviders.register();
 		
 		logInfo("Registering Special Recipes...");
@@ -375,6 +377,17 @@ public class SpectrumCommon implements ModInitializer {
 						.forEach(instance -> instance.getEffectType().onApplied(livingEntity, livingEntity.getAttributes(), instance.getAmplifier()));
 			}
 			
+		});
+		
+		ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModifiers) -> {
+			if (slot == EquipmentSlot.MAINHAND) {
+				int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, stack);
+				if (tightGripLevel > 0) {
+					float attackSpeedBonus = tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel;
+					EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString("b09d9b57-eefb-4499-9150-5d8d3e644a40"), "Tight Grip modifier", attackSpeedBonus, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+					attributeModifiers.put(EntityAttributes.GENERIC_ATTACK_SPEED, mod);
+				}
+			}
 		});
 		
 		CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {

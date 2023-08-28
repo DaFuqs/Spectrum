@@ -137,4 +137,8 @@ public abstract class PotionWorkshopRecipe extends GatedStackSpectrumRecipe {
 		return UNLOCK_IDENTIFIER;
 	}
 	
+	public int getRequiredExperience() {
+		return 0;
+	}
+	
 }

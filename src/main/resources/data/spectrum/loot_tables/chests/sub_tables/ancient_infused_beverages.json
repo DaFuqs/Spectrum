@@ -19,8 +19,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -39,8 +38,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -59,8 +57,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -79,8 +76,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -99,8 +95,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -119,8 +114,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -165,8 +159,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -226,8 +219,7 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
         },
@@ -293,10 +285,13 @@
                 "min": 6000,
                 "max": 8000
               },
-              "thickness": 1.0,
-              "downfall": 1.0
+              "thickness": 1.0
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:chrysocolla"
         }
       ]
     }

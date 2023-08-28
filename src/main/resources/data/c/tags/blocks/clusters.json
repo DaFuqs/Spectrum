@@ -76,6 +76,19 @@
     {
       "id": "geodes:gypsum_rose",
       "required": false
+    },
+
+    {
+      "id": "byg:subzero_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "byg:therium_crystal_cluster",
+      "required": false
+    },
+    {
+      "id": "byg:ametrine_cluster",
+      "required": false
     }
   ]
 }

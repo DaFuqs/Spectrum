@@ -15,10 +15,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+// this hurt to write
 public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
 	public static final RecipeSerializer<ExplosionModificationRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ExplosionModificationRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/advanced_explosives");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/modular_explosives");
 	
 	public ExplosionModificationRecipe(Identifier id) {
 		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.BASIC, collectIngredients(), Map.of(), ItemStack.EMPTY, 0.0F, 40, false, true);
@@ -26,7 +27,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
 	private static List<IngredientStack> collectIngredients() {
 		List<ItemConvertible> providers = new ArrayList<>();
-		Registry.ITEM.stream().filter(item -> item instanceof ExplosionArchetypeProvider).forEach(providers::add);
+		Registry.ITEM.stream().filter(item -> item instanceof ModularExplosionProvider).forEach(providers::add);
 		IngredientStack providerIngredient = IngredientStack.of(Ingredient.ofItems(providers.toArray(new ItemConvertible[]{})));
 		
 		Set<Item> modifiers = ExplosionModifierProviders.getProviders();
@@ -38,44 +39,86 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	@Override
 	public boolean matches(Inventory inventory, World world) {
 		ItemStack nonModStack = getFirstNonModStack(inventory);
-		if (!(nonModStack.getItem() instanceof ExplosionArchetypeProvider archetypeProvider)) {
+		if (!(nonModStack.getItem() instanceof ModularExplosionProvider modularExplosionProvider)) {
 			return false;
 		}
 		
-		ExplosionModifier newModifier = findExplosionModifier(inventory);
-		if (newModifier == null) {
-			return false;
+		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);
+		ModularExplosionDefinition currentSet = ModularExplosionDefinition.getFromStack(nonModStack);
+		List<ExplosionArchetype> archetypes = pair.getLeft();
+		List<ExplosionModifier> mods = pair.getRight();
+		
+		if (archetypes.isEmpty() && mods.isEmpty()) {
+			return currentSet.getModifierCount() > 0; // clearing existing modifiers
 		}
 		
-		if (!newModifier.isCompatibleWithArchetype(archetypeProvider.getArchetype())) {
-			return false;
+		if (!archetypes.isEmpty()) {
+			@Nullable ExplosionArchetype newArchetype = calculateExplosionArchetype(currentSet.getArchetype(), archetypes);
+			if (newArchetype == null) {
+				return false;
+			}
+			currentSet.setArchetype(newArchetype);
 		}
 		
-		if (!enoughPowderPresent(inventory)) {
-			return false;
+		currentSet.addModifiers(mods);
+		return currentSet.isValid(modularExplosionProvider);
+	}
+	
+	/**
+	 * Returns null if the combination of archetypes would result in something nonsensical
+	 */
+	private static @Nullable ExplosionArchetype calculateExplosionArchetype(ExplosionArchetype existingArchetype, List<ExplosionArchetype> newArchetypes) {
+		ExplosionArchetype newArchetype = existingArchetype;
+		if (existingArchetype == ExplosionArchetype.ALL && newArchetypes.size() > 0) {
+			return null;
+		}
+		if (newArchetypes.contains(ExplosionArchetype.ALL) && newArchetypes.size() > 1) {
+			return null;
 		}
 		
-		ExplosionModifierSet currentModifiers = ExplosionModifierSet.getFromStack(nonModStack);
-		return currentModifiers.canAcceptModifier(newModifier, archetypeProvider);
+		for (ExplosionArchetype archetype : newArchetypes) {
+			if (newArchetype == ExplosionArchetype.ALL) {
+				return null;
+			}
+			newArchetype = ExplosionArchetype.get(newArchetype.affectsBlocks || archetype.affectsBlocks, newArchetype.affectsEntities || archetype.affectsEntities);
+		}
+		return newArchetype;
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
-		ExplosionModifier mod = findExplosionModifier(inv);
-		ItemStack recipeOutput = getFirstNonModStack(inv).copy();
+	public ItemStack craft(Inventory inventory) {
+		ItemStack output = getFirstNonModStack(inventory).copy();
 		
-		ExplosionModifierSet set = ExplosionModifierSet.getFromStack(recipeOutput);
-		set.addModifier(mod);
-		set.attachToStack(recipeOutput);
+		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);
+		List<ExplosionArchetype> archetypes = pair.getLeft();
+		List<ExplosionModifier> mods = pair.getRight();
 		
-		return recipeOutput;
+		if (archetypes.isEmpty() && mods.isEmpty()) { // clearing existing modifiers
+			ModularExplosionDefinition.removeFromStack(output);
+			return output;
+		}
+		
+		ModularExplosionDefinition set = ModularExplosionDefinition.getFromStack(output);
+		
+		// adding new modifiers
+		if (!archetypes.isEmpty()) {
+			ExplosionArchetype newArchetype = calculateExplosionArchetype(set.getArchetype(), pair.getLeft());
+			if (newArchetype != null) { // should never happen, but better safe than sorry
+				set.setArchetype(newArchetype);
+			}
+		}
+		
+		set.addModifiers(mods);
+		set.attachToStack(output);
+		
+		return output;
 	}
 	
 	@Override
 	public void consumeIngredients(PedestalBlockEntity pedestal) {
 		for (int slot : CRAFTING_GRID_SLOTS) {
 			ItemStack slotStack = pedestal.getStack(slot);
-			if (slotStack.getItem() instanceof ExplosionArchetypeProvider) {
+			if (slotStack.getItem() instanceof ModularExplosionProvider) {
 				pedestal.setStack(slot, ItemStack.EMPTY);
 			} else {
 				slotStack.decrement(1);
@@ -86,24 +129,31 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	public ItemStack getFirstNonModStack(Inventory inventory) {
 		for (int slot : CRAFTING_GRID_SLOTS) {
 			ItemStack stack = inventory.getStack(slot);
-			if (!stack.isEmpty() && ExplosionModifierProviders.get(stack) == null) {
+			if (!stack.isEmpty() && ExplosionModifierProviders.getModifier(stack) == null) {
 				return stack;
 			}
 		}
 		return ItemStack.EMPTY;
 	}
 	
-	public @Nullable ExplosionModifier findExplosionModifier(Inventory inventory) {
+	public Pair<List<ExplosionArchetype>, List<ExplosionModifier>> findArchetypeAndModifiers(Inventory inventory) {
+		List<ExplosionModifier> modifiers = new ArrayList<>();
+		List<ExplosionArchetype> archetypes = new ArrayList<>();
 		for (int slot : CRAFTING_GRID_SLOTS) {
 			ItemStack stack = inventory.getStack(slot);
 			if (!stack.isEmpty()) {
-				ExplosionModifier modifier = ExplosionModifierProviders.get(stack);
+				ExplosionModifier modifier = ExplosionModifierProviders.getModifier(stack);
 				if (modifier != null) {
-					return modifier;
+					modifiers.add(modifier);
+					continue;
+				}
+				ExplosionArchetype archetype = ExplosionModifierProviders.getArchetype(stack);
+				if (archetype != null) {
+					archetypes.add(archetype);
 				}
 			}
 		}
-		return null;
+		return new Pair<>(archetypes, modifiers);
 	}
 	
 }

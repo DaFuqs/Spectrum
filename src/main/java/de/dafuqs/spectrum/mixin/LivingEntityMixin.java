@@ -81,6 +81,9 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
 	
+	@Shadow
+	public abstract void endCombat();
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -143,7 +146,9 @@ public abstract class LivingEntityMixin {
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
 		if (cir.getReturnValue() != null && cir.getReturnValue()) {
-			if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
+			if (source instanceof EntityDamageSource entityDamageSource && entityDamageSource.isThorns()) {
+				// disarming does not trigger when dealing damage to enemies using thorns
+			} else if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
 				if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
 					DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);

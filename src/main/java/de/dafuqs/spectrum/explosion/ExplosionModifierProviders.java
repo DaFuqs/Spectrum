@@ -9,30 +9,51 @@ import java.util.*;
 
 public class ExplosionModifierProviders {
 	
-	protected static Map<Item, ExplosionModifier> PROVIDERS = new Object2ObjectOpenHashMap<>();
+	protected static Map<Item, ExplosionModifier> MODIFIERS = new Object2ObjectOpenHashMap<>();
 	
-	public static @Nullable ExplosionModifier get(ItemStack stack) {
-		return PROVIDERS.getOrDefault(stack.getItem(), null);
+	public static @Nullable ExplosionModifier getModifier(ItemStack stack) {
+		return MODIFIERS.getOrDefault(stack.getItem(), null);
 	}
 	
-	public static void registerModifier(ItemConvertible provider, ExplosionModifier modifier) {
-		PROVIDERS.put(provider.asItem(), modifier);
+	public static void registerForModifier(ItemConvertible provider, ExplosionModifier modifier) {
+		MODIFIERS.put(provider.asItem(), modifier);
+	}
+	
+	
+	protected static Map<Item, ExplosionArchetype> ARCHETYPES = new Object2ObjectOpenHashMap<>();
+	
+	public static @Nullable ExplosionArchetype getArchetype(ItemStack stack) {
+		return ARCHETYPES.getOrDefault(stack.getItem(), null);
+	}
+	
+	public static void registerForArchetype(ItemConvertible provider, ExplosionArchetype modifier) {
+		ARCHETYPES.put(provider.asItem(), modifier);
 	}
 	
 	public static Set<Item> getProviders() {
-		return PROVIDERS.keySet();
+		Set<Item> set = new HashSet<>();
+		set.addAll(ARCHETYPES.keySet());
+		set.addAll(MODIFIERS.keySet());
+		return set;
 	}
 	
+	
 	public static void register() {
-		registerModifier(Items.FIRE_CHARGE, SpectrumExplosionEffects.FIRE);
-		registerModifier(Items.SOUL_SAND, SpectrumExplosionEffects.SOUL_FIRE);
-		registerModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumExplosionEffects.EXPLOSION_BOOST);
-		registerModifier(SpectrumItems.STORM_STONE, SpectrumExplosionEffects.LIGHTNING);
-		registerModifier(SpectrumItems.NEOLITH, SpectrumExplosionEffects.MAGIC);
-		registerModifier(SpectrumItems.MIDNIGHT_CHIP, SpectrumExplosionEffects.LOOTING);
-		registerModifier(SpectrumItems.MIDNIGHT_ABERRATION, SpectrumExplosionEffects.LOOTING);
-		registerModifier(SpectrumItems.REFINED_BLOODSTONE, SpectrumExplosionEffects.PRIMORDIAL_FIRE);
-		registerModifier(Items.CHORUS_FRUIT, SpectrumExplosionEffects.STARRY);
+		registerForArchetype(Items.GLOWSTONE_DUST, ExplosionArchetype.DAMAGE_ENTITIES);
+		registerForArchetype(Items.GUNPOWDER, ExplosionArchetype.DESTROY_BLOCKS);
+		registerForArchetype(SpectrumItems.MIDNIGHT_ABERRATION, ExplosionArchetype.ALL);
+		
+		registerForModifier(Items.FIRE_CHARGE, ExplosionModifiers.FIRE);
+		registerForModifier(Items.SOUL_SAND, ExplosionModifiers.SOUL_FIRE);
+		registerForModifier(Items.TNT, ExplosionModifiers.EXPLOSION_BOOST);
+		registerForModifier(SpectrumItems.STORM_STONE, ExplosionModifiers.LIGHTNING);
+		registerForModifier(SpectrumItems.NEOLITH, ExplosionModifiers.MAGIC);
+		//registerModifier(SpectrumItems.MIDNIGHT_CHIP, ExplosionModifiers.LOOTING);
+		registerForModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, ExplosionModifiers.INCANDESCENCE);
+		registerForModifier(SpectrumItems.REFINED_BLOODSTONE, ExplosionModifiers.PRIMORDIAL_FIRE);
+		registerForModifier(Items.CHORUS_FRUIT, ExplosionModifiers.STARRY);
+		registerForModifier(Items.END_ROD, ExplosionModifiers.KILL_ZONE);
+		
 	}
 	
 }

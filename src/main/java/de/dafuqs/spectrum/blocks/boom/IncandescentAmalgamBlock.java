@@ -11,7 +11,6 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
-import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -144,18 +143,20 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
+				PlayerEntity owner = placedItemBlockEntity.getOwnerIfOnline();
 				ItemStack stack = placedItemBlockEntity.getStack();
-				explode((ServerWorld) world, pos, stack);
+				
+				explode(world, pos, owner, stack);
 			}
 		}
 	}
 	
-	public static void explode(ServerWorld world, BlockPos pos, ItemStack stack) {
+	public static void explode(World world, BlockPos pos, PlayerEntity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
 			power = item.getExplosionPower(stack);
 		}
-		world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
+		world.createExplosion(owner, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 	}
 	
 }

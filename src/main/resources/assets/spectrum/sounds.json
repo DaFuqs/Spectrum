@@ -63,8 +63,8 @@
       "random/fizz"
     ]
   },
-  "block.threat_conflux.explode": {
-    "subtitle": "spectrum.subtitles.block.threat_conflux.explode",
+  "block.modular_explosive.explode": {
+    "subtitle": "spectrum.subtitles.block.modular_explosive.explode",
     "sounds": [
       "spectrum:threat_conflux.explode"
     ]

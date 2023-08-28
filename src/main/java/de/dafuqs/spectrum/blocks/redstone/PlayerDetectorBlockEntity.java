@@ -61,6 +61,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
 }

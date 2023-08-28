@@ -44,7 +44,7 @@ public class SpectrumPresentUnpackBehaviors {
 		});
 		
 		PresentBlock.registerBehavior(SpectrumBlocks.INCANDESCENT_AMALGAM, (stack, presentBlockEntity, world, pos, random) -> {
-			IncandescentAmalgamBlock.explode(world, pos, stack);
+			IncandescentAmalgamBlock.explode(world, pos, presentBlockEntity.getOwnerIfOnline(), stack);
 			return ItemStack.EMPTY;
 		});
 		

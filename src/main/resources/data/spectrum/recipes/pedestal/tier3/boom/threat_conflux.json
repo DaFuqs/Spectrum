@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 2,
+  "magenta": 0,
+  "yellow": 2,
+  "white": 0,
+  "black": 4,
+  "experience": 1.0,
+  "pattern": [
+    "PPP",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "spectrum:threat_conflux",
+    "count": 1,
+    "nbt": {
+      "explosion_data": {
+        "archetype": "damage_entities",
+        "modifiers": [
+          "spectrum:kill_zone",
+          "spectrum:incandescence"
+        ]
+      }
+    }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
+}

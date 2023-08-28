@@ -319,9 +319,9 @@ public class SpectrumItems {
 	public static final Item INFUSED_BEVERAGE = new VariantBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new Item(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item CHRYSOCOLLA = new Item(Tab.CUISINE.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	public static final Item HONEY_PASTRY = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));

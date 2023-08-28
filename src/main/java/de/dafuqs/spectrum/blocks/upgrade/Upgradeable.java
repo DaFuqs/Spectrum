@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.block.*;
@@ -17,25 +16,19 @@ import java.util.*;
 public interface Upgradeable {
 
 	enum UpgradeType {
-		SPEED(1, InkColors.MAGENTA),     // faster crafting
-		EFFICIENCY(16, InkColors.BLACK), // chance to not use input resources (like gemstone powder)
-		YIELD(16, InkColors.LIGHT_BLUE), // chance to increase output
-		EXPERIENCE(1, InkColors.PURPLE); // increased XP output / decreased XP usage
+		SPEED(1),     // faster crafting
+		EFFICIENCY(16), // chance to not use input resources (like gemstone powder)
+		YIELD(16), // chance to increase output
+		EXPERIENCE(1); // increased XP output / decreased XP usage
 		
 		private final int effectivityDivisor; // multiplied on top of crafting speed, chance to double output, ...
-		private final InkColor inkColor;
 		
-		UpgradeType(int effectivityDivisor, InkColor inkColor) {
+		UpgradeType(int effectivityDivisor) {
 			this.effectivityDivisor = effectivityDivisor;
-			this.inkColor = inkColor;
 		}
 		
 		public int getEffectivityDivisor() {
 			return effectivityDivisor;
-		}
-
-		public InkColor getInkColor() {
-			return inkColor;
 		}
 	}
 

@@ -96,7 +96,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		} else {
 			ItemStack currentStack = blockEntity.getStack(slot);
 			if (!handStack.isEmpty() && !currentStack.isEmpty()) {
-				if (ItemStack.areItemsEqual(handStack, currentStack)) {
+				if (ItemStack.areItemsEqual(handStack, currentStack) && ItemStack.areNbtEqual(handStack, currentStack)) {
 					InventoryHelper.setOrCombineStack(blockEntity, slot, handStack);
 				} else {
 					blockEntity.setStack(slot, handStack);

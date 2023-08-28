@@ -160,6 +160,31 @@
     {
       "id": "geodes:large_gypsum_rose",
       "required": false
+    },
+
+    {
+      "id": "byg:large_subzero_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "byg:medium_subzero_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "byg:small_subzero_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "byg:large_therium_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "byg:medium_therium_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "byg:small_therium_crystal_bud",
+      "required": false
     }
   ]
 }

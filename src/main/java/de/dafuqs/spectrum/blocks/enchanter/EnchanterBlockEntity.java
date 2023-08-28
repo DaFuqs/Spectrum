@@ -781,6 +781,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.ownerUUID = playerEntity.getUuid();
 		this.canOwnerApplyConflictingEnchantments = AdvancementHelper.hasAdvancement(playerEntity, APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER);
 		this.canOwnerOverenchant = AdvancementHelper.hasAdvancement(playerEntity, OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+		markDirty();
 	}
 	
 	// UPGRADEABLE

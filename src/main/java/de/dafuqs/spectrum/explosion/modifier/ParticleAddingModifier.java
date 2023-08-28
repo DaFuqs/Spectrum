@@ -18,4 +18,5 @@ public class ParticleAddingModifier extends ExplosionModifier {
 	public Optional<ParticleEffect> getParticleEffects() {
 		return Optional.of(particleEffect);
 	}
+	
 }

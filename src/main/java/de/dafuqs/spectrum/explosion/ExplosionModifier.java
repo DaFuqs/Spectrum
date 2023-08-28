@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.explosion;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -14,6 +15,7 @@ import java.util.*;
 
 /**
  * Modifies an explosion in some way
+ * This is still a mess. I like more how potion reagents manage that
  */
 public abstract class ExplosionModifier {
 	
@@ -26,31 +28,16 @@ public abstract class ExplosionModifier {
 		this.displayColor = displayColor;
 	}
 	
-	@ApiStatus.OverrideOnly
-	public boolean isCompatibleWithArchetype(ExplosionArchetype archetype) {
-		return type.acceptsArchetype(archetype);
+	public ExplosionModifierType getType() {
+		return type;
 	}
 	
 	@ApiStatus.OverrideOnly
-	public void applyToEntities(@NotNull List<Entity> entities) {
+	public void applyToEntity(@NotNull Entity entity, double distance) {
 	}
 	
 	@ApiStatus.OverrideOnly
-	public void applyToBlocks(@NotNull World world, @NotNull List<BlockPos> blocks) {
-	}
-	
-	@ApiStatus.OverrideOnly
-	public void applyToWorld(@NotNull World world, @NotNull Vec3d center) {
-	}
-	
-	@ApiStatus.OverrideOnly
-	public float getBlastPowerModifier() {
-		return 1F;
-	}
-	
-	@ApiStatus.OverrideOnly
-	public float getDropChanceModifier() {
-		return 1F;
+	public void applyToBlocks(@NotNull World world, @NotNull Iterable<BlockPos> blocks) {
 	}
 	
 	@ApiStatus.OverrideOnly
@@ -64,12 +51,31 @@ public abstract class ExplosionModifier {
 	}
 	
 	@ApiStatus.OverrideOnly
-	public Optional<DamageSource> getDamageSource() {
+	public float getKillZoneRadius() {
+		return 0F;
+	}
+	
+	@ApiStatus.OverrideOnly
+	public float getKillZoneDamageModifier() {
+		return 1F;
+	}
+	
+	@ApiStatus.OverrideOnly
+	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
 		return Optional.empty();
 	}
 	
 	@ApiStatus.OverrideOnly
 	public Optional<ParticleEffect> getParticleEffects() {
+		return Optional.empty();
+	}
+	
+	@ApiStatus.OverrideOnly
+	public void addEnchantments(ItemStack stack) {
+	}
+	
+	@ApiStatus.OverrideOnly
+	public Optional<ExplosionShape> getShape() {
 		return Optional.empty();
 	}
 	

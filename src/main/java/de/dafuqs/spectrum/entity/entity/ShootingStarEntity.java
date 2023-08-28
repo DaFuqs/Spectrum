@@ -294,17 +294,17 @@ public class ShootingStarEntity extends Entity {
 		int randomLifetime = 30 + random.nextInt(20);
 		
 		ParticleEffect particleEffect = new DynamicParticleEffectAlwaysShow(0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true);
-		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
+		world.addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
 	}
 	
 	public void playFallingParticles() {
 		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
 		ParticleEffect particleEffect = new DynamicParticleEffectAlwaysShow((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true);
-		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
+		world.addParticle(particleEffect, this.getX(), this.getEyeY(), this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
 	
 	public void playHitParticles() {
-		playHitParticles(this.world, this.getX(), this.getY(), this.getZ(), this.getShootingStarType(), 25);
+		playHitParticles(this.world, this.getX(), this.getEyeY(), this.getZ(), this.getShootingStarType(), 25);
 	}
 	
 	public void doPlayerHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {

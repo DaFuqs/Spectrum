@@ -67,7 +67,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 					ItemStack stack = itemEntity.getStack();
-					crystallarieumBlockEntity.acceptStack(stack, false);
+					crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getThrower());
 				}
 			}
 		} else {
@@ -88,7 +88,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				if (player.isSneaking() || handStack.isEmpty()) {
 					// sneaking or empty hand: remove items
 					if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 1) || retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, 0)) {
-						crystallarieumBlockEntity.updateInClientWorld();
+						crystallarieumBlockEntity.inventoryChanged();
 						crystallarieumBlockEntity.setOwner(player);
 					}
 					return ActionResult.CONSUME;
@@ -97,12 +97,12 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 					// hand is full and inventory already contains item: exchange them
 					if (handStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
 						if (inkStorageItem.getDrainability().canDrain(false) && exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID)) {
-							crystallarieumBlockEntity.updateInClientWorld();
+							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					} else {
 						if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, CrystallarieumBlockEntity.CATALYST_SLOT_ID)) {
-							crystallarieumBlockEntity.updateInClientWorld();
+							crystallarieumBlockEntity.inventoryChanged();
 							crystallarieumBlockEntity.setOwner(player);
 						}
 					}

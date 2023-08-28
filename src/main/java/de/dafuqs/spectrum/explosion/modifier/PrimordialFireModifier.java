@@ -10,8 +10,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.*;
-
 public class PrimordialFireModifier extends DamageChangingModifier {
 	
 	
@@ -20,21 +18,18 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	}
 	
 	@Override
-	public void applyToBlocks(@NotNull World world, @NotNull List<BlockPos> blocks) {
+	public void applyToBlocks(@NotNull World world, @NotNull Iterable<BlockPos> blocks) {
 		for (BlockPos pos : blocks) {
 			if (world.getRandom().nextInt(3) == 0 && world.getBlockState(pos).isAir() && world.getBlockState(pos.down()).isOpaqueFullCube(world, pos.down())) {
 				world.setBlockState(pos, PrimordialFireBlock.getState(world, pos));
 			}
 		}
-		super.applyToBlocks(world, blocks);
 	}
 	
 	@Override
-	public void applyToEntities(@NotNull List<Entity> entities) {
-		for (Entity entity : entities) {
-			if (entity instanceof LivingEntity livingEntity) {
-				OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
-			}
+	public void applyToEntity(@NotNull Entity entity, double distance) {
+		if (entity instanceof LivingEntity livingEntity) {
+			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
 		}
 	}
 	

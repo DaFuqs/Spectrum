@@ -62,7 +62,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 24000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
-			serverWorldProperties.setThundering(false);
+			serverWorldProperties.setThundering(true);
 			
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
@@ -86,7 +86,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 4000, 6000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3000, 4000));
-			serverWorldProperties.setThundering(false);
+			serverWorldProperties.setThundering(true);
 			
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}

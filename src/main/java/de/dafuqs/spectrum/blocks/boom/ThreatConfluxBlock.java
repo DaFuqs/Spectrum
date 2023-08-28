@@ -147,9 +147,11 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 			return;
 		}
 		ItemStack stack = blockEntity.getStack();
+		PlayerEntity owner = blockEntity.getOwnerIfOnline();
+		
 		world.removeBlock(pos, false);
-		ExplosionModifierSet set = ExplosionModifierSet.getFromStack(stack);
-		set.explode(world, pos);
+		
+		ModularExplosionDefinition.explode(world, pos, owner, stack);
 	}
 	
 }

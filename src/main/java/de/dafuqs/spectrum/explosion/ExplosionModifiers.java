@@ -35,7 +35,6 @@ public class ExplosionModifiers {
 	
 	// Damage source changers
 	public static final ExplosionModifier FIRE = registerModifier("fire", new FireModifier(DAMAGE_SOURCE, DamageSource.IN_FIRE, ParticleTypes.FLAME, 0xaff3eb));
-	public static final ExplosionModifier SOUL_FIRE = registerModifier("soul_fire", new SoulFireModifier(DAMAGE_SOURCE, DamageSource.IN_FIRE, ParticleTypes.SOUL_FIRE_FLAME, 0xaff3eb));
 	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_SOURCE, SpectrumDamageSources.PRIMORDIAL_FIRE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0xff2664));
 	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.LIGHTNING_BOLT, SpectrumParticleTypes.WHITE_EXPLOSION, 0xaff3eb) {
 		@Override

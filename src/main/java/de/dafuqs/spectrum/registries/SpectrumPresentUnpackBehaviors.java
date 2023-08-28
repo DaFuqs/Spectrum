@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.boom.*;
+import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -118,6 +119,11 @@ public class SpectrumPresentUnpackBehaviors {
 				world.spawnEntity(chickenEntity);
 			}
 			
+			return ItemStack.EMPTY;
+		});
+		
+		PresentBlock.registerBehavior(SpectrumBlocks.MEMORY, (stack, presentBlockEntity, world, pos, random) -> {
+			MemoryBlockEntity.manifest(world, pos, stack, presentBlockEntity.getOwnerUUID());
 			return ItemStack.EMPTY;
 		});
 		

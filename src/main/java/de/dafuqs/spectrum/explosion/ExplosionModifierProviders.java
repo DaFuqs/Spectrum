@@ -44,7 +44,6 @@ public class ExplosionModifierProviders {
 		registerForArchetype(SpectrumItems.MIDNIGHT_ABERRATION, ExplosionArchetype.ALL);
 		
 		registerForModifier(Items.FIRE_CHARGE, ExplosionModifiers.FIRE);
-		registerForModifier(Items.SOUL_SAND, ExplosionModifiers.SOUL_FIRE);
 		registerForModifier(Items.TNT, ExplosionModifiers.EXPLOSION_BOOST);
 		registerForModifier(SpectrumItems.STORM_STONE, ExplosionModifiers.LIGHTNING);
 		registerForModifier(SpectrumItems.NEOLITH, ExplosionModifiers.MAGIC);

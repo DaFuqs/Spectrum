@@ -27,7 +27,7 @@ public class ModularExplosion {
 	
 	// Call to boom
 	public static void explode(@NotNull ServerWorld world, BlockPos pos, @Nullable PlayerEntity owner, double baseBlastRadius, float baseDamage, ExplosionArchetype archetype, List<ExplosionModifier> modifiers) {
-		DamageSource damageSource = DamageSource.explosion((Explosion) null);
+		DamageSource damageSource = world.getDamageSources().explosion(null);
 		
 		float damageMod = 1F;
 		float killzoneDamageMod = 1F;
@@ -117,7 +117,7 @@ public class ModularExplosion {
 	}
 	
 	private static List<BlockPos> processExplosion(@NotNull ServerWorld world, @Nullable PlayerEntity owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) { // TODO: process shape
-		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius);
+		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.DestructionType.DESTROY); // TODO - Review and refactor according to new explosion standards
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
 		List<BlockPos> affectedBlocks = new ArrayList<>();
@@ -152,8 +152,12 @@ public class ModularExplosion {
 				}
 				
 				if (block.shouldDropItemsOnExplosion(explosion)) {
-					LootContext.Builder builder = (new LootContext.Builder(world).random(world.random).parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos)).parameter(LootContextParameters.TOOL, miningStack).optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity).optionalParameter(LootContextParameters.THIS_ENTITY, owner));
-					builder.parameter(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
+					LootContextParameterSet.Builder builder = (new LootContextParameterSet.Builder(world)
+							.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+							.add(LootContextParameters.TOOL, miningStack)
+							.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
+							.addOptional(LootContextParameters.THIS_ENTITY, owner));
+					builder.add(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
 					state.onStacksDropped(world, pos, miningStack, true);
 					state.getDroppedStacks(builder).forEach((stack) -> {
 						tryMergeStack(drops, stack, pos.toImmutable());

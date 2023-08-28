@@ -48,7 +48,7 @@ public abstract class EntityRenderDispatcherMixin {
 		float g = 0.5F;
 		float i = entity.getHeight() / f;
 		float j = 0.0F;
-		matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-this.camera.getYaw()));
+		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-this.camera.getYaw()));
 		matrices.translate(0.0, 0.0, (-0.3F + (float) ((int) i) * 0.02F));
 		float k = 0.0F;
 		int l = 0;

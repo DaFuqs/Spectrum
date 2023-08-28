@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;

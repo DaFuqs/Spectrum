@@ -2,12 +2,9 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.RenderHelper;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;

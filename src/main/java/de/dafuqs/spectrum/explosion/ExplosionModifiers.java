@@ -8,11 +8,12 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+// FIXME - Respect new damage type system for 1.20
 public class ExplosionModifiers {
 	
 	// MODIFIER TYPES

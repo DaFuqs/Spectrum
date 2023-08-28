@@ -10,8 +10,8 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.sound.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
@@ -94,7 +94,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 			double fluidHeight = this.provider.getFluidHeight(FluidTags.WATER);
 			if (fluidHeight > 0) {
 
-				World world = this.provider.world;
+				World world = this.provider.getWorld();
 				Random random = world.random;
 				Vec3d pos = this.provider.getPos();
 

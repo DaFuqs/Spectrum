@@ -82,11 +82,6 @@ public class ParametricMiningDeviceBlock extends PlaceableItemBlock {
 		return VoxelShapes.empty();
 	}
 	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
-	}
-	
 	// actual logic
 	// press to boom
 	@Override

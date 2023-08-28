@@ -23,13 +23,8 @@ public class BlackMateriaBlock extends FallingBlock {
 		super(settings);
 		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, Properties.AGE_3_MAX));
 	}
-	
-	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		world.createAndScheduleBlockTick(pos, this, this.getFallDelay());
-	}
-	
-	@Override
+
+    @Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (direction == Direction.DOWN) {
 			super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);

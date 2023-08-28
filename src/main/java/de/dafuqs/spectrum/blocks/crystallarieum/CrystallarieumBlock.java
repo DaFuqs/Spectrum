@@ -67,7 +67,7 @@ public class CrystallarieumBlock extends InWorldInteractionBlock {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 					ItemStack stack = itemEntity.getStack();
-					crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getThrower());
+					crystallarieumBlockEntity.acceptStack(stack, false, itemEntity.getOwner() != null ? itemEntity.getOwner().getUuid() : null);
 				}
 			}
 		} else {

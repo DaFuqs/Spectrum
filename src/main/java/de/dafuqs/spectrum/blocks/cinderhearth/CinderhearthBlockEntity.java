@@ -312,7 +312,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 
 	private static boolean canContinue(World world, BlockPos blockPos, CinderhearthBlockEntity cinderhearthBlockEntity) {
-		if (!canAcceptRecipeOutput(cinderhearthBlockEntity.currentRecipe, cinderhearthBlockEntity)) {
+		if (!canAcceptRecipeOutput(world, cinderhearthBlockEntity.currentRecipe, cinderhearthBlockEntity)) {
 			return false;
 		}
 
@@ -327,9 +327,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		return true;
 	}
 
-	protected static boolean canAcceptRecipeOutput(Recipe<?> recipe, Inventory inventory) {
+	protected static boolean canAcceptRecipeOutput(World world, Recipe<?> recipe, Inventory inventory) {
 		if (recipe != null) {
-			ItemStack outputStack = recipe.getOutput();
+			ItemStack outputStack = recipe.getOutput(world.getRegistryManager());
 			if (outputStack.isEmpty()) {
 				return false;
 			} else {
@@ -338,7 +338,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					ItemStack slotStack = inventory.getStack(slot);
 					if (slotStack.isEmpty()) {
 						return true;
-					} else if (slotStack.isItemEqualIgnoreDamage(outputStack)) {
+					} else if (ItemStack.areEqual(slotStack, outputStack)) {
 						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount() - outputStack.getCount();
 						if (outputSpaceFound >= outputStack.getCount()) {
 							return true;

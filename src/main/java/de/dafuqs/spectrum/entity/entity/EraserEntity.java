@@ -234,7 +234,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 			entity.copyDataToStack(bucketedStack);
 			ItemStack exchangedStack = ItemUsage.exchangeStack(handStack, player, bucketedStack, false);
 			player.setStackInHand(hand, exchangedStack);
-			World world = entity.world;
+			World world = entity.getWorld();
 			if (!world.isClient) {
 				Criteria.FILLED_BUCKET.trigger((ServerPlayerEntity) player, bucketedStack);
 			}

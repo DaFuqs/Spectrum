@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.emi;
 import de.dafuqs.spectrum.recipe.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -11,7 +10,7 @@ import java.util.*;
 public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends SpectrumEmiRecipe {
 	public final T recipe;
 
-    // TODO - DRM?
+    // FIXME - Implement DRM
 	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, Identifier unlockIdentifier, T recipe, int width, int height) {
 		super(category, unlockIdentifier, recipe.getId(), width, height);
 		this.recipe = recipe;

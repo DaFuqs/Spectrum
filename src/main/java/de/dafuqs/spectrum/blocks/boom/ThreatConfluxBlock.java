@@ -98,7 +98,7 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 		super.onPlaced(world, pos, state, placer, itemStack);
 		
 		if (!world.isClient) {
-			world.createAndScheduleBlockTick(pos, this, TICKS_TO_ARM);
+			world.scheduleBlockTick(pos, this, TICKS_TO_ARM);
 		}
 	}
 	
@@ -107,15 +107,10 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 		if (state.get(ARMED) == ArmedState.ARMED) {
 			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundCategory.BLOCKS, 1, 2F);
 			world.setBlockState(pos, state.with(ARMED, ArmedState.FUSED));
-			world.createAndScheduleBlockTick(pos, this, TICKS_TO_DETONATE);
+			world.scheduleBlockTick(pos, this, TICKS_TO_DETONATE);
 		}
 		
 		super.onEntityCollision(state, world, pos, entity);
-	}
-	
-	@Override
-	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-		return true;
 	}
 	
 	@Override

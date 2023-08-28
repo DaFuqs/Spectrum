@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.recipe.*;
 import net.id.incubus_core.recipe.*;
 import net.id.incubus_core.recipe.matchbook.*;
 import net.minecraft.entity.effect.*;

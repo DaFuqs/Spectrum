@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.chunk.*;
@@ -109,7 +109,7 @@ public class UndergroundJigsawStructure extends Structure {
 			if (y < lowestY) {
 				return Optional.empty();
 			}
-			if (!heightLimitView.getState(y).getMaterial().isSolid()) {
+			if (!heightLimitView.getState(y).isSolid()) {
 				break;
 			}
 			y--;

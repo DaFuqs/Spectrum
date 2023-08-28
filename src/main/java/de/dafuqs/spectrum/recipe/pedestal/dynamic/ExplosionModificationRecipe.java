@@ -3,13 +3,14 @@ package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.explosion.*;
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -18,7 +19,7 @@ import java.util.*;
 // this hurt to write
 public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
-	public static final RecipeSerializer<ExplosionModificationRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ExplosionModificationRecipe::new);
+	public static final RecipeSerializer<ExplosionModificationRecipe> SERIALIZER = new EmptyRecipeSerializer<>(ExplosionModificationRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/modular_explosives");
 	
 	public ExplosionModificationRecipe(Identifier id) {
@@ -27,7 +28,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
 	private static List<IngredientStack> collectIngredients() {
 		List<ItemConvertible> providers = new ArrayList<>();
-		Registry.ITEM.stream().filter(item -> item instanceof ModularExplosionProvider).forEach(providers::add);
+		Registries.ITEM.stream().filter(item -> item instanceof ModularExplosionProvider).forEach(providers::add);
 		IngredientStack providerIngredient = IngredientStack.of(Ingredient.ofItems(providers.toArray(new ItemConvertible[]{})));
 		
 		Set<Item> modifiers = ExplosionModifierProviders.getProviders();
@@ -86,7 +87,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory) {
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
 		ItemStack output = getFirstNonModStack(inventory).copy();
 		
 		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);

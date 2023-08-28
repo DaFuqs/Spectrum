@@ -147,7 +147,7 @@ public abstract class LivingEntityMixin {
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
 		if (cir.getReturnValue() != null && cir.getReturnValue()) {
-			if (source instanceof EntityDamageSource entityDamageSource && entityDamageSource.isThorns()) {
+			if (source.isOf(DamageTypes.THORNS)) {
 				// disarming does not trigger when dealing damage to enemies using thorns
 			} else if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
 				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
@@ -348,6 +348,6 @@ public abstract class LivingEntityMixin {
 	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
 	public boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object)livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
+		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object) livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
 	}
 }

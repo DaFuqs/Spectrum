@@ -14,7 +14,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.potion.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 
@@ -62,7 +62,7 @@ public class SpectrumPresentUnpackBehaviors {
 			Optional<RegistryEntry<Instrument>> optional = ((GoatHornItemAccessor) stack.getItem()).invokeGetInstrument(stack);
 			if (optional.isPresent()) {
 				Instrument instrument = optional.get().value();
-				SoundEvent soundEvent = instrument.soundEvent();
+				SoundEvent soundEvent = instrument.soundEvent().value();
 				world.playSound(null, pos, soundEvent, SoundCategory.RECORDS, instrument.range() / 16.0F, 1.0F);
 			}
 			return stack;

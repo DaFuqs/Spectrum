@@ -8,11 +8,9 @@ import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -29,16 +27,16 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalRecipe> {
 	public PagePedestalCrafting() {
 		super(SpectrumRecipeTypes.PEDESTAL);
 	}
-	
+
 	@Override
-	protected ItemStack getRecipeOutput(PedestalCraftingRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, PedestalRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
 			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
-	
+
 	@Override
 	protected void drawRecipe(DrawContext drawContext, @NotNull PedestalRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, getBackgroundTextureForTier(recipe.getTier()));
@@ -87,7 +85,7 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalRecipe> {
 		return 108;
 	}
 	
-	private void drawGemstonePowderSlots(DrawContext drawContext, PedestalCraftingRecipe recipe, GemstoneColor @NotNull [] colors, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
+	private void drawGemstonePowderSlots(DrawContext drawContext, PedestalRecipe recipe, GemstoneColor @NotNull [] colors, int startX, int recipeX, int recipeY, int mouseX, int mouseY) {
 		int h = 0;
 		for (GemstoneColor color : colors) {
 			int amount = recipe.getPowderInputs().getOrDefault(color, 0);

@@ -26,6 +26,7 @@ import de.dafuqs.spectrum.blocks.furniture.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
+import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
@@ -1607,11 +1608,11 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, settings, DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, Tab.FUNCTIONAL.settings(1)), DyeColor.LIGHT_GRAY);
-		registerBlockWithItem("titration_barrel", TITRATION_BARREL, Tab.FUNCTIONAL.settings(), DyeColor.MAGENTA);
+		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, IS.of(1)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("titration_barrel", TITRATION_BARREL, settings, DyeColor.MAGENTA);
 
-		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
-		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ThreatConfluxItem(THREAT_CONFLUX, Tab.FUNCTIONAL.settings(8)), DyeColor.RED);
+		registerBlockWithItem("parametric_mining_device", PARAMETRIC_MINING_DEVICE, new ParametricMiningDeviceItem(PARAMETRIC_MINING_DEVICE, IS.of(8)), DyeColor.RED);
+		registerBlockWithItem("threat_conflux", THREAT_CONFLUX, new ThreatConfluxItem(THREAT_CONFLUX, IS.of(8)), DyeColor.RED);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings settings) {

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;

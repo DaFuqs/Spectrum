@@ -29,7 +29,8 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
-		if (!this.world.isClient) {
+		World world = this.getWorld();
+		if (!world.isClient) {
 			Entity owner = getOwner();
 			PlayerEntity playerOwner = owner instanceof PlayerEntity player ? player : null;
 			ModularExplosionDefinition.explode((ServerWorld) world, entityHitResult.getEntity().getBlockPos(), playerOwner, getStack());
@@ -41,7 +42,8 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 	
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
-		if (!this.world.isClient) {
+		World world = this.getWorld();
+		if (!world.isClient) {
 			Entity owner = getOwner();
 			PlayerEntity playerOwner = owner instanceof PlayerEntity player ? player : null;
 			ModularExplosionDefinition.explode((ServerWorld) world, blockHitResult.getBlockPos(), blockHitResult.getSide().getOpposite(), playerOwner, getStack());
@@ -58,7 +60,7 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 		if (status == 1) {
 			for (int i = 0; i < 20; i++) {
 				var particle = random.nextBoolean() ? SpectrumParticleTypes.PRIMORDIAL_SMOKE : SpectrumParticleTypes.PRIMORDIAL_FLAME;
-				world.addImportantParticle(particle, true, pos.getX(), pos.getY(), pos.getZ(), random.nextFloat() * 0.25 - 0.125, random.nextFloat() * 0.25 - 0.125, random.nextFloat() * 0.25 - 0.125);
+				this.getWorld().addImportantParticle(particle, true, pos.getX(), pos.getY(), pos.getZ(), random.nextFloat() * 0.25 - 0.125, random.nextFloat() * 0.25 - 0.125, random.nextFloat() * 0.25 - 0.125);
 			}
 		} else if (status == 2) {
 			var particles = 15 + random.nextInt(16);
@@ -66,7 +68,7 @@ public class ParametricMiningDeviceEntity extends ThrownItemEntity {
 				var r = random.nextDouble() * 4;
 				var orientation = Orientation.create(random.nextDouble() * Math.PI * 2, random.nextDouble() * Math.PI * 2);
 				var particle = orientation.toVector(r).add(pos);
-				world.addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, particle.getX(), particle.getY(), particle.getZ(), 0, 0, 0);
+				this.getWorld().addParticle(SpectrumParticleTypes.PRIMORDIAL_SMOKE, particle.getX(), particle.getY(), particle.getZ(), 0, 0, 0);
 			}
 		}
 	}

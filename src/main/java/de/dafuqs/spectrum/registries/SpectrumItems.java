@@ -246,7 +246,7 @@ public class SpectrumItems {
 	public static final Item PYRITE_CHUNK = new Item(IS.of());
 	public static final Item DRAGONBONE_CHUNK = new Item(IS.of(Rarity.UNCOMMON));
 	public static final Item EFFULGENT_FEATHER = new Item(IS.of(Rarity.UNCOMMON));
-	public static final Item RAW_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item RAW_BLOODSTONE = new Item(IS.of(Rarity.UNCOMMON));
 	public static final Item REFINED_BLOODSTONE = new Item(IS.of(Rarity.UNCOMMON));
 	public static final Item DOWNSTONE_FRAGMENTS = new Item(IS.of(16, Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(IS.of(16, Rarity.UNCOMMON));
@@ -377,7 +377,7 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_SHARD_TAG, IS.of(1));
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new BannerPatternItem(SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, IS.of(1));
 	
-	public static final Item BUCKET_OF_ERASER = new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.ITEM_BUCKET_EMPTY, Tab.CREATURES.settings());
+	public static final Item BUCKET_OF_ERASER = new EmptyFluidEntityBucketItem(SpectrumEntityTypes.ERASER, Fluids.EMPTY, SoundEvents.ITEM_BUCKET_EMPTY, IS.of());
 
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x3a2c38, 0xfff2e0, IS.of());
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
@@ -385,17 +385,17 @@ public class SpectrumItems {
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	public static final Item ERASER_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	// Magical Tools
-	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
-	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item STAFF_OF_REMEMBRANCE = new StaffOfRemembranceItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
-	public static final Item PIPE_BOMB = new PipeBombItem(Tab.EQUIPMENT.settings(1));
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
-	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
-	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
+	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(IS.of(1));
+	public static final Item RADIANCE_STAFF = new RadianceStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item NATURES_STAFF = new NaturesStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item STAFF_OF_REMEMBRANCE = new StaffOfRemembranceItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item BLOCK_FLOODER = new BlockFlooderItem(IS.of(Rarity.UNCOMMON));
+	public static final Item PIPE_BOMB = new PipeBombItem(IS.of(1));
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(IS.of(16, Rarity.UNCOMMON));
+	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
+	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
 	
 	public static final Item INCANDESCENT_ESSENCE = new Item(IS.of());
 	public static final Item FROSTBITE_ESSENCE = new Item(IS.of());

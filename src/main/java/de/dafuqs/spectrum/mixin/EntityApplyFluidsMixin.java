@@ -49,7 +49,7 @@ public abstract class EntityApplyFluidsMixin {
 		}
 	}
 	
-	@Inject(method = "updateMovementInFluid(Lnet/minecraft/tag/TagKey;D)Z", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D"), locals = LocalCapture.CAPTURE_FAILHARD)
+	@Inject(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D"), locals = LocalCapture.CAPTURE_FAILHARD)
 	public void spectrum$updateMovementInFluid(TagKey<Fluid> tag, double speed, CallbackInfoReturnable<Boolean> info, Box box, int i, int j, int k, int l, int m, int n, double d, boolean bl, boolean bl2, Vec3d vec3d, int o, BlockPos.Mutable mutable, int p, int q, int r, FluidState fluidState) {
 		this.actuallyTouchingWater = fluidState.isIn(FluidTags.WATER);
 	}

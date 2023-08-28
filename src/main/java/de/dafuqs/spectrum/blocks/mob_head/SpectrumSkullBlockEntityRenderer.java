@@ -34,6 +34,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 		builder.put(SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG, new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)));
 		builder.put(SpectrumSkullBlockType.MONSTROSITY, new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)));
 		builder.put(SpectrumSkullBlockType.KINDLING, new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)));
+		builder.put(SpectrumSkullBlockType.ERASER, new EraserHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ERASER_HEAD)));
 		builder.put(SpectrumSkullBlockType.LIZARD, new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)));
 		builder.put(SpectrumSkullBlockType.PRESERVATION_TURRET, new GuardianTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)));
 		builder.put(SpectrumSkullBlockType.WARDEN, new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)));
@@ -110,6 +111,9 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 			}
 			case KINDLING -> {
 				return KindlingEntityRenderer.TEXTURE;
+			}
+			case ERASER -> {
+				return SpectrumCommon.locate("textures/entity/eraser/eraser_combined.png");
 			}
 			case WARDEN -> {
 				return new Identifier("textures/entity/warden/warden.png");

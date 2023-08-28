@@ -101,7 +101,9 @@ public class ModularExplosionDefinition {
 		NbtList modifierList = nbt.getList(NBT_MODIFIER_LIST_KEY, NbtElement.STRING_TYPE);
 		for (NbtElement e : modifierList) {
 			ExplosionModifier mod = SpectrumRegistries.EXPLOSION_MODIFIERS.get(Identifier.tryParse(e.asString()));
-			set.modifiers.add(mod);
+			if (mod != null) {
+				set.modifiers.add(mod);
+			}
 		}
 		
 		return set;

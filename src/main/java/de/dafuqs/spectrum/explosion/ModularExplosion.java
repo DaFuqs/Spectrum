@@ -121,8 +121,9 @@ public class ModularExplosion {
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
 		List<BlockPos> affectedBlocks = new ArrayList<>();
-		for (BlockPos p : BlockPos.iterateOutwards(center, (int) blastRadius, (int) blastRadius, (int) blastRadius)) {
-			if (processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {
+		int radius = (int) blastRadius / 2;
+		for (BlockPos p : BlockPos.iterateOutwards(center, radius, radius, radius)) {
+			if (shape.isAffected(center, p) && processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {
 				affectedBlocks.add(new BlockPos(p.getX(), p.getY(), p.getZ()));
 			}
 		}
@@ -140,31 +141,28 @@ public class ModularExplosion {
 	}
 	
 	private static boolean processBlock(@NotNull ServerWorld world, @Nullable Entity owner, Random random, BlockPos center, BlockPos pos, ObjectArrayList<Pair<ItemStack, BlockPos>> drops, ItemStack miningStack, Explosion explosion) {
-		if (Math.pow(pos.getX() - center.getX(), 2) + Math.pow(pos.getY() - center.getY(), 2) + Math.pow(pos.getZ() - center.getZ(), 2) < 4 * 4) {
-			
-			var state = world.getBlockState(pos);
-			var block = state.getBlock();
-			var blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-			
-			if (state.getBlock().getBlastResistance() <= 9) {
-				if (random.nextFloat() < 0.15F) {
-					world.playSound(null, center.getX(), center.getY(), center.getZ(), block.getSoundGroup(state).getBreakSound(), SoundCategory.BLOCKS, 2F, 0.8F + random.nextFloat() * 0.5F);
-				}
-				
-				if (block.shouldDropItemsOnExplosion(explosion)) {
-					LootContext.Builder builder = (new LootContext.Builder(world).random(world.random).parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos)).parameter(LootContextParameters.TOOL, miningStack).optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity).optionalParameter(LootContextParameters.THIS_ENTITY, owner));
-					builder.parameter(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
-					state.onStacksDropped(world, pos, miningStack, true);
-					state.getDroppedStacks(builder).forEach((stack) -> {
-						tryMergeStack(drops, stack, pos.toImmutable());
-					});
-				}
-				
-				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-				block.onDestroyedByExplosion(world, pos, explosion);
-				
-				return true;
+		var state = world.getBlockState(pos);
+		var block = state.getBlock();
+		var blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
+		
+		if (state.getBlock().getBlastResistance() <= 9) {
+			if (random.nextFloat() < 0.15F) {
+				world.playSound(null, center.getX(), center.getY(), center.getZ(), block.getSoundGroup(state).getBreakSound(), SoundCategory.BLOCKS, 2F, 0.8F + random.nextFloat() * 0.5F);
 			}
+			
+			if (block.shouldDropItemsOnExplosion(explosion)) {
+				LootContext.Builder builder = (new LootContext.Builder(world).random(world.random).parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos)).parameter(LootContextParameters.TOOL, miningStack).optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity).optionalParameter(LootContextParameters.THIS_ENTITY, owner));
+				builder.parameter(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
+				state.onStacksDropped(world, pos, miningStack, true);
+				state.getDroppedStacks(builder).forEach((stack) -> {
+					tryMergeStack(drops, stack, pos.toImmutable());
+				});
+			}
+			
+			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+			block.onDestroyedByExplosion(world, pos, explosion);
+			
+			return true;
 		}
 		return false;
 	}

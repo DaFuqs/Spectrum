@@ -37,7 +37,6 @@ public class ExplosionModifierProviders {
 		return set;
 	}
 	
-	
 	public static void register() {
 		registerForArchetype(Items.GLOWSTONE_DUST, ExplosionArchetype.DAMAGE_ENTITIES);
 		registerForArchetype(Items.GUNPOWDER, ExplosionArchetype.DESTROY_BLOCKS);
@@ -47,12 +46,16 @@ public class ExplosionModifierProviders {
 		registerForModifier(Items.TNT, ExplosionModifiers.EXPLOSION_BOOST);
 		registerForModifier(SpectrumItems.STORM_STONE, ExplosionModifiers.LIGHTNING);
 		registerForModifier(SpectrumItems.NEOLITH, ExplosionModifiers.MAGIC);
-		//registerModifier(SpectrumItems.MIDNIGHT_CHIP, ExplosionModifiers.LOOTING);
 		registerForModifier(SpectrumBlocks.INCANDESCENT_AMALGAM, ExplosionModifiers.INCANDESCENCE);
-		registerForModifier(SpectrumItems.REFINED_BLOODSTONE, ExplosionModifiers.PRIMORDIAL_FIRE);
+		registerForModifier(SpectrumItems.DOOMBLOOM_SEED, ExplosionModifiers.PRIMORDIAL_FIRE);
 		registerForModifier(Items.CHORUS_FRUIT, ExplosionModifiers.STARRY);
 		registerForModifier(Items.END_ROD, ExplosionModifiers.KILL_ZONE);
+		registerForModifier(SpectrumItems.SHIMMERSTONE_GEM, ExplosionModifiers.LIGHT);
+		registerForModifier(SpectrumItems.STRATINE_FRAGMENTS, ExplosionModifiers.SHAPE_SQUARE);
 		
+		registerForModifier(SpectrumBlocks.FOUR_LEAF_CLOVER, ExplosionModifiers.FORTUNE);
+		registerForModifier(SpectrumItems.MERMAIDS_GEM, ExplosionModifiers.SILK_TOUCH);
+		registerForModifier(Items.ENDER_PEARL, ExplosionModifiers.INVENTORY_INSERTION);
 	}
 	
 }

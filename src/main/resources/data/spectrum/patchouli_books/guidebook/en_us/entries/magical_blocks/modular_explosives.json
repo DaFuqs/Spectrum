@@ -9,25 +9,44 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "title": "Modular Explosives",
+      "text": "Highly modular explosives, consisting of an Archetype (damaging entities, destroying blocks, both, or just purely cosmetic) and a list of modifiers.$(br2)A Modifier can be the lighting of fire, changing the explosions damage type, increasing the blast radius, damage or something else entirely."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How to Customize",
+      "text": "Modular Explosives come with a suitable archetype builtin. Though if you want to change it, simply put it into the $(l:general/pedestal)Pigment Pedestal$() to clear both Archetype and Modifiers and start from scratch.$(br)Then craft that blank slate together with items specifying a new Archetype and Modifiers.$(br2)You can customize a whole stack of explosives at once."
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/boom/threat_conflux",
-      "text": "TODO"
+      "text": "A magic mine that, once placed, primes after a few seconds and explodes at first touch, dealing a huge chunk of damage. Use a $(l:magical_blocks/midnight_solution#midnight_chip)Midnight Chip$(/l) to disarm and safely dismantle it."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/boom/parametric_mining_device",
-      "text": "TODO"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Adding Modifiers",
-      "recipe": "spectrum:pedestal/tier1/modular_explosive_modification",
-      "text": "Every modular explosive consists an Archetype specifying what it does (damaging entities, destroying blocks, both, or just pure visuals) and can then accept a list of modifiers for further customisation. A Modifier can be the lighting of fire, changing the explosions damage type, increasing the blast radius, damage and much more."
+      "text": "A multifunctional explosive, which can be placed on walls and detonated, as well as thrown. Harmless to living beings by default."
     },
     {
       "type": "patchouli:text",
-      "title": "Specifying an Archetype",
-      "text": "All modular explosives come with a suitable archetype builtin. Though if you "
+      "title": "Available Archetypes",
+      "text": "$(li)Glowstone Dust: Damaging Creatures$(li)Gunpowder: Destroying Blocks$(li)Midnight Aberration: Both"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "General Modifiers",
+      "text": "$(li)Fire Charge: Fire$(li)TNT: Higher explosion radius$(li)Doombloom Seed: Primordial Fire$(li)Chorus Fruit: Starry Particles$(li)Shimmerstone: Placing invisible lights"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Damage Modifiers",
+      "text": "$(li)Storm Stone: Lightning Damage$(li)Neolith: Magic Damage$(li)Incandescent Amalgam: Incandescent Damage$(li)End Rod: Increased damage near explosion center"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mining Modifiers",
+      "text": "$(li)Stratine Fragments: Square block breaking shape$(li)Four Leaf Clover: Fortune$(li)Mermaids Gem: Silk Touch$(li)Ender Pearl: Inventory Insertion"
     }
   ]
 }

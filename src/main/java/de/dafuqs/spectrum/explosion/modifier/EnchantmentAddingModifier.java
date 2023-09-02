@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.explosion.modifier;
 
 import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.*;
 
 public class EnchantmentAddingModifier extends ExplosionModifier {
@@ -15,5 +16,9 @@ public class EnchantmentAddingModifier extends ExplosionModifier {
 		this.level = level;
 	}
 	
+	@Override
+	public void addEnchantments(ItemStack stack) {
+		stack.addEnchantment(enchantment, level);
+	}
 	
 }

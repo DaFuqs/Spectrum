@@ -41,14 +41,7 @@
         "maxCount": 2
       }
     ],
-    "creature": [
-      {
-        "type": "minecraft:frog",
-        "weight": 5,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [],
     "underground_water_creature": [
@@ -59,14 +52,7 @@
         "maxCount": 2
       }
     ],
-    "water_ambient": [
-      {
-        "type": "minecraft:tropical_fish",
-        "weight": 25,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "water_ambient": [],
     "water_creature": []
   },
   "spawn_costs": {},

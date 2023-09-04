@@ -2,16 +2,32 @@ package de.dafuqs.spectrum.entity.models;
 
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.util.math.*;
 
-public class EraserEntityModel extends EntityModel<EraserEntity> {
+public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 	
-	private final ModelPart body;
+	private final ModelPart root;
+	private final ModelPart head;
+	private final ModelPart rightHindLeg;
+	private final ModelPart leftHindLeg;
+	private final ModelPart rightMiddleLeg;
+	private final ModelPart leftMiddleLeg;
+	private final ModelPart rightFrontLeg;
+	private final ModelPart leftFrontLeg;
 	
 	public EraserEntityModel(ModelPart root) {
-		this.body = root.getChild("body");
+		this.root = root;
+		
+		ModelPart body = root.getChild(EntityModelPartNames.BODY);
+		this.head = body.getChild(EntityModelPartNames.HEAD);
+		ModelPart legs = body.getChild("legs");
+		this.rightHindLeg = legs.getChild(EntityModelPartNames.RIGHT_HIND_LEG);
+		this.leftHindLeg = legs.getChild(EntityModelPartNames.LEFT_HIND_LEG);
+		this.rightMiddleLeg = legs.getChild(EntityModelPartNames.RIGHT_FRONT_LEG);
+		this.leftMiddleLeg = legs.getChild(EntityModelPartNames.LEFT_FRONT_LEG);
+		this.rightFrontLeg = legs.getChild("rightstrikeleg");
+		this.leftFrontLeg = legs.getChild("leftstrikeleg");
 	}
 	
 	public static TexturedModelData getTexturedModelData() {
@@ -33,7 +49,7 @@ public class EraserEntityModel extends EntityModel<EraserEntity> {
 		rightstrikeleg.addChild("rightstrikeforeleg", ModelPartBuilder.create()
 				.uv(2, 13).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(4.5F, 0.25F, 0.0F, 0.0F, 0.0F, -0.0873F));
 		
-		ModelPartData rightfrontleg = legs.addChild("rightfrontleg", ModelPartBuilder.create()
+		ModelPartData rightfrontleg = legs.addChild(EntityModelPartNames.RIGHT_FRONT_LEG, ModelPartBuilder.create()
 				.uv(19, 9).cuboid(-0.5F, 0.25F, -0.5F, 5.0F, 0.0F, 1.0F), ModelTransform.of(1.0F, 0.0F, 0.0F, -0.1896F, 0.1978F, -0.7436F));
 		rightfrontleg.addChild("rightfrontforeleg", ModelPartBuilder.create()
 				.uv(0, 13).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(4.5F, 0.25F, 0.0F, 0.0F, 0.0F, 0.1745F));
@@ -46,7 +62,7 @@ public class EraserEntityModel extends EntityModel<EraserEntity> {
 		rightmidforeleg.addChild("cube_r1", ModelPartBuilder.create()
 				.uv(8, 21).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 2.0F, 1.0F), ModelTransform.of(0.0F, 3.0F, 0.0F, 0.0F, 0.0F, 1.9635F));
 		
-		ModelPartData rightbackleg = legs.addChild("rightbackleg", ModelPartBuilder.create()
+		ModelPartData rightbackleg = legs.addChild(EntityModelPartNames.RIGHT_HIND_LEG, ModelPartBuilder.create()
 				.uv(19, 13).cuboid(-0.5F, 0.25F, -0.5F, 4.0F, 0.0F, 1.0F), ModelTransform.of(1.0F, -0.25F, 0.5F, 0.7692F, -0.86F, -0.7762F));
 		rightbackleg.addChild("rightbackforeleg", ModelPartBuilder.create()
 				.uv(4, 8).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(3.5F, 0.25F, 0.0F, 0.0F, 0.0F, -0.3491F));
@@ -56,7 +72,7 @@ public class EraserEntityModel extends EntityModel<EraserEntity> {
 		leftstrikeleg.addChild("leftstrikeforeleg", ModelPartBuilder.create()
 				.uv(2, 8).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(-4.5F, 0.25F, 0.0F, 0.0F, 0.0F, 0.0873F));
 		
-		ModelPartData leftfrontleg = legs.addChild("leftfrontleg", ModelPartBuilder.create()
+		ModelPartData leftfrontleg = legs.addChild(EntityModelPartNames.LEFT_FRONT_LEG, ModelPartBuilder.create()
 				.uv(18, 15).cuboid(-4.5F, 0.25F, -0.5F, 5.0F, 0.0F, 1.0F), ModelTransform.of(-1.0F, 0.0F, 0.0F, -0.1896F, -0.1978F, 0.7436F));
 		leftfrontleg.addChild("leftfrontforeleg", ModelPartBuilder.create()
 				.uv(0, 8).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(-4.5F, 0.25F, 0.0F, 0.0F, 0.0F, -0.1745F));
@@ -69,7 +85,7 @@ public class EraserEntityModel extends EntityModel<EraserEntity> {
 		leftmidforeleg.addChild("cube_r2", ModelPartBuilder.create()
 				.uv(2, 21).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 2.0F, 1.0F), ModelTransform.of(0.0F, 3.0F, 0.0F, 0.0F, 0.0F, -1.9635F));
 		
-		ModelPartData leftbackleg = legs.addChild("leftbackleg", ModelPartBuilder.create()
+		ModelPartData leftbackleg = legs.addChild(EntityModelPartNames.LEFT_HIND_LEG, ModelPartBuilder.create()
 				.uv(19, 11).cuboid(-3.5F, 0.25F, -0.5F, 4.0F, 0.0F, 1.0F), ModelTransform.of(-1.0F, -0.25F, 0.5F, 0.7692F, 0.86F, 0.7762F));
 		leftbackleg.addChild("leftbackforeleg", ModelPartBuilder.create()
 				.uv(6, 3).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 5.0F, 1.0F), ModelTransform.of(-3.5F, 0.25F, 0.0F, 0.0F, 0.0F, 0.3491F));
@@ -101,11 +117,57 @@ public class EraserEntityModel extends EntityModel<EraserEntity> {
 	}
 	
 	@Override
-	public void setAngles(EraserEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setAngles(EraserEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+		this.head.yaw = headYaw * 0.017453292F;
+		this.head.pitch = headPitch * 0.017453292F;
+		this.rightHindLeg.roll = -0.7853982F;
+		this.leftHindLeg.roll = 0.7853982F;
+		this.rightMiddleLeg.roll = -0.58119464F;
+		this.leftMiddleLeg.roll = 0.58119464F;
+		this.rightFrontLeg.roll = -0.7853982F;
+		this.leftFrontLeg.roll = 0.7853982F;
+		this.rightHindLeg.yaw = 0.7853982F;
+		this.leftHindLeg.yaw = -0.7853982F;
+		this.rightMiddleLeg.yaw = 0.3926991F;
+		this.leftMiddleLeg.yaw = -0.3926991F;
+		this.rightFrontLeg.yaw = -0.7853982F;
+		this.leftFrontLeg.yaw = 0.7853982F;
+		float i = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbDistance;
+		float j = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 3.1415927F) * 0.4F) * limbDistance;
+		float k = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 1.5707964F) * 0.4F) * limbDistance;
+		float l = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 4.712389F) * 0.4F) * limbDistance;
+		float m = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 0.0F) * 0.4F) * limbDistance;
+		float n = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 3.1415927F) * 0.4F) * limbDistance;
+		float o = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 1.5707964F) * 0.4F) * limbDistance;
+		float p = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 4.712389F) * 0.4F) * limbDistance;
+		ModelPart part = this.rightHindLeg;
+		part.yaw += i;
+		part = this.leftHindLeg;
+		part.yaw += -i;
+		part = this.rightMiddleLeg;
+		part.yaw += j;
+		part = this.leftMiddleLeg;
+		part.yaw += -j;
+		part = this.rightFrontLeg;
+		part.yaw += l;
+		part = this.leftFrontLeg;
+		part.yaw += -l;
+		part = this.rightHindLeg;
+		part.roll += m;
+		part = this.leftHindLeg;
+		part.roll += -m;
+		part = this.rightMiddleLeg;
+		part.roll += n;
+		part = this.leftMiddleLeg;
+		part.roll += -n;
+		part = this.rightFrontLeg;
+		part.roll += p;
+		part = this.leftFrontLeg;
+		part.roll += -p;
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	public ModelPart getPart() {
+		return this.root;
 	}
 }

@@ -63,6 +63,16 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/rabbit_cream_pie",
       "text": "$(italic)A pound of eggs, a pound of sugar, a pound of flour, and a pound of cream."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Sugar Rush",
+      "text": "$(br)Believe me or not, Glass peaches are not only good with hearty food, but are also suitable for desserts. Try it out! With even more sugar than these parts already have preserved in the jar, this jam gives you a proper kick and whistles vigorously through your arteries."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/peach_jam",
+      "text": "$(italic)So sweet it will color your blood orange."
     }
   ]
 }

@@ -23,5 +23,6 @@
   "result": {
     "item": "spectrum:surstromming",
     "count": 4
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1"
 }

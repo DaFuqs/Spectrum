@@ -23,5 +23,6 @@
   "result": {
     "item": "spectrum:peach_jam",
     "count": 4
-  }
+  },
+  "required_advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2"
 }

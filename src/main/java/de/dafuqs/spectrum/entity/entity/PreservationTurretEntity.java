@@ -130,6 +130,13 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 	
 	@Override
+	public void playAmbientSound() {
+		if (this.getPeekAmount() > 0) {
+			super.playAmbientSound();
+		}
+	}
+	
+	@Override
 	public void tick() {
 		super.tick();
 		
@@ -464,8 +471,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 				if (target != null && PreservationTurretEntity.this.canSee(target)) {
 					PreservationTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
 					target.damage(EntityDamageSource.mob(PreservationTurretEntity.this), DAMAGE);
-					PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+					PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+					target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
 					super.tick();
 				} else {
 					PreservationTurretEntity.this.setTarget(null);

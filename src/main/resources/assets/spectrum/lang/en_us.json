@@ -490,6 +490,10 @@
   "spectrum.subtitles.entity.monstrosity.swoop": "§kLivingNightmare§r swoops",
   "spectrum.subtitles.entity.monstrosity.ambient": "§kLivingNightmare§r howls",
   "spectrum.subtitles.entity.monstrosity.hurt": "§kLivingNightmare§r hurts",
+  "spectrum.subtitles.entity.monstrosity.growl": "§kLivingNightmare§r growls",
+  "spectrum.subtitles.entity.lizard.hurt": "Lurking Lizard hurts",
+  "spectrum.subtitles.entity.lizard.death": "Lurking Lizard dies",
+  "spectrum.subtitles.entity.lizard.ambient": "Lurking Lizard grunts",
 
   "spectrum.subtitles.block.citrine_block.chime": "Citrine chimes",
   "spectrum.subtitles.block.topaz_block.chime": "Topaz chimes",

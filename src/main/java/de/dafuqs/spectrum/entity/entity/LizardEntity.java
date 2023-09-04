@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -25,8 +24,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.poi.*;
 import org.jetbrains.annotations.*;
 
-// funny little creatures
-// always out for trouble
+// funny little creatures always out for trouble
 public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity>, POIMemorized {
 	
 	protected static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
@@ -197,22 +195,17 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_PIG_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_LIZARD_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_PIG_HURT;
+		return SpectrumSoundEvents.ENTITY_LIZARD_HURT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_PIG_DEATH;
-	}
-	
-	@Override
-	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
+		return SpectrumSoundEvents.ENTITY_LIZARD_DEATH;
 	}
 	
 	@Override

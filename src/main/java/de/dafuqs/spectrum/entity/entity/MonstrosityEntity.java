@@ -23,7 +23,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -213,9 +212,9 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
 		this.getAttributes().addTemporaryModifiers(map);
 		
-		// TODO: spawn effects
+		playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_GROWL, 1.0F, 1.0F);
 		for (float i = 0; i <= 1.0; i += 0.2) {
-			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_EXPLOSION, VectorPattern.SIXTEEN, 0.05F);
+			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_SPARKLE_RISING, VectorPattern.SIXTEEN, 0.05F);
 		}
 	}
 	
@@ -234,8 +233,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	public boolean damage(DamageSource source, float amount) {
 		if (!this.world.isClient && isNonVanillaKillCommandDamage(source, amount)) {
-			// na, we do not feel like dying rn
-			// we ballin
+			// na, we do not feel like dying rn, we ballin
 			this.setHealth(this.getHealth() + this.getMaxHealth() / 2);
 			this.growStronger(8);
 			this.playSound(getHurtSound(DamageSource.OUT_OF_WORLD), 2.0F, 1.5F);
@@ -244,6 +242,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		return super.damage(source, amount);
 	}
 	
+	/*
 	private void destroyBlocks(Box box) {
 		int minX = MathHelper.floor(box.minX);
 		int minY = MathHelper.floor(box.minY);
@@ -271,7 +270,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
 			this.world.syncWorldEvent(2008, randomPos, 0);
 		}
-	}
+	}*/
 	
 	@Override
 	public boolean canSee(Entity entity) {
@@ -335,13 +334,25 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		// TODO
+		
+		nbt.putFloat("previous_health", this.previousHealth);
+		nbt.putInt("times_gotten_stronger", this.timesGottenStronger);
+		nbt.putInt("ticks_without_target", this.ticksWithoutTarget);
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		// TODO
+		
+		if (nbt.contains("previous_health", NbtElement.FLOAT_TYPE)) {
+			this.previousHealth = nbt.getFloat("previous_health");
+		}
+		if (nbt.contains("times_gotten_stronger", NbtElement.INT_TYPE)) {
+			this.timesGottenStronger = nbt.getInt("times_gotten_stronger");
+		}
+		if (nbt.contains("ticks_without_target", NbtElement.INT_TYPE)) {
+			this.ticksWithoutTarget = nbt.getInt("ticks_without_target");
+		}
 	}
 	
 	private enum MovementType {

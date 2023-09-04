@@ -35,20 +35,20 @@ public class ExplosionModifiers {
 	
 	// Damage source changers
 	public static final ExplosionModifier FIRE = registerModifier("fire", new FireModifier(DAMAGE_SOURCE, DamageSource.IN_FIRE, ParticleTypes.FLAME, 0xaff3eb));
-	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_SOURCE, SpectrumDamageSources.PRIMORDIAL_FIRE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0xff2664));
-	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.LIGHTNING_BOLT, SpectrumParticleTypes.WHITE_EXPLOSION, 0xaff3eb) {
+	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_SOURCE, SpectrumDamageSources.PRIMORDIAL_FIRE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0x76254d));
+	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.LIGHTNING_BOLT, SpectrumParticleTypes.WHITE_EXPLOSION, 0xf0f24d) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
 			return Optional.of(DamageSource.LIGHTNING_BOLT);
 		}
 	});
-	public static final ExplosionModifier MAGIC = registerModifier("magic_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.MAGIC, SpectrumParticleTypes.PURPLE_CRAFTING, 0xff59ff) {
+	public static final ExplosionModifier MAGIC = registerModifier("magic_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.MAGIC, SpectrumParticleTypes.PURPLE_CRAFTING, 0x5433a5) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
 			return Optional.of(DamageSource.magic(owner, owner));
 		}
 	});
-	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_SOURCE, SpectrumDamageSources.INCANDESCENCE, ParticleTypes.ENCHANT, 0x5433a5) {
+	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_SOURCE, SpectrumDamageSources.INCANDESCENCE, ParticleTypes.ENCHANT, 0xff59ff) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
 			return Optional.of(SpectrumDamageSources.incandescence(owner));
@@ -56,7 +56,7 @@ public class ExplosionModifiers {
 	});
 	
 	// Other entity damage modifications
-	public static final ExplosionModifier KILL_ZONE = registerModifier("kill_zone", new KillZoneModifier(DAMAGE_MODIFICATION, 0.5F, 20F, 0xffbf40));
+	public static final ExplosionModifier KILL_ZONE = registerModifier("kill_zone", new KillZoneModifier(DAMAGE_MODIFICATION, 0.5F, 20F, 0xb3801b));
 	// public static final ExplosionModifier LOOTING = registerModifier("looting", new EnchantmentAddingModifier(DAMAGE_MODIFICATION, Enchantments.LOOTING, 3, ParticleTypes.ENCHANT, 0x5433a5)); // TODO: For this we'd have to do really bad things to loot table processing
 	
 	// Shapes
@@ -68,13 +68,13 @@ public class ExplosionModifiers {
 	});
 	
 	// Block Breaking modifications
-	public static final ExplosionModifier FORTUNE = registerModifier("fortune", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, Enchantments.FORTUNE, 3, ParticleTypes.ENCHANT, 0x5433a5));    // TODO: Assign an item in ExplosionModifierProviders
-	public static final ExplosionModifier SILK_TOUCH = registerModifier("silk_touch", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, Enchantments.SILK_TOUCH, 1, ParticleTypes.ENCHANT, 0x5433a5));    // TODO: Assign an item in ExplosionModifierProviders
-	public static final ExplosionModifier INVENTORY_INSERTION = registerModifier("inventory_insertion", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, SpectrumEnchantments.INVENTORY_INSERTION, 1, ParticleTypes.ENCHANT, 0x5433a5));    // TODO: Assign an item in ExplosionModifierProviders
+	public static final ExplosionModifier FORTUNE = registerModifier("fortune", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, Enchantments.FORTUNE, 3, ParticleTypes.ENCHANT, 0x5433a5));
+	public static final ExplosionModifier SILK_TOUCH = registerModifier("silk_touch", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, Enchantments.SILK_TOUCH, 1, ParticleTypes.ENCHANT, 0x5433a5));
+	public static final ExplosionModifier INVENTORY_INSERTION = registerModifier("inventory_insertion", new EnchantmentAddingModifier(DESTRUCTION_MODIFICATION, SpectrumEnchantments.INVENTORY_INSERTION, 1, ParticleTypes.ENCHANT, 0x5433a5));
 	
 	// Cosmetic
 	public static final ExplosionModifier STARRY = registerModifier("starry", new ParticleAddingModifier(COSMETIC, ParticleTypes.END_ROD, 0xc3c8d4));
-	public static final ExplosionModifier LIGHT = registerModifier("light", new LightPlacingModifier(COSMETIC, SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, 0xc3c8d4));
+	public static final ExplosionModifier LIGHT = registerModifier("light", new LightPlacingModifier(COSMETIC, SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, 0xfaf87a));
 	
 	
 	private static <T extends ExplosionModifier> T registerModifier(String name, T modifier) {

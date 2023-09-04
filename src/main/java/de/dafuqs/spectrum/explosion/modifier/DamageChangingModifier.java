@@ -19,7 +19,7 @@ public abstract class DamageChangingModifier extends ParticleAddingModifier {
 	
 	@Override
 	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-		return Optional.of(damageSource); // TODO: Add entity context
+		return Optional.of(damageSource);
 	}
 	
 }

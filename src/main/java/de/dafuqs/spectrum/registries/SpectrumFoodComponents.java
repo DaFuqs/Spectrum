@@ -385,7 +385,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent PEACH_JAM = new FoodComponent.Builder()
 			.hunger(16).saturationModifier(1F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.STIFFNESS, 1200, 1), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1200, 0), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 1200, 0), 1.0F)
 			.build();
 	
@@ -408,7 +408,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent SURSTROMMING = new FoodComponent.Builder()
 			.hunger(5).saturationModifier(0.6F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 1728000, 9), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 6000, 10), 1.0F)
 			.build();
 	
 }

@@ -13,6 +13,7 @@ public class SpectrumStructurePoolElementTypes {
 	 * that block supports state tags and block entity nbt
 	 */
 	public static final StructurePoolElementType<SingleBlockPoolElement> SINGLE_BLOCK_ELEMENT = registerType("single_block_element", SingleBlockPoolElement.CODEC);
+	public static final StructurePoolElementType<?> DEPTH_AWARE_SINGLE_POOL_ELEMENT = registerType("depth_aware_single_pool_element", DepthAwareSinglePoolElement.CODEC);
 	
 	static <P extends StructurePoolElement> StructurePoolElementType<P> registerType(String id, Codec<P> codec) {
 		return Registry.register(Registry.STRUCTURE_POOL_ELEMENT, SpectrumCommon.locate(id), () -> codec);

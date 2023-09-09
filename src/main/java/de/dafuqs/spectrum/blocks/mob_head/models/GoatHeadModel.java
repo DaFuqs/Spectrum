@@ -23,7 +23,7 @@ public class GoatHeadModel extends SpectrumHeadModel {
                 .uv(23, 52).cuboid(0.0F, -2.0F, -7.0F, 0.0F, 7.0F, 5.0F), ModelTransform.NONE);
 
         head.addChild("cube_r1", ModelPartBuilder.create()
-                .uv(34, 46).cuboid(-2.0F, -4.0F, -5.0F, 5.0F, 7.0F, 10.0F), PartPose.offsetAndRotation(-0.5F, -3.5F, -2.0F, 0.7854F, 0.0F, 0.0F), ModelTransform.NONE);
+                .uv(34, 46).cuboid(-2.0F, -4.0F, -5.0F, 5.0F, 7.0F, 10.0F), ModelTransform.of(-0.5F, -3.5F, -2.0F, 0.7854F, 0.0F, 0.0F));
 
         return TexturedModelData.of(ModelData, 64, 64);
     }

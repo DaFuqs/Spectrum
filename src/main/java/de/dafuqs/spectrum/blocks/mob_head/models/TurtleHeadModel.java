@@ -11,13 +11,13 @@ public class TurtleHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
-
-        ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(3, 0).cuboid(-11.0F, -5.0F, 5.0F, 6.0F, 5.0F, 6.0F), PartPose.offset(8.0F, 24.0F, -8.0F), ModelTransform.NONE);
-
-        return TexturedModelData.of(ModelData, 128, 64);
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
+    
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+                .uv(3, 0).cuboid(-11.0F, -5.0F, 5.0F, 6.0F, 5.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(8.0F, 24.0F, -8.0F));
+    
+        return TexturedModelData.of(modelData, 128, 64);
     }
 
 }

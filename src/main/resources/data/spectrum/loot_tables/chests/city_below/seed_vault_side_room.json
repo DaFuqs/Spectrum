@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 2,
+        "max": 3
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone_meal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:multitool"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:rock_candy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:enchanted_golden_carrot"
+        }
+      ]
+    }
+  ]
+}

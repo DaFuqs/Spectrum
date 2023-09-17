@@ -29,7 +29,7 @@ public class BuildingHelper {
 		add(Direction.SOUTH.getVector().offset(Direction.WEST));
 	}};
 	
-	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block, int maxCount) {
+	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block, long maxCount) {
 		Item blockItem = block.asItem();
 		if (blockItem instanceof AliasedBlockItem aliasedBlockItem) {
 			// do not process seeds and similar stuff
@@ -43,11 +43,11 @@ public class BuildingHelper {
 					Item similarBlockItem = similarBlock.asItem();
 					int similarCount = player.getInventory().count(similarBlockItem);
 					if (similarCount > 0) {
-						return new Triplet<>(similarBlock, similarBlockItem, Math.min(similarCount, maxCount));
+						return new Triplet<>(similarBlock, similarBlockItem, (int) Math.min(similarCount, maxCount));
 					}
 				}
 			}
-			return new Triplet<>(block, blockItem, Math.min(count, maxCount));
+			return new Triplet<>(block, blockItem, Math.min(count, (int) maxCount));
 		}
 	}
 	

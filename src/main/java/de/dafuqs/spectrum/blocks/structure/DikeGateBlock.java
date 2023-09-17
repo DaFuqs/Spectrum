@@ -31,6 +31,11 @@ public class DikeGateBlock extends AbstractGlassBlock {
 		if (context instanceof EntityShapeContext entityShapeContext) {
 			Entity entity = entityShapeContext.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
+				
+				if (entity instanceof PlayerEntity player && player.isCreative()) {
+					return VoxelShapes.empty();
+				}
+				
 				int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 				if (charges > 0) {
 					return VoxelShapes.empty();

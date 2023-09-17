@@ -3,16 +3,17 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 3,
+      "weight": 5,
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "spectrum:depth_aware_single_pool_element",
+        "max_depth": 5,
         "projection": "rigid",
         "location": "spectrum:city_below/terrace_houses_base",
         "processors": "minecraft:empty"
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -21,7 +22,7 @@
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -30,16 +31,17 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "spectrum:depth_aware_single_pool_element",
+        "max_depth": 6,
         "projection": "rigid",
         "location": "spectrum:city_below/memorial/yard",
         "processors": "minecraft:empty"
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -48,7 +50,16 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/bookshop",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 2,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
@@ -57,11 +68,20 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
         "location": "spectrum:city_below/trading_hall",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/seed_vault",
         "processors": "minecraft:empty"
       }
     }

@@ -383,7 +383,8 @@ public class SpectrumItems {
 	public static final Item PRESERVATION_TURRET_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.PRESERVATION_TURRET, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
 	public static final Item KINDLING_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.KINDLING, 0xda4261, 0xffd452, IS.of());
 	public static final Item LIZARD_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.LIZARD, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
-	public static final Item ERASER_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x4e3842, 0xffe6c2, IS.of()); // TODO: colors
+	public static final Item ERASER_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.ERASER, 0x200d29, 0xc83e93, IS.of());
+	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(IS.of(1));
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(IS.of(1, Rarity.UNCOMMON));

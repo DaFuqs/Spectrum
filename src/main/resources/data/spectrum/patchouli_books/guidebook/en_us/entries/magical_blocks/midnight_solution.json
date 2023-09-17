@@ -18,6 +18,7 @@
       "type": "patchouli:spotlight",
       "title": "Midnight Chip",
       "item": "spectrum:midnight_chip",
+      "anchor": "midnight_chip",
       "advancement": "spectrum:midgame/collect_midnight_chip",
       "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious.$(br)Creatures unalived by this cruel process also seem to $(thing)drop items as if they were killed by a player$()."
     },

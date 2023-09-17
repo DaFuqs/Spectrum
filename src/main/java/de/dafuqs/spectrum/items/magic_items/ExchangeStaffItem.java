@@ -103,7 +103,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		int blocksReplaced = 0;
 		if (!world.isClient) {
 			List<ItemStack> stacks = new ArrayList<>();
-			BlockState stateToPlace = null;
+			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
 				if (!player.isCreative()) {
 					BlockState droppedStacks = world.getBlockState(targetPosition);

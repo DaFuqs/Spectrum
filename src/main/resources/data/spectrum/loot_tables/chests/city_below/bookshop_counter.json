@@ -9,11 +9,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:book"
+          "name": "minecraft:paper"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:paper"
+          "name": "minecraft:gold_nugget"
         }
       ],
       "functions": [
@@ -46,41 +46,14 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": {
+        "min": 0,
+        "max": 1
+      },
       "entries": [
         {
           "type": "minecraft:item",
           "name": "spectrum:gilded_book"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.2
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:writable_book"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 1,
-            "max": 2
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance",
-          "chance": 0.5
         }
       ]
     }

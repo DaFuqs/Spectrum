@@ -1602,70 +1602,51 @@
   "entity.preservation_turret.ambient": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",
     "sounds": [
-      "entity/shulker/ambient1",
-      "entity/shulker/ambient2",
-      "entity/shulker/ambient3",
-      "entity/shulker/ambient4",
-      "entity/shulker/ambient5",
-      "entity/shulker/ambient6",
-      "entity/shulker/ambient7"
+      "spectrum:entity.preservation_turret.ambient",
+      "spectrum:entity.preservation_turret.ambient2",
+      "spectrum:entity.preservation_turret.ambient3",
+      "spectrum:entity.preservation_turret.ambient4"
     ]
   },
   "entity.preservation_turret.death": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.death",
     "sounds": [
-      "entity/shulker/death1",
-      "entity/shulker/death2",
-      "entity/shulker/death3",
-      "entity/shulker/death4"
+      "spectrum:entity.preservation_turret.death",
+      "spectrum:entity.preservation_turret.death2",
+      "spectrum:entity.preservation_turret.death3",
+      "spectrum:entity.preservation_turret.death4",
+      "spectrum:entity.preservation_turret.death5",
+      "spectrum:entity.preservation_turret.death6"
     ]
   },
   "entity.preservation_turret.hurt_closed": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.hurt",
     "sounds": [
-      "entity/shulker/hurt_closed1",
-      "entity/shulker/hurt_closed2",
-      "entity/shulker/hurt_closed3",
-      "entity/shulker/hurt_closed4",
-      "entity/shulker/hurt_closed5"
+      "spectrum:entity.preservation_turret.hurt_closed"
     ]
   },
   "entity.preservation_turret.hurt": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.hurt",
     "sounds": [
-      "entity/shulker/hurt1",
-      "entity/shulker/hurt2",
-      "entity/shulker/hurt3",
-      "entity/shulker/hurt4"
-    ]
-  },
-  "entity.preservation_turret.close": {
-    "subtitle": "spectrum.subtitles.entity.preservation_turret.close",
-    "sounds": [
-      "entity/shulker/close1",
-      "entity/shulker/close2",
-      "entity/shulker/close3",
-      "entity/shulker/close4",
-      "entity/shulker/close5"
+      "spectrum:entity.preservation_turret.hurt"
     ]
   },
   "entity.preservation_turret.open": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.open",
     "sounds": [
-      "entity/shulker/open1",
-      "entity/shulker/open2",
-      "entity/shulker/open3",
-      "entity/shulker/open4",
-      "entity/shulker/open5"
+      "spectrum:entity.preservation_turret.open"
+    ]
+  },
+  "entity.preservation_turret.close": {
+    "subtitle": "spectrum.subtitles.entity.preservation_turret.close",
+    "sounds": [
+      "spectrum:entity.preservation_turret.close"
     ]
   },
   "entity.preservation_turret.shoot": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.shoot",
     "sounds": [
-      "entity/shulker/shoot1",
-      "entity/shulker/shoot2",
-      "entity/shulker/shoot3",
-      "entity/shulker/shoot4"
+      "spectrum:enchanter_ding"
     ]
   },
 
@@ -1675,23 +1656,17 @@
       "mob/ghast/fireball4"
     ]
   },
+  "entity.monstrosity.growl": {
+    "subtitle": "spectrum.subtitles.entity.monstrosity.growl",
+    "sounds": [
+      "spectrum:entity.monstrosity.growl"
+    ]
+  },
   "entity.monstrosity.swoop": {
     "subtitle": "spectrum.subtitles.entity.monstrosity.swoop",
     "sounds": [
       {
-        "name": "mob/phantom/swoop1",
-        "volume": 0.7
-      },
-      {
-        "name": "mob/phantom/swoop2",
-        "volume": 0.7
-      },
-      {
-        "name": "mob/phantom/swoop3",
-        "volume": 0.7
-      },
-      {
-        "name": "mob/phantom/swoop4",
+        "name": "spectrum:entity.monstrosity.swoop",
         "volume": 0.7
       }
     ]
@@ -1699,19 +1674,34 @@
   "entity.monstrosity.ambient": {
     "subtitle": "spectrum.subtitles.entity.monstrosity.ambient",
     "sounds": [
-      "mob/enderdragon/growl1",
-      "mob/enderdragon/growl2",
-      "mob/enderdragon/growl3",
-      "mob/enderdragon/growl4"
+      "spectrum:entity.monstrosity.ambient"
     ]
   },
   "entity.monstrosity.hurt": {
     "subtitle": "spectrum.subtitles.entity.monstrosity.hurt",
     "sounds": [
-      "mob/enderdragon/hit1",
-      "mob/enderdragon/hit2",
-      "mob/enderdragon/hit3",
-      "mob/enderdragon/hit4"
+      "spectrum:entity.monstrosity.hurt",
+      "spectrum:entity.monstrosity.hurt2"
+    ]
+  },
+  "entity.lizard.hurt": {
+    "subtitle": "spectrum.subtitles.entity.lizard.hurt",
+    "sounds": [
+      "spectrum:entity.lizard.hurt"
+    ]
+  },
+  "entity.lizard.death": {
+    "subtitle": "spectrum.subtitles.entity.lizard.death",
+    "sounds": [
+      "spectrum:entity.lizard.death"
+    ]
+  },
+  "entity.lizard.ambient": {
+    "subtitle": "spectrum.subtitles.entity.lizard.ambient",
+    "sounds": [
+      "spectrum:entity.lizard.ambient",
+      "spectrum:entity.lizard.ambient2",
+      "spectrum:entity.lizard.ambient3"
     ]
   }
 }

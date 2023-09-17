@@ -59,6 +59,12 @@
       "title": "Stuffing Buns with Meat",
       "recipe": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
       "text": "$(italic)Much more suitable for a single person.$(br2) Though admittedly, it is still too big to fit in me."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Fermented Fish",
+      "recipe": "spectrum:titration_barrel/surstromming",
+      "text": "$(italic)For the really freaky among you. Really takes your breath away."
     }
   ]
 }

@@ -109,10 +109,7 @@
     [
       "spectrum:sludge_vegetation"
     ],
-    [
-      "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs"
-    ],
+    [],
     [
       "spectrum:dd_glow_lichen",
       "spectrum:aloe_patch_sand"

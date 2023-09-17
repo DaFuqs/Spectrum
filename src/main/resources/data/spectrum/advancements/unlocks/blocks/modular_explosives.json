@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:hidden/collect_stratine_gem"
       }
     },
-    "reached_midgame": {
+    "collected_midnight_chip": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+        "advancement_identifier": "spectrum:midgame/collect_midnight_chip"
       }
     }
   }

@@ -10,19 +10,27 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:beetroot_seeds"
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:wheat_seeds"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:melon_seeds"
+          "name": "spectrum:glistering_melon_seeds"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds"
+          "name": "spectrum:nephrite_blossom_bulb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:jadeite_lotus_bulb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:four_leaf_clover"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:aloe_leaf"
         }
       ],
       "functions": [

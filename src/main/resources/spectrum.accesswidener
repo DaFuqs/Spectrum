@@ -4,6 +4,7 @@ accessible  class   net/minecraft/client/render/RenderLayer$MultiPhase
 accessible  class   net/minecraft/client/render/RenderLayer$MultiPhaseParameters
 accessible  class   net/minecraft/client/render/model/json/ModelOverrideList$BakedOverride
 accessible  class   net/minecraft/loot/function/ApplyBonusLootFunction$Formula
+accessible  class   net/minecraft/structure/pool/StructurePoolBasedGenerator$StructurePoolGenerator
 
 accessible  method   net/minecraft/client/particle/BlockLeakParticle$Dripping   <init>  (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
 accessible  method   net/minecraft/client/particle/BlockLeakParticle$ContinuousFalling  <init>  (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V

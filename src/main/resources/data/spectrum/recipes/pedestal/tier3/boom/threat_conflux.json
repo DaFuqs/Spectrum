@@ -2,20 +2,26 @@
   "type": "spectrum:pedestal",
   "time": 400,
   "tier": "advanced",
-  "cyan": 2,
+  "cyan": 0,
   "magenta": 0,
-  "yellow": 2,
+  "yellow": 4,
   "white": 0,
-  "black": 4,
+  "black": 1,
   "experience": 1.0,
   "pattern": [
-    "PPP",
-    "PPP",
-    "PPP"
+    " M ",
+    "MGM",
+    "GSG"
   ],
   "key": {
-    "P": {
-      "item": "minecraft:flint"
+    "M": {
+      "item": "spectrum:midnight_chip"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "S": {
+      "item": "spectrum:stratine_gem"
     }
   },
   "result": {

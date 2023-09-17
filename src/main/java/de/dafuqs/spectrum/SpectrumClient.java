@@ -204,7 +204,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
 
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
+		if (player.isCreative() || BuildingStaffItem.canInteractWith(lookingAtState, world, lookingAtPos, player)) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
 			VoxelShape shape = VoxelShapes.empty();
@@ -213,7 +213,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				int itemCountInInventory = Integer.MAX_VALUE;
 				long inkLimit = Long.MAX_VALUE;
 				if (!player.isCreative()) {
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
+					// TODO - pick reasonable count?
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, 256);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
 					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
@@ -253,9 +254,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = hitResult.blockState();
 
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-		if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, world, lookingAtPos, player)) {
+		if (player.isCreative() || BuildingStaffItem.canInteractWith(lookingAtState, world, lookingAtPos, player)) {
 			Block lookingAtBlock = lookingAtState.getBlock();
-			Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
+			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
 				Item exchangeBlockItem = exchangeBlock.get().asItem();
 				VoxelShape shape = VoxelShapes.empty();

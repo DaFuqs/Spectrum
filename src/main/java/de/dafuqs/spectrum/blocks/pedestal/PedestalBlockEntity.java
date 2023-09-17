@@ -364,7 +364,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (!pedestalBlockEntity.canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			return false;
 		}
-		ItemStack outputStack = recipe.craft(pedestalBlockEntity);
+		ItemStack outputStack = recipe.craft(pedestalBlockEntity, pedestalBlockEntity.getWorld().getRegistryManager());
 		recipe.consumeIngredients(pedestalBlockEntity);
 
 		if (!recipe.areYieldUpgradesDisabled()) {

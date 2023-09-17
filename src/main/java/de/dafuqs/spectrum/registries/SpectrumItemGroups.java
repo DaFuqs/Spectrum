@@ -86,9 +86,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.CITRINE_GLASS_ARROW);
 		entries.add(SpectrumItems.ONYX_GLASS_ARROW);
 		entries.add(SpectrumItems.MOONSTONE_GLASS_ARROW);
-		entries.add(SpectrumItems.GLASS_AMPOULE);
-		entries.add(SpectrumItems.FEROCIOUS_GLASS_AMPOULE);
-		entries.add(SpectrumItems.FRACTAL_GLASS_AMPOULE);
+		entries.add(SpectrumItems.AZURITE_GLASS_AMPOULE);
+		entries.add(SpectrumItems.MALACHITE_GLASS_AMPOULE);
+		entries.add(SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
 		entries.add(SpectrumItems.DREAMFLAYER);
 		entries.add(SpectrumItems.NIGHTFALLS_BLADE);
 		entries.add(SpectrumItems.FANCIFUL_STONE_RING);
@@ -149,7 +149,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.RADIANCE_STAFF);
 		entries.add(SpectrumItems.NATURES_STAFF);
 		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.NATURES_STAFF));
-		entries.add(SpectrumItems.HERDING_STAFF);
+		entries.add(SpectrumItems.STAFF_OF_REMEMBRANCE);
 		entries.add(SpectrumItems.CONSTRUCTORS_STAFF);
 		entries.add(SpectrumItems.EXCHANGING_STAFF);
 		entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.FORTUNE, 3, false, false));
@@ -1254,7 +1254,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PRESERVATION_TURRET_SPAWN_EGG);
 		entries.add(SpectrumItems.KINDLING_SPAWN_EGG);
 		entries.add(SpectrumItems.LIZARD_SPAWN_EGG);
-		entries.add(SpectrumItems.SPAWNER);
+		// TODO - Spawner gone?
+		//entries.add(SpectrumItems.SPAWNER);
 		entries.add(SpectrumBlocks.MEMORY);
 	}).build();
 	

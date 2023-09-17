@@ -387,7 +387,7 @@ public class SpectrumItems {
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(IS.of(1));
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item NATURES_STAFF = new NaturesStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final NaturesStaffItem NATURES_STAFF = new NaturesStaffItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item STAFF_OF_REMEMBRANCE = new StaffOfRemembranceItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(IS.of(1, Rarity.UNCOMMON));

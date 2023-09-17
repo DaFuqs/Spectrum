@@ -8,7 +8,7 @@ import net.minecraft.structure.*;
 import net.minecraft.structure.pool.*;
 import net.minecraft.structure.processor.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 
 public class DepthAwareSinglePoolElement extends SinglePoolElement {
 	

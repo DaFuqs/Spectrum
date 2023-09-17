@@ -6,13 +6,16 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.shape.SlicedVoxelShape;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.util.Optional;
+
 public class FireModifier extends DamageChangingModifier {
 	
-	public FireModifier(ExplosionModifierType type, DamageSource damageSource, ParticleEffect effect, int displayColor) {
-		super(type, damageSource, effect, displayColor);
+	public FireModifier(ExplosionModifierType type, ParticleEffect effect, int displayColor) {
+		super(type, effect, displayColor);
 	}
 	
 	@Override
@@ -24,7 +27,16 @@ public class FireModifier extends DamageChangingModifier {
 		}
 		super.applyToBlocks(world, blocks);
 	}
-	
+
+	@Override
+	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+		if (!(owner instanceof LivingEntity living)) {
+			return Optional.empty();
+		} else {
+			return Optional.of(living.getDamageSources().inFire());
+		}
+	}
+
 	@Override
 	public void applyToEntity(@NotNull Entity entity, double distance) {
 		entity.setFireTicks(20);

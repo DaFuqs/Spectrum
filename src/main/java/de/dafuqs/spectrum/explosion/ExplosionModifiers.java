@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-// FIXME - Respect new damage type system for 1.20
+// TODO - Review changes that accommodates 1.20 damage types
 public class ExplosionModifiers {
 	
 	// MODIFIER TYPES
@@ -35,24 +35,35 @@ public class ExplosionModifiers {
 	public static final ExplosionModifier EXPLOSION_BOOST = registerModifier("explosion_boost", new MoreBoomModifier(GENERIC, 0xffbf40));
 	
 	// Damage source changers
-	public static final ExplosionModifier FIRE = registerModifier("fire", new FireModifier(DAMAGE_SOURCE, DamageSource.IN_FIRE, ParticleTypes.FLAME, 0xaff3eb));
-	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_SOURCE, SpectrumDamageSources.PRIMORDIAL_FIRE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0xff2664));
-	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.LIGHTNING_BOLT, SpectrumParticleTypes.WHITE_EXPLOSION, 0xaff3eb) {
+	public static final ExplosionModifier FIRE = registerModifier("fire", new FireModifier(DAMAGE_SOURCE, ParticleTypes.FLAME, 0xaff3eb));
+	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_SOURCE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0xff2664));
+	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_SOURCE, SpectrumParticleTypes.WHITE_EXPLOSION, 0xaff3eb) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-			return Optional.of(DamageSource.LIGHTNING_BOLT);
+			if (owner == null) {
+				return Optional.empty();
+			}
+			return Optional.ofNullable(owner.getDamageSources().lightningBolt());
 		}
 	});
-	public static final ExplosionModifier MAGIC = registerModifier("magic_damage", new DamageChangingModifier(DAMAGE_SOURCE, DamageSource.MAGIC, SpectrumParticleTypes.PURPLE_CRAFTING, 0xff59ff) {
+	public static final ExplosionModifier MAGIC = registerModifier(
+			"magic_damage",
+			new DamageChangingModifier(DAMAGE_SOURCE, SpectrumParticleTypes.PURPLE_CRAFTING, 0xff59ff) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-			return Optional.of(DamageSource.magic(owner, owner));
+			if (owner == null) {
+				return Optional.empty();
+			}
+			return Optional.of(owner.getDamageSources().magic());
 		}
 	});
-	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_SOURCE, SpectrumDamageSources.INCANDESCENCE, ParticleTypes.ENCHANT, 0x5433a5) {
+	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_SOURCE, ParticleTypes.ENCHANT, 0x5433a5) {
 		@Override
 		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-			return Optional.of(SpectrumDamageSources.incandescence(owner));
+			if (owner == null) {
+				return Optional.empty();
+			}
+			return Optional.of(SpectrumDamageSources.incandescence(owner.getWorld()));
 		}
 	});
 	

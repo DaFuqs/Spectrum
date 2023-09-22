@@ -59,7 +59,7 @@ public class ForfeitureBlock extends DecayBlock {
 	
 	@Override
 	protected BlockState getSpreadState(BlockState previousState) {
-		return this.getDefaultState();
+		return this.getDefaultState().with(CONVERSION, Conversion.NONE);
 	}
 	
 	@Override

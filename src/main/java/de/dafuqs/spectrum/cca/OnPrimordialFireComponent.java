@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.component.tick.*;
-import net.minecraft.client.*;
+import net.fabricmc.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
@@ -55,10 +55,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 		ticks = ProtectionEnchantment.transformFireDuration(livingEntity, ticks);
 		component.primordialFireTicks += ticks;
 		
-		// wasn't on fire, but is now
-		if (component.primordialFireTicks == ticks) {
-			ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
-		}
+		ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
 	}
 	
 	public static boolean isOnPrimordialFire(LivingEntity livingEntity) {
@@ -89,6 +86,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	}
 	
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void clientTick() {
 		if (this.primordialFireTicks > 0) {
 			double fluidHeight = this.provider.getFluidHeight(FluidTags.WATER);
@@ -103,7 +101,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 					world.addParticle(ParticleTypes.SMOKE, this.provider.getParticleX(1), pos.getY() + Math.min(fluidHeight, provider.getHeight()) * random.nextFloat(), this.provider.getParticleZ(1), 0.0, 0.04, 0.0);
 				}
 				if (world.random.nextInt(12) == 0) {
-					world.playSoundFromEntity(MinecraftClient.getInstance().player, this.provider, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
+					provider.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 				}
 			}
 		}

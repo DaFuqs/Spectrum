@@ -8,7 +8,6 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -62,19 +61,15 @@ public class ShapedPedestalRecipeSerializer extends PedestalRecipeSerializer<Sha
 		packetByteBuf.writeInt(recipe.tier.ordinal());
 		packetByteBuf.writeInt(recipe.width);
 		packetByteBuf.writeInt(recipe.height);
-		writeIngredientStacks(packetByteBuf, recipe);
+		for (IngredientStack ingredientStack : recipe.inputs) {
+			ingredientStack.write(packetByteBuf);
+		}
 		writeGemstonePowderInputs(packetByteBuf, recipe);
 		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
 		packetByteBuf.writeBoolean(recipe.skipRecipeRemainders);
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
-	}
-	
-	private void writeIngredientStacks(PacketByteBuf packetByteBuf, ShapedPedestalRecipe recipe) {
-		for (IngredientStack ingredient : recipe.inputs) {
-			ingredient.write(packetByteBuf);
-		}
 	}
 	
 	@Override
@@ -85,7 +80,7 @@ public class ShapedPedestalRecipeSerializer extends PedestalRecipeSerializer<Sha
 		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
 		int width = packetByteBuf.readInt();
 		int height = packetByteBuf.readInt();
-		List<IngredientStack> inputs = readIngredientStacks(packetByteBuf, width * height);
+		List<IngredientStack> inputs = IngredientStack.decodeByteBuf(packetByteBuf, width * height);
 		Map<BuiltinGemstoneColor, Integer> gemInputs = readGemstonePowderInputs(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
@@ -94,15 +89,6 @@ public class ShapedPedestalRecipeSerializer extends PedestalRecipeSerializer<Sha
 		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, tier, width, height, inputs, gemInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
-	}
-	
-	@NotNull
-	private static List<IngredientStack> readIngredientStacks(PacketByteBuf packetByteBuf, int count) {
-		List<IngredientStack> list = new ArrayList<>(count);
-		for (int i = 0; i < count; i++) {
-			list.set(i, IngredientStack.fromByteBuf(packetByteBuf));
-		}
-		return list;
 	}
 	
 }

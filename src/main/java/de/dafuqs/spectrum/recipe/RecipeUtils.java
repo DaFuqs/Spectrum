@@ -10,12 +10,10 @@ import net.minecraft.block.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.registry.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -49,15 +47,6 @@ public class RecipeUtils {
 		return BlockArgumentParser.stringifyBlockState(state);
 	}
 	
-	
-	@NotNull
-	public static List<IngredientStack> readIngredientStacks(PacketByteBuf packetByteBuf, int count) {
-		List<IngredientStack> list = new ArrayList<>(count);
-		for (int i = 0; i < count; i++) {
-			list.set(i, IngredientStack.fromByteBuf(packetByteBuf));
-		}
-		return list;
-	}
 	
 	public static List<IngredientStack> createIngredientStackPatternMatrix(String[] pattern, Map<String, IngredientStack> symbols, int width, int height) {
 		List<IngredientStack> list = DefaultedList.ofSize(width * height, IngredientStack.EMPTY);

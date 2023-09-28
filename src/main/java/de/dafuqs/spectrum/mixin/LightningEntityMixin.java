@@ -33,7 +33,7 @@ public abstract class LightningEntityMixin {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
 		
-		if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
+		if (blockState.isIn(SpectrumBlockTags.LIGHTNING_RODS)) {
 			// if struck a lightning rod: check around the base of the rod instead
 			// always spawn a stone
 			BlockPos blockPos2 = affectedBlockPos.offset((blockState.get(LightningRodBlock.FACING)).getOpposite());

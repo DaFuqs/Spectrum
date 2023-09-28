@@ -80,7 +80,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_second",
+				"active_time": "four_ticks",
 				"facing": "north"
 			},
 			"apply": {
@@ -91,7 +91,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_second",
+				"active_time": "four_ticks",
 				"facing": "east"
 			},
 			"apply": {
@@ -102,7 +102,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_second",
+				"active_time": "four_ticks",
 				"facing": "south"
 			},
 			"apply": {
@@ -112,7 +112,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_second",
+				"active_time": "four_ticks",
 				"facing": "west"
 			},
 			"apply": {
@@ -123,7 +123,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_seconds",
+				"active_time": "one_second",
 				"facing": "north"
 			},
 			"apply": {
@@ -134,7 +134,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_seconds",
+				"active_time": "one_second",
 				"facing": "east"
 			},
 			"apply": {
@@ -145,7 +145,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_seconds",
+				"active_time": "one_second",
 				"facing": "south"
 			},
 			"apply": {
@@ -155,7 +155,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_seconds",
+				"active_time": "one_second",
 				"facing": "west"
 			},
 			"apply": {
@@ -166,7 +166,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_minute",
+				"active_time": "ten_seconds",
 				"facing": "north"
 			},
 			"apply": {
@@ -177,7 +177,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_minute",
+				"active_time": "ten_seconds",
 				"facing": "east"
 			},
 			"apply": {
@@ -188,7 +188,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_minute",
+				"active_time": "ten_seconds",
 				"facing": "south"
 			},
 			"apply": {
@@ -198,7 +198,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_minute",
+				"active_time": "ten_seconds",
 				"facing": "west"
 			},
 			"apply": {
@@ -209,7 +209,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_minutes",
+				"active_time": "one_minute",
 				"facing": "north"
 			},
 			"apply": {
@@ -220,7 +220,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_minutes",
+				"active_time": "one_minute",
 				"facing": "east"
 			},
 			"apply": {
@@ -231,7 +231,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_minutes",
+				"active_time": "one_minute",
 				"facing": "south"
 			},
 			"apply": {
@@ -241,7 +241,7 @@
 		},
 		{
 			"when": {
-				"active_time": "ten_minutes",
+				"active_time": "one_minute",
 				"facing": "west"
 			},
 			"apply": {
@@ -252,7 +252,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_hour",
+				"active_time": "ten_minutes",
 				"facing": "north"
 			},
 			"apply": {
@@ -263,7 +263,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_hour",
+				"active_time": "ten_minutes",
 				"facing": "east"
 			},
 			"apply": {
@@ -274,7 +274,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_hour",
+				"active_time": "ten_minutes",
 				"facing": "south"
 			},
 			"apply": {
@@ -284,7 +284,7 @@
 		},
 		{
 			"when": {
-				"active_time": "one_hour",
+				"active_time": "ten_minutes",
 				"facing": "west"
 			},
 			"apply": {
@@ -295,7 +295,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_second",
+				"inactive_time": "four_ticks",
 				"facing": "north"
 			},
 			"apply": {
@@ -306,7 +306,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_second",
+				"inactive_time": "four_ticks",
 				"facing": "east"
 			},
 			"apply": {
@@ -317,7 +317,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_second",
+				"inactive_time": "four_ticks",
 				"facing": "south"
 			},
 			"apply": {
@@ -327,7 +327,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_second",
+				"inactive_time": "four_ticks",
 				"facing": "west"
 			},
 			"apply": {
@@ -338,7 +338,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_seconds",
+				"inactive_time": "one_second",
 				"facing": "north"
 			},
 			"apply": {
@@ -349,7 +349,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_seconds",
+				"inactive_time": "one_second",
 				"facing": "east"
 			},
 			"apply": {
@@ -360,7 +360,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_seconds",
+				"inactive_time": "one_second",
 				"facing": "south"
 			},
 			"apply": {
@@ -370,7 +370,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_seconds",
+				"inactive_time": "one_second",
 				"facing": "west"
 			},
 			"apply": {
@@ -381,7 +381,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_minute",
+				"inactive_time": "ten_seconds",
 				"facing": "north"
 			},
 			"apply": {
@@ -392,7 +392,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_minute",
+				"inactive_time": "ten_seconds",
 				"facing": "east"
 			},
 			"apply": {
@@ -403,7 +403,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_minute",
+				"inactive_time": "ten_seconds",
 				"facing": "south"
 			},
 			"apply": {
@@ -413,7 +413,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_minute",
+				"inactive_time": "ten_seconds",
 				"facing": "west"
 			},
 			"apply": {
@@ -424,7 +424,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_minutes",
+				"inactive_time": "one_minute",
 				"facing": "north"
 			},
 			"apply": {
@@ -435,7 +435,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_minutes",
+				"inactive_time": "one_minute",
 				"facing": "east"
 			},
 			"apply": {
@@ -446,7 +446,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_minutes",
+				"inactive_time": "one_minute",
 				"facing": "south"
 			},
 			"apply": {
@@ -456,7 +456,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "ten_minutes",
+				"inactive_time": "one_minute",
 				"facing": "west"
 			},
 			"apply": {
@@ -467,7 +467,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_hour",
+				"inactive_time": "ten_minutes",
 				"facing": "north"
 			},
 			"apply": {
@@ -478,7 +478,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_hour",
+				"inactive_time": "ten_minutes",
 				"facing": "east"
 			},
 			"apply": {
@@ -489,7 +489,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_hour",
+				"inactive_time": "ten_minutes",
 				"facing": "south"
 			},
 			"apply": {
@@ -499,7 +499,7 @@
 		},
 		{
 			"when": {
-				"inactive_time": "one_hour",
+				"inactive_time": "ten_minutes",
 				"facing": "west"
 			},
 			"apply": {

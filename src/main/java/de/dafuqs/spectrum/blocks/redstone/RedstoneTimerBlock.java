@@ -132,11 +132,11 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	}
 	
 	public enum TimingStep implements StringIdentifiable {
+		FourTicks("four_ticks", 4, "block.spectrum.redstone_timer.setting.four_ticks"),
 		OneSecond("one_second", 20, "block.spectrum.redstone_timer.setting.one_second"),
 		TenSeconds("ten_seconds", 10 * 20, "block.spectrum.redstone_timer.setting.ten_seconds"),
 		OneMinute("one_minute", 60 * 20, "block.spectrum.redstone_timer.setting.one_minute"),
-		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes"),
-		OneHour("one_hour", 60 * 60 * 20, "block.spectrum.redstone_timer.setting.one_hour");
+		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes");
 		
 		public final int ticks;
 		public final String localizationString;

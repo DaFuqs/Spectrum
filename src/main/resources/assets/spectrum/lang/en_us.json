@@ -194,7 +194,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.shimmerstone_gem": "• +20% potency\n• +20% duration",
   "spectrum.rei.potion_workshop_reacting.spectrum.star_fragment": "• adds the main effect of the Potion that was brewed before, but with -25% potency",
   "spectrum.rei.potion_workshop_reacting.spectrum.stardust": "• 75% chance to add the main effect of the Potion that was brewed before",
-  "spectrum.rei.potion_workshop_reacting.spectrum.storm_stone": "• dramatically increases potency at the beginning, but makes potency wear off over time - noes not work for instant effects",
+  "spectrum.rei.potion_workshop_reacting.spectrum.storm_stone": "• dramatically increases potency at the beginning, but makes potency wear off over time - does not work for instant effects",
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "• +1 potency\n• +1 negative effect\n• -1 yield",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "• +200% duration\n• -25% potency",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "• makes effects not show any particles",
@@ -202,9 +202,9 @@
 
   "spectrum.rei.potion_workshop_reacting.botania.pixie_dust": "• creates Lingering Potions & Tipped Arrows\n• -25% potency",
   "spectrum.rei.potion_workshop_reacting.botania.mana_powder": "• +25% duration\n• 15% chance to add last effect",
-  "spectrum.rei.potion_workshop_reacting.botania.life_essence": "• +3 potency\n• -3 yield$(br2)Requires other reagents to increase the yield, otherwise you will end up with nothing...",
-  "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "• +2 positive effects\n• +1 negative effect\n• makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?",
-  "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "• +3 positive effects\n• 50% chance for negative effect\n• makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?",
+  "spectrum.rei.potion_workshop_reacting.botania.life_essence": "• +3 potency\n• -3 yield\n\nRequires other reagents to increase the yield, otherwise you will end up with nothing...",
+  "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "• +2 positive effects\n• +1 negative effect\n• makes the potion unidentifiable.\n\nFancy a gamble?",
+  "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "• +3 positive effects\n• 50% chance for negative effect\n• makes the potion unidentifiable.\n\nFancy a gamble?",
 
   "spectrum.rei.potion_workshop_reacting.hexcasting.charged_amethyst": "\n• +15-120s duration. Sometimes more, sometimes less",
 

@@ -77,6 +77,10 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		// search for blocks in working range and sum them up
 		Collection<Block> compensationBlocks = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.keySet();
 		for (BlockPos pos : BlockPos.iterateOutwards(blockPos, RANGE, RANGE, RANGE)) {
+			if (!blockPos.isWithinDistance(pos, RANGE)) {
+				continue;
+			}
+			
 			BlockState state = world.getBlockState(pos);
 			Block block = state.getBlock();
 			if (compensationBlocks.contains(block)) {
@@ -270,9 +274,13 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		markDirty();
 	}
 	
-	public void harvestExistingClusters() {
+	protected void harvestExistingClusters() {
 		if (world instanceof ServerWorld serverWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
+				if (!currPos.isWithinDistance(pos, RANGE)) {
+					continue;
+				}
+				
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 					this.blockPosEventTransferListener.acceptEvent(serverWorld,
 							new GameEvent.Message(SpectrumGameEvents.BLOCK_CHANGED, Vec3d.ofCenter(currPos), GameEvent.Emitter.of(world.getBlockState(currPos)),

@@ -80,7 +80,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		this.goalSelector.add(8, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new CoughRevengeGoal(this));
-		this.targetSelector.add(2, new UniversalAngerGoal<KindlingEntity>(this, false));
+		this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
 	}
 	
 	@Override

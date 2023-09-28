@@ -98,14 +98,14 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			if (serverPlayerEntity.isSneaking()) {
 				// toggle inactive time
 				TimingStep newStep = blockState.get(INACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(INACTIVE_TIME, newStep));
 			} else {
 				// toggle active time
 				TimingStep newStep = blockState.get(ACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));

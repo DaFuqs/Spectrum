@@ -56,7 +56,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				// since this triggers both on server and client side: just send the
 				// message once, client side is enough, since it is pretty irrelevant on the server
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_calculator.mode_set").append(Text.translatable(newModeState.get(CALCULATION_MODE).localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_calculator.mode_set").append(Text.translatable(newModeState.get(CALCULATION_MODE).localizationString)), true);
 			}
 			this.updatePowered(world, pos, newModeState);
 			return ActionResult.success(world.isClient);

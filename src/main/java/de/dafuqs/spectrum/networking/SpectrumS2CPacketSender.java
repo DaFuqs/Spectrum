@@ -253,11 +253,11 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void startSkyLerping(@NotNull ServerWorld serverWorld, int duration) {
+	public static void startSkyLerping(@NotNull ServerWorld serverWorld, int additionalTime) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		long timeOfDay = serverWorld.getTimeOfDay();
 		buf.writeLong(timeOfDay);
-		buf.writeLong(timeOfDay + duration);
+		buf.writeLong(timeOfDay + additionalTime);
 		
 		for (ServerPlayerEntity player : serverWorld.getPlayers()) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.START_SKY_LERPING, buf);

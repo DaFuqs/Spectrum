@@ -11,6 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -117,6 +118,22 @@ public class FloatBlockEntity extends BlockLikeEntity {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	protected void writeCustomDataToNbt(NbtCompound compound) {
+		super.writeCustomDataToNbt(compound);
+		
+		compound.putFloat("GravityModifier", gravityModifier);
+	}
+	
+	@Override
+	protected void readCustomDataFromNbt(NbtCompound compound) {
+		super.readCustomDataFromNbt(compound);
+		
+		if (compound.contains("GravityModifier", NbtElement.FLOAT_TYPE)) {
+			this.gravityModifier = compound.getFloat("GravityModifier");
+		}
 	}
 	
 	@Override

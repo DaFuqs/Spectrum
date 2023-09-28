@@ -46,6 +46,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(1, new SwimGoal(this));
+		this.goalSelector.add(2, new FleeEntityGoal<>(this, LizardEntity.class, 6.0F, 1.0, 1.2));
 		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.4F));
 		this.goalSelector.add(3, new AttackGoal(this));
 		this.goalSelector.add(4, new FollowClanLeaderGoal<>(this));

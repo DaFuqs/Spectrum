@@ -330,7 +330,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (recipe != null) {
 			ItemStack outputStack = recipe.getOutput();
 			if (outputStack.isEmpty()) {
-				return false;
+				return true;
 			} else {
 				int outputSpaceFound = 0;
 				for (int slot : OUTPUT_SLOT_IDS) {
@@ -338,7 +338,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					if (slotStack.isEmpty()) {
 						return true;
 					} else if (slotStack.isItemEqualIgnoreDamage(outputStack)) {
-						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount() - outputStack.getCount();
+						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount();
 						if (outputSpaceFound >= outputStack.getCount()) {
 							return true;
 						}

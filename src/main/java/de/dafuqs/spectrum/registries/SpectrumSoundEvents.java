@@ -212,7 +212,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_LIZARD_AMBIENT = register("entity.lizard.ambient");
 	public static final SoundEvent ENTITY_LIZARD_HURT = register("entity.lizard.hurt");
 	public static final SoundEvent ENTITY_LIZARD_DEATH = register("entity.lizard.death");
-	public static final SoundEvent ENTITY_LIZARD_STEP = register("entity.lizard.step");
 	
 	
 	private static SoundEvent register(String id) {

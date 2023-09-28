@@ -1,11 +1,8 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -28,12 +25,6 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(CALCULATION_MODE, CalculationMode.ADDITION));
 	}
 	
-	@Nullable
-	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new RedstoneCalculatorBlockEntity(pos, state);
-	}
-	
 	@Override
 	protected int getUpdateDelayInternal(BlockState state) {
 		return 2;
@@ -42,6 +33,11 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED, CALCULATION_MODE);
+	}
+	
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new RedstoneCalculatorBlockEntity(pos, state);
 	}
 	
 	@Override
@@ -58,29 +54,50 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 				// message once, client side is enough, since it is pretty irrelevant on the server
 				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_calculator.mode_set").append(Text.translatable(newModeState.get(CALCULATION_MODE).localizationString)), true);
 			}
-			this.updatePowered(world, pos, newModeState);
+			
+			this.update(world, pos, state);
+			
 			return ActionResult.success(world.isClient);
 		}
 	}
 	
 	@Override
-	public void updatePowered(World world, BlockPos pos, BlockState state) {
-		int newSignal = Math.max(0, Math.min(15, this.calculateOutputSignal(world, pos, state)));
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		this.update(world, pos, state);
+	}
+	
+	private void update(World world, BlockPos pos, BlockState state) {
+		int newSignal = this.calculateOutputSignal(world, pos, state);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		int lastSignal = 0;
+		int previousSignal = 0;
 		if (blockEntity instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity) {
-			lastSignal = redstoneCalculatorBlockEntity.getOutputSignal();
+			previousSignal = redstoneCalculatorBlockEntity.getOutputSignal();
 			redstoneCalculatorBlockEntity.setOutputSignal(newSignal);
 		}
 		
-		if (lastSignal != newSignal) {
-			if (newSignal == 0) {
+		if (previousSignal != newSignal) {
+			boolean bl = newSignal != 0;
+			boolean bl2 = state.get(POWERED);
+			if (bl2 && !bl) {
 				world.setBlockState(pos, state.with(POWERED, false), Block.NOTIFY_LISTENERS);
-			} else {
+			} else if (!bl2 && bl) {
 				world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
 			}
 			
 			this.updateTarget(world, pos, state);
+		}
+	}
+	
+	@Override
+	protected void updatePowered(World world, BlockPos pos, BlockState state) {
+		if (!world.getBlockTickScheduler().isTicking(pos, this)) {
+			int previousSignal = world.getBlockEntity(pos) instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity ? redstoneCalculatorBlockEntity.getOutputSignal() : 0;
+			int newSignal = this.calculateOutputSignal(world, pos, state);
+			
+			if (newSignal != previousSignal) {
+				TickPriority tickPriority = this.isTargetNotAligned(world, pos, state) ? TickPriority.HIGH : TickPriority.NORMAL;
+				world.createAndScheduleBlockTick(pos, this, getUpdateDelayInternal(state), tickPriority);
+			}
 		}
 	}
 	
@@ -122,45 +139,8 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 	}
 	
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		boolean bl = state.get(POWERED);
-		boolean bl2 = this.hasPower(world, pos, state);
-		if (bl && !bl2) {
-			world.setBlockState(pos, state.with(POWERED, false), Block.NOTIFY_LISTENERS);
-		} else if (!bl) {
-			world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
-			if (!bl2) {
-				world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
-			}
-		}
-	}
-	
-	/**
-	 * The block entity caches the output signal for performance
-	 */
-	@Override
 	protected int getOutputLevel(@NotNull BlockView world, BlockPos pos, BlockState state) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof RedstoneCalculatorBlockEntity ? ((RedstoneCalculatorBlockEntity) blockEntity).getOutputSignal() : 0;
-	}
-	
-	@Override
-	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		BlockState state = SpectrumBlocks.REDSTONE_CALCULATOR.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
-		int signal = calculateOutputSignal(ctx.getWorld(), ctx.getBlockPos(), state);
-		if (signal == 0) {
-			return state;
-		} else {
-			return state.with(POWERED, true);
-		}
-	}
-	
-	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		super.onPlaced(world, pos, state, placer, itemStack);
-		if (!world.isClient) {
-			updatePowered(world, pos, state);
-		}
+		return world.getBlockEntity(pos) instanceof RedstoneCalculatorBlockEntity redstoneCalculatorBlockEntity ? redstoneCalculatorBlockEntity.getOutputSignal() : 0;
 	}
 	
 	public enum CalculationMode implements StringIdentifiable {

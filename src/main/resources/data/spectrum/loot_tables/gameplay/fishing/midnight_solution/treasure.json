@@ -25,11 +25,6 @@
                 "max": 0.25
               },
               "add": false
-            },
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 30,
-              "treasure": true
             }
           ]
         },
@@ -45,11 +40,6 @@
                 "max": 0.25
               },
               "add": false
-            },
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 30,
-              "treasure": true
             }
           ]
         },
@@ -65,24 +55,12 @@
                 "max": 0.25
               },
               "add": false
-            },
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 30,
-              "treasure": true
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:book",
-          "functions": [
-            {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 30,
-              "treasure": true
-            }
-          ]
+          "name": "minecraft:book"
         },
         {
           "type": "minecraft:item",

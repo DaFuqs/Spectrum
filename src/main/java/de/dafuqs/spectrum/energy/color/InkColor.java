@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.energy.color;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -23,7 +25,6 @@ public abstract class InkColor {
 		this.requiredAdvancement = requiredAdvancement;
 		
 		ALL_COLORS.add(this);
-		
 		DYE_TO_COLOR.put(dyeColor, this);
 	}
 	
@@ -76,6 +77,33 @@ public abstract class InkColor {
 	
 	public Identifier getRequiredAdvancement() {
 		return requiredAdvancement;
+	}
+	
+	public static InkColor getRandomMixedColor(InkColor color1, InkColor color2, net.minecraft.util.math.random.Random random) {
+		boolean color1Elemental = color1 instanceof ElementalColor;
+		boolean color2Elemental = color2 instanceof ElementalColor;
+		
+		if (color1Elemental && color2Elemental) {
+			List<InkColor> possibleOutcomes = new ArrayList<>();
+			
+			for (RegistryEntry<InkColor> c : SpectrumRegistries.getEntries(SpectrumRegistries.INK_COLORS, InkColorTags.COMPOUND_COLORS)) {
+				if (((CompoundColor) c.value()).isMixedUsing((ElementalColor) color1) && ((CompoundColor) c.value()).isMixedUsing((ElementalColor) color2)) {
+					possibleOutcomes.add(c.value());
+				}
+			}
+			
+			if (possibleOutcomes.size() > 0) { // this should always be the case, but you never know
+				Collections.shuffle(possibleOutcomes);
+				return possibleOutcomes.get(0);
+			}
+			return color1;
+		} else if (color1Elemental) {
+			return color1;
+		} else if (color2Elemental) {
+			return color2;
+		} else {
+			return random.nextBoolean() ? color1 : color2;
+		}
 	}
 	
 }

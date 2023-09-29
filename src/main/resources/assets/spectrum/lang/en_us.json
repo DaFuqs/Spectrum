@@ -508,6 +508,8 @@
 
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
+  "spectrum.toast.lots_of_recipes_unlocked.title": "Many recipes unlocked:",
+  "spectrum.toast.lots_of_recipes_unlocked.description": "%d new recipes:",
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",
   "spectrum.toast.anvil_crushing_recipes_unlocked.title": "New Crushing recipes:",
   "spectrum.toast.pedestal_recipe_unlocked.title": "New Pedestal recipe:",
@@ -547,7 +549,7 @@
   "spectrum.toast.message.enchant_conflicting_enchantments_unlocked.title": "Enchanting Mastery",
   "spectrum.toast.message.enchant_conflicting_enchantments_unlocked.text": "Enchant Items regardless of conflicts",
   "spectrum.toast.message.fourth_potion_reagent_unlocked.title": "Brewing Mastery",
-  "spectrum.toast.message.fourth_potion_reagent_unlocked.text": "Use a Fourth Reagent in the Potion Brewery",
+  "spectrum.toast.message.fourth_potion_reagent_unlocked.text": "+1 Reagent Slot for the Potion Workshop",
   "spectrum.toast.message.block_coloring_unlocked.title": "New Paintbrush Ability:",
   "spectrum.toast.message.block_coloring_unlocked.text": "Block Coloring",
   "spectrum.toast.message.paint_flinging_unlocked.title": "New Paintbrush Ability:",

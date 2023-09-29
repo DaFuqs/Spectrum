@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.*;
@@ -30,6 +31,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	protected static final TrackedData<LizardScaleVariant> SCALE_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_SCALE_VARIANT);
 	protected static final TrackedData<LizardFrillVariant> FRILL_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
 	protected static final TrackedData<LizardHornVariant> HORN_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
+	protected static final TrackedData<InkColor> COLOR = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.INK_COLOR);
 	
 	protected @Nullable LizardEntity leader;
 	protected int groupSize = 1;
@@ -98,6 +100,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
+		this.dataTracker.startTracking(COLOR, InkColors.MAGENTA);
 		this.dataTracker.startTracking(SCALE_VARIANT, LizardScaleVariant.CYAN);
 		this.dataTracker.startTracking(FRILL_VARIANT, LizardFrillVariant.SIMPLE);
 		this.dataTracker.startTracking(HORN_VARIANT, LizardHornVariant.HORNY);
@@ -106,6 +109,7 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
+		nbt.putString("color", SpectrumRegistries.INK_COLORS.getId(this.getColor()).toString());
 		nbt.putString("scales", SpectrumRegistries.LIZARD_SCALE_VARIANT.getId(this.getScales()).toString());
 		nbt.putString("frills", SpectrumRegistries.LIZARD_FRILL_VARIANT.getId(this.getFrills()).toString());
 		nbt.putString("horns", SpectrumRegistries.LIZARD_HORN_VARIANT.getId(this.getHorns()).toString());
@@ -115,6 +119,9 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
+		
+		InkColor color = SpectrumRegistries.INK_COLORS.get(Identifier.tryParse(nbt.getString("color")));
+		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, world.random, InkColors.CYAN) : color);
 		
 		LizardScaleVariant scales = SpectrumRegistries.LIZARD_SCALE_VARIANT.get(Identifier.tryParse(nbt.getString("scales")));
 		this.setScales(scales == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_SCALE_VARIANT, LizardScaleVariant.NATURAL_VARIANT, world.random, LizardScaleVariant.CYAN) : scales);
@@ -167,6 +174,14 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	@Override
 	public boolean canEat() {
 		return super.canEat() || getOwner() != null;
+	}
+	
+	public InkColor getColor() {
+		return this.dataTracker.get(COLOR);
+	}
+	
+	public void setColor(InkColor color) {
+		this.dataTracker.set(COLOR, color);
 	}
 	
 	public LizardScaleVariant getScales() {
@@ -229,11 +244,19 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		LizardEntity other = (LizardEntity) entity;
 		LizardEntity child = SpectrumEntityTypes.LIZARD.create(world);
 		if (child != null) {
+			child.setColor(getChildColor(this, other));
 			child.setScales(getChildScales(this, other));
 			child.setFrills(getChildFrills(this, other));
 			child.setHorns(getChildHorns(this, other));
 		}
 		return child;
+	}
+	
+	private InkColor getChildColor(LizardEntity firstParent, LizardEntity secondParent) {
+		InkColor color1 = firstParent.getColor();
+		InkColor color2 = secondParent.getColor();
+		
+		return InkColor.getRandomMixedColor(color1, color2, firstParent.world.random);
 	}
 	
 	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {

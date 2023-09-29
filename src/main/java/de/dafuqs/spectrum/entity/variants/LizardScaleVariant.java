@@ -6,6 +6,7 @@ import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
+// TODO: remove this? (lizard texture will be dynamically tinted)
 public record LizardScaleVariant(Identifier texture) {
 	
 	public static final LizardScaleVariant CYAN = register("cyan", "textures/entity/lizard/scales_cyan.png");

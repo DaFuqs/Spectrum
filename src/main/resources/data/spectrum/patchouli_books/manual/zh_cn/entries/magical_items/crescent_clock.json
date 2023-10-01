@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "name": "月相时钟",
+=======
+  "name": "Crescent Clock",
+>>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_crescent_clock",
   "icon": "spectrum:crescent_clock",
   "category": "spectrum:magical_items_category",
@@ -9,6 +13,7 @@
   "pages": [
     {
       "type": "patchouli:text",
+<<<<<<< Updated upstream
       "text": "时间的流动真是迷幻。$(br)伊始与终焉之间的循环往复，永续轮回，就此浓缩在这尊时钟之中吧——敬请见证。"
     },
     {
@@ -19,3 +24,15 @@
     }
   ]
 }
+=======
+      "text": "There seems to be something magical about the flow of time.$(br)This clock, formed from witnesses of time, is to show you a way in this never-ending stream of beginning and passing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/crescent_clock",
+      "text": "$(italic)If we shadows have offended, Know but this and all is mended.$(br)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
+    }
+  ]
+}
+>>>>>>> Stashed changes

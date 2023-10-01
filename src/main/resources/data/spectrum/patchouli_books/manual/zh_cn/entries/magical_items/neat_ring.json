@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "name": "整洁的戒指",
+=======
+  "name": "Neat Ring",
+>>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_neat_ring",
   "icon": "spectrum:neat_ring",
   "secret": true,
@@ -10,13 +14,25 @@
   "pages": [
     {
       "type": "patchouli:text",
+<<<<<<< Updated upstream
       "text": "$(italic)整洁。整。洁。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
+=======
+      "text": "$(italic)I just think it's neat."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+>>>>>>> Stashed changes
       "recipe": "spectrum:fusion_shrine/trinkets/neat_ring",
       "text": ""
     }
   ]
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

@@ -1,6 +1,11 @@
 {
+<<<<<<< Updated upstream
   "name": "Crystallized Blocks/Powders",
   "advancement": "spectrum:hidden/collect_any_crystallized_block",
+=======
+  "name": "Liquid Crystal Powders",
+  "advancement": "spectrum:guidebook/unlock_crystal_powders_guidebook_entry",
+>>>>>>> Stashed changes
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
@@ -35,4 +40,8 @@
       "text": "Crushing $(thing)Frostbite Crystal$() with an Anvil yields this ice cold powder, which almost makes your hand freeze just by holding it. Crushing $(thing)Ice$() seems to work, too, albeit with much less yield."
     }
   ]
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

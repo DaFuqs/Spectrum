@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "name": "末地传送门迁移",
+=======
+  "name": "End Portal Relocation",
+>>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_end_portal_cracker",
   "secret": true,
   "icon": "minecraft:end_portal_frame",
@@ -11,15 +15,24 @@
   "pages": [
     {
       "type": "patchouli:text",
+<<<<<<< Updated upstream
       "text": "$(italic)每当你想进入末影人的领域，你就得跑遍大半个世界。论能力，现在的你肯定是强过那些开辟末地传送门的家伙的……$(br2)嘛，差不多吧？虽然你不知道怎么新建一个末地传送门，但打包带走还是小事一桩啦。"
     },
     {
       "type": "patchouli:image",
       "title": "末地传送门迁移",
+=======
+      "text": "$(italic)Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. You haven't yet figured out how to create such portals yourself, but pack them up and take them home? No problem."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "End Portal Relocation",
+>>>>>>> Stashed changes
       "images": [
         "spectrum:textures/gui/manual/end_portal.png"
       ],
       "border": true,
+<<<<<<< Updated upstream
       "text": "末地传送门，要塞里的那种。"
     },
     {
@@ -31,6 +44,19 @@
     {
       "type": "patchouli:multiblock",
       "name": "重建的末地传送门",
+=======
+      "text": "The end portal, like found in strongholds."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Pedestal Recipe",
+      "item": "spectrum:end_portal_cracker",
+      "text": "These modified Eye of Ender harbor extremely destructive potential. They need to be, to be able to manipulate the extremely robust portal frame.$(br)When used in an End Portal base, you should keep your distance quickly."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Reconstructed End Portal",
+>>>>>>> Stashed changes
       "multiblock": {
         "pattern": [
           [
@@ -54,7 +80,11 @@
         ],
         "symmetrical": false
       },
+<<<<<<< Updated upstream
       "text": "你只要把传送门框架拼回一起，再插上末影之眼，完工！"
+=======
+      "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+>>>>>>> Stashed changes
     }
   ]
 }

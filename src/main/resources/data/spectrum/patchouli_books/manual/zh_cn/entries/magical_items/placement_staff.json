@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "name": "建造法杖",
+=======
+  "name": "Constructors' Staff",
+>>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_placement_staff",
   "icon": "spectrum:placement_staff",
   "category": "spectrum:magical_items_category",
@@ -9,6 +13,7 @@
   "pages": [
     {
       "type": "patchouli:text",
+<<<<<<< Updated upstream
       "text": "放置方块又累又花时间，你曾一度怀疑它是不是占据了你生命的全部——$(br2)嗯，$(italic)曾一度$()，现在可以放下怀疑了。"
     },
     {
@@ -16,6 +21,15 @@
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/placement_staff",
       "text": "潜行右击即可选择可用的放置模式。"
+=======
+      "text": "You always spend a lot of time placing blocks. You could almost think that this is the main reason for your existence. Placing a lot of similar blocks is tedious.$(br2)Or more like: $(italic)Was$() tedious."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/placement_staff",
+      "text": "Crouch-Click to get a selection of all available placement modi."
+>>>>>>> Stashed changes
     }
   ]
 }

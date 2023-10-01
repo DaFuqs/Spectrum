@@ -145,7 +145,6 @@
   "spectrum.rei.potion_workshop_reacting.minecraft.dragon_breath": "合成滞留型药水 - 同时需要火药作为炼材。将玻璃瓶替换为箭能够制作药箭",
   "spectrum.rei.potion_workshop_reacting.minecraft.glowstone_dust": "提升效果强度",
   "spectrum.rei.potion_workshop_reacting.minecraft.gunpowder": "合成喷溅型药水",
-<<<<<<< Updated upstream
   "spectrum.rei.potion_workshop_reacting.minecraft.redstone": "效果持续时间加倍",
   "spectrum.rei.potion_workshop_reacting.spectrum.amethyst_powder": "小幅加长效果持续时间",
   "spectrum.rei.potion_workshop_reacting.spectrum.bedrock_dust": "效果强度加倍，但减少持续时间",
@@ -153,15 +152,6 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.four_leaf_clover": "为随机一个效果提供巨大增幅",
   "spectrum.rei.potion_workshop_reacting.spectrum.lightning_stone": "提升一开始的效果强度，但随着时间的推移，效果强度将迅速减弱",
   "spectrum.rei.potion_workshop_reacting.spectrum.midnight_chip": "提升效果强度并延长效果持续时间30秒，但大幅降低药水产量",
-=======
-  "spectrum.rei.potion_workshop_reacting.minecraft.redstone": "药效持续时间加倍",
-  "spectrum.rei.potion_workshop_reacting.spectrum.amethyst_powder": "小幅加长药效持续时间",
-  "spectrum.rei.potion_workshop_reacting.spectrum.bedrock_dust": "药效强度加倍，但缩短持续时间",
-  "spectrum.rei.potion_workshop_reacting.spectrum.citrine_powder": "小幅增强药效强度",
-  "spectrum.rei.potion_workshop_reacting.spectrum.four_leaf_clover": "为药水效果随机提供巨大增幅",
-  "spectrum.rei.potion_workshop_reacting.spectrum.lightning_stone": "增强一开始的药效强度，但随着时间的推移，药效强度将迅速减弱",
-  "spectrum.rei.potion_workshop_reacting.spectrum.midnight_chip": "增强药效强度并延长药效持续时间30秒，但大幅降低药水产量",
->>>>>>> Stashed changes
   "spectrum.rei.potion_workshop_reacting.spectrum.moonstone_powder": "将所有负面效果转换为对应的正面效果",
   "spectrum.rei.potion_workshop_reacting.spectrum.moonstruck_nectar": "使药水更加醇和，从而加快饮用速度",
   "spectrum.rei.potion_workshop_reacting.spectrum.neolith": "增加产量，允许你多炼制一瓶药水",
@@ -264,7 +254,6 @@
   "spectrum.tooltip.ink_powered.unselect_color": "取消选取颜色",
   "spectrum.tooltip.ink_powered.percent_filled": "%d墨水（%d%%）",
 
-<<<<<<< Updated upstream
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.cyan": " %d§b 青色墨水§r 以升级到下一阶段",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.magenta": " %d§d 品红色墨水§r 以升级到下一阶段",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.yellow": " %d§e 黄色墨水§r 以升级到下一阶段",
@@ -281,24 +270,6 @@
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.pink": " %d§d 粉红色墨水§r 以升级到下一阶段",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.purple": " %d§5 紫色墨水§r 以升级到下一阶段",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.red": " %d§c 红色墨水§r 以升级到下一阶段",
-=======
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.cyan": "%d§b青色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.magenta": "%d§d品红色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.yellow": "%d§e黄色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.black": "%d§8黑色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.white": "%d§f白色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.blue": "%d§9蓝色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.brown": "%d§6棕色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.gray": "%d§8灰色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.green": "%d§2绿色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.light_blue": "%d§3淡蓝色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.light_gray": "%d§7淡灰色§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.lime": "%d§a黄绿色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.orange": "%d§6橙色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.pink": "%d§d粉红色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.purple": "%d§5紫色墨水§r 直到下一步",
-  "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.red": "%d§c红色墨水§r 直到下一步",
->>>>>>> Stashed changes
   "spectrum.tooltip.ink_drain.tooltip.maxed_out": "§f⭐§r 已满 §f⭐§r",
 
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "须在新月时的午夜进行",
@@ -378,13 +349,8 @@
   "spectrum.subtitles.natures_staff_use": "和谐的旋律：鸣响",
   "spectrum.subtitles.block.sucking_chest.open": "黑洞箱：开启",
   "spectrum.subtitles.block.sucking_chest.close": "黑洞箱：关闭",
-<<<<<<< Updated upstream
   "spectrum.subtitles.light_staff_charging": "辐芒法杖：充能",
   "spectrum.subtitles.light_staff_place": "辐芒法杖：放置",
-=======
-  "spectrum.subtitles.light_staff_charging": "光之法杖：充能",
-  "spectrum.subtitles.light_staff_place": "光之法杖：放置",
->>>>>>> Stashed changes
   "spectrum.subtitles.light_staff_break": "光源：被破坏",
   "spectrum.subtitles.fusion_shrine_ambient": "融合圣坛：嗡嗡",
   "spectrum.subtitles.fusion_shrine_crafting_finished": "低声轰鸣",
@@ -1363,11 +1329,7 @@
   "item.spectrum.exchange_staff.tooltip.crouch": "潜行时只会交换暴露在表面的方块",
   "item.spectrum.exchange_staff.tooltip.target": "替换为%s",
   "item.spectrum.placement_staff": "建造法杖",
-<<<<<<< Updated upstream
   "item.spectrum.placement_staff.tooltip.range": "提高半径%s格内的方块",
-=======
-  "item.spectrum.placement_staff.tooltip.range": "将方块结构延展至最多%s格",
->>>>>>> Stashed changes
   "item.spectrum.placement_staff.tooltip.crouch": "潜行时会包含不同种类的方块",
   "item.spectrum.placement_staff.tooltip.missing_ink": "缺少墨水",
   "item.spectrum.placement_staff.tooltip.none_in_inventory": "背包中无方块",
@@ -1800,7 +1762,6 @@
   "bannerpp.pattern.spectrum.amethyst_shard.magenta": "品红色紫水晶簇",
   "bannerpp.pattern.spectrum.amethyst_shard.orange": "橙色紫水晶簇",
   "bannerpp.pattern.spectrum.amethyst_shard.white": "白色紫水晶簇",
-<<<<<<< Updated upstream
   "bannerpp.pattern.spectrum.raw_azurite.black": "黑色石青",
   "bannerpp.pattern.spectrum.raw_azurite.red": "红色石青",
   "bannerpp.pattern.spectrum.raw_azurite.green": "绿色石青",
@@ -1817,24 +1778,6 @@
   "bannerpp.pattern.spectrum.raw_azurite.magenta": "品红色石青",
   "bannerpp.pattern.spectrum.raw_azurite.orange": "橙色石青",
   "bannerpp.pattern.spectrum.raw_azurite.white": "白色石青",
-=======
-  "bannerpp.pattern.spectrum.raw_azurite.black": "黑色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.red": "红色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.green": "绿色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.brown": "棕色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.blue": "蓝色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.purple": "紫色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.cyan": "青色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.light_gray": "淡灰色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.gray": "灰色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.pink": "粉红色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.lime": "黄绿色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.yellow": "黄色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.light_blue": "淡蓝色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.magenta": "品红色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.orange": "橙色鱼目青",
-  "bannerpp.pattern.spectrum.raw_azurite.white": "白色鱼目青",
->>>>>>> Stashed changes
 
   "bannerpp.pattern.spectrum.bedrock_dust.black": "黑色基岩粉",
   "bannerpp.pattern.spectrum.bedrock_dust.red": "红色基岩粉",
@@ -1853,7 +1796,6 @@
   "bannerpp.pattern.spectrum.bedrock_dust.orange": "橙色基岩粉",
   "bannerpp.pattern.spectrum.bedrock_dust.white": "白色基岩粉",
 
-<<<<<<< Updated upstream
   "bannerpp.pattern.spectrum.shimmerstone.black": "黑色微光石",
   "bannerpp.pattern.spectrum.shimmerstone.red": "红色微光石",
   "bannerpp.pattern.spectrum.shimmerstone.green": "绿色微光石",
@@ -1870,24 +1812,6 @@
   "bannerpp.pattern.spectrum.shimmerstone.magenta": "品红色微光石",
   "bannerpp.pattern.spectrum.shimmerstone.orange": "橙色微光石",
   "bannerpp.pattern.spectrum.shimmerstone.white": "白色微光石",
-=======
-  "bannerpp.pattern.spectrum.shimmerstone.black": "黑色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.red": "红色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.green": "绿色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.brown": "棕色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.blue": "蓝色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.purple": "紫色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.cyan": "青色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.light_gray": "淡灰色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.gray": "灰色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.pink": "粉红色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.lime": "黄绿色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.yellow": "黄色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.light_blue": "淡蓝色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.magenta": "品红色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.orange": "橙色闪光石",
-  "bannerpp.pattern.spectrum.shimmerstone.white": "白色闪光石",
->>>>>>> Stashed changes
 
   "bannerpp.pattern.spectrum.jade_vine.black": "黑色玉藤",
   "bannerpp.pattern.spectrum.jade_vine.red": "红色玉藤",
@@ -1959,19 +1883,11 @@
 
   "item.spectrum.neat_ring": "整洁的戒指",
   "item.spectrum.neat_ring.tooltip": "§7确实很§o整洁",
-<<<<<<< Updated upstream
   "item.spectrum.lesser_potion_pendant": "小型药水吊坠",
   "item.spectrum.greater_potion_pendant": "大型药水吊坠",
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7可在§f药水工作站§7中填充一种效果",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7可在§f药水工作站§7中填充至多§f%d§7种效果",
   "item.spectrum.potion_pendant.tooltip_max_level": "§7支持的效果等级最高为",
-=======
-  "item.spectrum.lesser_potion_pendant": "低级药水吊坠",
-  "item.spectrum.greater_potion_pendant": "高级药水吊坠",
-  "item.spectrum.potion_pendant.tooltip_not_full_one": "§7在§f药水工作站§7中填充一种效果",
-  "item.spectrum.potion_pendant.tooltip_not_full_count": "§7在§f药水工作站§7中填充至多§f%d§7种效果",
-  "item.spectrum.potion_pendant.tooltip_max_level": "§7支持的药效等级最高为",
->>>>>>> Stashed changes
   "item.spectrum.radiance_pin": "辐芒胸针",
   "item.spectrum.radiance_pin.tooltip": "§7在黑暗中自动放置临时光源",
   "item.spectrum.ashen_circlet": "余烬头箍",
@@ -2101,15 +2017,9 @@
   "advancements.spectrum.collect_pigment.title": "收集纯净的颜料",
   "advancements.spectrum.collect_pigment.description": "破坏染色树的叶子来获得你渴求的纯净颜料。只有你亲自破坏树叶，它们才会释放出其珍贵的颜料",
   "advancements.spectrum.collect_quitoxic_reeds.title": "淹没在池沼里",
-<<<<<<< Updated upstream
   "advancements.spectrum.collect_quitoxic_reeds.description": "发现奇毒苇",
   "advancements.spectrum.craft_resonant_pickaxe.title": "微妙的振动",
   "advancements.spectrum.craft_resonant_pickaxe.description": "制造共振镐",
-=======
-  "advancements.spectrum.collect_quitoxic_reeds.description": "发现奇毒蔗",
-  "advancements.spectrum.craft_resonant_pickaxe.title": "微妙的震动",
-  "advancements.spectrum.craft_resonant_pickaxe.description": "制造共鸣之镐",
->>>>>>> Stashed changes
   "advancements.spectrum.collect_resonant_lily.title": "花影难觅",
   "advancements.spectrum.collect_resonant_lily.description": "采摘一朵共振百合花",
   "advancements.spectrum.collect_scarlet.title": "沉重的负荷",

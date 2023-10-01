@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
   "name": "手持末影袋",
-=======
-  "name": "Bag of Holding",
->>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_ender_bag",
   "icon": "spectrum:ender_bag",
   "category": "spectrum:magical_items_category",
@@ -13,7 +9,6 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-<<<<<<< Updated upstream
       "title": "手持末影袋",
       "item": "spectrum:ender_bag",
       "text": "$(italic)把末影箱放下打开关上挖掉哎唷我去镐子不是精准采集——开心吗？还想来一次吗？$(br)为此，你发明了这个东西。"
@@ -26,17 +21,3 @@
     }
   ]
 }
-=======
-      "title": "Bag of Holding",
-      "item": "spectrum:ender_bag",
-      "text": "$(italic)Placing an Ender Chest, opening it, and mining it with an enchanted pickaxe is not what you think of as fun.$(br)That's why you invented this thing."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/ender_bag",
-      "text": "Just open it and the contents of your Ender Chest are right there."
-    }
-  ]
-}
->>>>>>> Stashed changes

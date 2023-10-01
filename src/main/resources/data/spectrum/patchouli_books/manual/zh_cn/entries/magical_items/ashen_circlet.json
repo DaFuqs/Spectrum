@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
   "name": "余烬头箍",
-=======
-  "name": "Ashen Circlet",
->>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_ashen_circlet",
   "icon": "spectrum:ashen_circlet",
   "category": "spectrum:magical_items_category",
@@ -13,7 +9,6 @@
   "pages": [
     {
       "type": "patchouli:text",
-<<<<<<< Updated upstream
       "text": "镶嵌于头箍之间的绯红宝石在下界育成，自能轻易吸收周身的灼热。$(br)它甚至能帮你短暂地抵御熔岩的高温——这样需要冷却。$(br)只要搭配一件赋予防火效果的物品，在熔岩中游泳便是如鱼得水。"
     },
     {
@@ -24,15 +19,3 @@
     }
   ]
 }
-=======
-      "text": "The Stratine Gem you set into this Circlet, itself a creation of the Nether, can absorb high temperatures on you with ease.$(br)It even protects you from the blazing heat of lava - if only for a short time, until it has had a chance to cool down again.$(br)Pair it with something that grants you Fire Resistance, you are able to swim in Lava almost as if it were Water."
-    },
-    {
-      "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
-      "text": "$(li)Prevents damage from fire and hot floors.$(li)If cooled down, grants you a short protection from lava"
-    }
-  ]
-}
->>>>>>> Stashed changes

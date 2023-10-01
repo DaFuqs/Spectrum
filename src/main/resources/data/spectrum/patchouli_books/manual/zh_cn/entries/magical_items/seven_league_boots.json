@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
   "name": "飞跃靴子",
-=======
-  "name": "Seven League Boots",
->>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_seven_league_boots",
   "icon": "spectrum:seven_league_boots",
   "category": "spectrum:magical_items_category",
@@ -13,7 +9,6 @@
   "pages": [
     {
       "type": "patchouli:text",
-<<<<<<< Updated upstream
       "text": "赶路很花时间。$(br)尤其是去找$(l:resources/geodes)晶洞$(/l)的时候，会常常因为路途遥远而耗费掉不少时间。$(br)穿上这双靴子，你的机动性就可以提高不少。"
     },
     {
@@ -21,31 +16,13 @@
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
       "text": "提升移动速度和抬步高度。"
-=======
-      "text": "Getting from A to B is tedious.$(br)Especially in the case of $(l:resources/geodes)Geodes$(/l), they are usually far away, so the journey there takes quite some time.$(br)With these magic boots you are much more mobile than before."
-    },
-    {
-      "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
-      "text": "Increases both Movement Speed and Step Height."
->>>>>>> Stashed changes
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:progression/enchantments/vanilla_projectile",
-<<<<<<< Updated upstream
       "title": "力量魔咒",
       "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
       "text": "力量魔咒可以进一步提升移动速度。"
     }
   ]
 }
-=======
-      "title": "Power",
-      "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-      "text": "The Power enchantment increases the movement speed bonus further."
-    }
-  ]
-}
->>>>>>> Stashed changes

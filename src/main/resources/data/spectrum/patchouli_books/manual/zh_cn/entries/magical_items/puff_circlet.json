@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
   "name": "蓬蓬头箍",
-=======
-  "name": "Puff Circlet",
->>>>>>> Stashed changes
   "advancement": "spectrum:progression/unlock_puff_circlet",
   "secret": true,
   "icon": "spectrum:puff_circlet",
@@ -14,7 +10,6 @@
   "pages": [
     {
       "type": "patchouli:text",
-<<<<<<< Updated upstream
       "text": "这个闪闪发亮的头箍会在你的周围形成一层空气保护罩。$(br)给予$(c_green)4$()点$(c_blue)蔚蓝护盾值$()。$(br)这层防护罩不仅保护你免于弹射物侵袭，还能起到落地缓冲的效果。$(br)蓬蓬头箍同时可以防止你踩踏农田。"
     },
     {
@@ -25,15 +20,3 @@
     }
   ]
 }
-=======
-      "text": "This glistening hoop creates a protective film of air around you.$(br)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(). $(br)Using those charges, it not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
-    },
-    {
-      "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
-      "text": "$(italic)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
-    }
-  ]
-}
->>>>>>> Stashed changes

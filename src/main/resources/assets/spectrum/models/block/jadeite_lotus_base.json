@@ -1,4 +1,5 @@
 {
+	"parent": "minecraft:block/block",
 	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
 	"textures": {
 		"0": "spectrum:block/jadeite_lotus_base_base",

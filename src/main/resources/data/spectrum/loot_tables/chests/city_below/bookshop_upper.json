@@ -57,11 +57,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:melochites_cookbook_vol_1"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:melochites_cookbook_vol_2"
+          "name": "spectrum:imperial_cookbook"
         }
       ]
     }

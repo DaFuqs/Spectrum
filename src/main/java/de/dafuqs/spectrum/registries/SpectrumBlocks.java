@@ -1091,12 +1091,12 @@ public class SpectrumBlocks {
 	public static final Block PURE_GOLD_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.GOLD_BLOCK));
 	public static final Block PURE_DIAMOND_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 	public static final Block PURE_EMERALD_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
-	public static final Block PURE_REDSTONE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK));
+	public static final Block PURE_REDSTONE_BLOCK = new PureRedstoneBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK));
 	public static final Block PURE_LAPIS_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 	public static final Block PURE_COPPER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK));
 	public static final Block PURE_QUARTZ_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 	public static final Block PURE_NETHERITE_SCRAP_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.ANCIENT_DEBRIS));
-	public static final Block PURE_ECHO_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.SCULK));
+	public static final Block PURE_ECHO_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
 	public static final Block PURE_GLOWSTONE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	public static final Block PURE_PRISMARINE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.PRISMARINE));
 	

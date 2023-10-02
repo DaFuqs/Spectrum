@@ -22,12 +22,12 @@
   "fluid": "spectrum:midnight_solution",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
-    "fermentation_speed_mod": 0.75,
+    "fermentation_speed_mod": 0.8,
     "angels_share_percent_per_mc_day": -0.02
   },
   "result": {
     "item": "spectrum:incandescent_amalgam",
-    "count": 8
+    "count": 4
   },
   "required_advancement": "spectrum:unlocks/items/incandescent_amalgam_doom"
 }

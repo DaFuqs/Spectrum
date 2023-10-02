@@ -5,7 +5,7 @@
       "dishes:borscht"
     ]
   },
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "sips"
   ],
   "fabric:load_conditions": [

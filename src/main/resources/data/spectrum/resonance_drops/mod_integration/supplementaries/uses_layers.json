@@ -5,7 +5,7 @@
       "supplementaries:fodder"
     ]
   },
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "layers"
   ],
   "fabric:load_conditions": [

@@ -6,7 +6,7 @@
       "brewinandchewin:unripe_scarlet_cheese_wheel"
     ]
   },
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "age"
   ],
   "fabric:load_conditions": [

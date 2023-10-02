@@ -15,7 +15,7 @@
       "bakery:chocolate_tart"
     ]
   },
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "cuts"
   ],
   "fabric:load_conditions": [

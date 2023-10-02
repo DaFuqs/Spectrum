@@ -25,7 +25,10 @@ public class SpectrumEnchantmentHelper {
 	 */
 	public static ItemStack addOrExchangeEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
 		// can this enchant even go on that tool?
-		if (!enchantment.isAcceptableItem(stack)) {
+		if (!enchantment.isAcceptableItem(stack)
+				&& !stack.isOf(Items.ENCHANTED_BOOK)
+				&& !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+			
 			return stack;
 		}
 		

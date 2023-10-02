@@ -370,39 +370,39 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	/**
-	 * Returns the experience required to enchant the given itemStack with the enchantment at that level
+	 * Returns the experience required to enchant the given stack with the enchantment at that level
 	 * Returns -1 if the enchantment is not valid for that stack or the item can not be enchanted
 	 *
-	 * @param itemStack   The item stack to enchant
+	 * @param stack       The item stack to enchant
 	 * @param enchantment The enchantment
 	 * @param level       The enchantments level
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
-	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
-		if (!enchantment.isAcceptableItem(itemStack)) {
+	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
+		if (!enchantment.isAcceptableItem(stack) && !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return -1;
 		}
 		
-		int existingLevel = EnchantmentHelper.getLevel(enchantment, itemStack);
+		int existingLevel = EnchantmentHelper.getLevel(enchantment, stack);
 		if (existingLevel >= level) {
 			return -1;
 		}
 		
-		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
+		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(stack, enchantment);
 		if (conflicts && !allowEnchantmentConflicts) {
 			return -1;
 		}
 		
-		Integer requiredExperience = getEnchantingPrice(itemStack, enchantment, level);
+		Integer requiredExperience = getEnchantingPrice(stack, enchantment, level);
 		if (conflicts) {
 			requiredExperience *= 4;
 		}
 		return requiredExperience;
 	}
 	
-	public static Integer getEnchantingPrice(ItemStack itemStack, Enchantment enchantment, int level) {
-		int enchantability = Math.max(1, itemStack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem) {
+	public static Integer getEnchantingPrice(ItemStack stack, Enchantment enchantment, int level) {
+		int enchantability = Math.max(1, stack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
+		if (enchantment.isAcceptableItem(stack) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;

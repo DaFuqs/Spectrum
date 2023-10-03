@@ -116,7 +116,7 @@ public class ModularExplosion {
 		}
 	}
 	
-	private static List<BlockPos> processExplosion(@NotNull ServerWorld world, @Nullable PlayerEntity owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) { // TODO: process shape
+	private static List<BlockPos> processExplosion(@NotNull ServerWorld world, @Nullable PlayerEntity owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
 		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius);
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();

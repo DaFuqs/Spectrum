@@ -112,9 +112,11 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		}
 		
 		// if the player has a ExperienceStorageItem in hand add the XP to that
+		PlayerEntity player = (PlayerEntity) (Object) this;
 		for (ItemStack stack : getHandItems()) {
-			if (!((PlayerEntity) (Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
+			if (!player.isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
 				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
+				player.experiencePickUpDelay = 0;
 				if (experience == 0) {
 					break;
 				}

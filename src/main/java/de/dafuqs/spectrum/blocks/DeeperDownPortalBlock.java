@@ -19,6 +19,7 @@ import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.function.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.registry.*;
@@ -49,12 +50,29 @@ public class DeeperDownPortalBlock extends Block {
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3d(0.5, 0.0, 0.5), Vec3d.ZERO);
 			if (!hasNeighboringPortals(world, pos)) {
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
-
+				
 				for (PlayerEntity nearbyPlayer : world.getEntitiesByType(EntityType.PLAYER, Box.of(Vec3d.ofCenter(pos), 16D, 16D, 16D), LivingEntity::isAlive)) {
 					Support.grantAdvancementCriterion((ServerPlayerEntity) nearbyPlayer, CREATE_PORTAL_ADVANCEMENT_IDENTIFIER, CREATE_PORTAL_ADVANCEMENT_CRITERION);
 				}
 			}
 		}
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		ItemStack handStack = player.getStackInHand(hand);
+		if (handStack.isOf(SpectrumItems.BEDROCK_DUST)) {
+			if (world.isClient) {
+				return ActionResult.SUCCESS;
+			} else {
+				BlockState placedState = Blocks.BEDROCK.getDefaultState();
+				world.setBlockState(pos, placedState);
+				world.playSound(null, pos, placedState.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return ActionResult.CONSUME;
+			}
+		}
+		
+		return ActionResult.PASS;
 	}
 	
 	private boolean hasNeighboringPortals(World world, BlockPos pos) {

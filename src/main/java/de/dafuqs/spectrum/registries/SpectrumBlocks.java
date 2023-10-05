@@ -1512,7 +1512,7 @@ public class SpectrumBlocks {
 		registerBlock("aloe", ALOE);
 		registerBlock("sawblade_holly_bush", SAWBLADE_HOLLY_BUSH);
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
-		registerBlockWithItem("doombloom", DOOMBLOOM, settings, DyeColor.BLACK);
+		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);

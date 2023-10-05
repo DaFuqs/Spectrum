@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Oh, so you're an Advancement Hunter with style!$(br)With Paginated Advancements installed, you will find that Spectrum's advancements use new, unique frames.$(br)Find out what each frame means on these following pages."
+      "text": "Oh, so you're an Advancement Hunter with style!$(br2)With Paginated Advancements installed, you will find that Spectrum's advancements use new, unique frames."
     },
     {
       "type": "spectrum:snippet",
@@ -31,7 +31,7 @@
       "texture_y": 52,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "Advancements using this slightly altered frame have some kind of unlock attached to them: new recipes, a new revelation or something else. The default frame is used for advancements without additional unlocks, for all you completionists out there."
+      "text": "Advancements using this slightly altered frame have some kind of unlock attached to them: new recipes, a new revelation or something else. (for all you completionists out there!)$(br2)The default frame is used for advancements without additional unlocks."
     },
     {
       "type": "spectrum:snippet",

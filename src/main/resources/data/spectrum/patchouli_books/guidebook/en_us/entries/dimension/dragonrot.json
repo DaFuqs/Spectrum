@@ -14,7 +14,7 @@
     {
       "type": "spectrum:dragonrot_converting",
       "title": "Item Conversion",
-      "recipe": "spectrum:dragonrot_converting/blackslag_from_stone",
+      "recipe": "spectrum:dragonrot_converting/blackslag_from_deepslate",
       "text": "Throwing in some items seems to corrupt them up to a point they turn into something else entirely."
     }
   ]

@@ -61,7 +61,10 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		if (entity.isOnFire()) {
 			entity.setFireTicks(0);
 		}
-		OnPrimordialFireComponent.putOut(entity);
+		if (getCooldownTicks(stack, entity.world) == 0 && OnPrimordialFireComponent.putOut(entity)) {
+			entity.world.playSound(null, entity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			setCooldown(stack, entity.world);
+		}
 	}
 	
 	@Override

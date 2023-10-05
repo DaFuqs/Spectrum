@@ -63,10 +63,14 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 		return component.primordialFireTicks > 0;
 	}
 	
-	public static void putOut(LivingEntity livingEntity) {
+	public static boolean putOut(LivingEntity livingEntity) {
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
-		component.primordialFireTicks = 0;
-		ON_PRIMORDIAL_FIRE_COMPONENT.sync(component);
+		if (component.primordialFireTicks > 0) {
+			component.primordialFireTicks = 0;
+			ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

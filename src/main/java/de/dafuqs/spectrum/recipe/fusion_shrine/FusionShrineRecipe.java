@@ -210,8 +210,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 
-			double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
+				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
 			}
 		} else {

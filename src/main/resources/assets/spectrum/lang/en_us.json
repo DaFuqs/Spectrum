@@ -378,7 +378,7 @@
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
   "enchantment.spectrum.resonance": "Resonance",
-  "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
+  "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties",
   "enchantment.spectrum.pest_control": "Pest Control",
   "enchantment.spectrum.pest_control.desc": "Get's rid of Silverfish when breaking infected Blocks",
   "enchantment.spectrum.autosmelt": "Foundry",

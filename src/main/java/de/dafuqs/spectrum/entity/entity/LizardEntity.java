@@ -105,6 +105,15 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 	}
 	
 	@Override
+	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+		this.setFrills(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, world.getRandom(), LizardFrillVariant.SIMPLE));
+		this.setHorns(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, world.getRandom(), LizardHornVariant.HORNY));
+		this.setColor(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, world.getRandom(), InkColors.MAGENTA));
+		
+		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+	}
+	
+	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putString("color", SpectrumRegistries.INK_COLORS.getId(this.getColor()).toString());

@@ -21,7 +21,7 @@ public class EggLayingWoolyPigEntityRenderer extends MobEntityRenderer<EggLaying
 	
 	@Override
 	public Identifier getTexture(EggLayingWoolyPigEntity entity) {
-		return (entity.getId() - entity.world.getTime() % 120) == 0 ? TEXTURE_BLINKING : TEXTURE; // based on the entities' id, so not all blink at the same time
+		return (entity.getId() - entity.world.getTime()) % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // based on the entities' id, so not all blink at the same time
 	}
 	
 }

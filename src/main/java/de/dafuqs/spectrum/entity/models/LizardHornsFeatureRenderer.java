@@ -1,10 +1,12 @@
 package de.dafuqs.spectrum.entity.models;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class LizardHornsFeatureRenderer<T extends LizardEntity> extends FeatureRenderer<T, LizardEntityModel<T>> {
@@ -14,9 +16,14 @@ public class LizardHornsFeatureRenderer<T extends LizardEntity> extends FeatureR
     }
     
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(entity.getHorns().texture()));
-        this.getContextModel().render(matrices, vertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T lizard, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        
+        LizardHornVariant horns = lizard.getHorns();
+        if (horns != LizardHornVariant.ONLY_LIKES_YOU_AS_A_FRIEND) {
+            VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(horns.texture()));
+            Vec3f color = lizard.getColor().getColor();
+            this.getContextModel().render(matrices, vertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, color.getX(), color.getY(), color.getZ(), 1.0F);
+        }
     }
     
 }

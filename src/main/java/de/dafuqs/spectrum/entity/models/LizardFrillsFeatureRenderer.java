@@ -1,10 +1,12 @@
 package de.dafuqs.spectrum.entity.models;
 
 import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class LizardFrillsFeatureRenderer<T extends LizardEntity> extends FeatureRenderer<T, LizardEntityModel<T>> {
@@ -14,9 +16,13 @@ public class LizardFrillsFeatureRenderer<T extends LizardEntity> extends Feature
     }
     
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(entity.getFrills().texture()));
-        this.getContextModel().render(matrices, vertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T lizard, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        LizardFrillVariant frills = lizard.getFrills();
+        if (frills != LizardFrillVariant.NONE) {
+            VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentEmissive(frills.texture()));
+            Vec3f color = lizard.getColor().getColor();
+            this.getContextModel().render(matrices, vertexConsumer, 15728640, OverlayTexture.DEFAULT_UV, color.getX(), color.getY(), color.getZ(), 1.0F);
+        }
     }
     
 }

@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.id.incubus_core.recipe.*;
-import net.minecraft.entity.effect.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopBrewingRecipe> {
 	
@@ -18,8 +15,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 	}
 	
 	public interface RecipeFactory {
-		PotionWorkshopBrewingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, int craftingTime, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3,
-										   StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, boolean applicableToWeapons, InkColor inkColor, int inkCost);
+		PotionWorkshopBrewingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, int craftingTime, IngredientStack ingredient1, IngredientStack ingredient2, IngredientStack ingredient3, PotionRecipeEffect recipeData);
 	}
 	
 	@Override
@@ -42,25 +38,11 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 			ingredient3 = IngredientStack.EMPTY;
 		}
 		
-		boolean applicableToPotions = JsonHelper.getBoolean(jsonObject, "applicable_to_potions", true);
-		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
-		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillables", true);
-		boolean applicableToWeapons = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_weapons", true);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
-		int baseDurationTicks = JsonHelper.getInt(jsonObject, "base_duration_ticks", 1600);
-		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
-		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "effect"));
-		if (!Registry.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
-			throw new JsonParseException("Potion Workshop Brewing Recipe " + identifier + " has a status effect set that does not exist or is disabled: " + statusEffectIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing status effect
-		}
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		PotionRecipeEffect recipeData = PotionRecipeEffect.read(jsonObject);
 		
-		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
-		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
-		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingTime, ingredient1, ingredient2, ingredient3,
-				statusEffect, baseDurationTicks, potencyModifier, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, inkColor, inkCost);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingTime, ingredient1, ingredient2, ingredient3, recipeData);
 	}
 	
 	@Override
@@ -73,16 +55,7 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 		recipe.ingredient1.write(packetByteBuf);
 		recipe.ingredient2.write(packetByteBuf);
 		recipe.ingredient3.write(packetByteBuf);
-		packetByteBuf.writeIdentifier(Registry.STATUS_EFFECT.getId(recipe.statusEffect));
-		packetByteBuf.writeInt(recipe.baseDurationTicks);
-		packetByteBuf.writeFloat(recipe.potencyModifier);
-		packetByteBuf.writeBoolean(recipe.applicableToPotions);
-		packetByteBuf.writeBoolean(recipe.applicableToTippedArrows);
-		packetByteBuf.writeBoolean(recipe.applicableToPotionFillabes);
-		packetByteBuf.writeBoolean(recipe.applicableToPotionWeapons);
-		
-		packetByteBuf.writeString(recipe.inkColor.toString());
-		packetByteBuf.writeInt(recipe.inkAmount);
+		recipe.recipeData.write(packetByteBuf);
 	}
 	
 	@Override
@@ -95,19 +68,10 @@ public class PotionWorkshopBrewingRecipeSerializer implements GatedRecipeSeriali
 		IngredientStack ingredient1 = IngredientStack.fromByteBuf(packetByteBuf);
 		IngredientStack ingredient2 = IngredientStack.fromByteBuf(packetByteBuf);
 		IngredientStack ingredient3 = IngredientStack.fromByteBuf(packetByteBuf);
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
-		int baseDurationTicks = packetByteBuf.readInt();
-		float potencyModifier = packetByteBuf.readFloat();
-		boolean applicableToPotions = packetByteBuf.readBoolean();
-		boolean applicableToTippedArrows = packetByteBuf.readBoolean();
-		boolean applicableToPotionFillabes = packetByteBuf.readBoolean();
-		boolean applicableToWeapons = packetByteBuf.readBoolean();
 		
-		InkColor inkColor = InkColor.of(packetByteBuf.readString());
-		int inkCost = packetByteBuf.readInt();
+		PotionRecipeEffect recipeData = PotionRecipeEffect.read(packetByteBuf);
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingTime, ingredient1, ingredient2, ingredient3,
-				statusEffect, baseDurationTicks, potencyModifier, applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, inkColor, inkCost);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingTime, ingredient1, ingredient2, ingredient3, recipeData);
 	}
 	
 }

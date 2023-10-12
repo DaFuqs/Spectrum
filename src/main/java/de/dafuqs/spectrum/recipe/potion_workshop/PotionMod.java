@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.gson.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 
-import java.awt.*;
+import java.util.*;
 
 public class PotionMod {
+	
 	public int flatDurationBonusTicks = 0;
 	public float flatPotencyBonus = 0.0F;
 	
@@ -38,7 +39,10 @@ public class PotionMod {
 	public boolean potentDecreasingEffect = false;
 	public boolean negateDecreasingDuration = false;
 	public boolean randomColor = false;
-
+	
+	public List<Pair<PotionRecipeEffect, Float>> additionalEffects = new ArrayList<>();
+	
+	
 	public static PotionMod fromJson(JsonObject jsonObject) {
 		PotionMod mod = new PotionMod();
 		
@@ -111,7 +115,16 @@ public class PotionMod {
 		if (JsonHelper.hasBoolean(jsonObject, "random_color")) {
 			mod.randomColor = JsonHelper.getBoolean(jsonObject, "random_color");
 		}
-
+		if (JsonHelper.hasArray(jsonObject, "additional_effects")) {
+			for (JsonElement e : JsonHelper.getArray(jsonObject, "additional_effects")) {
+				if (e instanceof JsonObject effectObject) {
+					float chance = JsonHelper.getFloat(effectObject, "chance", 1.0F);
+					PotionRecipeEffect effect = PotionRecipeEffect.read(effectObject);
+					mod.additionalEffects.add(new Pair<>(effect, chance));
+				}
+			}
+		}
+		
 		return mod;
 	}
 	
@@ -139,6 +152,12 @@ public class PotionMod {
 		packetByteBuf.writeBoolean(negateDecreasingDuration);
 		packetByteBuf.writeInt(additionalDrinkDurationTicks);
 		packetByteBuf.writeBoolean(randomColor);
+		
+		packetByteBuf.writeInt(additionalEffects.size());
+		for (Pair<PotionRecipeEffect, Float> effectAndChance : additionalEffects) {
+			effectAndChance.getLeft().write(packetByteBuf);
+			packetByteBuf.writeFloat(effectAndChance.getRight());
+		}
 	}
 	
 	public static PotionMod fromPacket(PacketByteBuf packetByteBuf) {
@@ -166,6 +185,12 @@ public class PotionMod {
 		potionMod.negateDecreasingDuration = packetByteBuf.readBoolean();
 		potionMod.additionalDrinkDurationTicks = packetByteBuf.readInt();
 		potionMod.randomColor = packetByteBuf.readBoolean();
+		
+		int statusEffectCount = packetByteBuf.readInt();
+		for (int i = 0; i < statusEffectCount; i++) {
+			potionMod.additionalEffects.add(new Pair<>(PotionRecipeEffect.read(packetByteBuf), packetByteBuf.readFloat()));
+		}
+		
 		return potionMod;
 	}
 	
@@ -193,11 +218,11 @@ public class PotionMod {
 		this.potentDecreasingEffect |= potionMod.potentDecreasingEffect;
 		this.negateDecreasingDuration |= potionMod.negateDecreasingDuration;
 		this.randomColor |= potionMod.randomColor;
+		this.additionalEffects.addAll(potionMod.additionalEffects);
 	}
 	
 	public int getColor(Random random) {
-		return this.randomColor ? Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB() : this.unidentifiable ? 0x2f2f2f : -1; // dark gray
+		return this.randomColor ? java.awt.Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB() : this.unidentifiable ? 0x2f2f2f : -1; // dark gray
 	}
-	
 	
 }

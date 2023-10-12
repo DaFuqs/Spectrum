@@ -206,24 +206,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-		if (hasUniqueReagents(potionWorkshopBlockEntity)) {
-			if (baseIngredient.isOf(Items.ARROW)) { // arrows require lingering potions as base
-				if (recipe.isApplicableToTippedArrows()) {
-					PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-					return potionMod.makeSplashing && potionMod.makeLingering;
-				} else {
-					return false;
-				}
-			} else if (baseIngredient.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
-				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient) ||
-						recipe.isApplicableToPotionWeapons() && inkPoweredPotionFillable.isWeapon();
-			} else if (recipe.getOutput().isOf(Items.POTION)) {
-				return recipe.isApplicableToPotions();
-			} else {
-				return true;
-			}
-		}
-		return false;
+		return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.recipeData.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity));
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
@@ -244,16 +227,16 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_POTION_COUNT_ON_BREWING + potionMod.yield, potionWorkshopBlockEntity.world.random);
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
+		// calculate outputs
+		List<ItemStack> results = new ArrayList<>();
+		for (int i = 0; i < brewedAmount; i++) {
+			results.add(brewingRecipe.getPotion(potionWorkshopBlockEntity.getStack(PotionWorkshopBlockEntity.BASE_INPUT_SLOT_ID), potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random));
+		}
+		
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);
 		decrementBaseIngredientSlot(potionWorkshopBlockEntity, brewedAmount);
 		decrementReagentSlots(potionWorkshopBlockEntity);
-		
-		// calculate outputs
-		List<ItemStack> results = new ArrayList<>();
-		for (int i = 0; i < brewedAmount; i++) {
-			results.add(brewingRecipe.getPotion(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random));
-		}
 		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -281,13 +264,14 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_ARROW_COUNT_ON_BREWING + potionMod.yield * 4, potionWorkshopBlockEntity.world.random);
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
+		// calculate outputs
+		ItemStack arrows = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
+		ItemStack tippedArrows = brewingRecipe.getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
+		
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);
 		decrementBaseIngredientSlot(potionWorkshopBlockEntity, tippedAmount);
 		decrementReagentSlots(potionWorkshopBlockEntity);
-		
-		// calculate outputs
-		ItemStack tippedArrows = brewingRecipe.getTippedArrows(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
 		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -305,12 +289,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			// process reagents
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			
+			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
+			
 			// consume ingredients
 			decrementIngredientSlots(potionWorkshopBlockEntity);
 			decrementReagentSlots(potionWorkshopBlockEntity);
 			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
-			
-			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
 			
 			// trigger advancements for all brewed potions
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();

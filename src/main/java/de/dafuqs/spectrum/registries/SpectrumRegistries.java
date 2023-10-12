@@ -19,15 +19,12 @@ public class SpectrumRegistries {
 	public static final RegistryKey<Registry<InkColor>> INK_COLORS_KEY = RegistryKey.ofRegistry(INK_COLORS_ID);
 	public static final Registry<InkColor> INK_COLORS = FabricRegistryBuilder.createSimple(InkColor.class, INK_COLORS_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	
-	private static final Identifier LIZARD_SCALE_VARIANT_ID = SpectrumCommon.locate("lizard_scale_variant");
 	private static final Identifier LIZARD_FRILL_VARIANT_ID = SpectrumCommon.locate("lizard_frill_variant");
 	private static final Identifier LIZARD_HORN_VARIANT_ID = SpectrumCommon.locate("lizard_horn_variant");
 	
-	public static final RegistryKey<Registry<LizardScaleVariant>> LIZARD_SCALE_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_SCALE_VARIANT_ID);
 	public static final RegistryKey<Registry<LizardFrillVariant>> LIZARD_FRILL_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_FRILL_VARIANT_ID);
 	public static final RegistryKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_HORN_VARIANT_ID);
 	
-	public static final Registry<LizardScaleVariant> LIZARD_SCALE_VARIANT = FabricRegistryBuilder.createSimple(LizardScaleVariant.class, LIZARD_SCALE_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	public static final Registry<LizardFrillVariant> LIZARD_FRILL_VARIANT = FabricRegistryBuilder.createSimple(LizardFrillVariant.class, LIZARD_FRILL_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = FabricRegistryBuilder.createSimple(LizardHornVariant.class, LIZARD_HORN_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	
@@ -50,11 +47,10 @@ public class SpectrumRegistries {
 	}
 	
 	public static void register() {
-		GlassArrowVariant.init();
-		GlassArrowVariant.init();
-		LizardScaleVariant.init();
 		LizardFrillVariant.init();
 		LizardHornVariant.init();
+		
+		GlassArrowVariant.init();
 	}
 	
 }

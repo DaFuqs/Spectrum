@@ -18,6 +18,8 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -138,6 +140,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 				enchanterBlockEntity.updateInClientWorld();
 			}
+			
 			enchanterBlockEntity.inventoryChanged = false;
 		}
 		
@@ -214,8 +217,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanterBlockEntity.craftingTime = 0;
 				enchanterBlockEntity.inventoryChanged();
 			}
-		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.world, enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -646,11 +647,20 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			}
 		}
 		
+		if (this.currentRecipe == null && this.world != null && this.world.isClient) {
+			stopCraftingMusic();
+		}
+		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
 			this.upgrades = new UpgradeHolder();
 		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	protected void stopCraftingMusic() {
+		CraftingBlockSoundInstance.stopPlayingOnPos(this.pos);
 	}
 	
 	@Override

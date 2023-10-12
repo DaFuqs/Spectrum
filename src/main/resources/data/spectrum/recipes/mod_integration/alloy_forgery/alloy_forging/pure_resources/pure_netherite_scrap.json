@@ -2,12 +2,12 @@
   "type": "alloy_forgery:forging",
   "inputs": [
     {
-      "item": "spectrum:pure_netherite",
+      "item": "spectrum:pure_netherite_scrap",
       "count": 2
     }
   ],
   "output": {
-    "id": "minecraft:netherite_scrap",
+    "id": "minecraft:netherite_scrap_scrap",
     "count": 4
   },
   "overrides": {

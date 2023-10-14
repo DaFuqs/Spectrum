@@ -4,15 +4,14 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
 import net.id.incubus_core.blocklikeentities.api.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -24,8 +23,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	
 	private static final float MAX_DAMAGE = 8.0F;
 	private static final float DAMAGE_PER_FALLEN_BLOCK = 0.5F;
-	
-	private float gravityModifier = 1.0F;
+	private static final TrackedData<Float> GRAVITY_MODIFIER = DataTracker.registerData(FloatBlockEntity.class, TrackedDataHandlerRegistry.FLOAT);
 	
 	public FloatBlockEntity(EntityType<? extends FloatBlockEntity> entityType, World world) {
 		super(entityType, world);
@@ -33,19 +31,68 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	
 	public FloatBlockEntity(World world, double x, double y, double z, BlockState blockState) {
 		super(SpectrumEntityTypes.FLOAT_BLOCK, world, x, y, z, blockState);
+		
 		if (blockState.getBlock() instanceof FloatBlock floatBlock) {
-			this.gravityModifier = floatBlock.getGravityMod();
+			setGravity(floatBlock.getGravityMod());
 		}
 	}
 	
 	@Override
-	public void postTickMoveEntities() {
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(GRAVITY_MODIFIER, 0.0F);
+	}
 	
+	public float getGravity() {
+		return this.dataTracker.get(GRAVITY_MODIFIER);
+	}
+	
+	protected void setGravity(float modifier) {
+		this.dataTracker.set(GRAVITY_MODIFIER, modifier);
+	}
+	
+	@Override
+	public boolean hasNoGravity() {
+		return this.getGravity() == 0.0 || super.hasNoGravity();
+	}
+	
+	@Override
+	public void postTickMoveEntities() {
+		if (FallingBlock.canFallThrough(this.blockState)) return;
+		
+		for (Entity entity : this.world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0).union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))) {
+			
+			if (entity instanceof BlockLikeEntity other && isPaltaeriaStratineCollision(other)) {
+				world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
+				
+				ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultStack();
+				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), collisionStack);
+				itemEntity.addVelocity(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
+				world.spawnEntity(itemEntity);
+				
+				this.discard();
+				other.discard();
+			} else if (entity.isPushable()) {
+				entity.move(MovementType.SHULKER_BOX, this.getVelocity());
+				entity.setOnGround(true);
+				entity.addVelocity(this.getVelocity().x, this.getVelocity().y, this.getVelocity().z);
+				entity.fallDistance = 0F;
+				
+				this.postTickEntityCollision(entity);
+			}
+			
+		}
 	}
 	
 	@Override
 	public void postTickMovement() {
-	
+		if (!this.hasNoGravity()) {
+			this.setVelocity(this.getVelocity().multiply(0.98D));
+			double additionalYVelocity = this.age > 100 ? this.getGravity() / 10 : Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (this.getGravity() / 10);
+			this.addVelocity(0.0D, additionalYVelocity, 0.0D);
+		}
+		
+		this.move(MovementType.SELF, this.getVelocity());
 	}
 	
 	@Override
@@ -55,46 +102,6 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		if (movementType != MovementType.SELF) {
 			this.setVelocity(movement);
 		}
-		
-		if (movement.length() > 0) {
-			moveEntitiesOnTop();
-		}
-	}
-	
-	private void moveEntitiesOnTop() {
-		this.world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0)
-						.union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))
-				.stream()
-				.filter(entity -> !(entity instanceof BlockLikeEntity) && entity.isPushable())
-				.forEach(entity -> {
-					entity.fallDistance = 0F;
-					if (this.canHit()) {
-						entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
-					}
-					entity.move(MovementType.SHULKER_BOX, this.getVelocity());
-					entity.setOnGround(true);
-				});
-	}
-	
-	@Override
-	public void tick() {
-		if (!this.hasNoGravity()) {
-			if (this.moveTime > 100) {
-				this.addVelocity(0.0D, (this.gravityModifier / 10), 0.0D);
-			} else {
-				this.addVelocity(0.0D, Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (this.gravityModifier / 10), 0.0D);
-			}
-		}
-		
-		this.move(MovementType.SELF, this.getVelocity());
-		
-		this.checkBlockCollision();
-		this.updateWaterState();
-	}
-	
-	@Override
-	public boolean hasNoGravity() {
-		return this.gravityModifier != 0.0 && super.hasNoGravity();
 	}
 	
 	@Override
@@ -124,7 +131,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	protected void writeCustomDataToNbt(NbtCompound compound) {
 		super.writeCustomDataToNbt(compound);
 		
-		compound.putFloat("GravityModifier", gravityModifier);
+		compound.putFloat("GravityModifier", getGravity());
 	}
 	
 	@Override
@@ -132,7 +139,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		super.readCustomDataFromNbt(compound);
 		
 		if (compound.contains("GravityModifier", NbtElement.FLOAT_TYPE)) {
-			this.gravityModifier = compound.getFloat("GravityModifier");
+			setGravity(compound.getFloat("GravityModifier"));
 		}
 	}
 	
@@ -163,39 +170,11 @@ public class FloatBlockEntity extends BlockLikeEntity {
 		return this.blockState.getBlock().asItem().getDefaultStack();
 	}
 	
-	@Override
-	@Environment(EnvType.CLIENT)
-	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
-		super.onSpawnPacket(packet);
-		if (this.blockState.getBlock() instanceof FloatBlock floatBlock) {
-			this.gravityModifier = floatBlock.getGravityMod();
-		}
-	}
-	
-	@Override
-	public void postTickEntityCollision(Entity entity) {
-		super.postTickEntityCollision(entity);
-		
-		if (isPaltaeriaStratineCollision(entity)) {
-			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
-			this.discard();
-			entity.discard();
-			
-			ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultStack();
-			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), collisionStack);
-			itemEntity.addVelocity(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
-			world.spawnEntity(itemEntity);
-		}
-	}
-	
-	public boolean isPaltaeriaStratineCollision(Entity other) {
-		if (other instanceof BlockLikeEntity otherBlockLikeEntity) {
-			Block thisBlock = this.blockState.getBlock();
-			Block otherBlock = otherBlockLikeEntity.getBlockState().getBlock();
-			return thisBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK
-					|| thisBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK;
-		}
-		return false;
+	public boolean isPaltaeriaStratineCollision(BlockLikeEntity other) {
+		Block thisBlock = this.blockState.getBlock();
+		Block otherBlock = other.getBlockState().getBlock();
+		return thisBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK
+				|| thisBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK;
 	}
 	
 	@Override

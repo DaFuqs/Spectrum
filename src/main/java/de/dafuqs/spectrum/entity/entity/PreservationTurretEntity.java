@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.control.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
@@ -46,6 +47,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		Vec3i vec3i = Direction.SOUTH.getVector();
 		return new Vec3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 	});
+	
+	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable();
 	
 	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this, (VibrationListener.Vibration) null, 0.0F, 0));
 	
@@ -403,7 +406,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
-		if (!this.isDead() && entity instanceof LivingEntity livingEntity) {
+		if (!this.isDead() && entity instanceof LivingEntity livingEntity && TARGET_PREDICATE.test(this, livingEntity)) {
 			this.setTarget(livingEntity);
 			PreservationTurretEntity.this.setPeekAmount(100);
 		}
@@ -465,9 +468,12 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 			
 			return target != null
 					&& target.isAlive()
-					&& PreservationTurretEntity.this.openProgress == 1.0
-					&& PreservationTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL
-					&& PreservationTurretEntity.this.canSee(target);
+					&& PreservationTurretEntity.this.openProgress == 1.0 && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
+		}
+		
+		@Override
+		public boolean shouldContinue() {
+			return super.shouldContinue() && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
 		}
 		
 		@Override

@@ -103,7 +103,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:storm_stone",
       "advancement": "spectrum:midgame/collect_storm_stone",
-      "text": "$(li)dramatically increases potency at the beginning, but makes potency wear off over time - noes not work for instant effects"
+      "text": "$(li)dramatically increases potency at the beginning, but makes potency wear off over time - does not work for instant effects"
     },
     {
       "type": "patchouli:spotlight",

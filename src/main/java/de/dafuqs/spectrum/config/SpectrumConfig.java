@@ -49,9 +49,9 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
-			By default, there is a 0.075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
+			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
-	public float ShootingStarChance = 0.075F;
+	public float ShootingStarChance = 0.0075F;
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
@@ -230,12 +230,12 @@ public class SpectrumConfig implements ConfigData {
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
-			ShootingStarWorlds.add("starry_sky:starry_sky");
+			ShootingStarWorlds.add("starry_skies:overworld");
 			ShootingStarWorlds.add("paradise_lost:paradise_lost");
 		}
 		if (StormStonesWorlds.isEmpty()) {
 			StormStonesWorlds.add("minecraft:overworld");
-			StormStonesWorlds.add("starry_sky:starry_sky");
+			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
 		}
 	}

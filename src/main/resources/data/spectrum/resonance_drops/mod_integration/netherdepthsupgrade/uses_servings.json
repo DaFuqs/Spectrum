@@ -5,7 +5,7 @@
       "netherdepthsupgrade:nether_rice_roll_medley_block"
     ]
   },
-  "state_tags_to_copy": [
+  "state_properties_to_copy": [
     "servings"
   ],
   "fabric:load_conditions": [

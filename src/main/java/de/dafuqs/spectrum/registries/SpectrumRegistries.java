@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -16,15 +17,18 @@ import java.util.*;
 // FIXME - Use non-deprecated methods
 public class SpectrumRegistries {
 	
-	private static final Identifier LIZARD_SCALE_VARIANT_ID = SpectrumCommon.locate("lizard_scale_variant");
+	private static final Identifier INK_COLORS_ID = SpectrumCommon.locate("ink_color");
+	public static final RegistryKey<Registry<InkColor>> INK_COLORS_KEY = RegistryKey.ofRegistry(INK_COLORS_ID);
+	public static final Registry<InkColor> INK_COLORS = FabricRegistryBuilder.createSimple(InkColor.class, INK_COLORS_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
 	private static final Identifier LIZARD_FRILL_VARIANT_ID = SpectrumCommon.locate("lizard_frill_variant");
 	private static final Identifier LIZARD_HORN_VARIANT_ID = SpectrumCommon.locate("lizard_horn_variant");
 
-	public static final RegistryKey<Registry<LizardScaleVariant>> LIZARD_SCALE_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_SCALE_VARIANT_ID);
+
 	public static final RegistryKey<Registry<LizardFrillVariant>> LIZARD_FRILL_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_FRILL_VARIANT_ID);
 	public static final RegistryKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_HORN_VARIANT_ID);
 
-	public static final Registry<LizardScaleVariant> LIZARD_SCALE_VARIANT = FabricRegistryBuilder.createSimple(LizardScaleVariant.class, LIZARD_SCALE_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
 	public static final Registry<LizardFrillVariant> LIZARD_FRILL_VARIANT = FabricRegistryBuilder.createSimple(LizardFrillVariant.class, LIZARD_FRILL_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = FabricRegistryBuilder.createSimple(LizardHornVariant.class, LIZARD_HORN_VARIANT_ID).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
@@ -33,19 +37,24 @@ public class SpectrumRegistries {
 	public static final Registry<ExplosionModifier> EXPLOSION_MODIFIERS = FabricRegistryBuilder.createSimple(ExplosionModifier.class, SpectrumCommon.locate("explosion_effect_modifier")).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
 	public static <T> T getRandomTagEntry(Registry<T> registry, TagKey<T> tag, Random random, T fallback) {
-		Optional<RegistryEntryList.Named<T>> naturals = registry.getEntryList(tag);
-		if (naturals.isPresent()) {
-			return naturals.get().get(random.nextInt(naturals.get().size())).value();
+		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);
+		if (tagEntries.isPresent()) {
+			return tagEntries.get().get(random.nextInt(tagEntries.get().size())).value();
 		} else {
 			return fallback;
 		}
 	}
 	
+	public static <T> List<RegistryEntry<T>> getEntries(Registry<T> registry, TagKey<T> tag) {
+		Optional<RegistryEntryList.Named<T>> tagEntries = registry.getEntryList(tag);
+		return tagEntries.map(registryEntries -> registryEntries.stream().toList()).orElseGet(List::of);
+	}
+
 	public static void register() {
-		GlassArrowVariant.init();
-		LizardScaleVariant.init();
 		LizardFrillVariant.init();
 		LizardHornVariant.init();
+
+		GlassArrowVariant.init();
 	}
 	
 }

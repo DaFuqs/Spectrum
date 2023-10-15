@@ -18,6 +18,8 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -138,6 +140,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 				enchanterBlockEntity.updateInClientWorld();
 			}
+
 			enchanterBlockEntity.inventoryChanged = false;
 		}
 		
@@ -370,39 +373,39 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	/**
-	 * Returns the experience required to enchant the given itemStack with the enchantment at that level
+	 * Returns the experience required to enchant the given stack with the enchantment at that level
 	 * Returns -1 if the enchantment is not valid for that stack or the item can not be enchanted
 	 *
-	 * @param itemStack   The item stack to enchant
+	 * @param stack       The item stack to enchant
 	 * @param enchantment The enchantment
 	 * @param level       The enchantments level
 	 * @return The required experience to enchant. -1 if the enchantment is not applicable
 	 */
-	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
-		if (!enchantment.isAcceptableItem(itemStack)) {
+	public static int getRequiredExperienceToEnchantWithEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean allowEnchantmentConflicts) {
+		if (!enchantment.isAcceptableItem(stack) && !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return -1;
 		}
 		
-		int existingLevel = EnchantmentHelper.getLevel(enchantment, itemStack);
+		int existingLevel = EnchantmentHelper.getLevel(enchantment, stack);
 		if (existingLevel >= level) {
 			return -1;
 		}
 		
-		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(itemStack, enchantment);
+		boolean conflicts = SpectrumEnchantmentHelper.hasEnchantmentThatConflictsWith(stack, enchantment);
 		if (conflicts && !allowEnchantmentConflicts) {
 			return -1;
 		}
 		
-		Integer requiredExperience = getEnchantingPrice(itemStack, enchantment, level);
+		Integer requiredExperience = getEnchantingPrice(stack, enchantment, level);
 		if (conflicts) {
 			requiredExperience *= 4;
 		}
 		return requiredExperience;
 	}
 	
-	public static Integer getEnchantingPrice(ItemStack itemStack, Enchantment enchantment, int level) {
-		int enchantability = Math.max(1, itemStack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
-		if (enchantment.isAcceptableItem(itemStack) || itemStack.getItem() instanceof BookItem) {
+	public static Integer getEnchantingPrice(ItemStack stack, Enchantment enchantment, int level) {
+		int enchantability = Math.max(1, stack.getItem().getEnchantability()); // items like Elytras have an enchantability of 0, but can get unbreaking
+		if (enchantment.isAcceptableItem(stack) || SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
 			return getRequiredExperienceForEnchantment(enchantability, enchantment, level);
 		}
 		return -1;
@@ -646,6 +649,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			}
 		}
 		
+		if (this.currentRecipe == null && this.world != null && this.world.isClient) {
+			stopCraftingMusic();
+		}
+
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
@@ -653,6 +660,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
+	@Environment(EnvType.CLIENT)
+	protected void stopCraftingMusic() {
+		CraftingBlockSoundInstance.stopPlayingOnPos(this.pos);
+	}
+
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);

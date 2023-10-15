@@ -189,5 +189,19 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 	public int getEnchantability() {
 		return 5;
 	}
-	
+
+//	@Override
+//	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+//		super.appendStacks(group, stacks);
+//		if (this.isIn(group)) {
+//			ItemStack stack = getDefaultStack();
+//			ExperienceStorageItem.addStoredExperience(stack, getMaxStoredExperience(stack));
+//			stacks.add(stack);
+//
+//			ItemStack enchantedStack = SpectrumEnchantmentHelper.getMaxEnchantedStack(this);
+//			ExperienceStorageItem.addStoredExperience(enchantedStack, getMaxStoredExperience(stack));
+//			stacks.add(enchantedStack);
+//		}
+//	}
+
 }

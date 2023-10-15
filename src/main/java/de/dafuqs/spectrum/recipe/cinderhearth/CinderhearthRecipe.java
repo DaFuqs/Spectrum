@@ -52,7 +52,7 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return outputsWithChance.get(0).getLeft();
 	}
 	
 	@Override

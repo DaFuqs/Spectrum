@@ -1,10 +1,9 @@
 {
   "name": "Doomblooms",
   "advancement": "spectrum:hidden/interact_with_doombloom",
-  "icon": "spectrum:doombloom",
+  "icon": "spectrum:doombloom_seed",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
-    "spectrum:doombloom": 0,
     "spectrum:doombloom_seed": 0
   },
   "pages": [

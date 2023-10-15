@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Silk Touch, Fortune and Pest Control.$(br2)$(br2)"
+      "text": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Silk Touch, Fortune and Pest Control.$(br2)$(br2)"
     },
     {
       "type": "spectrum:enchanter_crafting",

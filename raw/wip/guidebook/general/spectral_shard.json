@@ -1,0 +1,39 @@
+{
+  "name": "Spectral Shard",
+  "advancement": "spectrum:unlocks/resources/spectral_shard",
+  "sortnum": 22,
+  "secret": true,
+  "icon": "spectrum:spectral_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:endgame/create_spectral_shard",
+  "extra_recipe_mappings": {
+    "spectrum:spectral_shard": 0,
+    "spectrum:spectral_shard_block": 0,
+    "spectrum:spectral_shard_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Spectral Shard",
+      "text": "Your first attempt to reach for the stars - long, long ago - was not too successful.$(br)Looking back, you can only laugh at how simple-minded you were. You learned a lot and came a long way.$(br)Now you are here. Take 2, here we go."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/spectral_shard",
+      "text": "$(italic)The feeling of perfection, this time for real."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:endgame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_block",
+      "text": "$(italic)Pretty!$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:endgame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_storage_block",
+      "text": "$(italic)And you thought a beacon out of Netherite Blocks was a excessive?$()"
+    }
+  ]
+}

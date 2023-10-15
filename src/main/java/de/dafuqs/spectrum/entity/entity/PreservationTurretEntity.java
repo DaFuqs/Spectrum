@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.control.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
@@ -50,10 +51,10 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		return new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 	});
 	
-	protected final Vibrations.Callback vibrationCallback = new GuardianCanHearYouShufflingCallback(this);
-	protected Vibrations.ListenerData listenerData = new Vibrations.ListenerData();
+	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable();
 
-	protected final EntityGameEventHandler<Vibrations.VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new Vibrations.VibrationListener(this));
+	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this, (VibrationListener.Vibration) null, 0.0F, 0));
+	
 	protected float prevOpenProgress;
 	protected float openProgress;
 	protected @Nullable BlockPos prevAttachedBlock;
@@ -66,8 +67,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
-		this.goalSelector.add(4, new RatatatataGoal());
+		this.goalSelector.add(1, new RatatatataGoal());
+		this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
 	}
 	
 	@Override
@@ -377,7 +378,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 
 		// they only have a very limited vertical field of sight
 		// a valid strategy would be to sneak to their top / bottom, since they can't shoot there
-		return distance < 32
+		return distance < 26
 				&& (Math.abs(this.getEyeY() - entity.getEyeY()) < distance / 2 || Math.abs(this.getEyeY() - entity.getY()) < distance / 2)
 				&& this.getWorld().raycast(new RaycastContext(thisEyePos, entityEyePos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
 	}
@@ -401,13 +402,11 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 
 	@Override
-	public ListenerData getVibrationListenerData() {
-		return null;
-	}
-
-	@Override
-	public Callback getVibrationCallback() {
-		return null;
+	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
+		if (!this.isDead() && entity instanceof LivingEntity livingEntity && TARGET_PREDICATE.test(this, livingEntity)) {
+			this.setTarget(livingEntity);
+			PreservationTurretEntity.this.setPeekAmount(100);
+		}
 	}
 
 	private class TurretLookControl extends LookControl {
@@ -448,16 +447,30 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	private class RatatatataGoal extends Goal {
 		
 		public RatatatataGoal() {
-			this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+			this.setControls(EnumSet.of(Control.MOVE, Control.TARGET));
 		}
 		
 		@Override
 		public boolean canStart() {
 			LivingEntity target = PreservationTurretEntity.this.getTarget();
+
+			if (target != null) {
+				PreservationTurretEntity.this.getLookControl().lookAt(target, 2.0F, 2.0F);
+
+				if (!PreservationTurretEntity.this.canSee(target)) {
+					PreservationTurretEntity.this.setTarget(null);
+					return false;
+				}
+			}
+
 			return target != null
 					&& target.isAlive()
-					&& PreservationTurretEntity.this.openProgress == 1.0
-					&& PreservationTurretEntity.this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
+					&& PreservationTurretEntity.this.openProgress == 1.0 && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			return super.shouldContinue() && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
 		}
 		
 		@Override
@@ -469,15 +482,19 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		public void tick() {
 			if (PreservationTurretEntity.this.getWorld().getDifficulty() != Difficulty.PEACEFUL) {
 				LivingEntity target = PreservationTurretEntity.this.getTarget();
-				if (target != null && PreservationTurretEntity.this.canSee(target)) {
-					PreservationTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
-					target.damage(getWorld().getDamageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
-					PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-					target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-					super.tick();
-				} else {
-					PreservationTurretEntity.this.setTarget(null);
+				if (target == null) {
+					return;
 				}
+
+				if (!PreservationTurretEntity.this.canSee(target)) {
+					return;
+				}
+
+				target.damage(getWorld().getDamageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
+				PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+				target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+
+				super.tick();
 			}
 		}
 	}

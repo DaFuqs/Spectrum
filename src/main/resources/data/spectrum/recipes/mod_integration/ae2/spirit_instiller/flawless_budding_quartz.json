@@ -3,14 +3,15 @@
   "time": 400,
   "experience": 8.0,
   "ingredient1": {
-    "tag": "ae2:flawed_budding_quartz"
-  },
-  "ingredient2": {
-    "item": "ae2:charged_certus_quartz_crystal"
-  },
-  "center_ingredient": {
     "item": "spectrum:neolith",
     "count": 4
+  },
+  "ingredient2": {
+    "item": "ae2:charged_certus_quartz_crystal",
+    "count": 4
+  },
+  "center_ingredient": {
+    "item": "ae2:flawed_budding_quartz"
   },
   "result": {
     "item": "ae2:flawless_budding_quartz"

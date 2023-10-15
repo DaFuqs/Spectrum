@@ -32,7 +32,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 		if (entity.isAngry()) {
 			return TEXTURE_ANGRY;
 		}
-		return entity.getWorld().getTime() % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // TODO: base this on the entities id, so not all blink at the same time
+		return (entity.getId() - entity.getWorld().getTime()) % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // based on the entities' id, so not all blink at the same time
 	}
 	
 }

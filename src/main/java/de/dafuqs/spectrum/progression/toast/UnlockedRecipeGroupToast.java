@@ -49,6 +49,13 @@ public class UnlockedRecipeGroupToast implements Toast {
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
 	}
 	
+	public static void showLotsOfRecipesToast(@NotNull MinecraftClient client, List<ItemStack> itemStacks) {
+		client.getToastManager().add(new UnlockedRecipeGroupToast(
+				Text.translatable("spectrum.toast.lots_of_recipes_unlocked.title"),
+				Text.translatable("spectrum.toast.lots_of_recipes_unlocked.description", itemStacks.size()),
+				itemStacks));
+	}
+	
 	public static Text getTextForItemStack(@NotNull ItemStack itemStack) {
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			// special handling for enchanted books

@@ -10,8 +10,6 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-import static de.dafuqs.spectrum.recipe.RecipeUtils.*;
-
 public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<ShapelessPedestalRecipe> {
 	
 	public final ShapelessPedestalRecipeSerializer.RecipeFactory recipeFactory;
@@ -61,19 +59,15 @@ public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		packetByteBuf.writeInt(recipe.tier.ordinal());
 		packetByteBuf.writeInt(recipe.inputs.size());
-		writeIngredientStacks(packetByteBuf, recipe);
+		for (IngredientStack ingredient : recipe.inputs) {
+			ingredient.write(packetByteBuf);
+		}
 		writeGemstonePowderInputs(packetByteBuf, recipe);
 		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
 		packetByteBuf.writeBoolean(recipe.skipRecipeRemainders);
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
-	}
-	
-	private void writeIngredientStacks(PacketByteBuf packetByteBuf, ShapelessPedestalRecipe recipe) {
-		for (IngredientStack ingredient : recipe.inputs) {
-			ingredient.write(packetByteBuf);
-		}
 	}
 	
 	@Override
@@ -83,7 +77,7 @@ public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
 		int inputCount = packetByteBuf.readInt();
-		List<IngredientStack> inputs = readIngredientStacks(packetByteBuf, inputCount);
+		List<IngredientStack> inputs = IngredientStack.decodeByteBuf(packetByteBuf, inputCount);
 		Map<BuiltinGemstoneColor, Integer> gemInputs = readGemstonePowderInputs(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();

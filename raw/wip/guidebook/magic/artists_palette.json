@@ -1,0 +1,22 @@
+{
+  "name": "Artist's Palette",
+  "advancement": "spectrum:unlocks/trinkets/artists_palette",
+  "secret": true,
+  "icon": "spectrum:artists_palette",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:artists_palette": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Artist's Palette combines the Ink-storing ability of the $(l:magic/pigment_palette)Pigment Palette$(/l) with your new capabilities to mix colors.$(br)It directly stores elemental Ink and mixes the others on the fly, while having vastly increased capacity."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/artists_palette",
+      "text": "Capable of storing sizable amounts of $(l:magic/ink)Ink$(), making you able to supply all your magical equipment. It is not suited for powering your machines, though."
+    }
+  ]
+}

@@ -66,7 +66,7 @@ public class FailingBlock extends DecayBlock {
 	
 	@Override
 	protected BlockState getSpreadState(BlockState previousState) {
-		return previousState.with(AGE, previousState.get(AGE) + 1);
+		return previousState.with(CONVERSION, Conversion.NONE).with(AGE, previousState.get(AGE) + 1);
 	}
 	
 }

@@ -33,7 +33,7 @@ import org.joml.*;
 import java.util.*;
 import java.util.function.*;
 
-// TODO - Review this merge.
+// TODO - Review this merge, please.
 public class PreservationTurretEntity extends GolemEntity implements Monster, Vibrations {
 
 	protected float DAMAGE = 4.0F;
@@ -53,7 +53,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable();
 
-	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this, (VibrationListener.Vibration) null, 0.0F, 0));
+	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(this));
 	
 	protected float prevOpenProgress;
 	protected float openProgress;
@@ -119,7 +119,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		nbt.putByte("AttachFace", (byte) this.getAttachedFace().getId());
 		nbt.putByte("Peek", this.dataTracker.get(PEEK_AMOUNT));
 
-		DataResult<NbtElement> dataResult = ListenerData.CODEC.encodeStart(NbtOps.INSTANCE, listenerData);
+		DataResult<NbtElement> dataResult = ListenerData.CODEC.encodeStart(NbtOps.INSTANCE, this.getVibrationListenerData());
 		dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
 	}
 
@@ -131,11 +131,14 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 
 		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
 			DataResult<ListenerData> result = ListenerData.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
-			result.result().ifPresent(vibrationListenerData -> this.listenerData = vibrationListenerData);
-			//result.result().ifPresent((vibrationListener) -> this.gameEventHandler.(vibrationListener, this.getWorld()));
+			result.result().ifPresent(vibrationListenerData -> this.setVibrationListenerData(vibrationListenerData));
 		}
 	}
-	
+
+	private void setVibrationListenerData(ListenerData vibrationListenerData) {
+		// FIXME - IMPLEMENT
+	}
+
 	@Override
 	public void playAmbientSound() {
 		if (this.getPeekAmount() > 0) {
@@ -152,7 +155,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 //		}
 
 		if (this.getWorld() instanceof ServerWorld serverWorld) {
-			Vibrations.Ticker.tick(serverWorld, listenerData, vibrationCallback);
+			Vibrations.Ticker.tick(serverWorld, this.getVibrationListenerData(), this.getVibrationCallback());
 		}
 
 		if (!this.getWorld().isClient() && !this.hasVehicle() && !this.canStay(this.getBlockPos(), this.getAttachedFace())) {
@@ -401,12 +404,24 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 				&& this.getWorld().getWorldBorder().contains(livingEntity.getBoundingBox());
 	}
 
-	@Override
+	//@Override
+	// FIXME - What is this meant to override?
 	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
 		if (!this.isDead() && entity instanceof LivingEntity livingEntity && TARGET_PREDICATE.test(this, livingEntity)) {
 			this.setTarget(livingEntity);
 			PreservationTurretEntity.this.setPeekAmount(100);
 		}
+	}
+
+	@Override
+	public ListenerData getVibrationListenerData() {
+		// FIXME - IMPLEMENT
+		return new ListenerData();
+	}
+
+	@Override
+	public Callback getVibrationCallback() {
+		return new GuardianCanHearYouShufflingCallback(this);
 	}
 
 	private class TurretLookControl extends LookControl {

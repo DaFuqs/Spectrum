@@ -159,7 +159,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		
 		// apply to potion
-		if (effects.size() == 0) {
+		if (effects.isEmpty()) {
 			// no effects: thick potion
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
@@ -179,7 +179,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		List<InkPoweredStatusEffectInstance> effects = generateEffects(stack, potionMod, lastRecipe, random);
 		
 		ItemStack itemStack = new ItemStack(Items.TIPPED_ARROW, amount);
-		if (effects.size() == 0) {
+		if (effects.isEmpty()) {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
 			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
@@ -268,7 +268,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	private void addRandomEffects(PotionMod potionMod, Random random, List<InkPoweredStatusEffectInstance> effects) {
 		// random positive ones
-		if (positiveRecipes.size() > 0) {
+		if (!positiveRecipes.isEmpty()) {
 			int additionalPositiveEffects = Support.getIntFromDecimalWithChance(potionMod.additionalRandomPositiveEffectCount, random);
 			for (int i = 0; i < additionalPositiveEffects; i++) {
 				int r;
@@ -292,7 +292,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		
 		// random negative ones
-		if (negativeRecipes.size() > 0) {
+		if (!negativeRecipes.isEmpty()) {
 			int additionalNegativeEffects = Support.getIntFromDecimalWithChance(potionMod.additionalRandomNegativeEffectCount, random);
 			for (int i = 0; i < additionalNegativeEffects; i++) {
 				int r;

@@ -15,6 +15,7 @@ import org.jgrapht.graph.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class PastelTransmissionLogic {
     
     private enum TransferMode {
@@ -108,7 +109,7 @@ public class PastelTransmissionLogic {
             ResourceAmount<ItemVariant> extractableAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
             if (extractableAmount != null) {
                 int transferrableAmount = (int) Math.min(extractableAmount.amount(), MAX_TRANSFER_AMOUNT);
-                transferrableAmount = (int) destinationStorage.simulateInsert(extractableAmount.resource(), transferrableAmount + destinationNode.getItemCountUnderway(), transaction);
+                transferrableAmount = (int) StorageUtil.simulateInsert(destinationStorage, extractableAmount.resource(), transferrableAmount + destinationNode.getItemCountUnderway(), transaction);
                 transferrableAmount = transferrableAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
                 if (transferrableAmount > 0) {
                     sourceStorage.extract(extractableAmount.resource(), transferrableAmount, transaction);

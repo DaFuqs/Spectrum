@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.energy.color;
 
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.joml.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -92,7 +92,7 @@ public abstract class InkColor {
 				}
 			}
 
-			if (possibleOutcomes.size() > 0) { // this should always be the case, but you never know
+			if (!possibleOutcomes.isEmpty()) { // this should always be the case, but you never know
 				Collections.shuffle(possibleOutcomes);
 				return possibleOutcomes.get(0);
 			}

@@ -207,8 +207,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-		// TODO - Is applicable to what?
-        return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity));
+		// FIXME - Is applicable to what?
+        return hasUniqueReagents(potionWorkshopBlockEntity) /*&& recipe.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity))*/;
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
@@ -232,7 +232,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// calculate outputs
 		List<ItemStack> results = new ArrayList<>();
 		for (int i = 0; i < brewedAmount; i++) {
-			results.add(brewingRecipe.getPotion(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random));
+			results.add(brewingRecipe.getPotion(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.getWorld().random));
 		}
 
 		// consume ingredients
@@ -268,7 +268,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		
 		// calculate outputs
 		ItemStack arrows = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		ItemStack tippedArrows = brewingRecipe.getTippedArrows(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
+		ItemStack tippedArrows = brewingRecipe.getTippedArrows(arrows, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
 
 		// consume ingredients
 		decrementIngredientSlots(potionWorkshopBlockEntity);

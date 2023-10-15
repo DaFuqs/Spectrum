@@ -10,7 +10,7 @@ import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 public record PotionRecipeEffect(boolean applicableToPotions, boolean applicableToTippedArrows,
@@ -28,10 +28,10 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "effect"));
-		if (!Registry.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
+		if (!Registries.STATUS_EFFECT.containsId(statusEffectIdentifier)) {
 			throw new JsonParseException("Potion Workshop Recipe has a status effect set that does not exist or is disabled: " + statusEffectIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing status effect
 		}
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
@@ -40,7 +40,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeIdentifier(Registry.STATUS_EFFECT.getId(statusEffect));
+		packetByteBuf.writeIdentifier(Registries.STATUS_EFFECT.getId(statusEffect));
 		packetByteBuf.writeInt(baseDurationTicks);
 		packetByteBuf.writeFloat(potencyModifier);
 		packetByteBuf.writeBoolean(applicableToPotions);
@@ -52,7 +52,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 	}
 	
 	public static PotionRecipeEffect read(PacketByteBuf packetByteBuf) {
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(packetByteBuf.readIdentifier());
 		int baseDurationTicks = packetByteBuf.readInt();
 		float potencyModifier = packetByteBuf.readFloat();
 		boolean applicableToPotions = packetByteBuf.readBoolean();

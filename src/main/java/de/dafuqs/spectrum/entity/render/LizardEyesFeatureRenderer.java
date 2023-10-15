@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.entity.models.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.*;
-import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.*;
 
@@ -20,7 +19,7 @@ public class LizardEyesFeatureRenderer<T extends LivingEntity> extends EyesFeatu
 	
 	@Override
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-		if ((entity.getId() - entity.world.getTime() % 120) != 0) {
+		if ((entity.getId() - entity.getWorld().getTime() % 120) != 0) {
 			super.render(matrices, vertexConsumers, light, entity, limbAngle, limbDistance, tickDelta, animationProgress, headYaw, headPitch);
 		}
 	}

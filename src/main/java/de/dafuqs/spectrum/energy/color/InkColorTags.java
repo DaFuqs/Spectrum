@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.energy.color;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 
 public class InkColorTags {
 	

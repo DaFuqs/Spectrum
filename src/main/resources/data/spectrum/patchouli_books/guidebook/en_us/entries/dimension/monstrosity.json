@@ -12,7 +12,7 @@
     {
       "type": "patchouli:text",
       "title": "The Monstrosity",
-      "text": "$(italic)Something is lurking down there. You knew it!$()$(br2)A cruel monstrosity watching your every step. Just waiting for the right time to strike.$(br)Watch out not getting shredded into pieces and devoured. What a nice time to be alive."
+      "text": "$(italic)Something is lurking down there. You knew it!$()$(br2)A cruel monstrosity watching your every move, just waiting for the right moment to strike...(br)Be careful not to be torn to shreds and devoured. What a nice time to be alive."
     },
     {
       "type": "patchouli:text",

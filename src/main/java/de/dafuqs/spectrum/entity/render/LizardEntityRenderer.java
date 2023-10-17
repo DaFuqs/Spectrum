@@ -24,6 +24,6 @@ public class LizardEntityRenderer extends MobEntityRenderer<LizardEntity, Lizard
 	@Override
 	public Identifier getTexture(LizardEntity entity) {
 		return (entity.getId() - entity.world.getTime()) % 120 == 0 ? TEXTURE_BLINKING : TEXTURE; // based on the entities' id, so not all blink at the same time
-	}
+ 	}
 	
 }

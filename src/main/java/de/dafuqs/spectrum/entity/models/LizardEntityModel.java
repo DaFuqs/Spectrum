@@ -37,7 +37,7 @@ public class LizardEntityModel<T extends LivingEntity> extends AnimalModel<T> {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		
-		ModelPartData body = modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create()
+		modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create()
 				.uv(23, 18).cuboid(-3.5F, -3.0F, -9.0F, 7.0F, 7.0F, 11.0F)
 				.uv(0, 0).cuboid(0.0F, -15.0F, -9.0F, 0.0F, 12.0F, 17.0F)
 				.uv(48, 13).cuboid(-3.0F, -3.0F, 2.0F, 6.0F, 7.0F, 6.0F), ModelTransform.pivot(0.0F, 19.0F, 0.0F));

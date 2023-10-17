@@ -242,36 +242,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		return super.damage(source, amount);
 	}
 	
-	/*
-	private void destroyBlocks(Box box) {
-		int minX = MathHelper.floor(box.minX);
-		int minY = MathHelper.floor(box.minY);
-		int minZ = MathHelper.floor(box.minZ);
-		int maxX = MathHelper.floor(box.maxX);
-		int maxY = MathHelper.floor(box.maxY);
-		int maxZ = MathHelper.floor(box.maxZ);
-		boolean blockDestroyed = false;
-		
-		for (int x = minX; x <= maxX; ++x) {
-			for (int y = minY; y <= maxY; ++y) {
-				for (int z = minZ; z <= maxZ; ++z) {
-					BlockPos blockPos = new BlockPos(x, y, z);
-					BlockState blockState = this.world.getBlockState(blockPos);
-					if (!blockState.isAir() && !blockState.isIn(BlockTags.DRAGON_TRANSPARENT)) {
-						if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && !blockState.isIn(BlockTags.DRAGON_IMMUNE)) {
-							blockDestroyed = this.world.removeBlock(blockPos, false) || blockDestroyed;
-						}
-					}
-				}
-			}
-		}
-		
-		if (blockDestroyed) {
-			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
-			this.world.syncWorldEvent(2008, randomPos, 0);
-		}
-	}*/
-	
 	@Override
 	public boolean canSee(Entity entity) {
 		if (entity.world != this.world) {
@@ -294,7 +264,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void attack(LivingEntity target, float pullProgress) {
 		if (world.random.nextBoolean()) {
 			LightShardBaseEntity.summonBarrageInternal(world, this, () -> {
-				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 12.0F, 800);
+				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 6.0F, 800);
 				entity.setTargetPredicate(ENTITY_TARGETS);
 				return entity;
 			}, this.getEyePos(), UniformIntProvider.create(5, 7));

@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -18,6 +20,9 @@ import java.util.*;
 
 public class MidnightAberrationItem extends CloakedItem {
 	
+	private static final Identifier MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/crumble_midnight_aberration");
+	private static final String MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_CRITERION = "have_midnight_aberration_crumble";
+	
 	public MidnightAberrationItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, cloakAdvancementIdentifier, cloakItem);
 	}
@@ -26,17 +31,19 @@ public class MidnightAberrationItem extends CloakedItem {
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof PlayerEntity playerEntity) {
+		if (!world.isClient && world.getTime() % 20 == 0 && entity instanceof ServerPlayerEntity player) {
 			NbtCompound compound = stack.getNbt();
 			if (compound != null && compound.getBoolean("Stable")) {
 				return;
 			}
 			
-			// check if it's a real stack in the player's inventory or just a proxy item (like from the Bottomless Bundle)
-			if (playerEntity.getInventory().getStack(slot).getItem() instanceof MidnightAberrationItem && world.random.nextFloat() < 0.2F) {
+			// check if it's a real stack in the player's inventory or just a proxy item (like a Bottomless Bundle)
+			if (player.getInventory().getStack(slot).getItem() instanceof MidnightAberrationItem && world.random.nextFloat() < 0.2F) {
 				stack.decrement(1);
-				playerEntity.getInventory().offerOrDrop(Items.GUNPOWDER.getDefaultStack());
-				world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);
+				player.getInventory().offerOrDrop(Items.GUNPOWDER.getDefaultStack());
+				world.playSoundFromEntity(null, player, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);
+				
+				Support.grantAdvancementCriterion(player, MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_ID, MIDNIGHT_ABERRATION_CRUMBLING_ADVANCEMENT_CRITERION);
 			}
 		}
 	}

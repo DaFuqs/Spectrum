@@ -8,6 +8,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.piston.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
@@ -94,6 +95,15 @@ public abstract class DecayBlock extends Block {
 			entity.damage(SpectrumDamageSources.DECAY, damageOnTouching);
 		}
 		super.onSteppedOn(world, pos, state, entity);
+	}
+	
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		super.onPlaced(world, pos, state, placer, itemStack);
+		
+		if (!world.isClient && SpectrumCommon.CONFIG.LogPlacingOfDecay && placer != null) {
+			SpectrumCommon.logInfo(state.getBlock().getName().getString() + " was placed in " + world.getRegistryKey().getValue() + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " by " + placer.getEntityName());
+		}
 	}
 	
 	@Override

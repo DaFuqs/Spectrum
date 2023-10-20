@@ -70,6 +70,8 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WOLF_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.3F + 0.1F, 1F, false);
 			} else if (soundRandom < 0.001564F) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.AMBIENT, 2F, 0.1F, false);
+			} else if (soundRandom < 0.001566F) {
+				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat(), false);
 			}
 		}
 	}

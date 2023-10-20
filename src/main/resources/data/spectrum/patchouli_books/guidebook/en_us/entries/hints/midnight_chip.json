@@ -11,7 +11,7 @@
       "title": "A small tip",
       "completion_advancement": "spectrum:midgame/collect_midnight_chip",
       "cost": "spectrum:neolith#8",
-      "text": "This liquid, which was created during the creation of the Midnight Aberration... it damages everything it touches."
+      "text": "This liquid, which was created during the creation of the Midnight Aberration... it damages every creature it touches."
     },
     {
       "type": "spectrum:hint",

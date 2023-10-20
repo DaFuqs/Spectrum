@@ -26,7 +26,7 @@ public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware
 	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this, Items.LIGHT_BLUE_DYE);
+		return new Pair<>(this, Items.ORANGE_DYE);
 	}
 	
 }

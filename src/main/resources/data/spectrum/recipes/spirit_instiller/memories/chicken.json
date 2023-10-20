@@ -7,7 +7,7 @@
     "item": "spectrum:chicken_head"
   },
   "ingredient2": {
-    "item": "minecraft:feather"
+    "item": "minecraft:wheat_seeds"
   },
   "center_ingredient": {
     "tag": "spectrum:memory_bonding_agents",

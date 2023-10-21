@@ -68,6 +68,12 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.noClip = true;
 		this.ignoreCameraFrustum = true;
 		this.previousHealth = getHealth();
+		
+		if (!world.isClient && (MonstrosityEntity.theOneAndOnly == null || MonstrosityEntity.theOneAndOnly.isRemoved() || !MonstrosityEntity.theOneAndOnly.isAlive())) {
+			MonstrosityEntity.theOneAndOnly = this;
+		} else {
+			this.remove(RemovalReason.DISCARDED);
+		}
 	}
 	
 	@Override

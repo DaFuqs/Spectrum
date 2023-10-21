@@ -22,6 +22,8 @@ public class ClearInkRecipe extends SingleItemCraftingRecipe {
 	@Override
 	public ItemStack craft(ItemStack stack) {
 		if (stack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
+			stack = stack.copy();
+			stack.setCount(1);
 			inkStorageItem.clearEnergyStorage(stack);
 		}
 		return stack;

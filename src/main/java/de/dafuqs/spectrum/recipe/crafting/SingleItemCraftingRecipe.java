@@ -47,7 +47,7 @@ public abstract class SingleItemCraftingRecipe extends SpecialCraftingRecipe {
 	
 	@Override
 	public boolean fits(int width, int height) {
-		return width > 0 && height > 0;
+		return width * height > 0;
 	}
 	
 	public abstract boolean matches(World world, ItemStack stack);

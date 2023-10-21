@@ -22,6 +22,8 @@ public class ClearPotionFillableRecipe extends SingleItemCraftingRecipe {
 	@Override
 	public ItemStack craft(ItemStack stack) {
 		if (stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
+			stack = stack.copy();
+			stack.setCount(1);
 			inkPoweredPotionFillable.clearEffects(stack);
 		}
 		return stack;

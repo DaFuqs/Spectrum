@@ -21,8 +21,10 @@ public class ClearEnderSpliceRecipe extends SingleItemCraftingRecipe {
 	
 	@Override
 	public ItemStack craft(ItemStack stack) {
-		EnderSpliceItem.clearTeleportTarget(stack);
-		return stack;
+		ItemStack returnStack = stack.copy();
+		returnStack.setCount(1);
+		EnderSpliceItem.clearTeleportTarget(returnStack);
+		return returnStack;
 	}
 	
 	@Override

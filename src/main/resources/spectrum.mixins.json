@@ -14,6 +14,7 @@
     "BlockMixin",
     "BrewingRecipeRegistryMixin",
     "ChunkNoiseSamplerMixin",
+    "CropAndStemBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EatBerriesGoalMixin",

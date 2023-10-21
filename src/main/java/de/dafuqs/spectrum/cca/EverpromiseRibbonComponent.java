@@ -6,41 +6,41 @@ import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import org.jetbrains.annotations.*;
 
-public class BondingRibbonComponent implements Component {
+public class EverpromiseRibbonComponent implements Component {
 	
-	public static final ComponentKey<BondingRibbonComponent> BONDING_RIBBON_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("bonding_ribbon"), BondingRibbonComponent.class);
+	public static final ComponentKey<EverpromiseRibbonComponent> EVERPROMISE_RIBBON_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("everpromise_ribbon"), EverpromiseRibbonComponent.class);
 	
 	private boolean hasBondingRibbon = false;
 	
 	// this is not optional
 	// removing this empty constructor will make the world not load
-	public BondingRibbonComponent() {
+	public EverpromiseRibbonComponent() {
 	
 	}
 	
-	public BondingRibbonComponent(LivingEntity entity) {
+	public EverpromiseRibbonComponent(LivingEntity entity) {
 	
 	}
 	
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
 		if (this.hasBondingRibbon) {
-			tag.putBoolean("has_bonding_ribbon", true);
+			tag.putBoolean("has_everpromise_ribbon", true);
 		}
 	}
 	
 	@Override
 	public void readFromNbt(NbtCompound tag) {
-		this.hasBondingRibbon = tag.getBoolean("has_bonding_ribbon");
+		this.hasBondingRibbon = tag.getBoolean("has_everpromise_ribbon");
 	}
 	
 	public static void attachBondingRibbon(LivingEntity livingEntity) {
-		BondingRibbonComponent component = BONDING_RIBBON_COMPONENT.get(livingEntity);
+		EverpromiseRibbonComponent component = EVERPROMISE_RIBBON_COMPONENT.get(livingEntity);
 		component.hasBondingRibbon = true;
 	}
 	
 	public static boolean hasBondingRibbon(LivingEntity livingEntity) {
-		BondingRibbonComponent component = BONDING_RIBBON_COMPONENT.get(livingEntity);
+		EverpromiseRibbonComponent component = EVERPROMISE_RIBBON_COMPONENT.get(livingEntity);
 		return component.hasBondingRibbon;
 	}
 	

@@ -23,7 +23,7 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
-		register(ColorBondingRibbonRecipe.SERIALIZER, "color_bonding_ribbon");
+		register(ColorEverpromiseRibbonRecipe.SERIALIZER, "color_everpromise_ribbon");
 		register(WrapPresentRecipe.SERIALIZER, "wrap_present");
 		
 		// Pedestal

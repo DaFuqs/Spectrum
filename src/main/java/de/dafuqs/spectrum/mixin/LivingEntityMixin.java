@@ -291,7 +291,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
 	protected void drop(DamageSource source, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		boolean hasBondingRibbon = BondingRibbonComponent.hasBondingRibbon(thisEntity);
+		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasBondingRibbon(thisEntity);
 		if (hasBondingRibbon) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);

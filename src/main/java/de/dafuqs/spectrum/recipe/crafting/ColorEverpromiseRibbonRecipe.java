@@ -10,11 +10,11 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
+public class ColorEverpromiseRibbonRecipe extends SpecialCraftingRecipe {
 	
-	public static final RecipeSerializer<ColorBondingRibbonRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ColorBondingRibbonRecipe::new);
+	public static final RecipeSerializer<ColorEverpromiseRibbonRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ColorEverpromiseRibbonRecipe::new);
 	
-	public ColorBondingRibbonRecipe(Identifier identifier) {
+	public ColorEverpromiseRibbonRecipe(Identifier identifier) {
 		super(identifier);
 	}
 	

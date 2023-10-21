@@ -20,6 +20,7 @@ public class SpectrumBlockTags {
 	// DECAY
 	public static final TagKey<Block> DECAY = of("decay/decay");
 	public static final TagKey<Block> DECAY_AWAY_CURABLES = of("decay/decay_away_curables");
+	public static final TagKey<Block> DECAY_AWAY_REMOVABLES = of("decay/decay_away_removables");
 	public static final TagKey<Block> BLACK_MATERIA_CONVERSIONS = of("decay/black_materia_conversions");
 	
 	public static final TagKey<Block> FADING_CONVERSIONS = of("decay/fading_conversions");

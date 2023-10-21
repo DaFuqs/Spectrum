@@ -41,12 +41,13 @@ public class DecayAwayBlock extends Block {
 		super.scheduledTick(state, world, pos, random);
 		
 		// convert all neighboring decay blocks to this
-		for (Direction direction : Direction.values()) {
-			BlockPos targetBlockPos = pos.offset(direction);
+		for (BlockPos targetBlockPos : BlockPos.iterateOutwards(pos, 1, 1, 1)) {
 			BlockState currentBlockState = world.getBlockState(targetBlockPos);
-			
 			if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_CURABLES)) {
 				world.setBlockState(targetBlockPos, getTargetStateForCurable(currentBlockState));
+				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
+			} else if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_REMOVABLES)) {
+				world.setBlockState(targetBlockPos, this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.AIR));
 				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
@@ -78,7 +79,8 @@ public class DecayAwayBlock extends Block {
 		DEFAULT("default", Blocks.DIRT.getDefaultState()),
 		BEDROCK("bedrock", Blocks.BEDROCK.getDefaultState()),
 		OBSIDIAN("obsidian", Blocks.OBSIDIAN.getDefaultState()),
-		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.getDefaultState());
+		CRYING_OBSIDIAN("crying_obsidian", Blocks.CRYING_OBSIDIAN.getDefaultState()),
+		AIR("air", Blocks.AIR.getDefaultState());
 		
 		private final String name;
 		private final BlockState targetState;

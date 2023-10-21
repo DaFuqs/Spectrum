@@ -154,7 +154,7 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 	public static void explode(World world, BlockPos pos, PlayerEntity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
-			power = item.getExplosionPower(stack);
+			power = item.getExplosionPower(stack, false);
 		}
 		world.createExplosion(owner, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 	}

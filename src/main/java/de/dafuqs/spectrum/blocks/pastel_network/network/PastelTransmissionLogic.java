@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
@@ -24,6 +26,7 @@ public class PastelTransmissionLogic {
     }
     
     public static final int MAX_TRANSFER_AMOUNT = 1;
+    public static final int MAX_TRANSFER_TRIES = 99;
     public static final int TRANSFER_TICKS_PER_NODE = 30;
     private final ServerPastelNetwork network;
     
@@ -105,38 +108,53 @@ public class PastelTransmissionLogic {
 
     private boolean transferBetween(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, Storage<ItemVariant> destinationStorage, TransferMode transferMode) {
         try (Transaction transaction = Transaction.openOuter()) {
-            ResourceAmount<ItemVariant> extractableAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
-            if (extractableAmount != null) {
-                int transferrableAmount = (int) Math.min(extractableAmount.amount(), MAX_TRANSFER_AMOUNT);
-                transferrableAmount = (int) destinationStorage.simulateInsert(extractableAmount.resource(), transferrableAmount + destinationNode.getItemCountUnderway(), transaction);
-                transferrableAmount = transferrableAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
-                if (transferrableAmount > 0) {
-                    sourceStorage.extract(extractableAmount.resource(), transferrableAmount, transaction);
-                    Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, extractableAmount.resource(), transferrableAmount);
-                    if (optionalTransmission.isPresent()) {
-                        PastelTransmission transmission = optionalTransmission.get();
-                        int verticesCount = transmission.getNodePositions().size() - 1;
-                        int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
-                        this.network.addTransmission(transmission, travelTime);
-                        SpectrumS2CPacketSender.sendPastelTransmissionParticle(this.network, travelTime, transmission);
-                        if (transferMode == TransferMode.PULL) {
-                            destinationNode.markTransferred();
-                        } else if (transferMode == TransferMode.PUSH) {
-                            sourceNode.markTransferred();
-                        } else {
-                            destinationNode.markTransferred();
-                            sourceNode.markTransferred();
+            List<ItemVariant> excludedItems = new ArrayList<>();
+            for (int attempt = 0; attempt <= MAX_TRANSFER_TRIES; ++attempt) {
+                ResourceAmount<ItemVariant> extractableAmount = getExtractableAmount(sourceNode, sourceStorage, destinationNode, excludedItems, transaction);
+                if (extractableAmount != null) {
+                    excludedItems.add(extractableAmount.resource());
+                    int transferrableAmount = (int) Math.min(extractableAmount.amount(), MAX_TRANSFER_AMOUNT);
+                    transferrableAmount = (int) destinationStorage.simulateInsert(extractableAmount.resource(), transferrableAmount + destinationNode.getItemCountUnderway(), transaction);
+                    transferrableAmount = transferrableAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
+                    if (transferrableAmount > 0) {
+                        sourceStorage.extract(extractableAmount.resource(), transferrableAmount, transaction);
+                        Optional<PastelTransmission> optionalTransmission = createTransmissionOnValidPath(sourceNode, destinationNode, extractableAmount.resource(), transferrableAmount);
+                        if (optionalTransmission.isPresent()) {
+                            PastelTransmission transmission = optionalTransmission.get();
+                            int verticesCount = transmission.getNodePositions().size() - 1;
+                            int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
+                            this.network.addTransmission(transmission, travelTime);
+                            SpectrumS2CPacketSender.sendPastelTransmissionParticle(this.network, travelTime, transmission);
+                            if (transferMode == TransferMode.PULL) {
+                                destinationNode.markTransferred();
+                            } else if (transferMode == TransferMode.PUSH) {
+                                sourceNode.markTransferred();
+                            } else {
+                                destinationNode.markTransferred();
+                                sourceNode.markTransferred();
+                            }
+
+                            destinationNode.addItemCountUnderway(transferrableAmount);
+                            transaction.commit();
+                            return true;
                         }
-                
-                        destinationNode.addItemCountUnderway(transferrableAmount);
-                        transaction.commit();
-                        return true;
                     }
                 }
+                else {
+                    transaction.abort();
+                    break;
+                }
             }
-            transaction.abort();
         }
         return false;
+    }
+
+    private ResourceAmount<ItemVariant> getExtractableAmount(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, List<ItemVariant> excludedItems, Transaction transaction) {
+        return StorageUtil.findExtractableContent(sourceStorage, variant -> {
+            if (!sourceNode.getTransferFilterTo(destinationNode).test(variant))
+                return false;
+            return excludedItems.stream().noneMatch(itemVariant -> itemVariant.isOf(variant.getItem()) && itemVariant.nbtMatches(variant.getNbt()));
+        }, transaction);
     }
     
     public Optional<PastelTransmission> createTransmissionOnValidPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, int amount) {

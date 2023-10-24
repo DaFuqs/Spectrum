@@ -71,7 +71,9 @@
         "spectrum:calcite_tile_wall",
         "spectrum:basalt_tile_wall",
         "spectrum:calcite_tile_slab",
-        "spectrum:basalt_tile_slab"
+        "spectrum:basalt_tile_slab",
+        "spectrum:planed_calcite",
+        "spectrum:planed_basalt"
       ]
     },
     {
@@ -90,7 +92,7 @@
       "type": "spectrum:anvil_crushing",
       "title": "Cracking",
       "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
-      "text": "You can crack Bricks & Tiles via $(general/anvil_crushing)Item Crushing$()."
+      "text": "You can crack Bricks & Tiles via $(l:general/anvil_crushing)Item Crushing$()."
     },
     {
       "type": "patchouli:smelting",

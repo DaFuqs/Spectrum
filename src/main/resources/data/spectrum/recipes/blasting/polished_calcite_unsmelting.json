@@ -45,6 +45,9 @@
     },
     {
       "item": "spectrum:polished_calcite_wall"
+    },
+    {
+      "item": "spectrum:planed_calcite"
     }
   ],
   "result": "spectrum:polished_calcite",

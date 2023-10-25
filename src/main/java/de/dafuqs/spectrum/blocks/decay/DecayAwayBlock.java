@@ -48,7 +48,7 @@ public class DecayAwayBlock extends Block {
 				world.scheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			} else if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_REMOVABLES)) {
 				world.setBlockState(targetBlockPos, this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.AIR));
-				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
+				world.scheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
 		

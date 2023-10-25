@@ -56,7 +56,6 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		
 		ModelPartData rightmidleg = legs.addChild("rightmidleg", ModelPartBuilder.create()
 				.uv(19, 14).cuboid(-0.5F, 0.25F, -0.5F, 4.0F, 0.0F, 1.0F), ModelTransform.of(1.0F, 0.0F, 0.5F, -0.2452F, -0.4063F, -0.8016F));
-		
 		ModelPartData rightmidforeleg = rightmidleg.addChild("rightmidforeleg", ModelPartBuilder.create()
 				.uv(0, 21).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 3.0F, 1.0F), ModelTransform.of(3.5F, 0.25F, 0.0F, 0.0F, 0.0F, 0.0873F));
 		rightmidforeleg.addChild("cube_r1", ModelPartBuilder.create()
@@ -79,7 +78,6 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		
 		ModelPartData leftmidleg = legs.addChild("leftmidleg", ModelPartBuilder.create()
 				.uv(19, 12).cuboid(-3.5F, 0.25F, -0.5F, 4.0F, 0.0F, 1.0F), ModelTransform.of(-1.0F, 0.0F, 0.5F, -0.2452F, 0.4063F, 0.8016F));
-		
 		ModelPartData leftmidforeleg = leftmidleg.addChild("leftmidforeleg", ModelPartBuilder.create()
 				.uv(14, 19).cuboid(0.0F, 0.0F, -0.5F, 0.0F, 3.0F, 1.0F), ModelTransform.of(-3.5F, 0.25F, 0.0F, 0.0F, 0.0F, -0.0873F));
 		leftmidforeleg.addChild("cube_r2", ModelPartBuilder.create()
@@ -120,18 +118,20 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 	public void setAngles(EraserEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.head.yaw = headYaw * 0.017453292F;
 		this.head.pitch = headPitch * 0.017453292F;
+		
 		this.rightHindLeg.roll = -0.7853982F;
 		this.leftHindLeg.roll = 0.7853982F;
 		this.rightMiddleLeg.roll = -0.58119464F;
 		this.leftMiddleLeg.roll = 0.58119464F;
-		this.rightFrontLeg.roll = -0.7853982F;
-		this.leftFrontLeg.roll = 0.7853982F;
-		this.rightHindLeg.yaw = 0.7853982F;
-		this.leftHindLeg.yaw = -0.7853982F;
-		this.rightMiddleLeg.yaw = 0.3926991F;
-		this.leftMiddleLeg.yaw = -0.3926991F;
+		this.rightFrontLeg.roll = -0.58119464F;
+		this.leftFrontLeg.roll = 0.58119464F;
+		this.rightHindLeg.yaw = 1.5707964F;
+		this.leftHindLeg.yaw = -1.5707964F;
+		this.rightMiddleLeg.yaw = 0.7853982F;
+		this.leftMiddleLeg.yaw = -0.7853982F;
 		this.rightFrontLeg.yaw = -0.7853982F;
 		this.leftFrontLeg.yaw = 0.7853982F;
+		
 		float i = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbDistance;
 		float j = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 3.1415927F) * 0.4F) * limbDistance;
 		float k = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 1.5707964F) * 0.4F) * limbDistance;
@@ -139,7 +139,7 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		float m = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 0.0F) * 0.4F) * limbDistance;
 		float n = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 3.1415927F) * 0.4F) * limbDistance;
 		float o = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 1.5707964F) * 0.4F) * limbDistance;
-		float p = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 4.712389F) * 0.4F) * limbDistance;
+		
 		ModelPart part = this.rightHindLeg;
 		part.yaw += i;
 		part = this.leftHindLeg;
@@ -149,7 +149,7 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		part = this.leftMiddleLeg;
 		part.yaw += -j;
 		part = this.rightFrontLeg;
-		part.yaw += l;
+		part.yaw += k;
 		part = this.leftFrontLeg;
 		part.yaw += -l;
 		part = this.rightHindLeg;
@@ -161,9 +161,7 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		part = this.leftMiddleLeg;
 		part.roll += -n;
 		part = this.rightFrontLeg;
-		part.roll += p;
-		part = this.leftFrontLeg;
-		part.roll += -p;
+		part.roll += o;
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ import net.minecraft.world.spawner.*;
 public class MonstrositySpawner implements Spawner {
 	
 	public static final MonstrositySpawner INSTANCE = new MonstrositySpawner();
-	public static final float SPAWN_CHANCE = 0.1F;
+	public static final float SPAWN_CHANCE = 0.001F;
 	
 	private MonstrositySpawner() {
 	}
@@ -32,26 +32,21 @@ public class MonstrositySpawner implements Spawner {
 		
 		// Iterate all players in the dimension and test if any of them
 		// are able to lure the monstrosity to them
-		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-			if (MonstrosityEntity.ENTITY_TARGETS.test(playerEntity)) {
-				
-				// a monstrosity should spawn for the player
-				// do we already have one? If no create one
-				if (MonstrosityEntity.theOneAndOnly == null) {
-					MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.create(world);
-					LocalDifficulty localDifficulty = world.getLocalDifficulty(playerEntity.getBlockPos());
-					monstrosity.initialize(world, localDifficulty, SpawnReason.NATURAL, null, null);
-					world.spawnEntityAndPassengers(monstrosity);
-					
-					MonstrosityEntity.theOneAndOnly = monstrosity;
-				}
-				
-				MonstrosityEntity.theOneAndOnly.setTarget(playerEntity);
-				MonstrosityEntity.theOneAndOnly.refreshPositionAndAngles(playerEntity.getBlockPos(), 0.0F, 0.0F);
-				MonstrosityEntity.theOneAndOnly.playAmbientSound();
-				
-				return 1;
+		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, player -> player.isAlive() && MonstrosityEntity.ENTITY_TARGETS.test(player))) {
+			// a monstrosity should spawn for the player
+			// do we already have one? If no create one
+			if (MonstrosityEntity.theOneAndOnly == null) {
+				MonstrosityEntity monstrosity = SpectrumEntityTypes.MONSTROSITY.create(world);
+				LocalDifficulty localDifficulty = world.getLocalDifficulty(playerEntity.getBlockPos());
+				monstrosity.initialize(world, localDifficulty, SpawnReason.NATURAL, null, null);
+				world.spawnEntityAndPassengers(monstrosity);
 			}
+			
+			MonstrosityEntity.theOneAndOnly.setTarget(playerEntity);
+			MonstrosityEntity.theOneAndOnly.refreshPositionAndAngles(playerEntity.getBlockPos(), 0.0F, 0.0F);
+			MonstrosityEntity.theOneAndOnly.playAmbientSound();
+			
+			return 1;
 		}
 		
 		return 0;

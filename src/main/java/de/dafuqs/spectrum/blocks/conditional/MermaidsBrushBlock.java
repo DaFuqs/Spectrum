@@ -5,9 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.client.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -50,20 +48,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
 	}
 
-	@Override
-	@SuppressWarnings("resource")
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (world.isClient) {
-			if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isOf(SpectrumItems.GLOW_VISION_GOGGLES)) {
-				StatusEffectInstance nightVisionEffectInstance = MinecraftClient.getInstance().player.getStatusEffect(StatusEffects.NIGHT_VISION);
-				if (nightVisionEffectInstance != null && nightVisionEffectInstance.getDuration() > 0) {
-					world.addParticle(ParticleTypes.GLOW, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
-				}
-			}
-		}
-	}
-	
+
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return UNLOCK_IDENTIFIER;

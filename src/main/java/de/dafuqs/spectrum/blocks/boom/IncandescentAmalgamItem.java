@@ -30,7 +30,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		
 		user.damage(SpectrumDamageSources.incandescence(world), 500.0F);
 
-		float explosionPower = getExplosionPower(stack);
+		float explosionPower = getExplosionPower(stack, false);
 		world.createExplosion(user, SpectrumDamageSources.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower / 5, false, World.ExplosionSourceType.BLOCK);
 		world.createExplosion(user, SpectrumDamageSources.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
 		
@@ -45,7 +45,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip_power", getExplosionPower(stack)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip_power", getExplosionPower(stack, false)).formatted(Formatting.GRAY));
 		if (FermentedItem.isPreviewStack(stack)) {
 			tooltip.add(Text.translatable("block.spectrum.incandescent_amalgam.tooltip.preview").formatted(Formatting.GRAY));
 		}
@@ -57,7 +57,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		ItemStack stack = itemEntity.getStack();
 		itemEntity.remove(Entity.RemovalReason.KILLED);
 		
-		float explosionPower = getExplosionPower(stack);
+		float explosionPower = getExplosionPower(stack, true);
 		var world = itemEntity.getWorld();
 		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, World.ExplosionSourceType.BLOCK);
 		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
@@ -68,11 +68,12 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		return BeverageProperties.getFromStack(stack);
 	}
 
-	public float getExplosionPower(ItemStack stack) {
-		if (getBeverageProperties(stack).alcPercent <= 0) {
+	public float getExplosionPower(ItemStack stack, boolean useCount) {
+		float alcPercent = getBeverageProperties(stack).alcPercent;
+		if (alcPercent <= 0) {
 			return 5;
 		} else {
-			return getBeverageProperties(stack).alcPercent + stack.getCount() / 8F;
+			return alcPercent + (useCount ? stack.getCount() / 8F : 0);
 		}
 	}
 	

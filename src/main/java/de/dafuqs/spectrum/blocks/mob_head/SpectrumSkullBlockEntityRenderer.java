@@ -107,7 +107,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 				return MonstrosityEntityRenderer.TEXTURE;
 			}
 			case LIZARD -> {
-				return LizardEntityRenderer.TEXTURE;
+				return SpectrumCommon.locate("textures/entity/lizard/lizard_head.png");
 			}
 			case KINDLING -> {
 				return KindlingEntityRenderer.TEXTURE;

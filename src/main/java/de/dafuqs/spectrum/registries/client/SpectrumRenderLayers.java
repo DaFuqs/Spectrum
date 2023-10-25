@@ -9,7 +9,7 @@ import net.minecraft.util.*;
 public class SpectrumRenderLayers {
 	
 	/**
-	 * Render layer to be used in Spectrums magical renderers.
+	 * Render layer to be used in Spectrum's magical renderers.
 	 * Like glow ink, it glows in the dark, always with max brightness
 	 */
 	public static class GlowInTheDarkRenderLayer extends RenderLayer {

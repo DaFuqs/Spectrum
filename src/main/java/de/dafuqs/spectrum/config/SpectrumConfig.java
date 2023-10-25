@@ -85,6 +85,9 @@ public class SpectrumConfig implements ConfigData {
 	public boolean RuinCanDestroyBlockEntities = false;
 	public boolean ForfeitureCanDestroyBlockEntities = true;
 	
+	@Comment("When a player places decay, add an entry to the server log")
+	public boolean LogPlacingOfDecay = true;
+	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	

@@ -1,0 +1,25 @@
+{
+  "parent": "spectrum:midgame/create_midnight_aberration",
+  "display": {
+    "icon": {
+      "item": "spectrum:midnight_aberration"
+    },
+    "title": {
+      "translate": "advancements.spectrum.crumble_midnight_aberration.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.crumble_midnight_aberration.description"
+    }
+  },
+  "criteria": {
+    "have_midnight_aberration_crumble": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_midnight_aberration"
+      }
+    }
+  }
+}

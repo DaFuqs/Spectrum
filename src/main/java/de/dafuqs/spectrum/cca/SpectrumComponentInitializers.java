@@ -12,7 +12,7 @@ public class SpectrumComponentInitializers implements EntityComponentInitializer
 		registry.registerFor(LivingEntity.class, AzureDikeProvider.AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new);
 		registry.registerForPlayers(AzureDikeProvider.AZURE_DIKE_COMPONENT, DefaultAzureDikeComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
 		
-		registry.registerFor(LivingEntity.class, BondingRibbonComponent.BONDING_RIBBON_COMPONENT, BondingRibbonComponent::new);
+		registry.registerFor(LivingEntity.class, EverpromiseRibbonComponent.EVERPROMISE_RIBBON_COMPONENT, EverpromiseRibbonComponent::new);
 		
 		registry.registerFor(LivingEntity.class, LastKillComponent.LAST_KILL_COMPONENT, LastKillComponent::new);
 		registry.registerForPlayers(LastKillComponent.LAST_KILL_COMPONENT, LastKillComponent::new, RespawnCopyStrategy.NEVER_COPY);

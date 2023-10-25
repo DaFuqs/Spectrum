@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.compat.healthoverlay.present;
+package de.dafuqs.spectrum.mixin.compat.colorful_hearts.present;
 
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;

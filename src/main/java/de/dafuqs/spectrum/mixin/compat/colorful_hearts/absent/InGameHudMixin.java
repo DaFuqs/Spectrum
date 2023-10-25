@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.compat.healthoverlay.absent;
+package de.dafuqs.spectrum.mixin.compat.colorful_hearts.absent;
 
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.render.*;

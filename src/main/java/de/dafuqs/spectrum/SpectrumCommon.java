@@ -309,9 +309,10 @@ public class SpectrumCommon implements ModInitializer {
 					}
 				}
 				
+				/* TODO: Monstrosity
 				if (world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
 					MonstrositySpawner.INSTANCE.spawn(world, true, true);
-				}
+				}*/
 			}
 		});
 		
@@ -331,7 +332,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
 			// If the player wears a Whispy Cirlcet and sleeps
-			// it gets fully healed and all negative status effects removed
+			// they get fully healed and all negative status effects removed
 			
 			// When the sleep timer reached 100 the player is fully asleep
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity

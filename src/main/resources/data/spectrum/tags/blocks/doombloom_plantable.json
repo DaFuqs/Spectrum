@@ -1,7 +1,5 @@
 {
   "values": [
-    "#minecraft:dirt",
-    "spectrum:rotten_ground",
-    "spectrum:slush"
+    "#minecraft:dirt"
   ]
 }

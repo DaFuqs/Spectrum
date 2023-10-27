@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -28,12 +29,13 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable /*,Flutterer*/ {
+public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable {
 	
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> CLIPPED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
 	protected @Nullable UUID angryAt;
 	
@@ -87,6 +89,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(ANGER, 0);
+		this.dataTracker.startTracking(CLIPPED, 0);
 	}
 	
 	@Override
@@ -153,6 +156,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		
 		if (!this.world.isClient) {
 			this.tickAngerLogic((ServerWorld) this.world, false);
+			this.setClipped(this.getClipTime() - 1);
 		}
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
@@ -196,17 +200,21 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			return ActionResult.success(this.world.isClient);
 		}
 		
-		if (player.isSneaking()) {
+		ItemStack handStack = player.getMainHandStack();
+		if (handStack.isIn(ConventionalItemTags.SHEARS)) {
+			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+			
 			if (!this.world.isClient) {
 				player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
+				
+				setClipped(4800); // 4 minutes
 				
 				setTarget(player);
 				setAngryAt(player.getUuid());
 				chooseRandomAngerTime();
-				
-				return ActionResult.SUCCESS;
 			}
-			return ActionResult.CONSUME;
+			
+			return ActionResult.success(world.isClient);
 		}
 		
 		return super.interactMob(player, hand);
@@ -224,6 +232,23 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		
 		this.world.spawnEntity(kindlingCoughEntity);
+	}
+	
+	public boolean isClipped() {
+		return this.dataTracker.get(CLIPPED) > 0;
+	}
+	
+	public int getClipTime() {
+		return this.dataTracker.get(CLIPPED);
+	}
+	
+	public void setClipped(int clipTime) {
+		this.dataTracker.set(CLIPPED, clipTime);
+	}
+	
+	@Override
+	public boolean isAngry() {
+		return this.getHorseFlag(32);
 	}
 	
 	@Override

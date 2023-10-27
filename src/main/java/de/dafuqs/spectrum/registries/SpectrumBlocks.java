@@ -615,8 +615,6 @@ public class SpectrumBlocks {
 	public static final Block EBONY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(15));
 	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 
-	public static final Block BICOLOR_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.DARK_OAK_PLANKS));
-
 	public static final PillarBlock STRIPPED_IVORY_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final PillarBlock IVORY_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.OFF_WHITE), STRIPPED_IVORY_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/ivory_noxcap_stripping"));
 	public static final Block STRIPPED_IVORY_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.OFF_WHITE));
@@ -1501,8 +1499,6 @@ public class SpectrumBlocks {
 		registerBlock("potted_ebony_noxshroom", POTTED_EBONY_NOXSHROOM);
 		registerBlock("potted_ivory_noxshroom", POTTED_IVORY_NOXSHROOM);
 		registerBlock("potted_chestnut_noxshroom", POTTED_CHESTNUT_NOXSHROOM);
-
-		registerBlockWithItem("bicolor_planks", BICOLOR_PLANKS, settings, DyeColor.PINK);
 		
 		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_yellow_dragonjag", SMALL_YELLOW_DRAGONJAG, settings, DyeColor.LIME);

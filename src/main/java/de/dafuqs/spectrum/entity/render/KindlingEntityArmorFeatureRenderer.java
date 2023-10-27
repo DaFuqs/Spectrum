@@ -15,10 +15,10 @@ import net.minecraft.util.*;
 @Environment(EnvType.CLIENT)
 public class KindlingEntityArmorFeatureRenderer extends FeatureRenderer<KindlingEntity, KindlingEntityModel> {
 	
-	public static final Identifier TEXTURE_DIAMOND = SpectrumCommon.locate("textures/entity/kindling/armor_diamond.png");
-	public static final Identifier TEXTURE_GOLD = SpectrumCommon.locate("textures/entity/kindling/armor_gold.png");
-	public static final Identifier TEXTURE_IRON = SpectrumCommon.locate("textures/entity/kindling/armor_iron.png");
-	public static final Identifier TEXTURE_LEATHER = SpectrumCommon.locate("textures/entity/kindling/armor_leather.png");
+	public static final Identifier TEXTURE_DIAMOND = SpectrumCommon.locate("textures/entity/kindling/armor/diamond.png");
+	public static final Identifier TEXTURE_GOLD = SpectrumCommon.locate("textures/entity/kindling/armor/gold.png");
+	public static final Identifier TEXTURE_IRON = SpectrumCommon.locate("textures/entity/kindling/armor/iron.png");
+	public static final Identifier TEXTURE_LEATHER = SpectrumCommon.locate("textures/entity/kindling/armor/leather.png");
 	
 	private final KindlingEntityModel model;
 	

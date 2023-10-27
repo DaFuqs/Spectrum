@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "spectrum:templates/complex_orientable",
   "textures": {
-    "top": "minecraft:block/furnace_top",
+    "top": "spectrum:block/block_detector_top",
     "front": "spectrum:block/block_detector_front",
-    "side": "minecraft:block/furnace_side"
+    "side": "spectrum:block/block_detector_side",
+    "bottom": "spectrum:block/notched_polished_basalt",
+    "back": "spectrum:block/block_detector_back",
+    "particle": "spectrum:block/block_detector_side"
   }
 }

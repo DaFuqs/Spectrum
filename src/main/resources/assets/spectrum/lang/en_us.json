@@ -481,6 +481,10 @@
   "spectrum.subtitles.incandescent_arm": "Apparatus arms",
   "spectrum.subtitles.block.parametric_mining_device.throw": "Mining Device flies",
 
+  "spectrum.subtitles.entity.kindling.shoot": "Kindling shoots",
+  "spectrum.subtitles.entity.kindling.ambient": "Kindling nyas~",
+  "spectrum.subtitles.entity.kindling.death": "Kindling dies",
+  "spectrum.subtitles.entity.kindling.hurt": "Kindling hurts",
   "spectrum.subtitles.entity.preservation_turret.shoot": "Preservation Turret shoots",
   "spectrum.subtitles.entity.preservation_turret.ambient": "Preservation Turret lurks",
   "spectrum.subtitles.entity.preservation_turret.death": "Preservation Turret dies",

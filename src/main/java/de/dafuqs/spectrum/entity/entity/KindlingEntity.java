@@ -4,7 +4,6 @@ import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -117,22 +116,17 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_BLAZE_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_KINDLING_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_BLAZE_HURT;
+		return SpectrumSoundEvents.ENTITY_KINDLING_HURT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_BLAZE_DEATH;
-	}
-	
-	@Override
-	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
+		return SpectrumSoundEvents.ENTITY_KINDLING_DEATH;
 	}
 	
 	@Override
@@ -228,7 +222,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		double g = Math.sqrt(d * d + f * f) * 0.2;
 		kindlingCoughEntity.setVelocity(d, e + g, f, 1.5F, 10.0F);
 		if (!this.isSilent()) {
-			this.world.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, this.getSoundCategory(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.world.playSound(null, this.getX(), this.getY(), this.getZ(), SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, this.getSoundCategory(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 		}
 		
 		this.world.spawnEntity(kindlingCoughEntity);

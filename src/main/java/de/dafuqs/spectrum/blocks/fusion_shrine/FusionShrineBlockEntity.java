@@ -224,11 +224,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 
         this.craftingTime = nbt.getShort("CraftingTime");
         this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-        if (nbt.contains("OwnerUUID")) {
-            this.ownerUUID = nbt.getUuid("OwnerUUID");
-        } else {
-            this.ownerUUID = null;
-        }
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 
         this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
@@ -258,9 +254,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
         if (this.upgrades != null) {
             nbt.put("Upgrades", this.upgrades.toNbt());
         }
-        if (this.ownerUUID != null) {
-            nbt.putUuid("OwnerUUID", this.ownerUUID);
-        }
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
         if (this.currentRecipe != null) {
             nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

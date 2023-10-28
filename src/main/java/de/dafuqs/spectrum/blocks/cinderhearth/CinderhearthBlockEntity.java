@@ -213,11 +213,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		} else {
 			this.structure = CinderHearthStructureType.NONE;
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
@@ -249,9 +245,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

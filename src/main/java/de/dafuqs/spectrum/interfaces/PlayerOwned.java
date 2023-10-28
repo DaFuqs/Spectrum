@@ -16,7 +16,6 @@ public interface PlayerOwned {
 		return null;
 	}
 	
-	
 	UUID getOwnerUUID();
 	
 	void setOwner(PlayerEntity playerEntity);
@@ -49,6 +48,19 @@ public interface PlayerOwned {
 			return nbt.getUuid("OwnerUUID");
 		}
 		return null;
+	}
+	
+	static void writeOwnerName(NbtCompound nbt, String ownerName) {
+		if (ownerName != null) {
+			nbt.putString("OwnerName", ownerName);
+		}
+	}
+	
+	static String readOwnerName(NbtCompound nbt) {
+		if (nbt.contains("OwnerName")) {
+			return nbt.getString("OwnerName");
+		}
+		return "???";
 	}
 	
 }

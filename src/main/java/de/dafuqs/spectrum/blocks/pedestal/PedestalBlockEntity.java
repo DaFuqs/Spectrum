@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
@@ -550,9 +551,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (nbt.contains("CraftingTimeTotal")) {
 			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
@@ -584,9 +583,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
 		
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		Inventories.writeNbt(nbt, this.inventory);
 	}
 	

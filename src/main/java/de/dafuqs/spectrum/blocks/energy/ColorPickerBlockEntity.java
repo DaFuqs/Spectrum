@@ -91,11 +91,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = TotalCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
 			this.selectedColor = InkColor.of(nbt.getString("SelectedColor"));
 		}
@@ -108,9 +104,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.put("InkStorage", this.inkStorage.toNbt());
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.selectedColor != null) {
 			nbt.putString("SelectedColor", this.selectedColor.toString());
 		}

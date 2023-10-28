@@ -628,11 +628,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (nbt.contains("item_facing", NbtElement.STRING_TYPE)) {
 			this.itemFacing = Direction.valueOf(nbt.getString("item_facing").toUpperCase(Locale.ROOT));
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
@@ -680,9 +676,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

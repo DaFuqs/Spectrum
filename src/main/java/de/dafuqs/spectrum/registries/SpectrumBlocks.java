@@ -152,113 +152,113 @@ public class SpectrumBlocks {
 	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
-	public static final Block BLOODSTONE_BLOCK = new PillarBlock(AbstractBlock.Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
+	public static final Block BLOODSTONE_BLOCK = new PillarBlock(Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
 	
-	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(AbstractBlock.Settings.copy(Blocks.RED_WOOL).strength(5F));
-	public static final Block EFFULGENT_CUSHION = new CushionBlock(AbstractBlock.Settings.copy(EFFULGENT_BLOCK));
-	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(AbstractBlock.Settings.copy(EFFULGENT_BLOCK));
+	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(Settings.copy(Blocks.RED_WOOL).strength(5F));
+	public static final Block EFFULGENT_CUSHION = new CushionBlock(Settings.copy(EFFULGENT_BLOCK));
+	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(Settings.copy(EFFULGENT_BLOCK));
 	
 	// DD BLOCKS
 	private static final float BLACKSLAG_HARDNESS = 5.0F;
 	private static final float BLACKSLAG_BLAST_RESISTANCE = 7.0F;
 	public static final Block BLACKSLAG = new BlackslagBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
-	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG));
-	public static final Block BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG));
-	public static final Block BLACKSLAG_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG));
-	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, AbstractBlock.Settings.of(Material.ORGANIC_PRODUCT));
+	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), Settings.copy(BLACKSLAG));
+	public static final Block BLACKSLAG_SLAB = new SlabBlock(Settings.copy(BLACKSLAG));
+	public static final Block BLACKSLAG_WALL = new WallBlock(Settings.copy(BLACKSLAG));
+	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, Settings.of(Material.ORGANIC_PRODUCT));
 	public static final Block COBBLED_BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
-	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block COBBLED_BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block COBBLED_BLACKSLAG_WALL = new WallBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.POLISHED_DEEPSLATE));
-	public static final Block POLISHED_BLACKSLAG_STAIRS = new StairsBlock(POLISHED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
-	public static final Block POLISHED_BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
-	public static final Block POLISHED_BLACKSLAG_WALL = new WallBlock(AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
-	public static final Block BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_TILES));
-	public static final Block BLACKSLAG_TILE_STAIRS = new StairsBlock(BLACKSLAG_TILES.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	public static final Block BLACKSLAG_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	public static final Block BLACKSLAG_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	public static final Block BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block POLISHED_BLACKSLAG_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block COBBLED_BLACKSLAG_SLAB = new SlabBlock(Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block COBBLED_BLACKSLAG_WALL = new WallBlock(Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.POLISHED_DEEPSLATE));
+	public static final Block POLISHED_BLACKSLAG_STAIRS = new StairsBlock(POLISHED_BLACKSLAG.getDefaultState(), Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG_SLAB = new SlabBlock(Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG_WALL = new WallBlock(Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block BLACKSLAG_TILES = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_TILES));
+	public static final Block BLACKSLAG_TILE_STAIRS = new StairsBlock(BLACKSLAG_TILES.getDefaultState(), Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_TILE_SLAB = new SlabBlock(Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_TILE_WALL = new WallBlock(Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_BRICKS = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block POLISHED_BLACKSLAG_PILLAR = new PillarBlock(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 	
-	public static final Block CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	public static final Block CHISELED_POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block CRACKED_BLACKSLAG_TILES = new Block(Settings.copy(BLACKSLAG_TILES));
+	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 	
-	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block EXPOSED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block TILLED_SHALE_CLAY = new TilledShaleClayBlock(AbstractBlock.Settings.copy(SHALE_CLAY), SHALE_CLAY.getDefaultState());
+	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block EXPOSED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
+	public static final Block TILLED_SHALE_CLAY = new TilledShaleClayBlock(Settings.copy(SHALE_CLAY), SHALE_CLAY.getDefaultState());
 	
-	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, POLISHED_SHALE_CLAY.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_POLISHED_SHALE_CLAY.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_POLISHED_SHALE_CLAY.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 	
-	public static final Block SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_BRICKS.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_BRICKS.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_BRICKS.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 	
-	public static final Block SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_TILES.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_TILES.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 	
-	public static final Block PYRITE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
-	public static final Block PYRITE_PILE = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_TILE = new Block(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_PLATING = new Block(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_TUBING = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_RELIEF = new PillarBlock(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_STACK = new Block(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_PANNELING = new Block(AbstractBlock.Settings.copy(PYRITE));
-	public static final Block PYRITE_VENT = new Block(AbstractBlock.Settings.copy(PYRITE));
+	public static final Block PYRITE = new PillarBlock(Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
+	public static final Block PYRITE_PILE = new PillarBlock(Settings.copy(PYRITE));
+	public static final Block PYRITE_TILE = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_PLATING = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_TUBING = new PillarBlock(Settings.copy(PYRITE));
+	public static final Block PYRITE_RELIEF = new PillarBlock(Settings.copy(PYRITE));
+	public static final Block PYRITE_STACK = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
 	
-	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.of(Material.STONE).strength(-1.0F, 22.0F).sounds(BlockSoundGroup.BONE));
-	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
+	public static final Block DRAGONBONE = new DragonboneBlock(Settings.of(Material.STONE).strength(-1.0F, 22.0F).sounds(BlockSoundGroup.BONE));
+	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.of(Material.STONE, MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
 	
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
-	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
-	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
-	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(AbstractBlock.Settings.copy(POLISHED_BONE_ASH));
+	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), Settings.copy(POLISHED_BONE_ASH));
+	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(Settings.copy(POLISHED_BONE_ASH));
+	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
 	
 	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
-	public static final Block BONE_ASH_BRICK_STAIRS = new StairsBlock(BONE_ASH_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
-	public static final Block BONE_ASH_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
-	public static final Block BONE_ASH_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_BRICK_STAIRS = new StairsBlock(BONE_ASH_BRICKS.getDefaultState(), Settings.copy(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_BRICK_SLAB = new SlabBlock(Settings.copy(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_BRICK_WALL = new WallBlock(Settings.copy(BONE_ASH_BRICKS));
 	
 	public static final Block BONE_ASH_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
-	public static final Block BONE_ASH_TILE_STAIRS = new StairsBlock(BONE_ASH_TILES.getDefaultState(), AbstractBlock.Settings.copy(BONE_ASH_TILES));
-	public static final Block BONE_ASH_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
-	public static final Block BONE_ASH_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
+	public static final Block BONE_ASH_TILE_STAIRS = new StairsBlock(BONE_ASH_TILES.getDefaultState(), Settings.copy(BONE_ASH_TILES));
+	public static final Block BONE_ASH_TILE_SLAB = new SlabBlock(Settings.copy(BONE_ASH_TILES));
+	public static final Block BONE_ASH_TILE_WALL = new WallBlock(Settings.copy(BONE_ASH_TILES));
 	
-	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(AbstractBlock.Settings.copy(BLACKSLAG));
-	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
-	public static final Block TILLED_SLUSH = new TilledSlushBlock(AbstractBlock.Settings.copy(SLUSH), SLUSH.getDefaultState());
+	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(BLACKSLAG));
+	public static final Block SLUSH = new PillarBlock(Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
+	public static final Block TILLED_SLUSH = new TilledSlushBlock(Settings.copy(SLUSH), SLUSH.getDefaultState());
 	
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block BLACK_SLUDGE = new Block(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
@@ -266,7 +266,7 @@ public class SpectrumBlocks {
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	
-	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(AbstractBlock.Settings.of(Material.FIRE, MapColor.PURPLE).noCollision().breakInstantly().luminance((state) -> 10).sounds(BlockSoundGroup.WOOL));
+	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(Settings.of(Material.FIRE, MapColor.PURPLE).noCollision().breakInstantly().luminance((state) -> 10).sounds(BlockSoundGroup.WOOL));
 	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -297,8 +297,8 @@ public class SpectrumBlocks {
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block POLISHED_BASALT_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	public static final Block POLISHED_BASALT_BUTTON = new StoneButtonBlock(Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
@@ -328,8 +328,8 @@ public class SpectrumBlocks {
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(CALCITE_BRICKS));
-	public static final Block POLISHED_CALCITE_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	public static final Block POLISHED_CALCITE_BUTTON = new StoneButtonBlock(Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 	
 	// GEMSTONE LAMPS
 	public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
@@ -402,8 +402,8 @@ public class SpectrumBlocks {
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 	
 	
-	private static AbstractBlock.Settings fluid(Material material) {
-		return AbstractBlock.Settings.of(material).noCollision().strength(100.0F).dropsNothing();
+	private static Settings fluid(Material material) {
+		return Settings.of(material).noCollision().strength(100.0F).dropsNothing();
 	}
 	
 	// FLUIDS
@@ -550,22 +550,22 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).mapColor(color).strength(4.0F);
 	}
 	
-	public static AbstractBlock.Settings fungus(MapColor color) {
-		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
+	public static Settings fungus(MapColor color) {
+		return Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
 	
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
-	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
-	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
-	public static final Block ROTTEN_GROUND = new RottenGroundBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
+	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
+	public static final Block SHIMMEL = new BlackslagVegetationBlock(Settings.copy(Blocks.MYCELIUM).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
+	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
+	public static final Block ROTTEN_GROUND = new RottenGroundBlock(Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), SpectrumCommon.locate("noxfungi/slate"));
 	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), SpectrumCommon.locate("noxfungi/ebony"));
 	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), SpectrumCommon.locate("noxfungi/ivory"));
 	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), SpectrumCommon.locate("noxfungi/chestnut"));
 	
-	private static final Settings POTTED_PLANT_SETTINGS = AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque();
+	private static final Settings POTTED_PLANT_SETTINGS = Settings.of(Material.DECORATION).breakInstantly().nonOpaque();
 	public static final Block POTTED_SLATE_NOXSHROOM = new FlowerPotBlock(SLATE_NOXSHROOM, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_EBONY_NOXSHROOM = new FlowerPotBlock(EBONY_NOXSHROOM, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_IVORY_NOXSHROOM = new FlowerPotBlock(IVORY_NOXSHROOM, POTTED_PLANT_SETTINGS);
@@ -658,8 +658,8 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13));
 	
 	
-	public static AbstractBlock.Settings dragonjag(MapColor color) {
-		return AbstractBlock.Settings.of(Material.PLANT, color).hardness(1.0F).sounds(BlockSoundGroup.GRASS);
+	public static Settings dragonjag(MapColor color) {
+		return Settings.of(Material.PLANT, color).hardness(1.0F).sounds(BlockSoundGroup.GRASS);
 	}
 	
 	public static final Block SMALL_RED_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.DARK_RED), Dragonjag.Variant.RED);
@@ -674,14 +674,15 @@ public class SpectrumBlocks {
 	public static final Block TALL_PURPLE_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
 	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
 	
-	public static final Block ALOE = new AloeBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().nonOpaque());
-	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly().nonOpaque());
-	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque().offsetType(OffsetType.XZ));
-	public static final Block DOOMBLOOM = new DoomBloomBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).ticksRandomly().noCollision().breakInstantly().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
-	public static final Block SNAPPING_IVY = new SnappingIvyBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).hardness(3.0F).noCollision().sounds(BlockSoundGroup.GRASS).nonOpaque());
+	public static final Block ALOE = new AloeBlock(Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().nonOpaque());
+	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly().nonOpaque());
+	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(Settings.of(Material.REPLACEABLE_PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque().offsetType(OffsetType.XZ));
+	public static final Block DOOMBLOOM = new DoomBloomBlock(Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).ticksRandomly().noCollision().breakInstantly().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
+	public static final Block SNAPPING_IVY = new SnappingIvyBlock(Settings.of(Material.PLANT, MapColor.PALE_GREEN).hardness(3.0F).noCollision().sounds(BlockSoundGroup.GRASS).nonOpaque());
 	
-	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
-	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
+	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
+	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
+	public static final Block CLEAR_HUMMINGSTONE_GLASS = new GlassBlock(Settings.copy(HUMMINGSTONE_GLASS));
 	
 	// JADE VINES
 	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());
@@ -1103,7 +1104,7 @@ public class SpectrumBlocks {
 	public static final Block PURE_PRISMARINE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.PRISMARINE));
 	
 	// STRUCTURE BLOCKS
-	private static final AbstractBlock.Settings PRESERVATION_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
+	private static final Settings PRESERVATION_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
 	
 	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
@@ -1519,6 +1520,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
+		registerBlockWithItem("clear_hummingstone_glass", CLEAR_HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
 	}
 	
 	private static void registerCrystallarieumGrowingBlocks(FabricItemSettings settings) {
@@ -2876,6 +2878,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
 	}
 	
 }

@@ -49,8 +49,8 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.EARLYGAME);
+	public static @NotNull ScreenHandler createTier1(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.EARLYGAME);
 	}
 	
 	@Contract("_, _ -> new")
@@ -59,8 +59,8 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.MIDGAME);
+	public static @NotNull ScreenHandler createTier2(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Contract("_, _ -> new")
@@ -69,8 +69,8 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	}
 	
 	@Contract("_, _, _ -> new")
-	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockPlacerBlockEntity) {
-		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ScreenBackgroundVariant.LATEGAME);
+	public static @NotNull ScreenHandler createTier3(int syncId, PlayerInventory playerInventory, BlockPlacerBlockEntity blockEntity) {
+		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockEntity, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override

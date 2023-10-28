@@ -4,7 +4,7 @@
     "top": "spectrum:block/block_breaker_top",
     "front": "spectrum:block/block_breaker_front",
     "side": "spectrum:block/block_breaker_side",
-    "bottom": "spectrum:block/bone_ash_pillar_top",
+    "bottom": "spectrum:block/polished_bone_ash_pillar_top",
     "back": "spectrum:block/block_breaker_back",
     "particle": "spectrum:block/block_breaker_side"
   }

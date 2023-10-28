@@ -214,8 +214,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_LIZARD_DEATH = register("entity.lizard.death");
 	
 	public static final SoundEvent ENTITY_KINDLING_AMBIENT = register("entity.kindling.ambient");
-	public static final SoundEvent ENTITY_KINDLING_HURT = register("entity.kindling.death");
-	public static final SoundEvent ENTITY_KINDLING_DEATH = register("entity.kindling.hurt");
+	public static final SoundEvent ENTITY_KINDLING_HURT = register("entity.kindling.hurt");
+	public static final SoundEvent ENTITY_KINDLING_DEATH = register("entity.kindling.death");
 	public static final SoundEvent ENTITY_KINDLING_SHOOT = register("entity.kindling.shoot");
 	
 	

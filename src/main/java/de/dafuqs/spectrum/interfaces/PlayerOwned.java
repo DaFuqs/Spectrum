@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.interfaces;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -14,6 +15,7 @@ public interface PlayerOwned {
 		}
 		return null;
 	}
+	
 	
 	UUID getOwnerUUID();
 	
@@ -32,6 +34,19 @@ public interface PlayerOwned {
 		UUID ownerUUID = this.getOwnerUUID();
 		if (ownerUUID != null) {
 			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
+		}
+		return null;
+	}
+	
+	static void writeOwnerUUID(NbtCompound nbt, UUID ownerUUID) {
+		if (ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", ownerUUID);
+		}
+	}
+	
+	static UUID readOwnerUUID(NbtCompound nbt) {
+		if (nbt.contains("OwnerUUID")) {
+			return nbt.getUuid("OwnerUUID");
 		}
 		return null;
 	}

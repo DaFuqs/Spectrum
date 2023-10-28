@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
-import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -60,11 +59,13 @@ public class SpectrumDispenserBehaviors {
 		}
 		
 		// Decay
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FADING, BlockPlacerBlock.BLOCK_PLACEMENT_BEHAVIOR);
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FAILING, BlockPlacerBlock.BLOCK_PLACEMENT_BEHAVIOR);
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_RUIN, BlockPlacerBlock.BLOCK_PLACEMENT_BEHAVIOR);
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FORFEITURE, BlockPlacerBlock.BLOCK_PLACEMENT_BEHAVIOR);
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_DECAY_AWAY, BlockPlacerBlock.BLOCK_PLACEMENT_BEHAVIOR);
+		DispenserBehavior blockPlacementDispenserBehavior = new BlockPlacementDispenserBehavior();
+		
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FADING, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FAILING, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_RUIN, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FORFEITURE, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_DECAY_AWAY, blockPlacementDispenserBehavior);
 	}
 	
 }

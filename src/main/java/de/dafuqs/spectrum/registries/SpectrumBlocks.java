@@ -762,6 +762,7 @@ public class SpectrumBlocks {
 	public static final Block REDSTONE_WIRELESS = new RedstoneWirelessBlock(FabricBlockSettings.copyOf(Blocks.REPEATER));
 	public static final Block BLOCK_PLACER = new BlockPlacerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 	public static final Block BLOCK_DETECTOR = new BlockDetectorBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
+	public static final Block BLOCK_BREAKER = new BlockBreakerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 	public static final EnderDropperBlock ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
 	public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
 	
@@ -1591,8 +1592,10 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("redstone_sand", REDSTONE_SAND, settings, DyeColor.RED);
 		registerBlockWithItem("ender_glass", ENDER_GLASS, settings, DyeColor.PURPLE);
+		
 		registerBlockWithItem("block_placer", BLOCK_PLACER, settings, DyeColor.CYAN);
 		registerBlockWithItem("block_detector", BLOCK_DETECTOR, settings, DyeColor.CYAN);
+		registerBlockWithItem("block_breaker", BLOCK_BREAKER, settings, DyeColor.CYAN);
 	}
 	
 	private static void registerMagicalBlocks(FabricItemSettings settings) {

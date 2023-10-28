@@ -1,25 +1,55 @@
 {
   "variants": {
-    "facing=down": {
+    "orientation=down_east": {
+      "model": "spectrum:block/block_breaker",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_north": {
       "model": "spectrum:block/block_breaker",
       "x": 90
     },
-    "facing=east": {
+    "orientation=down_south": {
+      "model": "spectrum:block/block_breaker",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_west": {
+      "model": "spectrum:block/block_breaker",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=east_up": {
       "model": "spectrum:block/block_breaker",
       "y": 90
     },
-    "facing=north": {
+    "orientation=north_up": {
       "model": "spectrum:block/block_breaker"
     },
-    "facing=south": {
+    "orientation=south_up": {
       "model": "spectrum:block/block_breaker",
       "y": 180
     },
-    "facing=up": {
+    "orientation=up_east": {
+      "model": "spectrum:block/block_breaker",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_north": {
+      "model": "spectrum:block/block_breaker",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_south": {
       "model": "spectrum:block/block_breaker",
       "x": 270
     },
-    "facing=west": {
+    "orientation=up_west": {
+      "model": "spectrum:block/block_breaker",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=west_up": {
       "model": "spectrum:block/block_breaker",
       "y": 270
     }

@@ -48,12 +48,12 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (itemStack.hasCustomName()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
-				if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
-					privateChestBlockEntity.setOwner(serverPlayerEntity);
-				}
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
+			if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
+				privateChestBlockEntity.setOwner(serverPlayerEntity);
+			}
+			if (itemStack.hasCustomName()) {
 				privateChestBlockEntity.setCustomName(itemStack.getName());
 			}
 		}

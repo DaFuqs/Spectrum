@@ -2,6 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "spectrum:item/memory_base",
-    "layer1": "spectrum:item/memory_overlay"
+    "layer1": "spectrum:item/memory_overlay",
+    "layer2": "spectrum:item/memory_brighten"
   }
 }

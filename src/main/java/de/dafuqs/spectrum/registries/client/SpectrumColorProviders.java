@@ -138,7 +138,12 @@ public class SpectrumColorProviders {
 			}
 			return 0x0;
 		}, memory);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), memory.asItem());
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+			if (tintIndex == 2)
+				return 0xFFFFFF;
+
+			return MemoryItem.getEggColor(stack.getNbt(), tintIndex);
+		}, memory.asItem());
 	}
 	
 	public static void registerBrewColors(Item brew) {

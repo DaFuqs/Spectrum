@@ -192,8 +192,6 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 	
 	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block EXPOSED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 	public static final Block TILLED_SHALE_CLAY = new TilledShaleClayBlock(Settings.copy(SHALE_CLAY), SHALE_CLAY.getDefaultState());
 	
 	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));

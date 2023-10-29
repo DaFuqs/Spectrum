@@ -6,7 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.*;
 import net.minecraft.screen.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -17,7 +17,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class PotionWorkshopBlock extends BlockWithEntity {
+public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockEntityProvider {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	
@@ -49,7 +49,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntities.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
+			return SpectrumBlockEntities.POTION_WORKSHOP == type ? (BlockEntityTicker) (BlockEntityTicker<? extends PotionWorkshopBlockEntity>) PotionWorkshopBlockEntity::tick : null;
 		}
 		return null;
 	}
@@ -57,11 +57,6 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
 	}
 	
 	@Override

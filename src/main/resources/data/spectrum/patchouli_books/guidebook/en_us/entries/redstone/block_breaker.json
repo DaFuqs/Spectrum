@@ -1,0 +1,22 @@
+{
+  "name": "Block Breaker",
+  "advancement": "spectrum:unlocks/redstone/block_breaker",
+  "icon": "spectrum:block_breaker",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:block_breaker": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:block_breaker",
+      "text": "A simple way to destroy blocks. Neither the most sophisticated nor the most customisable, but it is easy to set up and very compact.$(br2)Give it a Redstone signal to destroy the block in front of it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/block_breaker",
+      "text": "Able to break blocks up to iron tier."
+    }
+  ]
+}

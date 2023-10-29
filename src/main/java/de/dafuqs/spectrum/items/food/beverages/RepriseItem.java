@@ -65,7 +65,7 @@ public class RepriseItem extends BeverageItem {
 				double newY = user.getY();
 				double newZ = user.getZ() + (user.getRandom().nextDouble() - 0.5D) * maxRange;
 				
-				BlockPos destination = new BlockPos(newX, newY, newZ);
+				BlockPos destination = BlockPos.ofFloored(newX, newY, newZ);
 				Optional<BlockPos> safeDestination = Support.getNexReplaceableBlockPosUpDown(world, destination, 20);
 				if (safeDestination.isPresent()) {
 					destination = safeDestination.get();

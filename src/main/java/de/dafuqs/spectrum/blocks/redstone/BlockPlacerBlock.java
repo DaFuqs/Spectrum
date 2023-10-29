@@ -44,8 +44,8 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 		
 		int slot = blockEntity.chooseNonEmptySlot(world.random);
 		if (slot < 0) {
-			world.syncWorldEvent(1001, pos, 0);
-			world.emitGameEvent(null, GameEvent.DISPENSE_FAIL, pos);
+			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0);
+            world.emitGameEvent(null, GameEvent.BLOCK_ACTIVATE, pos);
 		} else {
 			ItemStack stack = blockEntity.getStack(slot);
 			tryPlace(stack, pointer);
@@ -55,19 +55,23 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 	// We can't reuse the vanilla BlockPlacementDispenserBehavior, since we are using a different orientation for our block:
 	// BlockPlacerBlock.ORIENTATION instead of DispenserBlock.FACING
 	protected void tryPlace(@NotNull ItemStack stack, BlockPointer pointer) {
-		if (stack.getItem() instanceof BlockItem blockItem) {
+        World world = pointer.getWorld();
+        if (stack.getItem() instanceof BlockItem blockItem) {
 			Direction facing = pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing();
 			BlockPos placementPos = pointer.getPos().offset(facing);
-			Direction placementDirection = pointer.getWorld().isAir(placementPos.down()) ? facing : Direction.UP;
-			
+            Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
+
 			try {
-				blockItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), placementPos, facing, stack, placementDirection));
-				pointer.getWorld().syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pointer.getPos(), 0);
-				pointer.getWorld().syncWorldEvent(WorldEvents.DISPENSER_ACTIVATED, pointer.getPos(), pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing().getId());
+				blockItem.place(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+				world.syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pointer.getPos(), 0);
+				world.syncWorldEvent(WorldEvents.DISPENSER_ACTIVATED, pointer.getPos(), pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing().getId());
+                world.emitGameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
 			} catch (Exception ignored) {
 			}
 		} else {
-			pointer.getWorld().emitGameEvent(null, GameEvent.DISPENSE_FAIL, pointer.getPos());
+
+			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pointer.getPos(), 0);
+            world.emitGameEvent(null, GameEvent.BLOCK_ACTIVATE, pointer.getPos());
 		}
 	}
 	
@@ -76,7 +80,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 		boolean bl = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
 		boolean bl2 = state.get(TRIGGERED);
 		if (bl && !bl2) {
-			world.createAndScheduleBlockTick(pos, this, 4);
+			world.scheduleBlockTick(pos, this, 4);
 			world.setBlockState(pos, state.with(TRIGGERED, true), 4);
 		} else if (!bl && bl2) {
 			world.setBlockState(pos, state.with(TRIGGERED, false), 4);

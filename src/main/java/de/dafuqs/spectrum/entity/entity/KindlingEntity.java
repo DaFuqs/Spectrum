@@ -44,6 +44,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public float prevMaxWingDeviation;
 	public float prevFlapProgress;
 	public float flapSpeed = 1.0F;
+    // TODO - Rename this field?
 	private float field_28639 = 1.0F;
 	
 	public KindlingEntity(EntityType<? extends KindlingEntity> entityType, World world) {
@@ -201,7 +202,7 @@ setClipped(4800); // 4 minutes
 				chooseRandomAngerTime();
 			}
 
-			return ActionResult.success(world.isClient);
+			return ActionResult.success(this.getWorld().isClient);
 		}
 
 		return super.interactMob(player, hand);

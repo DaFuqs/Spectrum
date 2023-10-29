@@ -47,7 +47,7 @@ public class BlockDetectorBlock extends RedstoneInteractionBlock {
 			world.setBlockState(pos, state.with(TRIGGERED, false), Block.NOTIFY_LISTENERS);
 		} else {
 			world.setBlockState(pos, state.with(TRIGGERED, true), Block.NOTIFY_LISTENERS);
-			world.createAndScheduleBlockTick(pos, this, 2);
+			world.scheduleBlockTick(pos, this, 2);
 		}
 
 		this.updateNeighbors(world, pos, state);

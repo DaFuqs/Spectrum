@@ -17,6 +17,14 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin({StemBlock.class, CropBlock.class})
 public abstract class CropAndStemBlockMixin {
 	
+	@Inject(method = "canGrow", at = @At("HEAD"), cancellable = true)
+	private void markUnableToGrow(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
+		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
+			cir.setReturnValue(false);
+			cir.cancel();
+		}
+	}
+	
 	@ModifyReturnValue(method = "canPlantOnTop(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z", at = @At("RETURN"))
 	public boolean canPlantOnTopOfCustomFarmland(boolean original, @NotNull BlockState floor, BlockView world, BlockPos pos) {
 		if (!original) {

@@ -14,8 +14,6 @@ import java.util.function.Supplier;
 public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 	
 	Supplier<BiMap<Block, Block>> WEATHERING_LEVEL_INCREASES = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
-			.put(SpectrumBlocks.SHALE_CLAY, SpectrumBlocks.EXPOSED_SHALE_CLAY)
-			.put(SpectrumBlocks.EXPOSED_SHALE_CLAY, SpectrumBlocks.WEATHERED_SHALE_CLAY)
 			
 			.put(SpectrumBlocks.POLISHED_SHALE_CLAY, SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY)
 			.put(SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY, SpectrumBlocks.WEATHERED_POLISHED_SHALE_CLAY)

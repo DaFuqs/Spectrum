@@ -1,7 +1,19 @@
 {
 	"variants": {
-		"": {
+		"facing=north": {
 			"model": "spectrum:block/potion_workshop"
+		},
+		"facing=east": {
+			"model": "spectrum:block/potion_workshop",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/potion_workshop",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "spectrum:block/potion_workshop",
+			"y": 270
 		}
 	}
 }

@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -21,7 +22,8 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	
 	public static final BooleanProperty HAS_CONTENT = BooleanProperty.of("has_content");
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 	
 	public PotionWorkshopBlock(Settings settings) {
 		super(settings);
@@ -30,7 +32,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(HAS_CONTENT);
+		builder.add(HAS_CONTENT, FACING);
 	}
 	
 	@Override
@@ -71,7 +73,13 @@ public class PotionWorkshopBlock extends BlockWithEntity {
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }
-	
+
+	@Nullable
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+	}
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

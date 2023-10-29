@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "CCC",
+    "RSB",
+    "BBB"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "spectrum:storm_stone"
+    },
+    "B": {
+      "item": "spectrum:polished_bone_ash"
+    },
+    "C": {
+      "item": "spectrum:pyrite"
+    }
+  },
+  "result": {
+    "item": "spectrum:block_breaker",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/redstone/block_breaker"
+}

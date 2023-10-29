@@ -77,7 +77,9 @@ public class HummingstoneBlock extends BlockWithEntity {
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!state.get(HUMMING)) {
-			startHumming(world, pos, state, player, false);
+			if (!world.isClient) {
+				startHumming(world, pos, state, player, false);
+			}
 			return ActionResult.success(world.isClient);
 		}
 		return super.onUse(state, world, pos, player, hand, hit);
@@ -87,7 +89,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
-		if (state.get(HUMMING)) {
+		if (!world.isClient && state.get(HUMMING)) {
 			stopHumming(world, pos, state);
 		}
 	}
@@ -96,18 +98,22 @@ public class HummingstoneBlock extends BlockWithEntity {
 	@SuppressWarnings("deprecation")
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
-		startHumming(world, pos, state, entity, false);
+		if (!world.isClient && !state.get(HUMMING)) {
+			startHumming(world, pos, state, entity, false);
+		}
 	}
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		super.onLandedUpon(world, state, pos, entity, fallDistance);
-		startHumming(world, pos, state, entity, false);
+		if (!world.isClient && !state.get(HUMMING)) {
+			startHumming(world, pos, state, entity, false);
+		}
 	}
 	
 	@Override
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
-		if (!world.isClient) {
+		if (!world.isClient && !state.get(HUMMING)) {
 			startHumming(world, hit.getBlockPos(), state, projectile.getOwner(), false);
 		}
 	}

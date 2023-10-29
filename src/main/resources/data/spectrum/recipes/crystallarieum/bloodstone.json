@@ -1,7 +1,7 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "spectrum:effulgent_feather"
+    "item": "spectrum:raw_bloodstone"
   },
   "growth_stage_states": [
     "spectrum:small_bloodstone_bud",

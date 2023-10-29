@@ -57,6 +57,15 @@ public class SpectrumDispenserBehaviors {
 		for (Block skullBlock : SpectrumBlocks.MOB_HEADS.values()) {
 			DispenserBlock.registerBehavior(skullBlock, armorEquipBehavior);
 		}
+		
+		// Decay
+		DispenserBehavior blockPlacementDispenserBehavior = new BlockPlacementDispenserBehavior();
+		
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FADING, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FAILING, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_RUIN, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_FORFEITURE, blockPlacementDispenserBehavior);
+		DispenserBlock.registerBehavior(SpectrumItems.BOTTLE_OF_DECAY_AWAY, blockPlacementDispenserBehavior);
 	}
 	
 }

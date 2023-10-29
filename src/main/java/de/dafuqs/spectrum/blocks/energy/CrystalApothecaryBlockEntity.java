@@ -143,19 +143,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (!this.deserializeLootTable(nbt)) {
 			Inventories.readNbt(nbt, this.inventory);
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("ListenerPaused")) {
 			this.listenerPaused = nbt.getBoolean("ListenerPaused");
 		}
-		if (nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = null;
-		}
+		this.ownerName = PlayerOwned.readOwnerName(nbt);
 		if (nbt.contains("LastWorldTime")) {
 			this.compensationWorldTime = nbt.getLong("LastWorldTime");
 		}
@@ -171,12 +163,8 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (this.getWorld() != null) {
 			nbt.putLong("LastWorldTime", this.getWorld().getTime());
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
+		PlayerOwned.writeOwnerName(nbt, this.ownerName);
 	}
 	
 	@Override

@@ -1,11 +1,13 @@
 {
   "criteria": {
-    "has_crawfish": {
+    "has_koi": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "spectrum:crawfish"
+            "items": [
+              "spectrum:crawfish"
+            ]
           }
         ]
       }

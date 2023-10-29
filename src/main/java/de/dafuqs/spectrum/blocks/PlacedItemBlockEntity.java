@@ -29,12 +29,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.stack = ItemStack.fromNbt(nbt.getCompound("stack"));
-		
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 	}
 	
 	@Override
@@ -42,9 +37,7 @@ public class PlacedItemBlockEntity extends BlockEntity implements PlayerOwned {
 		super.writeNbt(nbt);
 		nbt.put("stack", this.stack.writeNbt(new NbtCompound()));
 		
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 	}
 	
 	public void setStack(ItemStack stack) {

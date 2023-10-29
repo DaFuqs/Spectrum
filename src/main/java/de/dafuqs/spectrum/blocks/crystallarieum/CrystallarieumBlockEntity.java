@@ -176,11 +176,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 		this.canWork = nbt.getBoolean("CanWork");
 		
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
 		this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
@@ -206,9 +202,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		nbt.put("Looper", this.tickLooper.toNbt());
 		
 		nbt.putBoolean("CanWork", this.canWork);
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 			nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageTicks);

@@ -11,7 +11,7 @@
   },
   "effect": "minecraft:darkness",
   "base_duration_ticks": 600,
-  "potency_modifier": 0.5,
+  "potency_modifier": 0.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,

@@ -41,7 +41,7 @@ import net.minecraft.registry.*;
 import java.util.*;
 
 public class SpectrumBlockEntities {
-
+	
 	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
@@ -74,6 +74,7 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
 	public static BlockEntityType<RedstoneWirelessBlockEntity> REDSTONE_WIRELESS;
 	public static BlockEntityType<BlockPlacerBlockEntity> BLOCK_PLACER;
+	public static BlockEntityType<BlockBreakerBlockEntity> BLOCK_BREAKER;
 	public static BlockEntityType<BlockFlooderBlockEntity> BLOCK_FLOODER;
 	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
 	public static BlockEntityType<MemoryBlockEntity> MEMORY;
@@ -112,6 +113,7 @@ public class SpectrumBlockEntities {
 		REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
 		REDSTONE_WIRELESS = register("redstone_wireless", RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS);
 		BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
+		BLOCK_BREAKER = register("block_breaker", BlockBreakerBlockEntity::new, SpectrumBlocks.BLOCK_BREAKER);
 		BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
 		SHOOTING_STAR = register("shooting_star", ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR); // TODO: move to PlacedItemBlockEntity in 1.20 (so players won't lose their stuff)
 		BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);

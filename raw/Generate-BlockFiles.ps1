@@ -1,4 +1,4 @@
-﻿$new = @("black_wood", "blue_wood", "brown_wood", "cyan_wood", "gray_wood", "green_wood", "light_blue_wood", "light_gray_wood", "lime_wood", "magenta_wood", "orange_wood", "pink_wood", "purple_wood", "red_wood", "white_wood", "yellow_wood")
+﻿$new = @("block_detector", "block_breaker", "block_placer")
 
 enum BlockType {
     Default
@@ -12,6 +12,7 @@ enum BlockType {
     Wall
     Button
     PressurePlate
+    Orientable
 }
 
 Function Generate-BlockFiles {
@@ -167,7 +168,7 @@ Function Generate-BlockFiles {
 }
 
 
-function Get-BlockStateSlab($Name) {
+        function Get-BlockStateSlab($Name) {
   Write-Output @"
   {
     "variants": {
@@ -632,7 +633,6 @@ function Get-BlockStateSlab($Name) {
 "@
         }
 
-        
         function Get-BlockStatePressurePlate($Name) {
             Write-Output @"
 {
@@ -647,6 +647,70 @@ function Get-BlockStateSlab($Name) {
 }
 "@
         }
+
+        
+        function Get-BlockStateOrientable($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "orientation=down_east": {
+      "model": "spectrum:block/$Name",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_north": {
+      "model": "spectrum:block/$Name",
+      "x": 90
+    },
+    "orientation=down_south": {
+      "model": "spectrum:block/$Name",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_west": {
+      "model": "spectrum:block/$Name",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=east_up": {
+      "model": "spectrum:block/$Name",
+      "y": 90
+    },
+    "orientation=north_up": {
+      "model": "spectrum:block/$Name"
+    },
+    "orientation=south_up": {
+      "model": "spectrum:block/$Name",
+      "y": 180
+    },
+    "orientation=up_east": {
+      "model": "spectrum:block/$Name",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_north": {
+      "model": "spectrum:block/$Name",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_south": {
+      "model": "spectrum:block/$Name",
+      "x": 270
+    },
+    "orientation=up_west": {
+      "model": "spectrum:block/$Name",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=west_up": {
+      "model": "spectrum:block/$Name",
+      "y": 270
+    }
+  }
+}
+"@
+}
+
 
 
         ####################################
@@ -667,6 +731,22 @@ function Get-BlockStateSlab($Name) {
     "textures": {
     "all": "spectrum:block/$Name"
     }
+}
+"@
+        }
+
+        function Get-BlockModelOrientable($Name) {
+            Write-Output @"
+{
+  "parent": "spectrum:templates/complex_orientable",
+  "textures": {
+    "top": "spectrum:block/$Name`_top",
+    "front": "spectrum:block/$Name`_front",
+    "side": "spectrum:block/$Name`_side",
+    "bottom": "spectrum:block/$Name`_bottom",
+    "back": "spectrum:block/$Name`_back",
+    "particle": "spectrum:block/$Name`_side"
+  }
 }
 "@
         }
@@ -1052,6 +1132,8 @@ function Get-BlockStateSlab($Name) {
             # BLOCK STATES
             if($blockType -eq [BlockType]::Default) {
                 $blockState = Get-BlockStateDefault -Name $_
+            } elseif ($blockType -eq [BlockType]::Orientable) {
+                $blockState = Get-BlockStateOrientable -Name $_
             } elseif ($blockType -eq [BlockType]::Log) {
                 $blockState = Get-BlockStateLog -Name $_
             } elseif ($blockType -eq [BlockType]::Wood) {
@@ -1078,6 +1160,8 @@ function Get-BlockStateSlab($Name) {
             # BLOCK MODELS
             if($blockType -eq [BlockType]::Default) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModel -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Orientable) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelOrientable -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Log) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelLog -Name $_) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $(Get-BlockModelLogHorizontal -Name $_) | Out-Null
@@ -1179,4 +1263,4 @@ function Get-BlockStateSlab($Name) {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Wood)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Orientable)

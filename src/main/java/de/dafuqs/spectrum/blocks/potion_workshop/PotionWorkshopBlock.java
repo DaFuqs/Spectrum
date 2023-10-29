@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 import net.minecraft.screen.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -16,12 +17,13 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class PotionWorkshopBlock extends BlockWithEntity {
+public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockEntityProvider {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	
 	public static final BooleanProperty HAS_CONTENT = BooleanProperty.of("has_content");
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
+	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 	
 	public PotionWorkshopBlock(Settings settings) {
 		super(settings);
@@ -30,7 +32,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(HAS_CONTENT);
+		builder.add(HAS_CONTENT, FACING);
 	}
 	
 	@Override
@@ -47,7 +49,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntities.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
+			return SpectrumBlockEntities.POTION_WORKSHOP == type ? (BlockEntityTicker) (BlockEntityTicker<? extends PotionWorkshopBlockEntity>) PotionWorkshopBlockEntity::tick : null;
 		}
 		return null;
 	}
@@ -55,11 +57,6 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
 	}
 	
 	@Override
@@ -71,7 +68,13 @@ public class PotionWorkshopBlock extends BlockWithEntity {
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }
-	
+
+	@Nullable
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+	}
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

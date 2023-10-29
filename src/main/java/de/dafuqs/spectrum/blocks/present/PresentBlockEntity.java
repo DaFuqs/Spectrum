@@ -69,16 +69,8 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		super.readNbt(nbt);
 		Inventories.readNbt(nbt, this.stacks);
 		this.colors = PresentItem.getColors(nbt);
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
-		if (nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = "???";
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
+		this.ownerName = PlayerOwned.readOwnerName(nbt);
 		if (nbt.contains("OpenerUUID")) {
 			this.openerUUID = nbt.getUuid("OpenerUUID");
 		} else {
@@ -98,12 +90,8 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		if (!this.colors.isEmpty()) {
 			PresentItem.setColors(nbt, this.colors);
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
+		PlayerOwned.writeOwnerName(nbt, this.ownerName);
 		if (this.openerUUID != null) {
 			nbt.putUuid("OpenerUUID", this.openerUUID);
 		}

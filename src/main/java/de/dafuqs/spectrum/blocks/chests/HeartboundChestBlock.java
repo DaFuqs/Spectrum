@@ -48,12 +48,12 @@ public class HeartboundChestBlock extends SpectrumChestBlock {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		if (itemStack.hasCustomName()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof HeartboundChestBlockEntity heartboundChestBlockEntity) {
-				if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
-					heartboundChestBlockEntity.setOwner(serverPlayerEntity);
-				}
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof HeartboundChestBlockEntity heartboundChestBlockEntity) {
+			if (placer instanceof ServerPlayerEntity serverPlayerEntity) {
+				heartboundChestBlockEntity.setOwner(serverPlayerEntity);
+			}
+			if (itemStack.hasCustomName()) {
 				heartboundChestBlockEntity.setCustomName(itemStack.getName());
 			}
 		}

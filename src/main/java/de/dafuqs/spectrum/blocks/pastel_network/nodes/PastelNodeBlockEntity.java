@@ -40,7 +40,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedNoRedstonePower = true;
 	
-	protected int itemCountUnderway = 0;
+	protected long itemCountUnderway = 0;
 	
 	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
@@ -104,6 +104,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         if (nbt.contains("LastTransferTick", NbtElement.LONG_TYPE)) {
             this.lastTransferTick = nbt.getLong("LastTransferTick");
         }
+        if (nbt.contains("ItemCountUnderway", NbtElement.LONG_TYPE)) {
+            this.itemCountUnderway = nbt.getLong("ItemCountUnderway");
+        }
         if (this.getNodeType().usesFilters()) {
             readFilterNbt(nbt, this.filterItems);
         }
@@ -116,6 +119,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             nbt.putUuid("Network", this.network.getUUID());
         }
         nbt.putLong("LastTransferTick", this.lastTransferTick);
+        nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
         if (this.getNodeType().usesFilters()) {
             writeFilterNbt(nbt, this.filterItems);
         }
@@ -167,12 +171,12 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             this.markDirty();
         }
     }
-
-    public int getItemCountUnderway() {
+    
+    public long getItemCountUnderway() {
         return this.itemCountUnderway;
     }
-
-    public void addItemCountUnderway(int count) {
+    
+    public void addItemCountUnderway(long count) {
         this.itemCountUnderway += count;
         this.itemCountUnderway = Math.max(0, this.itemCountUnderway);
         this.markDirty();

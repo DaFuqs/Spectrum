@@ -1,10 +1,15 @@
 {
   "values": [
-    "#spectrum:aloe_converted",
-    "#minecraft:base_stone_overworld",
     "#minecraft:sand",
+    "#minecraft:base_stone_overworld",
+    "#spectrum:aloe_converted",
+    "#spectrum:base_stone_deeper_down",
+
     "spectrum:rotten_ground",
     "spectrum:shimmel",
+    "spectrum:shale_clay",
+    "spectrum:exposed_shale_clay",
+    "spectrum:weathered_shale_clay",
     "spectrum:sawblade_grass"
   ]
 }

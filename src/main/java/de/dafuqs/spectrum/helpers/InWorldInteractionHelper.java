@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.helpers;
 
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -96,5 +98,16 @@ public class InWorldInteractionHelper {
 		stack.decrement(amount);
 	}
 	
-	
+	public static void scatter(World world, double x, double y, double z, ItemVariant variant, long amount) {
+		int maxStackSize = variant.getItem().getMaxCount();
+
+		while (amount > 0) {
+			int stackSize = (int) Math.min(maxStackSize, amount);
+			ItemStack stack = variant.toStack(stackSize);
+			ItemScatterer.spawn(world, x, y, z, stack);
+			amount -= stackSize;
+		}
+	}
+
+
 }

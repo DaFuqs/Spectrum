@@ -295,11 +295,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = true;
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("MultiblockRotation")) {
 			try {
 				this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
@@ -335,9 +331,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

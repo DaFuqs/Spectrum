@@ -1599,6 +1599,43 @@
     ]
   },
 
+  "entity.kindling.ambient": {
+    "subtitle": "spectrum.subtitles.entity.kindling.ambient",
+    "sounds": [
+      "spectrum:entity.kindling.ambient",
+      "spectrum:entity.kindling.ambient2",
+      "spectrum:entity.kindling.ambient3",
+      "spectrum:entity.kindling.ambient4"
+    ]
+  },
+  "entity.kindling.death": {
+    "subtitle": "spectrum.subtitles.entity.kindling.death",
+    "sounds": [
+      "spectrum:entity.kindling.death",
+      "spectrum:entity.kindling.death2",
+      "spectrum:entity.kindling.death3",
+      "spectrum:entity.kindling.death4"
+    ]
+  },
+  "entity.kindling.hurt": {
+    "subtitle": "spectrum.subtitles.entity.kindling.hurt",
+    "sounds": [
+      "spectrum:entity.kindling.hurt",
+      "spectrum:entity.kindling.hurt2",
+      "spectrum:entity.kindling.hurt3",
+      "spectrum:entity.kindling.hurt4"
+    ]
+  },
+  "entity.kindling.shoot": {
+    "subtitle": "spectrum.subtitles.entity.kindling.shoot",
+    "sounds": [
+      "spectrum:entity.kindling.shoot",
+      "spectrum:entity.kindling.shoot2",
+      "spectrum:entity.kindling.shoot3",
+      "spectrum:entity.kindling.shoot4"
+    ]
+  },
+
   "entity.preservation_turret.ambient": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",
     "sounds": [

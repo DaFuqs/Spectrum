@@ -1,11 +1,5 @@
 {
   "criteria": {
-    "killed_monstrosity": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:lategame/killed_monstrosity"
-      }
-    },
     "built_complex_pedestal_structure": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

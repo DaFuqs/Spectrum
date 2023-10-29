@@ -6,6 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,
     "spectrum:hummingstone_glass": 0,
+    "spectrum:clear_hummingstone_glass": 0,
     "spectrum:resonance_shard": 0
   },
   "pages": [
@@ -18,6 +19,11 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:hummingstone",
       "text": "Between this glass you find these pretty stones that emit a pleasant hum when triggered. You fittingly called those $(italic)Hummingstones$()."
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "recipe": "spectrum:cinderhearth/clear_hummingstone_glass",
+      "text": "Only the Cinderhearth develops enough heat to shape the stone. This makes it almost transparent."
     },
     {
       "type": "patchouli:spotlight",

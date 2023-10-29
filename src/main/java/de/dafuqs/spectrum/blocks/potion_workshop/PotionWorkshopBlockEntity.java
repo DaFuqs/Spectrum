@@ -368,11 +368,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		super.readNbt(nbt);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		Inventories.readNbt(nbt, this.inventory);
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("LastBrewedRecipe") && this.getWorld() != null) {
 			String recipeString = nbt.getString("LastBrewedRecipe");
 			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
@@ -390,9 +386,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		Inventories.writeNbt(nbt, this.inventory);
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.lastBrewedRecipe != null) {
 			nbt.putString("LastBrewedRecipe", this.lastBrewedRecipe.getId().toString());
 		}

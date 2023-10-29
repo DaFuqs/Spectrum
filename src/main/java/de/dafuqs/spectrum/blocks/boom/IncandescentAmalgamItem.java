@@ -71,7 +71,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 	public float getExplosionPower(ItemStack stack, boolean useCount) {
 		float alcPercent = getBeverageProperties(stack).alcPercent;
 		if (alcPercent <= 0) {
-			return 5;
+			return 6;
 		} else {
 			return alcPercent + (useCount ? stack.getCount() / 8F : 0);
 		}

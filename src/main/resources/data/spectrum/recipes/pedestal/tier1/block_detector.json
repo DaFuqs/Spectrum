@@ -10,8 +10,8 @@
   "experience": 1.0,
   "pattern": [
     "CCC",
-    "CSC",
-    "CRC"
+    "RSB",
+    "BBB"
   ],
   "key": {
     "R": {
@@ -20,8 +20,11 @@
     "S": {
       "item": "spectrum:storm_stone"
     },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
     "C": {
-      "item": "minecraft:cobblestone"
+      "item": "minecraft:copper_ingot"
     }
   },
   "result": {

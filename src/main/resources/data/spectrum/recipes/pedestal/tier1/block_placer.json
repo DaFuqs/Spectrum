@@ -10,8 +10,8 @@
   "experience": 1.0,
   "pattern": [
     "CCC",
-    "CTC",
-    "CRC"
+    "RTB",
+    "BBB"
   ],
   "key": {
     "R": {
@@ -20,8 +20,11 @@
     "T": {
       "item": "spectrum:topaz_shard"
     },
+    "B": {
+      "item": "spectrum:polished_calcite"
+    },
     "C": {
-      "item": "minecraft:cobblestone"
+      "item": "minecraft:copper_ingot"
     }
   },
   "result": {

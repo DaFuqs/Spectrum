@@ -1,24 +1,55 @@
 {
   "variants": {
-    "facing=down": {
-      "model": "spectrum:block/block_detector_vertical",
-      "x": 180
+    "orientation=down_east": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 90
     },
-    "facing=east": {
+    "orientation=down_north": {
+      "model": "spectrum:block/block_detector",
+      "x": 90
+    },
+    "orientation=down_south": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_west": {
+      "model": "spectrum:block/block_detector",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=east_up": {
       "model": "spectrum:block/block_detector",
       "y": 90
     },
-    "facing=north": {
+    "orientation=north_up": {
       "model": "spectrum:block/block_detector"
     },
-    "facing=south": {
+    "orientation=south_up": {
       "model": "spectrum:block/block_detector",
       "y": 180
     },
-    "facing=up": {
-      "model": "spectrum:block/block_detector_vertical"
+    "orientation=up_east": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 270
     },
-    "facing=west": {
+    "orientation=up_north": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_south": {
+      "model": "spectrum:block/block_detector",
+      "x": 270
+    },
+    "orientation=up_west": {
+      "model": "spectrum:block/block_detector",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=west_up": {
       "model": "spectrum:block/block_detector",
       "y": 270
     }

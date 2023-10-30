@@ -134,6 +134,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	@Override
+	protected SoundEvent getAngrySound() {
+		return SpectrumSoundEvents.ENTITY_KINDLING_ANGRY;
+	}
+	
+	@Override
 	public boolean isInAir() {
 		return !this.onGround;
 	}
@@ -209,15 +214,22 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 					chooseRandomAngerTime();
 					
 					clipAndGiveDrops(player);
+					
+					this.playSoundIfNotSilent();
 				}
 				
-				// 🍆 / 🍑 = 💘
+				return ActionResult.success(world.isClient);
+				
 			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
+				// 🍆 / 🍑 = 💘
+				
 				if (!this.world.isClient) {
 					handStack.decrement(1);
 					spawnPlayerReactionParticles(true);
 					
 					clipAndGiveDrops(player);
+					
+					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
 				}
 				
 				return ActionResult.success(world.isClient);
@@ -250,8 +262,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		double f = target.getZ() - this.getZ();
 		double g = Math.sqrt(d * d + f * f) * 0.2;
 		kindlingCoughEntity.setVelocity(d, e + g, f, 1.5F, 10.0F);
+		
 		if (!this.isSilent()) {
-			this.world.playSound(null, this.getX(), this.getY(), this.getZ(), SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, this.getSoundCategory(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 		}
 		
 		this.world.spawnEntity(kindlingCoughEntity);

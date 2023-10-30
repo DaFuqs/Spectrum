@@ -9,7 +9,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.screen.*;
 import net.minecraft.state.*;
-import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -21,18 +20,15 @@ public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockE
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	
-	public static final BooleanProperty HAS_CONTENT = BooleanProperty.of("has_content");
-	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 	
 	public PotionWorkshopBlock(Settings settings) {
 		super(settings);
-		setDefaultState(getStateManager().getDefaultState().with(HAS_CONTENT, false));
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(HAS_CONTENT, FACING);
+		builder.add(FACING);
 	}
 	
 	@Override

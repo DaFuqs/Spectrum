@@ -26,6 +26,7 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer LIZARD_FRILLS = new EntityModelLayer(SpectrumCommon.locate("lizard"), "frills");
 	public static final EntityModelLayer LIZARD_HORNS = new EntityModelLayer(SpectrumCommon.locate("lizard"), "horns");
 	public static final EntityModelLayer KINDLING = new EntityModelLayer(SpectrumCommon.locate("kindling"), "main");
+	public static final EntityModelLayer KINDLING_SADDLE = new EntityModelLayer(SpectrumCommon.locate("kindling_saddle"), "main");
 	public static final EntityModelLayer KINDLING_ARMOR = new EntityModelLayer(SpectrumCommon.locate("kindling_armor"), "main");
 	public static final EntityModelLayer KINDLING_COUGH = new EntityModelLayer(SpectrumCommon.locate("kindling_cough"), "main");
 	public static final EntityModelLayer ERASER = new EntityModelLayer(SpectrumCommon.locate("eraser"), "body");
@@ -59,6 +60,7 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_FRILLS, LizardEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HORNS, LizardEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING, KindlingEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(KINDLING_SADDLE, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_ARMOR, KindlingEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(KINDLING_COUGH, KindlingCoughEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(ERASER, EraserEntityModel::getTexturedModelData);

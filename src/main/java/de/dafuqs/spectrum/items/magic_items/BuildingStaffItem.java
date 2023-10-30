@@ -26,7 +26,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		super(settings);
 	}
 	
-	public static boolean canInteractWith(BlockState state, BlockView world, BlockPos pos, PlayerEntity player) {
+	public boolean canInteractWith(BlockState state, BlockView world, BlockPos pos, PlayerEntity player) {
 		if (state.getBlock().asItem() == Items.AIR) {
 			return false;
 		}
@@ -38,9 +38,8 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		}
 		
 		float hardness = state.getHardness(world, pos);
-		return hardness >= 0 && hardness < 20;
+		return hardness >= 0;
 	}
-	
 	
 	/**
 	 * @return The block to place, the blockItem to consume, the amount
@@ -56,6 +55,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		} else {
 			blocksToPlace = InkPowered.getAvailableInk(player, USED_COLOR) / inkCostPerBlock;
 		}
+		blocksToPlace = Math.min(1024, blocksToPlace); // to not yeet performance out the window
 		
 		return BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock, blocksToPlace);
 	}

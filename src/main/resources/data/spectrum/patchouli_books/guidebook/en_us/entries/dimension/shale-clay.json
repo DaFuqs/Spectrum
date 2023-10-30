@@ -16,8 +16,6 @@
       "title": "All Variants",
       "items": [
         "spectrum:shale_clay",
-        "spectrum:exposed_shale_clay",
-        "spectrum:weathered_shale_clay",
         "spectrum:shale_clay_bricks",
         "spectrum:shale_clay_tiles",
         "spectrum:shale_clay_brick_slab",

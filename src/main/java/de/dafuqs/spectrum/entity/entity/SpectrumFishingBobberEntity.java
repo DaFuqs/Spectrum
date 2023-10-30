@@ -359,23 +359,25 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0D, j));
 				
 				Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
-				if (particles != null) {
-					if (this.fishTravelCountdown > 0) {
+				if (this.fishTravelCountdown > 0) {
+					float k = g * 0.04F;
+					float l = h * 0.04F;
+					if (particles != null) {
 						if (this.random.nextFloat() < 0.15F) {
 							serverWorld.spawnParticles(particles.getLeft(), d, e - 0.10000000149011612D, j, 1, g, 0.1D, h, 0.0D);
 						}
-						float k = g * 0.04F;
-						float l = h * 0.04F;
 						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, l, 0.01D, (-k), 1.0D);
 						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, (-l), 0.01D, k, 1.0D);
-					} else {
-						this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+					}
+				} else {
+					this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+					if (particles != null) {
 						double m = this.getY() + 0.5D;
 						serverWorld.spawnParticles(particles.getLeft(), this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0D, this.getWidth(), 0.20000000298023224D);
 						serverWorld.spawnParticles(particles.getRight(), this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0D, this.getWidth(), 0.20000000298023224D);
-						this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
-						this.getDataTracker().set(CAUGHT_FISH, true);
 					}
+					this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
+					this.getDataTracker().set(CAUGHT_FISH, true);
 				}
 			} else if (this.waitCountdown > 0) {
 				this.waitCountdown -= i;

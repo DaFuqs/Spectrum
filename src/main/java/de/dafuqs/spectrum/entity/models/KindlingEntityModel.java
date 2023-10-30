@@ -23,9 +23,6 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 	private final ModelPart midtail;
 	private final ModelPart fartail;
 	
-	private final ModelPart[] saddle;
-	private final ModelPart[] straps;
-	
 	public KindlingEntityModel(ModelPart root) {
 		body = root.getChild(EntityModelPartNames.BODY);
 		head = body.getChild(EntityModelPartNames.HEAD);
@@ -41,10 +38,6 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 		tail = body.getChild("tail");
 		midtail = tail.getChild("midtail");
 		fartail = midtail.getChild("fartail");
-		
-		this.saddle = new ModelPart[]{}; //TODO add model parts for saddle
-		this.straps = new ModelPart[]{}; //TODO add model parts for straps
-		
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
@@ -99,29 +92,11 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 		return TexturedModelData.of(modelData, 128, 128);
 	}
 	
-	
 	@Override
 	public void setAngles(KindlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		boolean isSaddled = entity.isSaddled();
-		boolean hasPassengers = entity.hasPassengers();
-		
-		ModelPart modelPart;
-		
-		ModelPart[] parts = this.saddle;
-		int partCount = parts.length;
-		for (int i = 0; i < partCount; ++i) {
-			modelPart = parts[i];
-			modelPart.visible = isSaddled;
-		}
-		
-		parts = this.straps;
-		partCount = parts.length;
-		for (int i = 0; i < partCount; ++i) {
-			modelPart = parts[i];
-			modelPart.visible = hasPassengers && isSaddled;
-		}
+		// TODO: Animate
 	}
-
+	
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);

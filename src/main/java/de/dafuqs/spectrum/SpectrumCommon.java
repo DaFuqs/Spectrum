@@ -233,10 +233,9 @@ public class SpectrumCommon implements ModInitializer {
 			if (!world.isClient && !player.isSpectator()) {
 
 				ItemStack mainHandStack = player.getMainHandStack();
-				if (mainHandStack.isOf(SpectrumItems.EXCHANGING_STAFF)) {
-
+				if (mainHandStack.getItem() instanceof ExchangeStaffItem exchangeStaffItem) {
 					BlockState targetBlockState = world.getBlockState(pos);
-					if (BuildingStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
+					if (exchangeStaffItem.canInteractWith(targetBlockState, world, pos, player)) {
 						Optional<Block> storedBlock = ExchangeStaffItem.getStoredBlock(player.getMainHandStack());
 
 						if (storedBlock.isPresent()

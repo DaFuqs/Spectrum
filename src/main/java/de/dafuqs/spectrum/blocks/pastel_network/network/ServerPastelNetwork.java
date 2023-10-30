@@ -56,7 +56,11 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transferLooper.tick();
 		if (this.transferLooper.reachedCap()) {
 			this.transferLooper.reset();
-			this.transmissionLogic.tick();
+			try {
+				this.transmissionLogic.tick();
+			} catch (Exception e) {
+				// hmmmmmm. Block getting unloaded / new one placed while logic is running?
+			}
 		}
 	}
 	

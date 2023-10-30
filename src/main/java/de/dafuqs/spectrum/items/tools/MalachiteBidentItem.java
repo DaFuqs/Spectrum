@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
@@ -52,33 +51,33 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		ItemStack itemStack = user.getStackInHand(hand);
-		if (itemStack.getDamage() >= itemStack.getMaxDamage() - 1) {
-			return TypedActionResult.fail(itemStack);
-		} else if (!requiresRainForRiptide()) {
+		ItemStack handStack = user.getStackInHand(hand);
+		if (handStack.getDamage() >= handStack.getMaxDamage() - 1) {
+			return TypedActionResult.fail(handStack);
+		} else if (!canStartRiptide(user, handStack)) {
 			user.setCurrentHand(hand);
-			return TypedActionResult.consume(itemStack);
-		} else if (EnchantmentHelper.getRiptide(itemStack) > 0 && !user.isTouchingWaterOrRain()) {
-			return TypedActionResult.fail(itemStack);
+			return TypedActionResult.consume(handStack);
+		} else if (EnchantmentHelper.getRiptide(handStack) > 0 && !user.isTouchingWaterOrRain()) {
+			return TypedActionResult.fail(handStack);
 		} else {
 			user.setCurrentHand(hand);
-			return TypedActionResult.consume(itemStack);
+			return TypedActionResult.consume(handStack);
 		}
 	}
 	
 	@Override
 	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-		if (user instanceof PlayerEntity playerEntity) {
+		if (user instanceof PlayerEntity player) {
 			int useTime = this.getMaxUseTime(stack) - remainingUseTicks;
 			if (useTime >= 10) {
-				playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+				player.incrementStat(Stats.USED.getOrCreateStat(this));
 				
 				int riptideLevel = getRiptideLevel(stack);
-				if (riptideLevel > 0 && (playerEntity.isTouchingWaterOrRain() || !requiresRainForRiptide())) {
-					riptide(world, playerEntity, riptideLevel);
+				if (riptideLevel > 0 && canStartRiptide(player, stack)) {
+					riptide(world, player, riptideLevel);
 				} else if (!world.isClient) {
-					stack.damage(1, playerEntity, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
-					throwBident(stack, (ServerWorld) world, playerEntity);
+					stack.damage(1, player, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
+					throwBident(stack, (ServerWorld) world, player);
 				}
 			}
 		}
@@ -157,14 +156,14 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		return 0;
 	}
 	
-	public boolean requiresRainForRiptide() {
-		return true;
+	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
+		return player.isTouchingWaterOrRain();
 	}
 	
 	public boolean isThrownAsMirrorImage(ItemStack stack, ServerWorld world, PlayerEntity player) {
 		return false;
 	}
-
+	
 	@Override
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS || enchantment == Enchantments.LOOTING || enchantment == SpectrumEnchantments.CLOVERS_FAVOR;

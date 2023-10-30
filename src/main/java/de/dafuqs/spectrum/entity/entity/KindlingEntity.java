@@ -212,10 +212,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 					setTarget(player);
 					setAngryAt(player.getUuid());
 					chooseRandomAngerTime();
+					this.playAngrySound();
 					
-					clipAndGiveDrops(player);
-					
-					this.playSoundIfNotSilent();
+					clipAndDrop();
 				}
 				
 				return ActionResult.success(world.isClient);
@@ -225,11 +224,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				
 				if (!this.world.isClient) {
 					handStack.decrement(1);
-					spawnPlayerReactionParticles(true);
-					
-					clipAndGiveDrops(player);
-					
+					this.world.sendEntityStatus(this, (byte) 7); // heart particles
 					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
+					
+					clipAndDrop();
 				}
 				
 				return ActionResult.success(world.isClient);
@@ -239,10 +237,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		return super.interactMob(player, hand);
 	}
 	
-	private void clipAndGiveDrops(PlayerEntity player) {
+	private void clipAndDrop() {
 		setClipped(4800); // 4 minutes
 		for (ItemStack clippedStack : getClippedStacks((ServerWorld) world)) {
-			player.getInventory().offerOrDrop(clippedStack);
+			dropStack(clippedStack, 0.3F);
 		}
 	}
 	

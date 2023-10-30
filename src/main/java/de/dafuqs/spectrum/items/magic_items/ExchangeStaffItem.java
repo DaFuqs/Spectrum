@@ -68,6 +68,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		}
 	}
 	
+	@Override
+	public boolean canInteractWith(BlockState state, BlockView world, BlockPos pos, PlayerEntity player) {
+		return super.canInteractWith(state, world, pos, player) && state.getHardness(world, pos) < 20;
+	}
+	
 	public static Optional<Block> getStoredBlock(@NotNull ItemStack exchangeStaffItemStack) {
 		NbtCompound compound = exchangeStaffItemStack.getOrCreateNbt();
 		if (compound.contains("TargetBlock")) {

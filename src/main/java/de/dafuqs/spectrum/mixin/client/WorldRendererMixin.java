@@ -49,16 +49,16 @@ public abstract class WorldRendererMixin {
 		if (client.player != null && renderBlockOutline) {
 			for (ItemStack handStack : client.player.getHandItems()) {
 				Item handItem = handStack.getItem();
-				if (handItem instanceof ConstructorsStaffItem) {
+				if (handItem instanceof ConstructorsStaffItem constructorsStaffItem) {
 					HitResult hitResult = this.client.crosshairTarget;
 					if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-						renderedExtendedOutline = spectrum$renderPlacementStaffOutline(matrices, camera, x, y, z, immediate, (BlockHitResult) hitResult);
+						renderedExtendedOutline = spectrum$renderConstructorsStaffOutline(constructorsStaffItem, matrices, camera, x, y, z, immediate, (BlockHitResult) hitResult);
 					}
 					break;
-				} else if (handItem instanceof ExchangeStaffItem) {
+				} else if (handItem instanceof ExchangeStaffItem exchangeStaffItem) {
 					HitResult hitResult = this.client.crosshairTarget;
 					if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK) {
-						renderedExtendedOutline = spectrum$renderExchangeStaffOutline(matrices, camera, x, y, z, immediate, handStack, (BlockHitResult) hitResult);
+						renderedExtendedOutline = spectrum$renderExchangeStaffOutline(exchangeStaffItem, matrices, camera, x, y, z, immediate, handStack, (BlockHitResult) hitResult);
 					}
 					break;
 				}
@@ -66,12 +66,13 @@ public abstract class WorldRendererMixin {
 		}
 	}
 	
-	private boolean spectrum$renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double x, double y, double z, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
+	@Unique
+	private boolean spectrum$renderConstructorsStaffOutline(ConstructorsStaffItem constructorsStaffItem, MatrixStack matrices, Camera camera, double x, double y, double z, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
 		
 		ClientPlayerEntity player = client.player;
-		if (BuildingStaffItem.canInteractWith(lookingAtState, this.world, lookingAtPos, player)) {
+		if (constructorsStaffItem.canInteractWith(lookingAtState, this.world, lookingAtPos, player)) {
 			Block blockToRender = lookingAtState.getBlock();
 			Item item = blockToRender.asItem();
 			VoxelShape shape = VoxelShapes.empty();
@@ -106,12 +107,12 @@ public abstract class WorldRendererMixin {
 	}
 	
 	@Unique
-	private boolean spectrum$renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double x, double y, double z, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
+	private boolean spectrum$renderExchangeStaffOutline(ExchangeStaffItem exchangeStaffItem, MatrixStack matrices, Camera camera, double x, double y, double z, VertexConsumerProvider.Immediate immediate, ItemStack exchangeStaffItemStack, @NotNull BlockHitResult hitResult) {
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
 		
 		ClientPlayerEntity player = client.player;
-		if (BuildingStaffItem.canInteractWith(lookingAtState, this.world, lookingAtPos, player)) {
+		if (exchangeStaffItem.canInteractWith(lookingAtState, this.world, lookingAtPos, player)) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {

@@ -23,6 +23,7 @@ public class KindlingEntityRenderer extends MobEntityRenderer<KindlingEntity, Ki
 	
 	public KindlingEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new KindlingEntityModel(context.getPart(SpectrumModelLayers.KINDLING)), 0.7F);
+		this.addFeature(new KindlingEntitySaddleFeatureRenderer(this, context.getModelLoader()));
 		this.addFeature(new KindlingEntityArmorFeatureRenderer(this, context.getModelLoader()));
 	}
 	

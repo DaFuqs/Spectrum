@@ -219,6 +219,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_SHOOT = register("entity.kindling.shoot");
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_LOVE = register("entity.kindling.love");
+	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
 	
 	
 	private static SoundEvent register(String id) {

@@ -139,6 +139,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	@Override
+	protected void playJumpSound() {
+		this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_JUMP, 0.4F, 1.0F);
+	}
+	
+	@Override
 	public boolean isInAir() {
 		return !this.onGround;
 	}

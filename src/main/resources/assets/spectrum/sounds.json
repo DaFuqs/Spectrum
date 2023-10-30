@@ -1639,6 +1639,12 @@
       "spectrum:entity.kindling.love"
     ]
   },
+  "entity.kindling.jump": {
+    "subtitle": "spectrum.subtitles.entity.kindling.jump",
+    "sounds": [
+      "spectrum:entity.kindling.jump"
+    ]
+  },
 
   "entity.preservation_turret.ambient": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",

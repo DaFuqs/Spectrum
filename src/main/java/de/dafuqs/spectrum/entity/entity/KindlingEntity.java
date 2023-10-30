@@ -42,13 +42,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	protected @Nullable UUID angryAt;
 	
-	// flying animation
-	public float flapProgress;
-	public float maxWingDeviation;
-	public float prevMaxWingDeviation;
-	public float prevFlapProgress;
-	public float flapSpeed = 1.0F;
-	private float field_28639 = 1.0F;
+	public AnimationState standingAnimationState = new AnimationState();
+	public AnimationState walkingAnimationState = new AnimationState();
+	public AnimationState standingAngryAnimationState = new AnimationState();
+	public AnimationState walkingAngryAnimationState = new AnimationState();
+	public AnimationState glidingAnimationState = new AnimationState();
 	
 	public KindlingEntity(EntityType<? extends KindlingEntity> entityType, World world) {
 		super(entityType, world);
@@ -67,11 +65,18 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6D)
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
 	}
-
+	
 	@Override
 	protected void initAttributes(Random random) {
 	}
-
+	
+	@Nullable
+	@Override
+	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+		this.setPose(EntityPose.STANDING);
+		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+	}
+	
 	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
@@ -93,6 +98,26 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		super.initDataTracker();
 		this.dataTracker.startTracking(ANGER, 0);
 		this.dataTracker.startTracking(CLIPPED, 0);
+	}
+	
+	@Override
+	public void onTrackedDataSet(TrackedData<?> data) {
+		if (POSE.equals(data)) {
+			this.standingAnimationState.stop();
+			this.walkingAnimationState.stop();
+			this.standingAngryAnimationState.stop();
+			this.walkingAngryAnimationState.stop();
+			this.glidingAnimationState.stop();
+			
+			switch (this.getPose()) {
+				case EMERGING -> this.standingAnimationState.start(this.age);
+				case DIGGING -> this.walkingAnimationState.start(this.age);
+				case ROARING -> this.standingAngryAnimationState.start(this.age);
+				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);
+				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
+			}
+		}
+		super.onTrackedDataSet(data);
 	}
 	
 	@Override
@@ -169,37 +194,37 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
 		}
+		
+		if (this.fallDistance < 0.2) {
+			boolean isMoving = moveControl.isMoving();
+			if (getAngerTime() > 0) {
+				this.setPose(isMoving ? EntityPose.EMERGING : EntityPose.ROARING);
+			} else {
+				this.setPose(isMoving ? EntityPose.SNIFFING : EntityPose.STANDING);
+			}
+		} else {
+			this.setPose(EntityPose.FALL_FLYING);
+		}
 	}
 	
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
 		
-		this.prevFlapProgress = this.flapProgress;
-		this.prevMaxWingDeviation = this.maxWingDeviation;
-		this.maxWingDeviation += (this.onGround ? -1.0F : 4.0F) * 0.3F;
-		this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
-		if (!this.onGround && this.flapSpeed < 1.0F) {
-			this.flapSpeed = 1.0F;
-		}
-		
-		this.flapSpeed *= 0.9F;
 		Vec3d vec3d = this.getVelocity();
 		if (!this.onGround && vec3d.y < 0.0) {
 			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
 		}
-		
-		this.flapProgress += this.flapSpeed * 2.0F;
 	}
 	
 	@Override
 	protected boolean hasWings() {
-		return this.speed > this.field_28639;
+		return true;
 	}
 	
 	@Override
 	protected void addFlapEffects() {
-		this.field_28639 = this.speed + this.maxWingDeviation / 2.0F;
+	
 	}
 	
 	@Override

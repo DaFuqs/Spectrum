@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.models;
 
+import de.dafuqs.spectrum.entity.animation.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
@@ -7,7 +8,7 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
 
 // Made with Blockbench 4.6.4
-public class KindlingEntityModel extends EntityModel<KindlingEntity> {
+public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 	
 	private final ModelPart body;
 	private final ModelPart head;
@@ -93,9 +94,28 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 	}
 	
 	@Override
-	public void setAngles(KindlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		// TODO: Animate
+	public ModelPart getPart() {
+		return this.body;
 	}
+	
+	@Override
+	public void setAngles(KindlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.getPart().traverse().forEach(ModelPart::resetTransform);
+		
+		this.setHeadAngle(netHeadYaw, headPitch);
+		
+		this.updateAnimation(entity.standingAnimationState, KindlingAnimations.STANDING, ageInTicks);
+		this.updateAnimation(entity.walkingAnimationState, KindlingAnimations.WALKING, ageInTicks);
+		this.updateAnimation(entity.standingAngryAnimationState, KindlingAnimations.STANDING_ANGRY, ageInTicks);
+		this.updateAnimation(entity.walkingAngryAnimationState, KindlingAnimations.WALKING_ANGRY, ageInTicks);
+		this.updateAnimation(entity.glidingAnimationState, KindlingAnimations.GLIDING, ageInTicks);
+	}
+	
+	private void setHeadAngle(float yaw, float pitch) {
+		this.head.pitch = pitch * 0.017453292F;
+		this.head.yaw = yaw * 0.017453292F;
+	}
+	
 	
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {

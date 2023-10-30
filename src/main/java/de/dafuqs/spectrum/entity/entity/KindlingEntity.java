@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
@@ -15,6 +16,8 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.server.world.*;
@@ -30,6 +33,7 @@ import java.util.*;
 
 public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable {
 	
+	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
@@ -195,23 +199,47 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		
 		ItemStack handStack = player.getMainHandStack();
-		if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-			
-			if (!this.world.isClient) {
-				player.getInventory().offerOrDrop(SpectrumItems.EFFULGENT_FEATHER.getDefaultStack());
+		if (!this.isClipped()) {
+			if (handStack.isIn(ConventionalItemTags.SHEARS)) {
+				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 				
-				setClipped(4800); // 4 minutes
+				if (!this.world.isClient) {
+					setClipped(4800); // 4 minutes
+					setTarget(player);
+					setAngryAt(player.getUuid());
+					chooseRandomAngerTime();
+					
+					for (ItemStack snippedStack : getClippedStacks((ServerWorld) world)) {
+						player.getInventory().offerOrDrop(snippedStack);
+					}
+				}
 				
-				setTarget(player);
-				setAngryAt(player.getUuid());
-				chooseRandomAngerTime();
+				// 🍆 / 🍑 = 💘
+			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
+				if (!this.world.isClient) {
+					handStack.decrement(1);
+					setClipped(4800); // 4 minutes
+					spawnPlayerReactionParticles(true);
+					
+					for (ItemStack snippedStack : getClippedStacks((ServerWorld) world)) {
+						player.getInventory().offerOrDrop(snippedStack);
+					}
+				}
+				
+				return ActionResult.success(world.isClient);
 			}
-			
-			return ActionResult.success(world.isClient);
 		}
 		
 		return super.interactMob(player, hand);
+	}
+	
+	public List<ItemStack> getClippedStacks(ServerWorld world) {
+		LootTable lootTable = world.getServer().getLootManager().getTable(CLIPPING_LOOT_TABLE);
+		return lootTable.generateLoot(
+				new LootContext.Builder(world)
+						.parameter(LootContextParameters.THIS_ENTITY, KindlingEntity.this)
+						.random(world.random)
+						.build(LootContextTypes.BARTER));
 	}
 	
 	protected void coughAt(LivingEntity target) {

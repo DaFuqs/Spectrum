@@ -37,7 +37,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 	}
 	
 	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
-		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
+		LootContext.Builder builder = new LootContext.Builder(world).random(world.random)
 				.parameter(LootContextParameters.BLOCK_STATE, state)
 				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
 				.parameter(LootContextParameters.TOOL, stack)

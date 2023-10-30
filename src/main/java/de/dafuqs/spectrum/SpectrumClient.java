@@ -204,7 +204,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
 
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-		if (player.isCreative() || BuildingStaffItem.canInteractWith(lookingAtState, world, lookingAtPos, player)) {
+
+        if (player == null) return false;
+
+        if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
 			VoxelShape shape = VoxelShapes.empty();
@@ -254,7 +257,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = hitResult.blockState();
 
 		ClientPlayerEntity player = MinecraftClient.getInstance().player;
-		if (player.isCreative() || BuildingStaffItem.canInteractWith(lookingAtState, world, lookingAtPos, player)) {
+
+        if (player == null) return false;
+
+		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {

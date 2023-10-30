@@ -1,14 +1,15 @@
 {
-	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
-	"textures": {
-		"0": "#side",
-		"1": "#top",
-		"2": "#fronds",
-		"3": "#bottom",
-		"particle": "#top"
-	},
-	"elements": [
-		{
+  "parent": "minecraft:block/block",
+  "credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
+  "textures": {
+    "0": "#side",
+    "1": "#top",
+    "2": "#fronds",
+    "3": "#bottom",
+    "particle": "#top"
+  },
+  "elements": [
+    {
 			"name": "base",
 			"from": [0, 0, 0],
 			"to": [16, 16, 16],

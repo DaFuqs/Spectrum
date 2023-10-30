@@ -204,26 +204,20 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 				
 				if (!this.world.isClient) {
-					setClipped(4800); // 4 minutes
 					setTarget(player);
 					setAngryAt(player.getUuid());
 					chooseRandomAngerTime();
 					
-					for (ItemStack snippedStack : getClippedStacks((ServerWorld) world)) {
-						player.getInventory().offerOrDrop(snippedStack);
-					}
+					clipAndGiveDrops(player);
 				}
 				
 				// 🍆 / 🍑 = 💘
 			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
 				if (!this.world.isClient) {
 					handStack.decrement(1);
-					setClipped(4800); // 4 minutes
 					spawnPlayerReactionParticles(true);
 					
-					for (ItemStack snippedStack : getClippedStacks((ServerWorld) world)) {
-						player.getInventory().offerOrDrop(snippedStack);
-					}
+					clipAndGiveDrops(player);
 				}
 				
 				return ActionResult.success(world.isClient);
@@ -231,6 +225,13 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		
 		return super.interactMob(player, hand);
+	}
+	
+	private void clipAndGiveDrops(PlayerEntity player) {
+		setClipped(4800); // 4 minutes
+		for (ItemStack clippedStack : getClippedStacks((ServerWorld) world)) {
+			player.getInventory().offerOrDrop(clippedStack);
+		}
 	}
 	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {

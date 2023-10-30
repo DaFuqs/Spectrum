@@ -47,6 +47,7 @@
     "MixinWalkNodeProcessor",
     "NbtPredicateMixin",
     "PiglinBrainMixin",
+    "PlantOnCustomFarmlandMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PotionItemMixin",

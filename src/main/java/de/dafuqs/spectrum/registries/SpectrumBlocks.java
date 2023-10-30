@@ -678,8 +678,8 @@ public class SpectrumBlocks {
 	public static final Block DOOMBLOOM = new DoomBloomBlock(Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).ticksRandomly().noCollision().breakInstantly().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(Settings.of(Material.PLANT, MapColor.PALE_GREEN).hardness(3.0F).noCollision().sounds(BlockSoundGroup.GRASS).nonOpaque());
 	
-	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
-	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
+	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
+	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14).ticksRandomly());
 	public static final Block CLEAR_HUMMINGSTONE_GLASS = new GlassBlock(Settings.copy(HUMMINGSTONE_GLASS));
 	
 	// JADE VINES

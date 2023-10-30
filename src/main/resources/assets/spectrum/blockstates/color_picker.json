@@ -1,6 +1,18 @@
 {
 	"variants": {
-		"": {
+		"facing=north": {
+			"model": "spectrum:block/color_picker",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "spectrum:block/color_picker",
+			"y": 180
+		},
+		"facing=south": {
+			"model": "spectrum:block/color_picker",
+			"y": 270
+		},
+		"facing=west": {
 			"model": "spectrum:block/color_picker"
 		}
 	}

@@ -1611,28 +1611,20 @@
   "entity.kindling.death": {
     "subtitle": "spectrum.subtitles.entity.kindling.death",
     "sounds": [
-      "spectrum:entity.kindling.death",
-      "spectrum:entity.kindling.death2",
-      "spectrum:entity.kindling.death3",
-      "spectrum:entity.kindling.death4"
+      "spectrum:entity.kindling.death"
     ]
   },
   "entity.kindling.hurt": {
     "subtitle": "spectrum.subtitles.entity.kindling.hurt",
     "sounds": [
       "spectrum:entity.kindling.hurt",
-      "spectrum:entity.kindling.hurt2",
-      "spectrum:entity.kindling.hurt3",
-      "spectrum:entity.kindling.hurt4"
+      "spectrum:entity.kindling.hurt2"
     ]
   },
   "entity.kindling.shoot": {
     "subtitle": "spectrum.subtitles.entity.kindling.shoot",
     "sounds": [
-      "spectrum:entity.kindling.shoot",
-      "spectrum:entity.kindling.shoot2",
-      "spectrum:entity.kindling.shoot3",
-      "spectrum:entity.kindling.shoot4"
+      "minecraft:fire/ignite"
     ]
   },
 

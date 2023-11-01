@@ -1630,7 +1630,7 @@
   "entity.kindling.angry": {
     "subtitle": "spectrum.subtitles.entity.kindling.angry",
     "sounds": [
-      "mob/horse/angry1"
+      "spectrum:entity.kindling.angy"
     ]
   },
   "entity.kindling.love": {

@@ -157,7 +157,8 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected SoundEvent getDeathSound() {
 		return SpectrumSoundEvents.ENTITY_KINDLING_DEATH;
 	}
-@Override
+
+	@Override
 	protected SoundEvent getAngrySound() {
 		return SpectrumSoundEvents.ENTITY_KINDLING_ANGRY;
 	}
@@ -217,13 +218,13 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	}
 	
 	@Override
-	protected boolean hasWings() {
+	protected boolean isFlappingWings() {
 		return true;
 	}
 	
 	@Override
 	protected void addFlapEffects() {
-
+		// TODO - Make the Kindling flap its wings? Maybe while jumping or passively
 	}
 
 	@Override
@@ -231,33 +232,33 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (this.getAngerTime() > 0) {
 			return ActionResult.success(this.getWorld().isClient());
 		}
-ItemStack handStack = player.getMainHandStack();
+		ItemStack handStack = player.getMainHandStack();
 		if (!this.isClipped()) {
 			if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 
-			if (!this.getWorld().isClient()) {
+				if (!this.getWorld().isClient()) {
 					setTarget(player);
-setAngryAt(player.getUuid());
+					setAngryAt(player.getUuid());
 					chooseRandomAngerTime();
-this.playAngrySound();
-				clipAndDrop();
+					this.playAngrySound();
+					clipAndDrop();
 				}
 
-				return ActionResult.success(world.isClient);
+				return ActionResult.success(this.getWorld().isClient());
 
 			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
 				// 🍆 / 🍑 = 💘
 
-				if (!this.getWorld().isClient) {
+				if (!this.getWorld().isClient()) {
 					handStack.decrement(1);
-					this.world.sendEntityStatus(this, (byte) 7); // heart particles
-this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
+					this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
+					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
 
 					clipAndDrop();
-			}
+				}
 
-			return ActionResult.success(this.getWorld().isClient);
+				return ActionResult.success(this.getWorld().isClient());
 			}
 		}
 
@@ -266,18 +267,18 @@ this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
 	
 	private void clipAndDrop() {
 		setClipped(4800); // 4 minutes
-		for (ItemStack clippedStack : getClippedStacks((ServerWorld) world)) {
+		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
 			dropStack(clippedStack, 0.3F);
 		}
 	}
 
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
-		LootTable lootTable = world.getServer().getLootManager().getTable(CLIPPING_LOOT_TABLE);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(CLIPPING_LOOT_TABLE);
 		return lootTable.generateLoot(
-				new LootContext.Builder(world)
-						.parameter(LootContextParameters.THIS_ENTITY, KindlingEntity.this)
-						.random(world.random)
-						.build(LootContextTypes.BARTER));
+				new LootContextParameterSet.Builder(world)
+						.add(LootContextParameters.THIS_ENTITY, KindlingEntity.this)
+						.build(LootContextTypes.BARTER)
+		);
 	}
 
 	protected void coughAt(LivingEntity target) {

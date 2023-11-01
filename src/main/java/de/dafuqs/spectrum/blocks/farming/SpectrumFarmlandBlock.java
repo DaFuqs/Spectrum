@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.farming;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
@@ -36,7 +35,7 @@ public class SpectrumFarmlandBlock extends FarmlandBlock {
 			setBare(state, world, pos);
 		}
 		
-		entity.handleFallDamage(fallDistance, 1.0F, DamageSource.FALL);
+		entity.handleFallDamage(fallDistance, 1.0F, world.getDamageSources().fall());
 	}
 	
 	public void setBare(BlockState state, World world, BlockPos pos) {

@@ -1,15 +1,11 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.farming.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -18,44 +14,31 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 public abstract class CropAndStemBlockMixin {
 	
 	@Inject(method = "canGrow", at = @At("HEAD"), cancellable = true)
-	private void markUnableToGrow(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
+	private void spectrum$markUnableToGrow(World world, Random random, BlockPos pos, BlockState state, CallbackInfoReturnable<Boolean> cir) {
 		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
 			cir.setReturnValue(false);
-			cir.cancel();
 		}
-	}
-	
-	@ModifyReturnValue(method = "canPlantOnTop(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z", at = @At("RETURN"))
-	public boolean canPlantOnTopOfCustomFarmland(boolean original, @NotNull BlockState floor, BlockView world, BlockPos pos) {
-		if (!original) {
-			Block originalBlock = floor.getBlock();
-			if (originalBlock instanceof ExtraTickFarmlandBlock || originalBlock instanceof ImmutableFarmlandBlock) {
-				return true;
-			}
-		}
-		return original;
-	}
-	
-	@ModifyReturnValue(method = "canGrow", at = @At("RETURN"))
-	public boolean cannotGrowOnShaleClay(boolean original, World world, Random random, BlockPos pos, BlockState state) {
-		if (original && world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
-			return false;
-		}
-		return original;
 	}
 	
 	@Inject(at = @At("HEAD"), method = "grow", cancellable = true)
-	public void preventGrowthOnShaleClay(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
+	public void spectrum$preventGrowthOnShaleClay(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
 		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
 			ci.cancel();
 		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "isFertilizable", cancellable = true)
-	public void isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
+	public void spectrum$isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient, CallbackInfoReturnable<Boolean> cir) {
 		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
 			cir.cancel();
 		}
 	}
 	
+	@Inject(at = @At("HEAD"), method = "randomTick", cancellable = true)
+	public void spectrum$isFertilizable(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+		if (world.getBlockState(pos.down()).isOf(SpectrumBlocks.TILLED_SHALE_CLAY)) {
+			ci.cancel();
+		}
+	}
+
 }

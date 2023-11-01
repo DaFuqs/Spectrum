@@ -7,6 +7,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.state.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ColorPickerBlock extends BlockWithEntity {
+public class ColorPickerBlock extends HorizontalFacingBlock implements BlockEntityProvider {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 13.0D, 15.0D);
 	
@@ -51,11 +52,21 @@ public class ColorPickerBlock extends BlockWithEntity {
 		return false;
 	}
 	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
+	}
+	
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+	}
+	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntity::tick);
+			return SpectrumBlockEntities.COLOR_PICKER == type ? (BlockEntityTicker) (BlockEntityTicker<? extends ColorPickerBlockEntity>) ColorPickerBlockEntity::tick : null;
 		}
 		return null;
 	}

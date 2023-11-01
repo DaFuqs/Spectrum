@@ -1627,6 +1627,24 @@
       "minecraft:fire/ignite"
     ]
   },
+  "entity.kindling.angry": {
+    "subtitle": "spectrum.subtitles.entity.kindling.angry",
+    "sounds": [
+      "mob/horse/angry1"
+    ]
+  },
+  "entity.kindling.love": {
+    "subtitle": "spectrum.subtitles.entity.kindling.love",
+    "sounds": [
+      "spectrum:entity.kindling.love"
+    ]
+  },
+  "entity.kindling.jump": {
+    "subtitle": "spectrum.subtitles.entity.kindling.jump",
+    "sounds": [
+      "spectrum:entity.kindling.jump"
+    ]
+  },
 
   "entity.preservation_turret.ambient": {
     "subtitle": "spectrum.subtitles.entity.preservation_turret.ambient",

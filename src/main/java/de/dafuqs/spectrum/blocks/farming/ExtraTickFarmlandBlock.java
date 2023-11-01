@@ -1,21 +1,19 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.blocks.farming;
 
 import net.minecraft.block.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
-public class ExtraTickFarmlandBlock extends FarmlandBlock {
+public class ExtraTickFarmlandBlock extends SpectrumFarmlandBlock {
 	
-	public ExtraTickFarmlandBlock(Settings settings) {
-		super(settings);
+	public ExtraTickFarmlandBlock(Settings settings, BlockState bareState) {
+		super(settings, bareState);
 	}
 	
-	private static boolean hasCrop(@NotNull BlockView world, @NotNull BlockPos pos) {
-		Block block = world.getBlockState(pos.up()).getBlock();
-		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return true;
 	}
 	
 	/**

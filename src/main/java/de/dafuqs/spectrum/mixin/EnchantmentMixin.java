@@ -10,11 +10,9 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(Enchantment.class)
 public abstract class EnchantmentMixin {
 	
-	@Inject(method = "isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
 	public void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-		if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
-			cir.setReturnValue(extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this));
-		}
+		cir.setReturnValue(cir.getReturnValue() || (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this)));
 	}
 	
 }

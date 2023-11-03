@@ -102,8 +102,4 @@ public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockE
 		}
 	}
 
-	@Override
-	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-		return true;
-	}
 }

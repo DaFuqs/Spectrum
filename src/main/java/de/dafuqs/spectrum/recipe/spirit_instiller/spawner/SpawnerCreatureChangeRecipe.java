@@ -19,26 +19,18 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.MOB_HEADS)));
+		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SKULLS)));
 	}
 	
 	@Override
-	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
-		ItemStack mobHeadStack;
-		if (leftBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
-			mobHeadStack = leftBowlStack;
-		} else if (rightBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
-			mobHeadStack = rightBowlStack;
-		} else {
-			return false;
-		}
+	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
+		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(firstBowlStack);
+		entityType = entityType.isEmpty() ? SpectrumSkullBlockItem.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
-		Optional<EntityType<?>> optionalEntityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
-		if (optionalEntityType.isEmpty()) {
+		if (entityType.isEmpty()) {
 			return false;
 		}
-		EntityType<?> entityType = optionalEntityType.get();
-		if (entityType.isIn(ConventionalEntityTypeTags.BOSSES)) {
+		if (entityType.get().isIn(ConventionalEntityTypeTags.BOSSES)) {
 			return false;
 		}
 		
@@ -47,7 +39,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			if (spawnData.contains("entity")) {
 				NbtCompound entity = spawnData.getCompound("entity");
 				if (entity.contains("id")) {
-					Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType);
+					Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
 			}
@@ -67,16 +59,9 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	
 	@Override
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
-		ItemStack mobHeadStack;
-		if (firstBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
-			mobHeadStack = firstBowlStack;
-		} else if (secondBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {
-			mobHeadStack = secondBowlStack;
-		} else {
-			return spawnerBlockEntityNbt;
-		}
+		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(firstBowlStack);
+		entityType = entityType.isEmpty() ? SpectrumSkullBlockItem.getEntityTypeOfSkullStack(secondBowlStack) : entityType;
 		
-		Optional<EntityType<?>> entityType = SpectrumSkullBlockItem.getEntityTypeOfSkullStack(mobHeadStack);
 		if (entityType.isEmpty()) {
 			return spawnerBlockEntityNbt;
 		}

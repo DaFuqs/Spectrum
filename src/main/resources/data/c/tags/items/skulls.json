@@ -1,6 +1,14 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:mob_heads"
+    "#spectrum:mob_heads",
+
+    "minecraft:player_head",
+    "minecraft:zombie_head",
+    "minecraft:creeper_head",
+    "minecraft:dragon_head",
+
+    "minecraft:skeleton_skull",
+    "minecraft:wither_skeleton_skull"
   ]
 }

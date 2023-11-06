@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 @Environment(EnvType.CLIENT)
 public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<CompactingChestBlockEntity> {
 	
-	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/compacting_chest"));
+	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/compacting_chest"));
 	private final ModelPart root;
 	private final ModelPart lid;
 	private final ModelPart column;

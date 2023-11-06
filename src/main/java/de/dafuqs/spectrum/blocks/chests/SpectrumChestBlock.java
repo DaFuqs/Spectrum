@@ -19,7 +19,7 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
-import static net.minecraft.client.render.TexturedRenderLayers.*;
+import static net.minecraft.client.texture.SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
 
 public abstract class SpectrumChestBlock extends BlockWithEntity {
 	
@@ -135,7 +135,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/heartbound_chest"));
+		return new SpriteIdentifier(BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/heartbound_chest"));
 	}
 	
 }

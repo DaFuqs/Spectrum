@@ -6,8 +6,8 @@
     64
   ],
   "textures": {
-    "0": "spectrum:entity/heartbound_chest",
-    "particle": "spectrum:entity/heartbound_chest"
+    "0": "spectrum:block/heartbound_chest",
+    "particle": "spectrum:block/heartbound_chest"
   },
   "elements": [
     {

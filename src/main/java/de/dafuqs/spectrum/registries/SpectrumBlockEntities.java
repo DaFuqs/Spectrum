@@ -170,20 +170,4 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
 	}
 	
-	private static void registerTextureAtlasCallback() {
-		// TODO - Fix chest textures
-		// textures that are only referenced in code have to be added to the texture atlas manually
-		// Register textures in chest atlas
-		//		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
-		//			registry.register(SpectrumCommon.locate("entity/private_chest"));
-		//			registry.register(SpectrumCommon.locate("entity/preservation_chest"));
-		//		});
-		//
-		//		//Register textures in block atlas
-		//		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
-		//			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
-		//			registry.register(SpectrumCommon.locate("entity/pastel_line"));
-		//		});
-	}
-	
 }

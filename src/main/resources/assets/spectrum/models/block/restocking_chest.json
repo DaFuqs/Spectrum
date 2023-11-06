@@ -6,8 +6,8 @@
     64
   ],
   "textures": {
-    "1": "spectrum:entity/restocking_chest",
-    "particle": "spectrum:entity/restocking_chest"
+    "1": "spectrum:block/restocking_chest",
+    "particle": "spectrum:block/restocking_chest"
   },
   "elements": [
     {

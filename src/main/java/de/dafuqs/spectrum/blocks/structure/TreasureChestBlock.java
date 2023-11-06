@@ -12,7 +12,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import static net.minecraft.client.render.TexturedRenderLayers.*;
+import static net.minecraft.client.texture.SpriteAtlasTexture.*;
 
 public class TreasureChestBlock extends SpectrumChestBlock {
 	
@@ -45,9 +45,10 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 		return world.isClient ? checkType(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/preservation_chest"));
+		return new SpriteIdentifier(BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/preservation_chest"));
 	}
 	
 }

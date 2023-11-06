@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 @Environment(EnvType.CLIENT)
 public class RestockingChestBlockEntityRenderer implements BlockEntityRenderer<RestockingChestBlockEntity> {
 	
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/restocking_chest"));
+	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/restocking_chest"));
 	private final ModelPart root;
 	private final ModelPart lid;
 	

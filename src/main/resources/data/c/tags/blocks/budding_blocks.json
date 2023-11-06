@@ -123,8 +123,9 @@
       "id": "byg:budding_therium_crystal",
       "required": false
     },
+
     {
-      "id": "byg:budding_ametrine_ore",
+      "id": "betterend:budding_smaragdant_crystal",
       "required": false
     }
   ]

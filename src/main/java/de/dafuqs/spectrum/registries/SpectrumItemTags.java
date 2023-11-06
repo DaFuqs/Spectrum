@@ -9,11 +9,10 @@ import net.minecraft.registry.tag.*;
 public class SpectrumItemTags {
 	
 	// "c" namespace
-	public static final TagKey<Item> AMETHYST_POWDERS = common("amethyst_powders");
-	public static final TagKey<Item> CITRINE_POWDERS = common("citrine_powders");
-	public static final TagKey<Item> TOPAZ_POWDERS = common("topaz_powders");
+
     public static final TagKey<Item> EGGPLANTS = common("eggplants");
 	public static final TagKey<Item> PEACHES = common("peaches");
+public static final TagKey<Item> SKULLS = common("skulls");
 
 	// "spectrum" namespace
 	public static final TagKey<Item> COLORED_SAPLINGS = of("colored_saplings");

@@ -9,7 +9,7 @@
     "collected_downstone_fragments": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
       }
     }
   }

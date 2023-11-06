@@ -101,5 +101,5 @@ public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockE
 			player.openHandledScreen((NamedScreenHandlerFactory) blockEntity);
 		}
 	}
-	
+
 }

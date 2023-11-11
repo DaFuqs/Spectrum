@@ -159,11 +159,10 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 			properties = VariantBeverageProperties.getFromStack(inputStack);
 		}
 		
-		if (properties instanceof VariantBeverageProperties variantBeverageProperties) {
+		if (properties instanceof StatusEffectBeverageProperties statusEffectBeverageProperties) {
 			float durationMultiplier = (float) (Support.logBase(1 + thickness, 2));
 			
 			List<StatusEffectInstance> effects = new ArrayList<>();
-			
 			for (FermentationStatusEffectEntry entry : fermentationData.statusEffectEntries()) {
 				int potency = -1;
 				int durationTicks = entry.baseDuration();
@@ -177,7 +176,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 				}
 			}
 			
-			variantBeverageProperties.statusEffects = effects;
+			statusEffectBeverageProperties.statusEffects = effects;
 		}
 		
 		properties.alcPercent = (int) alcPercent;

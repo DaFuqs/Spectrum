@@ -1,8 +1,6 @@
 {
   "values": [
     "spectrum:polished_basalt",
-    "spectrum:polished_calcite",
-    "spectrum:planed_basalt",
-    "spectrum:planed_calcite"
+    "spectrum:polished_calcite"
   ]
 }

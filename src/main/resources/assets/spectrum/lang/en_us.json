@@ -2145,7 +2145,7 @@
   "item.spectrum.kindling_spawn_egg": "Kindling Spawn Egg",
   "item.spectrum.lizard_spawn_egg": "Lurking Lizard Spawn Egg",
   "item.spectrum.eraser_spawn_egg": "Eraser Spawn Egg",
-  "item.spectrum.spawner": "Spawner",
+
   "item.spectrum.spawner.tooltip.unknown_mob": "Unknown Mob",
   "item.spectrum.spawner.tooltip.spawn_count": "Spawn Count: %d",
   "item.spectrum.spawner.tooltip.min_spawn_delay": "Min Spawn Delay: %d",
@@ -2157,6 +2157,7 @@
   "recipe.spectrum.spawner.lore.increased_required_player_range": "Longer active when the player is farther away.",
   "recipe.spectrum.spawner.lore.increased_spawn_count": "Increased count of spawned creatures",
   "recipe.spectrum.spawner.lore.decreased_spawn_delay": "Decreased spawn delay",
+
   "item.spectrum.citrine_shard": "Citrine Shard",
   "item.spectrum.topaz_shard": "Topaz Shard",
   "item.spectrum.onyx_shard": "Onyx Shard",
@@ -2914,7 +2915,6 @@
   "tag.spectrum.shale_clays": "Shale Clays",
   "tag.spectrum.shooting_stars": "Shooting Stars",
   "tag.spectrum.spawn_eggs": "Spawn Eggs",
-  "tag.spectrum.spawners": "Spawners",
   "tag.spectrum.topaz_chiseled_base_blocks": "Chiseled Topaz Bases",
   "tag.spectrum.topaz_crystals": "Topaz Crystals",
   "tag.spectrum.topaz_ores": "Topaz Ores",

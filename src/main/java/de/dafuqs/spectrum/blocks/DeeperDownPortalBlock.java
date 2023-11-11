@@ -18,7 +18,6 @@ import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
-import net.minecraft.util.function.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
@@ -32,25 +31,30 @@ public class DeeperDownPortalBlock extends Block {
 	private final static String CREATE_PORTAL_ADVANCEMENT_CRITERION = "opened_deeper_down_portal";
 
 	public static final BooleanProperty FACING_UP = Properties.UP;
-
+	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4D, 16.0D);
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(0.0D, 4D, 0.0D, 16.0D, 16.0D, 16.0D);
-
+	
 	public DeeperDownPortalBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING_UP, false));
 	}
-
+	
+	@Override
+	public boolean hasSidedTransparency(BlockState state) {
+		return true;
+	}
+	
 	@Override
 	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-
+		
 		if (!world.isClient) { // that should be a given, but in modded you never know
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3d(0.5, 0.0, 0.5), Vec3d.ZERO);
 			if (!hasNeighboringPortals(world, pos)) {
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
-
+				
 				for (PlayerEntity nearbyPlayer : world.getEntitiesByType(EntityType.PLAYER, Box.of(Vec3d.ofCenter(pos), 16D, 16D, 16D), LivingEntity::isAlive)) {
 					Support.grantAdvancementCriterion((ServerPlayerEntity) nearbyPlayer, CREATE_PORTAL_ADVANCEMENT_IDENTIFIER, CREATE_PORTAL_ADVANCEMENT_CRITERION);
 				}
@@ -86,11 +90,7 @@ public class DeeperDownPortalBlock extends Block {
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (state.get(FACING_UP)) {
-			return SHAPE_UP;
-		} else {
-			return SHAPE;
-		}
+		return state.get(FACING_UP) ? SHAPE_UP : SHAPE;
 	}
 
 	@Override
@@ -113,14 +113,13 @@ public class DeeperDownPortalBlock extends Block {
 		if (world instanceof ServerWorld
 				&& !entity.hasVehicle()
 				&& !entity.hasPassengers()
-				&& entity.canUsePortals()
-				&& VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), state.getOutlineShape(world, pos), BooleanBiFunction.AND)) {
-
+				&& entity.canUsePortals()) {
+			
 			RegistryKey<World> currentWorldKey = world.getRegistryKey();
 			if (currentWorldKey == World.OVERWORLD) {
 				if (!entity.hasPortalCooldown()) {
 					entity.resetPortalCooldown();
-
+					
 					// => teleport to DD
 					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(SpectrumDimensions.DIMENSION_KEY);
 					if (targetWorld != null) {

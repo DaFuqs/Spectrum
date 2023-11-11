@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -17,16 +16,7 @@ import org.jetbrains.annotations.*;
 public class FadingBlock extends DecayBlock {
 	
 	public FadingBlock(Settings settings) {
-		super(settings, SpectrumBlockTags.FADING_CONVERSIONS, null, 1, 1F);
-		
-		setDefaultState(getStateManager().getDefaultState().with(CONVERSION, Conversion.NONE));
-		addDecayConversion(SpectrumBlockTags.FADING_SPECIAL_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.SPECIAL));
-		addDecayConversion(SpectrumBlockTags.FADING_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.DEFAULT));
-	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.NORMAL;
+		super(settings, SpectrumCommon.CONFIG.FadingDecayTickRate, SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities, 1, 1F);
 	}
 	
 	@Override
@@ -46,23 +36,13 @@ public class FadingBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected float getSpreadChance() {
-		return SpectrumCommon.CONFIG.FadingDecayTickRate;
-	}
-	
-	@Override
-	protected boolean canSpreadToBlockEntities() {
-		return SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities;
-	}
-	
-	@Override
-	protected boolean canSpread(BlockState blockState) {
-		return true;
-	}
-	
-	@Override
-	protected BlockState getSpreadState(BlockState previousState) {
-		return this.getDefaultState().with(CONVERSION, Conversion.NONE);
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.FADING_SPECIAL_CONVERSIONS)) {
+			return stateToSpreadFrom.with(CONVERSION, Conversion.SPECIAL);
+		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FADING_CONVERSIONS)) {
+			return stateToSpreadFrom.with(CONVERSION, Conversion.DEFAULT);
+		}
+		return null;
 	}
 	
 }

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -20,11 +21,8 @@ public class FailingBlock extends DecayBlock {
 	public static final IntProperty AGE = Properties.AGE_15; // failing may spread 15 blocks max. It consuming obsidian resets that value
 	
 	public FailingBlock(Settings settings) {
-		super(settings, null, SpectrumBlockTags.FAILING_SAFE, 2, 2.5F);
-		
+		super(settings, SpectrumCommon.CONFIG.FailingDecayTickRate, SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities, 2, 2.5F);
 		setDefaultState(getStateManager().getDefaultState().with(CONVERSION, Conversion.NONE).with(AGE, 0));
-		addDecayConversion(SpectrumBlockTags.FAILING_SPECIAL_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.SPECIAL));
-		addDecayConversion(SpectrumBlockTags.FAILING_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.DEFAULT));
 	}
 	
 	@Override
@@ -44,8 +42,13 @@ public class FailingBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected float getSpreadChance() {
-		return SpectrumCommon.CONFIG.FailingDecayTickRate;
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(AGE) < Properties.AGE_15_MAX;
+	}
+	
+	@Override
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.BLOCK;
 	}
 	
 	@Override
@@ -55,18 +58,22 @@ public class FailingBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected boolean canSpread(BlockState blockState) {
-		return blockState.get(AGE) < Properties.AGE_15_MAX;
-	}
-	
-	@Override
-	protected boolean canSpreadToBlockEntities() {
-		return SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities;
-	}
-	
-	@Override
-	protected BlockState getSpreadState(BlockState previousState) {
-		return previousState.with(CONVERSION, Conversion.NONE).with(AGE, previousState.get(AGE) + 1);
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+		if (stateToSpreadFrom.get(AGE) >= Properties.AGE_15_MAX) {
+			return null;
+		}
+		if (stateToSpreadTo.isAir() || stateToSpreadTo.getBlock() instanceof FluidBlock || stateToSpreadTo.isIn(SpectrumBlockTags.FAILING_SAFE)) {
+			return null;
+		}
+		
+		int age = stateToSpreadFrom.get(AGE);
+		
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.FAILING_SPECIAL_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL).with(AGE, Math.max(0, age - 5));
+		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FAILING_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.DEFAULT).with(AGE, Math.max(0, age - 2));
+		}
+		return stateToSpreadFrom.with(CONVERSION, Conversion.NONE).with(AGE, age + 1);
 	}
 	
 }

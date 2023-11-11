@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -17,11 +18,8 @@ import org.jetbrains.annotations.*;
 public class RuinBlock extends DecayBlock {
 	
 	public RuinBlock(Settings settings) {
-		super(settings, null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
-		
+		super(settings, SpectrumCommon.CONFIG.RuinDecayTickRate, SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F);
 		setDefaultState(getStateManager().getDefaultState().with(CONVERSION, Conversion.NONE));
-		addDecayConversion(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.SPECIAL));
-		addDecayConversion(SpectrumBlockTags.RUIN_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.DEFAULT));
 	}
 	
 	@Override
@@ -42,23 +40,22 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected float getSpreadChance() {
-		return SpectrumCommon.CONFIG.RuinDecayTickRate;
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.BLOCK;
 	}
 	
 	@Override
-	protected boolean canSpread(BlockState blockState) {
-		return true;
-	}
-	
-	@Override
-	protected boolean canSpreadToBlockEntities() {
-		return SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities;
-	}
-	
-	@Override
-	protected BlockState getSpreadState(BlockState previousState) {
-		return this.getDefaultState().with(CONVERSION, Conversion.NONE);
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+		if (stateToSpreadTo.isAir() || stateToSpreadTo.getBlock() instanceof FluidBlock || stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SAFE)) {
+			return null;
+		}
+		
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL);
+		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.DEFAULT);
+		}
+		return stateToSpreadFrom.with(CONVERSION, Conversion.NONE);
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -18,11 +19,8 @@ public class ForfeitureBlock extends DecayBlock {
 	// A special version of ruin that spreads indefinitely, even through air.
 	// There are no brakes on the Forfeiture train
 	public ForfeitureBlock(Settings settings) {
-		super(settings, null, SpectrumBlockTags.FORFEITURE_SAFE, 4, 7.5F);
-		
+		super(settings, SpectrumCommon.CONFIG.ForfeitureDecayTickRate, SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities, 4, 7.5F);
 		setDefaultState(getStateManager().getDefaultState().with(CONVERSION, Conversion.NONE));
-		addDecayConversion(SpectrumBlockTags.FORFEITURE_SPECIAL_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.SPECIAL));
-		addDecayConversion(SpectrumBlockTags.FORFEITURE_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.DEFAULT));
 	}
 	
 	@Override
@@ -43,28 +41,21 @@ public class ForfeitureBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected float getSpreadChance() {
-		return SpectrumCommon.CONFIG.ForfeitureDecayTickRate;
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.BLOCK;
 	}
 	
 	@Override
-	protected boolean canSpread(BlockState blockState) {
-		return true;
-	}
-	
-	@Override
-	protected boolean canSpreadToBlockEntities() {
-		return SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities;
-	}
-	
-	@Override
-	protected BlockState getSpreadState(BlockState previousState) {
-		return this.getDefaultState().with(CONVERSION, Conversion.NONE);
-	}
-	
-	@Override
-	protected boolean canSpreadToAir() {
-		return true;
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SAFE) || stateToSpreadTo.getBlock() instanceof FluidBlock) {
+			return null;
+		}
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SPECIAL_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL);
+		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_CONVERSIONS)) {
+			return this.getDefaultState().with(CONVERSION, Conversion.DEFAULT);
+		}
+		return stateToSpreadFrom.with(CONVERSION, Conversion.NONE);
 	}
 	
 }

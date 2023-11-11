@@ -372,7 +372,7 @@ public class SpectrumItems {
 	public static final Item BAGNUN = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.BANYASH));
 	public static final Item BERLINER = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.BERLINER), 48);
-	public static final Item BRISTLE_MEAD = new SimpleBeverageItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.BEVERAGE));
+	public static final Item BRISTLE_MEAD = new SimpleBeverageItem(Tab.CUISINE.settings(16).food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item CHAUVE_SOURIS_AU_VIN = new CustomUseTimeItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN), 96);
 	public static final Item CRAWFISH = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));

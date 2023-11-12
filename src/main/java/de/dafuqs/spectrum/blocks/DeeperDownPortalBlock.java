@@ -31,30 +31,30 @@ public class DeeperDownPortalBlock extends Block {
 	private final static String CREATE_PORTAL_ADVANCEMENT_CRITERION = "opened_deeper_down_portal";
 
 	public static final BooleanProperty FACING_UP = Properties.UP;
-	
+
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4D, 16.0D);
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(0.0D, 4D, 0.0D, 16.0D, 16.0D, 16.0D);
-	
+
 	public DeeperDownPortalBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING_UP, false));
 	}
-	
+
 	@Override
 	public boolean hasSidedTransparency(BlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-		
+
 		if (!world.isClient) { // that should be a given, but in modded you never know
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3d(0.5, 0.0, 0.5), Vec3d.ZERO);
 			if (!hasNeighboringPortals(world, pos)) {
 				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
-				
+
 				for (PlayerEntity nearbyPlayer : world.getEntitiesByType(EntityType.PLAYER, Box.of(Vec3d.ofCenter(pos), 16D, 16D, 16D), LivingEntity::isAlive)) {
 					Support.grantAdvancementCriterion((ServerPlayerEntity) nearbyPlayer, CREATE_PORTAL_ADVANCEMENT_IDENTIFIER, CREATE_PORTAL_ADVANCEMENT_CRITERION);
 				}
@@ -114,12 +114,12 @@ public class DeeperDownPortalBlock extends Block {
 				&& !entity.hasVehicle()
 				&& !entity.hasPassengers()
 				&& entity.canUsePortals()) {
-			
+
 			RegistryKey<World> currentWorldKey = world.getRegistryKey();
 			if (currentWorldKey == World.OVERWORLD) {
 				if (!entity.hasPortalCooldown()) {
 					entity.resetPortalCooldown();
-					
+
 					// => teleport to DD
 					ServerWorld targetWorld = ((ServerWorld) world).getServer().getWorld(SpectrumDimensions.DIMENSION_KEY);
 					if (targetWorld != null) {
@@ -170,13 +170,20 @@ public class DeeperDownPortalBlock extends Block {
 			}
 
 			state = world.getBlockState(pos);
-			if (state.getBlock() instanceof DeeperDownPortalBlock) {
+
+			if (state.isOf(Blocks.BEDROCK)) {
+				if (pos.getX() == blockPos.getX() && pos.getZ() == blockPos.getZ()) {
+					world.breakBlock(pos, true, null);
+				}
+				continue;
+			}
+
+			if (!state.isIn(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
 				continue;
 			}
 
 			float hardness = state.getHardness(world, pos);
-			if ((pos.getX() == blockPos.getX() && pos.getZ() == blockPos.getZ()) || (hardness >= 0 && hardness < 30)) {
-
+			if (hardness >= 0 && hardness < 30) {
 				world.breakBlock(pos, true, null);
 			}
 		}

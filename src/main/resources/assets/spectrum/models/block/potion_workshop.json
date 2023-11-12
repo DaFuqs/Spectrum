@@ -1,10 +1,7 @@
 {
-	"parent": "minecraft:block/block",
 	"credit": "~ XOXO Azzyypaaras ~",
-	"texture_size": [
-		64,
-		64
-	],
+	"parent": "minecraft:block/block",
+	"texture_size": [64, 64],
 	"textures": {
 		"0": "spectrum:block/potion_workshop",
 		"particle": "spectrum:block/potion_workshop"
@@ -12,11 +9,7 @@
 	"elements": [
 		{
 			"name": "stand",
-			"from": [
-				0,
-				0,
-				0
-			],
+			"from": [0, 0, 0],
 			"to": [8, 1, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
@@ -69,8 +62,8 @@
 		},
 		{
 			"name": "heater",
-			"from": [9, 0, 9],
-			"to": [16, 6, 16],
+			"from": [8.75, 0, 8.75],
+			"to": [15.75, 6, 15.75],
 			"faces": {
 				"north": {"uv": [0, 6.5, 1.75, 8], "texture": "#0"},
 				"east": {"uv": [0, 6.5, 1.75, 8], "texture": "#0", "cullface": "east"},
@@ -93,8 +86,8 @@
 		},
 		{
 			"name": "retort",
-			"from": [9, 6, 9],
-			"to": [16, 14, 16],
+			"from": [8.75, 6, 8.75],
+			"to": [15.75, 14, 15.75],
 			"faces": {
 				"north": {"uv": [0, 4.5, 1.75, 6.5], "texture": "#0"},
 				"east": {"uv": [0, 4.5, 1.75, 6.5], "texture": "#0", "cullface": "east"},
@@ -106,8 +99,8 @@
 		},
 		{
 			"name": "retort inverse",
-			"from": [16, 14, 16],
-			"to": [9, 6, 9],
+			"from": [15.75, 14, 15.75],
+			"to": [8.75, 6, 8.75],
 			"faces": {
 				"north": {"uv": [0, 6.5, 1.75, 4.5], "texture": "#0", "cullface": "south"},
 				"east": {"uv": [0, 6.5, 1.75, 4.5], "texture": "#0"},

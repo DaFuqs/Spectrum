@@ -1,6 +1,5 @@
 {
   "type": "spectrum:titration_barrel",
-  "group": "infused_beverages",
   "ingredients": [
     {
       "item": "spectrum:fiery_powder",

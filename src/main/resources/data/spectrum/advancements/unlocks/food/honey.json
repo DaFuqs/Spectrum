@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_aloe": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_aloe" }
+    },
+    "collected_sawblade_holly_berry": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_sawblade_holly_berry" }
+    }
+  }
+}

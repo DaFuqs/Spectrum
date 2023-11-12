@@ -30,7 +30,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
     
         // try out how far we can grow
         // limit growth to a few blocks above the ground
-        var stemHeight = Math.round(MathHelper.nextGaussian(random, 8, 8F) + 5);
+        var stemHeight = Math.round(MathHelper.nextGaussian(random, 8, 10F) + 5);
         BlockPos.Mutable mutablePos = origin.mutableCopy();
         for (int i = 0; i < stemHeight + 2; i++) {
             if (inverted) { // growing up
@@ -48,7 +48,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
             }
         }
     
-        if (stemHeight < 2)
+        if (stemHeight < 4)
             return false;
     
         generateStem(world, origin, stemHeight, inverted);

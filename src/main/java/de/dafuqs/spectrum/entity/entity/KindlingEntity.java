@@ -110,7 +110,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			this.glidingAnimationState.stop();
 			
 			switch (this.getPose()) {
-				case EMERGING -> this.standingAnimationState.start(this.age);
+				case STANDING -> this.standingAnimationState.start(this.age);
 				case DIGGING -> this.walkingAnimationState.start(this.age);
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
 				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);

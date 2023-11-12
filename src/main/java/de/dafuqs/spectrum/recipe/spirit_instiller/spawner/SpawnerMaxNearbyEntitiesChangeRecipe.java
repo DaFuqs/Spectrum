@@ -12,7 +12,9 @@ import net.minecraft.util.*;
 public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	
 	public static final RecipeSerializer<SpawnerMaxNearbyEntitiesChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerMaxNearbyEntitiesChangeRecipe::new);
-	
+	protected static final int DEFAULT_MAX_ENTITIES = 6;
+	protected static final int MAX_MAX_ENTITIES = 40;
+
 	public SpawnerMaxNearbyEntitiesChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MERMAIDS_GEM), Matchbook.empty(), null, 4));
 	}
@@ -20,7 +22,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt.contains("MaxNearbyEntities")) {
-			return spawnerBlockEntityNbt.getShort("MaxNearbyEntities") < 40;
+			return spawnerBlockEntityNbt.getShort("MaxNearbyEntities") < MAX_MAX_ENTITIES;
 		}
 		return true;
 	}
@@ -50,11 +52,11 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 		   }
 		 */
 		
-		short maxNearbyEntities = 6;
+		short maxNearbyEntities = DEFAULT_MAX_ENTITIES;
 		if (spawnerBlockEntityNbt.contains("MaxNearbyEntities", NbtElement.SHORT_TYPE)) {
 			maxNearbyEntities = spawnerBlockEntityNbt.getShort("MaxNearbyEntities");
 		}
-		spawnerBlockEntityNbt.putShort("MaxNearbyEntities", (short) Math.min(40, maxNearbyEntities + 1));
+		spawnerBlockEntityNbt.putShort("MaxNearbyEntities", (short) Math.min(MAX_MAX_ENTITIES, maxNearbyEntities + 1));
 		
 		return spawnerBlockEntityNbt;
 	}

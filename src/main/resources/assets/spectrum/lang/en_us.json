@@ -267,6 +267,8 @@
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
+  "commands.spectrum.primordial_fire.put_on.success": "Set %d entities on fire",
+  "commands.spectrum.primordial_fire.put_out.success": "Extinguished %d entities",
 
   "spectrum.ink.color.group_blacks": "Blacks",
   "spectrum.ink.color.group_magentas": "Magentas",

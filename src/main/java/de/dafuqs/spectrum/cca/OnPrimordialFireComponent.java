@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
@@ -10,19 +8,17 @@ import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.effect.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
 
@@ -58,7 +54,13 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 			this.primordialFireTicks = 0;
 		}
 	}
-	
+
+	public static void setPrimordialFireTicks(LivingEntity livingEntity, int ticks) {
+		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
+		component.primordialFireTicks = ticks;
+		ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
+	}
+
 	public static void addPrimordialFireTicks(LivingEntity livingEntity, int ticks) {
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
 		ticks = ProtectionEnchantment.transformFireDuration(livingEntity, ticks);

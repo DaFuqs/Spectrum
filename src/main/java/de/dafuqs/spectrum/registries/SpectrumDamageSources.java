@@ -21,8 +21,8 @@ public class SpectrumDamageSources {
 	public static final DamageSource BRISTLE_SPROUTS = new SpectrumDamageSource("spectrum_bristle_sprouts");
 	public static final DamageSource RIPPER = new SpectrumDamageSource("spectrum_ripper");
 	public static final DamageSource SNAPPING_IVY = new SpectrumDamageSource("spectrum_snapping_ivy").setUnblockable().setNeutral();
-	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection();
-	public static final DamageSource PRIMORDIAL_FIRE = new SpectrumDamageSource("spectrum_primordial_fire").setBypassesArmor().setBypassesProtection().setUsesMagic();
+	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setUnblockable().setBypassesArmor().setBypassesProtection();
+	public static final DamageSource PRIMORDIAL_FIRE = new PrimordialFireDamageSource("spectrum_primordial_fire").setUnblockable().setBypassesArmor().setBypassesProtection().setUsesMagic();
 
 	public static DamageSource incandescence(@Nullable Entity attacker) {
 		return attacker == null ? INCANDESCENCE : new EntityDamageSource("spectrum_incandescence.player", attacker).setUsesMagic().setExplosive();
@@ -57,11 +57,21 @@ public class SpectrumDamageSources {
 				new ProjectileDamageSource("onFire", kindlingCoughEntity, kindlingCoughEntity).setFire().setProjectile() :
 				new ProjectileDamageSource("spectrum_kindling_cough", kindlingCoughEntity, attacker).setFire().setProjectile();
 	}
+
+	// Damage is dealt directly via setHealth(), instead via normal means
+	public interface DirectDamage {};
 	
-	public static class SetHealthDamageSource extends EntityDamageSource {
+	public static class SetHealthDamageSource extends EntityDamageSource implements DirectDamage {
 		
 		public SetHealthDamageSource(String name, LivingEntity attacker) {
 			super(name, attacker);
+		}
+	}
+
+	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
+
+		public PrimordialFireDamageSource(String name) {
+			super(name);
 		}
 	}
 	

@@ -189,7 +189,7 @@ public class SpectrumEnchantmentHelper {
 			anySuccess = result.getRight();
 			itemStack = result.getLeft();
 		}
-		return new Pair(itemStack, anySuccess);
+		return new Pair<>(itemStack, anySuccess);
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class SpectrumEnchantmentHelper {
 		}
 		itemStack.setNbt(compound);
 		
-		return new Pair<>(itemStack, true);
+		return new Pair<>(itemStack, success);
 	}
 	
 	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {

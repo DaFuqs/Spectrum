@@ -228,7 +228,6 @@ public class SpectrumEnchantmentHelper {
 			compound.put(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, enchantmentList);
 		} else {
 			compound.put(ItemStack.ENCHANTMENTS_KEY, enchantmentList);
-			
 		}
 		itemStack.setNbt(compound);
 		

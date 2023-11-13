@@ -651,6 +651,7 @@
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetYForEachRowOfExtraHearts": "Added Y position offset for each extra row of hearts",
   "text.autoconfig.Spectrum.option.DimensionReverbDecayTime": "The reverb decay time for sound effects in Spectrum's dimension",
   "text.autoconfig.Spectrum.option.DimensionReverbDensity": "The reverb density for sound effects in Spectrum's dimension",
+  "text.autoconfig.Spectrum.option.AddItemTooltips": "Add advanced tooltips for Spawners, Signs, Skulk Shriekers and much more",
 
   "block.spectrum.upgrade_speed": "Crafting Accelerator",
   "block.spectrum.upgrade_speed2": "Crafting Accelerator T2",

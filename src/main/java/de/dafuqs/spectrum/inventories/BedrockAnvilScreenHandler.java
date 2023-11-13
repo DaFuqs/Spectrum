@@ -194,7 +194,9 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			if (!repairSlotStack.isEmpty()) {
 				combined = true;
 				
+				boolean enchantedBookInInputSlot = inputStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(inputStack).isEmpty();
 				boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
+
 				int o;
 				int repairItemCount;
 				int newOutputStackDamage;
@@ -276,7 +278,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 							bl3 = true;
 						} else {
 							bl2 = true;
-							if (!SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
+							boolean capToMaxLevel = enchantedBookInInputSlot || !SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel;
+							if (capToMaxLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
 								newEnchantmentLevel = enchantment.getMaxLevel();
 							}
 							

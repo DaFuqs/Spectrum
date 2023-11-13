@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -12,8 +13,7 @@ import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.*;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
@@ -22,6 +22,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
@@ -86,7 +87,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	protected void initGoals() {
-
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
 		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.2F));
@@ -233,17 +233,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
 		}
-		
-		if (this.fallDistance < 0.2) {
-			boolean isMoving = moveControl.isMoving();
-			if (getAngerTime() > 0) {
-				this.setPose(isMoving ? EntityPose.EMERGING : EntityPose.ROARING);
-			} else {
-				this.setPose(isMoving ? EntityPose.SNIFFING : EntityPose.STANDING);
-			}
-		} else {
-			this.setPose(EntityPose.FALL_FLYING);
-		}
 	}
 	
 	@Override
@@ -253,6 +242,17 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		Vec3d vec3d = this.getVelocity();
 		if (!this.onGround && vec3d.y < 0.0) {
 			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
+		}
+
+		if (this.fallDistance < 0.2) {
+			boolean isMoving = this.getX() - this.prevX != 0 || this.getZ() - this.prevZ != 0; // pretty ugly, but also triggers when being ridden
+			if (getAngerTime() > 0) {
+				this.setPose(isMoving ? EntityPose.EMERGING : EntityPose.ROARING);
+			} else {
+				this.setPose(isMoving ? EntityPose.SNIFFING : EntityPose.STANDING);
+			}
+		} else {
+			this.setPose(EntityPose.FALL_FLYING);
 		}
 	}
 	
@@ -292,9 +292,16 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				
 				if (!this.world.isClient) {
 					handStack.decrement(1);
-					this.world.sendEntityStatus(this, (byte) 7); // heart particles
+
+					this.setTame(true);
+					if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
+						this.setOwnerUuid(player.getUuid());
+						Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
+					}
+
+					this.world.sendEntityStatus(this, (byte)7); // heart particles
 					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
-					
+
 					clipAndDrop();
 				}
 				

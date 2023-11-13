@@ -12,11 +12,16 @@ import net.minecraft.text.*;
 import java.util.*;
 
 public class ShootingStarCommand {
-	
+
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register((CommandManager.literal("spectrum_spawn_shooting_star").requires((source) -> source.hasPermissionLevel(2)).then(CommandManager.argument("targets", EntityArgumentType.players()).executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), 1)).then(CommandManager.argument("amount", IntegerArgumentType.integer(0)).executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount")))))));
+		dispatcher.register(CommandManager.literal("spectrum_spawn_shooting_star")
+			.requires((source) -> source.hasPermissionLevel(2))
+			.then(CommandManager.argument("targets", EntityArgumentType.players())
+				.executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), 1))
+			.then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
+				.executes((context) -> execute(context.getSource(), EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount"))))));
 	}
-	
+
 	private static int execute(ServerCommandSource source, Collection<? extends ServerPlayerEntity> targets, int amount) {
 		for (ServerPlayerEntity entity : targets) {
 			for (int i = 0; i < amount; i++) {
@@ -26,5 +31,5 @@ public class ShootingStarCommand {
 		source.sendFeedback(Text.translatable("commands.spectrum.spawn_shooting_star.success", amount), false);
 		return amount;
 	}
-	
+
 }

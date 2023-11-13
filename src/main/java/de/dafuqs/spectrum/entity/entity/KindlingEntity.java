@@ -101,9 +101,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		this.goalSelector.add(11, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new CoughRevengeGoal(this));
-		this.targetSelector.add(2, new FindPlayMateGoal<>(this, 10, 1F, KindlingEntity.class));
-		this.targetSelector.add(3, new FindPlayMateGoal<>(this, 50,4F, PlayerEntity.class));
-		this.targetSelector.add(4, new FindPlayMateGoal<>(this, 5, 0.25F, HostileEntity.class));
+		this.targetSelector.add(2, new FindPlayMateGoal<>(this, 4, 0.25F, HostileEntity.class));
+		this.targetSelector.add(3, new FindPlayMateGoal<>(this, 10, 1F, KindlingEntity.class));
+		this.targetSelector.add(4, new FindPlayMateGoal<>(this, 40,4F, PlayerEntity.class));
 		this.targetSelector.add(5, new UniversalAngerGoal<>(this, false));
 	}
 	
@@ -279,8 +279,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				
 				if (!this.world.isClient) {
 					setTarget(player);
-					setAngryAt(player.getUuid());
-					chooseRandomAngerTime();
+					takeRevenge(player.getUuid());
 					this.playAngrySound();
 					
 					clipAndDrop();
@@ -414,6 +413,14 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void setAngryAt(@Nullable UUID angryAt) {
 		this.angryAt = angryAt;
 	}
+
+	public void takeRevenge(UUID target) {
+		setAngryAt(target);
+		setIncited(false);
+		setPlaying(false);
+
+		chooseRandomAngerTime();
+	}
 	
 	public
 	@Override void chooseRandomAngerTime() {
@@ -449,8 +456,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		@Override
 		public void start() {
 			super.start();
-			setAngryAt(getAttacker().getUuid());
-			chooseRandomAngerTime();
+			takeRevenge(getAttacker().getUuid());
 		}
 
 		@Override
@@ -491,7 +497,21 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !hasAngerTime() && isPlaying();
+			return super.canStart() && !hasAngerTime() && !hasPassengers() && isPlaying();
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			if (!super.shouldContinue())
+				return false;
+
+			if ((getTarget() instanceof KindlingEntity playMate && playMate.hasAngerTime()) || hasPassengers()) {
+				setTarget(null);
+				setIncited(false);
+				return false;
+			}
+
+			return !hasAngerTime();
 		}
 
 		@Override
@@ -505,14 +525,14 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 					playMate.setIncited(true);
 				}
 
-				if (!(target instanceof HostileEntity)) {
+				if (!(target instanceof Monster)) {
 					target.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200));
 				}
 				if (random.nextBoolean()) {
 					stop();
 					setIncited(false);
 					this.mob.setTarget(null);
-					KindlingEntity.this.setChillTime(1200 * (target instanceof PlayerEntity ? 2 : 1));
+					KindlingEntity.this.setChillTime(2400 * (target instanceof PlayerEntity ? 2 : 1));
 				}
 			}
 		}
@@ -529,11 +549,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 
 		@Override
 		public boolean canStart() {
+			if (hasAngerTime() || hasPassengers())
+				return false;
+
 			if (!isIncited()) {
 				var chill = getChillTime();
-
-				if (hasAngerTime())
-					return false;
 
 				if (chill > 0)
 					return false;
@@ -542,12 +562,11 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			if (isIncited() || (this.reciprocalChance > 0 && this.mob.getRandom().nextInt(this.reciprocalChance) != 0)) {
 				this.findClosestTarget();
 
-				setChillTime((int) (600 * waitModifier));
-
-				return this.targetEntity != null;
+				if (this.targetEntity != null) {
+					setChillTime((int) (1200 * waitModifier));
+					return true;
+				}
 			}
-
-			setChillTime((int) (300 * waitModifier));
 			return false;
 		}
 

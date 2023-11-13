@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.cca.OnPrimordialFireComponent;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -15,8 +16,8 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
-	protected static final float DAMAGE = 20.0F;
-	protected static final int FIRE_TICKS_ON_HIT = 120;
+	protected static final float DAMAGE = 10.0F;
+	protected static final int FIRE_TICKS_ON_HIT = 30;
 	
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
@@ -57,7 +58,12 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		
 		Entity hitEntity = entityHitResult.getEntity();
-		hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
+		if (hitEntity instanceof LivingEntity livingEntity) {
+			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, FIRE_TICKS_ON_HIT);
+		}
+		else {
+			hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
+		}
 		
 		if (this.getOwner() instanceof LivingEntity owner) {
 			hitEntity.damage(SpectrumDamageSources.kindlingCough(this, owner), DAMAGE);

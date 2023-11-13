@@ -12,6 +12,8 @@ import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
@@ -39,7 +41,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> CLIPPED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	
+	private static final TrackedData<Integer> CHILL = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Boolean> PLAYING = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private static final TrackedData<Boolean> INCITED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
 	protected @Nullable UUID angryAt;
 	
 	public AnimationState standingAnimationState = new AnimationState();
@@ -63,6 +68,8 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 12.0D)
 				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 6.0D)
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6D)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 25F)
+				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.5F)
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
 	}
 	
@@ -79,25 +86,35 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	protected void initGoals() {
+
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new HorseBondWithPlayerGoal(this, 1.4));
-		this.goalSelector.add(2, new ProjectileAttackGoal(this, 1.25, 40, 20.0F));
-		this.goalSelector.add(3, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(4, new TemptGoal(this, 1.25, FOOD, false));
-		this.goalSelector.add(5, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.add(8, new LookAroundGoal(this));
+		this.goalSelector.add(2, new PounceAtTargetGoal(this, 0.2F));
+		this.goalSelector.add(3, new MeleeChaseGoal(this));
+		this.goalSelector.add(4, new CancellableProjectileAttackGoal(this, 1.25, 40, 20.0F));
+		this.goalSelector.add(5, new AnimalMateGoal(this, 1.0D));
+		this.goalSelector.add(6, new PlayRoughGoal(this));
+		this.goalSelector.add(7, new TemptGoal(this, 1.25, FOOD, false));
+		this.goalSelector.add(8, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.add(9, new WanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.add(11, new LookAroundGoal(this));
 		
 		this.targetSelector.add(1, new CoughRevengeGoal(this));
-		this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
+		this.targetSelector.add(2, new FindPlayMateGoal<>(this, 4, 0.25F, HostileEntity.class));
+		this.targetSelector.add(3, new FindPlayMateGoal<>(this, 10, 1F, KindlingEntity.class));
+		this.targetSelector.add(4, new FindPlayMateGoal<>(this, 40,4F, PlayerEntity.class));
+		this.targetSelector.add(5, new UniversalAngerGoal<>(this, false));
 	}
 	
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(ANGER, 0);
+		this.dataTracker.startTracking(CHILL, 40);
 		this.dataTracker.startTracking(CLIPPED, 0);
+		this.dataTracker.startTracking(PLAYING, false);
+		this.dataTracker.startTracking(INCITED, false);
 	}
 	
 	@Override
@@ -124,12 +141,16 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		this.writeAngerToNbt(nbt);
+		nbt.putInt("chillTime", getChillTime());
+		nbt.putBoolean("playing", isPlaying());
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.world, nbt);
+		setChillTime(nbt.getInt("chillTime"));
+		setPlaying(nbt.getBoolean("playing"));
 	}
 	
 	@Override
@@ -177,7 +198,24 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
 		return false;
 	}
-	
+
+	@Override
+	public boolean damage(DamageSource source, float amount) {
+		if (source.getAttacker() instanceof KindlingEntity) {
+			amount = 1;
+
+			if (random.nextBoolean()) {
+				setChillTime(0);
+			}
+		}
+
+		if (amount > 1) {
+			setPlaying(false);
+		}
+
+		return super.damage(source, amount);
+	}
+
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return 0.6F * dimensions.height;
@@ -190,6 +228,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		if (!this.world.isClient) {
 			this.tickAngerLogic((ServerWorld) this.world, false);
 			this.setClipped(this.getClipTime() - 1);
+			this.setChillTime(this.getChillTime() - 1);
 		}
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
@@ -240,8 +279,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				
 				if (!this.world.isClient) {
 					setTarget(player);
-					setAngryAt(player.getUuid());
-					chooseRandomAngerTime();
+					takeRevenge(player.getUuid());
 					this.playAngrySound();
 					
 					clipAndDrop();
@@ -266,7 +304,24 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		
 		return super.interactMob(player, hand);
 	}
-	
+
+	@Override
+	public void tickAngerLogic(ServerWorld world, boolean angerPersistent) {
+		LivingEntity livingEntity = this.getTarget();
+		UUID uUID = this.getAngryAt();
+		if ((livingEntity == null || livingEntity.isDead()) && uUID != null && world.getEntity(uUID) instanceof MobEntity) {
+			this.stopAnger();
+		} else {
+			if (this.getAngerTime() > 0 && (livingEntity == null || livingEntity.getType() != EntityType.PLAYER || !angerPersistent)) {
+				this.setAngerTime(this.getAngerTime() - 1);
+				if (this.getAngerTime() == 0) {
+					this.stopAnger();
+				}
+			}
+
+		}
+	}
+
 	private void clipAndDrop() {
 		setClipped(4800); // 4 minutes
 		for (ItemStack clippedStack : getClippedStacks((ServerWorld) world)) {
@@ -309,7 +364,31 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void setClipped(int clipTime) {
 		this.dataTracker.set(CLIPPED, clipTime);
 	}
-	
+
+	public int getChillTime() {
+		return this.dataTracker.get(CHILL);
+	}
+
+	public void setChillTime(int chillTime) {
+		this.dataTracker.set(CHILL, chillTime);
+	}
+
+	public void setPlaying(boolean playing) {
+		this.dataTracker.set(PLAYING, playing);
+	}
+
+	public boolean isPlaying() {
+		return this.dataTracker.get(PLAYING);
+	}
+
+	public void setIncited(boolean incited) {
+		this.dataTracker.set(INCITED, incited);
+	}
+
+	public boolean isIncited() {
+		return dataTracker.get(INCITED);
+	}
+
 	@Override
 	public boolean isAngry() {
 		return this.getHorseFlag(32);
@@ -333,6 +412,14 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	public void setAngryAt(@Nullable UUID angryAt) {
 		this.angryAt = angryAt;
+	}
+
+	public void takeRevenge(UUID target) {
+		setAngryAt(target);
+		setIncited(false);
+		setPlaying(false);
+
+		chooseRandomAngerTime();
 	}
 	
 	public
@@ -358,14 +445,20 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected class CoughRevengeGoal extends RevengeGoal {
 		
 		public CoughRevengeGoal(KindlingEntity kindling) {
-			super(kindling);
+			super(kindling, KindlingEntity.class);
 		}
 		
 		@Override
 		public boolean shouldContinue() {
 			return KindlingEntity.this.hasAngerTime() && super.shouldContinue();
 		}
-		
+
+		@Override
+		public void start() {
+			super.start();
+			takeRevenge(getAttacker().getUuid());
+		}
+
 		@Override
 		protected void setMobEntityTarget(MobEntity mob, LivingEntity target) {
 			if (mob instanceof BeeEntity && this.mob.canSee(target)) {
@@ -374,5 +467,130 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		
 	}
-	
+
+	protected class MeleeChaseGoal extends MeleeAttackGoal {
+
+		public MeleeChaseGoal(KindlingEntity kindling) {
+			super(kindling, 0.5F, true);
+		}
+
+		@Override
+		public boolean canStart() {
+			var kindling = KindlingEntity.this;
+			var angryAt = kindling.getAngryAt();
+			if (angryAt == null)
+				return false;
+			return super.canStart() && kindling.hasAngerTime() && !isPlaying() && KindlingEntity.this.distanceTo(this.mob.getTarget()) < 5F;
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			return super.shouldContinue() && KindlingEntity.this.distanceTo(this.mob.getTarget()) < 9F;
+		}
+	}
+
+	protected class PlayRoughGoal extends MeleeAttackGoal {
+
+		public PlayRoughGoal(PathAwareEntity mob) {
+			super(mob, 0.4F, true);
+		}
+
+		@Override
+		public boolean canStart() {
+			return super.canStart() && !hasAngerTime() && !hasPassengers() && isPlaying();
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			if (!super.shouldContinue())
+				return false;
+
+			if ((getTarget() instanceof KindlingEntity playMate && playMate.hasAngerTime()) || hasPassengers()) {
+				setTarget(null);
+				setIncited(false);
+				return false;
+			}
+
+			return !hasAngerTime();
+		}
+
+		@Override
+		protected void attack(LivingEntity target, double squaredDistance) {
+			double d = this.getSquaredMaxAttackDistance(target);
+			if (squaredDistance <= d && this.getCooldown() <= 0) {
+				this.resetCooldown();
+				this.mob.swingHand(Hand.MAIN_HAND);
+				this.mob.tryAttack(target);
+				if (target instanceof KindlingEntity playMate && !playMate.hasAngerTime() && random.nextBoolean()) {
+					playMate.setIncited(true);
+				}
+
+				if (!(target instanceof Monster)) {
+					target.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200));
+				}
+				if (random.nextBoolean()) {
+					stop();
+					setIncited(false);
+					this.mob.setTarget(null);
+					KindlingEntity.this.setChillTime(2400 * (target instanceof PlayerEntity ? 2 : 1));
+				}
+			}
+		}
+	}
+
+	protected class FindPlayMateGoal<T extends LivingEntity> extends ActiveTargetGoal<T> {
+
+		private final float waitModifier;
+
+		public FindPlayMateGoal(MobEntity mob, int reciprocalChance, float waitModifier, Class<T> targetClass) {
+			super(mob, targetClass, reciprocalChance, true, true, null);
+			this.waitModifier = waitModifier;
+		}
+
+		@Override
+		public boolean canStart() {
+			if (hasAngerTime() || hasPassengers())
+				return false;
+
+			if (!isIncited()) {
+				var chill = getChillTime();
+
+				if (chill > 0)
+					return false;
+			}
+
+			if (isIncited() || (this.reciprocalChance > 0 && this.mob.getRandom().nextInt(this.reciprocalChance) != 0)) {
+				this.findClosestTarget();
+
+				if (this.targetEntity != null) {
+					setChillTime((int) (1200 * waitModifier));
+					return true;
+				}
+			}
+			return false;
+		}
+
+		@Override
+		public void start() {
+			super.start();
+ 			setPlaying(true);
+		}
+	}
+
+	protected class  CancellableProjectileAttackGoal extends ProjectileAttackGoal {
+
+		public CancellableProjectileAttackGoal(RangedAttackMob mob, double mobSpeed, int intervalTicks, float maxShootRange) {
+			super(mob, mobSpeed, intervalTicks, maxShootRange);
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getTarget()) > 5F;
+		}
+
+		@Override
+		public boolean canStart() {
+			return super.canStart() && !isPlaying() && distanceTo(getTarget()) > 6F ;
+		}
+	}
 }

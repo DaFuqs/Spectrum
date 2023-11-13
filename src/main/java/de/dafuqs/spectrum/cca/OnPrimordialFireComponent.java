@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
@@ -8,6 +10,9 @@ import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
@@ -16,6 +21,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+
+import java.util.Optional;
 
 public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
 	
@@ -76,17 +83,40 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	@Override
 	public void serverTick() {
 		if (this.primordialFireTicks > 0) {
-			if (this.primordialFireTicks % 10 == 0 && !provider.isInLava()) {
-				provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, 4);
+			if (this.primordialFireTicks % getDamageTickFrequency() == 0) {
+				// KILL
+				if (provider.getHealth() <= 1 && provider.isAlive()) {
+					provider.getDamageTracker().onDamage(SpectrumDamageSources.PRIMORDIAL_FIRE, provider.getHealth(), Float.MAX_VALUE);
+					provider.setHealth(0);
+					provider.onDeath(SpectrumDamageSources.PRIMORDIAL_FIRE);
+				}
+				else {
+					//Dike will protect...
+					var dike = AzureDikeProvider.getAzureDikeComponent(provider);
+					if (dike.getProtection() > 0) {
+						dike.absorbDamage(1);
+					} else {
+						provider.setHealth(provider.getHealth() - 1);
+					}
+				}
 			}
 			
-			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 4 : 1;
+			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 2 : 1;
 			
 			// was on fire, but is not any longer
-			if (this.primordialFireTicks == 0) {
+			if (this.primordialFireTicks <= 0) {
 				ON_PRIMORDIAL_FIRE_COMPONENT.sync(this.provider);
 			}
 		}
+	}
+
+	/**
+	 * Primordial fire's DPS ranges from 4 to 1.
+	 */
+	public int getDamageTickFrequency() {
+		float fireProt = EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F;
+		int fireRes = Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(0);
+		return Math.min(Math.round(5 + fireRes + fireProt), 20);
 	}
 	
 	@Override

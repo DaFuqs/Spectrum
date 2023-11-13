@@ -193,14 +193,13 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			}
 		}
 		
-		if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE)) {
+		if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE).getRight()) {
 			SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, enchantment, level, true, true);
 			player.sendMessage(message, true);
 		} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 			triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 		}
 	}
-	
 	
 	private static void triggerUnenchantedWorkstaffAdvancement(ServerPlayerEntity player) {
 		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);

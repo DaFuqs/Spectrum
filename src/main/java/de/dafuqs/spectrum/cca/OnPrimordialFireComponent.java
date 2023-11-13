@@ -25,7 +25,9 @@ import org.jetbrains.annotations.*;
 import java.util.Optional;
 
 public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
-	
+
+	public static final float DAMAGE_ON_TICK = 1.0F;
+
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
 	private LivingEntity provider;
@@ -40,7 +42,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	public OnPrimordialFireComponent(LivingEntity entity) {
 		this.provider = entity;
 	}
-	
+
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
 		if (this.primordialFireTicks > 0) {
@@ -83,25 +85,11 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	@Override
 	public void serverTick() {
 		if (this.primordialFireTicks > 0) {
-			if (this.primordialFireTicks % getDamageTickFrequency() == 0) {
-				// KILL
-				if (provider.getHealth() <= 1 && provider.isAlive()) {
-					provider.getDamageTracker().onDamage(SpectrumDamageSources.PRIMORDIAL_FIRE, provider.getHealth(), Float.MAX_VALUE);
-					provider.setHealth(0);
-					provider.onDeath(SpectrumDamageSources.PRIMORDIAL_FIRE);
-				}
-				else {
-					//Dike will protect...
-					var dike = AzureDikeProvider.getAzureDikeComponent(provider);
-					if (dike.getProtection() > 0) {
-						dike.absorbDamage(1);
-					} else {
-						provider.setHealth(provider.getHealth() - 1);
-					}
-				}
+			if (this.primordialFireTicks % getDamageTickFrequency(provider) == 0) {
+				provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE_ON_TICK);
 			}
 			
-			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 2 : 1;
+			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
 			
 			// was on fire, but is not any longer
 			if (this.primordialFireTicks <= 0) {
@@ -113,10 +101,11 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	/**
 	 * Primordial fire's DPS ranges from 4 to 1.
 	 */
-	public int getDamageTickFrequency() {
+	public int getDamageTickFrequency(LivingEntity entity) {
 		float fireProt = EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F;
 		int fireRes = Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(0);
-		return Math.min(Math.round(5 + fireRes + fireProt), 20);
+		int duration = Math.min(Math.round(5 + fireRes + fireProt), 20);
+		return entity.isFireImmune() ? duration / 2 : duration;
 	}
 	
 	@Override

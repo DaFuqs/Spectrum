@@ -109,7 +109,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!entity.isFireImmune() && entity instanceof LivingEntity livingEntity) {
+        if (entity instanceof LivingEntity livingEntity) {
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
         

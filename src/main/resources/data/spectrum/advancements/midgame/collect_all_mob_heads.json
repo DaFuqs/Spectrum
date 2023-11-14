@@ -587,18 +587,6 @@
         ]
       }
     },
-    "has_monstrosity_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:monstrosity_head"
-            ]
-          }
-        ]
-      }
-    },
     "has_kindling_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

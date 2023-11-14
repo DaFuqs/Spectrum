@@ -26,7 +26,6 @@ import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
@@ -347,7 +346,7 @@ public class SpectrumItems {
 	public static final Item BAGNUN = new Item(IS.of().food(SpectrumFoodComponents.BAGNUN));
 	public static final Item BANYASH = new Item(IS.of().food(SpectrumFoodComponents.BANYASH));
 	public static final Item BERLINER = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.BERLINER), 48);
-	public static final Item BRISTLE_MEAD = new SimpleBeverageItem(IS.of().food(SpectrumFoodComponents.BEVERAGE));
+	public static final Item BRISTLE_MEAD = new SimpleBeverageItem(IS.of(16).food(SpectrumFoodComponents.BEVERAGE));
 	public static final Item CHAUVE_SOURIS_AU_VIN = new CustomUseTimeItem(IS.of().food(SpectrumFoodComponents.CHAUVE_SOURIS_AU_VIN), 96);
 	public static final Item CRAWFISH = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH));
 	public static final Item CRAWFISH_COCKTAIL = new Item(IS.of().food(SpectrumFoodComponents.CRAWFISH_COCKTAIL));
@@ -421,8 +420,6 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, IS.of(1, Rarity.RARE), 265);
 	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, IS.of(1, Rarity.RARE), 289);
 	
-	@Deprecated(forRemoval = true)
-	public static final Item SPAWNER = new SpectrumMobSpawnerItem(IS.of(1, Rarity.RARE));
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, IS.of());
 	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, IS.of());
 	
@@ -524,8 +521,6 @@ public class SpectrumItems {
 	}
 	
 	public static void registerSpawningStuff() {
-		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
-		
 		register("bucket_of_eraser", BUCKET_OF_ERASER, DyeColor.PINK);
 
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);

@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:midnight_aberration"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.crumble_midnight_aberration.title"
     },

@@ -13,7 +13,8 @@ import net.minecraft.util.*;
 public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe {
 	
 	public static final RecipeSerializer<SpawnerRequiredPlayerRangeChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerRequiredPlayerRangeChangeRecipe::new);
-	
+	protected static final int DEFAULT_DETECTION_RANGE = 16;
+	protected static final int MAX_DETECTION_RANGE = 64;
 	public SpawnerRequiredPlayerRangeChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.STRATINE_GEM), Matchbook.empty(), null, 4));
 	}
@@ -21,7 +22,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange")) {
-			return spawnerBlockEntityNbt.getShort("RequiredPlayerRange") < 256;
+			return spawnerBlockEntityNbt.getShort("RequiredPlayerRange") < MAX_DETECTION_RANGE;
 		}
 		return true;
 	}
@@ -51,7 +52,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 		   }
 		 */
 		
-		short requiredPlayerRange = 16;
+		short requiredPlayerRange = DEFAULT_DETECTION_RANGE;
 		if (spawnerBlockEntityNbt.contains("RequiredPlayerRange", NbtElement.SHORT_TYPE)) {
 			requiredPlayerRange = spawnerBlockEntityNbt.getShort("RequiredPlayerRange");
 		}
@@ -61,7 +62,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 			newRequiredPlayerRange = (short) (requiredPlayerRange + 1);
 		}
 		
-		spawnerBlockEntityNbt.putShort("RequiredPlayerRange", (short) Math.min(256, newRequiredPlayerRange));
+		spawnerBlockEntityNbt.putShort("RequiredPlayerRange", (short) Math.min(MAX_DETECTION_RANGE, newRequiredPlayerRange));
 		
 		return spawnerBlockEntityNbt;
 	}

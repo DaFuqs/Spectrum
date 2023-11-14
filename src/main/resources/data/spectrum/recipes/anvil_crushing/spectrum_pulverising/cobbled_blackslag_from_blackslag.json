@@ -1,7 +1,7 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:infested_blackslag"
+    "item": "spectrum:blackslag"
   },
   "crushedItemsPerPointOfDamage": 0.8,
   "experience": 0,
@@ -10,5 +10,6 @@
     "count": 1
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "block.deepslate.break"
+  "soundEventIdentifier": "block.deepslate.break",
+  "required_advancement": "spectrum:hidden/collect_blackslag"
 }

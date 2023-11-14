@@ -13,7 +13,8 @@ import net.minecraft.util.*;
 public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	
 	public static final RecipeSerializer<SpawnerSpawnCountChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerSpawnCountChangeRecipe::new);
-	
+	protected static final int DEFAULT_SPAWN_COUNT = 4;
+	protected static final int MAX_SPAWN_COUNT = 16;
 	public SpawnerSpawnCountChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEOLITH), Matchbook.empty(), null, 4));
 	}
@@ -21,7 +22,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt.contains("SpawnCount")) {
-			return spawnerBlockEntityNbt.getShort("SpawnCount") < 16;
+			return spawnerBlockEntityNbt.getShort("SpawnCount") < MAX_SPAWN_COUNT;
 		}
 		return true;
 	}
@@ -51,11 +52,11 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 		   }
 		 */
 		
-		short spawnCount = 4;
+		short spawnCount = DEFAULT_SPAWN_COUNT;
 		if (spawnerBlockEntityNbt.contains("SpawnCount", NbtElement.SHORT_TYPE)) {
 			spawnCount = spawnerBlockEntityNbt.getShort("SpawnCount");
 		}
-		spawnerBlockEntityNbt.putShort("SpawnCount", (short) Math.min(16, spawnCount + 1));
+		spawnerBlockEntityNbt.putShort("SpawnCount", (short) Math.min(MAX_SPAWN_COUNT, spawnCount + 1));
 		
 		return spawnerBlockEntityNbt;
 	}

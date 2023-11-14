@@ -122,7 +122,7 @@ public class SpectrumDamageSources {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
 	
-	public static class SetHealthDamageSource extends DamageSource {
+	public static class SetHealthDamageSource extends DamageSource implements DirectDamage {
 		
 		public SetHealthDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(SET_HEALTH_DAMAGE).orElseThrow(), attacker);
@@ -160,11 +160,14 @@ public class SpectrumDamageSources {
 		}
 	}
 
-	public static class PrimordialFireDamageSource extends DamageSource {
+	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
 
 		public PrimordialFireDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(PRIMORDIAL_FIRE).orElseThrow(), attacker);
 		}
 	}
+
+    // Damage is dealt directly via setHealth(), instead via normal means
+    public interface DirectDamage {};
 	
 }

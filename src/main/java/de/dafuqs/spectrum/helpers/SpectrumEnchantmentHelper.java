@@ -182,18 +182,23 @@ public class SpectrumEnchantmentHelper {
 	 * @param enchantments the enchantments to remove
 	 * @return if >0 enchantments could be removed
 	 */
-	public static boolean removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
+	public static Pair<ItemStack, Boolean> removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
 		boolean anySuccess = false;
 		for (Enchantment enchantment : enchantments) {
-			anySuccess |= removeEnchantment(itemStack, enchantment);
+			Pair<ItemStack, Boolean> result = removeEnchantment(itemStack, enchantment);
+			anySuccess = result.getRight();
+			itemStack = result.getLeft();
 		}
-		return anySuccess;
+		return new Pair<>(itemStack, anySuccess);
 	}
-	
-	public static boolean removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
+
+	/**
+	 * @return The resulting stack & a boolean to specify if removing was successful
+	 */
+	public static Pair<ItemStack, Boolean> removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound == null) {
-			return false;
+			return new Pair<>(itemStack, false);
 		}
 		
 		NbtList enchantmentList;
@@ -215,14 +220,18 @@ public class SpectrumEnchantmentHelper {
 		}
 		
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			if(enchantmentList.isEmpty()) {
+				ItemStack newStack = new ItemStack(Items.BOOK);
+				newStack.setCount(itemStack.getCount());
+				return new Pair<>(newStack, true);
+			}
 			compound.put(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, enchantmentList);
 		} else {
 			compound.put(ItemStack.ENCHANTMENTS_KEY, enchantmentList);
-			
 		}
 		itemStack.setNbt(compound);
 		
-		return success;
+		return new Pair<>(itemStack, success);
 	}
 	
 	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {

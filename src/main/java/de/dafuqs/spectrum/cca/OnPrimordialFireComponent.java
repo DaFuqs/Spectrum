@@ -8,17 +8,22 @@ import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.util.*;
+
 public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
-	
+
+	public static final float DAMAGE_ON_TICK = 1.0F;
+
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
 	private LivingEntity provider;
@@ -33,7 +38,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	public OnPrimordialFireComponent(LivingEntity entity) {
 		this.provider = entity;
 	}
-	
+
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
 		if (this.primordialFireTicks > 0) {
@@ -49,7 +54,13 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 			this.primordialFireTicks = 0;
 		}
 	}
-	
+
+	public static void setPrimordialFireTicks(LivingEntity livingEntity, int ticks) {
+		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
+		component.primordialFireTicks = ticks;
+		ON_PRIMORDIAL_FIRE_COMPONENT.sync(component.provider);
+	}
+
 	public static void addPrimordialFireTicks(LivingEntity livingEntity, int ticks) {
 		OnPrimordialFireComponent component = ON_PRIMORDIAL_FIRE_COMPONENT.get(livingEntity);
 		ticks = ProtectionEnchantment.transformFireDuration(livingEntity, ticks);
@@ -77,17 +88,25 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	@Override
 	public void serverTick() {
 		if (this.primordialFireTicks > 0) {
-			if (this.primordialFireTicks % 10 == 0 && !provider.isInLava()) {
-				provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), 4);
+			if (this.primordialFireTicks % getDamageTickFrequency(provider) == 0) {
+				provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), DAMAGE_ON_TICK);
 			}
 
-			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 4 : 1;
-
+			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
 			// was on fire, but is not any longer
-			if (this.primordialFireTicks == 0) {
+			if (this.primordialFireTicks <= 0) {
 				ON_PRIMORDIAL_FIRE_COMPONENT.sync(this.provider);
 			}
 		}
+	}
+/**
+	 * Primordial fire's DPS ranges from 4 to 1.
+	 */
+	public int getDamageTickFrequency(LivingEntity entity) {
+		float fireProt = EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F;
+		int fireRes = Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(0);
+		int duration = Math.min(Math.round(5 + fireRes + fireProt), 20);
+		return entity.isFireImmune() ? duration / 2 : duration;
 	}
 
 	@Override

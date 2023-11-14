@@ -28,7 +28,6 @@ public static final TagKey<Item> SKULLS = common("skulls");
 	public static final TagKey<Item> ENCHANTABLE_BOOKS = of("enchantable_books");
 	public static final TagKey<Item> MEMORY_BONDING_AGENTS_CONCEALABLE = of("memory_bonding_agents_concealable");
 	public static final TagKey<Item> MOB_HEADS = of("mob_heads");
-	public static final TagKey<Item> SPAWNERS = of("spawners");
 	public static final TagKey<Item> INDESTRUCTIBLE_BLACKLISTED = of("indestructible_blacklisted");
 	public static final TagKey<Item> NO_CINDERHEARTH_DOUBLING = of("no_cinderhearth_doubling");
 	public static final TagKey<Item> SHOOTING_STARS = of("shooting_stars");

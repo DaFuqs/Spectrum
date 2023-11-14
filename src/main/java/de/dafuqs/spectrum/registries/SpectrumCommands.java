@@ -10,6 +10,7 @@ public class SpectrumCommands {
 			ShootingStarCommand.register(dispatcher);
 			SanityCommand.register(dispatcher);
 			PrintConfigCommand.register(dispatcher);
+			PrimordialFireCommand.register(dispatcher);
 		});
 	}
 }

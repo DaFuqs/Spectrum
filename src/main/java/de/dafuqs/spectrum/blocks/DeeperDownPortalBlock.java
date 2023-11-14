@@ -19,7 +19,6 @@ import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
-import net.minecraft.util.function.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
@@ -39,6 +38,11 @@ public class DeeperDownPortalBlock extends Block {
 	public DeeperDownPortalBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING_UP, false));
+	}
+
+	@Override
+	public boolean hasSidedTransparency(BlockState state) {
+		return true;
 	}
 
 	@Override
@@ -86,11 +90,7 @@ public class DeeperDownPortalBlock extends Block {
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (state.get(FACING_UP)) {
-			return SHAPE_UP;
-		} else {
-			return SHAPE;
-		}
+		return state.get(FACING_UP) ? SHAPE_UP : SHAPE;
 	}
 
 	@Override
@@ -113,8 +113,7 @@ public class DeeperDownPortalBlock extends Block {
 		if (world instanceof ServerWorld
 				&& !entity.hasVehicle()
 				&& !entity.hasPassengers()
-				&& entity.canUsePortals()
-				&& VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), state.getOutlineShape(world, pos), BooleanBiFunction.AND)) {
+				&& entity.canUsePortals()) {
 
 			RegistryKey<World> currentWorldKey = world.getRegistryKey();
 			if (currentWorldKey == World.OVERWORLD) {
@@ -171,13 +170,20 @@ public class DeeperDownPortalBlock extends Block {
 			}
 
 			state = world.getBlockState(pos);
-			if (state.getBlock() instanceof DeeperDownPortalBlock) {
+
+			if (state.isOf(Blocks.BEDROCK)) {
+				if (pos.getX() == blockPos.getX() && pos.getZ() == blockPos.getZ()) {
+					world.breakBlock(pos, true, null);
+				}
+				continue;
+			}
+
+			if (!state.isIn(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
 				continue;
 			}
 
 			float hardness = state.getHardness(world, pos);
-			if ((pos.getX() == blockPos.getX() && pos.getZ() == blockPos.getZ()) || (hardness >= 0 && hardness < 30)) {
-
+			if (hardness >= 0 && hardness < 30) {
 				world.breakBlock(pos, true, null);
 			}
 		}

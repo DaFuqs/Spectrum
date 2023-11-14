@@ -1,7 +1,7 @@
 {
   "type": "spectrum:drop_self",
   "block": {
-    "tag": "spectrum:spawners"
+    "item": "minecraft:spawner"
   },
   "nbt_to_copy": [
     "SpawnData",

@@ -18,6 +18,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("liquid_crystal_converting"), PageLiquidCrystalConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("midnight_solution_converting"), PageMidnightSolutionConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("dragonrot_converting"), PageDragonrotConverting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("mud_converting"), PageMudConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("crystallarieum_growing"), PageCrystallarieumGrowing.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("cinderhearth_smelting"), PageCinderhearthSmelting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("titration_barrel_fermenting"), PageTitrationBarrelFermenting.class);

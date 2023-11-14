@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
@@ -25,10 +26,10 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 	}
 	
 	@Override
-	public int getBuiltinRiptideLevel() {
-		return BUILTIN_RIPTIDE_LEVEL;
+	public int getRiptideLevel(ItemStack stack) {
+		return Math.max(EnchantmentHelper.getRiptide(stack), BUILTIN_RIPTIDE_LEVEL);
 	}
-	
+
 	@Override
 	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
 		return super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST);

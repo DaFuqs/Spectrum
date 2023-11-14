@@ -62,15 +62,9 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		ItemStack handStack = user.getStackInHand(hand);
 		if (handStack.getDamage() >= handStack.getMaxDamage() - 1) {
 			return TypedActionResult.fail(handStack);
-		} else if (!canStartRiptide(user, handStack)) {
-			user.setCurrentHand(hand);
-			return TypedActionResult.consume(handStack);
-		} else if (EnchantmentHelper.getRiptide(handStack) > 0 && !user.isTouchingWaterOrRain()) {
-			return TypedActionResult.fail(handStack);
-		} else {
-			user.setCurrentHand(hand);
-			return TypedActionResult.consume(handStack);
 		}
+		user.setCurrentHand(hand);
+		return TypedActionResult.consume(handStack);
 	}
 	
 	@Override
@@ -79,10 +73,9 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 			int useTime = this.getMaxUseTime(stack) - remainingUseTicks;
 			if (useTime >= 10) {
 				player.incrementStat(Stats.USED.getOrCreateStat(this));
-				
-				int riptideLevel = getRiptideLevel(stack);
-				if (riptideLevel > 0 && canStartRiptide(player, stack)) {
-					riptide(world, player, riptideLevel);
+
+				if (canStartRiptide(player, stack)) {
+					riptide(world, player, getRiptideLevel(stack));
 				} else if (!world.isClient) {
 					stack.damage(1, player, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
 					throwBident(stack, (ServerWorld) world, player);
@@ -92,7 +85,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	public int getRiptideLevel(ItemStack stack) {
-		return Math.max(EnchantmentHelper.getRiptide(stack), getBuiltinRiptideLevel());
+		return EnchantmentHelper.getRiptide(stack);
 	}
 	
 	protected void riptide(World world, PlayerEntity playerEntity, int riptideLevel) {
@@ -160,12 +153,8 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		return 2.5F;
 	}
 	
-	public int getBuiltinRiptideLevel() {
-		return 0;
-	}
-	
 	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
-		return player.isTouchingWaterOrRain();
+		return getRiptideLevel(stack) > 0 && player.isTouchingWaterOrRain();
 	}
 	
 	public boolean isThrownAsMirrorImage(ItemStack stack, ServerWorld world, PlayerEntity player) {

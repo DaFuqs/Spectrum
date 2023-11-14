@@ -15,7 +15,7 @@ public record FermentationData(float fermentationSpeedMod, float angelsSharePerc
 	
 	public static FermentationData fromJson(JsonObject jsonObject) {
 		float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, FERMENTATION_SPEED_MOD_STRING, 1.0F);
-		float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, ANGELS_SHARE_STRING, 0.1F);
+		float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, ANGELS_SHARE_STRING, 0.01F);
 		List<FermentationStatusEffectEntry> statusEffectEntries = new ArrayList<>();
 		if (JsonHelper.hasArray(jsonObject, EFFECTS_STRING)) {
 			JsonArray effectsArray = JsonHelper.getArray(jsonObject, EFFECTS_STRING);

@@ -13,7 +13,6 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-// FIXME - I am not sure how to implement this correctly
 public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjectileKillingCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("ink_projectile_killing");
@@ -28,9 +27,8 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 	
 	@Override
 	public InkProjectileKillingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		// TODO - FIXME
 		LootContextPredicate victim = LootContextPredicate.fromJson("victims", advancementEntityPredicateDeserializer, jsonObject, LootContextTypes.SELECTOR);
-		LootContextPredicate[] victims = {victim, victim};
+		LootContextPredicate[] victims = EntityPredicate.contextPredicateArrayFromJson(jsonObject, "victims", advancementEntityPredicateDeserializer);
 		IntRange intRange = IntRange.fromJson(jsonObject.get("unique_entity_types"));
 		return new InkProjectileKillingCriterion.Conditions(extended, victims, intRange);
 	}
@@ -58,13 +56,13 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 		}
 		
 		public static InkProjectileKillingCriterion.Conditions create(EntityPredicate.Builder... victimPredicates) {
+
 			LootContextPredicate[] extendeds = new LootContextPredicate[victimPredicates.length];
-			// FIXME
-//			for (int i = 0; i < victimPredicates.length; ++i) {
-//				EntityPredicate.Builder builder = victimPredicates[i];
-//				extendeds[i] = LootContextPredicate.create(builder.build());
-//			}
-			
+			for (int i = 0; i < victimPredicates.length; i++) {
+				var predicate = EntityPredicate.asLootContextPredicate(victimPredicates[i].build());
+				extendeds[i] = predicate;
+			}
+
 			return new InkProjectileKillingCriterion.Conditions(LootContextPredicate.EMPTY, extendeds, IntRange.ANY);
 		}
 		

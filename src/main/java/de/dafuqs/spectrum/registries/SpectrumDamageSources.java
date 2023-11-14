@@ -160,7 +160,7 @@ public class SpectrumDamageSources {
 		}
 	}
 
-	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
+	public static class PrimordialFireDamageSource extends DamageSource {
 
 		public PrimordialFireDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.getEntry(PRIMORDIAL_FIRE).orElseThrow(), attacker);

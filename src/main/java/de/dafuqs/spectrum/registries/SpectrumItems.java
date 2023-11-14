@@ -458,7 +458,7 @@ public class SpectrumItems {
 	
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item MYSTERIOUS_COMPASS = new StructureCompassItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumStructureTags.MYSTERIOUS_COMPASS_LOCATED);
+	public static final Item MYSTERIOUS_COMPASS = new MysteriousCompassItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));

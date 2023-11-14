@@ -27,7 +27,6 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 	
 	@Override
 	public InkProjectileKillingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		LootContextPredicate victim = LootContextPredicate.fromJson("victims", advancementEntityPredicateDeserializer, jsonObject, LootContextTypes.SELECTOR);
 		LootContextPredicate[] victims = EntityPredicate.contextPredicateArrayFromJson(jsonObject, "victims", advancementEntityPredicateDeserializer);
 		IntRange intRange = IntRange.fromJson(jsonObject.get("unique_entity_types"));
 		return new InkProjectileKillingCriterion.Conditions(extended, victims, intRange);

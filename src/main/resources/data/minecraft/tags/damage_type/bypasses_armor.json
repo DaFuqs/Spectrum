@@ -3,6 +3,8 @@
   "values": [
     "spectrum:dragonrot",
     "spectrum:irradiance",
-    "spectrum:midnight_solution"
+    "spectrum:midnight_solution",
+    "spectrum:primordial_fire",
+    "spectrum:set_health_damage"
   ]
 }

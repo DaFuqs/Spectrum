@@ -6,6 +6,7 @@
     "spectrum:irradiance",
     "spectrum:ink_projectile",
     "spectrum:moonstone_strike",
-    "spectrum:set_health_damage"
+    "spectrum:set_health_damage",
+    "spectrum:primordial_fire"
   ]
 }

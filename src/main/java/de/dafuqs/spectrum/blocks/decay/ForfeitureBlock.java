@@ -41,11 +41,6 @@ public class ForfeitureBlock extends DecayBlock {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.BLOCK;
-	}
-	
-	@Override
 	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
 		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SAFE) || stateToSpreadTo.getBlock() instanceof FluidBlock) {
 			return null;

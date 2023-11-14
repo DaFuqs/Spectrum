@@ -47,11 +47,6 @@ public class FailingBlock extends DecayBlock {
 	}
 	
 	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.BLOCK;
-	}
-	
-	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
 		super.appendProperties(stateManager);
 		stateManager.add(AGE);

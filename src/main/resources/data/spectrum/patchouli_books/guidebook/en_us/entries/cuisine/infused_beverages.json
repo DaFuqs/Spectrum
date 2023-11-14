@@ -65,7 +65,7 @@
       "advancement": "spectrum:unlocks/food/gin",
       "title": "Gin",
       "recipe": "spectrum:titration_barrel/infused_beverages/gin",
-      "text": "Made from $(l:resources/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
+      "text": "Made from $(l:cuisine/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -79,6 +79,7 @@
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Mead",
       "recipe": "spectrum:titration_barrel/infused_beverages/mead",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
       "text": "The large amount of sugar in honey is perfect for fermentation. The result is a strong, although still sweet drink."
     },
     {

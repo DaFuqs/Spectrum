@@ -38,7 +38,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
 			fluid = Registry.FLUID.get(fluidIdentifier);
 			if (fluid.getDefaultState().isEmpty()) {
-				SpectrumCommon.logError("Fusion Shrine Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
+				SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 		

@@ -270,12 +270,13 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item PYRITE_CHUNK = new Item(Tab.RESOURCES.settings());
-	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item EFFULGENT_FEATHER = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item RAW_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item REFINED_BLOODSTONE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
-	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(16, Rarity.UNCOMMON));
+	public static final Item DRAGONBONE_CHUNK = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/break_cracked_dragonbone"), Items.GRAY_DYE);
+	public static final Item BONE_ASH = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/break_cracked_dragonbone"), Items.GRAY_DYE);
+	public static final Item EFFULGENT_FEATHER = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item RAW_BLOODSTONE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item REFINED_BLOODSTONE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(Tab.RESOURCES.settings(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
+	public static final Item RESONANCE_SHARD = new CloakedItem(Tab.RESOURCES.settings(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
 	
 	public static final Item QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
@@ -292,7 +293,7 @@ public class SpectrumItems {
 	public static final Item JADEITE_LOTUS_BULB = new BlockItem(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16));
 	public static final Item JADEITE_PETALS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	
-	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
+	public static final Item BLOOD_ORCHID_PETAL = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("solve_wireless_redstone_preservation_ruin"), Items.RED_DYE);
 	
 	public static final Item ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
@@ -348,7 +349,7 @@ public class SpectrumItems {
 	public static final Item MONSTER_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MONSTER_TRIFLE));
 	public static final Item DEMON_TRIFLE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
 	
-	public static final Item MYCEYLON = new Item(Tab.CUISINE.settings());
+	public static final Item MYCEYLON = new CloakedItem(Tab.CUISINE.settings(), SpectrumCommon.locate("lategame/collect_myceylon"), Items.ORANGE_DYE);
 	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
@@ -423,10 +424,9 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
-	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
-	public static final Item BLIZZARD_POWDER = new Item(Tab.RESOURCES.settings());
-	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
-	public static final Item MOONSTONE_CORE = new Item(Tab.RESOURCES.settings(8, Rarity.RARE));
+	public static final Item FIERY_POWDER = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
+	public static final Item BLIZZARD_POWDER = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
+	public static final Item MOONSTONE_CORE = new CloakedItem(Tab.RESOURCES.settings(8, Rarity.RARE), SpectrumCommon.locate("lategame/collect_moonstone_core"), Items.WHITE_DYE);
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.NONE.settings());
@@ -458,7 +458,7 @@ public class SpectrumItems {
 	
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item MYSTERIOUS_COMPASS = new StructureCompassItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumStructureTags.MYSTERIOUS_COMPASS_LOCATED);
+	public static final Item MYSTERIOUS_COMPASS = new MysteriousCompassItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
@@ -645,6 +645,7 @@ public class SpectrumItems {
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("pyrite_chunk", PYRITE_CHUNK, DyeColor.PURPLE);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
+		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
 		register("raw_bloodstone", RAW_BLOODSTONE, DyeColor.RED);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
@@ -685,7 +686,6 @@ public class SpectrumItems {
 		
 		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
 		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
-		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);
 	}

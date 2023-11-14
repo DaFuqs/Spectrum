@@ -10,23 +10,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:beetroot_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:wheat_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:melon_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:glistering_melon_seeds"
+          "name": "spectrum:pipe_bomb"
         }
       ],
       "functions": [

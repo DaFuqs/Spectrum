@@ -1829,8 +1829,8 @@
   "block.spectrum.incandescent_amalgam.tooltip.preview": "Gets more explosive with age",
 
   "item.spectrum.pipe_bomb": "Pipe Bomb",
-  "item.spectrum.pipe_bomb.tooltip": "Explodes! Nondestructive, but highly damaging",
-  "item.spectrum.pipe_bomb.tooltip2": "Use to prime",
+  "item.spectrum.pipe_bomb.tooltip": "Highly damaging & sets surroundings on fire",
+  "item.spectrum.pipe_bomb.tooltip2": "Use to Prime. Explodes after a few seconds!",
   "block.spectrum.parametric_mining_device": "Parametric Mining Device",
   "block.spectrum.parametric_mining_device.tooltip": "Explodes when thrown or attached to a wall",
   "block.spectrum.threat_conflux": "Threat Conflux",

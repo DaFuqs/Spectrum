@@ -55,6 +55,11 @@
       "text": "$(italic)Not a mead, no no no."
     },
     {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead_fluid",
+      "text": "$(italic)Not a mead, no no no."
+    },
+    {
       "type": "patchouli:text",
       "title": "Heat for the Heart",
       "text": "$(br)Myceylon, that odd cinnamon-esque spice you all have down there. I am honestly really fond of the stuff, it reminds me of those long, tender nights I used to spend down there. Though like most, I associate the spice with a level of warmth and comfort, for me there is this undertone of longing..."

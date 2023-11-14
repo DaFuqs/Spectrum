@@ -177,45 +177,38 @@ public class SpectrumEnchantmentHelper {
 	
 	/**
 	 * Removes the enchantments on a stack of items / enchanted book
-	 *
 	 * @param itemStack    the stack
 	 * @param enchantments the enchantments to remove
-	 * @return if >0 enchantments could be removed
+	 * @return The resulting stack & the count of enchants that were removed
 	 */
-	public static Pair<ItemStack, Boolean> removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
-		boolean anySuccess = false;
-		for (Enchantment enchantment : enchantments) {
-			Pair<ItemStack, Boolean> result = removeEnchantment(itemStack, enchantment);
-			anySuccess = result.getRight();
-			itemStack = result.getLeft();
-		}
-		return new Pair<>(itemStack, anySuccess);
-	}
-
-	/**
-	 * @return The resulting stack & a boolean to specify if removing was successful
-	 */
-	public static Pair<ItemStack, Boolean> removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
+	public static Pair<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound == null) {
-			return new Pair<>(itemStack, false);
+			return new Pair<>(itemStack, 0);
 		}
-		
+
 		NbtList enchantmentList;
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			enchantmentList = compound.getList(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, 10);
 		} else {
 			enchantmentList = compound.getList(ItemStack.ENCHANTMENTS_KEY, 10);
 		}
-		
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
-		boolean success = false;
+
+		List<Identifier> enchantIDs = new ArrayList<>();
+		for(Enchantment enchantment : enchantments) {
+			enchantIDs.add(Registry.ENCHANTMENT.getId(enchantment));
+		}
+
+		int removals = 0;
 		for (int i = 0; i < enchantmentList.size(); i++) {
 			NbtCompound currentCompound = enchantmentList.getCompound(i);
-			if (currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
-				enchantmentList.remove(i);
-				success = true;
-				break;
+			if (currentCompound.contains("id", NbtElement.STRING_TYPE)) {
+				Identifier currentID = new Identifier(currentCompound.getString("id"));
+				if(enchantIDs.contains(currentID)) {
+					enchantmentList.remove(i);
+					removals++;
+					break;
+				}
 			}
 		}
 		
@@ -223,15 +216,15 @@ public class SpectrumEnchantmentHelper {
 			if(enchantmentList.isEmpty()) {
 				ItemStack newStack = new ItemStack(Items.BOOK);
 				newStack.setCount(itemStack.getCount());
-				return new Pair<>(newStack, true);
+				return new Pair<>(newStack, removals);
 			}
 			compound.put(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, enchantmentList);
 		} else {
 			compound.put(ItemStack.ENCHANTMENTS_KEY, enchantmentList);
 		}
 		itemStack.setNbt(compound);
-		
-		return new Pair<>(itemStack, success);
+
+		return new Pair<>(itemStack, removals);
 	}
 	
 	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {

@@ -13,6 +13,7 @@ import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PastelTransmissionLogic {
 	
@@ -103,6 +104,8 @@ public class PastelTransmissionLogic {
 	}
 	
 	private boolean transferBetween(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, Storage<ItemVariant> destinationStorage, TransferMode transferMode) {
+		Predicate<ItemVariant> filter = sourceNode.getTransferFilterTo(destinationNode);
+
 		try (Transaction transaction = Transaction.openOuter()) {
 			for (StorageView<ItemVariant> view : sourceStorage) {
 				if (view.isResourceBlank()) {
@@ -110,9 +113,10 @@ public class PastelTransmissionLogic {
 				}
 				
 				ItemVariant storedResource = view.getResource(); // Current resource
-				if (storedResource.isBlank()) {
+				if (storedResource.isBlank() || !filter.test(storedResource)) {
 					continue;
 				}
+
 				long storedAmount = view.getAmount();
 				if (storedAmount <= 0) {
 					continue;

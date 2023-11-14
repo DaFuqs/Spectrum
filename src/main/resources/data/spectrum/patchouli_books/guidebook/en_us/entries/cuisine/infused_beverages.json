@@ -65,7 +65,7 @@
       "advancement": "spectrum:unlocks/food/gin",
       "title": "Gin",
       "recipe": "spectrum:titration_barrel/infused_beverages/gin",
-      "text": "Made from $(l:resources/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
+      "text": "Made from $(l:cuisine/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

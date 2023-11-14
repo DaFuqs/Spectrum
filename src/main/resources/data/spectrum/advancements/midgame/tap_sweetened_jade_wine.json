@@ -20,12 +20,12 @@
           {
             "items": [
               "spectrum:jade_wine"
-            ]
+            ],
+            "nbt": {
+              "Sweetened": true
+            }
           }
-        ],
-        "nbt": {
-          "Sweetened": true
-        }
+        ]
       }
     },
     "gotten_previous": {

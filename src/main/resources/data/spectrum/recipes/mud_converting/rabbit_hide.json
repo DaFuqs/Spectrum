@@ -1,7 +1,7 @@
 {
   "type": "spectrum:mud_converting",
   "ingredient": {
-    "item": "minecraft:leather"
+    "item": "minecraft:rotten_flesh"
   },
   "result": {
     "item": "minecraft:rabbit_hide",

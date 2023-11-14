@@ -79,6 +79,7 @@
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Mead",
       "recipe": "spectrum:titration_barrel/infused_beverages/mead",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
       "text": "The large amount of sugar in honey is perfect for fermentation. The result is a strong, although still sweet drink."
     },
     {

@@ -19,6 +19,15 @@
         "location": "spectrum:city_below/streets/fish",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "spectrum:city_below/streets/trees",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }

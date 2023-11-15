@@ -207,7 +207,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				this.inkStorage.addEnergy(color, amount);
 				
 				if (SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
-					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 4, 1.0F);
+					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 3, 1.0F);
 				}
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),

@@ -119,8 +119,8 @@ public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		if (child) {
-			matrices.scale(0.6f, 0.6f, 0.6f);
-			matrices.translate(0, 1, 0);
+			matrices.scale(0.7f, 0.7f, 0.7f);
+			matrices.translate(0, 0.55, 0);
 		}
 		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}

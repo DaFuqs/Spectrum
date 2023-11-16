@@ -24,10 +24,10 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 
 	public static final float DAMAGE_ON_TICK = 1.0F;
 
-	// Delay added to the primordial fire ticking per level of fire resistance on provider
+	// Delay added to the primordial fire ticking (per level, if amplifier is valid on the effect) of fire resistance on provider
 	public static final int FIRE_RESISTANCE_TICK_DELAY = 5;
 	// Delay added to the primordial fire ticking for the highest level of Fire Protection on provider
-	public static final float FIRE_PROTECTION_TICK_DELAY = 1.0F;
+	public static final float FIRE_PROT_TICK_DELAY_MODIFIER = 1.0F;
 
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
@@ -109,7 +109,7 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 	 * Primordial fire's DPS ranges from 4 to 1.
 	 */
 	public int getDamageTickFrequency(LivingEntity entity) {
-		float fireProt = FIRE_PROTECTION_TICK_DELAY * (EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F);
+		float fireProt = FIRE_PROT_TICK_DELAY_MODIFIER * (EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F);
 		int fireRes = FIRE_RESISTANCE_TICK_DELAY + Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(-FIRE_RESISTANCE_TICK_DELAY);
 		int duration = Math.min(Math.round(5 + fireRes + fireProt), 20);
 		return entity.isFireImmune() ? duration : duration / 2;

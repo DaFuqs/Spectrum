@@ -68,7 +68,7 @@ public class SpectrumDamageSources {
 		}
 	}
 
-	public static class PrimordialFireDamageSource extends DamageSource {
+	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
 
 		public PrimordialFireDamageSource(String name) {
 			super(name);

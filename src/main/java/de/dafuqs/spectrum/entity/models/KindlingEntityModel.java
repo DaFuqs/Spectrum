@@ -92,7 +92,7 @@ public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 		
 		return TexturedModelData.of(modelData, 128, 128);
 	}
-	
+
 	@Override
 	public ModelPart getPart() {
 		return this.body;
@@ -101,9 +101,9 @@ public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 	@Override
 	public void setAngles(KindlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.getPart().traverse().forEach(ModelPart::resetTransform);
-		
+
 		this.setHeadAngle(netHeadYaw, headPitch);
-		
+
 		this.updateAnimation(entity.standingAnimationState, KindlingAnimations.STANDING, ageInTicks);
 		this.updateAnimation(entity.walkingAnimationState, KindlingAnimations.WALKING, ageInTicks);
 		this.updateAnimation(entity.standingAngryAnimationState, KindlingAnimations.STANDING_ANGRY, ageInTicks);
@@ -115,10 +115,13 @@ public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 		this.head.pitch = pitch * 0.017453292F;
 		this.head.yaw = yaw * 0.017453292F;
 	}
-	
-	
+
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+		if (child) {
+			matrices.scale(0.7f, 0.7f, 0.7f);
+			matrices.translate(0, 0.55, 0);
+		}
 		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
 	

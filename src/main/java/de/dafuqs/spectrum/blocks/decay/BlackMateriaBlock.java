@@ -46,6 +46,11 @@ public class BlackMateriaBlock extends FallingBlock {
 		}
 		return replacedAny;
 	}
+
+	@Override
+	protected int getFallDelay() {
+		return 20;
+	}
 	
 	@Override
 	public boolean hasRandomTicks(BlockState state) {

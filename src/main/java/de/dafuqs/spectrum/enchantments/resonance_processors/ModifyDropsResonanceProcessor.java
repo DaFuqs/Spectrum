@@ -16,7 +16,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceDropProcessor {
 	public static class Serializer implements ResonanceDropProcessor.Serializer {
 		
 		@Override
-		public ResonanceDropProcessor fromJson(JsonObject json) {
+		public ResonanceDropProcessor fromJson(JsonObject json) throws Exception {
 			BrokenBlockPredicate blockTarget = BrokenBlockPredicate.fromJson(json.get("block"));
 			
 			Map<Ingredient, Item> modifiedDrops = new HashMap<>();
@@ -37,7 +37,7 @@ public class ModifyDropsResonanceProcessor extends ResonanceDropProcessor {
 	
 	public Map<Ingredient, Item> modifiedDrops;
 	
-	public ModifyDropsResonanceProcessor(BrokenBlockPredicate blockTarget, Map<Ingredient, Item> modifiedDrops) {
+	public ModifyDropsResonanceProcessor(BrokenBlockPredicate blockTarget, Map<Ingredient, Item> modifiedDrops) throws Exception {
 		super(blockTarget);
 		this.modifiedDrops = modifiedDrops;
 	}

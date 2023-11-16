@@ -45,7 +45,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		double bloominess = getBloominess(bulbCount, petalCount);
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		if (nectar) {
-			thickness *= 1.5;
+			thickness *= 1.5F;
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {

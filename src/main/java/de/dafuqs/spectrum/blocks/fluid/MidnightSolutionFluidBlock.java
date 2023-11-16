@@ -113,18 +113,22 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		if (!enchantments.isEmpty()) {
 			int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
 			Enchantment enchantmentToRemove = (Enchantment) enchantments.keySet().toArray()[randomEnchantmentIndex];
+			Pair<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack, enchantmentToRemove);
 
-			int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
-			experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+			if(result.getRight() > 0) {
+				int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
+				experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+				if (experience > 0) {
+					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
+					world.spawnEntity(experienceOrbEntity);
+				}
 
-			if (experience > 0) {
-				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
-				world.spawnEntity(experienceOrbEntity);
+				world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
+
+				itemEntity.setStack(result.getLeft());
+				itemEntity.setToDefaultPickupDelay();
 			}
-			world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
-			itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove).getLeft());
-			itemEntity.setToDefaultPickupDelay();
 		}
 	}
 

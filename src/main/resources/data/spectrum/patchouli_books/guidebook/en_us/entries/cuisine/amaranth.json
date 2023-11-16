@@ -2,7 +2,7 @@
   "name": "Amaranth",
   "advancement": "spectrum:milestones/reveal_amaranth",
   "icon": "spectrum:amaranth_bushel",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
     "spectrum:amaranth_bushel": 0,

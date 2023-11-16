@@ -48,9 +48,11 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		ModularExplosionDefinition currentSet = ModularExplosionDefinition.getFromStack(nonModStack);
 		List<ExplosionArchetype> archetypes = pair.getLeft();
 		List<ExplosionModifier> mods = pair.getRight();
-		
+
+		// if there are no new modifiers to add present, treat it
+		// as a recipe to clear existing archetype and / or modifiers
 		if (archetypes.isEmpty() && mods.isEmpty()) {
-			return currentSet.getModifierCount() > 0; // clearing existing modifiers
+			return currentSet.getArchetype() != ExplosionArchetype.COSMETIC || currentSet.getModifierCount() > 0;
 		}
 		
 		if (!archetypes.isEmpty()) {
@@ -70,10 +72,11 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	 */
 	private static @Nullable ExplosionArchetype calculateExplosionArchetype(ExplosionArchetype existingArchetype, List<ExplosionArchetype> newArchetypes) {
 		ExplosionArchetype newArchetype = existingArchetype;
-		if (existingArchetype == ExplosionArchetype.ALL && newArchetypes.size() > 0) {
+		int newArchetypesCount = newArchetypes.size();
+		if (existingArchetype == ExplosionArchetype.ALL && newArchetypesCount > 0) {
 			return null;
 		}
-		if (newArchetypes.contains(ExplosionArchetype.ALL) && newArchetypes.size() > 1) {
+		if (newArchetypes.contains(ExplosionArchetype.ALL) && newArchetypesCount > 1) {
 			return null;
 		}
 		

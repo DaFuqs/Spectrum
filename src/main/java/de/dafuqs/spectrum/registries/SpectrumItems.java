@@ -243,12 +243,13 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(IS.of(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(IS.of(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item PYRITE_CHUNK = new Item(IS.of());
-	public static final Item DRAGONBONE_CHUNK = new Item(IS.of(Rarity.UNCOMMON));
-	public static final Item EFFULGENT_FEATHER = new Item(IS.of(Rarity.UNCOMMON));
-	public static final Item RAW_BLOODSTONE = new Item(IS.of(Rarity.UNCOMMON));
-	public static final Item REFINED_BLOODSTONE = new Item(IS.of(Rarity.UNCOMMON));
-	public static final Item DOWNSTONE_FRAGMENTS = new Item(IS.of(16, Rarity.UNCOMMON));
-	public static final Item RESONANCE_SHARD = new Item(IS.of(16, Rarity.UNCOMMON));
+	public static final Item DRAGONBONE_CHUNK = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/break_cracked_dragonbone"), Items.GRAY_DYE);
+	public static final Item BONE_ASH = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/break_cracked_dragonbone"), Items.GRAY_DYE);
+	public static final Item EFFULGENT_FEATHER = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item RAW_BLOODSTONE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item REFINED_BLOODSTONE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
+	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
+	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
 	
 	public static final Item QUITOXIC_POWDER = new CloakedItem(IS.of(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(IS.of(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
@@ -266,7 +267,7 @@ public class SpectrumItems {
 	public static final Item JADEITE_PETALS = new Item(IS.of(Rarity.UNCOMMON));
 
 	
-	public static final Item BLOOD_ORCHID_PETAL = new Item(IS.of());
+	public static final Item BLOOD_ORCHID_PETAL = new CloakedItem(IS.of(), SpectrumCommon.locate("solve_wireless_redstone_preservation_ruin"), Items.RED_DYE);
 
 	public static final Item ROCK_CANDY = new RockCandyItem(IS.of().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(IS.of().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
@@ -322,7 +323,7 @@ public class SpectrumItems {
 	public static final Item MONSTER_TRIFLE = new Item(IS.of().food(SpectrumFoodComponents.MONSTER_TRIFLE));
 	public static final Item DEMON_TRIFLE = new Item(IS.of().food(SpectrumFoodComponents.DEMON_TRIFLE));
 	
-	public static final Item MYCEYLON = new Item(IS.of());
+	public static final Item MYCEYLON = new CloakedItem(IS.of(), SpectrumCommon.locate("lategame/collect_myceylon"), Items.ORANGE_DYE);
 	public static final Item MYCEYLON_APPLE_PIE = new Item(IS.of().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(IS.of().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(IS.of().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
@@ -397,10 +398,9 @@ public class SpectrumItems {
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
 	
-	public static final Item INCANDESCENT_ESSENCE = new Item(IS.of());
-	public static final Item FROSTBITE_ESSENCE = new Item(IS.of());
-	public static final Item BONE_ASH = new Item(IS.of());
-	public static final Item MOONSTONE_CORE = new Item(IS.of(8, Rarity.RARE));
+	public static final Item INCANDESCENT_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
+	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
+	public static final Item MOONSTONE_CORE = new CloakedItem(IS.of(8, Rarity.RARE), SpectrumCommon.locate("lategame/collect_moonstone_core"), Items.WHITE_DYE);
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, IS.of());
@@ -432,7 +432,7 @@ public class SpectrumItems {
 	
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item MYSTERIOUS_COMPASS = new StructureCompassItem(IS.of(1, Rarity.RARE), SpectrumStructureTags.MYSTERIOUS_COMPASS_LOCATED);
+	public static final Item MYSTERIOUS_COMPASS = new MysteriousCompassItem(IS.of(1, Rarity.RARE));
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(IS.of(16, Rarity.UNCOMMON));
@@ -619,6 +619,7 @@ public class SpectrumItems {
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("pyrite_chunk", PYRITE_CHUNK, DyeColor.PURPLE);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
+		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		register("effulgent_feather", EFFULGENT_FEATHER, DyeColor.YELLOW);
 		register("raw_bloodstone", RAW_BLOODSTONE, DyeColor.RED);
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
@@ -659,7 +660,6 @@ public class SpectrumItems {
 		
 		register("incandescent_essence", INCANDESCENT_ESSENCE, DyeColor.ORANGE);
 		register("frostbite_essence", FROSTBITE_ESSENCE, DyeColor.LIGHT_BLUE);
-		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);
 	}

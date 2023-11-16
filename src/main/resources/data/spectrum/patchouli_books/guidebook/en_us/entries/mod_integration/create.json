@@ -42,7 +42,7 @@
       "title": "Milling Amaranth",
       "advancement": "spectrum:collect_amaranth_bushel",
       "item": "spectrum:amaranth_bushel",
-      "text": "$(l:resources/amaranth)Amaranth$() can be milled into grains."
+      "text": "$(l:cuisine/amaranth)Amaranth$() can be milled into grains."
     },
     {
       "type": "patchouli:spotlight",

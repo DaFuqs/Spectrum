@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 2,
+  "white": 0,
+  "black": 4,
+  "experience": 1.0,
+  "pattern": [
+    "CGC",
+    "GMG",
+    "CGC"
+  ],
+  "key": {
+    "C": {
+      "item": "spectrum:midnight_chip"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "M": {
+      "item": "spectrum:moonstone_core"
+    }
+  },
+  "result": {
+    "item": "spectrum:pipe_bomb",
+    "count": 4
+  },
+  "required_advancement": "spectrum:unlocks/items/pipe_bomb"
+}

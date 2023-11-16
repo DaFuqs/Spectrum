@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.advancement.criterion.*;
@@ -586,7 +587,7 @@ public int getChillTime() {
 		}
 	}
 
-	protected class  CancellableProjectileAttackGoal extends ProjectileAttackGoal {
+	protected class CancellableProjectileAttackGoal extends ProjectileAttackGoal {
 
 		public CancellableProjectileAttackGoal(RangedAttackMob mob, double mobSpeed, int intervalTicks, float maxShootRange) {
 			super(mob, mobSpeed, intervalTicks, maxShootRange);
@@ -594,12 +595,17 @@ public int getChillTime() {
 
 		@Override
 		public boolean shouldContinue() {
-			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getTarget()) > 5F;
+			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 5F;
 		}
 
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !isPlaying() && distanceTo(getTarget()) > 6F ;
+			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F ;
 		}
+
+		protected LivingEntity getProjectileTarget() {
+			return ((ProjectileAttackGoalAccessor) this).getProjectileAttackTarget();
+		}
+
 	}
 }

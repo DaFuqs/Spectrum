@@ -83,6 +83,10 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 			Support.grantAdvancementCriterion(player, "midgame/collect_stratine", "collected_stratine");
 			Support.grantAdvancementCriterion(player, "midgame/break_decayed_bedrock", "broken_decayed_bedrock");
 			Support.grantAdvancementCriterion(player, "midgame/crumble_midnight_aberration", "have_midnight_aberration_crumble");
+			Support.grantAdvancementCriterion(player, "midgame/collect_neolith", "has_neolith");
+			Support.grantAdvancementCriterion(player, "midgame/collect_azurite", "collected_azurite");
+			Support.grantAdvancementCriterion(player, "collect_quitoxic_reeds", "collected_quitoxic_reeds");
+			Support.grantAdvancementCriterion(player, "milestones/reveal_amaranth", "solved_color_mixing_preservation_ruin");
 		}
 	}
 	

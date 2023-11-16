@@ -69,6 +69,7 @@
     "accessors.GoatHornItemAccessor",
     "accessors.LootTableAccessor",
     "accessors.MooshroomEntityAccessor",
+    "accessors.ProjectileAttackGoalAccessor",
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.ShulkerEntityAccessor",

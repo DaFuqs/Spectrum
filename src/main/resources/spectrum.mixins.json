@@ -59,8 +59,6 @@
     "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
     "ShearsDispenserBehaviorMixin",
-    "StructurePoolBasedGeneratorMixin",
-    "StructurePoolMixin",
     "TemptGoalMixin",
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",

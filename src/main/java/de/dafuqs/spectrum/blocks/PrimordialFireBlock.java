@@ -41,7 +41,9 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
 
     private final Map<BlockState, VoxelShape> shapesByState;
-    private static final float DAMAGE = 4.0F;
+    // TODO - This damage is very high, and leads to extreme incineration
+    // Consider removing, or changing how often it is dealt
+    private static final float DAMAGE = 1.0F;
 
     public PrimordialFireBlock(Settings settings) {
         super(settings, DAMAGE);

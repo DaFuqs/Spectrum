@@ -17,7 +17,7 @@ public class DropSelfResonanceProcessor extends ResonanceDropProcessor {
 	public static class Serializer implements ResonanceDropProcessor.Serializer {
 		
 		@Override
-		public ResonanceDropProcessor fromJson(JsonObject json) {
+		public ResonanceDropProcessor fromJson(JsonObject json) throws Exception {
 			BrokenBlockPredicate blockTarget = BrokenBlockPredicate.fromJson(json.get("block"));
 			
 			List<String> statePropertiesToCopy = new ArrayList<>();
@@ -44,7 +44,7 @@ public class DropSelfResonanceProcessor extends ResonanceDropProcessor {
 	public List<String> statePropertiesToCopy;
 	public boolean includeDefaultStateProperties;
 	
-	public DropSelfResonanceProcessor(BrokenBlockPredicate blockTarget, List<String> nbtToCopy, List<String> statePropertiesToCopy, boolean includeDefaultStateProperties) {
+	public DropSelfResonanceProcessor(BrokenBlockPredicate blockTarget, List<String> nbtToCopy, List<String> statePropertiesToCopy, boolean includeDefaultStateProperties) throws Exception {
 		super(blockTarget);
 		this.nbtToCopy = nbtToCopy;
 		this.statePropertiesToCopy = statePropertiesToCopy;

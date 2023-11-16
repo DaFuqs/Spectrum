@@ -46,7 +46,7 @@ public abstract class BlockMixin {
 			ResonanceDropsDataLoader.applyResonance(state, blockEntity, droppedStacks);
 		}
 		
-		if (droppedStacks.size() > 0) {
+		if (!droppedStacks.isEmpty()) {
 			// Foundry enchant: try smelting recipe for each stack
 			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
 				droppedStacks = FoundryEnchantment.applyFoundry(world, droppedStacks);

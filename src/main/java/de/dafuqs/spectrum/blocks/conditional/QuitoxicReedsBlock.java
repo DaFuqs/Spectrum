@@ -141,12 +141,13 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 				if (j == 7) {
 					// consume 1 block close to the reed when growing.
 					// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
+					// search for block it could be planted on. 1 block => 1 quitoxic reed
+					Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
+					if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
+						return;
+					}
+					
 					if (!bottomLiquidCrystalLogged || random.nextInt(4) == 0) {
-						// search for block it could be planted on. 1 block => 1 quitoxic reed
-						Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
-						if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
-							return;
-						}
 						world.setBlockState(plantablePos.get(), Blocks.DIRT.getDefaultState(), 3);
 						world.playSound(null, plantablePos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					}

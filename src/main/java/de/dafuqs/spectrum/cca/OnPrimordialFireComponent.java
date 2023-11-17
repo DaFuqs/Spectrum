@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEntityTypeTags;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
@@ -22,12 +24,13 @@ import java.util.*;
 
 public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
 
-	public static final float DAMAGE_ON_TICK = 1.0F;
+	// 1% of max health as damage every tick as a base.
+	public static final float BASE_PERCENT_DAMAGE = 0.01F;
 
-	// Delay added to the primordial fire ticking (per level, if amplifier is valid on the effect) of fire resistance on provider
-	public static final int FIRE_RESISTANCE_TICK_DELAY = 5;
-	// Delay added to the primordial fire ticking for the highest level of Fire Protection on provider
-	public static final float FIRE_PROT_TICK_DELAY_MODIFIER = 1.0F;
+	// Base damage reduction applied by fire resistance
+	public static final float FIRE_RESISTANCE_DAMAGE_RESISTANCE = 0.25F;
+	// Per-level damage reduction added by fire prot. Caps at 50%
+	public static final float FIRE_PROT_DAMAGE_RESISTANCE = 0.05F;
 
 	public static final ComponentKey<OnPrimordialFireComponent> ON_PRIMORDIAL_FIRE_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("on_primordial_fire"), OnPrimordialFireComponent.class);
 	
@@ -88,12 +91,26 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 		}
 		return false;
 	}
-	
+
 	@Override
 	public void serverTick() {
+
+		//Immune creatures get spared. If we ever add any.
+		if (provider.getType().isIn(SpectrumEntityTypeTags.PRIMORDIAL_FIRE_IMMUNE)) {
+			primordialFireTicks = 0;
+			ON_PRIMORDIAL_FIRE_COMPONENT.sync(this.provider);
+			return;
+		}
+
 		if (this.primordialFireTicks > 0) {
-			if (this.primordialFireTicks % getDamageTickFrequency(provider) == 0) {
-				provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE_ON_TICK);
+			if (!isAffectingConstruct()) {
+				var damageScaling = getDamageHealthScaling(provider);
+				provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, AzureDikeProvider.absorbDamage(provider, damageScaling * provider.getMaxHealth()));
+			}
+			//Primordial fire is so strong because it rends the soul. No soul = just slightly spicier fire
+			//Constructs have no soul, thus you get 2 dps and no more
+			else if (provider.age % 10 == 0) {
+				provider.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, 1);
 			}
 			
 			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;
@@ -105,14 +122,53 @@ public class OnPrimordialFireComponent implements Component, AutoSyncedComponent
 		}
 	}
 
+	public boolean isAffectingConstruct() {
+		return provider.getType().isIn(SpectrumEntityTypeTags.CONSTRUCTS);
+	}
+
 	/**
-	 * Primordial fire's DPS ranges from 4 to 1.
+	 * Primordial fire's base DPS is 1/t, for a kill time of 5 seconds on a base hp player.
 	 */
-	public int getDamageTickFrequency(LivingEntity entity) {
-		float fireProt = FIRE_PROT_TICK_DELAY_MODIFIER * (EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider) / 2F);
-		int fireRes = FIRE_RESISTANCE_TICK_DELAY + Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(-FIRE_RESISTANCE_TICK_DELAY);
-		int duration = Math.min(Math.round(5 + fireRes + fireProt), 20);
-		return entity.isFireImmune() ? duration : duration / 2;
+	public float getDamageHealthScaling(LivingEntity entity) {
+		float baseDamage = BASE_PERCENT_DAMAGE;
+
+		//Bosses have great and exceptional souls that can resist a lot more.
+		//95% less damage to them before reductions and caps
+		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES))
+			baseDamage /= 20F;
+
+        return baseDamage * getDamagePenalties(entity) * getDamageBonuses(entity);
+	}
+
+	public float getDamagePenalties(LivingEntity entity) {
+		//fire prot has a cap of 50% DR, requiring fire protection 10 on an armor piece
+		float fireProt = Math.min(FIRE_PROT_DAMAGE_RESISTANCE * EnchantmentHelper.getEquipmentLevel(Enchantments.FIRE_PROTECTION, provider), 0.5F);
+		int fireResLevel = Optional.ofNullable(provider.getStatusEffect(StatusEffects.FIRE_RESISTANCE)).map(StatusEffectInstance::getAmplifier).orElse(-1) + 1;
+		float fireRes = 0;
+
+		// flat 25% for a start on fire res
+		if (fireResLevel > 0)
+			fireRes = FIRE_RESISTANCE_DAMAGE_RESISTANCE;
+
+		//Fire resistance has diminishing returns
+		for (int i = 1; i < fireResLevel; i++) {
+			fireRes += (float) (0.05 * (i) + (0.25F * Math.pow(0.5F, i)));
+		}
+
+		//Fire immune entities can have a lil res, as a treat
+		float immunityReduction = entity.isFireImmune() ? 0.25F : 0;
+
+		//Primordial fire has an overall cap of 90% DR
+		return Math.max(1 - (fireRes + fireProt + immunityReduction), 0.10F);
+	}
+
+	/**
+	 * Here for completeness.
+	 * <p>
+	 * Unused... for now...
+	 */
+	public float getDamageBonuses(LivingEntity entity) {
+		return 1F;
 	}
 	
 	@Override

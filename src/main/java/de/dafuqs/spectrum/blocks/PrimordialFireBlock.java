@@ -41,7 +41,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
 
     private final Map<BlockState, VoxelShape> shapesByState;
-    private static final float DAMAGE = 4.0F;
+    private static final float DAMAGE = 0.2F;
 
     public PrimordialFireBlock(Settings settings) {
         super(settings, DAMAGE);
@@ -112,7 +112,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
         if (entity instanceof LivingEntity livingEntity) {
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
-        
+
         entity.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE);
     }
     

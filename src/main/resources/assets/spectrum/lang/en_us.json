@@ -239,7 +239,8 @@
   "death.attack.spectrum_ripper": "%1$s wanted to play a game",
   "death.attack.spectrum_kindling_cough": "%1$s got grilled by %2$s",
   "death.attack.spectrum_snapping_ivy": "%1$s was held back a bit",
-  "death.attack.spectrum_primordial_fire": "%1$s went through the fire and flames",
+  "death.attack.spectrum_primordial_fire": "%1$s had their soul turned to smouldering soot",
+  "death.attack.spectrum_primordial_fire.player": "%2$s rended %1$s's spirit to ash",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

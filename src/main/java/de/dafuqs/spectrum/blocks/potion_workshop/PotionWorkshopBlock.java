@@ -68,7 +68,7 @@ public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockE
 	@Nullable
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
+		return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 	}
 
 	@Override

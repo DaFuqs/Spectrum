@@ -156,20 +156,20 @@ public class ModularExplosion {
 
 			if (block.shouldDropItemsOnExplosion(explosion)) {
 				LootContextParameterSet.Builder builder = (new LootContextParameterSet.Builder(world)
-							.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-							.add(LootContextParameters.TOOL, miningStack)
-							.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
-							.addOptional(LootContextParameters.THIS_ENTITY, owner));
+						.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+						.add(LootContextParameters.TOOL, miningStack)
+						.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
+						.addOptional(LootContextParameters.THIS_ENTITY, owner));
 				builder.add(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
 				state.onStacksDropped(world, pos, miningStack, true);
 				state.getDroppedStacks(builder).forEach((stack) -> {
 					tryMergeStack(drops, stack, pos.toImmutable());
 				});
 			}
-
-			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+			
+			world.removeBlock(pos, false);
 			block.onDestroyedByExplosion(world, pos, explosion);
-
+			
 			return true;
 		}
 		return false;

@@ -2,11 +2,9 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
-import net.minecraft.client.gui.DrawContext;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -18,18 +16,18 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 	public static final Identifier BACKGROUND3 = SpectrumCommon.locate("textures/gui/container/crafting_tablet3.png");
 	public static final Identifier BACKGROUND4 = SpectrumCommon.locate("textures/gui/container/crafting_tablet4.png");
 	
-	public Identifier BACKGROUND;
+	protected Identifier backgroundTexture;
 	
 	public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
 		
+		backgroundTexture = BACKGROUND1;
 		if (handler.getTier().isPresent()) {
 			switch (handler.getTier().get()) {
-				case COMPLEX -> BACKGROUND = BACKGROUND4;
-				case ADVANCED -> BACKGROUND = BACKGROUND3;
-				case SIMPLE -> BACKGROUND = BACKGROUND2;
-				case BASIC -> BACKGROUND = BACKGROUND1;
+				case COMPLEX -> backgroundTexture = BACKGROUND4;
+				case ADVANCED -> backgroundTexture = BACKGROUND3;
+				case SIMPLE -> backgroundTexture = BACKGROUND2;
 			}
 		}
 	}
@@ -53,7 +51,7 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 		
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
-		drawContext.drawTexture(BACKGROUND, x, y, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.drawTexture(backgroundTexture, x, y, 0, 0, backgroundWidth, backgroundHeight);
 	}
 	
 	@Override

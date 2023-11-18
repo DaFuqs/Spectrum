@@ -11,8 +11,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.widget.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
@@ -185,7 +183,6 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		

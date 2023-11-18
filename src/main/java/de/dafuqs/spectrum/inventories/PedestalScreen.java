@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
@@ -80,8 +79,6 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
 		// background
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;

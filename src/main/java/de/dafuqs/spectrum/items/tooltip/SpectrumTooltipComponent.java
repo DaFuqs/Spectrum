@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.font.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.tooltip.*;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -61,8 +58,6 @@ public class SpectrumTooltipComponent implements TooltipComponent {
 	}
 	
 	private void draw(DrawContext drawContext, int x, int y, @NotNull Sprite sprite) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, TEXTURE);
 		drawContext.drawTexture(TEXTURE, x, y, sprite.u, sprite.v, sprite.width,sprite.height, 128, 128);
 	}
 	

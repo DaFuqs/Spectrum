@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.option.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -84,8 +81,6 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		void drawBackground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
 			centerEntry.drawSmallBackground(screen, drawContext, startX - 15, startY - 15);
 			
 			topEntry.drawBigBackground(screen, drawContext, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());

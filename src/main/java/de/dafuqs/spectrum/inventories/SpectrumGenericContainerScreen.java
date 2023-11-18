@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.entity.player.*;
@@ -52,7 +51,6 @@ public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectru
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		drawContext.drawTexture(backgroundTexture, i, j, 0, 0, this.backgroundWidth, this.rows * 18 + 17);

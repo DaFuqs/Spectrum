@@ -12,9 +12,7 @@ import net.fabricmc.fabric.mixin.client.particle.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.widget.*;
-import net.minecraft.client.render.*;
 import net.minecraft.client.texture.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.network.*;
 import net.minecraft.text.*;
@@ -23,9 +21,9 @@ import org.jetbrains.annotations.*;
 import org.joml.*;
 import org.lwjgl.glfw.*;
 
+import java.lang.Math;
 import java.util.*;
 import java.util.function.*;
-import java.lang.Math;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
@@ -88,11 +86,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		this.selectableWidgets.clear();
 		setupInputFields(handler.getBlockEntity());
 		setInitialFocus(amountField);
-	}
-	
-	@Override
-	public void removed() {
-		super.removed();
 	}
 	
 	@Override
@@ -177,9 +170,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, GUI_TEXTURE);
 		int x = (this.width - this.backgroundWidth) / 2;
 		int y = (this.height - this.backgroundHeight) / 2;
 		

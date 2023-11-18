@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.widgets.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -46,9 +44,6 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		

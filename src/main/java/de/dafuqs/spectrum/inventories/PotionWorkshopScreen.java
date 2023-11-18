@@ -4,11 +4,9 @@ import com.mojang.blaze3d.systems.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
-import net.minecraft.client.gui.DrawContext;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -49,8 +47,6 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 	
 	@Override
 	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		

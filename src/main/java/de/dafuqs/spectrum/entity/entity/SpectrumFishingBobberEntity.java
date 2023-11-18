@@ -541,12 +541,12 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	protected void catchLoot(ItemStack usedItem, PlayerEntity playerEntity) {
 		LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld) playerEntity.getWorld())
-			.add(LootContextParameters.ORIGIN, this.getPos())
-			.add(LootContextParameters.TOOL, usedItem)
-			.add(LootContextParameters.THIS_ENTITY, this)
-			.luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck())
-			.build(LootContextType.create().build());
-
+				.add(LootContextParameters.ORIGIN, this.getPos())
+				.add(LootContextParameters.TOOL, usedItem)
+				.add(LootContextParameters.THIS_ENTITY, this)
+				.luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck())
+				.build(LootContextTypes.FISHING);
+		
 		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(LOOT_IDENTIFIER);
 		List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, list);

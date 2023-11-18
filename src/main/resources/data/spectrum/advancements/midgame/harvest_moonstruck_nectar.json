@@ -36,12 +36,12 @@
           }
         ]
       }
-    }
-  },
-  "gotten_previous": {
-    "trigger": "revelationary:advancement_gotten",
-    "conditions": {
-      "advancement_identifier": "spectrum:midgame/plant_jade_vines"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/plant_jade_vines"
+      }
     }
   }
 }

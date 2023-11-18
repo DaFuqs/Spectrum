@@ -163,7 +163,7 @@ public class ModularExplosion {
 				});
 			}
 			
-			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+			world.removeBlock(pos, false);
 			block.onDestroyedByExplosion(world, pos, explosion);
 			
 			return true;

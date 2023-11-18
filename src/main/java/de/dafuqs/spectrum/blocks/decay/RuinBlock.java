@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -40,8 +39,8 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
-		if (stateToSpreadTo.isAir() || stateToSpreadTo.getBlock() instanceof FluidBlock || stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SAFE)) {
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos) {
+		if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SAFE)) {
 			return null;
 		}
 		

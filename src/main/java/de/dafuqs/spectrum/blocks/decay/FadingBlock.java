@@ -36,7 +36,7 @@ public class FadingBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos) {
 		if (stateToSpreadTo.isIn(SpectrumBlockTags.FADING_SPECIAL_CONVERSIONS)) {
 			return stateToSpreadFrom.with(CONVERSION, Conversion.SPECIAL);
 		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FADING_CONVERSIONS)) {

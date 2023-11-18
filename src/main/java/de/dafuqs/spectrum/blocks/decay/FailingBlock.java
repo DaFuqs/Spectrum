@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -53,11 +52,11 @@ public class FailingBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos) {
 		if (stateToSpreadFrom.get(AGE) >= Properties.AGE_15_MAX) {
 			return null;
 		}
-		if (stateToSpreadTo.isAir() || stateToSpreadTo.getBlock() instanceof FluidBlock || stateToSpreadTo.isIn(SpectrumBlockTags.FAILING_SAFE)) {
+		if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.isIn(SpectrumBlockTags.FAILING_SAFE)) {
 			return null;
 		}
 		

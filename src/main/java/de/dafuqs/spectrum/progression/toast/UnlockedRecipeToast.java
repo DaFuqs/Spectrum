@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.progression.toast;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.font.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.client.toast.*;
 import net.minecraft.enchantment.*;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class UnlockedRecipeGroupToast implements Toast {
+public class UnlockedRecipeToast implements Toast {
 	
 	private final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
 	private final Text title;
@@ -30,7 +30,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 	private final SoundEvent soundEvent = SpectrumSoundEvents.NEW_RECIPE;
 	private boolean soundPlayed;
 	
-	public UnlockedRecipeGroupToast(Text title, Text text, List<ItemStack> itemStacks) {
+	public UnlockedRecipeToast(Text title, Text text, List<ItemStack> itemStacks) {
 		this.title = title;
 		this.text = text;
 		this.itemStacks = itemStacks;
@@ -39,18 +39,18 @@ public class UnlockedRecipeGroupToast implements Toast {
 	
 	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, Text title) {
 		Text text = getTextForItemStack(itemStack);
-		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{
+		client.getToastManager().add(new UnlockedRecipeToast(title, text, new ArrayList<>() {{
 			add(itemStack);
 		}}));
 	}
 	
 	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, Text title) {
 		Text text = Text.translatable("recipeGroup.spectrum." + groupName);
-		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
+		client.getToastManager().add(new UnlockedRecipeToast(title, text, itemStacks));
 	}
 	
 	public static void showLotsOfRecipesToast(@NotNull MinecraftClient client, List<ItemStack> itemStacks) {
-		client.getToastManager().add(new UnlockedRecipeGroupToast(
+		client.getToastManager().add(new UnlockedRecipeToast(
 				Text.translatable("spectrum.toast.lots_of_recipes_unlocked.title"),
 				Text.translatable("spectrum.toast.lots_of_recipes_unlocked.description", itemStacks.size()),
 				itemStacks));
@@ -78,16 +78,13 @@ public class UnlockedRecipeGroupToast implements Toast {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public Visibility draw(DrawContext drawContext, @NotNull ToastManager manager, long startTime) {
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
-		drawContext.drawTexture(TEXTURE, 0, 0, 0, 32, this.getWidth(),this.getHeight());
-
-		var tr = manager.getClient().textRenderer;
-		drawContext.drawText(tr, title, 30, 7, RenderHelper.GREEN_COLOR, false);
-		drawContext.drawText(tr, title, 30, 18, 0, false);
-
+	public Toast.Visibility draw(DrawContext drawContext, @NotNull ToastManager manager, long startTime) {
+		drawContext.drawTexture(TEXTURE, 0, 0, 0, 32, this.getWidth(), this.getHeight());
+		
+		TextRenderer textRenderer = manager.getClient().textRenderer;
+		drawContext.drawText(textRenderer, title, 30, 7, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(textRenderer, text, 30, 18, 0, false);
+		
 		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
@@ -97,8 +94,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 		}
 		
 		int itemStackIndex = (int) (startTime / Math.max(1, toastTimeMilliseconds / this.itemStacks.size()) % this.itemStacks.size());
-		ItemStack currentItemStack = itemStacks.get(itemStackIndex);
-		drawContext.drawItemInSlot(tr, currentItemStack, 8, 8);
+		drawContext.drawItem(itemStacks.get(itemStackIndex), 8, 8);
 
 		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}

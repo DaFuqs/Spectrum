@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.progression.toast;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.RenderHelper;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.*;
+import net.minecraft.client.font.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.sound.*;
 import net.minecraft.client.toast.*;
 import net.minecraft.item.*;
@@ -41,14 +40,12 @@ public class MessageToast implements Toast {
 	}
 	
 	@Override
-	public Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
-		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-		RenderSystem.setShaderTexture(0, TEXTURE);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		manager.draw(drawContext);
-
-		List<OrderedText> wrappedText = manager.getClient().textRenderer.wrapLines(this.messageText, 125);
-		List<OrderedText> wrappedTitle = manager.getClient().textRenderer.wrapLines(this.titleText, 125);
+	public Toast.Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
+		drawContext.drawTexture(TEXTURE, 0, 0, 0, 0, this.getWidth(), this.getHeight());
+		
+		TextRenderer textRenderer = manager.getClient().textRenderer;
+		List<OrderedText> wrappedText = textRenderer.wrapLines(this.messageText, 125);
+		List<OrderedText> wrappedTitle = textRenderer.wrapLines(this.titleText, 125);
 		int l;
 		
 		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
@@ -60,7 +57,7 @@ public class MessageToast implements Toast {
 			
 			for (Iterator<OrderedText> var12 = wrappedTitle.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				drawContext.drawText(manager.getClient().textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
+				drawContext.drawText(textRenderer, orderedText, 30, m, RenderHelper.GREEN_COLOR | l, false);
 			}
 		} else {
 			l = MathHelper.floor(MathHelper.clamp((float) (startTime - toastTimeMilliseconds / 2) / 300.0F, 0.0F, 1.0F) * 252.0F) << 24 | 67108864;
@@ -70,7 +67,7 @@ public class MessageToast implements Toast {
 			
 			for (Iterator<OrderedText> var12 = wrappedText.iterator(); var12.hasNext(); m += 9) {
 				OrderedText orderedText = var12.next();
-				drawContext.drawText(manager.getClient().textRenderer, orderedText, 30, m, l, false);
+				drawContext.drawText(textRenderer, orderedText, 30, m, l, false);
 			}
 		}
 		

@@ -125,7 +125,7 @@ public class UnlockToastManager {
 					allStacks.add(recipe.getOutput(MinecraftClient.getInstance().world.getRegistryManager()));
 				}
 			}
-            UnlockedRecipeGroupToast.showLotsOfRecipesToast(MinecraftClient.getInstance(), allStacks);
+            UnlockedRecipeToast.showLotsOfRecipesToast(MinecraftClient.getInstance(), allStacks);
 		} else {
 			for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
 				showGroupedRecipeUnlockToasts(unlockedRecipeList);
@@ -173,16 +173,16 @@ public class UnlockToastManager {
 			for (Map.Entry<String, List<ItemStack>> group : groupedRecipes.entrySet()) {
 				List<ItemStack> groupedList = group.getValue();
 				if (groupedList.size() == 1) {
-					UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), groupedList.get(0), singleText);
+					UnlockedRecipeToast.showRecipeToast(MinecraftClient.getInstance(), groupedList.get(0), singleText);
 				} else {
-					UnlockedRecipeGroupToast.showRecipeGroupToast(MinecraftClient.getInstance(), group.getKey(), groupedList, multipleText);
+					UnlockedRecipeToast.showRecipeGroupToast(MinecraftClient.getInstance(), group.getKey(), groupedList, multipleText);
 				}
 			}
 		}
 
 		// show singular recipes
 		for (ItemStack singleStack : singleRecipes) {
-			UnlockedRecipeGroupToast.showRecipeToast(MinecraftClient.getInstance(), singleStack, singleText);
+			UnlockedRecipeToast.showRecipeToast(MinecraftClient.getInstance(), singleStack, singleText);
 		}
 	}
 	

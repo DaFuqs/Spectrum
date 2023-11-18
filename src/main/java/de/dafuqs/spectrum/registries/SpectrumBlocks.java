@@ -59,7 +59,7 @@ import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.block.*;
 import net.minecraft.block.AbstractBlock.*;
-import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.block.piston.*;
 import net.minecraft.client.render.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
@@ -1667,8 +1667,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, settings, DyeColor.BLUE);
 		registerBlockWithItem("blackslag_azurite_ore", BLACKSLAG_AZURITE_ORE, settings, DyeColor.BLUE);
 		
-		registerBlockWithItem("stratine_ore", STRATINE_ORE, new FloatBlockItem(STRATINE_ORE, settingsFireproof, 1.01F), DyeColor.RED);
-		registerBlockWithItem("paltaeria_ore", PALTAERIA_ORE, new FloatBlockItem(PALTAERIA_ORE, settings, 0.99F), DyeColor.CYAN);
+		registerBlockWithItem("stratine_ore", STRATINE_ORE, new FloatBlockItem(STRATINE_ORE, settingsFireproof, -0.01F), DyeColor.RED);
+		registerBlockWithItem("paltaeria_ore", PALTAERIA_ORE, new FloatBlockItem(PALTAERIA_ORE, settings, 0.01F), DyeColor.CYAN);
 		
 		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, IS.of(Rarity.UNCOMMON), DyeColor.CYAN);
 		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, IS.of(Rarity.UNCOMMON), DyeColor.CYAN);
@@ -1713,15 +1713,25 @@ public class SpectrumBlocks {
 		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, settings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, settings, DyeColor.WHITE);
 		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
-
+		
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, IS.of(Rarity.UNCOMMON), DyeColor.BLACK);
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, IS.of(), DyeColor.BLUE);
 		registerBlockWithItem("shimmerstone_block", SHIMMERSTONE_BLOCK, IS.of(), DyeColor.YELLOW);
-		registerBlockWithItem("stratine_fragment_block", STRATINE_FRAGMENT_BLOCK, new FloatBlockItem(STRATINE_FRAGMENT_BLOCK, settingsFireproof, 1.02F), DyeColor.RED);
-		registerBlockWithItem("paltaeria_fragment_block", PALTAERIA_FRAGMENT_BLOCK, new FloatBlockItem(PALTAERIA_FRAGMENT_BLOCK, settings, 0.98F), DyeColor.CYAN);
-		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, settings, 0.996F), DyeColor.GREEN);
+		registerBlockWithItem("stratine_fragment_block", STRATINE_FRAGMENT_BLOCK, new FloatBlockItem(STRATINE_FRAGMENT_BLOCK, settingsFireproof, -0.02F), DyeColor.RED);
+		registerBlockWithItem("paltaeria_fragment_block", PALTAERIA_FRAGMENT_BLOCK, new FloatBlockItem(PALTAERIA_FRAGMENT_BLOCK, settings, 0.02F), DyeColor.CYAN);
+		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, settings, 0F) {
+			@Override
+			public double applyGravity(ItemStack stack, World world, Entity entity) {
+				return 0;
+			}
+			
+			@Override
+			public void applyGravity(ItemStack stack, World world, ItemEntity itemEntity) {
+				itemEntity.setNoGravity(true);
+			}
+		}, DyeColor.GREEN);
 	}
 	
 	private static void registerColoredLamps(FabricItemSettings settings) {
@@ -2509,6 +2519,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), FUSION_SHRINE_BASALT, FUSION_SHRINE_CALCITE);
 		BlockRenderLayerMap.INSTANCE.putBlock(ENCHANTER, RenderLayer.getCutout());
 			BlockRenderLayerMap.INSTANCE.putBlock(POTION_WORKSHOP, RenderLayer.getTranslucent());
+		
 		// Gemstones
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_TOPAZ_BUD, RenderLayer.getCutout());

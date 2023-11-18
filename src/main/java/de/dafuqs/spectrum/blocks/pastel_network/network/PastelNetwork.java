@@ -31,7 +31,7 @@ public class PastelNetwork {
 	}
 
     public World getWorld() {
-        return this.getWorld();
+        return this.world;
     }
 
     public Graph<PastelNodeBlockEntity, DefaultEdge> getGraph() {

@@ -95,7 +95,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public RegistryEntry<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.MANUAL;
+		return SpectrumBannerPatterns.GUIDEBOOK;
 	}
 	
 	@Override

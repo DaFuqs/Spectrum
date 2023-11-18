@@ -15,7 +15,7 @@ public class SpectrumBannerPatterns {
 	public static RegistryEntry<BannerPattern> FOUR_LEAF_CLOVER;
 	public static RegistryEntry<BannerPattern> INK_FLASK;
 	public static RegistryEntry<BannerPattern> KNOWLEDGE_GEM;
-	public static RegistryEntry<BannerPattern> MANUAL;
+	public static RegistryEntry<BannerPattern> GUIDEBOOK;
 	public static RegistryEntry<BannerPattern> MULTITOOL;
 	public static RegistryEntry<BannerPattern> NEOLITH;
 	public static RegistryEntry<BannerPattern> PALETTE;
@@ -48,7 +48,7 @@ public class SpectrumBannerPatterns {
 		FOUR_LEAF_CLOVER = registerPattern("four_leaf_clover", "flc");
 		INK_FLASK = registerPattern("ink_flask", "if");
 		KNOWLEDGE_GEM = registerPattern("knowledge_gem", "kg");
-		MANUAL = registerPattern("guidebook", "man");
+		GUIDEBOOK = registerPattern("guidebook", "gui");
 		MULTITOOL = registerPattern("multitool", "mul");
 		NEOLITH = registerPattern("neolith", "neo");
 		PALETTE = registerPattern("palette", "pql");

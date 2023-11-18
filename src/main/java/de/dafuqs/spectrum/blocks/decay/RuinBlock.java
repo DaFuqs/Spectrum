@@ -45,8 +45,8 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
-		if (stateToSpreadTo.isAir() || stateToSpreadTo.getBlock() instanceof FluidBlock || stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SAFE)) {
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos) {
+		if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.isIn(SpectrumBlockTags.RUIN_SAFE)) {
 			return null;
 		}
 		

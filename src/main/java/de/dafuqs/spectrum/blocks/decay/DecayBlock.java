@@ -113,7 +113,7 @@ public abstract class DecayBlock extends Block {
 			Block updatedBlock = updatedState.getBlock();
 			
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock)) {
-				@Nullable BlockState spreadState = this.getSpreadState(state, updatedState);
+				@Nullable BlockState spreadState = this.getSpreadState(state, updatedState, world, fromPos);
 				if (spreadState != null) {
 					world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
 				}
@@ -157,7 +157,7 @@ public abstract class DecayBlock extends Block {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		
 		if (canSpreadTo(world, targetPos, targetBlockState)) {
-			@Nullable BlockState spreadState = this.getSpreadState(state, targetBlockState);
+			@Nullable BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
 			if (spreadState != null) {
 				world.setBlockState(targetPos, spreadState);
 			}
@@ -166,6 +166,6 @@ public abstract class DecayBlock extends Block {
 		return false;
 	}
 	
-	protected abstract @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo);
+	protected abstract @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos);
 	
 }

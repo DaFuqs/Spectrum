@@ -46,10 +46,11 @@ public class ForfeitureBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo) {
-		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SAFE) || stateToSpreadTo.getBlock() instanceof FluidBlock) {
+	protected @Nullable BlockState getSpreadState(BlockState stateToSpreadFrom, BlockState stateToSpreadTo, World world, BlockPos stateToSpreadToPos) {
+		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SAFE)) {
 			return null;
 		}
+		
 		if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_SPECIAL_CONVERSIONS)) {
 			return this.getDefaultState().with(CONVERSION, Conversion.SPECIAL);
 		} else if (stateToSpreadTo.isIn(SpectrumBlockTags.FORFEITURE_CONVERSIONS)) {

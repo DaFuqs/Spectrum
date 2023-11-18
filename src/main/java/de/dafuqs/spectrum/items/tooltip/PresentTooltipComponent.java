@@ -2,9 +2,7 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import net.fabricmc.api.*;
 import net.minecraft.client.font.*;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 
 import java.util.*;
@@ -29,13 +27,13 @@ public class PresentTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext drawContext) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext context) {
 		int n = x + 1;
 		int o = y + 1;
 		for (int i = 0; i < this.itemStacks.size(); i++) {
-			this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, drawContext);
+			this.drawSlot(context, n + i * 18, o, i, this.itemStacks.get(i), textRenderer);
 		}
-		this.drawOutline(x, y, this.itemStacks.size(), 1, drawContext);
+		this.drawOutline(context, x, y, this.itemStacks.size(), 1);
 	}
 	
 }

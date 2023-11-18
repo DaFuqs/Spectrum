@@ -326,7 +326,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		ItemStack itemStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
 		
-		return Optional.of(new VoidBundleTooltipData(itemStack, storedAmount));
+		return Optional.of(new BottomlessBundleTooltipData(itemStack, storedAmount));
 	}
 	
 	@Override

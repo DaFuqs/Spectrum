@@ -2,10 +2,8 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import net.fabricmc.api.*;
 import net.minecraft.client.font.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import org.joml.*;
@@ -32,11 +30,11 @@ public class CraftingTabletTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext drawContext) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext context) {
 		int n = x + 1;
 		int o = y + 1;
-		this.drawSlot(n, o, 0, itemStack, textRenderer, drawContext);
-		this.drawOutline(x, y, 1, 1, drawContext);
+		this.drawSlot(context, n, o, 0, itemStack, textRenderer);
+		this.drawOutline(context, x, y, 1, 1);
 	}
 	
 	@Override

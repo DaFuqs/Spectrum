@@ -24,41 +24,41 @@ public class SpectrumTooltipComponent implements TooltipComponent {
 		return 0;
 	}
 	
-	public void drawOutline(int x, int y, int columns, int rows, DrawContext drawContext) {
-		this.draw(drawContext, x, y, Sprite.BORDER_CORNER_TOP);
-		this.draw(drawContext, x + columns * 18 + 1, y, Sprite.BORDER_CORNER_TOP);
+	public void drawOutline(DrawContext context, int x, int y, int columns, int rows) {
+		this.draw(context, x, y, Sprite.BORDER_CORNER_TOP);
+		this.draw(context, x + columns * 18 + 1, y, Sprite.BORDER_CORNER_TOP);
 		
 		int j;
 		for (j = 0; j < columns; ++j) {
-			this.draw(drawContext, x + 1 + j * 18, y, Sprite.BORDER_HORIZONTAL_TOP);
-			this.draw(drawContext, x + 1 + j * 18, y + rows * 20, Sprite.BORDER_HORIZONTAL_BOTTOM);
+			this.draw(context, x + 1 + j * 18, y, Sprite.BORDER_HORIZONTAL_TOP);
+			this.draw(context, x + 1 + j * 18, y + rows * 20, Sprite.BORDER_HORIZONTAL_BOTTOM);
 		}
 		
 		for (j = 0; j < rows; ++j) {
-			this.draw(drawContext, x, y + j * 20 + 1, Sprite.BORDER_VERTICAL);
-			this.draw(drawContext, x + columns * 18 + 1, y + j * 20 + 1, Sprite.BORDER_VERTICAL);
+			this.draw(context, x, y + j * 20 + 1, Sprite.BORDER_VERTICAL);
+			this.draw(context, x + columns * 18 + 1, y + j * 20 + 1, Sprite.BORDER_VERTICAL);
 		}
 		
-		this.draw(drawContext, x, y + rows * 20, Sprite.BORDER_CORNER_BOTTOM);
-		this.draw(drawContext, x + columns * 18 + 1, y + rows * 20, Sprite.BORDER_CORNER_BOTTOM);
+		this.draw(context, x, y + rows * 20, Sprite.BORDER_CORNER_BOTTOM);
+		this.draw(context, x + columns * 18 + 1, y + rows * 20, Sprite.BORDER_CORNER_BOTTOM);
 	}
 	
-	public void drawSlot(int x, int y, int index, ItemStack itemStack, TextRenderer textRenderer, DrawContext drawContext) {
-		this.draw(drawContext, x, y, Sprite.SLOT);
-
-		drawContext.drawItemInSlot(textRenderer, itemStack, x + 1, y + 1, String.valueOf(index));
-		drawContext.drawItemInSlot(textRenderer, itemStack, x + 1, y + 1);
+	public void drawSlot(DrawContext context, int x, int y, int index, ItemStack itemStack, TextRenderer textRenderer) {
+		this.draw(context, x, y, Sprite.SLOT);
+		
+		context.drawItem(itemStack, x + 1, y + 1, index);
+		context.drawItemInSlot(textRenderer, itemStack, x + 1, y + 1);
 		if (index == 0) {
-			HandledScreen.drawSlotHighlight(drawContext, x + 1, y + 1, 0);
+			HandledScreen.drawSlotHighlight(context, x + 1, y + 1, 0);
 		}
 	}
 	
-	public void drawDottedSlot(int x, int y, DrawContext drawContext) {
-		this.draw(drawContext, x, y, Sprite.DOTTED_SLOT);
+	public void drawDottedSlot(DrawContext context, int x, int y) {
+		this.draw(context, x, y, Sprite.DOTTED_SLOT);
 	}
 	
-	private void draw(DrawContext drawContext, int x, int y, @NotNull Sprite sprite) {
-		drawContext.drawTexture(TEXTURE, x, y, sprite.u, sprite.v, sprite.width,sprite.height, 128, 128);
+	private void draw(DrawContext context, int x, int y, @NotNull Sprite sprite) {
+		context.drawTexture(TEXTURE, x, y, sprite.u, sprite.v, sprite.width, sprite.height, 128, 128);
 	}
 	
 	@Environment(EnvType.CLIENT)

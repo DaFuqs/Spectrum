@@ -2,16 +2,14 @@ package de.dafuqs.spectrum.items.tooltip;
 
 import net.fabricmc.api.*;
 import net.minecraft.client.font.*;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.item.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.util.collection.*;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
+public class BottomlessBundleTooltipComponent extends SpectrumTooltipComponent {
 	
 	private static final int MAX_DISPLAYED_SLOTS = 5;
 	private final List<ItemStack> itemStacks;
@@ -19,7 +17,7 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 	private final int displayedSlotCount;
 	private final boolean drawDots;
 	
-	public VoidBundleTooltipComponent(VoidBundleTooltipData data) {
+	public BottomlessBundleTooltipComponent(BottomlessBundleTooltipData data) {
 		int amount = data.getAmount();
 		
 		int maxCount = data.getItemStack().getMaxCount();
@@ -47,31 +45,30 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext drawContext) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, DrawContext context) {
 		int n = x + 1;
 		int o = y + 1;
-		var matrices = drawContext.getMatrices();
 		
 		for (int i = 0; i < Math.min(MAX_DISPLAYED_SLOTS + 1, displayedSlotCount); i++) {
 			if (i == displayedSlotCount - 1) {
 				if (displayedSlotCount == MAX_DISPLAYED_SLOTS + 1) {
 					if (drawDots) {
-						this.drawDottedSlot(n + 5 * 18, o, drawContext);
+						this.drawDottedSlot(context, n + 5 * 18, o);
 					} else {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, drawContext);
+						this.drawSlot(context, n + i * 18, o, i, ItemStack.EMPTY, textRenderer);
 					}
 				} else {
 					if (this.itemStacks.size() - 1 < i) {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, drawContext);
+						this.drawSlot(context, n + i * 18, o, i, ItemStack.EMPTY, textRenderer);
 					} else {
-						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, drawContext);
+						this.drawSlot(context, n + i * 18, o, i, this.itemStacks.get(i), textRenderer);
 					}
 				}
 			} else {
-				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, drawContext);
+				this.drawSlot(context, n + i * 18, o, i, this.itemStacks.get(i), textRenderer);
 			}
 		}
-		this.drawOutline(x, y, displayedSlotCount, 1, drawContext);
+		this.drawOutline(context, x, y, displayedSlotCount, 1);
 	}
 	
 }

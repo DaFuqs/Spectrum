@@ -28,7 +28,7 @@ public class SpectrumItemGroups {
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.entries((displayContext, entries) -> entries.add(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.noRenderedName()
-			.displayName(Text.translatable("itemgroup.spectrum"))
+			.displayName(Text.translatable("itemGroup.spectrum"))
 			.build();
 	
 	public static void register() {

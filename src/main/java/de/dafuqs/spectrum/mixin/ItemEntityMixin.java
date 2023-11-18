@@ -177,7 +177,7 @@ public abstract class ItemEntityMixin {
 		
 		if (item instanceof GravitableItem gravitableItem) {
 			// if the stack is floating really high => delete it
-			gravitableItem.applyGravity(stack, itemEntity.world, itemEntity);
+			gravitableItem.applyGravity(stack, itemEntity.getWorld(), itemEntity);
 		}
 		
 	}

@@ -954,7 +954,7 @@
   "block.spectrum.block_placer": "Block Placer",
   "block.spectrum.block_detector": "Block Detector",
   "block.spectrum.block_breaker": "Block Breaker",
-  "block.spectrum.redstone_wireless": "Wireless Redstone",
+  "block.spectrum.redstone_transceiver": "Redstone Transceiver",
   "block.spectrum.redstone_calculator": "Redstone Calculator",
   "block.spectrum.redstone_calculator.mode_set": "Set to mode: ",
   "block.spectrum.redstone_calculator.mode.addition": "Addition",

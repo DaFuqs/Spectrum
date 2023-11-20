@@ -2,11 +2,11 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-    "4": "minecraft:block/redstone_torch",
+    "4": "block/redstone_torch",
     "5": "spectrum:block/onyx_block",
-    "slab": "minecraft:block/smooth_stone",
-    "particle": "spectrum:block/redstone_wireless_sender",
-    "top": "spectrum:block/redstone_wireless_sender"
+    "slab": "block/smooth_stone",
+    "particle": "spectrum:block/redstone_transceiver_receiver",
+    "top": "spectrum:block/redstone_transceiver_receiver"
   },
   "elements": [
     {
@@ -216,17 +216,17 @@
     },
     {
       "from": [
-        8,
+        4,
         2,
-        11
+        5
       ],
       "to": [
-        8,
-        6,
-        15
+        4,
+        7,
+        11
       ],
       "rotation": {
-        "angle": 0,
+        "angle": 22.5,
         "axis": "z",
         "origin": [
           4,
@@ -266,10 +266,9 @@
           "uv": [
             0,
             0,
-            4,
-            4
+            6,
+            5
           ],
-          "rotation": 90,
           "texture": "#5"
         },
         "up": {
@@ -294,95 +293,17 @@
     },
     {
       "from": [
-        11,
+        12,
         2,
-        8
-      ],
-      "to": [
-        15,
-        6,
-        8
-      ],
-      "rotation": {
-        "angle": 0,
-        "axis": "x",
-        "origin": [
-          8,
-          4.5,
-          4
-        ]
-      },
-      "faces": {
-        "north": {
-          "uv": [
-            0,
-            0,
-            4,
-            4
-          ],
-          "rotation": 90,
-          "texture": "#5"
-        },
-        "east": {
-          "uv": [
-            0,
-            0,
-            0,
-            5
-          ],
-          "texture": "#5"
-        },
-        "south": {
-          "uv": [
-            0,
-            0,
-            6,
-            5
-          ],
-          "texture": "#5"
-        },
-        "west": {
-          "uv": [
-            0,
-            0,
-            0,
-            5
-          ],
-          "texture": "#5"
-        },
-        "up": {
-          "uv": [
-            0,
-            0,
-            6,
-            0
-          ],
-          "texture": "#5"
-        },
-        "down": {
-          "uv": [
-            0,
-            0,
-            6,
-            0
-          ],
-          "texture": "#5"
-        }
-      }
-    },
-    {
-      "from": [
-        8,
-        2,
-        1
-      ],
-      "to": [
-        8,
-        6,
         5
       ],
+      "to": [
+        12,
+        7,
+        11
+      ],
       "rotation": {
-        "angle": 0,
+        "angle": -22.5,
         "axis": "z",
         "origin": [
           12,
@@ -422,8 +343,8 @@
           "uv": [
             0,
             0,
-            4,
-            4
+            6,
+            5
           ],
           "texture": "#5"
         },
@@ -449,17 +370,17 @@
     },
     {
       "from": [
-        1,
+        5,
         2,
-        8
+        12
       ],
       "to": [
-        5,
-        6,
-        8
+        11,
+        7,
+        12
       ],
       "rotation": {
-        "angle": 0,
+        "angle": 22.5,
         "axis": "x",
         "origin": [
           8,
@@ -472,8 +393,8 @@
           "uv": [
             0,
             0,
-            4,
-            4
+            6,
+            5
           ],
           "texture": "#5"
         },
@@ -543,8 +464,6 @@
     },
     4,
     5,
-    6,
-    7,
-    8
+    6
   ]
 }

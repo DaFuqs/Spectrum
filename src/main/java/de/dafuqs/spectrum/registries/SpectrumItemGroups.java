@@ -220,7 +220,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ENTITY_DETECTOR);
 		entries.add(SpectrumBlocks.REDSTONE_TIMER);
 		entries.add(SpectrumBlocks.REDSTONE_CALCULATOR);
-		entries.add(SpectrumBlocks.REDSTONE_WIRELESS);
+		entries.add(SpectrumBlocks.REDSTONE_TRANSCEIVER);
 		entries.add(SpectrumBlocks.REDSTONE_SAND);
 		entries.add(SpectrumBlocks.ENDER_GLASS);
 		entries.add(SpectrumBlocks.BLOCK_PLACER);

@@ -26,6 +26,8 @@ public class DefaultedRegistryMixin {
                     return SpectrumCommon.locate("ebony_noxcap_block");
                 case "chestnut_noxcap_cap":
                     return SpectrumCommon.locate("chestnut_noxcap_block");
+                case "redstone_wireless":
+                    return SpectrumCommon.locate("redstone_transceiver");
             }
         }
         return id;

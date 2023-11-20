@@ -247,7 +247,7 @@
     "block.spectrum.light_level_detector": "Block Licht Detektor",
     "block.spectrum.entity_detector": "Kreaturen Detektor",
     "block.spectrum.block_placer": "Block Plazierer",
-    "block.spectrum.redstone_wireless": "Kabelloses Redstone",
+    "block.spectrum.redstone_transceiver": "Kabelloses Redstone",
 
     "block.spectrum.redstone_calculator": "Rotstein-Rechner",
     "block.spectrum.redstone_calculator.mode_set": "Gesetzt auf Modus: ",

@@ -115,7 +115,7 @@
     "spectrum:bedrock_storage_block",
     "spectrum:redstone_timer",
     "spectrum:redstone_calculator",
-    "spectrum:redstone_wireless",
+    "spectrum:redstone_transceiver",
     "spectrum:block_placer",
     "spectrum:block_detector",
     "spectrum:block_breaker",

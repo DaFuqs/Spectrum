@@ -897,7 +897,7 @@
   "block.spectrum.entity_detector": "Датчик существ",
   "block.spectrum.block_placer": "Размиститель блоков",
   "block.spectrum.block_detector": "Датчик блоков",
-  "block.spectrum.redstone_wireless": "Беспроводной редстоун",
+  "block.spectrum.redstone_transceiver": "Беспроводной редстоун",
   "block.spectrum.redstone_calculator": "Редстоун калькулятор",
   "block.spectrum.redstone_calculator.mode_set": "Установлено значение на: ",
   "block.spectrum.redstone_calculator.mode.addition": "Сложение",

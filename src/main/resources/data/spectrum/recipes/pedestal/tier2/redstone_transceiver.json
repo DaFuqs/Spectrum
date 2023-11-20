@@ -27,7 +27,7 @@
     }
   },
   "result": {
-    "item": "spectrum:redstone_wireless",
+    "item": "spectrum:redstone_transceiver",
     "count": 2
   },
   "required_advancement": "spectrum:create_onyx_shard"

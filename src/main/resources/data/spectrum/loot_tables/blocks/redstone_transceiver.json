@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:redstone_wireless"
+          "name": "spectrum:redstone_transceiver"
         }
       ],
       "conditions": [

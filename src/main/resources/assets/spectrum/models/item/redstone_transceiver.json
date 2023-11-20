@@ -1,12 +1,14 @@
 {
   "credit": "Made with Blockbench",
+  "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
+    "4": "minecraft:block/redstone_torch",
     "5": "spectrum:block/onyx_block",
-    "6": "block/redstone_torch_off",
-    "slab": "block/smooth_stone",
-    "particle": "spectrum:block/redstone_wireless_sender",
-    "top": "spectrum:block/redstone_wireless_sender"
+    "6": "spectrum:block/red_block",
+    "slab": "minecraft:block/smooth_stone",
+    "particle": "spectrum:block/redstone_transceiver_sender",
+    "top": "spectrum:block/redstone_transceiver_sender"
   },
   "elements": [
     {
@@ -101,7 +103,7 @@
             10,
             11
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "west": {
           "uv": [
@@ -110,7 +112,7 @@
             10,
             11
           ],
-          "texture": "#6"
+          "texture": "#4"
         }
       }
     },
@@ -133,7 +135,7 @@
             10,
             11
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "south": {
           "uv": [
@@ -142,7 +144,7 @@
             10,
             11
           ],
-          "texture": "#6"
+          "texture": "#4"
         }
       }
     },
@@ -165,7 +167,7 @@
             0,
             0
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "east": {
           "uv": [
@@ -174,7 +176,7 @@
             0,
             0
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "south": {
           "uv": [
@@ -183,7 +185,7 @@
             0,
             0
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "west": {
           "uv": [
@@ -192,7 +194,7 @@
             0,
             0
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "up": {
           "uv": [
@@ -201,7 +203,7 @@
             9,
             8
           ],
-          "texture": "#6"
+          "texture": "#4"
         },
         "down": {
           "uv": [
@@ -210,7 +212,7 @@
             0,
             0
           ],
-          "texture": "#6"
+          "texture": "#4"
         }
       }
     },
@@ -523,6 +525,74 @@
           "texture": "#5"
         }
       }
+    },
+    {
+      "from": [
+        4,
+        2,
+        4
+      ],
+      "to": [
+        12,
+        3,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            1
+          ],
+          "texture": "#6"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            1
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            1
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            1
+          ],
+          "texture": "#6"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#6"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#6"
+        }
+      }
     }
   ],
   "groups": [
@@ -544,6 +614,7 @@
     4,
     5,
     6,
-    7
+    7,
+    8
   ]
 }

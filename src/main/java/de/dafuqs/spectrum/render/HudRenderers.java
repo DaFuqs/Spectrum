@@ -142,7 +142,7 @@ public class HudRenderers {
 			matrixStack.scale(0.5F, 0.5F, 1F);
 
 			var textRenderer = MinecraftClient.getInstance().textRenderer;
-			drawContext.drawItemInSlot(textRenderer, itemStackToRender, (x + 8) * 2, (y + 8) * 2);
+			drawContext.drawItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 			matrixStack.scale(2F, 2F, 1F);
 			drawContext.drawText(textRenderer, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF, false);
 			if (amount == 0) {

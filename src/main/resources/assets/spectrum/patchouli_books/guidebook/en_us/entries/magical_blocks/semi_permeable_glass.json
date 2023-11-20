@@ -4,7 +4,7 @@
   "icon": "spectrum:amethyst_semi_permeable_glass",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:vanilla_semi_permeable_glass": 0,
+    "spectrum:semi_permeable_glass": 0,
     "spectrum:tinted_semi_permeable_glass": 0,
     "spectrum:radiant_semi_permeable_glass": 0,
     "spectrum:topaz_semi_permeable_glass": 0,
@@ -27,7 +27,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Simple Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/vanilla_semi_permeable_glass",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/semi_permeable_glass",
       "text": "While it looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), only players can pass through it. All other creatures will bounce, like a fly off a window."
     },
     {

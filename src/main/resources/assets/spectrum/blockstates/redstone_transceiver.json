@@ -7,7 +7,7 @@
 				"facing": "north"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender",
+				"model": "spectrum:block/redstone_transceiver_sender",
 				"y": 180
 			}
 		},
@@ -18,7 +18,7 @@
 				"facing": "east"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender",
+				"model": "spectrum:block/redstone_transceiver_sender",
 				"y": 270
 			}
 		},
@@ -29,7 +29,7 @@
 				"facing": "south"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender"
+				"model": "spectrum:block/redstone_transceiver_sender"
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 				"facing": "west"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender",
+				"model": "spectrum:block/redstone_transceiver_sender",
 				"y": 90
 			}
 		},
@@ -50,7 +50,7 @@
 				"facing": "north"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender_off",
+				"model": "spectrum:block/redstone_transceiver_sender_off",
 				"y": 180
 			}
 		},
@@ -61,7 +61,7 @@
 				"facing": "east"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender_off",
+				"model": "spectrum:block/redstone_transceiver_sender_off",
 				"y": 270
 			}
 		},
@@ -72,7 +72,7 @@
 				"facing": "south"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender_off"
+				"model": "spectrum:block/redstone_transceiver_sender_off"
 			}
 		},
 		{
@@ -82,7 +82,7 @@
 				"facing": "west"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_sender_off",
+				"model": "spectrum:block/redstone_transceiver_sender_off",
 				"y": 90
 			}
 		},
@@ -93,7 +93,7 @@
 				"facing": "north"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver",
+				"model": "spectrum:block/redstone_transceiver_receiver",
 				"y": 180
 			}
 		},
@@ -104,7 +104,7 @@
 				"facing": "east"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver",
+				"model": "spectrum:block/redstone_transceiver_receiver",
 				"y": 270
 			}
 		},
@@ -115,7 +115,7 @@
 				"facing": "south"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver"
+				"model": "spectrum:block/redstone_transceiver_receiver"
 			}
 		},
 		{
@@ -125,7 +125,7 @@
 				"facing": "west"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver",
+				"model": "spectrum:block/redstone_transceiver_receiver",
 				"y": 90
 			}
 		},
@@ -136,7 +136,7 @@
 				"facing": "north"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"model": "spectrum:block/redstone_transceiver_receiver_off",
 				"y": 180
 			}
 		},
@@ -147,7 +147,7 @@
 				"facing": "east"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"model": "spectrum:block/redstone_transceiver_receiver_off",
 				"y": 270
 			}
 		},
@@ -158,7 +158,7 @@
 				"facing": "south"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver_off"
+				"model": "spectrum:block/redstone_transceiver_receiver_off"
 			}
 		},
 		{
@@ -168,7 +168,7 @@
 				"facing": "west"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"model": "spectrum:block/redstone_transceiver_receiver_off",
 				"y": 90
 			}
 		},
@@ -177,7 +177,7 @@
 				"channel": "black"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_black"
+				"model": "spectrum:block/redstone_transceiver_channel_black"
 			}
 		},
 		{
@@ -185,7 +185,7 @@
 				"channel": "blue"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_blue"
+				"model": "spectrum:block/redstone_transceiver_channel_blue"
 			}
 		},
 		{
@@ -193,7 +193,7 @@
 				"channel": "brown"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_brown"
+				"model": "spectrum:block/redstone_transceiver_channel_brown"
 			}
 		},
 		{
@@ -201,7 +201,7 @@
 				"channel": "cyan"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_cyan"
+				"model": "spectrum:block/redstone_transceiver_channel_cyan"
 			}
 		},
 		{
@@ -209,7 +209,7 @@
 				"channel": "gray"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_gray"
+				"model": "spectrum:block/redstone_transceiver_channel_gray"
 			}
 		},
 		{
@@ -217,7 +217,7 @@
 				"channel": "green"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_green"
+				"model": "spectrum:block/redstone_transceiver_channel_green"
 			}
 		},
 		{
@@ -225,7 +225,7 @@
 				"channel": "light_blue"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_light_blue"
+				"model": "spectrum:block/redstone_transceiver_channel_light_blue"
 			}
 		},
 		{
@@ -233,7 +233,7 @@
 				"channel": "light_gray"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_light_gray"
+				"model": "spectrum:block/redstone_transceiver_channel_light_gray"
 			}
 		},
 		{
@@ -241,7 +241,7 @@
 				"channel": "lime"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_lime"
+				"model": "spectrum:block/redstone_transceiver_channel_lime"
 			}
 		},
 		{
@@ -249,7 +249,7 @@
 				"channel": "magenta"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_magenta"
+				"model": "spectrum:block/redstone_transceiver_channel_magenta"
 			}
 		},
 		{
@@ -257,7 +257,7 @@
 				"channel": "orange"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_orange"
+				"model": "spectrum:block/redstone_transceiver_channel_orange"
 			}
 		},
 		{
@@ -265,7 +265,7 @@
 				"channel": "pink"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_pink"
+				"model": "spectrum:block/redstone_transceiver_channel_pink"
 			}
 		},
 		{
@@ -273,7 +273,7 @@
 				"channel": "purple"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_purple"
+				"model": "spectrum:block/redstone_transceiver_channel_purple"
 			}
 		},
 		{
@@ -281,7 +281,7 @@
 				"channel": "red"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_red"
+				"model": "spectrum:block/redstone_transceiver_channel_red"
 			}
 		},
 		{
@@ -289,7 +289,7 @@
 				"channel": "white"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_white"
+				"model": "spectrum:block/redstone_transceiver_channel_white"
 			}
 		},
 		{
@@ -297,7 +297,7 @@
 				"channel": "yellow"
 			},
 			"apply": {
-				"model": "spectrum:block/redstone_wireless_channel_yellow"
+				"model": "spectrum:block/redstone_transceiver_channel_yellow"
 			}
 		}
 	]

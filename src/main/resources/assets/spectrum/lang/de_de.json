@@ -247,7 +247,7 @@
     "block.spectrum.light_level_detector": "Block Licht Detektor",
     "block.spectrum.entity_detector": "Kreaturen Detektor",
     "block.spectrum.block_placer": "Block Plazierer",
-    "block.spectrum.redstone_wireless": "Kabelloses Redstone",
+    "block.spectrum.redstone_transceiver": "Kabelloses Redstone",
 
     "block.spectrum.redstone_calculator": "Rotstein-Rechner",
     "block.spectrum.redstone_calculator.mode_set": "Gesetzt auf Modus: ",
@@ -642,7 +642,7 @@
   "block.spectrum.tinted_semi_permeable_glass": "Halbdurchlässiges gefärbt Glas",
   "block.spectrum.radiant_semi_permeable_glass": "Halbdurchlässiges Strahlenglas",
 
-  "block.spectrum.vanilla_semi_permeable_glass": "Halbdurchlässiges Glas",
+  "block.spectrum.semi_permeable_glass": "Halbdurchlässiges Glas",
   "block.spectrum.amethyst_semi_permeable_glass": "Halbdurchlässiges Amethyst Glas",
   "block.spectrum.topaz_semi_permeable_glass": "Halbdurchlässiges Topas Glas",
   "block.spectrum.citrine_semi_permeable_glass": "Halbdurchlässiges Citrin Glas",

@@ -205,7 +205,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.STORAGE_NODE);
 		entries.add(SpectrumBlocks.SENDER_NODE);
 		entries.add(SpectrumBlocks.GATHER_NODE);
-		entries.add(SpectrumBlocks.VANILLA_SEMI_PERMEABLE_GLASS);
+		entries.add(SpectrumBlocks.SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.TOPAZ_SEMI_PERMEABLE_GLASS);
@@ -220,7 +220,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ENTITY_DETECTOR);
 		entries.add(SpectrumBlocks.REDSTONE_TIMER);
 		entries.add(SpectrumBlocks.REDSTONE_CALCULATOR);
-		entries.add(SpectrumBlocks.REDSTONE_WIRELESS);
+		entries.add(SpectrumBlocks.REDSTONE_TRANSCEIVER);
 		entries.add(SpectrumBlocks.REDSTONE_SAND);
 		entries.add(SpectrumBlocks.ENDER_GLASS);
 		entries.add(SpectrumBlocks.BLOCK_PLACER);
@@ -794,7 +794,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SHIMMEL);
 		entries.add(SpectrumBlocks.ROTTEN_GROUND);
 		entries.add(SpectrumBlocks.SLATE_NOXSHROOM);
-		entries.add(SpectrumBlocks.SLATE_NOXCAP_CAP);
+		entries.add(SpectrumBlocks.SLATE_NOXCAP_BLOCK);
 		entries.add(SpectrumBlocks.SLATE_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.STRIPPED_SLATE_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.SLATE_NOXCAP_HYPHAE);
@@ -815,7 +815,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SLATE_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.SLATE_NOXWOOD_LAMP);
 		entries.add(SpectrumBlocks.EBONY_NOXSHROOM);
-		entries.add(SpectrumBlocks.EBONY_NOXCAP_CAP);
+		entries.add(SpectrumBlocks.EBONY_NOXCAP_BLOCK);
 		entries.add(SpectrumBlocks.EBONY_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.STRIPPED_EBONY_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.EBONY_NOXCAP_HYPHAE);
@@ -836,7 +836,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.EBONY_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.EBONY_NOXWOOD_LAMP);
 		entries.add(SpectrumBlocks.IVORY_NOXSHROOM);
-		entries.add(SpectrumBlocks.IVORY_NOXCAP_CAP);
+		entries.add(SpectrumBlocks.IVORY_NOXCAP_BLOCK);
 		entries.add(SpectrumBlocks.IVORY_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.STRIPPED_IVORY_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.IVORY_NOXCAP_HYPHAE);
@@ -857,7 +857,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.IVORY_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.IVORY_NOXWOOD_LAMP);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXSHROOM);
-		entries.add(SpectrumBlocks.CHESTNUT_NOXCAP_CAP);
+		entries.add(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.STRIPPED_CHESTNUT_NOXCAP_STEM);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXCAP_HYPHAE);

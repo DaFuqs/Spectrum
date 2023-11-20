@@ -24,7 +24,7 @@ public class SpectrumFlammableBlocks {
 		
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXCAP_STEM, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.STRIPPED_SLATE_NOXCAP_STEM, 5, 5);
-		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXCAP_CAP, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXCAP_BLOCK, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXCAP_GILLS, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXWOOD_PLANKS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.SLATE_NOXWOOD_SLAB, 5, 20);
@@ -37,7 +37,7 @@ public class SpectrumFlammableBlocks {
 		
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXCAP_STEM, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.STRIPPED_EBONY_NOXCAP_STEM, 5, 5);
-		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXCAP_CAP, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXCAP_BLOCK, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXCAP_GILLS, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXWOOD_PLANKS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.EBONY_NOXWOOD_SLAB, 5, 20);
@@ -49,7 +49,7 @@ public class SpectrumFlammableBlocks {
 		
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXCAP_STEM, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.STRIPPED_IVORY_NOXCAP_STEM, 5, 5);
-		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXCAP_CAP, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXCAP_BLOCK, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXCAP_GILLS, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXWOOD_PLANKS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.IVORY_NOXWOOD_SLAB, 5, 20);
@@ -61,7 +61,7 @@ public class SpectrumFlammableBlocks {
 		
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXCAP_STEM, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.STRIPPED_CHESTNUT_NOXCAP_STEM, 5, 5);
-		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXCAP_CAP, 5, 5);
+		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXCAP_GILLS, 5, 5);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXWOOD_PLANKS, 5, 20);
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CHESTNUT_NOXWOOD_SLAB, 5, 20);

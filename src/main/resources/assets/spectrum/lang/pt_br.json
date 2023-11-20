@@ -409,7 +409,7 @@
   "block.spectrum.light_level_detector": "Detector de Luz de Blocos",
   "block.spectrum.entity_detector": "Detector de Criaturas",
   "block.spectrum.block_placer": "Colocador de Blocos",
-  "block.spectrum.redstone_wireless": "Redstone Sem Fio",
+  "block.spectrum.redstone_transceiver": "Redstone Sem Fio",
 
   "block.spectrum.redstone_calculator": "Calculador Redstone",
   "block.spectrum.redstone_calculator.mode_set": "Definir modo para: ",
@@ -819,7 +819,7 @@
   "block.spectrum.tinted_semi_permeable_glass": "Vidro Fosco Semi-Permeável",
   "block.spectrum.radiant_semi_permeable_glass": "Vidro Radiante Semi-Permeável",
 
-  "block.spectrum.vanilla_semi_permeable_glass": "Vidro Semi-Permeável",
+  "block.spectrum.semi_permeable_glass": "Vidro Semi-Permeável",
   "block.spectrum.amethyst_semi_permeable_glass": "Vidro Semi-Permeável de Ametista",
   "block.spectrum.topaz_semi_permeable_glass": "Vidro Semi-Permeável de Topázio",
   "block.spectrum.citrine_semi_permeable_glass": "Vidro Semi-Permeável de Citrino",

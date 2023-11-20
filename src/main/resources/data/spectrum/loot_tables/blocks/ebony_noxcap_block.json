@@ -10,7 +10,7 @@
 					"children": [
 						{
 							"type": "minecraft:item",
-							"name": "spectrum:ebony_noxcap_cap",
+							"name": "spectrum:ebony_noxcap_block",
 							"conditions": [
 								{
 									"condition": "minecraft:match_tool",

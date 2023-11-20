@@ -13,15 +13,15 @@ import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
 
-public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.EventEntry> {
+public class RedstoneTransceiverBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
 	private static final int RANGE = 16;
 	private final WirelessRedstoneSignalEventQueue listener;
 	private int cachedSignal;
 	private int currentSignal;
 	
-	public RedstoneWirelessBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.REDSTONE_WIRELESS, blockPos, blockState);
+	public RedstoneTransceiverBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntities.REDSTONE_TRANSCEIVER, blockPos, blockState);
 		this.listener = new WirelessRedstoneSignalEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 	}
 	
@@ -29,14 +29,14 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		if (world == null) {
 			return false;
 		}
-		return world.getBlockState(blockPos).get(RedstoneWirelessBlock.SENDER);
+		return world.getBlockState(blockPos).get(RedstoneTransceiverBlock.SENDER);
 	}
 	
-	public static void serverTick(@NotNull World world, BlockPos pos, BlockState state, @NotNull RedstoneWirelessBlockEntity blockEntity) {
+	public static void serverTick(@NotNull World world, BlockPos pos, BlockState state, @NotNull RedstoneTransceiverBlockEntity blockEntity) {
 		if (isSender(world, pos)) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;
-				blockEntity.getWorld().emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
+				blockEntity.getWorld().emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneTransceiverBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
 			}
 		} else {
 			blockEntity.listener.tick(world);
@@ -47,7 +47,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		if (world == null) {
 			return DyeColor.RED;
 		}
-		return world.getBlockState(pos).get(RedstoneWirelessBlock.CHANNEL);
+		return world.getBlockState(pos).get(RedstoneTransceiverBlock.CHANNEL);
 	}
 	
 	@Override
@@ -88,11 +88,11 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 			// trigger a block update in all cases, even when powered does not change. That way connected blocks
 			// can react on the strength change of the block, since we store the power in the block entity, not the block state
 			if (receivedSignal == 0) {
-				world.setBlockState(pos, world.getBlockState(pos).with(RedstoneWirelessBlock.POWERED, false), Block.NOTIFY_LISTENERS);
+				world.setBlockState(pos, world.getBlockState(pos).with(RedstoneTransceiverBlock.POWERED, false), Block.NOTIFY_LISTENERS);
 			} else {
-				world.setBlockState(pos, world.getBlockState(pos).with(RedstoneWirelessBlock.POWERED, true), Block.NOTIFY_LISTENERS);
+				world.setBlockState(pos, world.getBlockState(pos).with(RedstoneTransceiverBlock.POWERED, true), Block.NOTIFY_LISTENERS);
 			}
-			world.updateNeighbors(pos, SpectrumBlocks.REDSTONE_WIRELESS);
+			world.updateNeighbors(pos, SpectrumBlocks.REDSTONE_TRANSCEIVER);
 		}
 	}
 	

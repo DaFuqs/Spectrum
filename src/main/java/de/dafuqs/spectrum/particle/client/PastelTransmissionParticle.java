@@ -132,8 +132,9 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle implemen
         matrixStack.translate(0, -0.2, 0);
 
         SpectrumClient.FORCE_TRANSLUCENT = true;
-        BakedModel bakedModel = itemRenderer.getModel(itemStack, world, null, getMaxAge());
-		itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, new TransparentVertexConsumerProvider(vertexConsumers), light, OverlayTexture.DEFAULT_UV, bakedModel);
+        // TODO - Passing a TransparentVertexConsumerProvider + bakedModel does not render, but this does. Verify
+        //BakedModel bakedModel = itemRenderer.getModel(itemStack, world, null, getMaxAge());
+		itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, light, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumers, world, 0);
 		SpectrumClient.FORCE_TRANSLUCENT = false;
         matrixStack.pop();
     }

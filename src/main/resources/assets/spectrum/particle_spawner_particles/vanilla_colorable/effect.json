@@ -1,5 +1,5 @@
 {
   "particle_type": "minecraft:effect",
-  "gui_texture": "minecraft:particle/effect_5",
+  "gui_texture": "minecraft:effect_5",
   "supports_coloring": true
 }

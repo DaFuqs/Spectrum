@@ -266,13 +266,13 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		@Override
 		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			super.drawBigForeground(screen, drawContext, startX, startY);
-			drawContext.drawItemInSlot(MinecraftClient.getInstance().textRenderer, stack, startX + 10, startY + 10);
+			drawContext.drawItem(stack, startX + 10, startY + 10);
 		}
 		
 		@Override
 		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			super.drawSmallForeground(screen, drawContext, startX, startY);
-			drawContext.drawItemInSlot(MinecraftClient.getInstance().textRenderer, stack, startX + 5, startY + 5);
+			drawContext.drawItem(stack, startX + 5, startY + 5);
 		}
 		
 	}

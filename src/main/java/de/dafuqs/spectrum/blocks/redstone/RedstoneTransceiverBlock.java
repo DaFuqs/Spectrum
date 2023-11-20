@@ -20,12 +20,12 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
 
-public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider, ColorableBlock {
+public class RedstoneTransceiverBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider, ColorableBlock {
 
 	public static final BooleanProperty SENDER = BooleanProperty.of("sender");
 	public static final EnumProperty<DyeColor> CHANNEL = EnumProperty.of("channel", DyeColor.class);
 
-	public RedstoneWirelessBlock(Settings settings) {
+	public RedstoneTransceiverBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(SENDER, true).with(CHANNEL, DyeColor.RED));
 	}
@@ -39,7 +39,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new RedstoneWirelessBlockEntity(pos, state);
+		return new RedstoneTransceiverBlockEntity(pos, state);
 	}
 	
 	@Override
@@ -82,18 +82,18 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	@Override
 	@Nullable
 	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
-		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity) blockEntity).getEventListener() : null;
+		return blockEntity instanceof RedstoneTransceiverBlockEntity ? ((RedstoneTransceiverBlockEntity) blockEntity).getEventListener() : null;
 	}
 	
 	@Override
 	public void updatePowered(World world, BlockPos pos, BlockState state) {
 		int newSignal = world.getReceivedRedstonePower(pos);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof RedstoneWirelessBlockEntity redstoneWirelessBlockEntity) {
+		if (blockEntity instanceof RedstoneTransceiverBlockEntity RedstoneTransceiverBlockEntity) {
 			if (state.get(SENDER)) {
-				int lastSignal = redstoneWirelessBlockEntity.getCurrentSignalStrength();
+				int lastSignal = RedstoneTransceiverBlockEntity.getCurrentSignalStrength();
 				if (newSignal != lastSignal) {
-					redstoneWirelessBlockEntity.setSignalStrength(newSignal);
+					RedstoneTransceiverBlockEntity.setSignalStrength(newSignal);
 				}
 				
 				if (newSignal == 0) {
@@ -111,7 +111,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	@Override
 	protected int getOutputLevel(@NotNull BlockView world, BlockPos pos, BlockState state) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity) blockEntity).getCurrentSignal() : 0;
+		return blockEntity instanceof RedstoneTransceiverBlockEntity ? ((RedstoneTransceiverBlockEntity) blockEntity).getCurrentSignal() : 0;
 	}
 	
 	@Override
@@ -126,7 +126,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntities.REDSTONE_WIRELESS, RedstoneWirelessBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER, RedstoneTransceiverBlockEntity::serverTick);
 		}
 		return null;
 	}

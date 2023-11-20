@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.fractal.api.*;
 import de.dafuqs.fractal.quack.ItemGroupParent;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.gobber.*;
@@ -1253,7 +1254,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.LIZARD_SPAWN_EGG);
 		// TODO - Spawner gone?
 		//entries.add(SpectrumItems.SPAWNER);
-		entries.add(SpectrumBlocks.MEMORY);
+		MemoryItem.appendEntries(entries);
 	}).build();
 	
 	public static final ItemSubGroup ENERGY = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.energy")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {

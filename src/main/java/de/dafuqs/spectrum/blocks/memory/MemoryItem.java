@@ -1,11 +1,17 @@
 package de.dafuqs.spectrum.blocks.memory;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.item.ItemGroup.Entries;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -205,6 +211,21 @@ public class MemoryItem extends BlockItem {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
+		}
+	}
+	
+	public static void appendEntries(Entries entries) {
+		// adding all memories that have spirit instiller recipes
+		Set<NbtCompound> encountered = new HashSet<>();
+		if (SpectrumCommon.minecraftServer != null) {
+			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
+			for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+				ItemStack output = recipe.getOutput(DynamicRegistryManager.of(Registries.REGISTRIES));
+				if (output.isOf(memoryItem) && !encountered.contains(output.getNbt())) {
+					entries.add(output);
+					encountered.add(output.getNbt());
+				}
+			}
 		}
 	}
 	

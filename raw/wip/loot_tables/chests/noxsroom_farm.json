@@ -33,15 +33,15 @@
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:ebony_noxcap_cap"
+          "name": "spectrum:ebony_noxcap_block"
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:slate_noxcap_cap"
+          "name": "spectrum:slate_noxcap_block"
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:ivory_noxcap_cap"
+          "name": "spectrum:ivory_noxcap_block"
         },
         {
           "type": "minecraft:item",

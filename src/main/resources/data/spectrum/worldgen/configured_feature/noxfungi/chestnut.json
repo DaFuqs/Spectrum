@@ -2,7 +2,7 @@
   "type": "spectrum:gilled_fungus",
   "config": {
     "valid_base_block": "spectrum:shimmel",
-    "cap_block": "spectrum:chestnut_noxcap_cap",
+    "cap_block": "spectrum:chestnut_noxcap_block",
     "gills_block": "spectrum:chestnut_noxcap_gills",
     "stem_block": "spectrum:chestnut_noxcap_stem"
   }

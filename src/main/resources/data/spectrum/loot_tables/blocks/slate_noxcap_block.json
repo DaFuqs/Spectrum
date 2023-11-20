@@ -10,7 +10,7 @@
 					"children": [
 						{
 							"type": "minecraft:item",
-							"name": "spectrum:chestnut_noxcap_cap",
+							"name": "spectrum:slate_noxcap_block",
 							"conditions": [
 								{
 									"condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
 						},
 						{
 							"type": "minecraft:item",
-							"name": "spectrum:chestnut_noxshroom",
+							"name": "spectrum:slate_noxshroom",
 							"functions": [
 								{
 									"function": "minecraft:set_count",

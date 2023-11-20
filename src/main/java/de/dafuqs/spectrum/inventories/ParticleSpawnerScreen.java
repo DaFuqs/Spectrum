@@ -204,7 +204,8 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 				break;
 			}
 			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier());
-			drawContext.drawSprite(x + 38 + j * 20 - particleSprite.getX() / 2, y + 31 - particleSprite.getY() / 2, 0, particleSprite.getX(), particleSprite.getY(), particleSprite);
+			SpriteContents contents = particleSprite.getContents();
+			drawContext.drawSprite(x + 38 + j * 20 - contents.getWidth() / 2, y + 31 - contents.getHeight() / 2, 0, contents.getWidth(), contents.getHeight(), particleSprite);
 		}
 	}
 	

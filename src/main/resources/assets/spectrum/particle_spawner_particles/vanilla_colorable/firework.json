@@ -1,5 +1,5 @@
 {
   "particle_type": "minecraft:firework",
-  "gui_texture": "minecraft:particle/spark_2",
+  "gui_texture": "minecraft:spark_2",
   "supports_coloring": true
 }

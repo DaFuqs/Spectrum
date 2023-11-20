@@ -17,6 +17,7 @@
     "CropAndStemBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
+    "DefaultedRegistryMixin",
     "EatBerriesGoalMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",

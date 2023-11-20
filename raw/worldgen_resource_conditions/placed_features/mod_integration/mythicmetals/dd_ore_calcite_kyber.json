@@ -1,9 +1,9 @@
 {
-  "feature": "minecraft:ore_unobtainium",
+  "feature": "mythicmetals:ore_calcite_kyber",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 8
+      "count": 80
     },
     {
       "type": "minecraft:in_square"

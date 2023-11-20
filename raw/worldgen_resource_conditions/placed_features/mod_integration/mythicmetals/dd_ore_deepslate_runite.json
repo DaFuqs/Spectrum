@@ -1,5 +1,5 @@
 {
-  "feature": "minecraft:ore_orichalcum",
+  "feature": "mythicmetals:ore_deepslate_runite",
   "placement": [
     {
       "type": "minecraft:count",

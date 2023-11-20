@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.helpers;
 
 import java.util.*;
 
+// TODO: migrate to net.minecraft.world.tick ?
 public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 
     private final Map<K, Integer> map;

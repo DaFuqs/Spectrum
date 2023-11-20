@@ -1,5 +1,5 @@
 {
-  "feature": "minecraft:ore_mythril",
+  "feature": "mythicmetals:ore_mythril",
   "placement": [
     {
       "type": "minecraft:count",

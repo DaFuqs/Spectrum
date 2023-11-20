@@ -1,5 +1,5 @@
 {
-  "feature": "minecraft:ore_deepslate_runite",
+  "feature": "mythicmetals:ore_adamantite",
   "placement": [
     {
       "type": "minecraft:count",

@@ -1,9 +1,9 @@
 {
-  "feature": "minecraft:ore_calcite_kyber",
+  "feature": "mythicmetals:ore_orichalcum",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 80
+      "count": 8
     },
     {
       "type": "minecraft:in_square"

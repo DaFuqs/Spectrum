@@ -15,8 +15,17 @@ public class DefaultedRegistryMixin {
     @ModifyVariable(at = @At("HEAD"), method = "get(Lnet/minecraft/util/Identifier;)Ljava/lang/Object;", ordinal = 0, argsOnly = true)
     Identifier spectrum$datafixerAtHome(@Nullable Identifier id) {
         if (id != null && id.getNamespace().equals("spectrum")) {
-            if (id.getPath().equals("vanilla_semi_permeable_glass")) {
-                return SpectrumCommon.locate("semi_permeable_glass");
+            switch (id.getPath()) {
+                case "vanilla_semi_permeable_glass":
+                    return SpectrumCommon.locate("semi_permeable_glass");
+                case "slate_noxcap_cap":
+                    return SpectrumCommon.locate("slate_noxcap_block");
+                case "ivory_noxcap_cap":
+                    return SpectrumCommon.locate("ivory_noxcap_block");
+                case "ebony_noxcap_cap":
+                    return SpectrumCommon.locate("ebony_noxcap_block");
+                case "chestnut_noxcap_cap":
+                    return SpectrumCommon.locate("chestnut_noxcap_block");
             }
         }
         return id;

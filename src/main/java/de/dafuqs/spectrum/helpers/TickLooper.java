@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.nbt.*;
 
+// TODO: migrate to net.minecraft.world.tick ?
 public final class TickLooper {
 
     private int currentTick;

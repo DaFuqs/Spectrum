@@ -642,7 +642,7 @@
   "block.spectrum.tinted_semi_permeable_glass": "Halbdurchlässiges gefärbt Glas",
   "block.spectrum.radiant_semi_permeable_glass": "Halbdurchlässiges Strahlenglas",
 
-  "block.spectrum.vanilla_semi_permeable_glass": "Halbdurchlässiges Glas",
+  "block.spectrum.semi_permeable_glass": "Halbdurchlässiges Glas",
   "block.spectrum.amethyst_semi_permeable_glass": "Halbdurchlässiges Amethyst Glas",
   "block.spectrum.topaz_semi_permeable_glass": "Halbdurchlässiges Topas Glas",
   "block.spectrum.citrine_semi_permeable_glass": "Halbdurchlässiges Citrin Glas",

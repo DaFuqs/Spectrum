@@ -198,7 +198,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.STORAGE_NODE);
 		entries.add(SpectrumBlocks.SENDER_NODE);
 		entries.add(SpectrumBlocks.GATHER_NODE);
-		entries.add(SpectrumBlocks.VANILLA_SEMI_PERMEABLE_GLASS);
+		entries.add(SpectrumBlocks.SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS);
 		entries.add(SpectrumBlocks.TOPAZ_SEMI_PERMEABLE_GLASS);

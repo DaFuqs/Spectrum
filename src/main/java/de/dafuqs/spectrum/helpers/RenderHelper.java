@@ -28,7 +28,7 @@ public class RenderHelper {
 		builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
-		BufferRenderer.draw(builder.end());
+		BufferRenderer.drawWithGlobalProgram(builder.end());
 		RenderSystem.disableBlend();
 	}
 	

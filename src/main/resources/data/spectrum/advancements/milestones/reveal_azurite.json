@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "collected_moonstone_shard": {
+    "collected_neolith": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_neolith" }
     }

@@ -1,5 +1,5 @@
 {
-  "name": "Wireless Redstone",
+  "name": "Redstone Transceiver",
   "advancement": "spectrum:create_onyx_shard",
   "icon": "spectrum:redstone_transceiver",
   "category": "spectrum:redstone_category",

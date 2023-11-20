@@ -362,7 +362,7 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_DECOSTONE = new DecoStoneBlock(FabricBlockSettings.copyOf(MOONSTONE_BLOCK).hardness(3.0F).sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER).nonOpaque());
 	
 	// PLAYER GLASS
-	public static final Block VANILLA_SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), Blocks.GLASS, false);
+	public static final Block SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), Blocks.GLASS, false);
 	public static final Block TINTED_SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(Blocks.TINTED_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), Blocks.TINTED_GLASS, true);
 	public static final Block RADIANT_SEMI_PERMEABLE_GLASS = new AlternatePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(SpectrumBlocks.RADIANT_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).luminance((state) -> 12), SpectrumBlocks.RADIANT_GLASS, false);
 	public static final Block TOPAZ_SEMI_PERMEABLE_GLASS = new GemstonePlayerOnlyGlassBlock(FabricBlockSettings.copyOf(SpectrumBlocks.TOPAZ_GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never), BuiltinGemstoneColor.CYAN);
@@ -1764,7 +1764,7 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerPlayerOnlyGlass(FabricItemSettings settings) {
-		registerBlockWithItem("vanilla_semi_permeable_glass", VANILLA_SEMI_PERMEABLE_GLASS, settings, DyeColor.WHITE);
+		registerBlockWithItem("semi_permeable_glass", SEMI_PERMEABLE_GLASS, settings, DyeColor.WHITE);
 		registerBlockWithItem("tinted_semi_permeable_glass", TINTED_SEMI_PERMEABLE_GLASS, settings, DyeColor.BLACK);
 		registerBlockWithItem("radiant_semi_permeable_glass", RADIANT_SEMI_PERMEABLE_GLASS, settings, DyeColor.YELLOW);
 		
@@ -2556,7 +2556,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.VANILLA_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AMETHYST_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CITRINE_SEMI_PERMEABLE_GLASS, RenderLayer.getTranslucent());

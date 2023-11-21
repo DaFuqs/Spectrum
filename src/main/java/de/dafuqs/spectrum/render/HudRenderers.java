@@ -6,7 +6,7 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.util.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -139,7 +139,7 @@ public class HudRenderers {
 			matrixStack.scale(0.5F, 0.5F, 1F);
 
 			var textRenderer = client.textRenderer;
-			drawContext.drawItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2);
+			drawContext.drawItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2); // TODO: make this render 2x the size, so it spans all 2 rows of text
 			matrixStack.scale(2F, 2F, 1F);
 			drawContext.drawText(textRenderer, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF, false);
 			if (amount == 0) {
@@ -159,7 +159,7 @@ public class HudRenderers {
 		HudRenderers.missingInk = missingInk;
 	}
 
-	public static void doNotRenderOverlay() {
+	public static void clearItemStackOverlay() {
 		HudRenderers.amount = -1;
 	}
 

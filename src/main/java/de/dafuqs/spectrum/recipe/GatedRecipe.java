@@ -39,7 +39,7 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	
 	default ItemStack getOutput() {
 		MinecraftClient client = MinecraftClient.getInstance();
-		if (client.world != null) {
+		if (client != null && client.world != null) {
 			return this.getOutput(client.world.getRegistryManager());
 		}
 		return this.getOutput(DynamicRegistryManager.EMPTY);

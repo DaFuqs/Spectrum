@@ -19,6 +19,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -178,15 +179,15 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
-	@SuppressWarnings("resource")
 	private static void registerMoonPhasePredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
 			Entity entity = livingEntity != null ? livingEntity : itemStack.getHolder();
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				if (clientWorld == null && entity.getWorld() instanceof ClientWorld clientWorld1) {
-					clientWorld = clientWorld1;
+				World world = entity.getWorld();
+				if (clientWorld == null && world instanceof ClientWorld) {
+					clientWorld = (ClientWorld) world;
 				}
 				
 				if (clientWorld == null) {

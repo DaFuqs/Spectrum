@@ -7,6 +7,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<JadeVineRootsBlockEntity> {
@@ -16,8 +17,8 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void render(JadeVineRootsBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+    public void render(JadeVineRootsBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
+		World world = entity.getWorld();
 		if (entity.getWorld() != null) {
 			BlockState fenceBlockState = entity.getFenceBlockState();
 			if (fenceBlockState.getRenderType() == BlockRenderType.MODEL && fenceBlockState.getRenderType() != BlockRenderType.INVISIBLE) {
@@ -31,7 +32,7 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 						matrixStack,
 						vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(fenceBlockState)),
 						true,
-						entity.getWorld().random,
+						world.random,
 						fenceBlockState.getRenderingSeed(entity.getPos()),
 						OverlayTexture.DEFAULT_UV
 				);

@@ -22,8 +22,8 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public ActionResult useOnBlock(ItemUsageContext context) {
+    public ActionResult useOnBlock(ItemUsageContext context) {
+		World world = context.getWorld();
 		ActionResult actionResult = super.useOnBlock(context);
 		if (actionResult.isAccepted()) {
 			ItemPlacementContext itemPlacementContext = this.getPlacementContext(new ItemPlacementContext(context));
@@ -31,10 +31,10 @@ public class DecayPlacerItem extends AliasedBlockItem {
 			
 			BlockState placedBlockState = context.getWorld().getBlockState(blockPos);
 			if (placedBlockState.isIn(SpectrumBlockTags.DECAY)) {
-				context.getWorld().scheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
+				context.getWorld().scheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
 			}
 		}
-		if (!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
+		if (!world.isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
 			context.getPlayer().getInventory().offerOrDrop(Items.GLASS_BOTTLE.getDefaultStack());
 		}
 		return actionResult;

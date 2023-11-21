@@ -26,12 +26,12 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageD
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isPageUnlocked() {
+    public boolean isPageUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (!super.isPageUnlocked()) {
 			return false;
 		}
-		PlayerEntity player = MinecraftClient.getInstance().player;
+		PlayerEntity player = client.player;
 		return (recipe1 != null && recipe1.canPlayerCraft(player)) || (recipe2 != null && recipe2.canPlayerCraft(player));
 	}
 	

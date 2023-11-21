@@ -52,8 +52,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			return false;
@@ -61,7 +61,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		if (!world.isSkyVisible(blockPos)) {
 			if (world.isClient) {
 				world.addParticle(SpectrumParticleTypes.RED_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
-				MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+				client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 			return false;
 		}

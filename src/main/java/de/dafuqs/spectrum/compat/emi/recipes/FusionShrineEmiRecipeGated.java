@@ -7,7 +7,6 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 
 import java.util.*;
@@ -15,11 +14,11 @@ import java.util.*;
 public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShrineRecipe> {
 	private final List<OrderedText> texts;
 	
-	@SuppressWarnings("resource")
 	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 138, 60);
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (recipe.getDescription().isPresent()) {
-			texts = MinecraftClient.getInstance().textRenderer.wrapLines(recipe.getDescription().get(), width);
+			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);
 		} else {
 			texts = List.of();
 		}

@@ -29,9 +29,9 @@ public class PotionWorkshopCraftingDisplay extends PotionWorkshopRecipeDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, PotionWorkshopRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 }

@@ -58,10 +58,10 @@ public abstract class ServerPlayerEntityMixin {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$damageReturn(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (!this.getServerWorld().isClient) {
+		ServerWorld world = this.getServerWorld();
+		if (!world.isClient) {
 			// true if the entity got hurt
 			if (cir.getReturnValue() != null && cir.getReturnValue()) {
 				if (source.getAttacker() instanceof LivingEntity livingSource) {
@@ -72,7 +72,6 @@ public abstract class ServerPlayerEntityMixin {
 						DisarmingEnchantment.disarmPlayer(thisPlayer);
 					}
 					
-					ServerWorld world = thisPlayer.getServerWorld();
 					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
 					if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
 						GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());

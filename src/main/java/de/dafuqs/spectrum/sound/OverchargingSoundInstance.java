@@ -10,6 +10,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class OverchargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -57,9 +58,9 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
         }
     }
 	
-	@SuppressWarnings("resource")
 	private void spawnParticles(PlayerEntity player) {
-		Random random = player.getEntityWorld().random;
+		World world = player.getEntityWorld();
+		Random random = world.random;
 		
 		Vec3d pos = player.getPos();
 		player.getEntityWorld().addParticle(SpectrumParticleTypes.WHITE_CRAFTING,

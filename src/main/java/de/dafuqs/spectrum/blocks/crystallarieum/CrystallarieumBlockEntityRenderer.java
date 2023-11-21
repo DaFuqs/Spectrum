@@ -17,8 +17,8 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
 	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		ItemStack inkStorageStack = entity.getStack(CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID);
 		if(!inkStorageStack.isEmpty()) {
 			matrices.push();
@@ -27,7 +27,7 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			double height = 1 + Math.sin((time) / 8.0) / 6.0; // item height
 			
 			matrices.translate(0.5, 1.0 + height, 0.5);
-			matrices.multiply(MinecraftClient.getInstance().getBlockEntityRenderDispatcher().camera.getRotation());
+			matrices.multiply(client.getBlockEntityRenderDispatcher().camera.getRotation());
 			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
 			MinecraftClient.getInstance().getItemRenderer().renderItem(inkStorageStack, ModelTransformationMode.GROUND, light, overlay, matrices, vertexConsumers, entity.getWorld(), 0);
 			matrices.pop();

@@ -54,9 +54,9 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		doEffects(entity, false);
 	}
 	
-	@SuppressWarnings("resource")
 	private void doEffects(LivingEntity entity, boolean always) {
-		if (!entity.getWorld().isClient) {
+		World world = entity.getWorld();
+		if (!world.isClient) {
 			long time = entity.getWorld().getTime();
 			if (entity.isSubmergedIn(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
 				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {
@@ -71,13 +71,13 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private void healLovingAxolotls(@NotNull ServerPlayerEntity entity) {
+		World world = entity.getWorld();
 		List<AxolotlEntity> nearbyAxolotls = entity.getWorld().getEntitiesByType(EntityType.AXOLOTL, Box.of(entity.getPos(), MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE, MAX_AXOLOTL_DISTANCE), LivingEntity::isAlive);
 		for (AxolotlEntity axolotlEntity : nearbyAxolotls) {
 			if (axolotlEntity.getHealth() < axolotlEntity.getMaxHealth() && axolotlEntity.getLovingPlayer() != null && axolotlEntity.getLovingPlayer().equals(entity)) {
 				axolotlEntity.heal(AXOLOTL_HEALING);
-				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
+				entity.playSound(SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) axolotlEntity.getWorld(), axolotlEntity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
 			}
 		}

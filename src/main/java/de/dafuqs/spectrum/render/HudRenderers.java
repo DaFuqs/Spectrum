@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.render;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import net.fabricmc.api.*;
@@ -8,9 +7,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.util.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
@@ -129,8 +126,8 @@ public class HudRenderers {
 		}
 	}
 
-	@SuppressWarnings("resource")
 	private static void renderSelectedStaffStack(DrawContext drawContext) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (amount > -1 && itemStackToRender != null) {
 			// Render the item stack next to the cursor
 			Window window = MinecraftClient.getInstance().getWindow();
@@ -141,7 +138,7 @@ public class HudRenderers {
 			matrixStack.push();
 			matrixStack.scale(0.5F, 0.5F, 1F);
 
-			var textRenderer = MinecraftClient.getInstance().textRenderer;
+			var textRenderer = client.textRenderer;
 			drawContext.drawItem(itemStackToRender, (x + 8) * 2, (y + 8) * 2);
 			matrixStack.scale(2F, 2F, 1F);
 			drawContext.drawText(textRenderer, itemStackToRender.getName(), x + 18, y + 8, 0xFFFFFF, false);

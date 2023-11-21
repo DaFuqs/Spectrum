@@ -8,10 +8,10 @@ import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class PipeBombChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -53,10 +53,10 @@ public class PipeBombChargingSoundInstance extends AbstractSoundInstance impleme
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private void showParticles() {
+		World world = player.getEntityWorld();
 		Vec3d pos = player.getPos();
-		Random random = player.getEntityWorld().random;
+		Random random = world.random;
 		
 		for (int i = 0; i < 2; i++) {
 			player.getEntityWorld().addParticle(

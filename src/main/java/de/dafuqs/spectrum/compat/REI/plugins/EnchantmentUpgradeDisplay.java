@@ -11,7 +11,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -53,13 +52,13 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		if (!AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterRecipe.UNLOCK_IDENTIFIER) || !super.isUnlocked()) {
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (!AdvancementHelper.hasAdvancement(client.player, EnchanterRecipe.UNLOCK_IDENTIFIER) || !super.isUnlocked()) {
 			return false;
 		}
 		if (enchantmentDestinationLevel > enchantment.getMaxLevel()) {
-			return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(client.player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
 		} else {
 			return true;
 		}

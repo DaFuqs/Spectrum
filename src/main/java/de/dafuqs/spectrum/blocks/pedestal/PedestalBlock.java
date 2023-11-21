@@ -71,9 +71,9 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
-		World world = MinecraftClient.getInstance().world;
+    public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		World world = client.world;
 		Random random = world.getRandom();
 		
 		switch (newPedestalRecipeTier) {

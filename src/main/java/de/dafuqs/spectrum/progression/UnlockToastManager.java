@@ -11,7 +11,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -58,8 +57,8 @@ public class UnlockToastManager {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	public static void processAdvancements(Set<Identifier> doneAdvancements) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		int unlockedRecipeCount = 0;
 		HashMap<RecipeType<?>, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
@@ -77,7 +76,7 @@ public class UnlockToastManager {
 					}
 					
 					for (GatedRecipe unlockedRecipe : recipesByType.getValue()) {
-						if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
+						if (unlockedRecipe.canPlayerCraft(client.player)) {
 							if (!newRecipes.contains((unlockedRecipe))) {
 								newRecipes.add(unlockedRecipe);
 								unlockedRecipeCount++;
@@ -122,7 +121,7 @@ public class UnlockToastManager {
 			List<ItemStack> allStacks = new ArrayList<>();
 			for (List<GatedRecipe> recipes : unlockedRecipesByType.values()) {
 				for (GatedRecipe recipe : recipes) {
-					allStacks.add(recipe.getOutput(MinecraftClient.getInstance().world.getRegistryManager()));
+					allStacks.add(recipe.getOutput(client.world.getRegistryManager()));
 				}
 			}
             UnlockedRecipeToast.showLotsOfRecipesToast(MinecraftClient.getInstance(), allStacks);
@@ -192,9 +191,9 @@ public class UnlockToastManager {
 	 *
 	 * @param pedestalRecipeTier The new pedestal recipe tier the player unlocked
 	 */
-	@SuppressWarnings("resource")
 	private static @NotNull List<PedestalRecipe> getRecipesForTierWithAllConditionsMet(PedestalRecipeTier pedestalRecipeTier, List<GatedRecipe> pedestalRecipes) {
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		MinecraftClient client = MinecraftClient.getInstance();
+		ClientPlayerEntity player = client.player;
 		
 		List<PedestalRecipe> alreadyUnlockedRecipesAtNewTier = new ArrayList<>();
 		for (GatedRecipe recipe : pedestalRecipes) {

@@ -24,9 +24,9 @@ public interface InkPowered {
 	Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	static boolean canUseClient() {
-		return canUse(MinecraftClient.getInstance().player);
+    static boolean canUseClient() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return canUse(client.player);
 	}
 	
 	static boolean canUse(PlayerEntity playerEntity) {
@@ -232,4 +232,3 @@ public interface InkPowered {
 	}
 	
 }
-

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -17,10 +18,10 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	private final long lastParticleTick;
 	private boolean done;
 	
-	@SuppressWarnings("resource")
 	public TakeOffBeltSoundInstance() {
 		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS, SoundInstance.createRandom());
-		PlayerEntity player = MinecraftClient.getInstance().player;
+		MinecraftClient client = MinecraftClient.getInstance();
+		PlayerEntity player = client.player;
 		this.repeat = false;
 		this.repeatDelay = 0;
 		this.volume = 0.4F;
@@ -49,9 +50,9 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void tick() {
-		PlayerEntity player = MinecraftClient.getInstance().player;
+    public void tick() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		PlayerEntity player = client.player;
 		if (player == null || !player.isSneaking() || !player.isOnGround()) {
 			this.setDone();
 		} else {
@@ -67,9 +68,9 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private void spawnParticles(PlayerEntity player) {
-		Random random = player.getEntityWorld().random;
+		World world = player.getEntityWorld();
+		Random random = world.random;
 		
 		Vec3d pos = player.getPos();
 		player.getEntityWorld().addParticle(SpectrumParticleTypes.LIGHT_BLUE_CRAFTING,

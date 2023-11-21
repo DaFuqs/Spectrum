@@ -23,7 +23,6 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
 	public void render(ShootingStarEntity shootingStarEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		BlockState blockState = shootingStarEntity.getShootingStarType().getBlock().getDefaultState();
 		
@@ -36,7 +35,7 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 				BlockPos blockpos = BlockPos.ofFloored(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
 				matrixStack.translate(-0.5, 0.0, -0.5);
 				BlockRenderManager blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
-				blockRenderManager.getModelRenderer().render(world, blockRenderManager.getModel(blockState), blockState, blockpos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, shootingStarEntity.getWorld().random, blockState.getRenderingSeed(shootingStarEntity.getBlockPos()), OverlayTexture.DEFAULT_UV);
+				blockRenderManager.getModelRenderer().render(world, blockRenderManager.getModel(blockState), blockState, blockpos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, world.random, blockState.getRenderingSeed(shootingStarEntity.getBlockPos()), OverlayTexture.DEFAULT_UV);
 				matrixStack.pop();
 				super.render(shootingStarEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 			}

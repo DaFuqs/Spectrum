@@ -124,9 +124,9 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
-	@SuppressWarnings("resource")
-	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(MinecraftClient.getInstance().world, stack);
+    public Optional<TooltipData> getTooltipData(ItemStack stack) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(client.world, stack);
 		if (storedRecipe != null) {
 			return Optional.of(new CraftingTabletTooltipData(storedRecipe));
 		} else {

@@ -169,10 +169,10 @@ public class EnderSpliceItem extends Item implements ExtendedEnchantable {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public void interactWithEntityClient() {
+    public void interactWithEntityClient() {
 		// If aiming at an entity: trigger entity interaction
-		HitResult hitResult = MinecraftClient.getInstance().crosshairTarget;
+		MinecraftClient client = MinecraftClient.getInstance();
+		HitResult hitResult = client.crosshairTarget;
 		if (hitResult.getType() == HitResult.Type.ENTITY) {
 			EntityHitResult entityHitResult = (EntityHitResult) hitResult;
 			if (entityHitResult.getEntity() instanceof PlayerEntity playerEntity) {

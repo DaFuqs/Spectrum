@@ -35,15 +35,15 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
-	@SuppressWarnings("resource")
-	public Text getName(int level) {
+    public Text getName(int level) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		MutableText mutableText = Text.translatable(this.getTranslationKey());
 		if (this.isCursed()) {
 			mutableText.formatted(Formatting.RED);
 		} else {
 			mutableText.formatted(Formatting.GRAY);
 		}
-		if (!canEntityUse(MinecraftClient.getInstance().player)) {
+		if (!canEntityUse(client.player)) {
 			mutableText.formatted(Formatting.byCode('k'));
 		}
 		

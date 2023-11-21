@@ -105,10 +105,10 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final int halfTextWidth;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		@SuppressWarnings("resource")
 		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+			MinecraftClient client = MinecraftClient.getInstance();
 			this.text = Text.translatable(text);
-			this.halfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.text) / 2;
+			this.halfTextWidth = client.textRenderer.getWidth(this.text) / 2;
 			this.onClickCallback = onClickCallback;
 		}
 		
@@ -146,14 +146,14 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 			drawContext.drawTexture(BACKGROUND, startX, startY, 48, 0, 28, 28);
 		}
 		
-		@SuppressWarnings("resource")
 		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR, false);
+			MinecraftClient client = MinecraftClient.getInstance();
+			drawContext.drawText(client.textRenderer, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR, false);
 		}
 		
-		@SuppressWarnings("resource")
 		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR, false);
+			MinecraftClient client = MinecraftClient.getInstance();
+			drawContext.drawText(client.textRenderer, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR, false);
 		}
 		
 	}
@@ -233,24 +233,23 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		protected final Text innerText;
 		protected final int innerHalfTextWidth;
 		
-		@SuppressWarnings("resource")
 		private TextGridEntry(Text innerText, @Nullable String text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
+			MinecraftClient client = MinecraftClient.getInstance();
 			this.innerText = innerText;
-			this.innerHalfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.innerText) / 2;
+			this.innerHalfTextWidth = client.textRenderer.getWidth(this.innerText) / 2;
 		}
 		
 		@Override
-		@SuppressWarnings("resource")
-		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-
-			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR, false);
+        void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			MinecraftClient client = MinecraftClient.getInstance();
+			drawContext.drawText(client.textRenderer, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR, false);
 		}
 		
 		@Override
-		@SuppressWarnings("resource")
-		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
-			drawContext.drawText(MinecraftClient.getInstance().textRenderer, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR, false);
+        void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
+			MinecraftClient client = MinecraftClient.getInstance();
+			drawContext.drawText(client.textRenderer, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR, false);
 		}
 	}
 	
@@ -363,9 +362,9 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		GameOptions options = MinecraftClient.getInstance().options;
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		GameOptions options = client.options;
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {
 			current().navigate(GUISelection.LEFT, this);
 			return true;

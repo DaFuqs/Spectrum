@@ -22,7 +22,6 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -148,11 +147,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(client.player)).formatted(Formatting.GRAY));
 		
 		Optional<Block> optionalBlock = getStoredBlock(stack);
 		if (optionalBlock.isPresent()) {

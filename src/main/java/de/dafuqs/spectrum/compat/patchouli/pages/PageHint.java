@@ -8,7 +8,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
@@ -91,8 +90,8 @@ public class PageHint extends BookPage {
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
 	}
 	
-	@SuppressWarnings("resource")
 	private Text calculateTextToRender(Text text) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (revealProgress == 0) {
 			return text;
 		} else if (revealProgress < 0) {
@@ -102,7 +101,7 @@ public class PageHint extends BookPage {
 		// Show a new letter each tick
 		Text calculatedText = Text.literal(text.getString().substring(0, (int) revealProgress) + "$(obf)" + text.getString().substring((int) revealProgress));
 		
-		long currentTime = MinecraftClient.getInstance().world.getTime();
+		long currentTime = client.world.getTime();
 		if (currentTime != lastRevealTick) {
 			lastRevealTick = currentTime;
 			
@@ -121,14 +120,14 @@ public class PageHint extends BookPage {
 		return new Identifier(entry.getId().getNamespace(), entry.getId().getPath() + "_" + this.pageNum);
 	}
 	
-	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	protected void paymentButtonClicked(ButtonWidget button) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (revealProgress > -1) {
 			// has already been paid
 			return;
 		}
-		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory())) {
+		if (client.player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), client.player.getInventory())) {
 			// mark as complete in book data
 			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);
 			data.completedManualQuests.add(getEntryId());
@@ -139,8 +138,8 @@ public class PageHint extends BookPage {
 			
 			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
 			revealProgress = 1;
-			lastRevealTick = MinecraftClient.getInstance().world.getTime();
-			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			lastRevealTick = client.world.getTime();
+			client.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 	}
 	

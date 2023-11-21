@@ -57,11 +57,11 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(client.player)).formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.crouch").formatted(Formatting.GRAY));
 	}
 	

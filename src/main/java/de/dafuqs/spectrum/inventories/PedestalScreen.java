@@ -94,11 +94,11 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (mouseOverInformationIcon((int) mouseX, (int) mouseY)) {
 			IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant, MinecraftClient.getInstance().player));
+			IMultiblock multiblockToDisplay = PatchouliAPI.get().getMultiblock(SpectrumMultiblocks.getDisplayStructureIdentifierForTier(maxPedestalRecipeTierForVariant, client.player));
 			if (currentMultiBlock == multiblockToDisplay) {
 				PatchouliAPI.get().clearMultiblock();
 			} else {

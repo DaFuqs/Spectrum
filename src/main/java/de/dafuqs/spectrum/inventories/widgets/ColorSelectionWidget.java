@@ -63,11 +63,11 @@ public class ColorSelectionWidget extends ClickableWidget {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {
-			MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			onChanged(null);
 		}
 		
@@ -82,10 +82,10 @@ public class ColorSelectionWidget extends ClickableWidget {
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			if (this.colorPicker.getSelectedColor() != newColor) {
 				if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-					MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					onChanged(newColor);
 				} else {
-					MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					onChanged(null);
 				}
 			}
@@ -125,9 +125,10 @@ public class ColorSelectionWidget extends ClickableWidget {
 	}
 	
 	public void drawMouseoverTooltip(DrawContext drawContext, int mouseX, int mouseY) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (overUnselection) {
-			drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
+			drawContext.drawTooltip(client.textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			
 			int xOffset = MathHelper.floor(mouseX) - this.getX();
@@ -139,9 +140,9 @@ public class ColorSelectionWidget extends ClickableWidget {
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			
 			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-				drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(newColor.getName()), Optional.empty(), getX(), getY());
+				drawContext.drawTooltip(client.textRenderer, List.of(newColor.getName()), Optional.empty(), getX(), getY());
 			} else {
-				drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
+				drawContext.drawTooltip(client.textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}
 		}
 	}

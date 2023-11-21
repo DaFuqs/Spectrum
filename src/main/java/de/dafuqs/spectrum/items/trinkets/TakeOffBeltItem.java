@@ -54,11 +54,11 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnch
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		World world = entity.getWorld();
 		super.tick(stack, slot, entity);
 		
-		if (!entity.getWorld().isClient) {
+		if (!world.isClient) {
 			if (entity.isSneaking() && entity.isOnGround()) {
 				if (sneakingTimes.containsKey(entity)) {
 					long sneakTicks = entity.getWorld().getTime() - sneakingTimes.get(entity);

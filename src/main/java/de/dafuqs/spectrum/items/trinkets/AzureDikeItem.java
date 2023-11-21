@@ -6,6 +6,7 @@ import dev.emi.trinkets.api.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -19,9 +20,9 @@ public interface AzureDikeItem {
 	
 	float rechargeBonusAfterDamageTicks(ItemStack stack);
 	
-	@SuppressWarnings("resource")
 	default void recalculate(LivingEntity livingEntity) {
-		if (!livingEntity.getWorld().isClient) {
+		World world = livingEntity.getWorld();
+		if (!world.isClient) {
 			AzureDikeComponent azureDikeComponent = AzureDikeProvider.AZURE_DIKE_COMPONENT.get(livingEntity);
 			
 			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(livingEntity);

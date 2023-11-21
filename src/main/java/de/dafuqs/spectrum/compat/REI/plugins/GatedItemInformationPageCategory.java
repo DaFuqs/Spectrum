@@ -15,8 +15,8 @@ import java.util.*;
 public abstract class GatedItemInformationPageCategory extends GatedDisplayCategory<GatedItemInformationDisplay> {
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull GatedItemInformationDisplay display) {
+    public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull GatedItemInformationDisplay display) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		Item item = display.getItem();
 		widgets.add(Widgets.createSlot(new Point(startPoint.x - 5, startPoint.y + 3)).entries(display.getInputEntries().get(0)).markInput());
 		widgets.add(Widgets.createLabel(new Point(startPoint.x + 15, startPoint.y + 7), item.getName()).leftAligned().color(0x000000).noShadow());
@@ -24,7 +24,7 @@ public abstract class GatedItemInformationPageCategory extends GatedDisplayCateg
 		Rectangle rectangle = new Rectangle(bounds.getCenterX() - (bounds.width / 2), bounds.y + 30, bounds.width, bounds.height - 30);
 		widgets.add(Widgets.createSlotBase(rectangle));
 		
-		List<OrderedText> descriptionLines = MinecraftClient.getInstance().textRenderer.wrapLines(display.getDescription(), bounds.width - 11);
+		List<OrderedText> descriptionLines = client.textRenderer.wrapLines(display.getDescription(), bounds.width - 11);
 		widgets.add(new ScrollableTextWidget(rectangle, descriptionLines));
 		
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 112, startPoint.y + 70)).entry(getBackgroundEntryStack()).disableBackground().notInteractable().disableHighlight().disableTooltips());

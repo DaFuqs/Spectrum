@@ -8,6 +8,7 @@ import net.minecraft.particle.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -49,10 +50,10 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private void showParticles() {
+		World world = player.getEntityWorld();
 		Vec3d pos = player.getPos();
-		Random random = player.getEntityWorld().random;
+		Random random = world.random;
 		
 		for (int i = 0; i < 10; i++) {
 			player.getEntityWorld().addParticle(

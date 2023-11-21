@@ -259,14 +259,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return pedestalBlockEntity.pedestalVariant;
 	}
 	
-	@SuppressWarnings("resource")
 	public static void spawnOutputAsItemEntity(World world, BlockPos blockPos, @NotNull PedestalBlockEntity pedestalBlockEntity, ItemStack outputItemStack) {
 		// spawn crafting output
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, pedestalBlockEntity.pos, outputItemStack, outputItemStack.getCount(), new Vec3d(0, 0.1, 0));
 		pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
 		
 		// spawn XP
-		MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.pos, pedestalBlockEntity.storedXP, pedestalBlockEntity.getWorld().random);
+		MultiblockCrafter.spawnExperience(world, pedestalBlockEntity.pos, pedestalBlockEntity.storedXP, world.random);
 		pedestalBlockEntity.storedXP = 0;
 		
 		// only triggered on server side. Therefore, has to be sent to client via S2C packet
@@ -289,8 +288,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public static void playCraftingFinishedSoundEvent(PedestalBlockEntity pedestalBlockEntity, Recipe<?> craftingRecipe) {
+		World world = pedestalBlockEntity.getWorld();
 		if (craftingRecipe instanceof PedestalRecipe pedestalRecipe) {
-			pedestalBlockEntity.playSound(pedestalRecipe.getSoundEvent(pedestalBlockEntity.getWorld().random));
+			pedestalBlockEntity.playSound(pedestalRecipe.getSoundEvent(world.random));
 		} else {
 			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_GENERIC);
 		}

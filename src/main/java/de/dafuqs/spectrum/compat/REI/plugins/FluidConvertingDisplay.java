@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 
 public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
@@ -23,9 +22,9 @@ public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, getUnlockIdentifier()) && super.isUnlocked();
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, getUnlockIdentifier()) && super.isUnlocked();
 	}
 	
 	public abstract Identifier getUnlockIdentifier();

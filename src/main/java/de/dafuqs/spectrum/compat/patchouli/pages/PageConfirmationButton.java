@@ -6,7 +6,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -39,9 +38,9 @@ public class PageConfirmationButton extends PageWithText {
 		this.confirmationString = confirmation.asString();
 	}
 	
-	@SuppressWarnings("resource")
 	public boolean isConfirmed() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, checkedAdvancementIdentifier);
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, checkedAdvancementIdentifier);
 	}
 	
 	@Override

@@ -4,7 +4,6 @@ import com.google.gson.annotations.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -35,22 +34,24 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		this.recipeType = recipeType;
 	}
 	
-	@SuppressWarnings({"resource", "unchecked"})
+	@SuppressWarnings({"unchecked"})
 	private @Nullable T getRecipe(Identifier id) {
-		if (MinecraftClient.getInstance().world == null) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (client.world == null) {
 			return null;
 		}
-		RecipeManager manager = MinecraftClient.getInstance().world.getRecipeManager();
+		RecipeManager manager = client.world.getRecipeManager();
 		return (T) manager.get(id).filter(recipe -> recipe.getType() == recipeType).orElse(null);
 	}
 	
 	protected T loadRecipe(BookContentsBuilder builder, BookEntry entry, Identifier identifier) {
-		if (identifier == null || MinecraftClient.getInstance().world == null) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (identifier == null || client.world == null) {
 			return null;
 		}
 		T recipe = getRecipe(identifier);
 		if (recipe != null) {
-			entry.addRelevantStack(builder, recipe.getOutput(MinecraftClient.getInstance().world.getRegistryManager()), pageNum);
+			entry.addRelevantStack(builder, recipe.getOutput(client.world.getRegistryManager()), pageNum);
 			return recipe;
 		}
 		PatchouliAPI.LOGGER.warn("Recipe {} (of type {}) not found", identifier, Registries.RECIPE_TYPE.getId(recipeType));
@@ -58,12 +59,12 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isPageUnlocked() {
+    public boolean isPageUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (!super.isPageUnlocked() || recipe == null) {
 			return false;
 		}
-		return recipe.canPlayerCraft(MinecraftClient.getInstance().player);
+		return recipe.canPlayerCraft(client.player);
 	}
 	
 	@Override

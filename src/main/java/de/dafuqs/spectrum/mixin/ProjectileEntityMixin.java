@@ -15,6 +15,8 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.World;
+
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -27,13 +29,13 @@ public abstract class ProjectileEntityMixin {
 	@Shadow
 	public abstract void setVelocity(double x, double y, double z, float speed, float divergence);
 	
-	@SuppressWarnings("resource")
 	@Inject(at = @At("HEAD"), method = "onEntityHit(Lnet/minecraft/util/hit/EntityHitResult;)V", cancellable = true)
 	protected void onProjectileHit(EntityHitResult entityHitResult, CallbackInfo ci) {
 		// if the target has a Puff circlet equipped
 		// protect it from this projectile
 		ProjectileEntity thisEntity = (ProjectileEntity) (Object) this;
-		if (!thisEntity.getWorld().isClient) {
+		World world = thisEntity.getWorld();
+		if (!world.isClient) {
 			Entity entity = entityHitResult.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
 				boolean protect = false;
@@ -58,16 +60,16 @@ public abstract class ProjectileEntityMixin {
 				if (protect) {
 					this.setVelocity(0, 0, 0, 0, 0);
 					
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
 							SpectrumParticleTypes.WHITE_CRAFTING, 6,
 							new Vec3d(0, 0, 0),
 							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, thisEntity.getPos(),
 							SpectrumParticleTypes.BLUE_CRAFTING, 6,
 							new Vec3d(0, 0, 0),
 							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
 					
-					thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					world.playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					ci.cancel();
 				}
 				

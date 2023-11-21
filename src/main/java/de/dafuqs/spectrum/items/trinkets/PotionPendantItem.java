@@ -52,19 +52,19 @@ public class PotionPendantItem extends SpectrumTrinketItem implements InkPowered
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		World world = entity.getWorld();
 		super.onEquip(stack, slot, entity);
-		if (!entity.getWorld().isClient && entity instanceof PlayerEntity player) {
+		if (!world.isClient && entity instanceof PlayerEntity player) {
 			grantEffects(stack, player);
 		}
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		World world = entity.getWorld();
 		super.tick(stack, slot, entity);
-		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {
+		if (!world.isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {
 			grantEffects(stack, player);
 		}
 	}

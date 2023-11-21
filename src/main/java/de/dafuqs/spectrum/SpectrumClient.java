@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -37,9 +36,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
 import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -47,9 +44,6 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import org.jetbrains.annotations.*;
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
-import org.joml.*;
 import oshi.util.tuples.*;
 
 import java.lang.Math;
@@ -65,8 +59,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
-	@SuppressWarnings("resource")
-	public void onInitializeClient() {
+    public void onInitializeClient() {
 		logInfo("Starting Client Startup");
 		
 		logInfo("Registering Model Layers...");
@@ -199,11 +192,12 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	}
 	
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
-		ClientWorld world = MinecraftClient.getInstance().world;
+		MinecraftClient client = MinecraftClient.getInstance();
+		ClientWorld world = client.world;
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
 
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		ClientPlayerEntity player = client.player;
 
         if (player == null) return false;
 
@@ -252,11 +246,12 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	}
 
 	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
-		ClientWorld world = MinecraftClient.getInstance().world;
+		MinecraftClient client = MinecraftClient.getInstance();
+		ClientWorld world = client.world;
 		BlockPos lookingAtPos = hitResult.blockPos();
 		BlockState lookingAtState = hitResult.blockState();
 
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		ClientPlayerEntity player = client.player;
 
         if (player == null) return false;
 

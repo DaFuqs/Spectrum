@@ -46,14 +46,14 @@ public class InkSpellEffects {
 			}
 			
 			@Override
-			@SuppressWarnings("resource")
-			void affectEntity(Entity entity, Vec3d origin, float potency) {
+            void affectEntity(Entity entity, Vec3d origin, float potency) {
 				// heal living entities
+				World world = entity.getWorld();
 				if (entity instanceof LivingEntity livingEntity && (livingEntity.getHealth() < livingEntity.getMaxHealth() || livingEntity.isUndead())) {
 					float amount = potency - (float) entity.getPos().distanceTo(origin);
 					if (amount >= 1) {
 						livingEntity.heal(amount);
-						entity.getWorld().playSound(null, entity.getBlockPos(), SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
+						entity.getWorld().playSound(null, entity.getBlockPos(), SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
 						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
 					}
 				}
@@ -90,14 +90,14 @@ public class InkSpellEffects {
 			}
 			
 			@Override
-			@SuppressWarnings("resource")
-			void affectEntity(Entity entity, Vec3d origin, float potency) {
+            void affectEntity(Entity entity, Vec3d origin, float potency) {
+				World world = entity.getWorld();
 				// set entities on fire
 				if (!entity.isFireImmune()) {
 					int duration = (int) (10 * potency) - (int) (5 * entity.getPos().distanceTo(origin));
 					if (duration >= 1) {
 						entity.setFireTicks(duration);
-						entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
+						entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
 						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), ParticleTypes.ASH, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
 					}
 				}

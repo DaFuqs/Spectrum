@@ -8,7 +8,6 @@ import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.collection.*;
 
 import java.util.*;
@@ -63,9 +62,9 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return this.pedestalRecipeTier.hasUnlocked(MinecraftClient.getInstance().player) && super.isUnlocked();
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return this.pedestalRecipeTier.hasUnlocked(client.player) && super.isUnlocked();
 	}
 	
 	public PedestalRecipeTier getTier() {

@@ -7,7 +7,6 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import org.jetbrains.annotations.*;
 
@@ -38,9 +37,9 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, FusionShrineRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, FusionShrineRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 	public Optional<Text> getDescription() {

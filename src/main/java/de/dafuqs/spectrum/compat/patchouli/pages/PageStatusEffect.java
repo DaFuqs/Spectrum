@@ -31,12 +31,9 @@ public class PageStatusEffect extends PageWithText {
 	
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
-		RenderSystem.setShaderTexture(0, statusEffectSprite.getContents().getId());
 		RenderSystem.enableBlend();
 		drawContext.drawSprite(49, 14, 0, 18, 18, statusEffectSprite);
-		RenderSystem.setShaderTexture(0, book.craftingTexture);
-		drawContext.drawTexture(statusEffectSprite.getContents().getId(), GuiBook.PAGE_WIDTH / 2 - 66 / 2, 10, 0, 128 - 26, 68, 28, 128, 256);
-		
+
 		Text toDraw;
 		if (title != null && !title.isEmpty()) {
 			toDraw = i18nText(title);

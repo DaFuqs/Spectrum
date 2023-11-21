@@ -53,22 +53,23 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		World world = this.getWorld();
 		ItemStack handStack = player.getStackInHand(hand);
 
 		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getColor()) {
-			this.getWorld().playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			if (!this.getWorld().isClient) {
+			world.playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			if (!world.isClient) {
 				setColor(dyeItem.getColor());
 				handStack.decrement(1);
 			}
-			return ActionResult.success(player.getWorld().isClient);
+			return ActionResult.success(world.isClient);
 		} else if (handStack.isOf(Items.BUCKET) && !this.isBaby()) {
 			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
 			ItemStack itemStack2 = ItemUsage.exchangeStack(handStack, player, Items.MILK_BUCKET.getDefaultStack());
 			player.setStackInHand(hand, itemStack2);
-			return ActionResult.success(this.getWorld().isClient());
+			return ActionResult.success(world.isClient());
 		} else if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-			if (!this.getWorld().isClient() && this.isShearable()) {
+			if (!world.isClient() && this.isShearable()) {
 				this.sheared(SoundCategory.PLAYERS);
 				this.emitGameEvent(GameEvent.SHEAR, player);
 				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));

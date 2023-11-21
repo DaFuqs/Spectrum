@@ -36,10 +36,11 @@ public class BloodstoneGlassAmpouleItem extends BaseGlassAmpouleItem {
 	
 	@Override
 	public boolean trigger(ItemStack stack, LivingEntity attacker, @Nullable LivingEntity target) {
+		World world = attacker.getWorld();
 		if (target == null) {
 			return false;
 		}
-		if (!attacker.getWorld().isClient) {
+		if (!world.isClient) {
 			LightSpearEntity.summonBarrage(attacker.getWorld(), attacker, target);
 		}
 		return true;

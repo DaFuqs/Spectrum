@@ -53,13 +53,14 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
+		World world = entity.getWorld();
 		if (entity instanceof PlayerEntity) {
 			if (entity instanceof ServerPlayerEntity player) {
 				StatusEffectInstance instance = entity.getStatusEffect(SpectrumStatusEffects.DIVINITY);
 				if (instance != null && !instance.isAmbient()) {
 					SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
 				}
-			} else if (entity.getWorld().isClient) {
+			} else if (world.isClient) {
 				FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
 			}
 		}
@@ -68,7 +69,8 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		if (entity.getWorld().isClient) {
+		World world = entity.getWorld();
+		if (world.isClient) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
 		}
 	}

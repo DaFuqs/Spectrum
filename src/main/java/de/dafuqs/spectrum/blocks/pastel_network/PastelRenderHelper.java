@@ -15,6 +15,7 @@ public class PastelRenderHelper {
     public static final float BEAM_WIDTH = 0.05F;
 	
 	public static void renderLineTo(final MatrixStack matrices, final VertexConsumerProvider vertexConsumers, final float[] color, final BlockPos thisPos, final BlockPos pos) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		matrices.push();
 		
 		final Vec3d vec = Vec3d.ofCenter(pos);
@@ -23,7 +24,7 @@ public class PastelRenderHelper {
 		final float dist = (float) vec.length();
 		final Vec3d axis = delta.multiply(-1 / dist);
 		
-		final Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
+		final Camera camera = client.gameRenderer.getCamera();
 		final double[] billBoard = billboard((vec.x) * 1, (vec.y) * 1, (vec.z) * 1, camera.getPos().x, camera.getPos().y, camera.getPos().z, axis.x, axis.y, axis.z);
 		
 		final Matrix4f model = matrices.peek().getPositionMatrix();

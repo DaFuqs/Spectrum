@@ -289,8 +289,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F);
-				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.5F + enchanterBlockEntity.getWorld().random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+				world.playSound(null, enchanterBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
 				EnchanterBlock.scatterContents(world, blockPos);
 			}
 			return false;
@@ -447,7 +447,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			int resultAmountAfterEfficiencyMod = 1;
 			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
 				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
-				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.getWorld().random);
+				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, world.random);
 			}
 
 			if (resultAmountAfterEfficiencyMod > 0) {

@@ -393,7 +393,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		
 		cinderhearthBlockEntity.structure = CinderhearthBlock.verifyStructure(world, blockPos, null);
 		if (cinderhearthBlockEntity.structure == CinderHearthStructureType.NONE) {
-			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.getWorld().random.nextFloat() * 0.2F);
+			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 			return false;
 		}
 

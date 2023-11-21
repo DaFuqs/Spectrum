@@ -81,7 +81,8 @@ public class UnlockedRecipeToast implements Toast {
 	public Toast.Visibility draw(DrawContext drawContext, @NotNull ToastManager manager, long startTime) {
 		drawContext.drawTexture(TEXTURE, 0, 0, 0, 32, this.getWidth(), this.getHeight());
 		
-		TextRenderer textRenderer = manager.getClient().textRenderer;
+		MinecraftClient client = manager.getClient();
+		TextRenderer textRenderer = client.textRenderer;
 		drawContext.drawText(textRenderer, title, 30, 7, RenderHelper.GREEN_COLOR, false);
 		drawContext.drawText(textRenderer, text, 30, 18, 0, false);
 		

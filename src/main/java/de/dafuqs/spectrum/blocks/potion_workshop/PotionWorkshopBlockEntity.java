@@ -222,16 +222,18 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
+		World world = potionWorkshopBlockEntity.getWorld();
+		
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_POTION_COUNT_ON_BREWING + potionMod.yield, potionWorkshopBlockEntity.getWorld().random);
+		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_POTION_COUNT_ON_BREWING + potionMod.yield, world.random);
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// calculate outputs
 		List<ItemStack> results = new ArrayList<>();
 		for (int i = 0; i < brewedAmount; i++) {
-			results.add(brewingRecipe.getPotion(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.getWorld().random));
+			results.add(brewingRecipe.getPotion(potionWorkshopBlockEntity.getStack(BASE_INPUT_SLOT_ID), potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, world.random));
 		}
 
 		// consume ingredients
@@ -259,10 +261,12 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static void createTippedArrows(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
+		World world = potionWorkshopBlockEntity.getWorld();
+		
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 		
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_ARROW_COUNT_ON_BREWING + potionMod.yield * 4, potionWorkshopBlockEntity.getWorld().random);
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_ARROW_COUNT_ON_BREWING + potionMod.yield * 4, world.random);
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// calculate outputs
@@ -308,12 +312,14 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 	}
 	
-	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
+	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {	
+		World world = potionWorkshopBlockEntity.getWorld();
+		
 		PotionMod potionMod = new PotionMod();
 		for (int slot : REAGENT_SLOTS) {
 			ItemStack slotStack = potionWorkshopBlockEntity.getStack(slot);
 			if (!slotStack.isEmpty()) {
-				PotionWorkshopReactingRecipe.combine(potionMod, slotStack, potionWorkshopBlockEntity.getWorld().random);
+				PotionWorkshopReactingRecipe.combine(potionMod, slotStack, world.random);
 			}
 		}
 		return potionMod;

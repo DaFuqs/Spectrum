@@ -142,18 +142,20 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 
 	@Override
 	public void tickMovement() {
+		World world = this.getWorld();
 		super.tickMovement();
-		if (!this.getWorld().isClient && this.ticksLeftToFindPOI > 0) {
+		if (!world.isClient && this.ticksLeftToFindPOI > 0) {
 			--this.ticksLeftToFindPOI;
 		}
 	}
 
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		World world = this.getWorld();
 		ItemStack itemStack = player.getStackInHand(hand);
 		if (this.isBreedingItem(itemStack)) {
 			int i = this.getBreedingAge();
-			if (!this.getWorld().isClient && i == 0 && this.canEat() && this.random.nextInt(5) == 0) {
+			if (!world.isClient && i == 0 && this.canEat() && this.random.nextInt(5) == 0) {
 				// yes, this also overrides the existing owner
 				// there is no god besides the new god
 				this.eat(player, hand, itemStack);
@@ -165,10 +167,10 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 			if (this.isBaby()) {
 				this.eat(player, hand, itemStack);
 				this.growUp(toGrowUpAge(-i), true);
-				return ActionResult.success(this.getWorld().isClient);
+				return ActionResult.success(world.isClient);
 			}
 
-			if (this.getWorld().isClient) {
+			if (world.isClient) {
 				return ActionResult.CONSUME;
 			}
 		}
@@ -247,19 +249,23 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		}
 		return child;
 	}
-private InkColor getChildColor(LizardEntity firstParent, LizardEntity secondParent) {
+	
+	private InkColor getChildColor(LizardEntity firstParent, LizardEntity secondParent) {
+		World world = firstParent.getWorld();
 		InkColor color1 = firstParent.getColor();
 		InkColor color2 = secondParent.getColor();
 
-		return InkColor.getRandomMixedColor(color1, color2, firstParent.getWorld().random);
+		return InkColor.getRandomMixedColor(color1, color2, world.random);
 	}
 
 	private LizardFrillVariant getChildFrills(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.getWorld().random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
+		World world = this.getWorld();
+		return world.random.nextBoolean() ? firstParent.getFrills() : secondParent.getFrills();
 	}
 
 	private LizardHornVariant getChildHorns(LizardEntity firstParent, LizardEntity secondParent) {
-		return this.getWorld().random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
+		World world = this.getWorld();
+		return world.random.nextBoolean() ? firstParent.getHorns() : secondParent.getHorns();
 	}
 
 	// PackEntity

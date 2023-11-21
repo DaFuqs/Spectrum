@@ -136,7 +136,8 @@ public class ShootingStarEntity extends Entity {
 		double previousYVelocity = this.getVelocity().getY();
 		double previousZVelocity = this.getVelocity().getZ();
 		
-		if (this.getWorld().isClient) {
+		World world = this.getWorld();
+		if (world.isClient) {
 			this.noClip = false;
 		} else {
 			this.noClip = !this.getWorld().isSpaceEmpty(this, this.getBoundingBox().contract(1.0E-7D));
@@ -190,14 +191,14 @@ public class ShootingStarEntity extends Entity {
 			}
 		});
 		
-		if (this.getWorld().isClient) {
+		if (world.isClient) {
 			if (!playerPlaced && !hardened) {
 				if (this.isOnGround()) {
-					if (this.getWorld().random.nextInt(10) == 0) {
+					if (world.random.nextInt(10) == 0) {
 						playGroundParticles();
 					}
 				} else {
-					if (this.getWorld().random.nextBoolean()) {
+					if (world.random.nextBoolean()) {
 						playFallingParticles();
 					}
 				}

@@ -36,7 +36,8 @@ public abstract class GatedSpectrumDisplay extends BasicDisplay implements Gated
 
 	@Override
 	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, this.requiredAdvancementIdentifier);
 	}
 
 	@Override

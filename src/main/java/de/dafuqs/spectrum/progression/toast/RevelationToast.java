@@ -39,7 +39,8 @@ public class RevelationToast implements Toast {
 		Text title = Text.translatable("spectrum.toast.revelation.title");
 		Text text = Text.translatable("spectrum.toast.revelation.text");
 		
-		TextRenderer textRenderer = manager.getClient().textRenderer;
+		MinecraftClient client = manager.getClient();
+		TextRenderer textRenderer = client.textRenderer;
 		drawContext.drawTexture(TEXTURE, 0, 0, 0, 0, this.getWidth(), this.getHeight());
 		
 		List<OrderedText> wrappedText = textRenderer.wrapLines(text, 125);

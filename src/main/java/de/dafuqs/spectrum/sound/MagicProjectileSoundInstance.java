@@ -43,7 +43,8 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 
     @Environment(EnvType.CLIENT)
     public static void startSoundInstance(MagicProjectileEntity inkProjectile) {
-        MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(MinecraftClient.getInstance().world.getRegistryKey(), inkProjectile);
+		MinecraftClient client = MinecraftClient.getInstance();
+        MagicProjectileSoundInstance newInstance = new MagicProjectileSoundInstance(client.world.getRegistryKey(), inkProjectile);
         MinecraftClient.getInstance().getSoundManager().play(newInstance);
     }
 	
@@ -59,13 +60,14 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
 	
 	@Override
 	public void tick() {
+		MinecraftClient client = MinecraftClient.getInstance();
         this.ticksPlayed++;
 
         this.x = this.projectile.getX();
         this.y = this.projectile.getY();
         this.z = this.projectile.getZ();
 
-        this.volume = Math.max(0.0F, 0.7F - Math.max(0.0F, projectile.getBlockPos().getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 128F - 0.2F));
+        this.volume = Math.max(0.0F, 0.7F - Math.max(0.0F, projectile.getBlockPos().getManhattanDistance(client.player.getBlockPos()) / 128F - 0.2F));
 
         if (ticksPlayed > maxDurationTicks
                 || !Objects.equals(this.worldKey, MinecraftClient.getInstance().world.getRegistryKey())
@@ -76,12 +78,13 @@ public class MagicProjectileSoundInstance extends AbstractSoundInstance implemen
     }
 	
 	protected final void setDone() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		this.ticksPlayed = this.maxDurationTicks;
 		this.done = true;
 		this.repeat = false;
 
 		if (projectile.isRemoved() && !playedExplosion) {
-			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 1.1F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
+			client.player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 1.1F + client.world.random.nextFloat() * 0.2F);
             spawnImpactParticles(this.projectile);
 			playedExplosion = true;
 		}

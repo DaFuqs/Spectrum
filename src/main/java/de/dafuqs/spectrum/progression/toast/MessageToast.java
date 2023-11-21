@@ -43,7 +43,8 @@ public class MessageToast implements Toast {
 	public Toast.Visibility draw(DrawContext drawContext, ToastManager manager, long startTime) {
 		drawContext.drawTexture(TEXTURE, 0, 0, 0, 0, this.getWidth(), this.getHeight());
 		
-		TextRenderer textRenderer = manager.getClient().textRenderer;
+		MinecraftClient client = manager.getClient();
+		TextRenderer textRenderer = client.textRenderer;
 		List<OrderedText> wrappedText = textRenderer.wrapLines(this.messageText, 125);
 		List<OrderedText> wrappedTitle = textRenderer.wrapLines(this.titleText, 125);
 		int l;

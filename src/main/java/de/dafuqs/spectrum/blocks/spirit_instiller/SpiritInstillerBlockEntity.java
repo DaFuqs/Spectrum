@@ -105,7 +105,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			spiritInstillerBlockEntity.craftingTime++;
 			
 			if (spiritInstillerBlockEntity.craftingTime == 1) {
-				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) spiritInstillerBlockEntity.getWorld(), spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
 			} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.01
 					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.25)
 					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.5)
@@ -198,7 +198,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		boolean canCraft = true;
 		if (!playerCanCraft || !structureComplete) {
 			if (!structureComplete) {
-				world.playSound(null, spiritInstillerBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + spiritInstillerBlockEntity.getWorld().random.nextFloat() * 0.2F, 0.9F + spiritInstillerBlockEntity.getWorld().random.nextFloat() * 0.2F);
+				world.playSound(null, spiritInstillerBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 			}
 			
 			canCraft = false;
@@ -240,6 +240,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		World world = spiritInstillerBlockEntity.getWorld();
 		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
 		
 		double efficiencyModifier = 1.0;
@@ -247,11 +248,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 		}
 		
-		BlockEntity leftBowlBlockEntity = spiritInstillerBlockEntity.getWorld().getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false));
-		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.getWorld().getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
+		BlockEntity leftBowlBlockEntity = world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false));
+		BlockEntity rightBowlBlockEntity = world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
 			// center ingredient
-			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.getWorld().random);
+			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				spiritInstillerBlockEntity.getStack(0).decrement(decreasedAmountAfterEfficiencyMod);
 			}
@@ -259,8 +260,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			List<IngredientStack> ingredientStacks = recipe.getIngredientStacks();
 			
 			// first side ingredient
-			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.getWorld().random);
-			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.getWorld().random);
+			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, world.random);
+			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, world.random);
 			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getStack(0));
 			Vec3d particlePos = new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1, spiritInstillerBlockEntity.pos.getZ() + 0.5);
 			if (leftIsFirstIngredient) {
@@ -282,8 +283,9 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		spiritInstillerBlockEntity.getWorld().playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) spiritInstillerBlockEntity.getWorld(),
+		World world = spiritInstillerBlockEntity.getWorld();
+		world.playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
 				new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5D, spiritInstillerBlockEntity.pos.getY() + 0.5, spiritInstillerBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIGHT_BLUE_CRAFTING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
 				new Vec3d(0.1D, -0.1D, 0.1D));

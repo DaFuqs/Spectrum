@@ -119,7 +119,8 @@ public class SpectrumBossEntity extends PathAwareEntity {
 		// grant the kill to all players close by players
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
-		if (!this.getWorld().isClient) {
+		World world = this.getWorld();
+		if (!world.isClient) {
 			for (PlayerEntity closeByPlayer : this.getWorld().getEntitiesByType(EntityType.PLAYER, getBoundingBox().expand(24), Entity::isAlive)) {
 				Criteria.ENTITY_KILLED_PLAYER.trigger((ServerPlayerEntity) closeByPlayer, this, damageSource);
 			}

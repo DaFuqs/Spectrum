@@ -114,7 +114,8 @@ public abstract class LivingEntityMixin {
 							
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-							if (thisEntity.getWorld().isClient) { // it is split here so the particles spawn immediately, without network lag
+							World world = thisEntity.getWorld();
+							if (world.isClient) { // it is split here so the particles spawn immediately, without network lag
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.EIGHT, 0.4);
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, VectorPattern.EIGHT_OFFSET, 0.5);
 							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -220,7 +221,8 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (!((LivingEntity) (Object) this).getWorld().isClient) {
+		World world = ((LivingEntity) (Object) this).getWorld();
+		if (!world.isClient) {
 			if (((Object) this) instanceof MobEntity thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {

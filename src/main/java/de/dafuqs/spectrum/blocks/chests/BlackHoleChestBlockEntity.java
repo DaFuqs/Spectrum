@@ -142,7 +142,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
 
 				sendPlayExperienceOrbEntityAbsorbedParticle((ServerWorld) world, experienceOrbEntity);
-				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
+				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
@@ -153,13 +153,13 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 				
 				if (remainingStack.isEmpty()) {
 					sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
-					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 					itemEntity.setStack(ItemStack.EMPTY);
 					itemEntity.discard();
 				} else {
 					if (remainingStack.getCount() != previousAmount) {
 						sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.getWorld().random.nextFloat() * 0.2F, 0.9F + this.getWorld().random.nextFloat() * 0.2F);
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 						itemEntity.setStack(remainingStack);
 					}
 				}

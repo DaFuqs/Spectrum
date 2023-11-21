@@ -120,11 +120,12 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 	}
 	
 	void playSound(BlockState state, SoundEvent soundEvent) {
+		World world = this.getWorld();
 		Vec3i vec3i = (state.get(BarrelBlock.FACING)).getVector();
 		double d = (double)this.pos.getX() + 0.5 + (double)vec3i.getX() / 2.0;
 		double e = (double)this.pos.getY() + 0.5 + (double)vec3i.getY() / 2.0;
 		double f = (double)this.pos.getZ() + 0.5 + (double)vec3i.getZ() / 2.0;
-		this.getWorld().playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5F, this.getWorld().random.nextFloat() * 0.1F + 0.9F);
+		this.getWorld().playSound(null, d, e, f, soundEvent, SoundCategory.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
 	}
 	
 }

@@ -104,7 +104,8 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		onCollision(hitResult);
 		
 		if (detectionRange > 0 && (this.targetEntity.isEmpty() || !isValidTarget(targetEntity.get()))) {
-			if (this.getWorld().isClient)
+			World world = this.getWorld();
+			if (world.isClient)
 				return;
 			
 			if (random.nextFloat() > 0.25)

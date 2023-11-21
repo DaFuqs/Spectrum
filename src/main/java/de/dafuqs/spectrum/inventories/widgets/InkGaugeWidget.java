@@ -68,6 +68,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 	}
 	
 	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		List<Text> tooltip = new ArrayList<>();
 		for (InkColor color : InkColor.all()) {
 			long amount = blockEntity.getEnergyStorage().getEnergy(color);
@@ -80,7 +81,7 @@ public class InkGaugeWidget implements Drawable, Element, Selectable {
 		} else {
 			tooltip.add(0, Text.translatable("spectrum.tooltip.ink_powered.stored"));
 		}
-		drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltip, Optional.empty(), x, y);
+		drawContext.drawTooltip(client.textRenderer, tooltip, Optional.empty(), x, y);
 	}
 	
 	public void draw(DrawContext drawContext) {

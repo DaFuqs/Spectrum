@@ -8,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.server.network.*;
+import net.minecraft.world.World;
 
 public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
@@ -20,7 +21,8 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if (entity.getWorld().isClient) {
+		World world = entity.getWorld();
+		if (world.isClient) {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.getWorld(), entity.getPos(), SpectrumParticleTypes.WHITE_SPARKLE_RISING, VectorPattern.EIGHT, 0.2);
 		}
 	}

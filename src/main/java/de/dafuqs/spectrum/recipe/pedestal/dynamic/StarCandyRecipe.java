@@ -12,6 +12,7 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -29,7 +30,8 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
-			if (pedestal.getWorld().random.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
+			World world = pedestal.getWorld();
+			if (world.random.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
 				return SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 			}
 		}

@@ -64,6 +64,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 	}
 	
 	public void renderLines(WorldRenderContext context) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		for (PastelNetwork network : this.networks) {
 			if (network.getWorld().getDimension() != context.world().getDimension()) continue;
 			Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
@@ -81,7 +82,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source.getPos(), target.getPos());
 				PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
 				
-				if (MinecraftClient.getInstance().options.debugEnabled) {
+				if (client.options.debugEnabled) {
 					Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(source.getPos()));
 					Vec3d normalized = offset.normalize();
 					Matrix4f positionMatrix = context.matrixStack().peek().getPositionMatrix();

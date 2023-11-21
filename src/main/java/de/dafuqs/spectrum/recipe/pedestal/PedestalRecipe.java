@@ -178,10 +178,11 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	
 	public void consumeIngredients(PedestalBlockEntity pedestal) {
 		// consume the required gemstone powders
+		World world = pedestal.getWorld();
 		for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 			double efficiencyModifier = pedestal.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
-			int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestal.getWorld().random);
+			int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, world.random);
 			pedestal.getStack(PedestalBlockEntity.getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
 		}
 	}

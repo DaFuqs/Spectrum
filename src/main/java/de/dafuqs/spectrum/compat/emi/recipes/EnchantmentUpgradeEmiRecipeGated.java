@@ -17,11 +17,12 @@ public class EnchantmentUpgradeEmiRecipeGated extends EnchanterEmiRecipeGated {
 	
 	@Override
 	public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (!super.isUnlocked()) {
 			return false;
 		}
 		if (requiresOverEnchanting) {
-			return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(client.player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
 		}
 		return true;
 	}

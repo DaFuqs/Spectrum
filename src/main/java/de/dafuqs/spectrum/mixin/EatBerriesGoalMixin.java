@@ -46,8 +46,9 @@ public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
 	}
 	
 	private void spectrum$pickSawbladeHollyBerries(BlockState state) {
+		World world = foxEntity.getWorld();
 		int age = state.get(SawbladeHollyBushBlock.AGE);
-		int berriesPlucked = 1 + foxEntity.getWorld().random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
+		int berriesPlucked = 1 + world.random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
 		ItemStack itemStack = foxEntity.getEquippedStack(EquipmentSlot.MAINHAND);
 		if (itemStack.isEmpty()) {
 			foxEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY));
@@ -55,11 +56,11 @@ public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
 		}
 		
 		if (berriesPlucked > 0) {
-			Block.dropStack(foxEntity.getWorld(), this.targetPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY, berriesPlucked));
+			Block.dropStack(world, this.targetPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY, berriesPlucked));
 		}
 		
 		foxEntity.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, 1.0F, 1.0F);
-		foxEntity.getWorld().setBlockState(this.targetPos, state.with(SawbladeHollyBushBlock.AGE, 1), Block.NOTIFY_LISTENERS);
+		world.setBlockState(this.targetPos, state.with(SawbladeHollyBushBlock.AGE, 1), Block.NOTIFY_LISTENERS);
 	}
 	
 	

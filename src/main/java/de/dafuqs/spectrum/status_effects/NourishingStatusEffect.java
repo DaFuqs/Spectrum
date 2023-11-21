@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.status_effects;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.world.World;
 
 public class NourishingStatusEffect extends SpectrumStatusEffect {
 	
@@ -17,7 +18,8 @@ public class NourishingStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if (!entity.getWorld().isClient && entity instanceof PlayerEntity playerEntity) {
+		World world = entity.getWorld();
+		if (!world.isClient && entity instanceof PlayerEntity playerEntity) {
 			playerEntity.getHungerManager().add(1, 0.25F);
 		}
 	}

@@ -66,11 +66,12 @@ public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 	}
 	
 	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
 		String percent = Support.getSensiblePercent(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
-		drawContext.drawTooltip(MinecraftClient.getInstance().textRenderer,List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
+		drawContext.drawTooltip(client.textRenderer,List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 			Optional.empty(), x, y);
 	}
 	

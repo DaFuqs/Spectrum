@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.loot.functions;
 
 import com.google.common.collect.*;
 import com.google.gson.*;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.loot.*;
 import net.minecraft.item.*;
@@ -85,10 +86,9 @@ public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
 			if (jsonObject.has("tags")) {
 				JsonArray jsonArray = JsonHelper.getArray(jsonObject, "tags");
 				for (JsonElement jsonElement : jsonArray) {
-					try {
-						nbts.add(NbtHelper.getNbtCompound(jsonElement).get());
-					} catch (NoSuchElementException e) {
-						throw new RuntimeException(e);
+					Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(jsonElement);
+					if (nbt.isPresent()) {
+						nbts.add(nbt.get());
 					}
 				}
 			}

@@ -25,6 +25,6 @@ public class NbtPredicateMixin {
 		cancellable = true)
 	private static void fromJson(@Nullable JsonElement json, CallbackInfoReturnable<NbtPredicate> info) {
 		Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(json);
-		info.setReturnValue(new NbtPredicate(nbt.get()));
+		info.setReturnValue(new NbtPredicate(nbt.isPresent() ? nbt.get() : null));
 	}
 }

@@ -716,9 +716,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (slot % 3 >= width) {
 					return false;
 				}
-			} else if (storedRecipe instanceof ShapelessRecipe || storedRecipe instanceof ShapelessPedestalRecipe) {
-				// just put it in already
-			} else {
+			} else if (!(storedRecipe instanceof ShapelessRecipe) && !(storedRecipe instanceof ShapelessPedestalRecipe)) {
 				return false;
 			}
 			

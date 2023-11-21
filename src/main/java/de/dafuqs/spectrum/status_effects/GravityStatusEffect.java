@@ -26,9 +26,7 @@ public class GravityStatusEffect extends SpectrumStatusEffect {
 	public static void applyGravityEffect(Entity entity, double additionalYVelocity) {
 		// don't affect creative/spectators/... players or immune boss mobs
 		if (entity.isPushable() && !(entity).isSpectator()) {
-			if (entity instanceof PlayerEntity && ((PlayerEntity) entity).isCreative()) {
-				// do not affect those
-			} else {
+			if (!(entity instanceof PlayerEntity playerEntity && playerEntity.isCreative())) {
 				entity.addVelocity(0, additionalYVelocity, 0);
 				// maybe add fall distance, when not touching the ground?
 			}

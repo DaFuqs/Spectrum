@@ -130,8 +130,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
 			
 			int i;
-			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
-			}
+			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i);
 			
 			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i - 1)).get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL;
 			

@@ -50,7 +50,7 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

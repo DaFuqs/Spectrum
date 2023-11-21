@@ -344,7 +344,7 @@ public class SpectrumItemGroups {
 		
 		// adding all beverages from recipes
 		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-			ItemStack output = recipe.getOutput(DynamicRegistryManager.EMPTY).copy();
+			ItemStack output = recipe.getOutput().copy();
 			if (output.getItem() instanceof SimpleBeverageItem) {
 				output.setCount(1);
 				entries.add(output);

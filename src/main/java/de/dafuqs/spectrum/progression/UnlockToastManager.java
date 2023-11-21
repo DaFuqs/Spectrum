@@ -149,19 +149,19 @@ public class UnlockToastManager {
 		HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 
 		for (GatedRecipe recipe : unlockedRecipes) {
-			if (!recipe.getOutput(DynamicRegistryManager.EMPTY).isEmpty()) { // weather recipes
+			if (!recipe.getOutput().isEmpty()) { // weather recipes
 				if (recipe.getGroup() == null) {
 					SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are Dafuqs and you are reading this: you messed up big time.");
 				}
 
 				if (recipe.getGroup().isEmpty()) {
-					singleRecipes.add(recipe.getOutput(DynamicRegistryManager.EMPTY));
+					singleRecipes.add(recipe.getOutput());
 				} else {
 					if (groupedRecipes.containsKey(recipe.getGroup())) {
-						groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(DynamicRegistryManager.EMPTY));
+						groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
 					} else {
 						List<ItemStack> newList = new ArrayList<>();
-						newList.add(recipe.getOutput(DynamicRegistryManager.EMPTY));
+						newList.add(recipe.getOutput());
 						groupedRecipes.put(recipe.getGroup(), newList);
 					}
 				}

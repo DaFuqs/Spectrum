@@ -28,7 +28,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalRecipe recipe) {
-		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput(DynamicRegistryManager.EMPTY))));
+		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		this.pedestalRecipeTier = recipe.getTier();
 		this.width = recipe.getWidth();
 		this.height = recipe.getHeight();

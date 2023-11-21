@@ -48,7 +48,7 @@ public class PageAnvilCrushing extends PageGatedRecipe<AnvilCrushingRecipe> {
 		parent.renderItemStack(drawContext, recipeX + 16, recipeY + 15, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

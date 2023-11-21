@@ -49,7 +49,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> outputs = new ArrayList<>();
-		outputs.add(EntryIngredients.of(recipe.getOutput(DynamicRegistryManager.EMPTY)));
+		outputs.add(EntryIngredients.of(recipe.getOutput()));
 		for (ItemStack additionalOutput : recipe.getAdditionalOutputs()) {
 			outputs.add(EntryIngredients.of(additionalOutput));
 		}

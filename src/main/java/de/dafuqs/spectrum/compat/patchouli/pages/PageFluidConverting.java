@@ -47,7 +47,7 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 		parent.renderIngredient(drawContext, recipeX + 23, recipeY + 7, mouseX, mouseY, ingredients.get(0));
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

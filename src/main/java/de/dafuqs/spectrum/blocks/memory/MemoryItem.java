@@ -10,8 +10,6 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.item.ItemGroup.Entries;
 import net.minecraft.nbt.*;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -220,7 +218,7 @@ public class MemoryItem extends BlockItem {
 		if (SpectrumCommon.minecraftServer != null) {
 			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
 			for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-				ItemStack output = recipe.getOutput(DynamicRegistryManager.of(Registries.REGISTRIES));
+				ItemStack output = recipe.getOutput();
 				if (output.isOf(memoryItem) && !encountered.contains(output.getNbt())) {
 					entries.add(output);
 					encountered.add(output.getNbt());

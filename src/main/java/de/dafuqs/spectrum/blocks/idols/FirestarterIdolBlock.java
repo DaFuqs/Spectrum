@@ -2,12 +2,13 @@ package de.dafuqs.spectrum.blocks.idols;
 
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -43,8 +44,10 @@ public class FirestarterIdolBlock extends IdolBlock {
 	}
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		DynamicRegistryManager manager = client.world == null ? DynamicRegistryManager.EMPTY : client.world.getRegistryManager();
 		for (SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
-			ItemStack outputStack = recipe.getOutput(DynamicRegistryManager.EMPTY);
+			ItemStack outputStack = recipe.getOutput(manager);
 			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 				if (!ingredients.isEmpty()) {

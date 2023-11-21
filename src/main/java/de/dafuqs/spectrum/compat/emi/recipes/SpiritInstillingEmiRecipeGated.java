@@ -24,7 +24,7 @@ public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<Spiri
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.SPIRIT_INSTILLER), 20, 17).drawBack(false);
 		widgets.addSlot(EmiStack.of(SpectrumBlocks.ITEM_BOWL_CALCITE), 40, 17).drawBack(false);
 		
-		if (!recipe.getOutput(DynamicRegistryManager.EMPTY).isEmpty()) {
+		if (!recipe.getOutput().isEmpty()) {
 			widgets.addSlot(outputs.get(0), 90, 4).large(true).recipeContext(this);
 		}
 		

@@ -104,7 +104,10 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
 		return this.getOutput(registryManager).copy();
 	}
-
+	
+	public ItemStack craft() {
+		return this.getOutput().copy();
+	}
 
 	public PedestalRecipeTier getTier() {
 		return this.tier;

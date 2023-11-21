@@ -82,7 +82,7 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 		}
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
 		
 		// the duration
 		if (second) {

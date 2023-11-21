@@ -67,7 +67,7 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 		}
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

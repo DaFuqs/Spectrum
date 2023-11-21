@@ -57,7 +57,7 @@ public class PageSpiritInstillerCrafting extends PageGatedRecipe<SpiritInstiller
 		parent.renderItemStack(drawContext, recipeX + 44, recipeY + 25, mouseX, mouseY, ITEM_BOWL_STACK);
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

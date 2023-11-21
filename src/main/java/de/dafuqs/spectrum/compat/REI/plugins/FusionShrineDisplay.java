@@ -20,7 +20,7 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	protected final Optional<Text> description;
 	
 	public FusionShrineDisplay(@NotNull FusionShrineRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput(DynamicRegistryManager.EMPTY));
+		super(recipe, buildIngredients(recipe), recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
 		this.description = recipe.getDescription();

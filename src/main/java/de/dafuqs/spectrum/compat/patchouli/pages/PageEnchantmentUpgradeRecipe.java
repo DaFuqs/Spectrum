@@ -74,7 +74,7 @@ public class PageEnchantmentUpgradeRecipe extends PageGatedRecipe<EnchantmentUpg
 		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultStack());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput());
 	}
 	
 	@Override

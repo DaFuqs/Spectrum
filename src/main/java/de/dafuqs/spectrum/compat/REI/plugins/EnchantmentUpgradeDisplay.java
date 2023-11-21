@@ -25,7 +25,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	protected final int requiredItemCount;
 	
 	public EnchantmentUpgradeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput(DynamicRegistryManager.EMPTY));
+		super(recipe, buildIngredients(recipe), recipe.getOutput());
 		
 		this.enchantment = recipe.getEnchantment();
 		this.enchantmentDestinationLevel = recipe.getEnchantmentDestinationLevel();

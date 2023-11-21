@@ -44,7 +44,7 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalRecipe> {
 		drawContext.drawTexture(getBackgroundTextureForTier(recipe.getTier()), recipeX - 2, recipeY - 2, 0 ,0, 106, 97, 128, 256);
 
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(DynamicRegistryManager.EMPTY));
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());
 		
 		switch (recipe.getTier()) {
 			case COMPLEX ->

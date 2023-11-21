@@ -31,9 +31,6 @@
     "preLaunch": [
       "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
     ],
-    "fabric-datagen": [
-      "de.dafuqs.spectrum.registries.SpectrumData"
-    ],
     "modmenu": [
       "de.dafuqs.spectrum.config.ModMenuConfig"
     ],

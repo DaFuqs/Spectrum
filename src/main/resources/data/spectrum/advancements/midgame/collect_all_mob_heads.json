@@ -599,7 +599,7 @@
         ]
       }
     },
-    "has_egg_laying_Wooly_pig_head": {
+    "has_egg_laying_wooly_pig_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

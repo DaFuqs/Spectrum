@@ -21,6 +21,7 @@ import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
+@SuppressWarnings("unused")
 public class SpectrumItemGroups {
 	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/item_group.png");
@@ -45,68 +46,68 @@ public class SpectrumItemGroups {
 	public static final ItemSubGroup EQUIPMENT = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.equipment"))
 		.backgroundTexture(TEXTURE)
 		.entries((displayContext, entries) -> {
-		entries.add(SpectrumItems.GUIDEBOOK);
-		entries.add(SpectrumItems.PAINTBRUSH);
-		entries.add(SpectrumItems.BOTTLE_OF_FADING);
-		entries.add(SpectrumItems.BOTTLE_OF_FAILING);
-		entries.add(SpectrumItems.BOTTLE_OF_RUIN);
-		entries.add(SpectrumItems.BOTTLE_OF_FORFEITURE);
-		entries.add(SpectrumItems.BOTTLE_OF_DECAY_AWAY);
-		entries.add(SpectrumItems.MULTITOOL);
-		entries.add(SpectrumItems.TENDER_PICKAXE);
-		entries.add(SpectrumItems.LUCKY_PICKAXE);
-		entries.add(SpectrumItems.RAZOR_FALCHION);
-		entries.add(SpectrumItems.OBLIVION_PICKAXE);
-		entries.add(SpectrumItems.RESONANT_PICKAXE);
-		entries.add(SpectrumItems.DRAGONRENDING_PICKAXE);
-		entries.add(SpectrumItems.LAGOON_ROD);
-		entries.add(SpectrumItems.MOLTEN_ROD);
-		entries.add(SpectrumItems.FETCHLING_HELMET);
-		entries.add(SpectrumItems.FEROCIOUS_CHESTPLATE);
-		entries.add(SpectrumItems.SYLPH_LEGGINGS);
-		entries.add(SpectrumItems.OREAD_BOOTS);
-		entries.add(SpectrumItems.BEDROCK_PICKAXE);
-		entries.add(SpectrumItems.BEDROCK_AXE);
-		entries.add(SpectrumItems.BEDROCK_SHOVEL);
-		entries.add(SpectrumItems.BEDROCK_SWORD);
-		entries.add(SpectrumItems.BEDROCK_HOE);
-		entries.add(SpectrumItems.BEDROCK_BOW);
-		entries.add(SpectrumItems.BEDROCK_CROSSBOW);
-		entries.add(SpectrumItems.BEDROCK_SHEARS);
-		entries.add(SpectrumItems.BEDROCK_FISHING_ROD);
-		entries.add(SpectrumItems.BEDROCK_HELMET);
-		entries.add(SpectrumItems.BEDROCK_CHESTPLATE);
-		entries.add(SpectrumItems.BEDROCK_LEGGINGS);
-		entries.add(SpectrumItems.BEDROCK_BOOTS);
-		entries.add(SpectrumItems.MALACHITE_WORKSTAFF);
-		entries.add(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
-		entries.add(SpectrumItems.MALACHITE_CROSSBOW);
-		entries.add(SpectrumItems.MALACHITE_BIDENT);
-		entries.add(SpectrumItems.GLASS_CREST_WORKSTAFF);
-		entries.add(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD);
-		entries.add(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
-		entries.add(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
-		entries.add(SpectrumItems.GLASS_CREST_CROSSBOW);
-		entries.add(SpectrumItems.MALACHITE_GLASS_ARROW);
-		entries.add(SpectrumItems.TOPAZ_GLASS_ARROW);
-		entries.add(SpectrumItems.AMETHYST_GLASS_ARROW);
-		entries.add(SpectrumItems.CITRINE_GLASS_ARROW);
-		entries.add(SpectrumItems.ONYX_GLASS_ARROW);
-		entries.add(SpectrumItems.MOONSTONE_GLASS_ARROW);
-		entries.add(SpectrumItems.AZURITE_GLASS_AMPOULE);
-		entries.add(SpectrumItems.MALACHITE_GLASS_AMPOULE);
-		entries.add(SpectrumItems.BLOODSTONE_GLASS_AMPOULE);
-		entries.add(SpectrumItems.DREAMFLAYER);
-		entries.add(SpectrumItems.NIGHTFALLS_BLADE);
-		entries.add(SpectrumItems.FANCIFUL_STONE_RING);
-		entries.add(SpectrumItems.FANCIFUL_BELT);
-		entries.add(SpectrumItems.FANCIFUL_PENDANT);
-		entries.add(SpectrumItems.FANCIFUL_CIRCLET);
-		entries.add(SpectrumItems.FANCIFUL_GLOVES);
-		entries.add(SpectrumItems.FANCIFUL_BISMUTH_RING);
-		entries.add(SpectrumItems.GLOW_VISION_GOGGLES);
-		entries.add(SpectrumItems.JEOPARDANT);
-		entries.add(SpectrumItems.SEVEN_LEAGUE_BOOTS);
+		addEquipmentEntry(SpectrumItems.GUIDEBOOK, entries);
+		addEquipmentEntry(SpectrumItems.PAINTBRUSH, entries);
+		addEquipmentEntry(SpectrumItems.BOTTLE_OF_FADING, entries);
+		addEquipmentEntry(SpectrumItems.BOTTLE_OF_FAILING, entries);
+		addEquipmentEntry(SpectrumItems.BOTTLE_OF_RUIN, entries);
+		addEquipmentEntry(SpectrumItems.BOTTLE_OF_FORFEITURE, entries);
+		addEquipmentEntry(SpectrumItems.BOTTLE_OF_DECAY_AWAY, entries);
+		addEquipmentEntry(SpectrumItems.MULTITOOL, entries);
+		addEquipmentEntry(SpectrumItems.TENDER_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.LUCKY_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.RAZOR_FALCHION, entries);
+		addEquipmentEntry(SpectrumItems.OBLIVION_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.RESONANT_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.DRAGONRENDING_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.LAGOON_ROD, entries);
+		addEquipmentEntry(SpectrumItems.MOLTEN_ROD, entries);
+		addEquipmentEntry(SpectrumItems.FETCHLING_HELMET, entries);
+		addEquipmentEntry(SpectrumItems.FEROCIOUS_CHESTPLATE, entries);
+		addEquipmentEntry(SpectrumItems.SYLPH_LEGGINGS, entries);
+		addEquipmentEntry(SpectrumItems.OREAD_BOOTS, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_PICKAXE, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_AXE, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_SHOVEL, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_SWORD, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_HOE, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_BOW, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_CROSSBOW, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_SHEARS, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_FISHING_ROD, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_HELMET, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_CHESTPLATE, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_LEGGINGS, entries);
+		addEquipmentEntry(SpectrumItems.BEDROCK_BOOTS, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_WORKSTAFF, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_ULTRA_GREATSWORD, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_CROSSBOW, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_BIDENT, entries);
+		addEquipmentEntry(SpectrumItems.GLASS_CREST_WORKSTAFF, entries);
+		addEquipmentEntry(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD, entries);
+		addEquipmentEntry(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT, entries);
+		addEquipmentEntry(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT, entries);
+		addEquipmentEntry(SpectrumItems.GLASS_CREST_CROSSBOW, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.TOPAZ_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.AMETHYST_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.CITRINE_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.ONYX_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.MOONSTONE_GLASS_ARROW, entries);
+		addEquipmentEntry(SpectrumItems.AZURITE_GLASS_AMPOULE, entries);
+		addEquipmentEntry(SpectrumItems.MALACHITE_GLASS_AMPOULE, entries);
+		addEquipmentEntry(SpectrumItems.BLOODSTONE_GLASS_AMPOULE, entries);
+		addEquipmentEntry(SpectrumItems.DREAMFLAYER, entries);
+		addEquipmentEntry(SpectrumItems.NIGHTFALLS_BLADE, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_STONE_RING, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_BELT, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_PENDANT, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_CIRCLET, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_GLOVES, entries);
+		addEquipmentEntry(SpectrumItems.FANCIFUL_BISMUTH_RING, entries);
+		addEquipmentEntry(SpectrumItems.GLOW_VISION_GOGGLES, entries);
+		addEquipmentEntry(SpectrumItems.JEOPARDANT, entries);
+		addEquipmentEntry(SpectrumItems.SEVEN_LEAGUE_BOOTS, entries);
 		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.SEVEN_LEAGUE_BOOTS));
 		entries.add(SpectrumItems.COTTON_CLOUD_BOOTS);
 		entries.add(SpectrumItems.RADIANCE_PIN);
@@ -310,6 +311,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.RESTORATION_TEA);
 		entries.add(SpectrumItems.GLISTERING_JELLY_TEA);
 		entries.add(SpectrumItems.DEMON_TEA);
+		entries.add(SpectrumItems.ENCHANTED_GOLDEN_CARROT);
 		entries.add(SpectrumItems.JADE_JELLY);
 		entries.add(SpectrumItems.JARAMEL);
 		entries.add(SpectrumItems.MOONSTRUCK_NECTAR);
@@ -339,12 +341,11 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PRICKLY_BAYLEAF);
 		entries.add(SpectrumItems.TRIPLE_MEAT_POT_STEW);
 		entries.add(SpectrumItems.DRAGONBONE_BROTH);
-		entries.add(SpectrumItems.INFUSED_BEVERAGE);
-		
+
 		// adding all beverages from recipes
 		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
 			ItemStack output = recipe.getOutput().copy();
-			if (output.getItem() instanceof SimpleBeverageItem) {
+			if (output.getItem() instanceof VariantBeverageItem) {
 				output.setCount(1);
 				entries.add(output);
 			}
@@ -1251,8 +1252,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PRESERVATION_TURRET_SPAWN_EGG);
 		entries.add(SpectrumItems.KINDLING_SPAWN_EGG);
 		entries.add(SpectrumItems.LIZARD_SPAWN_EGG);
-		// TODO - Spawner gone?
-		//entries.add(SpectrumItems.SPAWNER);
+		entries.add(SpectrumItems.BUCKET_OF_ERASER);
 		MemoryItem.appendEntries(entries);
 	}).build();
 	
@@ -1315,5 +1315,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.CINDERHEARTH_STRUCTURE_PLACER);
 		
 	}).build();
-	
+
+	public static void addEquipmentEntry(Item item, ItemGroup.Entries entries) {
+		if (item instanceof Preenchanted preenchanted) {
+			entries.add(preenchanted.getDefaultEnchantedStack(item));
+		} else {
+			entries.add(item);
+		}
+	}
 }

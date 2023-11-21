@@ -52,6 +52,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
     }
 
     @Override
+	@SuppressWarnings("deprecation")
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.scheduledTick(state, world, pos, random);
         if (!state.canPlaceAt(world, pos)) {

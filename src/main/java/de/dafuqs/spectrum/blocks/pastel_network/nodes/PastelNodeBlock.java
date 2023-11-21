@@ -53,7 +53,8 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction targetDirection = state.get(FACING).getOpposite();
-		return world.getBlockState(pos.offset(targetDirection)).isSolid();
+        BlockPos targetPos = pos.offset(targetDirection);
+		return world.getBlockState(targetPos).isSolidBlock(world, targetPos);
 	}
 
 

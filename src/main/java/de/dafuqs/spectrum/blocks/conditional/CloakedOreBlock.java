@@ -41,6 +41,7 @@ public class CloakedOreBlock extends ExperienceDroppingBlock implements Revelati
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
 		// workaround: since onStacksDropped() has no way of checking if it was
 		// triggered by a player we have to cache that information here

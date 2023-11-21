@@ -34,7 +34,7 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 			int zOffset = 2 - random.nextInt(5);
 			
 			BlockPos targetPos = pos.add(xOffset, yOffset, zOffset);
-			if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).isSolid()) {
+			if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).isSolidBlock(world, targetPos.down())) {
 				world.setBlockState(targetPos, Blocks.FIRE.getDefaultState());
 			}
 		}

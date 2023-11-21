@@ -168,6 +168,6 @@ public class SpectrumDamageSources {
 	}
 
     // Damage is dealt directly via setHealth(), instead via normal means
-    public interface DirectDamage {};
+    public interface DirectDamage {}
 	
 }

@@ -20,6 +20,6 @@ public record CollisionResult<T>(World world, T collision, CollisionType type, V
     public enum CollisionType {
         LIVING,
         NON_LIVING,
-        BLOCK;
+        BLOCK
     }
 }

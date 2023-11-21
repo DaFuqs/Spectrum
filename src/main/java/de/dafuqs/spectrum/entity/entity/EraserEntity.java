@@ -269,6 +269,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void copyDataToStack(ItemStack stack) {
 		Bucketable.copyDataToStack(this, stack);
 		NbtCompound nbtCompound = stack.getOrCreateNbt();
@@ -276,6 +277,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void copyDataFromNbt(NbtCompound nbt) {
 		Bucketable.copyDataFromNbt(this, nbt);
 		readEffectOnHit(nbt);

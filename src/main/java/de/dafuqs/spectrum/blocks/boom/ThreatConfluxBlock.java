@@ -68,6 +68,7 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		var handStack = player.getStackInHand(hand);
 		if (state.get(ARMED).explodesWhenBroken() && handStack.isOf(SpectrumItems.MIDNIGHT_CHIP)) {
@@ -103,6 +104,7 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		if (state.get(ARMED) == ArmedState.ARMED) {
 			world.playSound(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, SpectrumSoundEvents.BLOCK_THREAT_CONFLUX_PRIME, SoundCategory.BLOCKS, 1, 2F);
@@ -119,6 +121,7 @@ public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLoggi
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		

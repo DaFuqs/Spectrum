@@ -16,6 +16,7 @@ public class PureRedstoneBlock extends RedstoneBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		
@@ -25,6 +26,7 @@ public class PureRedstoneBlock extends RedstoneBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		

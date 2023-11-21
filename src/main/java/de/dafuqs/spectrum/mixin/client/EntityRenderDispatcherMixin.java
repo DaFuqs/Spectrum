@@ -8,6 +8,7 @@ import net.minecraft.client.render.entity.*;
 import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -40,8 +41,8 @@ public abstract class EntityRenderDispatcherMixin {
 	
 	@Unique
 	private void spectrum$renderPrimordialFire(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Entity entity) {
-		Sprite sprite = MinecraftClient.getInstance().getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_0"));
-		Sprite sprite2 = MinecraftClient.getInstance().getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_1"));
+		Sprite sprite = MinecraftClient.getInstance().getSpriteAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_0"));
+		Sprite sprite2 = MinecraftClient.getInstance().getSpriteAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_1"));
 		matrices.push();
 		float f = entity.getWidth() * 1.4F;
 		matrices.scale(f, f, f);

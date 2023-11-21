@@ -82,7 +82,7 @@ public class SingleBlockPoolElement extends StructurePoolElement {
 				try {
 					blockEntity.readNbt(StringNbtReader.parse(this.blockNbt));
 				} catch (CommandSyntaxException e) {
-					SpectrumCommon.logError("Failed to set BlockEntityNbt for " + toString());
+					SpectrumCommon.logError("Failed to set BlockEntityNbt for " + this);
 					
 				}
 				return true;

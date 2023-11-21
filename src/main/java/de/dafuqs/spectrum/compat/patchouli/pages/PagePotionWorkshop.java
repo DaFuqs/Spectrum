@@ -3,12 +3,15 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
+
+import java.util.List;
+
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -38,12 +41,12 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
-		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-		parent.renderIngredient(drawContext, recipeX + 20, recipeY + 62, mouseX, mouseY, ingredients.get(0));
-		parent.renderIngredient(drawContext, recipeX + 58, recipeY + 5, mouseX, mouseY, ingredients.get(1));
-		parent.renderIngredient(drawContext, recipeX + 20, recipeY + 9, mouseX, mouseY, ingredients.get(2));
-		parent.renderIngredient(drawContext, recipeX + 3, recipeY + 32, mouseX, mouseY, ingredients.get(3));
-		parent.renderIngredient(drawContext, recipeX + 37, recipeY + 32, mouseX, mouseY, ingredients.get(4));
+		List<IngredientStack> ingredients = recipe.getIngredientStacks();
+		renderIngredientStack(drawContext, recipeX + 20, recipeY + 62, mouseX, mouseY, ingredients.get(0));
+		renderIngredientStack(drawContext, recipeX + 58, recipeY + 5, mouseX, mouseY, ingredients.get(1));
+		renderIngredientStack(drawContext, recipeX + 20, recipeY + 9, mouseX, mouseY, ingredients.get(2));
+		renderIngredientStack(drawContext, recipeX + 3, recipeY + 32, mouseX, mouseY, ingredients.get(3));
+		renderIngredientStack(drawContext, recipeX + 37, recipeY + 32, mouseX, mouseY, ingredients.get(4));
 		
 		// the potion workshop
 		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.createIcon());
@@ -57,4 +60,11 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 		return 97;
 	}
 	
+	private void renderIngredientStack(DrawContext graphics, int x, int y, int mouseX, int mouseY, IngredientStack ingredientStack) {
+		List<ItemStack> stacks = ingredientStack.getStacks();
+		if (!stacks.isEmpty()) {
+			parent.renderItemStack(graphics, x, y, mouseX, mouseY, stacks.get((parent.getTicksInBook() / 20) % stacks.size()));
+		}
+	}
+
 }

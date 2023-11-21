@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.structures;
 
-import net.minecraft.util.*;
+import net.minecraft.util.StringIdentifiable;
 
 public enum StructurePlacementType implements StringIdentifiable {
 	ON_SOLID_GROUND("on_solid_ground"), // on solid ground
 	PARTLY_BURIED("partly_buried"), // partly buried in solid ground
 	ON_GROUND_WATER("on_solid_ground_water"); // on solid ground, may be in water
 	
-	public static final StringIdentifiable.Codec<StructurePlacementType> CODEC = StringIdentifiable.createCodec(StructurePlacementType::values);
+	public static final com.mojang.serialization.Codec<StructurePlacementType> CODEC = StringIdentifiable.createCodec(StructurePlacementType::values);
 	
 	private final String id;
 	

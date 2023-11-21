@@ -125,7 +125,7 @@ public class PastelTransmissionLogic {
 
 				long transferrableAmount = MAX_TRANSFER_AMOUNT;
 				long itemCountUnderway = destinationNode.getItemCountUnderway();
-				transferrableAmount = (int) destinationStorage.simulateInsert(storedResource, transferrableAmount + itemCountUnderway, transaction);
+				transferrableAmount = (int) StorageUtil.simulateInsert(destinationStorage, storedResource, transferrableAmount + itemCountUnderway, transaction);
 				transferrableAmount = transferrableAmount - itemCountUnderway; // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
 
 				if (transferrableAmount > 0) {

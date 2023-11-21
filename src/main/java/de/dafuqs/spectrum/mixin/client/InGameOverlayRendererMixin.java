@@ -8,6 +8,7 @@ import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.*;
 import org.joml.*;
 import org.spongepowered.asm.mixin.*;
@@ -43,7 +44,7 @@ public class InGameOverlayRendererMixin {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         //RenderSystem.enableTexture();
-        Sprite sprite = client.getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_1"));
+        Sprite sprite = client.getSpriteAtlas(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE).apply(SpectrumCommon.locate("block/primordial_fire_1"));
         RenderSystem.setShaderTexture(0, sprite.getAtlasId());
         float f = sprite.getMinU();
         float g = sprite.getMaxU();

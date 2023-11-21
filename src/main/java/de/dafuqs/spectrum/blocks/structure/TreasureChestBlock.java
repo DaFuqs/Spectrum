@@ -7,12 +7,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-
-import static net.minecraft.client.texture.SpriteAtlasTexture.*;
 
 public class TreasureChestBlock extends SpectrumChestBlock {
 	
@@ -45,10 +44,9 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 		return world.isClient ? checkType(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/preservation_chest"));
+		return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/preservation_chest"));
 	}
 	
 }

@@ -47,7 +47,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 			list.set(recipe.getGridSlotId(i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
 		}
 		for (int i = 0; i < powderSlotCount; i++) {
-			BuiltinGemstoneColor color = BuiltinGemstoneColor.values()[i];
+			GemstoneColor color = BuiltinGemstoneColor.values()[i];
 			int powderAmount = recipe.getPowderInputs().getOrDefault(color, 0);
 			if (powderAmount > 0) {
 				list.set(9 + i, EntryIngredients.of(color.getGemstonePowderItem(), powderAmount));

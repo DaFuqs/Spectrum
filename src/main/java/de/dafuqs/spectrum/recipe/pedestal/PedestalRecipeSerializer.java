@@ -15,8 +15,8 @@ public abstract class PedestalRecipeSerializer<T extends PedestalRecipe> impleme
 	}
 	
 	protected @NotNull
-	static Map<BuiltinGemstoneColor, Integer> readGemstonePowderInputs(JsonObject jsonObject) {
-		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
+	static Map<GemstoneColor, Integer> readGemstonePowderInputs(JsonObject jsonObject) {
+		HashMap<GemstoneColor, Integer> gemInputs = new HashMap<>();
 		int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
 		if (amount > 0) {
 			gemInputs.put(BuiltinGemstoneColor.CYAN, amount);
@@ -48,13 +48,13 @@ public abstract class PedestalRecipeSerializer<T extends PedestalRecipe> impleme
 		packetByteBuf.writeInt(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE));
 	}
 	
-	protected @NotNull Map<BuiltinGemstoneColor, Integer> readGemstonePowderInputs(@NotNull PacketByteBuf packetByteBuf) {
+	protected @NotNull Map<GemstoneColor, Integer> readGemstonePowderInputs(@NotNull PacketByteBuf packetByteBuf) {
 		int cyan = packetByteBuf.readInt();
 		int magenta = packetByteBuf.readInt();
 		int yellow = packetByteBuf.readInt();
 		int black = packetByteBuf.readInt();
 		int white = packetByteBuf.readInt();
-		Map<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
+		Map<GemstoneColor, Integer> gemInputs = new HashMap<>();
 		if (cyan > 0) {
 			gemInputs.put(BuiltinGemstoneColor.CYAN, cyan);
 		}

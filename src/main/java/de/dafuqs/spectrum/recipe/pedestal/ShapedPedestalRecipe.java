@@ -20,7 +20,7 @@ public class ShapedPedestalRecipe extends PedestalRecipe {
 	protected final int height;
 	
 	public ShapedPedestalRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-								PedestalRecipeTier tier, int width, int height, List<IngredientStack> inputs, Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+								PedestalRecipeTier tier, int width, int height, List<IngredientStack> inputs, Map<GemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
 								float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
 		super(id, group, secret, requiredAdvancementIdentifier, tier, inputs, gemstonePowderInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
 		

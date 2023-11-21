@@ -107,9 +107,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
 		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
-			Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
+			Map<GemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
 			
-			for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
+			for (Map.Entry<GemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 				int amount = entry.getValue();
 				if (amount > 0) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
@@ -130,9 +130,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 			if (currentRecipe instanceof PedestalRecipe pedestalRecipe) {
-				Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
+				Map<GemstoneColor, Integer> gemstonePowderInputs = pedestalRecipe.getPowderInputs();
 				
-				for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
+				for (Map.Entry<GemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
 					int amount = entry.getValue();
 					if (amount > 0) {
 						ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
@@ -428,13 +428,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		};
 	}
 	
-	public static int getSlotForGemstonePowder(BuiltinGemstoneColor gemstoneColor) {
-		return switch (gemstoneColor) {
+	public static int getSlotForGemstonePowder(GemstoneColor gemstoneColor) {
+		return switch (gemstoneColor.getDyeColor()) {
 			case CYAN -> 9;
 			case MAGENTA -> 10;
 			case YELLOW -> 11;
 			case BLACK -> 12;
-			default -> 13; // WHITE
+			case WHITE -> 13;
+			default -> -1;
 		};
 	}
 	

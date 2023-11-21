@@ -114,10 +114,10 @@ public class SanityCommand {
 
 		// Statistic: Build an empty hashmap of hashmaps for counting used gem colors for each tier
 		// This info can be used to balance usage a bit
-		HashMap<PedestalRecipeTier, HashMap<BuiltinGemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
+		HashMap<PedestalRecipeTier, HashMap<GemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<BuiltinGemstoneColor, Integer> colorMap = new HashMap<>();
-			for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
+			HashMap<GemstoneColor, Integer> colorMap = new HashMap<>();
+			for (GemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 				colorMap.put(gemstoneColor, 0);
 			}
 			usedColorsForEachTier.put(pedestalRecipeTier, colorMap);
@@ -144,7 +144,7 @@ public class SanityCommand {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
-			for (Map.Entry<BuiltinGemstoneColor, Integer> powderInput : pedestalRecipe.getPowderInputs().entrySet()) {
+			for (Map.Entry<GemstoneColor, Integer> powderInput : pedestalRecipe.getPowderInputs().entrySet()) {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
@@ -365,7 +365,7 @@ public class SanityCommand {
 
 		SpectrumCommon.logInfo("##### SANITY CHECK PEDESTAL RECIPE STATISTICS ######");
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
-			HashMap<BuiltinGemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
+			HashMap<GemstoneColor, Integer> entry = usedColorsForEachTier.get(pedestalRecipeTier);
 			SpectrumCommon.logInfo("[SANITY: Pedestal Recipe Gemstone Usages] Gemstone Powder for tier " + StringUtils.leftPad(pedestalRecipeTier.toString(), 8) +
 					": C:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.CYAN).toString(), 3) +
 					" M:" + StringUtils.leftPad(entry.get(BuiltinGemstoneColor.MAGENTA).toString(), 3) +

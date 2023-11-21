@@ -21,7 +21,7 @@ public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<
 	
 	public interface RecipeFactory {
 		ShapelessPedestalRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, PedestalRecipeTier tier,
-									   List<IngredientStack> inputs, Map<BuiltinGemstoneColor, Integer> powderInputs,
+									   List<IngredientStack> inputs, Map<GemstoneColor, Integer> powderInputs,
 									   ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);
 	}
 	
@@ -36,7 +36,7 @@ public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
 		boolean noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
-		Map<BuiltinGemstoneColor, Integer> gemInputs = readGemstonePowderInputs(jsonObject);
+		Map<GemstoneColor, Integer> gemInputs = readGemstonePowderInputs(jsonObject);
 		
 		boolean skipRecipeRemainders = false;
 		if (JsonHelper.hasBoolean(jsonObject, "skip_recipe_remainders")) {
@@ -78,7 +78,7 @@ public class ShapelessPedestalRecipeSerializer extends PedestalRecipeSerializer<
 		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
 		int inputCount = packetByteBuf.readInt();
 		List<IngredientStack> inputs = IngredientStack.decodeByteBuf(packetByteBuf, inputCount);
-		Map<BuiltinGemstoneColor, Integer> gemInputs = readGemstonePowderInputs(packetByteBuf);
+		Map<GemstoneColor, Integer> gemInputs = readGemstonePowderInputs(packetByteBuf);
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();

@@ -22,7 +22,6 @@ public class SpectrumItemStackDamageImmunities {
 			return false;
 		}
 		
-		Item item = itemStack.getItem();
 		// is item resistant to all forms of damage?
 		if (generalImmunities.contains(itemStack.getItem())) {
 			return true;

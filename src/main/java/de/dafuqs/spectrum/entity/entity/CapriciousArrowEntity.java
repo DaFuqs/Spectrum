@@ -48,7 +48,6 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
-		LivingEntity livingEntityToResetHurtTime = null;
 	}
 	
 	@Override

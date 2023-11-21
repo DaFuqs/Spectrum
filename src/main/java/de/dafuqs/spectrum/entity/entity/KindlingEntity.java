@@ -132,6 +132,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
 				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);
 				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
+				default -> {}
 			}
 		}
 		super.onTrackedDataSet(data);

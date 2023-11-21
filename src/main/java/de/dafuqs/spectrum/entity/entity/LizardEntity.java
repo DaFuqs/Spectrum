@@ -372,13 +372,8 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 
 	private class FindPOIGoal extends Goal {
 
-		RegistryKey<PointOfInterestType> poiType;
-		int maxDistance;
-
 		FindPOIGoal(RegistryKey<PointOfInterestType> poiType, int maxDistance) {
 			super();
-			this.poiType = poiType;
-			this.maxDistance = maxDistance;
 		}
 
 		@Override

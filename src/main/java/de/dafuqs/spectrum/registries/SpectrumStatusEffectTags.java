@@ -11,10 +11,6 @@ public class SpectrumStatusEffectTags {
 	public static TagKey<StatusEffect> UNCURABLE;
 	public static TagKey<StatusEffect> NO_DURATION_EXTENSION;
 	
-	private static TagKey<StatusEffect> getReference(String id) {
-		return TagKey.of(RegistryKeys.STATUS_EFFECT, SpectrumCommon.locate(id));
-	}
-	
 	public static void register() {
 		UNCURABLE = of("uncurable");
 		NO_DURATION_EXTENSION = of("no_duration_extension");

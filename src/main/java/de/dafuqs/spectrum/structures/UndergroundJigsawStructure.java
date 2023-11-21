@@ -53,7 +53,7 @@ public class UndergroundJigsawStructure extends Structure {
 	protected final int maxDistanceFromCenter;
 	
 	public UndergroundJigsawStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, Integer size, HeightProvider startHeight,
-									  StructurePlacementType structurePlacementType, int placementCheckWidth, int placementCheckHeight, boolean placementRequired, Integer maxDistanceFromCenter) {
+									  StructurePlacementType structurePlacementType, Integer placementCheckWidth, Integer placementCheckHeight, Boolean placementRequired, Integer maxDistanceFromCenter) {
 		
 		super(config);
 		this.startPool = startPool;

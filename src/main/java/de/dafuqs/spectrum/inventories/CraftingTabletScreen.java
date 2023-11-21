@@ -27,6 +27,7 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 				case COMPLEX -> backgroundTexture = BACKGROUND4;
 				case ADVANCED -> backgroundTexture = BACKGROUND3;
 				case SIMPLE -> backgroundTexture = BACKGROUND2;
+				default -> {}
 			}
 		}
 	}

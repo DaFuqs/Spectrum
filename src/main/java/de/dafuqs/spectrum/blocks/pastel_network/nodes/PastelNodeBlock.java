@@ -39,12 +39,6 @@ public class PastelNodeBlock extends SpectrumFacingBlock implements BlockEntityP
 		this.pastelNodeType = pastelNodeType;
 	}
 	
-	@Nullable
-	@SuppressWarnings("unchecked")
-	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
-		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
-	}
-	
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;

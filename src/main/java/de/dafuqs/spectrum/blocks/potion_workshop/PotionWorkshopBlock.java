@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -45,7 +46,7 @@ public class PotionWorkshopBlock extends HorizontalFacingBlock implements BlockE
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return SpectrumBlockEntities.POTION_WORKSHOP == type ? (BlockEntityTicker) (BlockEntityTicker<? extends PotionWorkshopBlockEntity>) PotionWorkshopBlockEntity::tick : null;
+			return world.isClient ? null : Support.checkType(type, SpectrumBlockEntities.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
 		}
 		return null;
 	}

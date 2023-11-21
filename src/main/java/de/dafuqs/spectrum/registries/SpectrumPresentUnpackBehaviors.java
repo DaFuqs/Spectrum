@@ -80,7 +80,9 @@ public class SpectrumPresentUnpackBehaviors {
 					tntEntity = new TntEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, presentBlockEntity.getOwnerIfOnline());
 					world.spawnEntity(tntEntity);
 				}
-				world.playSound(null, tntEntity.getX(), tntEntity.getY(), tntEntity.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				if (tntEntity != null) {
+					world.playSound(null, tntEntity.getX(), tntEntity.getY(), tntEntity.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
 				world.emitGameEvent(null, GameEvent.PRIME_FUSE, pos);
 			}
 			return ItemStack.EMPTY;

@@ -2,16 +2,13 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class VectorCast {
 
-    private static final AllPass allPass = new AllPass();
     protected final Vec3d start, end;
     protected float radius;
 
@@ -159,19 +156,5 @@ public class VectorCast {
 
     public Vec3d getRelativeToOrigin(Vec3d vector) {
         return vector.subtract(start);
-    }
-
-    private static class AllPass implements TypeFilter<Entity, Entity> {
-
-        @Nullable
-        @Override
-        public Entity downcast(Entity obj) {
-            return obj;
-        }
-
-        @Override
-        public Class<? extends Entity> getBaseClass() {
-            return Entity.class;
-        }
     }
 }

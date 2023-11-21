@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -65,10 +66,7 @@ public class ColorPickerBlock extends HorizontalFacingBlock implements BlockEnti
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if (!world.isClient) {
-			return SpectrumBlockEntities.COLOR_PICKER == type ? (BlockEntityTicker) (BlockEntityTicker<? extends ColorPickerBlockEntity>) ColorPickerBlockEntity::tick : null;
-		}
-		return null;
+		return world.isClient ? null : Support.checkType(type, SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntity::tick);
 	}
 	
 	@Override

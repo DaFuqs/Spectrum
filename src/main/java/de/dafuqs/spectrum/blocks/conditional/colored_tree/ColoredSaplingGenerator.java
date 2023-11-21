@@ -10,11 +10,9 @@ import org.jetbrains.annotations.*;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 	
-	private final DyeColor dyeColor;
 	private final RegistryKey<ConfiguredFeature<?, ?>> treeFeature;
 	
 	public ColoredSaplingGenerator(DyeColor dyeColor) {
-		this.dyeColor = dyeColor;
 		this.treeFeature = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, SpectrumCommon.locate("colored_trees/" + dyeColor.toString()));
 	}
 	

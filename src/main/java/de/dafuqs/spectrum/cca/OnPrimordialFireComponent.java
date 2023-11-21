@@ -22,7 +22,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class OnPrimordialFireComponent implements Component, AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
+public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
 
 	// 1% of max health as damage every tick as a base.
 	public static final float BASE_PERCENT_DAMAGE = 0.01F;

@@ -488,7 +488,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 
 	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		Direction.Axis axis = null;
-		Direction direction = null;
+		Direction direction = Direction.UP; // Give it a default so vscode will stop complaining
 
 		for (Map.Entry<UpgradeType, Integer> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
 			if (entry.getValue() > 1) {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -30,12 +31,6 @@ public class RedstoneTransceiverBlock extends AbstractRedstoneGateBlock implemen
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(SENDER, true).with(CHANNEL, DyeColor.RED));
 	}
 
-	@Nullable
-	@SuppressWarnings("unchecked")
-	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
-		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
-	}
-	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -125,10 +120,7 @@ public class RedstoneTransceiverBlock extends AbstractRedstoneGateBlock implemen
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER, RedstoneTransceiverBlockEntity::serverTick);
-		}
-		return null;
+		return world.isClient ? null : Support.checkType(type, SpectrumBlockEntities.REDSTONE_TRANSCEIVER, RedstoneTransceiverBlockEntity::serverTick);
 	}
 
 	@Override

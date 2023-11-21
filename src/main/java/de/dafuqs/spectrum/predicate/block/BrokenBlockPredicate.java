@@ -44,9 +44,9 @@ public class BrokenBlockPredicate {
 				
 				for (JsonElement jsonElement : jsonArray) {
 					Identifier identifier = new Identifier(JsonHelper.asString(jsonElement, "block"));
-					builder.add(Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
-						return new JsonSyntaxException("Unknown block id '" + identifier + "'");
-					}));
+					builder.add(Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() ->
+						new JsonSyntaxException("Unknown block id '" + identifier + "'")
+					));
 				}
 				
 				set = builder.build();

@@ -21,7 +21,6 @@ import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
-@SuppressWarnings("unused")
 public class SpectrumItemGroups {
 	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/item_group.png");

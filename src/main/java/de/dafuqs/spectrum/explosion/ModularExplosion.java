@@ -162,9 +162,7 @@ public class ModularExplosion {
 						.addOptional(LootContextParameters.THIS_ENTITY, owner));
 				builder.add(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
 				state.onStacksDropped(world, pos, miningStack, true);
-				state.getDroppedStacks(builder).forEach((stack) -> {
-					tryMergeStack(drops, stack, pos.toImmutable());
-				});
+				state.getDroppedStacks(builder).forEach((stack) -> tryMergeStack(drops, stack, pos.toImmutable()));
 			}
 			
 			world.removeBlock(pos, false);

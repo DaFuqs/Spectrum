@@ -133,9 +133,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			EarsCompat.register();
 		}
 
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-			Pastel.getClientInstance().renderLines(context);
-		});
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> Pastel.getClientInstance().renderLines(context));
 		
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		

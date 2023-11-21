@@ -19,9 +19,7 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 	private static Block getBlock(JsonObject obj) {
 		if (obj.has("block")) {
 			Identifier identifier = new Identifier(JsonHelper.getString(obj, "block"));
-			return Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
-				return new JsonSyntaxException("Unknown block type '" + identifier + "'");
-			});
+			return Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block type '" + identifier + "'"));
 		} else {
 			return null;
 		}

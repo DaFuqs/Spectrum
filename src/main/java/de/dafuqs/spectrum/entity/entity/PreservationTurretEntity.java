@@ -131,7 +131,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 
 		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
 			DataResult<ListenerData> result = ListenerData.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
-			result.result().ifPresent(vibrationListenerData -> this.setVibrationListenerData(vibrationListenerData));
+			result.result().ifPresent(this::setVibrationListenerData);
 		}
 	}
 

@@ -25,7 +25,7 @@ public abstract class EndermanEntityMixin {
 	private void init(CallbackInfo info) {
 		EndermanEntity endermanEntity = ((EndermanEntity) (Object) this);
 		World world = endermanEntity.getEntityWorld();
-		if (world != null && world instanceof ServerWorld) {
+		if (world instanceof ServerWorld) {
 			Random random = world.random;
 			
 			float chance;

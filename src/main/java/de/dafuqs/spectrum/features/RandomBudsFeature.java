@@ -23,7 +23,7 @@ public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 		StructureWorldAccess structureWorldAccess = context.getWorld();
 		BlockPos blockPos = context.getOrigin();
 		Random random = context.getRandom();
-		RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig) context.getConfig();
+		RandomBudsFeaturesConfig randomBudsFeaturesConfig = context.getConfig();
 		
 		int placedCount = 0;
 		BlockPos.Mutable mutable = new BlockPos.Mutable();

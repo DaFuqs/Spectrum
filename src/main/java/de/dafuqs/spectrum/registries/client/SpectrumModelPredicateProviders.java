@@ -253,9 +253,6 @@ public class SpectrumModelPredicateProviders {
 		);
 	}
 
-	/**
-	 * @param biStateItem Ensure this extends PredicateBiStateProvider
-	 */
 	private static void registerPipeBombPredicates(Item pipeBombItem) {
 		ModelPredicateProviderRegistry.register(pipeBombItem, new Identifier("armed"), PipeBombItem::isArmed);
 	}

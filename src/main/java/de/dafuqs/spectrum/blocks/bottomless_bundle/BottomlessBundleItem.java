@@ -50,8 +50,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	/**
-	 * @param voidBundleStack
-	 * @param stackToBundle
 	 * @return The amount of items put into the bundle
 	 */
 	public static int addToBundle(ItemStack voidBundleStack, ItemStack stackToBundle) {

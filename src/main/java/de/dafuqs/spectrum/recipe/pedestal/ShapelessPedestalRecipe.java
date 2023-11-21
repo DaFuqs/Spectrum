@@ -15,7 +15,7 @@ import java.util.*;
 public class ShapelessPedestalRecipe extends PedestalRecipe {
 	
 	public ShapelessPedestalRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-								   PedestalRecipeTier tier, List<IngredientStack> craftingInputs, Map<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+								   PedestalRecipeTier tier, List<IngredientStack> craftingInputs, Map<GemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
 								   float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier, tier, craftingInputs, gemstonePowderInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);

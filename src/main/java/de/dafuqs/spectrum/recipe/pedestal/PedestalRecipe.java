@@ -31,7 +31,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	
 	protected final PedestalRecipeTier tier;
 	protected final List<IngredientStack> inputs;
-	protected final Map<BuiltinGemstoneColor, Integer> powderInputs;
+	protected final Map<GemstoneColor, Integer> powderInputs;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -44,7 +44,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
 	public PedestalRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-						  PedestalRecipeTier tier, List<IngredientStack> inputs, Map<BuiltinGemstoneColor, Integer> powderInputs, ItemStack output,
+						  PedestalRecipeTier tier, List<IngredientStack> inputs, Map<GemstoneColor, Integer> powderInputs, ItemStack output,
 						  float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
@@ -128,7 +128,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 		return SpectrumRecipeTypes.PEDESTAL;
 	}
 	
-	public int getGemstonePowderAmount(BuiltinGemstoneColor gemstoneColor) {
+	public int getGemstonePowderAmount(GemstoneColor gemstoneColor) {
 		return powderInputs.getOrDefault(gemstoneColor, 0);
 	}
 	
@@ -140,7 +140,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 		return this.experience;
 	}
 	
-	public Map<BuiltinGemstoneColor, Integer> getPowderInputs() {
+	public Map<GemstoneColor, Integer> getPowderInputs() {
 		return this.powderInputs;
 	}
 	
@@ -179,7 +179,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	public void consumeIngredients(PedestalBlockEntity pedestal) {
 		// consume the required gemstone powders
 		World world = pedestal.getWorld();
-		for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
+		for (GemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
 			double efficiencyModifier = pedestal.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
 			int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, world.random);

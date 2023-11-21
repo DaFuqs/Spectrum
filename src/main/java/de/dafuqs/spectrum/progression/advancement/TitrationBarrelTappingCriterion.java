@@ -53,7 +53,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.tappedItemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.tappedItemPredicates));
 			jsonObject.add("age_ingame_days", this.ingameDaysAgeRange.toJson());
 			jsonObject.add("ingredient_count", this.ingredientCountRange.toJson());
 			return jsonObject;

@@ -238,23 +238,24 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.get(centerStack);
 			for (int i = 0; i < 8; i++) {
 				ItemStack virtualSlotStack = enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(2 + i);
-				if (virtualSlotStack.isEmpty()) {
-					// empty slots do not count
-				} else if (centerStackIsGildedBook || virtualSlotStack.getItem() instanceof EnchantedBookItem) {
-					Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
-					for (Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
-						if ((isEnchantableBookInCenter || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
-							if (enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
-								enchantedBookWithAdditionalEnchantmentsFound = true;
-								break;
-							} else if (SpectrumEnchantmentHelper.canCombineAny(existingEnchantments, currentEnchantedBookEnchantments)) {
-								enchantedBookWithAdditionalEnchantmentsFound = true;
-								break;
+				// empty slots do not count
+				if (!virtualSlotStack.isEmpty()) {
+					if (centerStackIsGildedBook || virtualSlotStack.getItem() instanceof EnchantedBookItem) {
+						Map<Enchantment, Integer> currentEnchantedBookEnchantments = EnchantmentHelper.get(virtualSlotStack);
+						for (Enchantment enchantment : currentEnchantedBookEnchantments.keySet()) {
+							if ((isEnchantableBookInCenter || enchantment.isAcceptableItem(centerStack)) && (!existingEnchantments.containsKey(enchantment) || existingEnchantments.get(enchantment) < currentEnchantedBookEnchantments.get(enchantment))) {
+								if (enchanterBlockEntity.canOwnerApplyConflictingEnchantments) {
+									enchantedBookWithAdditionalEnchantmentsFound = true;
+									break;
+								} else if (SpectrumEnchantmentHelper.canCombineAny(existingEnchantments, currentEnchantedBookEnchantments)) {
+									enchantedBookWithAdditionalEnchantmentsFound = true;
+									break;
+								}
 							}
 						}
+					} else {
+						return false;
 					}
-				} else {
-					return false;
 				}
 			}
 			return enchantedBookWithAdditionalEnchantmentsFound;

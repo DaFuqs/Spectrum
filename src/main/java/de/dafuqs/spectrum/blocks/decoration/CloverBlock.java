@@ -8,6 +8,9 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.PlacedFeature;
+
+import java.util.Optional;
 
 public class CloverBlock extends FernBlock {
 
@@ -30,7 +33,10 @@ public class CloverBlock extends FernBlock {
 
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.CLOVER_PATCH).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.CLOVER_PATCH);
+		if (feature.isPresent()) {
+			feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		}
 	}
 
 }

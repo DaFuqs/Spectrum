@@ -28,27 +28,28 @@ public class SpectrumEnchantmentHelper {
 		if (!enchantment.isAcceptableItem(stack)
 				&& !stack.isOf(Items.ENCHANTED_BOOK)
 				&& !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
-			
+
 			return stack;
 		}
-		
+
 		// if not forced check if the stack already has enchantments
 		// that conflict with the new one
 		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(stack, enchantment)) {
 			return stack;
 		}
-		
-		if (stack.isOf(Items.ENCHANTED_BOOK)) {
-			// all fine, nothing more to check here. Enchant away!
-		} else if (isEnchantableBook(stack)) {
-			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, stack.getCount());
-			enchantedBookStack.setNbt(stack.getNbt());
-			stack = enchantedBookStack;
-		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
-			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
-				// ExtendedEnchantable explicitly states this enchantment is acceptable
-				if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
-					return stack;
+
+		// If it's in the tag, there's nothing more to check here. Enchant away!
+		if (!stack.isOf(Items.ENCHANTED_BOOK)) {
+			if (isEnchantableBook(stack)) {
+				ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, stack.getCount());
+				enchantedBookStack.setNbt(stack.getNbt());
+				stack = enchantedBookStack;
+			} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
+				if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
+					// ExtendedEnchantable explicitly states this enchantment is acceptable
+					if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
+						return stack;
+					}
 				}
 			}
 		}

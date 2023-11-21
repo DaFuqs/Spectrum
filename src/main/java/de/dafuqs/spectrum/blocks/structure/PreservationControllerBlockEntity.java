@@ -222,14 +222,14 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		if (checkBox != null) {
 			List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, checkBox, LivingEntity::isAlive);
 			for (PlayerEntity playerEntity : players) {
-				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
-					// fine
-				} else if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
-					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, true);
-				} else {
-					// yeet
-					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, false);
-					yeetPlayer(playerEntity);
+				if (!playerEntity.isCreative() && !playerEntity.isSpectator()) {
+					if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
+						SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, true);
+					} else {
+						// yeet
+						SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, false);
+						yeetPlayer(playerEntity);
+					}
 				}
 			}
 		}

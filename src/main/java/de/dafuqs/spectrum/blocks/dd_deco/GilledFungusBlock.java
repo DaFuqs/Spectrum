@@ -10,6 +10,9 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.PlacedFeature;
+
+import java.util.Optional;
 
 public class GilledFungusBlock extends PlantBlock implements Fertilizable {
 
@@ -45,7 +48,10 @@ public class GilledFungusBlock extends PlantBlock implements Fertilizable {
 	// TODO - Placed or configured feature for 1.19.4?
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(featureId).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(featureId);
+        if (feature.isPresent()) {
+            feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        }
 	}
 	
 }

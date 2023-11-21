@@ -45,7 +45,9 @@ public class FirestarterIdolBlock extends IdolBlock {
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
 		MinecraftClient client = MinecraftClient.getInstance();
-		DynamicRegistryManager manager = client.world == null ? DynamicRegistryManager.EMPTY : client.world.getRegistryManager();
+		DynamicRegistryManager manager = client == null || client.world == null
+				? DynamicRegistryManager.EMPTY
+				: client.world.getRegistryManager();
 		for (SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
 			ItemStack outputStack = recipe.getOutput(manager);
 			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {

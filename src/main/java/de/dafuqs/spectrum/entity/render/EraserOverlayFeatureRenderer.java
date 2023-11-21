@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.entity.models.EraserEntityModel;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.feature.EyesFeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.util.Identifier;
 
 public class EraserOverlayFeatureRenderer extends EyesFeatureRenderer<EraserEntity, EraserEntityModel> {
 

@@ -4,7 +4,6 @@ import com.google.common.collect.*;
 import com.google.gson.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.loot.*;
-import de.dafuqs.spectrum.helpers.NbtHelper;
 import net.minecraft.item.*;
 import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.*;

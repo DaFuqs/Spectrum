@@ -6,7 +6,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.shape.SlicedVoxelShape;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 

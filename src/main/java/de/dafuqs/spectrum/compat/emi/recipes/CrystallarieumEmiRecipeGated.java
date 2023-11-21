@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 

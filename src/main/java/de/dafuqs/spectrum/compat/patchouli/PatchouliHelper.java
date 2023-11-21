@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.patchouli;
 
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.client.book.gui.*;

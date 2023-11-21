@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.registries.color;
 
 import net.minecraft.block.*;
 import net.minecraft.item.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 
 import java.util.*;

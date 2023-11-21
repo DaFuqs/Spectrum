@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;

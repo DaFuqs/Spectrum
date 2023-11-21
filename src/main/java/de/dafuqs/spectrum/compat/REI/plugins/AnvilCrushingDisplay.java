@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.minecraft.registry.*;
 
 import java.util.*;
 

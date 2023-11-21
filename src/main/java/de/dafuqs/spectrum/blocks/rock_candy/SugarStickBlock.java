@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;

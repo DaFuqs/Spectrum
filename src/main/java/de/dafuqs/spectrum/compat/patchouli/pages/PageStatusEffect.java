@@ -5,7 +5,6 @@ import com.mojang.blaze3d.systems.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.texture.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
 import net.minecraft.text.*;

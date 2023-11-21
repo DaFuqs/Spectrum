@@ -6,7 +6,6 @@ import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.item.*;
-import net.minecraft.client.render.model.*;
 import net.minecraft.client.render.model.json.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;

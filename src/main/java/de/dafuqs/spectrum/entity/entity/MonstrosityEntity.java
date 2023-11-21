@@ -22,7 +22,6 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;

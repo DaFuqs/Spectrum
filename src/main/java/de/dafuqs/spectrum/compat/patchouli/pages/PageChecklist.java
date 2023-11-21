@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.google.gson.annotations.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import vazkii.patchouli.api.*;

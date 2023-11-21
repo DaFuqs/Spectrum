@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;

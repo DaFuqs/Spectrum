@@ -17,8 +17,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import java.util.*;
 
-import java.util.*;
-
 public class RecipeUtils {
 	
 	public static ItemStack itemStackWithNbtFromJson(JsonObject json) {

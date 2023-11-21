@@ -10,7 +10,6 @@ import net.minecraft.client.gui.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.*;
 import net.minecraft.command.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;

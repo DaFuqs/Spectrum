@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;

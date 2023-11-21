@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.fluid.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;

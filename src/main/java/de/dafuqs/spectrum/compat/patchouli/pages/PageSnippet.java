@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import vazkii.patchouli.client.book.*;

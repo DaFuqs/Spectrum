@@ -4,7 +4,6 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 

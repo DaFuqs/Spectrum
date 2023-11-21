@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.minecraft.registry.*;
 
 import java.util.*;
 

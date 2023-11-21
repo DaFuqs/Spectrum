@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.furniture;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;

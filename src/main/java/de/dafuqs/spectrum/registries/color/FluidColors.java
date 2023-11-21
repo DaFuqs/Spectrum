@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries.color;
 
 import net.minecraft.fluid.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 
 import java.util.*;

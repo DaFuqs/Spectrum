@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.animation;
 
 import net.minecraft.client.render.entity.animation.*;
-import net.minecraft.client.render.entity.model.*;
 
 public class KindlingAnimations {
 

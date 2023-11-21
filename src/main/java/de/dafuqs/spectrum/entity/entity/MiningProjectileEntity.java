@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.spells.MoonstoneStrike;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.boom;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
-import net.minecraft.registry.RegistryKey;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

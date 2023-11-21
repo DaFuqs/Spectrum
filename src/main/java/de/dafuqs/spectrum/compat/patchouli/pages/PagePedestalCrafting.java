@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;

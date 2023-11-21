@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.google.common.base.*;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.item.*;

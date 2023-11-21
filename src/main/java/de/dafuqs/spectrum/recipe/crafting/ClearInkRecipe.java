@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.energy.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.recipe.book.*;
-import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 

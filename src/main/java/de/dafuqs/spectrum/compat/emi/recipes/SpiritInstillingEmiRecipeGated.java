@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
-import net.minecraft.registry.*;
 
 public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<SpiritInstillerRecipe> {
 	

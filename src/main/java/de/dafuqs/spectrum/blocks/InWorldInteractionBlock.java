@@ -163,7 +163,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 	

@@ -12,9 +12,8 @@ public class DeeperDownDimensionEffects extends DimensionEffects {
 		super(Float.NaN, false, DimensionEffects.SkyType.NONE, false, true);
 	}
 	
-	@Nullable
 	@Override
-	public float[] getFogColorOverride(float skyAngle, float tickDelta) {
+	public @Nullable float[] getFogColorOverride(float skyAngle, float tickDelta) {
 		return null;
 	}
 	

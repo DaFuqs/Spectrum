@@ -50,7 +50,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.itemPredicates));
 			jsonObject.add("gained_experience", this.experienceRange.toJson());
 			return jsonObject;
 		}

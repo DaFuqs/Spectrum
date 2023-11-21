@@ -46,7 +46,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.itemPredicates));
 			return jsonObject;
 		}
 		

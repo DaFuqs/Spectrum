@@ -14,7 +14,7 @@ import java.util.*;
 public class TotemPendantItem extends SpectrumTrinketItem {
 	
 	public TotemPendantItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("unlocks/trinkets/neat_ring"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/totem_pendant"));
 	}
 	
 	@Environment(EnvType.CLIENT)

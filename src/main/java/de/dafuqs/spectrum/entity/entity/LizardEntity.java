@@ -15,20 +15,18 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
 import net.minecraft.world.*;
 import net.minecraft.world.poi.*;
 import org.jetbrains.annotations.*;
 
-// TODO - review port
 // funny little creatures always out for trouble
 public class LizardEntity extends TameableEntity implements PackEntity<LizardEntity>, POIMemorized {
-
 
 	protected static final TrackedData<LizardFrillVariant> FRILL_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_FRILL_VARIANT);
 	protected static final TrackedData<LizardHornVariant> HORN_VARIANT = DataTracker.registerData(LizardEntity.class, SpectrumTrackedDataHandlerRegistry.LIZARD_HORN_VARIANT);
@@ -391,9 +389,9 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 
 	}
 
-
 	@Override
 	public EntityView method_48926() {
 		return this.getWorld();
 	}
+
 }

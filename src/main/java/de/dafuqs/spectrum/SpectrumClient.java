@@ -46,7 +46,6 @@ import net.minecraft.util.shape.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
-import java.lang.Math;
 import java.util.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
@@ -59,25 +58,25 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
-    public void onInitializeClient() {
+	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
-		
+
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
-		
+
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-		
+
 		logInfo("Setting up client side Mod Compat...");
 		SpectrumIntegrationPacks.registerClient();
-		
+
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
-		
+
 		logInfo("Setting up GUIs...");
 		SpectrumScreenHandlerIDs.register();
 		SpectrumScreenHandlerTypes.registerClient();
-		
+
 		logInfo("Setting up ItemPredicates...");
 		SpectrumModelPredicateProviders.registerClient();
 
@@ -90,21 +89,21 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
-		
+
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
-		
+
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
-		
+
 		logInfo("Registering custom Patchouli Pages & Flags...");
 		PatchouliPages.register();
 		PatchouliFlags.register();
-		
+
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
 		DimensionReverb.setup();
-		
+
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
@@ -123,9 +122,15 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		if (CONFIG.AddItemTooltips) {
 			SpectrumTooltips.register();
 		}
-		
 
+		WorldRenderEvents.START.register(new WorldRenderEvents.Start() {
+			@Override
+			public void onStart(WorldRenderContext context) {
+				HudRenderers.clearItemStackOverlay();
+			}
+		});
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> Pastel.getClientInstance().renderLines(context));
 
 		registerBlockOutlineEvent();
 		if (FabricLoader.getInstance().isModLoaded("ears")) {
@@ -133,16 +138,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			EarsCompat.register();
 		}
 
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> Pastel.getClientInstance().renderLines(context));
-		
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
-		
+
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
-		
+
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-		
+
 		logInfo("Client startup completed!");
 	}
 
@@ -150,7 +153,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	private void registerBlockOutlineEvent() {
 		WorldRenderEvents.BLOCK_OUTLINE.register((context, hitResult) -> {
 			boolean shouldCancel = false;
-			var client = MinecraftClient.getInstance();
+			MinecraftClient client = MinecraftClient.getInstance();
 			if (client.player != null && context.blockOutlines()) {
 				for (ItemStack handStack : client.player.getHandItems()) {
 					Item handItem = handStack.getItem();
@@ -167,9 +170,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					}
 				}
 			}
+
 			return !shouldCancel;
 		});
 	}
+
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {
@@ -181,14 +186,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 		}
 	}
-	
+
 	@Override
 	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}
-	
+
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
@@ -197,9 +202,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		ClientPlayerEntity player = client.player;
 
-        if (player == null) return false;
+		if (player == null) return false;
 
-        if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
+		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
 			VoxelShape shape = VoxelShapes.empty();
@@ -251,7 +256,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		ClientPlayerEntity player = client.player;
 
-        if (player == null) return false;
+		if (player == null) return false;
 
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();

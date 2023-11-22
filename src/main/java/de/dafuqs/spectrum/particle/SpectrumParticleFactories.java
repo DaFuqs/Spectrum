@@ -8,6 +8,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.particle.*;
 
+// See ParticleManager for vanilla
 @Environment(EnvType.CLIENT)
 public class SpectrumParticleFactories {
 	

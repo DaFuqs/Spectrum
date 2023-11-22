@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:stuck_storm_stone",
+    "spectrum:quitoxic_reeds",
+    "spectrum:mermaids_brush",
+
+    "spectrum:wand_light",
+
+    "spectrum:liquid_crystal",
+    "spectrum:mud",
+    "spectrum:dragonrot",
+    "spectrum:midnight_solution"
+  ]
+}

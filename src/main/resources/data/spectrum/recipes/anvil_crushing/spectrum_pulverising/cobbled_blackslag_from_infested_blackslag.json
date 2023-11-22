@@ -1,5 +1,6 @@
 {
   "type": "spectrum:anvil_crushing",
+  "group": "cobbled_blackslag",
   "ingredient": {
     "item": "spectrum:infested_blackslag"
   },

@@ -58,9 +58,9 @@
       },
       {
         "type": "minecraft:slime",
-        "weight": 0,
-        "minCount": 0,
-        "maxCount": 0
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
     "underground_water_creature": [],

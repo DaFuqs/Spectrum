@@ -25,7 +25,7 @@ import java.util.*;
 public abstract class ItemEntityMixin {
 	
 	private static AutoCompactingInventory autoCompactingInventory;
-	
+
 	@Shadow
 	public abstract ItemStack getStack();
 	
@@ -69,7 +69,7 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (source.isOf(DamageTypes.FALLING_ANVIL) || SpectrumDamageSources.FLOATBLOCK.equals(source)) {
+		if (source.isOf(DamageTypes.FALLING_ANVIL) || source.isOf(SpectrumDamageSources.FLOATBLOCK)) {
 			doAnvilCrafting(amount);
 			
 			// prevent the source itemStack taking damage.

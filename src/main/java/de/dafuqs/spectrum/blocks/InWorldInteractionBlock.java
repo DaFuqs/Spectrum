@@ -13,7 +13,6 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
@@ -163,7 +162,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 	

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.loot.functions;
 
 import com.google.common.collect.*;
 import com.google.gson.*;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.loot.*;
 import net.minecraft.item.*;

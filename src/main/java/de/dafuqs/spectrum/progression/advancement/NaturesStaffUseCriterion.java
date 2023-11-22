@@ -65,7 +65,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 		private final Block targetBlock;
 		private final StatePredicate targetBlockState;
 		
-		public Conditions(LootContextPredicate player, Block sourceBlock, StatePredicate sourceBlockState, Block targetBlock, StatePredicate targetBlockState) {
+		public Conditions(LootContextPredicate player, @Nullable Block sourceBlock, StatePredicate sourceBlockState, @Nullable Block targetBlock, StatePredicate targetBlockState) {
 			super(ID, player);
 			this.sourceBlock = sourceBlock;
 			this.sourceBlockState = sourceBlockState;

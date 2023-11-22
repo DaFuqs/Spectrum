@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.structures;
 
-import com.mojang.brigadier.exceptions.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -22,19 +20,18 @@ import java.util.*;
 
 public class SingleBlockPoolElement extends StructurePoolElement {
 	
-	// TODO: it would be nice to serialize the field "nbt" directly as NbtCompound here, but I am too dum it seems
 	public static final Codec<SingleBlockPoolElement> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			BlockState.CODEC.fieldOf("block").forGetter((pool) -> pool.state),
-			Codec.STRING.fieldOf("nbt").forGetter((pool) -> pool.blockNbt),
+			NbtCompound.CODEC.fieldOf("nbt").forGetter((pool) -> pool.blockNbt),
 			projectionGetter()
 	).apply(instance, SingleBlockPoolElement::new));
 	
 	protected final BlockState state;
-	protected final String blockNbt;
+	protected final NbtCompound blockNbt;
 	
 	private static final NbtCompound jigsawNbt = createDefaultJigsawNbt();
 	
-	protected SingleBlockPoolElement(BlockState state, String blockNbt, StructurePool.Projection projection) {
+	protected SingleBlockPoolElement(BlockState state, NbtCompound blockNbt, StructurePool.Projection projection) {
 		super(projection);
 		this.state = state;
 		this.blockNbt = blockNbt;
@@ -73,18 +70,13 @@ public class SingleBlockPoolElement extends StructurePoolElement {
 		}
 		
 		if (world.setBlockState(pos.down(), this.state, Block.FORCE_STATE | Block.NOTIFY_ALL)) {
-			if (this.blockNbt.isBlank()) {
+			if (this.blockNbt.isEmpty()) {
 				return true;
 			}
 			
 			BlockEntity blockEntity = world.getBlockEntity(pos.down());
 			if (blockEntity != null) {
-				try {
-					blockEntity.readNbt(StringNbtReader.parse(this.blockNbt));
-				} catch (CommandSyntaxException e) {
-					SpectrumCommon.logError("Failed to set BlockEntityNbt for " + this);
-					
-				}
+				blockEntity.readNbt(this.blockNbt);
 				return true;
 			}
 		}

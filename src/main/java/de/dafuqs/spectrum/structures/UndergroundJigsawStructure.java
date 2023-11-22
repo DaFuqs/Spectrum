@@ -5,7 +5,6 @@ import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.structure.pool.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -101,7 +100,6 @@ public class UndergroundJigsawStructure extends Structure {
 	private static Optional<Integer> getFloorHeight(Random random, ChunkGenerator chunkGenerator, StructurePlacementType structurePlacementType, int startHeight, int structureHeight, BlockBox box, HeightLimitView world, NoiseConfig noiseConfig) {
 		int y = startHeight;
 		int lowestY = world.getBottomY() + 15;
-		MinecraftClient client = MinecraftClient.getInstance();
 		
 		// if we are randomly picked a solid block:
 		// search downwards until we find the first non-solid block
@@ -111,7 +109,7 @@ public class UndergroundJigsawStructure extends Structure {
 			if (y < lowestY) {
 				return Optional.empty();
 			}
-			if (!heightLimitView.getState(y).isSolidBlock(client.world != null ? null : client.world, new BlockPos(box.getCenter().getX(), y, box.getCenter().getZ()))) {
+			if (!heightLimitView.getState(y).isSolid()) {
 				break;
 			}
 			y--;

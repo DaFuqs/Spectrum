@@ -74,7 +74,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumFluids.registerClient();
 
 		logInfo("Setting up GUIs...");
-		SpectrumScreenHandlerIDs.register();
 		SpectrumScreenHandlerTypes.registerClient();
 
 		logInfo("Setting up ItemPredicates...");
@@ -123,12 +122,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			SpectrumTooltips.register();
 		}
 
-		WorldRenderEvents.START.register(new WorldRenderEvents.Start() {
-			@Override
-			public void onStart(WorldRenderContext context) {
-				HudRenderers.clearItemStackOverlay();
-			}
-		});
+		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> Pastel.getClientInstance().renderLines(context));
 
@@ -149,7 +143,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Client startup completed!");
 	}
 
-	// TODO - consider moving this somewhere else
 	private void registerBlockOutlineEvent() {
 		WorldRenderEvents.BLOCK_OUTLINE.register((context, hitResult) -> {
 			boolean shouldCancel = false;
@@ -213,8 +206,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				int itemCountInInventory = Integer.MAX_VALUE;
 				long inkLimit = Long.MAX_VALUE;
 				if (!player.isCreative()) {
-					// TODO - pick reasonable count?
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, 256);
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, Integer.MAX_VALUE);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
 					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;

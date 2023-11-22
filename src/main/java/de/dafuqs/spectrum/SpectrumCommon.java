@@ -58,8 +58,8 @@ import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.text.*;
 import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.slf4j.*;
@@ -167,8 +167,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumLootFunctionTypes.register();
 		
 		// GUI
-		logInfo("Registering Containers...");
-		SpectrumScreenHandlerIDs.register();
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
 		

@@ -13,7 +13,6 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	

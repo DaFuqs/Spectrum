@@ -23,7 +23,7 @@ public class SpectrumArmorRenderers {
 			BedrockArmorItem armor = (BedrockArmorItem) stack.getItem();
 			var model = armor.getArmorModel();
 			var texture = armor.getArmorTexture(stack, slot);
-			contextModel.setAttributes(model);
+			contextModel.copyBipedStateTo(model);
 			
 			ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, texture);
 			

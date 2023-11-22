@@ -4,7 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.world.gen.chunk.*;
-import net.minecraft.world.gen.chunk.ChunkNoiseSampler.BlockStateSampler;
+import net.minecraft.world.gen.chunk.ChunkNoiseSampler.*;
 import net.minecraft.world.gen.densityfunction.*;
 import net.minecraft.world.gen.noise.*;
 import org.spongepowered.asm.mixin.*;

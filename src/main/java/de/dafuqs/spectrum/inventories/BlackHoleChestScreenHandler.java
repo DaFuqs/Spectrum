@@ -30,7 +30,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	
 	private BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, Inventory filterInventory) {
 		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, new SimpleInventory(BlackHoleChestBlockEntity.INVENTORY_SIZE), filterInventory);
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
 			this.blackHoleChestBlockEntity = blackHoleChestBlockEntity;
 		}
@@ -45,7 +45,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	protected BlackHoleChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, Inventory filterInventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.filterInventory = filterInventory;
 
 		checkSize(inventory, BlackHoleChestBlockEntity.INVENTORY_SIZE);
@@ -89,7 +89,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {
@@ -118,8 +118,8 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 

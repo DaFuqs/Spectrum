@@ -10,7 +10,6 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -19,8 +18,8 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	@Environment(EnvType.CLIENT)
 	private BipedEntityModel<LivingEntity> model;
 	
-	public BedrockArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-		super(material, slot, settings);
+	public BedrockArmorItem(ArmorMaterial material, ArmorItem.Type type, Settings settings) {
+		super(material, type, settings);
 	}
 	
 	@Override
@@ -47,18 +46,6 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	public boolean canRepair(ItemStack itemStack_1, ItemStack itemStack_2) {
 		return false;
 	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
-	}
-
-	@Override
-	public boolean hasGlint(ItemStack stack) {
-		return false;
-	}
 
 	@Environment(EnvType.CLIENT)
 	protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
@@ -74,7 +61,7 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	@Environment(EnvType.CLIENT)
 	public BipedEntityModel<LivingEntity> getArmorModel() {
 		if (model == null) {
-			model = provideArmorModelForSlot(slot);
+			model = provideArmorModelForSlot(getSlotType());
 		}
 		return model;
 	}
@@ -87,5 +74,9 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 			return SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
 		}
 	}
-	
+
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return false;
+	}
 }

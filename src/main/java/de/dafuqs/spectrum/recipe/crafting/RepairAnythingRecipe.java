@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
@@ -13,12 +15,12 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 	
 	private static final Ingredient MOONSTRUCK_NECTAR = Ingredient.ofItems(SpectrumItems.MOONSTRUCK_NECTAR);
 	
-	public RepairAnythingRecipe(Identifier identifier) {
-		super(identifier);
+	public RepairAnythingRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, category);
 	}
 	
 	@Override
-	public boolean matches(CraftingInventory craftingInventory, World world) {
+	public boolean matches(RecipeInputInventory craftingInventory, World world) {
 		boolean nectarFound = false;
 		boolean itemFound = false;
 		
@@ -43,7 +45,7 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	public ItemStack craft(RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j);

@@ -9,8 +9,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
-import net.minecraft.screen.PlayerScreenHandler;
-
+import net.minecraft.screen.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)

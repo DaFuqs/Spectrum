@@ -4,7 +4,6 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -16,20 +15,20 @@ public class BloodOrchidPluckingCriterion extends AbstractCriterion<BloodOrchidP
 	public Identifier getId() {
 		return ID;
 	}
-	
+
 	@Override
-	public BloodOrchidPluckingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		return new BloodOrchidPluckingCriterion.Conditions(extended);
+	protected Conditions conditionsFromJson(JsonObject obj, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+		return new BloodOrchidPluckingCriterion.Conditions(playerPredicate);
 	}
-	
+
 	public void trigger(ServerPlayerEntity player) {
 		this.trigger(player, Conditions::matches);
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
 		
-		public Conditions(Extended player) {
-			super(BloodOrchidPluckingCriterion.ID, player);
+		public Conditions(LootContextPredicate predicate) {
+			super(BloodOrchidPluckingCriterion.ID, predicate);
 		}
 		
 		@Override

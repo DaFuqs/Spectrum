@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.pedestal.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
@@ -34,7 +34,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, PlayerInventory playerInventory, int variant, int maxRecipeTier, BlockPos pedestalPos) {
-		this(type, context, recipeBookCategory, i, playerInventory, (Inventory)playerInventory.player.world.getBlockEntity(pedestalPos), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
+		this(type, context, recipeBookCategory, i, playerInventory, (Inventory) playerInventory.player.getWorld().getBlockEntity(pedestalPos), new ArrayPropertyDelegate(2), variant, maxRecipeTier, pedestalPos);
 	}
 	
 	public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int variant, int maxRecipeTier, BlockPos pedestalPos) {
@@ -46,7 +46,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.inventory = inventory;
 		this.category = recipeBookCategory;
 		this.propertyDelegate = propertyDelegate;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		this.pedestalPos = pedestalPos;
 		this.pedestalRecipeTier = PedestalRecipeTier.values()[pedestalRecipeTier];
@@ -185,7 +185,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	// 15: preview slot
 	// 16: hidden output slot
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
@@ -263,8 +263,8 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 	

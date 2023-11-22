@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class GlassArrowVariant {
 	

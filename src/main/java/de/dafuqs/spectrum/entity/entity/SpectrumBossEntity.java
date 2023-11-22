@@ -65,7 +65,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	protected boolean isNonVanillaKillCommandDamage(DamageSource source, float amount) {
-		if (source != DamageSource.OUT_OF_WORLD || amount != Float.MAX_VALUE) {
+		if (source.isOf(DamageTypes.OUT_OF_WORLD) || amount != Float.MAX_VALUE) {
 			return false;
 		}
 		
@@ -115,12 +115,13 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	@Override
 	public void onDeath(DamageSource damageSource) {
 		super.onDeath(damageSource);
-		
+
 		// grant the kill to all players close by players
 		// => should they battle in a team the kill counts for all players
 		// instead of just the one that did the killing blow like in vanilla
+		World world = this.getWorld();
 		if (!world.isClient) {
-			for (PlayerEntity closeByPlayer : world.getEntitiesByType(EntityType.PLAYER, getBoundingBox().expand(24), Entity::isAlive)) {
+			for (PlayerEntity closeByPlayer : this.getWorld().getEntitiesByType(EntityType.PLAYER, getBoundingBox().expand(24), Entity::isAlive)) {
 				Criteria.ENTITY_KILLED_PLAYER.trigger((ServerPlayerEntity) closeByPlayer, this, damageSource);
 			}
 		}
@@ -174,7 +175,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	public void checkDespawn() {
-		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+		if (this.getWorld().getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
 			this.discard();
 		} else {
 			this.despawnCounter = 0;

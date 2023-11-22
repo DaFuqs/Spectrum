@@ -9,7 +9,6 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -97,14 +96,6 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	@Override
 	public ItemStack getFullStack() {
 		return InkStorageItem.super.getFullStack();
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			stacks.add(getFullStack());
-		}
 	}
 	
 }

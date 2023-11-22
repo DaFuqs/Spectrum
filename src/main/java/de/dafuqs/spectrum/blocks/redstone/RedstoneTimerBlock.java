@@ -14,6 +14,7 @@ import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.*;
 import org.jetbrains.annotations.*;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
@@ -61,7 +62,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			// remove currently scheduled ticks at the blocks position
 			// and schedule new ticks
 			serverWorld.getBlockTickScheduler().clearNextTicks(new BlockBox(pos));
-			serverWorld.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
+			serverWorld.scheduleBlockTick(pos, state.getBlock(), getUpdateDelayInternal(state));
 		}
 	}
 	
@@ -70,7 +71,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
 		world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, 1.0F);
-		world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
+		world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
 	}
 	
 	@Override
@@ -88,7 +89,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			} else if (bl) {
 				tickPriority = TickPriority.VERY_HIGH;
 			}
-			world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
+			world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), tickPriority);
 		}
 	}
 	
@@ -98,14 +99,14 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			if (serverPlayerEntity.isSneaking()) {
 				// toggle inactive time
 				TimingStep newStep = blockState.get(INACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(INACTIVE_TIME, newStep));
 			} else {
 				// toggle active time
 				TimingStep newStep = blockState.get(ACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), true);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));
@@ -132,11 +133,11 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	}
 	
 	public enum TimingStep implements StringIdentifiable {
+		FourTicks("four_ticks", 4, "block.spectrum.redstone_timer.setting.four_ticks"),
 		OneSecond("one_second", 20, "block.spectrum.redstone_timer.setting.one_second"),
 		TenSeconds("ten_seconds", 10 * 20, "block.spectrum.redstone_timer.setting.ten_seconds"),
 		OneMinute("one_minute", 60 * 20, "block.spectrum.redstone_timer.setting.one_minute"),
-		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes"),
-		OneHour("one_hour", 60 * 60 * 20, "block.spectrum.redstone_timer.setting.one_hour");
+		TenMinutes("ten_minutes", 60 * 20 * 10, "block.spectrum.redstone_timer.setting.ten_minutes");
 		
 		public final int ticks;
 		public final String localizationString;

@@ -5,17 +5,14 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.client.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
-import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -26,7 +23,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidLogging.SpectrumFluidFillable {
-	
+
 	private static final VoxelShape SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_mermaids_brush");
@@ -44,26 +41,13 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-	
+
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
 	}
-	
-	@Override
-	@SuppressWarnings("resource")
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		super.randomDisplayTick(state, world, pos, random);
-		if (world.isClient) {
-			if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isOf(SpectrumItems.GLOW_VISION_GOGGLES)) {
-				StatusEffectInstance nightVisionEffectInstance = MinecraftClient.getInstance().player.getStatusEffect(StatusEffects.NIGHT_VISION);
-				if (nightVisionEffectInstance != null && nightVisionEffectInstance.getDuration() > 0) {
-					world.addParticle(ParticleTypes.GLOW, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
-				}
-			}
-		}
-	}
-	
+
+
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return UNLOCK_IDENTIFIER;
@@ -103,9 +87,9 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 			return Blocks.AIR.getDefaultState();
 		} else {
 			if (state.get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL) {
-				world.createAndScheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
+				world.scheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 			} else {
-				world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+				world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 			}
 			
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -154,7 +138,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return true;
 	}
 	

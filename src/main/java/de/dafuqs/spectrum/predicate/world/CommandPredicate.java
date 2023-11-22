@@ -17,7 +17,7 @@ public class CommandPredicate implements WorldConditionPredicate, CommandOutput 
 	}
 	
 	public static CommandPredicate fromJson(JsonObject json) {
-        if (json == null || json.isJsonNull()) return ANY;
+		if (json == null || json.isJsonNull()) return ANY;
 		return new CommandPredicate(json.get("command").getAsString());
 	}
 	

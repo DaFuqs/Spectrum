@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
@@ -47,8 +46,8 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.world.isClient) {
-			if (!this.inGround || world.getTime() % 8 == 0) {
+		if (this.getWorld().isClient()) {
+			if (!this.inGround || this.getWorld().getTime() % 8 == 0) {
 				spawnParticles(1);
 			}
 		}
@@ -63,7 +62,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		ParticleEffect particleType = this.getVariant().getParticleEffect();
 		if (particleType != null) {
 			for (int j = 0; j < amount; ++j) {
-				this.world.addParticle(particleType, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
+				this.getWorld().addParticle(particleType, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
 			}
 		}
 	}
@@ -71,17 +70,18 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		LivingEntity livingEntityToResetHurtTime = null;
+		World world = this.getWorld();
 		
 		// additional effects depending on arrow type
 		// mundane glass arrows do not have additional effects
 		GlassArrowVariant variant = getVariant();
 		if (variant == GlassArrowVariant.TOPAZ) {
-			if (!this.world.isClient && this.getOwner() != null) {
+			if (!this.getWorld().isClient() && this.getOwner() != null) {
 				Entity entity = entityHitResult.getEntity();
 				pullEntityClose(this.getOwner(), entity, 0.2);
 			}
 		} else if (variant == GlassArrowVariant.AMETHYST) {
-			if (!this.world.isClient) {
+			if (!this.getWorld().isClient()) {
 				Entity entity = entityHitResult.getEntity();
 				entity.setFrozenTicks(200);
 			}
@@ -93,7 +93,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 				livingEntity.hurtTime = 0;
 				livingEntityToResetHurtTime = livingEntity;
 				livingEntity.damageShield(20);
-				livingEntity.damageArmor(DamageSource.MAGIC, 20);
+				livingEntity.damageArmor(world.getDamageSources().magic(), 20);
 			}
 		} else if (variant == GlassArrowVariant.MOONSTONE) {
 			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
@@ -113,7 +113,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
 		if (getVariant() == GlassArrowVariant.MOONSTONE) {
-			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
+			MoonstoneStrike.create(this.getWorld(), this, null, this.getX(), this.getY(), this.getZ(), 4);
 		}
 	}
 	
@@ -144,8 +144,8 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		HitResult.Type type = hitResult.getType();
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
-			BlockState state = this.world.getBlockState(hitPos);
-			if (state.isTranslucent(world, hitPos)) {
+			BlockState state = this.getWorld().getBlockState(hitPos);
+			if (state.isSolidBlock(this.getWorld(), hitPos)) {
 				return;
 			}
 		}

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 
@@ -12,7 +12,7 @@ public enum BuiltinPedestalVariant implements PedestalVariant {
 	ONYX(PedestalRecipeTier.ADVANCED),
 	MOONSTONE(PedestalRecipeTier.COMPLEX);
 	
-	final PedestalRecipeTier tier;
+	private final PedestalRecipeTier tier;
 	
 	BuiltinPedestalVariant(PedestalRecipeTier tier) {
 		this.tier = tier;

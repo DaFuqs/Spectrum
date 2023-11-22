@@ -85,7 +85,7 @@ public class InventoryHelper {
 		List<ItemStack> foundStacks = new ArrayList<>();
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
-			if (inventoryStack.isItemEqual(itemStack)) {
+			if (ItemStack.areItemsEqual(inventoryStack, itemStack)) {
 				foundStacks.add(inventoryStack);
 				count += inventoryStack.getCount();
 				if (count >= maxSearchAmount) {
@@ -308,21 +308,19 @@ public class InventoryHelper {
 					int currentStackCount = currentStack.getCount();
 					if (requiredIngredients.get(j).test(currentStack)) {
 						int ingredientCount = requiredIngredientAmounts.get(j);
-						Item remainder = currentStack.getItem().getRecipeRemainder();
+						ItemStack remainder = currentStack.getRecipeRemainder();
 						if (currentStackCount >= ingredientCount) {
-							if (remainder != null && remainder != Items.AIR) {
-								ItemStack remainderStack = remainder.getDefaultStack();
-								remainderStack.setCount(requiredIngredientAmounts.get(j));
-								remainders.add(remainderStack);
+							if (!remainder.isEmpty()) {
+								remainder.setCount(requiredIngredientAmounts.get(j));
+								remainders.add(remainder);
 							}
 							requiredIngredients.remove(j);
 							requiredIngredientAmounts.remove(j);
 							j--;
 						} else {
-							if (remainder != null && remainder != Items.AIR) {
-								ItemStack remainderStack = remainder.getDefaultStack();
-								remainderStack.setCount(currentStackCount);
-								remainders.add(remainderStack);
+							if (!remainder.isEmpty()) {
+								remainder.setCount(currentStackCount);
+								remainders.add(remainder);
 							}
 							
 							requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - currentStackCount);
@@ -344,17 +342,16 @@ public class InventoryHelper {
 		int removeItemStackCount = removeItemStack.getCount();
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
-			if (removeItemStack.isItemEqual(currentStack)) {
-				Item remainder = currentStack.getItem().getRecipeRemainder();
+			if (ItemStack.areItemsEqual(currentStack, removeItemStack)) {
+				ItemStack remainder = currentStack.getRecipeRemainder();
 				
 				int amountAbleToDecrement = Math.min(currentStack.getCount(), removeItemStackCount);
 				currentStack.decrement(amountAbleToDecrement);
 				removeItemStackCount -= amountAbleToDecrement;
 				
-				if (remainder != null && remainder != Items.AIR) {
-					ItemStack remainderStack = remainder.getDefaultStack();
-					remainderStack.setCount(amountAbleToDecrement);
-					remainders.add(remainderStack);
+				if (!remainder.isEmpty()) {
+					remainder.setCount(amountAbleToDecrement);
+					remainders.add(remainder);
 				}
 			}
 			if (removeItemStackCount == 0) {
@@ -369,13 +366,13 @@ public class InventoryHelper {
 	}
 	
 	public static boolean canCombineItemStacks(ItemStack currentItemStack, ItemStack additionalItemStack) {
-		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (currentItemStack.isItemEqual(additionalItemStack) && (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxCount()));
+		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (ItemStack.areItemsEqual(currentItemStack, additionalItemStack) && (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxCount()));
 	}
 	
 	@Nullable
 	public static Inventory getInventoryAt(World world, double x, double y, double z) {
 		Inventory inventory = null;
-		BlockPos blockPos = new BlockPos(x, y, z);
+		BlockPos blockPos = BlockPos.ofFloored(x, y, z);
 		BlockState blockState = world.getBlockState(blockPos);
 		Block block = blockState.getBlock();
 		if (block instanceof InventoryProvider) {

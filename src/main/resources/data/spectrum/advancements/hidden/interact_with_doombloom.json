@@ -3,13 +3,18 @@
     "interacted_with_doombloom": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:doombloom"
-            ]
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "spectrum:doombloom"
+                ]
+              }
+            }
           }
-        }
+        ]
       }
     },
     "has_doombloom": {
@@ -18,7 +23,6 @@
         "items": [
           {
             "items": [
-              "spectrum:doombloom",
               "spectrum:doombloom_seed"
             ]
           }

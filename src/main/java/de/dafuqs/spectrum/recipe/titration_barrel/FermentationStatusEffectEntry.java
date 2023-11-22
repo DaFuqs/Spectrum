@@ -4,8 +4,8 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.network.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -50,7 +50,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	
 	public static FermentationStatusEffectEntry fromJson(JsonObject jsonObject) {
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, EFFECT_ID_STRING));
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		if (statusEffect == null) {
 			SpectrumCommon.logError("Status effect " + statusEffectIdentifier + " does not exist in the status effect registry. Falling back to WEAKNESS");
 			statusEffect = StatusEffects.WEAKNESS;
@@ -73,7 +73,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	public JsonObject toJson() {
 		JsonObject json = new JsonObject();
 		
-		json.addProperty(EFFECT_ID_STRING, Registry.STATUS_EFFECT.getId(this.statusEffect).toString());
+		json.addProperty(EFFECT_ID_STRING, Registries.STATUS_EFFECT.getId(this.statusEffect).toString());
 		json.addProperty(BASE_DURATION_STRING, this.baseDuration);
 		JsonArray effects = new JsonArray();
 		for (StatusEffectPotencyEntry entry : this.potencyEntries) {
@@ -85,7 +85,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeString(Registry.STATUS_EFFECT.getId(this.statusEffect).toString());
+		packetByteBuf.writeString(Registries.STATUS_EFFECT.getId(this.statusEffect).toString());
 		packetByteBuf.writeInt(baseDuration);
 		packetByteBuf.writeInt(this.potencyEntries.size());
 		for (StatusEffectPotencyEntry potencyEntry : this.potencyEntries) {
@@ -95,7 +95,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	
 	public static FermentationStatusEffectEntry read(PacketByteBuf packetByteBuf) {
 		Identifier statusEffectIdentifier = Identifier.tryParse(packetByteBuf.readString());
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		int baseDuration = packetByteBuf.readInt();
 		int potencyEntryCount = packetByteBuf.readInt();
 		List<StatusEffectPotencyEntry> potencyEntries = new ArrayList<>(potencyEntryCount);

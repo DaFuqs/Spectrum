@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.features.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.gen.feature.*;
-
-import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 
 public class SpectrumFeatures {
 
@@ -35,6 +35,10 @@ public class SpectrumFeatures {
 		RANDOM_BLOCK_PROXIMITY_PATCH = registerFeature("random_block_proximity_patch", new RandomBlockProximityPatchFeature(RandomBlockProximityPatchFeatureConfig.CODEC));
 		EXPOSED_FOSSIL = registerFeature("exposed_fossil", new ExposedFossilFeature(FossilFeatureConfig.CODEC));
 		WALL_PATCH = registerFeature("wall_patch", new WallPatchFeature(WallPatchFeatureConfig.CODEC));
+	}
+	
+	private static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {
+		return Registry.register(Registries.FEATURE, SpectrumCommon.locate(name), feature);
 	}
 	
 }

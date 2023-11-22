@@ -11,8 +11,8 @@ public class SpectrumTooltipComponents {
 		TooltipComponentCallback.EVENT.register((data -> {
 			if (data instanceof CraftingTabletTooltipData craftingTabletTooltipData) {
 				return new CraftingTabletTooltipComponent(craftingTabletTooltipData);
-			} else if (data instanceof VoidBundleTooltipData voidBundleTooltipData) {
-				return new VoidBundleTooltipComponent(voidBundleTooltipData);
+			} else if (data instanceof BottomlessBundleTooltipData bottomlessBundleTooltipData) {
+				return new BottomlessBundleTooltipComponent(bottomlessBundleTooltipData);
 			} else if (data instanceof PresentTooltipData presentTooltipData) {
 				return new PresentTooltipComponent(presentTooltipData);
 			}

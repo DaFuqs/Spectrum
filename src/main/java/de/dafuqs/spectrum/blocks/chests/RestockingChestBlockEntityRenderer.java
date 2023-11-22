@@ -9,7 +9,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 @Environment(EnvType.CLIENT)
 public class RestockingChestBlockEntityRenderer implements BlockEntityRenderer<RestockingChestBlockEntity> {
 	
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/restocking_chest"));
+	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/restocking_chest"));
 	private final ModelPart root;
 	private final ModelPart lid;
 	
@@ -46,7 +46,7 @@ public class RestockingChestBlockEntityRenderer implements BlockEntityRenderer<R
 		matrixStack.push();
 		float f = (blockState.get(ChestBlock.FACING)).asRotation();
 		matrixStack.translate(0.5D, 0.5D, 0.5D);
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.translate(-0.5D, -0.5D, -0.5D);
 		
 		float openFactor = entity.getAnimationProgress(tickDelta);

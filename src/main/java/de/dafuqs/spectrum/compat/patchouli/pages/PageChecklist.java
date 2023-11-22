@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
 import de.dafuqs.revelationary.api.advancements.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import vazkii.patchouli.api.*;
@@ -64,11 +64,11 @@ public class PageChecklist extends BookPage {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
-		textRender.render(ms, mouseX, mouseY);
-		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		textRender.render(drawContext, mouseX, mouseY);
+		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
 	}
 	
 	protected Text getTitle() {

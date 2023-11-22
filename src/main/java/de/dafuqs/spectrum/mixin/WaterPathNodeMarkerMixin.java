@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.fluid.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.*;
 @Mixin(WaterPathNodeMaker.class)
 public class WaterPathNodeMarkerMixin {
 	
-	@ModifyArg(method = "getNodeType(Lnet/minecraft/world/BlockView;IIILnet/minecraft/entity/mob/MobEntity;IIIZZ)Lnet/minecraft/entity/ai/pathing/PathNodeType;", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z"))
+	@ModifyArg(method = "getNodeType", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
 	private TagKey<Fluid> spectrum$tagBasedWaterNavigation(TagKey<Fluid> tag) {
 		return SpectrumFluidTags.USES_WATER_PATHFINDING;
 	}

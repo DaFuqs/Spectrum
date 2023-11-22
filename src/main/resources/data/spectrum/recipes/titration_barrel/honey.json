@@ -16,5 +16,6 @@
   "result": {
     "item": "minecraft:honey_bottle",
     "count": 4
-  }
+  },
+  "required_advancement": "spectrum:unlocks/food/honey"
 }

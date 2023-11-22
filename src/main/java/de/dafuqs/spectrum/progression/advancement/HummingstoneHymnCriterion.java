@@ -14,7 +14,7 @@ public class HummingstoneHymnCriterion extends AbstractCriterion<HummingstoneHym
 	static final Identifier ID = SpectrumCommon.locate("hummingstone_hymn");
 
 	public static HummingstoneHymnCriterion.Conditions create(LocationPredicate location) {
-		return new HummingstoneHymnCriterion.Conditions(EntityPredicate.Extended.EMPTY, location);
+		return new HummingstoneHymnCriterion.Conditions(LootContextPredicate.EMPTY, location);
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class HummingstoneHymnCriterion extends AbstractCriterion<HummingstoneHym
 	}
 	
 	@Override
-	public HummingstoneHymnCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public HummingstoneHymnCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		LocationPredicate locationPredicate = LocationPredicate.fromJson(jsonObject.get("location"));
 		return new HummingstoneHymnCriterion.Conditions(extended, locationPredicate);
 	}
@@ -35,7 +35,7 @@ public class HummingstoneHymnCriterion extends AbstractCriterion<HummingstoneHym
 	public static class Conditions extends AbstractCriterionConditions {
 		private final LocationPredicate location;
 
-		public Conditions(EntityPredicate.Extended player, LocationPredicate location) {
+		public Conditions(LootContextPredicate player, LocationPredicate location) {
 			super(ID, player);
 			this.location = location;
 		}

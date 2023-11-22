@@ -1,14 +1,15 @@
 package de.dafuqs.spectrum.blocks.block_flooder;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
@@ -19,7 +20,7 @@ import java.util.*;
 public class BlockFlooderBlock extends BlockWithEntity {
 	
 	// when replacing blocks there may be cases when there is a good reason to use replacement blocks
-	// like using dirt instead of grass, because grass will be growing anyways and silk touching grass
+	// like using dirt instead of grass, because grass will be growing anyway and silk touching grass
 	// is absolutely not worth it / fun
 	public static final HashMap<TagKey<Block>, Block> exchangeableBlocks = new HashMap<>() {{
 		put(BlockTags.DIRT, Blocks.DIRT); // grass, podzol, mycelium, ...
@@ -38,7 +39,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public static boolean isReplaceableBlock(World world, BlockPos blockPos) {
 		BlockState state = world.getBlockState(blockPos);
 		Block block = state.getBlock();
-		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.getMaterial().isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
+		return world.getBlockEntity(blockPos) == null && !(block instanceof BlockFlooderBlock) && (state.isAir() || block instanceof FluidBlock || state.isReplaceable() || block instanceof AbstractPlantBlock || block instanceof FlowerBlock);
 	}
 	
 	public static boolean isValidCornerBlock(World world, BlockPos blockPos) {
@@ -52,7 +53,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (!world.isClient) {
-			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
+			world.scheduleBlockTick(pos, state.getBlock(), 4);
 		}
 	}
 	
@@ -83,27 +84,27 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				BlockState currentBlockState = world.getBlockState(targetBlockPos);
 				BlockEntity currentBlockEntity = world.getBlockEntity(targetBlockPos);
 				
-				if (currentBlockState.isOf(this) || currentBlockEntity != null) {
-					continue;
-				} else if (isReplaceableBlock(world, targetBlockPos)) {
-					Vec3i nextPos = new Vec3i(targetBlockPos.offset(direction).getX(), targetBlockPos.offset(direction).getY(), targetBlockPos.offset(direction).getZ());
-					if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE)) {
-						if (shouldPropagateTo(world, targetBlockPos)) {
-							world.setBlockState(targetBlockPos, state, 3);
-							if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
-								neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
-								neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
+				if (!currentBlockState.isOf(this) && currentBlockEntity == null) {
+					if (isReplaceableBlock(world, targetBlockPos)) {
+						Vec3i nextPos = new Vec3i(targetBlockPos.offset(direction).getX(), targetBlockPos.offset(direction).getY(), targetBlockPos.offset(direction).getZ());
+						if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE) && !GenericClaimModsCompat.isProtected(world, targetBlockPos, owner)) {
+							if (shouldPropagateTo(world, targetBlockPos)) {
+								world.setBlockState(targetBlockPos, state, 3);
+								if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
+									neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
+									neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
+								}
 							}
 						}
-					}
-				} else {
-					Block currentBlock = currentBlockState.getBlock();
-					
-					if (currentBlockState.isSolidBlock(world, targetBlockPos)) {
-						if (neighboringBlockAmounts.containsKey(currentBlock)) {
-							neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);
-						} else {
-							neighboringBlockAmounts.put(currentBlock, 1);
+					} else {
+						Block currentBlock = currentBlockState.getBlock();
+
+						if (currentBlockState.isSolidBlock(world, targetBlockPos)) {
+							if (neighboringBlockAmounts.containsKey(currentBlock)) {
+								neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);
+							} else {
+								neighboringBlockAmounts.put(currentBlock, 1);
+							}
 						}
 					}
 				}
@@ -162,7 +163,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if (targetState == null || targetState.isAir()) {
 					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
 					if (scheduleUpdate) {
-						world.createAndScheduleBlockTick(pos, state.getBlock(), 2 + random.nextInt(5));
+						world.scheduleBlockTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
 					world.setBlockState(pos, targetState, 3);

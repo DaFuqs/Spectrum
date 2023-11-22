@@ -16,14 +16,14 @@ public class WeatherDetectorBlock extends DetectorBlock {
 		int power = 0;
 		
 		if (world.isThundering()) {
-			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation();
+			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation(pos);
 			switch (precipitation) {
 				case RAIN -> power = 15;
 				case SNOW -> power = 8;
 				case NONE -> power = 0;
 			}
 		} else if (world.isRaining()) {
-			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation();
+			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation(pos);
 			switch (precipitation) {
 				case RAIN, SNOW -> power = 8;
 				case NONE -> power = 0;

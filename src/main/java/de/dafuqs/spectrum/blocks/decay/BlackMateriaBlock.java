@@ -15,13 +15,21 @@ import net.minecraft.world.*;
 public class BlackMateriaBlock extends FallingBlock {
 	
 	public static final int PROPAGATION_TRIES = 3;
-
+	
 	public static final int MAX_AGE = Properties.AGE_3_MAX;
 	public static final IntProperty AGE = Properties.AGE_3;
 	
 	public BlackMateriaBlock(Settings settings) {
 		super(settings);
-		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, 3));
+		setDefaultState(this.stateManager.getDefaultState().with(Properties.AGE_3, Properties.AGE_3_MAX));
+	}
+
+    @Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (direction == Direction.DOWN) {
+			super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+		}
+		return state;
 	}
 	
 	public static boolean spreadBlackMateria(World world, BlockPos pos, Random random, BlockState targetState) {
@@ -37,6 +45,11 @@ public class BlackMateriaBlock extends FallingBlock {
 			}
 		}
 		return replacedAny;
+	}
+
+	@Override
+	protected int getFallDelay() {
+		return 20;
 	}
 	
 	@Override
@@ -62,7 +75,7 @@ public class BlackMateriaBlock extends FallingBlock {
 	@Override
     public void onDestroyedOnLanding(World world, BlockPos pos, FallingBlockEntity fallingBlockEntity) {
 		BlockState state = world.getBlockState(pos);
-		if (!state.getMaterial().isSolid() && state.getMaterial().getPistonBehavior() == PistonBehavior.DESTROY) {
+		if (!state.isSolid() && state.getPistonBehavior() == PistonBehavior.DESTROY) {
 			world.breakBlock(pos, true, fallingBlockEntity, 4);
 		}
 		super.onDestroyedOnLanding(world, pos, fallingBlockEntity);

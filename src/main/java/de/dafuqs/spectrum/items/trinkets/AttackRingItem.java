@@ -45,10 +45,10 @@ public class AttackRingItem extends SpectrumTrinketItem {
 	
 	@Environment(EnvType.CLIENT)
 	@Override
-	@SuppressWarnings("resource")
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		long mod = Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100);
+		MinecraftClient client = MinecraftClient.getInstance();
+		long mod = Math.round(getAttackModifierForEntity(client.player) * 100);
 		if (mod == 0) {
 			tooltip.add(Text.translatable("item.spectrum.jeopardant.tooltip.damage_zero"));
 		} else {

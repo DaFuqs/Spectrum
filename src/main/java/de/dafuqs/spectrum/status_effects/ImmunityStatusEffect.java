@@ -5,7 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
 
-public class ImmunityStatusEffect extends InstantStatusEffect {
+public class ImmunityStatusEffect extends StatusEffect {
 	
 	public ImmunityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);

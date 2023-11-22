@@ -49,9 +49,9 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
-			By default, there is a 0.075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
+			By default, there is a 0.0075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
-	public float ShootingStarChance = 0.075F;
+	public float ShootingStarChance = 0.0075F;
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
@@ -84,6 +84,9 @@ public class SpectrumConfig implements ConfigData {
 	public boolean FailingCanDestroyBlockEntities = false;
 	public boolean RuinCanDestroyBlockEntities = false;
 	public boolean ForfeitureCanDestroyBlockEntities = true;
+	
+	@Comment("When a player places decay, add an entry to the server log")
+	public boolean LogPlacingOfDecay = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
@@ -132,13 +135,10 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("The percentile a mobs armor/hand stacks are being dropped when hit with a Disarming enchanted weapon per the enchantments level")
 	public float DisarmingChancePerLevelMobs = 0.01F;
-	
 	@Comment("If > 0 the Disarming Enchantment is able to remove armor and hand tools from a hit player. Should be a far smaller chance than for mobs")
 	public float DisarmingChancePerLevelPlayers = 0.001F;
-	
 	@Comment("The % attack speed boost each level of Tight Grip gives to a tool")
 	public float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
-	
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 	
@@ -233,12 +233,12 @@ public class SpectrumConfig implements ConfigData {
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
-			ShootingStarWorlds.add("starry_sky:starry_sky");
+			ShootingStarWorlds.add("starry_skies:overworld");
 			ShootingStarWorlds.add("paradise_lost:paradise_lost");
 		}
 		if (StormStonesWorlds.isEmpty()) {
 			StormStonesWorlds.add("minecraft:overworld");
-			StormStonesWorlds.add("starry_sky:starry_sky");
+			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
 		}
 	}

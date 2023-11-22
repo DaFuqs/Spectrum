@@ -1,0 +1,37 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 1,
+  "experience": 1.0,
+  "pattern": [
+    "MGM",
+    "GSG",
+    "MGM"
+  ],
+  "key": {
+    "M": {
+      "item": "spectrum:midnight_chip"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "S": {
+      "item": "spectrum:stratine_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:parametric_mining_device",
+    "count": 8,
+    "nbt": {
+      "explosion_data": {
+        "archetype": "destroy_blocks"
+      }
+    }
+  },
+  "required_advancement": "spectrum:unlocks/blocks/modular_explosives"
+}

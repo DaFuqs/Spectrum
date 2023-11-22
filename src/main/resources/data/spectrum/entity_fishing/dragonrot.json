@@ -18,6 +18,10 @@
       "weight": 2
     },
     {
+      "id": "spectrum:eraser",
+      "weight": 2
+    },
+    {
       "id": "minecraft:drowned",
       "weight": 2
     },

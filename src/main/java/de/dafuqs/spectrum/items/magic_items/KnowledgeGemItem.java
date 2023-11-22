@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.entity.*;
@@ -11,12 +10,11 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -191,19 +189,19 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 	public int getEnchantability() {
 		return 5;
 	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			ItemStack stack = getDefaultStack();
-			ExperienceStorageItem.addStoredExperience(stack, getMaxStoredExperience(stack));
-			stacks.add(stack);
-			
-			ItemStack enchantedStack = SpectrumEnchantmentHelper.getMaxEnchantedStack(this);
-			ExperienceStorageItem.addStoredExperience(enchantedStack, getMaxStoredExperience(stack));
-			stacks.add(enchantedStack);
-		}
-	}
-	
+
+//	@Override
+//	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+//		super.appendStacks(group, stacks);
+//		if (this.isIn(group)) {
+//			ItemStack stack = getDefaultStack();
+//			ExperienceStorageItem.addStoredExperience(stack, getMaxStoredExperience(stack));
+//			stacks.add(stack);
+//
+//			ItemStack enchantedStack = SpectrumEnchantmentHelper.getMaxEnchantedStack(this);
+//			ExperienceStorageItem.addStoredExperience(enchantedStack, getMaxStoredExperience(stack));
+//			stacks.add(enchantedStack);
+//		}
+//	}
+
 }

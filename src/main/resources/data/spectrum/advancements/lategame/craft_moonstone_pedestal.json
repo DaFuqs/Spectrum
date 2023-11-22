@@ -29,13 +29,12 @@
             }
           }
         ],
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:pedestal_moonstone"
-            ]
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:pedestal_moonstone"
           }
-        }
+        ]
       }
     },
     "crafted_moonstone_pedestal": {

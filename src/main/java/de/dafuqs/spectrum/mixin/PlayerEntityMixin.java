@@ -20,9 +20,9 @@ import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -73,6 +73,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Inject(at = @At("TAIL"), method = "jump()V")
 	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
+
 		if ((Object) this instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}
@@ -80,7 +81,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Inject(at = @At("TAIL"), method = "isInvulnerableTo(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$isInvulnerableTo(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-		if (!cir.getReturnValue() && damageSource.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
+		if (!cir.getReturnValue() && damageSource.isIn(DamageTypeTags.IS_FIRE) && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(true);
 		}
 	}
@@ -112,9 +113,11 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		}
 		
 		// if the player has a ExperienceStorageItem in hand add the XP to that
+		PlayerEntity player = (PlayerEntity) (Object) this;
 		for (ItemStack stack : getHandItems()) {
-			if (!((PlayerEntity) (Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
+			if (!player.isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
 				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
+				player.experiencePickUpDelay = 0;
 				if (experience == 0) {
 					break;
 				}

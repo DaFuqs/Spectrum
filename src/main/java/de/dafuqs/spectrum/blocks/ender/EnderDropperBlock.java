@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.ender;
 
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
@@ -64,7 +63,7 @@ public class EnderDropperBlock extends DispenserBlock {
 				if (enderDropperBlockEntity.isOwner(player)) {
 					EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 					
-					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME), enderDropperBlockEntity.getContainerName()));
+					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ScreenBackgroundVariant.EARLYGAME), enderDropperBlockEntity.getContainerName()));
 					
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {

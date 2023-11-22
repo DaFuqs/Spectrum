@@ -11,8 +11,8 @@ import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.loot.function.*;
 import net.minecraft.loot.provider.number.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -31,10 +31,10 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			JsonElement statusEffectElement = jsonObject.get("status_effect");
 			if (statusEffectElement instanceof JsonArray jsonArray) {
 				for (JsonElement element : jsonArray) {
-					statusEffects.add(Registry.STATUS_EFFECT.get(Identifier.tryParse(element.getAsString())));
+					statusEffects.add(Registries.STATUS_EFFECT.get(Identifier.tryParse(element.getAsString())));
 				}
 			} else {
-				statusEffects.add(Registry.STATUS_EFFECT.get(Identifier.tryParse(statusEffectElement.getAsString())));
+				statusEffects.add(Registries.STATUS_EFFECT.get(Identifier.tryParse(statusEffectElement.getAsString())));
 			}
 			
 			int color = JsonHelper.getInt(jsonObject, "color", -1);
@@ -60,7 +60,7 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 			jsonObject.add("duration", jsonSerializationContext.serialize(this.duration));
 			JsonArray statusEffectArray = new JsonArray();
 			for (StatusEffect statusEffect : this.statusEffects) {
-				statusEffectArray.add(Registry.STATUS_EFFECT.getId(statusEffect).toString());
+				statusEffectArray.add(Registries.STATUS_EFFECT.getId(statusEffect).toString());
 			}
 			jsonObject.add("status_effect", statusEffectArray);
 			jsonObject.addProperty("color", this.color);

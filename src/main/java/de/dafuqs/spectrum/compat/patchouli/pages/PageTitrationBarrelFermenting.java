@@ -7,12 +7,12 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
@@ -30,21 +30,20 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(ITitrationBarrelRecipe recipe) {
+	protected ItemStack getRecipeOutput(World world, ITitrationBarrelRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return recipe.getOutput();
+			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
+	protected void drawRecipe(DrawContext drawContext, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.enableBlend();
-		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
-		
-		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
+		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
+
+		parent.drawCenteredStringNoShadow(drawContext, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		Fluid fluid = recipe.getFluidInput();
 		boolean usesFluid = fluid != Fluids.EMPTY;
@@ -70,19 +69,19 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 				xOffset = (i - 3) * 18;
 				yOffset = 18;
 			}
-			PatchouliHelper.renderIngredientStack(parent, ms, startX + xOffset, startY + yOffset, mouseX, mouseY, currentIngredient);
+			PatchouliHelper.renderIngredientStack(drawContext, parent, startX + xOffset, startY + yOffset, mouseX, mouseY, currentIngredient);
 		}
 		
 		// the titration barrel / tapping ingredient
 		if (recipe.getTappingItem() == Items.AIR) {
-			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
+			parent.renderItemStack(drawContext, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
-			parent.renderItemStack(ms, recipeX + 50, recipeY + 20, mouseX, mouseY, recipe.createIcon());
-			parent.renderItemStack(ms, recipeX + 60, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
+			parent.renderItemStack(drawContext, recipeX + 50, recipeY + 20, mouseX, mouseY, recipe.createIcon());
+			parent.renderItemStack(drawContext, recipeX + 60, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
 		}
 		
 		// the output
-		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
 		
 		// the duration
 		if (second) {
@@ -90,13 +89,13 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
 				textRenderer2 = new BookTextRenderer(parent, text, 0, recipeY + 40);
 			}
-			textRenderer2.render(ms, mouseX, mouseY);
+			textRenderer2.render(drawContext, mouseX, mouseY);
 		} else {
 			if (textRenderer == null) {
 				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
 				textRenderer = new BookTextRenderer(parent, text, 0, recipeY + 40);
 			}
-			textRenderer.render(ms, mouseX, mouseY);
+			textRenderer.render(drawContext, mouseX, mouseY);
 		}
 	}
 	

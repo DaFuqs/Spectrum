@@ -71,9 +71,9 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
             VertexConsumer vertexConsumer = vertices.getBuffer(RenderLayer.getEntitySolid(SpectrumModelLayers.BEDROCK_ARMOR_LOCATION));
             ms.push();
             ms.translate(0, 0.35, 0);
-            ms.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(frontCapeRotation));
+			ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(frontCapeRotation));
             if (!player.isInSneakingPose()) {
-                ms.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(capeZOffset / 2.0F));
+				ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
             }
 
             // Make some space for your legs if crouching
@@ -83,29 +83,29 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
             }
             BedrockArmorCapeModel.FRONT_CLOTH.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
             ms.pop();
-
-            // Respect the players own cape, Elytras and Fabrics Render Event
-            if (player.getCapeTexture() != null || RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
-                return;
-            }
-
-            float backCapeRotation = MathHelper.clamp(6.0F + r / 2.0F + q, -30, 60);
-
+			
+			// Respect the players own cape, Elytras and Fabrics Render Event
+			if (player.getCapeTexture() != null || RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
+				return;
+			}
+			
+			float backCapeRotation = MathHelper.clamp(6.0F + r / 2.0F + q, -30, 60);
+			
 			// Transform and render the custom cape
 			ms.push();
 			ms.translate(0, -0.05, 0.0); // Push up and backwards, then rotate
-			ms.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(backCapeRotation));
-			ms.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(capeZOffset / 2.0F));
-			ms.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - capeZOffset / 1.25F));
+			ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(backCapeRotation));
+			ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
+			ms.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - capeZOffset / 1.25F));
 			ms.translate(0, 0.05, -0.325); // Move back down
 			if (player.isInSneakingPose()) {
 				ms.translate(0, 0.15, 0.125);
 			}
-
+			
 			BedrockArmorCapeModel.CAPE_MODEL.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
 			ms.pop();
-
-            // Cancel any other capes from rendering
+			
+			// Cancel any other capes from rendering
 			ci.cancel();
 		}
 	}

@@ -4,22 +4,23 @@ import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.api.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.narration.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class StackedInkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
+public class StackedInkMeterWidget implements Drawable, Element, Selectable {
 	
 	public final int x;
 	public final int y;
 	public final int width;
 	public final int height;
 	protected boolean hovered;
+	protected boolean focused;
 	
 	protected final Screen screen;
 	protected final InkStorageBlockEntity<?> blockEntity;
@@ -40,7 +41,17 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+	public void setFocused(boolean focused) {
+		this.focused = focused;
+	}
+	
+	@Override
+	public boolean isFocused() {
+		return focused;
+	}
+	
+	@Override
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
 	}
 	
@@ -54,17 +65,17 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 	
 	}
 	
-	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
+	public void drawMouseoverTooltip(DrawContext drawContext, int x, int y) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
 		String percent = Support.getSensiblePercent(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
-		screen.renderTooltip(matrices,
-				List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
-				Optional.empty(), x, y);
+		drawContext.drawTooltip(client.textRenderer,List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
+			Optional.empty(), x, y);
 	}
 	
-	public void draw(MatrixStack matrices) {
+	public void draw(DrawContext drawContext) {
 		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		
@@ -76,8 +87,8 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 				long amount = inkStorage.getEnergy(color);
 				if (amount > 0) {
 					int height = Math.round(((float) amount / (float) maxTotal * this.height));
-					if(height > 0) {
-						RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, color.getColor());
+					if (height > 0) {
+						RenderHelper.fillQuad(drawContext.getMatrices(), this.x, currentHeight - height, height, this.width, color.getColor());
 					}
 					currentHeight -= height;
 				}

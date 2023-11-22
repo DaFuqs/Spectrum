@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -20,20 +20,19 @@ public class PageSnippet extends PageWithText {
 	int texture_height;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
-		parent.drawCenteredStringNoShadow(ms, title == null ? "" : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-		GuiBook.drawSeparator(ms, book, 0, 12 + texture_height);
+		parent.drawCenteredStringNoShadow(drawContext, title == null ? "" : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		GuiBook.drawSeparator(drawContext, book, 0, 12 + texture_height);
 		
-		RenderSystem.setShaderTexture(0, new Identifier(resource_path));
 		RenderSystem.enableBlend();
-		DrawableHelper.drawTexture(ms, 58 - texture_width / 2, 10, texture_x, texture_y, texture_width, texture_height, resource_width, resource_height);
+		drawContext.drawTexture(new Identifier(resource_path), 58 - texture_width / 2, 10, texture_x, texture_y, texture_width, texture_height, resource_width, resource_height);
 	}
 	
 	@Override

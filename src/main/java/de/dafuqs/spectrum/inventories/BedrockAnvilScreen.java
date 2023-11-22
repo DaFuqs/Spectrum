@@ -11,8 +11,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.widget.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
@@ -58,21 +56,19 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	public void removed() {
 		super.removed();
 		handler.removeListener(this);
-		client.keyboard.setRepeatEvents(false);
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
 		
 		RenderSystem.disableBlend();
-		renderForeground(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
+		renderForeground(drawContext, mouseX, mouseY, delta);
+		drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
 	protected void setup() {
-		client.keyboard.setRepeatEvents(true);
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		
@@ -119,10 +115,10 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
 			Element focusedElement = getFocused();
 			if (focusedElement == this.nameField) {
-				this.nameField.setTextFieldFocused(false);
+				this.nameField.setFocused(false);
 				setFocused(this.loreField);
 			} else if (focusedElement == this.loreField) {
-				this.loreField.setTextFieldFocused(false);
+				this.loreField.setFocused(false);
 				setFocused(this.nameField);
 			}
 		}
@@ -157,13 +153,13 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		RenderSystem.disableBlend();
-		
-		this.textRenderer.draw(matrices, this.title, this.titleX, this.titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 3289650);
-		this.textRenderer.draw(matrices, Text.translatable("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 3289650);
-		
+		var textRenderer = this.textRenderer;
+		drawContext.drawText(textRenderer, this.title, this.titleX, this.titleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(textRenderer, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, RenderHelper.GREEN_COLOR, false);
+		drawContext.drawText(textRenderer, Text.translatable("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, RenderHelper.GREEN_COLOR, false);
+
 		int levelCost = (this.handler).getLevelCost();
 		if (levelCost > 0 || this.handler.getSlot(2).hasStack()) {
 			int textColor = 8453920;
@@ -179,35 +175,32 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 			
 			if (costText != null) {
 				int k = this.backgroundWidth - 8 - this.textRenderer.getWidth(costText) - 2;
-				fill(matrices, k - 2, 67 + 24, this.backgroundWidth - 8, 79 + 24, 1325400064);
-				this.textRenderer.drawWithShadow(matrices, costText, (float) k, 93, textColor);
+				drawContext.fill(k - 2, 67 + 24, this.backgroundWidth - 8, 79 + 24, 1325400064);
+				drawContext.drawText(textRenderer, costText, k, 93, textColor, true);
 			}
 		}
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, TEXTURE);
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		
 		// the background
-		drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
+		drawContext.drawTexture(TEXTURE, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
 		
 		// the text field backgrounds
-		drawTexture(matrices, i + 59, j + 20, 0, this.backgroundHeight + (handler.getSlot(0).hasStack() ? 0 : 16), 110, 16);
-		drawTexture(matrices, i + 42, j + 72, 0, this.backgroundHeight + (handler.getSlot(0).hasStack() ? 32 : 48), 127, 16);
+		drawContext.drawTexture(TEXTURE, i + 59, j + 20, 0, this.backgroundHeight + (handler.getSlot(0).hasStack() ? 0 : 16), 110, 16);
+		drawContext.drawTexture(TEXTURE, i + 42, j + 72, 0, this.backgroundHeight + (handler.getSlot(0).hasStack() ? 32 : 48), 127, 16);
 		
 		if ((handler.getSlot(0).hasStack() || handler.getSlot(1).hasStack()) && !handler.getSlot(2).hasStack()) {
-			drawTexture(matrices, i + 99, j + 45, this.backgroundWidth, 0, 28, 21);
+			drawContext.drawTexture(TEXTURE, i + 99, j + 45, this.backgroundWidth, 0, 28, 21);
 		}
 	}
 	
-	public void renderForeground(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		this.nameField.render(matrices, mouseX, mouseY, delta);
-		this.loreField.render(matrices, mouseX, mouseY, delta);
+	public void renderForeground(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		this.nameField.render(drawContext, mouseX, mouseY, delta);
+		this.loreField.render(drawContext, mouseX, mouseY, delta);
 	}
 	
 	@Override
@@ -218,8 +211,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 				this.loreField.setEditable(false);
 				this.nameField.setFocusUnlocked(false);
 				this.loreField.setFocusUnlocked(false);
-				this.nameField.setTextFieldFocused(false);
-				this.loreField.setTextFieldFocused(false);
+				this.nameField.setFocused(false);
+				this.loreField.setFocused(false);
 				this.nameField.setChangedListener(null);
 				this.loreField.setChangedListener(null);
 				this.nameField.setText("");
@@ -231,7 +224,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 				this.loreField.setEditable(true);
 				this.nameField.setFocusUnlocked(true);
 				this.loreField.setFocusUnlocked(true);
-				this.nameField.setTextFieldFocused(true);
+				this.nameField.setFocused(true);
 				this.nameField.setText(stack.getName().getString());
 				
 				String loreString = LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack));

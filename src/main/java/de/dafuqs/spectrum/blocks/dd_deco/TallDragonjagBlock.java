@@ -6,14 +6,15 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.*;
 
@@ -65,11 +66,11 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 	public static TallDragonjagBlock getBlockForVariant(Variant variant) {
 		return VARIANTS.get(variant);
     }
-
-    @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return !state.get(DEAD);
-    }
+	
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return !state.get(DEAD);
+	}
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
@@ -78,7 +79,8 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		boolean success = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant)).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant));
+		boolean success = feature.isPresent() && feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
         if (success) {
             setDead(world, pos, state, true);
         }

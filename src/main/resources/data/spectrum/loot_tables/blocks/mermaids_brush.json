@@ -10,15 +10,12 @@
           "name": "spectrum:mermaids_gem",
           "conditions": [
             {
-              "condition": "minecraft:alternative",
+              "condition": "minecraft:any_of",
               "terms": [
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "minecraft:shears",
-                      "spectrum:bedrock_shears"
-                    ]
+                    "tag": "c:shears"
                   }
                 },
                 {

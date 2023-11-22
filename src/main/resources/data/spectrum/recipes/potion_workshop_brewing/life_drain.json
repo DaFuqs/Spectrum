@@ -4,13 +4,13 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "spectrum:dragonbone_chunk"
+    "item": "spectrum:downstone_fragments"
   },
   "ingredient3": {
     "item": "minecraft:fermented_spider_eye"
   },
   "effect": "spectrum:life_drain",
-  "base_duration_ticks": 400,
+  "base_duration_ticks": 600,
   "potency_modifier": 1.0,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,

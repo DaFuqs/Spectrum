@@ -16,12 +16,31 @@ public abstract class PlayerInventoryMixin {
 		
 		for (int i = 0; i < playerInventory.size(); i++) {
 			ItemStack inventoryStack = playerInventory.getStack(i);
-			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor) {
-				if (((InventoryInsertionAcceptor) inventoryStack.getItem()).acceptsItemStack(inventoryStack, stack)) {
-					int remainingCount = ((InventoryInsertionAcceptor) inventoryStack.getItem()).acceptItemStack(inventoryStack, stack, playerInventory.player);
+			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
+				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
+					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);
 					stack.setCount(remainingCount);
 					if (remainingCount == 0) {
 						callbackInfoReturnable.cancel();
+						break;
+					}
+				}
+			}
+		}
+	}
+	
+	@Inject(at = @At("HEAD"), method = "offer(Lnet/minecraft/item/ItemStack;Z)V", cancellable = true)
+	private void offer(ItemStack stack, boolean notifiesClient, CallbackInfo ci) {
+		PlayerInventory playerInventory = (PlayerInventory) (Object) this;
+		
+		for (int i = 0; i < playerInventory.size(); i++) {
+			ItemStack inventoryStack = playerInventory.getStack(i);
+			if (inventoryStack.getItem() instanceof InventoryInsertionAcceptor inventoryInsertionAcceptor) {
+				if (inventoryInsertionAcceptor.acceptsItemStack(inventoryStack, stack)) {
+					int remainingCount = inventoryInsertionAcceptor.acceptItemStack(inventoryStack, stack, playerInventory.player);
+					stack.setCount(remainingCount);
+					if (remainingCount == 0) {
+						ci.cancel();
 						break;
 					}
 				}

@@ -15,7 +15,6 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 import net.minecraft.world.level.*;
 
 import java.util.*;
@@ -62,8 +61,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 24000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
-			serverWorldProperties.setThundering(false);
-			
+			serverWorldProperties.setThundering(true);
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -86,8 +84,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 4000, 6000));
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3000, 4000));
-			serverWorldProperties.setThundering(false);
-			
+			serverWorldProperties.setThundering(true);
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -164,7 +161,7 @@ public interface FusionShrineRecipeWorldEffect {
 				float randomX = pos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
 				float randomY = pos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
 				float randomZ = pos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
-				world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				world.createExplosion(null, randomX, randomY, randomZ, 4, World.ExplosionSourceType.NONE);
 			}
 		}
 	});
@@ -175,7 +172,7 @@ public interface FusionShrineRecipeWorldEffect {
 				float randomX = pos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
 				float randomY = pos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
 				float randomZ = pos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
-				world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				world.createExplosion(null, randomX, randomY, randomZ, 4, World.ExplosionSourceType.NONE);
 			}
 			if (world.getRandom().nextFloat() < 0.05F) {
 				int randomX = pos.getX() + 12 - world.getRandom().nextInt(24);

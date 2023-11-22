@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 6000,
   "tier": "complex",
   "cyan": 0,
@@ -12,14 +12,14 @@
     "S",
     "U"
   ],
-  "key": {
-    "U": {
+  "ingredients": [
+    {
       "item": "spectrum:upgrade_efficiency"
     },
-    "S": {
+    {
       "item": "spectrum:spectral_shard"
     }
-  },
+  ],
   "result": {
     "item": "spectrum:upgrade_efficiency2",
     "count": 1

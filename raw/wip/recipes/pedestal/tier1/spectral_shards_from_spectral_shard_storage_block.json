@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "time": 100,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "ingredients": [
+    {
+      "item": "spectrum:spectral_shard_storage_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:spectral_shard",
+    "count": 9
+  },
+  "required_advancement": "spectrum:endgame/create_spectral_shard"
+}

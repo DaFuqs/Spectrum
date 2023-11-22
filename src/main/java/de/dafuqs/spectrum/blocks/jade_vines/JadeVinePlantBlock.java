@@ -37,14 +37,14 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 	}
 	
 	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
-		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
-				.parameter(LootContextParameters.BLOCK_STATE, state)
-				.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-				.parameter(LootContextParameters.TOOL, stack)
-				.optionalParameter(LootContextParameters.THIS_ENTITY, entity)
-				.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
+		var builder = (new LootContextParameterSet.Builder(world))
+				.add(LootContextParameters.BLOCK_STATE, state)
+				.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+				.add(LootContextParameters.TOOL, stack)
+				.addOptional(LootContextParameters.THIS_ENTITY, entity)
+				.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
 
-		LootTable lootTable = world.getServer().getLootManager().getTable(lootTableIdentifier);
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(lootTableIdentifier);
 		return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));
 	}
 
@@ -73,7 +73,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
-			world.createAndScheduleBlockTick(pos, this, 1);
+			world.scheduleBlockTick(pos, this, 1);
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
@@ -93,7 +93,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 			return !(belowState.getBlock() instanceof JadeVinePlantBlock);
 		}
 	}
-
+	
 	@Override
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

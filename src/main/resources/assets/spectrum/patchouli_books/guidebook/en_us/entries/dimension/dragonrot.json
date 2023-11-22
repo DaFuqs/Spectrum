@@ -1,0 +1,21 @@
+{
+  "name": "Dragonrot",
+  "icon": "spectrum:dragonrot_bucket",
+  "advancement": "spectrum:hidden/interact_with_dragonrot",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:dragonrot_bucket": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "It looks red-hot, as if it were on fire, burning like hell to the touch (you $(italics)had$() to satisfy your curiosity...) and yet radiates no heat at all.$(br)While $(l:magical_blocks/midnight_solution)Midnight Solution$() seems to be destructive for the sake of change, Dragonrot seems intent only on pure and total destruction. Certainly there is not much organic that can withstand its bloodlust."
+    },
+    {
+      "type": "spectrum:dragonrot_converting",
+      "title": "Item Conversion",
+      "recipe": "spectrum:dragonrot_converting/blackslag_from_deepslate",
+      "text": "Throwing in some items seems to corrupt them up to a point they turn into something else entirely."
+    }
+  ]
+}

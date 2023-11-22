@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:hummingstone_glass"
+  },
+  "results": [
+    {
+      "item": "spectrum:clear_hummingstone_glass",
+      "count": 1
+    }
+  ],
+  "experience": 0.1,
+  "time": 800,
+  "required_advancement": "spectrum:lategame/collect_hummingstone"
+}

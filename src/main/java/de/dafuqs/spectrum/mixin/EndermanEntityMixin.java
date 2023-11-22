@@ -21,15 +21,15 @@ public abstract class EndermanEntityMixin {
 	@Nullable
 	public abstract BlockState getCarriedBlock();
 	
-	@SuppressWarnings("resource")
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
 		EndermanEntity endermanEntity = ((EndermanEntity) (Object) this);
-		if (endermanEntity.getEntityWorld() != null && endermanEntity.getEntityWorld() instanceof ServerWorld) {
-			Random random = endermanEntity.getEntityWorld().random;
+		World world = endermanEntity.getEntityWorld();
+		if (world instanceof ServerWorld) {
+			Random random = world.random;
 			
 			float chance;
-			if (endermanEntity.getEntityWorld().getRegistryKey().equals(World.END)) {
+			if (world.getRegistryKey().equals(World.END)) {
 				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance;
 			} else {
 				chance = SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance;

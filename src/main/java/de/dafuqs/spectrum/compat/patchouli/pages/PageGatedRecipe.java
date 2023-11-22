@@ -3,12 +3,13 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.google.gson.annotations.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
@@ -33,57 +34,59 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		this.recipeType = recipeType;
 	}
 	
-	@SuppressWarnings({"resource", "unchecked"})
+	@SuppressWarnings({"unchecked"})
 	private @Nullable T getRecipe(Identifier id) {
-		if (MinecraftClient.getInstance().world == null) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (client.world == null) {
 			return null;
 		}
-		RecipeManager manager = MinecraftClient.getInstance().world.getRecipeManager();
+		RecipeManager manager = client.world.getRecipeManager();
 		return (T) manager.get(id).filter(recipe -> recipe.getType() == recipeType).orElse(null);
 	}
 	
 	protected T loadRecipe(BookContentsBuilder builder, BookEntry entry, Identifier identifier) {
-		if (identifier == null) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (identifier == null || client.world == null) {
 			return null;
 		}
 		T recipe = getRecipe(identifier);
 		if (recipe != null) {
-			entry.addRelevantStack(builder, recipe.getOutput(), pageNum);
+			entry.addRelevantStack(builder, recipe.getOutput(client.world.getRegistryManager()), pageNum);
 			return recipe;
 		}
-		PatchouliAPI.LOGGER.warn("Recipe {} (of type {}) not found", identifier, Registry.RECIPE_TYPE.getId(recipeType));
+		PatchouliAPI.LOGGER.warn("Recipe {} (of type {}) not found", identifier, Registries.RECIPE_TYPE.getId(recipeType));
 		return null;
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isPageUnlocked() {
+    public boolean isPageUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (!super.isPageUnlocked() || recipe == null) {
 			return false;
 		}
-		return recipe.canPlayerCraft(MinecraftClient.getInstance().player);
+		return recipe.canPlayerCraft(client.player);
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		recipe = loadRecipe(builder, entry, recipeId);
 		
 		boolean customTitle = title != null && !title.isEmpty();
-		titleText = !customTitle ? getRecipeOutput(recipe).getName() : i18nText(title);
+		titleText = !customTitle ? getRecipeOutput(world, recipe).getName() : i18nText(title);
 		
 		GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, advancement, recipe);
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float tickDelta) {
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float tickDelta) {
 		if (recipe != null) {
 			int recipeX = getX();
 			int recipeY = getY();
-			drawRecipe(ms, recipe, recipeX, recipeY, mouseX, mouseY);
+			drawRecipe(drawContext, recipe, recipeX, recipeY, mouseX, mouseY);
 		}
-		super.render(ms, mouseX, mouseY, tickDelta);
+		super.render(drawContext, mouseX, mouseY, tickDelta);
 	}
 	
 	@Override
@@ -96,9 +99,9 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		return getTextHeight() + 10 < GuiBook.PAGE_HEIGHT;
 	}
 	
-	protected abstract void drawRecipe(MatrixStack ms, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
+	protected abstract void drawRecipe(DrawContext drawContext, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
 	
-	protected abstract ItemStack getRecipeOutput(T recipe);
+	protected abstract ItemStack getRecipeOutput(World world, T recipe);
 	
 	protected abstract int getRecipeHeight();
 	

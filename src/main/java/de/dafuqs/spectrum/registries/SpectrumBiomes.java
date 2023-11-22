@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.biome.*;
 
 public class SpectrumBiomes {
@@ -15,7 +15,7 @@ public class SpectrumBiomes {
 	public static final RegistryKey<Biome> RAZOR_EDGE = getKey("razor_edge");
 	
 	private static RegistryKey<Biome> getKey(String name) {
-		return RegistryKey.of(Registry.BIOME_KEY, SpectrumCommon.locate(name));
+		return RegistryKey.of(RegistryKeys.BIOME, SpectrumCommon.locate(name));
 	}
 	
 	public static void register() {

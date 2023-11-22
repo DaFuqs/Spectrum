@@ -23,7 +23,7 @@ public class AoEHelper {
 			return;
 		}
 		
-		World world = player.world;
+		World world = player.getWorld();
 		if (world.isAir(pos)) {
 			return;
 		}
@@ -73,7 +73,7 @@ public class AoEHelper {
 			return;
 		}
 
-		World world = player.world;
+		World world = player.getWorld();
 
 		Predicate<BlockState> minableBlocksPredicate = state -> {
 			boolean suitableTool = !state.isToolRequired() || stack.isSuitableFor(state);
@@ -106,7 +106,7 @@ public class AoEHelper {
 				player.setStackInHand(Hand.MAIN_HAND, save);
 			}
 		}
-
+		
 	}
 	
 }

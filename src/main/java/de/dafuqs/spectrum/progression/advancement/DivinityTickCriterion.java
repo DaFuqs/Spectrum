@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -19,10 +18,10 @@ public class DivinityTickCriterion extends AbstractCriterion<DivinityTickCriteri
 	}
 	
 	@Override
-	public DivinityTickCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public DivinityTickCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.FloatRange healthRange = NumberRange.FloatRange.fromJson(jsonObject.get("health"));
 		
-		return new DivinityTickCriterion.Conditions(extended, healthRange);
+		return new DivinityTickCriterion.Conditions(predicate, healthRange);
 	}
 	
 	public void trigger(ServerPlayerEntity player) {
@@ -33,7 +32,7 @@ public class DivinityTickCriterion extends AbstractCriterion<DivinityTickCriteri
 		
 		private final NumberRange.FloatRange healthRange;
 		
-		public Conditions(Extended player, NumberRange.FloatRange healthRange) {
+		public Conditions(LootContextPredicate player, NumberRange.FloatRange healthRange) {
 			super(DivinityTickCriterion.ID, player);
 			this.healthRange = healthRange;
 		}

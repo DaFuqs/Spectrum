@@ -46,7 +46,7 @@ public class ExtraHealthRingItem extends InkDrainTrinketItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 2 + 2 * (int) (Math.log(storedInk / 100) / Math.log(8));
+			return 2 + 2 * (int) (Math.log(storedInk / 100.0f) / Math.log(8));
 		}
 	}
 	

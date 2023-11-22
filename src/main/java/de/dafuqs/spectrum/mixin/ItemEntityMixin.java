@@ -25,7 +25,7 @@ import java.util.*;
 public abstract class ItemEntityMixin {
 	
 	private static AutoCompactingInventory autoCompactingInventory;
-	
+
 	@Shadow
 	public abstract ItemStack getStack();
 	
@@ -47,8 +47,8 @@ public abstract class ItemEntityMixin {
 	public void tick(CallbackInfo ci) {
 		// protect damage proof enchanted item stacks from the void by letting them float above it
 		ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
-		if (!thisItemEntity.hasNoGravity() && thisItemEntity.world.getTime() % 8 == 0) {
-			int worldMinY = thisItemEntity.world.getDimension().minY();
+		if (!thisItemEntity.hasNoGravity() && thisItemEntity.getWorld().getTime() % 8 == 0) {
+			int worldMinY = thisItemEntity.getWorld().getDimension().minY();
 			if (!thisItemEntity.isOnGround()
 					&& thisItemEntity.getPos().getY() < worldMinY + 2
 					&& EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, thisItemEntity.getStack()) > 0) {
@@ -69,7 +69,7 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (DamageSource.ANVIL.equals(source) || SpectrumDamageSources.FLOATBLOCK.equals(source)) {
+		if (source.isOf(DamageTypes.FALLING_ANVIL) || source.isOf(SpectrumDamageSources.FLOATBLOCK)) {
 			doAnvilCrafting(amount);
 			
 			// prevent the source itemStack taking damage.
@@ -103,7 +103,7 @@ public abstract class ItemEntityMixin {
 			if (crushingInputAmount > 0) {
 				Vec3d position = thisEntity.getPos();
 				
-				ItemStack crushingOutput = recipe.getOutput();
+				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager());
 				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 				
 				// Remove the input amount from the source stack
@@ -145,7 +145,7 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
 		
-		if (itemStack != ItemStack.EMPTY && source != DamageSource.OUT_OF_WORLD) {
+		if (itemStack != ItemStack.EMPTY && !source.isOf(DamageTypes.OUT_OF_WORLD)) {
 			boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
 			if (isImmune) {
 				callbackInfoReturnable.setReturnValue(true);
@@ -158,8 +158,7 @@ public abstract class ItemEntityMixin {
 		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
 		
 		if (itemStack != ItemStack.EMPTY) {
-			boolean isImmune = SpectrumItemStackDamageImmunities.isFireDamageImmune(itemStack);
-			if (isImmune) {
+			if (itemStack.isIn(SpectrumDamageSources.FIRE_IMMUNE_ITEMS)) {
 				callbackInfoReturnable.setReturnValue(true);
 			}
 		}
@@ -168,16 +167,19 @@ public abstract class ItemEntityMixin {
 	@Inject(method = "tick()V", at = @At("TAIL"))
 	public void doGravityEffects(CallbackInfo ci) {
 		ItemEntity itemEntity = ((ItemEntity) (Object) this);
-		Item item = itemEntity.getStack().getItem();
-		if (item instanceof GravitableItem) {
-			// if the stack is floating really high => delete it
-			if (itemEntity.getPos().getY() > itemEntity.getEntityWorld().getTopY() + 200) {
-				itemEntity.discard();
-			} else {
-				double mod = ((GravitableItem) item).getGravityModForItemEntity();
-				itemEntity.addVelocity(0, mod, 0);
-			}
+		
+		if (itemEntity.hasNoGravity()) {
+			return;
 		}
+		
+		ItemStack stack = itemEntity.getStack();
+		Item item = stack.getItem();
+		
+		if (item instanceof GravitableItem gravitableItem) {
+			// if the stack is floating really high => delete it
+			gravitableItem.applyGravity(stack, itemEntity.getWorld(), itemEntity);
+		}
+		
 	}
 	
 }

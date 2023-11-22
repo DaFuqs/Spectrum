@@ -12,7 +12,7 @@ import net.minecraft.util.math.intprovider.*;
 
 import java.util.*;
 
-public class CloakedOreBlock extends OreBlock implements RevelationAware {
+public class CloakedOreBlock extends ExperienceDroppingBlock implements RevelationAware {
 	
 	protected static boolean dropXP;
 	protected final Identifier cloakAdvancementIdentifier;
@@ -39,10 +39,10 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), cloakBlockState.getBlock().asItem());
 	}
-	
+
 	@Override
-	@Deprecated
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+	@SuppressWarnings("deprecation")
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
 		// workaround: since onStacksDropped() has no way of checking if it was
 		// triggered by a player we have to cache that information here
 		PlayerEntity lootPlayerEntity = RevelationAware.getLootPlayerEntity(builder);
@@ -50,6 +50,8 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 		
 		return super.getDroppedStacks(state, builder);
 	}
+
+
 	
 	@Override
 	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean dropExperience) {

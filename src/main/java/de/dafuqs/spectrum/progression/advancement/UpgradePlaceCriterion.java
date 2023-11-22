@@ -18,7 +18,7 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 	static final Identifier ID = SpectrumCommon.locate("upgrade_place");
 
 	public static UpgradePlaceCriterion.Conditions create(BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.IntRange speedRange, NumberRange.IntRange experienceRange, NumberRange.IntRange efficiencyRange, NumberRange.IntRange yieldRange) {
-		return new UpgradePlaceCriterion.Conditions(EntityPredicate.Extended.EMPTY, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);
+		return new UpgradePlaceCriterion.Conditions(LootContextPredicate.EMPTY, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 	}
 	
 	@Override
-	public UpgradePlaceCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public UpgradePlaceCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		BlockPredicate blockPredicate = BlockPredicate.fromJson(jsonObject.get("block"));
 		NumberRange.IntRange countRange = NumberRange.IntRange.fromJson(jsonObject.get("count"));
 		NumberRange.IntRange speedRange = NumberRange.IntRange.fromJson(jsonObject.get("speed_mod"));
@@ -49,7 +49,7 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 		private final NumberRange.IntRange efficiencyRange;
 		private final NumberRange.IntRange yieldRange;
 
-		public Conditions(EntityPredicate.Extended player, BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.IntRange speedRange, NumberRange.IntRange experienceRange, NumberRange.IntRange efficiencyRange, NumberRange.IntRange yieldRange) {
+		public Conditions(LootContextPredicate player, BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.IntRange speedRange, NumberRange.IntRange experienceRange, NumberRange.IntRange efficiencyRange, NumberRange.IntRange yieldRange) {
 			super(ID, player);
 			this.blockPredicate = blockPredicate;
 			this.countRange = countRange;

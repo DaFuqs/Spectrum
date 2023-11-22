@@ -1,0 +1,26 @@
+{
+  "name": "Fishes",
+  "icon": "spectrum:crawfish",
+  "advancement": "spectrum:hidden/collect_any_spectrum_fish",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:crawfish": 0,
+    "spectrum:koi": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_crawfish",
+      "anchor": "crawfish",
+      "item": "spectrum:crawfish",
+      "text": "Well, not actually a fish, but a $(italic)crustacean$().$(br2)They seem to thrive even in the $(l:magical_blocks/mud)muddiest of ponds$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_koi",
+      "anchor": "koi",
+      "item": "spectrum:koi",
+      "text": "A pale, large and indolent fish which feels most at home in puddles of $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l)."
+    }
+  ]
+}

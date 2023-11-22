@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tooltip;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -11,7 +12,8 @@ public class CraftingTabletTooltipData implements TooltipData {
 	private final Text description;
 	
 	public CraftingTabletTooltipData(Recipe<?> recipe) {
-		this.itemStack = recipe.getOutput();
+		MinecraftClient client = MinecraftClient.getInstance();
+		this.itemStack = recipe.getOutput(client.world.getRegistryManager());
 		this.description = Text.translatable("item.spectrum.crafting_tablet.tooltip.recipe", this.itemStack.getCount(), this.itemStack.getName().getString());
 	}
 	

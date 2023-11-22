@@ -42,9 +42,10 @@ public class JadeWineBeverageProperties extends StatusEffectBeverageProperties {
 	@Override
 	public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 		tooltip.add(Text.translatable("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess", bloominess).formatted(Formatting.GRAY));
 		if (sweetened) {
-			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.sweetened").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess_sweetened").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess", bloominess).formatted(Formatting.GRAY));
 		}
 		PotionUtil.buildTooltip(itemStack, tooltip, 1.0F);
 	}

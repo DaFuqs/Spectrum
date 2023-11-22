@@ -2,10 +2,10 @@ package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -22,10 +22,11 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 import vazkii.patchouli.api.*;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {
@@ -70,9 +71,9 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	 * @param newPedestalRecipeTier The tier the pedestal has been upgraded to
 	 */
 	@Environment(EnvType.CLIENT)
-    @SuppressWarnings("resource")
-	public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
-		World world = MinecraftClient.getInstance().world;
+    public static void spawnUpgradeParticleEffectsForTier(BlockPos blockPos, @NotNull PedestalRecipeTier newPedestalRecipeTier) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		World world = client.world;
 		Random random = world.getRandom();
 		
 		switch (newPedestalRecipeTier) {
@@ -135,7 +136,8 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 					world.addParticle(particleEffectM, blockPos.getX() + randomX, blockPos.getY() + 0.1, blockPos.getZ() - 0.1, 0.0D, 0.05D, 0.0D);
 				}
 			}
-			case BASIC -> { }
+			case BASIC -> {
+			}
 		}
 	}
 	
@@ -252,10 +254,10 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(PedestalBlock.POWERED)) {
-			Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
+			Vector3f color = new Vector3f(0.5F, 0.5F, 0.5F);
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
-			world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+			world.addParticle(new DustParticleEffect(color, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
 	

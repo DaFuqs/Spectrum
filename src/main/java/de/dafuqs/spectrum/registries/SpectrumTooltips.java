@@ -4,8 +4,9 @@ import de.dafuqs.spectrum.compat.biome_makeover.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -22,7 +23,7 @@ public class SpectrumTooltips {
 					addSculkShriekerTooltips(lines, nbt);
 				} else if (stack.isIn(ItemTags.SIGNS)) {
 					addSignTooltips(lines, nbt);
-				} else if (stack.isIn(SpectrumItemTags.SPAWNERS) && nbt.contains("BlockEntityTag", NbtElement.COMPOUND_TYPE)) {
+				} else if (stack.isOf(Items.SPAWNER)) {
 					addSpawnerTooltips(lines, nbt);
 				}
 				

@@ -23,11 +23,11 @@ import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -137,7 +137,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	public void onTrackedDataSet(TrackedData<?> data) {
 		if (HOOK_ENTITY_ID.equals(data)) {
 			int i = this.getDataTracker().get(HOOK_ENTITY_ID);
-			this.hookedEntity = i > 0 ? this.world.getEntityById(i - 1) : null;
+			this.hookedEntity = i > 0 ? this.getWorld().getEntityById(i - 1) : null;
 		}
 		
 		if (CAUGHT_FISH.equals(data)) {
@@ -154,12 +154,12 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	public void tick() {
 		super.tick();
 		
-		this.velocityRandom.setSeed(this.getUuid().getLeastSignificantBits() ^ this.world.getTime());
+		this.velocityRandom.setSeed(this.getUuid().getLeastSignificantBits() ^ this.getWorld().getTime());
 		PlayerEntity playerEntity = this.getPlayerOwner();
 		if (playerEntity == null) {
 			this.discard();
-		} else if (this.world.isClient || !this.removeIfInvalid(playerEntity)) {
-			if (this.onGround) {
+		} else if (this.getWorld().isClient() || !this.removeIfInvalid(playerEntity)) {
+			if (this.isOnGround()) {
 				++this.removalTimer;
 				if (this.removalTimer >= 1200) {
 					this.discard();
@@ -171,12 +171,12 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			
 			float f = 0.0F;
 			BlockPos blockPos = this.getBlockPos();
-			FluidState fluidState = this.world.getFluidState(blockPos);
+			FluidState fluidState = this.getWorld().getFluidState(blockPos);
 			ItemStack rodStack = getFishingRod(playerEntity);
 			boolean canFishInFluid = false;
 			if (rodStack.getItem() instanceof SpectrumFishingRodItem spectrumFishingRodItem && spectrumFishingRodItem.canFishIn(fluidState)) {
 				canFishInFluid = true;
-				f = fluidState.getHeight(this.world, blockPos);
+				f = fluidState.getHeight(this.getWorld(), blockPos);
 			}
 			
 			boolean bl = f > 0.0F;
@@ -198,7 +198,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			} else {
 				if (this.state == State.HOOKED_IN_ENTITY) {
 					if (this.hookedEntity != null) {
-						if (!this.hookedEntity.isRemoved() && this.hookedEntity.world.getRegistryKey() == this.world.getRegistryKey()) {
+						if (!this.hookedEntity.isRemoved() && this.hookedEntity.getWorld().getRegistryKey() == this.getWorld().getRegistryKey()) {
 							this.setPosition(this.hookedEntity.getX(), this.hookedEntity.getBodyY(0.8D), this.hookedEntity.getZ());
 							hookedEntityTick(this.hookedEntity);
 						} else {
@@ -230,7 +230,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 							this.setVelocity(this.getVelocity().add(0.0D, -0.1D * (double) this.velocityRandom.nextFloat() * (double) this.velocityRandom.nextFloat(), 0.0D));
 						}
 						
-						if (!this.world.isClient) {
+						if (!this.getWorld().isClient()) {
 							this.tickFishingLogic(blockPos);
 						}
 					} else {
@@ -245,7 +245,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			
 			this.move(MovementType.SELF, this.getVelocity());
 			this.updateRotation();
-			if (this.state == State.FLYING && (this.onGround || this.horizontalCollision)) {
+			if (this.state == State.FLYING && (this.isOnGround() || this.horizontalCollision)) {
 				this.setVelocity(Vec3d.ZERO);
 			}
 			
@@ -302,7 +302,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	@Override
 	public void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
-		if (!this.world.isClient) {
+		if (!this.getWorld().isClient()) {
 			Entity hookedEntity = entityHitResult.getEntity();
 			this.updateHookedEntityId(hookedEntity);
 		}
@@ -320,14 +320,14 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	public void tickFishingLogic(BlockPos pos) {
-		ServerWorld serverWorld = (ServerWorld) this.world;
+		ServerWorld serverWorld = (ServerWorld) this.getWorld();
 		int i = 1;
 		BlockPos blockPos = pos.up();
-		if (this.random.nextFloat() < 0.25F && this.world.hasRain(blockPos)) {
+		if (this.random.nextFloat() < 0.25F && this.getWorld().hasRain(blockPos)) {
 			++i;
 		}
 		
-		if (this.random.nextFloat() < 0.5F && !this.world.isSkyVisible(blockPos)) {
+		if (this.random.nextFloat() < 0.5F && !this.getWorld().isSkyVisible(blockPos)) {
 			--i;
 		}
 		
@@ -356,26 +356,28 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				d = this.getX() + (double) (g * (float) this.fishTravelCountdown * 0.1F);
 				e = ((float) MathHelper.floor(this.getY()) + 1.0F);
 				j = this.getZ() + (double) (h * (float) this.fishTravelCountdown * 0.1F);
-				blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
+				blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0D, j));
 				
 				Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
-				if (particles != null) {
-					if (this.fishTravelCountdown > 0) {
+				if (this.fishTravelCountdown > 0) {
+					float k = g * 0.04F;
+					float l = h * 0.04F;
+					if (particles != null) {
 						if (this.random.nextFloat() < 0.15F) {
 							serverWorld.spawnParticles(particles.getLeft(), d, e - 0.10000000149011612D, j, 1, g, 0.1D, h, 0.0D);
 						}
-						float k = g * 0.04F;
-						float l = h * 0.04F;
 						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, l, 0.01D, (-k), 1.0D);
 						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, (-l), 0.01D, k, 1.0D);
-					} else {
-						this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+					}
+				} else {
+					this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+					if (particles != null) {
 						double m = this.getY() + 0.5D;
 						serverWorld.spawnParticles(particles.getLeft(), this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0D, this.getWidth(), 0.20000000298023224D);
 						serverWorld.spawnParticles(particles.getRight(), this.getX(), m, this.getZ(), (int) (1.0F + this.getWidth() * 20.0F), this.getWidth(), 0.0D, this.getWidth(), 0.20000000298023224D);
-						this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
-						this.getDataTracker().set(CAUGHT_FISH, true);
 					}
+					this.hookCountdown = MathHelper.nextInt(this.random, 20, 40);
+					this.getDataTracker().set(CAUGHT_FISH, true);
 				}
 			} else if (this.waitCountdown > 0) {
 				this.waitCountdown -= i;
@@ -394,7 +396,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					d = this.getX() + (double) (MathHelper.sin(g) * h) * 0.1D;
 					e = ((float) MathHelper.floor(this.getY()) + 1.0F);
 					j = this.getZ() + (double) (MathHelper.cos(g) * h) * 0.1D;
-					blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
+					blockState = serverWorld.getBlockState(BlockPos.ofFloored(d, e - 1.0D, j));
 					
 					Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
 					if (particles != null) {
@@ -417,7 +419,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	@Nullable
 	private Pair<DefaultParticleType, DefaultParticleType> getFluidParticles(BlockState blockState) {
 		Pair<DefaultParticleType, DefaultParticleType> particles = null;
-		if (world.getBlockState(getBlockPos()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
+		if (this.getWorld().getBlockState(getBlockPos()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
 			particles = spectrumFluidBlock.getFishingParticles();
 		} else if (blockState.isOf(Blocks.LAVA)) {
 			particles = new Pair<>(ParticleTypes.FLAME, SpectrumParticleTypes.LAVA_FISHING);
@@ -459,10 +461,10 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	public PositionType getPositionType(BlockPos pos) {
-		BlockState blockState = this.world.getBlockState(pos);
+		BlockState blockState = this.getWorld().getBlockState(pos);
 		if (!blockState.isAir() && !blockState.isOf(Blocks.LILY_PAD)) {
 			FluidState fluidState = blockState.getFluidState();
-			return !fluidState.isEmpty() && fluidState.isStill() && blockState.getCollisionShape(this.world, pos).isEmpty() ? PositionType.INSIDE_FLUID : PositionType.INVALID;
+			return !fluidState.isEmpty() && fluidState.isStill() && blockState.getCollisionShape(this.getWorld(), pos).isEmpty() ? PositionType.INSIDE_FLUID : PositionType.INVALID;
 		} else {
 			return PositionType.ABOVE_FLUID;
 		}
@@ -474,22 +476,22 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	public int use(ItemStack usedItem) {
 		PlayerEntity playerEntity = this.getPlayerOwner();
-		if (!this.world.isClient && playerEntity != null && !this.removeIfInvalid(playerEntity)) {
+		if (!this.getWorld().isClient() && playerEntity != null && !this.removeIfInvalid(playerEntity)) {
 			int i = 0;
 			if (this.hookedEntity != null) {
 				this.pullHookedEntity(this.hookedEntity);
 				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, Collections.emptyList());
-				this.world.sendEntityStatus(this, (byte) 31);
+				this.getWorld().sendEntityStatus(this, (byte) 31);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
-				if (!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
+				if (!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.getWorld(), this.getBlockPos())) {
 					catchLoot(usedItem, playerEntity);
 				}
 				
 				i = 1;
 			}
 			
-			if (this.onGround) {
+			if (this.isOnGround()) {
 				i = 2;
 			}
 			
@@ -512,7 +514,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				entityNbt.put("EntityTag", nbt.get());
 			}
 			
-			Entity entity = entityType.spawn(world, entityNbt, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
+			Entity entity = entityType.spawn(world, entityNbt, null, blockPos, SpawnReason.TRIGGERED, false, false);
 			if (entity != null) {
 				double xDif = playerEntity.getX() - this.getX();
 				double yDif = playerEntity.getY() - this.getY();
@@ -538,9 +540,15 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	protected void catchLoot(ItemStack usedItem, PlayerEntity playerEntity) {
-		LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world)).parameter(LootContextParameters.ORIGIN, this.getPos()).parameter(LootContextParameters.TOOL, usedItem).parameter(LootContextParameters.THIS_ENTITY, this).random(this.random).luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck());
-		LootTable lootTable = this.world.getServer().getLootManager().getTable(LOOT_IDENTIFIER);
-		List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
+		LootContextParameterSet lootContextParameterSet = new LootContextParameterSet.Builder((ServerWorld) playerEntity.getWorld())
+				.add(LootContextParameters.ORIGIN, this.getPos())
+				.add(LootContextParameters.TOOL, usedItem)
+				.add(LootContextParameters.THIS_ENTITY, this)
+				.luck((float) this.luckOfTheSeaLevel + playerEntity.getLuck())
+				.build(LootContextTypes.FISHING);
+		
+		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(LOOT_IDENTIFIER);
+		List<ItemStack> list = lootTable.generateLoot(lootContextParameterSet);
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, list);
 		
 		for (ItemStack itemStack : list) {
@@ -550,7 +558,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		}
 		
 		if (isAblaze()) {
-			list = FoundryEnchantment.applyFoundry(world, list);
+			list = FoundryEnchantment.applyFoundry(this.getWorld(), list);
 		}
 		
 		float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(this.exuberanceLevel);
@@ -562,17 +570,17 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				playerEntity.addExperience(experienceAmount);
 			} else {
 				// fireproof item, so it does not burn when fishing in lava
-				ItemEntity itemEntity = new FireproofItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+				ItemEntity itemEntity = new FireproofItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);
 				double d = playerEntity.getX() - this.getX();
 				double e = playerEntity.getY() - this.getY();
 				double f = playerEntity.getZ() - this.getZ();
 				double g = 0.1D;
 				itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
-				this.world.spawnEntity(itemEntity);
+				this.getWorld().spawnEntity(itemEntity);
 				
 				// experience
 				if (experienceAmount > 0) {
-					playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
+					playerEntity.getWorld().spawnEntity(new ExperienceOrbEntity(playerEntity.getWorld(), playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
 				}
 			}
 		}
@@ -580,7 +588,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	@Override
 	public void handleStatus(byte status) {
-		if (status == 31 && this.world.isClient && this.hookedEntity instanceof PlayerEntity player && player.isMainPlayer()) {
+		if (status == 31 && this.getWorld().isClient() && this.hookedEntity instanceof PlayerEntity player && player.isMainPlayer()) {
 			this.pullHookedEntity(player);
 		}
 		super.handleStatus(status);
@@ -634,7 +642,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		super.onSpawnPacket(packet);
 		if (this.getPlayerOwner() == null) {
 			int entityData = packet.getEntityData();
-			LOGGER.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.world.getEntityById(entityData), entityData);
+			LOGGER.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.getWorld().getEntityById(entityData), entityData);
 			this.kill();
 		}
 	}

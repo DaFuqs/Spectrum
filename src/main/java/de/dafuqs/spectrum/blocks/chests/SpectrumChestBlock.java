@@ -19,8 +19,6 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
-import static net.minecraft.client.render.TexturedRenderLayers.*;
-
 public abstract class SpectrumChestBlock extends BlockWithEntity {
 	
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
@@ -130,12 +128,12 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getPlayerFacing().getOpposite();
+		Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
 		return this.getDefaultState().with(FACING, direction);
 	}
 	
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/private_chest"));
+		return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/heartbound_chest"));
 	}
 	
 }

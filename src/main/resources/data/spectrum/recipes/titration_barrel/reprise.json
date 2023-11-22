@@ -6,7 +6,7 @@
       "count": 4
     },
     {
-      "item": "spectrum:blizzard_powder",
+      "item": "spectrum:frostbite_essence",
       "count": 4
     }
   ],
@@ -18,7 +18,7 @@
   },
   "result": {
     "item": "spectrum:reprise",
-    "count": 2
+    "count": 4
   },
   "required_advancement": "spectrum:unlocks/food/reprise"
 }

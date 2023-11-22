@@ -13,57 +13,285 @@
     }
   },
   "criteria": {
-    "chauve_souris_au_vin": {
+    "aqua_regia": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:chauve_souris_au_vin" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:aqua_regia"
+          ]
+        }
+      }
     },
-    "nectered_viognier": {
+    "bagnun": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:nectered_viognier" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:bagnun"
+          ]
+        }
+      }
     },
     "banyash": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:banyash" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:banyash"
+          ]
+        }
+      }
     },
-    "meatloaf": {
+    "berliner": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:meatloaf" ] } }
-    },
-    "slushslide": {
-      "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:slushslide" ] } }
-    },
-    "rabbit_cream_pie": {
-      "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:rabbit_cream_pie" ] } }
-    },
-    "mellow_shallot_soup": {
-      "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:mellow_shallot_soup" ] } }
-    },
-    "aqua_regia": {
-      "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:aqua_regia" ] } }
-    },
-    "golden_bristle_tea": {
-      "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:golden_bristle_tea" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:berliner"
+          ]
+        }
+      }
     },
     "bristle_mead": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:bristle_mead" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:bristle_mead"
+          ]
+        }
+      }
+    },
+    "chauve_souris_au_vin": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:chauve_souris_au_vin"
+          ]
+        }
+      }
+    },
+    "crawfish": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:crawfish"
+          ]
+        }
+      }
+    },
+    "crawfish_cocktail": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:crawfish_cocktail"
+          ]
+        }
+      }
+    },
+    "cream_pastry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:cream_pastry"
+          ]
+        }
+      }
+    },
+    "faded_koi": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:faded_koi"
+          ]
+        }
+      }
+    },
+    "fishcake": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:fishcake"
+          ]
+        }
+      }
+    },
+    "lizard_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:lizard_meat"
+          ]
+        }
+      }
+    },
+    "golden_bristle_tea": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:golden_bristle_tea"
+          ]
+        }
+      }
+    },
+    "hare_roast": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:hare_roast"
+          ]
+        }
+      }
+    },
+    "junket": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:junket"
+          ]
+        }
+      }
+    },
+    "koi": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:koi"
+          ]
+        }
+      }
+    },
+    "meatloaf": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:meatloaf"
+          ]
+        }
+      }
+    },
+    "meatloaf_sandwich": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:meatloaf_sandwich"
+          ]
+        }
+      }
+    },
+    "mellow_shallot_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:mellow_shallot_soup"
+          ]
+        }
+      }
     },
     "morchella": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:morchella" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:morchella"
+          ]
+        }
+      }
     },
-    "sedatives": {
+    "nectered_viognier": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:sedatives" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:nectered_viognier"
+          ]
+        }
+      }
+    },
+    "peaches_flambe": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:peaches_flambe"
+          ]
+        }
+      }
     },
     "peach_cream": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:peach_cream" ] } }
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:peach_cream"
+          ]
+        }
+      }
+    },
+    "peach_jam": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:peach_jam"
+          ]
+        }
+      }
+    },
+    "rabbit_cream_pie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:rabbit_cream_pie"
+          ]
+        }
+      }
+    },
+    "sedatives": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:sedatives"
+          ]
+        }
+      }
+    },
+    "slushslide": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:slushslide"
+          ]
+        }
+      }
+    },
+    "surstromming": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:surstromming"
+          ]
+        }
+      }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

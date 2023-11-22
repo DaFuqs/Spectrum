@@ -18,7 +18,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 	static final Identifier ID = SpectrumCommon.locate("crafted_with_spirit_instiller");
 	
 	public static Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
-		return new Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
+		return new Conditions(LootContextPredicate.EMPTY, item, experienceRange);
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 	}
 	
 	@Override
-	public Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
 		return new Conditions(extended, itemPredicates, experienceRange);
@@ -41,7 +41,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		private final ItemPredicate[] itemPredicates;
 		private final NumberRange.IntRange experienceRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.itemPredicates = itemPredicates;
 			this.experienceRange = experienceRange;
@@ -50,7 +50,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.itemPredicates));
 			jsonObject.add("gained_experience", this.experienceRange.toJson());
 			return jsonObject;
 		}

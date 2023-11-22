@@ -3,14 +3,14 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 1,
+      "weight": 10,
       "element": {
         "element_type": "spectrum:single_block_element",
         "projection": "rigid",
         "block": {
-          "Name": "spectrum:memory"
+          "Name": "minecraft:air"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\"},TicksToManifest:-1}"
+        "nbt": {}
       }
     },
     {
@@ -21,7 +21,29 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{EntityTag:{id:\"minecraft:zombie\",HandDropChances:[1.0f,1.0f],HandItems:[{Count:1b,id:\"minecraft:diamond\"},{}],},TicksToManifest:5}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:zombie",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:emerald"
+                  },
+                  {}
+                ]
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -32,7 +54,414 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{EntityTag:{id:\"minecraft:fox\",HandDropChances:[1.0f,1.0f],HandItems:[{Count:1b,id:\"minecraft:diamond\"},{}],},TicksToManifest:5}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:fox",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:cookie"
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:allay",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:diamond"
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:axolotl",
+                "Variant": 4
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:mooshroom",
+                "Type": "brown"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:cat"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Type": "snow",
+                "CustomName": {
+                  "color": "#B0C7FF",
+                  "text": "Mia ❣"
+                },
+                "id": "minecraft:fox"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:frog"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "isScreamingGoat": true,
+                "id": "minecraft:goat"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:hoglin",
+                "IsImmuneToZombification": true
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:ocelot"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "ArmorItems": [
+                  {},
+                  {},
+                  {
+                    "id": "minecraft:golden_chestplate",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ],
+                "CanPickUpLoot": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:piglin",
+                "IsImmuneToZombification": true,
+                "HandItems": [
+                  {
+                    "id": "minecraft:golden_sword",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Color": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:shulker"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Johnny": true,
+                "CanJoinRaid": false,
+                "PatrolLeader": false,
+                "Invulnerable": false,
+                "LeftHanded": false,
+                "HandItems": [
+                  {
+                    "id": "minecraft:iron_axe",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ],
+                "Wave": 0,
+                "ArmorDropChances": [
+                  0.085,
+                  0.085,
+                  0.085,
+                  0.085
+                ],
+                "ArmorItems": [
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                "HandDropChances": [
+                  0.085,
+                  0.085
+                ],
+                "CanPickUpLoot": false,
+                "PersistenceRequired": true,
+                "id": "minecraft:vindicator",
+                "Patrolling": false
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "spectrum:single_block_element",
+        "projection": "rigid",
+        "block": {
+          "Name": "spectrum:memory"
+        },
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Sitting": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:wolf",
+                "CollarColor": 5
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     }
   ]

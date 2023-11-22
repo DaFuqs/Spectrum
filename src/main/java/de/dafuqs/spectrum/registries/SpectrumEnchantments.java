@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enchantments.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumEnchantments {
 	
@@ -27,11 +27,10 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
 	public static final SpectrumEnchantment RAZING = new RazingEnchantment(Enchantment.Rarity.UNCOMMON, SpectrumCommon.locate("unlocks/enchantments/razing_usage"), EquipmentSlot.MAINHAND); // increased mining speed for very hard blocks
 	public static final SpectrumEnchantment INEXORABLE = new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("unlocks/enchantments/inexorable"), EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND); // prevents mining & movement slowdowns
-	
 	public static void register() {
 		register("resonance", RESONANCE);
 		register("voiding", VOIDING);
-		
+
 		if (SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
 			register("pest_control", PEST_CONTROL);
 		}
@@ -87,7 +86,7 @@ public class SpectrumEnchantments {
 	}
 	
 	private static SpectrumEnchantment register(String name, SpectrumEnchantment enchantment) {
-		return Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate(name), enchantment);
+		return Registry.register(Registries.ENCHANTMENT, SpectrumCommon.locate(name), enchantment);
 	}
 	
 }

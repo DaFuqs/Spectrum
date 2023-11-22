@@ -14,6 +14,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -84,7 +85,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv) {
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return ItemStack.EMPTY;
 	}
 	
@@ -94,7 +95,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return output;
 	}
 	
@@ -192,10 +193,10 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
-
+		
 		int maxAmount = 1;
-		if (!getOutput().isEmpty()) {
-			maxAmount = getOutput().getMaxCount();
+		if (!getOutput(world.getRegistryManager()).isEmpty()) {
+			maxAmount = getOutput(world.getRegistryManager()).getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
@@ -210,8 +211,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 
-			double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
+				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
 			}
 		} else {
@@ -228,8 +229,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 		}
-
-		ItemStack output = getOutput().copy();
+		
+		ItemStack output = getOutput(world.getRegistryManager()).copy();
 		if (this.copyNbt) {
 			// this overrides all nbt data, that are not nested compounds (like lists)
 			NbtCompound sourceNbt = firstStack.getNbt();
@@ -238,27 +239,27 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				sourceNbt.remove(ItemStack.DAMAGE_KEY);
 				output.setNbt(sourceNbt);
 				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(), firstStack);
+				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(world.getRegistryManager()), firstStack);
 			}
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
 	}
 	
-	private void decrementIngredients(World world, FusionShrineBlockEntity fusionShrineBlockEntity, int maxAmount, double efficiencyModifier) {
+	private void decrementIngredients(World world, FusionShrineBlockEntity fusionShrineBlockEntity, int recipesCrafted, double efficiencyModifier) {
 		for (IngredientStack ingredientStack : getIngredientStacks()) {
 			for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 				ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 				if (ingredientStack.test(currentStack)) {
-					int reducedAmount = maxAmount * ingredientStack.getCount();
-					int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+					int reducedAmount = recipesCrafted * ingredientStack.getCount();
+					int reducedAmountAfterMod = efficiencyModifier == 1 ? reducedAmount : Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 					
 					ItemStack currentRemainder = currentStack.getRecipeRemainder();
 					currentStack.decrement(reducedAmountAfterMod);
 					
 					if (!currentRemainder.isEmpty()) {
 						currentRemainder = currentRemainder.copy();
-						currentRemainder.setCount(ingredientStack.getCount());
+						currentRemainder.setCount(reducedAmountAfterMod);
 						InventoryHelper.smartAddToInventory(currentRemainder, fusionShrineBlockEntity, null);
 					}
 					

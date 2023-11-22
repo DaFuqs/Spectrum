@@ -5,12 +5,14 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.World;
 
 public interface AoEBreakingTool {
 	
 	default void onTryBreakBlock(ItemStack stack, BlockPos pos, PlayerEntity player) {
+		World world = player.getWorld();
 		BlockHitResult hitResult = (BlockHitResult) player.raycast(10, 1, false);
-		if (!player.world.isClient && hitResult.getType() == HitResult.Type.BLOCK) {
+		if (!world.isClient && hitResult.getType() == HitResult.Type.BLOCK) {
 			Direction side = hitResult.getSide();
 			if (canUseAoE(player, stack)) {
 				AoEHelper.doAoEBlockBreaking(player, stack, pos, side, getAoERange(stack));

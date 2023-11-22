@@ -10,6 +10,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class OverchargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -56,16 +57,16 @@ public class OverchargingSoundInstance extends AbstractSoundInstance implements 
             }
         }
     }
-
-    @SuppressWarnings("resource")
-    private void spawnParticles(PlayerEntity player) {
-        Random random = player.getEntityWorld().random;
-
-        Vec3d pos = player.getPos();
-        player.getEntityWorld().addParticle(SpectrumParticleTypes.WHITE_CRAFTING,
-                pos.x + random.nextDouble() * 0.8 - 0.4, pos.y, pos.z + random.nextDouble() * 0.8 - 0.4,
-                0, random.nextDouble() * 0.5, 0);
-    }
+	
+	private void spawnParticles(PlayerEntity player) {
+		World world = player.getEntityWorld();
+		Random random = world.random;
+		
+		Vec3d pos = player.getPos();
+		player.getEntityWorld().addParticle(SpectrumParticleTypes.WHITE_CRAFTING,
+				pos.x + random.nextDouble() * 0.8 - 0.4, pos.y, pos.z + random.nextDouble() * 0.8 - 0.4,
+				0, random.nextDouble() * 0.5, 0);
+	}
 
     protected final void setDone() {
         this.done = true;

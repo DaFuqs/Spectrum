@@ -31,17 +31,6 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 		return ID;
 	}
 	
-	@Override
-	public SpectrumFishingRodHookedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("rod"));
-		EntityPredicate.Extended bobber = EntityPredicate.Extended.getInJson(jsonObject, "bobber", advancementEntityPredicateDeserializer);
-		EntityPredicate.Extended hookedEntity = EntityPredicate.Extended.getInJson(jsonObject, "hooked_entity", advancementEntityPredicateDeserializer);
-		EntityPredicate.Extended fishedEntity = EntityPredicate.Extended.getInJson(jsonObject, "fished_entity", advancementEntityPredicateDeserializer);
-		ItemPredicate itemPredicate2 = ItemPredicate.fromJson(jsonObject.get("item"));
-		FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
-		return new SpectrumFishingRodHookedCriterion.Conditions(extended, itemPredicate, bobber, hookedEntity, fishedEntity, itemPredicate2, fluidPredicate);
-	}
-	
 	public void trigger(ServerPlayerEntity player, ItemStack rod, SpectrumFishingBobberEntity bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
 		LootContext bobberContext = EntityPredicate.createAdvancementEntityLootContext(player, bobber);
 		LootContext hookedEntityContext = bobber.getHookedEntity() == null ? null : EntityPredicate.createAdvancementEntityLootContext(player, bobber.getHookedEntity());
@@ -54,16 +43,27 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 		LootContext hookedEntityOrBobberContext = EntityPredicate.createAdvancementEntityLootContext(player, (bobber.getHookedEntity() != null ? bobber.getHookedEntity() : bobber));
 		Criteria.FISHING_ROD_HOOKED.trigger(player, (conditions) -> conditions.matches(rod, hookedEntityOrBobberContext, fishingLoots));
 	}
-	
+
+	@Override
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("rod"));
+		LootContextPredicate bobber = LootContextPredicate.fromJson("bobber", predicateDeserializer, jsonObject, LootContextTypes.FISHING);
+		LootContextPredicate hookedEntity = LootContextPredicate.fromJson("fishing", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
+		LootContextPredicate fishedEntity = LootContextPredicate.fromJson("fished_entity", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
+		ItemPredicate itemPredicate2 = ItemPredicate.fromJson(jsonObject.get("item"));
+		FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
+		return new SpectrumFishingRodHookedCriterion.Conditions(playerPredicate, itemPredicate, bobber, hookedEntity, fishedEntity, itemPredicate2, fluidPredicate);
+	}
+
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate rod;
-		private final EntityPredicate.Extended bobber;
-		private final EntityPredicate.Extended hookedEntity;
-		private final EntityPredicate.Extended fishedEntity;
+		private final LootContextPredicate bobber;
+		private final LootContextPredicate hookedEntity;
+		private final LootContextPredicate fishedEntity;
 		private final ItemPredicate caughtItem;
 		private final FluidPredicate fluidPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate rod, EntityPredicate.Extended bobber, EntityPredicate.Extended hookedEntity, EntityPredicate.Extended fishedEntity, ItemPredicate caughtItem, FluidPredicate fluidPredicate) {
+		public Conditions(LootContextPredicate player, ItemPredicate rod, LootContextPredicate bobber, LootContextPredicate hookedEntity, LootContextPredicate fishedEntity, ItemPredicate caughtItem, FluidPredicate fluidPredicate) {
 			super(SpectrumFishingRodHookedCriterion.ID, player);
 			this.rod = rod;
 			this.bobber = bobber;
@@ -73,18 +73,18 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 			this.fluidPredicate = fluidPredicate;
 		}
 		
-		public static SpectrumFishingRodHookedCriterion.Conditions create(ItemPredicate rod, EntityPredicate bobber, EntityPredicate hookedEntity, EntityPredicate fishedEntity, ItemPredicate item, FluidPredicate fluidPredicate) {
-			return new SpectrumFishingRodHookedCriterion.Conditions(EntityPredicate.Extended.EMPTY, rod, EntityPredicate.Extended.ofLegacy(bobber), EntityPredicate.Extended.ofLegacy(hookedEntity), EntityPredicate.Extended.ofLegacy(fishedEntity), item, fluidPredicate);
+		public static SpectrumFishingRodHookedCriterion.Conditions create(ItemPredicate rod, LootContextPredicate bobber, LootContextPredicate hookedEntity, LootContextPredicate fishedEntity, ItemPredicate item, FluidPredicate fluidPredicate) {
+			return new SpectrumFishingRodHookedCriterion.Conditions(LootContextPredicate.EMPTY, rod, bobber, hookedEntity, fishedEntity, item, fluidPredicate);
 		}
 		
 		public boolean matches(ItemStack rod, LootContext bobberContext, LootContext hookedEntityContext, LootContext fishedEntityContext, Collection<ItemStack> fishingLoots, ServerWorld world, BlockPos blockPos) {
 			if (!this.rod.test(rod)) return false;
 			if (!this.bobber.test(bobberContext)) return false;
 			if (!this.fluidPredicate.test(world, blockPos)) return false;
-			if (fishedEntityContext == null && !fishedEntity.equals(EntityPredicate.Extended.EMPTY) || !this.fishedEntity.test(fishedEntityContext))
-				return false;
-			if (hookedEntityContext == null && !hookedEntity.equals(EntityPredicate.Extended.EMPTY) || !this.hookedEntity.test(hookedEntityContext))
-				return false;
+			if (fishedEntityContext == null && !fishedEntity.equals(LootContextPredicate.EMPTY) ||
+					!this.fishedEntity.test(fishedEntityContext)) return false;
+			if (hookedEntityContext == null && !hookedEntity.equals(LootContextPredicate.EMPTY) ||
+					!this.hookedEntity.test(hookedEntityContext)) return false;
 			
 			if (this.caughtItem != ItemPredicate.ANY) {
 				if (hookedEntityContext != null) {

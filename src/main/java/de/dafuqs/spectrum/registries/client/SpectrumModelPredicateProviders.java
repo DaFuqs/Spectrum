@@ -19,13 +19,14 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 import java.util.*;
 
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumModelPredicateProviders {
 	
-	public static ModelTransformation.Mode currentItemRenderMode;
+	public static ModelTransformationMode currentItemRenderMode;
 	
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
@@ -36,7 +37,7 @@ public class SpectrumModelPredicateProviders {
 		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
-		registerAnimatedWandPredicates(SpectrumItems.HERDING_STAFF);
+		registerAnimatedWandPredicates(SpectrumItems.STAFF_OF_REMEMBRANCE);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);
@@ -138,7 +139,7 @@ public class SpectrumModelPredicateProviders {
 	 */
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
-			if (currentItemRenderMode == ModelTransformation.Mode.NONE) {
+			if (currentItemRenderMode == ModelTransformationMode.NONE) {
 				return 1.0F;
 			}
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
@@ -178,15 +179,15 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
-	@SuppressWarnings("resource")
 	private static void registerMoonPhasePredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
 			Entity entity = livingEntity != null ? livingEntity : itemStack.getHolder();
 			if (entity == null) {
 				return 0.0F;
 			} else {
-				if (clientWorld == null && entity.world instanceof ClientWorld clientWorld1) {
-					clientWorld = clientWorld1;
+				World world = entity.getWorld();
+				if (clientWorld == null && world instanceof ClientWorld) {
+					clientWorld = (ClientWorld) world;
 				}
 				
 				if (clientWorld == null) {
@@ -215,7 +216,7 @@ public class SpectrumModelPredicateProviders {
 			if (world == null && livingEntity == null && i == 0) { // REIs 'fast batch' render mode. Without mixin' into REI there is no better way to catch this, I am afraid
 				return 0.0F;
 			}
-			return currentItemRenderMode == ModelTransformation.Mode.GUI || currentItemRenderMode == ModelTransformation.Mode.GROUND || currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
+			return currentItemRenderMode == ModelTransformationMode.GUI || currentItemRenderMode == ModelTransformationMode.GROUND || currentItemRenderMode == ModelTransformationMode.FIXED ? 0.0F : 1.0F;
 		});
 	}
 	
@@ -252,9 +253,6 @@ public class SpectrumModelPredicateProviders {
 		);
 	}
 
-	/**
-	 * @param biStateItem Ensure this extends PredicateBiStateProvider
-	 */
 	private static void registerPipeBombPredicates(Item pipeBombItem) {
 		ModelPredicateProviderRegistry.register(pipeBombItem, new Identifier("armed"), PipeBombItem::isArmed);
 	}
@@ -287,7 +285,7 @@ public class SpectrumModelPredicateProviders {
 	
 	private static void registerAshenCircletPredicates(Item ashenCircletItem) {
 		ModelPredicateProviderRegistry.register(ashenCircletItem, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
-			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.world) == 0) {
+			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.getWorld()) == 0) {
 				return 0.0F;
 			} else {
 				return 1.0F;

@@ -68,9 +68,9 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, CrystallarieumRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, CrystallarieumRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 }

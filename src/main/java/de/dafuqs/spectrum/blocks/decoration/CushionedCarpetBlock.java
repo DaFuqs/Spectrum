@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CarpetBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class CushionedCarpetBlock extends CarpetBlock {
 

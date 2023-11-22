@@ -12,7 +12,7 @@ public class PreservationCheckCriterion extends AbstractCriterion<PreservationCh
 	static final Identifier ID = SpectrumCommon.locate("preservation_check");
 	
 	public static PreservationCheckCriterion.Conditions create(String checkName, boolean checkPassed) {
-		return new PreservationCheckCriterion.Conditions(EntityPredicate.Extended.EMPTY, checkName, checkPassed);
+		return new PreservationCheckCriterion.Conditions(LootContextPredicate.EMPTY, checkName, checkPassed);
 	}
 	
 	@Override
@@ -21,7 +21,7 @@ public class PreservationCheckCriterion extends AbstractCriterion<PreservationCh
 	}
 	
 	@Override
-	public PreservationCheckCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PreservationCheckCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		String checkName = JsonHelper.getString(jsonObject, "check_name", "");
 		boolean checkPassed = JsonHelper.getBoolean(jsonObject, "check_passed", true);
 		return new PreservationCheckCriterion.Conditions(extended, checkName, checkPassed);
@@ -36,7 +36,7 @@ public class PreservationCheckCriterion extends AbstractCriterion<PreservationCh
 		private final String checkName;
 		private final boolean checkPassed;
 		
-		public Conditions(EntityPredicate.Extended player, String checkName, boolean checkPassed) {
+		public Conditions(LootContextPredicate player, String checkName, boolean checkPassed) {
 			super(ID, player);
 			this.checkName = checkName;
 			this.checkPassed = checkPassed;

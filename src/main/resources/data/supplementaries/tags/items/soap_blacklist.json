@@ -2,6 +2,6 @@
   "replace": false,
   "values": [
     "#spectrum:pigments",
-    "#spectrum:pigment_storage_blocks"
+    "#spectrum:pigment_blocks"
   ]
 }

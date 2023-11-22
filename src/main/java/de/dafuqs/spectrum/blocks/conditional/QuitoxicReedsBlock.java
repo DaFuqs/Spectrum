@@ -8,12 +8,12 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -104,13 +104,13 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		FluidLogging.State fluidLog = state.get(LOGGED);
 		if (fluidLog == FluidLogging.State.WATER) {
-			world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		} else if (fluidLog == FluidLogging.State.LIQUID_CRYSTAL) {
-			world.createAndScheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
+			world.scheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 		}
 		
 		if (!state.canPlaceAt(world, pos)) {
-			world.createAndScheduleBlockTick(pos, this, 1);
+			world.scheduleBlockTick(pos, this, 1);
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
@@ -130,8 +130,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
 			
 			int i;
-			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
-			}
+			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i);
 			
 			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i - 1)).get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL;
 			
@@ -141,12 +140,13 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 				if (j == 7) {
 					// consume 1 block close to the reed when growing.
 					// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
+					// search for block it could be planted on. 1 block => 1 quitoxic reed
+					Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
+					if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
+						return;
+					}
+					
 					if (!bottomLiquidCrystalLogged || random.nextInt(4) == 0) {
-						// search for block it could be planted on. 1 block => 1 quitoxic reed
-						Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
-						if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
-							return;
-						}
 						world.setBlockState(plantablePos.get(), Blocks.DIRT.getDefaultState(), 3);
 						world.playSound(null, plantablePos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					}

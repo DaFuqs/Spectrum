@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.models;
 
-import de.dafuqs.spectrum.entity.entity.KindlingCoughEntity;
+import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.*;

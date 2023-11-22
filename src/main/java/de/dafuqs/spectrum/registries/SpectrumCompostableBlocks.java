@@ -47,13 +47,13 @@ public class SpectrumCompostableBlocks {
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.IVORY_NOXSHROOM, HIGH);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXSHROOM, HIGH);
 		
-		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.SLATE_NOXCAP_CAP, HIGHER);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.SLATE_NOXCAP_BLOCK, HIGHER);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.SLATE_NOXCAP_GILLS, HIGHER);
-		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.EBONY_NOXCAP_CAP, HIGHER);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.EBONY_NOXCAP_BLOCK, HIGHER);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.EBONY_NOXCAP_GILLS, HIGHER);
-		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.IVORY_NOXCAP_CAP, HIGHER);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.IVORY_NOXCAP_BLOCK, HIGHER);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.IVORY_NOXCAP_GILLS, HIGHER);
-		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXCAP_CAP, HIGHER);
+		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK, HIGHER);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXCAP_GILLS, HIGHER);
 		
 		for (DyeColor dyeColor : DyeColor.values()) {

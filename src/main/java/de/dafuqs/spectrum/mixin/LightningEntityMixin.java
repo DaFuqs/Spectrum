@@ -19,7 +19,7 @@ public abstract class LightningEntityMixin {
 	
 	@Inject(method = "tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LightningEntity;cleanOxidation(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"))
 	private void spawnLightningStoneAtImpact(CallbackInfo ci) {
-		World world = ((LightningEntity) (Object) this).world;
+		World world = ((LightningEntity) (Object) this).getWorld();
 		
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
@@ -33,7 +33,7 @@ public abstract class LightningEntityMixin {
 		BlockState blockState = world.getBlockState(affectedBlockPos);
 		BlockPos aboveGroundBlockPos;
 		
-		if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
+		if (blockState.isIn(SpectrumBlockTags.LIGHTNING_RODS)) {
 			// if struck a lightning rod: check around the base of the rod instead
 			// always spawn a stone
 			BlockPos blockPos2 = affectedBlockPos.offset((blockState.get(LightningRodBlock.FACING)).getOpposite());

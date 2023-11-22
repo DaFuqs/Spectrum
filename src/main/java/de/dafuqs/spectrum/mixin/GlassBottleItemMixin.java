@@ -4,7 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.AreaEffectCloudEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
@@ -25,10 +25,10 @@ public abstract class GlassBottleItemMixin {
 	protected abstract ItemStack fill(ItemStack stack, PlayerEntity player, ItemStack outputStack);
 	
 	@Inject(method = "use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/tag/TagKey;)Z"),
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"),
 			cancellable = true,
 			locals = LocalCapture.CAPTURE_FAILHARD)
-	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, List<AreaEffectCloudEntity> list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
+	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir, List<AreaEffectCloudEntity> list, ItemStack handStack, BlockHitResult areaEffectCloudEntity, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)

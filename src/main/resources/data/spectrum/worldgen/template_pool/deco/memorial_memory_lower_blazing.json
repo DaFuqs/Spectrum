@@ -10,7 +10,7 @@
         "block": {
           "Name": "minecraft:air"
         },
-        "nbt": ""
+        "nbt": {}
       }
     }
   ]

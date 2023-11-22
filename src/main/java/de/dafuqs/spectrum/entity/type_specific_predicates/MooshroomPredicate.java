@@ -46,7 +46,7 @@ public class MooshroomPredicate implements TypeSpecificPredicate {
 		if (!(entity instanceof MooshroomEntity mooshroomEntity)) {
 			return false;
 		} else {
-			return this.type == mooshroomEntity.getMooshroomType();
+			return this.type == mooshroomEntity.getVariant();
 		}
 	}
 }

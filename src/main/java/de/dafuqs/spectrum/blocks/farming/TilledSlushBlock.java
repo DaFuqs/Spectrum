@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.blocks.farming;
 
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
 
-public class TilledSlushBlock extends ImmutableFarmlandBlock{
-    public TilledSlushBlock(Settings settings, BlockState bareState) {
-        super(settings, bareState);
-        this.setDefaultState(getDefaultState().with(MOISTURE, 7));
-    }
+public class TilledSlushBlock extends ExtraTickFarmlandBlock {
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return true;
-    }
+	public TilledSlushBlock(Settings settings, BlockState bareState) {
+		super(settings, bareState);
+		this.setDefaultState(getDefaultState().with(MOISTURE, 7));
+	}
+
 }

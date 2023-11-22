@@ -44,22 +44,22 @@ public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implemen
 		
 		// render floating item stacks
 		Recipe<?> currentRecipe = entity.getCurrentRecipe();
-		if (currentRecipe instanceof PedestalCraftingRecipe) {
+		if (currentRecipe instanceof PedestalRecipe) {
 			float time = entity.getWorld().getTime() % 50000 + tickDelta;
 			circle.yaw = time / 25.0F;
 			circle.render(matrixStack, vertexConsumerProvider.getBuffer(SpectrumRenderLayers.GlowInTheDarkRenderLayer.get(GROUND_MARK)), light, overlay);
 			
-			ItemStack outputItemStack = entity.getCurrentRecipe().getOutput();
+			ItemStack outputItemStack = entity.getCurrentRecipe().getOutput(entity.getWorld().getRegistryManager());
 			
 			matrixStack.push();
 			double height = Math.sin((time) / 8.0) / 6.0; // item height
 			matrixStack.translate(0.5F, 1.3 + height, 0.5F); // position offset
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((time) * 2)); // item stack rotation
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((time) * 2)); // item stack rotation
 			
 			// fixed lighting because:
 			// 1. light variable would always be 0 anyways (the pedestal is opaque, making the inside black)
 			// 2. the floating item looks like a hologram
-			MinecraftClient.getInstance().getItemRenderer().renderItem(outputItemStack, ModelTransformation.Mode.GROUND, 15728768, overlay, matrixStack, vertexConsumerProvider, 0);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(outputItemStack, ModelTransformationMode.GROUND, 15728768, overlay, matrixStack, vertexConsumerProvider, entity.getWorld(), 0);
 			matrixStack.pop();
 		}
 	}

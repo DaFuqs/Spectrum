@@ -36,15 +36,15 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public void tick() {
+    public void tick() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		time++;
 		if (time > AscensionStatusEffect.MUSIC_INTRO_TICKS) {
 			this.volume = 0.8F;
 		} else {
 			this.volume = 0.5F + ((float) time / AscensionStatusEffect.MUSIC_INTRO_TICKS) * 0.2F;
 		}
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		ClientPlayerEntity player = client.player;
 		if (instances > 1 || player == null || !(player.hasStatusEffect(SpectrumStatusEffects.ASCENSION) || player.hasStatusEffect(SpectrumStatusEffects.DIVINITY))) {
 			this.setDone();
 		} else {

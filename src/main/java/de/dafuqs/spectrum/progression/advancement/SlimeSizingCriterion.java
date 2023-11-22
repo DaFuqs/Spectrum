@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -19,10 +18,10 @@ public class SlimeSizingCriterion extends AbstractCriterion<SlimeSizingCriterion
 	}
 	
 	@Override
-	public SlimeSizingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public SlimeSizingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.IntRange sizeRange = NumberRange.IntRange.fromJson(jsonObject.get("size"));
 		
-		return new SlimeSizingCriterion.Conditions(extended, sizeRange);
+		return new SlimeSizingCriterion.Conditions(predicate, sizeRange);
 	}
 	
 	public void trigger(ServerPlayerEntity player, int size) {
@@ -33,7 +32,7 @@ public class SlimeSizingCriterion extends AbstractCriterion<SlimeSizingCriterion
 		
 		private final NumberRange.IntRange sizeRange;
 		
-		public Conditions(Extended player, NumberRange.IntRange sizeRange) {
+		public Conditions(LootContextPredicate player, NumberRange.IntRange sizeRange) {
 			super(SlimeSizingCriterion.ID, player);
 			this.sizeRange = sizeRange;
 		}

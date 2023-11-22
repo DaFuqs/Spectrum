@@ -19,25 +19,25 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class LightMineEntity extends LightShardBaseEntity {
-    
+
     private static final int NO_POTION_COLOR = -1;
     private static final TrackedData<Integer> COLOR = DataTracker.registerData(LightMineEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private boolean colorSet;
-    
+
     protected final Set<StatusEffectInstance> effects = Sets.newHashSet();
-	
+
 	public LightMineEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
 	}
-    
+
     public LightMineEntity(World world, LivingEntity owner, Optional<LivingEntity> target, float detectionRange, float damage, float lifeSpanTicks) {
         super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, detectionRange, damage, lifeSpanTicks);
     }
-    
+
     public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects) {
         summonBarrage(world, user, target, effects, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
     }
-    
+
     public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, List<StatusEffectInstance> effects, Vec3d position, IntProvider count) {
         summonBarrageInternal(world, user, () -> {
             LightMineEntity entity = new LightMineEntity(world, user, Optional.ofNullable(target), 8, 1.0F, 800);
@@ -45,7 +45,7 @@ public class LightMineEntity extends LightShardBaseEntity {
             return entity;
         }, position, count);
     }
-    
+
     public void setEffects(List<StatusEffectInstance> effects) {
         this.effects.addAll(effects);
         if (this.effects.isEmpty()) {
@@ -54,7 +54,7 @@ public class LightMineEntity extends LightShardBaseEntity {
             setColor(PotionUtil.getColor(this.effects));
         }
     }
-    
+
     public int getColor() {
         return this.dataTracker.get(COLOR);
     }
@@ -112,7 +112,7 @@ public class LightMineEntity extends LightShardBaseEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.world.isClient && this.age % 4 == 0) {
+        if (this.getWorld().isClient() && this.age % 4 == 0) {
             this.spawnParticles();
         }
     }
@@ -123,7 +123,7 @@ public class LightMineEntity extends LightShardBaseEntity {
             double d = (double) (color >> 16 & 255) / 255.0;
             double e = (double) (color >> 8 & 255) / 255.0;
             double f = (double) (color & 255) / 255.0;
-            this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
+            this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), d, e, f);
         }
     }
     
@@ -132,7 +132,7 @@ public class LightMineEntity extends LightShardBaseEntity {
         super.onHitEntity(attacked);
         
         Entity attacker = this.getEffectCause();
-        
+
         Iterator<StatusEffectInstance> var3 = this.effects.iterator();
         StatusEffectInstance statusEffectInstance;
         while (var3.hasNext()) {

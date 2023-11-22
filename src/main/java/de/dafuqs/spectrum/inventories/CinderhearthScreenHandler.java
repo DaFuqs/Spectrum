@@ -40,9 +40,9 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, PropertyDelegate propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.propertyDelegate = propertyDelegate;
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 			this.blockEntity = cinderhearthBlockEntity;
 		} else {
@@ -90,15 +90,15 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public boolean canUse(PlayerEntity player) {
 		return this.blockEntity.canPlayerUse(player);
 	}
-	
+
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.blockEntity.onClose(player);
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {

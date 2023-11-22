@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 80,
   "tier": "basic",
   "magenta": 0,
@@ -12,21 +12,20 @@
     "ES",
     "UC"
   ],
-  "key": {
-    "S": {
+  "ingredients": [
+    {
       "item": "spectrum:fresh_chocolate"
     },
-    "U": {
+    {
       "item": "spectrum:myceylon"
     },
-    "C": {
+    {
       "item": "spectrum:clotted_cream"
     },
-    "E": {
+    {
       "item": "spectrum:infused_beverage",
       "recipeViewNbt": "{Variant: \"sawblade_holly_liquor\", Color: 13723654 }",
       "matchbook": {
-
         "mode": "AND",
         "matches": [
           {
@@ -35,10 +34,9 @@
             "target": "sawblade_holly_liquor"
           }
         ]
-
       }
     }
-  },
+  ],
   "result": {
     "item": "spectrum:slushslide",
     "count": 2

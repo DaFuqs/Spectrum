@@ -45,10 +45,7 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
     }
 
     private static boolean isReplaceable(WorldAccess world, BlockPos pos, boolean replacePlants) {
-        return world.testBlockState(pos, (state) -> {
-            Material material = state.getMaterial();
-            return state.getMaterial().isReplaceable() || replacePlants && material == Material.PLANT;
-        });
+        return world.testBlockState(pos, (state) -> state.isReplaceable() || replacePlants);
     }
 
     private void generateStem(WorldAccess world, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {

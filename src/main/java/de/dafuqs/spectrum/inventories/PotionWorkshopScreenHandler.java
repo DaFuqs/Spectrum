@@ -32,7 +32,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	protected PotionWorkshopScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		checkDataCount(propertyDelegate, 3);
 		this.propertyDelegate = propertyDelegate;
@@ -91,7 +91,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack slotStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
@@ -140,8 +140,8 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 	

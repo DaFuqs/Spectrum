@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "compacting",
   "time": 80,
   "tier": "basic",
   "magenta": 0,

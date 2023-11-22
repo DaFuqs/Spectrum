@@ -4,10 +4,11 @@ import com.mojang.datafixers.util.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.structure.*;
 import org.jetbrains.annotations.*;
@@ -25,20 +26,22 @@ public class StructureCompassItem extends CompassItem {
 	
 	@Override
 	public void inventoryTick(@NotNull ItemStack stack, @NotNull World world, Entity entity, int slot, boolean selected) {
-		if (!world.isClient) {
-			if (world.getTime() % 200 == 0) {
-				Pair<BlockPos, RegistryEntry<Structure>> foundStructure = locateStructure((ServerWorld) world, entity.getBlockPos());
-				if (foundStructure != null) {
-					saveStructurePos(stack, world.getRegistryKey(), foundStructure.getFirst());
-				} else {
-					removeStructurePos(stack);
-				}
-			}
+		if (!world.isClient && world.getTime() % 200 == 0) {
+			locateStructure(stack, world, entity);
 		}
 	}
-	
+
+	protected void locateStructure(@NotNull ItemStack stack, @NotNull World world, Entity entity) {
+		Pair<BlockPos, RegistryEntry<Structure>> foundStructure = locateStructure((ServerWorld) world, entity.getBlockPos());
+		if (foundStructure != null) {
+			saveStructurePos(stack, world.getRegistryKey(), foundStructure.getFirst());
+		} else {
+			removeStructurePos(stack);
+		}
+	}
+
 	public @Nullable Pair<BlockPos, RegistryEntry<Structure>> locateStructure(@NotNull ServerWorld world, @NotNull BlockPos pos) {
-		Registry<Structure> registry = world.getRegistryManager().get(Registry.STRUCTURE_KEY);
+		Registry<Structure> registry = world.getRegistryManager().get(RegistryKeys.STRUCTURE);
 		Optional<RegistryEntryList.Named<Structure>> registryEntryList = registry.getEntryList(this.locatedStructures);
 		if (registryEntryList.isPresent()) {
 			return world.getChunkManager().getChunkGenerator().locateStructure(world, registryEntryList.get(), pos, 100, false);

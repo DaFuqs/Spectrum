@@ -25,6 +25,7 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -62,13 +63,13 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	@Nullable
 	public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
-	
+
 	@Shadow
 	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
-	
+
 	@Shadow
 	protected ItemStack activeItemStack;
-	
+
 	@Shadow
 	public abstract void readCustomDataFromNbt(NbtCompound nbt);
 	
@@ -80,6 +81,9 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
+	
+	@Shadow
+	public abstract void endCombat();
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -100,7 +104,7 @@ public abstract class LivingEntityMixin {
 	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
 		if (onGround) {
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
-			if (!thisEntity.isInvulnerableTo(DamageSource.FALL) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
+			if (!thisEntity.isInvulnerableTo(thisEntity.getDamageSources().fall()) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
@@ -110,7 +114,8 @@ public abstract class LivingEntityMixin {
 							
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
+							World world = thisEntity.getWorld();
+							if (world.isClient) { // it is split here so the particles spawn immediately, without network lag
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.EIGHT, 0.4);
 								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, VectorPattern.EIGHT_OFFSET, 0.5);
 							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
@@ -131,8 +136,8 @@ public abstract class LivingEntityMixin {
 		if (vulnerability != null) {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
-
-		if (source.isOutOfWorld() || source.isUnblockable() || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+		
+		if (source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY) || source.isIn(DamageTypeTags.BYPASSES_SHIELD) || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
 		}
 
@@ -143,10 +148,13 @@ public abstract class LivingEntityMixin {
 	public void spectrum$applyDisarmingEnchantment(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		// true if the entity got hurt
 		if (cir.getReturnValue() != null && cir.getReturnValue()) {
-			if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
-				int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
-				if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
-					DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);
+			// Disarming does not trigger when dealing damage to enemies using thorns
+			if (!source.isOf(DamageTypes.THORNS)) {
+				if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
+					int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
+					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
+						DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);
+					}
 				}
 			}
 		}
@@ -157,10 +165,10 @@ public abstract class LivingEntityMixin {
 		LivingEntity target = (LivingEntity) (Object) this;
 
 		// SetHealth damage does exactly that
-		if (amount > 0 && source instanceof SpectrumDamageSources.SetHealthDamageSource) {
+		if (amount > 0 && source instanceof SpectrumDamageSources.DirectDamage) {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
-			target.getDamageTracker().onDamage(source, h, amount);
+			target.getDamageTracker().onDamage(source, amount);
 			if (target.isDead()) {
 				target.onDeath(source);
 			}
@@ -168,16 +176,16 @@ public abstract class LivingEntityMixin {
 		}
 
 		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt
-		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
+		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
 				SpectrumDamageSources.recursiveDamage = true;
 				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
-
+				
 				for (Pair<DamageSource, Float> entry : composition.get()) {
 					damage(entry.getLeft(), entry.getRight());
 				}
-
+				
 				SpectrumDamageSources.recursiveDamage = false;
 			}
 		}
@@ -202,7 +210,7 @@ public abstract class LivingEntityMixin {
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 900, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 100, 1));
 						thisEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 800, 0));
-						thisEntity.world.sendEntityStatus(thisEntity, (byte) 35);
+						thisEntity.getWorld().sendEntityStatus(thisEntity, (byte) 35);
 
 						// override the previous return value
 						cir.setReturnValue(true);
@@ -214,7 +222,8 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		if (!((LivingEntity) (Object) this).world.isClient) {
+		World world = ((LivingEntity) (Object) this).getWorld();
+		if (!world.isClient) {
 			if (((Object) this) instanceof MobEntity thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
@@ -286,7 +295,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
 	protected void drop(DamageSource source, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		boolean hasBondingRibbon = BondingRibbonComponent.hasBondingRibbon(thisEntity);
+		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasBondingRibbon(thisEntity);
 		if (hasBondingRibbon) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);
@@ -294,8 +303,8 @@ public abstract class LivingEntityMixin {
 			MemoryItem.markAsBrokenPromise(memoryStack, true);
 
 			Vec3d entityPos = thisEntity.getPos();
-			ItemEntity itemEntity = new ItemEntity(thisEntity.world, entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
-			thisEntity.world.spawnEntity(itemEntity);
+			ItemEntity itemEntity = new ItemEntity(thisEntity.getWorld(), entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
+			thisEntity.getWorld().spawnEntity(itemEntity);
 
 			ci.cancel();
 		}
@@ -305,7 +314,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "tick", at = @At("TAIL"))
 	protected void applyInexorableEffects(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		if (entity.world != null && entity.world.getTime() % 20 == 0) {
+		if (entity.getWorld() != null && entity.getWorld().getTime() % 20 == 0) {
 			InexorableEnchantment.checkAndRemoveSlowdownModifiers(entity);
 		}
 	}
@@ -342,6 +351,6 @@ public abstract class LivingEntityMixin {
 	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
 	public boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object)livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
+		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object) livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
 	}
 }

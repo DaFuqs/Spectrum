@@ -13,10 +13,10 @@ import net.minecraft.world.event.*;
 public class ExperienceTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
 	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create(
-		(instance) -> instance.group(
-			PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
-			Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
-		).apply(instance, ExperienceTransmissionParticleEffect::new));
+			(instance) -> instance.group(
+					PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
+					Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
+			).apply(instance, ExperienceTransmissionParticleEffect::new));
 	
 	@SuppressWarnings("deprecation")
 	public static final Factory<ExperienceTransmissionParticleEffect> FACTORY = new Factory<>() {
@@ -30,7 +30,7 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new ExperienceTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		

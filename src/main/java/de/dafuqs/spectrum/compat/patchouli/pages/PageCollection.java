@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
-import net.minecraft.client.util.math.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.command.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -24,15 +24,15 @@ public class PageCollection extends PageWithText {
 	transient List<ItemStack> stacks;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		stacks = new ArrayList<>();
 		for (IVariable item : items.asList()) {
 			String stackString = item.asString();
 			ItemStack stack;
 			try {
-				stack = new ItemStackArgumentType(new CommandRegistryAccess(DynamicRegistryManager.of(Registry.REGISTRIES))).parse(new StringReader(stackString)).createStack(1, false);
+				stack = new ItemStackArgumentType(CommandRegistryAccess.of(world.getRegistryManager(), world.getEnabledFeatures())).parse(new StringReader(stackString)).createStack(1, false);
 			} catch (CommandSyntaxException e) {
 				PatchouliAPI.LOGGER.warn("Unable to parse stack {} in collection page", stackString);
 				continue;
@@ -43,13 +43,13 @@ public class PageCollection extends PageWithText {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
 		boolean hasTitle = title != null && !title.isEmpty();
 		if (hasTitle) {
-			parent.drawCenteredStringNoShadow(ms, i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-			GuiBook.drawSeparator(ms, book, 0, 12);
+			parent.drawCenteredStringNoShadow(drawContext, i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+			GuiBook.drawSeparator(drawContext, book, 0, 12);
 		}
 		
 		int startY = hasTitle ? 18 : 0;
@@ -67,14 +67,14 @@ public class PageCollection extends PageWithText {
 			if (row == firstNonFullRowIndex) {
 				startX += unusedEntriesInLastRow * 9;
 			}
-			parent.renderItemStack(ms, startX, startY + row * 18, mouseX, mouseY, stack);
+			parent.renderItemStack(drawContext, startX, startY + row * 18, mouseX, mouseY, stack);
 		}
 		
 		if (!text.asString().isEmpty()) {
-			GuiBook.drawSeparator(ms, book, 0, startY + 20 + row * 18);
+			GuiBook.drawSeparator(drawContext, book, 0, startY + 20 + row * 18);
 		}
 		
-		super.render(ms, mouseX, mouseY, pticks);
+		super.render(drawContext, mouseX, mouseY, pticks);
 	}
 	
 	@Override

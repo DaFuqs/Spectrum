@@ -36,8 +36,8 @@ public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
 	
 	@Inject(method = "eatBerries()V", at = @At("HEAD"), cancellable = true)
 	private void spectrum$eatBerries(CallbackInfo ci) {
-		if (foxEntity.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-			BlockState blockState = foxEntity.world.getBlockState(this.targetPos);
+		if (foxEntity.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+			BlockState blockState = foxEntity.getWorld().getBlockState(this.targetPos);
 			if (blockState.isOf(SpectrumBlocks.SAWBLADE_HOLLY_BUSH)) {
 				spectrum$pickSawbladeHollyBerries(blockState);
 				ci.cancel();
@@ -46,8 +46,9 @@ public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
 	}
 	
 	private void spectrum$pickSawbladeHollyBerries(BlockState state) {
+		World world = foxEntity.getWorld();
 		int age = state.get(SawbladeHollyBushBlock.AGE);
-		int berriesPlucked = 1 + foxEntity.world.random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
+		int berriesPlucked = 1 + world.random.nextInt(2) + (age == SawbladeHollyBushBlock.MAX_AGE ? 1 : 0);
 		ItemStack itemStack = foxEntity.getEquippedStack(EquipmentSlot.MAINHAND);
 		if (itemStack.isEmpty()) {
 			foxEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY));
@@ -55,11 +56,11 @@ public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
 		}
 		
 		if (berriesPlucked > 0) {
-			Block.dropStack(foxEntity.world, this.targetPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY, berriesPlucked));
+			Block.dropStack(world, this.targetPos, new ItemStack(SpectrumItems.SAWBLADE_HOLLY_BERRY, berriesPlucked));
 		}
 		
 		foxEntity.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, 1.0F, 1.0F);
-		foxEntity.world.setBlockState(this.targetPos, state.with(SawbladeHollyBushBlock.AGE, 1), Block.NOTIFY_LISTENERS);
+		world.setBlockState(this.targetPos, state.with(SawbladeHollyBushBlock.AGE, 1), Block.NOTIFY_LISTENERS);
 	}
 	
 	

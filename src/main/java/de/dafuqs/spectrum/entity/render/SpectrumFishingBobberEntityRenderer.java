@@ -10,6 +10,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.joml.*;
 
 public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingBobberEntity> {
 	
@@ -29,7 +30,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 			matrixStack.push();
 			matrixStack.scale(0.5F, 0.5F, 0.5F);
 			matrixStack.multiply(this.dispatcher.getRotation());
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
 			MatrixStack.Entry entry = matrixStack.peek();
 			Matrix4f matrix4f = entry.getPositionMatrix();
 			Matrix3f matrix3f = entry.getNormalMatrix();

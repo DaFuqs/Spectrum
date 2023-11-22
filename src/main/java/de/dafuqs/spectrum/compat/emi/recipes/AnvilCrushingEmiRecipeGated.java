@@ -16,14 +16,14 @@ public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCru
 	
 	public AnvilCrushingEmiRecipeGated(AnvilCrushingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, null, recipe, 116, 64);
-		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
+		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(EmiStack.of(Items.ANVIL), 21, 10).drawBack(false);
-		widgets.addSlot(input.get(0), 21, 30);
-		widgets.addSlot(output.get(0), 90, 11).large(true).recipeContext(this);
+		widgets.addSlot(inputs.get(0), 21, 30);
+		widgets.addSlot(outputs.get(0), 90, 11).large(true).recipeContext(this);
 		
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 50, 16); // dirt wall
 		widgets.addTexture(WALL_TEXTURE, 0, 0, 16, 48, 0, 0); // falling stripes for anvil

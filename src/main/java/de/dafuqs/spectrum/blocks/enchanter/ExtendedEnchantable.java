@@ -13,5 +13,4 @@ import net.minecraft.enchantment.*;
 public interface ExtendedEnchantable {
 	
 	boolean acceptsEnchantment(Enchantment enchantment);
-
 }

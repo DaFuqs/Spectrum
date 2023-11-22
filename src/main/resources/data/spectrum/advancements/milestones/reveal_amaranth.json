@@ -1,14 +1,10 @@
 {
   "criteria": {
-    "collected_amaranth_grains": {
-      "trigger": "minecraft:inventory_changed",
+    "solved_color_mixing_preservation_ruin": {
+      "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "items": [{ "items": [ "spectrum:amaranth_grains" ] }]
+        "advancement_identifier": "spectrum:solve_color_mixing_preservation_ruin"
       }
-    },
-    "collected_vegetal": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
     }
   }
 }

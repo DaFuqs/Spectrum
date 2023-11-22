@@ -1,20 +1,15 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class CapriciousArrowEntity extends PersistentProjectileEntity {
 
@@ -41,8 +36,8 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.world.isClient) {
-			if (!this.onGround || world.getTime() % 8 == 0) {
+		if (this.getWorld().isClient()) {
+			if (!this.isOnGround() || this.getWorld().getTime() % 8 == 0) {
 				spawnParticles(1);
 			}
 		}
@@ -53,7 +48,6 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
-		LivingEntity livingEntityToResetHurtTime = null;
 	}
 	
 	@Override
@@ -88,8 +82,8 @@ public class CapriciousArrowEntity extends PersistentProjectileEntity {
 		HitResult.Type type = hitResult.getType();
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
-			BlockState state = this.world.getBlockState(hitPos);
-			if (state.isTranslucent(world, hitPos)) {
+			BlockState state = this.getWorld().getBlockState(hitPos);
+			if (state.isTransparent(this.getWorld(), hitPos)) {
 				return;
 			}
 		}

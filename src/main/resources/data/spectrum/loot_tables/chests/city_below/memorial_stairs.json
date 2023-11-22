@@ -13,7 +13,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:stone"
+          "name": "minecraft:string"
         },
         {
           "type": "minecraft:item",

@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/staff_of_remembrance"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_use": 1
+      },
+      "model": "spectrum:item/staff_of_remembrance_use"
+    }
+  ]
+}

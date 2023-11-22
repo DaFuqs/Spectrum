@@ -26,10 +26,10 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 	}
 	
 	@Override
-	public InkProjectileKillingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
-		EntityPredicate.Extended[] extendeds = EntityPredicate.Extended.requireInJson(jsonObject, "victims", advancementEntityPredicateDeserializer);
+	public InkProjectileKillingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+		LootContextPredicate[] victims = EntityPredicate.contextPredicateArrayFromJson(jsonObject, "victims", advancementEntityPredicateDeserializer);
 		IntRange intRange = IntRange.fromJson(jsonObject.get("unique_entity_types"));
-		return new InkProjectileKillingCriterion.Conditions(extended, extendeds, intRange);
+		return new InkProjectileKillingCriterion.Conditions(extended, victims, intRange);
 	}
 	
 	public void trigger(ServerPlayerEntity player, Collection<Entity> piercingKilledEntities) {
@@ -45,36 +45,36 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
-		private final EntityPredicate.Extended[] victims;
+		private final LootContextPredicate[] victims;
 		private final IntRange uniqueEntityTypes;
 		
-		public Conditions(EntityPredicate.Extended player, EntityPredicate.Extended[] victims, IntRange uniqueEntityTypes) {
+		public Conditions(LootContextPredicate player, LootContextPredicate[] victims, IntRange uniqueEntityTypes) {
 			super(InkProjectileKillingCriterion.ID, player);
 			this.victims = victims;
 			this.uniqueEntityTypes = uniqueEntityTypes;
 		}
 		
 		public static InkProjectileKillingCriterion.Conditions create(EntityPredicate.Builder... victimPredicates) {
-			EntityPredicate.Extended[] extendeds = new EntityPredicate.Extended[victimPredicates.length];
-			
-			for (int i = 0; i < victimPredicates.length; ++i) {
-				EntityPredicate.Builder builder = victimPredicates[i];
-				extendeds[i] = EntityPredicate.Extended.ofLegacy(builder.build());
+
+			LootContextPredicate[] extendeds = new LootContextPredicate[victimPredicates.length];
+			for (int i = 0; i < victimPredicates.length; i++) {
+				var predicate = EntityPredicate.asLootContextPredicate(victimPredicates[i].build());
+				extendeds[i] = predicate;
 			}
-			
-			return new InkProjectileKillingCriterion.Conditions(EntityPredicate.Extended.EMPTY, extendeds, IntRange.ANY);
+
+			return new InkProjectileKillingCriterion.Conditions(LootContextPredicate.EMPTY, extendeds, IntRange.ANY);
 		}
 		
 		public static InkProjectileKillingCriterion.Conditions create(IntRange uniqueEntityTypes) {
-			EntityPredicate.Extended[] extendeds = new EntityPredicate.Extended[0];
-			return new InkProjectileKillingCriterion.Conditions(EntityPredicate.Extended.EMPTY, extendeds, uniqueEntityTypes);
+			LootContextPredicate[] extendeds = new LootContextPredicate[0];
+			return new InkProjectileKillingCriterion.Conditions(LootContextPredicate.EMPTY, extendeds, uniqueEntityTypes);
 		}
 		
 		public boolean matches(Collection<LootContext> victimContexts, int uniqueEntityTypeCount) {
 			if (this.victims.length > 0) {
 				List<LootContext> list = Lists.newArrayList(victimContexts);
 				
-				for (EntityPredicate.Extended extended : this.victims) {
+				for (LootContextPredicate extended : this.victims) {
 					boolean bl = false;
 					
 					Iterator<LootContext> iterator = list.iterator();
@@ -99,7 +99,7 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.add("victims", EntityPredicate.Extended.toPredicatesJsonArray(this.victims, predicateSerializer));
+			jsonObject.add("victims", LootContextPredicate.toPredicatesJsonArray(this.victims, predicateSerializer));
 			jsonObject.add("unique_entity_types", this.uniqueEntityTypes.toJson());
 			return jsonObject;
 		}

@@ -6,17 +6,18 @@ import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 import java.util.*;
 
-public class SpectrumSkullBlockItem extends WallStandingBlockItem {
+public class SpectrumSkullBlockItem extends VerticallyAttachableBlockItem {
 	
 	protected final EntityType<?> entityType;
 	protected String artistCached;
 	
 	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType<?> entityType) {
-		super(standingBlock, wallBlock, settings);
+		super(standingBlock, wallBlock, settings, Direction.DOWN);
 		this.entityType = entityType;
 	}
 	
@@ -68,7 +69,6 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
             case ZOMBIE_VILLAGER -> "Kiaria";
             case TRADER_LLAMA -> "miner_william_05";
             case ILLUSIONER, DONKEY -> "titigillette";
-            case PIGLIN -> "pianoboy913";
             case WANDERING_TRADER -> "BBS_01";
             case ZOGLIN -> "GreenRumble4454";
             case STRIDER -> "Deadly_Golem";

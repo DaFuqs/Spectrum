@@ -7,8 +7,8 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -25,27 +25,31 @@ public class SpectrumEnchantmentHelper {
 	 */
 	public static ItemStack addOrExchangeEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
 		// can this enchant even go on that tool?
-		if (!enchantment.isAcceptableItem(stack)) {
+		if (!enchantment.isAcceptableItem(stack)
+				&& !stack.isOf(Items.ENCHANTED_BOOK)
+				&& !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
+
 			return stack;
 		}
-		
+
 		// if not forced check if the stack already has enchantments
 		// that conflict with the new one
 		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(stack, enchantment)) {
 			return stack;
 		}
-		
-		if (stack.isOf(Items.ENCHANTED_BOOK)) {
-			// all fine, nothing more to check here. Enchant away!
-		} else if (isEnchantableBook(stack)) {
-			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, stack.getCount());
-			enchantedBookStack.setNbt(stack.getNbt());
-			stack = enchantedBookStack;
-		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
-			if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
-				// ExtendedEnchantable explicitly states this enchantment is acceptable
-				if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
-					return stack;
+
+		// If it's in the tag, there's nothing more to check here. Enchant away!
+		if (!stack.isOf(Items.ENCHANTED_BOOK)) {
+			if (isEnchantableBook(stack)) {
+				ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, stack.getCount());
+				enchantedBookStack.setNbt(stack.getNbt());
+				stack = enchantedBookStack;
+			} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(stack)) {
+				if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
+					// ExtendedEnchantable explicitly states this enchantment is acceptable
+					if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
+						return stack;
+					}
 				}
 			}
 		}
@@ -61,11 +65,16 @@ public class SpectrumEnchantmentHelper {
 			nbtCompound.put(nbtString, new NbtList());
 		}
 		
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
-		NbtList nbtList = nbtCompound.getList(nbtString, 10);
+		Identifier enchantmentIdentifier = Registries.ENCHANTMENT.getId(enchantment);
+		NbtList nbtList = nbtCompound.getList(nbtString, NbtElement.COMPOUND_TYPE);
 		for (int i = 0; i < nbtList.size(); i++) {
 			NbtCompound enchantmentCompound = nbtList.getCompound(i);
 			if (enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
+				boolean isEqualOrDowngrade = enchantmentCompound.contains("lvl", NbtElement.SHORT_TYPE) ? enchantmentCompound.getInt("lvl") >= level : false;
+				if (isEqualOrDowngrade) {
+					return stack;
+				}
+
 				nbtList.remove(i);
 				i--;
 			}
@@ -169,57 +178,59 @@ public class SpectrumEnchantmentHelper {
 	
 	/**
 	 * Removes the enchantments on a stack of items / enchanted book
-	 *
 	 * @param itemStack    the stack
 	 * @param enchantments the enchantments to remove
-	 * @return if >0 enchantments could be removed
+	 * @return The resulting stack & the count of enchants that were removed
 	 */
-	public static boolean removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
-		boolean anySuccess = false;
-		for (Enchantment enchantment : enchantments) {
-			anySuccess |= removeEnchantment(itemStack, enchantment);
-		}
-		return anySuccess;
-	}
-	
-	public static boolean removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
+	public static Pair<ItemStack, Integer> removeEnchantments(@NotNull ItemStack itemStack, Enchantment... enchantments) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound == null) {
-			return false;
+			return new Pair<>(itemStack, 0);
 		}
-		
+
 		NbtList enchantmentList;
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			enchantmentList = compound.getList(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, 10);
 		} else {
 			enchantmentList = compound.getList(ItemStack.ENCHANTMENTS_KEY, 10);
 		}
-		
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
-		boolean success = false;
+
+		List<Identifier> enchantIDs = new ArrayList<>();
+		for(Enchantment enchantment : enchantments) {
+			enchantIDs.add(Registries.ENCHANTMENT.getId(enchantment));
+		}
+
+		int removals = 0;
 		for (int i = 0; i < enchantmentList.size(); i++) {
 			NbtCompound currentCompound = enchantmentList.getCompound(i);
-			if (currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
-				enchantmentList.remove(i);
-				success = true;
-				break;
+			if (currentCompound.contains("id", NbtElement.STRING_TYPE)) {
+				Identifier currentID = new Identifier(currentCompound.getString("id"));
+				if(enchantIDs.contains(currentID)) {
+					enchantmentList.remove(i);
+					removals++;
+					break;
+				}
 			}
 		}
 		
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+			if(enchantmentList.isEmpty()) {
+				ItemStack newStack = new ItemStack(Items.BOOK);
+				newStack.setCount(itemStack.getCount());
+				return new Pair<>(newStack, removals);
+			}
 			compound.put(EnchantedBookItem.STORED_ENCHANTMENTS_KEY, enchantmentList);
 		} else {
 			compound.put(ItemStack.ENCHANTMENTS_KEY, enchantmentList);
-			
 		}
 		itemStack.setNbt(compound);
-		
-		return success;
+
+		return new Pair<>(itemStack, removals);
 	}
 	
 	public static <T extends Item & ExtendedEnchantable> ItemStack getMaxEnchantedStack(@NotNull T item) {
 		ItemStack itemStack = item.getDefaultStack();
-		for (Enchantment enchantment : Registry.ENCHANTMENT.stream().toList()) {
+		for (Enchantment enchantment : Registries.ENCHANTMENT.stream().toList()) {
 			if (item.acceptsEnchantment(enchantment)) {
 				int maxLevel = enchantment.getMaxLevel();
 				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);

@@ -6,10 +6,10 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.narration.*;
 import net.minecraft.client.gui.widget.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -56,20 +56,25 @@ public class ColorSelectionWidget extends ClickableWidget {
 			this.changedListener.accept(newColor);
 		}
 	}
-	
+
 	@Override
-	@SuppressWarnings("resource")
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
+	protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+
+	}
+
+	@Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {
-			MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			onChanged(null);
 		}
 		
-		boolean colorSelectionClicked = mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
+		boolean colorSelectionClicked = mouseX >= (double) this.getX() && mouseX < (double) (this.getX() + this.width) && mouseY >= (double) this.getY() && mouseY < (double) (this.getY() + this.height);
 		if (colorSelectionClicked && button == 0) {
-			int xOffset = MathHelper.floor(mouseX) - this.x;
-			int yOffset = MathHelper.floor(mouseY) - this.y;
+			int xOffset = MathHelper.floor(mouseX) - this.getX();
+			int yOffset = MathHelper.floor(mouseY) - this.getY();
 			
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
@@ -77,10 +82,10 @@ public class ColorSelectionWidget extends ClickableWidget {
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			if (this.colorPicker.getSelectedColor() != newColor) {
 				if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-					MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					client.player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					onChanged(newColor);
 				} else {
-					MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					onChanged(null);
 				}
 			}
@@ -91,42 +96,43 @@ public class ColorSelectionWidget extends ClickableWidget {
 	}
 	
 	@Override
-	public void appendNarrations(NarrationMessageBuilder builder) {
+	protected void appendClickableNarrations(NarrationMessageBuilder builder) {
 		builder.put(NarrationPart.TITLE, Text.translatable("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
 	}
-	
-	public void draw(MatrixStack matrices) {
+
+	public void draw(DrawContext drawContext) {
 		// draw selection icons
 		int i = -1;
-		int currentX = this.x + 1;
-		int currentY = this.y + 1;
+		int currentX = this.getX() + 1;
+		int currentY = this.getY() + 1;
 		for (Pair<InkColor, Boolean> color : usableColors) {
 			if (color.getRight()) {
-				fillQuad(matrices, currentX, currentY, 5, 5, color.getLeft().getColor());
+				fillQuad(drawContext.getMatrices(), currentX, currentY, 5, 5, color.getLeft().getColor());
 			}
 			i = i + 1;
 			currentX = currentX + 7;
 			if (i == 7) {
 				currentY = currentY + 7;
-				currentX = this.x + 1;
+				currentX = this.getX() + 1;
 			}
 		}
 		
 		// draw currently selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
 		if (selectedColor != null) {
-			fillQuad(matrices, selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
+			fillQuad(drawContext.getMatrices(), selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
 		}
 	}
 	
-	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+	public void drawMouseoverTooltip(DrawContext drawContext, int mouseX, int mouseY) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (overUnselection) {
-			screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+			drawContext.drawTooltip(client.textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			
-			int xOffset = MathHelper.floor(mouseX) - this.x;
-			int yOffset = MathHelper.floor(mouseY) - this.y;
+			int xOffset = MathHelper.floor(mouseX) - this.getX();
+			int yOffset = MathHelper.floor(mouseY) - this.getY();
 			
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
@@ -134,9 +140,9 @@ public class ColorSelectionWidget extends ClickableWidget {
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			
 			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), x, y);
+				drawContext.drawTooltip(client.textRenderer, List.of(newColor.getName()), Optional.empty(), getX(), getY());
 			} else {
-				screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+				drawContext.drawTooltip(client.textRenderer, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}
 		}
 	}

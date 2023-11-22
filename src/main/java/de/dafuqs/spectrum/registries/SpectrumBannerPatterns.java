@@ -2,8 +2,9 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.tag.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 
 public class SpectrumBannerPatterns {
 	
@@ -14,7 +15,7 @@ public class SpectrumBannerPatterns {
 	public static RegistryEntry<BannerPattern> FOUR_LEAF_CLOVER;
 	public static RegistryEntry<BannerPattern> INK_FLASK;
 	public static RegistryEntry<BannerPattern> KNOWLEDGE_GEM;
-	public static RegistryEntry<BannerPattern> MANUAL;
+	public static RegistryEntry<BannerPattern> GUIDEBOOK;
 	public static RegistryEntry<BannerPattern> MULTITOOL;
 	public static RegistryEntry<BannerPattern> NEOLITH;
 	public static RegistryEntry<BannerPattern> PALETTE;
@@ -31,12 +32,12 @@ public class SpectrumBannerPatterns {
 	public static final TagKey<BannerPattern> AMETHYST_SHARD_TAG = of("pattern_item/amethyst_shard");
 	
 	private static TagKey<BannerPattern> of(String id) {
-		return TagKey.of(Registry.BANNER_PATTERN_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(Registries.BANNER_PATTERN.getKey(), SpectrumCommon.locate(id));
 	}
 	
 	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
-		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
-		return Registry.BANNER_PATTERN.getEntry(Registry.BANNER_PATTERN.getKey(pattern).get()).get();
+		BannerPattern pattern = Registry.register(Registries.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
+		return Registries.BANNER_PATTERN.getEntry(Registries.BANNER_PATTERN.getKey(pattern).get()).get();
 	}
 	
 	public static void register() {
@@ -47,7 +48,7 @@ public class SpectrumBannerPatterns {
 		FOUR_LEAF_CLOVER = registerPattern("four_leaf_clover", "flc");
 		INK_FLASK = registerPattern("ink_flask", "if");
 		KNOWLEDGE_GEM = registerPattern("knowledge_gem", "kg");
-		MANUAL = registerPattern("guidebook", "man");
+		GUIDEBOOK = registerPattern("guidebook", "gui");
 		MULTITOOL = registerPattern("multitool", "mul");
 		NEOLITH = registerPattern("neolith", "neo");
 		PALETTE = registerPattern("palette", "pql");

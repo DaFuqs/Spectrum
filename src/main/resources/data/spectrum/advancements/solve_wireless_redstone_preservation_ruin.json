@@ -2,7 +2,7 @@
   "parent": "spectrum:enter_wireless_redstone_preservation_ruin",
   "display": {
     "icon": {
-      "item": "spectrum:treasure_chest"
+      "item": "spectrum:preservation_chest"
     },
     "title": {
       "translate": "advancements.spectrum.solve_wireless_redstone_preservation_ruin.title"
@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "opened_wireless_redstone_main_treasure_chest": {
+    "opened_wireless_redstone_main_preservation_chest": {
       "trigger": "minecraft:player_generates_container_loot",
       "conditions": {
         "player": [

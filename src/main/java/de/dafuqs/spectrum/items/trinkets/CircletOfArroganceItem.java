@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -44,7 +45,7 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     }
 
     private static void giveEffect(LivingEntity entity) {
-        entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, 0, true, true));
+        entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, DivinityStatusEffect.CIRCLET_AMPLIFIER, true, false, true));
     }
 
     @Override

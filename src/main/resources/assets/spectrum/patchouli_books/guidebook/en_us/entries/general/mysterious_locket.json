@@ -1,0 +1,47 @@
+{
+  "name": "A Mysterious Locket",
+  "icon": "spectrum:mysterious_locket",
+  "advancement": "spectrum:lategame/collect_mysterious_locket",
+  "category": "spectrum:general_category",
+  "sortnum": 21,
+  "extra_recipe_mappings": {
+    "spectrum:mysterious_locket": 0,
+    "spectrum:mysterious_compass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "A Mysterious Locket",
+      "item": "spectrum:mysterious_locket",
+      "text": "This small locket is tight shut. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.$(br)There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seem.$(br)Who left it behind?"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Socketing a Core",
+      "advancement": "spectrum:unlocks/mysterious_locket_socketing",
+      "recipe": "spectrum:fusion_shrine/mysterious_locket_socketing",
+      "text": "The notch you noticed perfectly seems to fit a $(l:resources/moonstone_cores)Moonstone Core$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Locket's Contents",
+      "advancement": "spectrum:endgame/open_mysterious_compass",
+      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While $(l:dimension/getting_deeper_down)below the Bedrock(/l), it softly vibrates as you turn."
+    },
+    {
+      "type": "patchouli:image",
+      "advancement": "spectrum:__todo",
+      "images": [
+        "spectrum:textures/gui/guidebook/locket.png"
+      ],
+      "border": true,
+      "text": "There also was a small note inside... who could it have belonged to?"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Challenge?",
+      "advancement": "spectrum:endgame/learn_dreiton",
+      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:$(br2)$(italic)Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light."
+    }
+  ]
+}

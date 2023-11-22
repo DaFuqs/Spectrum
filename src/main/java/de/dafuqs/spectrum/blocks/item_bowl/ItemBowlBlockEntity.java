@@ -88,17 +88,15 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		}
 		
 		int decrementAmount = Math.min(amount, storedStack.getCount());
-		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
-		if (recipeRemainderItem != null) {
+		ItemStack remainder = storedStack.getRecipeRemainder();
+		if (!remainder.isEmpty()) {
 			if (storedStack.getCount() == 1) {
-				setStack(0, recipeRemainderItem.getDefaultStack());
+				setStack(0, remainder);
 			} else {
 				getStack(0).decrement(decrementAmount);
+				remainder.setCount(decrementAmount);
 				
-				ItemStack remainderStack = recipeRemainderItem.getDefaultStack();
-				remainderStack.setCount(decrementAmount);
-				
-				ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+				ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainder);
 				itemEntity.addVelocity(0, 0.1, 0);
 				world.spawnEntity(itemEntity);
 			}
@@ -124,14 +122,14 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 			if (optionalItemColor.isPresent()) {
 				ParticleEffect sparkleRisingParticleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				
-				if (this.world instanceof ServerWorld serverWorld) {
+				if (this.getWorld() instanceof ServerWorld serverWorld) {
 					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
 							new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5),
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
 					SpectrumS2CPacketSender.playColorTransmissionParticle(serverWorld, new ColoredTransmission(new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, optionalItemColor.get()));
-				} else if (this.world instanceof ClientWorld clientWorld) {
+				} else if (this.getWorld() instanceof ClientWorld clientWorld) {
 					for (int i = 0; i < 50; i++) {
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
 						float randomOffsetY = pos.getY() + 0.3F + world.random.nextFloat() * 0.6F;
@@ -149,7 +147,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, (orbTargetPos.getX() - this.pos.getX()) * 0.045, 0, (orbTargetPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				
-				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + this.world.random.nextFloat() * 0.6F);
+				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + world.random.nextFloat() * 0.6F);
 			}
 		}
 	}

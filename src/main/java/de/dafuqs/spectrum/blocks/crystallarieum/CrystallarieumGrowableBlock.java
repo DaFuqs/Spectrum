@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
@@ -43,12 +42,6 @@ public class CrystallarieumGrowableBlock extends Block {
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return this.growthStage.getShape();
 	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
-	}
-	
 	
 	@Override
 	@SuppressWarnings("deprecation")

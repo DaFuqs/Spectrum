@@ -1,7 +1,6 @@
 {
   "temperature": 0.2,
   "downfall": 0.2,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 3706492,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 4000,
       "block_search_extent": 8,
       "offset": 2
@@ -41,14 +42,7 @@
         "maxCount": 2
       }
     ],
-    "creature": [
-      {
-        "type": "minecraft:frog",
-        "weight": 5,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "creature": [],
     "misc": [],
     "monster": [],
     "underground_water_creature": [
@@ -59,14 +53,7 @@
         "maxCount": 2
       }
     ],
-    "water_ambient": [
-      {
-        "type": "minecraft:tropical_fish",
-        "weight": 25,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
+    "water_ambient": [],
     "water_creature": []
   },
   "spawn_costs": {},
@@ -122,5 +109,6 @@
       "spectrum:nephrite_blossoms"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

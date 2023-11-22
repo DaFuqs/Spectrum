@@ -12,39 +12,39 @@ import net.minecraft.sound.*;
 import net.minecraft.world.*;
 
 public abstract class BidentBaseEntity extends TridentEntity {
-    
-    private static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
-    
-    public BidentBaseEntity(EntityType<? extends TridentEntity> entityType, World world) {
-        super(entityType, world);
-    }
-    
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(STACK, Items.AIR.getDefaultStack());
-    }
-    
-    public void setStack(ItemStack stack) {
-        this.dataTracker.set(STACK, stack.copy());
-        ((TridentEntityAccessor) this).spectrum$setTridentStack(stack);
-        this.dataTracker.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) EnchantmentHelper.getLoyalty(stack));
-        this.dataTracker.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasGlint());
-    }
-    
-    @Override
-    protected SoundEvent getHitSound() {
-        return SpectrumSoundEvents.BIDENT_HIT_GROUND;
-    }
-    
-    public ItemStack getStack() {
-        return this.dataTracker.get(STACK);
-    }
-    
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.dataTracker.set(STACK, ItemStack.fromNbt(nbt.getCompound("Trident")));
-    }
-    
+	
+	private static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+	
+	public BidentBaseEntity(EntityType<? extends TridentEntity> entityType, World world) {
+		super(entityType, world);
+	}
+	
+	@Override
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(STACK, Items.AIR.getDefaultStack());
+	}
+	
+	public void setStack(ItemStack stack) {
+		this.dataTracker.set(STACK, stack.copy());
+		((TridentEntityAccessor) this).spectrum$setTridentStack(stack);
+		this.dataTracker.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) EnchantmentHelper.getLoyalty(stack));
+		this.dataTracker.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasGlint());
+	}
+	
+	@Override
+	protected SoundEvent getHitSound() {
+		return SpectrumSoundEvents.BIDENT_HIT_GROUND;
+	}
+	
+	public ItemStack getStack() {
+		return this.dataTracker.get(STACK);
+	}
+	
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+		this.dataTracker.set(STACK, ItemStack.fromNbt(nbt.getCompound("Trident")));
+	}
+	
 }

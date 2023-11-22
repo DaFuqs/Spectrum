@@ -21,6 +21,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
@@ -91,11 +92,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = TotalCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("SelectedColor", NbtElement.STRING_TYPE)) {
 			this.selectedColor = InkColor.of(nbt.getString("SelectedColor"));
 		}
@@ -108,9 +105,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.put("InkStorage", this.inkStorage.toNbt());
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
 		if (this.selectedColor != null) {
 			nbt.putString("SelectedColor", this.selectedColor.toString());
 		}
@@ -134,6 +129,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	@Override
@@ -212,7 +208,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				this.inkStorage.addEnergy(color, amount);
 				
 				if (SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
-					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
+					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 3, 1.0F);
 				}
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),

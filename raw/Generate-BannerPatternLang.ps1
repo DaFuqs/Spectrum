@@ -6,7 +6,7 @@
 "four_leaf_clover" = "Four-leafed Clover"
 "ink_flask" = "Ink Flask"
 "knowledge_gem" = "Knowledge Gem"
-"manual" = "Colorful World"
+"guidebook" = "Colorful World"
 "multitool" = "Multitool"
 "neolith" = "Neolith"
 "palette" = "Artistry"

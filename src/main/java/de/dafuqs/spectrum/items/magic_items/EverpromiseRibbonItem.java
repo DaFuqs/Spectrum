@@ -24,21 +24,22 @@ public class EverpromiseRibbonItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if (!GenericClaimModsCompat.canInteractWith(user.world, entity, user)) {
+		World world = user.getWorld();
+		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
 			return ActionResult.FAIL;
 		}
 		
 		if (stack.hasCustomName() && !(entity instanceof PlayerEntity)) {
 			if (entity.isAlive()) {
-				if (user.world.isClient) {
-					World world = entity.getWorld();
-					Random random = world.random;
+				if (world.isClient) {
+					World entityWorld = entity.getWorld();
+					Random random = entityWorld.random;
 					for (int i = 0; i < 7; ++i) {
 						world.addParticle(ParticleTypes.HEART, entity.getParticleX(1.0), entity.getRandomBodyY() + 0.5, entity.getParticleZ(1.0),
 								random.nextGaussian() * 0.02, random.nextGaussian() * 0.02, random.nextGaussian() * 0.02);
 					}
 				} else {
-					BondingRibbonComponent.attachBondingRibbon(entity);
+					EverpromiseRibbonComponent.attachBondingRibbon(entity);
 					
 					Text newName = stack.getName();
 					if (newName instanceof MutableText mutableText) {
@@ -54,7 +55,7 @@ public class EverpromiseRibbonItem extends Item {
 				stack.decrement(1);
 			}
 			
-			return ActionResult.success(user.world.isClient);
+			return ActionResult.success(world.isClient);
 		} else {
 			return ActionResult.PASS;
 		}

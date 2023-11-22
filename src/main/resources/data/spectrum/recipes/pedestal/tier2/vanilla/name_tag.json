@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:pedestal",
+  "type": "spectrum:pedestal_shapeless",
   "time": 120,
   "tier": "simple",
   "magenta": 2,
@@ -8,17 +8,14 @@
   "black": 0,
   "white": 0,
   "experience": 1.0,
-  "pattern": [
-    "PPS"
-  ],
-  "key": {
-    "S": {
+  "ingredients": [
+    {
       "item": "minecraft:string"
     },
-    "P": {
+    {
       "item": "minecraft:paper"
     }
-  },
+  ],
   "result": {
     "item": "minecraft:name_tag",
     "count": 1

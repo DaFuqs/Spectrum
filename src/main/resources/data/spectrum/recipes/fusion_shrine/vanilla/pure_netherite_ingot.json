@@ -2,7 +2,7 @@
   "type": "spectrum:fusion_shrine",
   "time": 1200,
   "experience": 1.0,
-  "fluid": "minecraft:lava",
+  "fluid": "spectrum:dragonrot",
   "ingredients": [
     {
       "item": "spectrum:pure_netherite_scrap"
@@ -21,6 +21,5 @@
     "nothing",
     "visual_explosions_on_shrine"
   ],
-  "finish_crafting_effect": "single_visual_explosion_on_shrine",
-  "description": "spectrum.recipe.fusion_shrine.explanation.netherite_ingot"
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
@@ -25,31 +25,36 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 	}
 	
 	@Override
-	public int getBuiltinRiptideLevel() {
-		return BUILTIN_RIPTIDE_LEVEL;
+	public int getRiptideLevel(ItemStack stack) {
+		return Math.max(EnchantmentHelper.getRiptide(stack), BUILTIN_RIPTIDE_LEVEL);
 	}
-	
+
 	@Override
-	public boolean requiresRainForRiptide() {
-		return false;
+	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
+		return super.canStartRiptide(player, stack) || InkPowered.tryDrainEnergy(player, RIPTIDE_COST);
 	}
 	
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.usageTick(world, user, stack, remainingUseTicks);
 		if (user.isUsingRiptide() && user instanceof PlayerEntity player) {
+			
 			int useTime = this.getMaxUseTime(stack) - remainingUseTicks;
 			if (useTime % 10 == 0) {
-				if (!InkPowered.tryDrainEnergy(player, RIPTIDE_COST)) {
+				if (InkPowered.tryDrainEnergy(player, RIPTIDE_COST)) {
+					stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
+				} else {
+					user.stopUsingItem();
 					return;
 				}
-				stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
 			}
+			
 			yeetPlayer(player, getRiptideLevel(stack) / 128F - 0.75F);
 			player.useRiptide(20);
+			
 			for (LivingEntity entityAround : world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), player.getBoundingBox().expand(2), LivingEntity::isAlive)) {
 				if (entityAround != player) {
-					entityAround.damage(DamageSource.player(player), 2);
+					entityAround.damage(world.getDamageSources().playerAttack(player), 2);
 				}
 			}
 		}

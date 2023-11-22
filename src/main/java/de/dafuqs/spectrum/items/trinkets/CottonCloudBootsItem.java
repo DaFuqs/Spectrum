@@ -24,13 +24,14 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
+		World world = entity.getWorld();
 		if (entity.isSprinting() && !entity.isOnGround() && !entity.isSneaking()) {
 			Vec3d velocity = entity.getVelocity();
 			if (velocity.y < 0) {
 				entity.setVelocity(entity.getVelocity().multiply(1, 0.1, 1));
-				if (entity.world.isClient) {
-					Random random = entity.world.random;
-					entity.world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
+				if (world.isClient) {
+					Random random = world.random;
+					world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
 							0.125 - random.nextFloat() * 0.25, 0.04 - random.nextFloat() * 0.08, 0.125 - random.nextFloat() * 0.25);
 				}
 			}

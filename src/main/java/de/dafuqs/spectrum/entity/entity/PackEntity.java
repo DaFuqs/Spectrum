@@ -78,8 +78,9 @@ public interface PackEntity<T extends MobEntity & PackEntity<T>> {
 			}
 		}
 		
+		@SuppressWarnings("unchecked")
 		private void createNewPack() {
-			List<E> possiblePackmates = this.entity.world.getEntitiesByClass((Class<E>) this.entity.getClass(), this.entity.getBoundingBox().expand(8.0, 8.0, 8.0),
+			List<E> possiblePackmates = this.entity.getWorld().getEntitiesByClass((Class<E>) this.entity.getClass(), this.entity.getBoundingBox().expand(8.0, 8.0, 8.0),
 					(Predicate<LivingEntity>) livingEntity -> livingEntity instanceof PackEntity<?> packEntity && (packEntity.canHaveMoreInGroup() || !packEntity.hasLeader())
 			);
 			

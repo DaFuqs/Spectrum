@@ -1,40 +1,28 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.present.PresentBlockEntity;
-import de.dafuqs.spectrum.items.DamageAwareItem;
-import de.dafuqs.spectrum.items.UnpackingSurprise;
-import de.dafuqs.spectrum.items.TickAwareItem;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.sound.PipeBombChargingSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
-public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem, UnpackingSurprise {
+public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem {
 
     public PipeBombItem(Settings settings) {
         super(settings);
@@ -94,7 +82,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 
     @Override
     public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
-        if ((source.isFire() || source.isExplosive()) && !itemEntity.getWorld().isClient()) {
+        if ((source.isIn(DamageTypeTags.IS_FIRE) || source.isIn(DamageTypeTags.IS_EXPLOSION)) && !itemEntity.getWorld().isClient()) {
             explode(itemEntity.getStack(), (ServerWorld) itemEntity.getWorld(), itemEntity.getPos(), Optional.empty());
         }
     }
@@ -103,8 +91,8 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
         stack.decrement(1);
         var owner = tryGetOwner(stack, world);
 
-        target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(owner), 200F));
-        world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, Explosion.DestructionType.NONE);
+        target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F));
+        world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, World.ExplosionSourceType.NONE);
     }
 
     public Entity tryGetOwner(ItemStack stack, ServerWorld world) {
@@ -132,14 +120,11 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.BOW;
     }
-
-    @Override
-    public void unpackSurprise(ItemStack stack, PresentBlockEntity presentBlockEntity, ServerWorld world, BlockPos pos, Random random) {
-        var nbt = stack.getOrCreateNbt();
-
-        nbt.putBoolean("armed", true);
-        nbt.putLong("timestamp", world.getTime() - 70);
-        nbt.putUuid("owner", presentBlockEntity.getOwnerUUID());
-        world.playSound(null, pos, SpectrumSoundEvents.INCANDESCENT_ARM, SoundCategory.BLOCKS, 2F, 0.9F);
+@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2").formatted(Formatting.GRAY));
     }
+
 }

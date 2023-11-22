@@ -9,7 +9,7 @@ import java.util.*;
 
 public class TimeOfDayPredicate implements WorldConditionPredicate {
 	public static final TimeOfDayPredicate ANY = new TimeOfDayPredicate(null);
-	
+
 	public final TimeHelper.TimeOfDay timeOfDay;
 	
 	public TimeOfDayPredicate(TimeHelper.TimeOfDay timeOfDay) {

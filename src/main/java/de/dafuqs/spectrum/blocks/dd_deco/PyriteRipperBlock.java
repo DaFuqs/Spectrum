@@ -53,7 +53,8 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction targetDirection = state.get(FACING).getOpposite();
-		return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
+		BlockPos targetPos = pos.offset(targetDirection);
+		return world.getBlockState(targetPos).isSideSolid(world, targetPos, targetDirection, SideShapeType.FULL);
 	}
 	
 	@Override
@@ -64,8 +65,8 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 			return placedOnState;
 		}
 		
-		if (ctx.getPlayerFacing().getAxis().isHorizontal()) {
-			return this.getDefaultState().with(FACING, direction).with(MIRRORED, ctx.getPlayerFacing().getOffsetX() != 0);
+		if (ctx.getHorizontalPlayerFacing().getAxis().isHorizontal()) {
+			return this.getDefaultState().with(FACING, direction).with(MIRRORED, ctx.getHorizontalPlayerFacing().getOffsetX() != 0);
 		}
 		
 		boolean mirrored = ctx.getPlayerLookDirection().getAxis().isVertical();
@@ -89,7 +90,7 @@ public class PyriteRipperBlock extends SpectrumFacingBlock {
 				double difX = Math.abs(entity.getX() - entity.lastRenderX);
 				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
 				if (difX >= 0.003 || difZ >= 0.003) {
-					entity.damage(SpectrumDamageSources.RIPPER, 2.0F);
+					entity.damage(SpectrumDamageSources.ripper(world), 2.0F);
 				}
 			}
 		}

@@ -1,7 +1,6 @@
 {
   "temperature": 0.6,
   "downfall": 0.8,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 14895399,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 3000,
       "block_search_extent": 8,
       "offset": 2
@@ -39,7 +40,7 @@
     "monster": [
       {
         "type": "spectrum:eraser",
-        "weight": 100,
+        "weight": 50,
         "minCount": 4,
         "maxCount": 8
       },
@@ -72,12 +73,6 @@
         "weight": 5,
         "minCount": 1,
         "maxCount": 2
-      },
-      {
-        "type": "minecraft:slime",
-        "weight": 0,
-        "minCount": 0,
-        "maxCount": 0
       }
     ],
     "underground_water_creature": [],
@@ -136,5 +131,6 @@
       "spectrum:snapping_ivy_patch"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

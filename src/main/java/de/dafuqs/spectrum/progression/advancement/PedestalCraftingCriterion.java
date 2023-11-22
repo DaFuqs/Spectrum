@@ -18,20 +18,20 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 	static final Identifier ID = SpectrumCommon.locate("crafted_with_pedestal");
 	
 	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange, NumberRange.IntRange durationTicks) {
-		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange, durationTicks);
+		return new PedestalCraftingCriterion.Conditions(LootContextPredicate.EMPTY, item, experienceRange, durationTicks);
 	}
-	
+
 	@Override
-	public Identifier getId() {
-		return ID;
-	}
-	
-	@Override
-	public PedestalCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
 		NumberRange.IntRange craftingDurationTicksRange = NumberRange.IntRange.fromJson(jsonObject.get("crafting_duration_ticks"));
-		return new PedestalCraftingCriterion.Conditions(extended, itemPredicates, experienceRange, craftingDurationTicksRange);
+		return new PedestalCraftingCriterion.Conditions(playerPredicate, itemPredicates, experienceRange, craftingDurationTicksRange);
+	}
+
+	@Override
+	public Identifier getId() {
+		return ID;
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int experience, int durationTicks) {
@@ -43,11 +43,11 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 		private final NumberRange.IntRange experienceRange;
 		private final NumberRange.IntRange craftingDurationTicksRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange, NumberRange.IntRange craftingDurationTicksRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange, NumberRange.IntRange craftingDurationTicksRange) {
 			this(ID, player, itemPredicates, experienceRange, craftingDurationTicksRange);
 		}
 		
-		public Conditions(Identifier id, EntityPredicate.Extended player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange, NumberRange.IntRange craftingDurationTicksRange) {
+		public Conditions(Identifier id, LootContextPredicate player, ItemPredicate[] itemPredicates, NumberRange.IntRange experienceRange, NumberRange.IntRange craftingDurationTicksRange) {
 			super(id, player);
 			this.itemPredicates = itemPredicates;
 			this.experienceRange = experienceRange;
@@ -57,7 +57,7 @@ public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftin
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.itemPredicates));
 			jsonObject.add("gained_experience", this.experienceRange.toJson());
 			jsonObject.add("crafting_duration_ticks", this.experienceRange.toJson());
 			return jsonObject;

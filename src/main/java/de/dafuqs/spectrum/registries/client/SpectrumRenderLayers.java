@@ -9,7 +9,7 @@ import net.minecraft.util.*;
 public class SpectrumRenderLayers {
 	
 	/**
-	 * Render layer to be used in Spectrums magical renderers.
+	 * Render layer to be used in Spectrum's magical renderers.
 	 * Like glow ink, it glows in the dark, always with max brightness
 	 */
 	public static class GlowInTheDarkRenderLayer extends RenderLayer {
@@ -19,7 +19,7 @@ public class SpectrumRenderLayers {
 		}
 		
 		public static RenderLayer get(Identifier texture) {
-			RenderLayer.MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().texture(new RenderPhase.Texture(texture, false, false)).transparency(Transparency.TRANSLUCENT_TRANSPARENCY).cull(DISABLE_CULLING).lightmap(ENABLE_LIGHTMAP).overlay(DISABLE_OVERLAY_COLOR).layering(VIEW_OFFSET_Z_LAYERING).shader(ENERGY_SWIRL_SHADER).build(true);
+			RenderLayer.MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().texture(new RenderPhase.Texture(texture, false, false)).transparency(Transparency.TRANSLUCENT_TRANSPARENCY).cull(DISABLE_CULLING).lightmap(ENABLE_LIGHTMAP).overlay(DISABLE_OVERLAY_COLOR).layering(VIEW_OFFSET_Z_LAYERING).program(RenderPhase.ENERGY_SWIRL_PROGRAM).build(true);
 			return RenderLayerAccessor.invokeOf("spectrum_glow", VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL, VertexFormat.DrawMode.QUADS, 256, false, false, multiPhaseParameters);
 		}
 	}

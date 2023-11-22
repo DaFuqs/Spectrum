@@ -3,13 +3,13 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -38,8 +38,8 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
             if (canShoot(stack.getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
                 user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
                 if (!world.isClient) {
-                    user.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
-                    MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
+					user.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
+					MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
                 }
                 stack.damage(2, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
             }
@@ -48,10 +48,10 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
     }
     
     @Override
-	@SuppressWarnings("resource")
     public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
         super.useOnBlock(context);
-        return ActionResult.success(context.getWorld().isClient); // never shoot projectiles when targeting a block
+        return ActionResult.success(world.isClient); // never shoot projectiles when targeting a block
     }
     
     @Override

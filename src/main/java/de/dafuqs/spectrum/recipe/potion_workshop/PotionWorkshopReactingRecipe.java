@@ -5,11 +5,11 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -38,7 +38,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory) {
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
 		return ItemStack.EMPTY;
 	}
 	
@@ -48,7 +48,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager manager) {
 		return item.getDefaultStack();
 	}
 	
@@ -86,7 +86,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	
 	@Override
 	public Text getDescription() {
-		Identifier identifier = Registry.ITEM.getId(this.item);
+		Identifier identifier = Registries.ITEM.getId(this.item);
 		return Text.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
 	}
 	

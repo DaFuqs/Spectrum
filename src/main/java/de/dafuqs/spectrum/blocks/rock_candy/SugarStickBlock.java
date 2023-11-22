@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
@@ -146,11 +145,6 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = Direction.UP;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
-	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
 	}
 	
 	@Override

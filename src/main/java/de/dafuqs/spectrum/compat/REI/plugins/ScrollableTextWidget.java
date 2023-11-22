@@ -7,7 +7,6 @@ import me.shedaniel.math.*;
 import me.shedaniel.rei.api.client.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 
 import java.util.*;
@@ -77,20 +76,21 @@ public class ScrollableTextWidget extends WidgetWithBounds {
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 		scrolling.updatePosition(delta);
 		Rectangle innerBounds = scrolling.getScissorBounds();
 		ScissorsHandler.INSTANCE.scissor(innerBounds);
 		int currentY = -scrolling.scrollAmountInt() + innerBounds.y;
 		for (OrderedText text : texts) {
 			if (text != null && currentY + font.fontHeight >= innerBounds.y && currentY <= innerBounds.getMaxY()) {
-				font.draw(matrices, text, innerBounds.x + 2, currentY + 2, REIRuntime.getInstance().isDarkThemeEnabled() ? 0xFFBBBBBB : 0xFF090909);
+
+				drawContext.drawText(font, text, innerBounds.x + 2, currentY + 2, REIRuntime.getInstance().isDarkThemeEnabled() ? 0xFFBBBBBB : 0xFF090909, false);
 			}
 			currentY += text == null ? 4 : font.fontHeight;
 		}
 		ScissorsHandler.INSTANCE.removeLastScissor();
 		ScissorsHandler.INSTANCE.scissor(scrolling.getBounds());
-		scrolling.renderScrollBar(0xff000000, 1, REIRuntime.getInstance().isDarkThemeEnabled() ? 0.8f : 1f);
+		scrolling.renderScrollBar(drawContext, 0xff000000, 1, REIRuntime.getInstance().isDarkThemeEnabled() ? 0.8f : 1f);
 		ScissorsHandler.INSTANCE.removeLastScissor();
 	}
 	

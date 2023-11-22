@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.items.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
-import net.minecraft.util.registry.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -32,7 +32,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
 	}
 	
 	@Inject(
-			method = "transferSlot",
+			method = "quickMove",
 			at = @At(
 					value = "INVOKE",
 					target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;",

@@ -30,14 +30,14 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 	public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		World world = entity.getWorld();
 		boolean bl = world != null;
-		BlockState blockState = bl ? entity.getCachedState() : SpectrumBlocks.PRIVATE_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
+		BlockState blockState = bl ? entity.getCachedState() : SpectrumBlocks.HEARTBOUND_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
 		
 		Block block = blockState.getBlock();
 		if (block instanceof SpectrumChestBlock spectrumChestBlock) {
 			matrices.push();
 			float f = (blockState.get(ChestBlock.FACING)).asRotation();
 			matrices.translate(0.5D, 0.5D, 0.5D);
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 			matrices.translate(-0.5D, -0.5D, -0.5D);
 			
 			float openFactor = entity.getAnimationProgress(tickDelta);

@@ -22,9 +22,7 @@ $p | Foreach-Object {
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "items": [
-                          "minecraft:shears"
-                        ]
+                        "tag": "c:shears"
                       }
                     },
                     {
@@ -109,9 +107,7 @@ $p | Foreach-Object {
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "items": [
-                    "minecraft:shears"
-                  ]
+                  "tag": "c:shears"
                 }
               },
               {

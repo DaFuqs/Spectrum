@@ -23,7 +23,7 @@ public class CinderhearthSmeltingCriterion extends AbstractCriterion<Cinderheart
 	}
 	
 	@Override
-	public CinderhearthSmeltingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public CinderhearthSmeltingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate input = ItemPredicate.fromJson(jsonObject.get("input"));
 		ItemPredicate output = ItemPredicate.fromJson(jsonObject.get("output"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
@@ -49,7 +49,7 @@ public class CinderhearthSmeltingCriterion extends AbstractCriterion<Cinderheart
 		private final NumberRange.IntRange efficiencyMultiplierRange;
 		private final NumberRange.IntRange experienceMultiplierRange;
 
-		public Conditions(EntityPredicate.Extended player, ItemPredicate input, ItemPredicate output, NumberRange.IntRange experienceRange, NumberRange.IntRange speedMultiplierRange, NumberRange.IntRange yieldMultiplierRange, NumberRange.IntRange efficiencyMultiplierRange, NumberRange.IntRange experienceMultiplierRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate input, ItemPredicate output, NumberRange.IntRange experienceRange, NumberRange.IntRange speedMultiplierRange, NumberRange.IntRange yieldMultiplierRange, NumberRange.IntRange efficiencyMultiplierRange, NumberRange.IntRange experienceMultiplierRange) {
 			super(ID, player);
 			this.input = input;
 			this.output = output;

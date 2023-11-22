@@ -6,16 +6,16 @@ import net.minecraft.advancement.criterion.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.predicate.*;
 import net.minecraft.predicate.entity.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentUpgradedCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("enchantment_upgraded");
 	
 	public static EnchantmentUpgradedCriterion.Conditions create(Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
-		return new EnchantmentUpgradedCriterion.Conditions(EntityPredicate.Extended.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
+		return new EnchantmentUpgradedCriterion.Conditions(LootContextPredicate.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
 	}
 	
 	@Override
@@ -24,9 +24,9 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	}
 	
 	@Override
-	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "enchantment_identifier"));
-		Enchantment enchantment = Registry.ENCHANTMENT.get(identifier);
+		Enchantment enchantment = Registries.ENCHANTMENT.get(identifier);
 		NumberRange.IntRange enchantmentLevelRange = NumberRange.IntRange.fromJson(jsonObject.get("enchantment_level"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("spent_experience"));
 		return new EnchantmentUpgradedCriterion.Conditions(extended, enchantment, enchantmentLevelRange, experienceRange);
@@ -41,7 +41,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		private final NumberRange.IntRange enchantmentLevelRange;
 		private final NumberRange.IntRange experienceRange;
 		
-		public Conditions(EntityPredicate.Extended player, Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
+		public Conditions(LootContextPredicate player, Enchantment enchantment, NumberRange.IntRange enchantmentLevelRange, NumberRange.IntRange experienceRange) {
 			super(ID, player);
 			this.enchantment = enchantment;
 			this.enchantmentLevelRange = enchantmentLevelRange;
@@ -51,7 +51,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("enchantment_identifier", Registry.ENCHANTMENT.getId(enchantment).toString());
+			jsonObject.addProperty("enchantment_identifier", Registries.ENCHANTMENT.getId(enchantment).toString());
 			jsonObject.add("enchantment_level", this.enchantmentLevelRange.toJson());
 			jsonObject.add("spent_experience", this.experienceRange.toJson());
 			return jsonObject;

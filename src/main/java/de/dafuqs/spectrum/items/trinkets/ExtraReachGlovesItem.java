@@ -48,7 +48,7 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 0.5 + roundHalf(Math.log(storedInk / 100) / Math.log(64));
+			return 0.5 + roundHalf(Math.log(storedInk / 100.0f) / Math.log(64));
 		}
 	}
 	

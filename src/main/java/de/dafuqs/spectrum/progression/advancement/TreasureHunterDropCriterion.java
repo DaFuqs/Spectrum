@@ -20,7 +20,7 @@ public class TreasureHunterDropCriterion extends AbstractCriterion<TreasureHunte
 	}
 	
 	@Override
-	public TreasureHunterDropCriterion.Conditions conditionsFromJson(@NotNull JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public TreasureHunterDropCriterion.Conditions conditionsFromJson(@NotNull JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate droppedItemPredicate = ItemPredicate.fromJson(jsonObject.get("dropped_item"));
 		return new TreasureHunterDropCriterion.Conditions(extended, droppedItemPredicate);
 	}
@@ -33,7 +33,7 @@ public class TreasureHunterDropCriterion extends AbstractCriterion<TreasureHunte
 		
 		private final ItemPredicate droppedItemPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, @Nullable ItemPredicate droppedItemPredicate) {
+		public Conditions(LootContextPredicate player, @Nullable ItemPredicate droppedItemPredicate) {
 			super(ID, player);
 			this.droppedItemPredicate = droppedItemPredicate;
 		}

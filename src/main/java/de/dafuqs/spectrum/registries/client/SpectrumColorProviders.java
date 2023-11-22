@@ -41,7 +41,7 @@ public class SpectrumColorProviders {
 		
 		registerClovers(SpectrumBlocks.CLOVER, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		registerMemory(SpectrumBlocks.MEMORY);
-		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.FRACTAL_GLASS_AMPOULE);
+		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.MALACHITE_GLASS_AMPOULE);
 		registerPickyPotionFillables(SpectrumItems.NIGHTFALLS_BLADE);
 		registerSingleInkStorages(SpectrumItems.INK_FLASK);
 		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
@@ -138,7 +138,12 @@ public class SpectrumColorProviders {
 			}
 			return 0x0;
 		}, memory);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), memory.asItem());
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+			if (tintIndex == 2)
+				return 0xFFFFFF;
+
+			return MemoryItem.getEggColor(stack.getNbt(), tintIndex);
+		}, memory.asItem());
 	}
 	
 	public static void registerBrewColors(Item brew) {

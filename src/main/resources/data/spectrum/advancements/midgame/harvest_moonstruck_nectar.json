@@ -20,21 +20,28 @@
             "minecraft:glass_bottle"
           ]
         },
-        "location": {
-          "block": {
-            "blocks": [
-              "spectrum:jade_vines"
-            ],
-            "state": {
-              "age": 7
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "spectrum:jade_vines"
+                ],
+                "state": {
+                  "age": "7"
+                }
+              }
             }
           }
-        }
+        ]
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/plant_jade_vines" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/plant_jade_vines"
+      }
     }
   }
 }

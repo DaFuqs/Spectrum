@@ -41,7 +41,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
 
     private final Map<BlockState, VoxelShape> shapesByState;
-    private static final float DAMAGE = 4.0F;
+    private static final float DAMAGE = 0.2F;
 
     public PrimordialFireBlock(Settings settings) {
         super(settings, DAMAGE);
@@ -109,12 +109,11 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!entity.isFireImmune() && entity instanceof LivingEntity livingEntity) {
-            OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 20);
+        if (entity instanceof LivingEntity livingEntity) {
+            OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
-        
-        entity.damage(SpectrumDamageSources.PRIMORDIAL_FIRE, DAMAGE);
-        super.onEntityCollision(state, world, pos, entity);
+
+        entity.damage(SpectrumDamageSources.primordialFire(world, null), DAMAGE);
     }
     
     @Override
@@ -125,7 +124,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-        world.createAndScheduleBlockTick(pos, this, getFireTickDelay(world.random));
+        world.scheduleBlockTick(pos, this, getFireTickDelay(world.random));
 
         if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             if (!state.canPlaceAt(world, pos)) {
@@ -238,8 +237,8 @@ public class PrimordialFireBlock extends AbstractFireBlock {
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        super.onBlockAdded(state, world, pos, oldState, notify);
-        world.createAndScheduleBlockTick(pos, this, getFireTickDelay(world.random));
+		super.onBlockAdded(state, world, pos, oldState, notify);
+		world.scheduleBlockTick(pos, this, getFireTickDelay(world.random));
     }
 
     private static int getFireTickDelay(Random random) {

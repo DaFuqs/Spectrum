@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "found_in_treasure_chest": {
+    "found_in_preservation_chest": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "player": [

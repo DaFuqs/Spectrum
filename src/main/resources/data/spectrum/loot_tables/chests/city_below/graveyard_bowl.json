@@ -9,15 +9,23 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "weight": 20,
           "name": "spectrum:slate_noxshroom"
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
           "name": "spectrum:ebony_noxshroom"
         },
         {
           "type": "minecraft:item",
+          "weight": 20,
           "name": "spectrum:ivory_noxshroom"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "spectrum:chestnut_noxshroom"
         }
       ]
     }

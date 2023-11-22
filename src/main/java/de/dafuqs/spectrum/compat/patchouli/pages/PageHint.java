@@ -5,13 +5,14 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.base.*;
 import vazkii.patchouli.client.book.*;
@@ -27,18 +28,15 @@ public class PageHint extends BookPage {
 		final PageHint pageHint;
 		
 		public PaymentButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress, PageHint pageHint) {
-			super(x, y, width, height, message, onPress);
+			super(x, y, width, height, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
 			this.pageHint = pageHint;
 			setMessage(Text.translatable("spectrum.gui.lexicon.reveal_hint_button.text"));
 		}
 		
 		@Override
-		public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+		public void renderButton(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 			if (pageHint.revealProgress < 0) {
-				super.renderButton(matrices, mouseX, mouseY, delta);
-				if (this.isHovered()) {
-					this.renderTooltip(matrices, mouseX, mouseY);
-				}
+				super.renderButton(drawContext, mouseX, mouseY, delta);
 			}
 		}
 		
@@ -64,8 +62,8 @@ public class PageHint extends BookPage {
 	}
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		ingredient = cost.as(Ingredient.class);
 	}
 	
@@ -92,8 +90,8 @@ public class PageHint extends BookPage {
 		textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
 	}
 	
-	@SuppressWarnings("resource")
 	private Text calculateTextToRender(Text text) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (revealProgress == 0) {
 			return text;
 		} else if (revealProgress < 0) {
@@ -103,7 +101,7 @@ public class PageHint extends BookPage {
 		// Show a new letter each tick
 		Text calculatedText = Text.literal(text.getString().substring(0, (int) revealProgress) + "$(obf)" + text.getString().substring((int) revealProgress));
 		
-		long currentTime = MinecraftClient.getInstance().world.getTime();
+		long currentTime = client.world.getTime();
 		if (currentTime != lastRevealTick) {
 			lastRevealTick = currentTime;
 			
@@ -122,14 +120,14 @@ public class PageHint extends BookPage {
 		return new Identifier(entry.getId().getNamespace(), entry.getId().getPath() + "_" + this.pageNum);
 	}
 	
-	@SuppressWarnings("resource")
 	@Environment(EnvType.CLIENT)
 	protected void paymentButtonClicked(ButtonWidget button) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (revealProgress > -1) {
 			// has already been paid
 			return;
 		}
-		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory())) {
+		if (client.player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), client.player.getInventory())) {
 			// mark as complete in book data
 			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);
 			data.completedManualQuests.add(getEntryId());
@@ -140,25 +138,25 @@ public class PageHint extends BookPage {
 			
 			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
 			revealProgress = 1;
-			lastRevealTick = MinecraftClient.getInstance().world.getTime();
-			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			lastRevealTick = client.world.getTime();
+			client.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
 		if (revealProgress >= 0) {
 			textRender = new BookTextRenderer(parent, calculateTextToRender(rawText), 0, getTextHeight());
 		}
-		textRender.render(ms, mouseX, mouseY);
+		textRender.render(drawContext, mouseX, mouseY);
 		if (revealProgress == -1) {
-			parent.renderIngredient(ms, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
+			parent.renderIngredient(drawContext, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
 		}
 		
-		parent.drawCenteredStringNoShadow(ms, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-		GuiBook.drawSeparator(ms, book, 0, 12);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		GuiBook.drawSeparator(drawContext, book, 0, 12);
 	}
 	
 }

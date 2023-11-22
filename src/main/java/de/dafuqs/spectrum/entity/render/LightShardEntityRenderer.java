@@ -10,7 +10,7 @@ import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class LightShardEntityRenderer extends EntityRenderer<LightShardEntity> {
-    
+
     public LightShardEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
@@ -18,14 +18,14 @@ public class LightShardEntityRenderer extends EntityRenderer<LightShardEntity> {
     @Override
     public void render(LightShardEntity shard, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
-        
-        var age = shard.age;
+	
+		var age = shard.age;
         var alpha = MathHelper.clamp(1 - MathHelper.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
         var scaleFactor = MathHelper.sin((age + tickDelta) / 8F) / 6F + shard.getScaleOffset();
-        
-        matrices.multiply(this.dispatcher.getRotation());
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180F));
-        matrices.scale(scaleFactor, scaleFactor, 1);
+	
+		matrices.multiply(this.dispatcher.getRotation());
+		matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180f));
+		matrices.scale(scaleFactor, scaleFactor, 1);
         matrices.translate(-0.5F, -0.5F, 0);
         
         var consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucentCull(getTexture(shard)));

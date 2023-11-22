@@ -103,9 +103,9 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return state.get(AGE) != 2;
-    }
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return state.get(AGE) != 2;
+	}
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {

@@ -1,0 +1,23 @@
+{
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:lategame/build_complex_pedestal_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/strike_up_hummingstone_hymn",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
+      "cost": "spectrum:hummingstone_glass#16",
+      "text": "Between Liquid Crystal lakes, you frequently find crystalline structures that consist of blocks that inherit interesting properties when interacted with."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:hummingstone_glass#48",
+      "text": "Hummingstones, which are part of Hummingstone Crystals, start to vibrate when disturbed, making other Hummingstones in their vicinity vibrate, too. The more stones are close to each other, the stronger the echo will be."
+    }
+  ]
+}

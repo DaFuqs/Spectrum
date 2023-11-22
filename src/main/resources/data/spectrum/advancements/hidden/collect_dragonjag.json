@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "collected_dragonjag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:dragonjags"
+          }
+        ]
+      }
+    }
+  }
+}

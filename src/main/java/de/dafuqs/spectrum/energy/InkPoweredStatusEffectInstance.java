@@ -17,7 +17,7 @@ public class InkPoweredStatusEffectInstance {
 	public static final String NBT_KEY = "InkPoweredStatusEffects";
 	public static final String UNIDENTIFIABLE_NBT_KEY = "Unidentifiable";
 	public static final String CUSTOM_COLOR_NBT_KEY = "CustomColor";
-	
+
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
 	private final boolean unidentifiable;
@@ -104,7 +104,7 @@ public class InkPoweredStatusEffectInstance {
 					tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
 					continue;
 				}
-				
+
 				StatusEffectInstance effect = entry.getStatusEffectInstance();
 				InkCost cost = entry.getInkCost();
 				
@@ -113,7 +113,7 @@ public class InkPoweredStatusEffectInstance {
 					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
 				}
 				if (showDuration && effect.getDuration() > 20) {
-					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.durationToString(effect, 1.0F));
+					mutableText = Text.translatable("potion.withDuration", mutableText, StatusEffectUtil.getDurationText(effect, 1.0F));
 				}
 				mutableText.formatted(effect.getEffectType().getCategory().getFormatting());
 				mutableText.append(Text.translatable("spectrum.tooltip.ink_cost." + cost.getColor().toString().toLowerCase(Locale.ROOT), Support.getShortenedNumberString(cost.getCost())).formatted(Formatting.GRAY));
@@ -162,5 +162,5 @@ public class InkPoweredStatusEffectInstance {
 	public boolean isUnidentifiable() {
 		return this.unidentifiable;
 	}
-	
+
 }

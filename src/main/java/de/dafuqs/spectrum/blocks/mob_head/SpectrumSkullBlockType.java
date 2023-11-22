@@ -50,7 +50,6 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	PARROT_RED(EntityType.PARROT),
 	PHANTOM(EntityType.PHANTOM),
 	PIG(EntityType.PIG),
-	PIGLIN(EntityType.PIGLIN),
 	POLAR_BEAR(EntityType.POLAR_BEAR),
 	PUFFERFISH(EntityType.PUFFERFISH),
 	RABBIT(EntityType.RABBIT),
@@ -121,7 +120,7 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	PRESERVATION_TURRET(SpectrumEntityTypes.PRESERVATION_TURRET, true),
 	MONSTROSITY(SpectrumEntityTypes.MONSTROSITY, true),
 	LIZARD(SpectrumEntityTypes.LIZARD, true),
-	ERASER(SpectrumEntityTypes.ERASER);
+	ERASER(SpectrumEntityTypes.ERASER, true);
 	
 	public final EntityType<?> entityType;
 	public final SkullBlock.SkullType modelType;

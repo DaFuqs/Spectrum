@@ -42,7 +42,7 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		this.setSprite(sprite);
 		this.setMaxAge(effect.lifetimeTicks);
 		this.scale(effect.scale);
-		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ());
+		this.setColor(effect.color.x(), effect.color.y(), effect.color.z());
 		this.gravityStrength = effect.gravity;
 		this.collidesWithWorld = effect.collisions;
 		this.glowInTheDark = effect.glowing;
@@ -57,11 +57,11 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		}
 		
 		@Override
-		@SuppressWarnings("resource")
-		public Particle createParticle(P parameters, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(P parameters, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+			MinecraftClient client = MinecraftClient.getInstance();
 			DynamicParticle particle = new DynamicParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 			
-			SpriteProvider dynamicProvider = ((ParticleManagerAccessor) MinecraftClient.getInstance().particleManager).getSpriteAwareFactories().get(parameters.particleTypeIdentifier);
+			SpriteProvider dynamicProvider = ((ParticleManagerAccessor) client.particleManager).getSpriteAwareFactories().get(parameters.particleTypeIdentifier);
 			if (dynamicProvider == null) {
 				SpectrumCommon.logError("Trying to use a non-existent sprite provider for particle spawner particle: " + parameters.particleTypeIdentifier);
 				particle.setSprite(spriteProvider);

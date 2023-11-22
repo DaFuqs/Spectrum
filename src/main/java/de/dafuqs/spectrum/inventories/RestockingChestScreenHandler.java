@@ -30,7 +30,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 	protected RestockingChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		
 		checkSize(inventory, RestockingChestBlockEntity.INVENTORY_SIZE);
 		inventory.onOpen(playerInventory.player);
@@ -74,7 +74,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
@@ -120,8 +120,8 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 	

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.idols.*;
+import de.dafuqs.spectrum.cca.OnPrimordialFireComponent;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -15,9 +16,8 @@ import net.minecraft.world.*;
 
 public class KindlingCoughEntity extends ProjectileEntity {
 	
-	protected static final float DAMAGE = 20.0F;
-	protected static final int FIRE_TICKS_ON_HIT = 120;
-	
+	protected static final float DAMAGE = 10.0F;
+	protected static final int FIRE_TICKS_ON_HIT = 30;
 	public KindlingCoughEntity(EntityType<? extends KindlingCoughEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -38,7 +38,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		double e = this.getY() + vec3d.y;
 		double f = this.getZ() + vec3d.z;
 		this.updateRotation();
-		if (this.world.getStatesInBox(this.getBoundingBox()).noneMatch(AbstractBlock.AbstractBlockState::isAir)) {
+		if (this.getWorld().getStatesInBox(this.getBoundingBox()).noneMatch(AbstractBlock.AbstractBlockState::isAir)) {
 			this.discard();
 		} else if (this.isInsideWaterOrBubbleColumn()) {
 			this.discard();
@@ -55,12 +55,16 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
-		
+
 		Entity hitEntity = entityHitResult.getEntity();
-		hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
+		if (hitEntity instanceof LivingEntity livingEntity) {
+			OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, FIRE_TICKS_ON_HIT);
+		}
+		else {hitEntity.setFireTicks(FIRE_TICKS_ON_HIT);
+}
 		
 		if (this.getOwner() instanceof LivingEntity owner) {
-			hitEntity.damage(SpectrumDamageSources.kindlingCough(this, owner), DAMAGE);
+			hitEntity.damage(SpectrumDamageSources.kindlingCough(this.getWorld(), owner), DAMAGE);
 		}
 		
 	}
@@ -68,9 +72,9 @@ public class KindlingCoughEntity extends ProjectileEntity {
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		
-		if (!this.world.isClient) {
-			FirestarterMobBlock.causeFire((ServerWorld) this.world, blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
+
+		if (!this.getWorld().isClient()) {
+			FirestarterIdolBlock.causeFire((ServerWorld) this.getWorld(), blockHitResult.getBlockPos().offset(blockHitResult.getSide()), blockHitResult.getSide());
 			this.discard();
 		}
 	}
@@ -88,7 +92,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 		
 		for (int i = 0; i < 7; ++i) {
 			double g = 0.4 + 0.1 * (double) i;
-			this.world.addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), velX * g, velY, velZ * g);
+			this.getWorld().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), velX * g, velY, velZ * g);
 		}
 		
 		this.setVelocity(velX, velY, velZ);

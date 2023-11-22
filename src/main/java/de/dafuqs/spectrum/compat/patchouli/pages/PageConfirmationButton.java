@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.networking.*;
 import net.minecraft.client.*;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 import vazkii.patchouli.api.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
@@ -28,8 +29,8 @@ public class PageConfirmationButton extends PageWithText {
 	String title;
 	
 	@Override
-	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		super.build(entry, builder, pageNum);
+	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
+		super.build(world, entry, builder, pageNum);
 		
 		this.checkedAdvancementIdentifier = Identifier.tryParse(checked_advancement.asString());
 		this.buttonText = button_text.as(Text.class);
@@ -37,9 +38,9 @@ public class PageConfirmationButton extends PageWithText {
 		this.confirmationString = confirmation.asString();
 	}
 	
-	@SuppressWarnings("resource")
 	public boolean isConfirmed() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, checkedAdvancementIdentifier);
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, checkedAdvancementIdentifier);
 	}
 	
 	@Override
@@ -48,7 +49,10 @@ public class PageConfirmationButton extends PageWithText {
 		
 		boolean completed = isConfirmed();
 		Text buttonText = completed ? buttonTextConfirmed : this.buttonText;
-		ButtonWidget button = new ButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, buttonText, this::confirmationButtonClicked);
+		ButtonWidget button = ButtonWidget.builder(buttonText, this::confirmationButtonClicked)
+				.size(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35)
+				.position(100, 20)
+				.build();
 		button.active = !isConfirmed();
 		addButton(button);
 	}
@@ -65,12 +69,12 @@ public class PageConfirmationButton extends PageWithText {
 	}
 	
 	@Override
-	public void render(MatrixStack ms, int mouseX, int mouseY, float pticks) {
-		super.render(ms, mouseX, mouseY, pticks);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+		super.render(drawContext, mouseX, mouseY, pticks);
 		
-		parent.drawCenteredStringNoShadow(ms, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
-		GuiBook.drawSeparator(ms, book, 0, 12);
-		GuiBook.drawSeparator(ms, book, 0, GuiBook.PAGE_HEIGHT - 44);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		GuiBook.drawSeparator(drawContext, book, 0, 12);
+		GuiBook.drawSeparator(drawContext, book, 0, GuiBook.PAGE_HEIGHT - 44);
 	}
 	
 }

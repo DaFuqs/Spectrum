@@ -2,12 +2,12 @@ package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
@@ -22,7 +22,7 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 		if (!thisEntity.isSpectator() && source.getAttacker() instanceof LivingEntity) {
 			int damageSourceTreasureHunt = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.TREASURE_HUNTER, (LivingEntity) source.getAttacker());
 			if (damageSourceTreasureHunt > 0) {
-				ServerWorld serverWorld = thisEntity.getWorld();
+				ServerWorld serverWorld = ((ServerWorld) thisEntity.getWorld());
 				boolean shouldDropHead = serverWorld.getRandom().nextFloat() < 0.2 * damageSourceTreasureHunt;
 				if (shouldDropHead) {
 					ItemStack headItemStack = new ItemStack(Items.PLAYER_HEAD);
@@ -61,7 +61,7 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem || stack.isIn(ConventionalItemTags.AXES);
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem || stack.isIn(ItemTags.AXES);
 	}
 	
 }

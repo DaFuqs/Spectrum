@@ -15,9 +15,12 @@
     "planted_glistering_melon_seeds": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "item": {
-          "items": ["spectrum:glistering_melon_seeds"]
-        }
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:glistering_melon_stem"
+          }
+        ]
       }
     },
     "gotten_previous": {

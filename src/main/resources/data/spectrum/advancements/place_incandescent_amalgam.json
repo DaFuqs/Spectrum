@@ -16,7 +16,12 @@
     "placed_incandescent_amalgam": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "block": "spectrum:incandescent_amalgam"
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:incandescent_amalgam"
+          }
+        ]
       }
     },
     "gotten_previous": {

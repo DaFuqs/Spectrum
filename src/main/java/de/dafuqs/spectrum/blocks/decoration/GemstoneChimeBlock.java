@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
@@ -50,11 +49,6 @@ public class GemstoneChimeBlock extends Block {
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = Direction.UP;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
-	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
 	}
 	
 	@Override

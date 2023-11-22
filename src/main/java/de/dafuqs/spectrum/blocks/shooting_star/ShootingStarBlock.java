@@ -13,10 +13,11 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 
 public class ShootingStarBlock extends BlockWithEntity {
 	
@@ -140,19 +141,19 @@ public class ShootingStarBlock extends BlockWithEntity {
 		public static @NotNull Identifier getLootTableIdentifier(@NotNull Type type) {
 			switch (type) {
 				case FIERY -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_fiery");
+					return SpectrumCommon.locate("entity/shooting_star/fiery_shooting_star");
 				}
 				case COLORFUL -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_colorful");
+					return SpectrumCommon.locate("entity/shooting_star/colorful_shooting_star");
 				}
 				case GEMSTONE -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_gemstone");
+					return SpectrumCommon.locate("entity/shooting_star/gemstone_shooting_star");
 				}
 				case PRISTINE -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_pristine");
+					return SpectrumCommon.locate("entity/shooting_star/pristine_shooting_star");
 				}
 				default -> {
-					return SpectrumCommon.locate("entity/shooting_star/shooting_star_glistering");
+					return SpectrumCommon.locate("entity/shooting_star/glistering_shooting_star");
 				}
 			}
 		}
@@ -181,7 +182,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 			}
 		}
 		
-		public @NotNull Vec3f getRandomParticleColor(Random random) {
+		public @NotNull Vector3f getRandomParticleColor(Random random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);

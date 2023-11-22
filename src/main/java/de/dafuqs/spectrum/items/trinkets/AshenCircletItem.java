@@ -50,8 +50,8 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static void grantFireResistance(@NotNull ItemStack ashenCircletStack, @NotNull LivingEntity livingEntity) {
 		if (!livingEntity.hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, FIRE_RESISTANCE_EFFECT_DURATION, 0, true, true));
-			livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			setCooldown(ashenCircletStack, livingEntity.world);
+			livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			setCooldown(ashenCircletStack, livingEntity.getWorld());
 		}
 	}
 	
@@ -61,7 +61,10 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 		if (entity.isOnFire()) {
 			entity.setFireTicks(0);
 		}
-		OnPrimordialFireComponent.putOut(entity);
+		if (getCooldownTicks(stack, entity.getWorld()) == 0 && OnPrimordialFireComponent.putOut(entity)) {
+			entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			setCooldown(stack, entity.getWorld());
+		}
 	}
 	
 	@Override

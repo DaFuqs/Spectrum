@@ -1,7 +1,6 @@
 {
   "temperature": 0.2,
   "downfall": 0.2,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 3819567,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 3000,
       "block_search_extent": 8,
       "offset": 2
@@ -39,7 +40,7 @@
     "monster": [
       {
         "type": "spectrum:eraser",
-        "weight": 100,
+        "weight": 50,
         "minCount": 4,
         "maxCount": 8
       },
@@ -99,7 +100,6 @@
       "spectrum:dd_diamond_ore",
       "spectrum:dd_emerald_ore",
       "spectrum:dd_tuff",
-      "spectrum:dd_gravel",
       "spectrum:dd_infested",
       "spectrum:dd_granite",
       "spectrum:dd_diorite",
@@ -109,14 +109,12 @@
     [
       "spectrum:sludge_vegetation"
     ],
-    [
-      "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs"
-    ],
+    [],
     [
       "spectrum:dd_glow_lichen",
       "spectrum:aloe_patch_sand"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

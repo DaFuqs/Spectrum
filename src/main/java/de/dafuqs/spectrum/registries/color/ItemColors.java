@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries.color;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 
 import java.util.*;
 
@@ -110,7 +109,9 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.PRISMARINE_SHARD, DyeColor.LIGHT_BLUE);
 		put(Items.RABBIT_FOOT, DyeColor.BROWN);
 		put(Items.TOTEM_OF_UNDYING, DyeColor.PINK);
-		
+		put(Items.APPLE, DyeColor.PINK);
+		put(Items.CARROT, DyeColor.PINK);
+
 		put(Items.SCULK, DyeColor.BLACK);
 		put(Items.SCULK_CATALYST, DyeColor.BLACK);
 		put(Items.SCULK_SENSOR, DyeColor.BLACK);
@@ -199,15 +200,7 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.TRIDENT, DyeColor.LIGHT_BLUE);
 		put(Items.ECHO_SHARD, DyeColor.GRAY);
 	}};
-	
-	@Override
-	public void registerColorMapping(Identifier identifier, DyeColor dyeColor) {
-		Item item = Registry.ITEM.get(identifier);
-		if (item != Items.AIR) {
-			COLORS.put(item, dyeColor);
-		}
-	}
-	
+
 	@Override
 	public void registerColorMapping(Item item, DyeColor dyeColor) {
 		COLORS.put(item, dyeColor);

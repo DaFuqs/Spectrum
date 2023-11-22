@@ -12,7 +12,7 @@ public class TemptGoalMixin {
 	
 	@Inject(at = @At("HEAD"), method = "isTemptedBy(Lnet/minecraft/entity/LivingEntity;)Z", cancellable = true)
 	private void isTemptedBy(LivingEntity entity, CallbackInfoReturnable<Boolean> cir) {
-		if (entity.isUsingItem() && entity.getActiveItem().getItem() instanceof HerdingStaffItem) {
+		if (entity.isUsingItem() && entity.getActiveItem().getItem() instanceof NaturesStaffItem) {
 			cir.setReturnValue(true);
 		}
 	}

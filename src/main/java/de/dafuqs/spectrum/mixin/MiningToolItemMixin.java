@@ -9,10 +9,10 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -30,7 +30,7 @@ public abstract class MiningToolItemMixin {
 
 			if (SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INERTIA, stack, miner) > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
-				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
+				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 					inertiaAmount = compound.getLong(INERTIA_COUNT) + 1;
 					compound.putLong(INERTIA_COUNT, inertiaAmount);
@@ -40,7 +40,7 @@ public abstract class MiningToolItemMixin {
 					inertiaAmount = 1;
 				}
 			}
-			
+
 			if (miner instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.INERTIA_USED.trigger(serverPlayerEntity, state, (int) inertiaAmount);
 			}
@@ -57,7 +57,7 @@ public abstract class MiningToolItemMixin {
 			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
 			if (inertiaLevel > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
-				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
+				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
 				if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
 					long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
 					double additionalSpeedPercent = 2.0 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);

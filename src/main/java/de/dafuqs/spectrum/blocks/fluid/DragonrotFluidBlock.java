@@ -12,28 +12,28 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
-	
+
 	public DragonrotFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}
-	
+
 	@Override
 	public DefaultParticleType getSplashParticle() {
 		return SpectrumParticleTypes.DRAGONROT;
 	}
-	
+
 	@Override
 	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
 		return new Pair<>(SpectrumParticleTypes.DRAGONROT, SpectrumParticleTypes.DRAGONROT_FISHING);
 	}
-	
+
 	@Override
 	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
 		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
@@ -42,7 +42,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 	
@@ -54,9 +54,9 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			// just check every 20 ticks for performance
 			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageSources.DRAGONROT, 6);
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
 				} else {
-					livingEntity.damage(SpectrumDamageSources.DRAGONROT, 3);
+					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
 				}
 				if (!livingEntity.isDead()) {
 					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
@@ -83,7 +83,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.createAndScheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
 		}
 	}
 	
@@ -102,7 +102,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 		for (Direction direction : Direction.values()) {
 			BlockPos blockPos = pos.offset(direction);
 			if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-				world.setBlockState(pos, Blocks.ANDESITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.SLUSH.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
@@ -110,15 +110,15 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MUD)) {
-				world.setBlockState(pos, Blocks.MUD.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.MUD.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-				world.setBlockState(pos, Blocks.DIORITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.ROTTEN_GROUND.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-				world.setBlockState(pos, Blocks.GRANITE.getDefaultState());
+				world.setBlockState(pos, SpectrumBlocks.BLACK_SLUDGE.getDefaultState());
 				this.playExtinguishSound(world, pos);
 				return false;
 			}

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.fluid.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -23,11 +22,6 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 		this.mediumBlock = mediumBlock;
 		this.largeBlock = largeBlock;
 		this.clusterBlock = clusterBlock;
-	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
 	}
 	
 	@Override

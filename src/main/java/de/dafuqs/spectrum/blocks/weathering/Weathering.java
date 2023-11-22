@@ -14,8 +14,6 @@ import java.util.function.Supplier;
 public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 	
 	Supplier<BiMap<Block, Block>> WEATHERING_LEVEL_INCREASES = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
-			.put(SpectrumBlocks.SHALE_CLAY, SpectrumBlocks.EXPOSED_SHALE_CLAY)
-			.put(SpectrumBlocks.EXPOSED_SHALE_CLAY, SpectrumBlocks.WEATHERED_SHALE_CLAY)
 			
 			.put(SpectrumBlocks.POLISHED_SHALE_CLAY, SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY)
 			.put(SpectrumBlocks.EXPOSED_POLISHED_SHALE_CLAY, SpectrumBlocks.WEATHERED_POLISHED_SHALE_CLAY)
@@ -62,7 +60,7 @@ public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 	static Optional<BlockState> getDecreasedWeatheredState(BlockState state) {
 		return getDecreasedWeatheredBlock(state.getBlock()).map((block) -> block.getStateWithProperties(state));
 	}
-	
+
 	static Optional<Block> getIncreasedWeatheredBlock(Block block) {
 		return Optional.ofNullable(WEATHERING_LEVEL_INCREASES.get().get(block));
 	}
@@ -83,7 +81,7 @@ public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 	
 	default boolean shouldTryWeather(World world, BlockPos pos) {
 		float chance = world.isSkyVisible(pos) ? 0.5F : 0.0F;
-		if (world.isRaining() && world.getBiome(pos).value().getPrecipitation() != Biome.Precipitation.NONE) {
+		if (world.isRaining() && world.getBiome(pos).value().getPrecipitation(pos) != Biome.Precipitation.NONE) {
 			chance += 0.5;
 		}
 		return world.random.nextFloat() < chance;

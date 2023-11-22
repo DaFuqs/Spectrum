@@ -1,7 +1,6 @@
 {
   "temperature": 0.2,
   "downfall": 0.2,
-  "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
@@ -12,7 +11,9 @@
     "foliage_color": 3819567,
     "grass_color_modifier": "none",
     "mood_sound": {
-      "sound": "spectrum:ambient.dimension_sounds",
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
       "tick_delay": 4000,
       "block_search_extent": 8,
       "offset": 2
@@ -37,12 +38,6 @@
     "creature": [],
     "misc": [],
     "monster": [
-      {
-        "type": "spectrum:eraser",
-        "weight": 100,
-        "minCount": 4,
-        "maxCount": 8
-      },
       {
         "type": "minecraft:zombie",
         "weight": 100,
@@ -90,7 +85,6 @@
     [
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode",
-      "spectrum:dd_large_dripstone",
       "spectrum:dd_pyrite_pillar",
       "spectrum:dd_shale_clay_pillar",
       "spectrum:blackslag_pile"
@@ -101,7 +95,8 @@
     [
       "spectrum:dd_sawblade_delta",
       "spectrum:dd_small_pyrite_columns",
-      "spectrum:dd_small_shale_clay_columns"
+      "spectrum:dd_small_shale_clay_columns",
+      "spectrum:dd_shale_clay_crystal_formations"
     ],
     [],
     [
@@ -119,10 +114,7 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [
-      "spectrum:dd_pointed_dripstone",
-      "spectrum:dd_shale_clay_crystal_formations"
-    ],
+    [],
     [
       "spectrum:dd_water_springs",
       "spectrum:dd_lava_springs"
@@ -135,5 +127,6 @@
       "spectrum:bristle_sprouts"
     ],
     []
-  ]
+  ],
+  "has_precipitation": false
 }

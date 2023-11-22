@@ -7,12 +7,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-
-import static net.minecraft.client.render.TexturedRenderLayers.*;
 
 public class TreasureChestBlock extends SpectrumChestBlock {
 	
@@ -42,12 +41,12 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? checkType(type, SpectrumBlockEntities.TREASURE_CHEST, TreasureChestBlockEntity::clientTick) : null;
+		return world.isClient ? checkType(type, SpectrumBlockEntities.PRESERVATION_CHEST, TreasureChestBlockEntity::clientTick) : null;
 	}
 	
 	@Override
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/treasure_chest"));
+		return new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/preservation_chest"));
 	}
 	
 }

@@ -1,27 +1,21 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.google.common.collect.UnmodifiableIterator;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.util.Arm;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.data.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class SeatEntity extends Entity {
 
@@ -43,7 +37,7 @@ public class SeatEntity extends Entity {
     public void tick() {
         super.tick();
 
-        var block = world.getBlockState(getBlockPos()).getBlock();
+        var block = this.getWorld().getBlockState(getBlockPos()).getBlock();
         var cushion = getCushion();
 
         if (cushion.isEmpty()) {
@@ -58,7 +52,7 @@ public class SeatEntity extends Entity {
             var fail = true;
 
             for (BlockPos pos : iter) {
-                var check = world.getBlockState(pos).getBlock();
+                var check = this.getWorld().getBlockState(pos).getBlock();
                 if (state.isOf(check)) {
                     updatePosition(pos.getX() + 0.5, pos.getY() + offset, pos.getZ() + 0.5);
                     fail = false;
@@ -110,8 +104,8 @@ public class SeatEntity extends Entity {
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         setEmptyTicks(nbt.getInt("emptyTicks"));
-
-        var state = NbtHelper.toBlockState(nbt.getCompound("BlockState"));
+	
+		var state = NbtHelper.toBlockState(this.getWorld().createCommandRegistryWrapper(RegistryKeys.BLOCK), nbt.getCompound("BlockState"));
         dataTracker.set(CUSHION, Optional.ofNullable(state.isAir() ? null : state));
 
         offset = nbt.getDouble("offset");
@@ -123,11 +117,11 @@ public class SeatEntity extends Entity {
         nbt.put("BlockState", NbtHelper.fromBlockState(dataTracker.get(CUSHION).orElse(Blocks.AIR.getDefaultState())));
         nbt.putDouble("offset", offset);
     }
-
-    @Override
-    public Packet<?> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
-    }
+	
+	@Override
+	public Packet<ClientPlayPacketListener> createSpawnPacket() {
+		return new EntitySpawnS2CPacket(this);
+	}
 
     @Override
     public boolean isInvulnerable() {
@@ -152,27 +146,27 @@ public class SeatEntity extends Entity {
         double z = this.getZ() + offset.z;
         BlockPos.Mutable testPos = new BlockPos.Mutable();
         UnmodifiableIterator<EntityPose> poses = passenger.getPoses().iterator();
-
-        while(poses.hasNext()) {
+    
+        while (poses.hasNext()) {
             EntityPose pose = poses.next();
             testPos.set(x, y, z);
             double maxHeight = this.getBoundingBox().maxY + 0.75;
-
-            while(true) {
-                double height = this.world.getDismountHeight(testPos);
-                if ((double)testPos.getY() + height > maxHeight) {
+        
+            while (true) {
+                double height = this.getWorld().getDismountHeight(testPos);
+                if ((double) testPos.getY() + height > maxHeight) {
                     break;
                 }
-
+            
                 if (Dismounting.canDismountInBlock(height)) {
                     Box boundingBox = passenger.getBoundingBox(pose);
-                    Vec3d pos = new Vec3d(x, (double)testPos.getY() + height, z);
-                    if (Dismounting.canPlaceEntityAt(this.world, passenger, boundingBox.offset(pos))) {
+                    Vec3d pos = new Vec3d(x, (double) testPos.getY() + height, z);
+                    if (Dismounting.canPlaceEntityAt(this.getWorld(), passenger, boundingBox.offset(pos))) {
                         passenger.setPose(pose);
                         return pos;
                     }
                 }
-
+            
                 testPos.move(Direction.UP);
                 if (testPos.getY() >= maxHeight) {
                     break;
@@ -187,12 +181,12 @@ public class SeatEntity extends Entity {
     public void requestTeleport(double destX, double destY, double destZ) {}
 
     public Vec3d updatePassengerForDismount(LivingEntity passenger) {
-        Vec3d vec3d = getPassengerDismountOffset((double)this.getWidth(), (double)passenger.getWidth(), this.getYaw() + (passenger.getMainArm() == Arm.RIGHT ? 90.0F : -90.0F));
+        Vec3d vec3d = getPassengerDismountOffset(this.getWidth(), passenger.getWidth(), this.getYaw() + (passenger.getMainArm() == Arm.RIGHT ? 90.0F : -90.0F));
         Vec3d vec3d2 = this.locateSafeDismountingPos(vec3d, passenger);
         if (vec3d2 != null) {
             return vec3d2;
         } else {
-            Vec3d vec3d3 = getPassengerDismountOffset((double)this.getWidth(), (double)passenger.getWidth(), this.getYaw() + (passenger.getMainArm() == Arm.LEFT ? 90.0F : -90.0F));
+            Vec3d vec3d3 = getPassengerDismountOffset(this.getWidth(), passenger.getWidth(), this.getYaw() + (passenger.getMainArm() == Arm.LEFT ? 90.0F : -90.0F));
             Vec3d vec3d4 = this.locateSafeDismountingPos(vec3d3, passenger);
             return vec3d4 != null ? vec3d4 : this.getPos();
         }

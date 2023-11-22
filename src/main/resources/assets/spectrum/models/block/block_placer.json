@@ -1,8 +1,11 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "spectrum:templates/complex_orientable",
   "textures": {
-    "top": "minecraft:block/furnace_top",
+    "top": "spectrum:block/block_placer_top",
     "front": "spectrum:block/block_placer_front",
-    "side": "minecraft:block/furnace_side"
+    "side": "spectrum:block/block_placer_side",
+    "bottom": "spectrum:block/notched_polished_calcite",
+    "back": "spectrum:block/block_placer_back",
+    "particle": "spectrum:block/block_placer_side"
   }
 }

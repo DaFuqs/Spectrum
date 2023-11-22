@@ -6,7 +6,9 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
@@ -15,15 +17,14 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class WrapPresentRecipe extends SpecialCraftingRecipe {
-	
 	public static final RecipeSerializer<WrapPresentRecipe> SERIALIZER = new SpecialRecipeSerializer<>(WrapPresentRecipe::new);
 	
-	public WrapPresentRecipe(Identifier identifier) {
-		super(identifier);
+	public WrapPresentRecipe(Identifier identifier, CraftingRecipeCategory category) {
+		super(identifier, CraftingRecipeCategory.MISC);
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return SpectrumBlocks.PRESENT.asItem().getDefaultStack();
 	}
 	
@@ -37,7 +38,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public boolean matches(@NotNull CraftingInventory craftingInventory, World world) {
+	public boolean matches(@NotNull RecipeInputInventory craftingInventory, World world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
@@ -61,7 +62,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(@NotNull CraftingInventory craftingInventory) {
+	public ItemStack craft(@NotNull RecipeInputInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.WrappingPaper wrappingPaper = PresentBlock.WrappingPaper.RED;
 		Map<DyeColor, Integer> colors = new HashMap<>();

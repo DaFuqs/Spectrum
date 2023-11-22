@@ -1,6 +1,5 @@
 {
   "type": "spectrum:titration_barrel",
-  "group": "infused_beverages",
   "ingredients": [
     {
       "item": "minecraft:honey_bottle",
@@ -110,5 +109,16 @@
     "item": "spectrum:bristle_mead",
     "count": 4
   },
-  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook"
+  "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:not",
+      "value": {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "create"
+        ]
+      }
+    }
+  ]
 }

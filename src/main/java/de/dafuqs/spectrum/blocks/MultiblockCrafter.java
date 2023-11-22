@@ -50,6 +50,7 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 			resultStack.setCount(currentAmount);
 			ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), resultStack);
 			itemEntity.setVelocity(velocity);
+			itemEntity.setNeverDespawn();
 			world.spawnEntity(itemEntity);
 			
 			amount -= currentAmount;

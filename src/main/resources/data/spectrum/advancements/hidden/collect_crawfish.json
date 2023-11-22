@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "has_koi": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:crawfish"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

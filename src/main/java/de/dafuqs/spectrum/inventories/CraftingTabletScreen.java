@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.ingame.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -16,51 +15,48 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 	public static final Identifier BACKGROUND3 = SpectrumCommon.locate("textures/gui/container/crafting_tablet3.png");
 	public static final Identifier BACKGROUND4 = SpectrumCommon.locate("textures/gui/container/crafting_tablet4.png");
 	
-	public Identifier BACKGROUND;
+	protected Identifier backgroundTexture;
 	
 	public CraftingTabletScreen(CraftingTabletScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 194;
 		
+		backgroundTexture = BACKGROUND1;
 		if (handler.getTier().isPresent()) {
 			switch (handler.getTier().get()) {
-				case COMPLEX -> BACKGROUND = BACKGROUND4;
-				case ADVANCED -> BACKGROUND = BACKGROUND3;
-				case SIMPLE -> BACKGROUND = BACKGROUND2;
-				case BASIC -> BACKGROUND = BACKGROUND1;
+				case COMPLEX -> backgroundTexture = BACKGROUND4;
+				case ADVANCED -> backgroundTexture = BACKGROUND3;
+				case SIMPLE -> backgroundTexture = BACKGROUND2;
+				default -> {}
 			}
 		}
 	}
 	
 	@Override
-	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
 		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 		int titleY = 7;
 		Text title = this.title;
 		int inventoryX = 8;
 		int intInventoryY = 100;
-		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
+
+		drawContext.drawText(this.textRenderer, title, titleX, titleY, RenderHelper.GREEN_COLOR,false);
+		drawContext.drawText(this.textRenderer, this.playerInventoryTitle, inventoryX, intInventoryY, RenderHelper.GREEN_COLOR,false);
 	}
 	
 	@Override
-	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderTexture(0, BACKGROUND);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
+	protected void drawBackground(DrawContext drawContext, float delta, int mouseX, int mouseY) {
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
-		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+		drawContext.drawTexture(backgroundTexture, x, y, 0, 0, backgroundWidth, backgroundHeight);
 	}
 	
 	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
-		super.render(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
+	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
+		renderBackground(drawContext);
+		super.render(drawContext, mouseX, mouseY, delta);
+		drawMouseoverTooltip(drawContext, mouseX, mouseY);
 	}
 	
 }

@@ -28,8 +28,8 @@ public class ItemBowlBlockEntityRenderer implements BlockEntityRenderer<ItemBowl
 			double currentRadiant = radiant + (radiant * (time / 16.0) / 8.0F);
 			double height = Math.sin((time + currentRadiant) / 8.0) / 7.0; // item height
 			matrixStack.translate(0.5, 0.8 + height, 0.5); // position offset
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(time * 2)); // item stack rotation
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(time * 2)); // item stack rotation
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
 			matrixStack.pop();
 		}
 	}

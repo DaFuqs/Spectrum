@@ -10,6 +10,7 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.world.World;
 
 public class DisarmingEnchantment extends SpectrumEnchantment {
 	
@@ -21,17 +22,18 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 		int equipmentSlotCount = EquipmentSlot.values().length;
 		int randomSlot = (int) (Math.random() * equipmentSlotCount);
 		int slotsChecked = 0;
+		World world = player.getWorld();
 		while (slotsChecked < equipmentSlotCount) {
 			EquipmentSlot slot = EquipmentSlot.values()[randomSlot];
 			ItemStack equippedStack = player.getEquippedStack(slot);
 			if (!equippedStack.isEmpty()) {
-				ItemEntity itemEntity = new ItemEntity(player.world, player.getX(), player.getY(), player.getZ(), equippedStack);
-				itemEntity.setVelocity(player.world.random.nextTriangular(0.0, 0.11485000171139836), player.world.random.nextTriangular(0.2, 0.11485000171139836), player.world.random.nextTriangular(0.0, 0.11485000171139836));
+				ItemEntity itemEntity = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), equippedStack);
+				itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.11485000171139836), world.random.nextTriangular(0.2, 0.11485000171139836), world.random.nextTriangular(0.0, 0.11485000171139836));
 				itemEntity.setPickupDelay(120);
-				player.world.spawnEntity(itemEntity);
+				world.spawnEntity(itemEntity);
 				
 				player.equipStack(slot, ItemStack.EMPTY);
-				player.world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+				world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 				break;
 			}
 			
@@ -62,21 +64,21 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 				if (livingEntity.getMainHandStack() != null && !livingEntity.getMainHandStack().isEmpty()) {
 					livingEntity.dropStack(livingEntity.getMainHandStack());
 					livingEntity.setStackInHand(Hand.MAIN_HAND, ItemStack.EMPTY);
-					livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					break;
 				}
 			} else if (randomSlot == 4) {
 				if (livingEntity.getOffHandStack() != null && !livingEntity.getOffHandStack().isEmpty()) {
 					livingEntity.dropStack(livingEntity.getOffHandStack());
 					livingEntity.setStackInHand(Hand.OFF_HAND, ItemStack.EMPTY);
-					livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					break;
 				}
 			} else {
 				if (syncedArmorStacks != null && !syncedArmorStacks.get(randomSlot).isEmpty()) {
 					livingEntity.dropStack(syncedArmorStacks.get(randomSlot));
 					syncedArmorStacks.set(randomSlot, ItemStack.EMPTY);
-					livingEntity.world.playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					livingEntity.getWorld().playSound(null, livingEntity.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					break;
 				}
 			}

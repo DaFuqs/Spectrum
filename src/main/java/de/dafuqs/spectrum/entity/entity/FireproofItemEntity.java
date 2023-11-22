@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.world.*;
 
 public class FireproofItemEntity extends ItemEntity {
@@ -25,7 +26,7 @@ public class FireproofItemEntity extends ItemEntity {
 	
 	@Override
 	public boolean isInvulnerableTo(DamageSource damageSource) {
-		return damageSource.isFire() || super.isInvulnerableTo(damageSource);
+		return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
 	}
 	
 }

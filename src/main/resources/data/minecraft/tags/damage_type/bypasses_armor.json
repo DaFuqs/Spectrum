@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:midnight_solution",
+    "spectrum:dragonrot",
+    "spectrum:dike_gate",
+    "spectrum:deadly_poison",
+    "spectrum:incandescence",
+    "spectrum:set_health_damage",
+    "spectrum:irradiance",
+    "spectrum:primordial_fire"
+  ]
+}

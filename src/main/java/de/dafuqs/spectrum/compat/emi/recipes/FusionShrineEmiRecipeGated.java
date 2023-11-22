@@ -14,18 +14,18 @@ import java.util.*;
 public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShrineRecipe> {
 	private final List<OrderedText> texts;
 	
-	@SuppressWarnings("resource")
 	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 138, 60);
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (recipe.getDescription().isPresent()) {
-			texts = MinecraftClient.getInstance().textRenderer.wrapLines(recipe.getDescription().get(), width);
+			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);
 		} else {
 			texts = List.of();
 		}
-		input = new ArrayList<>();
-		input.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
-		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
-		output = List.of(EmiStack.of(recipe.getOutput()));
+		inputs = new ArrayList<>();
+		inputs.add(EmiIngredient.of(List.of(EmiStack.of(recipe.getFluidInput()))));
+		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
+		outputs = List.of(EmiStack.of(recipe.getOutput()));
 	}
 
 	@Override
@@ -40,20 +40,20 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// shrine + fluid
-		if (!input.get(0).isEmpty()) {
+		if (!inputs.get(0).isEmpty()) {
 			widgets.addSlot(EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT), 10, 25).drawBack(false);
-			widgets.addSlot(input.get(0), 30, 25);
+			widgets.addSlot(inputs.get(0), 30, 25);
 		} else {
 			widgets.addSlot(EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT), 20, 25).drawBack(false);
 		}
 
 		// input slots
-		int startX = Math.max(-20, 20 - input.size() * 10);
-		for (int i = 1; i < input.size(); i++) {
-			widgets.addSlot(input.get(i), startX + i * 20, 0);
+		int startX = Math.max(-20, 20 - inputs.size() * 10);
+		for (int i = 1; i < inputs.size(); i++) {
+			widgets.addSlot(inputs.get(i), startX + i * 20, 0);
 		}
 		
-		widgets.addSlot(output.get(0), 90, 20).large(true).recipeContext(this);
+		widgets.addSlot(outputs.get(0), 90, 20).large(true).recipeContext(this);
 		
 		widgets.addFillingArrow(60, 25, recipe.getCraftingTime() * 50);
 

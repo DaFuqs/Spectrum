@@ -1,0 +1,78 @@
+{
+  "name": "Melochites Cookbook Vol. 2",
+  "icon": "spectrum:melochites_cookbook_vol_2",
+  "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:melochites_cookbook_vol_2": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "Melochites Desserts",
+      "resource_path": "spectrum:textures/gui/guidebook/mehrunes_chellaya_vol_2.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Aunt Melaya"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hoi nephews! Whether this is your first time reading perusing a cookbook, or you are a seasoned cook that has been following my tattling a while, I hope you are ready to explore some wonderful recipes with your aunt Malaya. Together we will explore some wondrous dessert and drink recipes from my home region, which I hope you'll enjoy~! $(br2) $(o) ~Mehrunes Chellaya of Melochites"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creamy Shots",
+      "text": "$(br)While Melochites may be best known for the amount and quality of malachite it exports, I can tell you there is much more to this lovely place I call home. The breweries and distilleries nestled in this corner of the caves are nothing short of wonderful, and the lovely liquors they make have resulted in the creation of a lot of cocktails and drinks!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/slushslide",
+      "text": "$(italic)Leaves you feeling cozy inside"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Plump and Chocolatey",
+      "text": "$(br)Oh, graces, of all the wonders of the surface, I can tell you none compare to the delightful cacao and chocolate. $(br2) If there were one thing that could compel me to permanently move out and up, it would be those two, they are truly wonderful, and if you disagree with me, I assure you this recipe will make change your mind."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/berliner",
+      "text": "$(italic)If there is any proof that the Shura are still watching over us and life is good, this is it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Dessert Tart",
+      "text": "$(br)You know, sometimes it is easy to get caught up in the details of things, in nuance and long recipe lists. $(br)Sometimes, simpler is better,and this lovely pastry is a prime example of that; milk, flour, butter, and sugar, that is all you need - don't let those stuck up Imbrifer gourmets tell you tell you otherwise!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/cream_pastry",
+      "text": "$(italic)Sweet, crispy and delicate. $(br2)Goes great with tea!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stuffed Treat!",
+      "text": "$(br)A lot of people would say that us of Melochites are mighty eaters, and admittedly we do tend to be a bit plump. $(br2)But, be honest nephew, if you lived in a place with a culinary tradition as rich as what I've shown you, wouldn't you get a bit peckish too? At any rate, I think a lot of you lovely readers appreciate my plumpness..."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/rabbit_cream_pie",
+      "text": "$(italic)A pound of eggs, a pound of sugar, a pound of flour, and a pound of cream."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Sugar Rush",
+      "text": "$(br)Believe me or not, Glass peaches are not only good with hearty food, but are also suitable for desserts. Try it out! With even more sugar than these parts already have preserved in the jar, this jam gives you a proper kick and whistles vigorously through your arteries."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/peach_jam",
+      "text": "$(italic)So sweet it will color your blood orange."
+    }
+  ]
+}

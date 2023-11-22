@@ -27,13 +27,14 @@ public class MonstrositySoundInstance extends MovingSoundInstance {
 	
 	@Override
 	public void tick() {
+		MinecraftClient client = MinecraftClient.getInstance();
 		if (instances > 1 || (!bossEntity.isAlive() || bossEntity.isRemoved())) {
 			instances--;
 			this.setDone();
 			return;
 		}
 		
-		PlayerEntity player = MinecraftClient.getInstance().player;
+		PlayerEntity player = client.player;
 		if (player != null) {
 			this.x = player.getX();
 			this.y = player.getY();

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.structure;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.blocks.chests.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
@@ -30,7 +29,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	private Vec3i controllerOffset;
 	
 	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.TREASURE_CHEST, pos, state);
+		super(SpectrumBlockEntities.PRESERVATION_CHEST, pos, state);
 	}
 	
 	@Override
@@ -60,12 +59,12 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
 	@Override
 	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.treasure_chest");
+		return Text.translatable("block.spectrum.preservation_chest");
 	}
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ProgressionStage.LATEGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ScreenBackgroundVariant.LATEGAME);
 	}
 	
 	@Override
@@ -104,7 +103,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	// Generate new loot for each player that has never opened this chest before
 	@Override
 	public void checkLootInteraction(@Nullable PlayerEntity player) {
-		if (player != null && this.lootTableId != null && this.world != null && !hasOpenedThisChestBefore(player)) {
+		if (player != null && this.lootTableId != null && this.getWorld() != null && !hasOpenedThisChestBefore(player)) {
 			supplyInventory(player);
 			rememberPlayer(player);
 		}
@@ -120,10 +119,10 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	}
 	
 	public void supplyInventory(@NotNull PlayerEntity player) {
-		LootTable lootTable = this.world.getServer().getLootManager().getTable(this.lootTableId);
-		LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world)).parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos)).random(this.lootTableSeed);
-		builder.luck(player.getLuck()).parameter(LootContextParameters.THIS_ENTITY, player);
-		lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST));
+		LootTable lootTable = this.getWorld().getServer().getLootManager().getLootTable(this.lootTableId);
+		var builder = (new LootContextParameterSet.Builder((ServerWorld) this.getWorld())).add(LootContextParameters.ORIGIN, Vec3d.ofCenter(this.pos));
+		builder.luck(player.getLuck()).add(LootContextParameters.THIS_ENTITY, player);
+		lootTable.supplyInventory(this, builder.build(LootContextTypes.CHEST), lootTableSeed);
 		
 		if (player instanceof ServerPlayerEntity) {
 			Criteria.PLAYER_GENERATES_CONTAINER_LOOT.trigger((ServerPlayerEntity) player, this.lootTableId);

@@ -43,7 +43,7 @@ public class BlockFlooderProjectile extends ThrownItemEntity {
 			ParticleEffect particleEffect = this.getParticleParameters();
 
 			for (int i = 0; i < 8; ++i) {
-				this.world.addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+				this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -51,8 +51,9 @@ public class BlockFlooderProjectile extends ThrownItemEntity {
 	@Override
 	protected void onCollision(HitResult hitResult) {
 		super.onCollision(hitResult);
-		if (!this.world.isClient) {
-			this.world.sendEntityStatus(this, (byte) 3);
+		World world = this.getWorld();
+		if (!world.isClient()) {
+			world.sendEntityStatus(this, (byte) 3);
 
 			if (hitResult.getType() == HitResult.Type.BLOCK) {
 				BlockPos landingPos = getCorrectedBlockPos(hitResult.getPos());
@@ -72,13 +73,13 @@ public class BlockFlooderProjectile extends ThrownItemEntity {
 	
 	/**
 	 * Since the projectile sometimes reports its position in the full neighboring position
-	 * on hit the blockPos has to be corrected to the closest neighboring Non full block pos
+	 * on hit the blockPos has to be corrected to the closest neighboring Non-full block pos
 	 *
 	 * @return The "actual" hit block pos
 	 */
 	public BlockPos getCorrectedBlockPos(Vec3d hitPos) {
-		BlockPos hitBlockPos = new BlockPos(hitPos);
-		if (world.getBlockState(hitBlockPos).isSolidBlock(world, hitBlockPos)) {
+		BlockPos hitBlockPos = BlockPos.ofFloored(hitPos);
+		if (this.getWorld().getBlockState(hitBlockPos).isSolidBlock(this.getWorld(), hitBlockPos)) {
 			if (hitPos.getX() % 1 < 0.05) {
 				return hitBlockPos.add(-1, 0, 0);
 			}

@@ -41,8 +41,8 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, @Nullable InkColor selectedColor) {
 		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
-		this.world = playerInventory.player.world;
-		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
+		this.world = playerInventory.player.getWorld();
+		BlockEntity blockEntity = playerInventory.player.getWorld().getBlockEntity(readBlockPos);
 		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
 			this.blockEntity = colorPickerBlockEntity;
 			this.blockEntity.setSelectedColor(selectedColor);
@@ -85,13 +85,13 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.blockEntity.onClose(player);
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {

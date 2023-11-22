@@ -2,16 +2,13 @@ package de.dafuqs.spectrum.helpers;
 
 import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
 
 public class VectorCast {
 
-    private static final AllPass allPass = new AllPass();
     protected final Vec3d start, end;
     protected float radius;
 
@@ -38,18 +35,18 @@ public class VectorCast {
     }
 
     public List<CollisionResult<BlockPos>> castForBlocks(ServerWorld world, Entity except, BiPredicate<ServerWorld, BlockPos> preCollisionTestFiltering) {
-        var blockStart = new BlockPos(start);
-        var blockEnd = new BlockPos(end);
-        var ray = getRelativeToOrigin(end);
-
-        var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);
-        var collisions = new ArrayList<CollisionResult<BlockPos>>();
-
-        iterableBlocks.forEach(blockPos -> {
-            if (!preCollisionTestFiltering.test(world, blockEnd))
-                return;
-
-            var collisionResult = processBlock(ray, blockPos, world);
+		var blockStart = BlockPos.ofFloored(start);
+		var blockEnd = BlockPos.ofFloored(end);
+		var ray = getRelativeToOrigin(end);
+	
+		var iterableBlocks = BlockPos.iterate(blockStart, blockEnd);
+		var collisions = new ArrayList<CollisionResult<BlockPos>>();
+	
+		iterableBlocks.forEach(blockPos -> {
+			if (!preCollisionTestFiltering.test(world, blockEnd))
+				return;
+		
+			var collisionResult = processBlock(ray, blockPos, world);
 
             collisionResult.ifPresent(collisions::add);
         });
@@ -83,12 +80,12 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * entityOrigin.length()));
             var entityOffset = Math.abs(Math.cos(vectorAngle) * entityOrigin.length());
-    
-            closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLatitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLatitude()) + start.y,
-                    entityOffset * Math.cos(orientation.getLongitude()) + start.z
-            );
+	
+			closestPointToIntercept = new Vec3d(
+					entityOffset * Math.sin(orientation.getLongitude()) * Math.cos(orientation.getLatitude()) + start.x,
+					entityOffset * Math.sin(orientation.getLongitude()) * Math.sin(orientation.getLatitude()) + start.y,
+					entityOffset * Math.cos(orientation.getLongitude()) + start.z
+			);
 
             hit = hitbox.contains(closestPointToIntercept);
         }
@@ -125,12 +122,12 @@ public class VectorCast {
 
             var vectorAngle = Math.acos(product / (ray.length() * blockCenter.length()));
             var entityOffset = Math.cos(vectorAngle) * blockCenter.length();
-    
-            closestPointToIntercept = new Vec3d(
-                    entityOffset * Math.sin(orientation.getLatitude()) * Math.cos(orientation.getLongitude()) + start.x,
-                    entityOffset * Math.sin(orientation.getLatitude()) * Math.sin(orientation.getLongitude()) + start.y,
-                    entityOffset * Math.cos(orientation.getLatitude()) + start.z
-            );
+	
+			closestPointToIntercept = new Vec3d(
+					entityOffset * Math.sin(orientation.getLatitude()) * Math.cos(orientation.getLongitude()) + start.x,
+					entityOffset * Math.sin(orientation.getLatitude()) * Math.sin(orientation.getLongitude()) + start.y,
+					entityOffset * Math.cos(orientation.getLatitude()) + start.z
+			);
 
             hit = blockContains(pos, closestPointToIntercept);
         }
@@ -159,19 +156,5 @@ public class VectorCast {
 
     public Vec3d getRelativeToOrigin(Vec3d vector) {
         return vector.subtract(start);
-    }
-
-    private static class AllPass implements TypeFilter<Entity, Entity> {
-
-        @Nullable
-        @Override
-        public Entity downcast(Entity obj) {
-            return obj;
-        }
-
-        @Override
-        public Class<? extends Entity> getBaseClass() {
-            return Entity.class;
-        }
     }
 }

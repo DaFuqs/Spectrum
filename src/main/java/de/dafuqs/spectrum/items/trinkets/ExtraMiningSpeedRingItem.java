@@ -47,7 +47,7 @@ public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 0.1 + 0.1 * (int) (Math.log(storedInk / 100) / Math.log(8));
+			return 0.1 + 0.1 * (int) (Math.log(storedInk / 100.0f) / Math.log(8));
 		}
 	}
 	

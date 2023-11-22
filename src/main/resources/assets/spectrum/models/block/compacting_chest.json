@@ -6,8 +6,8 @@
     64
   ],
   "textures": {
-    "1": "spectrum:entity/compacting_chest",
-    "particle": "spectrum:entity/compacting_chest"
+    "1": "spectrum:block/compacting_chest",
+    "particle": "spectrum:block/compacting_chest"
   },
   "elements": [
     {

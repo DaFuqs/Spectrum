@@ -66,7 +66,7 @@ public class ExplosionUtils {
                     var manager = (ServerChunkManager) access.getChunkManager();
 
                     manager.threadedAnvilChunkStorage.getPlayersWatchingChunk(new ChunkPos(cx, cz), false).forEach(player ->
-                            player.networkHandler.sendPacket(new ChunkDataS2CPacket(chunk, manager.getLightingProvider(), null, null, true)
+                            player.networkHandler.sendPacket(new ChunkDataS2CPacket(chunk, manager.getLightingProvider(), null, null)
                             ));
                 }
             }

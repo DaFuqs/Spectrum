@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    },
+    "opened_seed_vault_upper": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "loot_table": "spectrum:chests/city_below/seed_vault_upper"
+      }
+    }
+  }
+}

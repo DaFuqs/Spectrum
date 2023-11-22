@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -13,7 +14,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,7 +23,8 @@ import java.util.*;
 
 public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
-	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
+	
+	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SuspiciousBrewRecipe::new);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.SUSPICIOUS_BREW, 4);
@@ -35,7 +37,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.1F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.01F, List.of()));
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float thickness = getThickness(itemCount);
 		return tapWith(stacks, thickness, secondsFermented, downfall);
 	}
-	
+
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
@@ -68,7 +70,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
-			return getPureAlcohol(ageIngameDays);
+			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 		} else {
 			// add up all stew effects with their durations from the input stacks
 			Map<StatusEffect, Integer> stewEffects = new HashMap<>();
@@ -100,12 +102,8 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	// taken from SuspiciousStewItem
 	private Optional<Pair<StatusEffect, Integer>> getStewEffectFrom(ItemStack stack) {
-		Item item = stack.getItem();
-		if (item instanceof BlockItem blockItem) {
-			Block block = blockItem.getBlock();
-			if (block instanceof FlowerBlock flowerBlock) {
-				return Optional.of(Pair.of(flowerBlock.getEffectInStew(), flowerBlock.getEffectInStewDuration()));
-			}
+		if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
+			return Optional.of(Pair.of(flowerBlock.getEffectInStew(), flowerBlock.getEffectInStewDuration()));
 		}
 		return Optional.empty();
 	}
@@ -116,7 +114,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
 			if (!stack.isEmpty()) {
-				if (stack.isIn(ItemTags.SMALL_FLOWERS)) {
+				if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock) {
 					flowerFound = true;
 				} else {
 					return false;
@@ -128,13 +126,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory) {
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}
-	
 }

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.enchantment.*;
@@ -22,7 +23,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class DoomBloomBlock extends PlantBlock implements Fertilizable {
+public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 	
 	public static final IntProperty AGE = Properties.AGE_4;
 	public static final int AGE_MAX = Properties.AGE_4_MAX;
@@ -30,7 +31,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	protected static final double GROW_CHANCE = 0.2;
 	
 	public DoomBloomBlock(Settings settings) {
-		super(settings);
+		super(SpectrumStatusEffects.STIFFNESS, 8, settings);
 	}
 	
 	@Override
@@ -50,7 +51,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return state.get(AGE) < Properties.AGE_4_MAX;
 	}
 	
@@ -132,15 +133,18 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, state, blockEntity, stack);
-		if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+		if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0 && !stack.isIn(ConventionalItemTags.SHEARS)) {
 			explode(world, pos, state);
 		}
 	}
 	
 	protected static void explode(World world, BlockPos pos, BlockState state) {
-		if (!world.isClient && state.get(AGE) == AGE_MAX) {
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, Explosion.DestructionType.DESTROY);
-			dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(2, 4)));
+		if (state.get(AGE) == AGE_MAX) {
+			world.removeBlock(pos, false);
+			world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, World.ExplosionSourceType.BLOCK);
+			if (!world.isClient) {
+				dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(3, 7)));
+			}
 		}
 	}
 	

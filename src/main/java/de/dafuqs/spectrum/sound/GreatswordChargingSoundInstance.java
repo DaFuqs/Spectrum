@@ -41,11 +41,12 @@ public class GreatswordChargingSoundInstance extends AbstractSoundInstance imple
 	@Override
 	public void tick() {
 		this.ticks++;
-        if (this.ticks > this.groundSlamChargeTicks) {
-            // at this point the ground slam was handled and the effect does not need get cancelled anymore
-        } else if (player == null || !player.isUsingItem() || !(player.getMainHandStack().getItem() instanceof GreatswordItem)) {
-            this.setDone();
-        }
+		// If ticks > groundSlamChargeTicks, the ground slam was handled already and the effect does not need get cancelled
+        if (this.ticks <= this.groundSlamChargeTicks) {
+			if (player == null || !player.isUsingItem() || !(player.getMainHandStack().getItem() instanceof GreatswordItem)) {
+				this.setDone();
+			}
+		}
 		this.x = this.player.getX();
 		this.y = this.player.getY();
 		this.z = this.player.getZ();

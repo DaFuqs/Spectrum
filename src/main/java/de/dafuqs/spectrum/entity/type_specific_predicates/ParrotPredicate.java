@@ -44,7 +44,7 @@ public class ParrotPredicate implements TypeSpecificPredicate {
 		if (!(entity instanceof ParrotEntity parrotEntity)) {
 			return false;
 		} else {
-			return this.variant == parrotEntity.getVariant();
+			return parrotEntity.getVariant().getId() == variant;
 		}
 	}
 }

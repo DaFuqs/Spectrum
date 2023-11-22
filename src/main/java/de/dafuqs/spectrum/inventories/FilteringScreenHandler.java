@@ -28,7 +28,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 
 	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory filterInventory) {
 		super(type, syncId);
-		this.world = playerInventory.player.world;
+		this.world = playerInventory.player.getWorld();
 		this.filterInventory = filterInventory;
 
 		// filter slots
@@ -58,7 +58,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		return ItemStack.EMPTY;
 	}
 
@@ -67,8 +67,8 @@ public class FilteringScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 	}
 
 	public FilterConfigurable getFilterConfigurable() {

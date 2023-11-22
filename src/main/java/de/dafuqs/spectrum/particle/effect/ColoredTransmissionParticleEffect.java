@@ -14,11 +14,11 @@ import net.minecraft.world.event.*;
 public class ColoredTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
 	public static final Codec<ColoredTransmissionParticleEffect> CODEC = RecordCodecBuilder.create(
-		(instance) -> instance.group(
-			PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
-			Codec.INT.fieldOf("arrival_in_ticks").forGetter((effect) -> effect.arrivalInTicks),
-			Codec.INT.fieldOf("dye_color").forGetter((effect) -> effect.dyeColor.getId())
-		).apply(instance, ColoredTransmissionParticleEffect::new));
+			(instance) -> instance.group(
+					PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
+					Codec.INT.fieldOf("arrival_in_ticks").forGetter((effect) -> effect.arrivalInTicks),
+					Codec.INT.fieldOf("dye_color").forGetter((effect) -> effect.dyeColor.getId())
+			).apply(instance, ColoredTransmissionParticleEffect::new));
 	
 	@SuppressWarnings("deprecation")
 	public static final ParticleEffect.Factory<ColoredTransmissionParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
@@ -33,7 +33,7 @@ public class ColoredTransmissionParticleEffect extends SimpleTransmissionParticl
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
 			int dyeColorId = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new ColoredTransmissionParticleEffect(new BlockPositionSource(blockPos), i, dyeColorId);
 		}
 		

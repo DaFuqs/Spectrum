@@ -30,7 +30,7 @@ public class AloeBlock extends PlantBlock implements Fertilizable {
 		super.appendProperties(builder);
 		builder.add(AGE);
 	}
-	
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
@@ -47,9 +47,9 @@ public class AloeBlock extends PlantBlock implements Fertilizable {
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return state.get(AGE) < Properties.AGE_4_MAX;
-    }
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
+		return state.get(AGE) < Properties.AGE_4_MAX;
+	}
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {

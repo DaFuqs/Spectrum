@@ -12,12 +12,12 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -99,7 +99,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			nbt.putString("RequiredAdvancement", this.requiredAdvancement.toString());
 		}
 		if (this.requiredEffect != null) {
-			Identifier effectIdentifier = Registry.STATUS_EFFECT.getId(this.requiredEffect);
+			Identifier effectIdentifier = Registries.STATUS_EFFECT.getId(this.requiredEffect);
 			if (effectIdentifier != null) {
 				nbt.putString("RequiredStatusEffect", effectIdentifier.toString());
 			}
@@ -123,7 +123,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			this.checkRange = new Vec3i(nbt.getInt("CheckRangeX"), nbt.getInt("CheckRangeY"), nbt.getInt("CheckRangeZ"));
 		}
 		if (nbt.contains("RequiredStatusEffect", NbtElement.STRING_TYPE)) {
-			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(new Identifier(nbt.getString("RequiredStatusEffect")));
+			StatusEffect statusEffect = Registries.STATUS_EFFECT.get(new Identifier(nbt.getString("RequiredStatusEffect")));
 			if (this.requiredEffect != null) {
 				this.requiredEffect = statusEffect;
 			}
@@ -211,7 +211,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	public void yeetPlayer(@NotNull PlayerEntity player) {
 		if (this.destinationPos != null) {
-			player.damage(SpectrumDamageSources.DIKE_GATE, 1.0F);
+			player.damage(SpectrumDamageSources.dike(player.getWorld()), 1.0F);
 			Vec3d vec = Vec3d.ofCenter(destinationPos);
 			player.requestTeleport(vec.getX(), vec.getY(), vec.getZ());
 			world.playSound(null, destinationPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -222,14 +222,14 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		if (checkBox != null) {
 			List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, checkBox, LivingEntity::isAlive);
 			for (PlayerEntity playerEntity : players) {
-				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
-					// fine
-				} else if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
-					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, true);
-				} else {
-					// yeet
-					SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, false);
-					yeetPlayer(playerEntity);
+				if (!playerEntity.isCreative() && !playerEntity.isSpectator()) {
+					if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
+						SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, true);
+					} else {
+						// yeet
+						SpectrumAdvancementCriteria.PRESERVATION_CHECK.trigger((ServerPlayerEntity) playerEntity, checkName, false);
+						yeetPlayer(playerEntity);
+					}
 				}
 			}
 		}

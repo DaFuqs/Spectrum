@@ -4,7 +4,6 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.predicate.entity.*;
-import net.minecraft.predicate.entity.EntityPredicate.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
@@ -18,10 +17,10 @@ public class ConfirmationButtonPressedCriterion extends AbstractCriterion<Confir
 	}
 	
 	@Override
-	public ConfirmationButtonPressedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public ConfirmationButtonPressedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		String confirmation = JsonHelper.getString(jsonObject, "confirmation");
 		
-		return new ConfirmationButtonPressedCriterion.Conditions(extended, confirmation);
+		return new ConfirmationButtonPressedCriterion.Conditions(predicate, confirmation);
 	}
 	
 	public void trigger(ServerPlayerEntity player, String confirmation) {
@@ -32,7 +31,7 @@ public class ConfirmationButtonPressedCriterion extends AbstractCriterion<Confir
 		
 		private final String confirmation;
 		
-		public Conditions(Extended player, String confirmation) {
+		public Conditions(LootContextPredicate player, String confirmation) {
 			super(ConfirmationButtonPressedCriterion.ID, player);
 			this.confirmation = confirmation;
 		}

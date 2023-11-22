@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:nether_star",
+    "spectrum:lava_sponge",
+    "spectrum:wet_lava_sponge",
+    "spectrum:doombloom_seed"
+  ]
+}

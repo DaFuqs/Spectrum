@@ -15,7 +15,7 @@ public class PedestalRecipeCalculatedCriterion extends AbstractCriterion<Pedesta
 	static final Identifier ID = SpectrumCommon.locate("pedestal_recipe_calculated");
 	
 	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange, NumberRange.IntRange durationTicks) {
-		return new PedestalCraftingCriterion.Conditions(ID, EntityPredicate.Extended.EMPTY, item, experienceRange, durationTicks);
+		return new PedestalCraftingCriterion.Conditions(ID, LootContextPredicate.EMPTY, item, experienceRange, durationTicks);
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class PedestalRecipeCalculatedCriterion extends AbstractCriterion<Pedesta
 	}
 	
 	@Override
-	public PedestalCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PedestalCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
 		NumberRange.IntRange craftingDurationTicksRange = NumberRange.IntRange.fromJson(jsonObject.get("crafting_duration_ticks"));

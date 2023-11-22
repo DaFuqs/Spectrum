@@ -6,33 +6,35 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.joml.Math;
+import org.joml.*;
 
 public class PastelRenderHelper {
 
     public static final Identifier BEAM_TEXTURE_ID = SpectrumCommon.locate("textures/entity/pastel_line.png");
     public static final float BEAM_WIDTH = 0.05F;
-
-    @SuppressWarnings("resource")
-    public static void renderLineTo(final MatrixStack matrices, final VertexConsumerProvider vertexConsumers, final float[] color, final BlockPos thisPos, final BlockPos pos) {
-        matrices.push();
-
-        final Vec3d vec = Vec3d.ofCenter(pos);
-        final Vec3d here = Vec3d.ofCenter(thisPos);
-        final Vec3d delta = vec.subtract(here);
-        final float dist = (float) vec.length();
-        final Vec3d axis = delta.multiply(-1 / dist);
-
-        final Camera camera = MinecraftClient.getInstance().gameRenderer.getCamera();
-        final double[] billBoard = billboard((vec.x) * 1, (vec.y) * 1, (vec.z) * 1, camera.getPos().x, camera.getPos().y, camera.getPos().z, axis.x, axis.y, axis.z);
-
-        final Matrix4f model = matrices.peek().getPositionMatrix();
-        final Matrix3f normal = matrices.peek().getNormalMatrix();
-        final VertexConsumer buffer = vertexConsumers.getBuffer(RenderLayer.getBeaconBeam(BEAM_TEXTURE_ID, true));
-        renderBeamFace(billBoard, model, normal, buffer, color[1], color[2], color[3], color[0], dist, 0, 0, BEAM_WIDTH, -BEAM_WIDTH, 0, 0.5F, 0, 1);
-        renderBeamFace(billBoard, model, normal, buffer, color[1], color[2], color[3], color[0], dist, -BEAM_WIDTH, -BEAM_WIDTH, 0, 0, 0.5F, 1, 0, 1);
-
-        matrices.pop();
-    }
+	
+	public static void renderLineTo(final MatrixStack matrices, final VertexConsumerProvider vertexConsumers, final float[] color, final BlockPos thisPos, final BlockPos pos) {
+		MinecraftClient client = MinecraftClient.getInstance();
+		matrices.push();
+		
+		final Vec3d vec = Vec3d.ofCenter(pos);
+		final Vec3d here = Vec3d.ofCenter(thisPos);
+		final Vec3d delta = vec.subtract(here);
+		final float dist = (float) vec.length();
+		final Vec3d axis = delta.multiply(-1 / dist);
+		
+		final Camera camera = client.gameRenderer.getCamera();
+		final double[] billBoard = billboard((vec.x) * 1, (vec.y) * 1, (vec.z) * 1, camera.getPos().x, camera.getPos().y, camera.getPos().z, axis.x, axis.y, axis.z);
+		
+		final Matrix4f model = matrices.peek().getPositionMatrix();
+		final Matrix3f normal = matrices.peek().getNormalMatrix();
+		final VertexConsumer buffer = vertexConsumers.getBuffer(RenderLayer.getBeaconBeam(BEAM_TEXTURE_ID, true));
+		renderBeamFace(billBoard, model, normal, buffer, color[1], color[2], color[3], color[0], dist, 0, 0, BEAM_WIDTH, -BEAM_WIDTH, 0, 0.5F, 0, 1);
+		renderBeamFace(billBoard, model, normal, buffer, color[1], color[2], color[3], color[0], dist, -BEAM_WIDTH, -BEAM_WIDTH, 0, 0, 0.5F, 1, 0, 1);
+		
+		matrices.pop();
+	}
 
     private static void renderBeamFace(final double[] mat, final Matrix4f positionMatrix, final Matrix3f normalMatrix, final VertexConsumer vertices, final float red, final float green, final float blue, final float alpha, final float length, final float x1, final float z1, final float x2, final float z2, final float u1, final float u2, final float v1, final float v2) {
         renderBeamVertex(mat, positionMatrix, normalMatrix, vertices, red, green, blue, alpha, x1, length, z1, u2, v1);

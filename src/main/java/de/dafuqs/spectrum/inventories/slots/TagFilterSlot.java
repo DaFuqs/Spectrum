@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories.slots;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.screen.slot.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 
 public class TagFilterSlot extends Slot {
 	

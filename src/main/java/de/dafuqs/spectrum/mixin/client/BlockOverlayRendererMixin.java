@@ -8,7 +8,7 @@ import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import org.joml.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -34,8 +34,8 @@ public abstract class BlockOverlayRendererMixin {
 	
 	@SuppressWarnings("deprecation")
 	private static void renderOverlay(MinecraftClient client, MatrixStack matrixStack, Identifier textureIdentifier, float alpha) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.enableTexture();
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+		// TODO - Test this
 		RenderSystem.setShaderTexture(0, textureIdentifier);
 		BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
 		float f = client.player.getBrightnessAtEyes();
@@ -51,7 +51,7 @@ public abstract class BlockOverlayRendererMixin {
 		bufferBuilder.vertex(matrix4f, 1.0F, -1.0F, -0.5F).texture(0.0F + m, 4.0F + n).next();
 		bufferBuilder.vertex(matrix4f, 1.0F, 1.0F, -0.5F).texture(0.0F + m, 0.0F + n).next();
 		bufferBuilder.vertex(matrix4f, -1.0F, 1.0F, -0.5F).texture(4.0F + m, 0.0F + n).next();
-		BufferRenderer.drawWithShader(bufferBuilder.end());
+		BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
 		RenderSystem.disableBlend();
 	}
 	

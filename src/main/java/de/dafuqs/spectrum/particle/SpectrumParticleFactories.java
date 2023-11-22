@@ -8,6 +8,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.particle.*;
 
+// See ParticleManager for vanilla
 @Environment(EnvType.CLIENT)
 public class SpectrumParticleFactories {
 	
@@ -248,8 +249,7 @@ public class SpectrumParticleFactories {
 	
 	public static void registerColoredSporeBlossomParticles(DefaultParticleType fallingParticleType, DefaultParticleType airParticleType, float red, float green, float blue) {
 		ParticleFactoryRegistry.getInstance().register(fallingParticleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			BlockLeakParticle.FallingSporeBlossomFactory factory = new BlockLeakParticle.FallingSporeBlossomFactory(provider);
-			Particle particle = factory.createParticle(fallingParticleType, world, x, y, z, velocityX, velocityY, velocityZ);
+			Particle particle = BlockLeakParticle.createFallingSporeBlossom(fallingParticleType, world, x, y, z, velocityX, velocityY, velocityZ);
 			particle.setColor(red, green, blue);
 			return particle;
 		});

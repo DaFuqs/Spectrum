@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
 import net.id.incubus_core.recipe.matchbook.*;
@@ -11,8 +12,10 @@ import net.minecraft.util.*;
 
 public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	
-	public static final RecipeSerializer<SpawnerSpawnDelayChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerSpawnDelayChangeRecipe::new);
-	
+	public static final RecipeSerializer<SpawnerSpawnDelayChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerSpawnDelayChangeRecipe::new);
+	protected static final int DEFAULT_MIN_DELAY = 200;
+	protected static final int DEFAULT_MAX_DELAY = 800;
+	protected static final int MIN_DELAY = 20;
 	public SpawnerSpawnDelayChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP), Matchbook.empty(), null, 4));
 	}
@@ -20,7 +23,8 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	@Override
 	public boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack) {
 		if (spawnerBlockEntityNbt.contains("MinSpawnDelay") && spawnerBlockEntityNbt.contains("MaxSpawnDelay")) {
-			return spawnerBlockEntityNbt.getShort("MinSpawnDelay") > 20 && spawnerBlockEntityNbt.getShort("MaxSpawnDelay") > 20;
+			return spawnerBlockEntityNbt.getShort("MinSpawnDelay") > MIN_DELAY
+					&& spawnerBlockEntityNbt.getShort("MaxSpawnDelay") > MIN_DELAY;
 		}
 		return true;
 	}
@@ -52,11 +56,11 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 		
 		// 800 => 700 => 614 => 540 => 476 => 421 => 373 => 331 => ... (down to a min of 1 each)
 		// makes 40 recipes to match the min count for MaxSpawnDelay of 20 ticks
-		short minSpawnDelay = 200;
+		short minSpawnDelay = DEFAULT_MIN_DELAY;
 		if (spawnerBlockEntityNbt.contains("MinSpawnDelay", NbtElement.SHORT_TYPE)) {
 			minSpawnDelay = spawnerBlockEntityNbt.getShort("MinSpawnDelay");
 		}
-		short maxSpawnDelay = 800;
+		short maxSpawnDelay = DEFAULT_MAX_DELAY;
 		if (spawnerBlockEntityNbt.contains("MaxSpawnDelay", NbtElement.SHORT_TYPE)) {
 			maxSpawnDelay = spawnerBlockEntityNbt.getShort("MaxSpawnDelay");
 		}
@@ -71,8 +75,8 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 			newMaxSpawnDelay = (short) (maxSpawnDelay - 1);
 		}
 		
-		spawnerBlockEntityNbt.putShort("MinSpawnDelay", (short) Math.max(20, newMinSpawnDelay));
-		spawnerBlockEntityNbt.putShort("MaxSpawnDelay", (short) Math.max(20, newMaxSpawnDelay));
+		spawnerBlockEntityNbt.putShort("MinSpawnDelay", (short) Math.max(MIN_DELAY, newMinSpawnDelay));
+		spawnerBlockEntityNbt.putShort("MaxSpawnDelay", (short) Math.max(MIN_DELAY, newMaxSpawnDelay));
 		
 		return spawnerBlockEntityNbt;
 	}

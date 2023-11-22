@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -81,7 +81,7 @@ public class PastelNetwork {
         }
     }
 
-    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+    protected boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
         boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
         if (!hadNode) {
             return false;
@@ -92,9 +92,6 @@ public class PastelNetwork {
             this.graph.removeVertex(node);
         }
 
-        if (!this.hasNodes()) {
-            Pastel.getInstance(this.world.isClient).remove(this);
-        }
         return true;
     }
 
@@ -132,7 +129,7 @@ public class PastelNetwork {
     }
 
     public boolean canConnect(PastelNodeBlockEntity newNode) {
-        if (newNode.getWorld() != this.world) {
+        if (newNode.getWorld() != this.getWorld()) {
             return false;
         }
 
@@ -164,6 +161,14 @@ public class PastelNetwork {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other instanceof PastelNetwork p) {
+            return this.uuid.equals(p.uuid);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(this.uuid.toString());
         for (PastelNodeType type : PastelNodeType.values()) {
@@ -186,7 +191,7 @@ public class PastelNetwork {
     }
 
     public PastelNodeBlockEntity getNodeAt(BlockPos blockPos) {
-        BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
+        BlockEntity blockEntity = this.getWorld().getBlockEntity(blockPos);
         if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
             return pastelNodeBlockEntity;
         }

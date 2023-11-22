@@ -9,10 +9,10 @@
       "flat_duration_bonus_ticks": 600
     },
     {
-      "flat_duration_bonus_ticks": 900
+      "flat_duration_bonus_ticks": 1200
     },
     {
-      "flat_duration_bonus_ticks": 1200
+      "flat_duration_bonus_ticks": 2400
     }
   ],
   "fabric:load_conditions": [

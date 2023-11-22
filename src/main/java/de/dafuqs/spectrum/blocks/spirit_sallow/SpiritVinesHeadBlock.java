@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -16,9 +16,9 @@ import net.minecraft.world.*;
 
 public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
 	
-	private final BuiltinGemstoneColor gemstoneColor;
+	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesHeadBlock(Settings settings, BuiltinGemstoneColor gemstoneColor) {
+	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
@@ -36,7 +36,7 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	
 	@Override
 	protected Block getPlant() {
-		switch (gemstoneColor) {
+		switch (gemstoneColor.getDyeColor()) {
 			case MAGENTA -> {
 				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
 			}
@@ -49,8 +49,11 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 			case WHITE -> {
 				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
 			}
-			default -> {
+			case YELLOW -> {
 				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+			}
+			default -> {
+				return null;
 			}
 		}
 	}
@@ -83,7 +86,7 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 	

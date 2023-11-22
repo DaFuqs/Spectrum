@@ -12,7 +12,7 @@ import java.util.*;
 
 public class FreezingDisplay extends BlockToBlockWithChanceDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/mob_blocks");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/idols");
 	
 	public FreezingDisplay(EntryStack<?> in, EntryStack<?> out, float chance) {
 		super(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)), chance);
@@ -24,9 +24,9 @@ public class FreezingDisplay extends BlockToBlockWithChanceDisplay {
 	}
 	
 	@Override
-	@SuppressWarnings("resource")
-	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
+    public boolean isUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return AdvancementHelper.hasAdvancement(client.player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}
 	
 }

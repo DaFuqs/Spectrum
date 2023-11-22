@@ -75,7 +75,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						}
 						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
 						doneStuff = true;
-					} else if (additionStack.isItemEqual(currentStack)) {
+					} else if (ItemStack.areEqual(currentStack, additionStack)) {
 						// add to stack;
 						int maxStackCount = currentStack.getMaxCount();
 						int canAcceptCount = maxStackCount - currentStack.getCount();
@@ -207,7 +207,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				
 				autoCompactingInventory.setCompacting(autoCraftingMode, itemKey.toStack());
 				Optional<CraftingRecipe> optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
-				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput().isEmpty()) {
+				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput(world.getRegistryManager()).isEmpty()) {
 					optionalCraftingRecipe = Optional.empty();
 					currentCache.put(itemKey, optionalCraftingRecipe);
 				} else {
@@ -229,7 +229,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		boolean spaceInInventory;
 		
 		List<ItemStack> additionItemStacks = new ArrayList<>();
-		additionItemStacks.add(craftingRecipe.getOutput());
+		additionItemStacks.add(craftingRecipe.getOutput(world.getRegistryManager()));
 		additionItemStacks.addAll(remainders);
 		
 		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);

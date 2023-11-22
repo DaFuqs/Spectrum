@@ -13,10 +13,10 @@ import net.minecraft.world.event.*;
 public class BlockPosEventTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
 	public static final Codec<BlockPosEventTransmissionParticleEffect> CODEC = RecordCodecBuilder.create(
-		(instance) -> instance.group(
-			PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
-			Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
-		).apply(instance, BlockPosEventTransmissionParticleEffect::new));
+			(instance) -> instance.group(
+					PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),
+					Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)
+			).apply(instance, BlockPosEventTransmissionParticleEffect::new));
 	
 	@SuppressWarnings("deprecation")
 	public static final Factory<BlockPosEventTransmissionParticleEffect> FACTORY = new Factory<>() {
@@ -30,7 +30,7 @@ public class BlockPosEventTransmissionParticleEffect extends SimpleTransmissionP
 			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
-			BlockPos blockPos = new BlockPos(f, g, h);
+			BlockPos blockPos = BlockPos.ofFloored(f, g, h);
 			return new BlockPosEventTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		

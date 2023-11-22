@@ -8,7 +8,7 @@ import java.util.*;
 
 public class WeatherPredicate implements WorldConditionPredicate {
 	public static final WeatherPredicate ANY = new WeatherPredicate(null);
-	
+
 	public enum WeatherCondition {
 		CLEAR_SKY,
 		RAIN, // rain or thunder

@@ -14,7 +14,7 @@ public class MoonPhasePredicate implements WorldConditionPredicate {
 	}
 	
 	public static MoonPhasePredicate fromJson(JsonObject json) {
-        if (json == null || json.isJsonNull()) return ANY;
+		if (json == null || json.isJsonNull()) return ANY;
 		JsonElement jsonElement = json.get("moon_phase");
 		String s = jsonElement.getAsString();
 		if ("full_moon".equals(s)) {

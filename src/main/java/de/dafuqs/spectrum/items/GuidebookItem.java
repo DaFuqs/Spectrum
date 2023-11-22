@@ -9,11 +9,11 @@ import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.api.*;
@@ -44,8 +44,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
 						if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
-							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
-							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
+							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(hasAdvancementConditions.getAdvancementIdentifier());
 							if (advancementCriterionAdvancement != null) {
 								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
 								if (hasAdvancementCriterionAdvancement.isDone()) {
@@ -96,7 +95,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public RegistryEntry<BannerPattern> getPattern() {
-		return SpectrumBannerPatterns.MANUAL;
+		return SpectrumBannerPatterns.GUIDEBOOK;
 	}
 	
 	@Override

@@ -23,7 +23,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -37,9 +36,9 @@ import java.util.function.*;
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
 	
 	public static final UUID BONUS_DAMAGE_UUID = UUID.fromString("4425979b-f987-4937-875a-1e26d727c67f");
-	
+
 	public static @Nullable MonstrosityEntity theOneAndOnly = null;
-	
+
 	public static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
 	public static final Predicate<LivingEntity> ENTITY_TARGETS = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
@@ -61,7 +60,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	private float previousHealth;
 	private int timesGottenStronger = 0;
 	private int ticksWithoutTarget = 0;
-	
+
 	public MonstrosityEntity(EntityType<? extends MonstrosityEntity> entityType, World world) {
 		super(entityType, world);
 		this.moveControl = new MonstrosityMoveControl(this);
@@ -69,8 +68,14 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.noClip = true;
 		this.ignoreCameraFrustum = true;
 		this.previousHealth = getHealth();
+
+		if (!world.isClient && (MonstrosityEntity.theOneAndOnly == null || MonstrosityEntity.theOneAndOnly.isRemoved() || !MonstrosityEntity.theOneAndOnly.isAlive())) {
+			MonstrosityEntity.theOneAndOnly = this;
+		} else {
+			this.remove(RemovalReason.DISCARDED);
+		}
 	}
-	
+
 	@Override
 	public void playSpawnEffects() {
 		super.playSpawnEffects();
@@ -111,7 +116,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.previousHealth = currentHealth;
 		this.tickInvincibility();
 		
-		if (!this.world.isClient && this.age % GROW_STRONGER_EVERY_X_TICKS == 0) {
+		if (!this.getWorld().isClient() && this.age % GROW_STRONGER_EVERY_X_TICKS == 0) {
 			this.growStronger(1);
 		}
 		
@@ -134,12 +139,12 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			float f = 0.91F;
 			float g = 0.16277137F / (f * f * f);
 			
-			this.updateVelocity(this.onGround ? 0.1F * g : 0.02F, movementInput);
+			this.updateVelocity(this.isOnGround() ? 0.1F * g : 0.02F, movementInput);
 			this.move(net.minecraft.entity.MovementType.SELF, this.getVelocity());
 			this.setVelocity(this.getVelocity().multiply(f));
 		}
 		
-		this.updateLimbs(this, false);
+		this.updateLimbs(false);
 	}
 	
 	@Override
@@ -150,18 +155,18 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	public void tick() {
 		super.tick();
-		
-		if (this.world.isClient) {
+
+		if (this.getWorld().isClient()) {
 			if (this.age == 0) {
 				MonstrositySoundInstance.startSoundInstance(this);
 			}
 		} else {
 			checkDespawn();
 		}
-		
+
 		if (this.hasInvincibilityTicks()) {
 			for (int j = 0; j < 3; ++j) {
-				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
+				this.getWorld().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
 			}
 		}
 	}
@@ -180,18 +185,18 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			}
 		}
 	}
-	
+
 	public boolean hasValidTarget() {
 		LivingEntity target = getTarget();
 		return target != null && isTarget(target, TARGET_PREDICATE);
 	}
-	
+
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
 		if (spawnReason == SpawnReason.NATURAL && theOneAndOnly != null && theOneAndOnly != this) {
 			discard();
 		}
-		
+
 		this.targetPosition = getPos();
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
@@ -207,15 +212,15 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	public void growStronger(int amount) {
 		this.timesGottenStronger += amount;
-		
+
 		Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
 		EntityAttributeModifier jeopardantModifier = new EntityAttributeModifier(BONUS_DAMAGE_UUID, "spectrum:monstrosity_bonus", 1.0 + timesGottenStronger * 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 		map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
 		this.getAttributes().addTemporaryModifiers(map);
-		
-		// TODO: spawn effects
+
+		playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_GROWL, 1.0F, 1.0F);
 		for (float i = 0; i <= 1.0; i += 0.2) {
-			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_EXPLOSION, VectorPattern.SIXTEEN, 0.05F);
+			SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) this.getWorld(), new Vec3d(getX(), getBodyY(i), getZ()), SpectrumParticleTypes.WHITE_SPARKLE_RISING, VectorPattern.SIXTEEN, 0.05F);
 		}
 	}
 	
@@ -233,54 +238,24 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	@Override
 	public boolean damage(DamageSource source, float amount) {
-		if (!this.world.isClient && isNonVanillaKillCommandDamage(source, amount)) {
-			// na, we do not feel like dying rn
-			// we ballin
+		if (!this.getWorld().isClient() && isNonVanillaKillCommandDamage(source, amount)) {
+			// na, we do not feel like dying rn, we ballin
 			this.setHealth(this.getHealth() + this.getMaxHealth() / 2);
 			this.growStronger(8);
-			this.playSound(getHurtSound(DamageSource.OUT_OF_WORLD), 2.0F, 1.5F);
+			this.playSound(getHurtSound(source), 2.0F, 1.5F);
 			return false;
 		}
 		return super.damage(source, amount);
 	}
-	
-	private void destroyBlocks(Box box) {
-		int minX = MathHelper.floor(box.minX);
-		int minY = MathHelper.floor(box.minY);
-		int minZ = MathHelper.floor(box.minZ);
-		int maxX = MathHelper.floor(box.maxX);
-		int maxY = MathHelper.floor(box.maxY);
-		int maxZ = MathHelper.floor(box.maxZ);
-		boolean blockDestroyed = false;
-		
-		for (int x = minX; x <= maxX; ++x) {
-			for (int y = minY; y <= maxY; ++y) {
-				for (int z = minZ; z <= maxZ; ++z) {
-					BlockPos blockPos = new BlockPos(x, y, z);
-					BlockState blockState = this.world.getBlockState(blockPos);
-					if (!blockState.isAir() && !blockState.isIn(BlockTags.DRAGON_TRANSPARENT)) {
-						if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && !blockState.isIn(BlockTags.DRAGON_IMMUNE)) {
-							blockDestroyed = this.world.removeBlock(blockPos, false) || blockDestroyed;
-						}
-					}
-				}
-			}
-		}
-		
-		if (blockDestroyed) {
-			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
-			this.world.syncWorldEvent(2008, randomPos, 0);
-		}
-	}
-	
+
 	@Override
 	public boolean canSee(Entity entity) {
-		if (entity.world != this.world) {
+		if (entity.getWorld() != this.getWorld()) {
 			return false;
 		}
 		return entity.getPos().distanceTo(this.getPos()) < 128;
 	}
-	
+
 	@Override
 	public EntityGroup getGroup() {
 		return EntityGroup.UNDEAD;
@@ -293,9 +268,10 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
+		var world = target.getWorld();
 		if (world.random.nextBoolean()) {
 			LightShardBaseEntity.summonBarrageInternal(world, this, () -> {
-				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 12.0F, 800);
+				LightSpearEntity entity = new LightSpearEntity(world, MonstrosityEntity.this, Optional.of(target), 6.0F, 800);
 				entity.setTargetPredicate(ENTITY_TARGETS);
 				return entity;
 			}, this.getEyePos(), UniformIntProvider.create(5, 7));
@@ -307,10 +283,10 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 				return entity;
 			}, this.getEyePos(), UniformIntProvider.create(7, 11));
 		}
-		
+
 		this.playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 	}
-	
+
 	protected StatusEffectInstance getRandomMineStatusEffect(net.minecraft.util.math.random.Random random) {
 		int i = random.nextInt();
 		switch (i) {
@@ -335,13 +311,25 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		// TODO
+
+		nbt.putFloat("previous_health", this.previousHealth);
+		nbt.putInt("times_gotten_stronger", this.timesGottenStronger);
+		nbt.putInt("ticks_without_target", this.ticksWithoutTarget);
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		// TODO
+
+		if (nbt.contains("previous_health", NbtElement.FLOAT_TYPE)) {
+			this.previousHealth = nbt.getFloat("previous_health");
+		}
+		if (nbt.contains("times_gotten_stronger", NbtElement.INT_TYPE)) {
+			this.timesGottenStronger = nbt.getInt("times_gotten_stronger");
+		}
+		if (nbt.contains("ticks_without_target", NbtElement.INT_TYPE)) {
+			this.ticksWithoutTarget = nbt.getInt("ticks_without_target");
+		}
 	}
 	
 	private enum MovementType {
@@ -477,7 +465,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 					MonstrosityEntity.this.tryAttack(livingEntity);
 					MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 					if (!MonstrosityEntity.this.isSilent()) {
-						MonstrosityEntity.this.world.syncWorldEvent(WorldEvents.PHANTOM_BITES, MonstrosityEntity.this.getBlockPos(), 0);
+						MonstrosityEntity.this.getWorld().syncWorldEvent(WorldEvents.PHANTOM_BITES, MonstrosityEntity.this.getBlockPos(), 0);
 					}
 				} else if (MonstrosityEntity.this.horizontalCollision || MonstrosityEntity.this.hurtTime > 0) {
 					// the player hit monstrosity
@@ -502,11 +490,11 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			}
 			
 			this.delay = toGoalTicks(60);
-			PlayerEntity newTarget = MonstrosityEntity.this.world.getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
+			PlayerEntity newTarget = MonstrosityEntity.this.getWorld().getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
 			if (newTarget == null) {
 				return false;
 			}
-			
+
 			MonstrosityEntity.this.setTarget(newTarget);
 			return true;
 		}
@@ -519,7 +507,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	private class RetreatAndAttackGoal extends Goal {
-		
+
 		protected final float retreatDistance;
 		
 		RetreatAndAttackGoal(float retreatDistance) {
@@ -531,7 +519,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public boolean canStart() {
 			return MonstrosityEntity.this.movementType == MovementType.START_SWOOPING
 					&& MonstrosityEntity.this.getTarget() != null
-					&& world.random.nextBoolean() && MonstrosityEntity.this.distanceTo(MonstrosityEntity.this.getTarget()) < retreatDistance - 4;
+					&& MonstrosityEntity.this.getWorld().random.nextBoolean() && MonstrosityEntity.this.distanceTo(MonstrosityEntity.this.getTarget()) < retreatDistance - 4;
 		}
 		
 		@Override
@@ -554,7 +542,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public void stop() {
 			LivingEntity target = MonstrosityEntity.this.getTarget();
 			if (target != null && MonstrosityEntity.this.isTarget(target, TARGET_PREDICATE)) {
-				LightShardEntity.summonBarrage(world, MonstrosityEntity.this, target);
+				LightShardEntity.summonBarrage(MonstrosityEntity.this.getWorld(), MonstrosityEntity.this, target);
 			}
 			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 			super.stop();

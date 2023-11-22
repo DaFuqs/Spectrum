@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -19,9 +18,9 @@ public class PastelTransmission implements SchedulerMap.Callback {
     private @Nullable PastelNetwork network;
     private final List<BlockPos> nodePositions;
     private final ItemVariant variant;
-    private final int amount;
-
-    public PastelTransmission(List<BlockPos> nodePositions, ItemVariant variant, int amount) {
+    private final long amount;
+    
+    public PastelTransmission(List<BlockPos> nodePositions, ItemVariant variant, long amount) {
         this.nodePositions = nodePositions;
         this.variant = variant;
         this.amount = amount;
@@ -79,7 +78,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
                 }
             }
             if (inserted != amount) {
-                ItemScatterer.spawn(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant.toStack(amount - inserted));
+                InWorldInteractionHelper.scatter(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant, amount - inserted);
             }
         }
     }
@@ -87,7 +86,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
     public NbtCompound toNbt() {
         NbtCompound compound = new NbtCompound();
         compound.put("Variant", this.variant.toNbt());
-        compound.putInt("Amount", this.amount);
+        compound.putLong("Amount", this.amount);
         NbtList posList = new NbtList();
         for (BlockPos pos : nodePositions) {
             NbtCompound posCompound = new NbtCompound();
@@ -102,7 +101,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
 
     public static PastelTransmission fromNbt(NbtCompound nbt) {
         ItemVariant variant = ItemVariant.fromNbt(nbt.getCompound("Variant"));
-        int amount = nbt.getInt("Amount");
+        long amount = nbt.getLong("Amount");
 
         List<BlockPos> posList = new ArrayList<>();
         for (NbtElement e : nbt.getList("NodePositions", NbtElement.COMPOUND_TYPE)) {
@@ -120,7 +119,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
             buf.writeBlockPos(pos);
         }
         transfer.variant.toPacket(buf);
-        buf.writeInt(transfer.amount);
+        buf.writeLong(transfer.amount);
     }
 
     public static PastelTransmission fromPacket(PacketByteBuf buf) {
@@ -130,7 +129,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
             posList.add(buf.readBlockPos());
         }
         ItemVariant variant = ItemVariant.fromPacket(buf);
-        int amount = buf.readInt();
+        long amount = buf.readLong();
         return new PastelTransmission(posList, variant, amount);
     }
 

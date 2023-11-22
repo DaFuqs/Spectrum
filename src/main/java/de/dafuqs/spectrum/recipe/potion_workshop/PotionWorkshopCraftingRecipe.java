@@ -8,6 +8,7 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
@@ -57,12 +58,13 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		return false;
 	}
 	
+	@Override
 	public int getRequiredExperience() {
 		return this.requiredExperience;
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inventory) {
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
 		return null;
 	}
 	
@@ -106,7 +108,7 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return output;
 	}
 	

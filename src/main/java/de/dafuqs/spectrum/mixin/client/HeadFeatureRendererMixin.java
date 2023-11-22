@@ -21,15 +21,15 @@ public abstract class HeadFeatureRendererMixin<T extends LivingEntity, M extends
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelPart;rotate(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.AFTER),
 			cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
 	private void spectrum$renderSkull(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, T livingEntity, float animationProgress, float h, float j, float k, float l, float m, CallbackInfo ci, ItemStack itemStack, Item item, boolean bl) {
-		if (item instanceof BlockItem && ((BlockItem) item).getBlock() instanceof SpectrumSkullBlock spectrumSkullBlock) {
+		if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof SpectrumSkullBlock spectrumSkullBlock) {
 			m = 1.1875F;
 			matrixStack.scale(m, -m, -m);
 			if (bl) {
 				matrixStack.translate(0.0D, 0.0625D, 0.0D);
 			}
-
+			
 			matrixStack.translate(-0.5D, 0.0D, -0.5D);
-
+			
 			SpectrumSkullBlockType skullType = (SpectrumSkullBlockType) spectrumSkullBlock.getSkullType();
 			RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(skullType);
 			SkullBlockEntityModel model = SpectrumSkullBlockEntityRenderer.getModel(skullType);

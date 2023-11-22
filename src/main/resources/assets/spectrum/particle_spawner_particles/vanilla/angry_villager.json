@@ -1,5 +1,5 @@
 {
   "particle_type": "minecraft:angry_villager",
-  "gui_texture": "minecraft:particle/angry",
+  "gui_texture": "minecraft:angry",
   "supports_coloring": false
 }

@@ -17,7 +17,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 	static final Identifier ID = SpectrumCommon.locate("crafted_with_potion_workshop");
 	
 	public static PotionWorkshopCraftingCriterion.Conditions create(ItemPredicate[] item) {
-		return new PotionWorkshopCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
+		return new PotionWorkshopCraftingCriterion.Conditions(LootContextPredicate.EMPTY, item);
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 	}
 	
 	@Override
-	public PotionWorkshopCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PotionWorkshopCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		return new PotionWorkshopCraftingCriterion.Conditions(extended, itemPredicates);
 	}
@@ -38,7 +38,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate[] itemPredicates;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate[] itemPredicates) {
+		public Conditions(LootContextPredicate player, ItemPredicate[] itemPredicates) {
 			super(ID, player);
 			this.itemPredicates = itemPredicates;
 		}
@@ -46,7 +46,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("items", this.itemPredicates.toString());
+			jsonObject.addProperty("items", Arrays.toString(this.itemPredicates));
 			return jsonObject;
 		}
 		

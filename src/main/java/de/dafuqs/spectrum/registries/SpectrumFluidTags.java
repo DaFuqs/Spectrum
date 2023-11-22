@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.fluid.*;
-import net.minecraft.tag.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 
 public class SpectrumFluidTags {
 	
@@ -22,7 +22,7 @@ public class SpectrumFluidTags {
 	public static final TagKey<Fluid> DRAGONROT = of("dragonrot");
 	
 	private static TagKey<Fluid> of(String id) {
-		return TagKey.of(Registry.FLUID_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(Registries.FLUID.getKey(), SpectrumCommon.locate(id));
 	}
 	
 }

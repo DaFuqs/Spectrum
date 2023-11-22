@@ -90,7 +90,7 @@ public class BloodOrchidBlock extends FlowerBlock implements Fertilizable, Revel
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return state.get(AGE) < Properties.AGE_5_MAX;
 	}
 	

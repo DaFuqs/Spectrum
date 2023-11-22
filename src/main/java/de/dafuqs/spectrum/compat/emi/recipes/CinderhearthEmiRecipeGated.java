@@ -11,14 +11,14 @@ public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<Cinderhea
 	
 	public CinderhearthEmiRecipeGated(CinderhearthRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.CINDERHEARTH, CinderhearthRecipe.UNLOCK_IDENTIFIER, recipe, 136, 48);
-		this.input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
-		this.output = recipe.getOutputsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
+		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
+		this.outputs = recipe.getOutputsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
 	}
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		int xOff = 5;
-		widgets.addSlot(input.get(0), xOff, 0);
+		widgets.addSlot(inputs.get(0), xOff, 0);
 
 		widgets.addFillingArrow(22 + xOff, 9, recipe.getCraftingTime() * 50);
 
@@ -26,10 +26,10 @@ public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<Cinderhea
 		widgets.addAnimatedTexture(EmiTexture.FULL_FLAME, 1 + xOff, 20, 10000, false, true, false);
 		
 		for (int i = 0; i < 3; i++) {
-			if (i >= output.size()) {
+			if (i >= outputs.size()) {
 				widgets.addSlot(EmiStack.EMPTY, 50 + i * 26 + xOff, 5).large(true);
 			} else {
-				widgets.addSlot(output.get(i), 50 + i * 26 + xOff, 5).large(true).recipeContext(this);
+				widgets.addSlot(outputs.get(i), 50 + i * 26 + xOff, 5).large(true).recipeContext(this);
 			}
 		}
 		

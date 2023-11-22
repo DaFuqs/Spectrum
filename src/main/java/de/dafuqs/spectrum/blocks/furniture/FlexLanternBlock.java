@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.furniture;
 
 import net.minecraft.block.*;
-import net.minecraft.block.piston.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
@@ -57,11 +56,6 @@ public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = state.get(HANGING) ? Direction.UP : Direction.DOWN;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
-	}
-	
-	@Override
-	public PistonBehavior getPistonBehavior(BlockState state) {
-		return PistonBehavior.DESTROY;
 	}
 	
 	@Override

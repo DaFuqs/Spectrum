@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.helpers;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -12,20 +13,16 @@ import java.util.*;
 
 public class BuildingHelper {
 	
-	private static final Map<Block, Block> SIMILAR_BLOCKS = new HashMap<>() {{
-		put(Blocks.DIRT, Blocks.GRASS_BLOCK);
-		put(Blocks.GRASS_BLOCK, Blocks.DIRT);
-		put(Blocks.PODZOL, Blocks.DIRT);
-		put(Blocks.MYCELIUM, Blocks.DIRT);
-		put(Blocks.COARSE_DIRT, Blocks.DIRT);
-		put(Blocks.INFESTED_STONE, Blocks.STONE);
-		put(Blocks.INFESTED_STONE_BRICKS, Blocks.STONE);
-		put(Blocks.INFESTED_MOSSY_STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS);
-		put(Blocks.INFESTED_CHISELED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS);
-		put(Blocks.INFESTED_COBBLESTONE, Blocks.COBBLESTONE);
-		put(Blocks.INFESTED_CRACKED_STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS);
-		put(Blocks.INFESTED_DEEPSLATE, Blocks.DEEPSLATE);
+	private static final Map<TagKey<Block>, List<Block>> SIMILAR_BLOCKS = new HashMap<>() {{
+		put(BlockTags.DIRT, new ArrayList<>(){{
+			add(Blocks.GRASS_BLOCK);
+		}});
+		put(BlockTags.NYLIUM, new ArrayList<>(){{
+			add(Blocks.NETHERRACK);
+		}});
 	}};
+	
+	private static final Map<Block, List<Block>> SIMILAR_BLOCKS_CACHE = new HashMap<>();
 	
 	private static final ArrayList<Vec3i> NEIGHBOR_VECTORS_Y = new ArrayList<>() {{
 		add(Direction.NORTH.getVector());
@@ -38,25 +35,21 @@ public class BuildingHelper {
 		add(Direction.SOUTH.getVector().offset(Direction.WEST));
 	}};
 	
-	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block) {
+	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block, long maxCount) {
 		Item blockItem = block.asItem();
-		if (blockItem instanceof AliasedBlockItem) {
+		if (blockItem instanceof AliasedBlockItem aliasedBlockItem) {
 			// do not process seeds and similar stuff
 			// otherwise players could place fully grown crops
-			return new Triplet<>(block, blockItem, 0);
+			return new Triplet<>(block, aliasedBlockItem, 0);
 		} else {
-			int count = player.getInventory().count(block.asItem());
-			if (count == 0) {
-				if (SIMILAR_BLOCKS.containsKey(block)) {
-					Block similarBlock = SIMILAR_BLOCKS.get(block);
-					Item similarBlockItem = similarBlock.asItem();
-					int similarCount = player.getInventory().count(similarBlockItem);
-					if (similarCount > 0) {
-						return new Triplet<>(similarBlock, similarBlockItem, similarCount);
-					}
+			for (Block similarBlock : getSimilarBlocks(block)) {
+				Item similarBlockItem = similarBlock.asItem();
+				int similarCount = player.getInventory().count(similarBlockItem);
+				if (similarCount > 0) {
+					return new Triplet<>(similarBlock, similarBlockItem, (int) Math.min(similarCount, maxCount));
 				}
 			}
-			return new Triplet<>(block, blockItem, count);
+			return new Triplet<>(block, blockItem, 0);
 		}
 	}
 	
@@ -85,7 +78,7 @@ public class BuildingHelper {
 						visitedPositions.add(offsetPos);
 						if (blockPos.isWithinDistance(offsetPos, maxRange)) {
 							Block localBlock = world.getBlockState(offsetPos).getBlock();
-							if (localBlock.equals(originBlock) || SIMILAR_BLOCKS.containsKey(localBlock) && SIMILAR_BLOCKS.get(localBlock).equals(originBlock)) {
+							if (getSimilarBlocks(localBlock).contains(originBlock)) {
 								positionsToVisit.add(offsetPos);
 								connectedPositions.add(offsetPos);
 								if (connectedPositions.size() >= maxCount) {
@@ -136,16 +129,16 @@ public class BuildingHelper {
 		return selectedPositions;
 	}
 	
-	private static @NotNull List<BlockPos> getValidNeighbors(World world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean sameBlockOnly) {
+	private static @NotNull List<BlockPos> getValidNeighbors(World world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean similarBlockOnly) {
 		List<BlockPos> foundNeighbors = new ArrayList<>();
 		for (Vec3i neighborVectors : getNeighborVectors(facingDirection)) {
 			BlockPos targetPos = startPos.add(neighborVectors);
 			BlockState targetState = world.getBlockState(targetPos);
 			BlockState facingAgainstState = world.getBlockState(targetPos.offset(facingDirection.getOpposite()));
 			
-			if ((targetState.getMaterial().isReplaceable() || !targetState.getFluidState().isEmpty()) && world.canPlace(originState, targetPos, ShapeContext.absent())) {
-				if (sameBlockOnly) {
-					if (facingAgainstState.equals(originState) || (SIMILAR_BLOCKS.containsKey(facingAgainstState.getBlock()) && SIMILAR_BLOCKS.get(facingAgainstState.getBlock()) == originState.getBlock())) {
+			if ((targetState.isReplaceable() || !targetState.getFluidState().isEmpty()) && world.canPlace(originState, targetPos, ShapeContext.absent())) {
+				if (similarBlockOnly) {
+					if (getSimilarBlocks(facingAgainstState.getBlock()).contains(originState.getBlock())) {
 						foundNeighbors.add(targetPos);
 					}
 				} else {
@@ -170,5 +163,21 @@ public class BuildingHelper {
 				add(Direction.DOWN.getVector());
 			}};
 		}
+	}
+	
+	private static List<Block> getSimilarBlocks(Block block) {
+		List<Block> similarBlocks = SIMILAR_BLOCKS_CACHE.get(block);
+		if (similarBlocks == null) {
+			similarBlocks = new ArrayList<>(){{
+				add(block);
+				for (Map.Entry<TagKey<Block>, List<Block>> entry : SIMILAR_BLOCKS.entrySet()) {
+					if (block.getDefaultState().isIn(entry.getKey())) {
+						addAll(entry.getValue());
+					}
+				}
+			}};
+			SIMILAR_BLOCKS_CACHE.put(block, similarBlocks);
+		}
+		return similarBlocks;
 	}
 }

@@ -3,14 +3,12 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.helpers.*;
 import dev.emi.stepheightentityattribute.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.item.*;
-import net.minecraft.util.collection.*;
 
 import java.util.*;
 
@@ -48,14 +46,6 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Extende
 	@Override
 	public int getEnchantability() {
 		return 8;
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
-		}
 	}
 	
 }

@@ -11,6 +11,7 @@
     "prismarine" = "minecraft:prismarine_crystals"
     "quartz" = "minecraft:quartz"
     "redstone" = "minecraft:redstone"
+    "echo" = "minecraft:echo_shard"
     "certus_quartz" = "ae2:certus_quartz_dust"
     "fluix" = "ae2:fluix_dust"
     "globette" = "gobber2:gobber2_globette"
@@ -120,46 +121,16 @@ foreach($entry in $entries.GetEnumerator()) {
               ]
             },
             {
-              "type": "minecraft:alternatives",
-              "children": [
+              "type": "minecraft:item",
+              "name": "spectrum:pure_$name",
+              "functions": [
                 {
-                  "type": "minecraft:item",
-                  "name": "spectrum:pure_$name",
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": {
-                        "min": 3,
-                        "max": 5
-                      },
-                      "add": false
-                    }
-                  ],
-                  "conditions": [
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "tag": "minecraft:cluster_max_harvestables"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "minecraft:item",
-                  "name": "spectrum:pure_$name",
-                  "functions": [
-                    {
-                      "function": "minecraft:set_count",
-                      "count": {
-                        "min": 1,
-                        "max": 2
-                      },
-                      "add": false
-                    },
-                    {
-                      "function": "minecraft:explosion_decay"
-                    }
-                  ]
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 3,
+                    "max": 5
+                  },
+                  "add": false
                 }
               ]
             }

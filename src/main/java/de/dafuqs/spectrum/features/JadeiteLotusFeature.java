@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.features;
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
@@ -30,7 +30,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
     
         // try out how far we can grow
         // limit growth to a few blocks above the ground
-        var stemHeight = Math.round(MathHelper.nextGaussian(random, 8, 8F) + 5);
+        var stemHeight = Math.round(MathHelper.nextGaussian(random, 8, 10F) + 5);
         BlockPos.Mutable mutablePos = origin.mutableCopy();
         for (int i = 0; i < stemHeight + 2; i++) {
             if (inverted) { // growing up
@@ -48,7 +48,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
             }
         }
     
-        if (stemHeight < 2)
+        if (stemHeight < 4)
             return false;
     
         generateStem(world, origin, stemHeight, inverted);
@@ -57,7 +57,7 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
     }
     
     private static boolean isReplaceable(WorldAccess world, BlockPos pos) {
-        return world.getBlockState(pos).getMaterial().isReplaceable();
+        return world.getBlockState(pos).isReplaceable();
     }
     
     private void generateStem(WorldAccess world, BlockPos origin, int stemHeight, boolean inverted) {

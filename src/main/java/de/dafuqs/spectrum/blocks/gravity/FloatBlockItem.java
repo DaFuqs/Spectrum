@@ -8,7 +8,7 @@ import net.minecraft.world.*;
 
 public class FloatBlockItem extends BlockItem implements GravitableItem {
 	
-	private final float gravityMod;
+	protected final float gravityMod;
 	
 	public FloatBlockItem(Block block, Settings settings, float gravityMod) {
 		super(block, settings);
@@ -17,17 +17,12 @@ public class FloatBlockItem extends BlockItem implements GravitableItem {
 	
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		applyGravityEffect(stack, world, entity);
+		applyGravity(stack, world, entity);
 	}
 	
 	@Override
-	public float getGravityModInInventory() {
-		return (1 - gravityMod) * 2;
-	}
-	
-	@Override
-	public double getGravityModForItemEntity() {
-		return (1 - gravityMod) * 10;
+	public float getGravityMod() {
+		return gravityMod;
 	}
 	
 }

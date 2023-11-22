@@ -6,6 +6,9 @@
     {
       "id": "kibe:cursed_dirt",
       "required": false
-    }
+    },
+
+    "minecraft:sculk",
+    "minecraft:sculk_catalyst"
   ]
 }

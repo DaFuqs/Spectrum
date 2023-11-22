@@ -4,7 +4,7 @@ import com.mojang.serialization.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
@@ -123,10 +123,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
     }
 
     private static boolean isReplaceable(WorldAccess world, BlockPos pos, boolean replacePlants) {
-        return world.testBlockState(pos, (state) -> {
-            Material material = state.getMaterial();
-            return state.getMaterial().isReplaceable() || replacePlants && material == Material.PLANT;
-        });
+        return world.testBlockState(pos, (state) -> state.isReplaceable() || replacePlants);
     }
 
 }

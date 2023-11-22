@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.control.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
@@ -26,14 +27,17 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
 import org.jetbrains.annotations.*;
+import org.joml.Math;
+import org.joml.*;
 
 import java.util.*;
 import java.util.function.*;
 
-public class PreservationTurretEntity extends GolemEntity implements Monster, VibrationListener.Callback {
-	
-	protected float DAMAGE = 4.0F;
-	
+public class PreservationTurretEntity extends GolemEntity implements Monster, Vibrations {
+
+	protected static final int DETECTION_RANGE = 16;
+	protected static final float DAMAGE = 4.0F;
+
 	protected static final UUID COVERED_ARMOR_BONUS_ID = UUID.fromString("7E0292F2-9434-48D5-A29F-9583AF7DF27F");
 	protected static final UUID COVERED_TOUGHNESS_BONUS_ID = UUID.fromString("8ED24DFF-221F-4ADB-9DD2-7EA92574628C");
 	protected static final EntityAttributeModifier COVERED_ARMOR_BONUS = new EntityAttributeModifier(COVERED_ARMOR_BONUS_ID, "Covered armor bonus", 20.0, EntityAttributeModifier.Operation.ADDITION);
@@ -41,14 +45,18 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	protected static final TrackedData<Direction> ATTACHED_FACE = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.FACING);
 	protected static final TrackedData<Byte> PEEK_AMOUNT = DataTracker.registerData(PreservationTurretEntity.class, TrackedDataHandlerRegistry.BYTE);
-	
-	protected static final Vec3f SOUTH_VECTOR = Util.make(() -> {
+
+	protected static final Vector3f SOUTH_VECTOR = Util.make(() -> {
 		Vec3i vec3i = Direction.SOUTH.getVector();
-		return new Vec3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
+		return new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 	});
-	
-	protected final EntityGameEventHandler<VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new VibrationListener(new EntityPositionSource(this, this.getStandingEyeHeight()), 16, this, (VibrationListener.Vibration) null, 0.0F, 0));
-	
+
+	protected final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable();
+
+	protected final EntityGameEventHandler<Vibrations.VibrationListener> gameEventHandler = new EntityGameEventHandler<>(new Vibrations.VibrationListener(this));
+	protected final Vibrations.Callback vibrationCallback = new VibrationsCallback(this);
+	protected Vibrations.ListenerData vibrationListenerData = new Vibrations.ListenerData();
+
 	protected float prevOpenProgress;
 	protected float openProgress;
 	protected @Nullable BlockPos prevAttachedBlock;
@@ -61,8 +69,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
-		this.goalSelector.add(4, new RatatatataGoal());
+		this.goalSelector.add(1, new RatatatataGoal());
+		this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 16.0F, 0.04F, true));
 	}
 	
 	@Override
@@ -106,38 +114,55 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	protected BodyControl createBodyControl() {
 		return new FixedBodyControl(this);
 	}
-	
+
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putByte("AttachFace", (byte) this.getAttachedFace().getId());
 		nbt.putByte("Peek", this.dataTracker.get(PEEK_AMOUNT));
-		
-		DataResult<NbtElement> dataResult = VibrationListener.createCodec(this).encodeStart(NbtOps.INSTANCE, this.gameEventHandler.getListener());
+
+		DataResult<NbtElement> dataResult = Vibrations.ListenerData.CODEC.encodeStart(NbtOps.INSTANCE, this.getVibrationListenerData());
 		dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
 	}
-	
+
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.setAttachedFace(Direction.byId(nbt.getByte("AttachFace")));
 		this.dataTracker.set(PEEK_AMOUNT, nbt.getByte("Peek"));
-		
+
 		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
-			DataResult<VibrationListener> result = VibrationListener.createCodec(this).parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
-			result.result().ifPresent((vibrationListener) -> this.gameEventHandler.setListener(vibrationListener, this.world));
+			DataResult<ListenerData> result = ListenerData.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
+			result.result().ifPresent(listenerData -> PreservationTurretEntity.this.vibrationListenerData = listenerData);
 		}
 	}
-	
+
+	@Override
+	public Vibrations.ListenerData getVibrationListenerData() {
+		return this.vibrationListenerData;
+	}
+
+	@Override
+	public Vibrations.Callback getVibrationCallback() {
+		return this.vibrationCallback;
+	}
+
+	@Override
+	public void playAmbientSound() {
+		if (this.getPeekAmount() > 0) {
+			super.playAmbientSound();
+		}
+	}
+
 	@Override
 	public void tick() {
 		super.tick();
-		
-		if (this.world instanceof ServerWorld serverWorld) {
-			(this.gameEventHandler.getListener()).tick(serverWorld);
+
+		if (this.getWorld() instanceof ServerWorld serverWorld) {
+			Vibrations.Ticker.tick(serverWorld, this.getVibrationListenerData(), this.getVibrationCallback());
 		}
-		
-		if (!this.world.isClient && !this.hasVehicle() && !this.canStay(this.getBlockPos(), this.getAttachedFace())) {
+
+		if (!this.getWorld().isClient() && !this.hasVehicle() && !this.canStay(this.getBlockPos(), this.getAttachedFace())) {
 			Direction direction = this.findAttachSide(this.getBlockPos());
 			if (direction != null) {
 				this.setAttachedFace(direction);
@@ -149,7 +174,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	public void updateEventHandler(BiConsumer<EntityGameEventHandler<?>, ServerWorld> callback) {
-		if (this.world instanceof ServerWorld serverWorld) {
+		if (this.getWorld() instanceof ServerWorld serverWorld) {
 			callback.accept(this.gameEventHandler, serverWorld);
 		}
 	}
@@ -174,7 +199,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	public boolean startRiding(Entity entity, boolean force) {
-		if (this.world.isClient()) {
+		if (this.getWorld().isClient()) {
 			this.prevAttachedBlock = null;
 		}
 		
@@ -185,7 +210,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	@Override
 	public void stopRiding() {
 		super.stopRiding();
-		if (this.world.isClient) {
+		if (this.getWorld().isClient()) {
 			this.prevAttachedBlock = this.getBlockPos();
 		}
 		
@@ -201,7 +226,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		this.resetPosition();
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
-	
+
 	@Override
 	public void setPosition(double x, double y, double z) {
 		BlockPos blockPos = this.getBlockPos();
@@ -216,7 +241,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 			if (!blockPos2.equals(blockPos)) {
 				this.dataTracker.set(PEEK_AMOUNT, (byte) 0);
 				this.velocityDirty = true;
-				if (this.world.isClient && !this.hasVehicle() && !blockPos2.equals(this.prevAttachedBlock)) {
+				if (this.getWorld().isClient() && !this.hasVehicle() && !blockPos2.equals(this.prevAttachedBlock)) {
 					this.prevAttachedBlock = blockPos;
 					this.lastRenderX = this.getX();
 					this.lastRenderY = this.getY();
@@ -242,16 +267,16 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 			return false;
 		} else {
 			Direction direction2 = direction.getOpposite();
-			if (!this.world.isDirectionSolid(pos.offset(direction), this, direction2)) {
+			if (!this.getWorld().isDirectionSolid(pos.offset(direction), this, direction2)) {
 				return false;
 			} else {
-				return this.world.isSpaceEmpty(this, getBoundingBox());
+				return this.getWorld().isSpaceEmpty(this, getBoundingBox());
 			}
 		}
 	}
 	
 	private boolean isInvalidPosition(BlockPos pos) {
-		BlockState blockState = this.world.getBlockState(pos);
+		BlockState blockState = this.getWorld().getBlockState(pos);
 		if (blockState.isAir()) {
 			return false;
 		} else {
@@ -306,7 +331,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	}
 	
 	void setPeekAmount(int peekAmount) {
-		if (!this.world.isClient) {
+		if (!this.getWorld().isClient()) {
 			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).removeModifier(COVERED_ARMOR_BONUS);
 			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).removeModifier(COVERED_TOUGHNESS_BONUS);
 			if (peekAmount == 0) {
@@ -326,7 +351,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	public float getOpenProgress(float delta) {
 		return MathHelper.lerp(delta, this.prevOpenProgress, this.openProgress);
 	}
-	
+
 	@Override
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
@@ -350,58 +375,39 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	
 	@Override
 	public boolean canSee(Entity entity) {
-		if (entity.world != this.world) {
+		if (entity.getWorld() != this.getWorld()) {
 			return false;
 		}
-		
+
 		Vec3d thisEyePos = this.getEyePos();
 		Vec3d entityEyePos = entity.getEyePos();
 		double distance = entityEyePos.distanceTo(thisEyePos);
-		
+
 		// they only have a very limited vertical field of sight
 		// a valid strategy would be to sneak to their top / bottom, since they can't shoot there
-		return distance < 32
+		return distance < 26
 				&& (Math.abs(this.getEyeY() - entity.getEyeY()) < distance / 2 || Math.abs(this.getEyeY() - entity.getY()) < distance / 2)
-				&& this.world.raycast(new RaycastContext(thisEyePos, entityEyePos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
+				&& this.getWorld().raycast(new RaycastContext(thisEyePos, entityEyePos, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this)).getType() == net.minecraft.util.hit.HitResult.Type.MISS;
 	}
-	
+
 	@Override
 	public float getTargetingMargin() {
 		return 0.0F;
 	}
-	
-	@Override
-	public boolean accepts(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, GameEvent.Emitter emitter) {
-		return !this.isRemoved()
-				&& !this.isDead()
-				&& !this.isAiDisabled()
-				&& world.getWorldBorder().contains(pos)
-				&& this.world == world
-				&& emitter.sourceEntity() instanceof LivingEntity livingEntity
-				&& this.isValidTarget(livingEntity);
-	}
-	
+
 	@Contract("null->false")
 	public boolean isValidTarget(@Nullable Entity entity) {
 		return entity instanceof LivingEntity livingEntity
-				&& this.world == entity.world
+				&& this.getWorld() == entity.getWorld()
 				&& EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(entity)
 				&& !this.isTeammate(entity)
 				&& livingEntity.getType() != EntityType.ARMOR_STAND
 				&& livingEntity.getType() != SpectrumEntityTypes.PRESERVATION_TURRET
 				&& !livingEntity.isInvulnerable()
 				&& !livingEntity.isDead()
-				&& this.world.getWorldBorder().contains(livingEntity.getBoundingBox());
+				&& this.getWorld().getWorldBorder().contains(livingEntity.getBoundingBox());
 	}
-	
-	@Override
-	public void accept(ServerWorld world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, @Nullable Entity sourceEntity, float distance) {
-		if (!this.isDead() && entity instanceof LivingEntity livingEntity) {
-			this.setTarget(livingEntity);
-			PreservationTurretEntity.this.setPeekAmount(100);
-		}
-	}
-	
+
 	private class TurretLookControl extends LookControl {
 		public TurretLookControl(MobEntity entity) {
 			super(entity);
@@ -414,15 +420,15 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		@Override
 		protected Optional<Float> getTargetYaw() {
 			Direction attachedDirection = PreservationTurretEntity.this.getAttachedFace().getOpposite();
-			Vec3f southVectorCopy = PreservationTurretEntity.SOUTH_VECTOR.copy();
+			Vector3f southVectorCopy = new Vector3f(PreservationTurretEntity.SOUTH_VECTOR);
 			southVectorCopy.rotate(attachedDirection.getRotationQuaternion());
 			Vec3i vec3i = attachedDirection.getVector();
-			Vec3f vec3f2 = new Vec3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
+			Vector3f vec3f2 = new Vector3f(vec3i.getX(), vec3i.getY(), vec3i.getZ());
 			vec3f2.cross(southVectorCopy);
 			double xOffset = this.x - this.entity.getX();
 			double yOffset = this.y - this.entity.getEyeY();
 			double zOffset = this.z - this.entity.getZ();
-			Vec3f vec3f3 = new Vec3f((float) xOffset, (float) yOffset, (float) zOffset);
+			Vector3f vec3f3 = new Vector3f((float) xOffset, (float) yOffset, (float) zOffset);
 			float g = vec3f2.dot(vec3f3);
 			float h = southVectorCopy.dot(vec3f3);
 			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (MathHelper.atan2((-g), h) * 57.2957763671875));
@@ -440,16 +446,30 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	private class RatatatataGoal extends Goal {
 		
 		public RatatatataGoal() {
-			this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+			this.setControls(EnumSet.of(Control.MOVE, Control.TARGET));
 		}
 		
 		@Override
 		public boolean canStart() {
 			LivingEntity target = PreservationTurretEntity.this.getTarget();
+
+			if (target != null) {
+				PreservationTurretEntity.this.getLookControl().lookAt(target, 2.0F, 2.0F);
+
+				if (!PreservationTurretEntity.this.canSee(target)) {
+					PreservationTurretEntity.this.setTarget(null);
+					return false;
+				}
+			}
+
 			return target != null
 					&& target.isAlive()
-					&& PreservationTurretEntity.this.openProgress == 1.0
-					&& PreservationTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL;
+					&& PreservationTurretEntity.this.openProgress == 1.0 && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
+		}
+
+		@Override
+		public boolean shouldContinue() {
+			return super.shouldContinue() && TARGET_PREDICATE.test(PreservationTurretEntity.this, PreservationTurretEntity.this.getTarget());
 		}
 		
 		@Override
@@ -459,19 +479,64 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		
 		@Override
 		public void tick() {
-			if (PreservationTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
+			if (PreservationTurretEntity.this.getWorld().getDifficulty() != Difficulty.PEACEFUL) {
 				LivingEntity target = PreservationTurretEntity.this.getTarget();
-				if (target != null && PreservationTurretEntity.this.canSee(target)) {
-					PreservationTurretEntity.this.getLookControl().lookAt(target, 180.0F, 180.0F);
-					target.damage(EntityDamageSource.mob(PreservationTurretEntity.this), DAMAGE);
-					PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENCHANTER_DING, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-					target.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
-					super.tick();
-				} else {
-					PreservationTurretEntity.this.setTarget(null);
+				if (target == null) {
+					return;
 				}
+
+				if (!PreservationTurretEntity.this.canSee(target)) {
+					return;
+				}
+
+				target.damage(getWorld().getDamageSources().mobAttack(PreservationTurretEntity.this), DAMAGE);
+				PreservationTurretEntity.this.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 2.0F, 1.0F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+				target.playSound(SpectrumSoundEvents.ENTITY_PRESERVATION_TURRET_SHOOT, 1.0F, 0.5F + 0.2F * (PreservationTurretEntity.this.random.nextFloat() - PreservationTurretEntity.this.random.nextFloat()));
+
+				super.tick();
 			}
 		}
 	}
-	
+
+	private class VibrationsCallback implements Vibrations.Callback {
+
+		private final EntityPositionSource positionSource;
+
+		VibrationsCallback(PreservationTurretEntity turretEntity) {
+			this.positionSource = new EntityPositionSource(turretEntity, turretEntity.getStandingEyeHeight());
+		}
+
+		@Override
+		public int getRange() {
+			return DETECTION_RANGE;
+		}
+
+		@Override
+		public PositionSource getPositionSource() {
+			return positionSource;
+		}
+
+		@Override
+		public boolean accepts(ServerWorld world, BlockPos pos, GameEvent event, GameEvent.Emitter emitter) {
+			return !PreservationTurretEntity.this.isRemoved()
+				&& !PreservationTurretEntity.this.isDead()
+				&& !PreservationTurretEntity.this.isAiDisabled()
+				&& world.getWorldBorder().contains(pos)
+				&& PreservationTurretEntity.this.getWorld() == world
+				&& emitter.sourceEntity() instanceof LivingEntity livingEntity
+				&& PreservationTurretEntity.this.isValidTarget(livingEntity);
+		}
+
+		@Override
+		public void accept(ServerWorld world, BlockPos pos, GameEvent event, @Nullable Entity sourceEntity, @Nullable Entity target, float distance) {
+			if (!PreservationTurretEntity.this.isDead()
+				&& sourceEntity instanceof LivingEntity livingEntity
+				&& TARGET_PREDICATE.test(PreservationTurretEntity.this, livingEntity)) {
+
+				PreservationTurretEntity.this.setTarget(livingEntity);
+				PreservationTurretEntity.this.setPeekAmount(100);
+			}
+		}
+	}
+
 }

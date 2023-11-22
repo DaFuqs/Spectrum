@@ -194,7 +194,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		recipe.craft(world, fusionShrineBlockEntity);
 		
 		if (recipe.shouldPlayCraftingFinishedEffects()) {
-			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput(world.getRegistryManager()));
 			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 		}
 		
@@ -224,11 +224,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 
         this.craftingTime = nbt.getShort("CraftingTime");
         this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-        if (nbt.contains("OwnerUUID")) {
-            this.ownerUUID = nbt.getUuid("OwnerUUID");
-        } else {
-            this.ownerUUID = null;
-        }
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 
         this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
@@ -258,9 +254,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
         if (this.upgrades != null) {
             nbt.put("Upgrades", this.upgrades.toNbt());
         }
-        if (this.ownerUUID != null) {
-            nbt.putUuid("OwnerUUID", this.ownerUUID);
-        }
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
         if (this.currentRecipe != null) {
             nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
@@ -274,7 +268,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
     public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
         if (serverPlayerEntity != null) {
-            SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
+			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(serverPlayerEntity.getWorld().getRegistryManager()), experience);
         }
     }
 
@@ -306,6 +300,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		markDirty();
 	}
 	
 	// UPGRADEABLE

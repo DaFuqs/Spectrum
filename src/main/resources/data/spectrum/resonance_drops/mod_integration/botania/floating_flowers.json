@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "tag": "botania:floating_flowers"
+  },
+  "nbt_to_copy": [
+    "floating"
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

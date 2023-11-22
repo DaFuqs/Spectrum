@@ -16,15 +16,14 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.screen.slot.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
@@ -51,8 +50,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	/**
-	 * @param voidBundleStack
-	 * @param stackToBundle
 	 * @return The amount of items put into the bundle
 	 */
 	public static int addToBundle(ItemStack voidBundleStack, ItemStack stackToBundle) {
@@ -123,7 +120,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		NbtCompound storedItemCompound = nbtCompound.getCompound("StoredStack");
 		
 		int storedAmount = storedItemCompound.getInt("Count");
-		ItemStack itemStack = new ItemStack(Registry.ITEM.get(new Identifier(storedItemCompound.getString("ID"))));
+		ItemStack itemStack = new ItemStack(Registries.ITEM.get(new Identifier(storedItemCompound.getString("ID"))));
 		int stackAmount = Math.min(storedAmount, itemStack.getMaxCount());
 		itemStack.setCount(stackAmount);
 		
@@ -149,7 +146,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		int newAmount = Math.min(maxStoredAmount, storedItemCompound.getInt("Count") + amount);
 		int overflowAmount = hasVoiding ? 0 : Math.max(0, amount - maxStoredAmount);
 
-		Identifier identifier = Registry.ITEM.getId(stackToBundle.getItem());
+		Identifier identifier = Registries.ITEM.getId(stackToBundle.getItem());
 		storedItemCompound.putString("ID", identifier.toString());
 		storedItemCompound.putInt("Count", newAmount);
 		if (stackToBundle.getNbt() != null) {
@@ -171,7 +168,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 			int newAmount = Math.min(maxStoredAmount, amount);
 
-			Identifier identifier = Registry.ITEM.getId(stackToBundle.getItem());
+			Identifier identifier = Registries.ITEM.getId(stackToBundle.getItem());
 			storedItemCompound.putString("ID", identifier.toString());
 			storedItemCompound.putInt("Count", newAmount);
 			if (stackToBundle.getNbt() != null) {
@@ -327,7 +324,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		ItemStack itemStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
 		
-		return Optional.of(new VoidBundleTooltipData(itemStack, storedAmount));
+		return Optional.of(new BottomlessBundleTooltipData(itemStack, storedAmount));
 	}
 	
 	@Override
@@ -356,7 +353,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	@Override
 	public void onItemEntityDestroyed(ItemEntity entity) {
-		World world = entity.world;
+		World world = entity.getWorld();
 		if (!world.isClient) {
 			ItemStack voidBundleItemStack = entity.getStack();
 			int currentAmount = getStoredAmount(voidBundleItemStack);
@@ -491,15 +488,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public int getEnchantability() {
 		return 5;
 	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		super.appendStacks(group, stacks);
-		if (this.isIn(group)) {
-			stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(this));
-		}
-	}
-	
+
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
 		
 		@Override

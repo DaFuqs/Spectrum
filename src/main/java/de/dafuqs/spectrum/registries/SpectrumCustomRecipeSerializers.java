@@ -8,12 +8,12 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumCustomRecipeSerializers {
 	
 	private static void register(RecipeSerializer<?> recipeSerializer, String id) {
-		Registry.register(Registry.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
+		Registry.register(Registries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
 	}
 	
 	public static void registerRecipeSerializers() {
@@ -23,11 +23,12 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
-		register(ColorBondingRibbonRecipe.SERIALIZER, "color_bonding_ribbon");
+		register(ColorEverpromiseRibbonRecipe.SERIALIZER, "color_everpromise_ribbon");
 		register(WrapPresentRecipe.SERIALIZER, "wrap_present");
 		
 		// Pedestal
 		register(StarCandyRecipe.SERIALIZER, "pedestal_star_candy");
+		register(ExplosionModificationRecipe.SERIALIZER, "modular_explosive_modification");
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");

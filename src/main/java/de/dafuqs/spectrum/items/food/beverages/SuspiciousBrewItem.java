@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.food.beverages;
 
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
@@ -23,7 +24,7 @@ public class SuspiciousBrewItem extends BeverageItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		if (BeverageItem.isPreviewStack(itemStack)) {
+		if (FermentedItem.isPreviewStack(itemStack)) {
 			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview").formatted(Formatting.GRAY));
 			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview2").formatted(Formatting.GRAY));
 		}

@@ -46,7 +46,7 @@ public class FoxPredicate implements TypeSpecificPredicate {
 		if (!(entity instanceof FoxEntity foxEntity)) {
 			return false;
 		} else {
-			return this.type == foxEntity.getFoxType();
+			return this.type == foxEntity.getVariant();
 		}
 	}
 }

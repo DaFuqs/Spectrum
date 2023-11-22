@@ -1,0 +1,273 @@
+{
+  "name": "Idols",
+  "advancement": "spectrum:unlocks/blocks/idols",
+  "icon": "spectrum:fox_idol",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:axolotl_idol": 0,
+    "spectrum:bat_idol": 0,
+    "spectrum:bee_idol": 0,
+    "spectrum:blaze_idol": 0,
+    "spectrum:cat_idol": 0,
+    "spectrum:chicken_idol": 0,
+    "spectrum:cow_idol": 0,
+    "spectrum:creeper_idol": 0,
+    "spectrum:ender_dragon_idol": 0,
+    "spectrum:enderman_idol": 0,
+    "spectrum:endermite_idol": 0,
+    "spectrum:evoker_idol": 0,
+    "spectrum:fish_idol": 0,
+    "spectrum:fox_idol": 0,
+    "spectrum:ghast_idol": 0,
+    "spectrum:glow_squid_idol": 0,
+    "spectrum:goat_idol": 0,
+    "spectrum:guardian_idol": 0,
+    "spectrum:horse_idol": 0,
+    "spectrum:illusioner_idol": 0,
+    "spectrum:ocelot_idol": 0,
+    "spectrum:parrot_idol": 0,
+    "spectrum:phantom_idol": 0,
+    "spectrum:pig_idol": 0,
+    "spectrum:piglin_idol": 0,
+    "spectrum:polar_bear_idol": 0,
+    "spectrum:pufferfish_idol": 0,
+    "spectrum:rabbit_idol": 0,
+    "spectrum:sheep_idol": 0,
+    "spectrum:shulker_idol": 0,
+    "spectrum:silverfish_idol": 0,
+    "spectrum:skeleton_idol": 0,
+    "spectrum:slime_idol": 0,
+    "spectrum:snow_golem_idol": 0,
+    "spectrum:spider_idol": 0,
+    "spectrum:squid_idol": 0,
+    "spectrum:stray_idol": 0,
+    "spectrum:strider_idol": 0,
+    "spectrum:turtle_idol": 0,
+    "spectrum:witch_idol": 0,
+    "spectrum:wither_idol": 0,
+    "spectrum:wither_skeleton_idol": 0,
+    "spectrum:zombie_idol": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Idols",
+      "text": "Manifestations of a creature in block form.$(br2)Using them, walking on them, or hitting them with a projectile triggers an action that is specifically associated with that creature."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/axolotl_idol",
+      "text": "Gives a short burst of Regeneration."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/bat_idol",
+      "text": "Echolocates creatures in a 8 blocks radius around it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/bee_idol",
+      "text": "Fertilizes plants next to it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/blaze_idol",
+      "text": "Smelts ore, heats $(item)Netherrack$() to $(item)Magma Blocks$(), ...)$(br)Also sets the creature that triggered it and blocks next to it on fire."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/cat_idol",
+      "text": "Negates all fall damage when landed upon. Can also temporarily reset your fall."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/chicken_idol",
+      "text": "Gives a short burst of Slow Falling."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/cow_idol",
+      "text": "Milks all Cows, Goats and Mooshrooms in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/creeper_idol",
+      "text": "Causes a small explosion."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/ender_dragon_idol",
+      "text": "Shoots a Dragon Projectile."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/enderman_idol",
+      "text": "Teleports to a random position in a 16 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/endermite_idol",
+      "text": "Teleports to another Jagged Idol in a straight line on the side that was hit (up to 16 blocks away)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/evoker_idol",
+      "text": "Summons a Vex."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/fish_idol",
+      "text": "Gives a short burst of Water Breathing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/fox_idol",
+      "text": "Gives a short burst of Haste."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/ghast_idol",
+      "text": "Shoots a Fireball."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/glow_squid_idol",
+      "text": "Gives a short burst of Glowing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/goat_idol",
+      "text": "Causes knockback."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/guardian_idol",
+      "text": "Gives a short burst Mining Fatigue."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/horse_idol",
+      "text": "Gives a short burst of Strength."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/illusioner_idol",
+      "text": "Gives a short burst of Invisibility."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/ocelot_idol",
+      "text": "Gives a short burst of Night Vision."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/parrot_idol",
+      "text": "Gives a short burst of Absorption."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/phantom_idol",
+      "text": "Causes Insomnia.$(br)When in open sky, a player will immediately get haunted by a $(thing)Phantom$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/pig_idol",
+      "text": "Feeds animals in a 6 block radius if food is lying around."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/piglin_idol",
+      "text": "Trades $(item)Gold Ingots$() with you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/polar_bear_idol",
+      "text": "Freezes blocks around it (freezing $(item)Water$() to $(item)Ice$(), cooling $(item)Lava$() to $(item)Obsidian$(), ...)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/pufferfish_idol",
+      "text": "Gives a short burst of Nausea."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/rabbit_idol",
+      "text": "Gives a short burst of Jump Boost."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/sheep_idol",
+      "text": "Shears creatures in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/shulker_idol",
+      "text": "Gives a short burst of Levitation."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/silverfish_idol",
+      "text": "Invades blocks next to it with Silverfish."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/skeleton_idol",
+      "text": "Shoots an $(item)Arrow$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/slime_idol",
+      "text": "Increases the size of Slimes in a 6 block radius."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/snow_golem_idol",
+      "text": "Shoots a $(item)Snowball$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/spider_idol",
+      "text": "Gives a short burst of Poison."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/squid_idol",
+      "text": "Gives a short burst of Blindness."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/stray_idol",
+      "text": "Gives a short burst of Slowness."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/strider_idol",
+      "text": "Gives a short burst of Fire Resistance."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/turtle_idol",
+      "text": "Gives a short burst of Resistance."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/witch_idol",
+      "text": "Gives a short burst of Weakness."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/wither_idol",
+      "text": "Creates a huge explosion."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/wither_skeleton_idol",
+      "text": "Gives a short burst of Wither."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/idols/zombie_idol",
+      "text": "Converts Villagers to Zombie Villagers."
+    }
+  ]
+}

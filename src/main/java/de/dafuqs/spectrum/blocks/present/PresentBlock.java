@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.UnpackingSurprise;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.world.*;
@@ -25,10 +26,21 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 
 import java.util.*;
 
 public class PresentBlock extends BlockWithEntity {
+	
+	protected static Map<Item, PresentUnpackBehavior> BEHAVIORS = new Object2ObjectOpenHashMap<>();
+	
+	public @Nullable PresentUnpackBehavior getBehaviorFor(ItemStack stack) {
+		return BEHAVIORS.getOrDefault(stack.getItem(), null);
+	}
+	
+	public static void registerBehavior(ItemConvertible provider, PresentUnpackBehavior behavior) {
+		BEHAVIORS.put(provider.asItem(), behavior);
+	}
 	
 	public enum WrappingPaper implements StringIdentifiable {
 		RED,
@@ -99,7 +111,7 @@ public class PresentBlock extends BlockWithEntity {
 						presentBlockEntity.setOpenerUUID(player);
 						state = state.with(OPENING, true);
 						world.setBlockState(pos, state, 3);
-						world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+						world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 					} else {
 						if (presentBlockEntity.getOwnerName() != null) {
 							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), true);
@@ -116,8 +128,8 @@ public class PresentBlock extends BlockWithEntity {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
-		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+		BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 			return List.of(presentBlockEntity.retrievePresent(state.get(VARIANT)));
 		} else {
@@ -133,7 +145,7 @@ public class PresentBlock extends BlockWithEntity {
 				if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 					int openingTick = presentBlockEntity.openingTick();
 					Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
-					if (openingTick == OPENING_STEPS) {
+					if (openingTick >= OPENING_STEPS) {
 						spawnParticles(world, pos, presentBlockEntity.colors);
 						presentBlockEntity.triggerAdvancement();
 						if (presentBlockEntity.isEmpty()) {
@@ -151,18 +163,21 @@ public class PresentBlock extends BlockWithEntity {
 						spawnParticles(world, pos, presentBlockEntity.colors);
 					}
 				}
-				world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+				world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 			}
 		}
 	}
 
 	public void processInteractions(List<ItemStack> stacks, PresentBlockEntity present, ServerWorld world, BlockPos pos, Random random) {
-		for (ItemStack stack : stacks) {
-			if (stack.getItem() instanceof UnpackingSurprise surprise)
-				surprise.unpackSurprise(stack, present, world, pos, random);
+		for (int i = 0; i < stacks.size(); i++) {
+			ItemStack stack = stacks.get(i);
+			@Nullable PresentUnpackBehavior behavior = getBehaviorFor(stack);
+			if (behavior != null) {
+				stacks.set(i, behavior.onPresentUnpack(stack, present, world, pos, random));
+			}
 		}
 	}
-	
+
 	public static void spawnParticles(ServerWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
 		SpectrumS2CPacketSender.playPresentOpeningParticles(world, pos, colors);
 	}
@@ -183,7 +198,7 @@ public class PresentBlock extends BlockWithEntity {
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
 		Random random = world.random;
-		Vec3f colorVec = ColorHelper.getRGBVec(color);
+		Vector3f colorVec = ColorHelper.getRGBVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
 			double randY = random.nextFloat() * 0.7;

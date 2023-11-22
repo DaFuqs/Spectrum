@@ -4,10 +4,13 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.*;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -23,6 +26,12 @@ public class Support {
 	public static final DecimalFormat DF = new DecimalFormat("0");
 	public static final DecimalFormat DF1 = new DecimalFormat("0.0");
 	public static final DecimalFormat DF2 = new DecimalFormat("0.00");
+	
+	@Nullable
+	@SuppressWarnings("unchecked")
+	public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+	}
 	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
@@ -201,17 +210,17 @@ public class Support {
 	}
 	
 	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(World world, BlockPos blockPos, int maxUpDown) {
-		if (world.getBlockState(blockPos).getMaterial().isReplaceable()) {
+		if (world.getBlockState(blockPos).isReplaceable()) {
 			// search down
 			for (int i = 0; i < maxUpDown; i++) {
-				if (!world.getBlockState(blockPos.down(i + 1)).getMaterial().isReplaceable()) {
+				if (!world.getBlockState(blockPos.down(i + 1)).isReplaceable()) {
 					return Optional.of(blockPos.down(i));
 				}
 			}
 		} else {
 			// search up
 			for (int i = 1; i <= maxUpDown; i++) {
-				if (world.getBlockState(blockPos.up(i)).getMaterial().isReplaceable()) {
+				if (world.getBlockState(blockPos.up(i)).isReplaceable()) {
 					return Optional.of(blockPos.up(i));
 				}
 			}

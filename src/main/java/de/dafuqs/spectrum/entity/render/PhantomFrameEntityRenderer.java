@@ -18,10 +18,10 @@ import net.minecraft.util.math.*;
 
 public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<PhantomFrameEntity> {
 
-	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=false");
-	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=true");
-	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=false");
-	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=true");
+	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=false");
+	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=true");
+	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=false");
+	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=true");
 
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;
@@ -39,14 +39,14 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 	@Override
 	public void render(PhantomFrameEntity itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
-		
+
 		Direction direction = itemFrameEntity.getHorizontalFacing();
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
 		matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
 		double d = 0.46875D;
 		matrixStack.translate((double) direction.getOffsetX() * d, (double) direction.getOffsetY() * d, (double) direction.getOffsetZ() * d);
-		matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(itemFrameEntity.getPitch()));
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - itemFrameEntity.getYaw()));
+		matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(itemFrameEntity.getPitch()));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - itemFrameEntity.getYaw()));
 		boolean isInvisible = itemFrameEntity.isInvisible();
 		ItemStack itemStack = itemFrameEntity.getHeldItemStack();
 		if (!isInvisible) {
@@ -68,16 +68,16 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			}
 			
 			int renderLight = itemFrameEntity.shouldRenderAtMaxLight() ? LightmapTextureManager.MAX_LIGHT_COORDINATE : light;
-			
+
 			int bakedModelManager = isRenderingMap ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
-			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) bakedModelManager * 360.0F / 8.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float) bakedModelManager * 360.0F / 8.0F));
 			if (isRenderingMap) {
-				matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
+				matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0F));
 				float scale = 0.0078125F;
 				matrixStack.scale(scale, scale, scale);
 				matrixStack.translate(-64.0D, -64.0D, 0.0D);
 				Integer mapId = FilledMapItem.getMapId(itemStack);
-				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.world);
+				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.getWorld());
 				matrixStack.translate(0.0D, 0.0D, -1.0D);
 				if (mapState != null) {
 					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, mapId, mapState, true, renderLight);
@@ -85,7 +85,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			} else {
 				float scale = 0.75F;
 				matrixStack.scale(scale, scale, scale);
-				this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, renderLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getId());
+				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, renderLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getWorld(), itemFrameEntity.getId());
 			}
 		}
 

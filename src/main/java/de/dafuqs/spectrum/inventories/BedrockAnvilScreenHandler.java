@@ -7,9 +7,9 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
-import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.*;
@@ -94,8 +94,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.context.run((world, pos) -> this.dropInventory(player, this.input));
 	}
 	
@@ -105,7 +105,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {
@@ -194,7 +194,9 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			if (!repairSlotStack.isEmpty()) {
 				combined = true;
 				
+				boolean enchantedBookInInputSlot = inputStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(inputStack).isEmpty();
 				boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
+
 				int o;
 				int repairItemCount;
 				int newOutputStackDamage;
@@ -276,7 +278,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 							bl3 = true;
 						} else {
 							bl2 = true;
-							if (!SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
+							boolean capToMaxLevel = enchantedBookInInputSlot || !SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel;
+							if (capToMaxLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
 								newEnchantmentLevel = enchantment.getMaxLevel();
 							}
 							

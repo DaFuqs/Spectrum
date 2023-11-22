@@ -20,7 +20,7 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 	static final Identifier ID = SpectrumCommon.locate("take_off_belt_jump");
 	
 	public static TakeOffBeltJumpCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
-		return new TakeOffBeltJumpCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, chargesRange);
+		return new TakeOffBeltJumpCriterion.Conditions(LootContextPredicate.EMPTY, itemPredicate, chargesRange);
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 	}
 	
 	@Override
-	public TakeOffBeltJumpCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public TakeOffBeltJumpCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		NumberRange.IntRange chargesRange = NumberRange.IntRange.fromJson(jsonObject.get("charges"));
 		return new TakeOffBeltJumpCriterion.Conditions(extended, itemPredicate, chargesRange);
@@ -58,7 +58,7 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 		private final ItemPredicate itemPredicate;
 		private final NumberRange.IntRange chargesRange;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
+		public Conditions(LootContextPredicate player, ItemPredicate itemPredicate, NumberRange.IntRange chargesRange) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 			this.chargesRange = chargesRange;

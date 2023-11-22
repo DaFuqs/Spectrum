@@ -13,7 +13,7 @@
               "name": "spectrum:small_topaz_bud",
               "conditions": [
                 {
-                  "condition": "minecraft:alternative",
+                  "condition": "minecraft:any_of",
                   "terms": [
                     {
                       "condition": "minecraft:match_tool",

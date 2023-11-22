@@ -1,0 +1,86 @@
+{
+  "type": "spectrum:modify_drops",
+  "block": {
+    "tag": "c:ores"
+  },
+  "modify_drops": [
+    {
+      "input": {
+        "item": "minecraft:coal"
+      },
+      "output": "spectrum:pure_coal"
+    },
+    {
+      "input": {
+        "item": "minecraft:raw_copper"
+      },
+      "output": "spectrum:pure_copper"
+    },
+    {
+      "input": {
+        "item": "minecraft:diamond"
+      },
+      "output": "spectrum:pure_diamond"
+    },
+    {
+      "input": {
+        "item": "minecraft:echo_shard"
+      },
+      "output": "spectrum:pure_echo"
+    },
+    {
+      "input": {
+        "item": "minecraft:emerald"
+      },
+      "output": "spectrum:pure_emerald"
+    },
+    {
+      "input": {
+        "item": "minecraft:glowstone_dust"
+      },
+      "output": "spectrum:pure_glowstone"
+    },
+    {
+      "input": {
+        "item": "minecraft:raw_gold"
+      },
+      "output": "spectrum:pure_gold"
+    },
+    {
+      "input": {
+        "item": "minecraft:raw_iron"
+      },
+      "output": "spectrum:pure_iron"
+    },
+    {
+      "input": {
+        "item": "minecraft:lapis_lazuli"
+      },
+      "output": "spectrum:pure_lapis"
+    },
+    {
+      "input": {
+        "item": "minecraft:netherite_scrap"
+      },
+      "output": "spectrum:pure_netherite_scrap"
+    },
+    {
+      "input": {
+        "item": "minecraft:prismarine_crystals"
+      },
+      "output": "spectrum:pure_prismarine"
+    },
+    {
+      "input": {
+        "item": "minecraft:quartz"
+      },
+      "output": "spectrum:pure_quartz"
+    },
+    {
+      "input": {
+        "item": "minecraft:redstone"
+      },
+      "output": "spectrum:pure_redstone"
+    }
+  ]
+}

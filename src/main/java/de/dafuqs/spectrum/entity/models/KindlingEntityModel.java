@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.models;
 
+import de.dafuqs.spectrum.entity.animation.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
@@ -7,9 +8,9 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
 
 // Made with Blockbench 4.6.4
-public class KindlingEntityModel extends EntityModel<KindlingEntity> {
+public class KindlingEntityModel extends SinglePartEntityModel<KindlingEntity> {
 	
-	private final ModelPart torso;
+	private final ModelPart body;
 	private final ModelPart head;
 	private final ModelPart rightwing;
 	private final ModelPart rightwingjoint;
@@ -24,29 +25,29 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 	private final ModelPart fartail;
 	
 	public KindlingEntityModel(ModelPart root) {
-		this.torso = root.getChild("torso");
-		head = torso.getChild("head");
-		rightwing = torso.getChild("rightwing");
-		leftwing = torso.getChild("leftwing");
+		body = root.getChild(EntityModelPartNames.BODY);
+		head = body.getChild(EntityModelPartNames.HEAD);
+		rightwing = body.getChild("rightwing");
+		leftwing = body.getChild("leftwing");
 		rightwingjoint = rightwing.getChild("wingjoint");
 		leftwingjoint = leftwing.getChild("wingjoint2");
-
-		rightforeleg = torso.getChild("rightforeleg");
-		leftforeleg = torso.getChild("leftforeleg");
-		rightbackleg = torso.getChild("rightbackleg");
-		leftbackleg = torso.getChild("leftbackleg");
-		tail = torso.getChild("tail");
+		
+		rightforeleg = body.getChild("rightforeleg");
+		leftforeleg = body.getChild("leftforeleg");
+		rightbackleg = body.getChild("rightbackleg");
+		leftbackleg = body.getChild("leftbackleg");
+		tail = body.getChild("tail");
 		midtail = tail.getChild("midtail");
 		fartail = midtail.getChild("fartail");
-
 	}
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData torso = modelPartData.addChild("torso", ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -3.5F, -7.25F, 7.0F, 7.0F, 13.0F, new Dilation(0.0F))
+		
+		ModelPartData torso = modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -3.5F, -7.25F, 7.0F, 7.0F, 13.0F, new Dilation(0.0F))
 				.uv(0, 21).cuboid(-4.5F, -5.0F, -8.75F, 9.0F, 9.0F, 10.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 15.5F, -0.25F));
 		
-		ModelPartData head = torso.addChild("head", ModelPartBuilder.create().uv(0, 48).cuboid(-3.5F, -7.5F, -6.75F, 7.0F, 8.0F, 7.0F, new Dilation(0.0F))
+		ModelPartData head = torso.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 48).cuboid(-3.5F, -7.5F, -6.75F, 7.0F, 8.0F, 7.0F, new Dilation(0.0F))
 				.uv(30, 76).cuboid(-4.0F, -8.0F, -7.25F, 8.0F, 9.0F, 8.0F, new Dilation(0.0F))
 				.uv(29, 21).cuboid(-1.5F, -2.51F, -8.75F, 3.0F, 3.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -3.0F, -6.5F));
 		
@@ -85,20 +86,43 @@ public class KindlingEntityModel extends EntityModel<KindlingEntity> {
 				.uv(61, 69).cuboid(-4.0F, -2.0F, 2.75F, 0.0F, 6.0F, 5.0F, new Dilation(0.0F)), ModelTransform.pivot(-1.5F, 1.5F, 4.5F));
 		
 		ModelPartData tail = torso.addChild("tail", ModelPartBuilder.create().uv(28, 0).cuboid(-2.5F, -2.48F, 0.0F, 5.0F, 5.0F, 7.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -1.0F, 5.75F));
-		
 		ModelPartData midTail = tail.addChild("midtail", ModelPartBuilder.create().uv(57, 57).cuboid(-1.5F, -1.97F, 0.0F, 3.0F, 4.0F, 7.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -0.5F, 7.0F));
-		
 		midTail.addChild("fartail", ModelPartBuilder.create().uv(39, 43).cuboid(0.0F, -6.5F, 3.0F, 0.0F, 8.0F, 12.0F, new Dilation(0.0F))
 				.uv(0, 64).cuboid(-1.0F, -1.5F, 0.0F, 2.0F, 3.0F, 7.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.5F, 7.0F));
 		
 		return TexturedModelData.of(modelData, 128, 128);
 	}
+
+	@Override
+	public ModelPart getPart() {
+		return this.body;
+	}
+	
 	@Override
 	public void setAngles(KindlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.getPart().traverse().forEach(ModelPart::resetTransform);
+
+		this.setHeadAngle(netHeadYaw, headPitch);
+
+		this.updateAnimation(entity.standingAnimationState, KindlingAnimations.STANDING, ageInTicks);
+		this.updateAnimation(entity.walkingAnimationState, KindlingAnimations.WALKING, ageInTicks);
+		this.updateAnimation(entity.standingAngryAnimationState, KindlingAnimations.STANDING_ANGRY, ageInTicks);
+		this.updateAnimation(entity.walkingAngryAnimationState, KindlingAnimations.WALKING_ANGRY, ageInTicks);
+		this.updateAnimation(entity.glidingAnimationState, KindlingAnimations.GLIDING, ageInTicks);
+	}
+	
+	private void setHeadAngle(float yaw, float pitch) {
+		this.head.pitch = pitch * 0.017453292F;
+		this.head.yaw = yaw * 0.017453292F;
 	}
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		torso.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+		if (child) {
+			matrices.scale(0.7f, 0.7f, 0.7f);
+			matrices.translate(0, 0.55, 0);
+		}
+		body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
+	
 }

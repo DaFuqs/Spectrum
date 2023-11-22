@@ -16,7 +16,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -144,43 +143,13 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			// fortune handling is a bit special. Its level is preserved in NBT,
 			// to restore the original enchant level when switching back
 			case SELECT_FORTUNE -> {
-				int fortuneLevel = 3;
-				if (nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
-					fortuneLevel = nbt.getInt("FortuneLevel");
-					nbt.remove("FortuneLevel");
-				}
-				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE)) {
-					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.FORTUNE, fortuneLevel, true, true);
-					player.sendMessage(toggle.getTriggerText(), true);
-				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
-				}
+				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.FORTUNE);
 			}
 			case SELECT_SILK_TOUCH -> {
-				int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack);
-				if (fortuneLevel > 0) {
-					nbt.putInt("FortuneLevel", fortuneLevel);
-				}
-				
-				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.FORTUNE, SpectrumEnchantments.RESONANCE)) {
-					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.SILK_TOUCH, 1, true, true);
-					player.sendMessage(toggle.getTriggerText(), true);
-				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
-				}
+				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), Enchantments.SILK_TOUCH);
 			}
 			case SELECT_RESONANCE -> {
-				int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack);
-				if (fortuneLevel > 0) {
-					nbt.putInt("FortuneLevel", fortuneLevel);
-				}
-				
-				if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.FORTUNE, Enchantments.SILK_TOUCH)) {
-					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, SpectrumEnchantments.RESONANCE, 1, true, true);
-					player.sendMessage(toggle.getTriggerText(), true);
-				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
-				}
+				enchantAndRemoveOthers(player, stack, toggle.getTriggerText(), SpectrumEnchantments.RESONANCE);
 			}
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.remove(RIGHT_CLICK_DISABLED_NBT_STRING);
@@ -201,12 +170,41 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		}
 		stack.setNbt(nbt);
 	}
-
+	
+	private static void enchantAndRemoveOthers(PlayerEntity player, ItemStack stack, Text message, Enchantment enchantment) {
+		int existingLevel = EnchantmentHelper.getLevel(enchantment, stack);
+		if (existingLevel > 0) {
+			return;
+		}
+		
+		int level = 1;
+		
+		NbtCompound nbt = stack.getOrCreateNbt();
+		if (enchantment == Enchantments.FORTUNE) {
+			if (nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
+				level = nbt.getInt("FortuneLevel");
+				nbt.remove("FortuneLevel");
+			}
+		} else {
+			int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, stack);
+			if (fortuneLevel > 0) {
+				nbt.putInt("FortuneLevel", fortuneLevel);
+			}
+		}
+		
+		if (SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SILK_TOUCH, SpectrumEnchantments.RESONANCE, Enchantments.FORTUNE).getRight() > 0) {
+			SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, enchantment, level, true, true);
+			player.sendMessage(message, true);
+		} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
+			triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
+		}
+	}
+	
 	private static void triggerUnenchantedWorkstaffAdvancement(ServerPlayerEntity player) {
 		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);
 		Support.grantAdvancementCriterion(player, "lategame/trigger_unenchanted_workstaff", "code_triggered");
 	}
-
+	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.FORTUNE, 4);
@@ -215,13 +213,6 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 
 }

@@ -1,5 +1,5 @@
 {
   "particle_type": "minecraft:happy_villager",
-  "gui_texture": "minecraft:particle/glint",
+  "gui_texture": "minecraft:glint",
   "supports_coloring": false
 }

@@ -5,9 +5,9 @@ import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.sound.*;
+import net.minecraft.registry.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -40,11 +40,11 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	}
 	
 	@Environment(EnvType.CLIENT)
-	@SuppressWarnings("resource")
-	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
+    public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		stopPlayingOnPos(sourceBlockPos);
 		
-		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
+		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, client.world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
 		playingSoundInstances.add(newInstance);
 		MinecraftClient.getInstance().getSoundManager().play(newInstance);
 	}
@@ -72,9 +72,9 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		return true;
 	}
 	
-	@SuppressWarnings("resource")
 	private void updateVolume() {
-		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F));
+		MinecraftClient client = MinecraftClient.getInstance();
+		this.volume = Math.max(0, 0.75F * (SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(client.player.getBlockPos()) / 64F));
 	}
 	
 	@Override
@@ -94,9 +94,9 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private boolean shouldStopPlaying() {
-		BlockState blockState = MinecraftClient.getInstance().world.getBlockState(sourceBlockPos);
+		MinecraftClient client = MinecraftClient.getInstance();
+		BlockState blockState = client.world.getBlockState(sourceBlockPos);
 		return !blockState.getBlock().equals(sourceBlock);
 	}
 	

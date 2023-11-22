@@ -23,7 +23,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class MoonstoneStrike {
-	
+
 	private final World world;
 	private final double x;
 	private final double y;
@@ -33,7 +33,7 @@ public class MoonstoneStrike {
     public final float knockbackMod;
     private final DamageSource damageSource;
 	protected final Map<PlayerEntity, Vec3d> affectedPlayers;
-    
+
     public MoonstoneStrike(World world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
         this.affectedPlayers = Maps.newHashMap();
         this.world = world;
@@ -42,21 +42,21 @@ public class MoonstoneStrike {
         this.knockbackMod = knockbackMod;
         this.x = x;
         this.y = y;
-        this.z = z;
-        this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(this) : damageSource;
+		this.z = z;
+		this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(world, this) : damageSource;
     }
-    
-    public static void create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+
+	public static void create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
         create(world, entity, damageSource, x, y, z, power, power);
     }
-    
-    public static void create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
+
+	public static void create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power, float knockbackMod) {
         MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power, knockbackMod);
-        
-        if (world.isClient) {
+
+		if (world.isClient) {
             world.playSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-            world.playSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundCategory.BLOCKS, 0.5F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-            world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
+			world.playSound(x, y, z, SpectrumSoundEvents.SOFT_HUM, SoundCategory.BLOCKS, 0.5F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
+			world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
         } else {
             moonstoneStrike.damageAndKnockbackEntities();
             SpectrumS2CPacketSender.sendMoonstoneBlast((ServerWorld) world, moonstoneStrike);
@@ -79,20 +79,20 @@ public class MoonstoneStrike {
     public float getPower() {
         return power;
     }
-    
-    public float getKnockbackMod() {
+
+	public float getKnockbackMod() {
         return knockbackMod;
     }
-    
-    public DamageSource getDamageSource() {
+
+	public DamageSource getDamageSource() {
         return this.damageSource;
     }
-    
-    public Map<PlayerEntity, Vec3d> getAffectedPlayers() {
+
+	public Map<PlayerEntity, Vec3d> getAffectedPlayers() {
         return this.affectedPlayers;
     }
-    
-    public static float getExposure(Vec3d source, Entity entity) {
+
+	public static float getExposure(Vec3d source, Entity entity) {
         Box box = entity.getBoundingBox();
         double d = 1.0 / ((box.maxX - box.minX) * 2.0 + 1.0);
         double e = 1.0 / ((box.maxY - box.minY) * 2.0 + 1.0);
@@ -110,22 +110,22 @@ public class MoonstoneStrike {
                         double o = MathHelper.lerp(l, box.minY, box.maxY);
                         double p = MathHelper.lerp(m, box.minZ, box.maxZ);
                         Vec3d vec3d = new Vec3d(n + g, o, p + h);
-                        if (entity.world.raycast(new RaycastContext(vec3d, source, ShapeType.COLLIDER, FluidHandling.NONE, entity)).getType() == Type.MISS) {
+                        if (entity.getWorld().raycast(new RaycastContext(vec3d, source, ShapeType.COLLIDER, FluidHandling.NONE, entity)).getType() == Type.MISS) {
                             ++i;
                         }
-    
-                        ++j;
+
+						++j;
                     }
                 }
             }
-            
-            return (float) i / (float) j;
+
+			return (float) i / (float) j;
         } else {
             return 0.0F;
         }
     }
-    
-    public void damageAndKnockbackEntities() {
+
+	public void damageAndKnockbackEntities() {
         this.world.emitGameEvent(this.entity, GameEvent.EXPLODE, new Vec3d(this.x, this.y, this.z));
         
         float power2 = this.power * 2.0F;
@@ -136,8 +136,8 @@ public class MoonstoneStrike {
         int minZ = MathHelper.floor(this.z - (double) power2 - 1.0);
         int maxZ = MathHelper.floor(this.z + (double) power2 + 1.0);
         Vec3d center = new Vec3d(this.x, this.y, this.z);
-        
-        for (Entity entity : this.world.getOtherEntities(this.entity, new Box(minX, minY, minZ, maxX, maxY, maxZ))) {
+
+		for (Entity entity : world.getOtherEntities(this.entity, new Box(minX, minY, minZ, maxX, maxY, maxZ))) {
             if (!entity.isImmuneToExplosion()) {
                 double w = Math.sqrt(entity.squaredDistanceTo(center)) / (double) power2;
                 if (w <= 1.0) {
@@ -156,8 +156,8 @@ public class MoonstoneStrike {
                         if (entity instanceof LivingEntity) {
                             knockback = ProtectionEnchantment.transformExplosionKnockback((LivingEntity) entity, ac);
                         }
-                        
-                        entity.setVelocity(entity.getVelocity().add(difX * knockback, difY * knockback, difZ * knockback));
+
+						entity.setVelocity(entity.getVelocity().add(difX * knockback, difY * knockback, difZ * knockback));
                         if (entity instanceof PlayerEntity playerEntity) {
                             if (!playerEntity.isSpectator() && (!playerEntity.isCreative() || !playerEntity.getAbilities().flying)) {
                                 this.affectedPlayers.put(playerEntity, new Vec3d(difX * ac, difY * ac, difZ * ac));
@@ -168,20 +168,20 @@ public class MoonstoneStrike {
             }
         }
     }
-    
-    public void affectWorld() {
+
+	public void affectWorld() {
         LivingEntity cause = getCausingEntity();
-        int range = (int) this.power / 2;
-        for (BlockPos pos : BlockPos.iterateOutwards(new BlockPos(this.x, this.y, this.z), range, range, range)) {
-            BlockState blockState = this.world.getBlockState(pos);
-            Block block = blockState.getBlock();
-            if (block instanceof MoonstoneStrikeableBlock moonstoneStrikeableBlock) {
-                moonstoneStrikeableBlock.onMoonstoneStrike(this.world, pos, cause);
-            }
-        }
+        int range = Math.max(2, (int) this.power / 2);
+		for (BlockPos pos : BlockPos.iterateOutwards(BlockPos.ofFloored(this.x, this.y, this.z), range, range, range)) {
+			BlockState blockState = world.getBlockState(pos);
+			Block block = blockState.getBlock();
+			if (block instanceof MoonstoneStrikeableBlock moonstoneStrikeableBlock) {
+				moonstoneStrikeableBlock.onMoonstoneStrike(world, pos, cause);
+			}
+		}
     }
-    
-    public @Nullable LivingEntity getCausingEntity() {
+
+	public @Nullable LivingEntity getCausingEntity() {
         if (this.entity instanceof LivingEntity livingEntity) {
             return livingEntity;
         } else if (this.entity instanceof ProjectileEntity projectileEntity && projectileEntity.getOwner() instanceof LivingEntity livingEntity) {

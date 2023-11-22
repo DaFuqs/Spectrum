@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:dragonrot_converting",
+  "ingredient": {
+    "tag": "minecraft:sand"
+  },
+  "result": {
+    "item": "minecraft:mud",
+    "count": 1
+  }
+}

@@ -16,6 +16,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
@@ -39,7 +40,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedNoRedstonePower = true;
 	
-	protected int itemCountUnderway = 0;
+	protected long itemCountUnderway = 0;
 	
 	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
 	protected Direction cachedDirection = null;
@@ -77,11 +78,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     public boolean canTransfer() {
-        long time = this.world.getTime();
+        long time = this.getWorld().getTime();
         if (time > this.cachedRedstonePowerTick) {
             this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
         }
-        return this.world.getTime() > lastTransferTick && this.cachedNoRedstonePower;
+        return this.getWorld().getTime() > lastTransferTick && this.cachedNoRedstonePower;
     }
 
     public void markTransferred() {
@@ -94,7 +95,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         super.readNbt(nbt);
         if (nbt.contains("Network")) {
             UUID networkUUID = nbt.getUuid("Network");
-            if (this.world == null) {
+            if (this.getWorld() == null) {
                 this.networkUUIDToMerge = networkUUID;
             } else {
                 this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
@@ -102,6 +103,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         }
         if (nbt.contains("LastTransferTick", NbtElement.LONG_TYPE)) {
             this.lastTransferTick = nbt.getLong("LastTransferTick");
+        }
+        if (nbt.contains("ItemCountUnderway", NbtElement.LONG_TYPE)) {
+            this.itemCountUnderway = nbt.getLong("ItemCountUnderway");
         }
         if (this.getNodeType().usesFilters()) {
             readFilterNbt(nbt, this.filterItems);
@@ -115,6 +119,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             nbt.putUuid("Network", this.network.getUUID());
         }
         nbt.putLong("LastTransferTick", this.lastTransferTick);
+        nbt.putLong("ItemCountUnderway", this.itemCountUnderway);
         if (this.getNodeType().usesFilters()) {
             writeFilterNbt(nbt, this.filterItems);
         }
@@ -137,17 +142,11 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     @Override
     public void markRemoved() {
         super.markRemoved();
-        if (this.network != null && this.world != null) {
-            this.network.removeNode(this, NodeRemovalReason.UNLOADED);
-            this.network = null;
-        }
+        Pastel.getInstance(world.isClient).removeNode(this, NodeRemovalReason.UNLOADED);
     }
 
     public void onBroken() {
-        if (this.network != null) {
-            this.network.removeNode(this, NodeRemovalReason.BROKEN);
-            this.network = null;
-        }
+        Pastel.getInstance(world.isClient).removeNode(this, NodeRemovalReason.BROKEN);
     }
 
     public boolean canConnect(PastelNodeBlockEntity node) {
@@ -167,17 +166,17 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     public void setNetwork(PastelNetwork network) {
         this.network = network;
-        if (this.world != null && !this.world.isClient) {
+        if (this.getWorld() != null && !this.getWorld().isClient()) {
             updateInClientWorld();
             this.markDirty();
         }
     }
-
-    public int getItemCountUnderway() {
+    
+    public long getItemCountUnderway() {
         return this.itemCountUnderway;
     }
-
-    public void addItemCountUnderway(int count) {
+    
+    public void addItemCountUnderway(long count) {
         this.itemCountUnderway += count;
         this.itemCountUnderway = Math.max(0, this.itemCountUnderway);
         this.markDirty();

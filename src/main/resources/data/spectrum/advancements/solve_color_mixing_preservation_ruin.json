@@ -2,7 +2,7 @@
   "parent": "spectrum:enter_color_mixing_preservation_ruin",
   "display": {
     "icon": {
-      "item": "spectrum:treasure_chest"
+      "item": "spectrum:preservation_chest"
     },
     "title": {
       "translate": "advancements.spectrum.solve_color_mixing_preservation_ruin.title"
@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "opened_color_mixing_treasure_chest": {
+    "opened_color_mixing_preservation_chest": {
       "trigger": "minecraft:player_generates_container_loot",
       "conditions": {
         "player": [

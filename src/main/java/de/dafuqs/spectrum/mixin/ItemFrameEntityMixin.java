@@ -21,7 +21,7 @@ public abstract class ItemFrameEntityMixin {
 	@Inject(method = "interact(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/decoration/ItemFrameEntity;setRotation(I)V"))
 	public void interact(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-		if (getHeldItemStack().isOf(SpectrumItems.CELESTIAL_POCKETWATCH) && (((ItemFrameEntity) (Object) this).world instanceof ServerWorld serverWorld)) {
+		if (getHeldItemStack().isOf(SpectrumItems.CELESTIAL_POCKETWATCH) && (((ItemFrameEntity) (Object) this).getWorld() instanceof ServerWorld serverWorld)) {
 			CelestialPocketWatchItem.tryAdvanceTime(serverWorld, (ServerPlayerEntity) player);
 		}
 	}

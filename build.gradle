@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
+	id 'io.github.juuxel.loom-quiltflower' version '1.7.2'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -14,7 +15,10 @@ repositories {
 	mavenLocal()
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com" }
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
 	maven { url "https://maven.nucleoid.xyz/" }
 	/*maven {
 		name = "Enchantment Descriptions"
@@ -25,7 +29,7 @@ repositories {
 		url = 'https://maven.blamejared.com'
 	}
 	maven {
-		name = 'Ladysnake Mods'
+		name = "Ladysnake Libs"
 		url = 'https://maven.ladysnake.org/releases'
 	}
 	maven {
@@ -48,7 +52,6 @@ repositories {
 		url = 'https://cfa2.cursemaven.com'
 	}
 	maven {
-		name = "Ears"
 		url "https://repo.unascribed.com"
 		content {
 			includeGroup "com.unascribed"
@@ -59,7 +62,7 @@ repositories {
 
 dependencies {
 	// jetbrains annotations
-	implementation 'org.jetbrains:annotations:23.1.0'
+	implementation 'org.jetbrains:annotations:24.0.1'
 
 	// graph api and its dependencies
 	implementation include('org.jgrapht:jgrapht-core:1.5.1')
@@ -82,16 +85,17 @@ dependencies {
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
+	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
 
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
+	// TODO - Remove deprecated FAPI once Patchouli patches old API usage
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 
 	// https://github.com/emilyploszaj/emi
 	modCompileOnly "dev.emi:emi-fabric:${emi_version}"
@@ -115,12 +119,12 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
-	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
+	implementation include("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixin_extras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
-	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
+	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 
 	// Ears compact by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
@@ -134,6 +138,28 @@ dependencies {
 
 loom {
 	accessWidenerPath = file("src/main/resources/spectrum.accesswidener")
+
+	runs {
+		datagen {
+			server()
+
+			name "Minecraft Data"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+
+			runDir "build/datagen"
+		}
+	}
+}
+
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
 }
 
 processResources {

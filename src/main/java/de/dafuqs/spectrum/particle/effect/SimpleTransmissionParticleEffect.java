@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.particle.effect;
 
 import net.minecraft.network.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.event.*;
 
 import java.util.*;
@@ -26,11 +26,14 @@ public abstract class SimpleTransmissionParticleEffect implements ParticleEffect
 	
 	@Override
 	public String asString() {
-		Vec3d vec3d = this.destination.getPos(null).get();
-		double d = vec3d.getX();
-		double e = vec3d.getY();
-		double f = vec3d.getZ();
-		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", Registry.PARTICLE_TYPE.getId(this.getType()), d, e, f, this.arrivalInTicks);
+		Optional<Vec3d> pos = this.destination.getPos(null);
+		if (pos.isPresent()) {
+			double d = pos.get().getX();
+			double e = pos.get().getY();
+			double f = pos.get().getZ();
+			return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", Registries.PARTICLE_TYPE.getId(this.getType()), d, e, f, this.arrivalInTicks);
+		}
+		return String.format(Locale.ROOT, "%s <no destination> %d", Registries.PARTICLE_TYPE.getId(this.getType()), this.arrivalInTicks);
 	}
 	
 	public PositionSource getDestination() {

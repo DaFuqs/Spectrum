@@ -9,7 +9,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.*;
 @Environment(EnvType.CLIENT)
 public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<CompactingChestBlockEntity> {
 	
-	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("entity/compacting_chest"));
+	private static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/compacting_chest"));
 	private final ModelPart root;
 	private final ModelPart lid;
 	private final ModelPart column;
@@ -52,7 +52,7 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 		matrixStack.push();
 		float f = (blockState.get(ChestBlock.FACING)).asRotation();
 		matrixStack.translate(0.5D, 0.5D, 0.5D);
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.translate(-0.5D, -0.5D, -0.5D);
 		
 		float openFactor = entity.getAnimationProgress(tickDelta);

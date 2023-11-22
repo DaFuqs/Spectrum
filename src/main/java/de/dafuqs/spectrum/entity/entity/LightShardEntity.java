@@ -26,11 +26,11 @@ public class LightShardEntity extends LightShardBaseEntity {
 	public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target) {
 		summonBarrage(world, user, target, user.getEyePos(), DEFAULT_COUNT_PROVIDER);
 	}
-	
+
 	public static void summonBarrage(World world, @Nullable LivingEntity user, @Nullable LivingEntity target, Vec3d position, IntProvider count) {
 		summonBarrage(world, user, position, count, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 200));
 	}
-	
+
 	public static void summonBarrage(World world, @Nullable LivingEntity user, Vec3d position, IntProvider count, Supplier<LightShardBaseEntity> supplier) {
 		summonBarrageInternal(world, user, supplier, position, count);
 	}

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -78,6 +77,10 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		// search for blocks in working range and sum them up
 		Collection<Block> compensationBlocks = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.keySet();
 		for (BlockPos pos : BlockPos.iterateOutwards(blockPos, RANGE, RANGE, RANGE)) {
+			if (!blockPos.isWithinDistance(pos, RANGE)) {
+				continue;
+			}
+			
 			BlockState state = world.getBlockState(pos);
 			Block block = state.getBlock();
 			if (compensationBlocks.contains(block)) {
@@ -140,19 +143,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (!this.deserializeLootTable(nbt)) {
 			Inventories.readNbt(nbt, this.inventory);
 		}
-		if (nbt.contains("OwnerUUID")) {
-			this.ownerUUID = nbt.getUuid("OwnerUUID");
-		} else {
-			this.ownerUUID = null;
-		}
+		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("ListenerPaused")) {
 			this.listenerPaused = nbt.getBoolean("ListenerPaused");
 		}
-		if (nbt.contains("OwnerName")) {
-			this.ownerName = nbt.getString("OwnerName");
-		} else {
-			this.ownerName = null;
-		}
+		this.ownerName = PlayerOwned.readOwnerName(nbt);
 		if (nbt.contains("LastWorldTime")) {
 			this.compensationWorldTime = nbt.getLong("LastWorldTime");
 		}
@@ -165,15 +160,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			Inventories.writeNbt(nbt, this.inventory);
 		}
 		nbt.putBoolean("ListenerPaused", this.listenerPaused);
-		if (this.world != null) {
-			nbt.putLong("LastWorldTime", this.world.getTime());
+		if (this.getWorld() != null) {
+			nbt.putLong("LastWorldTime", this.getWorld().getTime());
 		}
-		if (this.ownerUUID != null) {
-			nbt.putUuid("OwnerUUID", this.ownerUUID);
-		}
-		if (this.ownerName != null) {
-			nbt.putString("OwnerName", this.ownerName);
-		}
+		PlayerOwned.writeOwnerUUID(nbt, this.ownerUUID);
+		PlayerOwned.writeOwnerName(nbt, this.ownerName);
 	}
 	
 	@Override
@@ -202,7 +193,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ProgressionStage.MIDGAME);
+		return GenericSpectrumContainerScreenHandler.createGeneric9x3(syncId, playerInventory, this, ScreenBackgroundVariant.MIDGAME);
 	}
 	
 	@Override
@@ -212,18 +203,17 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public void triggerEvent(World world, GameEventListener listener, BlockPosEventQueue.EventEntry entry) {
-		if (listener instanceof BlockPosEventQueue && this.world != null) {
+		if (listener instanceof BlockPosEventQueue && this.getWorld() != null) {
 			BlockPos eventPos = entry.eventSourceBlockPos;
 			BlockState eventState = world.getBlockState(eventPos);
 			if (eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
-				LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world))
-						.random(this.world.random)
-						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
-						.parameter(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
-						.optionalParameter(LootContextParameters.THIS_ENTITY, getOwnerIfOnline())
-						.optionalParameter(LootContextParameters.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null);
-				
+				LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
+					.add(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
+					.add(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
+					.addOptional(LootContextParameters.THIS_ENTITY, getOwnerIfOnline())
+					.addOptional(LootContextParameters.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.getWorld().getBlockEntity(eventPos) : null);
+
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
 				boolean anyDropsUsed = drops.size() == 0;
 				for (ItemStack drop : drops) {
@@ -268,11 +258,16 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.ownerName = playerEntity.getName().getString();
+		markDirty();
 	}
 	
-	public void harvestExistingClusters() {
+	protected void harvestExistingClusters() {
 		if (world instanceof ServerWorld serverWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
+				if (!currPos.isWithinDistance(pos, RANGE)) {
+					continue;
+				}
+				
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 					this.blockPosEventTransferListener.acceptEvent(serverWorld,
 							new GameEvent.Message(SpectrumGameEvents.BLOCK_CHANGED, Vec3d.ofCenter(currPos), GameEvent.Emitter.of(world.getBlockState(currPos)),

@@ -1,25 +1,25 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.*;
 import net.minecraft.block.sapling.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 	
-	private final DyeColor dyeColor;
+	private final RegistryKey<ConfiguredFeature<?, ?>> treeFeature;
 	
 	public ColoredSaplingGenerator(DyeColor dyeColor) {
-		this.dyeColor = dyeColor;
+		this.treeFeature = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, SpectrumCommon.locate("colored_trees/" + dyeColor.toString()));
 	}
 	
 	@Nullable
 	@Override
-	protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-		return SpectrumConfiguredFeatures.COLORED_TREE_CONFIGURED_FEATURES.get(dyeColor);
+	protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
+		return treeFeature;
 	}
 	
 }

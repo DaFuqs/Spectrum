@@ -14,7 +14,7 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 	static final Identifier ID = SpectrumCommon.locate("collect_using_crystal_apothecary");
 	
 	public static CrystalApothecaryCollectingCriterion.Conditions create(ItemPredicate item) {
-		return new CrystalApothecaryCollectingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
+		return new CrystalApothecaryCollectingCriterion.Conditions(LootContextPredicate.EMPTY, item);
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 	}
 	
 	@Override
-	public CrystalApothecaryCollectingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public CrystalApothecaryCollectingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		return new CrystalApothecaryCollectingCriterion.Conditions(extended, itemPredicate);
 	}
@@ -35,7 +35,7 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 	public static class Conditions extends AbstractCriterionConditions {
 		private final ItemPredicate itemPredicate;
 		
-		public Conditions(EntityPredicate.Extended player, ItemPredicate itemPredicate) {
+		public Conditions(LootContextPredicate player, ItemPredicate itemPredicate) {
 			super(ID, player);
 			this.itemPredicate = itemPredicate;
 		}

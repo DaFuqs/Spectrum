@@ -6,11 +6,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
@@ -54,7 +54,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (oldState.getBlock() instanceof FenceBlock) {
@@ -66,7 +66,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!newState.isOf(this)) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -99,7 +99,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, Nat
 	}
 	
 	@Override
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		

@@ -106,10 +106,10 @@ public class PaintbrushItem extends Item {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
-	public ActionResult useOnBlock(ItemUsageContext context) {
+    public ActionResult useOnBlock(ItemUsageContext context) {
+		World world = context.getWorld();
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
-			return ActionResult.success(context.getWorld().isClient);
+			return ActionResult.success(world.isClient);
 		}
 		return super.useOnBlock(context);
 	}
@@ -137,34 +137,34 @@ public class PaintbrushItem extends Item {
 
 		return cursedColor(context);
 	}
-
-	@SuppressWarnings("resource")
+	
 	private boolean cursedColor(ItemUsageContext context) {
+		World world = context.getWorld();
 		if (context.getPlayer() == null) {
 			return false;
 		}
-
+		
 		Optional<InkColor> optionalInkColor = getColor(context.getStack());
 		if (optionalInkColor.isEmpty()) {
 			return false;
 		}
-
+		
 		InkColor inkColor = optionalInkColor.get();
 		DyeColor dyeColor = inkColor.getDyeColor();
-
+		
 		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 		if (newBlockState.isAir()) {
 			return false;
 		}
-
+		
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
-			if (!context.getWorld().isClient) {
-				context.getWorld().setBlockState(context.getBlockPos(), newBlockState);
-				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if (!world.isClient) {
+				world.setBlockState(context.getBlockPos(), newBlockState);
+				world.playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;
 		} else {
-			if (context.getWorld().isClient) {
+			if (world.isClient) {
 				context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 		}
@@ -225,12 +225,13 @@ public class PaintbrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if (canColor(user) && GenericClaimModsCompat.canInteractWith(entity.world, entity, user)) {
+		World world = user.getWorld();
+		if (canColor(user) && GenericClaimModsCompat.canInteractWith(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
 			if (color.isPresent() && payBlockColorCost(user, color.get())) {
 				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
 				if (colored) {
-					return ActionResult.success(user.world.isClient);
+					return ActionResult.success(world.isClient);
 				}
 			}
 		}

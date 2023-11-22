@@ -145,7 +145,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		Vec3d cameraVec = user.getRotationVec(0);
 
 		for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
-			BlockPos targetPos = sourcePos.add(MathHelper.floor(cameraVec.x) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.y) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.z) * iteration * 4);
+			BlockPos targetPos = sourcePos.add(
+					MathHelper.floor(cameraVec.x * iteration * REACH_STEP_DISTANCE),
+					MathHelper.floor(cameraVec.y * iteration * REACH_STEP_DISTANCE),
+					MathHelper.floor(cameraVec.z * iteration * REACH_STEP_DISTANCE)
+			);
 
 			boolean success = false;
 			for(int tries = 0; tries < PLACEMENT_TRIES_PER_STEP; tries++) {

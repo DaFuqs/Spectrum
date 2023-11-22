@@ -38,8 +38,7 @@ public class SpectrumScreenHandlerTypes {
 	public static ScreenHandlerType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER3_3X3;
 	
 	public static <T extends ScreenHandler> ScreenHandlerType<T> registerSimple(Identifier id, ScreenHandlerType.Factory<T> factory) {
-		// TODO - Should this feature set be empty?
-		ScreenHandlerType<T> type = new ScreenHandlerType<>(factory, FeatureSet.empty());
+		ScreenHandlerType<T> type = new ScreenHandlerType<>(factory, FeatureFlags.VANILLA_FEATURES);
 		return Registry.register(Registries.SCREEN_HANDLER, id, type);
 	}
 	

@@ -9,11 +9,9 @@ import net.minecraft.network.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 
 public class CompactingChestScreenHandler extends ScreenHandler {
-	// TODO - Is this world allocation needed?
-	protected final World world;
+
 	private final Inventory inventory;
 	protected final int ROWS = 3;
 	protected CompactingChestBlockEntity compactingChestBlockEntity;
@@ -49,7 +47,6 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 	protected CompactingChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory) {
 		super(type, syncId);
 		this.inventory = inventory;
-		this.world = playerInventory.player.getWorld();
 		
 		checkSize(inventory, 27);
 		inventory.onOpen(playerInventory.player);

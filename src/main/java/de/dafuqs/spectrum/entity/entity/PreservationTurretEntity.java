@@ -501,7 +501,7 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 	private class VibrationsCallback implements Vibrations.Callback {
 
 		private final EntityPositionSource positionSource;
-		
+
 		VibrationsCallback(PreservationTurretEntity turretEntity) {
 			this.positionSource = new EntityPositionSource(turretEntity, turretEntity.getStandingEyeHeight());
 		}

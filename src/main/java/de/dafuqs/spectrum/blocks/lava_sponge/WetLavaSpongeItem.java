@@ -40,8 +40,8 @@ public class WetLavaSpongeItem extends BlockItem {
 						int zOffset = 3 - random.nextInt(7);
 						
 						BlockPos targetPos = BlockPos.ofFloored(entity.getPos()).add(xOffset, yOffset, zOffset);
-						if (world.getBlockState(targetPos).isAir() && world.getBlockState(targetPos.down()).isSolid()) {
-							world.setBlockState(targetPos, Blocks.FIRE.getDefaultState());
+						if (AbstractFireBlock.canPlaceAt(world, targetPos, Direction.UP)) {
+							world.setBlockState(targetPos, AbstractFireBlock.getState(world, targetPos));
 						}
 					}
 				}

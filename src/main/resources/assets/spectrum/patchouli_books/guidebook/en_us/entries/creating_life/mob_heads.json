@@ -57,16 +57,15 @@
         "spectrum:parrot_red_head",
         "spectrum:phantom_head",
         "spectrum:pig_head",
-        "spectrum:piglin_head",
         "spectrum:polar_bear_head",
         "spectrum:pufferfish_head",
-        "spectrum:rabbit_head"
+        "spectrum:rabbit_head",
+        "spectrum:ravager_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
-        "spectrum:ravager_head",
         "spectrum:salmon_head",
         "spectrum:sheep_black_head",
         "spectrum:sheep_blue_head",
@@ -113,13 +112,13 @@
         "spectrum:villager_head",
         "spectrum:vindicator_head",
         "spectrum:wandering_trader_head",
-        "spectrum:witch_head"
+        "spectrum:witch_head",
+        "spectrum:wither_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
-        "spectrum:wither_head",
         "spectrum:wolf_head",
         "spectrum:zoglin_head",
         "spectrum:zombie_villager_head",

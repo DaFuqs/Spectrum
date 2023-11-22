@@ -69,7 +69,6 @@ public class SpectrumSkullBlockItem extends VerticallyAttachableBlockItem {
             case ZOMBIE_VILLAGER -> "Kiaria";
             case TRADER_LLAMA -> "miner_william_05";
             case ILLUSIONER, DONKEY -> "titigillette";
-            case PIGLIN -> "pianoboy913";
             case WANDERING_TRADER -> "BBS_01";
             case ZOGLIN -> "GreenRumble4454";
             case STRIDER -> "Deadly_Golem";

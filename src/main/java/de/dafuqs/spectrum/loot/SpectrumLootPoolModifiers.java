@@ -28,6 +28,7 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/skeleton"), new TreasureHunterDropDefinition(Items.SKELETON_SKULL, 0.02F));
 		put(new Identifier("entities/wither_skeleton"), new TreasureHunterDropDefinition(Items.WITHER_SKELETON_SKULL, 0.1F));
 		put(new Identifier("entities/zombie"), new TreasureHunterDropDefinition(Items.ZOMBIE_HEAD, 0.02F));
+		put(new Identifier("entities/piglin"), new TreasureHunterDropDefinition(Items.PIGLIN_HEAD, 0.02F));
 		put(new Identifier("entities/ender_dragon"), new TreasureHunterDropDefinition(Items.DRAGON_HEAD, 0.35F)); // why not!
 		
 		// Spectrum head drops
@@ -75,7 +76,6 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/panda"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PANDA).asItem(), 0.02F));
 		put(new Identifier("entities/phantom"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PHANTOM).asItem(), 0.02F));
 		put(new Identifier("entities/pig"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PIG).asItem(), 0.02F));
-		put(new Identifier("entities/piglin"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PIGLIN).asItem(), 0.02F));
 		put(new Identifier("entities/polar_bear"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.POLAR_BEAR).asItem(), 0.02F));
 		put(new Identifier("entities/pufferfish"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PUFFERFISH).asItem(), 0.02F));
 		put(new Identifier("entities/rabbit"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.RABBIT).asItem(), 0.02F));

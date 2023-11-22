@@ -30,6 +30,10 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "minecraft:creeper_head" ]}] }
     },
+    "has_piglin_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "minecraft:piglin_head" ]}] }
+    },
     "has_dragon_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "minecraft:dragon_head" ]}] }
@@ -210,10 +214,6 @@
     "has_pig_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:pig_head" ]}] }
-    },
-    "has_piglin_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:piglin_head" ]}] }
     },
     "has_polar_bear_head": {
       "trigger": "minecraft:inventory_changed",

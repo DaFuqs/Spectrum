@@ -50,7 +50,6 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 	PARROT_RED(EntityType.PARROT),
 	PHANTOM(EntityType.PHANTOM),
 	PIG(EntityType.PIG),
-	PIGLIN(EntityType.PIGLIN),
 	POLAR_BEAR(EntityType.POLAR_BEAR),
 	PUFFERFISH(EntityType.PUFFERFISH),
 	RABBIT(EntityType.RABBIT),

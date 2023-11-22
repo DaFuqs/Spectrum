@@ -4,7 +4,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:piglin_head"
+    "item": "minecraft:piglin_head"
   },
   "ingredient2": {
     "item": "minecraft:gold_ingot"

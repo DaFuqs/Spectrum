@@ -4,6 +4,7 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.condition.*;
@@ -61,11 +62,10 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 			fermentationData = this.fermentationData;
 		}
 		if (fermentationData != null) {
-			// TODO - can this be null and fail?
 			BlockPos pos = BlockPos.ofFloored(context.get(LootContextParameters.ORIGIN));
 			Biome biome = context.getWorld().getBiome(pos).value();
-			// TODO - Find a way to access the Biome Weather to get its downfall
-			return TitrationBarrelRecipe.getFermentedStack(fermentationData, this.thickness.nextInt(context), TimeHelper.secondsFromMinecraftDays(this.daysFermented.nextInt(context)), biome.getPrecipitation(pos).compareTo(Biome.Precipitation.RAIN), stack);
+			float downfall = ((BiomeAccessor)(Object) biome).getWeather().downfall();
+			return TitrationBarrelRecipe.getFermentedStack(fermentationData, this.thickness.nextInt(context), TimeHelper.secondsFromMinecraftDays(this.daysFermented.nextInt(context)), downfall, stack);
 		}
 		return stack;
 	}

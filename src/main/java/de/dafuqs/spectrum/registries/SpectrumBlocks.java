@@ -554,10 +554,10 @@ public class SpectrumBlocks {
 	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
-	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), locate("noxfungi/slate"));
-	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), locate("noxfungi/ebony"));
-	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), locate("noxfungi/ivory"));
-	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), locate("noxfungi/chestnut"));
+	public static final Block SLATE_NOXSHROOM = new FungusBlock(fungus(MapColor.GRAY), SpectrumConfiguredFeatures.SLATE_NOXFUNGUS, SHIMMEL);
+	public static final Block EBONY_NOXSHROOM = new FungusBlock(fungus(MapColor.TERRACOTTA_BLACK), SpectrumConfiguredFeatures.EBONY_NOXFUNGUS, SHIMMEL);
+	public static final Block IVORY_NOXSHROOM = new FungusBlock(fungus(MapColor.OFF_WHITE), SpectrumConfiguredFeatures.IVORY_NOXFUNGUS, SHIMMEL);
+	public static final Block CHESTNUT_NOXSHROOM = new FungusBlock(fungus(MapColor.DULL_RED), SpectrumConfiguredFeatures.CHESTNUT_NOXFUNGUS, SHIMMEL);
 	
 	private static final Settings POTTED_PLANT_SETTINGS = Settings.create().breakInstantly().nonOpaque();
 	public static final Block POTTED_SLATE_NOXSHROOM = new FlowerPotBlock(SLATE_NOXSHROOM, POTTED_PLANT_SETTINGS);

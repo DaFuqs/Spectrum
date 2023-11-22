@@ -14,7 +14,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
 
@@ -79,7 +79,7 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant));
+        Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumPlacedFeatures.DRAGONJAGS.get(this.variant));
 		boolean success = feature.isPresent() && feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
         if (success) {
             setDead(world, pos, state, true);

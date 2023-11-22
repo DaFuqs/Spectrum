@@ -148,10 +148,10 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlockEntities.register();
 		
 		// Worldgen
-		logInfo("Registering Worldgen Features...");
+		logInfo("Registering Features...");
 		SpectrumFeatures.register();
-		logInfo("Registering Configured and Placed Features...");
-		SpectrumConfiguredFeatures.register();
+		logInfo("Registering Biome Modifications...");
+		SpectrumPlacedFeatures.addBiomeModifications();
 		logInfo("Registering Structure Types...");
 		SpectrumStructureTypes.register();
 

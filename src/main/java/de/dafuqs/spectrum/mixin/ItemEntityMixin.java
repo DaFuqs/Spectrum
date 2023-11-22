@@ -22,13 +22,9 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(ItemEntity.class)
-public abstract class ItemEntityMixin extends ItemEntity {
+public abstract class ItemEntityMixin {
 	
 	private static AutoCompactingInventory autoCompactingInventory;
-
-	public ItemEntityMixin(EntityType<? extends ItemEntity> entityType, World world) {
-		super(entityType, world);
-	}
 
 	@Shadow
 	public abstract ItemStack getStack();

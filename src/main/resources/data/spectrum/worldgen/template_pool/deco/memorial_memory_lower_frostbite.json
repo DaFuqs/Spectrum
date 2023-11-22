@@ -10,7 +10,7 @@
         "block": {
           "Name": "minecraft:air"
         },
-        "nbt": ""
+        "nbt": {}
       }
     },
     {
@@ -21,7 +21,29 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest:5, EntityTag:{id:\"minecraft:zombie\",HandDropChances:[1.0f,1.0f],HandItems:[{Count:1b,id:\"minecraft:emerald\"},{}],}}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:zombie",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:emerald"
+                  },
+                  {}
+                ]
+              }
+            }
+          }
+        }
       }
     },
     {
@@ -32,7 +54,30 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest:5, EntityTag:{id:\"minecraft:fox\", HandDropChances:[1.0f,1.0f], HandItems:[{Count:1b, id:\"minecraft:cookie\"},{}],}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:fox",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:cookie"
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -43,7 +88,30 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {id: \"minecraft:allay\", HandItems: [{id: \"minecraft:diamond\", Count: 1B},{}]}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:allay",
+                "HandDropChances": [
+                  1.0,
+                  1.0
+                ],
+                "HandItems": [
+                  {
+                    "count": 1,
+                    "id": "minecraft:diamond"
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -54,7 +122,20 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Variant: 4, id: \"minecraft:axolotl\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:axolotl",
+                "Variant": 4
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -65,7 +146,20 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Type: brown, id: \"minecraft:mooshroom\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:mooshroom",
+                "Type": "brown"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -76,7 +170,19 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {id: \"minecraft:cat\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:cat"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -87,7 +193,24 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Type: \"snow\", CustomName: \"{\\\"color\\\":\\\"#B0C7FF\\\",\\\"text\\\":\\\"Mia ❣\\\"}\", id: \"minecraft:fox\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Type": "snow",
+                "CustomName": {
+                  "color": "#B0C7FF",
+                  "text": "Mia ❣"
+                },
+                "id": "minecraft:fox"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -98,7 +221,19 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {id: \"minecraft:frog\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:frog"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -109,7 +244,20 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {IsScreamingGoat: 1B, id: \"minecraft:goat\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "isScreamingGoat": true,
+                "id": "minecraft:goat"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -120,7 +268,20 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {PersistenceRequired: 1B, id: \"minecraft:hoglin\", IsImmuneToZombification: 1B}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:hoglin",
+                "IsImmuneToZombification": true
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -131,7 +292,19 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {id: \"minecraft:ocelot\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "id": "minecraft:ocelot"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -142,7 +315,44 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {ArmorItems: [{},{},{id: \"minecraft:golden_chestplate\", Count: 1B, tag: {Damage: 0}},{},], CanPickUpLoot: 1B, PersistenceRequired: 1B, id: \"minecraft:piglin\", IsImmuneToZombification: 1B, HandItems: [{id: \"minecraft:golden_sword\", Count: 1B, tag: {Damage: 0}},{},]}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "ArmorItems": [
+                  {},
+                  {},
+                  {
+                    "id": "minecraft:golden_chestplate",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ],
+                "CanPickUpLoot": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:piglin",
+                "IsImmuneToZombification": true,
+                "HandItems": [
+                  {
+                    "id": "minecraft:golden_sword",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ]
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -153,7 +363,21 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Color: 1B, PersistenceRequired: 1B, id: \"minecraft:shulker\"}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Color": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:shulker"
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -164,7 +388,54 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Johnny: 1B, CanJoinRaid: 0B, PatrolLeader: 0B, Invulnerable: 0B, LeftHanded: 0B, HandItems: [{id: \"minecraft:iron_axe\", Count: 1B, tag: {Damage: 0}},{},], Wave: 0, ArmorDropChances: [0.085F, 0.085F, 0.085F, 0.085F,], ArmorItems: [{},{},{},{},], HandDropChances: [0.085F, 0.085F,], CanPickUpLoot: 0B, PersistenceRequired: 1B, id: \"minecraft:vindicator\", Patrolling: 0B}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Johnny": true,
+                "CanJoinRaid": false,
+                "PatrolLeader": false,
+                "Invulnerable": false,
+                "LeftHanded": false,
+                "HandItems": [
+                  {
+                    "id": "minecraft:iron_axe",
+                    "Count": true,
+                    "tag": {
+                      "Damage": 0
+                    }
+                  },
+                  {}
+                ],
+                "Wave": 0,
+                "ArmorDropChances": [
+                  0.085,
+                  0.085,
+                  0.085,
+                  0.085
+                ],
+                "ArmorItems": [
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                "HandDropChances": [
+                  0.085,
+                  0.085
+                ],
+                "CanPickUpLoot": false,
+                "PersistenceRequired": true,
+                "id": "minecraft:vindicator",
+                "Patrolling": false
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     },
     {
@@ -175,7 +446,22 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\",tag:{TicksToManifest: 5, EntityTag: {Sitting: 1B, PersistenceRequired: 1B, id: \"minecraft:wolf\", CollarColor: 5B}, SpawnAsAdult: 1B}}}"
+        "nbt": {
+          "MemoryItem": {
+            "Count": 1,
+            "id": "spectrum:memory",
+            "tag": {
+              "TicksToManifest": 5,
+              "EntityTag": {
+                "Sitting": true,
+                "PersistenceRequired": true,
+                "id": "minecraft:wolf",
+                "CollarColor": 5
+              },
+              "SpawnAsAdult": true
+            }
+          }
+        }
       }
     }
   ]

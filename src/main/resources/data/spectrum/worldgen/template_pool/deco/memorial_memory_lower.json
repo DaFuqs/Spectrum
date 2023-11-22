@@ -10,7 +10,13 @@
         "block": {
           "Name": "spectrum:memory"
         },
-        "nbt": "{MemoryItem:{Count:1b,id:\"spectrum:memory\"},TicksToManifest:-1}"
+        "nbt": {
+          "MemoryItem": {
+            "count": 1,
+            "id": "spectrum:memory"
+          },
+          "TicksToManifest": -1
+        }
       }
     }
   ]

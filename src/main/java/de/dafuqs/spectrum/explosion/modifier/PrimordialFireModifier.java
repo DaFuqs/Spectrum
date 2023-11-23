@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.explosion.modifier;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.explosion.*;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.particle.*;
@@ -11,7 +11,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class PrimordialFireModifier extends DamageChangingModifier {
 	
@@ -42,11 +42,10 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 	}
 
 	@Override
-	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-		if (!(owner instanceof LivingEntity living)) {
+	public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
+		if (owner == null) {
 			return Optional.empty();
-		} else {
-			return Optional.of(SpectrumDamageSources.primordialFire(owner.getWorld(), living));
 		}
+		return Optional.of(SpectrumDamageSources.primordialFire(owner.getWorld(), owner));
 	}
 }

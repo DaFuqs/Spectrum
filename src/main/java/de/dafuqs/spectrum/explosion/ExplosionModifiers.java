@@ -13,7 +13,6 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-// TODO - Review changes that accommodates 1.20 damage types
 public class ExplosionModifiers {
 	
 	// MODIFIER TYPES
@@ -36,18 +35,18 @@ public class ExplosionModifiers {
 	public static final ExplosionModifier PRIMORDIAL_FIRE = registerModifier("primordial_fire", new PrimordialFireModifier(DAMAGE_TYPE, SpectrumParticleTypes.PRIMORDIAL_FLAME_SMALL, 0x76254d));
 	public static final ExplosionModifier LIGHTNING = registerModifier("lightning_damage", new DamageChangingModifier(DAMAGE_TYPE, SpectrumParticleTypes.WHITE_EXPLOSION, 0xf0f24d) {
 		@Override
-		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+		public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 			if (owner == null) {
 				return Optional.empty();
 			}
-			return Optional.ofNullable(owner.getDamageSources().lightningBolt());
+			return Optional.of(owner.getDamageSources().lightningBolt());
 		}
 	});
 	public static final ExplosionModifier MAGIC = registerModifier(
 			"magic_damage",
 			new DamageChangingModifier(DAMAGE_TYPE, SpectrumParticleTypes.PURPLE_CRAFTING, 0x5433a5) {
 		@Override
-		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+		public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 			if (owner == null) {
 				return Optional.empty();
 			}
@@ -56,7 +55,7 @@ public class ExplosionModifiers {
 	});
 	public static final ExplosionModifier INCANDESCENCE = registerModifier("incandescence", new DamageChangingModifier(DAMAGE_TYPE, ParticleTypes.ENCHANT, 0xff59ff) {
 		@Override
-		public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+		public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 			if (owner == null) {
 				return Optional.empty();
 			}

@@ -61,7 +61,7 @@ public abstract class ExplosionModifier {
 	}
 	
 	@ApiStatus.OverrideOnly
-	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+	public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 		return Optional.empty();
 	}
 	

@@ -13,69 +13,36 @@ group = project.maven_group
 
 repositories {
 	mavenLocal()
-	maven { url 'https://jitpack.io' }
-	maven { url "https://maven.shedaniel.me/" }
-	maven {
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/"
-	}
-	maven { url "https://maven.nucleoid.xyz/" }
-	/*maven {
-		name = "Enchantment Descriptions"
-		url = 'https://maven.blamejared.com'
-	}*/
-	maven {
-		name = "Patchouli" // https://github.com/Vazkii/Patchouli
-		url = 'https://maven.blamejared.com'
-	}
-	maven {
-		name = "Ladysnake Libs"
-		url = 'https://maven.ladysnake.org/releases'
-	}
-	maven {
-		name = "entity reach attribute"
-		url = "https://maven.jamieswhiteshirt.com/libs-release/"
-	}
-	exclusiveContent {
-		forRepository {
-			maven {
-				name = "Modrinth"
-				url = "https://api.modrinth.com/maven"
-			}
-		}
-		filter {
-			includeGroup "maven.modrinth"
-		}
-	}
-	maven {
-		name = "Curse"
-		url = 'https://cfa2.cursemaven.com'
-	}
-	maven {
-		url "https://repo.unascribed.com"
-		content {
-			includeGroup "com.unascribed"
-		}
-	}
+	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb, Step Height Entity Attribute
+	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
+	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
+	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
+	// maven { url = "https://maven.blamejared.com" } // Enchantment Descriptions
+	maven { url = "https://maven.blamejared.com" } // Patchouli
+	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
+	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
+	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts
+	maven { url = "https://cfa2.cursemaven.com" }
+	maven { url = "https://repo.unascribed.com" } // Ears API
 	mavenCentral()
 }
 
 dependencies {
 	// jetbrains annotations
-	implementation 'org.jetbrains:annotations:24.0.1'
+	implementation ("org.jetbrains:annotations:24.0.1")
 
 	// graph api and its dependencies
-	implementation include('org.jgrapht:jgrapht-core:1.5.1')
-	implementation include('org.jheaps:jheaps:0.13')
+	implementation include("org.jgrapht:jgrapht-core:1.5.1")
+	implementation include("org.jheaps:jheaps:0.13")
 
 	// fabric & api
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	minecraft ("com.mojang:minecraft:${project.minecraft_version}")
+	mappings ("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
+	modImplementation ("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 
 	// mine
-	modImplementation "maven.modrinth:Revelationary:${project.revelationary_version}"
+	modImplementation ("maven.modrinth:Revelationary:${project.revelationary_version}")
 	modImplementation include("maven.modrinth:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
@@ -88,16 +55,16 @@ dependencies {
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
+	modImplementation ("eu.pb4:common-protection-api:${project.cpa_version}")
 
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 
 	// https://github.com/emilyploszaj/emi
-	modCompileOnly "dev.emi:emi-fabric:${emi_version}"
+	modCompileOnly ("dev.emi:emi-fabric:${emi_version}")
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -107,7 +74,7 @@ dependencies {
 	}
 
 	// https://github.com/emilyploszaj/trinkets
-	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
+	modImplementation ("dev.emi:trinkets:${project.trinkets_version}")
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
 	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}")

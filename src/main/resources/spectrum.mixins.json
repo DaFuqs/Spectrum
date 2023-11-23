@@ -95,7 +95,6 @@
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
     "client.MixinParticleManager",
-    "client.MixinRenderLayers",
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",
     "client.TransparentBlockMixin",

@@ -55,7 +55,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-	public static boolean FORCE_TRANSLUCENT = false;
 
 	@Override
 	public void onInitializeClient() {
@@ -124,9 +123,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> Pastel.getClientInstance().renderLines(context));
+		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> Pastel.getClientInstance().renderLines(context));
+		WorldRenderEvents.BLOCK_OUTLINE.register(this::renderExtendedBlockOutline);
 
-		registerBlockOutlineEvent();
 		if (FabricLoader.getInstance().isModLoaded("ears")) {
 			logInfo("Registering Ears Compat...");
 			EarsCompat.register();
@@ -143,29 +142,27 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Client startup completed!");
 	}
 
-	private void registerBlockOutlineEvent() {
-		WorldRenderEvents.BLOCK_OUTLINE.register((context, hitResult) -> {
-			boolean shouldCancel = false;
-			MinecraftClient client = MinecraftClient.getInstance();
-			if (client.player != null && context.blockOutlines()) {
-				for (ItemStack handStack : client.player.getHandItems()) {
-					Item handItem = handStack.getItem();
-					if (handItem instanceof ConstructorsStaffItem) {
-						if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
-							shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
-						}
-						break;
-					} else if (handItem instanceof ExchangeStaffItem) {
-						if (hitResult != null) {
-							shouldCancel = renderExchangeStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), handStack, hitResult);
-						}
-						break;
+	private boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {
+		boolean shouldCancel = false;
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (client.player != null && context.blockOutlines()) {
+			for (ItemStack handStack : client.player.getHandItems()) {
+				Item handItem = handStack.getItem();
+				if (handItem instanceof ConstructorsStaffItem) {
+					if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
+						shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
 					}
+					break;
+				} else if (handItem instanceof ExchangeStaffItem) {
+					if (hitResult != null) {
+						shouldCancel = renderExchangeStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), handStack, hitResult);
+					}
+					break;
 				}
 			}
+		}
 
-			return !shouldCancel;
-		});
+		return !shouldCancel;
 	}
 
 	@Override

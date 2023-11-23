@@ -20,7 +20,6 @@ import java.util.*;
 public class PastelTransmissionParticle extends TransmissionParticle implements EarlyRenderingParticle {
 
     private final ItemRenderer itemRenderer;
-
     private final List<Vec3d> travelPositions;
     private final ItemStack itemStack;
 
@@ -87,10 +86,7 @@ public class PastelTransmissionParticle extends TransmissionParticle implements 
         matrixStack.multiply(camera.getRotation());
         matrixStack.scale(0.65F, 0.65F, 0.65F);
         matrixStack.translate(0, -0.15, 0);
-
-        SpectrumClient.FORCE_TRANSLUCENT = true;
 		itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, light, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumers, world, 0);
-		SpectrumClient.FORCE_TRANSLUCENT = false;
 
         matrixStack.pop();
     }

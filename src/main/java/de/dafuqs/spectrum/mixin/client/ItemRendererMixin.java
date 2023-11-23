@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import java.util.*;
+
 @Environment(EnvType.CLIENT)
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
@@ -28,10 +30,10 @@ public abstract class ItemRendererMixin {
 		SpectrumModelPredicateProviders.currentItemRenderMode = renderMode;
 	}
 
-	// TODO - Verify
-//	@Inject(at = @At("HEAD"), method = "ren")
-//	private void spectrum$storeItemRenderMode3(MatrixStack matrices, LivingEntity entity, World world, ItemStack stack, int x, int y, int seed, CallbackInfo ci) {
-//		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.GUI;
-//	}
+	// workaround for REIs batched item render mode
+	@Inject(at = @At("HEAD"), method = "renderBakedItemQuads(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumer;Ljava/util/List;Lnet/minecraft/item/ItemStack;II)V")
+	private void spectrum$storeItemRenderMode3(MatrixStack matrices, VertexConsumer vertices, List<BakedQuad> quads, ItemStack stack, int light, int overlay, CallbackInfo ci) {
+		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.GUI;
+	}
 	
 }

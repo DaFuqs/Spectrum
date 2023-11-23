@@ -118,7 +118,7 @@ public class ModularExplosion {
 	}
 	
 	private static List<BlockPos> processExplosion(@NotNull ServerWorld world, @Nullable PlayerEntity owner, BlockPos center, ExplosionShape shape, double blastRadius, ItemStack miningStack) {
-		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.DestructionType.DESTROY); // TODO - Review and refactor according to new explosion standards
+		Explosion explosion = new Explosion(world, owner, center.getX(), center.getY(), center.getZ(), (float) blastRadius, false, Explosion.DestructionType.DESTROY);
 		
 		ObjectArrayList<Pair<ItemStack, BlockPos>> drops = new ObjectArrayList<>();
 		List<BlockPos> affectedBlocks = new ArrayList<>();

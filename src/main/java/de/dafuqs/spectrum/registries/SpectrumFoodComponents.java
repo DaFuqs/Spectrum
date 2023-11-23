@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 
-// TODO - Review if the food values are correct
 public class SpectrumFoodComponents {
 	
 	public static final FoodComponent MOONSTRUCK_NECTAR = new FoodComponent.Builder()

@@ -13,17 +13,18 @@ import org.jetbrains.annotations.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
-// TODO - Test refactor
-// General idea of the new damage type refactor:
-// Damage Types handles the logic of how the damage behaves, determined via tags
+// Damage Types handle the logic of how the damage behaves, determined via tags
 // Damage Sources decide how death messages are handled
 // Make a custom damage source if you want a custom message, otherwise just return a damage source with the type you want
 public class SpectrumDamageSources {
+
+	public static boolean recursiveDamageFlag = false;
+
+	// TODO: check
 	public static final TagKey<DamageType> ITEM_IMMUNITY = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("item_immunity"));
 	public static final TagKey<Item> FIRE_IMMUNE_ITEMS = TagKey.of(RegistryKeys.ITEM, locate("fire_immune_items"));
-	public static boolean recursiveDamage = false;
-	// TODO - Move into common?
 	public static final TagKey<DamageType> FAKE_PLAYER_DAMAGE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("fake_player_damage"));
+
 	public static final RegistryKey<DamageType> DECAY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("decay"));
 	public static final RegistryKey<DamageType> FLOATBLOCK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("floatblock"));
 	public static final RegistryKey<DamageType> SHOOTING_STAR = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("shooting_star"));
@@ -167,6 +168,7 @@ public class SpectrumDamageSources {
 		}
 	}
 
+	// TODO: make this a tag?
     // Damage is dealt directly via setHealth(), instead via normal means
     public interface DirectDamage {}
 	

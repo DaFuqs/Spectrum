@@ -5,7 +5,6 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
 
-
 public class SpectrumStatusEffectTags {
 	
 	public static TagKey<StatusEffect> UNCURABLE;
@@ -19,12 +18,9 @@ public class SpectrumStatusEffectTags {
 	private static TagKey<StatusEffect> of(String id) {
 		return TagKey.of(RegistryKeys.STATUS_EFFECT, SpectrumCommon.locate(id));
 	}
-	
-	// TODO - Review, upstream handles this by using an Optional Registry Entry
+
 	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {
-		int id = Registries.STATUS_EFFECT.getRawId(effect);
-		var entry = Registries.STATUS_EFFECT.getEntry(id);
-		return entry.map(statusEffectRegistryEntry -> statusEffectRegistryEntry.isIn(tag)).orElse(false);
+		return Registries.STATUS_EFFECT.getEntry(effect).isIn(tag);
 	}
 	
 	public static boolean isUncurable(StatusEffect statusEffect) {

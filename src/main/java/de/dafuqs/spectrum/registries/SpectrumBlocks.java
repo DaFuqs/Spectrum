@@ -1142,11 +1142,11 @@ public class SpectrumBlocks {
 	public static final BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 	
 	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
-	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GLISTERING);
-	public static final ShootingStarBlock FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.FIERY);
-	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.COLORFUL);
-	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.PRISTINE);
-	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStarBlock.Type.GEMSTONE);
+	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.GLISTERING);
+	public static final ShootingStarBlock FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.FIERY);
+	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.COLORFUL);
+	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.PRISTINE);
+	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.GEMSTONE);
 	
 	public static final Block INCANDESCENT_AMALGAM = new IncandescentAmalgamBlock(FabricBlockSettings.create().breakInstantly().nonOpaque());
 	

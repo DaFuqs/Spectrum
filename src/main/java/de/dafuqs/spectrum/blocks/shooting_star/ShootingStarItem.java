@@ -15,13 +15,13 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ShootingStarItem extends BlockItem {
+public class ShootingStarItem extends BlockItem implements ShootingStar {
 	
-	private final ShootingStarBlock.Type type;
+	private final Type shootingStarType;
 	
 	public ShootingStarItem(ShootingStarBlock block, Settings settings) {
 		super(block, settings);
-		this.type = block.shootingStarType;
+		this.shootingStarType = block.shootingStarType;
 	}
 	
 	public static int getRemainingHits(@NotNull ItemStack itemStack) {
@@ -59,10 +59,8 @@ public class ShootingStarItem extends BlockItem {
 				ItemStack itemStack = context.getStack();
 				Vec3d hitPos = context.getHitPos();
 				PlayerEntity user = context.getPlayer();
-				
-				ShootingStarEntity shootingStarEntity = new ShootingStarEntity(context.getWorld(), hitPos.x, hitPos.y, hitPos.z);
-				shootingStarEntity.setShootingStarType(this.type, true, isHardened(itemStack));
-				shootingStarEntity.setAvailableHits(getRemainingHits(context.getStack()));
+
+				ShootingStarEntity shootingStarEntity = getEntityForStack(context.getWorld(), hitPos, itemStack);
 				shootingStarEntity.setYaw(user.getYaw());
 				if (!world.isSpaceEmpty(shootingStarEntity, shootingStarEntity.getBoundingBox())) {
 					return ActionResult.FAIL;
@@ -80,7 +78,15 @@ public class ShootingStarItem extends BlockItem {
 			return ActionResult.success(world.isClient);
 		}
 	}
-	
+
+	@NotNull
+	public ShootingStarEntity getEntityForStack(@NotNull World world, Vec3d pos, ItemStack stack) {
+		ShootingStarEntity shootingStarEntity = new ShootingStarEntity(world, pos.x, pos.y, pos.z);
+		shootingStarEntity.setShootingStarType(this.shootingStarType, true, isHardened(stack));
+		shootingStarEntity.setAvailableHits(getRemainingHits(stack));
+		return shootingStarEntity;
+	}
+
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
@@ -89,8 +95,8 @@ public class ShootingStarItem extends BlockItem {
 		}
 	}
 	
-	public ShootingStarBlock.Type getType() {
-		return this.type;
+	public ShootingStar.Type getShootingStarType() {
+		return this.shootingStarType;
 	}
 	
 	public static boolean isHardened(ItemStack itemStack) {
@@ -103,5 +109,5 @@ public class ShootingStarItem extends BlockItem {
 		nbt.putBoolean("Hardened", true);
 		itemStack.setNbt(nbt);
 	}
-	
+
 }

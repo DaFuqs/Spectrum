@@ -18,11 +18,11 @@ public class SpectrumDispenserBehaviors {
 		DispenserBlock.registerBehavior(SpectrumItems.BEDROCK_SHEARS, new ShearsDispenserBehavior());
 		
 		// Shooting Stars
-		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR, new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.FIERY_SHOOTING_STAR, new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.GEMSTONE_SHOOTING_STAR, new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.GLISTERING_SHOOTING_STAR, new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.PRISTINE_SHOOTING_STAR, new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR, new ShootingStarDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.FIERY_SHOOTING_STAR, new ShootingStarDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.GEMSTONE_SHOOTING_STAR, new ShootingStarDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.GLISTERING_SHOOTING_STAR, new ShootingStarDispenserBehavior());
+		DispenserBlock.registerBehavior(SpectrumBlocks.PRISTINE_SHOOTING_STAR, new ShootingStarDispenserBehavior());
 		
 		// Fluid Buckets
 		DispenserBehavior fluidBucketBehavior = SpectrumBlocks.ENDER_DROPPER.getDefaultBehaviorForItem(Items.WATER_BUCKET.getDefaultStack());

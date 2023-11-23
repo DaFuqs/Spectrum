@@ -176,17 +176,17 @@ public abstract class LivingEntityMixin {
 		}
 
 		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt
-		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
+		if (!SpectrumDamageSources.recursiveDamageFlag && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
-				SpectrumDamageSources.recursiveDamage = true;
+				SpectrumDamageSources.recursiveDamageFlag = true;
 				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
 				
 				for (Pair<DamageSource, Float> entry : composition.get()) {
 					damage(entry.getLeft(), entry.getRight());
 				}
 				
-				SpectrumDamageSources.recursiveDamage = false;
+				SpectrumDamageSources.recursiveDamageFlag = false;
 			}
 		}
 	}

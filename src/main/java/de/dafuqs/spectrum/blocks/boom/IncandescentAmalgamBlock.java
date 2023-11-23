@@ -22,7 +22,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Waterloggable {
+public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterloggable {
 	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 	

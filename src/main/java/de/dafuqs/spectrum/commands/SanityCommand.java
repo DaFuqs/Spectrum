@@ -86,7 +86,7 @@ public class SanityCommand {
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
 
-				if (block instanceof PlaceableItemBlock) {
+				if (block instanceof PlacedItemBlock) {
 					continue; // that one always drops itself via code
 				}
 

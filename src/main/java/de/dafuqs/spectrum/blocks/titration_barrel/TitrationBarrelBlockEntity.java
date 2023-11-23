@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -186,8 +187,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 					}
 					if (canTap) {
 						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-						// TODO - Find a way to access the Biome Weather to get its downfall
-						harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getPrecipitation(this.pos).compareTo(Biome.Precipitation.RAIN));
+						float downfall = ((BiomeAccessor)(Object) biome).getWeather().downfall();
+						harvestedStack = recipe.tap(this.inventory, secondsFermented, downfall);
 						
 						int daysSealed = getSealMinecraftDays();
 						int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);

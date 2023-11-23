@@ -351,14 +351,14 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private void particleButtonPressed(ButtonWidget buttonWidget) {
 		int buttonIndex = particleButtons.indexOf(buttonWidget);
 		int newIndex = PARTICLES_PER_PAGE * activeParticlePage + buttonIndex;
-		
+
+		ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(newIndex);
+		setColoringEnabled(entry.supportsColoring());
+
 		if (newIndex < displayedParticleEntries.size()) {
 			particleSelectionIndex = newIndex;
 			onValuesChanged();
 		}
-		
-		ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(newIndex);
-		setColoringEnabled(entry.supportsColoring());
 	}
 	
 	private void setColoringEnabled(boolean enabled) {

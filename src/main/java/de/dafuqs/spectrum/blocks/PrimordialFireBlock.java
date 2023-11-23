@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -150,14 +151,16 @@ public class PrimordialFireBlock extends AbstractFireBlock {
                     }
                 }
 
-                this.trySpreadingFire(world, pos.east(), 300, random);
-                this.trySpreadingFire(world, pos.west(), 300, random);
-                this.trySpreadingFire(world, pos.down(), 250, random);
-                this.trySpreadingFire(world, pos.up(), 250, random);
-                this.trySpreadingFire(world, pos.north(), 300, random);
-                this.trySpreadingFire(world, pos.south(), 300, random);
-                BlockPos.Mutable mutable = new BlockPos.Mutable();
+                boolean biomeHasIncreasedFireBurnout = world.getBiome(pos).isIn(BiomeTags.INCREASED_FIRE_BURNOUT);
+                int spreadReduction = biomeHasIncreasedFireBurnout ? -50 : 0;
+                this.trySpreadingFire(world, pos.east(), 300 + spreadReduction, random);
+                this.trySpreadingFire(world, pos.west(), 300 + spreadReduction, random);
+                this.trySpreadingFire(world, pos.down(), 250 + spreadReduction, random);
+                this.trySpreadingFire(world, pos.up(), 250 + spreadReduction, random);
+                this.trySpreadingFire(world, pos.north(), 300 + spreadReduction, random);
+                this.trySpreadingFire(world, pos.south(), 300 + spreadReduction, random);
 
+                BlockPos.Mutable mutable = new BlockPos.Mutable();
                 for (int x = -1; x <= 1; ++x) {
                     for (int z = -1; z <= 1; ++z) {
                         for (int y = -1; y <= 4; ++y) {

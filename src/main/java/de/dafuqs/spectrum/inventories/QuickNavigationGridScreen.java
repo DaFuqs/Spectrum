@@ -19,7 +19,6 @@ import org.joml.*;
 
 import java.util.*;
 
-// FIXME - No colors.
 public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledScreen<T> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;

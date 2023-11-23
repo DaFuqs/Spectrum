@@ -30,6 +30,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static final int USE_DURATION = 12;
 	public static final int REACH_STEP_DISTANCE = 4;
 	public static final int MAX_REACH_STEPS = 8;
+	public static final int PLACEMENT_TRIES_PER_STEP = 4;
 	public static final int MIN_LIGHT_LEVEL = 10;
 	
 	public static final ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM, 1);
@@ -142,19 +143,33 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		
 		BlockPos sourcePos = user.getBlockPos();
 		Vec3d cameraVec = user.getRotationVec(0);
-		
-		// TODO - Test if this is accurate
+
 		for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
-			BlockPos targetPos = sourcePos.add(MathHelper.floor(cameraVec.x) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.y) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.z) * iteration * 4);
-			targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
-			
-			if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
-				if (placeLight(world, targetPos, user)) {
-					playSoundAndParticles(world, targetPos, user, useTimes, iteration);
-				} else {
-					playDenySound(world, user);
+			BlockPos targetPos = sourcePos.add(
+					MathHelper.floor(cameraVec.x * iteration * REACH_STEP_DISTANCE),
+					MathHelper.floor(cameraVec.y * iteration * REACH_STEP_DISTANCE),
+					MathHelper.floor(cameraVec.z * iteration * REACH_STEP_DISTANCE)
+			);
+
+			boolean success = false;
+			for(int tries = 0; tries < PLACEMENT_TRIES_PER_STEP; tries++) {
+				targetPos = targetPos.add(
+						iteration - world.getRandom().nextInt(2 * iteration),
+						iteration - world.getRandom().nextInt(2 * iteration),
+						iteration - world.getRandom().nextInt(2 * iteration)
+				);
+
+				if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {
+					if (placeLight(world, targetPos, user)) {
+						success = true;
+						playSoundAndParticles(world, targetPos, user, useTimes, iteration);
+						break;
+					}
 				}
-				break;
+			}
+
+			if(!success) {
+				playDenySound(world, user);
 			}
 		}
 	}

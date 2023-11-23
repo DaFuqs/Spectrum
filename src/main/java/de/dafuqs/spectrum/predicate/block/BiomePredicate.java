@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.predicate.block;
 
 import com.google.gson.*;
-import net.minecraft.server.world.*;
+import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.server.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.registry.*;
 import net.minecraft.world.biome.*;
-
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 public class BiomePredicate {
     public static final BiomePredicate ANY = new BiomePredicate(null, null);
@@ -44,7 +43,6 @@ public class BiomePredicate {
         
         Biome biome = null;
         if (biomeObject.has("biome")) {
-            // TODO - Review this lookup
             Identifier biomeId = new Identifier(JsonHelper.getString(biomeObject, "biome"));
             biome = BuiltinRegistries.createWrapperLookup().getWrapperOrThrow(RegistryKeys.BIOME).getOrThrow(RegistryKey.of(RegistryKeys.BIOME, biomeId)).value();
         }

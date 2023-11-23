@@ -63,6 +63,7 @@
     "TemptGoalMixin",
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
+    "accessors.BiomeAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",

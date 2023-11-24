@@ -477,6 +477,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.FOUR_LEAF_CLOVER);
 		entries.add(SpectrumBlocks.BLOOD_ORCHID);
 		entries.add(SpectrumBlocks.QUITOXIC_REEDS);
+		entries.add(SpectrumItems.QUITOXIC_POWDER);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		entries.add(SpectrumBlocks.AMARANTH_BUSHEL);
 		entries.add(SpectrumItems.TOPAZ_SHARD);
@@ -518,7 +519,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.REFINED_BLOODSTONE);
 		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
 		entries.add(SpectrumItems.RESONANCE_SHARD);
-		entries.add(SpectrumItems.QUITOXIC_POWDER);
 		entries.add(SpectrumItems.MERMAIDS_GEM);
 		entries.add(SpectrumItems.STORM_STONE);
 		entries.add(SpectrumItems.STAR_FRAGMENT);

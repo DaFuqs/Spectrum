@@ -37,7 +37,7 @@ public class SpectrumBannerPatterns {
 	
 	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
 		BannerPattern pattern = Registry.register(Registries.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
-		return Registries.BANNER_PATTERN.getEntry(Registries.BANNER_PATTERN.getKey(pattern).get()).get();
+		return Registries.BANNER_PATTERN.entryOf(Registries.BANNER_PATTERN.getKey(pattern).get());
 	}
 	
 	public static void register() {

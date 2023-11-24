@@ -448,14 +448,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SMALL_BISMUTH_BUD);
 		entries.add(SpectrumBlocks.LARGE_BISMUTH_BUD);
 		entries.add(SpectrumBlocks.BISMUTH_CLUSTER);
-		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
 		entries.add(SpectrumBlocks.MALACHITE_ORE);
 		entries.add(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
 		entries.add(SpectrumBlocks.SMALL_MALACHITE_BUD);
 		entries.add(SpectrumBlocks.LARGE_MALACHITE_BUD);
 		entries.add(SpectrumBlocks.MALACHITE_CLUSTER);
-		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
 		entries.add(SpectrumBlocks.BLACKSLAG_COAL_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_COPPER_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_IRON_ORE);
@@ -470,7 +468,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
-		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
 		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
 		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
@@ -907,6 +904,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		entries.add(SpectrumBlocks.AZURITE_BLOCK);
+		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
+		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
+		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
 		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);

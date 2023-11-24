@@ -471,9 +471,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
 		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
-		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
-		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
-		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
 		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
 		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
 		entries.add(SpectrumBlocks.CLOVER);
@@ -958,6 +955,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_DECOSTONE);
 		entries.add(SpectrumBlocks.ONYX_DECOSTONE);
 		entries.add(SpectrumBlocks.MOONSTONE_DECOSTONE);
+		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
+		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
+		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
 		entries.add(SpectrumBlocks.WHITE_BLOCK);
 		entries.add(SpectrumBlocks.ORANGE_BLOCK);
 		entries.add(SpectrumBlocks.MAGENTA_BLOCK);

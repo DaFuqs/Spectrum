@@ -472,7 +472,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
 		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
 		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
+		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
+		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
 		entries.add(SpectrumBlocks.CLOVER);
 		entries.add(SpectrumBlocks.FOUR_LEAF_CLOVER);
 		entries.add(SpectrumBlocks.BLOOD_ORCHID);
@@ -543,8 +545,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.BISMUTH_CRYSTAL);
 		entries.add(SpectrumItems.RAW_MALACHITE);
 		entries.add(SpectrumItems.REFINED_MALACHITE);
-		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
-		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumItems.BONE_ASH);
 		entries.add(SpectrumItems.MOONSTONE_CORE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);

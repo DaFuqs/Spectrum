@@ -27,6 +27,7 @@
     "EntityMixin",
     "EntityTypeMixin",
     "ExplosionMixin",
+    "FallingBlockEntityMixin",
     "FarmlandBlockMixin",
     "FirstStrikeEnchantmentMixin",
     "FishingHookPredicateMixin",

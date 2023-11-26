@@ -104,8 +104,8 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 				itemsChanged = true;
 			} else {
 				if (!handStack.isEmpty()) {
-					ItemStack singleStack = handStack.split(1);
-					blockEntity.setStack(slot, singleStack);
+					blockEntity.setStack(slot, handStack.copy());
+					handStack.setCount(0);
 					itemsChanged = true;
 				}
 				if (!currentStack.isEmpty()) {

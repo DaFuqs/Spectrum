@@ -47,7 +47,9 @@ public class JeopardantKillCriterion extends AbstractCriterion<JeopardantKillCri
 		}
 		
 		public boolean test(ServerPlayerEntity player, LootContext killedEntityContext, DamageSource killingBlow) {
-			return this.killingBlow.test(player, killingBlow) && this.entity.test(killedEntityContext) && this.livesLeft.test(Math.round(player.getHealth()));
+			return (this.killingBlow == null || this.killingBlow.test(player, killingBlow))
+					&& (this.entity == null || this.entity.test(killedEntityContext))
+					&& (this.livesLeft == null || this.livesLeft.test(Math.round(player.getHealth())));
 		}
 		
 		@Override

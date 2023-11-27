@@ -1,13 +1,6 @@
 {
-  "location": {
-    "dimension": {
-      "worlds": [
-        "spectrum:deeper_down"
-      ]
-    },
-    "fluid": {
-      "tag": "minecraft:water"
-    }
+  "fluid": {
+    "tag": "minecraft:water"
   },
   "dimension": {
     "worlds": [

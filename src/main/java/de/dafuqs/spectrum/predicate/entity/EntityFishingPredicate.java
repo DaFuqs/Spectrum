@@ -53,15 +53,13 @@ public class EntityFishingPredicate {
 	}
 	
 	public boolean test(ServerWorld world, BlockPos pos) {
-		return (
-				this.fluidPredicate.test(world, pos) &&
-						this.biomePredicate.test(world, pos) &&
-						this.lightPredicate.test(world, pos) &&
-						this.dimensionPredicate.test(world, pos) &&
-						this.moonPhasePredicate.test(world, pos) &&
-						this.timeOfDayPredicate.test(world, pos) &&
-						this.weatherPredicate.test(world, pos) &&
-						this.commandPredicate.test(world, pos)
-		);
+		return (this.fluidPredicate.test(world, pos) &&
+				this.biomePredicate.test(world, pos) &&
+				this.lightPredicate.test(world, pos) &&
+				this.dimensionPredicate.test(world, pos) &&
+				this.moonPhasePredicate.test(world, pos) &&
+				this.timeOfDayPredicate.test(world, pos) &&
+				this.weatherPredicate.test(world, pos) &&
+				this.commandPredicate.test(world, pos));
 	}
 }

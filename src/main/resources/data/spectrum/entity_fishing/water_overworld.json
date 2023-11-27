@@ -1,13 +1,6 @@
 {
-  "location": {
-    "dimension": {
-      "worlds": [
-        "minecraft:overworld"
-      ]
-    },
-    "fluid": {
-      "tag": "minecraft:water"
-    }
+  "fluid": {
+    "tag": "minecraft:water"
   },
   "dimension": {
     "worlds": [

@@ -1,13 +1,6 @@
 {
-  "location": {
-    "dimension": {
-      "worlds": [
-        "minecraft:the_end"
-      ]
-    },
-    "fluid": {
-      "tag": "minecraft:water"
-    }
+  "fluid": {
+    "tag": "minecraft:water"
   },
   "dimension": {
     "worlds": [

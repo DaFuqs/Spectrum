@@ -1,8 +1,6 @@
 {
-  "location": {
-    "fluid": {
-      "tag": "spectrum:mud"
-    }
+  "fluid": {
+    "tag": "spectrum:mud"
   },
   "chance": 0.05,
   "entities": [

@@ -1,8 +1,6 @@
 {
-  "location": {
-    "fluid": {
-      "tag": "spectrum:midnight_solution"
-    }
+  "fluid": {
+    "tag": "spectrum:midnight_solution"
   },
   "chance": 0.25,
   "entities": [

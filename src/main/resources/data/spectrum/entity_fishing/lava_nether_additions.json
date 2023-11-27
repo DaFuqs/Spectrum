@@ -1,13 +1,6 @@
 {
-  "location": {
-    "dimension": {
-      "worlds": [
-        "minecraft:the_nether"
-      ]
-    },
-    "fluid": {
-      "tag": "minecraft:lava"
-    }
+  "fluid": {
+    "tag": "minecraft:lava"
   },
   "dimension": {
     "worlds": [

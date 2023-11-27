@@ -48,8 +48,11 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("rod"));
 		LootContextPredicate bobber = LootContextPredicate.fromJson("bobber", predicateDeserializer, jsonObject, LootContextTypes.FISHING);
+		bobber = bobber == null ? LootContextPredicate.EMPTY : bobber;
 		LootContextPredicate hookedEntity = LootContextPredicate.fromJson("fishing", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
+		hookedEntity = hookedEntity == null ? LootContextPredicate.EMPTY : hookedEntity;
 		LootContextPredicate fishedEntity = LootContextPredicate.fromJson("fished_entity", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
+		fishedEntity = fishedEntity == null ? LootContextPredicate.EMPTY : fishedEntity;
 		ItemPredicate itemPredicate2 = ItemPredicate.fromJson(jsonObject.get("item"));
 		FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
 		return new SpectrumFishingRodHookedCriterion.Conditions(playerPredicate, itemPredicate, bobber, hookedEntity, fishedEntity, itemPredicate2, fluidPredicate);

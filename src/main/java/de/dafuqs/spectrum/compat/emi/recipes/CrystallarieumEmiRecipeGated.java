@@ -24,8 +24,8 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 		);
 		outputs = Stream.concat(
 				Stream.concat(
-								Stream.of(recipe.getOutput()),
-								recipe.getAdditionalOutputs().stream())
+								Stream.of(recipe.getOutput(getRegistryManager())),
+								recipe.getAdditionalOutputs(getRegistryManager()).stream())
 						.map(EmiStack::of),
 				recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
 		).toList();

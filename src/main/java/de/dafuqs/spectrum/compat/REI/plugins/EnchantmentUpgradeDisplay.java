@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
@@ -24,7 +25,7 @@ public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	protected final int requiredItemCount;
 	
 	public EnchantmentUpgradeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput());
+		super(recipe, buildIngredients(recipe), recipe.getOutput(BasicDisplay.registryAccess()));
 		
 		this.enchantment = recipe.getEnchantment();
 		this.enchantmentDestinationLevel = recipe.getEnchantmentDestinationLevel();

@@ -92,7 +92,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return getDefaultTap(1);
 	}
 	

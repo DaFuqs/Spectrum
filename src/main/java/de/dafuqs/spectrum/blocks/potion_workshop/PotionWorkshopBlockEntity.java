@@ -217,7 +217,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		// output
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput().copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(potionWorkshopBlockEntity.world.getRegistryManager()).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {

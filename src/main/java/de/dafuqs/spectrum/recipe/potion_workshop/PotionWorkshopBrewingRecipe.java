@@ -133,7 +133,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		if (this.cachedOutput == null) {
 			this.cachedOutput = getPotion(Items.POTION.getDefaultStack(), new PotionMod(), null, Random.create());
 		}

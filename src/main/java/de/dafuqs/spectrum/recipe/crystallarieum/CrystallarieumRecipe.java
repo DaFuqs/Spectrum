@@ -88,7 +88,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		List<BlockState> states = getGrowthStages();
 		return states.get(states.size() - 1).getBlock().asItem().getDefaultStack();
 	}
@@ -161,8 +161,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	public List<CrystallarieumCatalyst> getCatalysts() {
 		return this.catalysts;
 	}
-
-	public List<ItemStack> getAdditionalOutputs() {
+	
+	public List<ItemStack> getAdditionalOutputs(DynamicRegistryManager registryManager) {
 		return additionalOutputs;
 	}
 

@@ -148,7 +148,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (recipe.isEmpty() || !getFluidVariant().isOf(recipe.getFluidInput())) {
 			return true;
 		}
-		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(temperature, getSealSeconds());
+		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
 	}
 	
 	public void addDayOfSealTime() {

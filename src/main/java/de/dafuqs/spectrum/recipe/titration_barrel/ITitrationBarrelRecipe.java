@@ -10,6 +10,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 import java.util.*;
 
@@ -32,16 +33,16 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	float getAngelsSharePerMcDay();
 	
 	// the amount of bottles able to get out of a single barrel
-	default int getOutputCountAfterAngelsShare(float temperature, long secondsFermented) {
+	default int getOutputCountAfterAngelsShare(World world, float temperature, long secondsFermented) {
 		if (getFermentationData() == null) {
-			return getOutput().getCount();
+			return getOutput(world.getRegistryManager()).getCount();
 		}
 		
 		float angelsSharePercent = getAngelsSharePercent(secondsFermented, temperature);
 		if (angelsSharePercent > 0) {
-			return (int) (getOutput().getCount() * Math.ceil(1F - angelsSharePercent / 100F));
+			return (int) (getOutput(world.getRegistryManager()).getCount() * Math.ceil(1F - angelsSharePercent / 100F));
 		} else {
-			return (int) (getOutput().getCount() * Math.floor(1F - angelsSharePercent / 100F));
+			return (int) (getOutput(world.getRegistryManager()).getCount() * Math.floor(1F - angelsSharePercent / 100F));
 		}
 	}
 	

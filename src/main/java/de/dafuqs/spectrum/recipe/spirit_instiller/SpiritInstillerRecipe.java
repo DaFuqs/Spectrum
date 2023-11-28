@@ -74,7 +74,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return outputItemStack.copy();
 	}
 	

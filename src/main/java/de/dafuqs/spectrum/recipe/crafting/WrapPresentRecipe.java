@@ -24,7 +24,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return SpectrumBlocks.PRESENT.asItem().getDefaultStack();
 	}
 	

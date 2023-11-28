@@ -3,19 +3,18 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
-import net.id.incubus_core.recipe.IngredientStack;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-
-import java.util.List;
-
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
-public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends PageGatedRecipe<T> {
+import java.util.*;
+
+public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends PageGatedRecipeSingle<T> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/potion_workshop.png");
 	
@@ -33,11 +32,11 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull PotionWorkshopRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull PotionWorkshopRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
-		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX -2, recipeY -2, 0, 0, 104, 97, 128, 256);
-
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
@@ -52,7 +51,7 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 42, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 82, recipeY + 24, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

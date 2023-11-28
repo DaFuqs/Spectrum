@@ -17,7 +17,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PageEnchantmentUpgradeRecipe extends PageGatedRecipe<EnchantmentUpgradeRecipe> {
+public class PageEnchantmentUpgradeRecipe extends PageGatedRecipeSingle<EnchantmentUpgradeRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/enchanter_crafting.png");
 	
@@ -35,10 +35,10 @@ public class PageEnchantmentUpgradeRecipe extends PageGatedRecipe<EnchantmentUpg
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull EnchantmentUpgradeRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull EnchantmentUpgradeRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY, 0, 0, 100, 80, 256, 256);
-
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
@@ -73,7 +73,7 @@ public class PageEnchantmentUpgradeRecipe extends PageGatedRecipe<EnchantmentUpg
 		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultStack());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 81, recipeY + 31, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

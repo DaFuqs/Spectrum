@@ -3,12 +3,9 @@ package de.dafuqs.spectrum.recipe;
 import de.dafuqs.spectrum.progression.*;
 import net.fabricmc.api.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
-import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
@@ -37,11 +34,4 @@ public interface GatedRecipe extends Recipe<Inventory> {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
-	default ItemStack getOutput() {
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (client != null && client.world != null) {
-			return this.getOutput(client.world.getRegistryManager());
-		}
-		return this.getOutput(DynamicRegistryManager.EMPTY);
-	}
 }

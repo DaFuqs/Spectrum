@@ -16,7 +16,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PageSpiritInstillerCrafting extends PageGatedRecipe<SpiritInstillerRecipe> {
+public class PageSpiritInstillerCrafting extends PageGatedRecipeSingle<SpiritInstillerRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/spirit_instiller.png");
 	private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
@@ -35,10 +35,10 @@ public class PageSpiritInstillerCrafting extends PageGatedRecipe<SpiritInstiller
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull SpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull SpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
 		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
-
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
@@ -55,7 +55,7 @@ public class PageSpiritInstillerCrafting extends PageGatedRecipe<SpiritInstiller
 		parent.renderItemStack(drawContext, recipeX + 44, recipeY + 25, mouseX, mouseY, ITEM_BOWL_STACK);
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 79, recipeY + 8, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

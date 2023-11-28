@@ -14,7 +14,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.random.Random;
@@ -104,17 +104,13 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
 		return this.getOutput(registryManager).copy();
 	}
-	
-	public ItemStack craft() {
-		return this.getOutput().copy();
-	}
 
 	public PedestalRecipeTier getTier() {
 		return this.tier;
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return this.output;
 	}
 	

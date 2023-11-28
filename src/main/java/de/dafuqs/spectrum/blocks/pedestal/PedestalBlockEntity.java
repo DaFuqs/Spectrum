@@ -758,7 +758,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		if (this.currentRecipe instanceof PedestalRecipe pedestalRecipe) {
-			return pedestalRecipe.craft();
+			return pedestalRecipe.craft(this, this.world.getRegistryManager());
 		}
 		
 		if (this.currentRecipe instanceof CraftingRecipe craftingRecipe) {

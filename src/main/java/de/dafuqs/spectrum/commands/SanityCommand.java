@@ -184,19 +184,20 @@ public class SanityCommand {
 		testRecipeUnlocks(SpectrumRecipeTypes.CRYSTALLARIEUM, "Crystallarieum", recipeManager, advancementLoader);
 		testRecipeUnlocks(SpectrumRecipeTypes.CINDERHEARTH, "Cinderhearth", recipeManager, advancementLoader);
 		testRecipeUnlocks(SpectrumRecipeTypes.TITRATION_BARREL, "Titration Barrel", recipeManager, advancementLoader);
-
-		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.FUSION_SHRINE, "Fusion Shrine", recipeManager, advancementLoader);
-		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTER, "Enchanting", recipeManager, advancementLoader);
-		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, advancementLoader);
-
-
+		
+		DynamicRegistryManager registryManager = source.getRegistryManager();
+		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.FUSION_SHRINE, "Fusion Shrine", recipeManager, registryManager);
+		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTER, "Enchanting", recipeManager, registryManager);
+		testIngredientsAndOutputInColorRegistry(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, "Enchantment Upgrade", recipeManager, registryManager);
+		
+		
 		// Impossible to unlock block cloaks
 		for (Map.Entry<Identifier, List<BlockState>> cloaks : RevelationRegistry.getBlockStateEntries().entrySet()) {
 			if (advancementLoader.get(cloaks.getKey()) == null) {
 				SpectrumCommon.logWarning("[SANITY: Block Cloaks] Advancement '" + cloaks.getKey().toString() + "' for block / item cloaking does not exist. Registered cloaks: " + cloaks.getValue().size());
 			}
 		}
-
+		
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
 			for (AdvancementCriterion criterion : advancement.getCriteria().values()) {
 				CriterionConditions conditions = criterion.getConditions();
@@ -389,8 +390,8 @@ public class SanityCommand {
 			}
 		}
 	}
-
-	private static <R extends GatedRecipe> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, ServerAdvancementLoader advancementLoader) {
+	
+	private static <R extends GatedRecipe> void testIngredientsAndOutputInColorRegistry(RecipeType<R> recipeType, String name, RecipeManager recipeManager, DynamicRegistryManager registryManager) {
 		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
 			for (Ingredient inputIngredient : recipe.getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
@@ -399,7 +400,7 @@ public class SanityCommand {
 					}
 				}
 			}
-			Item outputItem = recipe.getOutput().getItem();
+			Item outputItem = recipe.getOutput(registryManager).getItem();
 			if (outputItem != null && outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + Registries.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}

@@ -39,11 +39,9 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.enableBlend();
 		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
-
-		parent.drawCenteredStringNoShadow(drawContext, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		Fluid fluid = recipe.getFluidInput();
 		boolean usesFluid = fluid != Fluids.EMPTY;
@@ -81,7 +79,7 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 		}
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 		
 		// the duration
 		if (second) {
@@ -101,7 +99,7 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 	
 	@Override
 	protected int getRecipeHeight() {
-		return 66;
+		return 56;
 	}
 	
 }

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.google.gson.annotations.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -59,8 +58,12 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
-    public boolean isPageUnlocked() {
-		return super.isPageUnlocked() && recipe != null;
+	public boolean isPageUnlocked() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		if (!super.isPageUnlocked() || recipe == null) {
+			return false;
+		}
+		return recipe.canPlayerCraft(client.player);
 	}
 	
 	@Override
@@ -76,16 +79,6 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	}
 	
 	@Override
-	public void render(DrawContext drawContext, int mouseX, int mouseY, float tickDelta) {
-		if (recipe != null) {
-			int recipeX = getX();
-			int recipeY = getY();
-			drawRecipe(drawContext, recipe, recipeX, recipeY, mouseX, mouseY);
-		}
-		super.render(drawContext, mouseX, mouseY, tickDelta);
-	}
-	
-	@Override
 	public int getTextHeight() {
 		return getY() + getRecipeHeight() - 13;
 	}
@@ -94,8 +87,6 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	public boolean shouldRenderText() {
 		return getTextHeight() + 10 < GuiBook.PAGE_HEIGHT;
 	}
-	
-	protected abstract void drawRecipe(DrawContext drawContext, T recipe, int recipeX, int recipeY, int mouseX, int mouseY);
 	
 	protected abstract ItemStack getRecipeOutput(World world, T recipe);
 	

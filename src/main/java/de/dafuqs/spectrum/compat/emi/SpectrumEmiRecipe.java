@@ -6,6 +6,7 @@ import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.client.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -27,6 +28,10 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		this.recipeIdentifier = recipeIdentifier;
 		this.width = width;
 		this.height = height;
+	}
+	
+	public DynamicRegistryManager getRegistryManager() {
+		return MinecraftClient.getInstance().world.getRegistryManager();
 	}
 	
 	public boolean isUnlocked() {

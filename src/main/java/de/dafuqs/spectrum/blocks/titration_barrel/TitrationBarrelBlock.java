@@ -248,7 +248,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					if (recipe.isEmpty()) return 0;
 					
 					float curr = blockEntity.extractedBottles;
-					float max = recipe.get().getOutputCountAfterAngelsShare(biome.getTemperature(), blockEntity.getSealSeconds());
+					float max = recipe.get().getOutputCountAfterAngelsShare(world, biome.getTemperature(), blockEntity.getSealSeconds());
 					
 					return MathHelper.floor((1.0f - curr / max) * 15.0f);
 				}

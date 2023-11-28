@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
@@ -10,7 +11,7 @@ import net.minecraft.util.*;
 public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
 	
 	public FluidConvertingDisplay(FluidConvertingRecipe recipe) {
-		super(recipe, recipe.getIngredients().get(0), recipe.getOutput());
+		super(recipe, recipe.getIngredients().get(0), recipe.getOutput(BasicDisplay.registryAccess()));
 	}
 	
 	public final EntryIngredient getIn() {

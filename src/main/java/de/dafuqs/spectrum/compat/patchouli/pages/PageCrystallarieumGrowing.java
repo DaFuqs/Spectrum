@@ -18,7 +18,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PageCrystallarieumGrowing extends PageGatedRecipe<CrystallarieumRecipe> {
+public class PageCrystallarieumGrowing extends PageGatedRecipeSingle<CrystallarieumRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 	private static BookTextRenderer textRenderer;
@@ -37,11 +37,11 @@ public class PageCrystallarieumGrowing extends PageGatedRecipe<CrystallarieumRec
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull CrystallarieumRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull CrystallarieumRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
-
+		
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 3, recipeY, 0, 0, 53, 25, 128, 128);
-
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredient

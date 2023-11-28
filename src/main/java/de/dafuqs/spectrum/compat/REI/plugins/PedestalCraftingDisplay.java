@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.id.incubus_core.recipe.*;
@@ -27,7 +28,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalRecipe recipe) {
-		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess()))));
 		this.pedestalRecipeTier = recipe.getTier();
 		this.width = recipe.getWidth();
 		this.height = recipe.getHeight();

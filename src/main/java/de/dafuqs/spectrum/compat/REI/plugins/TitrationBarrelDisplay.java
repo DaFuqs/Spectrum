@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
@@ -34,7 +35,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
-			return EntryIngredients.of(recipe.getOutput());
+			return EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess()));
 		}
 	}
 	

@@ -3,14 +3,10 @@ package de.dafuqs.spectrum.data_loaders;
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
-import de.dafuqs.spectrum.predicate.block.LightPredicate;
-import de.dafuqs.spectrum.predicate.block.*;
 import de.dafuqs.spectrum.predicate.entity.*;
-import de.dafuqs.spectrum.predicate.world.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
-import net.minecraft.predicate.*;
 import net.minecraft.registry.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.world.*;
@@ -50,17 +46,8 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 		ENTITY_FISHING_ENTRIES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
-
-			EntityFishingPredicate predicate = new EntityFishingPredicate(
-				FluidPredicate.fromJson(JsonHelper.getObject(jsonObject, "fluid", null)),
-				BiomePredicate.fromJson(JsonHelper.getObject(jsonObject, "biome", null)),
-				LightPredicate.fromJson(JsonHelper.getObject(jsonObject, "light", null)),
-				DimensionPredicate.fromJson(JsonHelper.getObject(jsonObject, "dimension", null)),
-				MoonPhasePredicate.fromJson(JsonHelper.getObject(jsonObject, "moonPhase", null)),
-				TimeOfDayPredicate.fromJson(JsonHelper.getObject(jsonObject, "timeOfDay", null)),
-				WeatherPredicate.fromJson(JsonHelper.getObject(jsonObject, "weather", null)),
-				CommandPredicate.fromJson(JsonHelper.getObject(jsonObject, "command", null))
-			);
+			
+			EntityFishingPredicate predicate = EntityFishingPredicate.fromJson(jsonObject.get("location").getAsJsonObject());
 			float chance = JsonHelper.getFloat(jsonObject, "chance");
 			JsonArray entityArray = JsonHelper.getArray(jsonObject, "entities");
 			
@@ -69,7 +56,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				JsonObject entryObject = entryElement.getAsJsonObject();
 				
 				EntityType<?> entityType = Registries.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
-
+				
 				Optional<NbtCompound> nbt = NbtHelper.getNbtCompound(entryObject.get("nbt"));
 
 				int weight = 1;

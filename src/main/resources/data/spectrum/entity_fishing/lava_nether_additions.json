@@ -1,11 +1,13 @@
 {
-  "fluid": {
-    "tag": "minecraft:lava"
-  },
-  "dimension": {
-    "worlds": [
-      "minecraft:nether"
-    ]
+  "location": {
+    "fluid": {
+      "tag": "minecraft:lava"
+    },
+    "dimension": {
+      "worlds": [
+        "minecraft:nether"
+      ]
+    }
   },
   "chance": 0.02,
   "entities": [
@@ -29,4 +31,4 @@
       "weight": 1
     }
   ]
-}
+},

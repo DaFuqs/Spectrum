@@ -1,6 +1,8 @@
 {
-  "fluid": {
-    "tag": "spectrum:liquid_crystal"
+  "location": {
+    "fluid": {
+      "tag": "spectrum:liquid_crystal"
+    }
   },
   "chance": 0.05,
   "entities": [
@@ -17,4 +19,4 @@
       "weight": 1
     }
   ]
-}
+},

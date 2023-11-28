@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.blocklikeentities.api.*;
 import net.minecraft.block.*;
@@ -12,11 +12,12 @@ import net.minecraft.entity.data.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.predicate.entity.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-import java.util.*;
+import java.util.function.*;
 
 public class FloatBlockEntity extends BlockLikeEntity {
 	
@@ -30,47 +31,46 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	
 	public FloatBlockEntity(World world, double x, double y, double z, BlockState blockState) {
 		super(SpectrumEntityTypes.FLOAT_BLOCK, world, x, y, z, blockState);
-
+		
 		if (blockState.getBlock() instanceof FloatBlock floatBlock) {
 			setGravity(floatBlock.getGravityMod());
 		}
 	}
-
+	
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(GRAVITY_MODIFIER, 0.0F);
 	}
-
+	
 	public float getGravity() {
 		return this.dataTracker.get(GRAVITY_MODIFIER);
 	}
-
+	
 	protected void setGravity(float modifier) {
-this.dataTracker.set(GRAVITY_MODIFIER, modifier);
+		this.dataTracker.set(GRAVITY_MODIFIER, modifier);
 	}
-
+	
 	@Override
 	public boolean hasNoGravity() {
-return this.getGravity() == 0.0 || super.hasNoGravity();
+		return this.getGravity() == 0.0 || super.hasNoGravity();
 	}
-
+	
 	@Override
 	public void postTickMoveEntities() {
-        var world = this.getWorld();
-
+		var world = this.getWorld();
+		
 		if (FallingBlock.canFallThrough(this.blockState)) return;
-
-	for (Entity entity : world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0).union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))) {
-
+		
+		for (Entity entity : world.getOtherEntities(this, getBoundingBox().offset(0, 0.5, 0).union(getBoundingBox().offset(3 * (this.prevX - this.getX()), 3 * (this.prevY - this.getY()), 3 * (this.prevZ - this.getZ()))))) {
 			if (entity instanceof BlockLikeEntity other && isPaltaeriaStratineCollision(other)) {
 				world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, World.ExplosionSourceType.NONE);
-
+				
 				ItemStack collisionStack = SpectrumBlocks.HOVER_BLOCK.asItem().getDefaultStack();
 				ItemEntity itemEntity = new ItemEntity(world, this.getX(), this.getY(), this.getZ(), collisionStack);
 				itemEntity.addVelocity(0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2, 0.1 - world.random.nextFloat() * 0.2);
 				world.spawnEntity(itemEntity);
-
+				
 				this.discard();
 				other.discard();
 			} else if (entity.isPushable()) {
@@ -78,13 +78,13 @@ return this.getGravity() == 0.0 || super.hasNoGravity();
 				entity.setOnGround(true);
 				entity.addVelocity(this.getVelocity().x, this.getVelocity().y, this.getVelocity().z);
 				entity.fallDistance = 0F;
-
+				
 				this.postTickEntityCollision(entity);
 			}
-
+			
 		}
 	}
-
+	
 	@Override
 	public void postTickMovement() {
 		if (!this.hasNoGravity()) {
@@ -92,19 +92,19 @@ return this.getGravity() == 0.0 || super.hasNoGravity();
 			double additionalYVelocity = this.age > 100 ? this.getGravity() / 10 : Math.min(Math.sin((Math.PI * this.age) / 100D), 1) * (this.getGravity() / 10);
 			this.addVelocity(0.0D, additionalYVelocity, 0.0D);
 		}
-
+		
 		this.move(MovementType.SELF, this.getVelocity());
 	}
-
+	
 	@Override
 	public void move(MovementType movementType, Vec3d movement) {
 		super.move(movementType, movement);
-
+		
 		if (movementType != MovementType.SELF) {
 			this.setVelocity(movement);
 		}
 	}
-
+	
 	@Override
 	public boolean shouldCease() {
 		return this.verticalCollision || super.shouldCease();
@@ -119,36 +119,41 @@ return this.getGravity() == 0.0 || super.hasNoGravity();
 				int damage = (int) Math.min(MathHelper.floor(traveledDistance * DAMAGE_PER_FALLEN_BLOCK), MAX_DAMAGE);
 				if (damage > 0) {
 					// since the players position is tracked at its head and item entities are laying directly on the ground we have to use a relatively big bounding box here
-					List<Entity> list = Lists.newArrayList(world.getOtherEntities(this, this.getBoundingBox().expand(0, 3.0 * Math.signum(this.getVelocity().y), 0).expand(0, -0.5 * Math.signum(this.getVelocity().y), 0)));
-					for (Entity entity : list) {
-						entity.damage(SpectrumDamageSources.floatblock(entity.getWorld()), damage);
-					}
+					Predicate<Entity> predicate = EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.and(entity -> entity.isAlive() && (entity instanceof LivingEntity || entity instanceof ItemEntity));
+					this.getWorld().getOtherEntities(this, this.getBoundingBox(), predicate).forEach((entity) -> {
+						if (entity instanceof ItemEntity itemEntity) {
+							AnvilCrusher.crush(itemEntity, damage);
+						} else {
+							entity.damage(SpectrumDamageSources.floatblock(entity.getWorld()), damage);
+						}
+					});
 				}
 			}
 		}
 		return false;
 	}
-@Override
+	
+	@Override
 	protected void writeCustomDataToNbt(NbtCompound compound) {
 		super.writeCustomDataToNbt(compound);
-
+		
 		compound.putFloat("GravityModifier", getGravity());
 	}
-
+	
 	@Override
 	protected void readCustomDataFromNbt(NbtCompound compound) {
 		super.readCustomDataFromNbt(compound);
-
+		
 		if (compound.contains("GravityModifier", NbtElement.FLOAT_TYPE)) {
 			setGravity(compound.getFloat("GravityModifier"));
 		}
 	}
-
+	
 	@Override
 	public boolean canHit() {
 		return !this.isRemoved();
 	}
-
+	
 	@Override
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if (player.isSneaking()) {
@@ -165,7 +170,7 @@ return this.getGravity() == 0.0 || super.hasNoGravity();
 		}
 		return ActionResult.PASS;
 	}
-
+	
 	@Override
 	public ItemStack getPickBlockStack() {
 		return this.blockState.getBlock().asItem().getDefaultStack();
@@ -177,10 +182,10 @@ return this.getGravity() == 0.0 || super.hasNoGravity();
 		return thisBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK
 				|| thisBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK;
 	}
-
+	
 	@Override
 	public boolean collidesWith(Entity other) {
 		return other.isCollidable() && !this.isConnectedThroughVehicle(other);
 	}
-
+	
 }

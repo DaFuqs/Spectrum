@@ -1,30 +1,18 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.networking.*;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.item.*;
-import net.minecraft.server.world.*;
-import net.minecraft.sound.*;
-import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.*;
-
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
-	
-	private static AutoCompactingInventory autoCompactingInventory;
 
 	@Shadow
 	public abstract ItemStack getStack();
@@ -67,77 +55,10 @@ public abstract class ItemEntityMixin {
 		}
 	}
 	
-	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (source.isOf(DamageTypes.FALLING_ANVIL) || source.isOf(SpectrumDamageSources.FLOATBLOCK)) {
-			doAnvilCrafting(amount);
-			
-			// prevent the source itemStack taking damage.
-			// ItemEntities have a health of 5 and can actually get killed by a falling anvil
-			callbackInfoReturnable.setReturnValue(true);
-		}
-		
 		if (amount > 1 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
 			damageAwareItem.onItemEntityDamaged(source, amount, (ItemEntity) (Object) this);
-		}
-		
-	}
-	
-	private void doAnvilCrafting(float damageAmount) {
-		ItemEntity thisEntity = (ItemEntity) (Object) this;
-		ItemStack thisItemStack = thisEntity.getStack();
-		World world = thisEntity.getEntityWorld();
-		
-		if (autoCompactingInventory == null) {
-			autoCompactingInventory = new AutoCompactingInventory();
-		}
-		autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OneXOne, thisItemStack);
-		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
-		if (optionalAnvilCrushingRecipe.isPresent()) {
-			// Item can be crafted via anvil. Do anvil crafting
-			AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();
-			
-			int itemStackAmount = thisEntity.getStack().getCount();
-			int crushingInputAmount = Math.min(itemStackAmount, (int) (recipe.getCrushedItemsPerPointOfDamage() * damageAmount));
-			
-			if (crushingInputAmount > 0) {
-				Vec3d position = thisEntity.getPos();
-				
-				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager());
-				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
-				
-				// Remove the input amount from the source stack
-				// Or the source stack altogether if it would be empty
-				int remainingItemStackAmount = itemStackAmount - crushingInputAmount;
-				if (remainingItemStackAmount > 0) {
-					thisItemStack.setCount(remainingItemStackAmount);
-				} else {
-					thisEntity.remove(Entity.RemovalReason.DISCARDED);
-				}
-				
-				// Spawn the resulting item stack in the world
-				ItemEntity craftedEntity = new ItemEntity(world, position.x, position.y, position.z, crushingOutput);
-				world.spawnEntity(craftedEntity);
-				
-				// Spawn XP depending on how much is crafted, but at least 1
-				float craftingXPFloat = recipe.getExperience() * crushingInputAmount;
-				int craftingXP = Support.getIntFromDecimalWithChance(craftingXPFloat, world.random);
-				
-				if (craftingXP > 0) {
-					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, position.x, position.y, position.z, craftingXP);
-					world.spawnEntity(experienceOrbEntity);
-				}
-				
-				// Play sound
-				SoundEvent soundEvent = recipe.getSoundEvent();
-				if (soundEvent != null) {
-					float randomVolume = 1.0F + world.getRandom().nextFloat() * 0.2F;
-					float randomPitch = 0.9F + world.getRandom().nextFloat() * 0.2F;
-					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
-				}
-				
-				SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, position, recipe.getParticleEffect(), recipe.getParticleCount(), Vec3d.ZERO);
-			}
 		}
 	}
 	

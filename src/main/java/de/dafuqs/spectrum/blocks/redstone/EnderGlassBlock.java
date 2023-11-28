@@ -10,11 +10,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
-public class RedstoneTransparencyBlock extends Block {
+public class EnderGlassBlock extends Block {
 	
 	public static final EnumProperty<TransparencyState> TRANSPARENCY_STATE = EnumProperty.of("transparency_state", TransparencyState.class);
 	
-	public RedstoneTransparencyBlock(Settings settings) {
+	public EnderGlassBlock(Settings settings) {
 		super(settings);
 		setDefaultState(getStateManager().getDefaultState().with(TRANSPARENCY_STATE, TransparencyState.SOLID));
 	}
@@ -27,7 +27,7 @@ public class RedstoneTransparencyBlock extends Block {
 	@Override
 	@SuppressWarnings("deprecation")
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		return (state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
+		return (state.get(EnderGlassBlock.TRANSPARENCY_STATE) != TransparencyState.SOLID) && stateFrom.isOf(this) || super.isSideInvisible(state, stateFrom, direction);
 	}
 	
 	@Override
@@ -96,14 +96,14 @@ public class RedstoneTransparencyBlock extends Block {
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		if (!world.isClient) {
 			BlockState fromPosBlockState = world.getBlockState(fromPos);
-			if (fromPosBlockState.getBlock() instanceof RedstoneTransparencyBlock) {
+			if (fromPosBlockState.getBlock() instanceof EnderGlassBlock) {
 				TransparencyState sourceTransparencyState = fromPosBlockState.get(TRANSPARENCY_STATE);
 				
 				if (sourceTransparencyState != state.get(TRANSPARENCY_STATE)) {
 					world.setBlockState(pos, world.getBlockState(pos).with(TRANSPARENCY_STATE, sourceTransparencyState));
 				}
 			} else {
-				if (!fromPosBlockState.isAir()) {
+				if (fromPosBlockState.isAir() || fromPosBlockState.emitsRedstonePower()) {
 					setTransparencyStateBasedOnRedstone(world, pos, state);
 				}
 			}

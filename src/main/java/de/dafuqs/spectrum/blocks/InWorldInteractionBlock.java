@@ -14,8 +14,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-import java.util.Objects;
-
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 
 	protected InWorldInteractionBlock(Settings settings) {
@@ -97,7 +95,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		} else {
 			ItemStack currentStack = blockEntity.getStack(slot);
 			if (!handStack.isEmpty() && !currentStack.isEmpty()) {
-				if (ItemStack.areItemsEqual(handStack, currentStack) && Objects.equals(handStack.getNbt(), currentStack.getNbt())) {
+				if (ItemStack.canCombine(handStack, currentStack)) {
 					InventoryHelper.setOrCombineStack(blockEntity, slot, handStack);
 				} else {
 					blockEntity.setStack(slot, handStack);

@@ -346,7 +346,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				return true;
 			}
 			
-			if (!ItemStack.areItemsEqual(existingOutput, output)) {
+			if (!ItemStack.canCombine(existingOutput, output)) {
 				return false;
 			}
 			

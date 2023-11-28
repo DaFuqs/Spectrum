@@ -85,7 +85,7 @@ public class InventoryHelper {
 		List<ItemStack> foundStacks = new ArrayList<>();
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
-			if (ItemStack.areItemsEqual(inventoryStack, itemStack)) {
+			if (ItemStack.canCombine(inventoryStack, itemStack)) {
 				foundStacks.add(inventoryStack);
 				count += inventoryStack.getCount();
 				if (count >= maxSearchAmount) {
@@ -342,7 +342,7 @@ public class InventoryHelper {
 		int removeItemStackCount = removeItemStack.getCount();
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
-			if (ItemStack.areItemsEqual(currentStack, removeItemStack)) {
+			if (ItemStack.canCombine(currentStack, removeItemStack)) {
 				ItemStack remainder = currentStack.getRecipeRemainder();
 				
 				int amountAbleToDecrement = Math.min(currentStack.getCount(), removeItemStackCount);
@@ -366,7 +366,7 @@ public class InventoryHelper {
 	}
 	
 	public static boolean canCombineItemStacks(ItemStack currentItemStack, ItemStack additionalItemStack) {
-		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (ItemStack.areItemsEqual(currentItemStack, additionalItemStack) && (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxCount()));
+		return currentItemStack.isEmpty() || additionalItemStack.isEmpty() || (ItemStack.canCombine(currentItemStack, additionalItemStack) && (currentItemStack.getCount() + additionalItemStack.getCount() <= currentItemStack.getMaxCount()));
 	}
 	
 	@Nullable

@@ -37,7 +37,7 @@ public class PageSpiritInstillerCrafting extends PageGatedRecipeSingle<SpiritIns
 	@Override
 	protected void drawRecipe(DrawContext drawContext, World world, @NotNull SpiritInstillerRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
-		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		

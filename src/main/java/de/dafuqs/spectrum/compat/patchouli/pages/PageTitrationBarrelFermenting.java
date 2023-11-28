@@ -41,7 +41,7 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 	@Override
 	protected void drawRecipe(DrawContext drawContext, World world, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.enableBlend();
-		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
 		
 		Fluid fluid = recipe.getFluidInput();
 		boolean usesFluid = fluid != Fluids.EMPTY;

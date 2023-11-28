@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
@@ -31,9 +30,8 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 	
 	@Override
 	protected void drawRecipe(DrawContext drawContext, World world, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, getBackgroundTexture());
 		RenderSystem.enableBlend();
-		PatchouliHelper.drawBookBackground(getBackgroundTexture(), drawContext, recipeX, recipeY);
+		drawContext.drawTexture(getBackgroundTexture(), recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		

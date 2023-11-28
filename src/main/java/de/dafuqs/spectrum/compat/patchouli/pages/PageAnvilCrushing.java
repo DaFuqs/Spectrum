@@ -31,10 +31,7 @@ public class PageAnvilCrushing extends PageGatedRecipeSingle<AnvilCrushingRecipe
 	
 	@Override
 	protected void drawRecipe(DrawContext drawContext, World world, @NotNull AnvilCrushingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
-		
-		// dirt  wall
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY + 4, 0, 0, 84, 48, 256, 256);
 		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);

@@ -33,7 +33,6 @@ public abstract class PagePotionWorkshop<T extends PotionWorkshopRecipe> extends
 	
 	@Override
 	protected void drawRecipe(DrawContext drawContext, World world, @NotNull PotionWorkshopRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 		

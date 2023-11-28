@@ -149,6 +149,8 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.SPRUCE_PLANKS, DyeColor.LIME);
 		put(Items.WARPED_PLANKS, DyeColor.LIME);
 		put(Items.MANGROVE_PLANKS, DyeColor.LIME);
+		put(Items.BAMBOO_PLANKS, DyeColor.LIME);
+		put(Items.CHERRY_PLANKS, DyeColor.LIME);
 		
 		put(Items.GOLDEN_HELMET, DyeColor.YELLOW);
 		put(Items.GOLDEN_CHESTPLATE, DyeColor.YELLOW);

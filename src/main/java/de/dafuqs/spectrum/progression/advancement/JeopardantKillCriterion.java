@@ -23,33 +23,33 @@ public class JeopardantKillCriterion extends AbstractCriterion<JeopardantKillCri
 	@Override
 	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		return new JeopardantKillCriterion.Conditions(ID, playerPredicate,
-			LootContextPredicate.fromJson("entity", predicateDeserializer, jsonObject, LootContextTypes.ENTITY),
-			DamageSourcePredicate.fromJson(jsonObject.get("killing_blow")),
-			NumberRange.IntRange.fromJson(jsonObject.get("lives_left"))
+				EntityPredicate.contextPredicateFromJson(jsonObject, "killed_entity", predicateDeserializer),
+				DamageSourcePredicate.fromJson(jsonObject.get("damage_source")),
+				NumberRange.IntRange.fromJson(jsonObject.get("health"))
 		);
 	}
-
-	public void trigger(ServerPlayerEntity player, Entity entity, DamageSource killingDamage) {
+	
+	public void trigger(ServerPlayerEntity player, Entity entity, DamageSource killingBlow) {
 		LootContext lootContext = EntityPredicate.createAdvancementEntityLootContext(player, entity);
-		this.trigger(player, (conditions) -> conditions.test(player, lootContext, killingDamage));
+		this.trigger(player, (conditions) -> conditions.test(player, lootContext, killingBlow));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
 		private final LootContextPredicate entity;
 		private final DamageSourcePredicate killingBlow;
-		private final NumberRange.IntRange livesLeft;
+		private final NumberRange.IntRange health;
 		
-		public Conditions(Identifier id, LootContextPredicate player, LootContextPredicate entity, DamageSourcePredicate killingBlow, NumberRange.IntRange livesLeft) {
+		public Conditions(Identifier id, LootContextPredicate player, LootContextPredicate entity, DamageSourcePredicate killingBlow, NumberRange.IntRange health) {
 			super(id, player);
 			this.entity = entity;
 			this.killingBlow = killingBlow;
-			this.livesLeft = livesLeft;
+			this.health = health;
 		}
 		
 		public boolean test(ServerPlayerEntity player, LootContext killedEntityContext, DamageSource killingBlow) {
-			return (this.killingBlow == null || this.killingBlow.test(player, killingBlow))
-					&& (this.entity == null || this.entity.test(killedEntityContext))
-					&& (this.livesLeft == null || this.livesLeft.test(Math.round(player.getHealth())));
+			return this.killingBlow.test(player, killingBlow)
+					&& this.entity.test(killedEntityContext)
+					&& this.health.test(Math.round(player.getHealth()));
 		}
 		
 		@Override
@@ -57,7 +57,7 @@ public class JeopardantKillCriterion extends AbstractCriterion<JeopardantKillCri
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("entity", this.entity.toJson(predicateSerializer));
 			jsonObject.add("killing_blow", this.killingBlow.toJson());
-			jsonObject.add("lives_left", this.livesLeft.toJson());
+			jsonObject.add("health", this.health.toJson());
 			return jsonObject;
 		}
 	}

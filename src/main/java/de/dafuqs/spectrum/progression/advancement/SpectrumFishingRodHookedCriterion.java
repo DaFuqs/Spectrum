@@ -31,6 +31,17 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 		return ID;
 	}
 	
+	@Override
+	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+		ItemPredicate rod = ItemPredicate.fromJson(jsonObject.get("rod"));
+		LootContextPredicate bobber = EntityPredicate.contextPredicateFromJson(jsonObject, "bobber", predicateDeserializer);
+		LootContextPredicate fishing = EntityPredicate.contextPredicateFromJson(jsonObject, "fishing", predicateDeserializer);
+		LootContextPredicate fishedEntity = EntityPredicate.contextPredicateFromJson(jsonObject, "fished_entity", predicateDeserializer);
+		ItemPredicate fishedItem = ItemPredicate.fromJson(jsonObject.get("item"));
+		FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
+		return new SpectrumFishingRodHookedCriterion.Conditions(playerPredicate, rod, bobber, fishing, fishedEntity, fishedItem, fluidPredicate);
+	}
+	
 	public void trigger(ServerPlayerEntity player, ItemStack rod, SpectrumFishingBobberEntity bobber, Entity fishedEntity, Collection<ItemStack> fishingLoots) {
 		LootContext bobberContext = EntityPredicate.createAdvancementEntityLootContext(player, bobber);
 		LootContext hookedEntityContext = bobber.getHookedEntity() == null ? null : EntityPredicate.createAdvancementEntityLootContext(player, bobber.getHookedEntity());
@@ -42,20 +53,6 @@ public class SpectrumFishingRodHookedCriterion extends AbstractCriterion<Spectru
 		// does not extend that we have to do some hacky shenanigans running trigger() directly
 		LootContext hookedEntityOrBobberContext = EntityPredicate.createAdvancementEntityLootContext(player, (bobber.getHookedEntity() != null ? bobber.getHookedEntity() : bobber));
 		Criteria.FISHING_ROD_HOOKED.trigger(player, (conditions) -> conditions.matches(rod, hookedEntityOrBobberContext, fishingLoots));
-	}
-
-	@Override
-	protected Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
-		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("rod"));
-		LootContextPredicate bobber = LootContextPredicate.fromJson("bobber", predicateDeserializer, jsonObject, LootContextTypes.FISHING);
-		bobber = bobber == null ? LootContextPredicate.EMPTY : bobber;
-		LootContextPredicate hookedEntity = LootContextPredicate.fromJson("fishing", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
-		hookedEntity = hookedEntity == null ? LootContextPredicate.EMPTY : hookedEntity;
-		LootContextPredicate fishedEntity = LootContextPredicate.fromJson("fished_entity", predicateDeserializer, jsonObject, LootContextTypes.ENTITY);
-		fishedEntity = fishedEntity == null ? LootContextPredicate.EMPTY : fishedEntity;
-		ItemPredicate itemPredicate2 = ItemPredicate.fromJson(jsonObject.get("item"));
-		FluidPredicate fluidPredicate = FluidPredicate.fromJson(jsonObject.get("fluid"));
-		return new SpectrumFishingRodHookedCriterion.Conditions(playerPredicate, itemPredicate, bobber, hookedEntity, fishedEntity, itemPredicate2, fluidPredicate);
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {

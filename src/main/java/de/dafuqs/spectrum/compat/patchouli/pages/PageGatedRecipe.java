@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.google.gson.annotations.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -60,11 +60,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 	
 	@Override
     public boolean isPageUnlocked() {
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (!super.isPageUnlocked() || recipe == null) {
-			return false;
-		}
-		return recipe.canPlayerCraft(client.player);
+		return super.isPageUnlocked() && recipe != null;
 	}
 	
 	@Override

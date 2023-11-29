@@ -192,15 +192,68 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.STONE_SWORD, DyeColor.BROWN);
 		put(Items.STONE_SHOVEL, DyeColor.BROWN);
 		put(Items.STONE_HOE, DyeColor.BROWN);
-
+		
 		put(Items.WOODEN_AXE, DyeColor.LIME);
 		put(Items.WOODEN_PICKAXE, DyeColor.LIME);
 		put(Items.WOODEN_SWORD, DyeColor.LIME);
 		put(Items.WOODEN_SHOVEL, DyeColor.LIME);
 		put(Items.WOODEN_HOE, DyeColor.LIME);
-
+		
 		put(Items.TRIDENT, DyeColor.LIGHT_BLUE);
 		put(Items.ECHO_SHARD, DyeColor.GRAY);
+		
+		put(Items.WHITE_BANNER, DyeColor.WHITE);
+		put(Items.ORANGE_BANNER, DyeColor.ORANGE);
+		put(Items.MAGENTA_BANNER, DyeColor.MAGENTA);
+		put(Items.LIGHT_BLUE_BANNER, DyeColor.LIGHT_BLUE);
+		put(Items.YELLOW_BANNER, DyeColor.YELLOW);
+		put(Items.LIME_BANNER, DyeColor.LIME);
+		put(Items.PINK_BANNER, DyeColor.PINK);
+		put(Items.GRAY_BANNER, DyeColor.GRAY);
+		put(Items.LIGHT_GRAY_BANNER, DyeColor.LIGHT_GRAY);
+		put(Items.CYAN_BANNER, DyeColor.CYAN);
+		put(Items.PURPLE_BANNER, DyeColor.PURPLE);
+		put(Items.BLUE_BANNER, DyeColor.BLUE);
+		put(Items.BROWN_BANNER, DyeColor.BROWN);
+		put(Items.GREEN_BANNER, DyeColor.GREEN);
+		put(Items.RED_BANNER, DyeColor.RED);
+		put(Items.BLACK_BANNER, DyeColor.BLACK);
+		put(Items.WHEAT_SEEDS, DyeColor.LIME);
+		put(Items.SLIME_BALL, DyeColor.GRAY);
+		put(Items.SPIDER_EYE, DyeColor.GRAY);
+		put(Items.PRISMARINE, DyeColor.LIGHT_BLUE);
+		put(Items.WHEAT, DyeColor.BROWN);
+		put(Items.SPAWNER, DyeColor.LIGHT_GRAY);
+		put(Items.HAY_BLOCK, DyeColor.BROWN);
+		put(Items.BROWN_MUSHROOM, DyeColor.BROWN);
+		put(Items.SNOWBALL, DyeColor.PINK);
+		put(Items.BAMBOO, DyeColor.GREEN);
+		put(Items.RED_MUSHROOM, DyeColor.BROWN);
+		put(Items.MANGROVE_PROPAGULE, DyeColor.GREEN);
+		put(Items.CHERRY_SAPLING, DyeColor.GREEN);
+		put(Items.WARPED_FUNGUS, DyeColor.BROWN);
+		put(Items.SEAGRASS, DyeColor.GREEN);
+		put(Items.STONE_BRICKS, DyeColor.BROWN);
+		put(Items.IRON_BLOCK, DyeColor.BROWN);
+		put(Items.DRAGON_BREATH, DyeColor.BLACK);
+		put(Items.WITHER_ROSE, DyeColor.BLACK);
+		put(Items.CRIMSON_FUNGUS, DyeColor.BROWN);
+		put(Items.COD, DyeColor.LIGHT_BLUE);
+		put(Items.COOKED_COD, DyeColor.LIGHT_BLUE);
+		put(Items.SALMON, DyeColor.LIGHT_BLUE);
+		put(Items.COOKED_SALMON, DyeColor.LIGHT_BLUE);
+		put(Items.TROPICAL_FISH, DyeColor.LIGHT_BLUE);
+		
+		put(Items.GLOW_BERRIES, DyeColor.YELLOW);
+		put(Items.SWEET_BERRIES, DyeColor.PINK);
+		put(Items.BONE, DyeColor.GRAY);
+		put(Items.DRAGON_HEAD, DyeColor.GRAY);
+		put(Items.ZOMBIE_HEAD, DyeColor.GRAY);
+		put(Items.SKELETON_SKULL, DyeColor.GRAY);
+		put(Items.WITHER_SKELETON_SKULL, DyeColor.GRAY);
+		put(Items.CREEPER_HEAD, DyeColor.GRAY);
+		put(Items.PLAYER_HEAD, DyeColor.GRAY);
+		put(Items.PIGLIN_HEAD, DyeColor.GRAY);
 	}};
 
 	@Override

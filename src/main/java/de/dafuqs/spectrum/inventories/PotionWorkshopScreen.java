@@ -56,20 +56,20 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 		int brewTime = (this.handler).getBrewTime();
 		if (brewTime > 0) {
 			// the rising bubbles
-			int n = BUBBLE_PROGRESS[brewTime / 2 % 13];
-			if (n > 0) {
-				drawContext.drawTexture(background, startX + 29, startY + 39 + 43 - n, 176, 40 - n, 11, n);
+			int progress = BUBBLE_PROGRESS[brewTime / 2 % 13];
+			if (progress > 0) {
+				drawContext.drawTexture(background, startX + 29, startY + 39 + 43 - progress, 176, 40 - progress, 11, progress);
 			}
 			
 			int maxBrewTime = (this.handler).getMaxBrewTime();
 			int potionColor = (this.handler).getPotionColor();
 			Color color = new Color(potionColor);
-			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
-			n = (int) (100.0F * ((float) brewTime / maxBrewTime));
 			// the brew
-			if (n > 0) {
-				drawContext.drawTexture(background, startX + 45, startY + 22, 0, 212, n, 44);
-			}
+			progress = (int) (100.0F * ((float) brewTime / maxBrewTime));
+			RenderSystem.setShaderColor(color.getRed() / 255F, color.getGreen() / 255F, color.getBlue() / 255F, 1.0F);
+			drawContext.drawTexture(background, startX + 45, startY + 22, 0, 212, progress, 44);
+			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+			
 		}
 	}
 	

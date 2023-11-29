@@ -526,7 +526,7 @@
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
   "spectrum.toast.lots_of_recipes_unlocked.title": "Many recipes unlocked:",
-  "spectrum.toast.lots_of_recipes_unlocked.description": "%d new recipes:",
+  "spectrum.toast.lots_of_recipes_unlocked.description": "%d new recipes",
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",
   "spectrum.toast.anvil_crushing_recipes_unlocked.title": "New Crushing recipes:",
   "spectrum.toast.pedestal_recipe_unlocked.title": "New Pedestal recipe:",

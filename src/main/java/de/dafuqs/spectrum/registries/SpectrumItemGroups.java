@@ -462,9 +462,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_LAPIS_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_EMERALD_ORE);
-		entries.add(SpectrumBlocks.AZURITE_CLUSTER);
-		entries.add(SpectrumBlocks.LARGE_AZURITE_BUD);
+		entries.add(SpectrumItems.RAW_AZURITE);
 		entries.add(SpectrumBlocks.SMALL_AZURITE_BUD);
+		entries.add(SpectrumBlocks.LARGE_AZURITE_BUD);
+		entries.add(SpectrumBlocks.AZURITE_CLUSTER);
+		entries.add(SpectrumItems.REFINED_AZURITE);
+		entries.add(SpectrumItems.RAW_BLOODSTONE);
 		entries.add(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
@@ -506,8 +509,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.RED_PIGMENT);
 		entries.add(SpectrumItems.BLACK_PIGMENT);
 		entries.add(SpectrumItems.SHIMMERSTONE_GEM);
-		entries.add(SpectrumItems.RAW_AZURITE);
-		entries.add(SpectrumItems.REFINED_AZURITE);
 		entries.add(SpectrumItems.PALTAERIA_FRAGMENTS);
 		entries.add(SpectrumItems.PALTAERIA_GEM);
 		entries.add(SpectrumItems.STRATINE_FRAGMENTS);

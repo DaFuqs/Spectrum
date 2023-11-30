@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
@@ -19,7 +20,7 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 	protected final Optional<Text> description;
 	
 	public FusionShrineDisplay(@NotNull FusionShrineRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput());
+		super(recipe, buildIngredients(recipe), recipe.getOutput(BasicDisplay.registryAccess()));
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
 		this.description = recipe.getDescription();

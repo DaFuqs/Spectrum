@@ -12,7 +12,8 @@ public class SpectrumItemStackDamageImmunities {
 	// Items immune to all kinds of damage (minus out of world - otherwise items would fall endlessly when falling into the end, causing lag)
 	private static final List<Item> generalImmunities = new ArrayList<>();
 	// Items immune to some forms of damage
-
+	
+	//TODO: port from 1.19.2
 	public static void registerDefaultItemStackImmunities() {
 		generalImmunities.add(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.asItem());
 	}

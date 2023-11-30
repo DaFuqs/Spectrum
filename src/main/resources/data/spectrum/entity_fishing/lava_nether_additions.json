@@ -1,18 +1,13 @@
 {
   "location": {
-    "dimension": {
-      "worlds": [
-        "minecraft:the_nether"
-      ]
-    },
     "fluid": {
       "tag": "minecraft:lava"
+    },
+    "dimension": {
+      "worlds": [
+        "minecraft:nether"
+      ]
     }
-  },
-  "dimension": {
-    "worlds": [
-      "minecraft:nether"
-    ]
   },
   "chance": 0.02,
   "entities": [

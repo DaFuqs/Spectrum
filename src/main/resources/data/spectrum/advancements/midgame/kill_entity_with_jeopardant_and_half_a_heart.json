@@ -15,7 +15,7 @@
     "killed_entity_with_jeopardant_and_half_a_heart": {
       "trigger": "spectrum:jeopardant_kill",
       "conditions": {
-        "lives_left": {
+        "health": {
           "max": 1
         }
       }

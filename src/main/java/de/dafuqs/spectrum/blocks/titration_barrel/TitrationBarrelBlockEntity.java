@@ -148,7 +148,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (recipe.isEmpty() || !getFluidVariant().isOf(recipe.getFluidInput())) {
 			return true;
 		}
-		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(temperature, getSealSeconds());
+		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
 	}
 	
 	public void addDayOfSealTime() {
@@ -162,6 +162,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		
 		boolean shouldReset = false;
 		Text message = null;
+		
+		int daysSealed = getSealMinecraftDays();
+		int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
 		
 		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
@@ -190,10 +193,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 						float downfall = ((BiomeAccessor)(Object) biome).getWeather().downfall();
 						harvestedStack = recipe.tap(this.inventory, secondsFermented, downfall);
 						
-						int daysSealed = getSealMinecraftDays();
-						int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
-						SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
-						
 						this.extractedBottles += 1;
 						shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);
 					}
@@ -211,6 +210,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		}
 		
 		if (player != null) {
+			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
+			
 			if (message != null) {
 				player.sendMessage(message, true);
 			}

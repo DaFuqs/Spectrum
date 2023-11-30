@@ -1,18 +1,13 @@
 {
   "location": {
+    "fluid": {
+      "tag": "minecraft:water"
+    },
     "dimension": {
       "worlds": [
         "minecraft:overworld"
       ]
-    },
-    "fluid": {
-      "tag": "minecraft:water"
     }
-  },
-  "dimension": {
-    "worlds": [
-      "minecraft:overworld"
-    ]
   },
   "chance": 0.05,
   "entities": [

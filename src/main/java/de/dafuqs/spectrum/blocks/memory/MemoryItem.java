@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.blocks.memory;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.item.ItemGroup.Entries;
+import net.minecraft.item.ItemGroup.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -218,7 +218,7 @@ public class MemoryItem extends BlockItem {
 		if (SpectrumCommon.minecraftServer != null) {
 			Item memoryItem = SpectrumBlocks.MEMORY.asItem();
 			for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-				ItemStack output = recipe.getOutput();
+				ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager());
 				if (output.isOf(memoryItem) && !encountered.contains(output.getNbt())) {
 					entries.add(output);
 					encountered.add(output.getNbt());

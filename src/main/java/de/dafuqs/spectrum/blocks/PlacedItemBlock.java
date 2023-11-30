@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -12,9 +13,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PlaceableItemBlock extends BlockWithEntity {
+public class PlacedItemBlock extends BlockWithEntity {
 	
-	public PlaceableItemBlock(Settings settings) {
+	public PlacedItemBlock(Settings settings) {
 		super(settings);
 	}
 	
@@ -41,6 +42,13 @@ public class PlaceableItemBlock extends BlockWithEntity {
 			}
 		}
 	}
+
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		ItemStack itemStack = super.getPickStack(world, pos, state);
+		world.getBlockEntity(pos, SpectrumBlockEntities.PLACED_ITEM).ifPresent((blockEntity) -> blockEntity.setStackNbt(itemStack));
+		return itemStack;
+	}
 	
 	@Override
 	@SuppressWarnings("deprecation")
@@ -52,4 +60,5 @@ public class PlaceableItemBlock extends BlockWithEntity {
 			return super.getDroppedStacks(state, builder);
 		}
 	}
+
 }

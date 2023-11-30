@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.networking.*;
 import net.minecraft.client.*;
-import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.resource.language.*;
 import net.minecraft.text.*;
@@ -48,12 +48,14 @@ public class PageConfirmationButton extends PageWithText {
 		super.onDisplayed(parent, left, top);
 		
 		boolean completed = isConfirmed();
+		
 		Text buttonText = completed ? buttonTextConfirmed : this.buttonText;
 		ButtonWidget button = ButtonWidget.builder(buttonText, this::confirmationButtonClicked)
-				.size(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35)
-				.position(100, 20)
+				.size(GuiBook.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT)
+				.position(6, 120)
 				.build();
-		button.active = !isConfirmed();
+		button.active = !completed;
+		
 		addButton(button);
 	}
 	

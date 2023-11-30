@@ -16,7 +16,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
+public class PageFusionShrine extends PageGatedRecipeSingle<FusionShrineRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/fusion_shrine.png");
 	
@@ -34,11 +34,10 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull FusionShrineRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull FusionShrineRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
-		PatchouliHelper.drawBookBackground(BACKGROUND_TEXTURE, drawContext, recipeX, recipeY);
-
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
@@ -65,7 +64,7 @@ public class PageFusionShrine extends PageGatedRecipe<FusionShrineRecipe> {
 		}
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 31, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

@@ -24,7 +24,6 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.potion_workshop.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
-import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
 import de.dafuqs.spectrum.blocks.structure.*;
@@ -52,7 +51,6 @@ public class SpectrumBlockEntities {
 	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
 	public static BlockEntityType<UpgradeBlockEntity> UPGRADE_BLOCK;
 	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
-	public static BlockEntityType<ShootingStarBlockEntity> SHOOTING_STAR;
 	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
 	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
 	public static BlockEntityType<CrystallarieumBlockEntity> CRYSTALLARIEUM;
@@ -113,7 +111,6 @@ public class SpectrumBlockEntities {
 		BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
 		BLOCK_BREAKER = register("block_breaker", BlockBreakerBlockEntity::new, SpectrumBlocks.BLOCK_BREAKER);
 		BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
-		SHOOTING_STAR = register("shooting_star", ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR); // TODO: move to PlacedItemBlockEntity in 1.20 (so players won't lose their stuff)
 		BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
 		POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
 		SPIRIT_INSTILLER = register("spirit_instiller", SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER);

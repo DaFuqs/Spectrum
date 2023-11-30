@@ -16,7 +16,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PagePedestalCrafting extends PageGatedRecipe<PedestalRecipe> {
+public class PagePedestalCrafting extends PageGatedRecipeSingle<PedestalRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting1.png");
 	private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting2.png");
@@ -35,19 +35,18 @@ public class PagePedestalCrafting extends PageGatedRecipe<PedestalRecipe> {
 			return recipe.getOutput(world.getRegistryManager());
 		}
 	}
-
+	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull PedestalRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, getBackgroundTextureForTier(recipe.getTier()));
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull PedestalRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
-		drawContext.drawTexture(getBackgroundTextureForTier(recipe.getTier()), recipeX - 2, recipeY - 2, 0 ,0, 106, 97, 128, 256);
-
+		drawContext.drawTexture(getBackgroundTextureForTier(recipe.getTier()), recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
-		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 		
 		switch (recipe.getTier()) {
 			case COMPLEX ->
-					drawGemstonePowderSlots(drawContext, recipe, recipe.getTier().getAvailableGemstoneColors(),3, recipeX, recipeY, mouseX, mouseY);
+					drawGemstonePowderSlots(drawContext, recipe, recipe.getTier().getAvailableGemstoneColors(), 3, recipeX, recipeY, mouseX, mouseY);
 			case ADVANCED ->
 					drawGemstonePowderSlots(drawContext, recipe, recipe.getTier().getAvailableGemstoneColors(),12, recipeX, recipeY, mouseX, mouseY);
 			default ->

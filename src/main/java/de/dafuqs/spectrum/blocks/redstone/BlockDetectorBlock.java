@@ -6,7 +6,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-// TODO - review
 public class BlockDetectorBlock extends RedstoneInteractionBlock {
 	
 	public BlockDetectorBlock(AbstractBlock.Settings settings) {

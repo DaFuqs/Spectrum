@@ -12,7 +12,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
-public class PageAnvilCrushing extends PageGatedRecipe<AnvilCrushingRecipe> {
+public class PageAnvilCrushing extends PageGatedRecipeSingle<AnvilCrushingRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	
@@ -30,13 +30,10 @@ public class PageAnvilCrushing extends PageGatedRecipe<AnvilCrushingRecipe> {
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull AnvilCrushingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull AnvilCrushingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY + 4, 0, 0, 84, 48, 256, 256);
 		
-		// dirt  wall
-		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY + 4, 0, 0, 84, 48, 256,256);
-
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredients
@@ -47,7 +44,7 @@ public class PageAnvilCrushing extends PageGatedRecipe<AnvilCrushingRecipe> {
 		parent.renderItemStack(drawContext, recipeX + 16, recipeY + 15, mouseX, mouseY, recipe.createIcon());
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 64, recipeY + 29, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

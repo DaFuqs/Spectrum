@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.spectrum.compat.patchouli.PatchouliHelper;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
@@ -12,7 +11,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.client.book.gui.*;
 
-public abstract class PageFluidConverting<P extends FluidConvertingRecipe> extends PageGatedRecipe<P> {
+public abstract class PageFluidConverting<P extends FluidConvertingRecipe> extends PageGatedRecipeSingle<P> {
 	
 	public PageFluidConverting(RecipeType<P> recipeType) {
 		super(recipeType);
@@ -30,11 +29,10 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
-		RenderSystem.setShaderTexture(0, getBackgroundTexture());
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
-		PatchouliHelper.drawBookBackground(getBackgroundTexture(), drawContext, recipeX, recipeY);
-
+		drawContext.drawTexture(getBackgroundTexture(), recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		
 		parent.drawCenteredStringNoShadow(drawContext, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// fluid bucket
@@ -45,7 +43,7 @@ public abstract class PageFluidConverting<P extends FluidConvertingRecipe> exten
 		parent.renderIngredient(drawContext, recipeX + 23, recipeY + 7, mouseX, mouseY, ingredients.get(0));
 		
 		// the output
-		parent.renderItemStack(drawContext, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput());
+		parent.renderItemStack(drawContext, recipeX + 75, recipeY + 7, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 	@Override

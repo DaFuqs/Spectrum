@@ -51,7 +51,7 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return outputsWithChance.get(0).getLeft();
 	}
 	
@@ -126,7 +126,7 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 		return outputs;
 	}
 	
-	public List<Pair<ItemStack, Float>> getOutputsWithChance() {
+	public List<Pair<ItemStack, Float>> getOutputsWithChance(DynamicRegistryManager registryManager) {
 		return outputsWithChance;
 	}
 	

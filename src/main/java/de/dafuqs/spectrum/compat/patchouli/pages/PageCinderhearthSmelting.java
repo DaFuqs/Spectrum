@@ -15,7 +15,7 @@ import vazkii.patchouli.client.book.gui.*;
 
 import java.util.*;
 
-public class PageCinderhearthSmelting extends PageGatedRecipe<CinderhearthRecipe> {
+public class PageCinderhearthSmelting extends PageGatedRecipeSingle<CinderhearthRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
 	
@@ -35,15 +35,15 @@ public class PageCinderhearthSmelting extends PageGatedRecipe<CinderhearthRecipe
 	}
 	
 	@Override
-	protected void drawRecipe(DrawContext drawContext, @NotNull CinderhearthRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
+	protected void drawRecipe(DrawContext drawContext, World world, @NotNull CinderhearthRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY) {
 		RenderSystem.enableBlend();
 		
-		List<Pair<ItemStack, Float>> possibleOutputs = recipe.getOutputsWithChance();
+		List<Pair<ItemStack, Float>> possibleOutputs = recipe.getOutputsWithChance(world.getRegistryManager());
 		recipeX = Math.max(recipeX, recipeX + 26 - possibleOutputs.size() * 10);
 		
 		int backgroundTextureWidth = 34 + possibleOutputs.size() * 24;
-		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 1, recipeY - 2, 0, 0 ,backgroundTextureWidth, 45, 128, 128);
-
+		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 1, recipeY - 2, 0, 0, backgroundTextureWidth, 45, 128, 128);
+		
 		parent.drawCenteredStringNoShadow(drawContext, titleText.asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
 		// the ingredient

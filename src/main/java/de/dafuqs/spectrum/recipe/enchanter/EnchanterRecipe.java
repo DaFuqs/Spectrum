@@ -69,7 +69,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return output;
 	}
 	

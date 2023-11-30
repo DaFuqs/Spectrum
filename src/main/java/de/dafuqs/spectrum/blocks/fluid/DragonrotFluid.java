@@ -15,7 +15,7 @@ import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
 public abstract class DragonrotFluid extends SpectrumFluid {
-	
+
 	@Override
 	public Fluid getStill() {
 		return SpectrumFluids.DRAGONROT;
@@ -101,7 +101,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.DRAGONROT_SPLASH;
 	}
 	
-	public static class FlowingDragonrot extends DragonrotFluid {
+	public static class Flowing extends DragonrotFluid {
 		
 		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
@@ -121,7 +121,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 		
 	}
 	
-	public static class StillDragonrot extends DragonrotFluid {
+	public static class Still extends DragonrotFluid {
 		
 		@Override
 		public int getLevel(FluidState fluidState) {

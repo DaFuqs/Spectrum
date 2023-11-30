@@ -16,7 +16,7 @@ public abstract class DamageChangingModifier extends ParticleAddingModifier {
 	}
 	
 	@Override
-	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
+	public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
 		if (owner == null) {
 			return Optional.empty();
 		}

@@ -19,7 +19,6 @@ public class MixinParticleManager implements ExtendedParticleManager {
         spectrum$earlyRenderingParticleContainer.add(particle);
     }
 
-
     @Inject(method = "tick", at = @At("RETURN"))
     private void removeDeadHook(final CallbackInfo ci) {
         spectrum$earlyRenderingParticleContainer.removeDead();

@@ -11,6 +11,7 @@ import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
@@ -59,6 +60,8 @@ public class UnlockToastManager {
 	
 	public static void processAdvancements(Set<Identifier> doneAdvancements) {
 		MinecraftClient client = MinecraftClient.getInstance();
+		DynamicRegistryManager registryManager = client.world.getRegistryManager();
+		
 		int unlockedRecipeCount = 0;
 		HashMap<RecipeType<?>, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
 		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
@@ -127,7 +130,7 @@ public class UnlockToastManager {
             UnlockedRecipeToast.showLotsOfRecipesToast(MinecraftClient.getInstance(), allStacks);
 		} else {
 			for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
-				showGroupedRecipeUnlockToasts(unlockedRecipeList);
+				showGroupedRecipeUnlockToasts(registryManager, unlockedRecipeList);
 			}
 		}
 		
@@ -136,31 +139,32 @@ public class UnlockToastManager {
 		}
 	}
 	
-	private static void showGroupedRecipeUnlockToasts(List<GatedRecipe> unlockedRecipes) {
+	private static void showGroupedRecipeUnlockToasts(DynamicRegistryManager registryManager, List<GatedRecipe> unlockedRecipes) {
 		if (unlockedRecipes.isEmpty()) {
 			return;
 		}
-
+		
+		
 		Text singleText = unlockedRecipes.get(0).getSingleUnlockToastString();
 		Text multipleText = unlockedRecipes.get(0).getMultipleUnlockToastString();
-
+		
 		List<ItemStack> singleRecipes = new ArrayList<>();
 		HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 
 		for (GatedRecipe recipe : unlockedRecipes) {
-			if (!recipe.getOutput().isEmpty()) { // weather recipes
+			if (!recipe.getOutput(registryManager).isEmpty()) { // weather recipes
 				if (recipe.getGroup() == null) {
 					SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are Dafuqs and you are reading this: you messed up big time.");
 				}
-
+				
 				if (recipe.getGroup().isEmpty()) {
-					singleRecipes.add(recipe.getOutput());
+					singleRecipes.add(recipe.getOutput(registryManager));
 				} else {
 					if (groupedRecipes.containsKey(recipe.getGroup())) {
-						groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput());
+						groupedRecipes.get(recipe.getGroup()).add(recipe.getOutput(registryManager));
 					} else {
 						List<ItemStack> newList = new ArrayList<>();
-						newList.add(recipe.getOutput());
+						newList.add(recipe.getOutput(registryManager));
 						groupedRecipes.put(recipe.getGroup(), newList);
 					}
 				}

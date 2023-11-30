@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.block.*;
@@ -48,8 +49,8 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> outputs = new ArrayList<>();
-		outputs.add(EntryIngredients.of(recipe.getOutput()));
-		for (ItemStack additionalOutput : recipe.getAdditionalOutputs()) {
+		outputs.add(EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess())));
+		for (ItemStack additionalOutput : recipe.getAdditionalOutputs(BasicDisplay.registryAccess())) {
 			outputs.add(EntryIngredients.of(additionalOutput));
 		}
 		

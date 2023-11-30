@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.util.*;
 
 import java.util.*;
@@ -16,7 +17,7 @@ public abstract class PotionWorkshopRecipeDisplay extends GatedSpectrumDisplay {
 	 * @param recipe The recipe
 	 */
 	public PotionWorkshopRecipeDisplay(PotionWorkshopRecipe recipe) {
-		super(recipe, REIHelper.toEntryIngredients(recipe.getIngredientStacks()), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, REIHelper.toEntryIngredients(recipe.getIngredientStacks()), Collections.singletonList(EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess()))));
 		this.craftingTime = recipe.getCraftingTime();
 	}
 	

@@ -13,7 +13,7 @@ public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends Spec
 	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, Identifier unlockIdentifier, T recipe, int width, int height) {
 		super(category, unlockIdentifier, recipe.getId(), width, height);
 		this.recipe = recipe;
-		this.outputs = List.of(EmiStack.of(recipe.getOutput()));
+		this.outputs = List.of(EmiStack.of(recipe.getOutput(getRegistryManager())));
 	}
 	
 	@Override
@@ -25,4 +25,6 @@ public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends Spec
 	public boolean hideCraftable() {
 		return recipe.isSecret() || super.hideCraftable();
 	}
+	
+	
 }

@@ -20,7 +20,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class ThreatConfluxBlock extends PlaceableItemBlock implements FluidLogging.SpectrumFluidLoggable {
+public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.SpectrumFluidLoggable {
 	
 	public enum ArmedState implements StringIdentifiable {
 		NOT_ARMED("not_armed", false),

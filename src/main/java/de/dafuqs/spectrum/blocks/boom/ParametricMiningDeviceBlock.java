@@ -18,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class ParametricMiningDeviceBlock extends PlaceableItemBlock {
+public class ParametricMiningDeviceBlock extends PlacedItemBlock {
 	
 	public static final DirectionProperty FACING = Properties.FACING;
 	

@@ -95,7 +95,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH;
 	}
 	
-	public static class FlowingMidnightSolution extends MidnightSolutionFluid {
+	public static class Flowing extends MidnightSolutionFluid {
 		
 		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
@@ -115,7 +115,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		
 	}
 	
-	public static class StillMidnightSolution extends MidnightSolutionFluid {
+	public static class Still extends MidnightSolutionFluid {
 		
 		@Override
 		public int getLevel(FluidState fluidState) {

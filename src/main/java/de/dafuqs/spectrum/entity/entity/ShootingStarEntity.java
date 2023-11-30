@@ -58,7 +58,7 @@ public class ShootingStarEntity extends Entity {
 		this(SpectrumEntityTypes.SHOOTING_STAR, world);
 		this.setPosition(x, y, z);
 		this.setYaw(this.random.nextFloat() * 360.0F);
-		this.setShootingStarType(ShootingStarBlock.Type.COLORFUL, false, false);
+		this.setShootingStarType(ShootingStar.Type.COLORFUL, false, false);
 		this.lastCollisionCount = 0;
 	}
 	
@@ -81,7 +81,7 @@ public class ShootingStarEntity extends Entity {
 		return (other.isCollidable() || other.isPushable()) && !entity.isConnectedThroughVehicle(other);
 	}
 	
-	public static void playHitParticles(World world, double x, double y, double z, ShootingStarBlock.Type type, int amount) {
+	public static void playHitParticles(World world, double x, double y, double z, ShootingStar.Type type, int amount) {
 		Random random = world.random;
 		// Everything in this lambda is running on the render thread
 		
@@ -121,7 +121,7 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	protected void initDataTracker() {
-		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
+		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStar.Type.COLORFUL.ordinal());
 		this.getDataTracker().startTracking(PLAYER_PLACED, false);
 		this.getDataTracker().startTracking(HARDENED, false);
 	}
@@ -229,7 +229,7 @@ public class ShootingStarEntity extends Entity {
 					this.discard();
 				} else {
 					// spawn loot
-					List<ItemStack> loot = getLoot((ServerWorld) this.getWorld(), ShootingStarBlock.Type.BOUNCE_LOOT_TABLE);
+					List<ItemStack> loot = getLoot((ServerWorld) this.getWorld(), ShootingStar.Type.BOUNCE_LOOT_TABLE);
 					for (ItemStack itemStack : loot) {
 						ItemEntity itemEntity = new ItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);
 						this.getWorld().spawnEntity(itemEntity);
@@ -312,7 +312,7 @@ public class ShootingStarEntity extends Entity {
 	
 	public void doPlayerHitEffectsAndLoot(ServerWorld serverWorld, ServerPlayerEntity serverPlayerEntity) {
 		// Spawn loot
-		Identifier lootTableId = ShootingStarBlock.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
+		Identifier lootTableId = ShootingStar.Type.getLootTableIdentifier(dataTracker.get(SHOOTING_STAR_TYPE));
 		List<ItemStack> loot = getLoot(serverWorld, serverPlayerEntity, lootTableId);
 		
 		for (ItemStack itemStack : loot) {
@@ -430,11 +430,11 @@ public class ShootingStarEntity extends Entity {
 		return false;
 	}
 	
-	public ShootingStarBlock.Type getShootingStarType() {
-		return ShootingStarBlock.Type.getType(this.getDataTracker().get(SHOOTING_STAR_TYPE));
+	public ShootingStar.Type getShootingStarType() {
+		return ShootingStar.Type.getType(this.getDataTracker().get(SHOOTING_STAR_TYPE));
 	}
 	
-	public void setShootingStarType(ShootingStarBlock.@NotNull Type type, boolean playerPlaced, boolean hardened) {
+	public void setShootingStarType(@NotNull ShootingStar.Type type, boolean playerPlaced, boolean hardened) {
 		this.getDataTracker().set(SHOOTING_STAR_TYPE, type.ordinal());
 		this.getDataTracker().set(PLAYER_PLACED, playerPlaced);
 		this.getDataTracker().set(HARDENED, hardened);
@@ -467,7 +467,7 @@ public class ShootingStarEntity extends Entity {
 		}
 		
 		if (tag.contains("Type", 8)) {
-			this.setShootingStarType(ShootingStarBlock.Type.getType(tag.getString("Type")), playerPlaced, hardened);
+			this.setShootingStarType(ShootingStar.Type.getType(tag.getString("Type")), playerPlaced, hardened);
 		} else {
 			this.discard();
 		}

@@ -9,7 +9,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class FireModifier extends DamageChangingModifier {
 	
@@ -28,11 +28,11 @@ public class FireModifier extends DamageChangingModifier {
 	}
 
 	@Override
-	public Optional<DamageSource> getDamageSource(@Nullable Entity owner) {
-		if (!(owner instanceof LivingEntity living)) {
+	public Optional<DamageSource> getDamageSource(@Nullable LivingEntity owner) {
+		if (owner == null) {
 			return Optional.empty();
 		} else {
-			return Optional.of(living.getDamageSources().inFire());
+			return Optional.of(owner.getDamageSources().inFire());
 		}
 	}
 

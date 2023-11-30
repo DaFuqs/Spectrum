@@ -95,7 +95,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack getOutput(DynamicRegistryManager drm) {
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return output;
 	}
 	

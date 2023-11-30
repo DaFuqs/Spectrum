@@ -75,7 +75,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH;
 	}
 	
-	public static class FlowingLiquidCrystal extends LiquidCrystalFluid {
+	public static class Flowing extends LiquidCrystalFluid {
 		
 		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
@@ -99,7 +99,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		}
 	}
 	
-	public static class StillLiquidCrystal extends LiquidCrystalFluid {
+	public static class Still extends LiquidCrystalFluid {
 		
 		@Override
 		protected boolean isInfinite(World world) {

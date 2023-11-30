@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.fractal.api.*;
-import de.dafuqs.fractal.quack.ItemGroupParent;
+import de.dafuqs.fractal.quack.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.memory.MemoryItem;
+import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.gobber.*;
@@ -344,7 +344,7 @@ public class SpectrumItemGroups {
 
 		// adding all beverages from recipes
 		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-			ItemStack output = recipe.getOutput().copy();
+			ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
 			if (output.getItem() instanceof VariantBeverageItem) {
 				output.setCount(1);
 				entries.add(output);
@@ -448,14 +448,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SMALL_BISMUTH_BUD);
 		entries.add(SpectrumBlocks.LARGE_BISMUTH_BUD);
 		entries.add(SpectrumBlocks.BISMUTH_CLUSTER);
-		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
 		entries.add(SpectrumBlocks.MALACHITE_ORE);
 		entries.add(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
 		entries.add(SpectrumBlocks.SMALL_MALACHITE_BUD);
 		entries.add(SpectrumBlocks.LARGE_MALACHITE_BUD);
 		entries.add(SpectrumBlocks.MALACHITE_CLUSTER);
-		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
 		entries.add(SpectrumBlocks.BLACKSLAG_COAL_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_COPPER_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_IRON_ORE);
@@ -464,34 +462,36 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_LAPIS_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_EMERALD_ORE);
-		entries.add(SpectrumBlocks.AZURITE_CLUSTER);
-		entries.add(SpectrumBlocks.LARGE_AZURITE_BUD);
+		entries.add(SpectrumItems.RAW_AZURITE);
 		entries.add(SpectrumBlocks.SMALL_AZURITE_BUD);
+		entries.add(SpectrumBlocks.LARGE_AZURITE_BUD);
+		entries.add(SpectrumBlocks.AZURITE_CLUSTER);
+		entries.add(SpectrumItems.REFINED_AZURITE);
+		entries.add(SpectrumItems.RAW_BLOODSTONE);
 		entries.add(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
-		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
-		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
-		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
-		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
 		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
+		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
+		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
 		entries.add(SpectrumBlocks.CLOVER);
 		entries.add(SpectrumBlocks.FOUR_LEAF_CLOVER);
 		entries.add(SpectrumBlocks.BLOOD_ORCHID);
 		entries.add(SpectrumBlocks.QUITOXIC_REEDS);
+		entries.add(SpectrumItems.QUITOXIC_POWDER);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		entries.add(SpectrumBlocks.AMARANTH_BUSHEL);
-		entries.add(SpectrumItems.TOPAZ_SHARD);
-		entries.add(SpectrumItems.CITRINE_SHARD);
-		entries.add(SpectrumItems.ONYX_SHARD);
-		entries.add(SpectrumItems.MOONSTONE_SHARD);
-		entries.add(SpectrumItems.SPECTRAL_SHARD);
-		entries.add(SpectrumItems.TOPAZ_POWDER);
 		entries.add(SpectrumItems.AMETHYST_POWDER);
+		entries.add(SpectrumItems.TOPAZ_SHARD);
+		entries.add(SpectrumItems.TOPAZ_POWDER);
+		entries.add(SpectrumItems.CITRINE_SHARD);
 		entries.add(SpectrumItems.CITRINE_POWDER);
+		entries.add(SpectrumItems.ONYX_SHARD);
 		entries.add(SpectrumItems.ONYX_POWDER);
+		entries.add(SpectrumItems.MOONSTONE_SHARD);
 		entries.add(SpectrumItems.MOONSTONE_POWDER);
+		entries.add(SpectrumItems.SPECTRAL_SHARD);
 		entries.add(SpectrumItems.WHITE_PIGMENT);
 		entries.add(SpectrumItems.ORANGE_PIGMENT);
 		entries.add(SpectrumItems.MAGENTA_PIGMENT);
@@ -509,8 +509,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.RED_PIGMENT);
 		entries.add(SpectrumItems.BLACK_PIGMENT);
 		entries.add(SpectrumItems.SHIMMERSTONE_GEM);
-		entries.add(SpectrumItems.RAW_AZURITE);
-		entries.add(SpectrumItems.REFINED_AZURITE);
 		entries.add(SpectrumItems.PALTAERIA_FRAGMENTS);
 		entries.add(SpectrumItems.PALTAERIA_GEM);
 		entries.add(SpectrumItems.STRATINE_FRAGMENTS);
@@ -521,7 +519,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.REFINED_BLOODSTONE);
 		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
 		entries.add(SpectrumItems.RESONANCE_SHARD);
-		entries.add(SpectrumItems.QUITOXIC_POWDER);
 		entries.add(SpectrumItems.MERMAIDS_GEM);
 		entries.add(SpectrumItems.STORM_STONE);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
@@ -546,8 +543,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.BISMUTH_CRYSTAL);
 		entries.add(SpectrumItems.RAW_MALACHITE);
 		entries.add(SpectrumItems.REFINED_MALACHITE);
-		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
-		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
 		entries.add(SpectrumItems.BONE_ASH);
 		entries.add(SpectrumItems.MOONSTONE_CORE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);
@@ -558,103 +553,106 @@ public class SpectrumItemGroups {
 	}).build();
 	
 	public static final ItemSubGroup PURE_RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.pure_resources")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
-		entries.add(SpectrumBlocks.SMALL_COAL_BUD); // TODO: probably reorder those to have items with their buds?
+		entries.add(SpectrumItems.PURE_COAL);
+		entries.add(SpectrumBlocks.SMALL_COAL_BUD);
 		entries.add(SpectrumBlocks.LARGE_COAL_BUD);
 		entries.add(SpectrumBlocks.COAL_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_IRON_BUD);
-		entries.add(SpectrumBlocks.LARGE_IRON_BUD);
-		entries.add(SpectrumBlocks.IRON_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_GOLD_BUD);
-		entries.add(SpectrumBlocks.LARGE_GOLD_BUD);
-		entries.add(SpectrumBlocks.GOLD_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_DIAMOND_BUD);
-		entries.add(SpectrumBlocks.LARGE_DIAMOND_BUD);
-		entries.add(SpectrumBlocks.DIAMOND_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_EMERALD_BUD);
-		entries.add(SpectrumBlocks.LARGE_EMERALD_BUD);
-		entries.add(SpectrumBlocks.EMERALD_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_REDSTONE_BUD);
-		entries.add(SpectrumBlocks.LARGE_REDSTONE_BUD);
-		entries.add(SpectrumBlocks.REDSTONE_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_LAPIS_BUD);
-		entries.add(SpectrumBlocks.LARGE_LAPIS_BUD);
-		entries.add(SpectrumBlocks.LAPIS_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_COAL_BLOCK);
+		entries.add(SpectrumItems.PURE_COPPER);
 		entries.add(SpectrumBlocks.SMALL_COPPER_BUD);
 		entries.add(SpectrumBlocks.LARGE_COPPER_BUD);
 		entries.add(SpectrumBlocks.COPPER_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_QUARTZ_BUD);
-		entries.add(SpectrumBlocks.LARGE_QUARTZ_BUD);
-		entries.add(SpectrumBlocks.QUARTZ_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_NETHERITE_SCRAP_BUD);
-		entries.add(SpectrumBlocks.LARGE_NETHERITE_SCRAP_BUD);
-		entries.add(SpectrumBlocks.NETHERITE_SCRAP_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_ECHO_BUD);
-		entries.add(SpectrumBlocks.LARGE_ECHO_BUD);
-		entries.add(SpectrumBlocks.ECHO_CLUSTER);
-		entries.add(SpectrumBlocks.SMALL_GLOWSTONE_BUD);
-		entries.add(SpectrumBlocks.LARGE_GLOWSTONE_BUD);
-		entries.add(SpectrumBlocks.GLOWSTONE_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_COPPER_BLOCK);
+		entries.add(SpectrumItems.PURE_IRON);
+		entries.add(SpectrumBlocks.SMALL_IRON_BUD);
+		entries.add(SpectrumBlocks.LARGE_IRON_BUD);
+		entries.add(SpectrumBlocks.IRON_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_IRON_BLOCK);
+		entries.add(SpectrumItems.PURE_GOLD);
+		entries.add(SpectrumBlocks.SMALL_GOLD_BUD);
+		entries.add(SpectrumBlocks.LARGE_GOLD_BUD);
+		entries.add(SpectrumBlocks.GOLD_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_GOLD_BLOCK);
+		entries.add(SpectrumItems.PURE_LAPIS);
+		entries.add(SpectrumBlocks.SMALL_LAPIS_BUD);
+		entries.add(SpectrumBlocks.LARGE_LAPIS_BUD);
+		entries.add(SpectrumBlocks.LAPIS_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_LAPIS_BLOCK);
+		entries.add(SpectrumItems.PURE_REDSTONE);
+		entries.add(SpectrumBlocks.SMALL_REDSTONE_BUD);
+		entries.add(SpectrumBlocks.LARGE_REDSTONE_BUD);
+		entries.add(SpectrumBlocks.REDSTONE_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_REDSTONE_BLOCK);
+		entries.add(SpectrumItems.PURE_DIAMOND);
+		entries.add(SpectrumBlocks.SMALL_DIAMOND_BUD);
+		entries.add(SpectrumBlocks.LARGE_DIAMOND_BUD);
+		entries.add(SpectrumBlocks.DIAMOND_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_DIAMOND_BLOCK);
+		entries.add(SpectrumItems.PURE_EMERALD);
+		entries.add(SpectrumBlocks.SMALL_EMERALD_BUD);
+		entries.add(SpectrumBlocks.LARGE_EMERALD_BUD);
+		entries.add(SpectrumBlocks.EMERALD_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_EMERALD_BLOCK);
+
+		entries.add(SpectrumItems.PURE_PRISMARINE);
 		entries.add(SpectrumBlocks.SMALL_PRISMARINE_BUD);
 		entries.add(SpectrumBlocks.LARGE_PRISMARINE_BUD);
 		entries.add(SpectrumBlocks.PRISMARINE_CLUSTER);
-		entries.add(SpectrumBlocks.PURE_COAL_BLOCK);
-		entries.add(SpectrumBlocks.PURE_IRON_BLOCK);
-		entries.add(SpectrumBlocks.PURE_GOLD_BLOCK);
-		entries.add(SpectrumBlocks.PURE_DIAMOND_BLOCK);
-		entries.add(SpectrumBlocks.PURE_EMERALD_BLOCK);
-		entries.add(SpectrumBlocks.PURE_REDSTONE_BLOCK);
-		entries.add(SpectrumBlocks.PURE_LAPIS_BLOCK);
-		entries.add(SpectrumBlocks.PURE_COPPER_BLOCK);
-		entries.add(SpectrumBlocks.PURE_QUARTZ_BLOCK);
-		entries.add(SpectrumBlocks.PURE_GLOWSTONE_BLOCK);
 		entries.add(SpectrumBlocks.PURE_PRISMARINE_BLOCK);
-		entries.add(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK);
-		entries.add(SpectrumBlocks.PURE_ECHO_BLOCK);
-		entries.add(SpectrumItems.PURE_COAL);
-		entries.add(SpectrumItems.PURE_IRON);
-		entries.add(SpectrumItems.PURE_GOLD);
-		entries.add(SpectrumItems.PURE_DIAMOND);
-		entries.add(SpectrumItems.PURE_EMERALD);
-		entries.add(SpectrumItems.PURE_REDSTONE);
-		entries.add(SpectrumItems.PURE_LAPIS);
-		entries.add(SpectrumItems.PURE_COPPER);
+
 		entries.add(SpectrumItems.PURE_QUARTZ);
+		entries.add(SpectrumBlocks.SMALL_QUARTZ_BUD);
+		entries.add(SpectrumBlocks.LARGE_QUARTZ_BUD);
+		entries.add(SpectrumBlocks.QUARTZ_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_QUARTZ_BLOCK);
 		entries.add(SpectrumItems.PURE_GLOWSTONE);
-		entries.add(SpectrumItems.PURE_PRISMARINE);
+		entries.add(SpectrumBlocks.SMALL_GLOWSTONE_BUD);
+		entries.add(SpectrumBlocks.LARGE_GLOWSTONE_BUD);
+		entries.add(SpectrumBlocks.GLOWSTONE_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_GLOWSTONE_BLOCK);
 		entries.add(SpectrumItems.PURE_NETHERITE_SCRAP);
+		entries.add(SpectrumBlocks.SMALL_NETHERITE_SCRAP_BUD);
+		entries.add(SpectrumBlocks.LARGE_NETHERITE_SCRAP_BUD);
+		entries.add(SpectrumBlocks.NETHERITE_SCRAP_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK);
+
 		entries.add(SpectrumItems.PURE_ECHO);
+		entries.add(SpectrumBlocks.SMALL_ECHO_BUD);
+		entries.add(SpectrumBlocks.LARGE_ECHO_BUD);
+		entries.add(SpectrumBlocks.ECHO_CLUSTER);
+		entries.add(SpectrumBlocks.PURE_ECHO_BLOCK);
 		
 		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.AE2_ID)) {
+			entries.add(AE2Compat.PURE_CERTUS_QUARTZ);
 			entries.add(AE2Compat.SMALL_CERTUS_QUARTZ_BUD);
 			entries.add(AE2Compat.LARGE_CERTUS_QUARTZ_BUD);
 			entries.add(AE2Compat.CERTUS_QUARTZ_CLUSTER);
-			entries.add(AE2Compat.PURE_CERTUS_QUARTZ);
 			entries.add(AE2Compat.PURE_CERTUS_QUARTZ_BLOCK);
-			
+
+			entries.add(AE2Compat.PURE_FLUIX);
 			entries.add(AE2Compat.SMALL_FLUIX_BUD);
 			entries.add(AE2Compat.LARGE_FLUIX_BUD);
 			entries.add(AE2Compat.FLUIX_CLUSTER);
-			entries.add(AE2Compat.PURE_FLUIX);
 			entries.add(AE2Compat.PURE_FLUIX_BLOCK);
 		}
 		
 		if (SpectrumIntegrationPacks.isIntegrationPackActive(SpectrumIntegrationPacks.GOBBER_ID)) {
+			entries.add(GobberCompat.PURE_GLOBETTE);
 			entries.add(GobberCompat.SMALL_GLOBETTE_BUD);
 			entries.add(GobberCompat.LARGE_GLOBETTE_BUD);
 			entries.add(GobberCompat.GLOBETTE_CLUSTER);
-			entries.add(GobberCompat.PURE_GLOBETTE);
 			entries.add(GobberCompat.PURE_GLOBETTE_BLOCK);
-			
+
+			entries.add(GobberCompat.PURE_GLOBETTE_NETHER);
 			entries.add(GobberCompat.SMALL_GLOBETTE_NETHER_BUD);
 			entries.add(GobberCompat.LARGE_GLOBETTE_NETHER_BUD);
 			entries.add(GobberCompat.GLOBETTE_NETHER_CLUSTER);
-			entries.add(GobberCompat.PURE_GLOBETTE_NETHER);
 			entries.add(GobberCompat.PURE_GLOBETTE_NETHER_BLOCK);
-			
+
+			entries.add(GobberCompat.PURE_GLOBETTE_END);
 			entries.add(GobberCompat.SMALL_GLOBETTE_END_BUD);
 			entries.add(GobberCompat.LARGE_GLOBETTE_END_BUD);
 			entries.add(GobberCompat.GLOBETTE_END_CLUSTER);
-			entries.add(GobberCompat.PURE_GLOBETTE_END);
 			entries.add(GobberCompat.PURE_GLOBETTE_END_BLOCK);
 		}
 		
@@ -907,6 +905,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		entries.add(SpectrumBlocks.AZURITE_BLOCK);
+		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
+		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
+		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
 		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);
@@ -955,6 +956,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_DECOSTONE);
 		entries.add(SpectrumBlocks.ONYX_DECOSTONE);
 		entries.add(SpectrumBlocks.MOONSTONE_DECOSTONE);
+		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
+		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
+		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
 		entries.add(SpectrumBlocks.WHITE_BLOCK);
 		entries.add(SpectrumBlocks.ORANGE_BLOCK);
 		entries.add(SpectrumBlocks.MAGENTA_BLOCK);

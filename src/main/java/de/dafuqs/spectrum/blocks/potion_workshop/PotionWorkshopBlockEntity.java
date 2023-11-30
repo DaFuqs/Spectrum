@@ -206,8 +206,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-		// FIXME - Is applicable to what?
-        return hasUniqueReagents(potionWorkshopBlockEntity) /*&& recipe.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity))*/;
+        return hasUniqueReagents(potionWorkshopBlockEntity) && recipe.recipeData.isApplicableTo(baseIngredient, getPotionModFromReagents(potionWorkshopBlockEntity));
 	}
 	
 	private static void craftRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopCraftingRecipe recipe) {
@@ -218,7 +217,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		
 		// output
-		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput().copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
+		InventoryHelper.addToInventory(potionWorkshopBlockEntity.inventory, recipe.getOutput(potionWorkshopBlockEntity.world.getRegistryManager()).copy(), FIRST_INVENTORY_SLOT, FIRST_INVENTORY_SLOT + INVENTORY_SLOT_COUNT);
 	}
 	
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
@@ -501,7 +500,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	@Override
 	public void setStack(int slot, @NotNull ItemStack stack) {
 		ItemStack itemStack = this.inventory.get(slot);
-		boolean isSameItem = !stack.isEmpty() && ItemStack.areItemsEqual(stack, itemStack) && ItemStack.canCombine(stack, itemStack);
+		boolean isSameItem = ItemStack.canCombine(stack, itemStack);
 		this.inventory.set(slot, stack);
 		if (stack.getCount() > this.getMaxCountPerStack()) {
 			stack.setCount(this.getMaxCountPerStack());

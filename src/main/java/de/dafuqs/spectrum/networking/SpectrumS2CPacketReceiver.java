@@ -135,7 +135,7 @@ public class SpectrumS2CPacketReceiver {
 			double x = buf.readDouble();
 			double y = buf.readDouble();
 			double z = buf.readDouble();
-			ShootingStarBlock.Type shootingStarType = ShootingStarBlock.Type.getType(buf.readInt());
+			ShootingStar.Type shootingStarType = ShootingStar.Type.getType(buf.readInt());
 			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread

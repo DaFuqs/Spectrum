@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
@@ -20,7 +21,7 @@ public class EnchanterEnchantingDisplay extends EnchanterDisplay {
 	
 	// first input is the center, all others around clockwise
 	public EnchanterEnchantingDisplay(@NotNull EnchanterRecipe recipe) {
-		super(recipe, buildIngredients(recipe), recipe.getOutput());
+		super(recipe, buildIngredients(recipe), recipe.getOutput(BasicDisplay.registryAccess()));
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.craftingTime = recipe.getCraftingTime();
 	}

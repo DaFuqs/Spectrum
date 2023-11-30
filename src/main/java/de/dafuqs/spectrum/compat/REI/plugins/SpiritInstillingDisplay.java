@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.client.*;
@@ -27,11 +28,11 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 	
 	public static EntryIngredient buildOutput(SpiritInstillerRecipe recipe) {
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {
-			ItemStack outputStack = recipe.getOutput();
+			ItemStack outputStack = recipe.getOutput(BasicDisplay.registryAccess());
 			LoreHelper.setLore(outputStack, spawnerChangeRecipe.getOutputLoreText());
 			return EntryIngredients.of(outputStack);
 		} else {
-			return EntryIngredients.of(recipe.getOutput());
+			return EntryIngredients.of(recipe.getOutput(BasicDisplay.registryAccess()));
 		}
 	}
 	

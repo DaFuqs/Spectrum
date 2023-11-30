@@ -17,7 +17,6 @@ repositories {
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
-	// maven { url = "https://maven.blamejared.com" } // Enchantment Descriptions
 	maven { url = "https://maven.blamejared.com" } // Patchouli
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
@@ -94,17 +93,11 @@ dependencies {
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
 	// https://github.com/Terrails/HealthOverlay
-	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
+	// Thanks to yurisuika for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
 	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 
-	// Ears compact by Maya!
+	// Ears compat by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
-
-	// Soft testing-only dependencies:
-	//modRuntimeOnly 'com.github.DaFuqs:PaginatedAdvancements:1.19-SNAPSHOT'
-	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
-	//modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
-	//modRuntimeOnly("squeek.appleskin:appleskin-fabric:mc1.18.2-2.4.1") { exclude module: 'modmenu' }
 }
 
 loom {

@@ -165,7 +165,7 @@ public abstract class LivingEntityMixin {
 		LivingEntity target = (LivingEntity) (Object) this;
 
 		// SetHealth damage does exactly that
-		if (amount > 0 && source.isIn(SpectrumDamageSources.FAKE_PLAYER_DAMAGE)) {
+		if (amount > 0 && source.isIn(SpectrumDamageSources.USES_SET_HEALTH)) {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getDamageTracker().onDamage(source, amount);

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:cinderhearth",
+  "group": "pure_to_vanilla_resources",
   "ingredient": {
     "item": "spectrum:pure_iron"
   },

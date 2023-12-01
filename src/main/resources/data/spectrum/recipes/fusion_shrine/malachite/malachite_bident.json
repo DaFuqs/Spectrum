@@ -1,5 +1,6 @@
 {
   "type": "spectrum:fusion_shrine",
+  "group": "malachite_equipment",
   "time": 1200,
   "experience": 16.0,
   "fluid": "spectrum:liquid_crystal",

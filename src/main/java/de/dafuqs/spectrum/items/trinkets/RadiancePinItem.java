@@ -51,7 +51,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 				return;
 			}
 			
-			if (world.getLightLevel(pos) <= MAX_LIGHT_LEVEL) {
+			if (!world.isOutOfHeightLimit(pos) && world.getLightLevel(pos) <= MAX_LIGHT_LEVEL) {
 				BlockState currentState = world.getBlockState(pos);
 				boolean placed = false;
 				if (currentState.isAir()) {

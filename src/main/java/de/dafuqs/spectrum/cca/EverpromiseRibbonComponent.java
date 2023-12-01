@@ -10,7 +10,7 @@ public class EverpromiseRibbonComponent implements Component {
 	
 	public static final ComponentKey<EverpromiseRibbonComponent> EVERPROMISE_RIBBON_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("everpromise_ribbon"), EverpromiseRibbonComponent.class);
 	
-	private boolean hasBondingRibbon = false;
+	private boolean hasRibbon = false;
 	
 	// this is not optional
 	// removing this empty constructor will make the world not load
@@ -24,24 +24,24 @@ public class EverpromiseRibbonComponent implements Component {
 	
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
-		if (this.hasBondingRibbon) {
+		if (this.hasRibbon) {
 			tag.putBoolean("has_everpromise_ribbon", true);
 		}
 	}
 	
 	@Override
 	public void readFromNbt(NbtCompound tag) {
-		this.hasBondingRibbon = tag.getBoolean("has_everpromise_ribbon");
+		this.hasRibbon = tag.getBoolean("has_everpromise_ribbon");
 	}
 	
-	public static void attachBondingRibbon(LivingEntity livingEntity) {
+	public static void attachRibbon(LivingEntity livingEntity) {
 		EverpromiseRibbonComponent component = EVERPROMISE_RIBBON_COMPONENT.get(livingEntity);
-		component.hasBondingRibbon = true;
+		component.hasRibbon = true;
 	}
 	
-	public static boolean hasBondingRibbon(LivingEntity livingEntity) {
+	public static boolean hasRibbon(LivingEntity livingEntity) {
 		EverpromiseRibbonComponent component = EVERPROMISE_RIBBON_COMPONENT.get(livingEntity);
-		return component.hasBondingRibbon;
+		return component.hasRibbon;
 	}
 	
 }

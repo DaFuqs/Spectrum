@@ -131,16 +131,21 @@ public abstract class LivingEntityMixin {
 	}
 
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
-	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
+	public float spectrum$modifyDamage(float amount, DamageSource source) {
 		@Nullable StatusEffectInstance vulnerability = getStatusEffect(SpectrumStatusEffects.VULNERABILITY);
 		if (vulnerability != null) {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
 		
-		if (source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY) || source.isIn(DamageTypeTags.BYPASSES_SHIELD) || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+		if (amount <= 0
+				|| source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)
+				|| this.blockedByShield(source)
+				|| ((Entity) (Object) this).isInvulnerableTo(source)
+				|| source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+			
 			return amount;
 		}
-
+		
 		return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 	}
 
@@ -222,18 +227,19 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-		World world = ((LivingEntity) (Object) this).getWorld();
+		LivingEntity thisEntity = (LivingEntity) (Object) this;
+		World world = thisEntity.getWorld();
 		if (!world.isClient) {
-			if (((Object) this) instanceof MobEntity thisMobEntity) {
+			if (thisEntity instanceof MobEntity thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
-					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
-						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisMobEntity, amount);
+					if (armorItemStack.getItem() instanceof ArmorWithHitEffect armorWithHitEffect) {
+						armorWithHitEffect.onHit(armorItemStack, source, thisMobEntity, amount);
 					}
 				}
-			} else if (((Object) this) instanceof ServerPlayerEntity thisPlayerEntity) {
+			} else if (thisEntity instanceof ServerPlayerEntity thisPlayerEntity) {
 				for (ItemStack armorItemStack : thisPlayerEntity.getArmorItems()) {
-					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
-						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisPlayerEntity, amount);
+					if (armorItemStack.getItem() instanceof ArmorWithHitEffect armorWithHitEffect) {
+						armorWithHitEffect.onHit(armorItemStack, source, thisPlayerEntity, amount);
 					}
 				}
 			}
@@ -295,7 +301,7 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
 	protected void drop(DamageSource source, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasBondingRibbon(thisEntity);
+		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasRibbon(thisEntity);
 		if (hasBondingRibbon) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);

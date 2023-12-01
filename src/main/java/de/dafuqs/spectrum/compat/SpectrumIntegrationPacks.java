@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.gobber.*;
+import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliCompat;
 import net.fabricmc.loader.api.*;
 
@@ -36,7 +37,8 @@ public class SpectrumIntegrationPacks {
 	public static final String MYTHIC_METALS_ID = "mythicmetals";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
 	public static final String PATCHOULI_ID = "patchouli";
-	
+	public static final String MODONOMICON_ID = "modonomicon";
+
 	public static void register() {
 		registerIntegrationPack(AE2_ID, new AE2Compat());
 		registerIntegrationPack(GOBBER_ID, new GobberCompat());
@@ -44,6 +46,7 @@ public class SpectrumIntegrationPacks {
 		//registerIntegrationPack(MYTHIC_METALS_ID, new MythicMetalsCompat());
 		registerIntegrationPack(ALLOY_FORGERY_ID, new AlloyForgeryCompat());
 		registerIntegrationPack(PATCHOULI_ID, new PatchouliCompat());
+		registerIntegrationPack(MODONOMICON_ID, new ModonomiconCompat());
 
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

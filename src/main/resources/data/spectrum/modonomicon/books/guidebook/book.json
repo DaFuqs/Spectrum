@@ -1,7 +1,6 @@
 {
 	"name": "book.spectrum.guidebook.name",
 	"tooltip": "book.spectrum.guidebook.tooltip",
-	"generate_book_item": true,
-	"model": "spectrum:guidebook",
-	"_custom_book_item": "spectrum:guidebook"
+	"generate_book_item": false,
+	"custom_book_item": "spectrum:guidebook"
 }

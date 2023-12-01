@@ -14,8 +14,4 @@ public class CreateCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.DD_BIOMES), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate("mod_integration/create/dd_zinc_ore")));
 	}
 	
-	@Override
-	public void registerClient() {
-	
-	}
 }

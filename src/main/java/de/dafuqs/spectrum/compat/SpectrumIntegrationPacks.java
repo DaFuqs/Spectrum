@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.gobber.*;
+import de.dafuqs.spectrum.compat.patchouli.PatchouliCompat;
 import net.fabricmc.loader.api.*;
 
 import java.util.*;
@@ -12,11 +13,12 @@ public class SpectrumIntegrationPacks {
 	
 	protected static final Map<String, ModIntegrationPack> INTEGRATION_PACKS = new HashMap<>();
 	
-	
 	public abstract static class ModIntegrationPack {
-		public abstract void register();
+		public void register() {
+		}
 		
-		public abstract void registerClient();
+		public void registerClient() {
+		}
 		
 		public void registerMultiblocks() {
 		}
@@ -33,6 +35,7 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create";
 	public static final String MYTHIC_METALS_ID = "mythicmetals";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
+	public static final String PATCHOULI_ID = "patchouli";
 	
 	public static void register() {
 		registerIntegrationPack(AE2_ID, new AE2Compat());
@@ -40,7 +43,8 @@ public class SpectrumIntegrationPacks {
 		//registerIntegrationPack(CREATE_ID, new CreateCompat());
 		//registerIntegrationPack(MYTHIC_METALS_ID, new MythicMetalsCompat());
 		registerIntegrationPack(ALLOY_FORGERY_ID, new AlloyForgeryCompat());
-		
+		registerIntegrationPack(PATCHOULI_ID, new PatchouliCompat());
+
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();
 		}

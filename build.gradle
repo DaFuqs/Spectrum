@@ -61,8 +61,8 @@ dependencies {
 	modImplementation ("vazkii.patchouli:Patchouli:${project.patchouli_version}")
 
 	// https://github.com/klikli-dev/modonomicon
-	compileOnly ("com.klikli_dev:modonomicon-${project.minecraft_version}-common:${project.modonomicon_version}")
-    implementation ("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}")
+	modCompileOnly ("com.klikli_dev:modonomicon-${project.minecraft_version}-common:${project.modonomicon_version}")
+    modImplementation ("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}")
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")

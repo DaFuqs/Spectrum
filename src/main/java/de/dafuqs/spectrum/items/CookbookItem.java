@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -10,7 +11,6 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 import java.util.*;
 
@@ -36,7 +36,9 @@ public class CookbookItem extends Item {
 	}
 	
 	private void openGuidebookPage(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, GuidebookItem.GUIDEBOOK_ID, entry, page);
+		if (SpectrumItems.GUIDEBOOK instanceof GuidebookItem guidebook) {
+			guidebook.openGuidebook(serverPlayerEntity, entry, page);
+		}
 	}
 	
 	@Override

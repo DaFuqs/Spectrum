@@ -14,17 +14,7 @@ public class AlloyForgeryCompat extends SpectrumIntegrationPacks.ModIntegrationP
 	public static final Identifier SHALE_CLAY_ALLOY_FORGE_MULTIBLOCK_ID = SpectrumCommon.locate("shale_clay_alloy_forge");
 	public static final Identifier PYRITE_ALLOY_FORGE_MULTIBLOCK_ID = SpectrumCommon.locate("pyrite_alloy_forge");
 	public static final Identifier BONE_ASH_ALLOY_FORGE_MULTIBLOCK_ID = SpectrumCommon.locate("bone_ash_alloy_forge");
-	
-	@Override
-	public void register() {
-	
-	}
-	
-	@Override
-	public void registerClient() {
-	
-	}
-	
+
 	@Override
 	public void registerMultiblocks() {
 		String[][] structure = {

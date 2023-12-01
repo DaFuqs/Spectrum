@@ -26,9 +26,4 @@ public class MythicMetalsCompat extends SpectrumIntegrationPacks.ModIntegrationP
 		BiomeModifications.addFeature(biomeSelector, GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate(placedFeatureName)));
 	}
 	
-	@Override
-	public void registerClient() {
-	
-	}
-	
 }

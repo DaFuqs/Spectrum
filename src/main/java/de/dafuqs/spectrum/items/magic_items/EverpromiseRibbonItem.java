@@ -39,7 +39,7 @@ public class EverpromiseRibbonItem extends Item {
 								random.nextGaussian() * 0.02, random.nextGaussian() * 0.02, random.nextGaussian() * 0.02);
 					}
 				} else {
-					EverpromiseRibbonComponent.attachBondingRibbon(entity);
+					EverpromiseRibbonComponent.attachRibbon(entity);
 					
 					Text newName = stack.getName();
 					if (newName instanceof MutableText mutableText) {

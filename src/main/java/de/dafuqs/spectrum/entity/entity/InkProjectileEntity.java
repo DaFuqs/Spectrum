@@ -129,9 +129,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Entity entity2 = this.getOwner();
 		DamageSource damageSource;
 		if (entity2 == null) {
-			damageSource = SpectrumDamageSources.inkProjectile(this, this);
+			damageSource = SpectrumDamageTypes.inkProjectile(this, this);
 		} else {
-			damageSource = SpectrumDamageSources.inkProjectile(this, entity2);
+			damageSource = SpectrumDamageTypes.inkProjectile(this, entity2);
 			if (entity2 instanceof LivingEntity) {
 				((LivingEntity) entity2).onAttacking(entity);
 			}

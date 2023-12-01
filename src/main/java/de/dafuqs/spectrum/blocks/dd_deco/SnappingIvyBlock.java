@@ -92,8 +92,8 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
-				entity.damage(SpectrumDamageSources.snappingIvy(world), 5.0F);
-				livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
+				entity.damage(SpectrumDamageTypes.snappingIvy(world), 5.0F);
+                livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
 	
 				snap(state, world, pos, true);
             }

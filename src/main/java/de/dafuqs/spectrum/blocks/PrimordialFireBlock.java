@@ -114,7 +114,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
 
-        entity.damage(SpectrumDamageSources.primordialFire(world, null), DAMAGE);
+        entity.damage(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
     }
     
     @Override

@@ -223,8 +223,10 @@
   "multiblock.spectrum.enchanter.structure": "Enchanter",
   "multiblock.spectrum.spirit_instiller.structure": "Spirit Instiller",
   "multiblock.spectrum.cinderhearth.structure": "Cinderhearth",
+
   "death.attack.spectrum_decay": "%1$s was eaten alive",
-  "death.attack.spectrum_ink_projectile": "%2$s taught %1$s the joy of painting",
+  "death.attack.spectrum_ink_projectile": "%2$s was taught %1$s the joy of painting",
+  "death.attack.spectrum_ink_projectile.player": "%2$s taught %1$s the joy of painting",
   "death.attack.spectrum_ink_projectile.item": "%2$s taught %1$s the joy of painting using %3$s",
   "death.attack.spectrum_floatblock": "%1$s was smashed by a Floating Block",
   "death.attack.spectrum_shooting_star": "%1$s was smitten by a Shooting Star. Make a Wish!",

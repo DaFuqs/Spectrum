@@ -156,7 +156,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
 			power = item.getExplosionPower(stack, false);
 		}
-		world.createExplosion(owner, SpectrumDamageSources.incandescence(world, owner), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(owner, SpectrumDamageTypes.incandescence(world, owner), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, World.ExplosionSourceType.BLOCK);
 	}
 	
 }

@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.onyxstudios.cca.api.v3.component.*;
 import dev.onyxstudios.cca.api.v3.component.sync.*;
 import dev.onyxstudios.cca.api.v3.component.tick.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalEntityTypeTags;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
@@ -106,12 +106,12 @@ public class OnPrimordialFireComponent implements AutoSyncedComponent, ServerTic
 		if (this.primordialFireTicks > 0) {
 			if (!isAffectingConstruct()) {
 				var damageScaling = getDamageHealthScaling(provider);
-				provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), AzureDikeProvider.absorbDamage(provider, damageScaling * provider.getMaxHealth()));
+				provider.damage(SpectrumDamageTypes.primordialFire(this.provider.getWorld()), AzureDikeProvider.absorbDamage(provider, damageScaling * provider.getMaxHealth()));
 			}
 			//Primordial fire is so strong because it rends the soul. No soul = just slightly spicier fire
 			//Constructs have no soul, thus you get 2 dps and no more
 			else if (provider.age % 10 == 0) {
-				provider.damage(SpectrumDamageSources.primordialFire(this.provider.getWorld()), 1);
+				provider.damage(SpectrumDamageTypes.primordialFire(this.provider.getWorld()), 1);
 			}
 
 			this.primordialFireTicks -= this.provider.getFluidHeight(FluidTags.WATER) > 0 ? 3 : 1;

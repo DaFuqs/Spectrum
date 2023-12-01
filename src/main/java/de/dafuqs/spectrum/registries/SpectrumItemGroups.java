@@ -192,7 +192,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CINDERHEARTH);
 		entries.add(SpectrumBlocks.CRYSTAL_APOTHECARY);
 		entries.add(SpectrumBlocks.COLOR_PICKER);
-		entries.add(SpectrumBlocks.UPGRADE_SPEED);
+			
+			entries.add(SpectrumBlocks.UPGRADE_SPEED);
 		entries.add(SpectrumBlocks.UPGRADE_SPEED2);
 		entries.add(SpectrumBlocks.UPGRADE_SPEED3);
 		entries.add(SpectrumBlocks.UPGRADE_EFFICIENCY);
@@ -201,20 +202,14 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.UPGRADE_YIELD2);
 		entries.add(SpectrumBlocks.UPGRADE_EXPERIENCE);
 		entries.add(SpectrumBlocks.UPGRADE_EXPERIENCE2);
-		entries.add(SpectrumBlocks.CONNECTION_NODE);
+			
+			entries.add(SpectrumBlocks.CONNECTION_NODE);
 		entries.add(SpectrumBlocks.PROVIDER_NODE);
 		entries.add(SpectrumBlocks.STORAGE_NODE);
 		entries.add(SpectrumBlocks.SENDER_NODE);
 		entries.add(SpectrumBlocks.GATHER_NODE);
-		entries.add(SpectrumBlocks.SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.TOPAZ_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.AMETHYST_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.CITRINE_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.ONYX_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.MOONSTONE_SEMI_PERMEABLE_GLASS);
-		entries.add(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
+			
+			entries.add(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
 		entries.add(SpectrumBlocks.WEATHER_DETECTOR);
 		entries.add(SpectrumBlocks.ITEM_DETECTOR);
 		entries.add(SpectrumBlocks.PLAYER_DETECTOR);
@@ -226,31 +221,49 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ENDER_GLASS);
 		entries.add(SpectrumBlocks.BLOCK_PLACER);
 		entries.add(SpectrumBlocks.BLOCK_DETECTOR);
-		entries.add(SpectrumBlocks.HEARTBOUND_CHEST);
+			
+			entries.add(SpectrumBlocks.HEARTBOUND_CHEST);
 		entries.add(SpectrumBlocks.COMPACTING_CHEST);
 		entries.add(SpectrumBlocks.RESTOCKING_CHEST);
 		entries.add(SpectrumBlocks.BLACK_HOLE_CHEST);
-		entries.add(SpectrumBlocks.ENDER_HOPPER);
+			
+			entries.add(SpectrumBlocks.ENDER_HOPPER);
 		entries.add(SpectrumBlocks.ENDER_DROPPER);
-		entries.add(SpectrumBlocks.PARTICLE_SPAWNER);
-		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
-		entries.add(SpectrumBlocks.GLISTERING_MELON);
-		entries.add(SpectrumBlocks.LAVA_SPONGE);
-		entries.add(SpectrumBlocks.WET_LAVA_SPONGE);
-		entries.add(SpectrumBlocks.ETHEREAL_PLATFORM);
-		entries.add(SpectrumBlocks.UNIVERSE_SPYHOLE);
-		entries.add(SpectrumBlocks.PRESENT);
-		entries.add(SpectrumBlocks.TITRATION_BARREL);
-		entries.add(SpectrumBlocks.AXOLOTL_IDOL);
-		entries.add(SpectrumBlocks.BAT_IDOL);
-		entries.add(SpectrumBlocks.BEE_IDOL);
-		entries.add(SpectrumBlocks.BLAZE_IDOL);
-		entries.add(SpectrumBlocks.CAT_IDOL);
-		entries.add(SpectrumBlocks.CHICKEN_IDOL);
-		entries.add(SpectrumBlocks.COW_IDOL);
-		entries.add(SpectrumBlocks.CREEPER_IDOL);
-		entries.add(SpectrumBlocks.ENDER_DRAGON_IDOL);
-		entries.add(SpectrumBlocks.ENDERMAN_IDOL);
+			
+			entries.add(SpectrumBlocks.PARTICLE_SPAWNER);
+			entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
+			
+			entries.add(SpectrumBlocks.GLISTERING_MELON);
+			entries.add(SpectrumBlocks.LAVA_SPONGE);
+			entries.add(SpectrumBlocks.WET_LAVA_SPONGE);
+			entries.add(SpectrumBlocks.ETHEREAL_PLATFORM);
+			entries.add(SpectrumBlocks.UNIVERSE_SPYHOLE);
+			entries.add(SpectrumBlocks.PRESENT);
+			entries.add(SpectrumBlocks.TITRATION_BARREL);
+			
+			entries.add(SpectrumBlocks.INCANDESCENT_AMALGAM);
+			entries.add(SpectrumBlocks.BEDROCK_ANVIL);
+			entries.add(SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
+			
+			entries.add(SpectrumBlocks.SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.TOPAZ_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.AMETHYST_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.CITRINE_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.ONYX_SEMI_PERMEABLE_GLASS);
+			entries.add(SpectrumBlocks.MOONSTONE_SEMI_PERMEABLE_GLASS);
+			
+			entries.add(SpectrumBlocks.AXOLOTL_IDOL);
+			entries.add(SpectrumBlocks.BAT_IDOL);
+			entries.add(SpectrumBlocks.BEE_IDOL);
+			entries.add(SpectrumBlocks.BLAZE_IDOL);
+			entries.add(SpectrumBlocks.CAT_IDOL);
+			entries.add(SpectrumBlocks.CHICKEN_IDOL);
+			entries.add(SpectrumBlocks.COW_IDOL);
+			entries.add(SpectrumBlocks.CREEPER_IDOL);
+			entries.add(SpectrumBlocks.ENDER_DRAGON_IDOL);
+			entries.add(SpectrumBlocks.ENDERMAN_IDOL);
 		entries.add(SpectrumBlocks.ENDERMITE_IDOL);
 		entries.add(SpectrumBlocks.EVOKER_IDOL);
 		entries.add(SpectrumBlocks.FISH_IDOL);
@@ -284,12 +297,15 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.WITHER_IDOL);
 		entries.add(SpectrumBlocks.WITHER_SKELETON_IDOL);
 		entries.add(SpectrumBlocks.ZOMBIE_IDOL);
-		entries.add(SpectrumBlocks.INCANDESCENT_AMALGAM);
-		entries.add(SpectrumBlocks.BEDROCK_ANVIL);
-		entries.add(SpectrumBlocks.CRACKED_END_PORTAL_FRAME);
 	}).build();
 	
 	public static final ItemSubGroup CUISINE = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.cuisine")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+		entries.add(SpectrumItems.IMBRIFER_COOKBOOK);
+		entries.add(SpectrumItems.IMPERIAL_COOKBOOK);
+		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
+		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
+		entries.add(SpectrumItems.BREWERS_HANDBOOK);
+		
 		entries.add(SpectrumBlocks.SUGAR_STICK);
 		entries.add(SpectrumBlocks.TOPAZ_SUGAR_STICK);
 		entries.add(SpectrumBlocks.AMETHYST_SUGAR_STICK);
@@ -302,6 +318,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.CITRINE_ROCK_CANDY);
 		entries.add(SpectrumItems.ONYX_ROCK_CANDY);
 		entries.add(SpectrumItems.MOONSTONE_ROCK_CANDY);
+		
 		entries.add(SpectrumItems.TRIPLE_MEAT_POT_PIE);
 		entries.add(SpectrumItems.KIMCHI);
 		entries.add(SpectrumItems.CLOTTED_CREAM);
@@ -341,28 +358,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PRICKLY_BAYLEAF);
 		entries.add(SpectrumItems.TRIPLE_MEAT_POT_STEW);
 		entries.add(SpectrumItems.DRAGONBONE_BROTH);
-
-		// adding all beverages from recipes
-		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-			ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
-			if (output.getItem() instanceof VariantBeverageItem) {
-				output.setCount(1);
-				entries.add(output);
-			}
-		}
-		
-		entries.add(SpectrumItems.PURE_ALCOHOL);
-		entries.add(SpectrumItems.REPRISE);
-		entries.add(SpectrumItems.SUSPICIOUS_BREW);
-		entries.add(SpectrumItems.JADE_WINE);
-		entries.add(SpectrumItems.CHRYSOCOLLA);
-		entries.add(SpectrumItems.FREIGEIST);
-		entries.add(SpectrumItems.IMBRIFER_COOKBOOK);
-		entries.add(SpectrumItems.IMPERIAL_COOKBOOK);
-		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_1);
-		entries.add(SpectrumItems.MELOCHITES_COOKBOOK_VOL_2);
-		entries.add(SpectrumItems.BREWERS_HANDBOOK);
-		entries.add(SpectrumItems.AQUA_REGIA);
 		entries.add(SpectrumItems.BAGNUN);
 		entries.add(SpectrumItems.BANYASH);
 		entries.add(SpectrumItems.BERLINER);
@@ -381,8 +376,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.MEATLOAF);
 		entries.add(SpectrumItems.MEATLOAF_SANDWICH);
 		entries.add(SpectrumItems.MELLOW_SHALLOT_SOUP);
-		entries.add(SpectrumItems.MORCHELLA);
-		entries.add(SpectrumItems.NECTERED_VIOGNIER);
 		entries.add(SpectrumItems.PEACHES_FLAMBE);
 		entries.add(SpectrumItems.PEACH_CREAM);
 		entries.add(SpectrumItems.PEACH_JAM);
@@ -390,38 +383,70 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.SEDATIVES);
 		entries.add(SpectrumItems.SLUSHSLIDE);
 		entries.add(SpectrumItems.SURSTROMMING);
+		entries.add(SpectrumItems.MORCHELLA);
+		entries.add(SpectrumItems.NECTERED_VIOGNIER);
+		entries.add(SpectrumItems.FREIGEIST);
+		
+		// adding all beverages from recipes
+		for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+			ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
+			if (output.getItem() instanceof VariantBeverageItem) {
+				output.setCount(1);
+				entries.add(output);
+			}
+		}
+		
+		entries.add(SpectrumItems.PURE_ALCOHOL);
+		entries.add(SpectrumItems.REPRISE);
+		entries.add(SpectrumItems.SUSPICIOUS_BREW);
+		entries.add(SpectrumItems.JADE_WINE);
+		entries.add(SpectrumItems.CHRYSOCOLLA);
+		entries.add(SpectrumItems.AQUA_REGIA);
 	}).build();
 	
 	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.resources")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+		entries.add(Items.AMETHYST_SHARD);
+		entries.add(SpectrumItems.TOPAZ_SHARD);
+		entries.add(SpectrumItems.CITRINE_SHARD);
+		entries.add(SpectrumItems.ONYX_SHARD);
+		entries.add(SpectrumItems.MOONSTONE_SHARD);
+		
+		entries.add(SpectrumItems.AMETHYST_POWDER);
+		entries.add(SpectrumItems.TOPAZ_POWDER);
+		entries.add(SpectrumItems.CITRINE_POWDER);
+		entries.add(SpectrumItems.ONYX_POWDER);
+		entries.add(SpectrumItems.MOONSTONE_POWDER);
+		
 		entries.add(SpectrumBlocks.TOPAZ_BLOCK);
+		entries.add(SpectrumBlocks.CITRINE_BLOCK);
+		entries.add(SpectrumBlocks.ONYX_BLOCK);
+		entries.add(SpectrumBlocks.MOONSTONE_BLOCK);
+		
 		entries.add(SpectrumBlocks.BUDDING_TOPAZ);
+		entries.add(SpectrumBlocks.BUDDING_CITRINE);
+		entries.add(SpectrumBlocks.BUDDING_ONYX);
+		entries.add(SpectrumBlocks.BUDDING_MOONSTONE);
+		
 		entries.add(SpectrumBlocks.SMALL_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.LARGE_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.TOPAZ_CLUSTER);
-		entries.add(SpectrumBlocks.CITRINE_BLOCK);
-		entries.add(SpectrumBlocks.BUDDING_CITRINE);
+		
 		entries.add(SpectrumBlocks.SMALL_CITRINE_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_CITRINE_BUD);
 		entries.add(SpectrumBlocks.LARGE_CITRINE_BUD);
 		entries.add(SpectrumBlocks.CITRINE_CLUSTER);
-		entries.add(SpectrumBlocks.ONYX_BLOCK);
-		entries.add(SpectrumBlocks.BUDDING_ONYX);
+		
 		entries.add(SpectrumBlocks.SMALL_ONYX_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_ONYX_BUD);
 		entries.add(SpectrumBlocks.LARGE_ONYX_BUD);
 		entries.add(SpectrumBlocks.ONYX_CLUSTER);
-		entries.add(SpectrumBlocks.MOONSTONE_BLOCK);
-		entries.add(SpectrumBlocks.BUDDING_MOONSTONE);
+		
 		entries.add(SpectrumBlocks.SMALL_MOONSTONE_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_MOONSTONE_BUD);
 		entries.add(SpectrumBlocks.LARGE_MOONSTONE_BUD);
 		entries.add(SpectrumBlocks.MOONSTONE_CLUSTER);
-		entries.add(SpectrumBlocks.GLISTERING_SHOOTING_STAR);
-		entries.add(SpectrumBlocks.FIERY_SHOOTING_STAR);
-		entries.add(SpectrumBlocks.COLORFUL_SHOOTING_STAR);
-		entries.add(SpectrumBlocks.PRISTINE_SHOOTING_STAR);
-		entries.add(SpectrumBlocks.GEMSTONE_SHOOTING_STAR);
+		
 		entries.add(SpectrumBlocks.TOPAZ_ORE);
 		entries.add(SpectrumBlocks.AMETHYST_ORE);
 		entries.add(SpectrumBlocks.CITRINE_ORE);
@@ -445,15 +470,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLACKSLAG_AZURITE_ORE);
 		entries.add(SpectrumBlocks.STRATINE_ORE);
 		entries.add(SpectrumBlocks.PALTAERIA_ORE);
-		entries.add(SpectrumBlocks.SMALL_BISMUTH_BUD);
-		entries.add(SpectrumBlocks.LARGE_BISMUTH_BUD);
-		entries.add(SpectrumBlocks.BISMUTH_CLUSTER);
-		entries.add(SpectrumBlocks.MALACHITE_ORE);
-		entries.add(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
-		entries.add(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
-		entries.add(SpectrumBlocks.SMALL_MALACHITE_BUD);
-		entries.add(SpectrumBlocks.LARGE_MALACHITE_BUD);
-		entries.add(SpectrumBlocks.MALACHITE_CLUSTER);
+		
 		entries.add(SpectrumBlocks.BLACKSLAG_COAL_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_COPPER_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_IRON_ORE);
@@ -462,36 +479,60 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_LAPIS_ORE);
 		entries.add(SpectrumBlocks.BLACKSLAG_EMERALD_ORE);
+		
+		entries.add(SpectrumItems.BISMUTH_FLAKE);
+		entries.add(SpectrumBlocks.SMALL_BISMUTH_BUD);
+		entries.add(SpectrumBlocks.LARGE_BISMUTH_BUD);
+		entries.add(SpectrumBlocks.BISMUTH_CLUSTER);
+		entries.add(SpectrumItems.BISMUTH_CRYSTAL);
+		
+		entries.add(SpectrumBlocks.MALACHITE_ORE);
+		entries.add(SpectrumBlocks.DEEPSLATE_MALACHITE_ORE);
+		entries.add(SpectrumBlocks.BLACKSLAG_MALACHITE_ORE);
+		entries.add(SpectrumItems.RAW_MALACHITE);
+		entries.add(SpectrumBlocks.SMALL_MALACHITE_BUD);
+		entries.add(SpectrumBlocks.LARGE_MALACHITE_BUD);
+		entries.add(SpectrumBlocks.MALACHITE_CLUSTER);
+		entries.add(SpectrumItems.REFINED_MALACHITE);
+		
 		entries.add(SpectrumItems.RAW_AZURITE);
 		entries.add(SpectrumBlocks.SMALL_AZURITE_BUD);
 		entries.add(SpectrumBlocks.LARGE_AZURITE_BUD);
 		entries.add(SpectrumBlocks.AZURITE_CLUSTER);
 		entries.add(SpectrumItems.REFINED_AZURITE);
+		
 		entries.add(SpectrumItems.RAW_BLOODSTONE);
 		entries.add(SpectrumBlocks.SMALL_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.LARGE_BLOODSTONE_BUD);
 		entries.add(SpectrumBlocks.BLOODSTONE_CLUSTER);
-		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
+		entries.add(SpectrumItems.REFINED_BLOODSTONE);
+		
 		entries.add(SpectrumItems.FROSTBITE_ESSENCE);
-		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
+		entries.add(SpectrumBlocks.FROSTBITE_CRYSTAL);
 		entries.add(SpectrumItems.INCANDESCENT_ESSENCE);
+		entries.add(SpectrumBlocks.BLAZING_CRYSTAL);
+		
 		entries.add(SpectrumBlocks.CLOVER);
 		entries.add(SpectrumBlocks.FOUR_LEAF_CLOVER);
+		entries.add(SpectrumItems.BLOOD_ORCHID_PETAL);
 		entries.add(SpectrumBlocks.BLOOD_ORCHID);
 		entries.add(SpectrumBlocks.QUITOXIC_REEDS);
 		entries.add(SpectrumItems.QUITOXIC_POWDER);
-		entries.add(SpectrumBlocks.RADIATING_ENDER);
+		
 		entries.add(SpectrumBlocks.AMARANTH_BUSHEL);
-		entries.add(SpectrumItems.AMETHYST_POWDER);
-		entries.add(SpectrumItems.TOPAZ_SHARD);
-		entries.add(SpectrumItems.TOPAZ_POWDER);
-		entries.add(SpectrumItems.CITRINE_SHARD);
-		entries.add(SpectrumItems.CITRINE_POWDER);
-		entries.add(SpectrumItems.ONYX_SHARD);
-		entries.add(SpectrumItems.ONYX_POWDER);
-		entries.add(SpectrumItems.MOONSTONE_SHARD);
-		entries.add(SpectrumItems.MOONSTONE_POWDER);
-		entries.add(SpectrumItems.SPECTRAL_SHARD);
+		entries.add(SpectrumItems.AMARANTH_GRAINS);
+		entries.add(SpectrumItems.GLISTERING_MELON_SEEDS);
+		
+		entries.add(SpectrumBlocks.GLISTERING_SHOOTING_STAR);
+		entries.add(SpectrumBlocks.FIERY_SHOOTING_STAR);
+		entries.add(SpectrumBlocks.COLORFUL_SHOOTING_STAR);
+		entries.add(SpectrumBlocks.PRISTINE_SHOOTING_STAR);
+		entries.add(SpectrumBlocks.GEMSTONE_SHOOTING_STAR);
+		entries.add(SpectrumItems.STARDUST);
+		entries.add(SpectrumItems.STAR_FRAGMENT);
+		
+		entries.add(SpectrumBlocks.RADIATING_ENDER);
+		
 		entries.add(SpectrumItems.WHITE_PIGMENT);
 		entries.add(SpectrumItems.ORANGE_PIGMENT);
 		entries.add(SpectrumItems.MAGENTA_PIGMENT);
@@ -508,44 +549,37 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.GREEN_PIGMENT);
 		entries.add(SpectrumItems.RED_PIGMENT);
 		entries.add(SpectrumItems.BLACK_PIGMENT);
-		entries.add(SpectrumItems.SHIMMERSTONE_GEM);
-		entries.add(SpectrumItems.PALTAERIA_FRAGMENTS);
-		entries.add(SpectrumItems.PALTAERIA_GEM);
-		entries.add(SpectrumItems.STRATINE_FRAGMENTS);
-		entries.add(SpectrumItems.STRATINE_GEM);
-		entries.add(SpectrumItems.PYRITE_CHUNK);
-		entries.add(SpectrumItems.DRAGONBONE_CHUNK);
-		entries.add(SpectrumItems.EFFULGENT_FEATHER);
-		entries.add(SpectrumItems.REFINED_BLOODSTONE);
-		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
-		entries.add(SpectrumItems.RESONANCE_SHARD);
-		entries.add(SpectrumItems.MERMAIDS_GEM);
-		entries.add(SpectrumItems.STORM_STONE);
-		entries.add(SpectrumItems.STAR_FRAGMENT);
-		entries.add(SpectrumItems.STARDUST);
-		entries.add(SpectrumItems.FRIGID_STARDUST);
-		entries.add(SpectrumItems.BLOOD_ORCHID_PETAL);
-		entries.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
-		entries.add(SpectrumItems.GERMINATED_JADE_VINE_BULB);
-		entries.add(SpectrumItems.JADE_VINE_PETALS);
-		entries.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB);
-		entries.add(SpectrumItems.JADEITE_LOTUS_BULB);
-		entries.add(SpectrumItems.JADEITE_PETALS);
-		entries.add(SpectrumItems.GLISTERING_MELON_SEEDS);
-		entries.add(SpectrumItems.AMARANTH_GRAINS);
+		
 		entries.add(SpectrumItems.VEGETAL);
 		entries.add(SpectrumItems.NEOLITH);
 		entries.add(SpectrumItems.BEDROCK_DUST);
 		entries.add(SpectrumItems.MIDNIGHT_ABERRATION);
 		entries.add(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
 		entries.add(SpectrumItems.MIDNIGHT_CHIP);
-		entries.add(SpectrumItems.BISMUTH_FLAKE);
-		entries.add(SpectrumItems.BISMUTH_CRYSTAL);
-		entries.add(SpectrumItems.RAW_MALACHITE);
-		entries.add(SpectrumItems.REFINED_MALACHITE);
-		entries.add(SpectrumItems.BONE_ASH);
-		entries.add(SpectrumItems.MOONSTONE_CORE);
+		
+		entries.add(SpectrumItems.SHIMMERSTONE_GEM);
+		entries.add(SpectrumItems.PALTAERIA_FRAGMENTS);
+		entries.add(SpectrumItems.PALTAERIA_GEM);
+		entries.add(SpectrumItems.STRATINE_FRAGMENTS);
+		entries.add(SpectrumItems.STRATINE_GEM);
+		
+		entries.add(SpectrumItems.HIBERNATING_JADE_VINE_BULB);
+		entries.add(SpectrumItems.GERMINATED_JADE_VINE_BULB);
+		entries.add(SpectrumItems.JADE_VINE_PETALS);
+		entries.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB);
+		entries.add(SpectrumItems.JADEITE_LOTUS_BULB);
+		entries.add(SpectrumItems.JADEITE_PETALS);
+		
+		entries.add(SpectrumItems.MERMAIDS_GEM);
+		entries.add(SpectrumItems.STORM_STONE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);
+		entries.add(SpectrumItems.EFFULGENT_FEATHER);
+		entries.add(SpectrumItems.DRAGONBONE_CHUNK);
+		entries.add(SpectrumItems.BONE_ASH);
+		entries.add(SpectrumItems.DOWNSTONE_FRAGMENTS);
+		entries.add(SpectrumItems.RESONANCE_SHARD);
+		entries.add(SpectrumItems.MOONSTONE_CORE);
+		
 		entries.add(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 		entries.add(SpectrumItems.MUD_BUCKET);
 		entries.add(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
@@ -773,9 +807,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BONE_ASH_TILE_WALL);
 		entries.add(SpectrumBlocks.POLISHED_BONE_ASH_PILLAR);
 		entries.add(SpectrumBlocks.BONE_ASH_SHINGLES);
+		entries.add(SpectrumBlocks.BLACK_MATERIA);
 		entries.add(SpectrumBlocks.SLUSH);
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
+		
+		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
 		entries.add(SpectrumBlocks.PYRITE_TILE);
@@ -786,6 +823,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANNELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
+		
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);
 		entries.add(SpectrumBlocks.SAWBLADE_GRASS);
@@ -890,9 +928,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES);
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_STEM);
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_FLOWER);
-		entries.add(SpectrumBlocks.JADE_VINE_PETAL_BLOCK);
-		entries.add(SpectrumBlocks.JADE_VINE_PETAL_CARPET);
-		entries.add(SpectrumBlocks.BLACK_MATERIA);
 	}).build();
 	
 	public static final ItemSubGroup DECORATION = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.decoration")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
@@ -901,17 +936,18 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.ONYX_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.MOONSTONE_STORAGE_BLOCK);
-		entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
-		entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
-		entries.add(SpectrumBlocks.AZURITE_BLOCK);
+		
 		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
+		entries.add(SpectrumBlocks.AZURITE_BLOCK);
 		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
 		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
+		
 		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.HOVER_BLOCK);
+		
 		entries.add(SpectrumBlocks.TOPAZ_CALCITE_LAMP);
 		entries.add(SpectrumBlocks.AMETHYST_CALCITE_LAMP);
 		entries.add(SpectrumBlocks.CITRINE_CALCITE_LAMP);
@@ -922,6 +958,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_BASALT_LAMP);
 		entries.add(SpectrumBlocks.ONYX_BASALT_LAMP);
 		entries.add(SpectrumBlocks.MOONSTONE_BASALT_LAMP);
+		
 		entries.add(SpectrumBlocks.BASALT_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.CALCITE_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.STONE_SHIMMERSTONE_LIGHT);
@@ -930,6 +967,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.ANDESITE_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_LIGHT);
 		entries.add(SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_LIGHT);
+		
 		entries.add(SpectrumBlocks.TOPAZ_CHISELED_BASALT);
 		entries.add(SpectrumBlocks.AMETHYST_CHISELED_BASALT);
 		entries.add(SpectrumBlocks.CITRINE_CHISELED_BASALT);
@@ -940,25 +978,33 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_CHISELED_CALCITE);
 		entries.add(SpectrumBlocks.ONYX_CHISELED_CALCITE);
 		entries.add(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE);
+		
 		entries.add(SpectrumBlocks.TOPAZ_GLASS);
 		entries.add(SpectrumBlocks.AMETHYST_GLASS);
 		entries.add(SpectrumBlocks.CITRINE_GLASS);
 		entries.add(SpectrumBlocks.ONYX_GLASS);
 		entries.add(SpectrumBlocks.MOONSTONE_GLASS);
 		entries.add(SpectrumBlocks.RADIANT_GLASS);
+		
 		entries.add(SpectrumBlocks.TOPAZ_CHIME);
 		entries.add(SpectrumBlocks.AMETHYST_CHIME);
 		entries.add(SpectrumBlocks.CITRINE_CHIME);
 		entries.add(SpectrumBlocks.ONYX_CHIME);
 		entries.add(SpectrumBlocks.MOONSTONE_CHIME);
+		
 		entries.add(SpectrumBlocks.AMETHYST_DECOSTONE);
 		entries.add(SpectrumBlocks.TOPAZ_DECOSTONE);
 		entries.add(SpectrumBlocks.CITRINE_DECOSTONE);
 		entries.add(SpectrumBlocks.ONYX_DECOSTONE);
 		entries.add(SpectrumBlocks.MOONSTONE_DECOSTONE);
+		
+		entries.add(SpectrumBlocks.JADE_VINE_PETAL_BLOCK);
+		entries.add(SpectrumBlocks.JADE_VINE_PETAL_CARPET);
+		
 		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
 		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
 		entries.add(SpectrumBlocks.EFFULGENT_CARPET);
+		
 		entries.add(SpectrumBlocks.WHITE_BLOCK);
 		entries.add(SpectrumBlocks.ORANGE_BLOCK);
 		entries.add(SpectrumBlocks.MAGENTA_BLOCK);
@@ -1275,6 +1321,14 @@ public class SpectrumItemGroups {
 	}).build();
 	
 	public static final ItemSubGroup CREATIVE = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.creative")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+		entries.add(SpectrumItems.PEDESTAL_TIER_1_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.PEDESTAL_TIER_2_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.PEDESTAL_TIER_3_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.FUSION_SHRINE_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.ENCHANTER_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.SPIRIT_INSTILLER_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.CINDERHEARTH_STRUCTURE_PLACER);
+		
 		entries.add(SpectrumBlocks.DOWNSTONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STAIRS);
@@ -1309,14 +1363,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.INVISIBLE_WALL);
 		entries.add(SpectrumBlocks.COURIER_STATUE);
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
+		
 		entries.add(SpectrumItems.DIVINATION_HEART);
-		entries.add(SpectrumItems.PEDESTAL_TIER_1_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.PEDESTAL_TIER_2_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.PEDESTAL_TIER_3_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.FUSION_SHRINE_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.ENCHANTER_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.SPIRIT_INSTILLER_STRUCTURE_PLACER);
-		entries.add(SpectrumItems.CINDERHEARTH_STRUCTURE_PLACER);
+		entries.add(SpectrumItems.FRIGID_STARDUST);
+		
+		entries.add(SpectrumItems.SPECTRAL_SHARD);
+		entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
+		entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);
 		
 	}).build();
 

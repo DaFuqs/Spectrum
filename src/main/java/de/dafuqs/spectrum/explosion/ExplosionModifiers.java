@@ -59,7 +59,7 @@ public class ExplosionModifiers {
 			if (owner == null) {
 				return Optional.empty();
 			}
-			return Optional.of(SpectrumDamageSources.incandescence(owner.getWorld()));
+			return Optional.of(SpectrumDamageTypes.incandescence(owner.getWorld()));
 		}
 	});
 	

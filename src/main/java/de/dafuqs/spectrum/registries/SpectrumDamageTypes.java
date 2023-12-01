@@ -4,10 +4,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.item.*;
 import net.minecraft.registry.*;
-import net.minecraft.registry.tag.*;
-import net.minecraft.text.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -16,15 +13,10 @@ import static de.dafuqs.spectrum.SpectrumCommon.*;
 // Damage Types handle the logic of how the damage behaves, determined via tags
 // Damage Sources decide how death messages are handled
 // Make a custom damage source if you want a custom message, otherwise just return a damage source with the type you want
-public class SpectrumDamageSources {
-
+public class SpectrumDamageTypes {
+	
 	public static boolean recursiveDamageFlag = false;
-
-	// TODO: check
-	public static final TagKey<DamageType> ITEM_IMMUNITY = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("item_immunity"));
-	public static final TagKey<Item> FIRE_IMMUNE_ITEMS = TagKey.of(RegistryKeys.ITEM, locate("fire_immune_items"));
-	public static final TagKey<DamageType> FAKE_PLAYER_DAMAGE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("fake_player_damage"));
-
+	
 	public static final RegistryKey<DamageType> DECAY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("decay"));
 	public static final RegistryKey<DamageType> FLOATBLOCK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("floatblock"));
 	public static final RegistryKey<DamageType> SHOOTING_STAR = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("shooting_star"));
@@ -42,27 +34,27 @@ public class SpectrumDamageSources {
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
 	public static final RegistryKey<DamageType> PRIMORDIAL_FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("primordial_fire"));
-
-	public static DamageSource ripper(World world) {
+	
+	public static DamageSource sawtooth(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(SAWTOOTH));
 	}
-
+	
 	public static DamageSource dragonrot(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(DRAGONROT));
 	}
-
+	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return new DamageSource(projectile.getDamageSources().registry.entryOf(INK_PROJECTILE), projectile, attacker);
 	}
-
-	public static DamageSource moonstoneBlast(World world, @Nullable MoonstoneStrike moonstoneStrike) {
-		return moonstoneBlast(world, moonstoneStrike != null ? moonstoneStrike.getCausingEntity() : null);
+	
+	public static DamageSource moonstoneStrike(World world, @Nullable MoonstoneStrike moonstoneStrike) {
+		return moonstoneStrike(world, moonstoneStrike != null ? moonstoneStrike.getCausingEntity() : null);
 	}
-
-	public static DamageSource moonstoneBlast(World world, @Nullable LivingEntity attacker) {
+	
+	public static DamageSource moonstoneStrike(World world, @Nullable LivingEntity attacker) {
 		return new MoonstoneStrikeDamageSource(world, attacker);
 	}
-
+	
 	public static DamageSource irradiance(World world, @Nullable LivingEntity attacker) {
 		return new IrradianceDamageSource(world, attacker);
 	}
@@ -122,9 +114,9 @@ public class SpectrumDamageSources {
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
-
-	public static class SetHealthDamageSource extends DamageSource implements DirectDamage {
-
+	
+	public static class SetHealthDamageSource extends DamageSource {
+		
 		public SetHealthDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.entryOf(SET_HEALTH_DAMAGE), attacker);
 		}
@@ -138,12 +130,6 @@ public class SpectrumDamageSources {
 
 		public MoonstoneStrikeDamageSource(MoonstoneStrike moonstoneStrike) {
 			super(moonstoneStrike.getDamageSource().getTypeRegistryEntry(), moonstoneStrike.getCausingEntity());
-		}
-
-		// TODO - Handle this message accordingly, since it might be more hardcoded than before
-		@Override
-		public Text getDeathMessage(LivingEntity killed) {
-			return super.getDeathMessage(killed);
 		}
 	}
 
@@ -160,16 +146,12 @@ public class SpectrumDamageSources {
 			super(world.getDamageSources().registry.entryOf(KINDLING_COUGH), attacker);
 		}
 	}
-
-	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
-
+	
+	public static class PrimordialFireDamageSource extends DamageSource {
+		
 		public PrimordialFireDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.entryOf(PRIMORDIAL_FIRE), attacker);
 		}
 	}
-
-	// TODO: make this a tag?
-    // Damage is dealt directly via setHealth(), instead via normal means
-    public interface DirectDamage {}
 
 }

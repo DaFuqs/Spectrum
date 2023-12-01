@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:set_health_damage",
+    "spectrum:primordial_fire"
+  ]
+}

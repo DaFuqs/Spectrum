@@ -90,9 +90,9 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
     private void explode(ItemStack stack, ServerWorld world, Vec3d pos, Optional<Entity> target) {
         stack.decrement(1);
         var owner = tryGetOwner(stack, world);
-
-        target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F));
-        world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, World.ExplosionSourceType.NONE);
+    
+        target.ifPresent(entity -> entity.damage(SpectrumDamageTypes.incandescence(world, owner instanceof LivingEntity living ? living : null), 200F));
+        world.createExplosion(null, SpectrumDamageTypes.incandescence(world), new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, World.ExplosionSourceType.NONE);
     }
 
     public Entity tryGetOwner(ItemStack stack, ServerWorld world) {

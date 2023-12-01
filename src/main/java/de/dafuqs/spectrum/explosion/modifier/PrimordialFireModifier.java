@@ -46,6 +46,6 @@ public class PrimordialFireModifier extends DamageChangingModifier {
 		if (owner == null) {
 			return Optional.empty();
 		}
-		return Optional.of(SpectrumDamageSources.primordialFire(owner.getWorld(), owner));
+		return Optional.of(SpectrumDamageTypes.primordialFire(owner.getWorld(), owner));
 	}
 }

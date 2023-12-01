@@ -165,7 +165,7 @@ public abstract class LivingEntityMixin {
 		LivingEntity target = (LivingEntity) (Object) this;
 
 		// SetHealth damage does exactly that
-		if (amount > 0 && source.isIn(SpectrumDamageSources.USES_SET_HEALTH)) {
+		if (amount > 0 && source.isIn(SpectrumDamageTypeTags.USES_SET_HEALTH)) {
 			float h = target.getHealth();
 			target.setHealth(h - amount);
 			target.getDamageTracker().onDamage(source, amount);
@@ -176,17 +176,17 @@ public abstract class LivingEntityMixin {
 		}
 
 		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt
-		if (!SpectrumDamageSources.recursiveDamageFlag && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
+		if (!SpectrumDamageTypes.recursiveDamageFlag && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
-				SpectrumDamageSources.recursiveDamageFlag = true;
+				SpectrumDamageTypes.recursiveDamageFlag = true;
 				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
 				
 				for (Pair<DamageSource, Float> entry : composition.get()) {
 					damage(entry.getLeft(), entry.getRight());
 				}
 				
-				SpectrumDamageSources.recursiveDamageFlag = false;
+				SpectrumDamageTypes.recursiveDamageFlag = false;
 			}
 		}
 	}

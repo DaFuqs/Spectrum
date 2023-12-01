@@ -9,29 +9,63 @@ import java.util.*;
 
 public class SpectrumItemStackDamageImmunities {
 	
-	// Items immune to all kinds of damage (minus out of world - otherwise items would fall endlessly when falling into the end, causing lag)
-	private static final List<Item> generalImmunities = new ArrayList<>();
 	// Items immune to some forms of damage
+	private static final HashMap<Item, List<TagKey<DamageType>>> damageSourceImmunities = new HashMap<>();
 	
-	//TODO: port from 1.19.2
 	public static void registerDefaultItemStackImmunities() {
-		generalImmunities.add(SpectrumBlocks.CRACKED_END_PORTAL_FRAME.asItem());
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.CRACKED_END_PORTAL_FRAME, DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.CRACKED_END_PORTAL_FRAME, DamageTypeTags.IS_EXPLOSION);
+		
+		SpectrumItemStackDamageImmunities.addImmunity(Items.NETHER_STAR, DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(Items.NETHER_STAR, DamageTypeTags.IS_EXPLOSION);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.LAVA_SPONGE.asItem(), DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageTypeTags.IS_FIRE);
 	}
 	
-	public static boolean isDamageImmune(ItemStack itemStack, DamageSource damageSource) {
-		if (damageSource.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+	public static void addImmunity(ItemConvertible itemConvertible, TagKey<DamageType> damageTypeTag) {
+		Item item = itemConvertible.asItem();
+		List<TagKey<DamageType>> current = damageSourceImmunities.getOrDefault(item, new ArrayList<>());
+		current.add(damageTypeTag);
+		damageSourceImmunities.put(item, current);
+	}
+	
+	public static boolean isImmuneTo(ItemStack itemStack, DamageSource damageSource) {
+		// otherwise items would fall endlessly when falling into the end, causing lag
+		if (damageSource.isOf(DamageTypes.OUT_OF_WORLD)) {
 			return false;
 		}
 		
-		// is item resistant to all forms of damage?
-		if (generalImmunities.contains(itemStack.getItem())) {
-			return true;
-			// does itemStack have Damage Proof enchantment?
-		} else if (EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, itemStack) > 0) {
+		// does itemStack have Damage Proof enchantment?
+		if (EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, itemStack) > 0) {
 			return true;
 			// is item immune to this specific kind of damage?
-		} else
-			return itemStack.isIn(SpectrumDamageSources.FIRE_IMMUNE_ITEMS) && damageSource.isIn(SpectrumDamageSources.ITEM_IMMUNITY);
+		}
+		
+		Item item = itemStack.getItem();
+		if (damageSourceImmunities.containsKey(item)) {
+			for (TagKey<DamageType> type : damageSourceImmunities.get(item)) {
+				if (damageSource.isIn(type)) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public static boolean isImmuneTo(ItemStack itemStack, TagKey<DamageType> damageTypeTag) {
+		Item item = itemStack.getItem();
+		if (damageSourceImmunities.containsKey(item)) {
+			for (TagKey<DamageType> type : damageSourceImmunities.get(item)) {
+				if (type.equals(damageTypeTag)) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 }

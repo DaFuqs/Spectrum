@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
@@ -20,9 +19,6 @@ public class SpectrumDamageSources {
 
 	public static boolean recursiveDamageFlag = false;
 
-	// TODO: check
-	public static final TagKey<DamageType> ITEM_IMMUNITY = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("item_immunity"));
-	public static final TagKey<Item> FIRE_IMMUNE_ITEMS = TagKey.of(RegistryKeys.ITEM, locate("fire_immune_items"));
 	public static final TagKey<DamageType> FAKE_PLAYER_DAMAGE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("fake_player_damage"));
 
 	public static final RegistryKey<DamageType> DECAY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("decay"));

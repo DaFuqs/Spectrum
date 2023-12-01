@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -9,6 +10,8 @@ import java.util.*;
 
 public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware {
 	
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
+	
 	public MermaidsGemItem(Block block, Settings settings) {
 		super(block, settings);
 		RevelationAware.register(this);
@@ -16,7 +19,7 @@ public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return MermaidsBrushBlock.UNLOCK_IDENTIFIER;
+		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Override

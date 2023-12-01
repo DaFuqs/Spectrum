@@ -20,6 +20,7 @@ public class SpectrumDamageSources {
 	public static boolean recursiveDamageFlag = false;
 
 	public static final TagKey<DamageType> FAKE_PLAYER_DAMAGE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("fake_player_damage"));
+	public static final TagKey<DamageType> USES_SET_HEALTH = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("uses_set_health"));
 
 	public static final RegistryKey<DamageType> DECAY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("decay"));
 	public static final RegistryKey<DamageType> FLOATBLOCK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("floatblock"));
@@ -118,9 +119,9 @@ public class SpectrumDamageSources {
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
-
-	public static class SetHealthDamageSource extends DamageSource implements DirectDamage {
-
+	
+	public static class SetHealthDamageSource extends DamageSource {
+		
 		public SetHealthDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.entryOf(SET_HEALTH_DAMAGE), attacker);
 		}
@@ -156,16 +157,12 @@ public class SpectrumDamageSources {
 			super(world.getDamageSources().registry.entryOf(KINDLING_COUGH), attacker);
 		}
 	}
-
-	public static class PrimordialFireDamageSource extends DamageSource implements DirectDamage {
-
+	
+	public static class PrimordialFireDamageSource extends DamageSource {
+		
 		public PrimordialFireDamageSource(World world, @Nullable LivingEntity attacker) {
 			super(world.getDamageSources().registry.entryOf(PRIMORDIAL_FIRE), attacker);
 		}
 	}
-
-	// TODO: make this a tag?
-    // Damage is dealt directly via setHealth(), instead via normal means
-    public interface DirectDamage {}
 
 }

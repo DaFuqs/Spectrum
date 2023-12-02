@@ -31,6 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable {
 
     protected static final int INVENTORY_SIZE = 7;
@@ -90,7 +91,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	public void spawnCraftingParticles() {
 		BlockPos blockPos = getPos();
 		FusionShrineRecipe recipe = this.currentRecipe;
-		if (recipe != null) {
+		if (recipe != null && world != null) {
 			Fluid fluid = this.getFluidVariant().getFluid();
 			Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
 			if (optionalFluidColor.isPresent()) {
@@ -261,8 +262,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
-		Random random = world.random;
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+		if (world != null) {
+			Random random = world.random;
+			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+		}
     }
 
     public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {

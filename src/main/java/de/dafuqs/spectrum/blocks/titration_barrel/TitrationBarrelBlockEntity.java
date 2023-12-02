@@ -26,6 +26,7 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class TitrationBarrelBlockEntity extends BlockEntity {
 
 	protected static final int INVENTORY_SIZE = 5;

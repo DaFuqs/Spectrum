@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.interfaces;
 
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public interface GuidebookProvider {
-    void openGuidebook(ServerPlayerEntity serverPlayerEntity);
-    void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page);
+    void openGuidebook(ClientPlayerEntity serverPlayerEntity);
+    void openGuidebook(ClientPlayerEntity serverPlayerEntity, Identifier entry, int page);
 }

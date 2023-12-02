@@ -8,6 +8,7 @@ import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.entry.*;
@@ -62,13 +63,10 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (!world.isClient && user instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (world.isClient && user instanceof ClientPlayerEntity serverPlayerEntity) {
 			if (user.isSneaking()) {
 				this.providerIndex = (this.providerIndex + 1) % this.providers.size();
 			} else if (!this.providers.isEmpty()) {
-				// Workaround for new advancement unlocks getting added after spectrum has been installed
-				reprocessAdvancementUnlocks(serverPlayerEntity);
-
 				// if the player has never opened the book before
 				// automatically open the introduction page
 				if (isNewPlayer(serverPlayerEntity)) {
@@ -81,20 +79,23 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 
 				return TypedActionResult.success(user.getStackInHand(hand));
 			}
+		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+			// Workaround for new advancement unlocks getting added after spectrum has been installed
+			reprocessAdvancementUnlocks(serverPlayerEntity);
 		}
 
 		return TypedActionResult.consume(user.getStackInHand(hand));
 	}
 	
-	private boolean isNewPlayer(ServerPlayerEntity serverPlayerEntity) {
+	private boolean isNewPlayer(ClientPlayerEntity serverPlayerEntity) {
 		return serverPlayerEntity.getStatHandler().getStat(Stats.USED, this) == 0;
 	}
 	
-	public void openGuidebook(ServerPlayerEntity serverPlayerEntity) {
+	public void openGuidebook(ClientPlayerEntity serverPlayerEntity) {
 		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity);
 	}
 
-	public void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
+	public void openGuidebook(ClientPlayerEntity serverPlayerEntity, Identifier entry, int page) {
 		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity, entry, page);
 	}
 

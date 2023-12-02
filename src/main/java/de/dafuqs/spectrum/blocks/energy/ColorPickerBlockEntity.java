@@ -317,7 +317,9 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	}
 	
 	public void updateInClientWorld() {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+		if (world != null) {
+			world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+		}
 	}
 	
 	@Override

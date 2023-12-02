@@ -8,14 +8,9 @@ import net.minecraft.util.math.random.*;
 public class ExtraTickFarmlandBlock extends SpectrumFarmlandBlock {
 	
 	public ExtraTickFarmlandBlock(Settings settings, BlockState bareState) {
-		super(settings, bareState);
+		super(settings.ticksRandomly(), bareState);
 	}
-	
-	@Override
-	public boolean hasRandomTicks(BlockState state) {
-		return true;
-	}
-	
+
 	/**
 	 * If there is a crop block on top of this block: tick it, too
 	 * => the crop grows faster

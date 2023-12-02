@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.enchantments.InexorableEnchantment;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.enchantment.*;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.stat.*;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -28,6 +30,15 @@ public abstract class EntityMixin {
 				((FrenzyStatusEffect) frenzy.getEffectType()).onKill(livingEntity, frenzy.getAmplifier());
 			}
 		}
+	}
+
+	@ModifyVariable(method = "slowMovement", at = @At(value = "LOAD"), argsOnly = true)
+	private Vec3d spectrum$applyInexorableAntiBlockSlowdown(Vec3d multiplier) {
+		Entity entity = (Entity) (Object) this;
+		if (entity instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
+			return Vec3d.ZERO;
+		}
+		return multiplier;
 	}
 	
 	@Inject(method = "getVelocityMultiplier", at = @At("RETURN"), cancellable = true)

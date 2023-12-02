@@ -32,6 +32,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import vazkii.patchouli.api.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("collect_all_basic_pigments_besides_brown");
@@ -58,7 +59,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			return false;
 		}
-		if (!world.isSkyVisible(blockPos)) {
+		if (!world.isSkyVisible(blockPos) && client.player != null) {
 			if (world.isClient) {
 				world.addParticle(SpectrumParticleTypes.RED_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
 				client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -189,30 +190,22 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			verifyStructureWithSkyAccess(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			// if the structure is valid the player can put / retrieve items and fluids into the shrine
+			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 				fusionShrineBlockEntity.setOwner(player);
-				
+
 				ItemStack handStack = player.getStackInHand(hand);
-				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
+				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)
+				|| (player.isSneaking() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)
+				|| !handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
 					fusionShrineBlockEntity.updateInClientWorld();
-				} else {
-					// if the structure is valid the player can put / retrieve blocks into the shrine
-					if (player.isSneaking() || handStack.isEmpty()) {
-						// sneaking or empty hand: remove items
-						if (retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
-							fusionShrineBlockEntity.updateInClientWorld();
-						}
-					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player) && !handStack.isEmpty()) {
-						if (inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-							fusionShrineBlockEntity.updateInClientWorld();
-						}
-					}
 				}
 			}
 			
@@ -221,6 +214,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}

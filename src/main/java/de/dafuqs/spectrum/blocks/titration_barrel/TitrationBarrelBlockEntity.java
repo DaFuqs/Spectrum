@@ -72,6 +72,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		nbt.putLong("SealTime", this.sealTime);
 		nbt.putLong("TapTime", this.tapTime);
 		nbt.putInt("ExtractedBottles", this.extractedBottles);
+		if (this.world != null) {
+			nbt.putString("BarrelState", this.world.getBlockState(this.pos).get(BARREL_STATE).name());
+		}
 	}
 	
 	@Override
@@ -81,6 +84,14 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		if (nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
 			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
+		}
+
+		if (nbt.contains("BarrelState", NbtElement.STRING_TYPE) && world != null) {
+			BlockState blockState = world.getBlockState(pos);
+			if (blockState.isOf(SpectrumBlocks.TITRATION_BARREL)) {
+				BarrelState barrelState = BarrelState.valueOf(nbt.getString("BarrelState"));
+				world.setBlockState(this.pos, blockState.with(BARREL_STATE, barrelState));
+			}
 		}
 		
 		this.fluidStorage.variant = FluidVariant.fromNbt(nbt.getCompound("FluidVariant"));
@@ -97,7 +108,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public void seal() {
 		this.sealTime = new Date().getTime();
 		this.markDirty();
-		world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
 	}
 	
 	public void tap() {
@@ -254,11 +264,15 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (itemCount == 0 && fluid == Fluids.EMPTY) {
 			return true; // tap empty barrel advancement
 		}
-		
-		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
-		return optionalRecipe.isPresent()
-				&& optionalRecipe.get().canPlayerCraft(player)
-				&& this.getFluidVariant().getFluid() == optionalRecipe.get().getFluidInput();
+
+		if (world != null) {
+			Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
+			return optionalRecipe.isPresent()
+					&& optionalRecipe.get().canPlayerCraft(player)
+					&& this.getFluidVariant().getFluid() == optionalRecipe.get().getFluidInput();
+		}
+
+		return false;
 	}
 	
 }

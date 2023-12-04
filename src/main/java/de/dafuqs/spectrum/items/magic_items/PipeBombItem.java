@@ -11,6 +11,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -88,16 +89,18 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
 
     private void explode(ItemStack stack, ServerWorld world, Vec3d pos, Optional<Entity> target) {
         stack.decrement(1);
-        var owner = tryGetOwner(stack, world);
+        Entity owner = tryGetOwner(stack, world);
 
         target.ifPresent(entity -> entity.damage(SpectrumDamageSources.incandescence(owner), 200F));
         world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX(), pos.getY(), pos.getZ(), 7.5F, true, Explosion.DestructionType.NONE);
     }
 
     public Entity tryGetOwner(ItemStack stack, ServerWorld world) {
-        var nbt = stack.getOrCreateNbt();
-        if (!nbt.contains("owner"))
+        NbtCompound nbt = stack.getNbt();
+
+        if(nbt == null || !nbt.contains("owner")) {
             return null;
+        }
 
         return world.getEntity(nbt.getUuid("owner"));
     }

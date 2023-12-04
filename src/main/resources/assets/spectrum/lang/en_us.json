@@ -2845,6 +2845,7 @@
   "tag.c.trifles": "Trifles",
   "tag.c.tropical_fish": "Tropical Fishes",
   "tag.c.peaches": "Peaches",
+  "tag.c.stripped_wood": "Stripped Wood",
 
   "tag.spectrum.alcohols": "Alcohols",
   "tag.spectrum.amethyst_chiseled_base_blocks": "Chiseled Amethyst Bases",
@@ -2886,7 +2887,7 @@
   "tag.spectrum.malachite_ores": "Malachite Ores",
   "tag.spectrum.memory_bonding_agents": "Memory Bonding Agents",
   "tag.spectrum.memory_bonding_agents_concealable": "Concealable Memory Bonding Agents",
-  "tag.spectrum.mob_blocks": "Mob Blocks",
+  "tag.spectrum.idols": "Idols",
   "tag.spectrum.mob_heads": "Mob Heads",
   "tag.spectrum.mob_heads.axolotl_heads": "Axolotl Heads",
   "tag.spectrum.mob_heads.bovine_heads": "Bovine Heads",

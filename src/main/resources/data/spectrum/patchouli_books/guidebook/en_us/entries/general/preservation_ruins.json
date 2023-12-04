@@ -71,7 +71,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
       ],
       "border": true,
-      "text": "A strong, magical forcefield. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
+      "text": "A strong, magical force field. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
     },
     {
       "type": "patchouli:image",

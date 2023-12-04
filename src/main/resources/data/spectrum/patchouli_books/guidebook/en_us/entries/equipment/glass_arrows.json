@@ -41,21 +41,6 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
       "text": "Explodes in an orb of pure energy, dealing damage to creatures close by."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/arrows/azurite_glass_arrow",
-      "text": "TODO"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
-      "text": "TODO"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/arrows/bloodstone_glass_arrow",
-      "text": "Homes in onto your foe."
     }
   ]
 }

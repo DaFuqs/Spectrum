@@ -13,67 +13,60 @@
               "name": "spectrum:moonstone_cluster",
               "conditions": [
                 {
-                  "condition": "minecraft:any_of",
-                  "terms": [
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "enchantments": [
-                          {
-                            "enchantment": "minecraft:silk_touch"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "enchantments": [
-                          {
-                            "enchantment": "spectrum:resonance"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "spectrum:moonstone_shard",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": 4,
-                  "add": false
-                },
-                {
-                  "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops"
-                }
-              ],
-              "conditions": [
-                {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "minecraft:cluster_max_harvestables"
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
                   }
                 }
               ]
             },
             {
-              "type": "minecraft:item",
-              "name": "spectrum:moonstone_shard",
-              "functions": [
+              "type": "minecraft:alternatives",
+              "children": [
                 {
-                  "function": "minecraft:set_count",
-                  "count": 2,
-                  "add": false
+                  "type": "minecraft:item",
+                  "name": "spectrum:moonstone_shard",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 4,
+                      "add": false
+                    },
+                    {
+                      "function": "minecraft:apply_bonus",
+                      "enchantment": "minecraft:fortune",
+                      "formula": "minecraft:ore_drops"
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "tag": "minecraft:cluster_max_harvestables"
+                      }
+                    }
+                  ]
                 },
                 {
-                  "function": "minecraft:explosion_decay"
+                  "type": "minecraft:item",
+                  "name": "spectrum:moonstone_shard",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 2,
+                      "add": false
+                    },
+                    {
+                      "function": "minecraft:explosion_decay"
+                    }
+                  ]
                 }
               ]
             }

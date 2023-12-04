@@ -22,7 +22,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Waterloggable {
+public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Waterloggable, ExplosionAware {
 	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 	
@@ -90,12 +90,6 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 	}
 	
 	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		super.onDestroyedByExplosion(world, pos, explosion);
-		explode(world, pos);
-	}
-	
-	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
 		if (!state.get(WATERLOGGED)) {
@@ -145,7 +139,8 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 			if (world.getBlockEntity(pos) instanceof PlacedItemBlockEntity placedItemBlockEntity) {
 				PlayerEntity owner = placedItemBlockEntity.getOwnerIfOnline();
 				ItemStack stack = placedItemBlockEntity.getStack();
-				
+
+				world.removeBlock(pos, false);
 				explode(world, pos, owner, stack);
 			}
 		}
@@ -158,5 +153,10 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 		}
 		world.createExplosion(owner, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, Explosion.DestructionType.DESTROY);
 	}
-	
+
+	@Override
+	public void beforeDestroyedByExplosion(World world, BlockPos pos, BlockState state, Explosion explosion) {
+		explode(world, pos);
+	}
+
 }

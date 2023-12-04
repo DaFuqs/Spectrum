@@ -39,7 +39,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING_VERTICAL, false).with(EYE_TYPE, EndPortalFrameEye.NONE));
 	}
-	
+
 	public static void checkAndFillEndPortal(World world, BlockPos blockPos) {
 		BlockPattern.Result result = CrackedEndPortalFrameBlock.getCompletedFramePattern().searchAround(world, blockPos);
 		if (result != null) {
@@ -59,7 +59,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 				}
 			}
 			
-			world.syncGlobalEvent(1038, portalTopLeft.add(1, 0, 1), 0);
+			world.syncGlobalEvent(WorldEvents.END_PORTAL_OPENED, portalTopLeft.add(1, 0, 1), 0);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 				}
 			}
 			
-			world.syncGlobalEvent(1038, portalTopLeft.add(1, 0, 1), 0);
+			world.syncGlobalEvent(WorldEvents.END_PORTAL_OPENED, portalTopLeft.add(1, 0, 1), 0);
 		}
 	}
 	
@@ -157,7 +157,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return state.get(EYE_TYPE).equals(EndPortalFrameEye.NONE) ? FRAME_SHAPE : FRAME_WITH_EYE_SHAPE;
+		return state.get(EYE_TYPE).hasEye() ? FRAME_WITH_EYE_SHAPE : FRAME_SHAPE;
 	}
 	
 	@Override
@@ -186,13 +186,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-	
-	@Override
-	@Deprecated
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-	
-	}
-	
+
 	@Override
 	public boolean hasComparatorOutput(BlockState state) {
 		return true;
@@ -200,14 +194,14 @@ public class CrackedEndPortalFrameBlock extends Block {
 	
 	@Override
 	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return state.get(EYE_TYPE).equals(EndPortalFrameEye.WITH_EYE_OF_ENDER) ? 15 : 0;
+		return state.get(EYE_TYPE).getRedstonePower();
 	}
 	
 	@Override
 	@Deprecated
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		// when placed via perturbed eye => fuse
-		if (isVolatile(state)) {
+		if (state.get(EYE_TYPE).hasExplosions()) {
 			world.scheduleBlockTick(pos, this, 40);
 		}
 	}
@@ -219,7 +213,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (isVolatile(world.getBlockState(pos))) {
+		if (state.get(EYE_TYPE).hasExplosions()) {
 			double d = (double) pos.getX() + random.nextDouble();
 			double e = (double) pos.getY() + 1.05D;
 			double f = (double) pos.getZ() + random.nextDouble();
@@ -230,7 +224,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	@Override
 	@Deprecated
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (isVolatile(state)) {
+		if (state.get(EYE_TYPE).hasExplosions()) {
 			// 10% chance to break portal
 			float randomFloat = random.nextFloat();
 			if (randomFloat < 0.05) {
@@ -250,15 +244,21 @@ public class CrackedEndPortalFrameBlock extends Block {
 	}
 
 	public enum EndPortalFrameEye implements StringIdentifiable {
-		VANILLA_WITH_PERTURBED_EYE("vanilla_cracker"),
-		NONE("none"),
-		WITH_EYE_OF_ENDER("ender"),
-		WITH_PERTURBED_EYE("cracker");
+		VANILLA_WITH_PERTURBED_EYE("vanilla_cracker", true, true, 8),
+		NONE("none", false, false, 0),
+		WITH_EYE_OF_ENDER("ender", true, false, 15),
+		WITH_PERTURBED_EYE("cracker", true, true, 8);
 
 		private final String name;
+		private final boolean hasEye;
+		private final boolean hasExplosions; // TIL `volatile` is a keyword in java
+		private final int redstonePower;
 
-		EndPortalFrameEye(String name) {
+		EndPortalFrameEye(String name, boolean hasEye, boolean hasExplosions, int redstonePower) {
 			this.name = name;
+			this.hasEye = hasEye;
+			this.redstonePower = redstonePower;
+			this.hasExplosions = hasExplosions;
 		}
 
 		public String toString() {
@@ -269,6 +269,19 @@ public class CrackedEndPortalFrameBlock extends Block {
 		public String asString() {
 			return this.name;
 		}
+
+		public boolean hasEye() {
+			return hasEye;
+		}
+
+		public boolean hasExplosions() {
+			return this.hasExplosions;
+		}
+
+		public int getRedstonePower() {
+			return this.redstonePower;
+		}
+
 	}
 	
 }

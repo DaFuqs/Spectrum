@@ -35,7 +35,7 @@ public class BonemealingMobBlock extends MobBlock {
 			if (offsetState.getBlock() instanceof Fertilizable fertilizable) {
 				if (fertilizable.isFertilizable(world, offsetPos, offsetState, false) && fertilizable.canGrow(world, world.random, offsetPos, offsetState)) {
 					fertilizable.grow(world, world.getRandom(), offsetPos, offsetState);
-					world.syncWorldEvent(1505, offsetPos, 0); // particles
+					world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, offsetPos, 0); // particles
 					return true;
 				}
 			}

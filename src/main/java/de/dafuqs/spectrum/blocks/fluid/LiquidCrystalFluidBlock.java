@@ -122,7 +122,7 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	private void playExtinguishSound(WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(1501, pos, 0);
+		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
 	}
 	
 }

@@ -47,7 +47,7 @@ public class PerturbedEyeItem extends Item {
 				world.setBlockState(blockPos, targetBlockState, 2);
 				world.updateComparators(blockPos, Blocks.END_PORTAL_FRAME);
 				context.getStack().decrement(1);
-				world.syncWorldEvent(1503, blockPos, 0);
+				world.syncWorldEvent(WorldEvents.END_PORTAL_FRAME_FILLED, blockPos, 0);
 				
 				return ActionResult.CONSUME;
 			}

@@ -39,6 +39,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> FORFEITURE_SPECIAL_CONVERSIONS = of("decay/forfeiture_special_conversions");
 	
 	// MISC
+	public static final TagKey<Block> MULTITOOL_MINEABLE = of("multitool_mineable");
 	public static final TagKey<Block> BLACK_SLUDGE_BLOCKS = of("black_sludge_blocks");
 	public static final TagKey<Block> PRIMORDIAL_FIRE_BASE_BLOCKS = of("primordial_fire_base_blocks");
 	public static final TagKey<Block> BLACKSLAG_ORE_REPLACEABLES = of("blackslag_ore_replaceables");

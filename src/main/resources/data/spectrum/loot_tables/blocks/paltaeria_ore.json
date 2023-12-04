@@ -46,31 +46,26 @@
               ]
             },
             {
-              "type": "minecraft:alternatives",
-              "children": [
+              "type": "minecraft:item",
+              "name": "spectrum:paltaeria_gem",
+              "conditions": [
                 {
-                  "type": "minecraft:item",
-                  "name": "spectrum:paltaeria_gem",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:random_chance",
-                      "chance": 0.04
-                    }
-                  ]
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.04
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:paltaeria_fragments",
+              "functions": [
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops"
                 },
                 {
-                  "type": "minecraft:item",
-                  "name": "spectrum:paltaeria_fragments",
-                  "functions": [
-                    {
-                      "function": "minecraft:apply_bonus",
-                      "enchantment": "minecraft:fortune",
-                      "formula": "minecraft:ore_drops"
-                    },
-                    {
-                      "function": "minecraft:explosion_decay"
-                    }
-                  ]
+                  "function": "minecraft:explosion_decay"
                 }
               ]
             }

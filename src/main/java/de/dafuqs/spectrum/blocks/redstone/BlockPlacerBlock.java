@@ -45,7 +45,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 		int slot = blockEntity.chooseNonEmptySlot(world.random);
 		if (slot < 0) {
 			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0);
-            world.emitGameEvent(null, GameEvent.BLOCK_ACTIVATE, pos);
+			world.emitGameEvent(null, GameEvent.BLOCK_ACTIVATE, pos);
 		} else {
 			ItemStack stack = blockEntity.getStack(slot);
 			tryPlace(stack, pointer);
@@ -69,7 +69,6 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 			} catch (Exception ignored) {
 			}
 		} else {
-
 			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pointer.getPos(), 0);
             world.emitGameEvent(null, GameEvent.BLOCK_ACTIVATE, pointer.getPos());
 		}
@@ -103,7 +102,6 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 	}
 	
 	@Override
-	@SuppressWarnings("deprecation")
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			if (world.getBlockEntity(pos) instanceof BlockPlacerBlockEntity blockPlacerBlockEntity) {

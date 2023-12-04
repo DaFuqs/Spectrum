@@ -39,7 +39,7 @@ public abstract class EnderEyeItemMixin {
 				callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
 			} else {
 				context.getStack().decrement(1);
-				world.syncWorldEvent(1503, blockPos, 0);
+				world.syncWorldEvent(WorldEvents.END_PORTAL_FRAME_FILLED, blockPos, 0);
 				
 				// Search for a valid end portal position. Found => create portal!
 				CrackedEndPortalFrameBlock.checkAndFillEndPortal(world, blockPos);

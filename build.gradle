@@ -68,6 +68,9 @@ dependencies {
 	implementation include('org.jgrapht:jgrapht-core:1.5.1')
 	implementation include('org.jheaps:jheaps:0.13')
 
+	// Some other dependency is adding annotations, and it throws an error without this
+	compileOnly ("com.demonwav.mcdev:annotations:1.0")
+
 	// fabric & api
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -121,9 +124,13 @@ dependencies {
 	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
-	// https://github.com/Terrails/HealthOverlay
+	// https://github.com/Terrails/colorful-hearts
 	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
-	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
+	modCompileOnly ("curse.maven:colorful-hearts-854213:${project.colorful_hearts_version}") {transitive = false}
+	// Testing
+//	modLocalRuntime ("curse.maven:colorful-hearts-854213:${project.colorful_hearts_version}") {transitive = false}
+//	modLocalRuntime ("com.electronwill.night-config:core:${project.nightconfig_version}")
+//	modLocalRuntime ("com.electronwill.night-config:toml:${project.nightconfig_version}")
 
 	// Ears compact by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")

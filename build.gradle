@@ -92,7 +92,7 @@ dependencies {
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
 	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
-	modLocalRuntime ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
+//	modLocalRuntime ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 
 	// Ears compat by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")

@@ -32,12 +32,12 @@ public class HudRenderers {
 	private static final int SPECTRUM$_DIKE_PER_ROW = 20;
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
-	public static void renderAzureDike(DrawContext drawContext, int scaledWidth, int scaledHeight, PlayerEntity cameraPlayer) {
+	public static void renderAzureDike(DrawContext drawContext, PlayerEntity cameraPlayer, int x, int y) {
 		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
 		int maxCharges = azureDikeComponent.getMaxProtection();
-		if (azureDikeComponent.getMaxProtection() > 0) {
+		if (maxCharges > 0) {
 			int charges = azureDikeComponent.getProtection();
-			int absorptionAmount = MathHelper.ceil(cameraPlayer.getAbsorptionAmount());
+
 			boolean blink = false;
 			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {
 				blink = (cameraPlayer.getWorld().getTime() >> 2) % 2 == 0;
@@ -45,44 +45,20 @@ public class HudRenderers {
 			
 			int totalDikeCanisters = (maxCharges - 1) / SPECTRUM$_DIKE_PER_ROW;
 			int filledDikeCanisters = (charges - 1) / SPECTRUM$_DIKE_PER_ROW;
-			int singleDike = (charges - 1) % SPECTRUM$_DIKE_PER_ROW + 1;
+			int displayedDike = (charges - 1) % SPECTRUM$_DIKE_PER_ROW + 1;
+			int dikeHeartOutlinesThisRow = totalDikeCanisters > filledDikeCanisters ? SPECTRUM$_DIKE_HEARTS_PER_ROW : (((maxCharges - 1) % SPECTRUM$_DIKE_PER_ROW / 2) + 1);
 			
-			int dikeHeartOutlinesThisRow = (totalDikeCanisters - filledDikeCanisters) > 0 ? SPECTRUM$_DIKE_HEARTS_PER_ROW : (((maxCharges - 1) % SPECTRUM$_DIKE_PER_ROW / 2) + 1);
 			boolean renderBackRow = filledDikeCanisters > 0;
-			
-			int maxHealth = (int) cameraPlayer.getMaxHealth();
-			int heartRows = maxHealth / SPECTRUM$_DIKE_PER_ROW;
-			if (cameraPlayer.getMaxHealth() % SPECTRUM$_DIKE_PER_ROW == 0) {
-				heartRows--;
-			}
 			boolean hasArmor = cameraPlayer.getArmor() > 0;
+
 			var texture = AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE;
 			
-			int width = scaledWidth / 2 - 82;
-			int height = scaledHeight - 49;
-			
-			// Fit display to HealthOverlay renderer if present
-			if (FabricLoader.getInstance().isModLoaded("healthoverlay")) {
-				int i = 1;
-				var overHealth = FabricLoader.getInstance().getObjectShare().get("healthoverlay:absorptionOverHealth");
-				if (overHealth instanceof Boolean && (boolean) overHealth) {
-					i = 0;
-				}
-				heartRows = 0;
-				absorptionAmount = Math.min(i, absorptionAmount);
-			}
-			
-			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.AzureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
-			if (absorptionAmount > 0) {
-				int absorptionRows = (int) Math.ceil(absorptionAmount / 20.0F);
-				int absorptionRowHeight = 10 - (absorptionRows - 2);
-				y -= absorptionRows * Math.max(absorptionRowHeight, 3);
-			}
-			int x = width - 9 + SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
-			
+			x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
+			y += hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
+
 			// back row
 			if (renderBackRow) {
-				for (int i = singleDike / 2; i < 10; i++) {
+				for (int i = displayedDike / 2; i < 10; i++) {
 					drawContext.drawTexture(texture, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
 				}
 			}
@@ -105,12 +81,11 @@ public class HudRenderers {
 			}
 			
 			// hearts
-			for (int i = 0; i < singleDike; i++) {
-				int q = i * 2 + 1;
-				if (q < singleDike) {
-					drawContext.drawTexture(texture, x + i * 8, y, 18, 9, 9, 9, 256, 256); // full charge icon
-				} else if (q == singleDike) {
-					drawContext.drawTexture(texture, x + i * 8, y, 27, 9, 9, 9, 256, 256); // half charge icon
+			for (int i = 0; i < displayedDike; i += 2) {
+				if (i + 1 < displayedDike) {
+					drawContext.drawTexture(texture, x + i * 4, y, 18, 9, 9, 9, 256, 256); // full charge icon
+				} else {
+					drawContext.drawTexture(texture, x + i * 4, y, 27, 9, 9, 9, 256, 256); // half charge icon
 				}
 			}
 			

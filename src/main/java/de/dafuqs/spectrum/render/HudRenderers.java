@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.util.*;
@@ -13,7 +12,6 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
-import net.minecraft.util.math.*;
 import vazkii.patchouli.client.*;
 
 import static net.minecraft.client.gui.DrawableHelper.*;
@@ -34,58 +32,29 @@ public class HudRenderers {
 	}
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
-	public static void renderAzureDike(MatrixStack matrixStack, int scaledWidth, int scaledHeight, PlayerEntity cameraPlayer) {
+	public static void renderAzureDike(MatrixStack matrixStack, PlayerEntity cameraPlayer, int x, int y) {
 		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
 		int maxCharges = azureDikeComponent.getMaxProtection();
-		if (azureDikeComponent.getMaxProtection() > 0) {
+		if (maxCharges > 0) {
 			int charges = azureDikeComponent.getProtection();
-			int absorptionAmount = MathHelper.ceil(cameraPlayer.getAbsorptionAmount());
 			boolean blink = false;
 			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {
 				blink = (cameraPlayer.getWorld().getTime() >> 2) % 2 == 0;
 			}
-			
-			int fullCanisters = charges / 20;
-			int emptyCanisters = (maxCharges / 20) - fullCanisters;
-			int displayedHearts = charges % 20;
-			if (displayedHearts == 0 && charges > 0) { // if the row is full render it as full instead of wrapping over
-				displayedHearts = 20;
-				fullCanisters--;
-				emptyCanisters++;
-			}
-			int renderedOutlines = emptyCanisters > 0 ? 10 : ((maxCharges % 20 / 2) + (maxCharges % 2 == 0 ? 0 : 1));
+
+			int totalCanisters = (maxCharges - 1) / 20;
+			int fullCanisters = (charges - 1) / 20;
+			int displayedHearts = ((charges - 1) % 20) + 1;
+
+			int renderedOutlines = Math.min((maxCharges + 1) / 2, 10);
 			boolean renderBackRow = fullCanisters > 0;
-			
-			int maxHealth = (int) cameraPlayer.getMaxHealth();
-			int heartRows = maxHealth / 20;
-			if (cameraPlayer.getMaxHealth() % 20 == 0) {
-				heartRows--;
-			}
+
 			boolean hasArmor = cameraPlayer.getArmor() > 0;
 			RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);
 			
-			int width = scaledWidth / 2 - 82;
-			int height = scaledHeight - 49;
+			x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
+			y += (hasArmor ? SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : SpectrumCommon.CONFIG.AzureDikeHudOffsetY);
 
-			// Fit display to HealthOverlay renderer if present
-			if (FabricLoader.getInstance().isModLoaded("healthoverlay")) {
-				int i = 1;
-				var overHealth = FabricLoader.getInstance().getObjectShare().get("healthoverlay:absorptionOverHealth");
-				if (overHealth instanceof Boolean && (boolean) overHealth) {
-					i = 0;
-				}
-				heartRows = 0;
-				absorptionAmount = Math.min(i, absorptionAmount);
-			}
-			
-			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.AzureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
-			if (absorptionAmount > 0) {
-				int absorptionRows = (int) Math.ceil(absorptionAmount / 20.0F);
-				int absorptionRowHeight = 10 - (absorptionRows - 2);
-				y -= absorptionRows * Math.max(absorptionRowHeight, 3);
-			}
-			int x = width - 9 + SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
-			
 			// back row
 			if (renderBackRow) {
 				for (int i = displayedHearts / 2; i < 10; i++) {
@@ -111,12 +80,11 @@ public class HudRenderers {
 			}
 			
 			// hearts
-			for (int i = 0; i < displayedHearts; i++) {
-				int q = i * 2 + 1;
-				if (q < displayedHearts) {
-					InGameHud.drawTexture(matrixStack, x + i * 8, y, 18, 9, 9, 9, 256, 256); // full charge icon
-				} else if (q == displayedHearts) {
-					InGameHud.drawTexture(matrixStack, x + i * 8, y, 27, 9, 9, 9, 256, 256); // half charge icon
+			for (int i = 0; i < displayedHearts; i += 2) {
+				if (i + 1 < displayedHearts) {
+					InGameHud.drawTexture(matrixStack, x + i * 4, y, 18, 9, 9, 9, 256, 256); // full charge icon
+				} else {
+					InGameHud.drawTexture(matrixStack, x + i * 4, y, 27, 9, 9, 9, 256, 256); // half charge icon
 				}
 			}
 			
@@ -124,7 +92,7 @@ public class HudRenderers {
 			for (int i = 0; i < fullCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
 			}
-			for (int i = fullCanisters; i < fullCanisters + emptyCanisters; i++) {
+			for (int i = fullCanisters; i < totalCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
 			}
 			
@@ -132,7 +100,6 @@ public class HudRenderers {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	private static void renderSelectedStaffStack(MatrixStack matrixStack) {
 		if (amount > -1 && itemStackToRender != null) {
 			// Render the item stack next to the cursor

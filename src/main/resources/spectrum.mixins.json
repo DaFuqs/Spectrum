@@ -104,9 +104,9 @@
     "client.accessors.BossBarHudAccessor",
     "client.accessors.ModelOverrideListAccessor",
     "client.accessors.RenderLayerAccessor",
-    "compat.healthoverlay.absent.InGameHudMixin",
-    "compat.healthoverlay.present.HeartMixin",
-    "compat.healthoverlay.present.InGameHudMixin"
+    "compat.colorfulhearts.absent.InGameHudMixin",
+    "compat.colorfulhearts.present.HeartMixin",
+    "compat.colorfulhearts.present.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

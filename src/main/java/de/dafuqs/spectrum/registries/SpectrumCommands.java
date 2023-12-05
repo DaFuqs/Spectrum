@@ -11,6 +11,7 @@ public class SpectrumCommands {
 			SanityCommand.register(dispatcher);
 			PrintConfigCommand.register(dispatcher);
 			PrimordialFireCommand.register(dispatcher);
+			MusicManipulationCommand.register(dispatcher);
 		});
 	}
 }

@@ -1,4 +1,10 @@
 {
+  "mutable_music.testmusic": {
+    "subtitle": "spectrum.subtitles.uh_oh",
+    "sounds": [
+      {"name": "fabric-sound-api-v1:empty", "stream": true}
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [

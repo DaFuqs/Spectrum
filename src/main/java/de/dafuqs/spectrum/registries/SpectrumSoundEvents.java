@@ -12,6 +12,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BOSS_THEME = register("music.boss_theme");
 	public static final SoundEvent DEEPER_DOWN_THEME = register("music.deeper_down_theme");
 	public static final SoundEvent DIVINITY = register("music.divinity");
+
+	public static final SoundEvent TEST_MUSIC = register("mutable_music.testmusic");
 	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");

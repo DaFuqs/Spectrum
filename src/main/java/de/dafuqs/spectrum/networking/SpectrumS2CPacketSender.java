@@ -373,5 +373,9 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
 		}
 	}
-	
+
+	public static void playMutableMusic(ServerPlayerEntity player) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, buf);
+	}
 }

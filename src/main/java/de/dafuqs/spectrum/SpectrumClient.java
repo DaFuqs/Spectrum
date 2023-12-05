@@ -22,6 +22,7 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.sound.music.SpectrumMusicManager;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
@@ -87,6 +88,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
+
+		logInfo("Registering Mutable Music...");
+		SpectrumMusicManager.create(MinecraftClient.getInstance());
 
 		logInfo("Registering Overlays...");
 		HudRenderers.register();

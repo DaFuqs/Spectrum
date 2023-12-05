@@ -27,6 +27,7 @@ public class SpectrumS2CPackets {
 	// Sounds
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = SpectrumCommon.locate("play_pedestal_crafting_sound_instance");
 	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = SpectrumCommon.locate("play_take_off_belt_sound_instance");
+	public static final Identifier PLAY_MUTABLE_MUSIC = SpectrumCommon.locate("play_mutable_music");
 
 	// Others
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = SpectrumCommon.locate("change_particle_spawner_settings_client");

@@ -138,7 +138,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
 			
 			boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently((ServerWorld) world, blockPos);
-			boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
+			boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos);
 			
 			if (!recipeConditionsMet || !structureCompleteWithSky) {
 				if (!structureCompleteWithSky) {

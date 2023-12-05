@@ -53,7 +53,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
-	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -66,7 +66,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			}
 			return false;
 		}
-		return FusionShrineBlock.verifyStructure(world, blockPos, serverPlayerEntity);
+		return FusionShrineBlock.verifyStructure(world, blockPos, null);
 	}
 	
 	private static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
@@ -193,7 +193,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
-			verifyStructureWithSkyAccess(world, pos, null);
+			verifyStructureWithSkyAccess(world, pos);
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);

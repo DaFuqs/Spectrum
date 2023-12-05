@@ -24,16 +24,6 @@
                           }
                         ]
                       }
-                    },
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "enchantments": [
-                          {
-                            "enchantment": "spectrum:resonance"
-                          }
-                        ]
-                      }
                     }
                   ]
                 }

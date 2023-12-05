@@ -5,13 +5,13 @@
       "item": "spectrum:shooting_star_glistering"
     },
     "frame": "challenge",
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.catch_shooting_star.title"
     },
     "description": {
       "translate": "advancements.spectrum.catch_shooting_star.description"
-    },
-    "hidden": true
+    }
   },
   "criteria": {
     "catch": {
@@ -19,7 +19,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_star_fragment" }
+      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
     }
   },
   "rewards": {

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import net.minecraft.block.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -11,20 +11,10 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class MultiToolItem extends PickaxeItem {
+public class MultiToolItem extends MiningToolItem {
 	
 	public MultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-		super(material, attackDamage, attackSpeed, settings);
-	}
-	
-	@Override
-	public boolean isSuitableFor(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-		return miningSpeed;
+		super(attackDamage, attackSpeed, material, SpectrumBlockTags.MULTITOOL_MINEABLE, settings);
 	}
 	
 	/**

@@ -44,7 +44,7 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 		
 		int slot = blockEntity.chooseNonEmptySlot(world.random);
 		if (slot < 0) {
-			world.syncWorldEvent(1001, pos, 0);
+			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0);
 			world.emitGameEvent(null, GameEvent.DISPENSE_FAIL, pos);
 		} else {
 			ItemStack stack = blockEntity.getStack(slot);

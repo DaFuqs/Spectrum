@@ -63,7 +63,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	}
 
 	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(1501, pos, 0);
+		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 					playExtinguishSound(world, pos);
 				} else {
 					if (!neighborFluidState.isOf(this.fluid) && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).isOf(this)) {
-						world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
+						world.setBlockState(pos, SPREAD_BLOCKSTATE);
 						playExtinguishSound(world, neighborPos);
 					}
 				}

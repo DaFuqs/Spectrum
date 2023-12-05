@@ -13,13 +13,13 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CrackedDragonboneBlock extends PillarBlock implements ExplosionReplaced, RevelationAware {
+public class CrackedDragonboneBlock extends PillarBlock implements ExplosionAware, RevelationAware {
 	
 	public CrackedDragonboneBlock(Settings settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
-	
+
 	@Override
 	public BlockState getStateForExplosion(World world, BlockPos blockPos, BlockState stateAtPos) {
 		return stateAtPos;

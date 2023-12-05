@@ -204,6 +204,10 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 			case 3 -> {
 				statusEffect = SpectrumStatusEffects.SCARRED;
 			}
+			case 4 -> {
+				statusEffect = SpectrumStatusEffects.VULNERABILITY;
+				amplifier = random.nextInt(2);
+			}
 			default -> {
 				statusEffect = SpectrumStatusEffects.DEADLY_POISON;
 				amplifier = random.nextInt(2);

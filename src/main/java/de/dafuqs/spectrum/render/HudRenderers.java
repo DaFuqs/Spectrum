@@ -30,6 +30,9 @@ public class HudRenderers {
 		// That one is on Patchouli. ty <3
 		HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> renderSelectedStaffStack(matrixStack));
 	}
+
+	private static final int SPECTRUM$_DIKE_HEARTS_PER_ROW = 10;
+	private static final int SPECTRUM$_DIKE_PER_ROW = 20;
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
 	public static void renderAzureDike(MatrixStack matrixStack, PlayerEntity cameraPlayer, int x, int y) {
@@ -42,14 +45,14 @@ public class HudRenderers {
 				blink = (cameraPlayer.getWorld().getTime() >> 2) % 2 == 0;
 			}
 
-			int totalCanisters = (maxCharges - 1) / 20;
-			int fullCanisters = (charges - 1) / 20;
-			int displayedHearts = ((charges - 1) % 20) + 1;
+			int totalDikeCanisters = (maxCharges - 1) / SPECTRUM$_DIKE_PER_ROW;
+			int filledDikeCanisters = (charges - 1) / SPECTRUM$_DIKE_PER_ROW;
+			int displayedDike = (charges - 1) % SPECTRUM$_DIKE_PER_ROW + 1;
+			int dikeHeartOutlinesThisRow = totalDikeCanisters > filledDikeCanisters ? SPECTRUM$_DIKE_HEARTS_PER_ROW : (((maxCharges - 1) % SPECTRUM$_DIKE_PER_ROW / 2) + 1);
 
-			int renderedOutlines = Math.min((maxCharges + 1) / 2, 10);
-			boolean renderBackRow = fullCanisters > 0;
-
+			boolean renderBackRow = filledDikeCanisters > 0;
 			boolean hasArmor = cameraPlayer.getArmor() > 0;
+			
 			RenderSystem.setShaderTexture(0, AzureDikeComponent.AZURE_DIKE_BAR_TEXTURE);
 			
 			x += SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
@@ -57,13 +60,13 @@ public class HudRenderers {
 
 			// back row
 			if (renderBackRow) {
-				for (int i = displayedHearts / 2; i < 10; i++) {
+				for (int i = displayedDike / 2; i < 10; i++) {
 					InGameHud.drawTexture(matrixStack, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
 				}
 			}
 			
 			// outline
-			for (int i = 0; i < renderedOutlines; i++) {
+			for (int i = 0; i < dikeHeartOutlinesThisRow; i++) {
 				if (renderBackRow) {
 					if (blink) {
 						InGameHud.drawTexture(matrixStack, x + i * 8, y, 54, 9, 9, 9, 256, 256); // background
@@ -80,8 +83,8 @@ public class HudRenderers {
 			}
 			
 			// hearts
-			for (int i = 0; i < displayedHearts; i += 2) {
-				if (i + 1 < displayedHearts) {
+			for (int i = 0; i < displayedDike; i += 2) {
+				if (i + 1 < displayedDike) {
 					InGameHud.drawTexture(matrixStack, x + i * 4, y, 18, 9, 9, 9, 256, 256); // full charge icon
 				} else {
 					InGameHud.drawTexture(matrixStack, x + i * 4, y, 27, 9, 9, 9, 256, 256); // half charge icon
@@ -89,10 +92,10 @@ public class HudRenderers {
 			}
 			
 			// canisters
-			for (int i = 0; i < fullCanisters; i++) {
+			for (int i = 0; i < filledDikeCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
 			}
-			for (int i = fullCanisters; i < totalCanisters; i++) {
+			for (int i = filledDikeCanisters; i < totalDikeCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
 			}
 			

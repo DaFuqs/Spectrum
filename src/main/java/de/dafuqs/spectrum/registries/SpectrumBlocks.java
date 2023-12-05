@@ -747,7 +747,7 @@ public class SpectrumBlocks {
 	public static final Block AMARANTH = new AmaranthCropBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 	public static final Block AMARANTH_BUSHEL = new AmaranthBushelBlock(FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.CROP));
 	
-	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
+	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(Settings.of(Material.STONE, MapColor.GREEN).sounds(BlockSoundGroup.GLASS).luminance((state) -> 1).strength(-1.0F, 3600000.0F));
 	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
 	public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));

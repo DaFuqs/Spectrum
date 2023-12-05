@@ -22,14 +22,15 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFillable {
+public class NightfallsBladeItem extends ToolItem implements Vanishable, InkPoweredPotionFillable {
 	
 	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
 	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("8e2e05ef-a48a-4e2d-9633-388edcb21ea3");
+
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
 	public NightfallsBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-		super(material, attackDamage, attackSpeed, settings);
+		super(material, settings);
 
 		var damage = (float) attackDamage + material.getAttackDamage();
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
@@ -45,23 +46,18 @@ public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFi
 	}
 	
 	@Override
-	public boolean isDamageable() {
-		return false;
-	}
-	
-	@Override
-	public boolean isEnchantable(ItemStack stack) {
-		return false;
-	}
-	
-	@Override
 	public int maxEffectCount() {
 		return 1;
 	}
 	
 	@Override
 	public int maxEffectAmplifier() {
-		return 3;
+		return 2;
+	}
+
+	@Override
+	public boolean isWeapon() {
+		return true;
 	}
 	
 	@Override
@@ -94,7 +90,7 @@ public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFi
 	
 	@Override
 	public boolean hasGlint(ItemStack stack) {
-		return super.hasGlint(stack) || PotionUtil.getCustomPotionEffects(stack).size() > 0;
+		return super.hasGlint(stack) || !PotionUtil.getCustomPotionEffects(stack).isEmpty();
 	}
 	
 	@Override
@@ -103,8 +99,4 @@ public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFi
 		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.nightfalls_blade.when_struck"), true);
 	}
 
-	@Override
-	public boolean isWeapon() {
-		return true;
-	}
 }

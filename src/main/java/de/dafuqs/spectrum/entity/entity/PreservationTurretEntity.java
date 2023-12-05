@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.mojang.serialization.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.registries.*;
@@ -116,8 +115,8 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		nbt.putByte("AttachFace", (byte) this.getAttachedFace().getId());
 		nbt.putByte("Peek", this.dataTracker.get(PEEK_AMOUNT));
 		
-		DataResult<NbtElement> dataResult = VibrationListener.createCodec(this).encodeStart(NbtOps.INSTANCE, this.gameEventHandler.getListener());
-		dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
+		//DataResult<NbtElement> dataResult = VibrationListener.createCodec(this).encodeStart(NbtOps.INSTANCE, this.gameEventHandler.getListener());
+		//dataResult.result().ifPresent((nbtElement) -> nbt.put("listener", nbtElement));
 	}
 	
 	@Override
@@ -126,10 +125,12 @@ public class PreservationTurretEntity extends GolemEntity implements Monster, Vi
 		this.setAttachedFace(Direction.byId(nbt.getByte("AttachFace")));
 		this.dataTracker.set(PEEK_AMOUNT, nbt.getByte("Peek"));
 		
+		
+		/* If that is preserved the turrets do not target entities when loaded through structures (game event listener does not update chunk section?)
 		if (nbt.contains("listener", NbtElement.COMPOUND_TYPE)) {
 			DataResult<VibrationListener> result = VibrationListener.createCodec(this).parse(new Dynamic<>(NbtOps.INSTANCE, nbt.getCompound("listener")));
 			result.result().ifPresent((vibrationListener) -> this.gameEventHandler.setListener(vibrationListener, this.world));
-		}
+		}*/
 	}
 	
 	@Override

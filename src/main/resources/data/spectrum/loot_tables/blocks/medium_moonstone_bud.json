@@ -6,40 +6,23 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "spectrum:medium_moonstone_bud",
-              "conditions": [
-                {
-                  "condition": "minecraft:alternative",
-                  "terms": [
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "enchantments": [
-                          {
-                            "enchantment": "spectrum:resonance"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "enchantments": [
-                          {
-                            "enchantment": "minecraft:silk_touch"
-                          }
-                        ]
-                      }
-                    }
-                  ]
+          "type": "minecraft:item",
+          "name": "spectrum:medium_moonstone_bud"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
                 }
-              ]
-            }
-          ]
+              }
+            ]
+          }
         }
       ]
     }

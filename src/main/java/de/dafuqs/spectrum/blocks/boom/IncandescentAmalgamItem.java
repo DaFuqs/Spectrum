@@ -28,11 +28,11 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		stack = super.finishUsing(stack, world, user);
 		
-		user.damage(SpectrumDamageSources.incandescence(world), 500.0F);
-
+		user.damage(SpectrumDamageTypes.incandescence(world), 500.0F);
+		
 		float explosionPower = getExplosionPower(stack, false);
-		world.createExplosion(user, SpectrumDamageSources.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower / 5, false, World.ExplosionSourceType.BLOCK);
-		world.createExplosion(user, SpectrumDamageSources.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
+		world.createExplosion(user, SpectrumDamageTypes.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower / 5, false, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(user, SpectrumDamageTypes.incandescence(world), new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
 		
 		if (user.isAlive() && user instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isCreative()) {
 			Support.grantAdvancementCriterion(serverPlayerEntity, "survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
@@ -59,8 +59,8 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		
 		float explosionPower = getExplosionPower(stack, true);
 		var world = itemEntity.getWorld();
-		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, World.ExplosionSourceType.BLOCK);
-		world.createExplosion(itemEntity, SpectrumDamageSources.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
+		world.createExplosion(itemEntity, SpectrumDamageTypes.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower / 8F, false, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(itemEntity, SpectrumDamageTypes.incandescence(world, itemEntity), new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), explosionPower, true, World.ExplosionSourceType.NONE);
 	}
 
 	@Override

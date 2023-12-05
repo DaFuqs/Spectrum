@@ -54,9 +54,9 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			// just check every 20 ticks for performance
 			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
 				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 6);
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 6);
 				} else {
-					livingEntity.damage(SpectrumDamageSources.dragonrot(world), 3);
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 3);
 				}
 				if (!livingEntity.isDead()) {
 					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
@@ -127,7 +127,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	private void playExtinguishSound(WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(1501, pos, 0);
+		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
 	}
 	
 }

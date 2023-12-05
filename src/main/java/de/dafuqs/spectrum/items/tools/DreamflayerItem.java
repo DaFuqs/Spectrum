@@ -158,7 +158,7 @@ public class DreamflayerItem extends SwordItem implements InkPowered, Activatabl
 		if (ActivatableItem.isActivated(stack)) {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.5F);
 			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
-			composition.add(SpectrumDamageSources.setHealth(attacker.getWorld(), attacker), newDamage * 0.25F);
+			composition.add(SpectrumDamageTypes.setHealth(attacker.getWorld(), attacker), newDamage * 0.25F);
 		} else {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.75F);
 			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);

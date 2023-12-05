@@ -124,7 +124,7 @@ public class FloatBlockEntity extends BlockLikeEntity {
 						if (entity instanceof ItemEntity itemEntity) {
 							AnvilCrusher.crush(itemEntity, damage);
 						} else {
-							entity.damage(SpectrumDamageSources.floatblock(entity.getWorld()), damage);
+							entity.damage(SpectrumDamageTypes.floatblock(entity.getWorld()), damage);
 						}
 					});
 				}

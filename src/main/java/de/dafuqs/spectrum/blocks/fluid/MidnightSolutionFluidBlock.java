@@ -63,7 +63,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	}
 
 	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(1501, pos, 0);
+		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
 	}
 
 	@Override
@@ -89,9 +89,9 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
 					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
 						livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
-						livingEntity.damage(SpectrumDamageSources.midnightSolution(world), 2);
+						livingEntity.damage(SpectrumDamageTypes.midnightSolution(world), 2);
 					} else {
-						livingEntity.damage(SpectrumDamageSources.midnightSolution(world), 1);
+						livingEntity.damage(SpectrumDamageTypes.midnightSolution(world), 1);
 					}
 					if (livingEntity.isDead()) {
 						livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
@@ -169,7 +169,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 					playExtinguishSound(world, pos);
 				} else {
 					if (!neighborFluidState.isOf(this.fluid) && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).isOf(this)) {
-						world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
+						world.setBlockState(pos, SPREAD_BLOCKSTATE);
 						playExtinguishSound(world, neighborPos);
 					}
 				}

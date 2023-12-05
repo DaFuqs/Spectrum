@@ -242,7 +242,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 				if (blockState.getBlock() instanceof NaturesStaffTriggered naturesStaffTriggered && naturesStaffTriggered.canUseNaturesStaff(world, blockPos, blockState)) {
 					if (naturesStaffTriggered.onNaturesStaffUse(world, blockPos, blockState, player)) {
 						//BoneMealItem.createParticles(world, blockPos, 3);
-						world.syncWorldEvent(2005, blockPos, 0);
+						world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos, 0);
 					}
 					return ActionResult.success(false);
 				}
@@ -258,7 +258,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 						}
 					}
 					world.setBlockState(blockPos, destinationState, 3);
-					world.syncWorldEvent(2005, blockPos, 0);
+					world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos, 0);
 					
 					if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 						SpectrumAdvancementCriteria.NATURES_STAFF_USE.trigger(serverPlayerEntity, blockState, destinationState);
@@ -267,7 +267,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 					return ActionResult.success(false);
 					// fertilizable? => grow
 				} else if (useOnFertilizable(world, blockPos)) {
-					world.syncWorldEvent(2005, blockPos, 0);
+					world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos, 0);
 					return ActionResult.success(false);
 					// blockstate marked as stackable? => stack on top!
 				} else if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
@@ -286,7 +286,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 							((ServerWorld) world).spawnParticles(new BlockStateParticleEffect(ParticleTypes.BLOCK, targetState), targetPos.getX() + world.getRandom().nextFloat(), targetPos.getY() + world.getRandom().nextFloat(), targetPos.getZ() + world.getRandom().nextFloat(), 1, 0, 0, 0, 0.1);
 						}
 						world.playSound(null, targetPos, targetState.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						world.syncWorldEvent(2005, targetPos, 0);
+						world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, targetPos, 0);
 						return ActionResult.success(false);
 					}
 					
@@ -296,13 +296,13 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 					if (world instanceof ServerWorld) {
 						blockState.randomTick((ServerWorld) world, blockPos, world.random);
 					}
-					world.syncWorldEvent(2005, blockPos, 0);
+					world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos, 0);
 					return ActionResult.success(false);
 				} else {
 					BlockPos blockPos2 = blockPos.offset(context.getSide());
 					boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
 					if (bl && useOnGround(world, blockPos2, context.getSide())) {
-						world.syncWorldEvent(2005, blockPos2, 0);
+						world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos2, 0);
 						return ActionResult.success(false);
 					}
 				}

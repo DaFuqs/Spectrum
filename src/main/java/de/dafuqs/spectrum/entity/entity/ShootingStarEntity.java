@@ -268,7 +268,7 @@ public class ShootingStarEntity extends Entity {
 		if (!this.getWorld().isClient() && !this.dataTracker.get(HARDENED) && !this.isOnGround() && this.getVelocity().getY() < -0.5) {
 			this.getWorld().playSound(null, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), SpectrumSoundEvents.SHOOTING_STAR_CRACKER, SoundCategory.PLAYERS, 1.5F + random.nextFloat() * 0.4F, 0.8F + random.nextFloat() * 0.4F);
 			SpectrumS2CPacketSender.sendPlayShootingStarParticles(this);
-			player.damage(SpectrumDamageSources.shootingStar(this.getWorld()), 18);
+			player.damage(SpectrumDamageTypes.shootingStar(this.getWorld()), 18);
 			
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
@@ -407,7 +407,7 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
-		if (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageSources.FLOATBLOCK)) {
+		if (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageTypes.FLOATBLOCK)) {
 			return false;
 		} else {
 			return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
@@ -416,7 +416,7 @@ public class ShootingStarEntity extends Entity {
 	
 	@Override
 	public boolean damage(DamageSource damageSource, float amount) {
-		if (amount > 5 && (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageSources.FLOATBLOCK))) {
+		if (amount > 5 && (damageSource.isOf(DamageTypes.FALLING_ANVIL) || damageSource.isOf(SpectrumDamageTypes.FLOATBLOCK))) {
 			this.playHitParticles();
 			
 			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();

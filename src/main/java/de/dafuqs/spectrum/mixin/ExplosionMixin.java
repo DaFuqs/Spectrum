@@ -24,16 +24,17 @@ public class ExplosionMixin {
 	
 	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/AbstractFireBlock;getState(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
 	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci) {
-		if (this.damageSource.isOf(SpectrumDamageSources.INCANDESCENCE)) {
+		if (this.damageSource.isOf(SpectrumDamageTypes.INCANDESCENCE)) {
 			PrimordialFireBlock.EXPLOSION_CAUSES_PRIMORDIAL_FIRE_FLAG = true;
 		}
 	}
-	
+
 	@ModifyArg(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), index = 1)
 	private BlockState spectrum$modifyExplosion(BlockPos pos, BlockState state, int flags) {
 		BlockState stateAtPos = world.getBlockState(pos);
-		if (stateAtPos.getBlock() instanceof ExplosionReplaced explosionTarget) {
-			return explosionTarget.getStateForExplosion(this.world, pos, stateAtPos);
+		if(stateAtPos.getBlock() instanceof ExplosionAware explosionAware) {
+			explosionAware.beforeDestroyedByExplosion(world, pos, stateAtPos, (Explosion) (Object) this);
+			return explosionAware.getStateForExplosion(this.world, pos, stateAtPos);
 		}
 		return state;
 	}

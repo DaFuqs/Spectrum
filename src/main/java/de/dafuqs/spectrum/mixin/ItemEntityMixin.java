@@ -6,6 +6,7 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.world.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
-
+	
 	@Shadow
 	public abstract ItemStack getStack();
 	
@@ -49,7 +50,7 @@ public abstract class ItemEntityMixin {
 				thisItemEntity.setNoGravity(true);
 			}
 		}
-
+		
 		if (thisItemEntity.getStack().getItem() instanceof TickAwareItem tickingItem) {
 			tickingItem.onItemEntityTicked(thisItemEntity);
 		}
@@ -64,24 +65,15 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
-		
-		if (itemStack != ItemStack.EMPTY && !source.isOf(DamageTypes.OUT_OF_WORLD)) {
-			boolean isImmune = SpectrumItemStackDamageImmunities.isDamageImmune(itemStack, source);
-			if (isImmune) {
-				callbackInfoReturnable.setReturnValue(true);
-			}
+		if (SpectrumItemStackDamageImmunities.isImmuneTo(((ItemEntity) (Object) this).getStack(), source)) {
+			callbackInfoReturnable.setReturnValue(true);
 		}
 	}
 	
 	@Inject(method = "isFireImmune()Z", at = @At("HEAD"), cancellable = true)
 	private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
-		
-		if (itemStack != ItemStack.EMPTY) {
-			if (itemStack.isIn(SpectrumDamageSources.FIRE_IMMUNE_ITEMS)) {
-				callbackInfoReturnable.setReturnValue(true);
-			}
+		if (SpectrumItemStackDamageImmunities.isImmuneTo(((ItemEntity) (Object) this).getStack(), DamageTypeTags.IS_FIRE)) {
+			callbackInfoReturnable.setReturnValue(true);
 		}
 	}
 	

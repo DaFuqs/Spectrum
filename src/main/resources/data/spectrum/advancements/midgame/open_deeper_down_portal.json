@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/break_decayed_bedrock",
   "display": {
     "icon": {
-      "item": "spectrum:bedrock_storage_block"
+      "item": "minecraft:bedrock"
     },
     "title": {
       "translate": "advancements.spectrum.open_deeper_down_portal.title"

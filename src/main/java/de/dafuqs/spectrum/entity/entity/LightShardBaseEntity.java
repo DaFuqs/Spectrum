@@ -206,7 +206,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	protected void onHitEntity(LivingEntity attacked) {
 		float finalDamage = damage * (random.nextFloat() + 0.5F) * (1 - getVanishingProgress(age));
 		attacked.timeUntilRegen = 0;
-		attacked.damage(SpectrumDamageSources.irradiance(this.getWorld(), getOwner() instanceof LivingEntity owner ? owner : null), finalDamage);
+		attacked.damage(SpectrumDamageTypes.irradiance(this.getWorld(), getOwner() instanceof LivingEntity owner ? owner : null), finalDamage);
 		
 		attacked.playSound(SpectrumSoundEvents.SOFT_HUM, 1.334F, 0.9F + random.nextFloat());
 		attacked.playSound(SpectrumSoundEvents.CRYSTAL_STRIKE, random.nextFloat() * 0.4F + 0.2F, 0.8F + random.nextFloat());

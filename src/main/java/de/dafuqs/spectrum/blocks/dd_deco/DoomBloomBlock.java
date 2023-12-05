@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
@@ -23,7 +24,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
+public class DoomBloomBlock extends FlowerBlock implements Fertilizable, ExplosionAware {
 	
 	public static final IntProperty AGE = Properties.AGE_4;
 	public static final int AGE_MAX = Properties.AGE_4_MAX;
@@ -39,7 +40,7 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 		super.appendProperties(builder);
 		builder.add(AGE);
 	}
-	
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
@@ -77,7 +78,7 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 			Block.replace(state, Blocks.AIR.getDefaultState(), world, pos, 10, 512);
 		}
 	}
-	
+
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
@@ -97,7 +98,17 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 			}
 		}
 	}
-	
+
+	@Override
+	public boolean shouldDropItemsOnExplosion(Explosion explosion) {
+		return false;
+	}
+
+	@Override
+	public void beforeDestroyedByExplosion(World world, BlockPos pos, BlockState state, Explosion explosion) {
+		explode(world, pos, state);
+	}
+
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
@@ -141,7 +152,7 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 	protected static void explode(World world, BlockPos pos, BlockState state) {
 		if (state.get(AGE) == AGE_MAX) {
 			world.removeBlock(pos, false);
-			world.createExplosion(null, SpectrumDamageSources.incandescence(world), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, World.ExplosionSourceType.BLOCK);
+			world.createExplosion(null, SpectrumDamageTypes.incandescence(world), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3.0F, true, World.ExplosionSourceType.BLOCK);
 			if (!world.isClient) {
 				dropStack(world, pos, new ItemStack(SpectrumItems.DOOMBLOOM_SEED, world.random.nextBetween(3, 7)));
 			}
@@ -164,5 +175,5 @@ public class DoomBloomBlock extends FlowerBlock implements Fertilizable {
 		}
 		return ActionResult.PASS;
 	}
-	
+
 }

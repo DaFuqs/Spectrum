@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.idols.*;
-import de.dafuqs.spectrum.cca.OnPrimordialFireComponent;
+import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -64,7 +64,7 @@ public class KindlingCoughEntity extends ProjectileEntity {
 }
 		
 		if (this.getOwner() instanceof LivingEntity owner) {
-			hitEntity.damage(SpectrumDamageSources.kindlingCough(this.getWorld(), owner), DAMAGE);
+			hitEntity.damage(SpectrumDamageTypes.kindlingCough(this.getWorld(), owner), DAMAGE);
 		}
 		
 	}

@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:on_fire",
-    "minecraft:in_fire",
-    "minecraft:lava"
-  ]
-}

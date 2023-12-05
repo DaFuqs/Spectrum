@@ -22,7 +22,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.jetbrains.annotations.*;
 
-public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterloggable {
+public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterloggable, ExplosionAware {
 	
 	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 	
@@ -88,13 +88,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 	public boolean shouldDropItemsOnExplosion(Explosion explosion) {
 		return false;
 	}
-	
-	@Override
-	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-		super.onDestroyedByExplosion(world, pos, explosion);
-		explode(world, pos);
-	}
-	
+
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
@@ -146,6 +140,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 				PlayerEntity owner = placedItemBlockEntity.getOwnerIfOnline();
 				ItemStack stack = placedItemBlockEntity.getStack();
 
+				world.removeBlock(pos, false);
 				explode(world, pos, owner, stack);
 			}
 		}
@@ -156,7 +151,12 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
 			power = item.getExplosionPower(stack, false);
 		}
-		world.createExplosion(owner, SpectrumDamageSources.incandescence(world, owner), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(owner, SpectrumDamageTypes.incandescence(world, owner), new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, power, true, World.ExplosionSourceType.BLOCK);
 	}
-	
+
+	@Override
+	public void beforeDestroyedByExplosion(World world, BlockPos pos, BlockState state, Explosion explosion) {
+		explode(world, pos);
+	}
+
 }

@@ -29,10 +29,10 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	public TotalCappedInkStorage(long maxEnergyTotal, Map<InkColor, Long> colors) {
 		this.maxEnergyTotal = maxEnergyTotal;
-		
+
+		this.currentTotal = 0;
 		this.storedEnergy = colors;
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
-			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
 		}
 	}
@@ -57,18 +57,11 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	@Override
 	public long addEnergy(InkColor color, long amount) {
-		long currentAmount = this.storedEnergy.get(color);
-		if (amount > this.maxEnergyTotal - this.currentTotal) {
-			long resultingAmount = currentAmount + amount;
-			long overflow = resultingAmount - this.maxEnergyTotal + this.currentTotal;
-			this.currentTotal = this.currentTotal + (resultingAmount - this.maxEnergyTotal);
-			this.storedEnergy.put(color, this.maxEnergyTotal);
-			return overflow;
-		} else {
-			this.currentTotal += amount;
-			this.storedEnergy.put(color, currentAmount + amount);
-			return 0;
-		}
+		long overflow = Math.max(0, amount + this.currentTotal - this.maxEnergyTotal);
+		long amountToAdd = amount - overflow;
+		this.currentTotal += amountToAdd;
+		this.storedEnergy.put(color, this.storedEnergy.get(color) + amountToAdd);
+		return overflow;
 	}
 	
 	@Override
@@ -153,12 +146,13 @@ public class TotalCappedInkStorage implements InkStorage {
 	public void fillCompletely() {
 		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
 		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
-		this.currentTotal += this.storedEnergy.size() * energyPerColor;
+		this.currentTotal = this.maxEnergyTotal;
 	}
 	
 	@Override
 	public void clear() {
 		this.storedEnergy.replaceAll((c, v) -> 0L);
+		this.currentTotal = 0;
 	}
 	
 	@Override

@@ -84,7 +84,7 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
-	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.1")))
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}")))
 
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)

@@ -78,22 +78,9 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		}
 	}
 	
-	/**
-	 * Invoke shovel, axe and hoe right click actions (in this order)
-	 * Like stripping logs, tilling grass paths etc.
-	 * To get tilled earth it has to converted to path and then tilled again
-	 */
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		NbtCompound nbt = context.getStack().getNbt();
-		if (canTill(nbt)) {
-			return super.useOnBlock(context);
-		}
-		return ActionResult.PASS;
-	}
-	
-	@Override
-	public boolean canTill(NbtCompound nbt) {
+	public boolean canTill(ItemStack stack) {
+		NbtCompound nbt = stack.getNbt();
 		return nbt == null || !nbt.getBoolean(RIGHT_CLICK_DISABLED_NBT_STRING);
 	}
 	

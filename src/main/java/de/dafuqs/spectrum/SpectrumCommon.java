@@ -295,7 +295,7 @@ public class SpectrumCommon implements ModInitializer {
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 			Pastel.clearServerInstance();
-			SpectrumCommon.minecraftServer = server;
+			SpectrumCommon.minecraftServer = null;
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());

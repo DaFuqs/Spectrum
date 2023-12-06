@@ -21,32 +21,44 @@ public class DivinityTickCriterion extends AbstractCriterion<DivinityTickCriteri
 	@Override
 	public DivinityTickCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.FloatRange healthRange = NumberRange.FloatRange.fromJson(jsonObject.get("health"));
-		
-		return new DivinityTickCriterion.Conditions(extended, healthRange);
+
+		Boolean isAlive = null;
+		JsonElement isAliveElement = jsonObject.get("is_alive");
+		if (isAliveElement != null && isAliveElement.isJsonPrimitive() && isAliveElement.getAsJsonPrimitive().isBoolean()) {
+			isAlive = isAliveElement.getAsBoolean();
+		}
+
+		return new DivinityTickCriterion.Conditions(extended, healthRange, isAlive);
 	}
 	
 	public void trigger(ServerPlayerEntity player) {
-		this.trigger(player, (conditions) -> conditions.matches(player.getHealth()));
+		this.trigger(player, (conditions) -> conditions.matches(player.isAlive(), player.getHealth()));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
-		
+
+		private final Boolean isAlive;
 		private final NumberRange.FloatRange healthRange;
-		
-		public Conditions(Extended player, NumberRange.FloatRange healthRange) {
+
+		public Conditions(Extended player, NumberRange.FloatRange healthRange, Boolean isAlive) {
 			super(DivinityTickCriterion.ID, player);
+			this.isAlive = isAlive;
 			this.healthRange = healthRange;
 		}
-		
+
 		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
+			if (this.isAlive != null) {
+				jsonObject.addProperty("is_alive", this.isAlive);
+			}
 			jsonObject.add("health", this.healthRange.toJson());
 			return jsonObject;
 		}
-		
-		public boolean matches(float health) {
-			return this.healthRange.test(health);
+
+		public boolean matches(boolean isPlayerAlive, float health) {
+			return (this.isAlive == null || this.isAlive == isPlayerAlive)
+					&& this.healthRange.test(health);
 		}
 	}
 	

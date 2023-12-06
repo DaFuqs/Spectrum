@@ -185,12 +185,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
+		ClientPlayerEntity player = client.player;
+		if (player == null || world == null) return false;
+
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
-
-		ClientPlayerEntity player = client.player;
-
-		if (player == null) return false;
 
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
@@ -243,7 +242,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		ClientPlayerEntity player = client.player;
 
-		if (player == null) return false;
+		if (player == null || world == null) return false;
 
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();

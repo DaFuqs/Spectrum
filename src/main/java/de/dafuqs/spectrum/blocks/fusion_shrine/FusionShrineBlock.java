@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.inventories.storage.*;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -14,11 +15,11 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.fabricmc.fabric.impl.transfer.context.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -53,23 +54,20 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
-	public static boolean verifyStructureWithSkyAccess(World world, BlockPos blockPos) {
-		MinecraftClient client = MinecraftClient.getInstance();
+	public static boolean verifySkyAccess(ServerWorld world, BlockPos blockPos) {
 		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			return false;
 		}
-		if (!world.isSkyVisible(blockPos) && client.player != null) {
-			if (world.isClient) {
-				world.addParticle(SpectrumParticleTypes.RED_SPARKLE_RISING, blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5, 0, 0.5, 0);
-				client.player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			}
+		if (!world.isSkyVisible(blockPos)) {
+			SpectrumS2CPacketSender.playParticleWithExactVelocity(world, new Vec3d(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 1, new Vec3d(0, 0.5, 0));
+			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			return false;
 		}
-		return FusionShrineBlock.verifyStructure(world, blockPos, null);
+		return true;
 	}
 	
-	private static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FUSION_SHRINE_IDENTIFIER);
 		boolean valid = multiblock.validate(world, blockPos.down(), BlockRotation.NONE);
 		
@@ -85,8 +83,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				} else {
 					PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
 				}
-			} else {
-				scatterContents(world, blockPos);
+			} else if (world.getBlockEntity(blockPos) instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				fusionShrineBlockEntity.scatterContents(world);
 			}
 		}
 		
@@ -193,9 +191,10 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	@SuppressWarnings("deprecation")
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
-			verifyStructureWithSkyAccess(world, pos);
+			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
+			verifySkyAccess((ServerWorld) world, pos);
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			// if the structure is valid the player can put / retrieve items and fluids into the shrine
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
@@ -208,11 +207,11 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 					fusionShrineBlockEntity.updateInClientWorld();
 				}
 			}
-			
+
 			return ActionResult.CONSUME;
 		}
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

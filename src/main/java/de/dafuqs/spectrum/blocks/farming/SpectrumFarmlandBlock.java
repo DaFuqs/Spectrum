@@ -5,11 +5,11 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumFarmlandBlock extends FarmlandBlock {
@@ -66,7 +66,7 @@ public class SpectrumFarmlandBlock extends FarmlandBlock {
 		return block instanceof CropBlock || block instanceof StemBlock || block instanceof AttachedStemBlock;
 	}
 
-	private static boolean isWaterNearby(WorldView world, BlockPos pos) {
+	protected boolean isWaterNearby(WorldView world, BlockPos pos) {
 		for (BlockPos testPos : BlockPos.iterate(pos.add(-4, 0, -4), pos.add(4, 1, 4))) {
 			if (world.getFluidState(testPos).isIn(FluidTags.WATER)) {
 				return true;

@@ -23,7 +23,7 @@
       "conditions": {
         "health": {
           "min": 0.01,
-          "max": 0.99
+          "max": 1.00
         }
       }
     },

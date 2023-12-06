@@ -324,7 +324,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			
 			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterIdolBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
 			injectEnchantmentUpgradeRecipes(server);
 		});
 		
@@ -435,7 +435,7 @@ ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModif
 
 				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer);
 				}
 			}
 

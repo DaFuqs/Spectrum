@@ -10,7 +10,6 @@ import net.minecraft.registry.*;
 
 import java.util.*;
 
-@Environment(EnvType.CLIENT)
 public class DimensionReverb {
 
 	public static void setup() {

@@ -94,6 +94,9 @@ dependencies {
 	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 //	modLocalRuntime ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
 
+	// Connect to local dev servers
+	modLocalRuntime("curse.maven:authme-356643:4629826")
+
 	// Ears compat by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
 }

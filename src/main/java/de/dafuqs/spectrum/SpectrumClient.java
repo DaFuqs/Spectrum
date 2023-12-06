@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
-import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.entity.*;
@@ -100,7 +99,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
-		DimensionReverb.setup();
 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());

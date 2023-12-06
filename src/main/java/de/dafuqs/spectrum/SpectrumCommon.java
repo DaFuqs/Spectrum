@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.reverb.DimensionReverb;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.resonance.*;
@@ -158,6 +159,10 @@ public class SpectrumCommon implements ModInitializer {
 		// Dimension
 		logInfo("Registering Dimension...");
 		SpectrumDimensions.register();
+
+		// Dimension effects
+		logInfo("Registering Dimension Sound Effects...");
+		DimensionReverb.setup();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");

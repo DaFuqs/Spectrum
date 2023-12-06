@@ -31,6 +31,7 @@ public class SpectrumItemStackDamageImmunities {
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.IN_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.ON_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, SpectrumDamageSources.PRIMORDIAL_FIRE);
 	}
 	
 	public static void addImmunity(Item item, DamageSource damageSource) {

@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.reverb.DimensionReverb;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.resonance.*;
@@ -163,6 +164,10 @@ public class SpectrumCommon implements ModInitializer {
 		// Dimension
 		logInfo("Registering Dimension...");
 		SpectrumDimensions.register();
+
+		// Dimension effects
+		logInfo("Registering Dimension Sound Effects...");
+		DimensionReverb.setup();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
@@ -295,7 +300,7 @@ public class SpectrumCommon implements ModInitializer {
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 			Pastel.clearServerInstance();
-			SpectrumCommon.minecraftServer = server;
+			SpectrumCommon.minecraftServer = null;
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
@@ -329,7 +334,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			
 			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterIdolBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
 			injectEnchantmentUpgradeRecipes(server);
 		});
 		
@@ -440,7 +445,7 @@ ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModif
 
 				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer);
 				}
 			}
 

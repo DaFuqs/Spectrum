@@ -206,11 +206,6 @@ public class CrackedEndPortalFrameBlock extends Block {
 		}
 	}
 	
-	public boolean isVolatile(BlockState blockState) {
-		EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
-		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_PERTURBED_EYE) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_PERTURBED_EYE);
-	}
-	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(EYE_TYPE).hasExplosions()) {

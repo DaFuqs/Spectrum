@@ -92,6 +92,7 @@
     "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
+    "client.InGameHudMixin",
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
@@ -105,8 +106,7 @@
     "client.accessors.RenderLayerAccessor",
     "client.accessors.SoundLoaderAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin",
-    "compat.colorful_hearts.present.InGameHudMixin"
+    "compat.colorful_hearts.present.HeartMixin"
   ],
   "injectors": {
     "defaultRequire": 1

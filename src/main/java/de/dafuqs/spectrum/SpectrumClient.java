@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
-import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.entity.*;
@@ -104,7 +103,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
-		DimensionReverb.setup();
 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
@@ -191,12 +189,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
+		ClientPlayerEntity player = client.player;
+		if (player == null || world == null) return false;
+
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
-
-		ClientPlayerEntity player = client.player;
-
-		if (player == null) return false;
 
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
@@ -249,7 +246,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		ClientPlayerEntity player = client.player;
 
-		if (player == null) return false;
+		if (player == null || world == null) return false;
 
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();

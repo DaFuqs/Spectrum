@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.fractal.api.*;
-import de.dafuqs.fractal.quack.*;
+import de.dafuqs.fractal.interfaces.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.compat.*;
@@ -15,8 +15,8 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.fabricmc.fabric.api.itemgroup.v1.*;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.*;
+import net.minecraft.client.network.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;

@@ -20,7 +20,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Growth Acceleration",
-      "item": "ae2:quartz_growth_accelerator",
+      "item": "ae2:growth_accelerator",
       "text": "Looks like - despite the name - the $(item)Crystal Growth Accelerator$() can grow more than just quartz! It can also grow other types of gemstones."
     },
     {

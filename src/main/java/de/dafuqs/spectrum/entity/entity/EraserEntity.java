@@ -72,7 +72,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 			entityData = new SwarmingSpiderData();
 			((SwarmingSpiderData) entityData).setEffect(random);
 		}
-		
+
 		if (entityData instanceof SwarmingSpiderData swarmingSpiderData) {
 			StatusEffect statusEffect = swarmingSpiderData.effect;
 			if (statusEffect != null) {
@@ -122,8 +122,10 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	
 	@Override
 	public void leaveGroup() {
-		this.leader.decreaseGroupSize();
-		this.leader = null;
+		if (this.leader != null) {
+			this.leader.decreaseGroupSize();
+			this.leader = null;
+		}
 	}
 	
 	@Override
@@ -201,9 +203,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 				statusEffect = SpectrumStatusEffects.FRENZY;
 				amplifier = random.nextInt(2);
 			}
-			case 3 -> {
-				statusEffect = SpectrumStatusEffects.SCARRED;
-			}
+			case 3 -> statusEffect = SpectrumStatusEffects.SCARRED;
 			case 4 -> {
 				statusEffect = SpectrumStatusEffects.VULNERABILITY;
 				amplifier = random.nextInt(2);
@@ -272,6 +272,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void copyDataToStack(ItemStack stack) {
 		Bucketable.copyDataToStack(this, stack);
 		NbtCompound nbtCompound = stack.getOrCreateNbt();
@@ -279,6 +280,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void copyDataFromNbt(NbtCompound nbt) {
 		Bucketable.copyDataFromNbt(this, nbt);
 		readEffectOnHit(nbt);
@@ -316,9 +318,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 					this.effect = StatusEffects.REGENERATION;
 					this.amplifier = random.nextInt(2);
 				}
-				case 3 -> {
-					this.effect = StatusEffects.INVISIBILITY;
-				}
+				case 3 -> this.effect = StatusEffects.INVISIBILITY;
 				default -> {
 					this.effect = SpectrumStatusEffects.MAGIC_ANNULATION;
 					this.amplifier = 5;

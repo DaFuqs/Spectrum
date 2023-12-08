@@ -306,16 +306,21 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		// unchanged vanilla recipe?
-		pedestalBlockEntity.autoCraftingInventory.setInputInventory(pedestalBlockEntity.inventory.subList(0, 9));
-		if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe craftingRecipe && craftingRecipe.matches(pedestalBlockEntity.autoCraftingInventory, world)) {
-			return pedestalBlockEntity.currentRecipe;
+		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+			pedestalBlockEntity.autoCraftingInventory.setInputInventory(pedestalBlockEntity.inventory.subList(0, 9));
+			if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe craftingRecipe && craftingRecipe.matches(pedestalBlockEntity.autoCraftingInventory, world)) {
+				return pedestalBlockEntity.currentRecipe;
+			}
 		}
 		
 		// current recipe does not match last recipe
 		// => search valid recipe
 		PedestalRecipe pedestalRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity, world).orElse(null);
 		if (pedestalRecipe == null) {
-			return world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, pedestalBlockEntity.autoCraftingInventory, world).orElse(null);
+			if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+				return world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, pedestalBlockEntity.autoCraftingInventory, world).orElse(null);
+			}
+			return null;
 		}
 		
 		if (!pedestalRecipe.canCraft(pedestalBlockEntity)) {

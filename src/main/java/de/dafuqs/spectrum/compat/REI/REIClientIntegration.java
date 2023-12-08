@@ -57,7 +57,6 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new CinderhearthCategory());
 		registry.add(new TitrationBarrelCategory());
 		
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
 		EntryIngredient pedestals = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
@@ -67,8 +66,13 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		);
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestals);
 		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestals);
+		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+			registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestals);
+		}
+		
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
+		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		
 		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryIngredient.of(EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE)));
@@ -84,12 +88,9 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
 		registry.addWorkstations(SpectrumPlugins.INK_CONVERTING, EntryStacks.of(SpectrumBlocks.COLOR_PICKER));
 		registry.addWorkstations(SpectrumPlugins.CRYSTALLARIEUM, EntryStacks.of(SpectrumBlocks.CRYSTALLARIEUM));
-		
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_CRAFTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
-		
-		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
 	}

@@ -19,7 +19,7 @@ public abstract class MinecraftClientMixin {
 	@Nullable
 	public ClientPlayerEntity player;
 
-	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/util/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
+	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getRegistryKey()Lnet/minecraft/registry/RegistryKey;"), method = "getMusicType()Lnet/minecraft/sound/MusicSound;", cancellable = true)
 	public void spectrum$getMusicType(CallbackInfoReturnable<MusicSound> cir) {
 		if (player.getWorld().getRegistryKey() == SpectrumDimensions.DIMENSION_KEY) {
 			if (Support.hasPlayerFinishedMod(player)) {

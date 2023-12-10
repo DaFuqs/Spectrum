@@ -26,40 +26,42 @@ public class StructureMapItem extends FilledMapItem {
         super(settings);
     }
 
-    private static void setTarget(ItemStack stack, ServerWorld world, StructureStart start) {
-        BlockPos pos = start.getPos().getCenterAtY(0);
+    private static void createAndSetState(ItemStack stack, ServerWorld world, double x, double z) {
         NbtCompound nbt = stack.getOrCreateNbt();
 
         int id;
-        if (!nbt.contains("map")) {
+        if (nbt.contains("map")) {
+            id = nbt.getInt("map");
+        } else {
             id = world.getNextMapId();
             nbt.putInt("map", id);
-
-            NbtCompound mapTarget = new NbtCompound();
-            mapTarget.putInt("x", pos.getX());
-            mapTarget.putInt("z", pos.getZ());
-            nbt.put("mapTarget", mapTarget);
-
-            MapState.addDecorationsNbt(stack, pos, "+", MapIcon.Type.RED_X);
-        } else {
-            id = nbt.getInt("map");
+            MapState.addDecorationsNbt(stack, new BlockPos((int) x, 0, (int) z), "+", MapIcon.Type.RED_X);
         }
 
-        MapState state = MapState.of(pos.getX(), pos.getZ(), (byte) 1, true, true, world.getRegistryKey());
+        MapState state = MapState.of(x, z, (byte) 1, true, true, world.getRegistryKey());
         world.putMapState(getMapName(id), state);
         fillExplorationMap(world, stack);
     }
 
+    private static void setTarget(ItemStack stack, ServerWorld world, StructureStart start) {
+        BlockPos pos = start.getPos().getCenterAtY(0);
+        createAndSetState(stack, world, start.getPos().getCenterX(), start.getPos().getCenterZ());
+
+        NbtCompound nbt = stack.getNbt();
+        if (nbt != null) {
+            NbtCompound mapTarget = new NbtCompound();
+            mapTarget.putInt("x", pos.getX());
+            mapTarget.putInt("z", pos.getZ());
+            nbt.put("mapTarget", mapTarget);
+        }
+    }
+
     private static void clearTarget(ItemStack stack, ServerWorld world, ServerPlayerEntity player) {
+        createAndSetState(stack, world, player.getX(), player.getZ());
+
         NbtCompound nbt = stack.getNbt();
         if (nbt != null) {
             nbt.remove("mapTarget");
-
-            if (nbt.contains("map")) {
-                MapState state = MapState.of(player.getX(), player.getZ(), (byte) 1, true, false, world.getRegistryKey());
-                world.putMapState(getMapName(nbt.getInt("map")), state);
-                fillExplorationMap(world, stack);
-            }
         }
     }
 

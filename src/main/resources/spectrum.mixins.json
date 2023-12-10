@@ -92,6 +92,7 @@
     "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
+    "client.HeldItemRendererMixin",
     "client.InGameHudMixin",
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",

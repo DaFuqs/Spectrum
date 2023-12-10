@@ -426,10 +426,11 @@ public class SpectrumItems {
 	public static final BottomlessBundleItem BOTTOMLESS_BUNDLE = new BottomlessBundleItem(IS.of(1));
 	public static final KnowledgeGemItem KNOWLEDGE_GEM = new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item STRUCTURE_MAP = new StructureMapItem(IS.of(1));
 	public static final Item GILDED_BOOK = new GildedBookItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(IS.of(16, Rarity.UNCOMMON));
 	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(IS.of());
-	
+
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item MYSTERIOUS_COMPASS = new MysteriousCompassItem(IS.of(1, Rarity.RARE));
@@ -737,6 +738,7 @@ public class SpectrumItems {
 		register("glow_phantom_frame", GLOW_PHANTOM_FRAME, DyeColor.YELLOW);
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
+		register("structure_map", STRUCTURE_MAP, DyeColor.YELLOW);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
 		register("enchantment_canvas", ENCHANTMENT_CANVAS, DyeColor.PURPLE);
 		register("everpromise_ribbon", EVERPROMISE_RIBBON, DyeColor.PINK);

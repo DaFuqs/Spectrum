@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.items.map.StructureMapState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
@@ -35,12 +36,12 @@ public class StructureMapItem extends FilledMapItem {
         } else {
             id = world.getNextMapId();
             nbt.putInt("map", id);
-            MapState.addDecorationsNbt(stack, new BlockPos((int) x, 0, (int) z), "+", MapIcon.Type.RED_X);
         }
 
-        MapState state = MapState.of(x, z, (byte) 1, true, true, world.getRegistryKey());
+        MapState state = StructureMapState.of(x, z, (byte) 1, true, true, world.getRegistryKey());
         world.putMapState(getMapName(id), state);
         fillExplorationMap(world, stack);
+        MapState.addDecorationsNbt(stack, new BlockPos((int) x, 0, (int) z), "+", MapIcon.Type.RED_X);
     }
 
     private static void setTarget(ItemStack stack, ServerWorld world, StructureStart start) {

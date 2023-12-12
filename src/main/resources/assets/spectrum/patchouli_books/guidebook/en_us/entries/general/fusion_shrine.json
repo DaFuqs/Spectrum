@@ -27,7 +27,7 @@
       "name": "Shrine Structure",
       "multiblock_id": "spectrum:fusion_shrine_structure",
       "enable_visualize": true,
-      "text": "Dimensions: 9x9x5x5 blocks."
+      "text": "Dimensions: 9x9x5 blocks."
     },
     {
       "type": "patchouli:text",

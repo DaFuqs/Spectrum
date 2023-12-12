@@ -88,111 +88,144 @@ import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
-	
-	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.create().sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
-	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_TOPAZ);
-	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_AMETHYST);
-	public static final Block PEDESTAL_BASIC_CITRINE = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_CITRINE);
-	public static final Block PEDESTAL_ALL_BASIC = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.CMY);
-	public static final Block PEDESTAL_ONYX = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.ONYX);
-	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.MOONSTONE);
-	
-	private static final FabricBlockSettings FUSION_SHINE_BLOCK_SETTINGS = FabricBlockSettings.create().strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL));
-	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
-	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
-	
-	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
-	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(FabricBlockSettings.create().hardness(3.0f).nonOpaque());
-	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.create().hardness(3.0f).nonOpaque());
-	public static final Block ITEM_ROUNDEL = new ItemRoundelBlock(FabricBlockSettings.create().hardness(3.0f).nonOpaque());
-	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.create().hardness(3.0F).nonOpaque());
-	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
-	public static final CrystallarieumBlock CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
-	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.create().strength(5.0F, 8.0F).nonOpaque());
-	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.create().breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
 
-	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER).luminance(6));
-	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD).luminance(6));
-	public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_TOPAZ_BUD).luminance(4));
-	public static final Block SMALL_TOPAZ_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).sounds(SpectrumBlockSoundGroups.SMALL_TOPAZ_BUD).luminance(2));
-	public static final Block BUDDING_TOPAZ = new SpectrumBuddingBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.TOPAZ_BLOCK).requiresTool(), SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
-	public static final Block TOPAZ_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.create().mapColor(MapColor.BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.TOPAZ_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
-	public static final Block CITRINE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER).luminance(7));
-	public static final Block LARGE_CITRINE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_CITRINE_BUD).luminance(7));
-	public static final Block MEDIUM_CITRINE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_CITRINE_BUD).luminance(5));
-	public static final Block SMALL_CITRINE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(CITRINE_CLUSTER).sounds(SpectrumBlockSoundGroups.SMALL_CITRINE_BUD).luminance(3));
-	public static final Block BUDDING_CITRINE = new SpectrumBuddingBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.CITRINE_BLOCK).requiresTool(), SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
-	public static final Block CITRINE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.create().mapColor(MapColor.YELLOW).hardness(1.5f).sounds(SpectrumBlockSoundGroups.CITRINE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
-	public static final Block ONYX_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER).luminance(3));
-	public static final Block LARGE_ONYX_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_ONYX_BUD).luminance(5));
-	public static final Block MEDIUM_ONYX_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_ONYX_BUD).luminance(3));
-	public static final Block SMALL_ONYX_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(ONYX_CLUSTER).sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD).luminance(1));
-	public static final Block BUDDING_ONYX = new SpectrumBuddingBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.ONYX_BLOCK).requiresTool(), SMALL_ONYX_BUD, MEDIUM_ONYX_BUD, LARGE_ONYX_BUD, ONYX_CLUSTER, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_HIT, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
-	public static final Block ONYX_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.create().mapColor(MapColor.BLACK).hardness(1.5F).sounds(SpectrumBlockSoundGroups.ONYX_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_ONYX_BLOCK_HIT, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
-	public static final Block MOONSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER).luminance(15));
-	public static final Block LARGE_MOONSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(SpectrumBlockSoundGroups.LARGE_MOONSTONE_BUD).luminance(10));
-	public static final Block MEDIUM_MOONSTONE_BUD = new AmethystClusterBlock(4, 3, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(SpectrumBlockSoundGroups.MEDIUM_MOONSTONE_BUD).luminance(8));
-	public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.copyOf(MOONSTONE_CLUSTER).sounds(SpectrumBlockSoundGroups.SMALL_MOONSTONE_BUD).luminance(6));
-	public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
-	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.create().mapColor(MapColor.WHITE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
-	public static final Block SPECTRAL_SHARD_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.create().mapColor(MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.SPECTRAL_BLOCK).requiresTool(), SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_CHIME);
-	
-	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.create().mapColor(MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
-	
-	public static final AmethystClusterBlock BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, FabricBlockSettings.create().mapColor(MapColor.DARK_AQUA).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
-	public static final AmethystClusterBlock LARGE_BISMUTH_BUD = new BismuthClusterBlock(5, 3, BISMUTH_CLUSTER, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
-	public static final AmethystClusterBlock SMALL_BISMUTH_BUD = new BismuthClusterBlock(3, 4, LARGE_BISMUTH_BUD, FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
-	public static final Block BISMUTH_BLOCK = new Block(FabricBlockSettings.create().mapColor(MapColor.DARK_AQUA).strength(20.0F).sounds(BlockSoundGroup.CHAIN));
-	
-	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
-	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
-	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
-	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.create().hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
+	private static Settings settings(MapColor mapColor, BlockSoundGroup blockSoundGroup, float strength) {
+		return FabricBlockSettings.create().mapColor(mapColor).sounds(blockSoundGroup).strength(strength);
+	}
 
-	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
-	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.create().hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
-	public static final Block BLOODSTONE_BLOCK = new PillarBlock(Settings.copy(MALACHITE_BLOCK).sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
+	private static Settings settings(MapColor mapColor, BlockSoundGroup blockSoundGroup, float strength, float resistance) {
+		return settings(mapColor, blockSoundGroup, strength).resistance(resistance);
+	}
 
-	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(Settings.copy(Blocks.RED_WOOL).strength(5F));
-	public static final Block EFFULGENT_CUSHION = new CushionBlock(Settings.copy(EFFULGENT_BLOCK));
-	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(Settings.copy(EFFULGENT_BLOCK));
+	private static Settings fluid(MapColor mapColor) {
+		return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F).replaceable().noCollision().pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid();
+	}
+
+	private static Settings craftingBlock(MapColor mapColor, BlockSoundGroup blockSoundGroup) {
+		return settings(mapColor, blockSoundGroup, 5.0F, 8.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque().requiresTool();
+	}
+
+	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(craftingBlock(MapColor.DIAMOND_BLUE, SpectrumBlockSoundGroups.TOPAZ_BLOCK), BuiltinPedestalVariant.BASIC_TOPAZ);
+	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(craftingBlock(MapColor.PURPLE, BlockSoundGroup.AMETHYST_BLOCK), BuiltinPedestalVariant.BASIC_AMETHYST);
+	public static final Block PEDESTAL_BASIC_CITRINE = new PedestalBlock(craftingBlock(MapColor.YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK), BuiltinPedestalVariant.BASIC_CITRINE);
+	public static final Block PEDESTAL_ALL_BASIC = new PedestalBlock(craftingBlock(MapColor.PURPLE, BlockSoundGroup.AMETHYST_BLOCK), BuiltinPedestalVariant.CMY);
+	public static final Block PEDESTAL_ONYX = new PedestalBlock(craftingBlock(MapColor.BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK), BuiltinPedestalVariant.ONYX);
+	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(craftingBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), BuiltinPedestalVariant.MOONSTONE);
+
+	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(craftingBlock(MapColor.BLACK, BlockSoundGroup.BASALT).luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL)));
+	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE).luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL)));
+	
+	public static final Block ENCHANTER = new EnchanterBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(craftingBlock(MapColor.BLACK, BlockSoundGroup.BASALT));
+	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final Block ITEM_ROUNDEL = new ItemRoundelBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final CrystallarieumBlock CRYSTALLARIEUM = new CrystallarieumBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+	public static final Block CINDERHEARTH = new CinderhearthBlock(craftingBlock(MapColor.TERRACOTTA_WHITE, BlockSoundGroup.CALCITE));
+
+	private static Settings gemstone(MapColor mapColor, BlockSoundGroup blockSoundGroup, int luminance) {
+		return settings(mapColor, blockSoundGroup, 1.5F).solid().nonOpaque().luminance((state) -> luminance).pistonBehavior(PistonBehavior.DESTROY);
+	}
+
+	private static Settings gemstoneBlock(MapColor mapColor, BlockSoundGroup blockSoundGroup) {
+		return settings(mapColor, blockSoundGroup, 1.5F).requiresTool();
+	}
+
+	public static final Block TOPAZ_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.CYAN, SpectrumBlockSoundGroups.TOPAZ_CLUSTER, 8));
+	public static final Block LARGE_TOPAZ_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.CYAN, SpectrumBlockSoundGroups.LARGE_TOPAZ_BUD, 6));
+	public static final Block MEDIUM_TOPAZ_BUD = new AmethystClusterBlock(4, 3, gemstone(MapColor.CYAN, SpectrumBlockSoundGroups.MEDIUM_TOPAZ_BUD, 4));
+	public static final Block SMALL_TOPAZ_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.CYAN, SpectrumBlockSoundGroups.SMALL_TOPAZ_BUD, 2));
+	public static final Block BUDDING_TOPAZ = new SpectrumBuddingBlock(gemstoneBlock(MapColor.CYAN, SpectrumBlockSoundGroups.TOPAZ_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
+	public static final Block TOPAZ_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.CYAN, SpectrumBlockSoundGroups.TOPAZ_BLOCK), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_CHIME);
+
+	public static final Block CITRINE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.YELLOW, SpectrumBlockSoundGroups.CITRINE_CLUSTER, 9));
+	public static final Block LARGE_CITRINE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.YELLOW, SpectrumBlockSoundGroups.LARGE_CITRINE_BUD, 7));
+	public static final Block MEDIUM_CITRINE_BUD = new AmethystClusterBlock(4, 3, gemstone(MapColor.YELLOW, SpectrumBlockSoundGroups.MEDIUM_CITRINE_BUD, 5));
+	public static final Block SMALL_CITRINE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.YELLOW, SpectrumBlockSoundGroups.SMALL_CITRINE_BUD, 3));
+	public static final Block BUDDING_CITRINE = new SpectrumBuddingBlock(gemstoneBlock(MapColor.YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
+	public static final Block CITRINE_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK), SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME);
+	public static final Block ONYX_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.BLACK, SpectrumBlockSoundGroups.ONYX_CLUSTER, 6));
+	public static final Block LARGE_ONYX_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.BLACK, SpectrumBlockSoundGroups.LARGE_ONYX_BUD, 5));
+	public static final Block MEDIUM_ONYX_BUD = new AmethystClusterBlock(4, 3, gemstone(MapColor.BLACK, SpectrumBlockSoundGroups.MEDIUM_ONYX_BUD, 3));
+	public static final Block SMALL_ONYX_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.BLACK, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 1));
+	public static final Block BUDDING_ONYX = new SpectrumBuddingBlock(gemstoneBlock(MapColor.BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_ONYX_BUD, MEDIUM_ONYX_BUD, LARGE_ONYX_BUD, ONYX_CLUSTER, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_HIT, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
+	public static final Block ONYX_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK), SpectrumSoundEvents.BLOCK_ONYX_BLOCK_HIT, SpectrumSoundEvents.BLOCK_ONYX_BLOCK_CHIME);
+	public static final Block MOONSTONE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_CLUSTER, 15));
+	public static final Block LARGE_MOONSTONE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.LARGE_MOONSTONE_BUD, 12));
+	public static final Block MEDIUM_MOONSTONE_BUD = new AmethystClusterBlock(4, 3, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.MEDIUM_MOONSTONE_BUD, 9));
+	public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.SMALL_MOONSTONE_BUD, 6));
+	public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
+	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
+
+	public static final Block SPECTRAL_SHARD_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.DIAMOND_BLUE, SpectrumBlockSoundGroups.SPECTRAL_BLOCK), SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_CHIME);
+	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
+	
+	public static final AmethystClusterBlock BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 8));
+	public static final AmethystClusterBlock LARGE_BISMUTH_BUD = new BismuthClusterBlock(5, 3, BISMUTH_CLUSTER, gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 6));
+	public static final AmethystClusterBlock SMALL_BISMUTH_BUD = new BismuthClusterBlock(3, 4, LARGE_BISMUTH_BUD, gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 4));
+	public static final Block BISMUTH_BLOCK = new Block(gemstoneBlock(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN));
+
+
+	private static Settings ore(MapColor mapColor) {
+		return FabricBlockSettings.copyOf(Blocks.IRON_ORE).mapColor(mapColor);
+	}
+	private static Settings deepslateOre(MapColor mapColor) {
+		return FabricBlockSettings.copyOf(Blocks.IRON_ORE).mapColor(mapColor);
+	}
+
+
+	public static final Block MALACHITE_ORE = new CloakedOreBlock(ore(MapColor.EMERALD_GREEN), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(deepslateOre(MapColor.EMERALD_GREEN), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 9));
+	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 7));
+	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 5));
+	public static final Block MALACHITE_BLOCK = new Block(gemstoneBlock(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN));
+
+	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 6));
+	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 4));
+	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER, 3));
+	public static final Block BLOODSTONE_BLOCK = new PillarBlock(gemstoneBlock(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER));
+
 	// DD BLOCKS
 	private static final float BLACKSLAG_HARDNESS = 5.0F;
-	private static final float BLACKSLAG_BLAST_RESISTANCE = 7.0F;
-	public static final Block BLACKSLAG = new BlackslagBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
-	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), Settings.copy(BLACKSLAG));
-	public static final Block BLACKSLAG_SLAB = new SlabBlock(Settings.copy(BLACKSLAG));
-	public static final Block BLACKSLAG_WALL = new WallBlock(Settings.copy(BLACKSLAG));
-	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, Settings.create());
-	public static final Block COBBLED_BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE));
-	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block COBBLED_BLACKSLAG_SLAB = new SlabBlock(Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block COBBLED_BLACKSLAG_WALL = new WallBlock(Settings.copy(COBBLED_BLACKSLAG));
-	public static final Block POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.POLISHED_DEEPSLATE));
+	private static final float BLACKSLAG_RESISTANCE = 7.0F;
+	private static Settings blackslag(BlockSoundGroup blockSoundGroup) {
+		return settings(MapColor.GRAY, blockSoundGroup, BLACKSLAG_HARDNESS, BLACKSLAG_RESISTANCE).instrument(Instrument.BASEDRUM).requiresTool();
+	}
+
+	public static final Block BLACKSLAG = new BlackslagBlock(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_STAIRS = new StairsBlock(BLACKSLAG.getDefaultState(), blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_SLAB = new SlabBlock(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_WALL = new WallBlock(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block COBBLED_BLACKSLAG = new Block(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block COBBLED_BLACKSLAG_SLAB = new SlabBlock(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block COBBLED_BLACKSLAG_WALL = new WallBlock(blackslag(BlockSoundGroup.DEEPSLATE));
+	public static final Block POLISHED_BLACKSLAG = new Block(blackslag(BlockSoundGroup.POLISHED_DEEPSLATE));
 	public static final Block POLISHED_BLACKSLAG_STAIRS = new StairsBlock(POLISHED_BLACKSLAG.getDefaultState(), Settings.copy(POLISHED_BLACKSLAG));
 	public static final Block POLISHED_BLACKSLAG_SLAB = new SlabBlock(Settings.copy(POLISHED_BLACKSLAG));
 	public static final Block POLISHED_BLACKSLAG_WALL = new WallBlock(Settings.copy(POLISHED_BLACKSLAG));
-	public static final Block BLACKSLAG_TILES = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_TILES));
+	public static final Block BLACKSLAG_TILES = new Block(blackslag(BlockSoundGroup.DEEPSLATE_TILES));
 	public static final Block BLACKSLAG_TILE_STAIRS = new StairsBlock(BLACKSLAG_TILES.getDefaultState(), Settings.copy(BLACKSLAG_TILES));
 	public static final Block BLACKSLAG_TILE_SLAB = new SlabBlock(Settings.copy(BLACKSLAG_TILES));
 	public static final Block BLACKSLAG_TILE_WALL = new WallBlock(Settings.copy(BLACKSLAG_TILES));
-	public static final Block BLACKSLAG_BRICKS = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block BLACKSLAG_BRICKS = new Block(blackslag(BlockSoundGroup.DEEPSLATE_BRICKS));
 	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block POLISHED_BLACKSLAG_PILLAR = new PillarBlock(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	
-	public static final Block CHISELED_POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+
+	public static final Block POLISHED_BLACKSLAG_PILLAR = new PillarBlock(Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block CHISELED_POLISHED_BLACKSLAG = new Block(blackslag(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(blackslag(BlockSoundGroup.DEEPSLATE_BRICKS));
+
 	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new ButtonBlock(Settings.create().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG, 5, false);
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, Settings.create().mapColor(MapColor.BLACK).requiresTool().noCollision().strength(0.5F), SpectrumBlockSetTypes.POLISHED_BLACKSLAG);
 
-	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, blackslag(BlockSoundGroup.MUD_BRICKS));
 	public static final Block TILLED_SHALE_CLAY = new TilledShaleClayBlock(Settings.copy(SHALE_CLAY), SHALE_CLAY.getDefaultState());
 	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, Settings.copy(SHALE_CLAY));
 	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, Settings.copy(SHALE_CLAY));
@@ -224,7 +257,7 @@ public class SpectrumBlocks {
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, Settings.copy(SHALE_CLAY));
 
-	public static final Block PYRITE = new PillarBlock(Settings.copy(Blocks.NETHERITE_BLOCK).requiresTool().sounds(BlockSoundGroup.CHAIN).mapColor(MapColor.YELLOW));
+	public static final Block PYRITE = new PillarBlock(settings(MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.CHAIN, 50.0F));
 	public static final Block PYRITE_PILE = new PillarBlock(Settings.copy(PYRITE));
 	public static final Block PYRITE_TILE = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_PLATING = new Block(Settings.copy(PYRITE));
@@ -233,10 +266,11 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_STACK = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
+	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 
-	public static final Block DRAGONBONE = new DragonboneBlock(Settings.create().strength(-1.0F, 22.0F).sounds(BlockSoundGroup.BONE));
-	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.create().mapColor(MapColor.STONE_GRAY).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE).requiresTool());
-	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).sounds(BlockSoundGroup.BONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
+	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F));
+	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F));
+	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(Settings.copy(POLISHED_BONE_ASH));
@@ -253,22 +287,23 @@ public class SpectrumBlocks {
 	public static final Block BONE_ASH_TILE_SLAB = new SlabBlock(Settings.copy(BONE_ASH_TILES));
 	public static final Block BONE_ASH_TILE_WALL = new WallBlock(Settings.copy(BONE_ASH_TILES));
 
-	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(BLACKSLAG));
-	public static final Block SLUSH = new PillarBlock(Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
+	public static final Block SLUSH = new PillarBlock(blackslag(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	public static final Block TILLED_SLUSH = new TilledSlushBlock(Settings.copy(SLUSH), SLUSH.getDefaultState());
-	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
-	public static final Block BLACK_SLUDGE = new Block(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly());
+
+	public static final Block BLACK_MATERIA = new BlackMateriaBlock(settings(MapColor.TERRACOTTA_BLACK, BlockSoundGroup.SAND, 0.0F).instrument(Instrument.SNARE).ticksRandomly());
+	public static final Block BLACK_SLUDGE = new Block(settings(MapColor.TERRACOTTA_BLACK, BlockSoundGroup.SAND, 0.5F).instrument(Instrument.SNARE));
 	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 	
-	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(Settings.create().mapColor(MapColor.PURPLE).noCollision().breakInstantly().luminance((state) -> 10).sounds(BlockSoundGroup.WOOL));
-	
+	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(Settings.copy(Blocks.FIRE).mapColor(MapColor.PURPLE).luminance((state) -> 10));
+
+	// REVAMPED BLOCK SETTINGS TILL HERE
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_STAIRS = new StairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 
-	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.create().strength(2.0F, 5.0F).requiresTool());
+	public static final Block POLISHED_BASALT = new Block(settings(MapColor.BLACK, BlockSoundGroup.BASALT, 2.0F, 5.0F).requiresTool());
 	public static final Block PLANED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -277,7 +312,7 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_STAIRS = new StairsBlock(POLISHED_BASALT.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BASALT));
-	public static final Block BASALT_BRICKS = new Block(FabricBlockSettings.create().strength(2.5F, 6.0F));
+	public static final Block BASALT_BRICKS = new Block(settings(MapColor.BLACK, BlockSoundGroup.BASALT, 2.5F, 6.0F));
 	public static final Block BASALT_BRICK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block BASALT_BRICK_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_BRICKS));
 	public static final Block BASALT_BRICK_STAIRS = new StairsBlock(BASALT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BASALT_BRICKS));
@@ -383,23 +418,18 @@ public class SpectrumBlocks {
 
 	public static final Block PARAMETRIC_MINING_DEVICE = new ParametricMiningDeviceBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
-	// TECHNICAL WITHOUT CORRESPONDING ITEMS
+
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.create());
 	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_PURPLE).hardness(1.0F).nonOpaque().pistonBehavior(PistonBehavior.DESTROY));
 	public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly());
 	public static final Block DECAYING_LIGHT_BLOCK = new DecayingLightBlock(FabricBlockSettings.copyOf(WAND_LIGHT_BLOCK).ticksRandomly());
 	
-	// DECAY
+	// Decay
 	public static final Block FADING = new FadingBlock(FabricBlockSettings.create().mapColor(MapColor.BLACK).ticksRandomly().strength(0.5F, 0.5F).allowsSpawning((state, world, pos, type) -> false).pistonBehavior(PistonBehavior.NORMAL));
 	public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block RUIN = new RuinBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block FORFEITURE = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT).pistonBehavior(PistonBehavior.BLOCK));
-	
-	
-	private static Settings fluid(MapColor mapColor) {
-		return Settings.create().mapColor(mapColor).noCollision().strength(100.0F).dropsNothing();
-	}
 	
 	// FLUIDS
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(MapColor.DULL_PINK).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable());
@@ -550,9 +580,9 @@ public class SpectrumBlocks {
 	}
 	
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
-	public static final Block SHIMMEL = new BlackslagVegetationBlock(Settings.copy(Blocks.MYCELIUM).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
-	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_BLAST_RESISTANCE).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
+	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_RESISTANCE).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
+	public static final Block SHIMMEL = new BlackslagVegetationBlock(Settings.copy(Blocks.MYCELIUM).strength(BLACKSLAG_HARDNESS, BLACKSLAG_RESISTANCE).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
+	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(Settings.copy(Blocks.PODZOL).strength(BLACKSLAG_HARDNESS, BLACKSLAG_RESISTANCE).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
 	public static final Block SLATE_NOXSHROOM = new FungusBlock(fungus(MapColor.GRAY), SpectrumConfiguredFeatures.SLATE_NOXFUNGUS, SHIMMEL);
@@ -677,7 +707,11 @@ public class SpectrumBlocks {
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(Settings.create().mapColor(MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(Settings.copy(HUMMINGSTONE_GLASS).luminance((state) -> 14).ticksRandomly());
 	public static final Block CLEAR_HUMMINGSTONE_GLASS = new GlassBlock(Settings.copy(HUMMINGSTONE_GLASS));
-	
+
+	public static final Block EFFULGENT_BLOCK = new CushionedFacingBlock(Settings.copy(Blocks.RED_WOOL));
+	public static final Block EFFULGENT_CUSHION = new CushionBlock(Settings.copy(EFFULGENT_BLOCK).nonOpaque().allowsSpawning(SpectrumBlocks::never));
+	public static final Block EFFULGENT_CARPET = new CushionedCarpetBlock(Settings.copy(Blocks.RED_CARPET));
+
 	// JADE VINES
 	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());
 	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVineBulbBlock.DEAD) ? 0 : 5).nonOpaque());
@@ -742,7 +776,8 @@ public class SpectrumBlocks {
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block AMARANTH = new AmaranthCropBlock(FabricBlockSettings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 	public static final Block AMARANTH_BUSHEL = new AmaranthBushelBlock(FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.CROP));
-	
+
+	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.create().breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
 	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(Settings.create().mapColor(MapColor.PALE_PURPLE).instrument(Instrument.BASEDRUM).sounds(BlockSoundGroup.GLASS).luminance((state) -> 1).strength(-1.0F, 3600000.0F));
 	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
 	public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
@@ -2519,7 +2554,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), PEDESTAL_BASIC_AMETHYST, PEDESTAL_BASIC_CITRINE, PEDESTAL_BASIC_TOPAZ, PEDESTAL_ALL_BASIC, PEDESTAL_ONYX, PEDESTAL_MOONSTONE);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), FUSION_SHRINE_BASALT, FUSION_SHRINE_CALCITE);
 		BlockRenderLayerMap.INSTANCE.putBlock(ENCHANTER, RenderLayer.getCutout());
-			BlockRenderLayerMap.INSTANCE.putBlock(POTION_WORKSHOP, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(POTION_WORKSHOP, RenderLayer.getTranslucent());
 		
 		// Gemstones
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CLUSTER, RenderLayer.getCutout());

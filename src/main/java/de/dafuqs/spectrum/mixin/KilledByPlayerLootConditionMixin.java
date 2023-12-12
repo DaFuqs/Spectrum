@@ -15,7 +15,7 @@ public abstract class KilledByPlayerLootConditionMixin {
 	private void spectrum$testDropPlayerLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValue()) {
 			DamageSource damageSource = lootContext.get(LootContextParameters.DAMAGE_SOURCE);
-			if (damageSource.isIn(SpectrumDamageTypeTags.DROPS_LOOT_LIKE_PLAYERS)) {
+			if (damageSource != null && damageSource.isIn(SpectrumDamageTypeTags.DROPS_LOOT_LIKE_PLAYERS)) {
 				cir.setReturnValue(true);
 			}
 		}

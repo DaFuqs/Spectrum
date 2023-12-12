@@ -53,7 +53,6 @@ public class StructureMapItem extends FilledMapItem {
 
         MapState state = new StructureMapState(x, z, (byte) 1, true, true, false, world.getRegistryKey());
         world.putMapState(getMapName(id), state);
-        fillExplorationMap(world, stack);
         MapState.addDecorationsNbt(stack, new BlockPos(x, 0, z), "+", MapIcon.Type.RED_X);
     }
 
@@ -70,7 +69,7 @@ public class StructureMapItem extends FilledMapItem {
         }
     }
 
-    private static void clearTarget(ItemStack stack, ServerWorld world, ServerPlayerEntity player) {
+    private static void clearTarget(ItemStack stack, ServerWorld world, PlayerEntity player) {
         createAndSetState(stack, world, (int) player.getX(), (int) player.getZ());
 
         NbtCompound nbt = stack.getNbt();
@@ -81,39 +80,24 @@ public class StructureMapItem extends FilledMapItem {
 
     @Override
     public void updateColors(World world, Entity entity, MapState state) {
-        if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity)) {
+        if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity) || !(state instanceof StructureMapState structureState)) {
             return;
         }
 
         boolean hasCeiling = world.getDimension().hasCeiling();
-
         int scale = 1 << state.scale;
-        int playerX = MathHelper.floor(entity.getX() - (double) state.centerX) / scale + 64;
-        int playerZ = MathHelper.floor(entity.getZ() - (double) state.centerZ) / scale + 64;
-        int radius = 128 >> (state.scale + (hasCeiling ? 1 : 0));
+        Vec3d displayedCenter = structureState.getDisplayedCenter();
 
         MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData((PlayerEntity)entity);
         playerUpdateTracker.field_131++;
 
-        boolean updated = false;
-        for(int x = playerX - radius + 1; x < playerX + radius; x++) {
-            if ((x & 15) != (playerUpdateTracker.field_131 & 15) && !updated) {
-                continue;
-            }
-
-            updated = false;
+        for(int x = 0; x < 128; x++) {
             double previousHeight = 0.0;
 
-            for(int z = playerZ - radius - 1; z < playerZ + radius; z++) {
-                if (x < 0 || z < -1 || x >= 128 || z >= 128) {
-                    continue;
-                }
+            for(int z = -1; z < 128; z++) {
+                int blockX = ((int) displayedCenter.getX() / scale + x - 64) * scale;
+                int blockZ = ((int) displayedCenter.getZ() / scale + z - 64) * scale;
 
-                int distanceSquared = MathHelper.square(x - playerX) + MathHelper.square(z - playerZ);
-                boolean withinSmallerRadius = distanceSquared > (radius - 2) * (radius - 2);
-
-                int blockX = (state.centerX / scale + x - 64) * scale;
-                int blockZ = (state.centerZ / scale + z - 64) * scale;
                 Multiset<MapColor> multiset = LinkedHashMultiset.create();
                 WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
                 if (chunk.isEmpty()) {
@@ -196,8 +180,8 @@ public class StructureMapItem extends FilledMapItem {
                 }
 
                 previousHeight = height;
-                if (z >= 0 && distanceSquared < radius * radius && (!withinSmallerRadius || odd != 0)) {
-                    updated |= state.putColor(x, z, color.getRenderColorByte(brightness));
+                if (z >= 0) {
+                    state.putColor(x, z, color.getRenderColorByte(brightness));
                 }
             }
         }

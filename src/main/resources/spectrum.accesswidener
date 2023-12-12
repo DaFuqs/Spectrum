@@ -17,3 +17,4 @@ accessible method net/minecraft/entity/projectile/FishingBobberEntity <init> (Ln
 accessible method net/minecraft/advancement/criterion/AbstractCriterion trigger (Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Predicate;)V
 
 extendable method net/minecraft/item/map/MapState <init> (IIBZZZLnet/minecraft/registry/RegistryKey;)V
+extendable method net/minecraft/item/map/MapState addIcon (Lnet/minecraft/item/map/MapIcon$Type;Lnet/minecraft/world/WorldAccess;Ljava/lang/String;DDDLnet/minecraft/text/Text;)V

@@ -43,6 +43,7 @@
     "LivingEntityMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
+    "MapStateMixin",
     "MC252934Mixin",
     "MiningToolItemMixin",
     "MixinAbstractFireBlock",

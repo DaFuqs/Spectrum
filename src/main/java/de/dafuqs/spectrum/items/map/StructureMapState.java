@@ -29,6 +29,22 @@ public class StructureMapState extends MapState {
         this.displayedCenter = new Vec3d(centerX, 0, centerZ);
     }
 
+    public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
+        this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
+        double x = nbt.contains("xDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("xDisplay") : this.displayedCenter.getX();
+        double z = nbt.contains("zDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("zDisplay") : this.displayedCenter.getZ();
+        this.displayedCenter = new Vec3d(x, 0, z);
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        nbt = super.writeNbt(nbt);
+        nbt.putBoolean("isSpectrumMap", true);
+        nbt.putDouble("xDisplay", displayedCenter.getX());
+        nbt.putDouble("zDisplay", displayedCenter.getZ());
+        return nbt;
+    }
+
     @Override
     public MapState zoomOut(int zoomOutScale) {
         return of(this.centerX, this.centerZ, (byte) MathHelper.clamp(this.scale + zoomOutScale, 0, 4), accessor.getShowIcons(), accessor.getUnlimitedTracking(), this.dimension);
@@ -83,6 +99,8 @@ public class StructureMapState extends MapState {
             if (scaledZ >= 63.0F) {
                 pixelZ = 127;
             }
+        } else {
+            return;
         }
 
         MapIcon icon = new MapIcon(type, pixelX, pixelZ, rotationByte, text);

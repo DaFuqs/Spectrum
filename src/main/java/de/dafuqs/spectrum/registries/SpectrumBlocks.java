@@ -771,7 +771,7 @@ public class SpectrumBlocks {
 	public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	
 	public static final Block RESONANT_LILY = new FlowerBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY));
-	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XYZ).ticksRandomly().luminance(state -> state.get(QuitoxicReedsBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 0));
+	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XYZ).ticksRandomly().luminance(state -> state.get(QuitoxicReedsBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 0));
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(state -> state.get(MermaidsBrushBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 0));
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block AMARANTH = new AmaranthCropBlock(FabricBlockSettings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));

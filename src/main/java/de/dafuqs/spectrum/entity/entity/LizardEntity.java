@@ -21,6 +21,7 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import net.minecraft.world.poi.*;
 import org.jetbrains.annotations.*;
@@ -106,9 +107,10 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		this.setFrills(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, world.getRandom(), LizardFrillVariant.SIMPLE));
-		this.setHorns(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, world.getRandom(), LizardHornVariant.HORNY));
-		this.setColor(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, world.getRandom(), InkColors.MAGENTA));
+		Random random = world.getRandom();
+		this.setFrills(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, random, LizardFrillVariant.SIMPLE));
+		this.setHorns(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, random, LizardHornVariant.HORNY));
+		this.setColor(SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, random, InkColors.MAGENTA));
 
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
@@ -127,13 +129,13 @@ public class LizardEntity extends TameableEntity implements PackEntity<LizardEnt
 		super.readCustomDataFromNbt(nbt);
 		
 		InkColor color = SpectrumRegistries.INK_COLORS.get(Identifier.tryParse(nbt.getString("color")));
-		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, this.getWorld().random, InkColors.CYAN) : color);
-		
+		this.setColor(color == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.INK_COLORS, InkColorTags.ELEMENTAL_COLORS, this.random, InkColors.CYAN) : color);
+
 		LizardFrillVariant frills = SpectrumRegistries.LIZARD_FRILL_VARIANT.get(Identifier.tryParse(nbt.getString("frills")));
-		this.setFrills(frills == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, this.getWorld().random, LizardFrillVariant.SIMPLE) : frills);
+		this.setFrills(frills == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_FRILL_VARIANT, LizardFrillVariant.NATURAL_VARIANT, this.random, LizardFrillVariant.SIMPLE) : frills);
 		
 		LizardHornVariant horns = SpectrumRegistries.LIZARD_HORN_VARIANT.get(Identifier.tryParse(nbt.getString("horns")));
-		this.setHorns(horns == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, this.getWorld().random, LizardHornVariant.HORNY) : horns);
+		this.setHorns(horns == null ? SpectrumRegistries.getRandomTagEntry(SpectrumRegistries.LIZARD_HORN_VARIANT, LizardHornVariant.NATURAL_VARIANT, this.random, LizardHornVariant.HORNY) : horns);
 		
 		readPOIPosFromNbt(nbt);
 	}

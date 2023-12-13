@@ -17,6 +17,8 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.map.MapIcon;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
@@ -27,8 +29,8 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
-
-import java.util.List;
+import net.minecraft.world.gen.structure.Structure;
+import org.jetbrains.annotations.Nullable;
 
 public class StructureMapItem extends FilledMapItem {
 
@@ -36,46 +38,25 @@ public class StructureMapItem extends FilledMapItem {
         super(settings);
     }
 
-    private static void createAndSetState(ItemStack stack, ServerWorld world, int x, int z) {
+    private static void createAndSetState(ItemStack stack, ServerWorld world, int centerX, int centerZ, @Nullable BlockPos target) {
         NbtCompound nbt = stack.getOrCreateNbt();
 
         int id;
         if (nbt.contains("map")) {
             id = nbt.getInt("map");
-            MapState state = getMapState(id, world);
-            if (state != null) {
-                StructureMapState.removeDecorationsNbt(stack, new BlockPos(state.centerX, 0, state.centerZ), "+");
-            }
+            nbt.remove("Decorations");
         } else {
             id = world.getNextMapId();
             nbt.putInt("map", id);
         }
 
-        MapState state = new StructureMapState(x, z, (byte) 1, true, true, false, world.getRegistryKey());
+        MapState.addDecorationsNbt(stack, new BlockPos(centerX, 0, centerZ), "+", MapIcon.Type.TARGET_X);
+        if (target != null) {
+            MapState.addDecorationsNbt(stack, target, "x", MapIcon.Type.RED_X);
+        }
+
+        MapState state = new StructureMapState(centerX, centerZ, target, (byte) 1, true, true, false, world.getRegistryKey());
         world.putMapState(getMapName(id), state);
-        MapState.addDecorationsNbt(stack, new BlockPos(x, 0, z), "+", MapIcon.Type.RED_X);
-    }
-
-    private static void setTarget(ItemStack stack, ServerWorld world, StructureStart start) {
-        BlockPos pos = start.getPos().getCenterAtY(0);
-        createAndSetState(stack, world, start.getPos().getCenterX(), start.getPos().getCenterZ());
-
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null) {
-            NbtCompound mapTarget = new NbtCompound();
-            mapTarget.putInt("x", pos.getX());
-            mapTarget.putInt("z", pos.getZ());
-            nbt.put("mapTarget", mapTarget);
-        }
-    }
-
-    private static void clearTarget(ItemStack stack, ServerWorld world, PlayerEntity player) {
-        createAndSetState(stack, world, (int) player.getX(), (int) player.getZ());
-
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null) {
-            nbt.remove("mapTarget");
-        }
     }
 
     @Override
@@ -199,18 +180,27 @@ public class StructureMapItem extends FilledMapItem {
             if (serverPlayerEntity.isSneaking()) {
                 Vec3d hitPos = context.getHitPos();
                 BlockPos blockPos = BlockPos.ofFloored(hitPos.getX(), hitPos.getY(), hitPos.getZ());
-                ChunkPos chunkPos = serverWorld.getChunk(blockPos).getPos();
-                List<StructureStart> starts = serverWorld.getStructureAccessor().getStructureStarts(chunkPos, o -> true);
-                for (StructureStart start : starts) {
-                    if (start.getBoundingBox().contains(blockPos)) {
-                        setTarget(stack, serverWorld, start);
-                        break;
-                    }
+                StructureStart start = locateStructure(serverWorld, blockPos);
+                if (start != null) {
+                    createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), start.getPos().getCenterAtY(0));
                 }
             }
         }
 
         return ActionResult.success(context.getWorld().isClient());
+    }
+
+    private static @Nullable StructureStart locateStructure(ServerWorld world, BlockPos pos) {
+        Registry<Structure> registry = world.getRegistryManager().getOptional(RegistryKeys.STRUCTURE).orElse(null);
+        if (registry != null) {
+            for (Structure structure : registry.stream().toList()) {
+                StructureStart start = world.getStructureAccessor().getStructureContaining(pos, structure);
+                if (start != StructureStart.DEFAULT) {
+                    return start;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -219,7 +209,7 @@ public class StructureMapItem extends FilledMapItem {
 
         if (!world.isClient() && world instanceof ServerWorld serverWorld && user instanceof ServerPlayerEntity serverPlayerEntity) {
             if (user.isSneaking()) {
-                clearTarget(stack, serverWorld, serverPlayerEntity);
+                createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), null);
             }
         }
 

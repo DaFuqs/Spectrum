@@ -21,27 +21,51 @@ import org.jetbrains.annotations.Nullable;
 public class StructureMapState extends MapState {
 
     private final MapStateAccessor accessor;
+
     private Vec3d displayedCenter;
 
+    @Nullable
+    private BlockPos target;
+
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
+        this((int) centerX, (int) centerZ, null, scale, showIcons, unlimitedTracking, locked, dimension);
+    }
+
+    public StructureMapState(double centerX, double centerZ, @Nullable BlockPos target, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
+        this.target = target;
         this.accessor = (MapStateAccessor) this;
         this.displayedCenter = new Vec3d(centerX, 0, centerZ);
     }
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
         this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
-        double x = nbt.contains("xDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("xDisplay") : this.displayedCenter.getX();
-        double z = nbt.contains("zDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("zDisplay") : this.displayedCenter.getZ();
-        this.displayedCenter = new Vec3d(x, 0, z);
+
+        if (nbt.contains("xTarget", NbtElement.INT_TYPE) && nbt.contains("zTarget", NbtElement.INT_TYPE)) {
+            this.target = new BlockPos(nbt.getInt("xTarget"), 0, nbt.getInt("zTarget"));
+        } else {
+            this.target = null;
+        }
+
+        double xDisplay = nbt.contains("xDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("xDisplay") : this.displayedCenter.getX();
+        double zDisplay = nbt.contains("zDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("zDisplay") : this.displayedCenter.getZ();
+        this.displayedCenter = new Vec3d(xDisplay, 0, zDisplay);
     }
 
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         nbt = super.writeNbt(nbt);
+
         nbt.putBoolean("isSpectrumMap", true);
+
         nbt.putDouble("xDisplay", displayedCenter.getX());
         nbt.putDouble("zDisplay", displayedCenter.getZ());
+
+        if (this.target != null) {
+            nbt.putInt("xTarget", target.getX());
+            nbt.putInt("xTarget", target.getZ());
+        }
+
         return nbt;
     }
 

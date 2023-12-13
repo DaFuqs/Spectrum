@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.mojang.serialization.DataResult;
 import de.dafuqs.spectrum.items.map.StructureMapState;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.World;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

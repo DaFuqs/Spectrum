@@ -4,8 +4,8 @@
     "tag": "minecraft:all_signs"
   },
   "nbt_to_copy": [
-    "back_text",
     "front_text",
+    "back_text",
     "is_waxed"
   ]
 }

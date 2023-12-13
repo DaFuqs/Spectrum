@@ -99,7 +99,6 @@
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
-    "client.MapTextureMixin",
     "client.MixinParticleManager",
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.map;
 
+import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.mixin.accessors.MapStateAccessor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -9,31 +10,35 @@ import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.structure.StructurePiece;
+import net.minecraft.structure.StructureStart;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.gen.structure.Structure;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class StructureMapState extends MapState {
 
     private final MapStateAccessor accessor;
-
     private Vec3d displayedCenter;
-
     @Nullable
-    private BlockPos target;
+    private StructureStart target;
+    private Identifier targetId;
+    private boolean targetDirty;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
-        this((int) centerX, (int) centerZ, null, scale, showIcons, unlimitedTracking, locked, dimension);
-    }
-
-    public StructureMapState(double centerX, double centerZ, @Nullable BlockPos target, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
-        this.target = target;
         this.accessor = (MapStateAccessor) this;
         this.displayedCenter = new Vec3d(centerX, 0, centerZ);
     }
@@ -41,15 +46,72 @@ public class StructureMapState extends MapState {
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
         this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
 
-        if (nbt.contains("xTarget", NbtElement.INT_TYPE) && nbt.contains("zTarget", NbtElement.INT_TYPE)) {
-            this.target = new BlockPos(nbt.getInt("xTarget"), 0, nbt.getInt("zTarget"));
-        } else {
-            this.target = null;
+        if (nbt.contains("targetId", NbtElement.STRING_TYPE)) {
+            this.targetId = new Identifier(nbt.getString("targetId"));
+            this.targetDirty = true;
         }
+        this.setTarget(null);
 
-        double xDisplay = nbt.contains("xDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("xDisplay") : this.displayedCenter.getX();
-        double zDisplay = nbt.contains("zDisplay", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("zDisplay") : this.displayedCenter.getZ();
+        double xDisplay = nbt.contains("displayX", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayX") : this.displayedCenter.getX();
+        double zDisplay = nbt.contains("displayZ", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayZ") : this.displayedCenter.getZ();
         this.displayedCenter = new Vec3d(xDisplay, 0, zDisplay);
+    }
+
+    public static @Nullable Pair<Identifier, StructureStart> locateAnyStructureAtBlock(ServerWorld world, BlockPos pos) {
+        Registry<Structure> registry = world.getRegistryManager().getOptional(RegistryKeys.STRUCTURE).orElse(null);
+        if (registry != null) {
+            for (Structure structure : registry.stream().toList()) {
+                Identifier id = registry.getId(structure);
+                StructureStart start = world.getStructureAccessor().getStructureContaining(pos, structure);
+                if (start != StructureStart.DEFAULT && id != null) {
+                    return new Pair<>(id, start);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static @Nullable StructureStart locateNearestStructure(ServerWorld world, Identifier structureId, BlockPos center, int radius) {
+        Registry<Structure> registry = getStructureRegistry(world);
+        if (registry != null) {
+            return locateNearestStructure(world, registry.get(structureId), center, radius);
+        }
+        return null;
+    }
+
+    public static @Nullable StructureStart locateNearestStructure(ServerWorld world, Structure structure, BlockPos center, int radius) {
+        if (world.getServer().getSaveProperties().getGeneratorOptions().shouldGenerateStructures()) {
+            Registry<Structure> registry = getStructureRegistry(world);
+            if (registry != null) {
+                RegistryEntryList<Structure> entryList = new RegistryEntryList.Direct<>(List.of(registry.getEntry(structure)));
+                Pair<BlockPos, RegistryEntry<Structure>> pair = world.getChunkManager().getChunkGenerator().locateStructure(world, entryList, center, radius, false);
+                if (pair != null) {
+                    BlockPos pos = pair.getFirst();
+                    return locateStructureAtBlock(world, structure, pos);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static @Nullable StructureStart locateStructureAtBlock(ServerWorld world, Structure structure, BlockPos pos) {
+        Registry<Structure> registry = getStructureRegistry(world);
+        if (registry != null) {
+            for (StructureStart start : world.getStructureAccessor().getStructureStarts(ChunkSectionPos.from(pos), structure)) {
+                if (start == StructureStart.DEFAULT) continue;
+                for (StructurePiece piece : start.getChildren()) {
+                    BlockBox box = piece.getBoundingBox();
+                    if (box.getMinX() <= pos.getX() && pos.getX() <= box.getMaxX() && box.getMinZ() <= pos.getZ() && pos.getZ() <= box.getMaxZ()) {
+                        return start;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static @Nullable Registry<Structure> getStructureRegistry(ServerWorld world) {
+        return world.getRegistryManager().getOptional(RegistryKeys.STRUCTURE).orElse(null);
     }
 
     @Override
@@ -58,12 +120,11 @@ public class StructureMapState extends MapState {
 
         nbt.putBoolean("isSpectrumMap", true);
 
-        nbt.putDouble("xDisplay", displayedCenter.getX());
-        nbt.putDouble("zDisplay", displayedCenter.getZ());
+        nbt.putDouble("displayX", displayedCenter.getX());
+        nbt.putDouble("displayZ", displayedCenter.getZ());
 
-        if (this.target != null) {
-            nbt.putInt("xTarget", target.getX());
-            nbt.putInt("xTarget", target.getZ());
+        if (this.targetId != null) {
+            nbt.putString("targetId", targetId.toString());
         }
 
         return nbt;
@@ -78,6 +139,7 @@ public class StructureMapState extends MapState {
     public void update(PlayerEntity player, ItemStack stack) {
         this.displayedCenter = player.getPos();
         accessor.getIcons().clear();
+        this.targetDirty = true;
         super.update(player, stack);
     }
 
@@ -99,13 +161,9 @@ public class StructureMapState extends MapState {
                 int light = (int)(world.getLevelProperties().getTimeOfDay() / 10L);
                 rotationByte = (byte)(light * light * 34187121 + light * 121 >> 15 & 15);
             }
-        } else if (type == MapIcon.Type.PLAYER) {
-            if (Math.abs(scaledX) < 320.0F && Math.abs(scaledZ) < 320.0F) {
+        } else {
+            if (type == MapIcon.Type.PLAYER && Math.abs(scaledX) < 320.0F && Math.abs(scaledZ) < 320.0F) {
                 type = MapIcon.Type.PLAYER_OFF_MAP;
-            } else if (accessor.getUnlimitedTracking()) {
-                type = MapIcon.Type.PLAYER_OFF_LIMITS;
-            } else {
-                return;
             }
 
             if (scaledX <= -63.0F) {
@@ -123,8 +181,6 @@ public class StructureMapState extends MapState {
             if (scaledZ >= 63.0F) {
                 pixelZ = 127;
             }
-        } else {
-            return;
         }
 
         MapIcon icon = new MapIcon(type, pixelX, pixelZ, rotationByte, text);
@@ -174,18 +230,18 @@ public class StructureMapState extends MapState {
         return false;
     }
 
-    public static void removeDecorationsNbt(ItemStack stack, BlockPos pos, String id) {
+    public static void removeDecorationsNbt(ItemStack stack, String id) {
         NbtCompound nbt = stack.getNbt();
         if (nbt != null && nbt.contains("Decorations", NbtElement.LIST_TYPE)) {
             NbtList decorations = nbt.getList("Decorations", NbtElement.COMPOUND_TYPE);
             for (int i = 0; i < decorations.size(); i++) {
                 NbtCompound decoration = decorations.getCompound(i);
-                String decorationId = decoration.contains("id", NbtElement.STRING_TYPE) ? decoration.getString("id") : null;
-                Double x = decoration.contains("x", NbtElement.DOUBLE_TYPE) ? decoration.getDouble("x") : null;
-                Double z = decoration.contains("z", NbtElement.DOUBLE_TYPE) ? decoration.getDouble("z") : null;
-                if ((decorationId == null || decorationId.equals(id)) && (x == null || x == pos.getX()) && (z == null || z == pos.getZ())) {
-                    decorations.remove(i);
-                    i--;
+                if (decoration.contains("id", NbtElement.STRING_TYPE)) {
+                    String decorationId = decoration.getString("id");
+                    if (decorationId.equals(id)) {
+                        decorations.remove(i);
+                        break;
+                    }
                 }
             }
         }
@@ -193,6 +249,33 @@ public class StructureMapState extends MapState {
 
     public Vec3d getDisplayedCenter() {
         return this.displayedCenter;
+    }
+
+    public @Nullable StructureStart getTarget() {
+        return this.target;
+    }
+
+    public void setTarget(@Nullable StructureStart target) {
+        this.target = target;
+    }
+
+    public @Nullable Identifier getTargetId() {
+        return this.targetId;
+    }
+
+    public void setTargetId(@Nullable Identifier targetId) {
+        if (this.targetId != targetId) {
+            this.targetId = targetId;
+            this.markDirty();
+        }
+    }
+
+    public boolean isTargetDirty() {
+        return this.targetDirty;
+    }
+
+    public void markTargetClean() {
+        this.targetDirty = false;
     }
 
 }

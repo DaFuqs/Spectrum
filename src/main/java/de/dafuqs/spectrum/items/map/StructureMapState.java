@@ -35,12 +35,13 @@ public class StructureMapState extends MapState {
     @Nullable
     private StructureStart target;
     private Identifier targetId;
-    private boolean targetDirty;
+    private boolean displayNeedsUpdate;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
         this.displayedCenter = new Vec3d(centerX, 0, centerZ);
+        this.displayNeedsUpdate = true;
     }
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
@@ -48,9 +49,10 @@ public class StructureMapState extends MapState {
 
         if (nbt.contains("targetId", NbtElement.STRING_TYPE)) {
             this.targetId = new Identifier(nbt.getString("targetId"));
-            this.targetDirty = true;
+        } else {
+            this.targetId = null;
         }
-        this.setTarget(null);
+        this.target = null;
 
         double xDisplay = nbt.contains("displayX", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayX") : this.displayedCenter.getX();
         double zDisplay = nbt.contains("displayZ", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayZ") : this.displayedCenter.getZ();
@@ -137,9 +139,13 @@ public class StructureMapState extends MapState {
 
     @Override
     public void update(PlayerEntity player, ItemStack stack) {
-        this.displayedCenter = player.getPos();
-        accessor.getIcons().clear();
-        this.targetDirty = true;
+        BlockPos oldBlockPos = getDisplayedBlockPos();
+        BlockPos newBlockPos = player.getBlockPos();
+        if (oldBlockPos.getX() != newBlockPos.getX() || oldBlockPos.getZ() != newBlockPos.getZ()) {
+            this.displayNeedsUpdate = true;
+            this.displayedCenter = player.getPos();
+            accessor.getIcons().clear();
+        }
         super.update(player, stack);
     }
 
@@ -251,6 +257,10 @@ public class StructureMapState extends MapState {
         return this.displayedCenter;
     }
 
+    public BlockPos getDisplayedBlockPos() {
+        return BlockPos.ofFloored(this.displayedCenter.getX(), this.displayedCenter.getY(), this.displayedCenter.getZ());
+    }
+
     public @Nullable StructureStart getTarget() {
         return this.target;
     }
@@ -270,12 +280,12 @@ public class StructureMapState extends MapState {
         }
     }
 
-    public boolean isTargetDirty() {
-        return this.targetDirty;
+    public boolean displayNeedsUpdate() {
+        return this.displayNeedsUpdate;
     }
 
-    public void markTargetClean() {
-        this.targetDirty = false;
+    public void markDisplayUpdated() {
+        this.displayNeedsUpdate = false;
     }
 
 }

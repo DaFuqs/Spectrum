@@ -65,7 +65,7 @@ public class StructureMapItem extends FilledMapItem {
         if (!(state instanceof StructureMapState structureState && world instanceof ServerWorld serverWorld)) {
             return;
         }
-        if (!structureState.isTargetDirty()) {
+        if (!structureState.displayNeedsUpdate()) {
             return;
         }
 
@@ -77,12 +77,15 @@ public class StructureMapItem extends FilledMapItem {
                 setTarget(stack, structureState, start, targetId);
             }
         }
-        structureState.markTargetClean();
     }
 
     @Override
     public void updateColors(World world, Entity entity, MapState state) {
         if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity playerEntity) || !(state instanceof StructureMapState structureState)) {
+            return;
+        }
+
+        if (!structureState.displayNeedsUpdate()) {
             return;
         }
 
@@ -196,6 +199,9 @@ public class StructureMapItem extends FilledMapItem {
             this.updateTarget(stack, world, entity, state);
         }
         super.inventoryTick(stack, world, entity, slot, selected);
+        if (state instanceof StructureMapState structureMapState) {
+            structureMapState.markDisplayUpdated();
+        }
     }
 
     private BlockState getFluidStateIfVisible(World world, BlockState state, BlockPos pos) {

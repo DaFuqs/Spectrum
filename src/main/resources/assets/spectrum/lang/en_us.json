@@ -241,7 +241,7 @@
   "death.attack.spectrum_deadly_poison": "%1$s succumbed to deadly poison",
   "death.attack.spectrum_deadly_poison.player": "%1$s was deadly poisoned by %2$s",
   "death.attack.spectrum_incandescence": "%1$s became grossly incandescent",
-  "death.attack.spectrum_incandescence.player": "%1$s helped %2&s become a star in bright vermilion - more kindling for the flame!",
+  "death.attack.spectrum_incandescence.player": "%1$s helped %2$s become a star in bright vermilion - more kindling for the flame!",
   "death.attack.spectrum_moonstone_blast": "%1$s was disintegrated",
   "death.attack.spectrum_moonstone_blast.player": "%1$s was disintegrated by %2$s",
   "death.attack.spectrum_irradiance": "%1$s was skewered by solid light",

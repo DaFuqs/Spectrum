@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:drop_self",
+  "block": {
+    "tag": "c:brushable_blocks"
+  },
+  "nbt_to_copy": [
+    "LootTable",
+    "LootTableSeed",
+    "item"
+  ]
+}

@@ -158,34 +158,52 @@ public class StructureMapState extends MapState {
 
         byte pixelX = (byte)(scaledX * 2.0F + 0.5F);
         byte pixelZ = (byte)(scaledZ * 2.0F + 0.5F);
-        byte rotationByte = 0;
 
-        if (scaledX >= -63.0F && scaledZ >= -63.0F && scaledX <= 63.0F && scaledZ <= 63.0F) {
-            rotation += rotation < 0.0 ? -8.0 : 8.0;
-            rotationByte = (byte)(rotation * 16.0 / 360.0);
-            if (this.dimension == World.NETHER && world != null) {
-                int light = (int)(world.getLevelProperties().getTimeOfDay() / 10L);
-                rotationByte = (byte)(light * light * 34187121 + light * 121 >> 15 & 15);
-            }
-        } else {
-            if (type == MapIcon.Type.PLAYER && Math.abs(scaledX) < 320.0F && Math.abs(scaledZ) < 320.0F) {
-                type = MapIcon.Type.PLAYER_OFF_MAP;
-            }
+        rotation += rotation < 0.0 ? -8.0 : 8.0;
+        byte rotationByte = (byte)(rotation * 16.0 / 360.0);
+        if (this.dimension == World.NETHER && world != null) {
+            int light = (int)(world.getLevelProperties().getTimeOfDay() / 10L);
+            rotationByte = (byte)(light * light * 34187121 + light * 121 >> 15 & 15);
+        }
 
-            if (scaledX <= -63.0F) {
-                pixelX = -128;
-            }
-
-            if (scaledZ <= -63.0F) {
-                pixelZ = -128;
-            }
-
-            if (scaledX >= 63.0F) {
-                pixelX = 127;
-            }
-
+        if (scaledX < -63.0F || scaledZ < -63.0F || scaledX > 63.0F || scaledZ > 63.0F) {
+            double borderRotation;
             if (scaledZ >= 63.0F) {
                 pixelZ = 127;
+                if (scaledX <= -63.0F) {
+                    pixelX = -128;
+                    borderRotation = -135.0F;
+                } else if (scaledX >= 63.0F) {
+                    pixelX = 127;
+                    borderRotation = 135.0F;
+                } else {
+                    borderRotation = 180.0F;
+                }
+            } else if (scaledZ <= -63.0F) {
+                pixelZ = -128;
+                if (scaledX <= -63.0F) {
+                    pixelX = -128;
+                    borderRotation = -45.0F;
+                } else if (scaledX >= 63.0F) {
+                    pixelX = 127;
+                    borderRotation = 45.0F;
+                } else {
+                    borderRotation = 0;
+                }
+            } else if (scaledX <= -63.0F) {
+                pixelX = -128;
+                borderRotation = -90.0F;
+            } else {
+                pixelX = 127;
+                borderRotation = 90.0F;
+            }
+
+            if (type == MapIcon.Type.PLAYER) {
+                type = MapIcon.Type.PLAYER_OFF_MAP;
+                rotationByte = 0;
+            } else if (type == MapIcon.Type.TARGET_POINT) {
+                borderRotation += borderRotation < 0.0 ? -8.0 : 8.0;
+                rotationByte = (byte)(borderRotation * 16.0 / 360.0);
             }
         }
 

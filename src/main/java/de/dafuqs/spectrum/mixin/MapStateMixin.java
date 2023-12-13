@@ -38,9 +38,12 @@ public class MapStateMixin {
             at = @At(value = "STORE")
     )
     private static MapState spectrum$fromNbt_storeMapState(MapState vanillaState) {
-        StructureMapState state = structureMapState;
-        structureMapState = null;
-        return state;
+        if (structureMapState != null) {
+            StructureMapState state = structureMapState;
+            structureMapState = null;
+            return state;
+        }
+        return vanillaState;
     }
 
 }

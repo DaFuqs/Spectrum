@@ -73,7 +73,7 @@ public class StructureMapItem extends FilledMapItem {
         Identifier targetId = structureState.getTargetId();
         if (registry != null && targetId != null) {
             StructureStart start = StructureMapState.locateNearestStructure(serverWorld, targetId, entity.getBlockPos(), 50);
-            if (start != null) {
+            if (start != null && start != structureState.getTarget()) {
                 setTarget(stack, structureState, start, targetId);
             }
         }
@@ -163,7 +163,7 @@ public class StructureMapItem extends FilledMapItem {
                 MapColor color = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.CLEAR);
                 MapColor.Brightness brightness;
 
-                int odd = x + z & 1;
+                int odd = ((blockX ^ blockZ) >> state.scale) & 1;
                 if (color == MapColor.WATER_BLUE) {
                     double depth = (double) fluidDepth * 0.1 + (double) odd * 0.2;
                     if (depth < 0.5) {

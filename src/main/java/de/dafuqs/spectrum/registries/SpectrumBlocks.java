@@ -98,10 +98,6 @@ public class SpectrumBlocks {
 		return settings(mapColor, blockSoundGroup, strength).resistance(resistance);
 	}
 
-	private static Settings fluid(MapColor mapColor) {
-		return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F).replaceable().noCollision().pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid();
-	}
-
 	private static Settings craftingBlock(MapColor mapColor, BlockSoundGroup blockSoundGroup) {
 		return settings(mapColor, blockSoundGroup, 5.0F, 8.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque().requiresTool();
 	}
@@ -410,34 +406,45 @@ public class SpectrumBlocks {
 	public static final Block PARAMETRIC_MINING_DEVICE = new ParametricMiningDeviceBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 	public static final Block THREAT_CONFLUX = new ThreatConfluxBlock(FabricBlockSettings.copyOf(BLACKSLAG).nonOpaque().breakInstantly());
 
-	// TODO: CONTINUE BLOCK SETTINGS REVAMP FROM HERE AND LOWER
-	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.create());
-	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_PURPLE).hardness(1.0F).nonOpaque().pistonBehavior(PistonBehavior.DESTROY));
+	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(settings(MapColor.TERRACOTTA_GREEN, BlockSoundGroup.FUNGUS, 0));
+	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(settings(MapColor.PALE_PURPLE, BlockSoundGroup.WOOL, 1.0F).nonOpaque().pistonBehavior(PistonBehavior.DESTROY));
 	public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly());
 	public static final Block DECAYING_LIGHT_BLOCK = new DecayingLightBlock(FabricBlockSettings.copyOf(WAND_LIGHT_BLOCK).ticksRandomly());
-	
+
+
+	private static Settings decay(float hardness, float resistance, PistonBehavior pistonBehavior) {
+		return settings(MapColor.BLACK, BlockSoundGroup.FUNGUS, hardness, resistance).pistonBehavior(pistonBehavior).ticksRandomly().allowsSpawning((state, world, pos, type) -> false);
+	}
+
 	// Decay
-	public static final Block FADING = new FadingBlock(FabricBlockSettings.create().mapColor(MapColor.BLACK).ticksRandomly().strength(0.5F, 0.5F).allowsSpawning((state, world, pos, type) -> false).pistonBehavior(PistonBehavior.NORMAL));
-	public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F).pistonBehavior(PistonBehavior.BLOCK));
-	public static final Block RUIN = new RuinBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK));
-	public static final Block FORFEITURE = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK));
-	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT).pistonBehavior(PistonBehavior.BLOCK));
+	public static final Block FADING = new FadingBlock(decay(0.5F, 0.5F, PistonBehavior.NORMAL));
+	public static final Block FAILING = new FailingBlock(decay(20.0F, 50.0F, PistonBehavior.BLOCK));
+	public static final Block RUIN = new RuinBlock(decay(100.0F, 3600000.0F, PistonBehavior.BLOCK));
+	public static final Block FORFEITURE = new ForfeitureBlock(decay(100.0F, 3600000.0F, PistonBehavior.BLOCK));
+	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 	
 	// FLUIDS
+	private static Settings fluid(MapColor mapColor) {
+		return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F).replaceable().noCollision().pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid();
+	}
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(MapColor.DULL_PINK).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable());
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, fluid(MapColor.TERRACOTTA_BROWN).replaceable());
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, fluid(MapColor.DARK_AQUA).replaceable());
 	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, fluid(MapColor.PALE_PURPLE).luminance((state) -> 15).replaceable());
-	
+
 	// ROCK CANDY
 	private static final ToIntFunction<BlockState> ROCK_CANDY_LUMINANCE = state -> Math.max(15, state.get(Properties.AGE_2) * 3 + (state.get(SugarStickBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 8));
-	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.SUGAR);
-	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
-	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
-	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
-	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
-	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
-	
+	private static Settings rockCandy(BlockSoundGroup soundGroup) {
+		return settings(MapColor.CLEAR, soundGroup, 0.5F).pistonBehavior(PistonBehavior.DESTROY).luminance(ROCK_CANDY_LUMINANCE).solid().nonOpaque();
+	}
+	public static final Block SUGAR_STICK = new SugarStickBlock(rockCandy(BlockSoundGroup.SMALL_AMETHYST_BUD), RockCandy.RockCandyVariant.SUGAR);
+	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(rockCandy(SpectrumBlockSoundGroups.SMALL_TOPAZ_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(rockCandy(BlockSoundGroup.SMALL_AMETHYST_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(rockCandy(SpectrumBlockSoundGroups.SMALL_CITRINE_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
+	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(rockCandy(SpectrumBlockSoundGroups.SMALL_ONYX_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
+	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(rockCandy(SpectrumBlockSoundGroups.SMALL_MOONSTONE_BUD).pistonBehavior(PistonBehavior.DESTROY).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
+
+	// TODO: CONTINUE BLOCK SETTINGS REVAMP FROM HERE AND LOWER
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNodeBlock(FabricBlockSettings.create().hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.CONNECTION);
 	public static final Block PROVIDER_NODE = new PastelNodeBlock(FabricBlockSettings.create().hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.PROVIDER);

@@ -30,6 +30,8 @@ import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.gen.structure.Structure;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class StructureMapItem extends FilledMapItem {
 
     public StructureMapItem(Settings settings) {
@@ -61,21 +63,16 @@ public class StructureMapItem extends FilledMapItem {
         }
     }
 
-    private void updateTarget(ItemStack stack, World world, Entity entity, MapState state) {
-        if (!(state instanceof StructureMapState structureState && world instanceof ServerWorld serverWorld)) {
-            return;
-        }
-        if (!structureState.displayNeedsUpdate()) {
-            return;
-        }
-
+    private void updateTarget(ItemStack stack, ServerWorld serverWorld, Entity entity, StructureMapState structureState) {
         Registry<Structure> registry = StructureMapState.getStructureRegistry(serverWorld);
         Identifier targetId = structureState.getTargetId();
         if (registry != null && targetId != null) {
-            StructureStart start = StructureMapState.locateNearestStructure(serverWorld, targetId, entity.getBlockPos(), 50);
-            if (start != null && start != structureState.getTarget()) {
-                setTarget(stack, structureState, start, targetId);
-            }
+            CompletableFuture.runAsync(() -> {
+                StructureStart start = StructureMapState.locateNearestStructure(serverWorld, targetId, entity.getBlockPos(), 25);
+                if (start != null && start != structureState.getTarget()) {
+                    setTarget(stack, structureState, start, targetId);
+                }
+            });
         }
     }
 
@@ -91,7 +88,7 @@ public class StructureMapItem extends FilledMapItem {
 
         boolean hasCeiling = world.getDimension().hasCeiling();
         int scale = 1 << state.scale;
-        Vec3d displayedCenter = structureState.getDisplayedCenter();
+        BlockPos displayedCenter = structureState.getDisplayedCenter();
 
         MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData(playerEntity);
         playerUpdateTracker.field_131++;
@@ -100,8 +97,8 @@ public class StructureMapItem extends FilledMapItem {
             double previousHeight = 0.0;
 
             for(int z = -1; z < 128; z++) {
-                int blockX = ((int) displayedCenter.getX() / scale + x - 64) * scale;
-                int blockZ = ((int) displayedCenter.getZ() / scale + z - 64) * scale;
+                int blockX = (displayedCenter.getX() / scale + x - 64) * scale;
+                int blockZ = (displayedCenter.getZ() / scale + z - 64) * scale;
 
                 Multiset<MapColor> multiset = LinkedHashMultiset.create();
                 WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
@@ -194,13 +191,13 @@ public class StructureMapItem extends FilledMapItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        MapState state = getMapState(stack, world);
-        if (state != null) {
-            this.updateTarget(stack, world, entity, state);
-        }
         super.inventoryTick(stack, world, entity, slot, selected);
-        if (state instanceof StructureMapState structureMapState) {
-            structureMapState.markDisplayUpdated();
+
+        if (world instanceof ServerWorld serverWorld) {
+            if (getMapState(stack, world) instanceof StructureMapState state && state.displayNeedsUpdate()) {
+                this.updateTarget(stack, serverWorld, entity, state);
+                state.markDisplayUpdated();
+            }
         }
     }
 

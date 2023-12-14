@@ -31,7 +31,7 @@ import java.util.List;
 public class StructureMapState extends MapState {
 
     private final MapStateAccessor accessor;
-    private Vec3d displayedCenter;
+    private BlockPos displayedCenter;
     @Nullable
     private StructureStart target;
     private Identifier targetId;
@@ -40,7 +40,7 @@ public class StructureMapState extends MapState {
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
-        this.displayedCenter = new Vec3d(centerX, 0, centerZ);
+        this.displayedCenter = new BlockPos((int) centerX, 0, (int) centerZ);
         this.displayNeedsUpdate = true;
     }
 
@@ -54,9 +54,9 @@ public class StructureMapState extends MapState {
         }
         this.target = null;
 
-        double xDisplay = nbt.contains("displayX", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayX") : this.displayedCenter.getX();
-        double zDisplay = nbt.contains("displayZ", NbtElement.DOUBLE_TYPE) ? nbt.getDouble("displayZ") : this.displayedCenter.getZ();
-        this.displayedCenter = new Vec3d(xDisplay, 0, zDisplay);
+        int xDisplay = nbt.contains("displayX", NbtElement.INT_TYPE) ? nbt.getInt("displayX") : this.displayedCenter.getX();
+        int zDisplay = nbt.contains("displayZ", NbtElement.INT_TYPE) ? nbt.getInt("displayZ") : this.displayedCenter.getZ();
+        this.displayedCenter = new BlockPos(xDisplay, 0, zDisplay);
     }
 
     public static @Nullable Pair<Identifier, StructureStart> locateAnyStructureAtBlock(ServerWorld world, BlockPos pos) {
@@ -122,8 +122,8 @@ public class StructureMapState extends MapState {
 
         nbt.putBoolean("isSpectrumMap", true);
 
-        nbt.putDouble("displayX", displayedCenter.getX());
-        nbt.putDouble("displayZ", displayedCenter.getZ());
+        nbt.putInt("displayX", displayedCenter.getX());
+        nbt.putInt("displayZ", displayedCenter.getZ());
 
         if (this.targetId != null) {
             nbt.putString("targetId", targetId.toString());
@@ -139,11 +139,11 @@ public class StructureMapState extends MapState {
 
     @Override
     public void update(PlayerEntity player, ItemStack stack) {
-        BlockPos oldBlockPos = getDisplayedBlockPos();
+        BlockPos oldBlockPos = this.displayedCenter;
         BlockPos newBlockPos = player.getBlockPos();
         if (oldBlockPos.getX() != newBlockPos.getX() || oldBlockPos.getZ() != newBlockPos.getZ()) {
             this.displayNeedsUpdate = true;
-            this.displayedCenter = player.getPos();
+            this.displayedCenter = newBlockPos;
             accessor.getIcons().clear();
         }
         super.update(player, stack);
@@ -271,12 +271,8 @@ public class StructureMapState extends MapState {
         }
     }
 
-    public Vec3d getDisplayedCenter() {
+    public BlockPos getDisplayedCenter() {
         return this.displayedCenter;
-    }
-
-    public BlockPos getDisplayedBlockPos() {
-        return BlockPos.ofFloored(this.displayedCenter.getX(), this.displayedCenter.getY(), this.displayedCenter.getZ());
     }
 
     public @Nullable StructureStart getTarget() {

@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
+import com.mojang.serialization.*;
 import de.dafuqs.spectrum.compat.biome_makeover.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -49,15 +51,20 @@ public class SpectrumTooltips {
 			return;
 		}
 		NbtCompound blockEntityTag = nbt.getCompound("BlockEntityTag");
-		Style style = Style.EMPTY.withColor(DyeColor.byName(blockEntityTag.getString("Color"), DyeColor.WHITE).getSignColor());
-		for (String textKey : new String[]{"Text1", "Text2", "Text3", "Text4"}) {
-			MutableText text = Text.Serializer.fromJson(blockEntityTag.getString(textKey));
-			if (text != null) {
-				lines.add(text.setStyle(style));
+		addSignText(lines, SignText.CODEC.parse(NbtOps.INSTANCE, blockEntityTag.getCompound("front_text")));
+		addSignText(lines, SignText.CODEC.parse(NbtOps.INSTANCE, blockEntityTag.getCompound("back_text")));
+	}
+
+	private static void addSignText(List<Text> lines, DataResult<SignText> signText) {
+		if(signText.result().isPresent()) {
+			SignText st = signText.result().get();
+			Style style = Style.EMPTY.withColor(st.getColor().getSignColor());
+			for (Text text : st.getMessages(false)) {
+				lines.addAll(text.getWithStyle(style));
 			}
 		}
 	}
-	
+
 	public static void addSpawnerTooltips(List<Text> lines, NbtCompound nbt) {
 		if (!nbt.contains("BlockEntityTag", NbtElement.COMPOUND_TYPE)) {
 			return;

@@ -58,6 +58,15 @@
       "text": "Sculk Shriekers retain their ability to summon the Warden."
     },
     {
+      "type": "spectrum:collection",
+      "title": "Brushable Blocks",
+      "items": [
+        "minecraft:suspicious_sand",
+        "minecraft:suspicious_gravel"
+      ],
+      "text": "Sculk Shriekers retain their ability to summon the Warden."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "minecraft:respawn_anchor",
       "text": "Respawn Anchors retain their charges."

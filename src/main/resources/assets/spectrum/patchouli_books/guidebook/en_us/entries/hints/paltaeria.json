@@ -4,12 +4,12 @@
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:milestones/reveal_paltaeria",
   "read_by_default": true,
-  "turnin": "spectrum:lategame/collect_paltaeria",
+  "turnin": "spectrum:hidden/collect_paltaeria_gem",
   "pages": [
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:lategame/collect_paltaeria",
+      "completion_advancement": "spectrum:hidden/collect_paltaeria_gem",
       "cost": "spectrum:moonstone_shard#8",
       "text": "There is a new turquoise ore that can be found in the End."
     },

@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
-import de.dafuqs.spectrum.compat.reverb.DimensionReverb;
+import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.resonance.*;
@@ -100,16 +100,17 @@ public class SpectrumCommon implements ModInitializer {
 		return new Identifier(MOD_ID, name);
 	}
 	
-	@Override
-	public void onInitialize() {
-
-		logInfo("Starting Common Startup");
-		
+	static {
 		//Set up config
 		logInfo("Loading config file...");
 		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
 		logInfo("Finished loading config file.");
+	}
+	
+	@Override
+	public void onInitialize() {
+		logInfo("Starting Common Startup");
 		
 		// Register internals
 		SpectrumRegistries.register();

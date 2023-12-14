@@ -53,7 +53,10 @@ public class SpectrumConfig implements ConfigData {
 			per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.0075F;
 	
-	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
+	@Comment("""
+			The time in ticks it takes a Pigment Pedestal to craft a vanilla Crafting Table recipe without upgrades
+			Setting this to <=0 will make the Pedestal not able to be used for crafting Crafting Table recipes.
+			""")
 	public int VanillaRecipeCraftingTimeTicks = 40;
 	
 	@Comment("""
@@ -242,5 +245,10 @@ public class SpectrumConfig implements ConfigData {
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
 		}
 	}
+	
+	public boolean canPedestalCraftVanillaRecipes() {
+		return VanillaRecipeCraftingTimeTicks > 0;
+	}
+	
 	
 }

@@ -85,48 +85,45 @@ public class StructureMapItem extends FilledMapItem {
         MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData(playerEntity);
         playerUpdateTracker.field_131++;
 
-        boolean hasCeiling = world.getDimension().hasCeiling();
-        int scale = 1 << state.scale;
-
         Vec3i delta = structureState.getDisplayDelta();
         if (delta == null) {
             // Delta is null when the state is first created, so update the whole thing
             for (int x = 0; x <= 127; x++) {
-                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+                updateVerticalStrip(world, structureState, x, 0, 127);
             }
             return;
         }
 
-        int deltaX = delta.getX() / scale;
-        int deltaZ = delta.getZ() / scale;
+        int deltaX = delta.getX() >> state.scale;
+        int deltaZ = delta.getZ() >> state.scale;
 
         // Re-render the part that's moved, and copy the rest
         if (deltaX < 0) {
             for (int x = 127; x >= -deltaX; x--) {
-                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, scale, hasCeiling, playerUpdateTracker.field_131);
+                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
             }
             for (int x = 0; x <= -deltaX - 1; x++) {
-                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+                updateVerticalStrip(world, structureState, x, 0, 127);
             }
         } else {
             for (int x = 0; x <= 127 - deltaX; x++) {
-                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, scale, hasCeiling, playerUpdateTracker.field_131);
+                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
             }
             for (int x = 127 - deltaX + 1; x <= 127; x++) {
-                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+                updateVerticalStrip(world, structureState, x, 0, 127);
             }
         }
     }
 
-    private void updateOrCopyVerticalStrip(World world, StructureMapState state, int deltaX, int deltaZ, int x, int scale, boolean hasCeiling, int tick) {
+    private void updateOrCopyVerticalStrip(World world, StructureMapState state, int deltaX, int deltaZ, int x, int tick) {
         if (deltaX > 127 || deltaX < -127 || deltaZ > 127 || deltaZ < -127) {
-            updateVerticalStrip(world, state, x, 0, 127, scale, hasCeiling);
+            updateVerticalStrip(world, state, x, 0, 127);
         } else if (deltaZ < 0) {
             copyVerticalStrip(state, deltaX, deltaZ, x, 127, -deltaZ);
-            updateVerticalStrip(world, state, x, 0, -deltaZ - 1, scale, hasCeiling);
+            updateVerticalStrip(world, state, x, 0, -deltaZ - 1);
         } else if (deltaZ > 0) {
             copyVerticalStrip(state, deltaX, deltaZ, x, 0, 127 - deltaZ);
-            updateVerticalStrip(world, state, x, 127 - deltaZ + 1, 127, scale, hasCeiling);
+            updateVerticalStrip(world, state, x, 127 - deltaZ + 1, 127);
         } else if (deltaX != 0) {
             copyVerticalStrip(state, deltaX, deltaZ, x, 0, 127);
         }
@@ -144,18 +141,23 @@ public class StructureMapItem extends FilledMapItem {
         }
     }
 
-    private void updateVerticalStrip(World world, StructureMapState state, int x, int startZ, int endZ, int scale, boolean hasCeiling) {
-        double previousHeight = updateColor(world, state, x, startZ - 1, scale, 0, hasCeiling, false);
+    private void updateVerticalStrip(World world, StructureMapState state, int x, int startZ, int endZ) {
+        double previousHeight = updateColor(world, state, x, startZ - 1, 0, false);
         for (int z = startZ; z <= endZ; z++) {
-            previousHeight = updateColor(world, state, x, z, scale, previousHeight, hasCeiling, true);
+            previousHeight = updateColor(world, state, x, z, previousHeight, true);
         }
     }
 
-    private double updateColor(World world, StructureMapState state, int x, int z, int scale, double previousHeight, boolean hasCeiling, boolean setColor) {
+    private double updateColor(World world, StructureMapState state, int x, int z, double previousHeight, boolean setColor) {
         BlockPos displayedCenter = state.getDisplayedCenter();
 
-        int blockX = (displayedCenter.getX() / scale + x - 64) * scale;
-        int blockZ = (displayedCenter.getZ() / scale + z - 64) * scale;
+        int sampleSize = 1 << state.scale;
+        int sampleArea = sampleSize << state.scale;
+
+        boolean hasCeiling = world.getDimension().hasCeiling();
+
+        int blockX = ((displayedCenter.getX() >> state.scale) + x - 64) << state.scale;
+        int blockZ = ((displayedCenter.getZ() >> state.scale) + z - 64) << state.scale;
 
         Multiset<MapColor> multiset = LinkedHashMultiset.create();
         WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
@@ -176,8 +178,8 @@ public class StructureMapItem extends FilledMapItem {
 
             height = 100.0;
         } else {
-            for(int sampleX = 0; sampleX < scale; sampleX++) {
-                for(int sampleZ = 0; sampleZ < scale; sampleZ++) {
+            for(int sampleX = 0; sampleX < sampleSize; sampleX++) {
+                for(int sampleZ = 0; sampleZ < sampleSize; sampleZ++) {
                     BlockPos.Mutable samplePos = new BlockPos.Mutable(blockX + sampleX, 0, blockZ + sampleZ);
                     int sampleY = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE, samplePos.getX(), samplePos.getZ()) + 1;
 
@@ -207,14 +209,14 @@ public class StructureMapItem extends FilledMapItem {
                     }
 
                     state.removeBanner(world, samplePos.getX(), samplePos.getZ());
-                    height += (double) sampleY / (double) (scale * scale);
+                    height += (double) sampleY / (double) sampleArea;
                     multiset.add(blockState.getMapColor(world, samplePos));
                 }
             }
         }
 
         if (setColor) {
-            fluidDepth /= scale * scale;
+            fluidDepth /= sampleArea;
             MapColor color = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.CLEAR);
             MapColor.Brightness brightness;
 
@@ -229,7 +231,7 @@ public class StructureMapItem extends FilledMapItem {
                     brightness = MapColor.Brightness.NORMAL;
                 }
             } else {
-                double f = (height - previousHeight) * 4.0 / (double) (scale + 4) + ((double) odd - 0.5) * 0.4;
+                double f = (height - previousHeight) * 4.0 / (double) (sampleSize + 4) + ((double) odd - 0.5) * 0.4;
                 if (f > 0.6) {
                     brightness = MapColor.Brightness.HIGH;
                 } else if (f < -0.6) {

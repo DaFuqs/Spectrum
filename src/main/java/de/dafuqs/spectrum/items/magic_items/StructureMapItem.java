@@ -82,111 +82,167 @@ public class StructureMapItem extends FilledMapItem {
             return;
         }
 
-        if (!structureState.displayNeedsUpdate()) {
-            return;
-        }
-
-        boolean hasCeiling = world.getDimension().hasCeiling();
-        int scale = 1 << state.scale;
-        BlockPos displayedCenter = structureState.getDisplayedCenter();
-
         MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData(playerEntity);
         playerUpdateTracker.field_131++;
 
-        for(int x = 0; x < 128; x++) {
-            double previousHeight = 0.0;
+        boolean hasCeiling = world.getDimension().hasCeiling();
+        int scale = 1 << state.scale;
 
-            for(int z = -1; z < 128; z++) {
-                int blockX = (displayedCenter.getX() / scale + x - 64) * scale;
-                int blockZ = (displayedCenter.getZ() / scale + z - 64) * scale;
+        Vec3i delta = structureState.getDisplayDelta();
+        if (delta == null) {
+            // Delta is null when the state is first created, so update the whole thing
+            for (int x = 0; x <= 127; x++) {
+                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+            }
+            return;
+        }
 
-                Multiset<MapColor> multiset = LinkedHashMultiset.create();
-                WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
-                if (chunk.isEmpty()) {
-                    continue;
-                }
+        int deltaX = delta.getX() / scale;
+        int deltaZ = delta.getZ() / scale;
 
-                int fluidDepth = 0;
-                double height = 0.0;
-                if (hasCeiling) {
-                    int hash = blockX + blockZ * 231871;
-                    hash = hash * hash * 31287121 + hash * 11;
-                    if ((hash >> 20 & 1) == 0) {
-                        multiset.add(Blocks.DIRT.getDefaultState().getMapColor(world, BlockPos.ORIGIN), 10);
+        // Re-render the part that's moved, and copy the rest
+        if (deltaX < 0) {
+            for (int x = 127; x >= -deltaX; x--) {
+                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, scale, hasCeiling, playerUpdateTracker.field_131);
+            }
+            for (int x = 0; x <= -deltaX - 1; x++) {
+                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+            }
+        } else {
+            for (int x = 0; x <= 127 - deltaX; x++) {
+                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, scale, hasCeiling, playerUpdateTracker.field_131);
+            }
+            for (int x = 127 - deltaX + 1; x <= 127; x++) {
+                updateVerticalStrip(world, structureState, x, 0, 127, scale, hasCeiling);
+            }
+        }
+    }
+
+    private void updateOrCopyVerticalStrip(World world, StructureMapState state, int deltaX, int deltaZ, int x, int scale, boolean hasCeiling, int tick) {
+        if (deltaX > 127 || deltaX < -127 || deltaZ > 127 || deltaZ < -127) {
+            updateVerticalStrip(world, state, x, 0, 127, scale, hasCeiling);
+        } else if (deltaZ < 0) {
+            copyVerticalStrip(state, deltaX, deltaZ, x, 127, -deltaZ);
+            updateVerticalStrip(world, state, x, 0, -deltaZ - 1, scale, hasCeiling);
+        } else if (deltaZ > 0) {
+            copyVerticalStrip(state, deltaX, deltaZ, x, 0, 127 - deltaZ);
+            updateVerticalStrip(world, state, x, 127 - deltaZ + 1, 127, scale, hasCeiling);
+        } else if (deltaX != 0) {
+            copyVerticalStrip(state, deltaX, deltaZ, x, 0, 127);
+        }
+    }
+
+    private void copyVerticalStrip(StructureMapState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
+        if (startZ > endZ) {
+            for (int z = startZ; z >= endZ; z--) {
+                state.setColor(x, z, state.colors[(x + deltaX) + (z + deltaZ) * 128]);
+            }
+        } else {
+            for (int z = startZ; z <= endZ; z++) {
+                state.setColor(x, z, state.colors[(x + deltaX) + (z + deltaZ) * 128]);
+            }
+        }
+    }
+
+    private void updateVerticalStrip(World world, StructureMapState state, int x, int startZ, int endZ, int scale, boolean hasCeiling) {
+        double previousHeight = updateColor(world, state, x, startZ - 1, scale, 0, hasCeiling, false);
+        for (int z = startZ; z <= endZ; z++) {
+            previousHeight = updateColor(world, state, x, z, scale, previousHeight, hasCeiling, true);
+        }
+    }
+
+    private double updateColor(World world, StructureMapState state, int x, int z, int scale, double previousHeight, boolean hasCeiling, boolean setColor) {
+        BlockPos displayedCenter = state.getDisplayedCenter();
+
+        int blockX = (displayedCenter.getX() / scale + x - 64) * scale;
+        int blockZ = (displayedCenter.getZ() / scale + z - 64) * scale;
+
+        Multiset<MapColor> multiset = LinkedHashMultiset.create();
+        WorldChunk chunk = world.getChunk(ChunkSectionPos.getSectionCoord(blockX), ChunkSectionPos.getSectionCoord(blockZ));
+        if (chunk.isEmpty()) {
+            return previousHeight;
+        }
+
+        int fluidDepth = 0;
+        double height = 0.0;
+        if (hasCeiling) {
+            int hash = blockX + blockZ * 231871;
+            hash = hash * hash * 31287121 + hash * 11;
+            if ((hash >> 20 & 1) == 0) {
+                multiset.add(Blocks.DIRT.getDefaultState().getMapColor(world, BlockPos.ORIGIN), 10);
+            } else {
+                multiset.add(Blocks.STONE.getDefaultState().getMapColor(world, BlockPos.ORIGIN), 100);
+            }
+
+            height = 100.0;
+        } else {
+            for(int sampleX = 0; sampleX < scale; sampleX++) {
+                for(int sampleZ = 0; sampleZ < scale; sampleZ++) {
+                    BlockPos.Mutable samplePos = new BlockPos.Mutable(blockX + sampleX, 0, blockZ + sampleZ);
+                    int sampleY = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE, samplePos.getX(), samplePos.getZ()) + 1;
+
+                    BlockState blockState;
+                    if (sampleY <= world.getBottomY() + 1) {
+                        blockState = Blocks.BEDROCK.getDefaultState();
                     } else {
-                        multiset.add(Blocks.STONE.getDefaultState().getMapColor(world, BlockPos.ORIGIN), 100);
-                    }
+                        do {
+                            sampleY--;
+                            samplePos.setY(sampleY);
+                            blockState = chunk.getBlockState(samplePos);
+                        } while(blockState.getMapColor(world, samplePos) == MapColor.CLEAR && sampleY > world.getBottomY());
 
-                    height = 100.0;
-                } else {
-                    for(int sampleX = 0; sampleX < scale; sampleX++) {
-                        for(int sampleZ = 0; sampleZ < scale; sampleZ++) {
-                            BlockPos.Mutable samplePos = new BlockPos.Mutable(blockX + sampleX, 0, blockZ + sampleZ);
-                            int sampleY = chunk.sampleHeightmap(Heightmap.Type.WORLD_SURFACE, samplePos.getX(), samplePos.getZ()) + 1;
+                        if (sampleY > world.getBottomY() && !blockState.getFluidState().isEmpty()) {
+                            int fluidY = sampleY - 1;
+                            BlockPos.Mutable fluidPos = samplePos.mutableCopy();
 
-                            BlockState blockState;
-                            if (sampleY <= world.getBottomY() + 1) {
-                                blockState = Blocks.BEDROCK.getDefaultState();
-                            } else {
-                                do {
-                                    sampleY--;
-                                    samplePos.setY(sampleY);
-                                    blockState = chunk.getBlockState(samplePos);
-                                } while(blockState.getMapColor(world, samplePos) == MapColor.CLEAR && sampleY > world.getBottomY());
+                            BlockState fluidBlockState;
+                            do {
+                                fluidPos.setY(fluidY--);
+                                fluidBlockState = chunk.getBlockState(fluidPos);
+                                fluidDepth++;
+                            } while(fluidY > world.getBottomY() && !fluidBlockState.getFluidState().isEmpty());
 
-                                if (sampleY > world.getBottomY() && !blockState.getFluidState().isEmpty()) {
-                                    int fluidY = sampleY - 1;
-                                    BlockPos.Mutable fluidPos = samplePos.mutableCopy();
-
-                                    BlockState fluidBlockState;
-                                    do {
-                                        fluidPos.setY(fluidY--);
-                                        fluidBlockState = chunk.getBlockState(fluidPos);
-                                        fluidDepth++;
-                                    } while(fluidY > world.getBottomY() && !fluidBlockState.getFluidState().isEmpty());
-
-                                    blockState = this.getFluidStateIfVisible(world, blockState, samplePos);
-                                }
-                            }
-
-                            state.removeBanner(world, samplePos.getX(), samplePos.getZ());
-                            height += (double) sampleY / (double) (scale * scale);
-                            multiset.add(blockState.getMapColor(world, samplePos));
+                            blockState = this.getFluidStateIfVisible(world, blockState, samplePos);
                         }
                     }
-                }
 
-                fluidDepth /= scale * scale;
-                MapColor color = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.CLEAR);
-                MapColor.Brightness brightness;
-
-                int odd = ((blockX ^ blockZ) >> state.scale) & 1;
-                if (color == MapColor.WATER_BLUE) {
-                    double depth = (double) fluidDepth * 0.1 + (double) odd * 0.2;
-                    if (depth < 0.5) {
-                        brightness = MapColor.Brightness.HIGH;
-                    } else if (depth > 0.9) {
-                        brightness = MapColor.Brightness.LOW;
-                    } else {
-                        brightness = MapColor.Brightness.NORMAL;
-                    }
-                } else {
-                    double f = (height - previousHeight) * 4.0 / (double) (scale + 4) + ((double) odd - 0.5) * 0.4;
-                    if (f > 0.6) {
-                        brightness = MapColor.Brightness.HIGH;
-                    } else if (f < -0.6) {
-                        brightness = MapColor.Brightness.LOW;
-                    } else {
-                        brightness = MapColor.Brightness.NORMAL;
-                    }
-                }
-
-                previousHeight = height;
-                if (z >= 0) {
-                    state.putColor(x, z, color.getRenderColorByte(brightness));
+                    state.removeBanner(world, samplePos.getX(), samplePos.getZ());
+                    height += (double) sampleY / (double) (scale * scale);
+                    multiset.add(blockState.getMapColor(world, samplePos));
                 }
             }
         }
+
+        if (setColor) {
+            fluidDepth /= scale * scale;
+            MapColor color = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.CLEAR);
+            MapColor.Brightness brightness;
+
+            int odd = ((blockX ^ blockZ) >> state.scale) & 1;
+            if (color == MapColor.WATER_BLUE) {
+                double depth = (double) fluidDepth * 0.1 + (double) odd * 0.2;
+                if (depth < 0.5) {
+                    brightness = MapColor.Brightness.HIGH;
+                } else if (depth > 0.9) {
+                    brightness = MapColor.Brightness.LOW;
+                } else {
+                    brightness = MapColor.Brightness.NORMAL;
+                }
+            } else {
+                double f = (height - previousHeight) * 4.0 / (double) (scale + 4) + ((double) odd - 0.5) * 0.4;
+                if (f > 0.6) {
+                    brightness = MapColor.Brightness.HIGH;
+                } else if (f < -0.6) {
+                    brightness = MapColor.Brightness.LOW;
+                } else {
+                    brightness = MapColor.Brightness.NORMAL;
+                }
+            }
+
+            state.setColor(x, z, color.getRenderColorByte(brightness));
+        }
+
+        return height;
     }
 
     @Override

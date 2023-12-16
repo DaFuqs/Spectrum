@@ -35,17 +35,20 @@ public class StructureMapState extends MapState {
     @Nullable
     private StructureStart target;
     private Identifier targetId;
-    private boolean displayNeedsUpdate;
+    private Vec3i displayDelta;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
         this.displayedCenter = new BlockPos((int) centerX, 0, (int) centerZ);
-        this.displayNeedsUpdate = true;
+        this.displayDelta = null;
     }
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
         this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
+
+        // We'll use the colors from nbt
+        this.displayDelta = Vec3i.ZERO;
 
         if (nbt.contains("targetId", NbtElement.STRING_TYPE)) {
             this.targetId = new Identifier(nbt.getString("targetId"));
@@ -141,8 +144,9 @@ public class StructureMapState extends MapState {
     public void update(PlayerEntity player, ItemStack stack) {
         BlockPos oldBlockPos = this.displayedCenter;
         BlockPos newBlockPos = player.getBlockPos();
-        if (oldBlockPos.getX() != newBlockPos.getX() || oldBlockPos.getZ() != newBlockPos.getZ()) {
-            this.displayNeedsUpdate = true;
+        BlockPos delta = newBlockPos.subtract(oldBlockPos);
+        if ((Math.abs(delta.getX()) >> scale) >= 1 || (Math.abs(delta.getZ()) >> scale) >= 1) {
+            this.displayDelta = delta;
             this.displayedCenter = newBlockPos;
             accessor.getIcons().clear();
         }
@@ -294,12 +298,16 @@ public class StructureMapState extends MapState {
         }
     }
 
+    public Vec3i getDisplayDelta() {
+        return this.displayDelta;
+    }
+
     public boolean displayNeedsUpdate() {
-        return this.displayNeedsUpdate;
+        return this.displayDelta != Vec3i.ZERO;
     }
 
     public void markDisplayUpdated() {
-        this.displayNeedsUpdate = false;
+        this.displayDelta = Vec3i.ZERO;
     }
 
 }

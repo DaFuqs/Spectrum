@@ -9,7 +9,6 @@ import net.minecraft.item.map.MapIcon;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -37,12 +36,15 @@ public class StructureMapState extends MapState {
     private Identifier targetId;
     @Nullable
     private Vec3i displayDelta;
+    @Nullable
+    private StructureLocator locator;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
         this.displayedCenter = new BlockPos((int) centerX, 0, (int) centerZ);
         this.displayDelta = null;
+        this.locator = null;
     }
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
@@ -143,13 +145,21 @@ public class StructureMapState extends MapState {
 
     @Override
     public void update(PlayerEntity player, ItemStack stack) {
+        if (this.locator == null && this.targetId != null && player.getWorld() instanceof ServerWorld world) {
+            startLocator(world);
+        }
+
         if (this.displayDelta != null) {
             this.displayDelta = player.getBlockPos().subtract(this.displayedCenter);
         } else {
             this.displayedCenter = player.getBlockPos();
         }
+
         this.accessor.getIcons().clear();
+
         super.update(player, stack);
+
+        addTargetIcon(player.getWorld());
     }
 
     @Override
@@ -257,21 +267,15 @@ public class StructureMapState extends MapState {
         return false;
     }
 
-    public static void removeDecorationsNbt(ItemStack stack, String id) {
-        NbtCompound nbt = stack.getNbt();
-        if (nbt != null && nbt.contains("Decorations", NbtElement.LIST_TYPE)) {
-            NbtList decorations = nbt.getList("Decorations", NbtElement.COMPOUND_TYPE);
-            for (int i = 0; i < decorations.size(); i++) {
-                NbtCompound decoration = decorations.getCompound(i);
-                if (decoration.contains("id", NbtElement.STRING_TYPE)) {
-                    String decorationId = decoration.getString("id");
-                    if (decorationId.equals(id)) {
-                        decorations.remove(i);
-                        break;
-                    }
-                }
-            }
+    private void addTargetIcon(WorldAccess world) {
+        if (target != null) {
+            addIcon(MapIcon.Type.TARGET_POINT, world, "target", target.getPos().getCenterX(), target.getPos().getCenterZ(), 180, null);
         }
+    }
+
+    public void startLocator(ServerWorld world) {
+        if (targetId == null) return;
+        this.locator = new StructureLocatorAsync(world, this::setTarget, this.targetId, new ChunkPos(this.displayedCenter), 3);
     }
 
     public BlockPos getDisplayedCenter() {
@@ -282,8 +286,11 @@ public class StructureMapState extends MapState {
         return this.target;
     }
 
-    public void setTarget(@Nullable StructureStart target) {
+    public void setTarget(WorldAccess world, @Nullable StructureStart target) {
         this.target = target;
+
+        accessor.invokeRemoveIcon("target");
+        addTargetIcon(world);
     }
 
     public @Nullable Identifier getTargetId() {

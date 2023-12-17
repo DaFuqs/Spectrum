@@ -12,10 +12,8 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.map.MapIcon;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructureStart;
@@ -24,10 +22,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.world.gen.structure.Structure;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.concurrent.CompletableFuture;
 
 public class StructureMapItem extends FilledMapItem {
 
@@ -47,30 +42,14 @@ public class StructureMapItem extends FilledMapItem {
         }
 
         StructureMapState state = new StructureMapState(centerX, centerZ, (byte) 1, true, true, false, world.getRegistryKey());
-        setTarget(stack, state, target, targetId);
+
+        state.setTarget(world, target);
+        state.setTargetId(targetId);
+        if (targetId != null) {
+            state.startLocator(world);
+        }
+
         world.putMapState(getMapName(id), state);
-    }
-
-    private static void setTarget(ItemStack stack, StructureMapState structureState, @Nullable StructureStart target, @Nullable Identifier targetId) {
-        structureState.setTarget(target);
-        structureState.setTargetId(targetId);
-        StructureMapState.removeDecorationsNbt(stack, "target");
-        if (target != null) {
-            StructureMapState.addDecorationsNbt(stack, target.getPos().getCenterAtY(0), "target", MapIcon.Type.TARGET_POINT);
-        }
-    }
-
-    private void updateTarget(ItemStack stack, ServerWorld serverWorld, Entity entity, StructureMapState structureState) {
-        Registry<Structure> registry = StructureMapState.getStructureRegistry(serverWorld);
-        Identifier targetId = structureState.getTargetId();
-        if (registry != null && targetId != null) {
-            CompletableFuture.runAsync(() -> {
-                StructureStart start = StructureMapState.locateNearestStructure(serverWorld, targetId, entity.getBlockPos(), 25);
-                if (start != null && start != structureState.getTarget()) {
-                    setTarget(stack, structureState, start, targetId);
-                }
-            });
-        }
     }
 
     @Override

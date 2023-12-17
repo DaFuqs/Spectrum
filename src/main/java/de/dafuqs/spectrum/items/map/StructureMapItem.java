@@ -1,8 +1,7 @@
-package de.dafuqs.spectrum.items.magic_items;
+package de.dafuqs.spectrum.items.map;
 
 import com.google.common.collect.*;
 import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.items.map.StructureMapState;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
@@ -43,10 +42,14 @@ public class StructureMapItem extends FilledMapItem {
 
         StructureMapState state = new StructureMapState(centerX, centerZ, (byte) 1, true, true, false, world.getRegistryKey());
 
-        state.setTarget(world, target);
         state.setTargetId(targetId);
         if (targetId != null) {
             state.startLocator(world);
+            if (target != null) {
+                state.addTarget(world, target);
+            }
+        } else {
+            state.cancelLocator();
         }
 
         world.putMapState(getMapName(id), state);

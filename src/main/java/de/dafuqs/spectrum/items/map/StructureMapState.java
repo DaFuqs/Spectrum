@@ -12,10 +12,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -25,23 +22,24 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.structure.Structure;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StructureMapState extends MapState {
 
     private final MapStateAccessor accessor;
+    private final Set<StructureStart> targets;
     private BlockPos displayedCenter;
-    @Nullable
-    private StructureStart target;
     private Identifier targetId;
     @Nullable
     private Vec3i displayDelta;
     @Nullable
-    private StructureLocator locator;
+    private StructureLocatorAsync locator;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
+        this.targets = new HashSet<>();
         this.displayedCenter = new BlockPos((int) centerX, 0, (int) centerZ);
         this.displayDelta = null;
         this.locator = null;
@@ -58,7 +56,6 @@ public class StructureMapState extends MapState {
         } else {
             this.targetId = null;
         }
-        this.target = null;
 
         int xDisplay = nbt.contains("displayX", NbtElement.INT_TYPE) ? nbt.getInt("displayX") : this.displayedCenter.getX();
         int zDisplay = nbt.contains("displayZ", NbtElement.INT_TYPE) ? nbt.getInt("displayZ") : this.displayedCenter.getZ();
@@ -77,49 +74,6 @@ public class StructureMapState extends MapState {
             }
         }
         return null;
-    }
-
-    public static @Nullable StructureStart locateNearestStructure(ServerWorld world, Identifier structureId, BlockPos center, int radius) {
-        Registry<Structure> registry = getStructureRegistry(world);
-        if (registry != null) {
-            return locateNearestStructure(world, registry.get(structureId), center, radius);
-        }
-        return null;
-    }
-
-    public static @Nullable StructureStart locateNearestStructure(ServerWorld world, Structure structure, BlockPos center, int radius) {
-        if (world.getServer().getSaveProperties().getGeneratorOptions().shouldGenerateStructures()) {
-            Registry<Structure> registry = getStructureRegistry(world);
-            if (registry != null) {
-                RegistryEntryList<Structure> entryList = new RegistryEntryList.Direct<>(List.of(registry.getEntry(structure)));
-                Pair<BlockPos, RegistryEntry<Structure>> pair = world.getChunkManager().getChunkGenerator().locateStructure(world, entryList, center, radius, false);
-                if (pair != null) {
-                    BlockPos pos = pair.getFirst();
-                    return locateStructureAtBlock(world, structure, pos);
-                }
-            }
-        }
-        return null;
-    }
-
-    public static @Nullable StructureStart locateStructureAtBlock(ServerWorld world, Structure structure, BlockPos pos) {
-        Registry<Structure> registry = getStructureRegistry(world);
-        if (registry != null) {
-            for (StructureStart start : world.getStructureAccessor().getStructureStarts(ChunkSectionPos.from(pos), structure)) {
-                if (start == StructureStart.DEFAULT) continue;
-                for (StructurePiece piece : start.getChildren()) {
-                    BlockBox box = piece.getBoundingBox();
-                    if (box.getMinX() <= pos.getX() && pos.getX() <= box.getMaxX() && box.getMinZ() <= pos.getZ() && pos.getZ() <= box.getMaxZ()) {
-                        return start;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    public static @Nullable Registry<Structure> getStructureRegistry(ServerWorld world) {
-        return world.getRegistryManager().getOptional(RegistryKeys.STRUCTURE).orElse(null);
     }
 
     @Override
@@ -159,7 +113,9 @@ public class StructureMapState extends MapState {
 
         super.update(player, stack);
 
-        addTargetIcon(player.getWorld());
+        for (StructureStart target : this.targets) {
+            addTargetIcon(player.getWorld(), target);
+        }
     }
 
     @Override
@@ -267,34 +223,34 @@ public class StructureMapState extends MapState {
         return false;
     }
 
-    private void addTargetIcon(WorldAccess world) {
+    private void addTargetIcon(WorldAccess world, StructureStart target) {
         if (target != null) {
-            addIcon(MapIcon.Type.TARGET_POINT, world, "target", target.getPos().getCenterX(), target.getPos().getCenterZ(), 180, null);
+            addIcon(MapIcon.Type.TARGET_POINT, world, getTargetKey(target), target.getPos().getCenterX(), target.getPos().getCenterZ(), 180, null);
         }
+    }
+
+    private String getTargetKey(StructureStart start) {
+        return String.format("target-%d-%d", start.getPos().x, start.getPos().z);
     }
 
     public void startLocator(ServerWorld world) {
         if (targetId == null) return;
-        this.locator = new StructureLocatorAsync(world, this::setTarget, this.targetId, new ChunkPos(this.displayedCenter), 3);
+        this.locator = new StructureLocatorAsync(world, this::addTarget, this.targetId, new ChunkPos(this.displayedCenter), 32);
+    }
+
+    public void cancelLocator() {
+        if (this.locator != null) {
+            this.locator.cancel();
+        }
     }
 
     public BlockPos getDisplayedCenter() {
         return this.displayedCenter;
     }
 
-    public @Nullable StructureStart getTarget() {
-        return this.target;
-    }
-
-    public void setTarget(WorldAccess world, @Nullable StructureStart target) {
-        this.target = target;
-
-        accessor.invokeRemoveIcon("target");
-        addTargetIcon(world);
-    }
-
-    public @Nullable Identifier getTargetId() {
-        return this.targetId;
+    public void addTarget(WorldAccess world, StructureStart target) {
+        this.targets.add(target);
+        addTargetIcon(world, target);
     }
 
     public void setTargetId(@Nullable Identifier targetId) {

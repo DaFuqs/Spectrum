@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.magic_items.ampoules.*;
+import de.dafuqs.spectrum.items.map.StructureMapItem;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;

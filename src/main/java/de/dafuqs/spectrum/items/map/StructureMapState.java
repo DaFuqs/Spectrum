@@ -35,6 +35,7 @@ public class StructureMapState extends MapState {
     @Nullable
     private StructureStart target;
     private Identifier targetId;
+    @Nullable
     private Vec3i displayDelta;
 
     public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
@@ -142,14 +143,12 @@ public class StructureMapState extends MapState {
 
     @Override
     public void update(PlayerEntity player, ItemStack stack) {
-        BlockPos oldBlockPos = this.displayedCenter;
-        BlockPos newBlockPos = player.getBlockPos();
-        BlockPos delta = newBlockPos.subtract(oldBlockPos);
-        if ((Math.abs(delta.getX()) >> scale) >= 1 || (Math.abs(delta.getZ()) >> scale) >= 1) {
-            this.displayDelta = delta;
-            this.displayedCenter = newBlockPos;
-            accessor.getIcons().clear();
+        if (this.displayDelta != null) {
+            this.displayDelta = player.getBlockPos().subtract(this.displayedCenter);
+        } else {
+            this.displayedCenter = player.getBlockPos();
         }
+        this.accessor.getIcons().clear();
         super.update(player, stack);
     }
 
@@ -298,16 +297,21 @@ public class StructureMapState extends MapState {
         }
     }
 
+    @Nullable
     public Vec3i getDisplayDelta() {
         return this.displayDelta;
     }
 
-    public boolean displayNeedsUpdate() {
-        return this.displayDelta != Vec3i.ZERO;
-    }
-
-    public void markDisplayUpdated() {
-        this.displayDelta = Vec3i.ZERO;
+    public void clearDisplayDelta() {
+        if (this.displayDelta != null) {
+            int sampleSize = 1 << this.scale;
+            Vec3i remainder = new Vec3i(this.displayDelta.getX() % sampleSize, 0, this.displayDelta.getZ() % sampleSize);
+            Vec3i delta = this.displayDelta.subtract(remainder);
+            this.displayDelta = remainder;
+            this.displayedCenter = this.displayedCenter.add(delta);
+        } else {
+            this.displayDelta = Vec3i.ZERO;
+        }
     }
 
 }

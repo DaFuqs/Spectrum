@@ -15,19 +15,36 @@ public class StructureLocatorAsync extends StructureLocator {
     @SuppressWarnings("unchecked")
     private static final CompletableFuture<Void>[] DUMMY_ARRAY = (CompletableFuture<Void>[]) Array.newInstance(CompletableFuture.class, 0);
 
+    private int radius;
     private CompletableFuture<Void> nextRing;
 
     public StructureLocatorAsync(ServerWorld world, StructureLocator.Acceptor acceptor, Identifier targetId, ChunkPos center, int maxRadius) {
         super(world, acceptor, targetId, center, maxRadius);
 
-        searchChunksInRing(1);
+        radius = 1;
+        searchChunksInRing();
+    }
+
+    @Override
+    public void move(int deltaX, int deltaZ) {
+        if (deltaX == 0 && deltaZ == 0) return;
+
+        cancel();
+        radius -= Math.max(Math.abs(deltaX), Math.abs(deltaZ)) - 1;
+        if (radius < 1) radius = 1;
+        center = new ChunkPos(center.x + deltaX, center.z + deltaZ);
+        searchChunksInRing();
     }
 
     public void cancel() {
-        nextRing.cancel(true);
+        while (true) {
+            if (nextRing.isDone() || nextRing.cancel(false)) {
+                break;
+            }
+        }
     }
 
-    private void searchChunksInRing(int radius) {
+    private void searchChunksInRing() {
         List<CompletableFuture<Void>> futures = new ArrayList<>(radius * 2 * 4);
         CompletableFuture<CompletableFuture<Void>> start = new CompletableFuture<>();
 
@@ -40,7 +57,8 @@ public class StructureLocatorAsync extends StructureLocator {
 
         nextRing = CompletableFuture.allOf(futures.toArray(DUMMY_ARRAY)).thenRun(() -> {
             if (radius < maxRadius) {
-                searchChunksInRing(radius + 1);
+                radius++;
+                searchChunksInRing();
             }
         });
 
@@ -62,7 +80,7 @@ public class StructureLocatorAsync extends StructureLocator {
     private void acceptTarget(StructureStart target) {
         synchronized (this) {
             acceptor.accept(world, target);
-            nextRing.cancel(true);
+            nextRing.cancel(false);
         }
     }
 

@@ -13,9 +13,9 @@ public abstract class StructureLocator {
     protected final MinecraftServer server;
     protected final ServerWorld world;
     protected final Acceptor acceptor;
-    protected final ChunkPos center;
     protected final Identifier targetId;
     protected final int maxRadius;
+    protected ChunkPos center;
 
     public StructureLocator(ServerWorld world, StructureLocator.Acceptor acceptor, Identifier targetId, ChunkPos center, int maxRadius) {
         this.server = world.getServer();
@@ -25,6 +25,8 @@ public abstract class StructureLocator {
         this.center = center;
         this.maxRadius = maxRadius;
     }
+
+    public abstract void move(int deltaX, int deltaZ);
 
     @Nullable
     protected StructureStart locateStructureAtChunk(ChunkPos pos) {

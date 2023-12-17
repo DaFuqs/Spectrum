@@ -145,11 +145,11 @@ public class StructureMapState extends MapState {
 
     @Override
     public void update(PlayerEntity player, ItemStack stack) {
-        if (this.locator == null && this.targetId != null && player.getWorld() instanceof ServerWorld world) {
-            startLocator(world);
-        }
-
         if (this.displayDelta != null) {
+            if (this.locator == null && this.targetId != null && player.getWorld() instanceof ServerWorld world) {
+                startLocator(world);
+            }
+
             this.displayDelta = player.getBlockPos().subtract(this.displayedCenter);
         } else {
             this.displayedCenter = player.getBlockPos();
@@ -312,10 +312,19 @@ public class StructureMapState extends MapState {
     public void clearDisplayDelta() {
         if (this.displayDelta != null) {
             int sampleSize = 1 << this.scale;
+
             Vec3i remainder = new Vec3i(this.displayDelta.getX() % sampleSize, 0, this.displayDelta.getZ() % sampleSize);
             Vec3i delta = this.displayDelta.subtract(remainder);
+            BlockPos newDisplayedCenter = this.displayedCenter.add(delta);
+
+            if (this.locator != null) {
+                ChunkSectionPos startChunk = ChunkSectionPos.from(this.displayedCenter);
+                ChunkSectionPos endChunk = ChunkSectionPos.from(newDisplayedCenter);
+                this.locator.move(endChunk.getX() - startChunk.getX(), endChunk.getZ() - startChunk.getZ());
+            }
+
             this.displayDelta = remainder;
-            this.displayedCenter = this.displayedCenter.add(delta);
+            this.displayedCenter = newDisplayedCenter;
         } else {
             this.displayDelta = Vec3i.ZERO;
         }

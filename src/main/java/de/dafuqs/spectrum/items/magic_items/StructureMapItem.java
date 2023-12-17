@@ -241,18 +241,6 @@ public class StructureMapItem extends FilledMapItem {
         return height;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, world, entity, slot, selected);
-
-//        if (world instanceof ServerWorld serverWorld) {
-//            if (getMapState(stack, world) instanceof StructureMapState state && state.displayNeedsUpdate()) {
-//                this.updateTarget(stack, serverWorld, entity, state);
-//                state.markDisplayUpdated();
-//            }
-//        }
-    }
-
     private BlockState getFluidStateIfVisible(World world, BlockState state, BlockPos pos) {
         FluidState fluidState = state.getFluidState();
         return !fluidState.isEmpty() && !state.isSideSolidFullSquare(world, pos, Direction.UP) ? fluidState.getBlockState() : state;

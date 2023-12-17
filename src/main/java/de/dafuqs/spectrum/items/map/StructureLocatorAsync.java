@@ -30,9 +30,15 @@ public class StructureLocatorAsync extends StructureLocator {
         if (deltaX == 0 && deltaZ == 0) return;
 
         cancel();
+
+        // If we move two chunks in a direction, continuing at the same radius would skip a strip of chunks.
+        // So, we reduce the radius to make sure nothing is skipped. Of course, outer chunks would get
+        // skipped regardless.
         radius -= Math.max(Math.abs(deltaX), Math.abs(deltaZ)) - 1;
         if (radius < 1) radius = 1;
+
         center = new ChunkPos(center.x + deltaX, center.z + deltaZ);
+
         searchChunksInRing();
     }
 
@@ -62,6 +68,7 @@ public class StructureLocatorAsync extends StructureLocator {
             }
         });
 
+        // This just triggers the tasks after nextRing is created, to make sure nothing finishes while it's undefined.
         start.complete(nextRing);
     }
 

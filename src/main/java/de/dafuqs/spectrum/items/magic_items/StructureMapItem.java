@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.LinkedHashMultiset;
-import com.google.common.collect.Multiset;
-import com.google.common.collect.Multisets;
+import com.google.common.collect.*;
 import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.items.map.StructureMapState;
 import net.minecraft.block.BlockState;
@@ -226,7 +223,16 @@ public class StructureMapItem extends FilledMapItem {
 
         if (setColor) {
             fluidDepth /= sampleArea;
-            MapColor color = Iterables.getFirst(Multisets.copyHighestCountFirst(multiset), MapColor.CLEAR);
+
+            int maxCount = 0;
+            MapColor color = MapColor.CLEAR;
+            for (Multiset.Entry<MapColor> entry : multiset.entrySet()) {
+                if (entry.getCount() > maxCount) {
+                    maxCount = entry.getCount();
+                    color = entry.getElement();
+                }
+            }
+
             MapColor.Brightness brightness;
 
             int odd = ((blockX ^ blockZ) / sampleSize) & 1;

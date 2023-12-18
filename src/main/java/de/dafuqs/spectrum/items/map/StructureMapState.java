@@ -1,29 +1,22 @@
 package de.dafuqs.spectrum.items.map;
 
 import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.mixin.accessors.MapStateAccessor;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.map.MapBannerMarker;
-import net.minecraft.item.map.MapIcon;
-import net.minecraft.item.map.MapState;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.structure.StructureStart;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.item.map.*;
+import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.server.world.*;
+import net.minecraft.structure.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.structure.Structure;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.structure.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class StructureMapState extends MapState {
 
@@ -252,19 +245,23 @@ public class StructureMapState extends MapState {
         this.targets.add(target);
         addTargetIcon(world, target);
     }
-
+    
     public void setTargetId(@Nullable Identifier targetId) {
         if (this.targetId != targetId) {
             this.targetId = targetId;
             this.markDirty();
         }
     }
-
+    
+    public @Nullable Identifier getTargetId() {
+        return this.targetId;
+    }
+    
     @Nullable
     public Vec3i getDisplayDelta() {
         return this.displayDelta;
     }
-
+    
     public void clearDisplayDelta() {
         if (this.displayDelta != null) {
             int sampleSize = 1 << this.scale;

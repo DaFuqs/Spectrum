@@ -13,6 +13,7 @@ import java.util.*;
 public class SpectrumStructureTags {
 	
 	public static final TagKey<Structure> MYSTERIOUS_COMPASS_LOCATED = of("mysterious_compass_located");
+	public static final TagKey<Structure> UNLOCATABLE = of("unlocatable");
 	
 	private static TagKey<Structure> of(String id) {
 		return TagKey.of(RegistryKeys.STRUCTURE, SpectrumCommon.locate(id));

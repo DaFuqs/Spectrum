@@ -2,36 +2,38 @@ package de.dafuqs.spectrum.items.map;
 
 import com.google.common.collect.*;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.FilledMapItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.map.MapState;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.structure.StructureStart;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.item.map.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.structure.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.*;
+import net.minecraft.world.chunk.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class StructureMapItem extends FilledMapItem {
-
+    
+    public static final int COOLDOWN_DURATION_TICKS = 20;
+    
     public StructureMapItem(Settings settings) {
         super(settings);
     }
-
+    
     private static void createAndSetState(ItemStack stack, ServerWorld world, int centerX, int centerZ, @Nullable StructureStart target, @Nullable Identifier targetId) {
         NbtCompound nbt = stack.getOrCreateNbt();
-
+        
         int id;
         if (nbt.contains("map")) {
             id = nbt.getInt("map");
@@ -248,7 +250,7 @@ public class StructureMapItem extends FilledMapItem {
         FluidState fluidState = state.getFluidState();
         return !fluidState.isEmpty() && !state.isSideSolidFullSquare(world, pos, Direction.UP) ? fluidState.getBlockState() : state;
     }
-
+    
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (!world.isClient) {
@@ -270,8 +272,16 @@ public class StructureMapItem extends FilledMapItem {
                 BlockPos blockPos = BlockPos.ofFloored(hitPos.getX(), hitPos.getY(), hitPos.getZ());
                 Pair<Identifier, StructureStart> pair = StructureMapState.locateAnyStructureAtBlock(serverWorld, blockPos);
                 if (pair != null) {
-                    createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), pair.getSecond(), pair.getFirst());
+                    Identifier structureId = pair.getFirst();
+                    if (SpectrumStructureTags.isIn(serverWorld, structureId, SpectrumStructureTags.UNLOCATABLE)) {
+                        serverPlayerEntity.sendMessage(Text.translatable("item.spectrum.artisans_atlas.unlocatable"), true);
+                    } else {
+                        serverPlayerEntity.sendMessage(Text.translatable("item.spectrum.artisans_atlas.set_structure").append(Text.translatable(structureId.toTranslationKey("structure"))), true);
+                        createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), pair.getSecond(), pair.getFirst());
+                    }
                 }
+    
+                serverPlayerEntity.getItemCooldownManager().set(stack.getItem(), COOLDOWN_DURATION_TICKS);
             }
         }
 
@@ -281,14 +291,30 @@ public class StructureMapItem extends FilledMapItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-
+    
         if (!world.isClient() && world instanceof ServerWorld serverWorld && user instanceof ServerPlayerEntity serverPlayerEntity) {
             if (user.isSneaking()) {
                 createAndSetState(stack, serverWorld, (int) serverPlayerEntity.getX(), (int) serverPlayerEntity.getZ(), null, null);
             }
         }
-
+    
         return TypedActionResult.success(stack, world.isClient());
     }
-
+    
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        
+        MapState state = getMapState(stack, world);
+        if (state instanceof StructureMapState structureState) { // TODO: this always is false, since getMapState() only returns a MapState, not StructureMapState
+            Identifier structureId = structureState.getTargetId();
+            if (structureId == null) {
+                tooltip.add(Text.translatable("item.spectrum.artisans_atlas.empty"));
+            } else {
+                tooltip.add(Text.translatable("item.spectrum.artisans_atlas.locates_structure").append(Text.translatable(structureId.toTranslationKey("structure"))));
+            }
+        }
+        
+    }
+    
 }

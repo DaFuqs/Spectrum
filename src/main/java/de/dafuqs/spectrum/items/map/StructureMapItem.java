@@ -250,6 +250,18 @@ public class StructureMapItem extends FilledMapItem {
     }
 
     @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (!world.isClient) {
+            MapState state = getMapState(stack, world);
+            if (state instanceof StructureMapState structureState) {
+                structureState.updateDimension(world.getRegistryKey());
+            }
+        }
+
+        super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         if (!context.getWorld().isClient() && context.getWorld() instanceof ServerWorld serverWorld && context.getPlayer() instanceof ServerPlayerEntity serverPlayerEntity) {
             ItemStack stack = serverPlayerEntity.getStackInHand(context.getHand());

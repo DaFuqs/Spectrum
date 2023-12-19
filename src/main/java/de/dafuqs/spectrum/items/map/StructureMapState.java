@@ -286,4 +286,14 @@ public class StructureMapState extends MapState {
         }
     }
 
+    public void updateDimension(RegistryKey<World> dimension) {
+        if (!this.dimension.equals(dimension)) {
+            this.dimension = dimension;
+            this.displayDelta = null;
+            this.targets.clear();
+            this.targetId = null;
+            this.markDirty();
+        }
+    }
+
 }

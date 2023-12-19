@@ -1,0 +1,36 @@
+{
+  "name": "Shimmerstone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_shimmerstone"
+  },
+  "icon": "spectrum:shimmerstone_gem",
+  "category": "spectrum:resources",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:shimmerstone_ore": 0,
+    "spectrum:deepslate_shimmerstone_ore": 0,
+    "spectrum:blackslag_shimmerstone_ore": 0,
+    "spectrum:shimmerstone_gem": 0,
+    "spectrum:shimmerstone_block": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Shimmerstone",
+      "item": "spectrum:shimmerstone_gem",
+      "text": "A yellow ore that does not only emit energy in the form of light, but is able to manipulate it, too.$(br2)Shimmerstone is found close to sea level altitudes."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/compacting/shimmerstone_block",
+      "text": "Full blocks of Shimmerstone emit glowing bright yellow particles."
+    }
+  ]
+}

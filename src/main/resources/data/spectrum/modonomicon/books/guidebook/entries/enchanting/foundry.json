@@ -1,0 +1,36 @@
+{
+  "name": "Foundry",
+  "icon": "minecraft:iron_pickaxe",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/autosmelt"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_autosmelt",
+  "category": "spectrum:enchanting",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "You still remember the first days in this world, when you laboriously knocked coal out of the stone to melt your mined ore. But those days are numbered, you vowed. The future is now, old man.$(br2)Everything comes with a price, though: you'll lose the experience you'd normally get from smelting the ore."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
+      "text": "Automatically smelts broken blocks. Used on a $(item)Fishing Rod$() sets its hook on fire.$(br2)Max Level: 1$(br)Applicable to mining tools and $(item)Spectrum's Fishing Rods$().$(br)Mutually exclusive with Silk Touch."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_autosmelt",
+      "text": "You can infuse a $(item)common Book$() with Foundry by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

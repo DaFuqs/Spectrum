@@ -1,0 +1,54 @@
+{
+  "name": "Jade Wine",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/jade_wine"
+  },
+  "icon": "spectrum:jade_wine",
+  "category": "spectrum:cuisine",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:jade_wine": 0,
+    "spectrum:chrysocolla": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/special/jade_wine",
+      "text": "$(item)1 Bulb$() and $(item)3 Petals$() for the $(item)Bucket of Water$() feel like a good starting point.$(br)The longer the fermentation goes on, the stronger the taste gets. $(br2)$(italic)A bit of $(item)added sweetness$() would do it good, you are sure."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Sweetening",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/tap_sweetened_jade_wine"
+      },
+      "anchor": "sweetened_jade_wine",
+      "item": "spectrum:moonstruck_nectar",
+      "text": "Adding a drop of $(item)Moonstruck Nectar$() seems to make the Wine much more easy to drink. Both the fermentation process is increased and negative effects softened noticeably."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/tap_chrysocolla"
+      },
+      "anchor": "chrysocolla",
+      "item": "spectrum:chrysocolla",
+      "text": "Your newest result of fermenting Jade Wine was a $(italic)tad$() too long.$(br)Immensely bitter and slightly acidic taste.$(br)While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking.$(br)But, you know... is anyone stopping you?"
+    }
+  ]
+}

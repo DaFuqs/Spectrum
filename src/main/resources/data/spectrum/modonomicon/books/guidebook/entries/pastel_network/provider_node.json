@@ -1,0 +1,29 @@
+{
+  "name": "Provider Node",
+  "icon": "spectrum:provider_node",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+  },
+  "category": "spectrum:pastel_network",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Provider Node",
+      "text": "Makes the items in the connected inventory available in its $(l:pastel_network/pastel_network)Pastel Network$(/l).$(br2)Items will not be pushed to other nodes, but can be requested by $(l:pastel_network/gather_node)Gather Nodes$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
+      "text": ""
+    }
+  ]
+}

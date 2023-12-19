@@ -1,0 +1,29 @@
+{
+  "name": "Immunity",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/immunity"
+  },
+  "icon": "spectrum:germinated_jade_vine_bulb",
+  "category": "spectrum:brewing",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:immunity",
+      "text": "$(thing)Removes all negative status effects$(), when applied. Also prevents you from getting any new ones, as long as Immunity is active"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "Some effects seem to be powerful enough to resist your immunity."
+    }
+  ]
+}

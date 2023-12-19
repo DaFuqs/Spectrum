@@ -1,0 +1,32 @@
+{
+  "name": "Ashen Circlet",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/ashen_circlet"
+  },
+  "icon": "spectrum:ashen_circlet",
+  "category": "spectrum:equipment",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:ashen_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "The $(l:resources/stratine)Stratine Gem$() you set into this circlet, itself a creation of the Nether, can absorb high temperatures with ease.$(br)It even protects you from the blazing heat of Lava - if only for a short time.$(br)Pair it with $(thing)Fire Resistance$(), you're able to swim in Lava almost as if it were Water."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
+      "text": "$(li)Prevents all damage from fires and hot floors$(li)Considerable boost in both mobility and vision when submerged in lava$(li)When triggered, grants you a brief shield against extreme heat"
+    }
+  ]
+}

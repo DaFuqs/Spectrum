@@ -1,0 +1,29 @@
+{
+  "name": "Scarred",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/scarred"
+  },
+  "icon": "minecraft:fire_charge",
+  "category": "spectrum:brewing",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:scarred",
+      "text": "$(italic)If you are wounded, it only makes you more vulnerable. A vicious cycle.$()$(br2)Prevents you from regenerating health by natural means and prevents you from sprinting."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": ""
+    }
+  ]
+}

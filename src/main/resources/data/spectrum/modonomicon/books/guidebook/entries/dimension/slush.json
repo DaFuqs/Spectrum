@@ -1,0 +1,33 @@
+{
+  "name": "Slush",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_slush"
+  },
+  "icon": "spectrum:slush",
+  "category": "spectrum:dimension",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:slush": 0,
+    "spectrum:tilled_slush": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:slush",
+      "text": "Incredibly soft, moist soil. Smells like earthworm."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:tilled_slush",
+      "text": "Ever-moist farmland, with a lot of nutrients. Plants thrive on it."
+    }
+  ]
+}

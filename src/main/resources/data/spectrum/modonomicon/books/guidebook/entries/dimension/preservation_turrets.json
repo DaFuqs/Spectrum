@@ -1,0 +1,35 @@
+{
+  "name": "Preservation Turrets",
+  "icon": "spectrum:preservation_turret_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/preservation_turret"
+  },
+  "category": "spectrum:dimension",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:preservation_turret_head": 0,
+    "spectrum:preservation_turret_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "title": "Preservation Turrets",
+      "entity": "spectrum:preservation_turret",
+      "scale": 0.5,
+      "offset": 0.4,
+      "text": "$(italic)True engineering excellence. But boy does it hurt."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.$(br2)Ready to poke holes in you any time you make your presence known."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Ecologics",
+  "icon": "ecologics:penguin_feather",
+  "flag": "mod:ecologics",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "New biomes bring new possibilities. But which?"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Slippery Potions",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "recipe": "spectrum:mod_integration/ecologics/potion_workshop_brewing/ecologics_slippery",
+      "text": ""
+    }
+  ]
+}

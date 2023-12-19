@@ -1,0 +1,92 @@
+{
+  "name": "Applied Energistics",
+  "icon": "ae2:controller",
+  "flag": "mod:ae2",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:small_certus_quartz_bud": 0,
+    "spectrum:large_certus_quartz_bud": 0,
+    "spectrum:certus_quartz_cluster": 0,
+    "spectrum:small_fluix_bud": 0,
+    "spectrum:large_fluix_bud": 0,
+    "spectrum:fluix_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "\"Any technology advanced enough is indistinguishable from magic,\" you once heard.$(br)You're still not entirely sure how this storage system manages to store so many blocks in such a small space, but since you regularly walk around with hundreds of square metres of dirt, you've never bothered to question it."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Growth Acceleration",
+      "item": "ae2:quartz_growth_accelerator",
+      "text": "Looks like - despite the name - the $(item)Crystal Growth Accelerator$() can grow more than just quartz! It can also grow other types of gemstones."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Quartz Auto-Harvesting",
+      "item": "ae2:quartz_cluster",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(item)Gemstone Buds$(), but also $(item)Certus Quartz$()."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Moving Budding Quartz",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest $(item)Budding Quartz$(), while retaining their $(italic)flawless$() state."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Anvil Crushing",
+      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
+      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$/l): $(item)Certus Quartz$(), $(item)Fluix$(), $(item)Skystone$() and $(item)Ender Pearls$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/collect_storm_stone"
+      },
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
+      "text": "In desperate need of $(item)Charged Certus Quartz$()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Certus Crushing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/collect_storm_stone"
+      },
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal",
+      "text": "...and then create $(item)Fluix$() from it, if you get impatient."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Certus Charging",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
+      "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
+      "text": "Being crystalline structures, $(item)Certus Quartz$() and $(item)Fluix Crystals$() can be grown in the Crystallarieum."
+    }
+  ]
+}

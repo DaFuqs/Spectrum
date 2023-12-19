@@ -1,0 +1,34 @@
+{
+  "name": "Radiant Glass",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_shimmerstone"
+  },
+  "icon": "spectrum:radiant_glass",
+  "category": "spectrum:decoration",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:radiant_glass": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:radiant_glass",
+      "title": "Radiant Glass",
+      "text": "You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of $(l:resources/shimmerstone)Shimmerstone$() directly in your glass?$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/radiant_glass",
+      "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The $(l:resources/shimmerstone)Shimmerstone$() used in its manufacture ensures that the glass glows from within."
+    }
+  ]
+}

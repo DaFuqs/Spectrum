@@ -1,0 +1,33 @@
+{
+  "name": "Bag of Holding",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/bag_of_holding"
+  },
+  "icon": "spectrum:bag_of_holding",
+  "category": "spectrum:magical_items",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:bag_of_holding": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Bag of Holding",
+      "item": "spectrum:bag_of_holding",
+      "text": "Placing an $(item)Ender Chest$(), opening it, and mining it with an enchanted pickaxe is not what you think of as fun.$(br)That's why you invented this thing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/bag_of_holding",
+      "text": "Just open it and the contents of your $(item)Ender Chest$() are right there."
+    }
+  ]
+}

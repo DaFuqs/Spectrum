@@ -1,0 +1,32 @@
+{
+  "name": "Reprise",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/reprise"
+  },
+  "icon": "spectrum:reprise",
+  "category": "spectrum:cuisine",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:reprise": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "This beverage, brewed from $(item)Chorus Fruit$(), takes over - and amplifies - not only the special taste, but also the unique property of the plant.$(br2)When ingested, this drink randomly teleports you over great distances. The higher the alcohol content, the further."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/reprise",
+      "text": "$(italic)Tastes like raspberry, but there are none in it at all. Strange."
+    }
+  ]
+}

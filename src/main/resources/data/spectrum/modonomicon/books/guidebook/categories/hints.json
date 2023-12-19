@@ -1,5 +1,12 @@
 {
-	"name": "book.spectrum.guidebook.hints.name",
-	"icon": "minecraft:writable_book",
-	"sort_number": 15
+  "name": "book.spectrum.guidebook.hints.name",
+  "icon": "minecraft:writable_book",
+  "sort_number": 15,
+
+  "show_category_button": true,
+  "background": "modonomicon:textures/gui/dark_slate_seamless.png",
+  "entry_textures": "modonomicon:textures/gui/entry_textures.png",
+  "background_height": 512,
+  "background_parallax_layers": [],
+  "background_width": 512
 }

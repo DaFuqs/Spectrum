@@ -1,0 +1,32 @@
+{
+  "name": "Puff Circlet",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/puff_circlet"
+  },
+  "icon": "spectrum:puff_circlet",
+  "category": "spectrum:equipment",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:puff_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "This glistening hoop creates a protective film of air around you.$(br2)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.$(br)The Puff Circlet also prevents $(item)Farmland$() from being trampled."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
+      "text": "$(italic)Gone are the days of being sniped from behind by Skeletons."
+    }
+  ]
+}

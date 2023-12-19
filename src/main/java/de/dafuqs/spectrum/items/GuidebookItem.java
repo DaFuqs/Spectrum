@@ -2,13 +2,13 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.interfaces.GuidebookProvider;
+import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.entry.*;
@@ -63,38 +63,38 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (world.isClient && user instanceof ClientPlayerEntity serverPlayerEntity) {
+		user.incrementStat(Stats.USED.getOrCreateStat(this));
+		
+		if (user instanceof ClientPlayerEntity clientPlayer) {
 			if (user.isSneaking()) {
 				this.providerIndex = (this.providerIndex + 1) % this.providers.size();
 			} else if (!this.providers.isEmpty()) {
 				// if the player has never opened the book before
 				// automatically open the introduction page
-				if (isNewPlayer(serverPlayerEntity)) {
-					openGuidebook(serverPlayerEntity, SpectrumCommon.locate("general/intro"), 0);
+				if (isNewPlayer(clientPlayer)) {
+					openGuidebook(clientPlayer, SpectrumCommon.locate("general/intro"), 0);
 				} else {
-					openGuidebook(serverPlayerEntity);
+					openGuidebook(clientPlayer);
 				}
-
-				user.incrementStat(Stats.USED.getOrCreateStat(this));
-
+				
 				return TypedActionResult.success(user.getStackInHand(hand));
 			}
 		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 			// Workaround for new advancement unlocks getting added after spectrum has been installed
 			reprocessAdvancementUnlocks(serverPlayerEntity);
 		}
-
+		
 		return TypedActionResult.consume(user.getStackInHand(hand));
 	}
 	
-	private boolean isNewPlayer(ClientPlayerEntity serverPlayerEntity) {
-		return serverPlayerEntity.getStatHandler().getStat(Stats.USED, this) == 0;
+	private boolean isNewPlayer(ClientPlayerEntity user) {
+		return user.getStatHandler().getStat(Stats.USED, this) == 0;
 	}
 	
 	public void openGuidebook(ClientPlayerEntity serverPlayerEntity) {
 		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity);
 	}
-
+	
 	public void openGuidebook(ClientPlayerEntity serverPlayerEntity, Identifier entry, int page) {
 		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity, entry, page);
 	}

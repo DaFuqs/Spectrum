@@ -1,0 +1,32 @@
+{
+  "name": "Aloe",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_aloe"
+  },
+  "icon": "spectrum:aloe_leaf",
+  "category": "spectrum:cuisine",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:aloe_leaf": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Aloe",
+      "text": "These drought-loving plants are able to grow almost everywhere. Ironically, as sturdy as they are, they can not handle too much light and nutrient-rich soil. Down here, there was simply no reason to adapt to that, you guess."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:aloe_leaf",
+      "text": "You can break off individual leaves. They retain a lot of moisture and are quite nutritious.$(br)Planted, they will grow into a full-fledged new plant over time."
+    }
+  ]
+}

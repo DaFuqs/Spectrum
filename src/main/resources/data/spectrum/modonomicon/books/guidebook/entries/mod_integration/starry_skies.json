@@ -1,0 +1,27 @@
+{
+  "name": "Starry Skies",
+  "icon": "minecraft:packed_ice",
+  "flag": "mod:starry_skies",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "Above the hemisphere of the Overworld exists a completely different kind of dimension: filled with numerous spheres that float away like small planets.$(br2)You can reach them by building a portal from $(item)Packed Ice$() (if it hasn't been changed by your modpack)."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "Here you will find numerous resources that are always hard to locate on the normal Overworld: spheres of gemstone, Spectrum's ores, and anything else your heart desires - unless you fall off a planet and plummet to your certain death."
+    }
+  ]
+}

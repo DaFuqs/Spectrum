@@ -1,0 +1,33 @@
+{
+  "name": "Particle Spawner",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/particle_spawner"
+  },
+  "icon": "spectrum:particle_spawner",
+  "category": "spectrum:decoration",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:particle_spawner": 0,
+    "spectrum:creative_particle_spawner": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "The $(l:resources/stargazing)Shooting Star$() you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "Use the GUI to configure the particles to your liking. Apply a $(thing)redstone signal$() to start the fantastic display. You will unlock more particles as you progress."
+    }
+  ]
+}

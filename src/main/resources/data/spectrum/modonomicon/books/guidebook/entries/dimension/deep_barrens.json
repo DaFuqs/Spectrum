@@ -1,0 +1,33 @@
+{
+  "name": "Deep Barrens",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/deep_barrens"
+  },
+  "icon": "spectrum:blackslag",
+  "category": "spectrum:dimension",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "Deep Barrens",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_barrens.png"
+      ],
+      "border": true,
+      "text": "A dark, stony wasteland."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "At first glance, there's not much to see here, and yet it's worth a visit: ores smile at you from every corner - as far as you can see (which isn't far, to be honest).$(br2)In some places, gigantic veins of ore crisscross this biome. A single vein will last you years."
+    }
+  ]
+}

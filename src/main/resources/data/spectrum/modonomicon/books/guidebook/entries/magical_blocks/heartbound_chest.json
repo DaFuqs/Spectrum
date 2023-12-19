@@ -1,0 +1,37 @@
+{
+  "name": "Heartbound Chest",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/heartbound_chest"
+  },
+  "icon": "spectrum:heartbound_chest",
+  "category": "spectrum:magical_blocks",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:heartbound_chest": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:heartbound_chest",
+      "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.$(br)To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/heartbound_chest",
+      "text": "The Heartbound Chest can only be opened by its placer and provides the same space as two normal chests."
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Redstone Component",
+      "text": "Similar to a Trapped Chest it also outputs a $(thing)redstone signal$().$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+    }
+  ]
+}

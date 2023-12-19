@@ -1,0 +1,29 @@
+{
+  "name": "Magic Annulation",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/magic_annulation"
+  },
+  "icon": "minecraft:potion",
+  "category": "spectrum:brewing",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:magic_annulation",
+      "text": "$(thing)Reduces incoming magic damage$() by 1 point per level. While minor damage will be less dangerous to you, big hitters will still very much pose a threat to you regardless."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": ""
+    }
+  ]
+}

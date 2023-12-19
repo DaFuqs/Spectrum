@@ -1,0 +1,43 @@
+{
+  "name": "More Geodes",
+  "icon": "geodes:echo_cluster",
+  "flag": "mod:geodes",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "Scattered around the world you have discovered numerous geodes, which produce not only colored gems, but also valuable resources."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Auto-Harvesting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "item": "spectrum:crystal_apothecary",
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() is able to harvest $(item)Crystals$() automatically - even if you are not near those geodes at all!"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Moving Budding Blocks",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest Budding Blocks."
+    }
+  ]
+}

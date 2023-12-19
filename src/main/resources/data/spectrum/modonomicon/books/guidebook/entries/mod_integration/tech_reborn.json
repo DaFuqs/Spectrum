@@ -1,0 +1,41 @@
+{
+  "name": "Tech Reborn",
+  "icon": "techreborn:grinder",
+  "flag": "mod:techreborn",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "There is this new thing, called $(italic)Electricity$(), you should check that out.$(br2)The factory must grow."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:amethyst_ore",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:break_gemstone_ore"
+      },
+      "text": "Most of Spectrums Ores can be processed in the Grinder / Industrial Grinder to extract resources."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": "minecraft:amethyst_shard",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:spectrum"
+      },
+      "text": "Of course you can also grind down Shards, too!"
+    }
+  ]
+}

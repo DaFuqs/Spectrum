@@ -1,0 +1,32 @@
+{
+  "name": "Suspicious Brew",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/suspicious_brew"
+  },
+  "icon": "spectrum:suspicious_brew",
+  "category": "spectrum:cuisine",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:suspicious_brew": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "Curiously, the combination of mushrooms and water is a perfect receptor for all forms of other bloomy notes, either rounding the taste, or creating... very peculiar ones.$(br2)Each flower has a specific effect, as if you would feed it to a $(thing)Brown Mooshroom$()."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/special/suspicious_brew",
+      "text": "The fermentation process in colored wood makes the effect last quite a bit longer than $(item)Suspicious Stew$()."
+    }
+  ]
+}

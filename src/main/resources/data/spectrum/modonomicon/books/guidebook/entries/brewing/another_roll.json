@@ -1,0 +1,29 @@
+{
+  "name": "Another Roll",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/another_roll"
+  },
+  "icon": "spectrum:four_leaf_clover",
+  "category": "spectrum:brewing",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:another_roll",
+      "text": "Influences the drops when using $(thing)Fortune$() to mine ores, $(thing)Looting$() to kill mobs, or other luck-based enchantments.$(br)Each level of Another Roll will increase your chances of getting the highest amount possible."
+    },
+    {
+      "type": "modonomicon:text",
+      "text": ""
+    }
+  ]
+}

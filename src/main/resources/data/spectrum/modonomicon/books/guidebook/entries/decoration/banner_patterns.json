@@ -1,0 +1,39 @@
+{
+  "name": "Banner Patterns",
+  "icon": "spectrum:amethyst_shard_banner_pattern",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "category": "spectrum:decoration",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:logo_banner_pattern": 0,
+    "spectrum:amethyst_shard_banner_pattern": 0,
+    "spectrum:amethyst_cluster_banner_pattern": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "Banner Patterns",
+      "border": true,
+      "images": [
+        "spectrum:textures/gui/guidebook/banners.png"
+      ],
+      "text": "Resources and tools you come across can be used directly in the Loom as patterns."
+    },
+    {
+      "type": "modonomicon:crafting",
+      "title": "Vanilla Patterns",
+      "recipe": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
+      "recipe2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"
+    }
+  ]
+}

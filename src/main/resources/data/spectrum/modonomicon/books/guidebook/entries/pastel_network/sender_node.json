@@ -1,0 +1,29 @@
+{
+  "name": "Sender Node",
+  "icon": "spectrum:sender_node",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+  },
+  "category": "spectrum:pastel_network",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Sender Node",
+      "text": "The Sender Node actively tries to keep the connected inventory empty from items.$(br2)The order, in which it pushes items to, is as follows:$(br)1. $(l:pastel_network/gather_node)Gather Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/sender_node",
+      "text": ""
+    }
+  ]
+}

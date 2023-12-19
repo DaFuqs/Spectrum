@@ -1,0 +1,36 @@
+{
+  "name": "Inexorable",
+  "icon": "minecraft:iron_pickaxe",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/inexorable"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_inexorable",
+  "category": "spectrum:enchanting",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...$(br2)$(italic)Hm, written out like this, that was a bit more than expected$()."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inexorable\", lvl: 1s}]}",
+      "text": "Prevents mining speed slowdowns (on tools) or movement slowdowns (on chestplates).$(br2)Max Level: 1$(br)Applicable to mining tools and chestplates."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inexorable",
+      "text": "You can infuse a $(item)common Book$() with Inexorable by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Mermaid's Gems",
+  "icon": "spectrum:mermaids_gem",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_mermaids_gem"
+  },
+  "category": "spectrum:resources",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:mermaids_gem": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Mermaid's Brushes",
+      "text": "An inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a pearl-shaped seed.$()$(br2)Mermaid's Brushes can be harvested using shears."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Mermaid's Gems",
+      "item": "spectrum:mermaids_gem",
+      "text": "Fully grown, these hollow seeds float to the surface to be carried away by the soft waves.$(br2)Mermaid's Gems have a strong bond with water - obviously."
+    }
+  ]
+}

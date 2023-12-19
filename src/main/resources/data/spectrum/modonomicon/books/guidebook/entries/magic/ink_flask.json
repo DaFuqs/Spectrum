@@ -1,0 +1,32 @@
+{
+  "name": "Ink Flask",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/ink_flask"
+  },
+  "icon": "spectrum:ink_flask",
+  "category": "spectrum:magic",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:ink_flask": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "The Ink Flask is able to hold a sizable amount of $(l:magic/ink)Ink$() of a single color."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ink_flask",
+      "text": "Fill it in the $(l:magic/color_picker)Color Picker$()."
+    }
+  ]
+}

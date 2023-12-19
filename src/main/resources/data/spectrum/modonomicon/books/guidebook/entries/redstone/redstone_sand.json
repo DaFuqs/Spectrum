@@ -1,0 +1,32 @@
+{
+  "name": "Redstone Sand",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/redstone/redstone_sand"
+  },
+  "icon": "spectrum:redstone_sand",
+  "category": "spectrum:redstone",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:redstone_sand": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:redstone_sand",
+      "text": "Think back to the good old days when you would set little traps for your friends: if they touched the wrong block, they would be completely buried in sand. Now your friends are not so easily fooled.$(br2)Modern problems require modern solutions."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/redstone_sand",
+      "text": "Behaves like a solid block until it receives a $(thing)redstone signal$(). The $(thing)redstone pulse() propagates through all connected blocks and makes them fall."
+    }
+  ]
+}

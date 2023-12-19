@@ -1,5 +1,12 @@
 {
-	"name": "book.spectrum.guidebook.magical_blocks.name",
-	"icon": "spectrum:heartbound_chest",
-	"sort_number": 6
+  "name": "book.spectrum.guidebook.magical_blocks.name",
+  "icon": "spectrum:heartbound_chest",
+  "sort_number": 6,
+
+  "show_category_button": true,
+  "background": "modonomicon:textures/gui/dark_slate_seamless.png",
+  "entry_textures": "modonomicon:textures/gui/entry_textures.png",
+  "background_height": 512,
+  "background_parallax_layers": [],
+  "background_width": 512
 }

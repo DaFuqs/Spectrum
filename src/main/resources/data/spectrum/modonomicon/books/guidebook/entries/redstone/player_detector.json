@@ -1,0 +1,32 @@
+{
+  "name": "Player Detector",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/redstone/player_detector"
+  },
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:player_detector": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Player Detector",
+      "text": "You know people who build gigantic constructions out of $(item)Redstone$() just to open an oversized door. And then they trigger it with an unsightly $(item)Pressure Plate$().$(br)The Player Detector, on the other hand, is able to sense your presence - or that of other players - at a distance and sends out a corresponding $(thing)redstone signal$().$(br)Much better."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/detectors/player_detector",
+      "text": "Range: 10 blocks.$(br)Emits a full strength signal, if the player who placed it is detected, otherwise 8."
+    }
+  ]
+}

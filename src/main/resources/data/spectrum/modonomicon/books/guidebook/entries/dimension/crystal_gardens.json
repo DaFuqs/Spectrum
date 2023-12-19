@@ -1,0 +1,63 @@
+{
+  "name": "Crystal Gardens",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/crystal_gardens"
+  },
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:dimension",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:overgrown_blackslag": 0,
+    "spectrum:nephrite_blossom_bulb": 0,
+    "spectrum:nephrite_blossom_leaves": 0,
+    "spectrum:nephrite_blossom_stem": 0,
+    "spectrum:jadeite_lotus_stem": 0,
+    "spectrum:jadeite_lotus_flower": 0,
+    "spectrum:jadeite_lotus_bulb": 0,
+    "spectrum:glass_peach": 0,
+    "spectrum:jadeite_petals": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "Crystal Gardens",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_crystal_gardens.png"
+      ],
+      "border": true,
+      "text": "Lakes of $(l:magical_blocks/liquid_crystal)Liquid Crystal$() and giant $(l:dimension/hummingstone)crystalline structures$() define its look."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": "spectrum:overgrown_blackslag",
+      "text": "The ground is covered with a small layer of soil. Not much, but more than enough to be covered with a thick carpet of moss. The many natural light sources in this biome allow plants to grow here that you might find on the surface, unlike most other biomes."
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "Nephrite Blossoms",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_glass_peach"
+      },
+      "text": "Little trees, as big as they get down here - more like a big bush. ...or giant shrub.$(br)Eeeeh, details.$(br2)Their fruit isn't made of glass, but it shimmers very much like it would be. They are very tasty too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which reduces the damage you take from hard attacks. They can also be $(l:cuisine/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew potions$()."
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Jadeite Blossoms",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_jadeite"
+      },
+      "item": "spectrum:jadeite_petals",
+      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. They are very tasty and can be used as a $(l:brewing/potion_workshop_reagents)Potion Reagent$()."
+    }
+  ]
+}

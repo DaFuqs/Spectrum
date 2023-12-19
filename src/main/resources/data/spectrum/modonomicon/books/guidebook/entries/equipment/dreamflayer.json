@@ -1,0 +1,31 @@
+{
+  "name": "Dreamflayer",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/dreamflayer"
+  },
+  "icon": "spectrum:dreamflayer",
+  "category": "spectrum:equipment",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:dreamflayer": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "A truly exceptional weapon, it embodies the definition of \"offense is a good defense.\"$(br)It is the nature of the Dreamflayer to balance forces:$(br)The more armored your opponent is compared to you, the more damage it will do."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/dreamflayer",
+      "text": "$(italic)If you ever needed a reason to go rampage lightly clad, here it is.$()$(br2)$(k:sneak) + $(k:use) to empower it, allowing it to slice even through the strongest of armour while consuming $(c_red)Red Ink$() at an alarming rate."
+    }
+  ]
+}

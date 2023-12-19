@@ -1,0 +1,59 @@
+{
+  "name": "Glass Ampoules",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/glass_ampoules"
+  },
+  "icon": "spectrum:azurite_glass_ampoule",
+  "category": "spectrum:magical_items",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:azurite_glass_ampoule": 0,
+    "spectrum:malachite_glass_ampoule": 0,
+    "spectrum:bloodstone_glass_ampoule": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Azurite Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/azurite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Azurite Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/azurite_from_refined",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Malachite Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/malachite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Malachite Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/malachite_from_refined",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Bloodstone Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/bloodstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Bloodstone Variant",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/bloodstone_from_refined",
+      "text": ""
+    }
+  ]
+}

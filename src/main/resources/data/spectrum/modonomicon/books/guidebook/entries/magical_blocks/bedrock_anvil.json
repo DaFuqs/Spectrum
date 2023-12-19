@@ -1,0 +1,31 @@
+{
+  "name": "Bedrock Anvil",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
+  },
+  "icon": "spectrum:bedrock_anvil",
+  "category": "spectrum:magical_blocks",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_anvil": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "You've already used your anvil plenty (lots of anvils, to be precise). $(l:general/anvil_crushing)Item Crushing$(/l), repairing and enchanting  are burning a hole in your iron supply.$(br)To make the anvil last longer - or even make it indestructible - Bedrock seems like the perfect choice.$(br)Allows you to rename items for free and has no maximum repair limit."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_anvil",
+      "text": "Also enables you to add descriptions to your items.$(br)$(italic)Pro tip: type \\n to split your text into multiple lines."
+    }
+  ]
+}

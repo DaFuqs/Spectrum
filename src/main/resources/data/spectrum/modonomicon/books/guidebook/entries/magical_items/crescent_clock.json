@@ -1,0 +1,31 @@
+{
+  "name": "Crescent Clock",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/crescent_clock"
+  },
+  "icon": "spectrum:crescent_clock",
+  "category": "spectrum:magical_items",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:crescent_clock": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "This clock, made up of witnesses to time, is intended to guide you through this never-ending stream of beginnings and endings - the phases of the moon.$(br2)$(br2)$(italic)If we shadows have offended, Know but this and all is mended."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/crescent_clock",
+      "text": "$(italic)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
+    }
+  ]
+}

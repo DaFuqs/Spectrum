@@ -1,0 +1,123 @@
+{
+  "name": "Preservation Ruins",
+  "icon": "spectrum:preservation_controller",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:find_preservation_ruins"
+  },
+  "sortnum": 16,
+  "turnin": "spectrum:hidden/solve_every_preservation_ruin",
+  "category": "spectrum:general",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:preservation_stone": 0,
+    "spectrum:preservation_stairs": 0,
+    "spectrum:preservation_slab": 0,
+    "spectrum:preservation_controller": 0,
+    "spectrum:powder_chiseled_preservation_stone": 0,
+    "spectrum:dike_chiseled_preservation_stone": 0,
+    "spectrum:preservation_chest": 0,
+    "spectrum:preservation_glass": 0,
+    "spectrum:tinted_preservation_glass": 0,
+    "spectrum:dike_gate": 0,
+    "spectrum:dike_gate_fountain": 0,
+    "spectrum:courier_statue": 0,
+    "spectrum:preservation_bricks": 0,
+    "spectrum:preservation_roundel": 0,
+    "spectrum:preservation_block_detector": 0,
+    "spectrum:shimmering_preservation_bricks": 0,
+    "spectrum:black_chiseled_preservation_stone": 0,
+    "spectrum:blue_chiseled_preservation_stone": 0,
+    "spectrum:brown_chiseled_preservation_stone": 0,
+    "spectrum:cyan_chiseled_preservation_stone": 0,
+    "spectrum:gray_chiseled_preservation_stone": 0,
+    "spectrum:green_chiseled_preservation_stone": 0,
+    "spectrum:light_blue_chiseled_preservation_stone": 0,
+    "spectrum:light_gray_chiseled_preservation_stone": 0,
+    "spectrum:lime_chiseled_preservation_stone": 0,
+    "spectrum:magenta_chiseled_preservation_stone": 0,
+    "spectrum:orange_chiseled_preservation_stone": 0,
+    "spectrum:pink_chiseled_preservation_stone": 0,
+    "spectrum:purple_chiseled_preservation_stone": 0,
+    "spectrum:red_chiseled_preservation_stone": 0,
+    "spectrum:white_chiseled_preservation_stone": 0,
+    "spectrum:yellow_chiseled_preservation_stone": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "Preservation Ruins",
+      "item": "spectrum:preservation_controller",
+      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "A Challenge?",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
+      },
+      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but was miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "How many are there?",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
+      },
+      "checklist": {
+        "spectrum:solve_color_mixing_preservation_ruin": "Preservation Ruin #1",
+        "spectrum:solve_dike_gate_preservation_ruin": "Preservation Ruin #2",
+        "spectrum:solve_wireless_redstone_preservation_ruin": "Preservation Ruin #3"
+      },
+      "text": "They seem to come in different variations. In each one you will encounter a different challenge."
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "A Protected Entrance",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:enter_dike_gate_preservation_ruin"
+      },
+      "images": [
+        "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
+      ],
+      "border": true,
+      "text": "A strong, magical forcefield. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "Color Combinations",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:enter_color_mixing_preservation_ruin"
+      },
+      "images": [
+        "spectrum:textures/gui/guidebook/preservation_ruin_color_mixing.png"
+      ],
+      "border": true,
+      "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "Short Wired",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:enter_wireless_redstone_preservation_ruin"
+      },
+      "images": [
+        "spectrum:textures/gui/guidebook/preservation_ruin_wireless_redstone.png"
+      ],
+      "border": true,
+      "text": "A really weird one. Having some colors at hand helped a lot."
+    }
+  ]
+}

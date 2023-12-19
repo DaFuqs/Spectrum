@@ -1,0 +1,30 @@
+{
+  "name": "Pipe Bomb",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/pipe_bomb"
+  },
+  "icon": "spectrum:pipe_bomb",
+  "category": "spectrum:magical_items",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:pipe_bomb": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "$(l:resources/moonstone_cores)Moonstone Cores$() are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.$(br2)$(italic)...but sometimes the worst ideas are the best, aren't they?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/boom/pipe_bomb",
+      "text": "$(italic)They make for great gifts!$()"
+    }
+  ]
+}

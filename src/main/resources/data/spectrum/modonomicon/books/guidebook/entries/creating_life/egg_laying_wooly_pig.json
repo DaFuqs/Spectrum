@@ -1,0 +1,58 @@
+{
+  "name": "Egg Laying Wooly Pigs",
+  "icon": "spectrum:egg_laying_wooly_pig_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
+  },
+  "category": "spectrum:creating_life",
+
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:egg_laying_wooly_pig_head": 0,
+    "spectrum:egg_laying_wooly_pig_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Egg Laying Wooly Pig",
+      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.$(br2)Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself.$(br)$(italic)Is that a good thing? Bad? You are not sure at all."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusing a Head",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
+      },
+      "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
+      "text": "What would your creation like to eat? It's relevant, for... $(l:creating_life/memories)reasons$()."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
+      },
+      "title": "Remembering",
+      "recipe": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
+      "text": "$(l:cuisine/amaranth)Amaranth$(), did the trick!"
+    },
+    {
+      "type": "modonomicon:entity",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
+      },
+      "title": "The Creature",
+      "entity": "spectrum:egg_laying_wooly_pig",
+      "text": "Able to be $(thing)sheared$() and $(thing)milked$(), while also $(thing)laying eggs$()."
+    }
+  ]
+}

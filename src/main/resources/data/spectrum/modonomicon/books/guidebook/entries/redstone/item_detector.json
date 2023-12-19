@@ -1,0 +1,32 @@
+{
+  "name": "Item Detector",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/redstone/item_detector"
+  },
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "description": "",
+  "x": -2,
+  "y": 1,
+
+  "extra_recipe_mappings": {
+    "spectrum:item_detector": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "Item Detector",
+      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.$(br2)The strength of the $(thing)redstone signal$() depends on how many items are lying around."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/detectors/item_detector",
+      "text": "64 items result in a signal with maximum strength."
+    }
+  ]
+}

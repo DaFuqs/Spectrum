@@ -18,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class StructureMapState extends MapState {
+public class ArtisansAtlasState extends MapState {
 
     private final MapStateAccessor accessor;
     private final Set<StructureStart> targets;
@@ -29,7 +29,7 @@ public class StructureMapState extends MapState {
     @Nullable
     private StructureLocatorAsync locator;
 
-    public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
+    public ArtisansAtlasState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;
         this.targets = new HashSet<>();
@@ -38,7 +38,7 @@ public class StructureMapState extends MapState {
         this.locator = null;
     }
 
-    public StructureMapState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
+    public ArtisansAtlasState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
         this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
 
         // We'll use the colors from nbt
@@ -73,7 +73,7 @@ public class StructureMapState extends MapState {
     public NbtCompound writeNbt(NbtCompound nbt) {
         nbt = super.writeNbt(nbt);
 
-        nbt.putBoolean("isSpectrumMap", true);
+        nbt.putBoolean("isArtisansAtlas", true);
 
         nbt.putInt("displayX", displayedCenter.getX());
         nbt.putInt("displayZ", displayedCenter.getZ());

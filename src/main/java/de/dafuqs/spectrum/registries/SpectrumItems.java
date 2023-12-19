@@ -427,7 +427,7 @@ public class SpectrumItems {
 	public static final BottomlessBundleItem BOTTOMLESS_BUNDLE = new BottomlessBundleItem(IS.of(1));
 	public static final KnowledgeGemItem KNOWLEDGE_GEM = new KnowledgeGemItem(IS.of(1, Rarity.UNCOMMON), 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(IS.of(1, Rarity.UNCOMMON));
-	public static final Item ARTISANS_ATLAS = new StructureMapItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item ARTISANS_ATLAS = new ArtisansAtlasItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item GILDED_BOOK = new GildedBookItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(IS.of(16, Rarity.UNCOMMON));
 	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(IS.of());

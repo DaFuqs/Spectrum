@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.map.StructureMapState;
+import de.dafuqs.spectrum.items.map.ArtisansAtlasState;
 import net.minecraft.item.map.MapState;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -20,12 +20,12 @@ public class MapStateMixin {
 
     // Caches the created state between the two mixins
     @Nullable
-    private static StructureMapState structureMapState = null;
+    private static ArtisansAtlasState atlasState = null;
 
     @Inject(method = "fromNbt", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/map/MapState;<init>(IIBZZZLnet/minecraft/registry/RegistryKey;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
     private static void spectrum$fromNbt_newMapState(NbtCompound nbt, CallbackInfoReturnable<MapState> cir, RegistryKey<World> dimension, int centerX, int centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked) {
-        if (nbt.contains("isSpectrumMap", NbtElement.BYTE_TYPE) && nbt.getBoolean("isSpectrumMap")) {
-            structureMapState = new StructureMapState(centerX, centerZ, scale, showIcons, unlimitedTracking, locked, dimension, nbt);
+        if (nbt.contains("isArtisansAtlas", NbtElement.BYTE_TYPE) && nbt.getBoolean("isArtisansAtlas")) {
+            atlasState = new ArtisansAtlasState(centerX, centerZ, scale, showIcons, unlimitedTracking, locked, dimension, nbt);
         }
     }
 
@@ -38,9 +38,9 @@ public class MapStateMixin {
             at = @At(value = "STORE")
     )
     private static MapState spectrum$fromNbt_storeMapState(MapState vanillaState) {
-        if (structureMapState != null) {
-            StructureMapState state = structureMapState;
-            structureMapState = null;
+        if (atlasState != null) {
+            ArtisansAtlasState state = atlasState;
+            atlasState = null;
             return state;
         }
         return vanillaState;

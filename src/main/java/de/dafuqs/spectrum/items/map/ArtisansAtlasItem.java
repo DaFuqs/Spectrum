@@ -23,11 +23,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class StructureMapItem extends FilledMapItem {
+public class ArtisansAtlasItem extends FilledMapItem {
     
     public static final int COOLDOWN_DURATION_TICKS = 20;
     
-    public StructureMapItem(Settings settings) {
+    public ArtisansAtlasItem(Settings settings) {
         super(settings);
     }
     
@@ -42,7 +42,7 @@ public class StructureMapItem extends FilledMapItem {
             nbt.putInt("map", id);
         }
 
-        StructureMapState state = new StructureMapState(centerX, centerZ, (byte) 1, true, true, false, world.getRegistryKey());
+        ArtisansAtlasState state = new ArtisansAtlasState(centerX, centerZ, (byte) 1, true, true, false, world.getRegistryKey());
 
         state.setTargetId(targetId);
         if (targetId != null) {
@@ -59,7 +59,7 @@ public class StructureMapItem extends FilledMapItem {
 
     @Override
     public void updateColors(World world, Entity entity, MapState state) {
-        if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity playerEntity) || !(state instanceof StructureMapState structureState)) {
+        if (world.getRegistryKey() != state.dimension || !(entity instanceof PlayerEntity playerEntity) || !(state instanceof ArtisansAtlasState atlasState)) {
             return;
         }
 
@@ -67,18 +67,18 @@ public class StructureMapItem extends FilledMapItem {
         MapState.PlayerUpdateTracker playerUpdateTracker = state.getPlayerSyncData(playerEntity);
         playerUpdateTracker.field_131++;
 
-        Vec3i delta = structureState.getDisplayDelta();
+        Vec3i delta = atlasState.getDisplayDelta();
         if (delta == null) {
             // Delta is null when the state is first created, so update the whole thing
-            delta = entity.getBlockPos().subtract(structureState.getDisplayedCenter());
+            delta = entity.getBlockPos().subtract(atlasState.getDisplayedCenter());
             int deltaX = delta.getX() / sampleSize;
             int deltaZ = delta.getZ() / sampleSize;
 
             for (int x = 0; x <= 127; x++) {
-                updateVerticalStrip(world, structureState, deltaX, deltaZ, x, 0, 127);
+                updateVerticalStrip(world, atlasState, deltaX, deltaZ, x, 0, 127);
             }
 
-            structureState.clearDisplayDelta();
+            atlasState.clearDisplayDelta();
             return;
         }
 
@@ -88,26 +88,26 @@ public class StructureMapItem extends FilledMapItem {
 
         if (deltaX < 0) {
             for (int x = 127; x >= -deltaX; x--) {
-                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
+                updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
             }
             for (int x = 0; x <= Math.min(127, -deltaX - 1); x++) {
-                updateVerticalStrip(world, structureState, deltaX, deltaZ, x, 0, 127);
+                updateVerticalStrip(world, atlasState, deltaX, deltaZ, x, 0, 127);
             }
         } else {
             for (int x = 0; x <= 127 - deltaX; x++) {
-                updateOrCopyVerticalStrip(world, structureState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
+                updateOrCopyVerticalStrip(world, atlasState, deltaX, deltaZ, x, playerUpdateTracker.field_131);
             }
             for (int x = Math.max(0, 127 - deltaX + 1); x <= 127; x++) {
-                updateVerticalStrip(world, structureState, deltaX, deltaZ, x, 0, 127);
+                updateVerticalStrip(world, atlasState, deltaX, deltaZ, x, 0, 127);
             }
         }
 
         if (deltaX != 0 || deltaZ != 0) {
-            structureState.clearDisplayDelta();
+            atlasState.clearDisplayDelta();
         }
     }
 
-    private void updateOrCopyVerticalStrip(World world, StructureMapState state, int deltaX, int deltaZ, int x, int tick) {
+    private void updateOrCopyVerticalStrip(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int tick) {
         if (deltaX > 127 || deltaX < -127 || deltaZ > 127 || deltaZ < -127 || (x & 15) == (tick & 15)) {
             updateVerticalStrip(world, state, deltaX, deltaZ, x, 0, 127);
         } else if (deltaZ < 0) {
@@ -121,7 +121,7 @@ public class StructureMapItem extends FilledMapItem {
         }
     }
 
-    private void copyVerticalStrip(StructureMapState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
+    private void copyVerticalStrip(ArtisansAtlasState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
         if (startZ > endZ) {
             for (int z = startZ; z >= endZ; z--) {
                 state.setColor(x, z, state.colors[(x + deltaX) + (z + deltaZ) * 128]);
@@ -133,14 +133,14 @@ public class StructureMapItem extends FilledMapItem {
         }
     }
 
-    private void updateVerticalStrip(World world, StructureMapState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
+    private void updateVerticalStrip(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int startZ, int endZ) {
         double previousHeight = updateColor(world, state, deltaX, deltaZ, x, startZ - 1, 0, false);
         for (int z = startZ; z <= endZ; z++) {
             previousHeight = updateColor(world, state, deltaX, deltaZ, x, z, previousHeight, true);
         }
     }
 
-    private double updateColor(World world, StructureMapState state, int deltaX, int deltaZ, int x, int z, double previousHeight, boolean setColor) {
+    private double updateColor(World world, ArtisansAtlasState state, int deltaX, int deltaZ, int x, int z, double previousHeight, boolean setColor) {
         int sampleSize = 1 << state.scale;
         int sampleArea = sampleSize * sampleSize;
 
@@ -255,8 +255,8 @@ public class StructureMapItem extends FilledMapItem {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (!world.isClient) {
             MapState state = getMapState(stack, world);
-            if (state instanceof StructureMapState structureState) {
-                structureState.updateDimension(world.getRegistryKey());
+            if (state instanceof ArtisansAtlasState atlasState) {
+                atlasState.updateDimension(world.getRegistryKey());
             }
         }
 
@@ -270,7 +270,7 @@ public class StructureMapItem extends FilledMapItem {
             if (serverPlayerEntity.isSneaking()) {
                 Vec3d hitPos = context.getHitPos();
                 BlockPos blockPos = BlockPos.ofFloored(hitPos.getX(), hitPos.getY(), hitPos.getZ());
-                Pair<Identifier, StructureStart> pair = StructureMapState.locateAnyStructureAtBlock(serverWorld, blockPos);
+                Pair<Identifier, StructureStart> pair = ArtisansAtlasState.locateAnyStructureAtBlock(serverWorld, blockPos);
                 if (pair != null) {
                     Identifier structureId = pair.getFirst();
                     if (SpectrumStructureTags.isIn(serverWorld, structureId, SpectrumStructureTags.UNLOCATABLE)) {
@@ -306,8 +306,8 @@ public class StructureMapItem extends FilledMapItem {
         super.appendTooltip(stack, world, tooltip, context);
         
         MapState state = getMapState(stack, world);
-        if (state instanceof StructureMapState structureState) { // TODO: this always is false, since getMapState() only returns a MapState, not StructureMapState
-            Identifier structureId = structureState.getTargetId();
+        if (state instanceof ArtisansAtlasState atlasState) { // TODO: this always is false, since getMapState() only returns a MapState, not StructureMapState
+            Identifier structureId = atlasState.getTargetId();
             if (structureId == null) {
                 tooltip.add(Text.translatable("item.spectrum.artisans_atlas.empty"));
             } else {

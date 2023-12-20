@@ -298,7 +298,7 @@
   "spectrum.tooltip.ink_powered.purple": "Использует §dрозовую краску§r",
   "spectrum.tooltip.ink_powered.red": "Использует §cкрасную Краску§r",
   "spectrum.tooltip.ink_powered.bullet.cyan": "§b◆ %d §bБирюзовой краски§r",
-  "spectrum.tooltip.ink_powered.bullet.magenta": "§b◆ %d §bПурпурной краски§r",
+  "spectrum.tooltip.ink_powered.bullet.magenta": "§d◆ %d §dПурпурной краски§r",
   "spectrum.tooltip.ink_powered.bullet.yellow": "§e◆ %d §eЖёлтой краски§r",
   "spectrum.tooltip.ink_powered.bullet.black": "§8◆ %d §8Чёрной краски§r",
   "spectrum.tooltip.ink_powered.bullet.white": "§f◆ %d §fБелой краски§r",

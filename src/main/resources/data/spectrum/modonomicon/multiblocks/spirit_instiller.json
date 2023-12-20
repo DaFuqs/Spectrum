@@ -1,0 +1,102 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "________",
+      "________",
+      "__M_____",
+      "________",
+      "________",
+      "________",
+      "__M_____",
+      "________",
+      "________"
+    ],
+    [
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________",
+      "________"
+    ],
+   [
+      "________",
+      "K_______",
+      "__I_____",
+      "________",
+      "________",
+      "________",
+      "__I_____",
+      "K_______",
+      "________"
+    ],
+[
+      "______G_",
+      "P_______",
+      "__C_____",
+      "_LLLLL__",
+      "_LSLLL__",
+      "_LLLLL__",
+      "__C_____",
+      "P_______",
+      "______G_"
+    ],
+    [
+      "______P_",
+      "PXXXX___",
+      "XXXXXX__",
+      "XXXXXXXL",
+      "XXXXXX0L",
+      "XXXXXXXL",
+      "XXXXXX__",
+      "PXXXX___",
+      "______P_"
+    ]
+  ],
+  "mapping": {
+    "S": {
+      "type": "modonomicon:block",
+      "block": "spectrum:spirit_instiller"
+    },
+    "X": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_block_slabs"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:pillar_base_blocks"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:chiseled_base_blocks"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:onyx_chiseled_base_blocks"
+    },
+    "K": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:notched_base_blocks"
+    },
+    "I": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:item_bowls"
+    },
+    "M": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:gemstone_chimes"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    }
+  }
+}

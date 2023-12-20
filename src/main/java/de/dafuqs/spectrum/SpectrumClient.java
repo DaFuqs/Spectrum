@@ -63,6 +63,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
 
+		SpectrumShaderPrograms.initPrograms();
+		SpectrumRenderPhases.init();
+
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 

@@ -44,6 +44,16 @@ public class FluidLogging {
 				}
 			}
 		}
+
+		public static State getForFluidState(FluidState fluidState) {
+			if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
+				return LIQUID_CRYSTAL;
+			} else if (fluidState.isIn(FluidTags.WATER)) {
+				return WATER;
+			}
+
+			return NOT_LOGGED;
+		}
 		
 		public boolean isOf(Fluid fluid) {
 			return this.getFluidState().isOf(fluid);

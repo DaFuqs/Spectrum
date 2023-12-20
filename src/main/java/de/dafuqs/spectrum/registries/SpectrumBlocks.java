@@ -343,7 +343,7 @@ public class SpectrumBlocks {
 	
 	// GEMSTONE LAMPS
 	private static Settings gemstoneLamp(AbstractBlock block) {
-		return FabricBlockSettings.copyOf(block).luminance(15).nonOpaque();
+		return FabricBlockSettings.copyOf(block).luminance(15);
 	}
 	public static final Block TOPAZ_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));
 	public static final Block AMETHYST_BASALT_LAMP = new Block(gemstoneLamp(POLISHED_BASALT));

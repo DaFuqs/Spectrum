@@ -44,7 +44,6 @@
     "spectrum:cracked_dragonbone",
     "spectrum:overgrown_blackslag",
     "spectrum:pyrite_ripper",
-    "spectrum:bloodstone_block",
 
     "spectrum:citrine_block",
     "spectrum:budding_citrine",
@@ -110,6 +109,7 @@
     "spectrum:radiant_glass",
     "spectrum:bismuth_block",
     "spectrum:malachite_block",
+    "spectrum:bloodstone_block",
     "spectrum:spectral_shard_block",
     "spectrum:enchanter",
     "spectrum:bedrock_storage_block",

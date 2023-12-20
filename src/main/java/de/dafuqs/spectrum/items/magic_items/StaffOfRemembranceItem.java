@@ -87,6 +87,8 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 			return false;
 		}
 		
+		entity.detachLeash(true, true);
+		
 		entity.playAmbientSound();
 		entity.playSpawnEffects();
 		

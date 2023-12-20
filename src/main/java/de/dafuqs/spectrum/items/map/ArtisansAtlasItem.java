@@ -300,13 +300,13 @@ public class ArtisansAtlasItem extends FilledMapItem {
     
         return TypedActionResult.success(stack, world.isClient());
     }
-    
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         
         MapState state = getMapState(stack, world);
-        if (state instanceof ArtisansAtlasState atlasState) { // TODO: this always is false, since getMapState() only returns a MapState, not StructureMapState
+        if (state instanceof ArtisansAtlasState atlasState) {
             Identifier structureId = atlasState.getTargetId();
             if (structureId == null) {
                 tooltip.add(Text.translatable("item.spectrum.artisans_atlas.empty"));

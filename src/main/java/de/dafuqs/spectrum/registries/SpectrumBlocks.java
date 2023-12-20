@@ -790,7 +790,6 @@ public class SpectrumBlocks {
 	private static Settings gravityBlock(MapColor mapColor) {
 		return settings(mapColor, BlockSoundGroup.METAL, 4.0F, 6.0F).instrument(Instrument.BASEDRUM).requiresTool();
 	}
-	
 	public static final FloatBlock PALTAERIA_FRAGMENT_BLOCK = new FloatBlock(gravityBlock(MapColor.LIGHT_BLUE), 0.2F);
 	public static final FloatBlock STRATINE_FRAGMENT_BLOCK = new FloatBlock(gravityBlock(MapColor.DARK_RED), -0.2F);
 	public static final FloatBlock HOVER_BLOCK = new FloatBlock(gravityBlock(MapColor.DIAMOND_BLUE), 0.0F);
@@ -824,11 +823,11 @@ public class SpectrumBlocks {
 	public static final Block AMARANTH = new AmaranthCropBlock(settings(MapColor.CLEAR, BlockSoundGroup.CROP, 0.0F).noCollision().ticksRandomly());
 	public static final Block AMARANTH_BUSHEL = new AmaranthBushelBlock(settings(MapColor.CLEAR, BlockSoundGroup.CROP, 0.0F).noCollision());
 	
-	// TODO: CONTINUE BLOCK SETTINGS REVAMP FROM HERE AND LOWER
-	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.create().breakInstantly().blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
-	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(Settings.create().mapColor(MapColor.PALE_PURPLE).instrument(Instrument.BASEDRUM).sounds(BlockSoundGroup.GLASS).luminance((state) -> 1).strength(-1.0F, 3600000.0F));
-	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
-	public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final Block MEMORY = new MemoryBlock(settings(MapColor.CLEAR, BlockSoundGroup.AMETHYST_BLOCK, 0.0F).blockVision(SpectrumBlocks::never).nonOpaque().ticksRandomly());
+	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(settings(MapColor.PALE_PURPLE, BlockSoundGroup.GLASS, -1.0F, 3600000.0F).instrument(Instrument.BASEDRUM).luminance((state) -> 1));
+	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE).mapColor(MapColor.ORANGE));
+	public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).mapColor(MapColor.ORANGE).luminance(9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	
 	public static final Block LIGHT_LEVEL_DETECTOR = new BlockLightDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
 	public static final Block WEATHER_DETECTOR = new WeatherDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
 	public static final Block ITEM_DETECTOR = new ItemDetectorBlock(FabricBlockSettings.copyOf(Blocks.DAYLIGHT_DETECTOR));
@@ -840,29 +839,32 @@ public class SpectrumBlocks {
 	public static final Block BLOCK_PLACER = new BlockPlacerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 	public static final Block BLOCK_DETECTOR = new BlockDetectorBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
 	public static final Block BLOCK_BREAKER = new BlockBreakerBlock(FabricBlockSettings.copyOf(Blocks.DISPENSER));
-	public static final EnderDropperBlock ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
-	public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
+	public static final EnderDropperBlock ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).mapColor(MapColor.GRAY).requiresTool().strength(15F, 60.0F));
+	public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).mapColor(MapColor.GRAY).requiresTool().strength(15F, 60.0F));
 	
-	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 8));
-	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_ROOTS = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).luminance(11));
-	public static final Block SACRED_SOIL = new ExtraTickFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND), Blocks.DIRT.getDefaultState());
+	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).mapColor(MapColor.OFF_WHITE).luminance((state) -> 8));
+	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).mapColor(MapColor.GRAY));
+	public static final Block SPIRIT_SALLOW_ROOTS = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).mapColor(MapColor.GRAY));
+	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).mapColor(MapColor.GRAY).luminance(11));
+	public static final Block SACRED_SOIL = new ExtraTickFarmlandBlock(FabricBlockSettings.copyOf(Blocks.FARMLAND).mapColor(MapColor.LIGHT_BLUE_GRAY), Blocks.DIRT.getDefaultState());
 	
-	private static final FabricBlockSettings spiritVinesBlockSettings = FabricBlockSettings.create().noCollision().breakInstantly().sounds(BlockSoundGroup.CAVE_VINES);
-	public static final Block CYAN_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
-	public static final Block CYAN_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
-	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
-	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
-	public static final Block YELLOW_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
-	public static final Block YELLOW_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
-	public static final Block BLACK_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
-	public static final Block BLACK_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
-	public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
-	public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(FabricBlockSettings.copyOf(spiritVinesBlockSettings).mapColor(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
+	private static Settings spiritVines(MapColor mapColor) {
+		return settings(mapColor, BlockSoundGroup.CAVE_VINES, 0.0F).noCollision();
+	}
 	
-	public static final Block STUCK_STORM_STONE = new StuckStormStoneBlock(FabricBlockSettings.create().mapColor(MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
-	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.create().mapColor(MapColor.BLACK).pistonBehavior(PistonBehavior.BLOCK).luminance(8).strength(-1.0F, 3600000.0F).dropsNothing());
+	public static final Block CYAN_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
+	public static final Block CYAN_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
+	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
+	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
+	public static final Block YELLOW_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
+	public static final Block YELLOW_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
+	public static final Block BLACK_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
+	public static final Block BLACK_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
+	public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
+	public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
+	
+	public static final Block STUCK_STORM_STONE = new StuckStormStoneBlock(settings(MapColor.PALE_YELLOW, BlockSoundGroup.SMALL_AMETHYST_BUD, 0.0F).noCollision());
+	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(settings(MapColor.BLACK, BlockSoundGroup.INTENTIONALLY_EMPTY, -1.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK).luminance(state -> 8).dropsNothing());
 	
 	public static final Block UPGRADE_SPEED = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 1, DyeColor.MAGENTA);
 	public static final Block UPGRADE_SPEED2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 2, DyeColor.MAGENTA);
@@ -874,8 +876,8 @@ public class SpectrumBlocks {
 	public static final Block UPGRADE_EXPERIENCE = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 1, DyeColor.PURPLE);
 	public static final Block UPGRADE_EXPERIENCE2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 4, DyeColor.PURPLE);
 	
-	public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
-	public static final Block ENDER_GLASS = new EnderGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()
+	public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND).mapColor(MapColor.BRIGHT_RED));
+	public static final Block ENDER_GLASS = new EnderGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).mapColor(MapColor.PURPLE).nonOpaque()
 			.allowsSpawning((state, world, pos, entityType) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID)
 			.solidBlock(SpectrumBlocks::never).suffocates((state, world, pos) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID)
 			.blockVision((state, world, pos) -> state.get(EnderGlassBlock.TRANSPARENCY_STATE) == EnderGlassBlock.TransparencyState.SOLID));
@@ -883,145 +885,143 @@ public class SpectrumBlocks {
 	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offset(AbstractBlock.OffsetType.XZ));
 	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(SpectrumStatusEffects.FRENZY, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly());
 	
-	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
-	public static final Block TOPAZ_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.STONE.getDefaultState());
-	public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
-	public static final Block CITRINE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
-	public static final Block ONYX_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.STONE.getDefaultState());
-	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
+	public static final Block TOPAZ_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.STONE.getDefaultState());
+	public static final Block AMETHYST_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
+	public static final Block CITRINE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
+	public static final Block ONYX_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.STONE.getDefaultState());
+	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(ore(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
 	
-	private static final FabricBlockSettings deepslateGemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE);
-	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
 	
-	private static final FabricBlockSettings blackslagGemOreBlockSettings = FabricBlockSettings.copyOf(SpectrumBlocks.BLACKSLAG);
-	public static final Block BLACKSLAG_TOPAZ_ORE = new GemstoneOreBlock(blackslagGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_AMETHYST_ORE = new GemstoneOreBlock(blackslagGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_CITRINE_ORE = new GemstoneOreBlock(blackslagGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_ONYX_ORE = new GemstoneOreBlock(blackslagGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
-	public static final Block BLACKSLAG_MOONSTONE_ORE = new GemstoneOreBlock(blackslagGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_TOPAZ_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_AMETHYST_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_CITRINE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_ONYX_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_MOONSTONE_ORE = new GemstoneOreBlock(blackslagOre(), gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), SpectrumBlocks.BLACKSLAG.getDefaultState());
 	
-	private static final FabricBlockSettings gemstoneStorageBlockSettings = FabricBlockSettings.create().requiresTool().strength(5.0F, 6.0F);
-	public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-	public static final Block AMETHYST_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-	public static final Block CITRINE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-	public static final Block ONYX_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-	public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
-	public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
+	private static Settings gemStorageBlock(MapColor mapColor, BlockSoundGroup soundGroup) {
+		return settings(mapColor, soundGroup, 5.0F, 6.0F);
+	}
+	
+	public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.CYAN, SpectrumBlockSoundGroups.TOPAZ_BLOCK));
+	public static final Block AMETHYST_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.MAGENTA, BlockSoundGroup.AMETHYST_BLOCK));
+	public static final Block CITRINE_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.YELLOW, SpectrumBlockSoundGroups.CITRINE_BLOCK));
+	public static final Block ONYX_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.BLACK, SpectrumBlockSoundGroups.ONYX_BLOCK));
+	public static final Block MOONSTONE_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK));
+	public static final Block SPECTRAL_SHARD_STORAGE_BLOCK = new Block(gemStorageBlock(MapColor.OFF_WHITE, SpectrumBlockSoundGroups.SPECTRAL_BLOCK));
 	
 	// COLORED TREES
-	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
-	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.RED);
-	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.YELLOW);
+	private static Settings coloredBlock(Block baseBlock, MapColor color) {
+		return FabricBlockSettings.copyOf(baseBlock).mapColor(color);
+	}
 	
-	private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES);
-	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.RED);
-	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.YELLOW);
+	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(coloredBlock(Blocks.OAK_SAPLING, MapColor.YELLOW), DyeColor.YELLOW);
 	
-	private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG);
-	public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.RED);
-	public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredBlock(Blocks.OAK_LEAVES, MapColor.YELLOW), DyeColor.YELLOW);
 	
-	public static final Block STRIPPED_BLACK_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BLACK);
-	public static final Block STRIPPED_BLUE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BLUE);
-	public static final Block STRIPPED_BROWN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.BROWN);
-	public static final Block STRIPPED_CYAN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.CYAN);
-	public static final Block STRIPPED_GRAY_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.GRAY);
-	public static final Block STRIPPED_GREEN_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.GREEN);
-	public static final Block STRIPPED_LIGHT_BLUE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block STRIPPED_LIGHT_GRAY_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block STRIPPED_LIME_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.LIME);
-	public static final Block STRIPPED_MAGENTA_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
-	public static final Block STRIPPED_ORANGE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.ORANGE);
-	public static final Block STRIPPED_PINK_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.PINK);
-	public static final Block STRIPPED_PURPLE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.PURPLE);
-	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.RED);
-	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
-	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	public static final Block BLACK_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredBlock(Blocks.OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
 	
-	public static final Block BLACK_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.RED);
-	public static final Block WHITE_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_WOOD = new ColoredWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	public static final Block STRIPPED_BLACK_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.LIME), DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.PINK), DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.RED), DyeColor.RED);
+	public static final Block STRIPPED_WHITE_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_LOG = new ColoredStrippedLogBlock(coloredBlock(Blocks.STRIPPED_OAK_LOG, MapColor.YELLOW), DyeColor.YELLOW);
 	
-	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLACK);
-	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BLUE);
-	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.BROWN);
-	public static final Block STRIPPED_CYAN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.CYAN);
-	public static final Block STRIPPED_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.GRAY);
-	public static final Block STRIPPED_GREEN_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.GREEN);
-	public static final Block STRIPPED_LIGHT_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block STRIPPED_LIGHT_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block STRIPPED_LIME_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.LIME);
-	public static final Block STRIPPED_MAGENTA_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
-	public static final Block STRIPPED_ORANGE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.ORANGE);
-	public static final Block STRIPPED_PINK_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.PINK);
-	public static final Block STRIPPED_PURPLE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.PURPLE);
-	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.RED);
-	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.WHITE);
-	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	public static final Block BLACK_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_WOOD = new ColoredWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
 	
-	// POTTED PLANTS
-	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, pottedPlant());
-	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant());
+	public static final Block STRIPPED_BLACK_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.STRIPPED_OAK_WOOD, MapColor.BLACK), DyeColor.BLACK);
+	public static final Block STRIPPED_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BLUE), DyeColor.BLUE);
+	public static final Block STRIPPED_BROWN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.BROWN), DyeColor.BROWN);
+	public static final Block STRIPPED_CYAN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.CYAN), DyeColor.CYAN);
+	public static final Block STRIPPED_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GRAY), DyeColor.GRAY);
+	public static final Block STRIPPED_GREEN_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.GREEN), DyeColor.GREEN);
+	public static final Block STRIPPED_LIGHT_BLUE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block STRIPPED_LIGHT_GRAY_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block STRIPPED_LIME_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.LIME), DyeColor.LIME);
+	public static final Block STRIPPED_MAGENTA_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block STRIPPED_ORANGE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block STRIPPED_PINK_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PINK), DyeColor.PINK);
+	public static final Block STRIPPED_PURPLE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block STRIPPED_RED_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.RED), DyeColor.RED);
+	public static final Block STRIPPED_WHITE_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.WHITE), DyeColor.WHITE);
+	public static final Block STRIPPED_YELLOW_WOOD = new ColoredStrippedWoodBlock(coloredBlock(Blocks.OAK_WOOD, MapColor.YELLOW), DyeColor.YELLOW);
+	
 	public static final Block POTTED_BLACK_SAPLING = new PottedColoredSaplingBlock(BLACK_SAPLING, pottedPlant(), DyeColor.BLACK);
 	public static final Block POTTED_BLUE_SAPLING = new PottedColoredSaplingBlock(BLUE_SAPLING, pottedPlant(), DyeColor.BLUE);
 	public static final Block POTTED_BROWN_SAPLING = new PottedColoredSaplingBlock(BROWN_SAPLING, pottedPlant(), DyeColor.BROWN);
@@ -1039,131 +1039,148 @@ public class SpectrumBlocks {
 	public static final Block POTTED_WHITE_SAPLING = new PottedColoredSaplingBlock(WHITE_SAPLING, pottedPlant(), DyeColor.WHITE);
 	public static final Block POTTED_YELLOW_SAPLING = new PottedColoredSaplingBlock(YELLOW_SAPLING, pottedPlant(), DyeColor.YELLOW);
 	
-	// FLAT COLORED BLOCKS
-	private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.create().hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
-	public static final Block BLACK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.RED);
-	public static final Block WHITE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.YELLOW);
+	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, pottedPlant());
+	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant());
 	
-	// COLORED LAMPS
-	private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);
-	public static final Block BLACK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.RED);
-	public static final Block WHITE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.YELLOW);
+	private static Settings glowBlock(MapColor color) {
+		return settings(color, BlockSoundGroup.BASALT, 2.5F).requiresTool().luminance(state -> 1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
+	}
 	
-	// PIGMENT STORAGE BLOCKS
-	private static final FabricBlockSettings pigmentStorageBlockBlockSettings = FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.WOOL);
-	public static final Block BLACK_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.RED);
-	public static final Block WHITE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.YELLOW);
+	public static final Block BLACK_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_GLOWBLOCK = new GlowBlock(glowBlock(MapColor.YELLOW), DyeColor.YELLOW);
 	
-	// SPORE BLOSSOMS
-	private static final FabricBlockSettings sporeBlossomBlockSettings = FabricBlockSettings.copyOf(Blocks.SPORE_BLOSSOM);
-	public static final Block BLACK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BLACK);
-	public static final Block BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BLUE);
-	public static final Block BROWN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.BROWN);
-	public static final Block CYAN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.CYAN);
-	public static final Block GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.GRAY);
-	public static final Block GREEN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.GREEN);
-	public static final Block LIGHT_BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIGHT_BLUE);
-	public static final Block LIGHT_GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIGHT_GRAY);
-	public static final Block LIME_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.LIME);
-	public static final Block MAGENTA_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.MAGENTA);
-	public static final Block ORANGE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.ORANGE);
-	public static final Block PINK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.PINK);
-	public static final Block PURPLE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.PURPLE);
-	public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.RED);
-	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.WHITE);
-	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.YELLOW);
+	private static Settings coloredLamp(MapColor color) {
+		return FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP).mapColor(color);
+	}
 	
-	// SHIMMERSTONE LIGHTS
-	private static final FabricBlockSettings shimmerstoneLightBlockSettings = FabricBlockSettings.create().strength(1.0F, 1.0F).nonOpaque().luminance(15);
-	public static final Block BASALT_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block STONE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block GRANITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block DIORITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block ANDESITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block DEEPSLATE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block BLACKSLAG_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block BLACK_LAMP = new ColoredLightBlock(coloredLamp(MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_LAMP = new ColoredLightBlock(coloredLamp(MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_LAMP = new ColoredLightBlock(coloredLamp(MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_LAMP = new ColoredLightBlock(coloredLamp(MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_LAMP = new ColoredLightBlock(coloredLamp(MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_LAMP = new ColoredLightBlock(coloredLamp(MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LAMP = new ColoredLightBlock(coloredLamp(MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LAMP = new ColoredLightBlock(coloredLamp(MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LAMP = new ColoredLightBlock(coloredLamp(MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_LAMP = new ColoredLightBlock(coloredLamp(MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_LAMP = new ColoredLightBlock(coloredLamp(MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_LAMP = new ColoredLightBlock(coloredLamp(MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_LAMP = new ColoredLightBlock(coloredLamp(MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_LAMP = new ColoredLightBlock(coloredLamp(MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_LAMP = new ColoredLightBlock(coloredLamp(MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_LAMP = new ColoredLightBlock(coloredLamp(MapColor.YELLOW), DyeColor.YELLOW);
+	
+	private static Settings pigmentBlock(MapColor color) {
+		return settings(color, BlockSoundGroup.WOOL, 1.0F);
+	}
+	
+	public static final Block BLACK_BLOCK = new PigmentBlock(pigmentBlock(MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_BLOCK = new PigmentBlock(pigmentBlock(MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_BLOCK = new PigmentBlock(pigmentBlock(MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_BLOCK = new PigmentBlock(pigmentBlock(MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_BLOCK = new PigmentBlock(pigmentBlock(MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_BLOCK = new PigmentBlock(pigmentBlock(MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_BLOCK = new PigmentBlock(pigmentBlock(MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_BLOCK = new PigmentBlock(pigmentBlock(MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_BLOCK = new PigmentBlock(pigmentBlock(MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_BLOCK = new PigmentBlock(pigmentBlock(MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_BLOCK = new PigmentBlock(pigmentBlock(MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_BLOCK = new PigmentBlock(pigmentBlock(MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_BLOCK = new PigmentBlock(pigmentBlock(MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_BLOCK = new PigmentBlock(pigmentBlock(MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_BLOCK = new PigmentBlock(pigmentBlock(MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_BLOCK = new PigmentBlock(pigmentBlock(MapColor.YELLOW), DyeColor.YELLOW);
+	
+	private static Settings sporeBlossom(MapColor color) {
+		return FabricBlockSettings.copyOf(Blocks.SPORE_BLOSSOM).mapColor(color);
+	}
+	
+	public static final Block BLACK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.BLACK), DyeColor.BLACK);
+	public static final Block BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.BLUE), DyeColor.BLUE);
+	public static final Block BROWN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.BROWN), DyeColor.BROWN);
+	public static final Block CYAN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.CYAN), DyeColor.CYAN);
+	public static final Block GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.GRAY), DyeColor.GRAY);
+	public static final Block GREEN_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.GREEN), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.LIGHT_BLUE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.LIGHT_GRAY), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.LIME), DyeColor.LIME);
+	public static final Block MAGENTA_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.MAGENTA), DyeColor.MAGENTA);
+	public static final Block ORANGE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.ORANGE), DyeColor.ORANGE);
+	public static final Block PINK_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.PINK), DyeColor.PINK);
+	public static final Block PURPLE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.PURPLE), DyeColor.PURPLE);
+	public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.RED), DyeColor.RED);
+	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.WHITE), DyeColor.WHITE);
+	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossom(MapColor.YELLOW), DyeColor.YELLOW);
+	
+	private static Settings shimmerstoneLight(BlockSoundGroup soundGroup) {
+		return settings(MapColor.CLEAR, soundGroup, 1.0F).nonOpaque().requiresTool().luminance(state -> 15);
+	}
+	
+	public static final Block BASALT_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.BASALT));
+	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.CALCITE));
+	public static final Block STONE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.STONE));
+	public static final Block GRANITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.STONE));
+	public static final Block DIORITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.STONE));
+	public static final Block ANDESITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.STONE));
+	public static final Block DEEPSLATE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLight(BlockSoundGroup.DEEPSLATE));
 	
 	// CRYSTALLARIEUM
-	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.COAL_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	private static Settings crystallarieumGrowable(Block baseBlock) {
+		return settings(baseBlock.getDefaultMapColor(), baseBlock.getSoundGroup(baseBlock.getDefaultState()), 1.0F).pistonBehavior(PistonBehavior.DESTROY).requiresTool().nonOpaque();
+	}
+	
+	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.COAL_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block COAL_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_COPPER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.COPPER_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_COPPER_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.COPPER_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_COPPER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COPPER_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block COPPER_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COPPER_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_DIAMOND_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.DIAMOND_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_DIAMOND_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.DIAMOND_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_DIAMOND_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_DIAMOND_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block DIAMOND_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_DIAMOND_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.EMERALD_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_EMERALD_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.EMERALD_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block EMERALD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.GLOWSTONE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.GLOWSTONE), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOWSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.GOLD_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_GOLD_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.GOLD_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GOLD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_IRON_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.IRON_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_IRON_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.IRON_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_IRON_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_IRON_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block IRON_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_IRON_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_LAPIS_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.LAPIS_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_LAPIS_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.LAPIS_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_LAPIS_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_LAPIS_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block LAPIS_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_LAPIS_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_NETHERITE_SCRAP_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.ANCIENT_DEBRIS.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_NETHERITE_SCRAP_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.ANCIENT_DEBRIS), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_NETHERITE_SCRAP_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_NETHERITE_SCRAP_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block NETHERITE_SCRAP_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_NETHERITE_SCRAP_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_ECHO_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.SCULK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_ECHO_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.SCULK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_ECHO_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_ECHO_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block ECHO_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_ECHO_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_PRISMARINE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.SCULK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_PRISMARINE_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.SCULK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_PRISMARINE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_PRISMARINE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block PRISMARINE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_PRISMARINE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.QUARTZ_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_QUARTZ_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.QUARTZ_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block QUARTZ_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_REDSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.DESTROY).hardness(1.0f).mapColor(Blocks.REDSTONE_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block SMALL_REDSTONE_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.REDSTONE_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_REDSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_REDSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block REDSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_REDSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	
@@ -1181,69 +1198,76 @@ public class SpectrumBlocks {
 	public static final Block PURE_GLOWSTONE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	public static final Block PURE_PRISMARINE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.PRISMARINE));
 	
-	// STRUCTURE BLOCKS
-	private static final Settings PRESERVATION_BLOCK_SETTINGS = FabricBlockSettings.create().strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
+	private static Settings preservationBlock() {
+		return settings(MapColor.LIGHT_BLUE_GRAY, BlockSoundGroup.STONE, -1.0F, 3600000.0F).instrument(Instrument.BASEDRUM).dropsNothing().allowsSpawning(SpectrumBlocks::never);
+	}
 	
-	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(FabricBlockSettings.create().strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
-	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.create().strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(FabricBlockSettings.create().strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-	public static final Block PRESERVATION_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).strength(-1.0F, 3600000.0F));
+	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(preservationBlock().luminance(state -> 1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
+	public static final Block DIKE_GATE = new DikeGateBlock(preservationBlock().luminance(state -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(preservationBlock().luminance(state -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().blockVision(SpectrumBlocks::never));
+	public static final Block PRESERVATION_CHEST = new TreasureChestBlock(preservationBlock());
 	
-	public static final Block DOWNSTONE = new Block(PRESERVATION_BLOCK_SETTINGS); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
-	public static final Block PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block PRESERVATION_STAIRS = new StairsBlock(PRESERVATION_STONE.getDefaultState(), PRESERVATION_BLOCK_SETTINGS);
-	public static final Block PRESERVATION_SLAB = new SlabBlock(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
-	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
-	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block PRESERVATION_BRICKS = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(PRESERVATION_BLOCK_SETTINGS).luminance(5));
-	public static final Block COURIER_STATUE = new StatueBlock(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block DOWNSTONE = new Block(preservationBlock()); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
+	public static final Block PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block PRESERVATION_STAIRS = new StairsBlock(PRESERVATION_STONE.getDefaultState(), preservationBlock());
+	public static final Block PRESERVATION_SLAB = new SlabBlock(preservationBlock());
+	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 2));
+	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock().luminance(state -> 6));
+	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlock());
+	public static final Block PRESERVATION_BRICKS = new Block(preservationBlock());
+	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlock()).luminance(5));
+	public static final Block COURIER_STATUE = new StatueBlock(preservationBlock());
 	
-	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block BROWN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block CYAN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block GRAY_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block GREEN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block LIGHT_BLUE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block LIGHT_GRAY_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block LIME_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block MAGENTA_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block ORANGE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block PINK_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block PURPLE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block RED_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block WHITE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
-	public static final Block YELLOW_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block BROWN_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block CYAN_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block GRAY_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block GREEN_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block LIGHT_BLUE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block LIGHT_GRAY_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block LIME_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block MAGENTA_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block ORANGE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block PINK_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block PURPLE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block RED_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block WHITE_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
+	public static final Block YELLOW_CHISELED_PRESERVATION_STONE = new Block(preservationBlock());
 	
-	public static final Block PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.create().strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationBlock().sounds(BlockSoundGroup.GLASS).nonOpaque().solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
-	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
-	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE));
+	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(preservationBlock().nonOpaque());
+	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(preservationBlock());
 	
 	public static final BiMap<SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 	public static final BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
 	
-	private static final FabricBlockSettings shootingStartBlockSettings = FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
-	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.GLISTERING);
-	public static final ShootingStarBlock FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.FIERY);
-	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.COLORFUL);
-	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.PRISTINE);
-	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStartBlockSettings, ShootingStar.Type.GEMSTONE);
+	private static Settings shootingStar() {
+		return FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
+	}
+	
+	public static final ShootingStarBlock GLISTERING_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.GLISTERING);
+	public static final ShootingStarBlock FIERY_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.FIERY);
+	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.COLORFUL);
+	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.PRISTINE);
+	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.GEMSTONE);
 	
 	public static final Block INCANDESCENT_AMALGAM = new IncandescentAmalgamBlock(FabricBlockSettings.create().breakInstantly().nonOpaque());
 	
-	public static final FabricBlockSettings mobBlockSettings = FabricBlockSettings.create().mapColor(MapColor.BLUE).sounds(BlockSoundGroup.BONE).strength(3.0F).nonOpaque();
-	public static final Block AXOLOTL_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.AXOLOTL_IDOL), ParticleTypes.HEART, StatusEffects.REGENERATION, 0, 100); // heals 2 hp / 1 heart
-	public static final Block BAT_IDOL = new AoEStatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BAT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.GLOWING, 0, 200, 8);
-	public static final Block BEE_IDOL = new BonemealingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BEE_IDOL), ParticleTypes.DRIPPING_HONEY);
-	public static final Block BLAZE_IDOL = new FirestarterIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.BLAZE_IDOL), ParticleTypes.FLAME);
-	public static final Block CAT_IDOL = new FallDamageNegatingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CAT_IDOL), ParticleTypes.ENCHANTED_HIT);
-	public static final Block CHICKEN_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CHICKEN_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.SLOW_FALLING, 0, 100);
-	public static final Block COW_IDOL = new MilkingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.COW_IDOL), ParticleTypes.ENCHANTED_HIT, 6);
-	public static final Block CREEPER_IDOL = new ExplosionIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_IDOL), ParticleTypes.EXPLOSION, 3, false, Explosion.DestructionType.DESTROY);
-	public static final Block ENDER_DRAGON_IDOL = new ProjectileIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_IDOL), ParticleTypes.DRAGON_BREATH, EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
+	private static Settings idol(BlockSoundGroup soundGroup) {
+		return settings(MapColor.TERRACOTTA_WHITE, soundGroup, 3.0F).requiresTool().nonOpaque();
+	}
+	
+	public static final Block AXOLOTL_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.AXOLOTL_IDOL), ParticleTypes.HEART, StatusEffects.REGENERATION, 0, 100); // heals 2 hp / 1 heart
+	public static final Block BAT_IDOL = new AoEStatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.BAT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.GLOWING, 0, 200, 8);
+	public static final Block BEE_IDOL = new BonemealingIdolBlock(idol(SpectrumBlockSoundGroups.BEE_IDOL), ParticleTypes.DRIPPING_HONEY);
+	public static final Block BLAZE_IDOL = new FirestarterIdolBlock(idol(SpectrumBlockSoundGroups.BLAZE_IDOL), ParticleTypes.FLAME);
+	public static final Block CAT_IDOL = new FallDamageNegatingIdolBlock(idol(SpectrumBlockSoundGroups.CAT_IDOL), ParticleTypes.ENCHANTED_HIT);
+	public static final Block CHICKEN_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.CHICKEN_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.SLOW_FALLING, 0, 100);
+	public static final Block COW_IDOL = new MilkingIdolBlock(idol(SpectrumBlockSoundGroups.COW_IDOL), ParticleTypes.ENCHANTED_HIT, 6);
+	public static final Block CREEPER_IDOL = new ExplosionIdolBlock(idol(SpectrumBlockSoundGroups.CREEPER_IDOL), ParticleTypes.EXPLOSION, 3, false, Explosion.DestructionType.DESTROY);
+	public static final Block ENDER_DRAGON_IDOL = new ProjectileIdolBlock(idol(SpectrumBlockSoundGroups.ENDER_DRAGON_IDOL), ParticleTypes.DRAGON_BREATH, EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
@@ -1260,17 +1284,17 @@ public class SpectrumBlocks {
 			return entity;
 		}
 	};
-	public static final Block ENDERMAN_IDOL = new RandomTeleportingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMAN_IDOL), ParticleTypes.REVERSE_PORTAL, 16, 16);
-	public static final Block ENDERMITE_IDOL = new LineTeleportingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDERMITE_IDOL), ParticleTypes.REVERSE_PORTAL, 16);
-	public static final Block EVOKER_IDOL = new EntitySummoningIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.EVOKER_IDOL), ParticleTypes.ANGRY_VILLAGER, EntityType.VEX) {
+	public static final Block ENDERMAN_IDOL = new RandomTeleportingIdolBlock(idol(SpectrumBlockSoundGroups.ENDERMAN_IDOL), ParticleTypes.REVERSE_PORTAL, 16, 16);
+	public static final Block ENDERMITE_IDOL = new LineTeleportingIdolBlock(idol(SpectrumBlockSoundGroups.ENDERMITE_IDOL), ParticleTypes.REVERSE_PORTAL, 16);
+	public static final Block EVOKER_IDOL = new EntitySummoningIdolBlock(idol(SpectrumBlockSoundGroups.EVOKER_IDOL), ParticleTypes.ANGRY_VILLAGER, EntityType.VEX) {
 		@Override
 		public void afterSummon(ServerWorld world, Entity entity) {
 			((VexEntity) entity).setLifeTicks(20 * (30 + world.random.nextInt(90)));
 		}
 	};
-	public static final Block FISH_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FISH_IDOL), ParticleTypes.SPLASH, StatusEffects.WATER_BREATHING, 0, 200);
-	public static final Block FOX_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.FOX_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.HASTE, 0, 200);
-	public static final Block GHAST_IDOL = new ProjectileIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GHAST_IDOL), ParticleTypes.SMOKE, EntityType.FIREBALL, SoundEvents.ENTITY_GHAST_SHOOT, 6.0F, 1.1F) {
+	public static final Block FISH_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.FISH_IDOL), ParticleTypes.SPLASH, StatusEffects.WATER_BREATHING, 0, 200);
+	public static final Block FOX_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.FOX_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.HASTE, 0, 200);
+	public static final Block GHAST_IDOL = new ProjectileIdolBlock(idol(SpectrumBlockSoundGroups.GHAST_IDOL), ParticleTypes.SMOKE, EntityType.FIREBALL, SoundEvents.ENTITY_GHAST_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			LivingMarkerEntity markerEntity = new LivingMarkerEntity(SpectrumEntityTypes.LIVING_MARKER, world);
@@ -1287,23 +1311,23 @@ public class SpectrumBlocks {
 			return entity;
 		}
 	};
-	public static final Block GLOW_SQUID_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GLOW_SQUID_IDOL), ParticleTypes.GLOW_SQUID_INK, StatusEffects.GLOWING, 0, 200);
-	public static final Block GOAT_IDOL = new KnockbackIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GOAT_IDOL), ParticleTypes.ENCHANTED_HIT, 5.0F, 0.5F); // knocks mostly sideways
-	public static final Block GUARDIAN_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.GUARDIAN_IDOL), ParticleTypes.BUBBLE, StatusEffects.MINING_FATIGUE, 2, 200);
-	public static final Block HORSE_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.HORSE_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.STRENGTH, 0, 100);
-	public static final Block ILLUSIONER_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ILLUSIONER_IDOL), ParticleTypes.ANGRY_VILLAGER, StatusEffects.INVISIBILITY, 0, 100);
-	public static final Block OCELOT_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.OCELOT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.NIGHT_VISION, 0, 100);
-	public static final Block PARROT_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PARROT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.ABSORPTION, 0, 100);
-	public static final Block PHANTOM_IDOL = new InsomniaIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PHANTOM_IDOL), ParticleTypes.POOF, 24000); // +1 ingame day without sleep
-	public static final Block PIG_IDOL = new FeedingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIG_IDOL), ParticleTypes.INSTANT_EFFECT, 6);
-	public static final Block PIGLIN_IDOL = new PiglinTradeIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PIGLIN_IDOL), ParticleTypes.HEART);
-	public static final Block POLAR_BEAR_IDOL = new FreezingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.POLAR_BEAR_IDOL), ParticleTypes.SNOWFLAKE);
-	public static final Block PUFFERFISH_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.PUFFERFISH_IDOL), ParticleTypes.SPLASH, StatusEffects.NAUSEA, 0, 200);
-	public static final Block RABBIT_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.RABBIT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.JUMP_BOOST, 3, 100);
-	public static final Block SHEEP_IDOL = new ShearingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHEEP_IDOL), ParticleTypes.ENCHANTED_HIT, 6);
-	public static final Block SHULKER_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SHULKER_IDOL), ParticleTypes.END_ROD, StatusEffects.LEVITATION, 0, 100);
-	public static final Block SILVERFISH_IDOL = new SilverfishInsertingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SILVERFISH_IDOL), ParticleTypes.EXPLOSION);
-	public static final Block SKELETON_IDOL = new ProjectileIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SKELETON_IDOL), ParticleTypes.INSTANT_EFFECT, EntityType.ARROW, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
+	public static final Block GLOW_SQUID_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.GLOW_SQUID_IDOL), ParticleTypes.GLOW_SQUID_INK, StatusEffects.GLOWING, 0, 200);
+	public static final Block GOAT_IDOL = new KnockbackIdolBlock(idol(SpectrumBlockSoundGroups.GOAT_IDOL), ParticleTypes.ENCHANTED_HIT, 5.0F, 0.5F); // knocks mostly sideways
+	public static final Block GUARDIAN_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.GUARDIAN_IDOL), ParticleTypes.BUBBLE, StatusEffects.MINING_FATIGUE, 2, 200);
+	public static final Block HORSE_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.HORSE_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.STRENGTH, 0, 100);
+	public static final Block ILLUSIONER_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.ILLUSIONER_IDOL), ParticleTypes.ANGRY_VILLAGER, StatusEffects.INVISIBILITY, 0, 100);
+	public static final Block OCELOT_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.OCELOT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.NIGHT_VISION, 0, 100);
+	public static final Block PARROT_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.PARROT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.ABSORPTION, 0, 100);
+	public static final Block PHANTOM_IDOL = new InsomniaIdolBlock(idol(SpectrumBlockSoundGroups.PHANTOM_IDOL), ParticleTypes.POOF, 24000); // +1 ingame day without sleep
+	public static final Block PIG_IDOL = new FeedingIdolBlock(idol(SpectrumBlockSoundGroups.PIG_IDOL), ParticleTypes.INSTANT_EFFECT, 6);
+	public static final Block PIGLIN_IDOL = new PiglinTradeIdolBlock(idol(SpectrumBlockSoundGroups.PIGLIN_IDOL), ParticleTypes.HEART);
+	public static final Block POLAR_BEAR_IDOL = new FreezingIdolBlock(idol(SpectrumBlockSoundGroups.POLAR_BEAR_IDOL), ParticleTypes.SNOWFLAKE);
+	public static final Block PUFFERFISH_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.PUFFERFISH_IDOL), ParticleTypes.SPLASH, StatusEffects.NAUSEA, 0, 200);
+	public static final Block RABBIT_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.RABBIT_IDOL), ParticleTypes.INSTANT_EFFECT, StatusEffects.JUMP_BOOST, 3, 100);
+	public static final Block SHEEP_IDOL = new ShearingIdolBlock(idol(SpectrumBlockSoundGroups.SHEEP_IDOL), ParticleTypes.ENCHANTED_HIT, 6);
+	public static final Block SHULKER_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.SHULKER_IDOL), ParticleTypes.END_ROD, StatusEffects.LEVITATION, 0, 100);
+	public static final Block SILVERFISH_IDOL = new SilverfishInsertingIdolBlock(idol(SpectrumBlockSoundGroups.SILVERFISH_IDOL), ParticleTypes.EXPLOSION);
+	public static final Block SKELETON_IDOL = new ProjectileIdolBlock(idol(SpectrumBlockSoundGroups.SKELETON_IDOL), ParticleTypes.INSTANT_EFFECT, EntityType.ARROW, SoundEvents.ENTITY_ARROW_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			ArrowEntity arrowEntity = new ArrowEntity(world, position.getX(), position.getY(), position.getZ());
@@ -1311,23 +1335,23 @@ public class SpectrumBlocks {
 			return arrowEntity;
 		}
 	};
-	public static final Block SLIME_IDOL = new SlimeSizingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SLIME_IDOL), ParticleTypes.ITEM_SLIME, 6, 8);
-	public static final Block SNOW_GOLEM_IDOL = new ProjectileIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SNOW_GOLEM_IDOL), ParticleTypes.SNOWFLAKE, EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 3.0F, 1.1F) {
+	public static final Block SLIME_IDOL = new SlimeSizingIdolBlock(idol(SpectrumBlockSoundGroups.SLIME_IDOL), ParticleTypes.ITEM_SLIME, 6, 8);
+	public static final Block SNOW_GOLEM_IDOL = new ProjectileIdolBlock(idol(SpectrumBlockSoundGroups.SNOW_GOLEM_IDOL), ParticleTypes.SNOWFLAKE, EntityType.SNOWBALL, SoundEvents.ENTITY_ARROW_SHOOT, 3.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
 			world.playSound(null, mobBlockPos.getX(), mobBlockPos.getY(), mobBlockPos.getZ(), SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, SoundCategory.BLOCKS, 1.0F, 0.4F / world.random.nextFloat() * 0.4F + 0.8F);
 			return new SnowballEntity(world, position.getX(), position.getY(), position.getZ());
 		}
 	};
-	public static final Block SPIDER_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SPIDER_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.POISON, 0, 100);
-	public static final Block SQUID_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.SQUID_IDOL), ParticleTypes.SQUID_INK, StatusEffects.BLINDNESS, 0, 200);
-	public static final Block STRAY_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRAY_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.SLOWNESS, 2, 100);
-	public static final Block STRIDER_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRIDER_IDOL), ParticleTypes.DRIPPING_LAVA, StatusEffects.FIRE_RESISTANCE, 0, 200);
-	public static final Block TURTLE_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.TURTLE_IDOL), ParticleTypes.DRIPPING_WATER, StatusEffects.RESISTANCE, 1, 200);
-	public static final Block WITCH_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITCH_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WEAKNESS, 0, 200);
-	public static final Block WITHER_IDOL = new ExplosionIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_IDOL), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.DESTROY);
-	public static final Block WITHER_SKELETON_IDOL = new StatusEffectIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
-	public static final Block ZOMBIE_IDOL = new VillagerConvertingIdolBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_IDOL), ParticleTypes.ENCHANTED_HIT);
+	public static final Block SPIDER_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.SPIDER_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.POISON, 0, 100);
+	public static final Block SQUID_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.SQUID_IDOL), ParticleTypes.SQUID_INK, StatusEffects.BLINDNESS, 0, 200);
+	public static final Block STRAY_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.STRAY_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.SLOWNESS, 2, 100);
+	public static final Block STRIDER_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.STRIDER_IDOL), ParticleTypes.DRIPPING_LAVA, StatusEffects.FIRE_RESISTANCE, 0, 200);
+	public static final Block TURTLE_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.TURTLE_IDOL), ParticleTypes.DRIPPING_WATER, StatusEffects.RESISTANCE, 1, 200);
+	public static final Block WITCH_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.WITCH_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WEAKNESS, 0, 200);
+	public static final Block WITHER_IDOL = new ExplosionIdolBlock(idol(SpectrumBlockSoundGroups.WITHER_IDOL), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.DESTROY);
+	public static final Block WITHER_SKELETON_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.WITHER_SKELETON_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
+	public static final Block ZOMBIE_IDOL = new VillagerConvertingIdolBlock(idol(SpectrumBlockSoundGroups.ZOMBIE_IDOL), ParticleTypes.ENCHANTED_HIT);
 	
 	static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;

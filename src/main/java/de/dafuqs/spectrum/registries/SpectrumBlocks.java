@@ -55,6 +55,7 @@ import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.color.*;
+import de.dafuqs.spectrum.render.SpectrumRenderPhases;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -2944,6 +2945,9 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS, RenderLayer.getTranslucent());
+
+		// Injected Chunk Render Layers
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.STARFIELD, SpectrumRenderPhases.STARFIELD);
 	}
 	
 }

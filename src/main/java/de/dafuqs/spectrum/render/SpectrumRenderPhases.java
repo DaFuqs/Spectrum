@@ -11,7 +11,7 @@ import net.minecraft.client.render.VertexFormats;
 public class SpectrumRenderPhases {
 
     public static final RenderPhase.ShaderProgram STARFIELD_PROGRAM = new RenderPhase.ShaderProgram(SpectrumShaderPrograms::getGenericStars);
-    public static final RenderLayer STARFIELD = RenderLayer.of("starfield", VertexFormats.POSITION_TEXTURE_COLOR_NORMAL, VertexFormat.DrawMode.QUADS, 256, false, false, RenderLayer.MultiPhaseParameters.builder().program(STARFIELD_PROGRAM).build(false));
+    public static final RenderLayer STARFIELD = RenderLayer.of("starfield", VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL, VertexFormat.DrawMode.QUADS, 2097152, false, false, RenderLayer.MultiPhaseParameters.builder().program(STARFIELD_PROGRAM).build(false));
 
     public static void init() {}
 }

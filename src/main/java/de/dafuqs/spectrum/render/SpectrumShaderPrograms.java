@@ -13,7 +13,7 @@ public class SpectrumShaderPrograms {
 
     public static void initPrograms() {
         CoreShaderRegistrationCallback.EVENT.register(context -> {
-            context.register(GENERIC_STARS_ID, VertexFormats.POSITION_COLOR, (shaderProgram -> genericStarsProgram = shaderProgram));
+            context.register(GENERIC_STARS_ID, VertexFormats.POSITION_COLOR_TEXTURE_LIGHT_NORMAL, (shaderProgram -> genericStarsProgram = shaderProgram));
         });
     }
 

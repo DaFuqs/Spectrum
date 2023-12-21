@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import com.google.common.collect.ImmutableList;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -13,6 +14,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
+import de.dafuqs.spectrum.mixin.client.accessors.RenderLayerAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -106,6 +108,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
+
+		logInfo("Adding Chunk Render Layers...");
+		var renderLayers = ImmutableList.<RenderLayer>builder().addAll(RenderLayerAccessor.getBLOCK_LAYERS()).add(SpectrumRenderPhases.STARFIELD).build();
+		RenderLayerAccessor.setBLOCK_LAYERS(renderLayers);
 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());

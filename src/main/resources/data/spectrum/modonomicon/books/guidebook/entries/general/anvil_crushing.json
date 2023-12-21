@@ -24,21 +24,21 @@
         "spectrum:textures/gui/guidebook/anvil_crushing.png"
       ],
       "border": true,
-      "text": "$(italic)\"To create something new$(br)you have to go the way of destruction\"      - someone"
+      "text": "_\"To create something new_ \\ _you have to go the way of destruction\"_ \\\\\\\\ _- someone_"
     },
     {
       "type": "modonomicon:text",
-      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.$(br2)You can use Item Crushing to crush $(l:general/shards)Gemstone Shards$() into $(l:general/gemstone_powder)powder$().$(br2)$(italic)Tip: The further the anvil falls, the better."
+      "text": "Until now you primarily used your anvil to repair and upgrade your tools. Such a heavy object as an anvil can be of much more use, though! Why not use it to crush things into dust by sheer force? Like the skulls of your enemies... or items. Yeah, that's probably better.\\\\You can use Item Crushing to crush [Gemstone Shards](book://general/shards) into [powder](book://general/gemstone_powder). \\\\ _Tip: The further the anvil falls, the better._"
     },
     {
       "type": "spectrum:anvil_crushing",
       "recipe": "spectrum:anvil_crushing/vanilla_pulverising/gravel_from_cobblestone_anvil_crushing",
-      "text": "Dropping an $(item)Anvil$() on some items cracks them, or turns them into different ones altogether."
+      "text": "Dropping an [](item://minecraft:anvil) on some items cracks them, or turns them into different ones altogether."
     },
     {
       "type": "spectrum:anvil_crushing",
       "recipe": "spectrum:anvil_crushing/dye/blue_dye_from_cornflower",
-      "text": "You are also able to crush $(item)flowers$() into $(item)dye$(), $(item)Horse Armor$() into $(item)ingots$(), or increase your yield of $(item)Blaze Powder$()this way."
+      "text": "You are also able to crush [#](bb00bb)flowers$[#]() into [#](bb00bb)dye[#](), [#](bb00bb)Horse Armor[#]() into [#](bb00bb)ingots[#](), or increase your yield of [#](bb00bb)Blaze Powder[#]() this way."
     }
   ]
 }

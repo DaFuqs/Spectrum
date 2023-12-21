@@ -19,13 +19,13 @@
     {
       "type": "modonomicon:text",
       "title": "Paintbrush",
-      "text": "Why a $(italic)brush$() of all things?$(br2)Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
+      "text": "Why a _brush_ of all things?\\\\Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
     },
     {
       "type": "modonomicon:crafting",
       "title": "Crafting Recipe",
       "recipe": "spectrum:crafting_table/paintbrush",
-      "text": "Give the $(l:general/pedestal)Pigment Pedestal$(/l) a hearty whack with it to make it start crafting."
+      "text": "Give the [Pigment Pedestal](book://general/pedestal) a hearty whack with it to make it start crafting."
     },
     {
       "type": "modonomicon:text",
@@ -34,7 +34,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)$(thing)Crouch while having your Paintbrush equipped to bring up the color selection menu$(). You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into it's colored variant."
+      "text": "What better use is there for [Pigment](book://general/pigment) than coloring with it?\\[#](449900)Crouch while having your Paintbrush equipped to bring up the color selection menu[#](). You just have to slightly touch the block you would like to color for the [Pigment](book://general/pigment) to flow into it and convert it into its colored variant."
     },
     {
       "type": "modonomicon:text",
@@ -43,7 +43,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/fill_ink_container"
       },
-      "text": "Now that you've discovered Ink, your brush has another function: you can bundle ink as a projectile and fling it.$(br)The surface (or creature!) that the projectile hits will be painted as long as the block there is able to be recolored."
+      "text": "Now that you've discovered Ink, your brush has another function: you can bundle ink as a projectile and fling it.\\The surface (or creature!) that the projectile hits will be painted as long as the block there is able to be recolored."
     }
   ]
 }

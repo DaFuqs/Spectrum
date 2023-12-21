@@ -1,6 +1,6 @@
 {
   "name": "Extra Alchemy",
-  "icon": "extraalchemy:penguin_feather",
+  "icon": "minecraft:potion{Potion:\"minecraft:night_vision\"}",
   "flag": "mod:extraalchemy",
   "condition": {
     "type": "modonomicon:advancement",

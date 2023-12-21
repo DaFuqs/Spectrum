@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -197,14 +198,16 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		}
 		return getDefaultState();
 	}
-	
-	@Deprecated
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (this.isVisibleTo(context)) {
-			return SHAPE;
+		if (context instanceof EntityShapeContext entityShapeContext) {
+			Entity var4 = entityShapeContext.getEntity();
+			if (var4 instanceof PlayerEntity player) {
+				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
+			}
 		}
-		return VoxelShapes.empty();
+		return VoxelShapes.fullCube();
 	}
 	
 	/**

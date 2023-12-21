@@ -31,6 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable {
 
     protected static final int INVENTORY_SIZE = 7;
@@ -90,7 +91,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	public void spawnCraftingParticles() {
 		BlockPos blockPos = getPos();
 		FusionShrineRecipe recipe = this.currentRecipe;
-		if (recipe != null) {
+		if (recipe != null && world != null) {
 			Fluid fluid = this.getFluidVariant().getFluid();
 			Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
 			if (optionalFluidColor.isPresent()) {
@@ -102,7 +103,15 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			}
 		}
 	}
-	
+
+	public void scatterContents(@NotNull World world) {
+		SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, Vec3d.ofCenter(this.getPos()), SpectrumParticleTypes.RED_CRAFTING, 1, new Vec3d(0, -0.5, 0));
+		world.playSound(null, this.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+		world.playSound(null, this.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
+		FusionShrineBlock.scatterContents(world, this.getPos());
+		this.inventoryChanged();
+	}
+
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.upgrades == null) {
 			fusionShrineBlockEntity.calculateUpgrades();
@@ -137,15 +146,12 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
 			
 			boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently((ServerWorld) world, blockPos);
-			boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
+			boolean structureComplete = FusionShrineBlock.verifyStructure(world, blockPos, null);
+			boolean structureCompleteWithSky = FusionShrineBlock.verifySkyAccess((ServerWorld) world, blockPos) && structureComplete;
 			
 			if (!recipeConditionsMet || !structureCompleteWithSky) {
 				if (!structureCompleteWithSky) {
-					SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, new Vec3d(0, -0.5, 0));
-					world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-					world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
-					FusionShrineBlock.scatterContents(world, blockPos);
-					fusionShrineBlockEntity.inventoryChanged();
+					fusionShrineBlockEntity.scatterContents(world);
 				}
 				fusionShrineBlockEntity.craftingTime = 0;
 				return;
@@ -261,8 +267,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
-		Random random = world.random;
-        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+		if (world != null) {
+			Random random = world.random;
+			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
+		}
     }
 
     public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {

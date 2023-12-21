@@ -15,6 +15,8 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 	private final ModelPart leftMiddleLeg;
 	private final ModelPart rightFrontLeg;
 	private final ModelPart leftFrontLeg;
+	private final ModelPart rightStrikeLeg;
+	private final ModelPart leftStrikeLeg;
 	
 	public EraserEntityModel(ModelPart root) {
 		this.root = root;
@@ -28,6 +30,8 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		this.leftMiddleLeg = legs.getChild(EntityModelPartNames.LEFT_FRONT_LEG);
 		this.rightFrontLeg = legs.getChild("rightstrikeleg");
 		this.leftFrontLeg = legs.getChild("leftstrikeleg");
+		this.rightStrikeLeg = legs.getChild("rightstrikeleg");
+		this.leftStrikeLeg = legs.getChild("leftstrikeleg");
 	}
 	
 	public static TexturedModelData getTexturedModelData() {
@@ -113,55 +117,39 @@ public class EraserEntityModel extends SinglePartEntityModel<EraserEntity> {
 		
 		return TexturedModelData.of(modelData, 32, 32);
 	}
+
+	private static final float PI = (float) Math.PI;
 	
 	@Override
 	public void setAngles(EraserEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.head.yaw = headYaw * 0.017453292F;
 		this.head.pitch = headPitch * 0.017453292F;
-		
-		this.rightHindLeg.roll = -0.7853982F;
-		this.leftHindLeg.roll = 0.7853982F;
-		this.rightMiddleLeg.roll = -0.58119464F;
-		this.leftMiddleLeg.roll = 0.58119464F;
-		this.rightFrontLeg.roll = -0.58119464F;
-		this.leftFrontLeg.roll = 0.58119464F;
-		this.rightHindLeg.yaw = 1.5707964F;
-		this.leftHindLeg.yaw = -1.5707964F;
-		this.rightMiddleLeg.yaw = 0.7853982F;
-		this.leftMiddleLeg.yaw = -0.7853982F;
-		this.rightFrontLeg.yaw = -0.7853982F;
-		this.leftFrontLeg.yaw = 0.7853982F;
-		
-		float i = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbDistance;
-		float j = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 3.1415927F) * 0.4F) * limbDistance;
-		float k = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 1.5707964F) * 0.4F) * limbDistance;
-		float l = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 4.712389F) * 0.4F) * limbDistance;
-		float m = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 0.0F) * 0.4F) * limbDistance;
-		float n = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 3.1415927F) * 0.4F) * limbDistance;
-		float o = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 1.5707964F) * 0.4F) * limbDistance;
-		
-		ModelPart part = this.rightHindLeg;
-		part.yaw += i;
-		part = this.leftHindLeg;
-		part.yaw += -i;
-		part = this.rightMiddleLeg;
-		part.yaw += j;
-		part = this.leftMiddleLeg;
-		part.yaw += -j;
-		part = this.rightFrontLeg;
-		part.yaw += k;
-		part = this.leftFrontLeg;
-		part.yaw += -l;
-		part = this.rightHindLeg;
-		part.roll += m;
-		part = this.leftHindLeg;
-		part.roll += -m;
-		part = this.rightMiddleLeg;
-		part.roll += n;
-		part = this.leftMiddleLeg;
-		part.roll += -n;
-		part = this.rightFrontLeg;
-		part.roll += o;
+
+		float i = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 0.0F * PI) * 0.4F) * limbDistance;
+		float j = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 1.0F * PI) * 0.4F) * limbDistance;
+		float k = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 0.5F * 3.1415927F) * 0.4F) * limbDistance;
+		float l = -(MathHelper.cos(limbAngle * 0.6662F * 2.0F + 1.5F * PI) * 0.4F) * limbDistance;
+		float m = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 0.0F * PI) * 0.4F) * limbDistance;
+		float n = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 1.0F * PI) * 0.4F) * limbDistance;
+		float o = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 0.5F * 3.1415927F) * 0.4F) * limbDistance;
+		float p = Math.abs(MathHelper.sin(limbAngle * 0.6662F + 1.5F * PI) * 0.4F) * limbDistance;
+
+		this.rightHindLeg.yaw = this.rightHindLeg.getDefaultTransform().yaw + i;
+		this.leftHindLeg.yaw = this.leftHindLeg.getDefaultTransform().yaw - i;
+		this.rightMiddleLeg.yaw = this.rightMiddleLeg.getDefaultTransform().yaw + j;
+		this.leftMiddleLeg.yaw = this.leftMiddleLeg.getDefaultTransform().yaw - j;
+		this.rightFrontLeg.yaw = this.rightFrontLeg.getDefaultTransform().yaw + k;
+		this.leftFrontLeg.yaw = this.leftFrontLeg.getDefaultTransform().yaw - k;
+		this.rightStrikeLeg.yaw = this.rightStrikeLeg.getDefaultTransform().yaw + l;
+		this.leftStrikeLeg.yaw = this.leftStrikeLeg.getDefaultTransform().yaw - l;
+		this.rightHindLeg.roll = this.rightHindLeg.getDefaultTransform().roll + m;
+		this.leftHindLeg.roll = this.leftHindLeg.getDefaultTransform().roll - m;
+		this.rightMiddleLeg.roll = this.rightMiddleLeg.getDefaultTransform().roll + n;
+		this.leftMiddleLeg.roll = this.leftMiddleLeg.getDefaultTransform().roll - n;
+		this.rightFrontLeg.roll = this.rightFrontLeg.getDefaultTransform().roll + o;
+		this.leftFrontLeg.roll = this.leftFrontLeg.getDefaultTransform().roll - o;
+		this.rightStrikeLeg.roll = this.rightStrikeLeg.getDefaultTransform().roll + p;
+		this.leftStrikeLeg.roll = this.leftStrikeLeg.getDefaultTransform().roll - p;
 	}
 	
 	@Override

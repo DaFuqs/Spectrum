@@ -16,18 +16,12 @@ public class DefaultedRegistryMixin {
     Identifier spectrum$datafixerAtHome(@Nullable Identifier id) {
         if (id != null && id.getNamespace().equals("spectrum")) {
             switch (id.getPath()) {
-                case "vanilla_semi_permeable_glass":
-                    return SpectrumCommon.locate("semi_permeable_glass");
-                case "slate_noxcap_cap":
-                    return SpectrumCommon.locate("slate_noxcap_block");
-                case "ivory_noxcap_cap":
-                    return SpectrumCommon.locate("ivory_noxcap_block");
-                case "ebony_noxcap_cap":
-                    return SpectrumCommon.locate("ebony_noxcap_block");
-                case "chestnut_noxcap_cap":
-                    return SpectrumCommon.locate("chestnut_noxcap_block");
-                case "redstone_wireless":
-                    return SpectrumCommon.locate("redstone_transceiver");
+                case "vanilla_semi_permeable_glass" -> SpectrumCommon.locate("semi_permeable_glass");
+                case "slate_noxcap_cap" -> SpectrumCommon.locate("slate_noxcap_block");
+                case "ivory_noxcap_cap" -> SpectrumCommon.locate("ivory_noxcap_block");
+                case "ebony_noxcap_cap" -> SpectrumCommon.locate("ebony_noxcap_block");
+                case "chestnut_noxcap_cap" -> SpectrumCommon.locate("chestnut_noxcap_block");
+                case "redstone_wireless" -> SpectrumCommon.locate("redstone_transceiver");
             }
         }
         return id;

@@ -42,28 +42,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:azurite_glass_ampoule"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": 16
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
           "name": "spectrum:onyx_ore"
         }
       ],
       "functions": [
         {
           "function": "minecraft:set_count",
-          "count": 16
+          "count": {
+            "min": 4,
+            "max": 12
+          }
         }
       ]
     },
@@ -72,14 +60,69 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:enchanted_book"
+          "name": "spectrum:deepslate_onyx_ore"
         }
       ],
       "functions": [
         {
-          "function": "minecraft:set_enchantments",
-          "enchantments": {
-            "spectrum:indestructible": 1
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
+            "max": 12
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:blackslag_onyx_ore"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
+            "max": 12
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:moonstone_ore"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
+            "max": 12
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:deepslate_moonstone_ore"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 4,
+            "max": 12
           }
         }
       ]

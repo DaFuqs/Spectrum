@@ -7,14 +7,12 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_resonance",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "",
   "x": -2,
   "y": 1,
-
   "pages": [
     {
       "type": "modonomicon:text",
@@ -72,6 +70,15 @@
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:sculk_shrieker",
+      "text": "Sculk Shriekers retain their ability to summon the Warden."
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "Brushable Blocks",
+      "items": [
+        "minecraft:suspicious_sand",
+        "minecraft:suspicious_gravel"
+      ],
       "text": "Sculk Shriekers retain their ability to summon the Warden."
     },
     {

@@ -6,6 +6,7 @@ import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -85,19 +86,22 @@ public class SanityCommand {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
-
+				
 				if (block instanceof PlacedItemBlock) {
 					continue; // that one always drops itself via code
 				}
-
+				if (block instanceof SpectrumBuddingBlock) {
+					continue; // does not have any drop by default
+				}
+				
 				BlockState blockState = entry.getValue().getDefaultState();
 				Identifier lootTableID = block.getLootTableId();
-
+				
 				// unbreakable blocks do not need to have a loot table
 				if (blockState.getBlock().getHardness() <= -1) {
 					continue;
 				}
-
+				
 				if (!blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
 						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");

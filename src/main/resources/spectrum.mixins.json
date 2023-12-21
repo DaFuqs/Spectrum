@@ -43,6 +43,8 @@
     "LivingEntityMixin",
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
+    "MapStateMixin",
+    "MapStatePlayerUpdateTrackerMixin",
     "MC252934Mixin",
     "MiningToolItemMixin",
     "MixinAbstractFireBlock",
@@ -69,6 +71,7 @@
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
     "accessors.LootTableAccessor",
+    "accessors.MapStateAccessor",
     "accessors.MooshroomEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",
     "accessors.RecipeManagerAccessor",
@@ -92,6 +95,8 @@
     "client.EntityRenderDispatcherMixin",
     "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
+    "client.HeldItemRendererMixin",
+    "client.InGameHudMixin",
     "client.InGameOverlayRendererMixin",
     "client.ItemRendererMixin",
     "client.LightmapTextureManagerMixin",
@@ -104,8 +109,7 @@
     "client.accessors.ModelOverrideListAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin",
-    "compat.colorful_hearts.present.InGameHudMixin"
+    "compat.colorful_hearts.present.HeartMixin"
   ],
   "injectors": {
     "defaultRequire": 1

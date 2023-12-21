@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.resonance.*;
@@ -70,7 +71,7 @@ public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
+	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	
 	public static MinecraftServer minecraftServer;
@@ -97,16 +98,17 @@ public class SpectrumCommon implements ModInitializer {
 		return new Identifier(MOD_ID, name);
 	}
 	
-	@Override
-	public void onInitialize() {
-
-		logInfo("Starting Common Startup");
-		
+	static {
 		//Set up config
 		logInfo("Loading config file...");
 		AutoConfig.register(SpectrumConfig.class, JanksonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(SpectrumConfig.class).getConfig();
 		logInfo("Finished loading config file.");
+	}
+	
+	@Override
+	public void onInitialize() {
+		logInfo("Starting Common Startup");
 		
 		// Register internals
 		SpectrumRegistries.register();
@@ -158,6 +160,10 @@ public class SpectrumCommon implements ModInitializer {
 		// Dimension
 		logInfo("Registering Dimension...");
 		SpectrumDimensions.register();
+
+		// Dimension effects
+		logInfo("Registering Dimension Sound Effects...");
+		DimensionReverb.setup();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
@@ -290,7 +296,7 @@ public class SpectrumCommon implements ModInitializer {
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 			Pastel.clearServerInstance();
-			SpectrumCommon.minecraftServer = server;
+			SpectrumCommon.minecraftServer = null;
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
@@ -324,7 +330,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			
 			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterIdolBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			FirestarterIdolBlock.addBlockSmeltingRecipes(server);
 			injectEnchantmentUpgradeRecipes(server);
 		});
 		
@@ -435,7 +441,7 @@ ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModif
 
 				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+					FirestarterIdolBlock.addBlockSmeltingRecipes(minecraftServer);
 				}
 			}
 

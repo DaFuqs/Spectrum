@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.fluid.*;
@@ -16,14 +17,16 @@ import java.util.*;
 public class FluidLogging {
 	
 	public enum State implements StringIdentifiable {
-		NOT_LOGGED("none"),
-		WATER("water"),
-		LIQUID_CRYSTAL("liquid_crystal");
+		NOT_LOGGED("none", 0),
+		WATER("water", 0),
+		LIQUID_CRYSTAL("liquid_crystal", LiquidCrystalFluidBlock.LUMINANCE);
 		
 		private final String name;
+		private final int luminance;
 		
-		State(String name) {
+		State(String name, int luminance) {
 			this.name = name;
+			this.luminance = luminance;
 		}
 		
 		@Override
@@ -43,6 +46,10 @@ public class FluidLogging {
 					return Fluids.EMPTY.getDefaultState();
 				}
 			}
+		}
+		
+		public int getLuminance() {
+			return luminance;
 		}
 		
 		public boolean isOf(Fluid fluid) {

@@ -3,10 +3,11 @@
   "values": [
     "#spectrum:pure_resource_blocks",
     "#spectrum:gemstone_storage_blocks",
-    
+
     "spectrum:shimmerstone_block",
     "spectrum:bismuth_block",
     "spectrum:malachite_block",
-    "spectrum:azurite_block"
+    "spectrum:azurite_block",
+    "spectrum:bloodstone_block"
   ]
 }

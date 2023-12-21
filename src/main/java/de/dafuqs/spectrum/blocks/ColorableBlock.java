@@ -33,8 +33,10 @@ public interface ColorableBlock {
         ItemStack handStack = player.getStackInHand(hand);
         Optional<DyeColor> itemInHandColor = ColorHelper.getDyeColorOfItemStack(handStack);
         if (itemInHandColor.isPresent()) {
-            if (color(world, pos, itemInHandColor.get()) && !player.isCreative()) {
-                handStack.decrement(1);
+            if (color(world, pos, itemInHandColor.get())) {
+                if(!player.isCreative()) {
+                    handStack.decrement(1);
+                }
                 return true;
             }
         }

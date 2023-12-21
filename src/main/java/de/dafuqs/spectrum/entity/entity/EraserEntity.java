@@ -122,8 +122,10 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 	
 	@Override
 	public void leaveGroup() {
-		this.leader.decreaseGroupSize();
-		this.leader = null;
+		if (this.leader != null) {
+			this.leader.decreaseGroupSize();
+			this.leader = null;
+		}
 	}
 	
 	@Override
@@ -202,8 +204,10 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 				statusEffect = SpectrumStatusEffects.FRENZY;
 				amplifier = random.nextInt(2);
 			}
-			case 3 -> {
-				statusEffect = SpectrumStatusEffects.SCARRED;
+			case 3 -> statusEffect = SpectrumStatusEffects.SCARRED;
+			case 4 -> {
+				statusEffect = SpectrumStatusEffects.VULNERABILITY;
+				amplifier = random.nextInt(2);
 			}
 			default -> {
 				statusEffect = SpectrumStatusEffects.DEADLY_POISON;
@@ -315,9 +319,7 @@ public class EraserEntity extends SpiderEntity implements PackEntity<EraserEntit
 					this.effect = StatusEffects.REGENERATION;
 					this.amplifier = random.nextInt(2);
 				}
-				case 3 -> {
-					this.effect = StatusEffects.INVISIBILITY;
-				}
+				case 3 -> this.effect = StatusEffects.INVISIBILITY;
 				default -> {
 					this.effect = SpectrumStatusEffects.MAGIC_ANNULATION;
 					this.amplifier = 5;

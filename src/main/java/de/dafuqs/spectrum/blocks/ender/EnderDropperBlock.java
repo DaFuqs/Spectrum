@@ -81,7 +81,7 @@ public class EnderDropperBlock extends DispenserBlock {
 		
 		int i = enderDropperBlockEntity.chooseNonEmptySlot();
 		if (i < 0) {
-			world.syncWorldEvent(1001, pos, 0); // no items in inv
+			world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0); // no items in inv
 		} else {
 			ItemStack itemStack = enderDropperBlockEntity.getStack(i);
 			if (!itemStack.isEmpty()) {
@@ -90,7 +90,7 @@ public class EnderDropperBlock extends DispenserBlock {
 					ItemStack itemStack3 = BEHAVIOR.dispense(blockPointerImpl, itemStack);
 					enderDropperBlockEntity.setStack(i, itemStack3);
 				} else {
-					world.syncWorldEvent(1001, pos, 0); // no room to dispense to
+					world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0); // no room to dispense to
 				}
 			}
 		}

@@ -3480,7 +3480,10 @@
   "book.spectrum.guidebook.redstone.name": "Redstone Components",
   "book.spectrum.guidebook.resources.name": "Resources",
 
-  "test.text": "Its color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.\\\\Spectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the [](item://minecraft:amethyst_shard) representing the Magenta part of the spectrum.",
+  "book.spectrum.guidebook.general.intro.page1.text": "Its color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.\nSpectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the [](item://minecraft:amethyst_shard) representing the Magenta part of the spectrum.",
+  "book.spectrum.guidebook.creating_life.mob_heads.title": "Mob Heads",
+  "book.spectrum.guidebook.creating_life.mob_heads.page0.title": "Mob Heads",
+  "book.spectrum.guidebook.creating_life.mob_heads.page0.text": "Using your new [Treasure Hunter](book://enchanting/treasure_hunter) enchantment you are able to collect heads from all kinds of mobs.\nWhile they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence.",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

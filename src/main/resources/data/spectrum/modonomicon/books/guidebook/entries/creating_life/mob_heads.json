@@ -1,5 +1,5 @@
 {
-  "name": "Mob Heads",
+  "name": "book.spectrum.guidebook.creating_life.mob_heads.title",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/enchantments/treasure_hunter"
@@ -18,8 +18,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Mob Heads",
-      "text": "Using your new $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) enchantment you are able to collect heads from all kinds of mobs.$(br2)While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
+      "title": "book.spectrum.guidebook.creating_life.mob_heads.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.mob_heads.page0.text"
     },
     {
       "type": "spectrum:collection",

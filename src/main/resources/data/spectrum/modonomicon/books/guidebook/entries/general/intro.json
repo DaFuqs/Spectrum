@@ -22,16 +22,16 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "test.text"
+      "text": "book.spectrum.guidebook.general.intro.page1.text"
     },
     {
       "type": "modonomicon:text",
       "title": "Progression System",
-      "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.\nAs you delve deeper, you will notice changes in the world. Differences only you can perceive.\n\nEverything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
+      "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.\\As you delve deeper, you will notice changes in the world. Differences only you can perceive.\\\\Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
     },
     {
       "type": "modonomicon:text",
-      "text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next. Press the bottom center arrow to get started!\n\nSpectrum is still in development. If you find a bug or have a suggestion, visit Spectrum's Discord or report them on GitHub.\nHave fun!        - DaFuqs"
+      "text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next. Press the bottom center arrow to get started!\\\\Spectrum is still in development. If you find a bug or have a suggestion, visit Spectrum's Discord or report them on GitHub.\\Have fun!        - DaFuqs"
     }
   ]
 }

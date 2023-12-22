@@ -41,7 +41,7 @@ public class BookCollectionPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
-        var items = JsonHelper.getArray(json, "items", new JsonArray()).asList().stream().map(JsonElement::toString).toList();
+        var items = JsonHelper.getArray(json, "items", new JsonArray()).asList().stream().map(JsonElement::getAsString).toList();
         return new BookCollectionPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, items);
     }
 

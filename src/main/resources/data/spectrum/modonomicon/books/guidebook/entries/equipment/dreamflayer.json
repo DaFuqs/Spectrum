@@ -25,7 +25,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/dreamflayer",
-      "text": "_If you ever needed a reason to go rampage lightly clad, here it is._\\\\$(k:sneak) + $(k:use) to empower it, allowing it to slice even through the strongest of armour while consuming $(c_red)Red Ink[#]() at an alarming rate."
+      "text": "_If you ever needed a reason to go rampage lightly clad, here it is._\\\\$(k:sneak) + $(k:use) to empower it, allowing it to slice even through the strongest of armour while consuming [#](8f2121)Red Ink[#]() at an alarming rate."
     }
   ]
 }

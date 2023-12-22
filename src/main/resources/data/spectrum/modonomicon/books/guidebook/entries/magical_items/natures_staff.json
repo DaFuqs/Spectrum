@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Using the magic elements of $(c_brown)Nature[#]() and $(c_lime)Fertility[#](), you have come up with this stroke of genius.\\Bonemeal is a joke when compared to your new gadget."
+      "text": "Using the magic elements of [#](613c20)Nature[#]() and [#](5faa19)Fertility[#](), you have come up with this stroke of genius.\\Bonemeal is a joke when compared to your new gadget."
     },
     {
       "type": "spectrum:pedestal_crafting",

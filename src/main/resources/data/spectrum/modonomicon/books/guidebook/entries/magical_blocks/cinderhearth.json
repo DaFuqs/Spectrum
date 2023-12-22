@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "A state-of-your-art blast furnace, which consumes $(c_orange)Orange Ink[#]() to smelt ores and the like."
+      "text": "A state-of-your-art blast furnace, which consumes [#](e16201)Orange Ink[#]() to smelt ores and the like."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Cinderhearth$(li)21 Polished Blocks$(li)6 Crest Blocks$(li)5 Glass-like Blocks$(li)2 Chiseled Blocks$(li)6 Buckets of Lava\\\\_Did it really need that [#](bb00bb)Lava[#]() underneath since you already have $(c_orange)Ink[#]()? No, not really. But it looks so much better._"
+      "text": "- 1 Cinderhearth\\- 21 Polished Blocks\\- 6 Crest Blocks\\- 5 Glass-like Blocks\\- 2 Chiseled Blocks\\- 6 Buckets of Lava\\\\_Did it really need that [#](bb00bb)Lava[#]() underneath since you already have [#](e16201)Ink[#]()? No, not really. But it looks so much better._"
     },
     {
       "type": "modonomicon:text",
@@ -46,7 +46,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "$(li)Speed ($(c_magenta)Magenta Ink[#]()):\\faster smelt times\\$(li)Yield ($(c_light_blue)Light Blue Ink[#]()):\\chance to multiply the output for most blocks\\$(li)Experience ($(c_purple)Purple Ink[#]()):\\vastly increases experience gain\\$(li)Efficiency ($(c_black)Black Ink[#]()):\\greatly decreases Ink consumption of the other types, including $(c_orange)Orange[#]()"
+      "text": "- Speed ([#](aa32a0)Magenta Ink[#]()):\\faster smelt times\\- Yield ([#](258ac8)Light Blue Ink[#]()):\\chance to multiply the output for most blocks\\- Experience ([#](641f9c)Purple Ink[#]()):\\vastly increases experience gain\\- Efficiency ([#](000000)Black Ink[#]()):\\greatly decreases Ink consumption of the other types, including [#](e16201)Orange[#]()"
     }
   ]
 }

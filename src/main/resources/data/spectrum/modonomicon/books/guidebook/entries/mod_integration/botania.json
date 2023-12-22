@@ -104,7 +104,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:black_lotus",
-      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.\\\\_Fancy a gamble?_"
+      "text": "- +2 positive effects\\- +1 negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -114,7 +114,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:blacker_lotus",
-      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.\\\\_Fancy a gamble?_"
+      "text": "- +3 positive effects\\- 50% chance for negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -124,7 +124,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:life_essence",
-      "text": "$(li)+3 potency$(li)-3 yield\\\\Requires other reagents to increase the yield, otherwise you will end up with nothing..."
+      "text": "- +3 potency\\- -3 yield\\\\Requires other reagents to increase the yield, otherwise you will end up with nothing..."
     },
     {
       "type": "modonomicon:spotlight",
@@ -134,7 +134,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:mana_powder",
-      "text": "$(li)+25% duration$(li)15% chance to add last effect"
+      "text": "- +25% duration\\- 15% chance to add last effect"
     },
     {
       "type": "modonomicon:spotlight",
@@ -144,7 +144,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:pixie_dust",
-      "text": "$(li)creates Lingering Potions & Tipped Arrows$(li)-25% potency"
+      "text": "- creates Lingering Potions & Tipped Arrows\\- -25% potency"
     }
   ]
 }

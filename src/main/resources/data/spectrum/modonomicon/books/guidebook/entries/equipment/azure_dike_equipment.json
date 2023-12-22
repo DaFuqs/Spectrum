@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_ring"
       },
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
-      "text": "$(li)Grants you $(c_green)4[#]() points of [#](2c2e8e)Azure Dike[#]()$(li)Slightly speeds up [#](2c2e8e)Azure Dike[#]() charging"
+      "text": "- Grants you [#](495b24)4[#]() points of [#](2c2e8e)Azure Dike[#]()\\- Slightly speeds up [#](2c2e8e)Azure Dike[#]() charging"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -47,7 +47,7 @@
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_belt"
       },
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
-      "text": "$(li)Grants you $(c_green)6[#]() points of [#](2c2e8e)Azure Dike[#]()$(li)Increases [#](2c2e8e)Azure Dike[#]() recovery after a hit, making it recharge quicker"
+      "text": "- Grants you [#](495b24)6[#]() points of [#](2c2e8e)Azure Dike[#]()\\- Increases [#](2c2e8e)Azure Dike[#]() recovery after a hit, making it recharge quicker"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

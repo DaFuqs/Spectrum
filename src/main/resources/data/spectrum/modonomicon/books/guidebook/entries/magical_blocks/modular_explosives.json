@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:text",
       "title": "Modular Explosives",
-      "text": "Highly modular explosives, consisting of:$(li)an [#](449900)Archetype[#]() (damaging entities, destroying blocks, both, or just purely cosmetic)$(li)and [#](449900)Modifiers[#]() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
+      "text": "Highly modular explosives, consisting of:\\- an [#](449900)Archetype[#]() (damaging entities, destroying blocks, both, or just purely cosmetic)\\- and [#](449900)Modifiers[#]() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
     },
     {
       "type": "modonomicon:text",
@@ -41,27 +41,27 @@
     {
       "type": "modonomicon:text",
       "title": "Archetypes",
-      "text": "$(li)Gunpowder: Destroying Blocks$(li)Glowstone Dust: Dealing Damage$(li)Midnight Aberration: Both\\\\You can also combine both separately."
+      "text": "- Gunpowder: Destroying Blocks\\- Glowstone Dust: Dealing Damage\\- Midnight Aberration: Both\\\\You can also combine both separately."
     },
     {
       "type": "modonomicon:text",
       "title": "General Mod. (∞)",
-      "text": "$(li)TNT: Increased radius$(li)Chorus Fruit: Starry Particles$(li)Shimmerstone: Placement of invisible lights"
+      "text": "- TNT: Increased radius\\- Chorus Fruit: Starry Particles\\- Shimmerstone: Placement of invisible lights"
     },
     {
       "type": "modonomicon:text",
       "title": "Damage Type Mod. (1)",
-      "text": "$(li)Fire Charge: Fire$(li)Doombloom Seed: Primordial Fire$(li)Storm Stone: Lightning Damage$(li)Neolith: Magic Damage$(li)Incandescent Amalgam: Incandescent Damage"
+      "text": "- Fire Charge: Fire\\- Doombloom Seed: Primordial Fire\\- Storm Stone: Lightning Damage\\- Neolith: Magic Damage\\- Incandescent Amalgam: Incandescent Damage"
     },
     {
       "type": "modonomicon:text",
       "title": "Damage Mod. (∞)",
-      "text": "$(li)End Rod: Greatly increased damage when near explosion center"
+      "text": "- End Rod: Greatly increased damage when near explosion center"
     },
     {
       "type": "modonomicon:text",
       "title": "Mining Mod. (∞)",
-      "text": "$(li)Stratine Fragments: Square block breaking shape$(li)Four Leaf Clover: Fortune$(li)Mermaids Gem: Silk Touch$(li)Ender Pearl: Inventory Insertion"
+      "text": "- Stratine Fragments: Square block breaking shape\\- Four Leaf Clover: Fortune\\- Mermaids Gem: Silk Touch\\- Ender Pearl: Inventory Insertion"
     },
     {
       "type": "modonomicon:text",

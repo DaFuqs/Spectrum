@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
-      "text": "$(li)Prevents all damage from fires and hot floors$(li)Considerable boost in both mobility and vision when submerged in lava$(li)When triggered, grants you a brief shield against extreme heat"
+      "text": "- Prevents all damage from fires and hot floors\\- Considerable boost in both mobility and vision when submerged in lava\\- When triggered, grants you a brief shield against extreme heat"
     }
   ]
 }

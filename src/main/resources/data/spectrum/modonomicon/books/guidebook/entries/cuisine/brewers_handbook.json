@@ -58,7 +58,7 @@
     {
       "type": "modonomicon:text",
       "title": "Not Honey Wine",
-      "text": "\\This not mead, you could not legally call it mead, I am obligated to clarify it is not mead.$(br3) So this mead is a bit of a favorite recipe of mine, it took a while to figure out how to adapt honey wine for a place that has no bees, but trust me, this genuinely outdoes the real deal."
+      "text": "\\This not mead, you could not legally call it mead, I am obligated to clarify it is not mead.\\\\\\ So this mead is a bit of a favorite recipe of mine, it took a while to figure out how to adapt honey wine for a place that has no bees, but trust me, this genuinely outdoes the real deal."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

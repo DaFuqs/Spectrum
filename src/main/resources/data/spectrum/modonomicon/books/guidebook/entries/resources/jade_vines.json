@@ -46,7 +46,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.\\$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.\\$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
+      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.\\[#](8f2121)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.\\[#](5faa19)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
       "type": "modonomicon:spotlight",
@@ -90,7 +90,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.\\Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
+      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.\\Bears great restorative properties:\\- can be drunk for healing\\- able to repair any damaged item$()."
     }
   ]
 }

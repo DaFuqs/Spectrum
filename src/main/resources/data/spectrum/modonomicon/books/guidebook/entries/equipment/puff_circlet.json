@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This glistening hoop creates a protective film of air around you.\\\\Grants you $(c_green)4[#]() points of [#](2c2e8e)Azure Dike[#](). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.\\The Puff Circlet also prevents [#](bb00bb)Farmland[#]() from being trampled."
+      "text": "This glistening hoop creates a protective film of air around you.\\\\Grants you [#](495b24)4[#]() points of [#](2c2e8e)Azure Dike[#](). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.\\The Puff Circlet also prevents [#](bb00bb)Farmland[#]() from being trampled."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "In your search for the perfect tool, you've found that the [#](bb00bb)Enchanting Table[#]() often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issues you had with your original one.\\\\It allows you to:$(li)$(l:enchanting/creating_enchanted_books)create new Enchanted Books$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)upgrade them$(/l)$(li)$(l:enchanting/enchanting_items)enchant items without consuming Enchanted Books$(/l)"
+      "text": "In your search for the perfect tool, you've found that the [#](bb00bb)Enchanting Table[#]() often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issues you had with your original one.\\\\It allows you to:\\- $(l:enchanting/creating_enchanted_books)create new Enchanted Books$(/l)\\- $(l:enchanting/upgrading_enchanted_books)upgrade them$(/l)\\- $(l:enchanting/enchanting_items)enchant items without consuming Enchanted Books$(/l)"
     },
     {
       "type": "modonomicon:text",
@@ -37,7 +37,7 @@
     {
       "type": "modonomicon:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Enchanter$(li)8 Item Bowls$(li)4+ Liquid Crystal Buckets$(li)4 Polished Gemstone Blocks$(li)8 Gemstone Lamps$(li)12 Polished Pillars$(li)24 Polished Slabs$(li)159 Polished Blocks\\\\_Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks._"
+      "text": "- 1 Enchanter\\- 8 Item Bowls\\- 4+ Liquid Crystal Buckets\\- 4 Polished Gemstone Blocks\\- 8 Gemstone Lamps\\- 12 Polished Pillars\\- 24 Polished Slabs\\- 159 Polished Blocks\\\\_Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks._"
     }
   ]
 }

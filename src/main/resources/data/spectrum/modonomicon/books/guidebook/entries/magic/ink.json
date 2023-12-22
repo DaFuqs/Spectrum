@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Now that you're familiar with $(l:general/pigment)Pigment$(), you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert $(l:general/pigment)Pigment$() into a higher form of energy!\\You called it $(c_cyan)I$(c_magenta)n$(c_yellow)k[#]()."
+      "text": "Now that you're familiar with $(l:general/pigment)Pigment$(), you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert $(l:general/pigment)Pigment$() into a higher form of energy!\\You called it [#](157687)I[#](aa32a0)n[#](f0af15)k[#]()."
     },
     {
       "type": "modonomicon:text",

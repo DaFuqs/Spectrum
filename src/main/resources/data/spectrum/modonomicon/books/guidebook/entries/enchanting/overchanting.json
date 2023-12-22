@@ -27,16 +27,16 @@
     {
       "type": "modonomicon:text",
       "title": "Spectrum Enchantments",
-      "text": "$(li)Clovers' Favor: 3 => 6$(li)Disarming: 2 => 4$(li)Exuberance: 5 => 10$(li)First Strike: 2 => 5$(li)Improved Critical: 2 => 4$(li)Inertia: 2 => 5$(li)Tight Grip: 2 => 4$(li)Treasure Hunter: 3 => 5$(li)Sniper: 2 => 4"
+      "text": "- Clovers' Favor: 3 => 6\\- Disarming: 2 => 4\\- Exuberance: 5 => 10\\- First Strike: 2 => 5\\- Improved Critical: 2 => 4\\- Inertia: 2 => 5\\- Tight Grip: 2 => 4\\- Treasure Hunter: 3 => 5\\- Sniper: 2 => 4"
     },
     {
       "type": "modonomicon:text",
       "title": "Vanilla Enchantments",
-      "text": "$(li)Bane of Arthropods: 5 => 8$(li)Blast Protection: 4 => 8$(li)Depth Strider: 3 => 3$(li)Efficiency: 5 => 8$(li)Feather Falling: 4 => 6$(li)Fire Aspect: 2 => 4$(li)Fire Protection: 4 => 8$(li)Fortune: 3 => 5$(li)Frost Walker: 2 => 4$(li)Impaling: 5 => 8$(li)Knockback: 2 => 5$(li)Looting: 3 => 6$(li)Loyalty: 3 => 4$(li)Luck of the Sea: 3 => 5"
+      "text": "- Bane of Arthropods: 5 => 8\\- Blast Protection: 4 => 8\\- Depth Strider: 3 => 3\\- Efficiency: 5 => 8\\- Feather Falling: 4 => 6\\- Fire Aspect: 2 => 4\\- Fire Protection: 4 => 8\\- Fortune: 3 => 5\\- Frost Walker: 2 => 4\\- Impaling: 5 => 8\\- Knockback: 2 => 5\\- Looting: 3 => 6\\- Loyalty: 3 => 4\\- Luck of the Sea: 3 => 5"
     },
     {
       "type": "modonomicon:text",
-      "text": "$(li)Lure: 3 => 5$(li)Piercing: 4 => 8$(li)Power: 5 => 8$(li)Proj. Protection: 4 => 8$(li)Protection: 4 => 8$(li)Punch: 2 => 5$(li)Quick Charge: 3 => 5$(li)Respiration: 3 => 6$(li)Riptide: 3 => 4$(li)Sharpness: 5 => 8$(li)Smite: 5 => 8$(li)Soul Speed: 3 => 4$(li)Sweeping Edge: 3 => 7$(li)Thorns: 3 => 6$(li)Unbreaking: 3 => 6"
+      "text": "- Lure: 3 => 5\\- Piercing: 4 => 8\\- Power: 5 => 8\\- Proj. Protection: 4 => 8\\- Protection: 4 => 8\\- Punch: 2 => 5\\- Quick Charge: 3 => 5\\- Respiration: 3 => 6\\- Riptide: 3 => 4\\- Sharpness: 5 => 8\\- Smite: 5 => 8\\- Soul Speed: 3 => 4\\- Sweeping Edge: 3 => 7\\- Thorns: 3 => 6\\- Unbreaking: 3 => 6"
     }
   ]
 }

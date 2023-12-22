@@ -31,17 +31,17 @@
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:redstone",
-      "text": "$(li)+100% duration"
+      "text": "- +100% duration"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:glowstone_dust",
-      "text": "$(li)+1 potency"
+      "text": "- +1 potency"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:gunpowder",
-      "text": "$(li)creates Splash Potions"
+      "text": "- creates Splash Potions"
     },
     {
       "type": "modonomicon:spotlight",
@@ -50,27 +50,27 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_vanilla/collect_dragon_breath"
       },
-      "text": "$(li)Creates Lingering Potions - also requires Gunpowder as reagent$(li)Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles"
+      "text": "- Creates Lingering Potions\\- also requires Gunpowder as reagent\\- Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:topaz_powder",
-      "text": "$(li)makes effects not show any particles"
+      "text": "- makes effects not show any particles"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:amethyst_powder",
-      "text": "$(li)+60s duration"
+      "text": "- +60s duration"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:citrine_powder",
-      "text": "$(li)+25% potency"
+      "text": "- +25% potency"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:onyx_powder",
-      "text": "$(li)adds a very weird taste and smell to the potion, making it unidentifiable. Also colors it completely black"
+      "text": "- adds a very weird taste and smell to the potion, making it unidentifiable. Also colors it completely black"
     },
     {
       "type": "modonomicon:spotlight",
@@ -79,12 +79,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"
       },
-      "text": "$(li)converts negative effects to their positive ones"
+      "text": "- converts negative effects to their positive ones"
     },
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:shimmerstone_gem",
-      "text": "$(li)+20% potency$(li)+20% duration"
+      "text": "- +20% potency\\- +20% duration"
     },
     {
       "type": "modonomicon:spotlight",
@@ -93,7 +93,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_quitoxic_reeds"
       },
-      "text": "$(li)+1 potency for negative effects"
+      "text": "- +1 potency for negative effects"
     },
     {
       "type": "modonomicon:spotlight",
@@ -102,7 +102,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_stratine"
       },
-      "text": "$(li)+1 potency$(li)+1 negative effect$(li)-1 yield"
+      "text": "- +1 potency\\- +1 negative effect\\- -1 yield"
     },
     {
       "type": "modonomicon:spotlight",
@@ -111,7 +111,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_paltaeria"
       },
-      "text": "$(li)+1 random positive effect"
+      "text": "- +1 random positive effect"
     },
     {
       "type": "modonomicon:spotlight",
@@ -120,7 +120,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stardust"
       },
-      "text": "$(li)75% chance to add the main effect of the Potion that was brewed before"
+      "text": "- 75% chance to add the main effect of the Potion that was brewed before"
     },
     {
       "type": "modonomicon:spotlight",
@@ -129,7 +129,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
       },
-      "text": "$(li)adds the main effect of the Potion that was brewed before, but with -25% potency"
+      "text": "- adds the main effect of the Potion that was brewed before, but with -25% potency"
     },
     {
       "type": "modonomicon:spotlight",
@@ -138,7 +138,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_storm_stone"
       },
-      "text": "$(li)dramatically increases potency at the beginning, but makes potency wear off over time - does not work for instant effects"
+      "text": "- dramatically increases potency at the beginning, but makes potency wear off over time\\- Does not work for instant effects"
     },
     {
       "type": "modonomicon:spotlight",
@@ -147,7 +147,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_azurite"
       },
-      "text": "$(li)negates the duration penalty for Lingering Potions as well as for Tipped Arrows"
+      "text": "- negates the duration penalty for Lingering Potions as well as for Tipped Arrows"
     },
     {
       "type": "modonomicon:spotlight",
@@ -156,7 +156,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"
       },
-      "text": "$(li)large boost to a random stat"
+      "text": "- large boost to a random stat"
     },
     {
       "type": "modonomicon:spotlight",
@@ -165,7 +165,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_vegetal"
       },
-      "text": "$(li)+200% duration$(li)-25% potency"
+      "text": "- +200% duration\\- -25% potency"
     },
     {
       "type": "modonomicon:spotlight",
@@ -174,7 +174,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
       },
-      "text": "$(li)+2 yield"
+      "text": "- +2 yield"
     },
     {
       "type": "modonomicon:spotlight",
@@ -183,7 +183,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_midnight_chip"
       },
-      "text": "$(li)+1 potency$(li)+30s duration$(li)-2 yield"
+      "text": "- +1 potency\\- +30s duration\\- -2 yield"
     },
     {
       "type": "modonomicon:spotlight",
@@ -192,7 +192,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
       },
-      "text": "$(li)makes the potion much smoother, making it much quicker to drink"
+      "text": "- makes the potion much smoother, making it much quicker to drink"
     },
     {
       "type": "modonomicon:spotlight",
@@ -201,7 +201,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
       },
-      "text": "$(li)+50% potency$(li)-75% duration$(li)-1 yield"
+      "text": "- +50% potency\\- -75% duration\\- -1 yield"
     },
     {
       "type": "modonomicon:spotlight",
@@ -210,7 +210,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_bismuth_crystal"
       },
-      "text": "$(li)+1 potency for positive effects$(li)colors the potion in a random color"
+      "text": "- +1 potency for positive effects\\- colors the potion in a random color"
     },
     {
       "type": "modonomicon:spotlight",
@@ -219,7 +219,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/grow_malachite_in_crystallarieum"
       },
-      "text": "$(li)+200% duration$(li)makes the Potion much slower to drink"
+      "text": "- +200% duration\\- makes the Potion much slower to drink"
     },
     {
       "type": "modonomicon:spotlight",
@@ -229,7 +229,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
       },
-      "text": "$(li)-2 potency for negative effects"
+      "text": "- -2 potency for negative effects"
     },
     {
       "type": "modonomicon:spotlight",
@@ -239,7 +239,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jadeite"
       },
-      "text": "$(li)+120s duration for positive effects"
+      "text": "- +120s duration for positive effects"
     },
     {
       "type": "modonomicon:spotlight",
@@ -249,7 +249,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
-      "text": "$(li)10% chance to add the main effect of the potion that was brewed before with +100% potency and duration"
+      "text": "- 10% chance to add the main effect of the potion that was brewed before with +100% potency and duration"
     }
   ]
 }

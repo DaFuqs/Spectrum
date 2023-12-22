@@ -34,7 +34,7 @@
       },
       "title": "Topaz Shards",
       "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. This gemstone quickly turned out to be one of the most robust materials you've ever gotten your hands on - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.\\The Topaz represents $(c_cyan)**MATTER**.[#]()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. This gemstone quickly turned out to be one of the most robust materials you've ever gotten your hands on - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.\\The Topaz represents [#](157687)**MATTER**.[#]()"
     },
     {
       "type": "modonomicon:spotlight",
@@ -45,7 +45,7 @@
       },
       "title": "Amethyst Shards",
       "item": "minecraft:amethyst_shard",
-      "text": "Magenta light refracts in this gemstone.\\Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.\\\\The Amethyst represents $(c_purple)**TIME**[#]()."
+      "text": "Magenta light refracts in this gemstone.\\Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.\\\\The Amethyst represents [#](641f9c)**TIME**[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -56,7 +56,7 @@
       },
       "title": "Citrine Shards",
       "item": "spectrum:citrine_shard",
-      "text": "This yellow gemstone is found close to surface level where the suns light dissipates into warmth.\\\\Its bright yellow luster radiates pure $(c_yellow)**ENERGY**[#]() and makes it slightly warm to the touch at all times."
+      "text": "This yellow gemstone is found close to surface level where the suns light dissipates into warmth.\\\\Its bright yellow luster radiates pure [#](f0af15)**ENERGY**[#]() and makes it slightly warm to the touch at all times."
     },
     {
       "type": "modonomicon:spotlight",
@@ -78,7 +78,7 @@
       },
       "title": "Moonstone Shards",
       "item": "spectrum:moonstone_shard",
-      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.\\\\The Moonstone embodies pure [#](ffffff)**MAGIC**[#]()."
+      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.\\\\The Moonstone embodies pure [#](d0d6d7)**MAGIC**[#]()."
     }
   ]
 }

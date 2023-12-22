@@ -22,9 +22,9 @@
       "text": "Why a _brush_ of all things?\\\\Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
     },
     {
-      "type": "modonomicon:crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Crafting Recipe",
-      "recipe": "spectrum:crafting_table/paintbrush",
+      "recipe_id_1": "spectrum:crafting_table/paintbrush",
       "text": "Give the [Pigment Pedestal](book://general/pedestal) a hearty whack with it to make it start crafting."
     },
     {

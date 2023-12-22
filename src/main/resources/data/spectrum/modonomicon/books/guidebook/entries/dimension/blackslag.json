@@ -68,10 +68,10 @@
       "text": "A common, darkish and sturdy stone that constitutes a large part of the lower levels of the Deeper Down."
     },
     {
-      "type": "modonomicon:smelting",
-      "title": "Polishing",
-      "recipe": "spectrum:smelting/cobbled_blackslag_to_blackslag",
-      "recipe2": "spectrum:smelting/blackslag_to_polished_blackslag",
+      "type": "modonomicon:smelting_recipe",
+      "title1":"Polishing",
+      "recipe_id_1": "spectrum:smelting/cobbled_blackslag_to_blackslag",
+      "recipe_id_2": "spectrum:smelting/blackslag_to_polished_blackslag",
       "text": "The [#](bb00bb)Blast Furnace[#]() smelts these stones even faster than a [#](bb00bb)Furnace[#]()."
     },
     {
@@ -81,8 +81,8 @@
       "text": "Bricks & Tiles can get cracked."
     },
     {
-      "type": "modonomicon:smelting",
-      "title": "Smelting them back",
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1":"Smelting them back",
       "recipe": "spectrum:smelting/polished_blackslag_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their polished variant again."
     }

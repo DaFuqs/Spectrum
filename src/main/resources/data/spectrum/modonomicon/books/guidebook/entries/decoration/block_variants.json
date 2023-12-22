@@ -34,11 +34,11 @@
       "text": "The bright white of Calcite may be the brightest natural color you've stumbled across, looking very clean and radiating dignity. The white Calcite is a wonderful contrast to the dark hues of Basalt."
     },
     {
-      "type": "modonomicon:smelting",
+      "type": "modonomicon:smelting_recipe",
       "anchor": "polishing",
-      "title": "Polishing",
-      "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
-      "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
+      "title1":"Polishing",
+      "recipe_id_1": "spectrum:smelting/smooth_basalt_to_polished_basalt",
+      "recipe_id_2": "spectrum:smelting/calcite_to_polished_calcite",
       "text": "Applying heat emphasizes their dark and white textures even more.\\When smelted, the Basalt almost turns black. They can be crafted into a wide array of decoration blocks in the [#](bb00bb)Crafting Table[#]() or [#](bb00bb)Stone Cutter[#]()."
     },
     {
@@ -88,16 +88,16 @@
       ]
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Pillars & Crests",
-      "recipe": "spectrum:crafting_table/basalt/polished_basalt_pillar",
-      "recipe2": "spectrum:crafting_table/calcite/polished_calcite_crest"
+      "type": "modonomicon:crafting_recipe",
+      "title1":"Pillars & Crests",
+      "recipe_id_1": "spectrum:crafting_table/basalt/polished_basalt_pillar",
+      "recipe_id_2": "spectrum:crafting_table/calcite/polished_calcite_crest"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Chiseled & Notched",
-      "recipe": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
-      "recipe2": "spectrum:crafting_table/calcite/notched_polished_calcite"
+      "type": "modonomicon:crafting_recipe",
+      "title1":"Chiseled & Notched",
+      "recipe_id_1": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
+      "recipe_id_2": "spectrum:crafting_table/calcite/notched_polished_calcite"
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -106,10 +106,10 @@
       "text": "You can crack Bricks & Tiles via $(l:general/anvil_crushing)Item Crushing$()."
     },
     {
-      "type": "modonomicon:smelting",
-      "title": "Smelting them back",
-      "recipe": "spectrum:smelting/polished_basalt_unsmelting",
-      "recipe2": "spectrum:smelting/polished_calcite_unsmelting",
+      "type": "modonomicon:smelting_recipe",
+      "title1":"Smelting them back",
+      "recipe_id_1": "spectrum:smelting/polished_basalt_unsmelting",
+      "recipe_id_2": "spectrum:smelting/polished_calcite_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their polished variant again."
     }
   ]

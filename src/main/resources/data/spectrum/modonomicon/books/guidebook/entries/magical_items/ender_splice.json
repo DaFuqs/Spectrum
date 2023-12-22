@@ -36,7 +36,7 @@
       },
       "title": "Unbreaking",
       "item": "spectrum:ender_splice{Enchantments: [{id: \"minecraft:unbreaking\", lvl: 3s}]}",
-      "text": "Enchanting an Ender Splice with Unbreaking by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of it breaking on use."
+      "text": "Enchanting an Ender Splice with Unbreaking by using the [Enchanter](book://enchanting/enchanting_items) decreases the chance of it breaking on use."
     },
     {
       "type": "modonomicon:spotlight",
@@ -46,7 +46,7 @@
       },
       "title": "Resonance",
       "item": "spectrum:ender_splice{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Enchanting an Ender Splice with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will allow for interdimensional teleport."
+      "text": "Enchanting an Ender Splice with Resonance by using the [Enchanter](book://enchanting/enchanting_items) will allow for interdimensional teleport."
     }
   ]
 }

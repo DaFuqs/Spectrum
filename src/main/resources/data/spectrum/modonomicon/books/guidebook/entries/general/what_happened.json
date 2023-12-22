@@ -76,7 +76,7 @@
         "advancement_id": "spectrum:lategame/revive_black_sludge_plant"
       },
       "title": "Clue: Black Langast",
-      "text": "The remains growing in $(l:dimension/black_langast)Black Langast$(/l) were actually Resonant Lilies, once. What happened here? Does that mean..."
+      "text": "The remains growing in [Black Langast](book://dimension/black_langast) were actually Resonant Lilies, once. What happened here? Does that mean..."
     },
     {
       "type": "modonomicon:text",

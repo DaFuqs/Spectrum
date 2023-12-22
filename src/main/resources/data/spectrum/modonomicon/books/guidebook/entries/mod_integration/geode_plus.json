@@ -27,7 +27,7 @@
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
       },
       "item": "spectrum:crystal_apothecary",
-      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() is able to harvest [#](bb00bb)Crystals[#]() automatically - even if you are not near those geodes at all!"
+      "text": "The [Crystal Apothecary](book://magic/crystal_apothecary) is able to harvest [#](bb00bb)Crystals[#]() automatically - even if you are not near those geodes at all!"
     },
     {
       "type": "modonomicon:spotlight",
@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "item": "spectrum:resonant_pickaxe",
-      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest Budding Blocks."
+      "text": "Tools enchanted with [Resonance](book://enchantments/resonance) are able to harvest Budding Blocks."
     }
   ]
 }

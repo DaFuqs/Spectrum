@@ -36,7 +36,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:clay",
-      "text": "Letting Liquid Crystal collide with $(l:magical_blocks/mud)Liquid Mud$() created [#](bb00bb)Clay[#]()! Surely there are more combinations to discover!\\\\_Thomas had never seen such unbalance before._"
+      "text": "Letting Liquid Crystal collide with [Liquid Mud](book://magical_blocks/mud) created [#](bb00bb)Clay[#]()! Surely there are more combinations to discover!\\\\_Thomas had never seen such unbalance before._"
     },
     {
       "type": "modonomicon:spotlight",

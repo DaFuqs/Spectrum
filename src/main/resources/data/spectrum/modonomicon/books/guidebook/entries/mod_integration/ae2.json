@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
       },
-      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests [#](bb00bb)Gemstone Buds[#](), but also [#](bb00bb)Certus Quartz[#]()."
+      "text": "The [Crystal Apothecary](book://magic/crystal_apothecary) not only harvests [#](bb00bb)Gemstone Buds[#](), but also [#](bb00bb)Certus Quartz[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -51,13 +51,13 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "item": "spectrum:resonant_pickaxe",
-      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest [#](bb00bb)Budding Quartz[#](), while retaining their _flawless_ state."
+      "text": "Tools enchanted with [Resonance](book://enchantments/resonance) are able to harvest [#](bb00bb)Budding Quartz[#](), while retaining their _flawless_ state."
     },
     {
       "type": "spectrum:anvil_crushing",
       "title": "Anvil Crushing",
       "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
-      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$/l): [#](bb00bb)Certus Quartz[#](), [#](bb00bb)Fluix[#](), [#](bb00bb)Skystone[#]() and [#](bb00bb)Ender Pearls[#]()."
+      "text": "Many of AE2's items can be [crushed to dust with an anvil](book://general/anvil_crushing): [#](bb00bb)Certus Quartz[#](), [#](bb00bb)Fluix[#](), [#](bb00bb)Skystone[#]() and [#](bb00bb)Ender Pearls[#]()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -66,7 +66,7 @@
         "advancement_id": "spectrum:midgame/collect_storm_stone"
       },
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
-      "text": "In desperate need of [#](bb00bb)Charged Certus Quartz[#]()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
+      "text": "In desperate need of [#](bb00bb)Charged Certus Quartz[#]()? [Storm Stones](book://resources/storm_stone) will charge them up in a heartbeat."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

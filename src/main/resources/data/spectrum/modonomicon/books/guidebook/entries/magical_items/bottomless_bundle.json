@@ -49,7 +49,7 @@
       },
       "title": "Enchanting - Power",
       "item": "spectrum:bottomless_bundle{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-      "text": "Enchanting a Bottomless Bundle with Power by using the $(l:enchanting/enchanting_items)Enchanter$(/l) you can increase its capacity tenfold for each level of Power.\\\\_Are you able to fill a Bottomless Bundle with Power V?_"
+      "text": "Enchanting a Bottomless Bundle with Power by using the [Enchanter](book://enchanting/enchanting_items) you can increase its capacity tenfold for each level of Power.\\\\_Are you able to fill a Bottomless Bundle with Power V?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -59,7 +59,7 @@
       },
       "title": "Curse of the Void",
       "item": "spectrum:bottomless_bundle{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
-      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will result in voiding all items that would overfill the Bottomless Bundle.\\\\_No more useless blocks cluttering your path when mining._"
+      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the [Enchanter](book://enchanting/enchanting_items) will result in voiding all items that would overfill the Bottomless Bundle.\\\\_No more useless blocks cluttering your path when mining._"
     }
   ]
 }

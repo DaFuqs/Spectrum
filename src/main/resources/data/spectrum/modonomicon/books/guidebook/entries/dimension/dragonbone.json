@@ -59,7 +59,7 @@
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
       "recipe": "spectrum:cinderhearth/bone_ash",
-      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates heat hot enough to turn these bones into ash."
+      "text": "The [Cinderhearth](book://magical_blocks/cinderhearth) is the only thing that generates heat hot enough to turn these bones into ash."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -105,7 +105,7 @@
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
       "recipe": "spectrum:cinderhearth/bone_ash_unsmelting",
-      "text": "Most blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
+      "text": "Most blocks can be converted back to their polished variant again via the [Cinderhearth](book://magical_blocks/cinderhearth)."
     }
   ]
 }

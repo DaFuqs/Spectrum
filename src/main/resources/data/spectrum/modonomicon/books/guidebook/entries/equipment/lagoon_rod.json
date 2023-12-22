@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "On quiet days on your patio you could observe that the $(l:resources/mermaids_brush)Mermaid's Gems$() you found that marine life seems oddly attracted to them. Along with the fact that they naturally float on water, you decided to use one as a bobber.\\\\Lo and behold, not only does it increase your success, but also have quite a few other interesting side effects..."
+      "text": "On quiet days on your patio you could observe that the [Mermaid's Gems](book://resources/mermaids_brush) you found that marine life seems oddly attracted to them. Along with the fact that they naturally float on water, you decided to use one as a bobber.\\\\Lo and behold, not only does it increase your success, but also have quite a few other interesting side effects..."
     },
     {
       "type": "spectrum:pedestal_crafting",

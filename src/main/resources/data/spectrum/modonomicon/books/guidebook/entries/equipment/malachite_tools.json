@@ -23,21 +23,21 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(l:resources/malachite)Malachite$() as a material seems perfect for tools, best compared to [#](bb00bb)Diamond[#](), but much easier to combine with other materials.\\These combinations are where the fun begins, allowing for some uniquely intricate tools."
+      "text": "[Malachite](book://resources/malachite) as a material seems perfect for tools, best compared to [#](bb00bb)Diamond[#](), but much easier to combine with other materials.\\These combinations are where the fun begins, allowing for some uniquely intricate tools."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Workstaff",
       "anchor": "workstaff",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
-      "text": "The perfect $(l:equipment/multitool)Multitool$():\\$(k:sneak) + $(k:use) allows you to switch between [#](449900)Silk Touch[#]() and [#](449900)Fortune[#](), mining large tunnels at once and allows you to [#](449900)strip[#](), [#](449900)till[#]() and [#](449900)flatten[#]()."
+      "text": "The perfect [Multitool](book://equipment/multitool):\\$(k:sneak) + $(k:use) allows you to switch between [#](449900)Silk Touch[#]() and [#](449900)Fortune[#](), mining large tunnels at once and allows you to [#](449900)strip[#](), [#](449900)till[#]() and [#](449900)flatten[#]()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Ultra Greatsword",
       "anchor": "greatsword",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
-      "text": "Its sheer size allows you to hit enemies from a greater distance.\\If you hadn't included the $(l:resources/paltaeria)Paltaeria$(), you probably wouldn't even be able to lift it."
+      "text": "Its sheer size allows you to hit enemies from a greater distance.\\If you hadn't included the [Paltaeria](book://resources/paltaeria), you probably wouldn't even be able to lift it."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

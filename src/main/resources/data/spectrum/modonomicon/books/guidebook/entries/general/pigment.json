@@ -54,7 +54,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)Colored Trees$().\\And by using a hoe harvesting them is pretty fast, too.\\These pigments, composed of their fundamentals [#](aa32a0)**TIME**[#](), [#](f0af15)**ENERGY**[#]() and [#](157687)**MATTER**[#](), definitely feel magical.\\\\Still not fully convinced all of these even exist. How many can you find?"
+      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of [Colored Trees](book://general/colored_trees).\\And by using a hoe harvesting them is pretty fast, too.\\These pigments, composed of their fundamentals [#](aa32a0)**TIME**[#](), [#](f0af15)**ENERGY**[#]() and [#](157687)**MATTER**[#](), definitely feel magical.\\\\Still not fully convinced all of these even exist. How many can you find?"
     },
     {
       "type": "spectrum:checklist",

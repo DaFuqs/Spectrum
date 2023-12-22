@@ -25,7 +25,7 @@
         "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
       ],
       "border": true,
-      "text": "A $(l:dimension/noxwood)weird mix between Tree and Mushroom$(/l) is towering over this biome."
+      "text": "A [weird mix between Tree and Mushroom](book://dimension/noxwood) is towering over this biome."
     },
     {
       "type": "modonomicon:spotlight",

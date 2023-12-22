@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The $(l:resources/stratine)Stratine Gem$() you set into this circlet, itself a creation of the Nether, can absorb high temperatures with ease.\\It even protects you from the blazing heat of Lava - if only for a short time.\\Pair it with [#](449900)Fire Resistance[#](), you're able to swim in Lava almost as if it were Water."
+      "text": "The [Stratine Gem](book://resources/stratine) you set into this circlet, itself a creation of the Nether, can absorb high temperatures with ease.\\It even protects you from the blazing heat of Lava - if only for a short time.\\Pair it with [#](449900)Fire Resistance[#](), you're able to swim in Lava almost as if it were Water."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

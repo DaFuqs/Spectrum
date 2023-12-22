@@ -31,7 +31,7 @@
     {
       "type": "modonomicon:text",
       "title": "Malachite",
-      "text": "A pristine material, that sparkles in a deep green hue. It seems to have strong magical properties, almost like a Deeper Down analog of $(l:resources/azurite)Azurite$(). In another similarity to $(l:resources/azurite)Azurite$(), Malachite also needs to be refined. The small fragments you obtain must first grow into full, usable crystals - though you're not sure you'll see them finished in your lifetime."
+      "text": "A pristine material, that sparkles in a deep green hue. It seems to have strong magical properties, almost like a Deeper Down analog of [Azurite](book://resources/azurite). In another similarity to [Azurite](book://resources/azurite), Malachite also needs to be refined. The small fragments you obtain must first grow into full, usable crystals - though you're not sure you'll see them finished in your lifetime."
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -41,7 +41,7 @@
       },
       "title": "Refining Malachite",
       "recipe": "spectrum:crystallarieum/malachite",
-      "text": "The Crystallarieum seems to be the only way for you to grow Malachite in a reasonable timeframe, by speeding up its growth significantly. $(l:general/moonstone_shards)Moonstone$() is required to create a suitable environment, mimicking the Deeper Down."
+      "text": "The Crystallarieum seems to be the only way for you to grow Malachite in a reasonable timeframe, by speeding up its growth significantly. [Moonstone](book://general/moonstone_shards) is required to create a suitable environment, mimicking the Deeper Down."
     }
   ]
 }

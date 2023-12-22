@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Placed in $(l:resources/geodes)Geodes$(/l), automatically harvests fully grown [#](bb00bb)Gemstone Clusters[#]().\\\\Normally all your other constructions and even crops do pretty much freeze in time when you are away, but this construct seems to continue working even then. Weird."
+      "text": "Placed in [Geodes](book://resources/geodes), automatically harvests fully grown [#](bb00bb)Gemstone Clusters[#]().\\\\Normally all your other constructions and even crops do pretty much freeze in time when you are away, but this construct seems to continue working even then. Weird."
     },
     {
       "type": "spectrum:pedestal_crafting",

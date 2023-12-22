@@ -28,7 +28,7 @@ void main() {
     vec4 cameraSpace = iProjMat * clipSpace;// Camera/View space
     vec3 dir = normalize(IViewRotMat * cameraSpace.xyz);// World space
 
-    vec3 from = CameraPos * speed + vec3(GameTime);
+    vec3 from = CameraPos * speed + vec3(sin(GameTime) + 1, cos(GameTime) + 1, sin(GameTime) * cos(GameTime * GameTime) + 1);
 
     //volumetric rendering
     float s=0.1, fade=1.;

@@ -78,6 +78,7 @@
       "type": "modonomicon:multiblock",
       "name": "A Geode",
       "enable_visualize": false,
+      "multiblock_id": "spectrum:amethyst_geode",
       "multiblock": {
         "pattern": [
           [

@@ -39,6 +39,7 @@
     {
       "type": "modonomicon:multiblock",
       "name": "Reconstructed Portal",
+      "multiblock_id": "spectrum:perturbed_eye",
       "multiblock": {
         "pattern": [
           [

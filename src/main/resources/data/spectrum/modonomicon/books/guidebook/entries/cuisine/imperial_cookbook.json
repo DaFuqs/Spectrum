@@ -68,7 +68,7 @@
     {
       "type": "modonomicon:text",
       "title": "Lotus of the Sea",
-      "text": "\\I have a fun story tied to this recipe. Koi, past being gorgeous creatures, make for the basis of some of the most unique and stunning imperial recipes. These recipes however often require odd and exotic ingredients, and one day we were clean out the night before a banquet. Thinking swiftly, I swapped out the ferment for $(l:creating_life/fading)mother of moor$(), resulting in this flower-like dish."
+      "text": "\\I have a fun story tied to this recipe. Koi, past being gorgeous creatures, make for the basis of some of the most unique and stunning imperial recipes. These recipes however often require odd and exotic ingredients, and one day we were clean out the night before a banquet. Thinking swiftly, I swapped out the ferment for [mother of moor](book://creating_life/fading), resulting in this flower-like dish."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

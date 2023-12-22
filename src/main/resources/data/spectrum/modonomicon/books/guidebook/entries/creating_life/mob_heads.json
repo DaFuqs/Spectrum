@@ -19,7 +19,7 @@
     {
       "type": "modonomicon:text",
       "title": "Mob Heads",
-      "text": "Using your new $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) enchantment you are able to collect heads from all kinds of mobs.\\\\While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
+      "text": "Using your new [Treasure Hunter](book://enchanting/treasure_hunter) enchantment you are able to collect heads from all kinds of mobs.\\\\While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
     },
     {
       "type": "spectrum:collection",

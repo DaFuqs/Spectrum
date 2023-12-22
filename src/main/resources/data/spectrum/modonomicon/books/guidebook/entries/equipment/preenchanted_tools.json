@@ -65,7 +65,7 @@
         "advancement_id": "spectrum:unlocks/equipment/oblivion_pickaxe"
       },
       "recipe": "spectrum:pedestal/tier2/oblivion_pickaxe",
-      "text": "As an outlier in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
+      "text": "As an outlier in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks [are destroyed](book://enchanting/curse_of_the_void)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -74,7 +74,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/resonant_pickaxe"
       },
-      "text": "Matches its own gentle vibrations to those of its surroundings. $(l:enchanting/resonance)Allows you to keep blocks intact$(/l) that would otherwise be irreparably destroyed."
+      "text": "Matches its own gentle vibrations to those of its surroundings. [Allows you to keep blocks intact](book://enchanting/resonance) that would otherwise be irreparably destroyed."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -83,7 +83,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/dragonrending_pickaxe"
       },
-      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.\\Comes pre-enchanted with $(l:enchanting/razing)Razing$(/l)."
+      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.\\Comes pre-enchanted with [Razing](book://enchanting/razing)."
     }
   ]
 }

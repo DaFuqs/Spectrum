@@ -29,7 +29,7 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "$(o)   Reflection Of The Moon"
+      "text": "   _Reflection Of The Moon_"
     },
     {
       "type": "modonomicon:text",
@@ -101,7 +101,7 @@
     {
       "type": "modonomicon:text",
       "title": "[Hidden Page 2]",
-      "text": " ...Asteras\\\\I hope that this message will reach you. The state of things has only worsened since we last spoke, the nobles are still targeting you, but more worryingly.... They are preparing for war, it is clear by now. They want the bloomstone, and they are willing to sacrifice a lot for it. Things are going to get bad, please stay safe.\\$(o)        ... I miss you."
+      "text": " ...Asteras\\\\I hope that this message will reach you. The state of things has only worsened since we last spoke, the nobles are still targeting you, but more worryingly.... They are preparing for war, it is clear by now. They want the bloomstone, and they are willing to sacrifice a lot for it. Things are going to get bad, please stay safe.\\        _... I miss you._"
     }
   ]
 }

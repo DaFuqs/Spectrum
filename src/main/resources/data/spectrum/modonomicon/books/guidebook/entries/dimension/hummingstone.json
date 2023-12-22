@@ -24,7 +24,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:hummingstone_glass",
-      "text": "This very sturdy, very blast resistant glass is scattered all around the $(l:dimension/crystal_gardens)Crystal Gardens$(/l)."
+      "text": "This very sturdy, very blast resistant glass is scattered all around the [Crystal Gardens](book://dimension/crystal_gardens)."
     },
     {
       "type": "modonomicon:spotlight",

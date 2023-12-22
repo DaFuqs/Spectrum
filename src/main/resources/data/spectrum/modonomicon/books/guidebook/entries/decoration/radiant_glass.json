@@ -22,13 +22,13 @@
       "type": "modonomicon:spotlight",
       "item": "spectrum:radiant_glass",
       "title": "Radiant Glass",
-      "text": "You need a way to efficiently light your shelter and other structures.\\\\What could be better than using the luminous properties of $(l:resources/shimmerstone)Shimmerstone$() directly in your glass?$()"
+      "text": "You need a way to efficiently light your shelter and other structures.\\\\What could be better than using the luminous properties of [Shimmerstone](book://resources/shimmerstone) directly in your glass?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/radiant_glass",
-      "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The $(l:resources/shimmerstone)Shimmerstone$() used in its manufacture ensures that the glass glows from within."
+      "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The [Shimmerstone](book://resources/shimmerstone) used in its manufacture ensures that the glass glows from within."
     }
   ]
 }

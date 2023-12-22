@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:redstone_timer",
-      "text": "Though there are lots of ways to calculate time, most seem relatively... rustic. They are no match for this new trick up your sleeve: the time-affinity of $(l:general/shards#amethyst)Amethyst Shards$(/l)."
+      "text": "Though there are lots of ways to calculate time, most seem relatively... rustic. They are no match for this new trick up your sleeve: the time-affinity of [Amethyst Shards](book://general/shards@amethyst)."
     },
     {
       "type": "spectrum:pedestal_crafting",

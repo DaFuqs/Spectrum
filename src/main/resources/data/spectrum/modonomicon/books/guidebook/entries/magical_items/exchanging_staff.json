@@ -35,7 +35,7 @@
       },
       "title": "Fortune",
       "item": "spectrum:exchanging_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
-      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
+      "text": "Enchanting an Exchanging Staff with Fortune by using the [Enchanter](book://enchanting/enchanting_items)$ allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
     },
     {
       "type": "modonomicon:spotlight",
@@ -45,7 +45,7 @@
       },
       "title": "Silk Touch",
       "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
-      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
+      "text": "Enchanting an Exchanging Staff with Silk Touch by using the Enchanter(book://enchanting/enchanting_items) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
     },
     {
       "type": "modonomicon:spotlight",
@@ -55,7 +55,7 @@
       },
       "title": "Resonance",
       "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
+      "text": "Enchanting an Exchanging Staff with Resonance by using the Enchanter(book://enchanting/enchanting_items) will give it the power to harvest some special blocks as-is."
     }
   ]
 }

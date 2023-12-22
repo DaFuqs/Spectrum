@@ -33,7 +33,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:pyrite",
-      "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in $(l:dimension/razor_edge)Razor Edge$(/l)."
+      "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in [Razor Edge](book://dimension/razor_edge)."
     },
     {
       "type": "modonomicon:crafting_recipe",

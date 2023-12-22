@@ -22,13 +22,13 @@
       "type": "modonomicon:spotlight",
       "title": "Harvesting Spawners",
       "item": "spectrum:resonant_pickaxe",
-      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to get Spawners to drop, to be collected by you.\\\\While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "The [Resonance](book://enchanting/resonance) enchantment enables you to get Spawners to drop, to be collected by you.\\\\While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the [Spirit Instiller](book://creating_life/spirit_instiller)."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Changing Creature",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
-      "text": "Using a similar technique to $(l:creating_life/memory)remembering Memories$(/l) you can change the Spawners creature association, making it spew out another type of creature altogether."
+      "text": "Using a similar technique to [remembering Memories](book://creating_life/memory) you can change the Spawners creature association, making it spew out another type of creature altogether."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

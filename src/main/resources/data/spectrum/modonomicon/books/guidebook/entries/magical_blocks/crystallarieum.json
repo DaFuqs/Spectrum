@@ -59,7 +59,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals.\\Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead."
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals.\\Though your best efforts failed to grow actual [gems](book://general/shards), you quickly realised that it could grow all sorts of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",

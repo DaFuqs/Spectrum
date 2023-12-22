@@ -45,7 +45,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
-      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create plain [#](bb00bb)Mob Spawners[#]() yourself.\\You only need to assign a Creature to spawn using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create plain [#](bb00bb)Mob Spawners[#]() yourself.\\You only need to assign a Creature to spawn using the [Spirit Instiller](book://creating_life/spirit_instiller)."
     }
   ]
 }

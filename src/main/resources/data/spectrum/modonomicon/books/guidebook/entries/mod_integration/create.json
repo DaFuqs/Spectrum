@@ -57,7 +57,7 @@
         "advancement_id": "spectrum:collect_quitoxic_reeds"
       },
       "item": "spectrum:quitoxic_reeds",
-      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be milled into powder."
+      "text": "[Quitoxic Reeds](book://resources/quitoxic_reeds) can be milled into powder."
     },
     {
       "type": "modonomicon:spotlight",
@@ -67,7 +67,7 @@
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
       "item": "spectrum:amaranth_bushel",
-      "text": "$(l:cuisine/amaranth)Amaranth$() can be milled into grains."
+      "text": "[Amaranth](book://cuisine/amaranth) can be milled into grains."
     },
     {
       "type": "modonomicon:spotlight",
@@ -77,7 +77,7 @@
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
       },
       "item": "spectrum:frostbite_crystal",
-      "text": "Milling $(l:resources/liquid_crystal_essences)Frostbite Crystal$() will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
+      "text": "Milling [Frostbite Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -87,7 +87,7 @@
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
       },
       "item": "spectrum:blazing_crystal",
-      "text": "Milling $(l:resources/liquid_crystal_essences)Blazing Crystal$() will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
+      "text": "Milling [Blazing Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
     }
   ]
 }

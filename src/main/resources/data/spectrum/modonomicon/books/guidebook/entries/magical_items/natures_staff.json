@@ -35,7 +35,7 @@
       },
       "title": "Enchanting - Efficiency",
       "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
-      "text": "Enchanting the Nature's Staff with Efficiency by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of $(l:creating_life/fading#vegetal)Vegetal$(/l) to get consumed for each level."
+      "text": "Enchanting the Nature's Staff with Efficiency by using the [Enchanter](book://enchanting/enchanting_items) decreases the chance of [Vegetal](book://creating_life/fading@vegetal) to get consumed for each level."
     }
   ]
 }

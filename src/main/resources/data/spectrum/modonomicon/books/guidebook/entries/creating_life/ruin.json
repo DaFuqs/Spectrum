@@ -30,7 +30,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
-      "text": "You won't even make it subtle. This stuff is $(#ff0000)NASTY[#]() by design, you didn't call it that for the fun of it."
+      "text": "You won't even make it subtle. This stuff is [#](#ff0000)NASTY[#]() by design, you didn't call it that for the fun of it."
     },
     {
       "type": "modonomicon:spotlight",
@@ -50,7 +50,7 @@
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
       },
       "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you MIGHT regret it.\\\\Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you MIGHT regret it.\\\\Luckily you already invented a [suitable counteragent](book://creating_life/decay_away)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -60,7 +60,7 @@
       },
       "title": "Bedrock Blocks",
       "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
-      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your $(l:general/pedestal)Pigment Pedestal$(/l) handles it no problem."
+      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your [Pigment Pedestal](book://general/pedestal) handles it no problem."
     },
     {
       "type": "spectrum:pedestal_crafting",

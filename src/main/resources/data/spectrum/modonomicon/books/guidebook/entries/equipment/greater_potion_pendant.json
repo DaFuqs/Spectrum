@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Works very much like its $(l:equipment/lesser_potion_pendant)little brother$(/l).\\However, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I."
+      "text": "Works very much like its [little brother](book://equipment/lesser_potion_pendant).\\However, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-      "text": "Use the $(l:brewing/potion_workshop)Potion Workshop$(/l) to infuse it, by placing it where the [#](bb00bb)Bottle[#]() would normally go.\\\\To clear its effect, put it in a crafting grid."
+      "text": "Use the [Potion Workshop](book://brewing/potion_workshop) to infuse it, by placing it where the [#](bb00bb)Bottle[#]() would normally go.\\\\To clear its effect, put it in a crafting grid."
     }
   ]
 }

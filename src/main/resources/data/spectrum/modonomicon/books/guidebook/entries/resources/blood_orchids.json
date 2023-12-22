@@ -32,7 +32,7 @@
       },
       "title": "Blood Orchid Plants",
       "recipe": "spectrum:spirit_instiller/blood_orchid",
-      "text": "$(l:magical_blocks/liquid_crystal#resonant_lily)Resonant Lilies$(/l)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchid's energy very quickly takes over.\\Welp, worst thing that can happen is you ending up with another plant that you can pluck petals off of."
+      "text": "[Resonant Lilies](book://magical_blocks/liquid_crystal@resonant_lily)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchid's energy very quickly takes over.\\Welp, worst thing that can happen is you ending up with another plant that you can pluck petals off of."
     }
   ]
 }

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Getting from A to B is tedious. Your travel time only seems to go up, especially with $(l:resources/geodes)Geodes$(/l) scattered across the land as they are. To solve this issue, you designed the Seven League Boots, making you much more mobile than before."
+      "text": "Getting from A to B is tedious. Your travel time only seems to go up, especially with [Geodes](book://resources/geodes) scattered across the land as they are. To solve this issue, you designed the Seven League Boots, making you much more mobile than before."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

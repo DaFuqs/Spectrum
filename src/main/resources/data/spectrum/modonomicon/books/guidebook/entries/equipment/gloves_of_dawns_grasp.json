@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/gloves_of_dawns_grasp",
-      "text": "Oh, well, now that you've thought them up, you're gonna use them!\\\\Infuse them with $(l:magic/ink)Light Blue Ink$(/l) to increase the additional reach provided."
+      "text": "Oh, well, now that you've thought them up, you're gonna use them!\\\\Infuse them with [Light Blue Ink](book://magic/ink) to increase the additional reach provided."
     }
   ]
 }

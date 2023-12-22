@@ -57,14 +57,14 @@
       "text": "You can form Shale-Clay into many decorational blocks via [#](bb00bb)Crafting[#]() or the [#](bb00bb)Stonecutter[#]()."
     },
     {
-      "type": "modonomicon:smelting",
-      "recipe": "spectrum:smelting/shale_clay_to_polished_shale_clay",
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "spectrum:smelting/shale_clay_to_polished_shale_clay",
       "text": "Polishing Shale Clay brings out a nice, grayish color.\\Though it seems to [#](449900)weather over time[#](), when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."
     },
     {
-      "type": "modonomicon:smelting",
-      "title": "Smelting them back",
-      "recipe": "spectrum:smelting/polished_shale_clay_unsmelting",
+      "type": "modonomicon:smelting_recipe",
+      "title1":"Smelting them back",
+      "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their clean, polished variant again."
     },
     {

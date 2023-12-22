@@ -30,7 +30,7 @@
       "text": "Resources and tools you come across can be used directly in the Loom as patterns."
     },
     {
-      "type": "modonomicon:crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Vanilla Patterns",
       "recipe": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
       "recipe2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"

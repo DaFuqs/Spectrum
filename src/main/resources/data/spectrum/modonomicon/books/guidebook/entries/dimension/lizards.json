@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "Lurking Lizards",
+      "name":"Lurking Lizards",
       "entity": "spectrum:lizard",
       "scale": 0.5,
       "text": "_Not particularly affable contemporaries._"

@@ -19,9 +19,9 @@
   },
   "pages": [
     {
-      "type": "modonomicon:crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Pigment Pedestal",
-      "recipe": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
       "text": "The **Pigment Pedestal** is the block where you craft most of the recipes for Spectrum.\\\\To start crafting trigger it with a $(l:general/paintbrush)Paintbrush$() or supply a [#](449900)redstone signal[#]().\\It requires air, or an inventory above it."
     },
     {
@@ -34,10 +34,10 @@
       "text": "\\The Pigment Pedestal can be built with your gemstone of choice.\\\\While they do look different they are the same, functionally."
     },
     {
-      "type": "modonomicon:crafting",
+      "type": "modonomicon:crafting_recipe",
       "title": "Crafting Recipes",
-      "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
-      "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
+      "recipe_id_1": "spectrum:crafting_table/pedestal_basic_topaz",
+      "recipe_id_2": "spectrum:crafting_table/pedestal_basic_citrine"
     }
   ]
 }

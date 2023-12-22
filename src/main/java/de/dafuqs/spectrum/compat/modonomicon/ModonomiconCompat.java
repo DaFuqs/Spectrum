@@ -47,6 +47,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(SpectrumCommon.locate("checklist"), BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(SpectrumCommon.locate("confirmation_button"), BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(SpectrumCommon.locate("snippet"), BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
+        LoaderRegistry.registerPageLoader(SpectrumCommon.locate("link"), BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(NBT_SPOTLIGHT_PAGE, BookNbtSpotlightPage::fromJson, BookNbtSpotlightPage::fromNetwork);
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
     }

@@ -39,7 +39,7 @@
       "text": "You have tried and tried, to no avail. You could not find a way to create $(c_brown)brown$() by mixing your gem powder. The closest you came was a washed-out orange - ugh.$(br)It can't be that hard. Like... $(c_brown)Dirt is brown$() and it's the most common stuff around.$(br2)There must be a way... $(br)and you're pretty sure $(c_black)Black$() is the answer."
     },
     {
-      "type": "modonomicon:link",
+      "type": "spectrum:link",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"

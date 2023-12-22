@@ -4,7 +4,12 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/knowledge_gem"
   },
-  "icon": "spectrum:knowledge_gem{stored_experience:500}",
+  "icon": {
+    "item": "spectrum:knowledge_gem",
+    "nbt": {
+      "stored_experience": 500
+    }
+  },
   "category": "spectrum:magical_items",
   "parents": [],
   "background_u_index": 0,

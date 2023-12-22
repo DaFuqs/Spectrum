@@ -79,7 +79,8 @@
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor",
-    "accessors.TypeSpecificPredicateDeserializerMixin"
+    "accessors.TypeSpecificPredicateDeserializerMixin",
+    "compat.modonomicon.BookIconMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",

@@ -24,7 +24,7 @@
       "type": "modonomicon:spotlight",
       "title": "Stratine",
       "item": "spectrum:stratine_fragments",
-      "text": "This very heavy ore is scattered around the depths of the Nether.$(br)It's probably not the best idea to carry large amounts of it home at once."
+      "text": "This very heavy ore is scattered around the depths of the Nether.\\It's probably not the best idea to carry large amounts of it home at once."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -44,7 +44,7 @@
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
       "item": "spectrum:stratine_fragment_block",
-      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.$(br2)However, shaping it via your $(l:general/pedestal)Pedestal$() should not be a problem whatsoever."
+      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.\\\\However, shaping it via your $(l:general/pedestal)Pedestal$() should not be a problem whatsoever."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -54,7 +54,7 @@
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
       "recipe": "spectrum:pedestal/tier1/compacting/stratine_fragment_block",
-      "text": "$(italic)Heavy Metal"
+      "text": "_Heavy Metal_"
     }
   ]
 }

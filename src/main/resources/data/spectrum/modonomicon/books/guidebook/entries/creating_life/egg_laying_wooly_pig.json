@@ -22,7 +22,7 @@
     {
       "type": "modonomicon:text",
       "title": "Egg Laying Wooly Pig",
-      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.$(br2)Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself.$(br)$(italic)Is that a good thing? Bad? You are not sure at all."
+      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.\\\\Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself.\\_Is that a good thing? Bad? You are not sure at all_"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -52,7 +52,7 @@
       },
       "title": "The Creature",
       "entity": "spectrum:egg_laying_wooly_pig",
-      "text": "Able to be $(thing)sheared$() and $(thing)milked$(), while also $(thing)laying eggs$()."
+      "text": "Able to be [#](449900)sheared[#]() and [#](449900)milked[#](), while also [#](449900)laying eggs[#]()."
     }
   ]
 }

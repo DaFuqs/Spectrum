@@ -27,7 +27,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional ones of the same type have a decreased effect."
+      "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.\\Additional ones of the same type have a decreased effect."
     },
 
     {
@@ -75,7 +75,7 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_efficiency"
       },
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
-      "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."
+      "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.\\Now you should be able to cushion the consumption of your structures a little."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -91,7 +91,7 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_yield"
       },
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
-      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
+      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.\\_More bang for your buck!_"
     },
     {
       "type": "spectrum:pedestal_crafting",

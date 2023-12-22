@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "minecraft:bedrock",
-      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.$(br2)What is waiting for you to discover down there?"
+      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.\\\\What is waiting for you to discover down there?"
     },
     {
       "type": "modonomicon:text",

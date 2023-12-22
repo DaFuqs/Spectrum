@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The problem with hoppers is that they are not only slow, but also poorly suited for larger farms due to their non-existent range.$(br2)With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
+      "text": "The problem with hoppers is that they are not only slow, but also poorly suited for larger farms due to their non-existent range.\\\\With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
     },
     {
       "type": "spectrum:pedestal_crafting",

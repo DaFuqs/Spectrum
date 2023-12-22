@@ -28,52 +28,52 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Whenever you enter a new world you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of $(thing)Mending$(). All this, just so you don't have to fix your tools.$(br)That's neither exciting nor species-appropriate. Now you have a much more convenient solution."
+      "text": "Whenever you enter a new world you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of [#](449900)Mending[#](). All this, just so you don't have to fix your tools.\\That's neither exciting nor species-appropriate. Now you have a much more convenient solution."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_pickaxe",
-      "text": "The Bedrock Pickaxe comes with $(bold)Silk Touch$()."
+      "text": "The Bedrock Pickaxe comes with **Silk Touch**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_axe",
-      "text": "The Bedrock Axe comes with $(bold)Efficiency VI$()."
+      "text": "The Bedrock Axe comes with **Efficiency VI**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shovel",
-      "text": "The Bedrock Shovel comes with $(bold)Efficiency VI$()."
+      "text": "The Bedrock Shovel comes with **Efficiency VI**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_sword",
-      "text": "The Bedrock Sword comes with $(bold)Sharpness VI$()."
+      "text": "The Bedrock Sword comes with **Sharpness VI**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_hoe",
-      "text": "The Bedrock Hoe comes with $(bold)Fortune IV$()."
+      "text": "The Bedrock Hoe comes with **Fortune IV**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_bow",
-      "text": "The Bedrock Bow comes with $(bold)Power VI$()."
+      "text": "The Bedrock Bow comes with **Power VI**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
-      "text": "The Bedrock Crossbow comes with $(bold)Quick Charge IV$()."
+      "text": "The Bedrock Crossbow comes with **Quick Charge IV**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
-      "text": "The Bedrock Shears come with $(bold)Efficiency VI$()."
+      "text": "The Bedrock Shears come with **Efficiency VI**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
-      "text": "The Bedrock Fishing Rod comes with $(bold)Luck of the Sea IV$()."
+      "text": "The Bedrock Fishing Rod comes with **Luck of the Sea IV**."
     }
   ]
 }

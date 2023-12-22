@@ -6,14 +6,6 @@
   },
   "icon": "minecraft:arrow",
   "category": "spectrum:brewing",
-
-  "parents": [],
-  "background_u_index": 0,
-  "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
@@ -25,7 +17,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:projectile_rebound",
-      "text": "Each level grants you a small chance to $(thing)protect you from incoming projectiles$()."
+      "text": "Each level grants you a small chance to [#](449900)protect you from incoming projectiles[#]()."
     },
     {
       "type": "modonomicon:text",

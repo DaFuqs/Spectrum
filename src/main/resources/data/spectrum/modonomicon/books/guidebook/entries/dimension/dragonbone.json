@@ -39,7 +39,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Is it really dragons these giant remains come from?$(br)You don't know, honestly. But judging by the size, it could very well be!$(br2)Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
+      "text": "Is it really dragons these giant remains come from?\\You don't know, honestly. But judging by the size, it could very well be!\\\\Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
     },
     {
       "type": "modonomicon:spotlight",
@@ -49,7 +49,7 @@
       },
       "anchor": "dragonbone_chunks",
       "item": "spectrum:dragonbone_chunk",
-      "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, making you able to finally mine it.$(br)The dropped pieces still retained some of that ancient, magical aura."
+      "text": "Damaging Dragonbone using [#](449900)Explosions[#]() seems to breeze away most of the magical protective aura, making you able to finally mine it.\\The dropped pieces still retained some of that ancient, magical aura."
     },
     {
       "type": "spectrum:cinderhearth_smelting",

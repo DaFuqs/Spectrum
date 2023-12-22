@@ -19,7 +19,7 @@
       "type": "modonomicon:spotlight",
       "title": "Vein Mining",
       "item": "spectrum:multitool{Enchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}",
-      "text": "$(italic)Still mining each ore individually? Gravity might make this easier.$()$(br2)Vein Mining rips out all connected blocks.$(br2)Max Level: 1$(br)Applicable to all tools."
+      "text": "_Still mining each ore individually? Gravity might make this easier._\\\\Vein Mining rips out all connected blocks.\\\\Max Level: 1\\Applicable to all tools."
     },
     {
       "type": "spectrum:enchanter_crafting",
@@ -29,7 +29,7 @@
         "advancement_id": "spectrum:unlocks/blocks/enchanter"
       },
       "recipe": "spectrum:mod_integration/vein_mining/enchanter/book_vein_mining",
-      "text": "You can infuse a $(item)common Book$() with Vein Mining by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Vein Mining by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }
   ]
 }

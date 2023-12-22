@@ -57,14 +57,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much more pure, crystalline variant compared to plain $(item)Raw Ore$().$(br2)On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects $(item)Pure Copper$() from oxidization."
+      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much more pure, crystalline variant compared to plain [#](bb00bb)Raw Ore[#]().\\\\On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects [#](bb00bb)Pure Copper[#]() from oxidization."
     },
     {
       "type": "modonomicon:blasting",
       "title": "Blasting",
       "recipe": "spectrum:blasting/pure_resources/pure_iron",
       "recipe2": "spectrum:blasting/pure_resources/pure_gold",
-      "text": "Ironically, you found that these resources seemed to be able to withstand the heat of normal $(item)Furnaces$(). But you were able to smelt them in a $(item)Blast Furnace$(), at least."
+      "text": "Ironically, you found that these resources seemed to be able to withstand the heat of normal [#](bb00bb)Furnaces[#](). But you were able to smelt them in a [#](bb00bb)Blast Furnace[#](), at least."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
@@ -77,7 +77,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Compacting",
       "recipe": "spectrum:pedestal/tier1/compacting/pure_quartz_block",
-      "text": "Can be crafted back into $(item)Pure Resources$()."
+      "text": "Can be crafted back into [#](bb00bb)Pure Resources[#]()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

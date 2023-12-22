@@ -27,7 +27,7 @@
         "advancement_id": "spectrum:place_pedestal"
       },
       "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
-      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() work. No problem plucking the petals from the flattened blossom after that."
+      "text": "While crushing flowers seems a bit unorthodox, it _did_ work. No problem plucking the petals from the flattened blossom after that."
     },
     {
       "type": "modonomicon:spotlight",
@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:midgame/place_color_picker"
       },
       "item": "botania:magenta_petal",
-      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Colored Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
+      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Colored Trees$(/l) in more than just one point.\\\\No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -66,7 +66,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
-      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(item)Floral Fertilizer$() is quite a bit more yielding."
+      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating [#](bb00bb)Floral Fertilizer[#]() is quite a bit more yielding."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -75,7 +75,7 @@
         "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
       },
       "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
-      "text": "The $(item)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
+      "text": "The [#](bb00bb)Black Lotus[#]() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some [#](449900)Jade Petals[#]()"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -104,7 +104,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:black_lotus",
-      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -114,7 +114,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:blacker_lotus",
-      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -124,7 +124,7 @@
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
       "item": "botania:life_essence",
-      "text": "$(li)+3 potency$(li)-3 yield$(br2)Requires other reagents to increase the yield, otherwise you will end up with nothing..."
+      "text": "$(li)+3 potency$(li)-3 yield\\\\Requires other reagents to increase the yield, otherwise you will end up with nothing..."
     },
     {
       "type": "modonomicon:spotlight",

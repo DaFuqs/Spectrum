@@ -19,13 +19,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Using the magic elements of $(c_brown)Nature$() and $(c_lime)Fertility$(), you have come up with this stroke of genius.$(br)Bonemeal is a joke when compared to your new gadget."
+      "text": "Using the magic elements of $(c_brown)Nature[#]() and $(c_lime)Fertility[#](), you have come up with this stroke of genius.\\Bonemeal is a joke when compared to your new gadget."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/natures_staff",
-      "text": "$(italic)Point at something you want to see blossom"
+      "text": "_Point at something you want to see blossom_"
     },
     {
       "type": "modonomicon:spotlight",

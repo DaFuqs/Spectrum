@@ -24,7 +24,7 @@
       "type": "modonomicon:spotlight",
       "title": "A Mysterious Locket",
       "item": "spectrum:mysterious_locket",
-      "text": "This small locket is tight shut. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.$(br)There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seem.$(br)Who left it behind?"
+      "text": "This small locket is tight shut. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.\\There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seem.\\Who left it behind?"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -34,7 +34,7 @@
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
       },
       "recipe": "spectrum:fusion_shrine/mysterious_locket_socketing",
-      "text": "The notch you noticed perfectly seems to fit a $(l:resources/moonstone_cores)Moonstone Core$()."
+      "text": "The notch you noticed perfectly seems to fit a [Moonstone Core](book://resources/moonstone_cores)."
     },
     {
       "type": "modonomicon:text",
@@ -43,7 +43,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/open_mysterious_compass"
       },
-      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While $(l:dimension/getting_deeper_down)below the Bedrock(/l), it softly vibrates as you turn."
+      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.\\While [below the Bedrock](book://dimension/getting_deeper_down), it softly vibrates as you turn."
     },
     {
       "type": "modonomicon:image",
@@ -64,7 +64,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/learn_dreiton"
       },
-      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:$(br2)$(italic)Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light."
+      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:\\\\_Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light._"
     }
   ]
 }

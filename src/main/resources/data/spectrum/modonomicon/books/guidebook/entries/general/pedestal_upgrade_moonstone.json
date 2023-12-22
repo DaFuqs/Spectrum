@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Moonstone Pedestal",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
-      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards#moonstone)Moonstone Shards$()."
+      "text": "Upgrade your [Pigment Pedestal](book://general/pedestal) by using one of your gathered [Moonstone Shards](book://general/shards@moonstone)."
     },
     {
       "type": "modonomicon:multiblock",
@@ -36,12 +36,12 @@
     {
       "type": "modonomicon:text",
       "title": "Checklist (Complete)",
-      "text": "$(li)1 Pigment Pedestal$(li)4 Onyx Chiseled Blocks$(li)4 Notched Polished Blocks$(li)8 Gemstone Lamps$(li)4 Gemstone Chiseled Blocks$(li)12 Polished Gemstone Blocks$(li)16 CMYK Chiseled Blocks$(li)36 Polished Pillars$(li)52 Polished Crests$(li)172 Polished Blocks"
+      "text": "- 1 Pigment Pedestal\\- 4 Onyx Chiseled Blocks\\- 4 Notched Polished Blocks\\- 8 Gemstone Lamps\\- 4 Gemstone Chiseled Blocks\\- 12 Polished Gemstone Blocks\\- 16 CMYK Chiseled Blocks\\- 36 Polished Pillars\\- 52 Polished Crests\\- 172 Polished Blocks"
     },
     {
       "type": "modonomicon:text",
       "title": "Checklist (Upgrade)",
-      "text": "$(li)4 Onyx Chiseled Blocks$(li)4 Polished Gemstone Blocks$(li)36 Polished Crests$(li)12 Polished Blocks"
+      "text": "- 4 Onyx Chiseled Blocks\\- 4 Polished Gemstone Blocks\\- 36 Polished Crests\\- 12 Polished Blocks"
     }
   ]
 }

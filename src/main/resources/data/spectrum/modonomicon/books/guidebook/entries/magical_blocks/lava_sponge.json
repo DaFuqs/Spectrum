@@ -21,18 +21,18 @@
     {
       "type": "modonomicon:text",
       "title": "Lava Sponge",
-      "text": "When you held a $(item)Wet Sponge$() in your hands, you thought that there must be a counterpart for $(item)Lava$(), too. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.$(br2)This should make navigation in the depths of the world and beyond that hellish portal much easier."
+      "text": "When you held a [#](bb00bb)Wet Sponge[#]() in your hands, you thought that there must be a counterpart for [#](bb00bb)Lava[#](), too. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.\\\\This should make navigation in the depths of the world and beyond that hellish portal much easier."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/lava_sponge",
-      "text": "...or so you thought, until you realized that the lava-soaked sponge also has an $(italic)unfortunate$() side effect.$(br)You should have guessed."
+      "text": "...or so you thought, until you realized that the lava-soaked sponge also has an _unfortunate_ side effect.\\You should have guessed."
     },
     {
       "type": "modonomicon:text",
       "title": "Furnace Fuel",
-      "text": "The Lava Sponge can be used as highly efficient fuel in the $(item)Furnace$(), drying it in the process."
+      "text": "The Lava Sponge can be used as highly efficient fuel in the [#](bb00bb)Furnace[#](), drying it in the process."
     }
   ]
 }

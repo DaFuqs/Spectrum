@@ -20,12 +20,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This small blade is too fine to inflict serious wounds, but has many sharp spikes that drill themselves into the flesh of your opponent.$(br2)Infused in the $(l:brewing/potion_workshop)Potion Workshop$(), all struck opponents are afflicted with the effect - provided you have enough $(l:magic/ink)Ink$() on you."
+      "text": "This small blade is too fine to inflict serious wounds, but has many sharp spikes that drill themselves into the flesh of your opponent.\\\\Infused in the $(l:brewing/potion_workshop)Potion Workshop$(), all struck opponents are afflicted with the effect - provided you have enough $(l:magic/ink)Ink$() on you."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/nightfalls_blade",
-      "text": "$(italic)Cruel, really. But effective."
+      "text": "_Cruel, really. But effective._"
     }
   ]
 }

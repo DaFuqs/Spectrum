@@ -19,12 +19,12 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:lightweight",
-      "text": "$(thing)Makes you a bit lighter$() with every level. You noticed being able to jump a bit further and you fell slower.$(br)High levels will make you not take $(thing)Fall Damage$() anymore."
+      "text": "[#](449900)Makes you a bit lighter[#]() with every level. You noticed being able to jump a bit further and you fell slower.\\High levels will make you not take [#](449900)Fall Damage[#]() anymore."
     },
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:density",
-      "text": "$(thing)Makes you heavier$() with every level, preventing you to make long jumps and take increased fall damage."
+      "text": "[#](449900)Makes you heavier[#]() with every level, preventing you to make long jumps and take increased fall damage."
     }
   ]
 }

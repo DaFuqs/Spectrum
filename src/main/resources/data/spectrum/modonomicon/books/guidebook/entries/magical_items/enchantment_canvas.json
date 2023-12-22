@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Your pickaxe, which was sinfully expensive to enchant? Almost broken and each additional broken block damages your nerves more than the tool itself.$(br)Even if the tool can't be saved, at least the enchantments will! This canvas does not only capture color: Used on a tool, the enchantments are exchanged."
+      "text": "Your pickaxe, which was sinfully expensive to enchant? Almost broken and each additional broken block damages your nerves more than the tool itself.\\Even if the tool can't be saved, at least the enchantments will! This canvas does not only capture color: Used on a tool, the enchantments are exchanged."
     },
     {
       "type": "spectrum:pedestal_crafting",

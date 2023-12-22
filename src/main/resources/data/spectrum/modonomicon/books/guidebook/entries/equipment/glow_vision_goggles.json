@@ -21,7 +21,7 @@
     {
       "type": "modonomicon:spotlight",
       "item": "spectrum:glow_vision_goggles",
-      "text": "What makes Glow Squids so special is them lighting your way in the darkness of the caves. As beautiful as they are, they seem to wash ashore far too often and meet their sad end there.$(br)You honor their clumsy glowing legacy by designing glasses that can continue guiding you in the darkness of the caves."
+      "text": "What makes Glow Squids so special is them lighting your way in the darkness of the caves. As beautiful as they are, they seem to wash ashore far too often and meet their sad end there.\\You honor their clumsy glowing legacy by designing glasses that can continue guiding you in the darkness of the caves."
     },
     {
       "type": "spectrum:pedestal_crafting",

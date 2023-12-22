@@ -55,7 +55,7 @@
       "type": "modonomicon:spotlight",
       "title": "Preservation Ruins",
       "item": "spectrum:preservation_controller",
-      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
+      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.\\There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {
       "type": "modonomicon:text",
@@ -64,7 +64,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
-      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but was miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.\\Whoever built these structures obviously followed a similar path as you, but was miles ahead.\\Still, anyway. You accept the challenge, of course. You have one huge advantage:\\_YOU are still alive._"
     },
     {
       "type": "spectrum:checklist",

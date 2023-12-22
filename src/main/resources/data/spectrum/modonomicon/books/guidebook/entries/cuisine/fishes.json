@@ -27,7 +27,7 @@
       },
       "anchor": "crawfish",
       "item": "spectrum:crawfish",
-      "text": "Well, not actually a fish, but a $(italic)crustacean$().$(br2)They seem to thrive even in the $(l:magical_blocks/mud)muddiest of ponds$(/l)."
+      "text": "Well, not actually a fish, but a _crustacean_.\\\\They seem to thrive even in the $(l:magical_blocks/mud)muddiest of ponds$(/l)."
     },
     {
       "type": "modonomicon:spotlight",

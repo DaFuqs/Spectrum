@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.$(br)Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Gelatin$() & $(l:cuisine/amaranth)Amaranth$(/l).$(br)Even the simple one tastes great!"
+      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.\\Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), [#](449900)Gelatin[#]() & $(l:cuisine/amaranth)Amaranth$(/l).\\Even the simple one tastes great!"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
       "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
-      "text": "$(italic)Extra Salty"
+      "text": "_Extra Salty_"
     },
     {
       "type": "spectrum:pedestal_crafting",

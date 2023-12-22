@@ -21,12 +21,12 @@
       "type": "modonomicon:text",
       "name": "Reagents",
       "title": "Using Reagents",
-      "text": "Using $(l:resources/mermaids_brush)Mermaid's Gems$() as a base instead of $(item)Blaze Powder$() results in a much more reactive potion. Not only does this allow you to add your personal range of additional magical ingredients, but also use some of them as additional Reagent. Each of those Reagents has a unique effect on the $(item)Potion$(). Each Reagent can only be used once per recipe."
+      "text": "Using $(l:resources/mermaids_brush)Mermaid's Gems$() as a base instead of [#](bb00bb)Blaze Powder[#]() results in a much more reactive potion. Not only does this allow you to add your personal range of additional magical ingredients, but also use some of them as additional Reagent. Each of those Reagents has a unique effect on the [#](bb00bb)Potion[#](). Each Reagent can only be used once per recipe."
     },
     {
       "type": "modonomicon:text",
       "title": "Order of Application",
-      "text": "The order in which you arrange the reagents does not matter.$(br2)$(bold)Flat bonuses are applied first, the percentage based ones modify that value after."
+      "text": "The order in which you arrange the reagents does not matter.\\\\_Flat bonuses are applied first, the percentage based ones modify that value after.**"
     },
     {
       "type": "modonomicon:spotlight",

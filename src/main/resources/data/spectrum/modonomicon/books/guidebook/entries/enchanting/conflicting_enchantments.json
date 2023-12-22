@@ -22,11 +22,11 @@
       "type": "modonomicon:spotlight",
       "title": "Enchanting Mastery",
       "item": "minecraft:diamond_chestplate{Enchantments: [{id: \"minecraft:protection\", lvl: 3s}, {id: \"minecraft:blast_protection\", lvl: 3s}, {id: \"minecraft:projectile_protection\", lvl: 3s}, {id: \"minecraft:fire_protection\", lvl: 3s}]}",
-      "text": "The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.$(br)As a master of magic, nothing is left to your desires."
+      "text": "The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.\\As a master of magic, nothing is left to your desires."
     },
     {
       "type": "modonomicon:text",
-      "text": "You are now able to use the enchanter to apply enchantments to your equipment that are normally mutually exclusive.$(br2)Be aware:$(br)$(italic)Such actions will require a lot of experience$()."
+      "text": "You are now able to use the enchanter to apply enchantments to your equipment that are normally mutually exclusive.\\\\Be aware:\\_Such actions will require a lot of experience_."
     }
   ]
 }

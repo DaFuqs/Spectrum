@@ -72,7 +72,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "$(br)Breaking Clusters gets you Gemstone Shards, which seem to inherit lots of the original magical properties.$(br)Each type of gemstone seems to represent a different type of fundamental property.$(br2)Different heights promote formation of certain types. To find them all, it makes sense to search in different places."
+      "text": "\\Breaking Clusters gets you Gemstone Shards, which seem to inherit lots of the original magical properties.\\Each type of gemstone seems to represent a different type of fundamental property.\\\\Different heights promote formation of certain types. To find them all, it makes sense to search in different places."
     },
     {
       "type": "modonomicon:multiblock",
@@ -304,7 +304,7 @@
         },
         "symmetrical": false
       },
-      "text": "The precious gemstones are protected by layers of $(item)Calcite$() and $(item)Basalt$()."
+      "text": "The precious gemstones are protected by layers of [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -314,7 +314,7 @@
       },
       "title": "Gemstone Ores",
       "item": "spectrum:amethyst_ore",
-      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br)If you see such an ore a geode is surely not far!$(br2)While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."
+      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.\\If you see such an ore a geode is surely not far!\\\\While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."
     },
     {
       "type": "modonomicon:spotlight",
@@ -334,7 +334,7 @@
       },
       "title": "Amethyst Geodes",
       "item": "minecraft:amethyst_block",
-      "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world.$(br)Leisurely and yet imposing."
+      "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world.\\Leisurely and yet imposing."
     },
     {
       "type": "modonomicon:spotlight",
@@ -354,7 +354,7 @@
       },
       "title": "Moonstone Geodes",
       "item": "spectrum:moonstone_block",
-      "text": "In the Deeper Down you stumbled upon Moonstone Geodes!$(br)You always suspected that there would be this other variant. Those often majestic geodes shine in the brightest of whites. Almost blinding, when accustomed to the darkness of the Deeper Down."
+      "text": "In the Deeper Down you stumbled upon Moonstone Geodes!\\You always suspected that there would be this other variant. Those often majestic geodes shine in the brightest of whites. Almost blinding, when accustomed to the darkness of the Deeper Down."
     }
   ]
 }

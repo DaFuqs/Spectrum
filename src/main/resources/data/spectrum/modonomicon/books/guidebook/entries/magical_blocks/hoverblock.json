@@ -24,7 +24,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "...well, other blocks seem to be able to float in the air without support just fine for whatever reason, too, but this one is special: $(thing)it preserves any momentum that you give it$(), like via $(item)Piston$(), even if you stand on it.$(br2)Tip: $(k:sneak) + $(k:use) to pick it back up."
+      "text": "...well, other blocks seem to be able to float in the air without support just fine for whatever reason, too, but this one is special: [#](449900)it preserves any momentum that you give it[#](), like via [#](bb00bb)Piston[#](), even if you stand on it.\\\\Tip: $(k:sneak) + $(k:use) to pick it back up."
     }
   ]
 }

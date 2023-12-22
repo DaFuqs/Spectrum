@@ -26,7 +26,7 @@
     {
       "type": "modonomicon:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br2)How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals."
+      "text": "A metal that shimmers in all the colors of the rainbow.\\The small seedlings you collected are far too small to be used for any meaningful purpose.\\\\How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals."
     },
     {
       "type": "spectrum:crystallarieum_growing",

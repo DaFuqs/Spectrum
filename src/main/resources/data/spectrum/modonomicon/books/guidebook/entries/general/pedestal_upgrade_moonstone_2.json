@@ -21,7 +21,7 @@
       "type": "modonomicon:spotlight",
       "title": "Moonstone Pedestal",
       "item": "spectrum:moonstone_chiseled_basalt",
-      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(item)Moonstone Chiseled Blocks$() would require you being able to use your $(item)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Could there be a way to get around that?"
+      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more [#](ffffff)Moonstone[#]() exactly. The tricky part: Creating the required [#](bb00bb)Moonstone Chiseled Blocks[#]() would require you being able to use your [#](bb00bb)Moonstone Pedestal[#]() to it's full capability already.\\_Could there be a way to get around that?_"
     },
     {
       "type": "modonomicon:multiblock",
@@ -33,12 +33,12 @@
     {
       "type": "modonomicon:text",
       "title": "Checklist (Complete)",
-      "text": "$(li)1 Pigment Pedestal$(li)4 Onyx Chiseled Blocks$(li)4 Notched Polished Blocks$(li)8 Gemstone Lamps$(li)4 Gemstone Chiseled Blocks$(li)12 Polished Gemstone Blocks$(li)16 CMY Gemstone Chiseled Bl.$(li)28 Moonstone Chiseled Bl.$(li)36 Polished Pillars$(li)52 Polished Crests$(li)144 Polished Blocks"
+      "text": "- 1 Pigment Pedestal\\- 4 Onyx Chiseled Blocks\\- 4 Notched Polished Blocks-- 8 Gemstone Lamps\\- 4 Gemstone Chiseled Blocks\\- 12 Polished Gemstone Blocks\\- 16 CMY Gemstone Chiseled Bl.\\- 28 Moonstone Chiseled Bl.\\- 36 Polished Pillars\\- 52 Polished Crests\\- 144 Polished Blocks"
     },
     {
       "type": "modonomicon:text",
       "title": "Checklist (Upgrade)",
-      "text": "$(li)28 Moonstone Chiseled Bl."
+      "text": "- 28 Moonstone Chiseled Bl."
     },
     {
       "type": "modonomicon:image",
@@ -49,7 +49,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up $(item)Calcite$() and $(item)Basalt$() up to create your personal variation!"
+      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() up to create your personal variation!"
     }
   ]
 }

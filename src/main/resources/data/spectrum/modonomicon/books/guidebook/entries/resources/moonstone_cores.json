@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:text",
       "title": "Moonstone Cores",
-      "text": "This powerhouse of an item is able to funnel huge amounts of $(c_white)White Ink$() with ease. Can be used to boost the capabilities of equipment and devices.$(br2)$(italic)A relic of times long gone$()."
+      "text": "This powerhouse of an item is able to funnel huge amounts of $(c_white)White Ink[#]() with ease. Can be used to boost the capabilities of equipment and devices.\\\\_A relic of times long gone_."
     }
   ]
 }

@@ -27,7 +27,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "As the name implies the $(l:brewing/potion_workshop)Potion Workshop's$() main focus is the creation of powerful $(item)Potions$().$(br)But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
+      "text": "As the name implies the $(l:brewing/potion_workshop)Potion Workshop's$() main focus is the creation of powerful [#](bb00bb)Potions[#]().\\But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.\\$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -39,7 +39,7 @@
       "type": "spectrum:potion_workshop_crafting",
       "title": "Lava",
       "recipe": "spectrum:potion_workshop_crafting/lava_bucket",
-      "text": "The $(l:magical_blocks/lava_sponge)Lava Sponge$(/l) will not get used up, allowing you to create large amounts of $(item)Lava$() quickly."
+      "text": "The $(l:magical_blocks/lava_sponge)Lava Sponge$(/l) will not get used up, allowing you to create large amounts of [#](bb00bb)Lava[#]() quickly."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -89,7 +89,7 @@
       "type": "spectrum:potion_workshop_crafting",
       "title": "Bottles o' Enchanting",
       "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
-      "text": "Will consume 10 XP from the $(item)Knowledge Gem$()."
+      "text": "Will consume 10 XP from the [#](bb00bb)Knowledge Gem[#]()."
     }
   ]
 }

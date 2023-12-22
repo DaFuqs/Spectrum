@@ -54,12 +54,12 @@
         "spectrum:weathered_shale_clay_tile_stairs",
         "spectrum:weathered_shale_clay_tiles"
       ],
-      "text": "You can form Shale-Clay into many decorational blocks via $(item)Crafting$() or the $(item)Stonecutter$()."
+      "text": "You can form Shale-Clay into many decorational blocks via [#](bb00bb)Crafting[#]() or the [#](bb00bb)Stonecutter[#]()."
     },
     {
       "type": "modonomicon:smelting",
       "recipe": "spectrum:smelting/shale_clay_to_polished_shale_clay",
-      "text": "Polishing Shale Clay brings out a nice, grayish color.$(br)Though it seems to $(thing)weather over time$(), when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."
+      "text": "Polishing Shale Clay brings out a nice, grayish color.\\Though it seems to [#](449900)weather over time[#](), when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."
     },
     {
       "type": "modonomicon:smelting",

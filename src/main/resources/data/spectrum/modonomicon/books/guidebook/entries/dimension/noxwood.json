@@ -25,7 +25,7 @@
         "spectrum:ivory_noxshroom",
         "spectrum:chestnut_noxshroom"
       ],
-      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
+      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).\\They come in different colours.\\\\The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
     },
     {
       "type": "modonomicon:crafting",
@@ -136,13 +136,13 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Lamps",
       "recipe": "spectrum:pedestal/tier1/noxwood/ivory_lamp",
-      "text": "Can be placed standing or hanging. $(thing)Sneak$() to place an alternative variant."
+      "text": "Can be placed standing or hanging. [#](449900)Sneak[#]() to place an alternative variant."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Amphoras",
       "recipe": "spectrum:pedestal/tier1/noxwood/ivory_amphora",
-      "text": "Kind of similar to $(item)Barrels$(), but with double the storage space."
+      "text": "Kind of similar to [#](bb00bb)Barrels[#](), but with double the storage space."
     },
     {
       "type": "spectrum:pedestal_crafting",

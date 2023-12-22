@@ -29,7 +29,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(item)Calcite$() and $(item)Basalt$() keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so strong that it tears a hole in the geode.$(br2)You recreated the whole thing in miniature.$()"
+      "text": "[#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() keep the energies of the gems in check as long as they completely enclose the geode, that much is certain. Sometimes, however, the energy accumulated over centuries is so strong that it tears a hole in the geode.\\\\You recreated the whole thing in miniature.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

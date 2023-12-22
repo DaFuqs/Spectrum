@@ -25,11 +25,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "That stupid obsidian table is very stubborn when it comes to giving you the enchantments you seek.$(br)Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so stupid and only too happy to be eaten by Zombies)."
+      "text": "That stupid obsidian table is very stubborn when it comes to giving you the enchantments you seek.\\Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so stupid and only too happy to be eaten by Zombies)."
     },
     {
       "type": "modonomicon:text",
-      "text": "The advantage of knowing exactly what you want gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.$(br2)Unfortunately, these features make these tools very fragile for the most part."
+      "text": "The advantage of knowing exactly what you want gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.\\\\Unfortunately, these features make these tools very fragile for the most part."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:unlocks/equipment/tender_pickaxe"
       },
       "recipe": "spectrum:pedestal/tier1/tools/tender_pickaxe",
-      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)Pre-enchanted with $(c_cyan)$(bold)Silk Touch$()."
+      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.\\Pre-enchanted with $(c_cyan)**Silk Touch**[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -47,7 +47,7 @@
         "advancement_id": "spectrum:unlocks/equipment/lucky_pickaxe"
       },
       "recipe": "spectrum:pedestal/tier1/tools/lucky_pickaxe",
-      "text": "Infused with the power of $(c_yellow)energy$(), it allows you to carve out every last bit of ore from every vein.$(br)Pre-enchanted with $(c_yellow)$(bold)Fortune III$()."
+      "text": "Infused with the power of $(c_yellow)energy[#](), it allows you to carve out every last bit of ore from every vein.\\Pre-enchanted with $(c_yellow)**Fortune III**[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -56,7 +56,7 @@
         "advancement_id": "spectrum:unlocks/equipment/razor_falchion"
       },
       "recipe": "spectrum:pedestal/tier1/tools/razor_falchion",
-      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br)Pre-enchanted with $(c_magenta)$(bold)Looting III$()."
+      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.\\Pre-enchanted with $(c_magenta)**Looting III**[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -83,7 +83,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/dragonrending_pickaxe"
       },
-      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.$(br)Comes pre-enchanted with $(l:enchanting/razing)Razing$(/l)."
+      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.\\Comes pre-enchanted with $(l:enchanting/razing)Razing$(/l)."
     }
   ]
 }

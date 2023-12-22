@@ -22,7 +22,7 @@
       "type": "modonomicon:spotlight",
       "item": "spectrum:radiant_glass",
       "title": "Radiant Glass",
-      "text": "You need a way to efficiently light your shelter and other structures.$(br2)What could be better than using the luminous properties of $(l:resources/shimmerstone)Shimmerstone$() directly in your glass?$()"
+      "text": "You need a way to efficiently light your shelter and other structures.\\\\What could be better than using the luminous properties of $(l:resources/shimmerstone)Shimmerstone$() directly in your glass?$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

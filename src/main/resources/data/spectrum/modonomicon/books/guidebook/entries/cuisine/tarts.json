@@ -25,7 +25,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! $(br2)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
+      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! \\\\You can garnish it with different toppings to grant you [#](449900)defensive abilities[#]() for a short duration."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -40,12 +40,12 @@
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
       "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
-      "text": "$(italic)Extra Salty"
+      "text": "_Extra Salty_"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/ashen_tart",
-      "text": "Makes you able to see & swim in Lava as were it Water.$(br)However, does NOT make you fire immune."
+      "text": "Makes you able to see & swim in Lava as were it Water.\\However, does NOT make you fire immune."
     },
     {
       "type": "spectrum:pedestal_crafting",

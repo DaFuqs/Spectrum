@@ -25,13 +25,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "\"Any technology advanced enough is indistinguishable from magic,\" you once heard.$(br)You're still not entirely sure how this storage system manages to store so many blocks in such a small space, but since you regularly walk around with hundreds of square metres of dirt, you've never bothered to question it."
+      "text": "\"Any technology advanced enough is indistinguishable from magic,\" you once heard.\\You're still not entirely sure how this storage system manages to store so many blocks in such a small space, but since you regularly walk around with hundreds of square metres of dirt, you've never bothered to question it."
     },
     {
       "type": "modonomicon:spotlight",
       "title": "Growth Acceleration",
       "item": "ae2:quartz_growth_accelerator",
-      "text": "Looks like - despite the name - the $(item)Crystal Growth Accelerator$() can grow more than just quartz! It can also grow other types of gemstones."
+      "text": "Looks like - despite the name - the [#](bb00bb)Crystal Growth Accelerator[#]() can grow more than just quartz! It can also grow other types of gemstones."
     },
     {
       "type": "modonomicon:spotlight",
@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
       },
-      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(item)Gemstone Buds$(), but also $(item)Certus Quartz$()."
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests [#](bb00bb)Gemstone Buds[#](), but also [#](bb00bb)Certus Quartz[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -51,13 +51,13 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "item": "spectrum:resonant_pickaxe",
-      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest $(item)Budding Quartz$(), while retaining their $(italic)flawless$() state."
+      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest [#](bb00bb)Budding Quartz[#](), while retaining their _flawless_ state."
     },
     {
       "type": "spectrum:anvil_crushing",
       "title": "Anvil Crushing",
       "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
-      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$/l): $(item)Certus Quartz$(), $(item)Fluix$(), $(item)Skystone$() and $(item)Ender Pearls$()."
+      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$/l): [#](bb00bb)Certus Quartz[#](), [#](bb00bb)Fluix[#](), [#](bb00bb)Skystone[#]() and [#](bb00bb)Ender Pearls[#]()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -66,7 +66,7 @@
         "advancement_id": "spectrum:midgame/collect_storm_stone"
       },
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
-      "text": "In desperate need of $(item)Charged Certus Quartz$()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
+      "text": "In desperate need of [#](bb00bb)Charged Certus Quartz[#]()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -76,7 +76,7 @@
         "advancement_id": "spectrum:midgame/collect_storm_stone"
       },
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal",
-      "text": "...and then create $(item)Fluix$() from it, if you get impatient."
+      "text": "...and then create [#](bb00bb)Fluix[#]() from it, if you get impatient."
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -86,7 +86,7 @@
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
       "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
-      "text": "Being crystalline structures, $(item)Certus Quartz$() and $(item)Fluix Crystals$() can be grown in the Crystallarieum."
+      "text": "Being crystalline structures, [#](bb00bb)Certus Quartz[#]() and [#](bb00bb)Fluix Crystals[#]() can be grown in the Crystallarieum."
     }
   ]
 }

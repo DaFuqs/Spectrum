@@ -21,12 +21,12 @@
     {
       "type": "modonomicon:text",
       "title": "Modular Explosives",
-      "text": "Highly modular explosives, consisting of:$(li)an $(thing)Archetype$() (damaging entities, destroying blocks, both, or just purely cosmetic)$(li)and $(thing)Modifiers$() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
+      "text": "Highly modular explosives, consisting of:$(li)an [#](449900)Archetype[#]() (damaging entities, destroying blocks, both, or just purely cosmetic)$(li)and [#](449900)Modifiers[#]() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
     },
     {
       "type": "modonomicon:text",
       "title": "Customization",
-      "text": "Use the $(l:general/pedestal)Pigment Pedestal$() to combine a Modular Explosive with items specifying Archetype and to add Modifiers.$(br2)You can customize a whole stack of explosives at once."
+      "text": "Use the $(l:general/pedestal)Pigment Pedestal$() to combine a Modular Explosive with items specifying Archetype and to add Modifiers.\\\\You can customize a whole stack of explosives at once."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -41,7 +41,7 @@
     {
       "type": "modonomicon:text",
       "title": "Archetypes",
-      "text": "$(li)Gunpowder: Destroying Blocks$(li)Glowstone Dust: Dealing Damage$(li)Midnight Aberration: Both$(br2)You can also combine both separately."
+      "text": "$(li)Gunpowder: Destroying Blocks$(li)Glowstone Dust: Dealing Damage$(li)Midnight Aberration: Both\\\\You can also combine both separately."
     },
     {
       "type": "modonomicon:text",
@@ -66,7 +66,7 @@
     {
       "type": "modonomicon:text",
       "title": "Starting from Scratch",
-      "text": "Modular Explosives come with a suitable archetype builtin. Though if you want to change that, put it into the $(l:general/pedestal)Pigment Pedestal$() to $(thing)clear both Archetype and Modifiers$() and start from scratch."
+      "text": "Modular Explosives come with a suitable archetype builtin. Though if you want to change that, put it into the $(l:general/pedestal)Pigment Pedestal$() to [#](449900)clear both Archetype and Modifiers[#]() and start from scratch."
     }
   ]
 }

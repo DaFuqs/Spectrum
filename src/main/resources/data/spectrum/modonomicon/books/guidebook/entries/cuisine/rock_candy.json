@@ -32,13 +32,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "A stick with $(item)Sugar$() on it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more Sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
+      "text": "A stick with [#](bb00bb)Sugar[#]() on it.\\\\...wait wait wait, there's more to it!\\If you place this stick so that its underside is immersed in $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more Sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/food/sugar_stick",
-      "text": "You might even be able to add more stuff than just plain Sugar when immersed? Liquid $(italic)Crystal$() and all that..."
+      "text": "You might even be able to add more stuff than just plain Sugar when immersed? Liquid _Crystal_ and all that..."
     },
     {
       "type": "modonomicon:image",
@@ -46,7 +46,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/rock_candy_growing.png"
       ],
-      "text": "$(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage."
+      "text": "[#](449900)Silk Touch[#]() keeps their size for use as fancy lights, or just for storage."
     },
     {
       "type": "modonomicon:spotlight",
@@ -56,7 +56,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_gemstone_rock_candy"
       },
-      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.$(br2)You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
+      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.\\\\You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
     }
   ]
 }

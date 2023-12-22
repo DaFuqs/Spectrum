@@ -29,7 +29,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have had a similar experience to yours.... only much more tragic.$(br2)The $(italic)things$() growing here - calling them plants would be an outrage even to $(item)Dead Bushes$() - look anything but healthy."
+      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have had a similar experience to yours.... only much more tragic.\\\\The _things_ growing here - calling them plants would be an outrage even to [#](bb00bb)Dead Bushes[#]() - look anything but healthy."
     }
   ]
 }

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. Probably.$(br)You still haven't figured out how to create such portals yourself, but packing them up and taking them home? $(italic)No problem."
+      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.\\\\Well, almost. Probably.\\You still haven't figured out how to create such portals yourself, but packing them up and taking them home? _No problem._"
     },
     {
       "type": "modonomicon:image",

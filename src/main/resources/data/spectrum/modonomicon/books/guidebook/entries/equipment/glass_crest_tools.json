@@ -35,7 +35,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
       },
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
-      "text": "$(k:use) will shoot out $(c_white)White Ink$() which will break blocks on impact. You can also choose from $(l:enchanting/resonance)Resonance$(/l) when switching enchantments."
+      "text": "$(k:use) will shoot out $(c_white)White Ink[#]() which will break blocks on impact. You can also choose from $(l:enchanting/resonance)Resonance$(/l) when switching enchantments."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -45,7 +45,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword"
       },
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
-      "text": "Deals a chunk of it's damage via $(thing)Magic$() - piercing armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you. This ability scales with $(thing)Sweeping$())."
+      "text": "Deals a chunk of it's damage via [#](449900)Magic[#]() - piercing armor. $(k:use) to charge a [#](449900)ground slam[#](), knocking back everything around you. This ability scales with [#](449900)(449900)Sweeping[#]()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -65,7 +65,7 @@
         "advancement_id": "spectrum:unlocks/malachite/ferocious_glass_crest_bident"
       },
       "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
-      "text": "The result of combining a Bident and a Pocket Thunderstorm. Hurl yourself into the air and damage everything in your path, even in the driest of deserts! ...as long as you don't run out of ink (scales with the level of Riptide). $(italic)Flying isn't the problem. Landing is.$()"
+      "text": "The result of combining a Bident and a Pocket Thunderstorm. Hurl yourself into the air and damage everything in your path, even in the driest of deserts! ...as long as you don't run out of ink (scales with the level of Riptide). _Flying isn't the problem. Landing is._"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -75,7 +75,7 @@
         "advancement_id": "spectrum:unlocks/malachite/fractal_glass_crest_bident"
       },
       "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
-      "text": "The $(item)Echo Shards$() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand.$(br2)$(o)The fractal may be empowered with efficiency and power, improving yield and damage."
+      "text": "The [#](bb00bb)Echo Shards[#]() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand.\\\\$(o)The fractal may be empowered with efficiency and power, improving yield and damage."
     }
   ]
 }

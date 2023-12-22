@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "It seems those $(l:resources/stargazing)Shooting Stars$(/l) have more secrets than you previously thought, and weird ones at that.$(br)Baked $(l:resources/stargazing#stardust)Stardust$() tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.$(br)Their hard, golden flesh has some purple speckles, shimmering like star shards."
+      "text": "It seems those $(l:resources/stargazing)Shooting Stars$(/l) have more secrets than you previously thought, and weird ones at that.\\Baked $(l:resources/stargazing#stardust)Stardust$() tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.\\Their hard, golden flesh has some purple speckles, shimmering like star shards."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:hidden/collect_purple_star_candy"
       },
       "item": "spectrum:purple_star_candy",
-      "text": "Now THAT's a tasty one!$(br)Even just touching those star-laden streaks gives you much the same tingle as when you ate the whole thing."
+      "text": "Now THAT's a tasty one!\\Even just touching those star-laden streaks gives you much the same tingle as when you ate the whole thing."
     }
   ]
 }

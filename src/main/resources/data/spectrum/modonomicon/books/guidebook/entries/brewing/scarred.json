@@ -19,7 +19,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:scarred",
-      "text": "$(italic)If you are wounded, it only makes you more vulnerable. A vicious cycle.$()$(br2)Prevents you from regenerating health by natural means and prevents you from sprinting."
+      "text": "_If you are wounded, it only makes you more vulnerable. A vicious cycle.\\\\Prevents you from regenerating health by natural means and prevents you from sprinting._"
     },
     {
       "type": "modonomicon:text",

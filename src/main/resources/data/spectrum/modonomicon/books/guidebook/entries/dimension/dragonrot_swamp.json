@@ -26,7 +26,7 @@
         "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
       ],
       "border": true,
-      "text": "Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.$(br)An acidic smell lingers in the air."
+      "text": "Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.\\An acidic smell lingers in the air."
     },
     {
       "type": "modonomicon:spotlight",

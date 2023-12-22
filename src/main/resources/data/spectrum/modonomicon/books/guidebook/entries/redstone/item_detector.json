@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:text",
       "title": "Item Detector",
-      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.$(br2)The strength of the $(thing)redstone signal$() depends on how many items are lying around."
+      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.\\\\The strength of the [#](449900)redstone signal[#]() depends on how many items are lying around."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -23,27 +23,27 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The strongest material you could find so far was Netherite. However, repairing $(item)Netherite Armor$() had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply $(italic)cannot$() be damaged.$(br2)$(italic)Never wilt, stone blossom."
+      "text": "The strongest material you could find so far was Netherite. However, repairing [#](bb00bb)Netherite Armor[#]() had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply _cannot_ be damaged.\\\\_Never wilt, stone blossom._"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
-      "text": "The Bedrock Helmet comes with $(bold)Projectile Protection V$()."
+      "text": "The Bedrock Helmet comes with **Projectile Protection V**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
-      "text": "The Bedrock Chestplate comes with $(bold)Protection V$()."
+      "text": "The Bedrock Chestplate comes with **Protection V**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
-      "text": "The Bedrock Leggings come with $(bold)Blast Protection V$()."
+      "text": "The Bedrock Leggings come with **Blast Protection V**."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
-      "text": "The Bedrock Boots come with $(bold)Fire Protection V$()."
+      "text": "The Bedrock Boots come with **Fire Protection V**."
     }
   ]
 }

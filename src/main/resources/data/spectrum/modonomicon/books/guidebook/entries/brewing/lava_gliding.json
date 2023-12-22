@@ -19,11 +19,11 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:lava_gliding",
-      "text": "$(thing)Increases your movement speed and visibility in Lava$() with each level."
+      "text": "[#](449900)Increases your movement speed and visibility in Lava[#]() with each level."
     },
     {
       "type": "modonomicon:text",
-      "text": "Does, however, $(bold)NOT$() protect you from Fire or Lava damage.$(br2)$(italic)Calls for a slapstick sketch at your expense, doesn't it?"
+      "text": "Does, however, **NOT** protect you from Fire or Lava damage.\\\\_Calls for a slapstick sketch at your expense, doesn't it?_"
     }
   ]
 }

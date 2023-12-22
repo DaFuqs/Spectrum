@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(italic)I just think it's neat."
+      "text": "_I just think it's neat._"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

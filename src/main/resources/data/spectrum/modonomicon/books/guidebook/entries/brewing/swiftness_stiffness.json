@@ -19,12 +19,12 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:swiftness",
-      "text": "$(thing)Increases your attack speed$() with every level.$(br)Allows you to repeatedly attack at lightning speed without giving your opponents a chance to attack you."
+      "text": "[#](449900)Increases your attack speed[#]() with every level.\\Allows you to repeatedly attack at lightning speed without giving your opponents a chance to attack you."
     },
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:stiffness",
-      "text": "$(thing)Decreases your attack speed$() with every level instead."
+      "text": "[#](449900)Decreases your attack speed[#]() with every level instead."
     }
   ]
 }

@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The sun on the palm of your hand sounded far better in theory. $(br2)Now that it sits there... well, it burns. The simple fact that it exists is almost a miracle - really, it should have exploded in the barrel - an unstable, simmering amalgam of ethanol blended with a cocktail of accelerants that hates existing."
+      "text": "The sun on the palm of your hand sounded far better in theory. \\\\Now that it sits there... well, it burns. The simple fact that it exists is almost a miracle - really, it should have exploded in the barrel - an unstable, simmering amalgam of ethanol blended with a cocktail of accelerants that hates existing."
     },
     {
       "type": "modonomicon:text",
@@ -29,13 +29,13 @@
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Titration Snythesis",
       "recipe": "spectrum:titration_barrel/incandescent_amalgam_doom",
-      "text": "$(italic)my very own sun...$()$(br2)The longer the synthesis goes on, the higher the yield... you really can't blame the angels for not wanting a cut of this."
+      "text": "_my very own sun..._\\\\The longer the synthesis goes on, the higher the yield... you really can't blame the angels for not wanting a cut of this."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Pure Synthesis",
       "recipe": "spectrum:titration_barrel/incandescent_amalgam_pure",
-      "text": "$(italic)...so grossly incandescent!$()"
+      "text": "_...so grossly incandescent!_"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You always spend a lot of time placing blocks. You could almost think that this is the main reason for your existence. Placing a lot of similar blocks is tedious.$(br2)Or more like: $(italic)Was$() tedious."
+      "text": "You always spend a lot of time placing blocks. You could almost think that this is the main reason for your existence. Placing a lot of similar blocks is tedious.\\\\Or more like: _Was_ tedious."
     },
     {
       "type": "spectrum:pedestal_crafting",

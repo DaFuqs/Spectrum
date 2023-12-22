@@ -21,13 +21,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
+      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.\\In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Titration Recipe",
       "recipe": "spectrum:titration_barrel/special/jade_wine",
-      "text": "$(item)1 Bulb$() and $(item)3 Petals$() for the $(item)Bucket of Water$() feel like a good starting point.$(br)The longer the fermentation goes on, the stronger the taste gets. $(br2)$(italic)A bit of $(item)added sweetness$() would do it good, you are sure."
+      "text": "[#](bb00bb)1 Bulb[#]() and [#](bb00bb)3 Petals[#]() for the [#](bb00bb)Bucket of Water[#]() feel like a good starting point.\\The longer the fermentation goes on, the stronger the taste gets. \\\\_A bit of [#](bb00bb)added sweetness[#]() would do it good, you are sure._"
     },
     {
       "type": "modonomicon:spotlight",
@@ -38,7 +38,7 @@
       },
       "anchor": "sweetened_jade_wine",
       "item": "spectrum:moonstruck_nectar",
-      "text": "Adding a drop of $(item)Moonstruck Nectar$() seems to make the Wine much more easy to drink. Both the fermentation process is increased and negative effects softened noticeably."
+      "text": "Adding a drop of [#](bb00bb)Moonstruck Nectar[#]() seems to make the Wine much more easy to drink. Both the fermentation process is increased and negative effects softened noticeably."
     },
     {
       "type": "modonomicon:spotlight",
@@ -48,7 +48,7 @@
       },
       "anchor": "chrysocolla",
       "item": "spectrum:chrysocolla",
-      "text": "Your newest result of fermenting Jade Wine was a $(italic)tad$() too long.$(br)Immensely bitter and slightly acidic taste.$(br)While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking.$(br)But, you know... is anyone stopping you?"
+      "text": "Your newest result of fermenting Jade Wine was a _tad_ too long.\\Immensely bitter and slightly acidic taste.\\While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking.\\But, you know... is anyone stopping you?"
     }
   ]
 }

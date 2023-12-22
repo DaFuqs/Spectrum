@@ -28,8 +28,8 @@
       "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
     },
     {
-      "type": "modonomicon:crafting",
-      "recipe": "spectrum:crafting_table/mushroom_stew",
+      "type": "modonomicon:crafting_recipe",
+      "recipe_id_1": "spectrum:crafting_table/mushroom_stew",
       "text": "So good, every bite makes you twinkle with joy."
     },
     {

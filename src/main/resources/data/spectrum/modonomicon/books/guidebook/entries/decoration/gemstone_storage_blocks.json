@@ -28,54 +28,54 @@
       "text": "The gems have an exceptionally beautiful appearance.$(br)The look of the raw gems, as you know them from the geodes, seems a little too natural for your edgier buildings. With enough resources, however, this should not be a problem.$(br2)And if you run out of gems at some point, the decoration can easily be broken up again.$()"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Polished Topaz",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Polished Topaz",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
       },
-      "recipe": "spectrum:crafting_table/gem_blocks/topaz_storage_block",
-      "recipe2": "spectrum:crafting_table/gem_blocks/topaz_shards_from_topaz_storage_block"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/topaz_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/topaz_shards_from_topaz_storage_block"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Polished Amethyst",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Polished Amethyst",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
       },
-      "recipe": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
-      "recipe2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Polished Citrine",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Polished Citrine",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
       },
-      "recipe": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
-      "recipe2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Polished Onyx",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Polished Onyx",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:create_onyx_shard"
       },
-      "recipe": "spectrum:crafting_table/gem_blocks/onyx_storage_block",
-      "recipe2": "spectrum:crafting_table/gem_blocks/onyx_shards_from_onyx_storage_block"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/onyx_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/onyx_shards_from_onyx_storage_block"
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Polished Moonstone",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Polished Moonstone",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"
       },
-      "recipe": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
-      "recipe2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"
     }
   ]
 }

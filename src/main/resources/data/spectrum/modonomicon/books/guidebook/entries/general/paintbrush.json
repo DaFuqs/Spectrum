@@ -22,9 +22,9 @@
       "text": "Why a $(italic)brush$() of all things?$(br2)Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
     },
     {
-      "type": "modonomicon:crafting",
-      "title": "Crafting Recipe",
-      "recipe": "spectrum:crafting_table/paintbrush",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Crafting Recipe",
+      "recipe_id_1": "spectrum:crafting_table/paintbrush",
       "text": "Give the $(l:general/pedestal)Pigment Pedestal$(/l) a hearty whack with it to make it start crafting."
     },
     {

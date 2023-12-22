@@ -263,14 +263,14 @@
       "text": "They existed around you all along! Who knows what else is out there."
     },
     {
-      "type": "modonomicon:crafting",
+      "type": "modonomicon:crafting_recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:craft_colored_sapling"
       },
       "anchor": "colored_wood",
-      "title": "Colored Wood",
-      "recipe": "spectrum:crafting_table/colored_wood/light_blue_planks",
+      "title1": "Colored Wood",
+      "recipe_id_1": "spectrum:crafting_table/colored_wood/light_blue_planks",
       "text": "Like their non-colorful, non-magical counterparts, you can also strip the logs and use their wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."
     }
   ]

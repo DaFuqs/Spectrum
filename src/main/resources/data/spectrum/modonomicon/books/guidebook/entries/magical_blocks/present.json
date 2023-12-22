@@ -28,9 +28,9 @@
       "text": "$(italic)(Or, you know, you can always gift your future self!)"
     },
     {
-      "type": "modonomicon:crafting",
-      "recipe": "spectrum:crafting_table/special/wrap_present",
-      "title": "Customizing &",
+      "type": "modonomicon:crafting_recipe",
+      "title1": "Customizing &",
+      "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
       "text": "$(li)Place a filled Present in a crafting grid to wrap it.$(li)Optional: add $(l:general/pigment)Pigment$() for a colorful particle shower$(li)Optional: add a special item to choose a wrapping paper:$(li2)Red Dye: Red$(li2)Blue Dye: Blue"
     },
     {

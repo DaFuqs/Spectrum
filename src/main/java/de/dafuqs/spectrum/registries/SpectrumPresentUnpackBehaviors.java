@@ -12,9 +12,9 @@ import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.potion.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
-import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 
@@ -27,7 +27,10 @@ public class SpectrumPresentUnpackBehaviors {
 			NbtCompound nbt = stack.getOrCreateNbt();
 			nbt.putBoolean("armed", true);
 			nbt.putLong("timestamp", world.getTime() - 70);
-			nbt.putUuid("owner", presentBlockEntity.getOwnerUUID());
+			UUID owner = presentBlockEntity.getOwnerUUID();
+			if (owner != null) {
+				nbt.putUuid("owner", presentBlockEntity.getOwnerUUID());
+			}
 			world.playSound(null, pos, SpectrumSoundEvents.INCANDESCENT_ARM, SoundCategory.BLOCKS, 2.0F, 0.9F);
 			return stack;
 		});

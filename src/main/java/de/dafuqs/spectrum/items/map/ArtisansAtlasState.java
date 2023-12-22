@@ -29,6 +29,10 @@ public class ArtisansAtlasState extends MapState {
     @Nullable
     private StructureLocatorAsync locator;
 
+    public ArtisansAtlasState(byte scale, boolean locked, RegistryKey<World> dimension) {
+        this(0, 0, scale, false, false, locked, dimension);
+    }
+
     public ArtisansAtlasState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension) {
         super((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
         this.accessor = (MapStateAccessor) this;

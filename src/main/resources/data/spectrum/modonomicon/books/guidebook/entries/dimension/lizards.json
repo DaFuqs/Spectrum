@@ -23,7 +23,7 @@
     {
       "type": "modonomicon:entity",
       "title": "Lurking Lizards",
-      "entity": "spectrum:lizard",
+      "entity_id": "spectrum:lizard",
       "scale": 0.5,
       "text": "$(italic)Not particularly affable contemporaries."
     },

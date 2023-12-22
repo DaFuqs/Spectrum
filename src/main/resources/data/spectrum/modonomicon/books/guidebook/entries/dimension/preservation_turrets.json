@@ -22,7 +22,7 @@
     {
       "type": "modonomicon:entity",
       "title": "Preservation Turrets",
-      "entity": "spectrum:preservation_turret",
+      "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,
       "text": "$(italic)True engineering excellence. But boy does it hurt."

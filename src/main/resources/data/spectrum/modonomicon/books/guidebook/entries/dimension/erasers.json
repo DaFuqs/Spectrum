@@ -22,7 +22,7 @@
     {
       "type": "modonomicon:entity",
       "title": "Erasers",
-      "entity": "spectrum:eraser",
+      "entity_id": "spectrum:eraser",
       "scale": 1.0,
       "text": "$(italic)Don't let them overwhelm you!"
     },

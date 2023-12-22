@@ -41,7 +41,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/remember_kindling"
       },
-      "entity": "spectrum:kindling",
+      "entity_id": "spectrum:kindling",
       "scale": 0.45,
       "offset": 0.5,
       "text": "Their down looks beyond soft.$(br)$(italic)Maybe, if you sneak up to one with $(item)Shears$()$(italic), you are able to snip a feather or two?$()"

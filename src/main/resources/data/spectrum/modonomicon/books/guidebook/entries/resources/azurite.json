@@ -31,7 +31,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Azurite",
-      "item": "spectrum:raw_azurite",
+      "item": {
+        "item": "spectrum:raw_azurite"
+      },
       "text": "A rich blue ore, which, at a distance, can almost be mistaken for $(item)Lapis$(). In its natural form it contains many impurities which must first be removed, before it can be used.$(br2)It is found deep underground and seems to be able to intensify any Pigment's energy."
     },
     {

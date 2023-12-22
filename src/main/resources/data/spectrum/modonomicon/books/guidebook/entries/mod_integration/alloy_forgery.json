@@ -135,7 +135,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:pure_iron",
+      "item": {
+        "item": "spectrum:pure_iron"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_pure_resource"
@@ -148,12 +150,16 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_stratine"
       },
-      "item": "spectrum:stratine_ore",
+      "item": {
+        "item": "spectrum:stratine_ore"
+      },
       "text": "Using a high tier $(thing)Alloy Forge$() you can squeeze quite a bit more $(l:resources/stratine)Stratine$(/l) from the raw ore."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:paltaeria_ore",
+      "item": {
+        "item": "spectrum:paltaeria_ore"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_paltaeria"
@@ -166,7 +172,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/lava_sponge"
       },
-      "item": "spectrum:wet_lava_sponge",
+      "item": {
+        "item": "spectrum:wet_lava_sponge"
+      },
       "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your Alloy Forge for quite some time."
     },
     {
@@ -175,7 +183,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
       },
-      "item": "spectrum:incandescent_essence",
+      "item": {
+        "item": "spectrum:incandescent_essence"
+      },
       "text": "Also a good heat source for your Alloy Forges."
     }
   ]

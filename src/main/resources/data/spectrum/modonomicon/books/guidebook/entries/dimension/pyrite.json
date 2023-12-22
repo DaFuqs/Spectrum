@@ -32,7 +32,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:pyrite",
+      "item": {
+        "item": "spectrum:pyrite"
+      },
       "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in $(l:dimension/razor_edge)Razor Edge$(/l)."
     },
     {
@@ -59,7 +61,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Pyrite Rippers",
-      "item": "spectrum:pyrite_ripper",
+      "item": {
+        "item": "spectrum:pyrite_ripper"
+      },
       "text": "$(italic)Those sharp things are tearing you apart.$()$(br2)Well, your clothes, for the most part. But still, point stands."
     }
   ]

@@ -313,7 +313,9 @@
         "advancement_id": "spectrum:break_gemstone_ore"
       },
       "title": "Gemstone Ores",
-      "item": "spectrum:amethyst_ore",
+      "item": {
+        "item": "spectrum:amethyst_ore"
+      },
       "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br)If you see such an ore a geode is surely not far!$(br2)While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."
     },
     {
@@ -323,7 +325,9 @@
         "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
       },
       "title": "Topaz Geodes",
-      "item": "spectrum:topaz_block",
+      "item": {
+        "item": "spectrum:topaz_block"
+      },
       "text": "Topaz geodes are gigantic in contrast to the others, fitting for their element of matter. However, for this they are found exclusively far above the ground in mountains or massive hills."
     },
     {
@@ -333,7 +337,9 @@
         "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
       },
       "title": "Amethyst Geodes",
-      "item": "minecraft:amethyst_block",
+      "item": {
+        "item": "minecraft:amethyst_block"
+      },
       "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world.$(br)Leisurely and yet imposing."
     },
     {
@@ -343,7 +349,9 @@
         "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
       },
       "title": "Citrine Geodes",
-      "item": "spectrum:citrine_block",
+      "item": {
+        "item": "spectrum:citrine_block"
+      },
       "text": "Geodes with Citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
     },
     {
@@ -353,7 +361,9 @@
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"
       },
       "title": "Moonstone Geodes",
-      "item": "spectrum:moonstone_block",
+      "item": {
+        "item": "spectrum:moonstone_block"
+      },
       "text": "In the Deeper Down you stumbled upon Moonstone Geodes!$(br)You always suspected that there would be this other variant. Those often majestic geodes shine in the brightest of whites. Almost blinding, when accustomed to the darkness of the Deeper Down."
     }
   ]

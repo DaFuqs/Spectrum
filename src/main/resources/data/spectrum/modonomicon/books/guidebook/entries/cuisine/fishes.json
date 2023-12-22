@@ -26,7 +26,9 @@
         "advancement_id": "spectrum:hidden/collect_crawfish"
       },
       "anchor": "crawfish",
-      "item": "spectrum:crawfish",
+      "item": {
+        "item": "spectrum:crawfish"
+      },
       "text": "Well, not actually a fish, but a $(italic)crustacean$().$(br2)They seem to thrive even in the $(l:magical_blocks/mud)muddiest of ponds$(/l)."
     },
     {
@@ -36,7 +38,9 @@
         "advancement_id": "spectrum:hidden/collect_koi"
       },
       "anchor": "koi",
-      "item": "spectrum:koi",
+      "item": {
+        "item": "spectrum:koi"
+      },
       "text": "A pale, large and indolent fish which feels most at home in puddles of $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l)."
     }
   ]

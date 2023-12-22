@@ -24,7 +24,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:topaz_glass",
+      "item": {
+        "item": "spectrum:topaz_glass"
+      },
       "title": "Gemstone Glass",
       "text": "Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?$()"
     },

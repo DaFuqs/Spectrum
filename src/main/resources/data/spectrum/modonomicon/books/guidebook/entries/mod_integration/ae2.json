@@ -30,13 +30,17 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Growth Acceleration",
-      "item": "ae2:growth_accelerator",
+      "item": {
+        "item": "ae2:growth_accelerator"
+      },
       "text": "Looks like - despite the name - the $(item)Crystal Growth Accelerator$() can grow more than just quartz! It can also grow other types of gemstones."
     },
     {
       "type": "modonomicon:spotlight",
       "title": "Quartz Auto-Harvesting",
-      "item": "ae2:quartz_cluster",
+      "item": {
+        "item": "ae2:quartz_cluster"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
@@ -50,7 +54,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
-      "item": "spectrum:resonant_pickaxe",
+      "item": {
+        "item": "spectrum:resonant_pickaxe"
+      },
       "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest $(item)Budding Quartz$(), while retaining their $(italic)flawless$() state."
     },
     {

@@ -32,7 +32,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:enchanted_book",
+      "item": {
+        "item": "minecraft:enchanted_book"
+      },
       "title": "Copy Enchanted Books",
       "text": "You can also use this mechanism to create new $(item)Enchanted Books$(). Just put the $(item)Enchanted Book(s)$() you want to copy in the $(l:decoration/item_bowl)Item Bowls$(/l) and a $(item)simple book$() onto the $(l:enchanting/enchanter)Enchanter$(/l).$(br2)Because of the mundane nature of the books this will require lots of experience, though."
     },

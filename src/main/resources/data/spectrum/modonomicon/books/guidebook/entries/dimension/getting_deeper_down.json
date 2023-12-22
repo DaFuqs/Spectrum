@@ -19,7 +19,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Delving Deeper Down",
-      "item": "minecraft:bedrock",
+      "item": {
+        "item": "minecraft:bedrock"
+      },
       "text": "You wouldn't have thought it possible. As you burst deeper and deeper down through the bedrock, a pitch-black portal opened up. Where does it lead? Only one way to find out.$(br)$(italic)Still, you can't get rid of the lump in your throat..."
     },
     {

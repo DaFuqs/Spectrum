@@ -20,7 +20,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:ethereal_platform",
+      "item": {
+        "item": "spectrum:ethereal_platform"
+      },
       "title": "Ethereal Platform",
       "text": "In your search for a block that is passable for you but doesn't destroy the look of your buildings, $(l:resources/stargazing)Shooting Stars$() were a great help.$(br2)With the intensifying power of $(l:general/onyx_shards)Onyx$(), you were able to strengthen the particles to such an extent that they became solid."
     },

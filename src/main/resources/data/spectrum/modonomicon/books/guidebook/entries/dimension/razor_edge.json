@@ -30,12 +30,16 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:sawblade_grass",
+      "item": {
+        "item": "spectrum:sawblade_grass"
+      },
       "text": "Even the ground: Parched and razor sharp due to lack of light and water - hence the name."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bristle_sprouts",
+      "item": {
+        "item": "spectrum:bristle_sprouts"
+      },
       "text": "Little mean plants that sting immensely when you make contact with them."
     }
   ]

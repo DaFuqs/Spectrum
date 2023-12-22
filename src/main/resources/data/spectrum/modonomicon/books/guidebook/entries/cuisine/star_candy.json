@@ -36,7 +36,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_purple_star_candy"
       },
-      "item": "spectrum:purple_star_candy",
+      "item": {
+        "item": "spectrum:purple_star_candy"
+      },
       "text": "Now THAT's a tasty one!$(br)Even just touching those star-laden streaks gives you much the same tingle as when you ate the whole thing."
     }
   ]

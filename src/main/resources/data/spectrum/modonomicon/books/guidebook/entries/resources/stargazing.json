@@ -39,7 +39,9 @@
         "advancement_id": "spectrum:collect_star_fragment"
       },
       "title": "Shooting Stars",
-      "item": "spectrum:glistering_shooting_star",
+      "item": {
+        "item": "spectrum:glistering_shooting_star"
+      },
       "text": "The small Shooting Stars are made of a material unknown to you thus far.$(br2)Can you catch one right out of the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision.$()"
     },
     {
@@ -49,7 +51,9 @@
         "advancement_id": "spectrum:collect_star_fragment"
       },
       "title": "Star Fragments",
-      "item": "spectrum:star_fragment",
+      "item": {
+        "item": "spectrum:star_fragment"
+      },
       "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
     },
     {
@@ -60,7 +64,9 @@
       },
       "anchor": "stardust",
       "title": "Stardust",
-      "item": "spectrum:stardust",
+      "item": {
+        "item": "spectrum:stardust"
+      },
       "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
     },
     {

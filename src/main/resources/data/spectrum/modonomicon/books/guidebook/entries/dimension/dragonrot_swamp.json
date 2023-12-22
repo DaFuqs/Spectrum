@@ -30,12 +30,16 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:snapping_ivy",
+      "item": {
+        "item": "spectrum:snapping_ivy"
+      },
       "text": "These small plants spread over the ground like ivy. In small clusters they grow in a clump of snapping green. When you fertilize them, they spread even further."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:rotten_ground",
+      "item": {
+        "item": "spectrum:rotten_ground"
+      },
       "text": "It's not dirt, it's not mud, it's... something - You don't know what. In any case, one sinks in a bit."
     }
   ]

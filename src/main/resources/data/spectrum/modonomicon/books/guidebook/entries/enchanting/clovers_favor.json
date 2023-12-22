@@ -21,9 +21,19 @@
       "text": "Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection of $(l:resources/clover)Clovers$(/l) and $(l:general/pigment#light_blue)Light Blue Pigment$(/l) to luck you can increase those chances dramatically."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
+      "item": {
+        "item": "minecraft:iron_sword",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:clovers_favor",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
       "text": "Higher chance to get rare loot drops, like $(item)Iron Ingots$() from Zombies.$(br)$(italic)May even increase your chances of getting the most valuable of drops?$()$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
     },
     {

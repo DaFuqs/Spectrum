@@ -25,7 +25,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Mermaid's Gems",
-      "item": "spectrum:mermaids_gem",
+      "item": {
+        "item": "spectrum:mermaids_gem"
+      },
       "text": "Those seeds can be planted again, growing an additional plant.$(br2)Mermaid's Gems have a strong bond with water - obviously."
     }
   ]

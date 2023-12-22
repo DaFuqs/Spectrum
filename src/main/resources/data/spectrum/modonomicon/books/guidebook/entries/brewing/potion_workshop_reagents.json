@@ -30,22 +30,30 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:redstone",
+      "item": {
+        "item": "minecraft:redstone"
+      },
       "text": "$(li)+100% duration"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:glowstone_dust",
+      "item": {
+        "item": "minecraft:glowstone_dust"
+      },
       "text": "$(li)+1 potency"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:gunpowder",
+      "item": {
+        "item": "minecraft:gunpowder"
+      },
       "text": "$(li)creates Splash Potions"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:dragon_breath",
+      "item": {
+        "item": "minecraft:dragon_breath"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_vanilla/collect_dragon_breath"
@@ -54,27 +62,37 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:topaz_powder",
+      "item": {
+        "item": "spectrum:topaz_powder"
+      },
       "text": "$(li)makes effects not show any particles"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:amethyst_powder",
+      "item": {
+        "item": "spectrum:amethyst_powder"
+      },
       "text": "$(li)+60s duration"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:citrine_powder",
+      "item": {
+        "item": "spectrum:citrine_powder"
+      },
       "text": "$(li)+25% potency"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:onyx_powder",
+      "item": {
+        "item": "spectrum:onyx_powder"
+      },
       "text": "$(li)adds a very weird taste and smell to the potion, making it unidentifiable. Also colors it completely black"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:moonstone_powder",
+      "item": {
+        "item": "spectrum:moonstone_powder"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"
@@ -83,12 +101,16 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:shimmerstone_gem",
+      "item": {
+        "item": "spectrum:shimmerstone_gem"
+      },
       "text": "$(li)+20% potency$(li)+20% duration"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:quitoxic_powder",
+      "item": {
+        "item": "spectrum:quitoxic_powder"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_quitoxic_reeds"
@@ -97,7 +119,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:stratine_fragments",
+      "item": {
+        "item": "spectrum:stratine_fragments"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_stratine"
@@ -106,7 +130,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:paltaeria_fragments",
+      "item": {
+        "item": "spectrum:paltaeria_fragments"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_paltaeria"
@@ -115,7 +141,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:stardust",
+      "item": {
+        "item": "spectrum:stardust"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stardust"
@@ -124,7 +152,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:star_fragment",
+      "item": {
+        "item": "spectrum:star_fragment"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
@@ -133,7 +163,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:storm_stone",
+      "item": {
+        "item": "spectrum:storm_stone"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_storm_stone"
@@ -142,7 +174,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:raw_azurite",
+      "item": {
+        "item": "spectrum:raw_azurite"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_azurite"
@@ -151,7 +185,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:four_leaf_clover",
+      "item": {
+        "item": "spectrum:four_leaf_clover"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"
@@ -160,7 +196,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:vegetal",
+      "item": {
+        "item": "spectrum:vegetal"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_vegetal"
@@ -169,7 +207,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:neolith",
+      "item": {
+        "item": "spectrum:neolith"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
@@ -178,7 +218,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:midnight_chip",
+      "item": {
+        "item": "spectrum:midnight_chip"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_midnight_chip"
@@ -187,7 +229,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:moonstruck_nectar",
+      "item": {
+        "item": "spectrum:moonstruck_nectar"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
@@ -196,7 +240,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bedrock_dust",
+      "item": {
+        "item": "spectrum:bedrock_dust"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
@@ -205,7 +251,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bismuth_crystal",
+      "item": {
+        "item": "spectrum:bismuth_crystal"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_bismuth_crystal"
@@ -214,7 +262,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:refined_malachite",
+      "item": {
+        "item": "spectrum:refined_malachite"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/grow_malachite_in_crystallarieum"
@@ -223,7 +273,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:prickly_bayleaf",
+      "item": {
+        "item": "spectrum:prickly_bayleaf"
+      },
       "anchor": "prickly_bayleaf",
       "condition": {
         "type": "modonomicon:advancement",
@@ -233,7 +285,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:jadeite_petals",
+      "item": {
+        "item": "spectrum:jadeite_petals"
+      },
       "anchor": "jadeite_petals",
       "condition": {
         "type": "modonomicon:advancement",
@@ -243,7 +297,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bone_ash",
+      "item": {
+        "item": "spectrum:bone_ash"
+      },
       "anchor": "bone_ash",
       "condition": {
         "type": "modonomicon:advancement",

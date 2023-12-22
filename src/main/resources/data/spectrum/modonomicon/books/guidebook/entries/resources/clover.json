@@ -21,12 +21,16 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Clover",
-      "item": "spectrum:clover",
+      "item": {
+        "item": "spectrum:clover"
+      },
       "text": "Plains and other green biomes are home to these lush green clovers, sprouting with life.$(br2)$(italic)Is today your lucky day?$()"
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:four_leaf_clover",
+      "item": {
+        "item": "spectrum:four_leaf_clover"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"

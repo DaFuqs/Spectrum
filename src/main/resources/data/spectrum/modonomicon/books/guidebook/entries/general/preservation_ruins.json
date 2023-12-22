@@ -54,7 +54,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Preservation Ruins",
-      "item": "spectrum:preservation_controller",
+      "item": {
+        "item": "spectrum:preservation_controller"
+      },
       "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {

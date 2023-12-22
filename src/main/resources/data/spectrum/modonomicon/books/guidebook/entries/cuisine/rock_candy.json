@@ -50,7 +50,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:topaz_rock_candy",
+      "item": {
+        "item": "spectrum:topaz_rock_candy"
+      },
       "title": "Gemstone Rock Candy",
       "condition": {
         "type": "modonomicon:advancement",

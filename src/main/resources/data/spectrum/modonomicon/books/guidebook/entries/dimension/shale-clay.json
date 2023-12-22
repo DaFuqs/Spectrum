@@ -69,7 +69,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:tilled_shale_clay",
+      "item": {
+        "item": "spectrum:tilled_shale_clay"
+      },
       "text": "Looks like farmland, tastes like farmland, but is poorly suited to use as such. You can plant crops on it, but they will never grow an inch."
     }
   ]

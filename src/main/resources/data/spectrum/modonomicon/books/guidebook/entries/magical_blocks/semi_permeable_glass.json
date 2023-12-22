@@ -27,7 +27,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Semi-permeable Glass",
-      "item": "spectrum:amethyst_semi_permeable_glass",
+      "item": {
+        "item": "spectrum:amethyst_semi_permeable_glass"
+      },
       "text": "For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
     },
     {

@@ -25,7 +25,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Storm Stones",
-      "item": "spectrum:storm_stone",
+      "item": {
+        "item": "spectrum:storm_stone"
+      },
       "text": "Dug into the ground by lightning strikes, you found these stones, vibrating in your hand due to barely-contained energy.$(br)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms with ease.$(br2)$(italic)Because of their volatile nature, they do not react too nicely to explosions..."
     }
   ]

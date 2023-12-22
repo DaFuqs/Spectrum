@@ -23,7 +23,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Blood Orchid Products",
-      "item": "spectrum:bloodboil_syrup",
+      "item": {
+        "item": "spectrum:bloodboil_syrup"
+      },
       "text": "Extracts of the $(l:resources/blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may put you in a $(thing)Frenzy$().$(br)Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
     },
     {

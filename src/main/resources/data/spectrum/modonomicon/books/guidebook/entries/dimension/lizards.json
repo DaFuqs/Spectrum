@@ -33,7 +33,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:lizard_meat",
+      "item": {
+        "item": "spectrum:lizard_meat"
+      },
       "anchor": "lizard_meat",
       "text": "Not particularly tasty and quite chewy, but it gets the job done."
     }

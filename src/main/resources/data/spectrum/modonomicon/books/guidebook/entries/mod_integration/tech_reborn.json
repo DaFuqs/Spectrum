@@ -21,7 +21,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:amethyst_ore",
+      "item": {
+        "item": "spectrum:amethyst_ore"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:break_gemstone_ore"
@@ -30,7 +32,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:amethyst_shard",
+      "item": {
+        "item": "minecraft:amethyst_shard"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:spectrum"

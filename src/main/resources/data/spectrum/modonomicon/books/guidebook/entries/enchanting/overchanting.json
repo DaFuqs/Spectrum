@@ -19,9 +19,19 @@
 
   "pages": [
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Overchanting",
-      "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
+      "item": {
+        "item": "minecraft:enchanted_book",
+        "nbt": {
+          "StoredEnchantments": [
+            {
+              "id": "minecraft:fortune",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
       "text": "Your familiarity with both magic and the $(l:enchanting/enchanter)Enchanter$() has opened new doors for you:$(br)$(thing)Overchanting$().$(br2)Packing so much magical energy into a single $(item)Enchanted Book$() will be expensive. $(italic)Very expensive$()."
     },
     {

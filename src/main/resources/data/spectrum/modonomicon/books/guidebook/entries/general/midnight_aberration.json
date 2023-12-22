@@ -32,7 +32,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:midnight_aberration",
+      "item": {
+        "item": "spectrum:midnight_aberration"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/create_midnight_aberration"

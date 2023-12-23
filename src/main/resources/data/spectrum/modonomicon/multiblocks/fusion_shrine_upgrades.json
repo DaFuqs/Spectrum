@@ -80,7 +80,7 @@
     },
     "F": {
       "type": "modonomicon:tag",
-      "block": "#spectrum:fusion_shrines"
+      "tag": "#spectrum:fusion_shrines"
     },
     "U": {
       "type": "modonomicon:block",

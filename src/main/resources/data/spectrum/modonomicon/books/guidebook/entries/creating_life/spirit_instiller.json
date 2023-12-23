@@ -31,7 +31,7 @@
     {
       "type": "modonomicon:multiblock",
       "name": "Instiller Structure",
-      "multiblock_id": "spectrum:spirit_instiller_structure",
+      "multiblock_id": "spectrum:spirit_instiller",
       "enable_visualize": true,
       "text": "Dimensions: 8x9x5 blocks\\It can be enhanced using [Upgrades](book://magical_blocks/upgrades) by placing them on the two [#](bb00bb)Onyx Chiseled Blocks[#]()."
     },

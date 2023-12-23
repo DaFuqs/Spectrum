@@ -110,7 +110,7 @@
     {
       "type": "modonomicon:multiblock",
       "name": "Fusion Shrine Placement",
-      "multiblock_id": "spectrum:fusion_shrine_structure_with_upgrades",
+      "multiblock_id": "spectrum:fusion_shrine_upgrades",
       "enable_visualize": false,
       "text": "4 upgrade slots"
     },
@@ -121,7 +121,7 @@
         "advancement_id": "spectrum:unlocks/blocks/enchanter"
       },
       "name": "Enchanter Placement",
-      "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
+      "multiblock_id": "spectrum:enchanter_upgrades",
       "enable_visualize": false,
       "text": "4 upgrade slots"
     },
@@ -132,7 +132,7 @@
         "advancement_id": "spectrum:unlocks/blocks/cinderhearth"
       },
       "name": "Cinderhearth Placement",
-      "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
+      "multiblock_id": "spectrum:cinderhearth_upgrades",
       "enable_visualize": false,
       "text": "2 upgrade slots"
     },
@@ -143,7 +143,7 @@
         "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
       },
       "name": "Spirit Instiller Placement",
-      "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
+      "multiblock_id": "spectrum:spirit_instiller_upgrades",
       "enable_visualize": false,
       "text": "2 upgrade slots"
     }

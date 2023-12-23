@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "[Moonstone Cores](book://resources/moonstone_cores) are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.\\\\_...but sometimes the worst ideas are the best, aren't they?_"
+      "text": "[Moonstone Cores](entry://resources/moonstone_cores) are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.\\\\_...but sometimes the worst ideas are the best, aren't they?_"
     },
     {
       "type": "spectrum:pedestal_crafting",

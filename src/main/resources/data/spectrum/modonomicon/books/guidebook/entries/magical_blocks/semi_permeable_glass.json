@@ -34,13 +34,13 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "Then you remember the [Gemstone Glass recipe](book://decoration/gemstone_glass) you thought up earlier.\\\\With a bit of magical energy, it should be no problem to make it not only transparent, but also passable for you (not for them!).\\\\Bonus: If you make it look exactly like regular glass you might even be able to fool your competition."
+      "text": "Then you remember the [Gemstone Glass recipe](entry://decoration/gemstone_glass) you thought up earlier.\\\\With a bit of magical energy, it should be no problem to make it not only transparent, but also passable for you (not for them!).\\\\Bonus: If you make it look exactly like regular glass you might even be able to fool your competition."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Simple Variant",
       "recipe": "spectrum:pedestal/tier3/player_only_glass/semi_permeable_glass",
-      "text": "While it looks exactly like its [mundane counterpart](book://decoration/gemstone_glass), only players can pass through it. All other creatures will bounce, like a fly off a window."
+      "text": "While it looks exactly like its [mundane counterpart](entry://decoration/gemstone_glass), only players can pass through it. All other creatures will bounce, like a fly off a window."
     },
     {
       "type": "spectrum:pedestal_crafting",

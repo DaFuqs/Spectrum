@@ -29,7 +29,7 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "Letting a full block of [Liquid Crystal](book://magical_blocks/liquid_crystal) absorb the immense heat of [#](bb00bb)Lava[#]() resulted in this.\\Almost feels like a [#](bb00bb)Magma Block[#](), albeit way hotter."
+      "text": "Letting a full block of [Liquid Crystal](entry://magical_blocks/liquid_crystal) absorb the immense heat of [#](bb00bb)Lava[#]() resulted in this.\\Almost feels like a [#](bb00bb)Magma Block[#](), albeit way hotter."
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -50,7 +50,7 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "As [#](bb00bb)Water[#]() tried to touch a full block of [Liquid Crystal](book://magical_blocks/liquid_crystal), the crystal turned solid.\\Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
+      "text": "As [#](bb00bb)Water[#]() tried to touch a full block of [Liquid Crystal](entry://magical_blocks/liquid_crystal), the crystal turned solid.\\Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
     },
     {
       "type": "spectrum:anvil_crushing",

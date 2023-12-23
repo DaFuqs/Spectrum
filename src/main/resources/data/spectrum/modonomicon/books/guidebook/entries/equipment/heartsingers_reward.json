@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/heartsingers_reward",
-      "text": "Infuse it with [Pink Ink](book://magic/ink) in a [Color Picker](book://magic/color_picker) to increase the amount of extra hearts provided."
+      "text": "Infuse it with [Pink Ink](entry://magic/ink) in a [Color Picker](entry://magic/color_picker) to increase the amount of extra hearts provided."
     }
   ]
 }

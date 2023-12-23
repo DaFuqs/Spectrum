@@ -37,7 +37,7 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_speed"
       },
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
-      "text": "The crafting time of the [Pigment Pedestal](book://general/pedestal) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
+      "text": "The crafting time of the [Pigment Pedestal](entry://general/pedestal) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -59,7 +59,7 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_experience"
       },
       "recipe": "spectrum:pedestal/tier3/upgrade_experience",
-      "text": "For the most part the experience [Pigment Pedestal](book://general/pedestal) crafting rewards is pretty much negligible. But using this Focus you could dramatically increase the amount gained."
+      "text": "For the most part the experience [Pigment Pedestal](entry://general/pedestal) crafting rewards is pretty much negligible. But using this Focus you could dramatically increase the amount gained."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -75,7 +75,7 @@
         "advancement_id": "spectrum:unlocks/upgrades/upgrade_efficiency"
       },
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
-      "text": "The [Pigment Pedestal](book://general/pedestal) devours vast amounts of Gemstone Powder.\\Now you should be able to cushion the consumption of your structures a little."
+      "text": "The [Pigment Pedestal](entry://general/pedestal) devours vast amounts of Gemstone Powder.\\Now you should be able to cushion the consumption of your structures a little."
     },
     {
       "type": "spectrum:pedestal_crafting",

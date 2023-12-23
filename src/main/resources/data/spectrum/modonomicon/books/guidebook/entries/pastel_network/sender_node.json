@@ -17,7 +17,7 @@
     {
       "type": "modonomicon:text",
       "title": "Sender Node",
-      "text": "The Sender Node actively tries to keep the connected inventory empty from items.\\\\The order, in which it pushes items to, is as follows:\\1. [Gather Nodes](book://pastel_network/gather_node)\\2. [Storage Nodes](book://pastel_network/storage_node)"
+      "text": "The Sender Node actively tries to keep the connected inventory empty from items.\\\\The order, in which it pushes items to, is as follows:\\1. [Gather Nodes](entry://pastel_network/gather_node)\\2. [Storage Nodes](entry://pastel_network/storage_node)"
     },
     {
       "type": "spectrum:pedestal_crafting",

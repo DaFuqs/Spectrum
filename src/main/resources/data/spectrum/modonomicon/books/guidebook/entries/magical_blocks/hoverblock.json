@@ -22,7 +22,7 @@
       "item": {
         "item": "spectrum:hover_block"
       },
-      "text": "Created from a collision of [Stratine](book://resources/stratine) and [Paltaeria](book://resources/stratine), this block just sits around in the air when placed."
+      "text": "Created from a collision of [Stratine](entry://resources/stratine) and [Paltaeria](entry://resources/stratine), this block just sits around in the air when placed."
     },
     {
       "type": "modonomicon:text",

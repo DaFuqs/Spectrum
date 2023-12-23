@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "It seems those [Shooting Stars](book://resources/stargazing) have more secrets than you previously thought, and weird ones at that.\\Baked [Stardust](book://resources/stargazing@stardust) tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.\\Their hard, golden flesh has some purple speckles, shimmering like star shards."
+      "text": "It seems those [Shooting Stars](entry://resources/stargazing) have more secrets than you previously thought, and weird ones at that.\\Baked [Stardust](entry://resources/stargazing@stardust) tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.\\Their hard, golden flesh has some purple speckles, shimmering like star shards."
     },
     {
       "type": "spectrum:pedestal_crafting",

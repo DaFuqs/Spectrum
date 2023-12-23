@@ -28,7 +28,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/restocking_chest",
-      "text": "The Fabrication Chest has four slots for [Crafting Tablets](book://magical_items/crafting_tablet). The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
+      "text": "The Fabrication Chest has four slots for [Crafting Tablets](entry://magical_items/crafting_tablet). The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
     }
   ]
 }

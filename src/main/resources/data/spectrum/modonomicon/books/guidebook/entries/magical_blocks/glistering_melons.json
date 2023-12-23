@@ -25,7 +25,7 @@
       "item": {
         "item": "minecraft:glistering_melon_slice"
       },
-      "text": "With the magic inherent in gemstone dust you have [already managed to change seedlings](book://general/colored_trees). What's stopping you from trying it on other plants?\\Not because you're greedy or anything, of course."
+      "text": "With the magic inherent in gemstone dust you have [already managed to change seedlings](entry://general/colored_trees). What's stopping you from trying it on other plants?\\Not because you're greedy or anything, of course."
     },
     {
       "type": "spectrum:pedestal_crafting",

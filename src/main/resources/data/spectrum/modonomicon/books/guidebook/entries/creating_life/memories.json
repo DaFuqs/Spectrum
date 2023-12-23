@@ -38,13 +38,13 @@
           "TicksToManifest": 20
         }
       },
-      "text": "With the [Spirit Instiller](book://creating_life/spirit_instiller), you are able to breathe new life into a once dead creature.\\It will materialise in the form of a _Memory_."
+      "text": "With the [Spirit Instiller](entry://creating_life/spirit_instiller), you are able to breathe new life into a once dead creature.\\It will materialise in the form of a _Memory_."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "To remember the memories about a creature, you need its [Head](book://creating_life/mob_heads), as well as its most beloved item and [Vegetal](book://creating_life/fading@vegetal) as a bonding agent.\\Using [Neolith](book://creating_life/failing@neolith) seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests."
+      "text": "To remember the memories about a creature, you need its [Head](entry://creating_life/mob_heads), as well as its most beloved item and [Vegetal](entry://creating_life/fading@vegetal) as a bonding agent.\\Using [Neolith](entry://creating_life/failing@neolith) seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests."
     },
     {
       "type": "modonomicon:text",

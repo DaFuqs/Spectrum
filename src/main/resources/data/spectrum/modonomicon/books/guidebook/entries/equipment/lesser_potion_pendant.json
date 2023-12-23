@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
-      "text": "Use the [Potion Workshop](book://brewing/potion_workshop) to infuse it, by placing it where the [#](bb00bb)Bottle$() would normally go.\\\\To clear its effect, put it in a crafting grid."
+      "text": "Use the [Potion Workshop](entry://brewing/potion_workshop) to infuse it, by placing it where the [#](bb00bb)Bottle$() would normally go.\\\\To clear its effect, put it in a crafting grid."
     }
   ]
 }

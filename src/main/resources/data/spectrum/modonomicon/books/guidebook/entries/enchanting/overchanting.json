@@ -32,7 +32,7 @@
           ]
         }
       },
-      "text": "Your familiarity with both magic and the [Enchanter](book://enchanting/enchanter) has opened new doors for you:\\[#](449900)Overchanting[#]().\\\\Packing so much magical energy into a single [#](bb00bb)Enchanted Book[#]() will be expensive. _Very expensive_."
+      "text": "Your familiarity with both magic and the [Enchanter](entry://enchanting/enchanter) has opened new doors for you:\\[#](449900)Overchanting[#]().\\\\Packing so much magical energy into a single [#](bb00bb)Enchanted Book[#]() will be expensive. _Very expensive_."
     },
     {
       "type": "modonomicon:text",

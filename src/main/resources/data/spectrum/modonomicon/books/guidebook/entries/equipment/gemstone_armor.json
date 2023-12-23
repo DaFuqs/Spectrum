@@ -33,7 +33,7 @@
         "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: the source of nightmares",
         "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: mourning of the Nether"
       },
-      "text": "They can be repaired in Anvils by using [Gemstone Shards](book://general/shards).\\\\To take advantage of their unique abilities you will need some special materials:"
+      "text": "They can be repaired in Anvils by using [Gemstone Shards](entry://general/shards).\\\\To take advantage of their unique abilities you will need some special materials:"
     },
     {
       "type": "spectrum:pedestal_crafting",

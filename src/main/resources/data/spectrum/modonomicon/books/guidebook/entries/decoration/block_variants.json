@@ -103,7 +103,7 @@
       "type": "spectrum:anvil_crushing",
       "title": "Cracking",
       "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
-      "text": "You can crack Bricks & Tiles via [Item Crushing](book://general/anvil_crushing)."
+      "text": "You can crack Bricks & Tiles via [Item Crushing](entry://general/anvil_crushing)."
     },
     {
       "type": "modonomicon:smelting_recipe",

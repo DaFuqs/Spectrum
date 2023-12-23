@@ -26,7 +26,7 @@
       "item": {
         "item": "spectrum:bloodboil_syrup"
       },
-      "text": "Extracts of the [Blood Orchid](book://resources/blood_orchid) have an intense effect when consumed: they may put you in a [#](449900)Frenzy[#]().\\Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
+      "text": "Extracts of the [Blood Orchid](entry://resources/blood_orchid) have an intense effect when consumed: they may put you in a [#](449900)Frenzy[#]().\\Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
     },
     {
       "type": "modonomicon:text",

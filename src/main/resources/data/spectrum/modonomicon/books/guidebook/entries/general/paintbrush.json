@@ -25,7 +25,7 @@
       "type": "modonomicon:crafting_recipe",
       "title1": "Crafting Recipe",
       "recipe_id_1": "spectrum:crafting_table/paintbrush",
-      "text": "Give the [Pigment Pedestal](book://general/pedestal) a hearty whack with it to make it start crafting."
+      "text": "Give the [Pigment Pedestal](entry://general/pedestal) a hearty whack with it to make it start crafting."
     },
     {
       "type": "modonomicon:text",
@@ -34,7 +34,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "text": "What better use is there for [Pigment](book://general/pigment) than coloring with it?\\[#](449900)Crouch while having your Paintbrush equipped to bring up the color selection menu[#](). You just have to slightly touch the block you would like to color for the [Pigment](book://general/pigment) to flow into it and convert it into its colored variant."
+      "text": "What better use is there for [Pigment](entry://general/pigment) than coloring with it?\\[#](449900)Crouch while having your Paintbrush equipped to bring up the color selection menu[#](). You just have to slightly touch the block you would like to color for the [Pigment](entry://general/pigment) to flow into it and convert it into its colored variant."
     },
     {
       "type": "modonomicon:text",

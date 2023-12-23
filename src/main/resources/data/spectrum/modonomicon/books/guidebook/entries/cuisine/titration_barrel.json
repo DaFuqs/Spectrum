@@ -25,7 +25,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The idea of fermenting [food](book://cuisine/titration_barrel@kimchi) and [drinks](book://cuisine/infused_beverages) in [Colored Wood](book://general/colored_trees@colored_wood) was not far away. Over time, the properties of the wood influences its contents.\\The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the latter could of course also be due to your cooking skills.)\\Holds up to a stack of items and 1 bucket of liquid."
+      "text": "The idea of fermenting [food](entry://cuisine/titration_barrel@kimchi) and [drinks](entry://cuisine/infused_beverages) in [Colored Wood](entry://general/colored_trees@colored_wood) was not far away. Over time, the properties of the wood influences its contents.\\The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the latter could of course also be due to your cooking skills.)\\Holds up to a stack of items and 1 bucket of liquid."
     },
     {
       "type": "spectrum:pedestal_crafting",

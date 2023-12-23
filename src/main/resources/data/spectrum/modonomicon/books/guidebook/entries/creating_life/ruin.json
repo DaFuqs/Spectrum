@@ -54,7 +54,7 @@
         "advancement_id": "spectrum:midgame/break_decayed_bedrock"
       },
       "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you MIGHT regret it.\\\\Luckily you already invented a [suitable counteragent](book://creating_life/decay_away)."
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you MIGHT regret it.\\\\Luckily you already invented a [suitable counteragent](entry://creating_life/decay_away)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -64,7 +64,7 @@
       },
       "title": "Bedrock Blocks",
       "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
-      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your [Pigment Pedestal](book://general/pedestal) handles it no problem."
+      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your [Pigment Pedestal](entry://general/pedestal) handles it no problem."
     },
     {
       "type": "spectrum:pedestal_crafting",

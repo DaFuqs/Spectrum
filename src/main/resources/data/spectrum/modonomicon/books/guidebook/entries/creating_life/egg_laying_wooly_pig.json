@@ -32,7 +32,7 @@
         "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
       },
       "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
-      "text": "What would your creation like to eat? It's relevant, for... [reasons](book://creating_life/memories)."
+      "text": "What would your creation like to eat? It's relevant, for... [reasons](entry://creating_life/memories)."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -42,7 +42,7 @@
       },
       "title": "Remembering",
       "recipe": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
-      "text": "[Amaranth](book://cuisine/amaranth), did the trick!"
+      "text": "[Amaranth](entry://cuisine/amaranth), did the trick!"
     },
     {
       "type": "modonomicon:entity",

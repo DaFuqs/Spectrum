@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Using [Pigment](book://general/pigment), selected ingredients and some experience the [Enchanter](book://enchanting/enchanter) enables you to add Enchantments to [#](bb00bb)regular Books[#]().\\\\While this process consumes more experience than enchanting in a common Enchanting Table you have granular control about which Enchantment you want to create."
+      "text": "Using [Pigment](entry://general/pigment), selected ingredients and some experience the [Enchanter](entry://enchanting/enchanter) enables you to add Enchantments to [#](bb00bb)regular Books[#]().\\\\While this process consumes more experience than enchanting in a common Enchanting Table you have granular control about which Enchantment you want to create."
     },
     {
       "type": "modonomicon:image",

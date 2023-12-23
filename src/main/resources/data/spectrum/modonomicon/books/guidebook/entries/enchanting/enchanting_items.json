@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:text",
       "title": "Spectrum Enchanting",
-      "text": "Using the Enchanter to enchant items is fairly easy:\\Place [#](bb00bb)Enchanted Books[#]() onto the [Item Bowls](book://decoration/item_bowl) and the item you want to enchant on the Enchanter itself.\\\\Unlike regular enchanting, this will not consume the books - but will require a far greater amount of experience in exchange."
+      "text": "Using the Enchanter to enchant items is fairly easy:\\Place [#](bb00bb)Enchanted Books[#]() onto the [Item Bowls](entry://decoration/item_bowl) and the item you want to enchant on the Enchanter itself.\\\\Unlike regular enchanting, this will not consume the books - but will require a far greater amount of experience in exchange."
     },
     {
       "type": "modonomicon:image",
@@ -28,7 +28,7 @@
         "spectrum:textures/gui/guidebook/enchanting_items.png"
       ],
       "border": true,
-      "text": "Finally supply a steady stream of experience via [Knowledge Gem](book://magical_items/knowledge_gem) and you are set."
+      "text": "Finally supply a steady stream of experience via [Knowledge Gem](entry://magical_items/knowledge_gem) and you are set."
     },
     {
       "type": "modonomicon:spotlight",
@@ -36,7 +36,7 @@
         "item": "minecraft:enchanted_book"
       },
       "title": "Copy Enchanted Books",
-      "text": "You can also use this mechanism to create new [#](bb00bb)Enchanted Books[#](). Just put the [#](bb00bb)Enchanted Book(s)[#]() you want to copy in the [Item Bowls](book://decoration/item_bowl) and a [#](bb00bb)simple book[#]() onto the [Enchanter](book://enchanting/enchanter).\\\\Because of the mundane nature of the books this will require lots of experience, though."
+      "text": "You can also use this mechanism to create new [#](bb00bb)Enchanted Books[#](). Just put the [#](bb00bb)Enchanted Book(s)[#]() you want to copy in the [Item Bowls](entry://decoration/item_bowl) and a [#](bb00bb)simple book[#]() onto the [Enchanter](entry://enchanting/enchanter).\\\\Because of the mundane nature of the books this will require lots of experience, though."
     },
     {
       "type": "modonomicon:text",

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This collection of small vials is able to store all kinds of [Ink](book://magic/ink), albeit just small amounts of it."
+      "text": "This collection of small vials is able to store all kinds of [Ink](entry://magic/ink), albeit just small amounts of it."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -17,7 +17,7 @@
     {
       "type": "modonomicon:text",
       "title": "Storage Node",
-      "text": "The Storage Node will show their greatest use in combination with [Sender Nodes](book://pastel_network/sender_node) (will push to it) and [Gather Nodes](book://pastel_network/gather_node) (will pull from it).\\\\Its [#](449900)filter[#]() allows you to specify which items it will receive & provide. An empty filter makes it act as a general storage for all types of items."
+      "text": "The Storage Node will show their greatest use in combination with [Sender Nodes](entry://pastel_network/sender_node) (will push to it) and [Gather Nodes](entry://pastel_network/gather_node) (will pull from it).\\\\Its [#](449900)filter[#]() allows you to specify which items it will receive & provide. An empty filter makes it act as a general storage for all types of items."
     },
     {
       "type": "spectrum:pedestal_crafting",

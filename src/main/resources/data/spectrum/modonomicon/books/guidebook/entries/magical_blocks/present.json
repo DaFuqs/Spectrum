@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of [Shimmerstone](book://resources/shimmerstone) allows the package to explode in a colorful shower of particles.\\Click the Present onto the items you want to gift, wrap it in a [#](bb00bb)Crafting Table[#](), then all you have to do is place it down for the recipient to open it and watch them jump in joy."
+      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of [Shimmerstone](entry://resources/shimmerstone) allows the package to explode in a colorful shower of particles.\\Click the Present onto the items you want to gift, wrap it in a [#](bb00bb)Crafting Table[#](), then all you have to do is place it down for the recipient to open it and watch them jump in joy."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,7 +31,7 @@
       "type": "modonomicon:crafting_recipe",
       "title1": "Customizing &",
       "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
-      "text": "- Place a filled Present in a crafting grid to wrap it.\\- Optional: add [Pigment](book://general/pigment) for a colorful particle shower\\- Optional: add a special item to choose a wrapping paper:\\- Red Dye: Red\\- Blue Dye: Blue"
+      "text": "- Place a filled Present in a crafting grid to wrap it.\\- Optional: add [Pigment](entry://general/pigment) for a colorful particle shower\\- Optional: add a special item to choose a wrapping paper:\\- Red Dye: Red\\- Blue Dye: Blue"
     },
     {
       "type": "spectrum:collection",

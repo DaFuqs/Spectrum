@@ -39,7 +39,7 @@
       "item": {
         "item": "botania:magenta_petal"
       },
-      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble [Colored Trees](book://general/colored_trees) in more than just one point.\\\\No wonder that their petals can also be used to create [Ink](book://magic/ink)."
+      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble [Colored Trees](entry://general/colored_trees) in more than just one point.\\\\No wonder that their petals can also be used to create [Ink](entry://magic/ink)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -49,7 +49,7 @@
         "advancement_id": "spectrum:collect_shimmerstone"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
-      "text": "Adding some [Shimmerstone](book://resources/shimmerstone) to magical flowers makes them glimmer."
+      "text": "Adding some [Shimmerstone](entry://resources/shimmerstone) to magical flowers makes them glimmer."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -59,7 +59,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
-      "text": "Applying [Pigment](book://general/pigment) to mushrooms colors them in the respective color."
+      "text": "Applying [Pigment](entry://general/pigment) to mushrooms colors them in the respective color."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -68,7 +68,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
-      "text": "Using [Pigment](book://general/pigment) instead of mundane Dye when creating [#](bb00bb)Floral Fertilizer[#]() is quite a bit more yielding."
+      "text": "Using [Pigment](entry://general/pigment) instead of mundane Dye when creating [#](bb00bb)Floral Fertilizer[#]() is quite a bit more yielding."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -98,7 +98,7 @@
       "item": {
         "item": "botania:enchanted_soil"
       },
-      "text": "Enchanted Soil can be harvested using tools enchanted with [Resonance](book://enchanting/resonance)."
+      "text": "Enchanted Soil can be harvested using tools enchanted with [Resonance](entry://enchanting/resonance)."
     },
     {
       "type": "modonomicon:spotlight",

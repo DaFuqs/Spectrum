@@ -36,7 +36,7 @@
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
       },
       "recipe": "spectrum:fusion_shrine/mysterious_locket_socketing",
-      "text": "The notch you noticed perfectly seems to fit a [Moonstone Core](book://resources/moonstone_cores)."
+      "text": "The notch you noticed perfectly seems to fit a [Moonstone Core](entry://resources/moonstone_cores)."
     },
     {
       "type": "modonomicon:text",
@@ -45,7 +45,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/open_mysterious_compass"
       },
-      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.\\While [below the Bedrock](book://dimension/getting_deeper_down), it softly vibrates as you turn."
+      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.\\While [below the Bedrock](entry://dimension/getting_deeper_down), it softly vibrates as you turn."
     },
     {
       "type": "modonomicon:image",

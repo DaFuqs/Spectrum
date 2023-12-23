@@ -17,7 +17,7 @@
     {
       "type": "modonomicon:text",
       "title": "Provider Node",
-      "text": "Makes the items in the connected inventory available in its [Pastel Network](book://pastel_network/pastel_network).\\\\Items will not be pushed to other nodes, but can be requested by [Gather Nodes](book://pastel_network/gather_node)."
+      "text": "Makes the items in the connected inventory available in its [Pastel Network](entry://pastel_network/pastel_network).\\\\Items will not be pushed to other nodes, but can be requested by [Gather Nodes](entry://pastel_network/gather_node)."
     },
     {
       "type": "spectrum:pedestal_crafting",

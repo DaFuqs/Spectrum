@@ -44,7 +44,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "recipe": "spectrum:enchanter/spectrum_books/book_razing",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Razing by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Razing by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
     },
     {
       "type": "spectrum:enchanter_upgrading",
@@ -54,7 +54,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "recipe": "spectrum:enchantment_upgrade/spectrum/razing_level_2",
-      "text": "Upgrading Razing from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](book://general/pigment) and experience for each additional level."
+      "text": "Upgrading Razing from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
     }
   ]
 }

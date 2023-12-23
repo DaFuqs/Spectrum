@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Converts [Pigment](book://general/pigment) into pure [Ink](book://magic/ink), which you can supply to your magical items.\\Used to fill Ink Containers, like [Ink Flasks](book://magic/ink_flask).\\Unfortunately - [you remember how Ink is transferred](book://magic/ink@transfer) - there is always residue left behind. You can't use the full amount, though the transfer is quicker, the bigger the difference."
+      "text": "Converts [Pigment](entry://general/pigment) into pure [Ink](entry://magic/ink), which you can supply to your magical items.\\Used to fill Ink Containers, like [Ink Flasks](entry://magic/ink_flask).\\Unfortunately - [you remember how Ink is transferred](entry://magic/ink@transfer) - there is always residue left behind. You can't use the full amount, though the transfer is quicker, the bigger the difference."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -48,7 +48,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Unbreaking by using the [Enchanter](book://enchanting/enchanting_items) decreases the chance of it breaking on use."
+      "text": "Enchanting an Ender Splice with Unbreaking by using the [Enchanter](entry://enchanting/enchanting_items) decreases the chance of it breaking on use."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -68,7 +68,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Resonance by using the [Enchanter](book://enchanting/enchanting_items) will allow for interdimensional teleport."
+      "text": "Enchanting an Ender Splice with Resonance by using the [Enchanter](entry://enchanting/enchanting_items) will allow for interdimensional teleport."
     }
   ]
 }

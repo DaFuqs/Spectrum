@@ -25,7 +25,7 @@
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
       ],
-      "text": "For the process of creating [Black Shards](book://general/onyx_shards) you have developed a special construction.\\\\You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
+      "text": "For the process of creating [Black Shards](entry://general/onyx_shards) you have developed a special construction.\\\\You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -43,7 +43,7 @@
     {
       "type": "modonomicon:text",
       "title": "Block Checklist",
-      "text": "-1 Fusion Shrine\\-4 Polished Gemstone Blocks\\-4 Chiseled Polished Blocks\\-8 Polished Pillars\\-12 Polished Slabs\\-77 Polished Blocks\\\\As always you are able to switch [Basalt](item://spectrum:polished_basalt) with [Calcite](item://spectrum:polished_calcite) and choose the [Gemstone Blocks](book://decoration/gemstone_storage_blocks) to your liking."
+      "text": "-1 Fusion Shrine\\-4 Polished Gemstone Blocks\\-4 Chiseled Polished Blocks\\-8 Polished Pillars\\-12 Polished Slabs\\-77 Polished Blocks\\\\As always you are able to switch [Basalt](item://spectrum:polished_basalt) with [Calcite](item://spectrum:polished_calcite) and choose the [Gemstone Blocks](entry://decoration/gemstone_storage_blocks) to your liking."
     },
     {
       "type": "modonomicon:text",

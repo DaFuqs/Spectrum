@@ -23,13 +23,13 @@
     {
       "type": "modonomicon:text",
       "title": "Brewing Potions",
-      "text": "Since the [Potion Workshop](book://brewing/potion_workshop) is basically an upgraded [#](bb00bb)Brewing Stand[#](), you are able to create all the [#](bb00bb)Potion variants[#]() that were available to you before, too.\\In addition, the possibility to use magic items as ingredients opens new doors for you.\\\\Some of them are easier or harder to get enhanced effects from."
+      "text": "Since the [Potion Workshop](entry://brewing/potion_workshop) is basically an upgraded [#](bb00bb)Brewing Stand[#](), you are able to create all the [#](bb00bb)Potion variants[#]() that were available to you before, too.\\In addition, the possibility to use magic items as ingredients opens new doors for you.\\\\Some of them are easier or harder to get enhanced effects from."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Vanilla Potion Variants",
       "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
-      "text": "Create [#](bb00bb)Potions[#]() by using the same ingredients as you would in the vanilla [#](bb00bb)Brewing Stand[#](). Additionally, you can use [Reagents](book://brewing@potion_workshop_reagents) to enhance their effects even further."
+      "text": "Create [#](bb00bb)Potions[#]() by using the same ingredients as you would in the vanilla [#](bb00bb)Brewing Stand[#](). Additionally, you can use [Reagents](entry://brewing@potion_workshop_reagents) to enhance their effects even further."
     },
     {
       "type": "spectrum:potion_workshop_brewing",

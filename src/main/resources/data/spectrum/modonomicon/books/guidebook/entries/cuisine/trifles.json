@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.\\Made from [Jaramel](book://resources/jade_vines@jaramel), [#](449900)Gelatin[#]() & [Amaranth](book://cuisine/amaranth).\\Even the simple one tastes great!"
+      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.\\Made from [Jaramel](entry://resources/jade_vines@jaramel), [#](449900)Gelatin[#]() & [Amaranth](entry://cuisine/amaranth).\\Even the simple one tastes great!"
     },
     {
       "type": "spectrum:pedestal_crafting",

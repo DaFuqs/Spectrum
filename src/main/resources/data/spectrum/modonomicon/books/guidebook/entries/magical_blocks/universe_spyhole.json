@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This strange block lets your vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.\\\\_The creations that [Radiating Ender](book://resources/radiating_ender) allows you to create with its strange properties never cease to amaze you._"
+      "text": "This strange block lets your vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.\\\\_The creations that [Radiating Ender](entry://resources/radiating_ender) allows you to create with its strange properties never cease to amaze you._"
     },
     {
       "type": "spectrum:pedestal_crafting",

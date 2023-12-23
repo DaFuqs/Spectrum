@@ -24,7 +24,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the [Fusion Shrine](book://general/fusion_shrine)."
+      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the [Fusion Shrine](entry://general/fusion_shrine)."
     },
     {
       "type": "spectrum:pedestal_crafting",

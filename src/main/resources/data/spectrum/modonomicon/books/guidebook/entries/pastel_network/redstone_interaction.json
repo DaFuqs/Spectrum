@@ -22,7 +22,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "\\- [Gather Nodes](book://pastel_network/gather_node) will stop requesting items\\- [Provider Nodes](book://pastel_network/provider_node) are unable to offer their items\\- [Sender Nodes](book://pastel_network/sender_node) will stop emptying their inventory\\- [Storage Nodes](book://pastel_network/storage_node) will be unable to accept and offer their items"
+      "text": "\\- [Gather Nodes](entry://pastel_network/gather_node) will stop requesting items\\- [Provider Nodes](entry://pastel_network/provider_node) are unable to offer their items\\- [Sender Nodes](entry://pastel_network/sender_node) will stop emptying their inventory\\- [Storage Nodes](entry://pastel_network/storage_node) will be unable to accept and offer their items"
     }
   ]
 }

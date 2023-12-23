@@ -24,12 +24,12 @@
       "type": "spectrum:pedestal_crafting",
       "title": "CMY Variant",
       "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
-      "text": "Upgrade your [Pigment Pedestal](book://general/pedestal) by using all the shards you collected on your journey."
+      "text": "Upgrade your [Pigment Pedestal](entry://general/pedestal) by using all the shards you collected on your journey."
     },
     {
       "type": "modonomicon:text",
       "title": "Pedestal Structure",
-      "text": "To make use of the [Pigment Pedestal's](book://general/pedestal) advanced abilities you will need a structure to focus gemstone energy into it.\\\\You call it the\\**Spectrum Focus**."
+      "text": "To make use of the [Pigment Pedestal's](entry://general/pedestal) advanced abilities you will need a structure to focus gemstone energy into it.\\\\You call it the\\**Spectrum Focus**."
     },
     {
       "type": "modonomicon:multiblock",

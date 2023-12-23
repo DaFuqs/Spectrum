@@ -25,14 +25,14 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/cinderhearth",
-      "text": "Supplying a Knowledge Gem(book://magical_items/knowledge_gem) allows you to automatically collect XP while smelting."
+      "text": "Supplying a Knowledge Gem(entry://magical_items/knowledge_gem) allows you to automatically collect XP while smelting."
     },
     {
       "type": "modonomicon:multiblock",
       "name": "Cinderhearth Structure",
       "multiblock_id": "spectrum:cinderhearth",
       "show_visualize_button": true,
-      "text": "The Cinderhearth's abilities can be enhanced via [Upgrades](book://magical_blocks/upgrades). Place them on the two Chiseled Blocks."
+      "text": "The Cinderhearth's abilities can be enhanced via [Upgrades](entry://magical_blocks/upgrades). Place them on the two Chiseled Blocks."
     },
     {
       "type": "modonomicon:text",
@@ -42,7 +42,7 @@
     {
       "type": "modonomicon:text",
       "title": "Upgrades",
-      "text": "[Upgrades](book://magical_blocks/upgrades) placed on the [#](bb00bb)Chiseled Blocks[#]() do not work automatically, but requires you to supply an additional type of Ink(book://magic/ink) to the Cinderhearth. The higher the upgrades, the higher the consumption."
+      "text": "[Upgrades](entry://magical_blocks/upgrades) placed on the [#](bb00bb)Chiseled Blocks[#]() do not work automatically, but requires you to supply an additional type of Ink(entry://magic/ink) to the Cinderhearth. The higher the upgrades, the higher the consumption."
     },
     {
       "type": "modonomicon:text",

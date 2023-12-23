@@ -18,12 +18,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Now that you're familiar with [Pigment](book://general/pigment), you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert [Pigment](book://general/pigment) into a higher form of energy!\\You called it [#](157687)I[#](aa32a0)n[#](f0af15)k[#]()."
+      "text": "Now that you're familiar with [Pigment](entry://general/pigment), you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert [Pigment](entry://general/pigment) into a higher form of energy!\\You called it [#](157687)I[#](aa32a0)n[#](f0af15)k[#]()."
     },
     {
       "type": "modonomicon:text",
       "title": "Producing & Storing",
-      "text": "[Pigment](book://general/pigment) can be converted to Ink using the [Color Picker](book://magic/color_picker) and then extracted into containers, like [Ink Flasks](book://magic/ink_flask).\\\\The only drawback: deprived of it's physical form, there is no way to transform Ink back into [Pigment](book://general/pigment)."
+      "text": "[Pigment](entry://general/pigment) can be converted to Ink using the [Color Picker](entry://magic/color_picker) and then extracted into containers, like [Ink Flasks](entry://magic/ink_flask).\\\\The only drawback: deprived of it's physical form, there is no way to transform Ink back into [Pigment](entry://general/pigment)."
     },
     {
       "type": "modonomicon:image",
@@ -36,7 +36,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "\\When two objects that store Ink are connected - such as a [Color Picker](book://magic/color_picker) and an [Ink Flask](book://magic/ink_flask) - the Ink between the two containers slowly evens out.\\The greater the difference, the faster the Flask is getting filled."
+      "text": "\\When two objects that store Ink are connected - such as a [Color Picker](entry://magic/color_picker) and an [Ink Flask](entry://magic/ink_flask) - the Ink between the two containers slowly evens out.\\The greater the difference, the faster the Flask is getting filled."
     }
   ]
 }

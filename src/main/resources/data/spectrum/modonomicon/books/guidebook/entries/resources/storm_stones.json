@@ -20,7 +20,7 @@
     {
       "type": "modonomicon:text",
       "title": "Thunderstorms",
-      "text": "Storms are a powerful manifestation of Mother Nature.\\Using the [Fusion Shrine](book://general/fusion_shrine) you even started one when crafting [some powerful resources](book://general/onyx_shard).\\\\There is no doubt that you will find something here to help you on your journey."
+      "text": "Storms are a powerful manifestation of Mother Nature.\\Using the [Fusion Shrine](entry://general/fusion_shrine) you even started one when crafting [some powerful resources](entry://general/onyx_shard).\\\\There is no doubt that you will find something here to help you on your journey."
     },
     {
       "type": "modonomicon:spotlight",
@@ -28,7 +28,7 @@
       "item": {
         "item": "spectrum:storm_stone"
       },
-      "text": "Dug into the ground by lightning strikes, you found these stones, vibrating in your hand due to barely-contained energy.\\Used in the [Fusion Shrine](book://general/fusion_shrine), you can use them to summon thunderstorms with ease.\\\\_Because of their volatile nature, they do not react too nicely to explosions..._"
+      "text": "Dug into the ground by lightning strikes, you found these stones, vibrating in your hand due to barely-contained energy.\\Used in the [Fusion Shrine](entry://general/fusion_shrine), you can use them to summon thunderstorms with ease.\\\\_Because of their volatile nature, they do not react too nicely to explosions..._"
     }
   ]
 }

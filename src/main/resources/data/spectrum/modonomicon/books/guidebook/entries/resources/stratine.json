@@ -48,7 +48,7 @@
       "item": {
         "item": "spectrum:stratine_fragment_block"
       },
-      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.\\\\However, shaping it via your [Pedestal](book://general/pedestal) should not be a problem whatsoever."
+      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.\\\\However, shaping it via your [Pedestal](entry://general/pedestal) should not be a problem whatsoever."
     },
     {
       "type": "spectrum:pedestal_crafting",

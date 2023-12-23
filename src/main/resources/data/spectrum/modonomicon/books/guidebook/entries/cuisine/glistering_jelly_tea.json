@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The [Jade Vine](book://resources/jade_vines) is known for its regenerative properties, similar to [#](bb00bb)Glistering Melons[#](). As it happens, mixed together unfolds exquisitely harmonious, sweet taste.\\\\Temporarily grants you a small health boost."
+      "text": "The [Jade Vine](entry://resources/jade_vines) is known for its regenerative properties, similar to [#](bb00bb)Glistering Melons[#](). As it happens, mixed together unfolds exquisitely harmonious, sweet taste.\\\\Temporarily grants you a small health boost."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

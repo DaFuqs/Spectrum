@@ -61,7 +61,7 @@
           ]
         }
       },
-      "text": "Enchanting a Bottomless Bundle with Power by using the [Enchanter](book://enchanting/enchanting_items) you can increase its capacity tenfold for each level of Power.\\\\_Are you able to fill a Bottomless Bundle with Power V?_"
+      "text": "Enchanting a Bottomless Bundle with Power by using the [Enchanter](entry://enchanting/enchanting_items) you can increase its capacity tenfold for each level of Power.\\\\_Are you able to fill a Bottomless Bundle with Power V?_"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -81,7 +81,7 @@
           ]
         }
       },
-      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the [Enchanter](book://enchanting/enchanting_items) will result in voiding all items that would overfill the Bottomless Bundle.\\\\_No more useless blocks cluttering your path when mining._"
+      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the [Enchanter](entry://enchanting/enchanting_items) will result in voiding all items that would overfill the Bottomless Bundle.\\\\_No more useless blocks cluttering your path when mining._"
     }
   ]
 }

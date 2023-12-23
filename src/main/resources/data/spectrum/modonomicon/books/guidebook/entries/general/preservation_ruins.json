@@ -93,7 +93,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
       ],
       "border": true,
-      "text": "A strong, magical force field. Wearing [Azure Dike equipment](book://equipment/azure_dike_equipment) allowed you to enter."
+      "text": "A strong, magical force field. Wearing [Azure Dike equipment](entry://equipment/azure_dike_equipment) allowed you to enter."
     },
     {
       "type": "modonomicon:image",
@@ -106,7 +106,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_color_mixing.png"
       ],
       "border": true,
-      "text": "It was all so clear, in the end! You had it [laid all out already](book://general/color_mixing)."
+      "text": "It was all so clear, in the end! You had it [laid all out already](entry://general/color_mixing)."
     },
     {
       "type": "modonomicon:image",

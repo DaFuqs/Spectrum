@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You didn't randomly choose the name of the Radiance Pin to resemble the [Radiance Staff](book://magical_items/radiance_staff).\\If you are in a dark area, the pin automatically creates an invisible light on you. Unlike the lights of the [Radiance Staff](book://magical_items/radiance_staff), however, they slowly become fainter and fainter until they eventually dissipate completely."
+      "text": "You didn't randomly choose the name of the Radiance Pin to resemble the [Radiance Staff](entry://magical_items/radiance_staff).\\If you are in a dark area, the pin automatically creates an invisible light on you. Unlike the lights of the [Radiance Staff](entry://magical_items/radiance_staff), however, they slowly become fainter and fainter until they eventually dissipate completely."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

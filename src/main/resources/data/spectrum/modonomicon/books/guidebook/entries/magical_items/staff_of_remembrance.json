@@ -25,7 +25,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/staff_of_remembrance",
-      "text": "Tap animals to recollect them into a [Memory](book://creating_life/memories)."
+      "text": "Tap animals to recollect them into a [Memory](entry://creating_life/memories)."
     }
   ]
 }

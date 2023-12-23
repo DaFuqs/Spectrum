@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Are you going to become a pastry chef after all, in addition to your main job as an artist? These don't even look that bad (taste good too!).\\\\Composed of [Amaranth](book://cuisine/amaranth), [#](bb00bb)Sugar[#](), [#](bb00bb)Milk[#](), and a [Four-Leafed Clover](book://resources/clover), it has a very special effect: you noticed that you were a little bit more successful handling tools with Fortune, Looting and other random-based things."
+      "text": "Are you going to become a pastry chef after all, in addition to your main job as an artist? These don't even look that bad (taste good too!).\\\\Composed of [Amaranth](entry://cuisine/amaranth), [#](bb00bb)Sugar[#](), [#](bb00bb)Milk[#](), and a [Four-Leafed Clover](entry://resources/clover), it has a very special effect: you noticed that you were a little bit more successful handling tools with Fortune, Looting and other random-based things."
     },
     {
       "type": "spectrum:pedestal_crafting",

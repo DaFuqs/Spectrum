@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This small blade is too fine to inflict serious wounds, but has many sharp spikes that drill themselves into the flesh of your opponent.\\\\Infused in the [Potion Workshop](book://brewing/potion_workshop), all struck opponents are afflicted with the effect - provided you have enough [Ink](book://magic/ink) on you."
+      "text": "This small blade is too fine to inflict serious wounds, but has many sharp spikes that drill themselves into the flesh of your opponent.\\\\Infused in the [Potion Workshop](entry://brewing/potion_workshop), all struck opponents are afflicted with the effect - provided you have enough [Ink](entry://magic/ink) on you."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

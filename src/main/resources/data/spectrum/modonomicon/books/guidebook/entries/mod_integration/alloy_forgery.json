@@ -153,7 +153,7 @@
       "item": {
         "item": "spectrum:stratine_ore"
       },
-      "text": "Using a high tier [#](449900)Alloy Forge[#]() you can squeeze quite a bit more [Stratine](book://resources/stratine) from the raw ore."
+      "text": "Using a high tier [#](449900)Alloy Forge[#]() you can squeeze quite a bit more [Stratine](entry://resources/stratine) from the raw ore."
     },
     {
       "type": "modonomicon:spotlight",
@@ -164,7 +164,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_paltaeria"
       },
-      "text": "...same is true for [Paltaeria](book://resources/paltaeria), of course."
+      "text": "...same is true for [Paltaeria](entry://resources/paltaeria), of course."
     },
     {
       "type": "modonomicon:spotlight",

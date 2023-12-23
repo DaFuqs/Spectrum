@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The Ink Flask is able to hold a sizable amount of [Ink](book://magic/ink) of a single color."
+      "text": "The Ink Flask is able to hold a sizable amount of [Ink](entry://magic/ink) of a single color."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ink_flask",
-      "text": "Fill it in the [Color Picker](book://magic/color_picker)."
+      "text": "Fill it in the [Color Picker](entry://magic/color_picker)."
     }
   ]
 }

@@ -65,7 +65,7 @@
       "item": {
         "item": "spectrum:quitoxic_reeds"
       },
-      "text": "[Quitoxic Reeds](book://resources/quitoxic_reeds) can be milled into powder."
+      "text": "[Quitoxic Reeds](entry://resources/quitoxic_reeds) can be milled into powder."
     },
     {
       "type": "modonomicon:spotlight",
@@ -77,7 +77,7 @@
       "item": {
         "item": "spectrum:amaranth_bushel"
       },
-      "text": "[Amaranth](book://cuisine/amaranth) can be milled into grains."
+      "text": "[Amaranth](entry://cuisine/amaranth) can be milled into grains."
     },
     {
       "type": "modonomicon:spotlight",
@@ -89,7 +89,7 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "Milling [Frostbite Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
+      "text": "Milling [Frostbite Crystal](entry://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -101,7 +101,7 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "Milling [Blazing Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
+      "text": "Milling [Blazing Crystal](entry://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
     }
   ]
 }

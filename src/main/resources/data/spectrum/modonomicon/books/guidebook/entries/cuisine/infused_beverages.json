@@ -88,7 +88,7 @@
       },
       "title": "Gin",
       "recipe": "spectrum:titration_barrel/infused_beverages/gin",
-      "text": "Made from [Amaranth](book://cuisine/amaranth), grants [#](449900)Luck[#]() and [#](449900)Haste[#]()."
+      "text": "Made from [Amaranth](entry://cuisine/amaranth), grants [#](449900)Luck[#]() and [#](449900)Haste[#]()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

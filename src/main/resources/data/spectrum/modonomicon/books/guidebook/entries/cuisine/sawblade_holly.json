@@ -32,7 +32,7 @@
       "item": {
         "item": "spectrum:prickly_bayleaf"
       },
-      "text": "Harvested by shearing a Sawblade Holly Bush. Can be used as a [Potion Reagent](book://brewing/potion_workshop_reagents@prickly_bayleaf) and in cooking.\\\\_Clearly easier to digest cooked than raw..._"
+      "text": "Harvested by shearing a Sawblade Holly Bush. Can be used as a [Potion Reagent](entry://brewing/potion_workshop_reagents@prickly_bayleaf) and in cooking.\\\\_Clearly easier to digest cooked than raw..._"
     },
     {
       "type": "spectrum:pedestal_crafting",

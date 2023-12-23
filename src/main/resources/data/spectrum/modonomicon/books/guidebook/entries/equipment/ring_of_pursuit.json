@@ -26,7 +26,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
-      "text": "Infuse it with [Magenta Ink](book://magic/ink) in a [Color Picker](book://magic/color_picker) to increase your Mining Speed."
+      "text": "Infuse it with [Magenta Ink](entry://magic/ink) in a [Color Picker](entry://magic/color_picker) to increase your Mining Speed."
     }
   ]
 }

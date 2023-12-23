@@ -25,7 +25,7 @@
         "spectrum:textures/gui/guidebook/dd_black_langast.png"
       ],
       "border": true,
-      "text": "[Midnight Solution](book://magical_blocks/midnight_solution) everywhere."
+      "text": "[Midnight Solution](entry://magical_blocks/midnight_solution) everywhere."
     },
     {
       "type": "modonomicon:text",

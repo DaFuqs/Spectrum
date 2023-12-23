@@ -22,11 +22,11 @@
       "type": "modonomicon:crafting_recipe",
       "title1": "Pigment Pedestal",
       "recipe_id_1": "spectrum:crafting_table/pedestal_basic_amethyst",
-      "text": "The **Pigment Pedestal** is the block where you craft most of the recipes for Spectrum.\\\\To start crafting trigger it with a [Paintbrush](book://general/paintbrush) or supply a [#](449900)redstone signal[#]().\\It requires air, or an inventory above it."
+      "text": "The **Pigment Pedestal** is the block where you craft most of the recipes for Spectrum.\\\\To start crafting trigger it with a [Paintbrush](entry://general/paintbrush) or supply a [#](449900)redstone signal[#]().\\It requires air, or an inventory above it."
     },
     {
       "type": "modonomicon:text",
-      "text": "\\Most recipes require [Gemstone Powder](book://general/gemstone_powder) as an ingredient.\\\\The Pedestal also acts as a [#](bb00bb)Crafting Table[#]() and can therefore also be used to craft vanilla recipes.\\\\You can use a [Crafting Tablet](book://magical_items/crafting_tablet) to automate both Spectrum and Vanilla recipes."
+      "text": "\\Most recipes require [Gemstone Powder](entry://general/gemstone_powder) as an ingredient.\\\\The Pedestal also acts as a [#](bb00bb)Crafting Table[#]() and can therefore also be used to craft vanilla recipes.\\\\You can use a [Crafting Tablet](entry://magical_items/crafting_tablet) to automate both Spectrum and Vanilla recipes."
     },
     {
       "type": "modonomicon:text",

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Is there anything cozier than sitting by your homemade fireplace on a rainy evening, sipping a cup of tea?\\Surely: killing a boss beforehand.\\\\This tea, brewed from the petals of [Jade Vines](book://resources/jade_vines) is both good for relaxing and protecting you from the deadly effect of the Wither. _Convenient_."
+      "text": "Is there anything cozier than sitting by your homemade fireplace on a rainy evening, sipping a cup of tea?\\Surely: killing a boss beforehand.\\\\This tea, brewed from the petals of [Jade Vines](entry://resources/jade_vines) is both good for relaxing and protecting you from the deadly effect of the Wither. _Convenient_."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

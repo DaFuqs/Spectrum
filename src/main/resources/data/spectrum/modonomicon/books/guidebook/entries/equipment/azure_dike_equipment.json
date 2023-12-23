@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The results of combining [Azurite](book://resources/azurite) and the protective properties of [Blue Pigment](book://general/pigment@blue) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.\\\\_This is going to be interesting..._"
+      "text": "The results of combining [Azurite](entry://resources/azurite) and the protective properties of [Blue Pigment](entry://general/pigment@blue) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.\\\\_This is going to be interesting..._"
     },
     {
       "type": "modonomicon:text",
@@ -57,7 +57,7 @@
         "advancement_id": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
       },
       "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
-      "text": "Infuse it with [Blue Ink](book://magic/ink) in a [Color Picker](book://magic/color_picker) to increase the amount of [#](2c2e8e)Azure Dike[#]() provided.\\Cheap at first, the required energy to infuse more power into this amulet increases exponentially."
+      "text": "Infuse it with [Blue Ink](entry://magic/ink) in a [Color Picker](entry://magic/color_picker) to increase the amount of [#](2c2e8e)Azure Dike[#]() provided.\\Cheap at first, the required energy to infuse more power into this amulet increases exponentially."
     }
   ]
 }

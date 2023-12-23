@@ -24,7 +24,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Moonstone Pedestal",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
-      "text": "Upgrade your [Pigment Pedestal](book://general/pedestal) by using one of your gathered [Moonstone Shards](book://general/shards@moonstone)."
+      "text": "Upgrade your [Pigment Pedestal](entry://general/pedestal) by using one of your gathered [Moonstone Shards](entry://general/shards@moonstone)."
     },
     {
       "type": "modonomicon:multiblock",

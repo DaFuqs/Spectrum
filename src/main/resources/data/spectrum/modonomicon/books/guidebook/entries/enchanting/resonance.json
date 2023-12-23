@@ -44,7 +44,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/resonance_crafting"
       },
       "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Resonance by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Resonance by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
     },
     {
       "type": "modonomicon:spotlight",
@@ -64,7 +64,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_pure_resource"
       },
-      "text": "Breaking Ores with Resonance directly drops [Pure Resources](book://resources/pure_resources) instead of Raw Ores.\\\\This would stack with Fortune... if you somehow could combine these 2 mutually exclusive Enchantments."
+      "text": "Breaking Ores with Resonance directly drops [Pure Resources](entry://resources/pure_resources) instead of Raw Ores.\\\\This would stack with Fortune... if you somehow could combine these 2 mutually exclusive Enchantments."
     },
     {
       "type": "modonomicon:spotlight",
@@ -72,7 +72,7 @@
       "item": {
         "item": "spectrum:orange_leaves"
       },
-      "text": "Colored Leaves get stimulated in a way to release a lot more [#](bb00bb)saplings[#]().\\\\Applied to a hoe his will finally be your key to get [Colored Saplings](book://general/colored_trees) renewably."
+      "text": "Colored Leaves get stimulated in a way to release a lot more [#](bb00bb)saplings[#]().\\\\Applied to a hoe his will finally be your key to get [Colored Saplings](entry://general/colored_trees) renewably."
     },
     {
       "type": "modonomicon:spotlight",

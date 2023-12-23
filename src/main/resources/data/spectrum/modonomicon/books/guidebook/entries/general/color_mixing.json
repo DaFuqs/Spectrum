@@ -27,7 +27,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "Your attempts to mix [Gemstone Powder](book://general/gemstone_powder) directly have not been very successful. But now you have another idea:\\The closeness of your gemstones to nature suggests that _nature_ must be both the source and the answer!\\\\You quickly scribble some notes, result being [a recipe](book://general/colored_trees), which looks very promising."
+      "text": "Your attempts to mix [Gemstone Powder](entry://general/gemstone_powder) directly have not been very successful. But now you have another idea:\\The closeness of your gemstones to nature suggests that _nature_ must be both the source and the answer!\\\\You quickly scribble some notes, result being [a recipe](entry://general/colored_trees), which looks very promising."
     },
     {
       "type": "modonomicon:text",

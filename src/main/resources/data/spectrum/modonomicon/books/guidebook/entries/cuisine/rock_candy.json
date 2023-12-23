@@ -32,7 +32,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "A stick with [#](bb00bb)Sugar[#]() on it.\\\\...wait wait wait, there's more to it!\\If you place this stick so that its underside is immersed in [Liquid Crystal](book://magical_blocks/liquid_crystal), you just have to slowly dissolve more Sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
+      "text": "A stick with [#](bb00bb)Sugar[#]() on it.\\\\...wait wait wait, there's more to it!\\If you place this stick so that its underside is immersed in [Liquid Crystal](entry://magical_blocks/liquid_crystal), you just have to slowly dissolve more Sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -58,7 +58,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_gemstone_rock_candy"
       },
-      "text": "Dissolving [Gemstone Powder](book://general/gemstone_powder) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.\\\\You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
+      "text": "Dissolving [Gemstone Powder](entry://general/gemstone_powder) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.\\\\You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
     }
   ]
 }

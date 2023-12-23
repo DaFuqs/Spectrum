@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
-      "text": "Once almost a lost cause, you now have an ace up your sleeve:\\With the help of the [Spirit Instiller](book://creating_life/spirit_instiller) you are sure that you can breathe life back into the little bulb."
+      "text": "Once almost a lost cause, you now have an ace up your sleeve:\\With the help of the [Spirit Instiller](entry://creating_life/spirit_instiller) you are sure that you can breathe life back into the little bulb."
     },
     {
       "type": "modonomicon:spotlight",
@@ -87,7 +87,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Shiny petals can be plucked when partly grown.\\They can be used as [decoration](book://decoration/jade_vine_petal_blocks).\\Rarely, when searching the petals, [#](449900)another Bulb[#]() can be found. How will Jade Vines look when you let them grow further, tough?"
+      "text": "Shiny petals can be plucked when partly grown.\\They can be used as [decoration](entry://decoration/jade_vine_petal_blocks).\\Rarely, when searching the petals, [#](449900)another Bulb[#]() can be found. How will Jade Vines look when you let them grow further, tough?"
     },
     {
       "type": "modonomicon:spotlight",

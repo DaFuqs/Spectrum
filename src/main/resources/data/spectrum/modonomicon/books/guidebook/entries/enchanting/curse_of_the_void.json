@@ -44,7 +44,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/voiding_crafting"
       },
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Curse of the Void by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Curse of the Void by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
     }
   ]
 }

@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The [Shooting Star](book://resources/stargazing) you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.\\\\A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
+      "text": "The [Shooting Star](entry://resources/stargazing) you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.\\\\A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
     },
     {
       "type": "spectrum:pedestal_crafting",

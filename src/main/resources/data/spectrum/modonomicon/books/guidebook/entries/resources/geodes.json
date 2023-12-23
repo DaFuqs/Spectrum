@@ -77,7 +77,7 @@
     {
       "type": "modonomicon:multiblock",
       "name": "A Geode",
-      "enable_visualize": false,
+      "show_visualize_button": false,
       "multiblock_id": "spectrum:amethyst_geode",
       "text": "The precious gemstones are protected by layers of [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]()."
     },

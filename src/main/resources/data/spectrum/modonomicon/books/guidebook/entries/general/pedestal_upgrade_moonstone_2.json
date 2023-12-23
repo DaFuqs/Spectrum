@@ -29,7 +29,7 @@
       "type": "modonomicon:multiblock",
       "name": "Spectrum Palace",
       "multiblock_id": "spectrum:pedestal_complex",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "Dimensions: 13x13x7 blocks"
     },
     {

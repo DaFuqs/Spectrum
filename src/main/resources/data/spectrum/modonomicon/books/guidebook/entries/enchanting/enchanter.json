@@ -31,7 +31,7 @@
       "type": "modonomicon:multiblock",
       "name": "Enchanting Structure",
       "multiblock_id": "spectrum:enchanter",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "Dimensions: 11x11x5 blocks\\Can be enhanced using [Upgrades](book://magical_blocks/upgrades) by placing them on the four Gemstone Blocks."
     },
     {

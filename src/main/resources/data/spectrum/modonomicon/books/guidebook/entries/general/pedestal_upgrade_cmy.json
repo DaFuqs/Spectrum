@@ -35,7 +35,7 @@
       "type": "modonomicon:multiblock",
       "name": "Spectrum Focus",
       "multiblock_id": "spectrum:pedestal_simple",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "Dimensions: 11x11x4 blocks. But best to leave a few additional blocks of space around, just to make sure."
     },
     {

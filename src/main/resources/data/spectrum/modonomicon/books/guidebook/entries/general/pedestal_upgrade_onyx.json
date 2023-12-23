@@ -30,7 +30,7 @@
       "type": "modonomicon:multiblock",
       "name": "Spectrum Temple",
       "multiblock_id": "spectrum:pedestal_advanced",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "Dimensions: 13x13x6 blocks"
     },
     {

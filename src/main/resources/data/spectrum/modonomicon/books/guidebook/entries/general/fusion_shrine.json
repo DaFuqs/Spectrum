@@ -37,7 +37,7 @@
       "type": "modonomicon:multiblock",
       "name": "Shrine Structure",
       "multiblock_id": "spectrum:fusion_shrine",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "Dimensions: 9x9x5 blocks."
     },
     {

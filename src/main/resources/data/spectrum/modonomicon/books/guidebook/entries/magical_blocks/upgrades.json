@@ -103,15 +103,15 @@
     {
       "type": "modonomicon:multiblock",
       "name": "Pedestal Placement",
-      "multiblock_id": "spectrum:pedestal_structure_with_upgrades",
-      "enable_visualize": false,
+      "multiblock_id": "spectrum:pedestal_advanced_upgrades",
+      "show_visualize_button": false,
       "text": "4 upgrade slots"
     },
     {
       "type": "modonomicon:multiblock",
       "name": "Fusion Shrine Placement",
       "multiblock_id": "spectrum:fusion_shrine_upgrades",
-      "enable_visualize": false,
+      "show_visualize_button": false,
       "text": "4 upgrade slots"
     },
     {
@@ -122,7 +122,7 @@
       },
       "name": "Enchanter Placement",
       "multiblock_id": "spectrum:enchanter_upgrades",
-      "enable_visualize": false,
+      "show_visualize_button": false,
       "text": "4 upgrade slots"
     },
     {
@@ -133,7 +133,7 @@
       },
       "name": "Cinderhearth Placement",
       "multiblock_id": "spectrum:cinderhearth_upgrades",
-      "enable_visualize": false,
+      "show_visualize_button": false,
       "text": "2 upgrade slots"
     },
     {
@@ -144,7 +144,7 @@
       },
       "name": "Spirit Instiller Placement",
       "multiblock_id": "spectrum:spirit_instiller_upgrades",
-      "enable_visualize": false,
+      "show_visualize_button": false,
       "text": "2 upgrade slots"
     }
   ]

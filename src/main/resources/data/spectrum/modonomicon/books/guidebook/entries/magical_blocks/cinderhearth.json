@@ -31,7 +31,7 @@
       "type": "modonomicon:multiblock",
       "name": "Cinderhearth Structure",
       "multiblock_id": "spectrum:cinderhearth",
-      "enable_visualize": true,
+      "show_visualize_button": true,
       "text": "The Cinderhearth's abilities can be enhanced via [Upgrades](book://magical_blocks/upgrades). Place them on the two Chiseled Blocks."
     },
     {

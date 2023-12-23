@@ -26,7 +26,7 @@
     {
       "type": "modonomicon:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br2)How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals."
+      "text": "A metal that shimmers in all the colors of the rainbow.\\The small seedlings you collected are far too small to be used for any meaningful purpose.\\\\How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals."
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -36,7 +36,7 @@
       },
       "title": "Growing Bismuth",
       "recipe": "spectrum:crystallarieum/bismuth",
-      "text": "Instead of sacrificing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$() provides a controlled substrate as well as a finer and more efficient way to provide nutrients."
+      "text": "Instead of sacrificing whole metal blocks, the [Crystallarieum](book://magical_blocks/crystallarieum) provides a controlled substrate as well as a finer and more efficient way to provide nutrients."
     }
   ]
 }

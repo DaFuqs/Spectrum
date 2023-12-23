@@ -27,7 +27,7 @@
       "item": {
         "item": "spectrum:shimmerstone_gem"
       },
-      "text": "A yellow ore that does not only emit energy in the form of light, but is able to manipulate it, too.$(br2)Shimmerstone is found close to sea level altitudes."
+      "text": "A yellow ore that does not only emit energy in the form of light, but is able to manipulate it, too.\\\\Shimmerstone is found close to sea level altitudes."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Created with all the knowledge you have gathered, you have created the Spirit Instiller. It serves to be able to connect the energies of two items, with the help of a third object to bind them.$(br2)An almost spiritual process."
+      "text": "Created with all the knowledge you have gathered, you have created the Spirit Instiller. It serves to be able to connect the energies of two items, with the help of a third object to bind them.\\\\An almost spiritual process."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,14 +31,14 @@
     {
       "type": "modonomicon:multiblock",
       "name": "Instiller Structure",
-      "multiblock_id": "spectrum:spirit_instiller_structure",
-      "enable_visualize": true,
-      "text": "Dimensions: 8x9x5 blocks$(br)It can be enhanced using $(l:magical_blocks/upgrades)Upgrades$() by placing them on the two $(item)Onyx Chiseled Blocks$()."
+      "multiblock_id": "spectrum:spirit_instiller",
+      "show_visualize_button": true,
+      "text": "Dimensions: 8x9x5 blocks\\It can be enhanced using [Upgrades](book://magical_blocks/upgrades) by placing them on the two [#](bb00bb)Onyx Chiseled Blocks[#]()."
     },
     {
       "type": "modonomicon:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Spirit Instiller$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Chiseled Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)41 Polished Blocks$(li)2 Gemstone Chimes"
+      "text": "- 1 Spirit Instiller\\- 2 Item Bowls\\- 2 Notched Polished Blocks\\- 2 Chiseled Polished Blocks\\- 2 Onyx Chiseled Blocks\\- 6 Polished Pillars\\- 17 Polished Slabs\\- 41 Polished Blocks\\- 2 Gemstone Chimes"
     }
   ]
 }

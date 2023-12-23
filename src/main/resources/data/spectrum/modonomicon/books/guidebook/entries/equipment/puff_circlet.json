@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This glistening hoop creates a protective film of air around you.$(br2)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.$(br)The Puff Circlet also prevents $(item)Farmland$() from being trampled."
+      "text": "This glistening hoop creates a protective film of air around you.\\\\Grants you [#](495b24)4[#]() points of [#](2c2e8e)Azure Dike[#](). Using those charges, it not only protects you from enemy projectiles, but can even cushion a long fall.\\The Puff Circlet also prevents [#](bb00bb)Farmland[#]() from being trampled."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
-      "text": "$(italic)Gone are the days of being sniped from behind by Skeletons."
+      "text": "_Gone are the days of being sniped from behind by Skeletons._"
     }
   ]
 }

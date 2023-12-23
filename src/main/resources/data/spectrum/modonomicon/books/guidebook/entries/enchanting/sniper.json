@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Compared to the $(item)Bow$(), the $(item)Crossbow$() maintains a rather inconspicuous existence.$(br2)With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
+      "text": "Compared to the [#](bb00bb)Bow[#](), the [#](bb00bb)Crossbow[#]() maintains a rather inconspicuous existence.\\\\With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,13 +34,13 @@
           ]
         }
       },
-      "text": "Increases damage, accuracy and projectile speed.$(br2)Max Level: 2$(br)Applicable to Crossbows.$(br)Mutually exclusive with Multishot."
+      "text": "Increases damage, accuracy and projectile speed.\\\\Max Level: 2\\Applicable to Crossbows.\\Mutually exclusive with Multishot."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
-      "text": "You can infuse a $(item)common Book$() with Sniping by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Sniping by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
     }
   ]
 }

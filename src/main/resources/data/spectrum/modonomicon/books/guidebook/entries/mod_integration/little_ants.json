@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These industrious little buggers continuously collect leaves from trees. The results of their work are also reflected in their products. While they mostly produce $(thing)Clay$(), there might be others...$(br2)Shoutout to MastroCaleb for this great mod!"
+      "text": "These industrious little buggers continuously collect leaves from trees. The results of their work are also reflected in their products. While they mostly produce [#](449900)Clay[#](), there might be others...\\\\Shoutout to MastroCaleb for this great mod!"
     },
     {
       "type": "modonomicon:spotlight",
@@ -28,7 +28,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
       },
-      "text": "The ants produce an almost silk-like material from $(item)Jade Petals$()."
+      "text": "The ants produce an almost silk-like material from [#](bb00bb)Jade Petals[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,7 +39,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "text": "If you harvest a full anthill that collected leaves of colored trees with a shovel, you get $(item)Dye$()."
+      "text": "If you harvest a full anthill that collected leaves of colored trees with a shovel, you get [#](bb00bb)Dye[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -50,7 +50,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "text": "Even better, if you bribe them with $(thing)Vegetal$(), you can even salvage pure $(thing)Pigment$() instead."
+      "text": "Even better, if you bribe them with [#](449900)Vegetal[#](), you can even salvage pure [#](449900)Pigment[#]() instead."
     }
   ]
 }

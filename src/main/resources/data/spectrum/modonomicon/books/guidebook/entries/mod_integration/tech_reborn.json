@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "There is this new thing, called $(italic)Electricity$(), you should check that out.$(br2)The factory must grow."
+      "text": "There is this new thing, called _Electricity_, you should check that out.\\\\The factory must grow."
     },
     {
       "type": "modonomicon:spotlight",

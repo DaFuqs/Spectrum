@@ -27,7 +27,7 @@
         "advancement_id": "spectrum:place_pedestal"
       },
       "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
-      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() work. No problem plucking the petals from the flattened blossom after that."
+      "text": "While crushing flowers seems a bit unorthodox, it _did_ work. No problem plucking the petals from the flattened blossom after that."
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,7 +39,7 @@
       "item": {
         "item": "botania:magenta_petal"
       },
-      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Colored Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
+      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble [Colored Trees](book://general/colored_trees) in more than just one point.\\\\No wonder that their petals can also be used to create [Ink](book://magic/ink)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -49,7 +49,7 @@
         "advancement_id": "spectrum:collect_shimmerstone"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
-      "text": "Adding some $(l:resources/shimmerstone)Shimmerstone$(/l) to magical flowers makes them glimmer."
+      "text": "Adding some [Shimmerstone](book://resources/shimmerstone) to magical flowers makes them glimmer."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -59,7 +59,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
-      "text": "Applying $(l:general/pigment)Pigment$(/l) to mushrooms colors them in the respective color."
+      "text": "Applying [Pigment](book://general/pigment) to mushrooms colors them in the respective color."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -68,7 +68,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
-      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(item)Floral Fertilizer$() is quite a bit more yielding."
+      "text": "Using [Pigment](book://general/pigment) instead of mundane Dye when creating [#](bb00bb)Floral Fertilizer[#]() is quite a bit more yielding."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -77,7 +77,7 @@
         "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
       },
       "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
-      "text": "The $(item)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
+      "text": "The [#](bb00bb)Black Lotus[#]() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some [#](449900)Jade Petals[#]()"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -98,7 +98,7 @@
       "item": {
         "item": "botania:enchanted_soil"
       },
-      "text": "Enchanted Soil can be harvested using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
+      "text": "Enchanted Soil can be harvested using tools enchanted with [Resonance](book://enchanting/resonance)."
     },
     {
       "type": "modonomicon:spotlight",
@@ -110,7 +110,7 @@
       "item": {
         "item": "botania:black_lotus"
       },
-      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+      "text": "- +2 positive effects\\- +1 negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -122,7 +122,7 @@
       "item": {
         "item": "botania:blacker_lotus"
       },
-      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+      "text": "- +3 positive effects\\- 50% chance for negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -134,7 +134,7 @@
       "item": {
         "item": "botania:life_essence"
       },
-      "text": "$(li)+3 potency$(li)-3 yield$(br2)Requires other reagents to increase the yield, otherwise you will end up with nothing..."
+      "text": "- +3 potency\\- -3 yield\\\\Requires other reagents to increase the yield, otherwise you will end up with nothing..."
     },
     {
       "type": "modonomicon:spotlight",
@@ -146,7 +146,7 @@
       "item": {
         "item": "botania:mana_powder"
       },
-      "text": "$(li)+25% duration$(li)15% chance to add last effect"
+      "text": "- +25% duration\\- 15% chance to add last effect"
     },
     {
       "type": "modonomicon:spotlight",
@@ -158,7 +158,7 @@
       "item": {
         "item": "botania:pixie_dust"
       },
-      "text": "$(li)creates Lingering Potions & Tipped Arrows$(li)-25% potency"
+      "text": "- creates Lingering Potions & Tipped Arrows\\- -25% potency"
     }
   ]
 }

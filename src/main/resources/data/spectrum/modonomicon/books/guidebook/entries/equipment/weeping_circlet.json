@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These hostile underwater temples are hell to maneuver in. Luckily, in your search for treasure, you stumbled upon a $(item)Heart of The Sea$().$(br)This circlet allows you to live and mine underwater as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends. ♥"
+      "text": "These hostile underwater temples are hell to maneuver in. Luckily, in your search for treasure, you stumbled upon a [#](bb00bb)Heart of The Sea[#]().\\This circlet allows you to live and mine underwater as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.\\It also heals your little close by Axolotl friends. ♥"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/weeping_circlet",
-      "text": "$(italic)Have you ever wanted to live underwater?$(br)No? Whatever, now you can. Time to build an underwater base!"
+      "text": "_Have you ever wanted to live underwater?\\No? Whatever, now you can. Time to build an underwater base!_"
     }
   ]
 }

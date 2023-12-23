@@ -26,14 +26,14 @@
       "item": {
         "item": "spectrum:hummingstone_glass"
       },
-      "text": "This very sturdy, very blast resistant glass is scattered all around the $(l:dimension/crystal_gardens)Crystal Gardens$(/l)."
+      "text": "This very sturdy, very blast resistant glass is scattered all around the [Crystal Gardens](book://dimension/crystal_gardens)."
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:hummingstone"
       },
-      "text": "Between this glass you find these pretty stones that emit a pleasant hum when triggered. You fittingly called those $(italic)Hummingstones$()."
+      "text": "Between this glass you find these pretty stones that emit a pleasant hum when triggered. You fittingly called those _Hummingstones_."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
@@ -49,7 +49,7 @@
       "item": {
         "item": "spectrum:resonance_shard"
       },
-      "text": "It turns out that the pretty sounds of the Hummingstones can build each other up until they shatter in one final anthem.$(br)The shattered remains never seem to stop vibrating, as if they retain some form of inherent energy."
+      "text": "It turns out that the pretty sounds of the Hummingstones can build each other up until they shatter in one final anthem.\\The shattered remains never seem to stop vibrating, as if they retain some form of inherent energy."
     }
   ]
 }

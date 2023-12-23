@@ -22,18 +22,18 @@
     {
       "type": "modonomicon:text",
       "title": "Kindlings",
-      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those $(l:dimension/dragonbone#dragonbone_chunks)Dragonbone Chunks$().$(br2)Maybe you will be the one to restore the age of divine dragons?"
+      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those [Dragonbone Chunks](book://dimension/dragonbone@dragonbone_chunks).\\\\Maybe you will be the one to restore the age of divine dragons?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Remembering",
       "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
-      "text": "$(italic)Your own personal fierce dragon. This will be great."
+      "text": "_Your own personal fierce dragon. This will be great._"
     },
     {
       "type": "modonomicon:text",
       "title": "A small Surprise",
-      "text": "$(italic)So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?$()$(br2)The result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?"
+      "text": "_So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?_\\\\The result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?"
     },
     {
       "type": "modonomicon:entity",
@@ -44,7 +44,7 @@
       "entity_id": "spectrum:kindling",
       "scale": 0.45,
       "offset": 0.5,
-      "text": "Their down looks beyond soft.$(br)$(italic)Maybe, if you sneak up to one with $(item)Shears$()$(italic), you are able to snip a feather or two?$()"
+      "text": "Their down looks beyond soft.\\_Maybe, if you sneak up to one with [#](bb00bb)Shears[#](), you are able to snip a feather or two?_"
     }
   ]
 }

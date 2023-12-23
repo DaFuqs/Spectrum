@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "That's it: Ascension - the ultimate buff - in wearable form.$(br)If your mere existence wouldn't be in danger everytime you get hit too hard - a very expensive price to pay - you would not hesitate for a second putting it on.$(br)Should you really...?$(br2)Of course."
+      "text": "That's it: Ascension - the ultimate buff - in wearable form.\\If your mere existence wouldn't be in danger everytime you get hit too hard - a very expensive price to pay - you would not hesitate for a second putting it on.\\Should you really...?\\\\Of course."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/circlet_of_arrogance",
-      "text": "$(italic)Pride comes before a fall."
+      "text": "_Pride comes before a fall._"
     }
   ]
 }

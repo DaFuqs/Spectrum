@@ -22,13 +22,13 @@
       "item": {
         "item": "spectrum:ender_splice"
       },
-      "text": "The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of your teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that, it seems. Why?"
+      "text": "The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of your teleport, you must first take a snapshot of the position.\\Endermen don't have to do that, it seems. Why?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "Change it to bind it to your current position.$(br)The second use will teleport you back. Can even be used on other players. Cannot teleport you across dimensions."
+      "text": "Change it to bind it to your current position.\\The second use will teleport you back. Can even be used on other players. Cannot teleport you across dimensions."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -48,7 +48,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Unbreaking by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of it breaking on use."
+      "text": "Enchanting an Ender Splice with Unbreaking by using the [Enchanter](book://enchanting/enchanting_items) decreases the chance of it breaking on use."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -68,7 +68,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will allow for interdimensional teleport."
+      "text": "Enchanting an Ender Splice with Resonance by using the [Enchanter](book://enchanting/enchanting_items) will allow for interdimensional teleport."
     }
   ]
 }

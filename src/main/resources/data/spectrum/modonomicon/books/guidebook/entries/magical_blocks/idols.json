@@ -62,7 +62,7 @@
     {
       "type": "modonomicon:text",
       "title": "Idols",
-      "text": "Manifestations of a creature in block form.$(br2)Using them, walking on them, or hitting them with a projectile triggers an action that is specifically associated with that creature."
+      "text": "Manifestations of a creature in block form.\\\\Using them, walking on them, or hitting them with a projectile triggers an action that is specifically associated with that creature."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -82,7 +82,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/blaze_idol",
-      "text": "Smelts ore, heats $(item)Netherrack$() to $(item)Magma Blocks$(), ...)$(br)Also sets the creature that triggered it and blocks next to it on fire."
+      "text": "Smelts ore, heats [#](bb00bb)Netherrack[#]() to [#](bb00bb)Magma Blocks[#](), ...)\\Also sets the creature that triggered it and blocks next to it on fire."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -177,7 +177,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/phantom_idol",
-      "text": "Causes Insomnia.$(br)When in open sky, a player will immediately get haunted by a $(thing)Phantom$()."
+      "text": "Causes Insomnia.\\When in open sky, a player will immediately get haunted by a [#](449900)Phantom[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -187,12 +187,12 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/piglin_idol",
-      "text": "Trades $(item)Gold Ingots$() with you."
+      "text": "Trades [#](bb00bb)Gold Ingots[#]() with you."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/polar_bear_idol",
-      "text": "Freezes blocks around it (freezing $(item)Water$() to $(item)Ice$(), cooling $(item)Lava$() to $(item)Obsidian$(), ...)."
+      "text": "Freezes blocks around it (freezing [#](bb00bb)Water[#]() to [#](bb00bb)Ice[#](), cooling [#](bb00bb)Lava[#]() to [#](bb00bb)Obsidian[#](), ...)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -222,7 +222,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/skeleton_idol",
-      "text": "Shoots an $(item)Arrow$()."
+      "text": "Shoots an [#](bb00bb)Arrow[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -232,7 +232,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/idols/snow_golem_idol",
-      "text": "Shoots a $(item)Snowball$()."
+      "text": "Shoots a [#](bb00bb)Snowball[#]()."
     },
     {
       "type": "spectrum:pedestal_crafting",

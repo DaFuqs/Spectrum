@@ -24,7 +24,7 @@
       "item": {
         "item": "spectrum:clover"
       },
-      "text": "Plains and other green biomes are home to these lush green clovers, sprouting with life.$(br2)$(italic)Is today your lucky day?$()"
+      "text": "Plains and other green biomes are home to these lush green clovers, sprouting with life.\\\\_Is today your lucky day?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -35,7 +35,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"
       },
-      "text": "Indeed it is!$(br)You are sure this tiny sign of luck could come in handy."
+      "text": "Indeed it is!\\You are sure this tiny sign of luck could come in handy."
     }
   ]
 }

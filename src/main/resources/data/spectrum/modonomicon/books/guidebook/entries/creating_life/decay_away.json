@@ -24,7 +24,7 @@
       "item": {
         "item": "spectrum:bottle_of_decay_away"
       },
-      "text": "Your last experiment was not only dangerous, but also quite a pain to get rid of.$(br)Just in case anything ever gets out of hand you created this modified variant. This time, though, to heal instead of flooding your base.$(br2)Yeah, that's probably better."
+      "text": "Your last experiment was not only dangerous, but also quite a pain to get rid of.\\Just in case anything ever gets out of hand you created this modified variant. This time, though, to heal instead of flooding your base.\\\\Yeah, that's probably better."
     },
     {
       "type": "spectrum:pedestal_crafting",

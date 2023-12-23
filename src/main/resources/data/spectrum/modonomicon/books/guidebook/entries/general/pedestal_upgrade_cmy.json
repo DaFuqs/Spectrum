@@ -24,24 +24,24 @@
       "type": "spectrum:pedestal_crafting",
       "title": "CMY Variant",
       "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
-      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using all the shards you collected on your journey."
+      "text": "Upgrade your [Pigment Pedestal](book://general/pedestal) by using all the shards you collected on your journey."
     },
     {
       "type": "modonomicon:text",
       "title": "Pedestal Structure",
-      "text": "To make use of the $(l:general/pedestal)Pigment Pedestal's$() advanced abilities you will need a structure to focus gemstone energy into it.$(br2)You call it the$(br)$(bold)Spectrum Focus$()."
+      "text": "To make use of the [Pigment Pedestal's](book://general/pedestal) advanced abilities you will need a structure to focus gemstone energy into it.\\\\You call it the\\**Spectrum Focus**."
     },
     {
       "type": "modonomicon:multiblock",
       "name": "Spectrum Focus",
-      "multiblock_id": "spectrum:pedestal_simple_structure_check",
-      "enable_visualize": true,
+      "multiblock_id": "spectrum:pedestal_simple",
+      "show_visualize_button": true,
       "text": "Dimensions: 11x11x4 blocks. But best to leave a few additional blocks of space around, just to make sure."
     },
     {
       "type": "modonomicon:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Pigment Pedestal$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)4 Notched Polished Blocks$(li)8 Polished Pillars$(li)68 Polished Blocks"
+      "text": "-1 Pigment Pedestal\\-4 Polished Gemstone Blocks\\-4 Chiseled Polished Blocks\\-4 Notched Polished Blocks\\-8 Polished Pillars\\-68 Polished Blocks"
     },
     {
       "type": "modonomicon:image",
@@ -52,7 +52,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up $(item)Calcite$() and $(item)Basalt$() up to create your personal variation!"
+      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() up to create your personal variation!"
     }
   ]
 }

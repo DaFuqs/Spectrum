@@ -26,7 +26,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These razor sharp arrows are able to be shot underwater and are able to pierce translucent blocks like $(item)Glass$() while dealing increased damage.$(br)Each one also has a secondary effect, depending on what you tip them with."
+      "text": "These razor sharp arrows are able to be shot underwater and are able to pierce translucent blocks like [#](bb00bb)Glass[#]() while dealing increased damage.\\Each one also has a secondary effect, depending on what you tip them with."
     },
     {
       "type": "spectrum:pedestal_crafting",

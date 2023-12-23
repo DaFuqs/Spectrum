@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Gemstone Chimes",
-      "text": "Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.$(br2)Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
+      "text": "Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.\\\\Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
     },
     {
       "type": "spectrum:pedestal_crafting",

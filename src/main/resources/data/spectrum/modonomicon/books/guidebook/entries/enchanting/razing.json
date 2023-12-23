@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Even with a list of enchantments that you can barely read anymore due to its length, there are still few blocks that escape your gaze of superiority.$(br2)$(item)Obsidian$(), you are getting cancelled today."
+      "text": "Even with a list of enchantments that you can barely read anymore due to its length, there are still few blocks that escape your gaze of superiority.\\\\[#](bb00bb)Obsidian[#](), you are getting cancelled today."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,7 +34,7 @@
           ]
         }
       },
-      "text": "Higher mining speed the harder a block is to break.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune."
+      "text": "Higher mining speed the harder a block is to break.\\\\Max Level: 3\\Applicable to mining tools.\\Mutually exclusive with Fortune."
     },
     {
       "type": "spectrum:enchanter_crafting",
@@ -44,7 +44,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "recipe": "spectrum:enchanter/spectrum_books/book_razing",
-      "text": "You can infuse a $(item)common Book$() with Razing by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Razing by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
     },
     {
       "type": "spectrum:enchanter_upgrading",
@@ -54,7 +54,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/razing_crafting"
       },
       "recipe": "spectrum:enchantment_upgrade/spectrum/razing_level_2",
-      "text": "Upgrading Razing from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more $(l:general/pigment)Pigment$() and experience for each additional level."
+      "text": "Upgrading Razing from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](book://general/pigment) and experience for each additional level."
     }
   ]
 }

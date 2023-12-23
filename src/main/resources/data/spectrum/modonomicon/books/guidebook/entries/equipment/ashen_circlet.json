@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The $(l:resources/stratine)Stratine Gem$() you set into this circlet, itself a creation of the Nether, can absorb high temperatures with ease.$(br)It even protects you from the blazing heat of Lava - if only for a short time.$(br)Pair it with $(thing)Fire Resistance$(), you're able to swim in Lava almost as if it were Water."
+      "text": "The [Stratine Gem](book://resources/stratine) you set into this circlet, itself a creation of the Nether, can absorb high temperatures with ease.\\It even protects you from the blazing heat of Lava - if only for a short time.\\Pair it with [#](449900)Fire Resistance[#](), you're able to swim in Lava almost as if it were Water."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
-      "text": "$(li)Prevents all damage from fires and hot floors$(li)Considerable boost in both mobility and vision when submerged in lava$(li)When triggered, grants you a brief shield against extreme heat"
+      "text": "- Prevents all damage from fires and hot floors\\- Considerable boost in both mobility and vision when submerged in lava\\- When triggered, grants you a brief shield against extreme heat"
     }
   ]
 }

@@ -19,13 +19,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "For all those who don't live in a simple $(item)Cobblestone$() house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
+      "text": "For all those who don't live in a simple [#](bb00bb)Cobblestone[#]() house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/exchanging_staff",
-      "text": "$(italic)Mining just got a whole bunch more fun"
+      "text": "_Mining just got a whole bunch more fun_"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -45,7 +45,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
+      "text": "Enchanting an Exchanging Staff with Fortune by using the [Enchanter](book://enchanting/enchanting_items)$ allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -65,7 +65,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
+      "text": "Enchanting an Exchanging Staff with Silk Touch by using the Enchanter(book://enchanting/enchanting_items) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -85,7 +85,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
+      "text": "Enchanting an Exchanging Staff with Resonance by using the Enchanter(book://enchanting/enchanting_items) will give it the power to harvest some special blocks as-is."
     }
   ]
 }

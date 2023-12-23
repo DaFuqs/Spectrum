@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The Enchanter is also able to create most Enchantments you are already familiar with, using your mundane Crafting Table.$(br2)All Enchantments can be upgraded to higher levels, too - using the same $(l:general/pigment)Pigment$() you used for creating it."
+      "text": "The Enchanter is also able to create most Enchantments you are already familiar with, using your mundane Crafting Table.\\\\All Enchantments can be upgraded to higher levels, too - using the same [Pigment](book://general/pigment) you used for creating it."
     },
     {
       "type": "spectrum:enchanter_crafting",

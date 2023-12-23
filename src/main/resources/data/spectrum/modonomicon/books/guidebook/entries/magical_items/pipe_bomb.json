@@ -19,12 +19,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(l:resources/moonstone_cores)Moonstone Cores$() are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.$(br2)$(italic)...but sometimes the worst ideas are the best, aren't they?"
+      "text": "[Moonstone Cores](book://resources/moonstone_cores) are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.\\\\_...but sometimes the worst ideas are the best, aren't they?_"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/boom/pipe_bomb",
-      "text": "$(italic)They make for great gifts!$()"
+      "text": "_They make for great gifts!_"
     }
   ]
 }

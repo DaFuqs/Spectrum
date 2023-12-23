@@ -23,7 +23,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br2)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
+      "text": "You had more than enough time to develop your own individual fighting style.\\To best support this style, you've designed a range of matching gear out of interesting materials.\\\\Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
     },
     {
       "type": "spectrum:checklist",
@@ -33,7 +33,7 @@
         "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: the source of nightmares",
         "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: mourning of the Nether"
       },
-      "text": "They can be repaired in Anvils by using $(l:general/shards)Gemstone Shards$().$(br2)To take advantage of their unique abilities you will need some special materials:"
+      "text": "They can be repaired in Anvils by using [Gemstone Shards](book://general/shards).\\\\To take advantage of their unique abilities you will need some special materials:"
     },
     {
       "type": "spectrum:pedestal_crafting",

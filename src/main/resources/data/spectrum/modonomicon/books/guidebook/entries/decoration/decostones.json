@@ -25,7 +25,7 @@
     {
       "type": "modonomicon:text",
       "title": "Decostones",
-      "text": "These two-block high decorative stones are a representation of your precious find.$(br2)They make quite an imposing impression."
+      "text": "These two-block high decorative stones are a representation of your precious find.\\\\They make quite an imposing impression."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -19,7 +19,7 @@
     {
       "type": "modonomicon:text",
       "title": "Pastel Network",
-      "text": "Your primitive ways of item transport like $(thing)Hopper Arrays$() do not compare to the $(thing)Pastel Network$() - this is what you named clusters of Azurite-based nodes.$(br)Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network."
+      "text": "Your primitive ways of item transport like [#](449900)Hopper Arrays[#]() do not compare to the [#](449900)Pastel Network[#]() - this is what you named clusters of Azurite-based nodes.\\Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network."
     },
     {
       "type": "modonomicon:image",

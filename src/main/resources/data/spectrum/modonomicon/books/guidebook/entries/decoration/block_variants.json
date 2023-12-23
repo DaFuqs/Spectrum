@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Remember the blocks that shielded your precious gemstones from external influences? $(br2)Maybe they also absorbed some of the magical properties of the geodes themselves?$(br)Who knows."
+      "text": "Remember the blocks that shielded your precious gemstones from external influences? \\\\Maybe they also absorbed some of the magical properties of the geodes themselves?\\Who knows."
     },
     {
       "type": "spectrum:collection",
@@ -39,7 +39,7 @@
       "title1": "Polishing",
       "recipe_id_1": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe_id_2": "spectrum:smelting/calcite_to_polished_calcite",
-      "text": "Applying heat emphasizes their dark and white textures even more.$(br)When smelted, the Basalt almost turns black. They can be crafted into a wide array of decoration blocks in the $(item)Crafting Table$() or $(item)Stone Cutter$()."
+      "text": "Applying heat emphasizes their dark and white textures even more.\\When smelted, the Basalt almost turns black. They can be crafted into a wide array of decoration blocks in the [#](bb00bb)Crafting Table[#]() or [#](bb00bb)Stone Cutter[#]()."
     },
     {
       "type": "spectrum:collection",
@@ -103,7 +103,7 @@
       "type": "spectrum:anvil_crushing",
       "title": "Cracking",
       "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
-      "text": "You can crack Bricks & Tiles via $(l:general/anvil_crushing)Item Crushing$()."
+      "text": "You can crack Bricks & Tiles via [Item Crushing](book://general/anvil_crushing)."
     },
     {
       "type": "modonomicon:smelting_recipe",

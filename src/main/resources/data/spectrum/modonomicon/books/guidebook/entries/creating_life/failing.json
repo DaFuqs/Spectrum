@@ -25,7 +25,7 @@
       "item": {
         "item": "spectrum:bottle_of_failing"
       },
-      "text": "Ambition has taken hold of you, seriously. These are your first big leaps towards changing the world.$(br)Empowered by the potent energy of your $(l:general/onyx_shards)Onyx$() and $(l:resources/stratine)Stratine$(), this second organism you created is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
+      "text": "Ambition has taken hold of you, seriously. These are your first big leaps towards changing the world.\\Empowered by the potent energy of your [Onyx](book://general/onyx_shards) and [Stratine](book://resources/stratine), this second organism you created is clearly... more active than your last creation.\\\\**And DEFINITELY hungrier.**\\**WAY hungrier.**"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -44,7 +44,7 @@
       "item": {
         "item": "spectrum:neolith"
       },
-      "text": "The Obsidian was literally pulverized. This is what you call power!$(br2)The result was this sturdy reagent.$(br)Very powerful.$(br)Yes."
+      "text": "The Obsidian was literally pulverized. This is what you call power!\\\\The result was this sturdy reagent.\\Very powerful.\\Yes."
     }
   ]
 }

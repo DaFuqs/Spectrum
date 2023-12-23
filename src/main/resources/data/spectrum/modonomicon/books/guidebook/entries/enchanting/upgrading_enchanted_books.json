@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Enchantments and your Color Magic have a lot in common. That's why you weren't surprised when your first attempt to combine $(item)Enchanted Books$() with $(l:general/pigment)Pigment$(/l) was an instant success.$()$(br2)Placing an $(item)Enchanted Book$() onto the $(l:enchanting/enchanter)Enchanter$(), surrounding it with matching $(l:general/pigment)Pigment$(/l) and supplying a steady stream of experience increases your books level."
+      "text": "Enchantments and your Color Magic have a lot in common. That's why you weren't surprised when your first attempt to combine [#](bb00bb)Enchanted Books[#]() with [Pigment](book://general/pigment) was an instant success.\\\\Placing an [#](bb00bb)Enchanted Book[#]() onto the [Enchanter](book://enchanting/enchanter), surrounding it with matching [Pigment](book://general/pigment) and supplying a steady stream of experience increases your books level."
     },
     {
       "type": "modonomicon:image",

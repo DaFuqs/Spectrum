@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "It looks red-hot, as if it were on fire, burning like hell to the touch (you $(italics)had$() to satisfy your curiosity...) and yet radiates no heat at all.$(br)While $(l:magical_blocks/midnight_solution)Midnight Solution$() seems to be destructive for the sake of change, Dragonrot seems intent only on pure and total destruction. Certainly there is not much organic that can withstand its bloodlust."
+      "text": "It looks red-hot, as if it were on fire, burning like hell to the touch (you _had_ to satisfy your curiosity...) and yet radiates no heat at all.\\While [Midnight Solution](book://magical_blocks/midnight_solution) seems to be destructive for the sake of change, Dragonrot seems intent only on pure and total destruction. Certainly there is not much organic that can withstand its bloodlust."
     },
     {
       "type": "spectrum:dragonrot_converting",

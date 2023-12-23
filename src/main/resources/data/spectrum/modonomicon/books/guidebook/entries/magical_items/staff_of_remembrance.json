@@ -19,13 +19,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(italic)One to rule them all$()$(br)...well, politely, of course.$(br2)The Staff of Remembrance allows you to move around your animals with ease, both short and long distance."
+      "text": "_One to rule them all_\\...well, politely, of course.\\\\The Staff of Remembrance allows you to move around your animals with ease, both short and long distance."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/staff_of_remembrance",
-      "text": "Tap animals to recollect them into a $(l:creating_life/memories)Memory$()."
+      "text": "Tap animals to recollect them into a [Memory](book://creating_life/memories)."
     }
   ]
 }

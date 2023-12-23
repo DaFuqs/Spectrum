@@ -30,7 +30,7 @@
         "spectrum:granite_shimmerstone_light",
         "spectrum:stone_shimmerstone_light"
       ],
-      "text": "On your first nights in this new world, you lit your improvised hut with torches. As atmospheric as that was, it was also primitive.$(br)To move away from your dark, torch-lit past, you created lamps based on Shimmerstone."
+      "text": "On your first nights in this new world, you lit your improvised hut with torches. As atmospheric as that was, it was also primitive.\\To move away from your dark, torch-lit past, you created lamps based on Shimmerstone."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -23,18 +23,18 @@
       "item": {
         "item": "spectrum:mud_bucket"
       },
-      "text": "Mud. It is wet mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like $(item)Water$() or $(item)Lava$(). This creates $(item)Dirt$() or $(item)Coarse Dirt$(), respectively."
+      "text": "Mud. It is wet mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like [#](bb00bb)Water[#]() or [#](bb00bb)Lava[#](). This creates [#](bb00bb)Dirt[#]() or [#](bb00bb)Coarse Dirt[#](), respectively."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/mud_bucket",
-      "text": "$(italic)While a mud bath sounds like wellness, it is not advised."
+      "text": "_While a mud bath sounds like wellness, it is not advised._"
     },
     {
       "type": "modonomicon:text",
       "title": "Item Conversion",
-      "text": "Some items that come into contact with Mud get tanned.$(br)For example, $(item)Rotten Flesh$() will be converted to a tiny piece of $(item)Hide$()."
+      "text": "Some items that come into contact with Mud get tanned.\\For example, [#](bb00bb)Rotten Flesh[#]() will be converted to a tiny piece of [#](bb00bb)Hide[#]()."
     },
     {
       "type": "spectrum:mud_converting",

@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "$(italic)On the trail of the history of the Deeper Down$().$(br2)There is no question that, despite the lack of light, there must once have lived a highly advanced civilisation down here. But all you found wer ruins.$(br)What happened? Surely you can find clues to their whereabouts. Demise? Legacy?"
+      "text": "_On the trail of the history of the Deeper Down_.\\\\There is no question that, despite the lack of light, there must once have lived a highly advanced civilisation down here. But all you found wer ruins.\\What happened? Surely you can find clues to their whereabouts. Demise? Legacy?"
     },
     {
       "type": "spectrum:checklist",
@@ -76,7 +76,7 @@
         "advancement_id": "spectrum:lategame/revive_black_sludge_plant"
       },
       "title": "Clue: Black Langast",
-      "text": "The remains growing in $(l:dimension/black_langast)Black Langast$(/l) were actually Resonant Lilies, once. What happened here? Does that mean..."
+      "text": "The remains growing in [Black Langast](book://dimension/black_langast) were actually Resonant Lilies, once. What happened here? Does that mean..."
     },
     {
       "type": "modonomicon:text",

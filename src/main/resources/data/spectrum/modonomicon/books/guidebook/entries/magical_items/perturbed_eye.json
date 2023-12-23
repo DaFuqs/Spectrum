@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. Probably.$(br)You still haven't figured out how to create such portals yourself, but packing them up and taking them home? $(italic)No problem."
+      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.\\\\Well, almost. Probably.\\You still haven't figured out how to create such portals yourself, but packing them up and taking them home? _No problem._"
     },
     {
       "type": "modonomicon:image",
@@ -40,29 +40,6 @@
       "type": "modonomicon:multiblock",
       "name": "Reconstructed Portal",
       "multiblock_id": "spectrum:perturbed_eye",
-      "multiblock": {
-        "pattern": [
-          [
-            " HHH ",
-            "VPPPV",
-            "VPPPV",
-            "VPPPV",
-            " HHH ",
-            "  0  "
-          ]
-        ],
-        "mapping": {
-          "H": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=false]",
-          "V": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=true]",
-          "P": "minecraft:end_portal"
-        },
-        "offset": [
-          0,
-          3,
-          0
-        ],
-        "symmetrical": false
-      },
       "text": "You just put the portal back together the way it was, add Ender Pearls, done!"
     }
   ]

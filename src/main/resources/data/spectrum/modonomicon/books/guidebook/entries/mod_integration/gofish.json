@@ -29,7 +29,7 @@
       "item": {
         "item": "spectrum:molten_rod"
       },
-      "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the Go Fish fishing rods.$(br)Crates can also be fished, as long as you are in the open."
+      "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the Go Fish fishing rods.\\Crates can also be fished, as long as you are in the open."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -45,7 +45,7 @@
           ]
         }
       },
-      "text": "While the Deepfry Enchantment cooks fish as usual, you did not find a way to attach lures to Rods made with Pigment. But you are sure you will find a way to enhance your rod later.$(br)Deepfry on Fishing Rods is also mutually exclusive to Foundry."
+      "text": "While the Deepfry Enchantment cooks fish as usual, you did not find a way to attach lures to Rods made with Pigment. But you are sure you will find a way to enhance your rod later.\\Deepfry on Fishing Rods is also mutually exclusive to Foundry."
     },
     {
       "type": "spectrum:enchanter_crafting",

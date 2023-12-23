@@ -27,7 +27,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "These caves must have existed since time began.$(br)You wonder how big the gigantic stalactites here can get. You've seen ones that span hundreds of blocks already.$(br)The ground is speckled in puddles of $(item)Water$()."
+      "text": "These caves must have existed since time began.\\You wonder how big the gigantic stalactites here can get. You've seen ones that span hundreds of blocks already.\\The ground is speckled in puddles of [#](bb00bb)Water[#]()."
     }
   ]
 }

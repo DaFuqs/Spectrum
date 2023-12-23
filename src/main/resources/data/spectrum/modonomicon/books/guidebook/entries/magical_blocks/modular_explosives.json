@@ -21,17 +21,17 @@
     {
       "type": "modonomicon:text",
       "title": "Modular Explosives",
-      "text": "Highly modular explosives, consisting of:$(li)an $(thing)Archetype$() (damaging entities, destroying blocks, both, or just purely cosmetic)$(li)and $(thing)Modifiers$() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
+      "text": "Highly modular explosives, consisting of:\\- an [#](449900)Archetype[#]() (damaging entities, destroying blocks, both, or just purely cosmetic)\\- and [#](449900)Modifiers[#]() (changing the damage type, lighting fire, increasing the blast radius, damage and much more)"
     },
     {
       "type": "modonomicon:text",
       "title": "Customization",
-      "text": "Use the $(l:general/pedestal)Pigment Pedestal$() to combine a Modular Explosive with items specifying Archetype and to add Modifiers.$(br2)You can customize a whole stack of explosives at once."
+      "text": "Use the [Pigment Pedestal](book://general/pedestal) to combine a Modular Explosive with items specifying Archetype and to add Modifiers.\\\\You can customize a whole stack of explosives at once."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/boom/threat_conflux",
-      "text": "A magic mine that, once placed, primes after a few seconds and explodes at first touch, dealing a huge chunk of damage. Use a $(l:magical_blocks/midnight_solution#midnight_chip)Midnight Chip$(/l) to disarm and safely dismantle it."
+      "text": "A magic mine that, once placed, primes after a few seconds and explodes at first touch, dealing a huge chunk of damage. Use a [Midnight Chip](book://magical_blocks/midnight_solution@midnight_chip) to disarm and safely dismantle it."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -41,32 +41,32 @@
     {
       "type": "modonomicon:text",
       "title": "Archetypes",
-      "text": "$(li)Gunpowder: Destroying Blocks$(li)Glowstone Dust: Dealing Damage$(li)Midnight Aberration: Both$(br2)You can also combine both separately."
+      "text": "- Gunpowder: Destroying Blocks\\- Glowstone Dust: Dealing Damage\\- Midnight Aberration: Both\\\\You can also combine both separately."
     },
     {
       "type": "modonomicon:text",
       "title": "General Mod. (∞)",
-      "text": "$(li)TNT: Increased radius$(li)Chorus Fruit: Starry Particles$(li)Shimmerstone: Placement of invisible lights"
+      "text": "- TNT: Increased radius\\- Chorus Fruit: Starry Particles\\- Shimmerstone: Placement of invisible lights"
     },
     {
       "type": "modonomicon:text",
       "title": "Damage Type Mod. (1)",
-      "text": "$(li)Fire Charge: Fire$(li)Doombloom Seed: Primordial Fire$(li)Storm Stone: Lightning Damage$(li)Neolith: Magic Damage$(li)Incandescent Amalgam: Incandescent Damage"
+      "text": "- Fire Charge: Fire\\- Doombloom Seed: Primordial Fire\\- Storm Stone: Lightning Damage\\- Neolith: Magic Damage\\- Incandescent Amalgam: Incandescent Damage"
     },
     {
       "type": "modonomicon:text",
       "title": "Damage Mod. (∞)",
-      "text": "$(li)End Rod: Greatly increased damage when near explosion center"
+      "text": "- End Rod: Greatly increased damage when near explosion center"
     },
     {
       "type": "modonomicon:text",
       "title": "Mining Mod. (∞)",
-      "text": "$(li)Stratine Fragments: Square block breaking shape$(li)Four Leaf Clover: Fortune$(li)Mermaids Gem: Silk Touch$(li)Ender Pearl: Inventory Insertion"
+      "text": "- Stratine Fragments: Square block breaking shape\\- Four Leaf Clover: Fortune\\- Mermaids Gem: Silk Touch\\- Ender Pearl: Inventory Insertion"
     },
     {
       "type": "modonomicon:text",
       "title": "Starting from Scratch",
-      "text": "Modular Explosives come with a suitable archetype builtin. Though if you want to change that, put it into the $(l:general/pedestal)Pigment Pedestal$() to $(thing)clear both Archetype and Modifiers$() and start from scratch."
+      "text": "Modular Explosives come with a suitable archetype builtin. Though if you want to change that, put it into the [Pigment Pedestal](book://general/pedestal) to [#](449900)clear both Archetype and Modifiers[#]() and start from scratch."
     }
   ]
 }

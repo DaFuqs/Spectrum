@@ -22,7 +22,7 @@
       "item": {
         "item": "spectrum:heartbound_chest"
       },
-      "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.$(br)To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
+      "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.\\To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -33,7 +33,7 @@
     {
       "type": "modonomicon:text",
       "title": "Redstone Component",
-      "text": "Similar to a Trapped Chest it also outputs a $(thing)redstone signal$().$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "text": "Similar to a Trapped Chest it also outputs a [#](449900)redstone signal[#]().\\If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

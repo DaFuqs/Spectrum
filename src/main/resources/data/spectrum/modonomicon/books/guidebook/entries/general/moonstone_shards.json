@@ -25,7 +25,7 @@
     },
     {
       "type": "modonomicon:text",
-      "text": "You have never been remotely omnipotent, never will be. Not with all the magic in the world. No one is. But with a little humility, care and support, you can at least get a little closer.$(br2)$(bold)$(c_white)Purity."
+      "text": "You have never been remotely omnipotent, never will be. Not with all the magic in the world. No one is. But with a little humility, care and support, you can at least get a little closer.\\\\[#](d0d6d7)**Purity.**"
     }
   ]
 }

@@ -57,7 +57,7 @@
       "item": {
         "item": "spectrum:preservation_controller"
       },
-      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
+      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.\\There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {
       "type": "modonomicon:text",
@@ -66,7 +66,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
-      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but was miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
+      "text": "Until now you thought you were alone in your creative endeavour with the gems. From the looks of it, you were wrong. So very, very wrong.\\Whoever built these structures obviously followed a similar path as you, but was miles ahead.\\Still, anyway. You accept the challenge, of course. You have one huge advantage:\\_YOU are still alive._"
     },
     {
       "type": "spectrum:checklist",
@@ -93,7 +93,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
       ],
       "border": true,
-      "text": "A strong, magical force field. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
+      "text": "A strong, magical force field. Wearing [Azure Dike equipment](book://equipment/azure_dike_equipment) allowed you to enter."
     },
     {
       "type": "modonomicon:image",
@@ -106,7 +106,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_color_mixing.png"
       ],
       "border": true,
-      "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
+      "text": "It was all so clear, in the end! You had it [laid all out already](book://general/color_mixing)."
     },
     {
       "type": "modonomicon:image",

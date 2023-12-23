@@ -24,7 +24,7 @@
     {
       "type": "modonomicon:text",
       "title": "Myceylon",
-      "text": "Using an $(item)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces off the $(l:dimension/noxshroom_forest)Noxshrooms$(). Those were both unexpectedly sturdy for a mushroom and... tasty.$(br2)Myceylon adds great flavor to baked goods and $(l:cuisine/infused_beverages)drinks$()."
+      "text": "Using an [#](bb00bb)Axe[#]() or [Multitool](book://equipment/multitool) you could strip small, but unexpectedly sturdy pieces off the [Noxshrooms](book://dimension/noxshroom_forest). Those were both unexpectedly sturdy for a mushroom and... tasty.\\\\Myceylon adds great flavor to baked goods and [drinks](book://cuisine/infused_beverages)."
     },
     {
       "type": "spectrum:pedestal_crafting",

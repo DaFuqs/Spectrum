@@ -35,7 +35,7 @@
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
       "recipe": "spectrum:anvil_crushing/amaranth_grains",
-      "text": "You never have seen anything like it. Such an intense red. So expressive!$(br)These Bushels can be crushed to get more grains.$(br2)They can also be planted decoratively on grass or in a flower pot."
+      "text": "You never have seen anything like it. Such an intense red. So expressive!\\These Bushels can be crushed to get more grains.\\\\They can also be planted decoratively on grass or in a flower pot."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -55,7 +55,7 @@
       },
       "title": "Scones",
       "recipe": "spectrum:pedestal/tier1/food/scone",
-      "text": "Small but fine pastry filled with cream.$(br2)$(italic)Perfect with tea."
+      "text": "Small but fine pastry filled with cream.\\\\_Perfect with tea._"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -65,7 +65,7 @@
       },
       "title": "Triple Meat Pot Pie",
       "recipe": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
-      "text": "This feast is guaranteed to fill your belly for quite some time.$(br2)$(italic)Full of fat and meat and wine and warp!"
+      "text": "This feast is guaranteed to fill your belly for quite some time.\\\\_Full of fat and meat and wine and warp!_"
     }
   ]
 }

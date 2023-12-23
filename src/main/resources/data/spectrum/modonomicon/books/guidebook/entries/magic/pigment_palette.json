@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Carrying around enough $(l:magic/ink)Ink$() with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br)Now that you're familiar with $(l:magic/ink)Ink$(), it's time for a new creation: the Pigment Palette."
+      "text": "Carrying around enough [Ink](book://magic/ink) with you to maintain your magical equipment has become both a chore and a space hog in your inventory.\\Now that you're familiar with [Ink](book://magic/ink), it's time for a new creation: the Pigment Palette."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "Capable of storing sizable amounts of $(l:magic/ink)Ink$(), making you able to supply all your magical equipment. It is not suited for powering your machines, though.$(br)$(italic)Now you are a true Artist of Color."
+      "text": "Capable of storing sizable amounts of [Ink](book://magic/ink), making you able to supply all your magical equipment. It is not suited for powering your machines, though.\\_Now you are a true Artist of Color._"
     }
   ]
 }

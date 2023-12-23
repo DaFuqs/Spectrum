@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection of $(l:resources/clover)Clovers$(/l) and $(l:general/pigment#light_blue)Light Blue Pigment$(/l) to luck you can increase those chances dramatically."
+      "text": "Every now and then you are lucky enough to have an enemy leave behind a single rare item.\\The connection of [Clovers](book://resources/clover) and [Light Blue Pigment](book://general/pigment@light_blue) to luck you can increase those chances dramatically."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,19 +34,19 @@
           ]
         }
       },
-      "text": "Higher chance to get rare loot drops, like $(item)Iron Ingots$() from Zombies.$(br)$(italic)May even increase your chances of getting the most valuable of drops?$()$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+      "text": "Higher chance to get rare loot drops, like [#](bb00bb)Iron Ingots[#]() from Zombies.\\_May even increase your chances of getting the most valuable of drops?_\\\\Max Level: 3\\Applicable to melee weapons.\\Mutually exclusive with Looting."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
-      "text": "You can infuse a $(item)common Book$() with Clovers' Favor by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Clovers' Favor by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "Enchantment Upgrading",
       "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-      "text": "Upgrading Clovers' Favor from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more $(l:general/pigment)Pigment$() and experience for each additional level."
+      "text": "Upgrading Clovers' Favor from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](book://general/pigment) and experience for each additional level."
     }
   ]
 }

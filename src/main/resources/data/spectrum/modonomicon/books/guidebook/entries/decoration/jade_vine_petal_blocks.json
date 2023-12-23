@@ -23,7 +23,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Jade Petal Blocks",
       "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
-      "text": "From the petals harvested from $(l:resources/jade_vines)Jade Vines$(/l) you created a small range of decoration blocks."
+      "text": "From the petals harvested from [Jade Vines](book://resources/jade_vines) you created a small range of decoration blocks."
     },
     {
       "type": "spectrum:pedestal_crafting",

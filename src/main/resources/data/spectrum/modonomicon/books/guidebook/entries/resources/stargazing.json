@@ -42,7 +42,7 @@
       "item": {
         "item": "spectrum:glistering_shooting_star"
       },
-      "text": "The small Shooting Stars are made of a material unknown to you thus far.$(br2)Can you catch one right out of the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision.$()"
+      "text": "The small Shooting Stars are made of a material unknown to you thus far.\\\\Can you catch one right out of the sky?\\\\_Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision._"
     },
     {
       "type": "modonomicon:spotlight",
@@ -54,7 +54,7 @@
       "item": {
         "item": "spectrum:star_fragment"
       },
-      "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
+      "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.\\\\Picking up a Shooting Star by crouching and [smashing it via an Anvil](book://general/anvil_crushing) will yield double the Star Fragments, albeit at the cost of the other materials."
     },
     {
       "type": "modonomicon:spotlight",
@@ -67,7 +67,7 @@
       "item": {
         "item": "spectrum:stardust"
       },
-      "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
+      "text": "A powder of unknown origin blessed with the soul of the stars.\\Bears coy, yet latent power."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -77,7 +77,7 @@
       },
       "title": "Star Hardening",
       "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
-      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.$(br2)$(italic)Fancy a Starball tournament with your friends?"
+      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.\\\\_Fancy a Starball tournament with your friends?_"
     }
   ]
 }

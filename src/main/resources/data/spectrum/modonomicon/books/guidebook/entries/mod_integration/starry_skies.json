@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Above the hemisphere of the Overworld exists a completely different kind of dimension: filled with numerous spheres that float away like small planets.$(br2)You can reach them by building a portal from $(item)Packed Ice$() (if it hasn't been changed by your modpack)."
+      "text": "Above the hemisphere of the Overworld exists a completely different kind of dimension: filled with numerous spheres that float away like small planets.\\\\You can reach them by building a portal from [#](bb00bb)Packed Ice[#]() (if it hasn't been changed by your modpack)."
     },
     {
       "type": "modonomicon:text",

@@ -9,12 +9,14 @@
   },
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
+
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "",
   "x": -2,
   "y": 1,
+
   "pages": [
     {
       "type": "modonomicon:spotlight",
@@ -22,13 +24,16 @@
       "item": {
         "item": "minecraft:bedrock"
       },
-      "text": "You wouldn't have thought it possible. As you burst deeper and deeper down through the bedrock, a pitch-black portal opened up. Where does it lead? Only one way to find out.$(br)$(italic)Still, you can't get rid of the lump in your throat..."
+      "text": "You wouldn't have thought it possible. As you burst deeper and deeper down through the bedrock, a pitch-black portal opened up. Where does it lead? Only one way to find out.\\*Still, you can't get rid of the lump in your throat...*"
     },
     {
       "type": "modonomicon:text",
-      "advancement": "spectrum:midgame/enter_dimension",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/enter_dimension"
+      },
       "title": "Deeper Down",
-      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.$(br2)What is waiting for you to discover down there?"
+      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.\\\\What is waiting for you to discover down there?"
     },
     {
       "type": "modonomicon:text",

@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.$(br2)This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
+      "text": "Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.\\\\This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,13 +34,13 @@
           ]
         }
       },
-      "text": "Protects tools from all kinds of damage when on the ground, even from Lava or falling into the Void.$(br2)Max Level: 1$(br)Applicable to all tools."
+      "text": "Protects tools from all kinds of damage when on the ground, even from Lava or falling into the Void.\\\\Max Level: 1\\Applicable to all tools."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
-      "text": "You can infuse a $(item)common Book$() with Steadfast by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Steadfast by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
     }
   ]
 }

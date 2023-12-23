@@ -27,12 +27,12 @@
       "item": {
         "item": "spectrum:doombloom_seed"
       },
-      "text": "When fully grown, you can harvest $(item)Gunpowder$() from it. Breaking it without blowing it up requires a Silk Touch tool or Shears."
+      "text": "When fully grown, you can harvest [#](bb00bb)Gunpowder[#]() from it. Breaking it without blowing it up requires a Silk Touch tool or Shears."
     },
     {
       "type": "modonomicon:text",
       "title": "Primordial Fire",
-      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with an insatiable, blazing heat."
+      "text": "Much more aggressive than common [#](bb00bb)Fire[#]() started by [#](bb00bb)Flint & Steel[#](), the [#](bb00bb)Primordial Fire[#]() started by Doomblooms seems to burn with an insatiable, blazing heat."
     }
   ]
 }

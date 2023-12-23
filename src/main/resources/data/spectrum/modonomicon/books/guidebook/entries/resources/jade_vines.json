@@ -28,7 +28,7 @@
       "item": {
         "item": "spectrum:hibernating_jade_vine_bulb"
       },
-      "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.$(br2)$(italic)Will the history of this plant remain elusive to you forever?"
+      "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.\\\\_Will the history of this plant remain elusive to you forever?_"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -38,7 +38,7 @@
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
-      "text": "Once almost a lost cause, you now have an ace up your sleeve:$(br)With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
+      "text": "Once almost a lost cause, you now have an ace up your sleeve:\\With the help of the [Spirit Instiller](book://creating_life/spirit_instiller) you are sure that you can breathe life back into the little bulb."
     },
     {
       "type": "modonomicon:spotlight",
@@ -50,7 +50,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
+      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.\\[#](8f2121)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.\\[#](5faa19)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
       "type": "modonomicon:spotlight",
@@ -63,7 +63,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_jelly"
       },
-      "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.$(br2)$(italic)Unexpectedly tasty$()."
+      "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.\\\\_Unexpectedly tasty_."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
@@ -74,7 +74,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/jaramel"
       },
-      "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.$(br2)$(italic)Fancy a sugar rush?"
+      "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.\\\\_Fancy a sugar rush?_"
     },
     {
       "type": "modonomicon:spotlight",
@@ -87,7 +87,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found. How will Jade Vines look when you let them grow further, tough?"
+      "text": "Shiny petals can be plucked when partly grown.\\They can be used as [decoration](book://decoration/jade_vine_petal_blocks).\\Rarely, when searching the petals, [#](449900)another Bulb[#]() can be found. How will Jade Vines look when you let them grow further, tough?"
     },
     {
       "type": "modonomicon:spotlight",
@@ -100,7 +100,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
+      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.\\Bears great restorative properties:\\- can be drunk for healing\\- able to repair any damaged item$()."
     }
   ]
 }

@@ -19,7 +19,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:toughness",
-      "text": "$(thing)Weakens powerful attacks$() that hit you.$(br)While great against single, deadly strikes, it does little against lots of small attacks."
+      "text": "[#](449900)Weakens powerful attacks[#]() that hit you.\\While great against single, deadly strikes, it does little against lots of small attacks."
     },
     {
       "type": "modonomicon:text",

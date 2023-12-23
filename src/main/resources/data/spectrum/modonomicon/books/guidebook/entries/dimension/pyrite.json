@@ -35,13 +35,13 @@
       "item": {
         "item": "spectrum:pyrite"
       },
-      "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in $(l:dimension/razor_edge)Razor Edge$(/l)."
+      "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in [Razor Edge](book://dimension/razor_edge)."
     },
     {
       "type": "modonomicon:crafting_recipe",
       "title1": "Slabs & Stairs",
       "recipe_id_1": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
-      "text": "Unless $(thing)silk touched$(), Pyrite shatters into items, requiring you to combine them again."
+      "text": "Unless [#](449900)silk touched[#](), Pyrite shatters into items, requiring you to combine them again."
     },
     {
       "type": "spectrum:collection",
@@ -56,7 +56,7 @@
         "spectrum:pyrite_panneling",
         "spectrum:pyrite_vent"
       ],
-      "text": "You can form Pyrite into many decorational blocks via $(item)Crafting$() or using the $(item)Stonecutter$()."
+      "text": "You can form Pyrite into many decorational blocks via [#](bb00bb)Crafting[#]() or using the [#](bb00bb)Stonecutter[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -64,7 +64,7 @@
       "item": {
         "item": "spectrum:pyrite_ripper"
       },
-      "text": "$(italic)Those sharp things are tearing you apart.$()$(br2)Well, your clothes, for the most part. But still, point stands."
+      "text": "_Those sharp things are tearing you apart._\\\\Well, your clothes, for the most part. But still, point stands."
     }
   ]
 }

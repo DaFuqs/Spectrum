@@ -242,13 +242,13 @@
     {
       "type": "modonomicon:text",
       "title": "Colored Trees",
-      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of $(item)Saplings$() absorb the color of the $(l:general/gemstone_powder)Gemstone Powder$() with ease. Pure Color pulses through their tiny stems and first few leaves already.$(br2)How will they look like when fully grown?"
+      "text": "You need something organic to mix your pigments. In your experiments, you could see that the roots of [#](bb00bb)Saplings[#]() absorb the colour of the [Gemstone Powder](book://general/gemstone_powder) with ease. Pure Colour pulses through their tiny stems and first few leaves already.\\\\How will they look like when fully grown?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Colored Saplings",
       "recipe": "spectrum:pedestal/tier1/saplings/red_sapling",
-      "text": "Creating a Colored Sapling requires a different combination of $(l:general/gemstone_powder)Gemstone Powder$(), corresponding to the $(l:general/color_mixing)amount needed to mix its color$(/l)."
+      "text": "Creating a Coloured Sapling requires a different combination of [Gemstone Powder](book://general/gemstone_powder), corresponding to the [amount needed to mix its colour](book://general/color_mixing)."
     },
     {
       "type": "modonomicon:image",

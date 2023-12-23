@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...$(br2)$(italic)Hm, written out like this, that was a bit more than expected$()."
+      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...\\\\_Hm, written out like this, that was a bit more than expected_."
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,13 +34,13 @@
           ]
         }
       },
-      "text": "Prevents mining speed slowdowns (on tools) or movement slowdowns (on chestplates).$(br2)Max Level: 1$(br)Applicable to mining tools and chestplates."
+      "text": "Prevents mining speed slowdowns (on tools) or movement slowdowns (on chestplates).\\\\Max Level: 1\\Applicable to mining tools and chestplates."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_inexorable",
-      "text": "You can infuse a $(item)common Book$() with Inexorable by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+      "text": "You can infuse a [#](bb00bb)common Book[#]() with Inexorable by surrounding your [Enchanter](book://enchanting/enchanter) with [Pigment](book://general/pigment) and the other required materials."
     }
   ]
 }

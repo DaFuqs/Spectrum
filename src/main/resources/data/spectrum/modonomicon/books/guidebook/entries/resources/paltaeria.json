@@ -26,7 +26,7 @@
       "item": {
         "item": "spectrum:paltaeria_fragments"
       },
-      "text": "The light blue color is the trademark of this ore. It is found exclusively in the End in small clusters.$(br2)Like the End itself, the curious properties of this material are not to be overlooked."
+      "text": "The light blue color is the trademark of this ore. It is found exclusively in the End in small clusters.\\\\Like the End itself, the curious properties of this material are not to be overlooked."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -58,7 +58,7 @@
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
       },
       "recipe": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block",
-      "text": "$(br)       $(italic)~ Fly far away ~"
+      "text": "\\       _~ Fly far away ~_"
     }
   ]
 }

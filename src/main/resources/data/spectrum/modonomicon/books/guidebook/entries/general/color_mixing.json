@@ -23,11 +23,11 @@
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
-      "text": "By mixing $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$() (almost) any colour can be created."
+      "text": "By mixing [#](00ffff)Cyan[#](), [#](ff00ff)Magenta[#]() and [#](ffff00)Yellow[#] (almost) any colour can be created."
     },
     {
       "type": "modonomicon:text",
-      "text": "Your attempts to mix $(l:general/gemstone_powder)Gemstone Powder$(/l) directly have not been very successful. But now you have another idea:$(br)The closeness of your gemstones to nature suggests that $(italic)nature$() must be both the source and the answer!$(br2)You quickly scribble some notes, result being $(l:general/colored_trees)a recipe$(), which looks very promising."
+      "text": "Your attempts to mix [Gemstone Powder](book://general/gemstone_powder) directly have not been very successful. But now you have another idea:\\The closeness of your gemstones to nature suggests that _nature_ must be both the source and the answer!\\\\You quickly scribble some notes, result being [a recipe](book://general/colored_trees), which looks very promising."
     },
     {
       "type": "modonomicon:text",
@@ -36,7 +36,7 @@
         "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
       },
       "title": "Brown Pigment?",
-      "text": "You have tried and tried, to no avail. You could not find a way to create $(c_brown)brown$() by mixing your gem powder. The closest you came was a washed-out orange - ugh.$(br)It can't be that hard. Like... $(c_brown)Dirt is brown$() and it's the most common stuff around.$(br2)There must be a way... $(br)and you're pretty sure $(c_black)Black$() is the answer."
+      "text": "You have tried and tried, to no avail. You could not find a way to create [#](654321)brown[#]() by mixing your gem powder. The closest you came was a washed-out orange - ugh.\\It can't be that hard. Like... [#](654321)Dirt is brown[#]() and it's the most common stuff around.\\\\There must be a way... \\and you're pretty sure [#](000000)Black[#]() is the answer."
     },
     {
       "type": "spectrum:link",
@@ -44,7 +44,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
       },
-      "text": "$(br2)$(br2)$(br2)$(br)$(italic)Seriously, look it up! The way we perceive brown is fascinating!$()",
+      "text": "\\\\\\\\\\\\\\_Seriously, look it up! The way we perceive brown is fascinating!_",
       "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
       "link_text": "Brown is weird"
     }

@@ -21,15 +21,15 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "title": "Preservation Turrets",
+      "name": "Preservation Turrets",
       "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,
-      "text": "$(italic)True engineering excellence. But boy does it hurt."
+      "text": "_True engineering excellence. But boy does it hurt._"
     },
     {
       "type": "modonomicon:text",
-      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.$(br2)Ready to poke holes in you any time you make your presence known."
+      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.\\\\Ready to poke holes in you any time you make your presence known."
     }
   ]
 }

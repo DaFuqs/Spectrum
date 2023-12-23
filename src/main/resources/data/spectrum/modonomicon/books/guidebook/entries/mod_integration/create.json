@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Everywhere it rattles and fizzles, whistles and smokes. An ensemble of Assemblage.$(br2)Surely a few of those machines will come in handy."
+      "text": "Everywhere it rattles and fizzles, whistles and smokes. An ensemble of Assemblage.\\\\Surely a few of those machines will come in handy."
     },
     {
       "type": "modonomicon:spotlight",
@@ -29,7 +29,7 @@
       "item": {
         "item": "minecraft:amethyst_shard"
       },
-      "text": "$(item)Gemstones$() can be crushed, yielding some $(item)Gemstone Powder$()."
+      "text": "[#](bb00bb)Gemstones[#]() can be crushed, yielding some [#](bb00bb)Gemstone Powder[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -41,7 +41,7 @@
       "item": {
         "item": "spectrum:magenta_leaves"
       },
-      "text": "$(item)Colored Leaves$() can be crushed, yielding $(item)Pigment$() and a higher chance for $(item)Colored Saplings$()."
+      "text": "[#](bb00bb)Colored Leaves[#]() can be crushed, yielding [#](bb00bb)Pigment[#]() and a higher chance for [#](bb00bb)Colored Saplings[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -53,7 +53,7 @@
       "item": {
         "item": "spectrum:magenta_log"
       },
-      "text": "Crushing $(thing)Colored Logs$() results in some additional $(thing)Pigment$()."
+      "text": "Crushing [#](449900)Colored Logs[#]() results in some additional [#](449900)Pigment[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -65,7 +65,7 @@
       "item": {
         "item": "spectrum:quitoxic_reeds"
       },
-      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be milled into powder."
+      "text": "[Quitoxic Reeds](book://resources/quitoxic_reeds) can be milled into powder."
     },
     {
       "type": "modonomicon:spotlight",
@@ -77,7 +77,7 @@
       "item": {
         "item": "spectrum:amaranth_bushel"
       },
-      "text": "$(l:cuisine/amaranth)Amaranth$() can be milled into grains."
+      "text": "[Amaranth](book://cuisine/amaranth) can be milled into grains."
     },
     {
       "type": "modonomicon:spotlight",
@@ -89,7 +89,7 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "Milling $(l:resources/liquid_crystal_essences)Frostbite Crystal$() will yield you a nice amount of $(item)Frostbite Essence$()."
+      "text": "Milling [Frostbite Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
     },
     {
       "type": "modonomicon:spotlight",
@@ -101,7 +101,7 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "Milling $(l:resources/liquid_crystal_essences)Blazing Crystal$() will yield you a nice amount of $(item)Incandescent Essence$()."
+      "text": "Milling [Blazing Crystal](book://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
     }
   ]
 }

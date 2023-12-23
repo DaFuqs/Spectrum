@@ -22,7 +22,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You stumbled upon this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$(). Pity, really, but look what you have now.$(br)Creatures that touch it seem to get their life drained out of them. Interesting...$(br)Better not get caught in it yourself."
+      "text": "You stumbled upon this bizarre liquid as a direct result of [your failed fusion experiment](book://general/midnight_aberration). Pity, really, but look what you have now.\\Creatures that touch it seem to get their life drained out of them. Interesting...\\Better not get caught in it yourself."
     },
     {
       "type": "modonomicon:spotlight",
@@ -35,7 +35,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_midnight_chip"
       },
-      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious.$(br)Creatures unalived by this cruel process also seem to $(thing)drop items as if they were killed by a player$()."
+      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a [Midnight Aberration](book://general/midnight_aberration), just way, way smaller. Sharp-Edged and vicious.\\Creatures unalived by this cruel process also seem to [#](449900)drop items as if they were killed by a player[#]()."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

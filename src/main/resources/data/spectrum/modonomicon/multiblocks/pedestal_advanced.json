@@ -35,13 +35,13 @@
       "_____________",
       "_C__Q___Q__C_",
       "_____________",
-      "___U_____U___",
-      "_Q_________Q_",
-      "_____________",
-      "_____________",
       "_____________",
       "_Q_________Q_",
-      "___U_____U___",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
       "_____________",
       "_C__Q___Q__C_",
       "_____________"
@@ -114,7 +114,7 @@
     },
     "L": {
       "type": "modonomicon:tag",
-      "display": "spectrum:gemstone_basalt_lamp",
+      "display": "spectrum:amethyst_basalt_lamp",
       "tag": "#spectrum:gemstone_lamps"
     },
     "S": {
@@ -167,9 +167,10 @@
       "display": "spectrum:pedestal_onyx",
       "tag": "#spectrum:pedestals"
     },
-    "U": {
-      "type": "modonomicon:block",
-      "block": "spectrum:upgrade_speed"
+    "3": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_onyx",
+      "tag": "#spectrum:pedestals"
     },
     "0": {
       "type": "modonomicon:tag",

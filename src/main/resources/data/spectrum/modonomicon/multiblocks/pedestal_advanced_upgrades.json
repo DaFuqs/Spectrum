@@ -3,31 +3,16 @@
   "pattern": [
     [
       "_____________",
-      "____XtStX____",
-      "_____________",
-      "_____________",
-      "_X__OtttO__X_",
-      "_T__T___T__T_",
-      "_S__T___T__S_",
-      "_T__T___T__T_",
-      "_X__OtttO__X_",
-      "_____________",
-      "_____________",
-      "____XtStX____",
-      "_____________"
-    ],
-    [
-      "_____________",
       "_Sttr___rttS_",
-      "_T__T___T__T_",
-      "_T__T___T__T_",
-      "_rttX___Xttr_",
+      "_T_________T_",
+      "_T_________T_",
+      "_r_________r_",
       "_____________",
       "_____________",
       "_____________",
-      "_rttX___Xttr_",
-      "_T__T___T__T_",
-      "_T__T___T__T_",
+      "_r_________r_",
+      "_T_________T_",
+      "_T_________T_",
       "_Sttr___rttS_",
       "_____________"
     ],
@@ -50,13 +35,13 @@
       "_____________",
       "_C__Q___Q__C_",
       "_____________",
-      "_____________",
+      "___U_____U___",
       "_Q_________Q_",
       "_____________",
       "_____________",
       "_____________",
       "_Q_________Q_",
-      "_____________",
+      "___U_____U___",
       "_____________",
       "_C__Q___Q__C_",
       "_____________"
@@ -83,7 +68,7 @@
       "___Q_____Q___",
       "_Q_________Q_",
       "_____________",
-      "______P______",
+      "______3______",
       "_____________",
       "_Q_________Q_",
       "___Q_____Q___",
@@ -93,17 +78,17 @@
     ],
     [
       "XXXXXXXXXXXXX",
-      "XX__X___X__XX",
-      "X_XXXXXXXXX_X",
-      "X_XXXXXXXXX_X",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
       "XXXXXrXrXXXXX",
-      "X_XXrXXXrXX_X",
-      "X_XXXX0XXXX_X",
-      "X_XXrXXXrXX_X",
+      "XXXXrXXXrXXXX",
+      "XXXXXX0XXXXXX",
+      "XXXXrXXXrXXXX",
       "XXXXXrXrXXXXX",
-      "X_XXXXXXXXX_X",
-      "X_XXXXXXXXX_X",
-      "XX__X___X__XX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
       "XXXXXXXXXXXXX"
     ]
   ],
@@ -129,7 +114,7 @@
     },
     "L": {
       "type": "modonomicon:tag",
-      "display": "spectrum:gemstone_basalt_lamp",
+      "display": "spectrum:amethyst_basalt_lamp",
       "tag": "#spectrum:gemstone_lamps"
     },
     "S": {
@@ -179,7 +164,16 @@
     },
     "P": {
       "type": "modonomicon:tag",
-      "display": "spectrum:pedestal_moonstone",
+      "display": "spectrum:pedestal_onyx",
+      "tag": "#spectrum:pedestals"
+    },
+    "U": {
+      "type": "modonomicon:block",
+      "block": "spectrum:upgrade_speed"
+    },
+    "3": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_onyx",
       "tag": "#spectrum:pedestals"
     },
     "0": {

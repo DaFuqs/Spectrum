@@ -41,7 +41,7 @@
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "Tools enchanted with [Resonance](entry://enchantments/resonance) are able to harvest Budding Blocks."
+      "text": "Tools enchanted with [Resonance](entry://enchanting/resonance) are able to harvest Budding Blocks."
     }
   ]
 }

@@ -57,7 +57,7 @@
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "Tools enchanted with [Resonance](entry://enchantments/resonance) are able to harvest [#](bb00bb)Budding Quartz[#](), while retaining their _flawless_ state."
+      "text": "Tools enchanted with [Resonance](entry://enchanting/resonance) are able to harvest [#](bb00bb)Budding Quartz[#](), while retaining their _flawless_ state."
     },
     {
       "type": "spectrum:anvil_crushing",

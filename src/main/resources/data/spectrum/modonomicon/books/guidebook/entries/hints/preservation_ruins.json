@@ -22,7 +22,7 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:generate_preservation_ruins_loot",
       "cost": "spectrum:refined_azurite#4",
-      "text": "There are 3 different kinds of impenetrable structures hidden at around y=0 in the Overworld in any biome. They seem to be built from an unbreakable stone."
+      "text": "There are 3 different kinds of impenetrable structures hidden at around the start of the Deepslate layer in the Overworld in any biome. They seem to be built from an unbreakable stone."
     },
     {
       "type": "spectrum:hint",

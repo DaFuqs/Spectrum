@@ -85,7 +85,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_black_pigment"
       },
-      "item": "spectrum:black_pigment",
+      "item": {
+        "item": "spectrum:black_pigment"
+      },
       "text": "The darkest material you have ever held in your hands. It looks almost surreal.\\\\[#](000000)Black[#]() represents the nothingness of the _Void_, _Power_ and _Mystery_."
     },
     {
@@ -95,7 +97,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_blue_pigment"
       },
-      "item": "spectrum:blue_pigment",
+      "item": {
+        "item": "spectrum:blue_pigment"
+      },
       "text": "Holding it in your hand gives you a sign of security. Of course, all nonsense, after all, it is only a color. But still...\\\\[#](2c2e8e)Blue[#]() represents _Safety_ and _Permanence_."
     },
     {
@@ -105,7 +109,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_brown_pigment"
       },
-      "item": "spectrum:brown_pigment",
+      "item": {
+        "item": "spectrum:brown_pigment"
+      },
       "text": "This rich brown makes you long for mother nature.\\\\[#](613c20)Brown[#]() represents _Nature_ and _Stability_."
     },
     {
@@ -115,7 +121,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_cyan_pigment"
       },
-      "item": "spectrum:cyan_pigment",
+      "item": {
+        "item": "spectrum:cyan_pigment"
+      },
       "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the never-ending vastness of the world.\\\\[#](157687)Cyan[#]() represents _Matter_ and _Integrity_."
     },
     {
@@ -125,7 +133,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_gray_pigment"
       },
-      "item": "spectrum:gray_pigment",
+      "item": {
+        "item": "spectrum:gray_pigment"
+      },
       "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you do not know exactly why.\\\\[#](36393d)Gray[#]() represents _Evanescence_."
     },
     {
@@ -135,7 +145,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_green_pigment"
       },
-      "item": "spectrum:green_pigment",
+      "item": {
+        "item": "spectrum:green_pigment"
+      },
       "text": "This pigment softly radiates inner peace.\\\\[#](495b24)Green[#]() represents _Balance_ and _Harmony_."
     },
     {
@@ -145,7 +157,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_light_blue_pigment"
       },
-      "item": "spectrum:light_blue_pigment",
+      "item": {
+        "item": "spectrum:light_blue_pigment"
+      },
       "text": "Looking at this color, you feel a sense of optimism, but also departure.\\\\[#](258ac8)Light Blue[#]() represents _Luck_ and _Peace_."
     },
     {
@@ -155,7 +169,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
       },
-      "item": "spectrum:light_gray_pigment",
+      "item": {
+        "item": "spectrum:light_gray_pigment"
+      },
       "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay?\\\\[#](7d7d73)Light Gray[#]() represents _Change_, but also _Quiet_."
     },
     {
@@ -165,7 +181,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_lime_pigment"
       },
-      "item": "spectrum:lime_pigment",
+      "item": {
+        "item": "spectrum:lime_pigment"
+      },
       "text": "This juicy lime almost smells like a warm spring morning. Or are you just imagining?\\\\[#](5faa19)Lime[#]() represents _Happiness_ and _Fertility_."
     },
     {
@@ -175,7 +193,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
       },
-      "item": "spectrum:magenta_pigment",
+      "item": {
+        "item": "spectrum:magenta_pigment"
+      },
       "text": "This soft magenta puts you in a calm and content, almost serene mood.\\\\[#](aa32a0)Magenta[#]() represents _Time_, _Kindness_ and _Tolerance_."
     },
     {
@@ -185,7 +205,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_orange_pigment"
       },
-      "item": "spectrum:orange_pigment",
+      "item": {
+        "item": "spectrum:orange_pigment"
+      },
       "text": "This orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.\\\\[#](e16201)Orange[#]() represents _Warmth_ and _Comfort_."
     },
     {
@@ -195,7 +217,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_pink_pigment"
       },
-      "item": "spectrum:pink_pigment",
+      "item": {
+        "item": "spectrum:pink_pigment"
+      },
       "text": "This bright, lively cotton candy pink makes you beam with joy.\\\\[#](d6658f)Pink[#]() represents _Health_ and _Admiration_."
     },
     {
@@ -205,7 +229,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_purple_pigment"
       },
-      "item": "spectrum:purple_pigment",
+      "item": {
+        "item": "spectrum:purple_pigment"
+      },
       "text": "This sight makes your mind go into high gear. It not only stimulates your thirst for knowledge, but also gives you creative ideas.\\\\[#](641f9c)Purple[#]() represents _Wisdom_ and _Creativity_."
     },
     {
@@ -215,7 +241,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_red_pigment"
       },
-      "item": "spectrum:red_pigment",
+      "item": {
+        "item": "spectrum:red_pigment"
+      },
       "text": "You feel the urge and the desire to create something beautiful.\\\\[#](8f2121)Red[#]() represents _Passion_ and _Willpower_."
     },
     {
@@ -225,7 +253,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_white_pigment"
       },
-      "item": "spectrum:white_pigment",
+      "item": {
+        "item": "spectrum:white_pigment"
+      },
       "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.\\\\$(c_white)White[#]() represents _LIFE_, _Light_ and _Purity_."
     },
     {
@@ -235,7 +265,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pigment/collect_yellow_pigment"
       },
-      "item": "spectrum:yellow_pigment",
+      "item": {
+        "item": "spectrum:yellow_pigment"
+      },
       "text": "The vibrant yellow is almost bursting with energy.\\\\[#](f0af15)Yellow[#]() represents _Energy_ and _Joy_."
     },
     {

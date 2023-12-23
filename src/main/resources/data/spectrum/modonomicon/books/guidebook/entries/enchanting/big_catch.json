@@ -21,9 +21,19 @@
       "text": "Your new magic fishing rods have the interesting property of attracting even living creatures. Why that wasn't a thing with your boring rods? I don't know.\\With this enchantment, you can further increase the chance of catching living creatures."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "spectrum:lagoon_rod{Enchantments: [{id: \"spectrum:big_catch\", lvl: 3s}]}",
+      "item": {
+        "item": "spectrum:lagoon_rod",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:big_catch",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
       "text": "Increases the chance to reel in living creatures when fishing.\\\\Max Level: 3\\Applicable to Spectrum's Fishing Rods."
     },
     {

@@ -23,7 +23,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title": "Crafting Recipe",
+      "title1": "Crafting Recipe",
       "recipe_id_1": "spectrum:crafting_table/paintbrush",
       "text": "Give the [Pigment Pedestal](book://general/pedestal) a hearty whack with it to make it start crafting."
     },

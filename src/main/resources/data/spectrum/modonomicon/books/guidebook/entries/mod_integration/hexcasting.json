@@ -52,7 +52,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "item": "hexcasting:charged_amethyst",
+      "item": {
+        "item": "hexcasting:charged_amethyst"
+      },
       "text": "- +15-120s duration. Sometimes more, sometimes less\\\\As you expected, [#](bb00bb)Charged Amethyst[#]() serves as a more potent, but also more fluctuate, [#](bb00bb)Amethyst[#]() reagent in regards to prolonging durations."
     }
   ]

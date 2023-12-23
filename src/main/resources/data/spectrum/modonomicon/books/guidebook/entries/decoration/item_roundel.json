@@ -20,7 +20,9 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "item": "spectrum:item_roundel",
+      "item": {
+        "item": "spectrum:item_roundel"
+      },
       "text": "You very much took a liking to the rotating roundels in those ancient structures, so much that you copied their design yourself. Definitely a nice way to present your items, or keep them ready.\\\\_Hopefully the patents have already expired._"
     },
     {

@@ -28,13 +28,23 @@
       "text": "_Point at something you want to see blossom_"
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
       "title": "Enchanting - Efficiency",
-      "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
+      "item": {
+        "item": "spectrum:natures_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:efficiency",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
       "text": "Enchanting the Nature's Staff with Efficiency by using the [Enchanter](book://enchanting/enchanting_items) decreases the chance of [Vegetal](book://creating_life/fading@vegetal) to get consumed for each level."
     }
   ]

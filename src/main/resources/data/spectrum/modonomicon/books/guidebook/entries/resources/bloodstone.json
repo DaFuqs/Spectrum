@@ -27,7 +27,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Bloodstone",
-      "item": "spectrum:effulgent_feather",
+      "item": {
+        "item": "spectrum:effulgent_feather"
+      },
       "text": "The rather [Effulgent Feathers](book://creating_life/kindlings@effulgent_feather) of the [Kindlings](book://creating_life/kindlings) are notable, enough so to compel you to regularly give the little bumpkins coat trimmings.\\\\However, you've noticed that, sadly quite frequently, drops of blood will come along with the feathers. The ichor dries quickly, leaving behind a sparkly, crystalline residue."
     },
     {

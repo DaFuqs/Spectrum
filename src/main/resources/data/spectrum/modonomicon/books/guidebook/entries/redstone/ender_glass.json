@@ -19,7 +19,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:ender_glass",
+      "item": {
+        "item": "spectrum:ender_glass"
+      },
       "text": "You already thought the moment you put the recipe on paper that this creation will be something special.\\\\The combination of the power of [#](449900)The End[#](), [#](449900)Redstone[#]() and [#](449900)Magic[#]() gives it very strange properties."
     },
     {

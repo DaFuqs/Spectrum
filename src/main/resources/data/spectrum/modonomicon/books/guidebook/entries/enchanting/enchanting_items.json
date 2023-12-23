@@ -32,7 +32,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "minecraft:enchanted_book",
+      "item": {
+        "item": "minecraft:enchanted_book"
+      },
       "title": "Copy Enchanted Books",
       "text": "You can also use this mechanism to create new [#](bb00bb)Enchanted Books[#](). Just put the [#](bb00bb)Enchanted Book(s)[#]() you want to copy in the [Item Bowls](book://decoration/item_bowl) and a [#](bb00bb)simple book[#]() onto the [Enchanter](book://enchanting/enchanter).\\\\Because of the mundane nature of the books this will require lots of experience, though."
     },

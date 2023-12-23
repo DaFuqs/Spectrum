@@ -21,9 +21,19 @@
       "text": "Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.\\\\This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
+      "item": {
+        "item": "spectrum:multitool",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:steadfast",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "Protects tools from all kinds of damage when on the ground, even from Lava or falling into the Void.\\\\Max Level: 1\\Applicable to all tools."
     },
     {

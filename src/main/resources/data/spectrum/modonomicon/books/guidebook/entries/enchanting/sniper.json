@@ -21,9 +21,19 @@
       "text": "Compared to the [#](bb00bb)Bow[#](), the [#](bb00bb)Crossbow[#]() maintains a rather inconspicuous existence.\\\\With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
+      "item": {
+        "item": "minecraft:crossbow",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:sniper",
+              "lvl": "2s"
+            }
+          ]
+        }
+      },
       "text": "Increases damage, accuracy and projectile speed.\\\\Max Level: 2\\Applicable to Crossbows.\\Mutually exclusive with Multishot."
     },
     {

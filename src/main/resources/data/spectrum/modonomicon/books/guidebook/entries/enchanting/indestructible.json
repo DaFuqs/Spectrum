@@ -21,9 +21,19 @@
       "text": "You've come this far and you still have to deal with the fact that your common tools like [#](bb00bb)Flint and Steel$() keep breaking once you use it too many times. And you had more than enough equipment, which was previously too fragile to use for long.\\With your full armada of nearly-indestructible items now, though? No problem."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
+      "item": {
+        "item": "spectrum:multitool",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:indestructible",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "Makes a tool fully unbreakable, not taking damage anymore.\\\\Max Level: 1\\Applicable to all tools."
     },
     {

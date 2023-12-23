@@ -29,7 +29,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:shimmel",
+      "item": {
+        "item": "spectrum:shimmel"
+      },
       "text": "Blackslag, overgrown with a thin layer of a mycelium-like fungi."
     }
   ]

@@ -54,7 +54,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Preservation Ruins",
-      "item": "spectrum:preservation_controller",
+      "item": {
+        "item": "spectrum:preservation_controller"
+      },
       "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.\\There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {
@@ -91,7 +93,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_dike_gate.png"
       ],
       "border": true,
-      "text": "A strong, magical forcefield. Wearing [Azure Dike equipment](book://equipment/azure_dike_equipment) allowed you to enter."
+      "text": "A strong, magical force field. Wearing [Azure Dike equipment](book://equipment/azure_dike_equipment) allowed you to enter."
     },
     {
       "type": "modonomicon:image",

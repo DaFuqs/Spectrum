@@ -24,7 +24,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:doombloom_seed",
+      "item": {
+        "item": "spectrum:doombloom_seed"
+      },
       "text": "When fully grown, you can harvest [#](bb00bb)Gunpowder[#]() from it. Breaking it without blowing it up requires a Silk Touch tool or Shears."
     },
     {

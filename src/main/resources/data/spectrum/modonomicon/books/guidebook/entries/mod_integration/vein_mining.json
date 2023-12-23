@@ -16,9 +16,19 @@
 
   "pages": [
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Vein Mining",
-      "item": "spectrum:multitool{Enchantments: [{id: \"veinmining:vein_mining\", lvl: 1s}]}",
+      "item": {
+        "item": "spectrum:multitool",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "veinmining:vein_mining",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "_Still mining each ore individually? Gravity might make this easier._\\\\Vein Mining rips out all connected blocks.\\\\Max Level: 1\\Applicable to all tools."
     },
     {

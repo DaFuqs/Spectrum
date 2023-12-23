@@ -51,7 +51,7 @@
         "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
       },
       "name": "The Creature",
-      "entity": "spectrum:egg_laying_wooly_pig",
+      "entity_id": "spectrum:egg_laying_wooly_pig",
       "text": "Able to be [#](449900)sheared[#]() and [#](449900)milked[#](), while also [#](449900)laying eggs[#]()."
     }
   ]

@@ -19,7 +19,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:redstone_transceiver",
+      "item": {
+        "item": "spectrum:redstone_transceiver"
+      },
       "text": "Gentle resonances are amplified by [Onyx](book://general/shards@onyx) to such an extent that they can even be measured through walls, given a suitable receiver.\\Based on your previous experiments with gemstone shards, it was easy for you to devise such transmitter and receiver systems."
     },
     {

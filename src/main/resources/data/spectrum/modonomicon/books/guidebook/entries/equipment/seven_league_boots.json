@@ -29,13 +29,23 @@
       "text": "Increases both Movement Speed and Step Height."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
       "title": "Power",
-      "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "item": {
+        "item": "spectrum:seven_league_boots",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:power",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
       "text": "The Power enchantment increases the movement speed bonus further."
     }
   ]

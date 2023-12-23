@@ -12,6 +12,12 @@
     "background": "spectrum:textures/gui/advancement_background_lategame.png"
   },
   "criteria": {
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
     "visited_all_deeper_down_biomes": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

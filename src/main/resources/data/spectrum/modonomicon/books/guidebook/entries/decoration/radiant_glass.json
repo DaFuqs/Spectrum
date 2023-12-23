@@ -20,7 +20,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:radiant_glass",
+      "item": {
+        "item": "spectrum:radiant_glass"
+      },
       "title": "Radiant Glass",
       "text": "You need a way to efficiently light your shelter and other structures.\\\\What could be better than using the luminous properties of [Shimmerstone](book://resources/shimmerstone) directly in your glass?"
     },

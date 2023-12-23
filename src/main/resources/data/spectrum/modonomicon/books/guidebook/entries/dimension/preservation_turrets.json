@@ -21,8 +21,8 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "name":"Preservation Turrets",
-      "entity": "spectrum:preservation_turret",
+      "name": "Preservation Turrets",
+      "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,
       "text": "_True engineering excellence. But boy does it hurt._"

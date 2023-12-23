@@ -23,13 +23,25 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Getting Mob Heads",
-      "item": "spectrum:cow_head",
+      "item": {
+        "item": "spectrum:cow_head"
+      },
       "text": "But then there were the Creepers! Struck by lightning, they explode so hefty that they blow their opponent's heads right off their necks (worst case: yours).\\To replicate this, you thought out this new enchantment using [Storm Stones](book://resources/storm_stones).\\And so Treasure Hunter was born, allowing you to collect [all kinds of Mob Heads](book://creating_life/mob_heads)."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_axe{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+      "item": {
+        "item": "minecraft:iron_axe",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:treasure_hunter",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
       "text": "Occasionally drops Mob Heads on kill.\\\\Max Level: 3\\Applicable to axes and melee weapons.\\Mutually exclusive with Looting."
     },
     {

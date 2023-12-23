@@ -23,12 +23,16 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:hummingstone_glass",
+      "item": {
+        "item": "spectrum:hummingstone_glass"
+      },
       "text": "This very sturdy, very blast resistant glass is scattered all around the [Crystal Gardens](book://dimension/crystal_gardens)."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:hummingstone",
+      "item": {
+        "item": "spectrum:hummingstone"
+      },
       "text": "Between this glass you find these pretty stones that emit a pleasant hum when triggered. You fittingly called those _Hummingstones_."
     },
     {
@@ -42,7 +46,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/strike_up_hummingstone_hymn"
       },
-      "item": "spectrum:resonance_shard",
+      "item": {
+        "item": "spectrum:resonance_shard"
+      },
       "text": "It turns out that the pretty sounds of the Hummingstones can build each other up until they shatter in one final anthem.\\The shattered remains never seem to stop vibrating, as if they retain some form of inherent energy."
     }
   ]

@@ -20,7 +20,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Ender Dropper",
-      "item": "spectrum:ender_dropper",
+      "item": {
+        "item": "spectrum:ender_dropper"
+      },
       "text": "The Ender Dropper is the counterpart to the [Ender Hopper](book://magical_blocks/ender_hopper). With every [#](449900)redstone pulse[#]() it ejects an item from your personal [#](bb00bb)Ender Chest[#]().\\\\Beware: Who's stopping anyone from placing a button next to it and emptying your [#](bb00bb)Ender Chest[#]()?"
     },
     {

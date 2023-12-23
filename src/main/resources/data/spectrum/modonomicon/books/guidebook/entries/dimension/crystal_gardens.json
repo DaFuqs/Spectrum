@@ -37,7 +37,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:overgrown_blackslag",
+      "item": {
+        "item": "spectrum:overgrown_blackslag"
+      },
       "text": "The ground is covered with a small layer of soil. Not much, but more than enough to be covered with a thick carpet of moss. The many natural light sources in this biome allow plants to grow here that you might find on the surface, unlike most other biomes."
     },
     {
@@ -56,7 +58,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jadeite"
       },
-      "item": "spectrum:jadeite_petals",
+      "item": {
+        "item": "spectrum:jadeite_petals"
+      },
       "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light. They are very tasty and can be used as a [Potion Reagent](book://brewing/potion_workshop_reagents)."
     }
   ]

@@ -19,7 +19,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:block_detector",
+      "item": {
+        "item": "spectrum:block_detector"
+      },
       "text": "Almost like an [#](bb00bb)Observer[#](), but more specific.\\Gives off a [#](449900)redstone pulse[#]() every time a block is placed in front of it that matches the block below it (or above it, if facing down)."
     },
     {

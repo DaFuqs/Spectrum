@@ -37,7 +37,9 @@
         "advancement_id": "spectrum:midgame/tap_sweetened_jade_wine"
       },
       "anchor": "sweetened_jade_wine",
-      "item": "spectrum:moonstruck_nectar",
+      "item": {
+        "item": "spectrum:moonstruck_nectar"
+      },
       "text": "Adding a drop of [#](bb00bb)Moonstruck Nectar[#]() seems to make the Wine much more easy to drink. Both the fermentation process is increased and negative effects softened noticeably."
     },
     {
@@ -47,7 +49,9 @@
         "advancement_id": "spectrum:midgame/tap_chrysocolla"
       },
       "anchor": "chrysocolla",
-      "item": "spectrum:chrysocolla",
+      "item": {
+        "item": "spectrum:chrysocolla"
+      },
       "text": "Your newest result of fermenting Jade Wine was a _tad_ too long.\\Immensely bitter and slightly acidic taste.\\While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking.\\But, you know... is anyone stopping you?"
     }
   ]

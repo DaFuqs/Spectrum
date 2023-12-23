@@ -29,8 +29,8 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
+      "title1": "Customizing &",
       "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
-      "title": "Customizing &",
       "text": "- Place a filled Present in a crafting grid to wrap it.\\- Optional: add [Pigment](book://general/pigment) for a colorful particle shower\\- Optional: add a special item to choose a wrapping paper:\\- Red Dye: Red\\- Blue Dye: Blue"
     },
     {

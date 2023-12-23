@@ -21,9 +21,19 @@
       "text": "You already noticed dealing significantly more damage to enemies if you jump while attacking.\\To further improve those jump attacks, you have developed this enhancement, which increases the additional damage even more."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
+      "item": {
+        "item": "minecraft:iron_sword",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:improved_critical",
+              "lvl": "2s"
+            }
+          ]
+        }
+      },
       "text": "Additional damage when dealing crits.\\\\Max Level: 2\\Applicable to melee weapons.\\Mutually exclusive with Sharpness."
     },
     {

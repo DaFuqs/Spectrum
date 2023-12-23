@@ -23,7 +23,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Paltaeria",
-      "item": "spectrum:paltaeria_fragments",
+      "item": {
+        "item": "spectrum:paltaeria_fragments"
+      },
       "text": "The light blue color is the trademark of this ore. It is found exclusively in the End in small clusters.\\\\Like the End itself, the curious properties of this material are not to be overlooked."
     },
     {
@@ -43,7 +45,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
       },
-      "item": "spectrum:paltaeria_fragment_block",
+      "item": {
+        "item": "spectrum:paltaeria_fragment_block"
+      },
       "text": "From your previous experiences with Paltaeria, you can already guess that it would not be a good idea to place this block in open sky - your future self will thank you."
     },
     {

@@ -22,7 +22,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bottle_of_fading",
+      "item": {
+        "item": "spectrum:bottle_of_fading"
+      },
       "text": "It did not take long, there the idea for a construction plan came to you.\\\\The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
     },
     {
@@ -39,7 +41,9 @@
       },
       "title": "Vegetal",
       "anchor": "vegetal",
-      "item": "spectrum:vegetal",
+      "item": {
+        "item": "spectrum:vegetal"
+      },
       "text": "The answer seemed to be organics! Easily digestible indeed.\\When digested by the organism, an interesting by-product was created that you called Vegetal. It consists of the **raw energy of nature**.\\\\You are sure that it will be very useful to you."
     }
   ]

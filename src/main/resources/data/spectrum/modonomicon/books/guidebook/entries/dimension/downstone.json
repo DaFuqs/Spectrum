@@ -21,12 +21,16 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:downstone",
+      "item": {
+        "item": "spectrum:downstone"
+      },
       "text": "At the deepest parts of the Deeper Down, this stone was waiting for you.\\Immensely hard, even Bedrock is a laugh compared to it."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:downstone_fragments",
+      "item": {
+        "item": "spectrum:downstone_fragments"
+      },
       "anchor": "downstone_fragments",
       "condition": {
         "type": "modonomicon:advancement",

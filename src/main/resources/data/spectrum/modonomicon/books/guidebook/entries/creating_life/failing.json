@@ -22,7 +22,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bottle_of_failing",
+      "item": {
+        "item": "spectrum:bottle_of_failing"
+      },
       "text": "Ambition has taken hold of you, seriously. These are your first big leaps towards changing the world.\\Empowered by the potent energy of your [Onyx](book://general/onyx_shards) and [Stratine](book://resources/stratine), this second organism you created is clearly... more active than your last creation.\\\\**And DEFINITELY hungrier.**\\**WAY hungrier.**"
     },
     {
@@ -39,7 +41,9 @@
       },
       "title": "Neolith",
       "anchor": "neolith",
-      "item": "spectrum:neolith",
+      "item": {
+        "item": "spectrum:neolith"
+      },
       "text": "The Obsidian was literally pulverized. This is what you call power!\\\\The result was this sturdy reagent.\\Very powerful.\\Yes."
     }
   ]

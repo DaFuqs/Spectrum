@@ -25,7 +25,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Jade Vines",
-      "item": "spectrum:hibernating_jade_vine_bulb",
+      "item": {
+        "item": "spectrum:hibernating_jade_vine_bulb"
+      },
       "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.\\\\_Will the history of this plant remain elusive to you forever?_"
     },
     {
@@ -41,7 +43,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Planting & Growing",
-      "item": "spectrum:germinated_jade_vine_bulb",
+      "item": {
+        "item": "spectrum:germinated_jade_vine_bulb"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
@@ -52,7 +56,9 @@
       "type": "modonomicon:spotlight",
       "title": "Jade Jelly",
       "anchor": "jade_jelly",
-      "item": "spectrum:jade_jelly",
+      "item": {
+        "item": "spectrum:jade_jelly"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_jelly"
@@ -74,7 +80,9 @@
       "type": "modonomicon:spotlight",
       "title": "Petals",
       "anchor": "petals",
-      "item": "spectrum:jade_vine_petals",
+      "item": {
+        "item": "spectrum:jade_vine_petals"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
@@ -85,7 +93,9 @@
       "type": "modonomicon:spotlight",
       "title": "Moonstruck Nectar",
       "anchor": "nectar",
-      "item": "spectrum:moonstruck_nectar",
+      "item": {
+        "item": "spectrum:moonstruck_nectar"
+      },
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"

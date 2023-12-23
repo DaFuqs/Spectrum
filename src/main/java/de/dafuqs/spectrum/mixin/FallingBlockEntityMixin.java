@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.util.*;
@@ -21,12 +20,11 @@ public class FallingBlockEntityMixin {
 	@Inject(method = "handleFallDamage(FFLnet/minecraft/entity/damage/DamageSource;)Z",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"),
 			locals = LocalCapture.CAPTURE_FAILHARD)
-	private void spectrum$processAnvilCrushing(float fallDistance, float arg1, DamageSource arg2, CallbackInfoReturnable<Boolean> cir, int i, Predicate<Entity> predicate, DamageSource damageSource2, float f, Block var8) {
+	private void spectrum$processAnvilCrushing(float fallDistance, float damageMultiplier, DamageSource damageSource, CallbackInfoReturnable<Boolean> cir, int hurtDistance, Predicate<Entity> predicate, DamageSource damageSource2, float fallHurt) {
 		if (damageSource2.isOf(DamageTypes.FALLING_ANVIL)) {
 			FallingBlockEntity thisEntity = (FallingBlockEntity) (Object) this;
-			thisEntity.getWorld().getEntitiesByType(TypeFilter.instanceOf(ItemEntity.class), thisEntity.getBoundingBox(), Entity::isAlive).forEach((entity) -> {
-				AnvilCrusher.crush(entity, f);
-			});
+			thisEntity.getWorld().getEntitiesByType(TypeFilter.instanceOf(ItemEntity.class), thisEntity.getBoundingBox(), Entity::isAlive)
+					.forEach((entity) -> AnvilCrusher.crush(entity, fallHurt));
 		}
 	}
 	

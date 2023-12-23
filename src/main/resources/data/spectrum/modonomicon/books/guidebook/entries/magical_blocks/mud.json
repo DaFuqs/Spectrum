@@ -20,7 +20,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Liquid Mud",
-      "item": "spectrum:mud_bucket",
+      "item": {
+        "item": "spectrum:mud_bucket"
+      },
       "text": "Mud. It is wet mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like [#](bb00bb)Water[#]() or [#](bb00bb)Lava[#](). This creates [#](bb00bb)Dirt[#]() or [#](bb00bb)Coarse Dirt[#](), respectively."
     },
     {

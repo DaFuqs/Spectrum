@@ -32,12 +32,14 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:pyrite",
+      "item": {
+        "item": "spectrum:pyrite"
+      },
       "text": "Hard, sharp and yet surprisingly brittle. These stones are found everywhere in [Razor Edge](book://dimension/razor_edge)."
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title": "Slabs & Stairs",
+      "title1": "Slabs & Stairs",
       "recipe_id_1": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
       "text": "Unless [#](449900)silk touched[#](), Pyrite shatters into items, requiring you to combine them again."
     },
@@ -59,7 +61,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Pyrite Rippers",
-      "item": "spectrum:pyrite_ripper",
+      "item": {
+        "item": "spectrum:pyrite_ripper"
+      },
       "text": "_Those sharp things are tearing you apart._\\\\Well, your clothes, for the most part. But still, point stands."
     }
   ]

@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PaintbrushItem extends Item {
+public class PaintbrushItem extends Item implements SignChangingItem {
 	
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
 	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
@@ -156,7 +157,7 @@ public class PaintbrushItem extends Item {
 		if (newBlockState.isAir()) {
 			return false;
 		}
-		
+
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
 			if (!world.isClient) {
 				world.setBlockState(context.getBlockPos(), newBlockState);
@@ -237,5 +238,32 @@ public class PaintbrushItem extends Item {
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
-	
+
+	@Override
+	public boolean useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player) {
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.MAIN_HAND))) return true;
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.OFF_HAND))) return true;
+
+		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		return false;
+	}
+
+	private boolean tryUseOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player, ItemStack stack) {
+		if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
+			Optional<InkColor> color = getColor(stack);
+			if (color.isPresent()) {
+				InkColor inkColor = color.get();
+				DyeColor dyeColor = inkColor.getDyeColor();
+
+				if (canColor(player) && payBlockColorCost(player, inkColor)) {
+					if (signBlockEntity.changeText((text) -> text.withColor(dyeColor), front)) {
+						world.playSound(null, signBlockEntity.getPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 }

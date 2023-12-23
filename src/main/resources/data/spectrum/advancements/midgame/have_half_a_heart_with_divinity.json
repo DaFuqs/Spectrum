@@ -21,9 +21,9 @@
     "have_half_a_heart_with_divinity_active": {
       "trigger": "spectrum:divinity_tick",
       "conditions": {
+        "is_alive": true,
         "health": {
-          "min": 0.01,
-          "max": 0.99
+          "max": 1.00
         }
       }
     },

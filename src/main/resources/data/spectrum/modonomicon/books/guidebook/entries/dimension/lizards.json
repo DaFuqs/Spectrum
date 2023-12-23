@@ -22,8 +22,8 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "name":"Lurking Lizards",
-      "entity": "spectrum:lizard",
+      "name": "Lurking Lizards",
+      "entity_id": "spectrum:lizard",
       "scale": 0.5,
       "text": "_Not particularly affable contemporaries._"
     },
@@ -33,7 +33,9 @@
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:lizard_meat",
+      "item": {
+        "item": "spectrum:lizard_meat"
+      },
       "anchor": "lizard_meat",
       "text": "Not particularly tasty and quite chewy, but it gets the job done."
     }

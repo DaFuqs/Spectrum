@@ -20,7 +20,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Moonstone Pedestal",
-      "item": "spectrum:moonstone_chiseled_basalt",
+      "item": {
+        "item": "spectrum:moonstone_chiseled_basalt"
+      },
       "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more [#](d0d6d7)Moonstone[#]() exactly. The tricky part: Creating the required [#](bb00bb)Moonstone Chiseled Blocks[#]() would require you being able to use your [#](bb00bb)Moonstone Pedestal[#]() to it's full capability already.\\_Could there be a way to get around that?_"
     },
     {

@@ -69,7 +69,7 @@
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1":"Polishing",
+      "title1": "Polishing",
       "recipe_id_1": "spectrum:smelting/cobbled_blackslag_to_blackslag",
       "recipe_id_2": "spectrum:smelting/blackslag_to_polished_blackslag",
       "text": "The [#](bb00bb)Blast Furnace[#]() smelts these stones even faster than a [#](bb00bb)Furnace[#]()."
@@ -82,8 +82,8 @@
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "recipe_id_1":"Smelting them back",
-      "recipe": "spectrum:smelting/polished_blackslag_unsmelting",
+      "title1": "Smelting them back",
+      "recipe_id_1": "spectrum:smelting/polished_blackslag_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their polished variant again."
     }
   ]

@@ -63,13 +63,15 @@
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1":"Smelting them back",
+      "title1": "Smelting them back",
       "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
       "text": "By applying heat, all blocks can be converted back to their clean, polished variant again."
     },
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:tilled_shale_clay",
+      "item": {
+        "item": "spectrum:tilled_shale_clay"
+      },
       "text": "Looks like farmland, tastes like farmland, but is poorly suited to use as such. You can plant crops on it, but they will never grow an inch."
     }
   ]

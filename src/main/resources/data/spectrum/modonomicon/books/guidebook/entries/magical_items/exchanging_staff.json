@@ -28,33 +28,63 @@
       "text": "_Mining just got a whole bunch more fun_"
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
       "title": "Fortune",
-      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:fortune",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
       "text": "Enchanting an Exchanging Staff with Fortune by using the [Enchanter](book://enchanting/enchanting_items)$ allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
       "title": "Silk Touch",
-      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:silk_touch",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "Enchanting an Exchanging Staff with Silk Touch by using the Enchanter(book://enchanting/enchanting_items) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
       "title": "Resonance",
-      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:resonance",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "Enchanting an Exchanging Staff with Resonance by using the Enchanter(book://enchanting/enchanting_items) will give it the power to harvest some special blocks as-is."
     }
   ]

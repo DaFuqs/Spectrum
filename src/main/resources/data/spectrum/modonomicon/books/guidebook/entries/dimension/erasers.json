@@ -21,8 +21,8 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "name":"Erasers",
-      "entity": "spectrum:eraser",
+      "name": "Erasers",
+      "entity_id": "spectrum:eraser",
       "scale": 1.0,
       "text": "_Don't let them overwhelm you!_"
     },

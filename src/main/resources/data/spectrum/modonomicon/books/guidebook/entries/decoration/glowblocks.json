@@ -35,7 +35,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:orange_glowblock",
+      "item": {
+        "item": "spectrum:orange_glowblock"
+      },
       "title": "Glowblocks",
       "text": "You have color as pure as can be. So why not create blocks with color as pure as can be!\\\\You thought about calling them [#](449900)Antiblocks[#](), but since they are indeed blocks that would be silly, right?"
     },

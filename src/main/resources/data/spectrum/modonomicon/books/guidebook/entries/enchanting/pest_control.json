@@ -21,9 +21,19 @@
       "text": "On your way to the End you found a huge underground structure that looked like the fortress of a civilisation that lived far before you.\\\\Although they seemed to have technology that allowed them to open a portal to another world, they definitely should have done something about their vermin problem."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "item": {
+        "item": "minecraft:iron_pickaxe",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:pest_control",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
       "text": "Gets rid of Silverfish when breaking [#](bb00bb)Infested Blocks[#](), dropping double XP.\\\\Max Level: 1\\Applicable to mining tools.\\Mutually exclusive with Resonance."
     },
     {

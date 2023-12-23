@@ -31,9 +31,9 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title": "Vanilla Patterns",
-      "recipe": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
-      "recipe2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"
+      "title1": "Vanilla Patterns",
+      "recipe_id_1": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
+      "recipe_id_2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"
     }
   ]
 }

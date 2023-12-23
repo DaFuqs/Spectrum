@@ -252,7 +252,9 @@
         "advancement_id": "spectrum:tap_pure_alcohol"
       },
       "anchor": "pure_alcohol",
-      "item": "spectrum:pure_alcohol",
+      "item": {
+        "item": "spectrum:pure_alcohol"
+      },
       "text": "Your memory isn't always up to snuff. Somehow you ended up with this bottle. Definitely got a little stronger than planned...\\More to disinfect than to drink."
     }
   ]

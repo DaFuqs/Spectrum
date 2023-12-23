@@ -26,38 +26,37 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
         super(material, attackDamage, attackSpeed, settings);
     }
     
-    public static boolean canShoot(NbtCompound nbt) {
+    public static boolean canShoot(ItemStack stack) {
+        NbtCompound nbt = stack.getNbt();
         return nbt == null || !nbt.getBoolean(WorkstaffItem.PROJECTILES_DISABLED_NBT_STRING);
     }
-
+    
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         TypedActionResult<ItemStack> result = super.use(world, user, hand);
         if (!result.getResult().isAccepted()) {
             ItemStack stack = user.getStackInHand(hand);
-            if (canShoot(stack.getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
+            if (canShoot(stack) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
                 user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
                 if (!world.isClient) {
-					user.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
-					MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
+                    user.playSound(SpectrumSoundEvents.LIGHT_CRYSTAL_RING, SoundCategory.PLAYERS, 0.5F, 0.75F + user.getRandom().nextFloat());
+                    MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
                 }
                 stack.damage(2, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                
+                return TypedActionResult.consume(stack);
+            } else {
+                return TypedActionResult.fail(stack);
             }
         }
         return result;
     }
     
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        super.useOnBlock(context);
-        return ActionResult.success(world.isClient); // never shoot projectiles when targeting a block
-    }
-    
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        if (canShoot(stack.getNbt())) {
+    
+        if (canShoot(stack)) {
             tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectile").formatted(Formatting.GRAY));
         } else {
             tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));

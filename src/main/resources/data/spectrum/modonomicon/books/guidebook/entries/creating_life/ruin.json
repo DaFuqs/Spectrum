@@ -23,7 +23,9 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "item": "spectrum:bottle_of_ruin",
+      "item": {
+        "item": "spectrum:bottle_of_ruin"
+      },
       "text": "This is it: the perfection of your recipe. A little failure definitely couldn't stop you.\\This may be the one thing aggressive enough to destroy even some materials previously deemed unbreakable.\\If you are not careful you may ruin the world.\\A necessary sacrifice, really."
     },
     {
@@ -40,7 +42,9 @@
       },
       "title": "Bedrock Dust",
       "anchor": "bedrock_dust",
-      "item": "spectrum:bedrock_dust",
+      "item": {
+        "item": "spectrum:bedrock_dust"
+      },
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It broke through the Bedrock like dandelions through concrete."
     },
     {

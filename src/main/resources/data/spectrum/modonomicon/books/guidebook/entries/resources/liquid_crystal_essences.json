@@ -26,7 +26,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
       },
-      "item": "spectrum:blazing_crystal",
+      "item": {
+        "item": "spectrum:blazing_crystal"
+      },
       "text": "Letting a full block of [Liquid Crystal](book://magical_blocks/liquid_crystal) absorb the immense heat of [#](bb00bb)Lava[#]() resulted in this.\\Almost feels like a [#](bb00bb)Magma Block[#](), albeit way hotter."
     },
     {
@@ -45,7 +47,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
       },
-      "item": "spectrum:frostbite_crystal",
+      "item": {
+        "item": "spectrum:frostbite_crystal"
+      },
       "text": "As [#](bb00bb)Water[#]() tried to touch a full block of [Liquid Crystal](book://magical_blocks/liquid_crystal), the crystal turned solid.\\Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
     },
     {

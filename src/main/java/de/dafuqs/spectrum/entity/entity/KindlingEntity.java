@@ -43,9 +43,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
 	private static final TrackedData<Integer> ANGER = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Integer> CLIPPED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
-private static final TrackedData<Integer> CHILL = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> CHILL = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Boolean> PLAYING = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Boolean> INCITED = DataTracker.registerData(KindlingEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	
 	protected @Nullable UUID angryAt;
 	
 	public AnimationState standingAnimationState = new AnimationState();
@@ -56,9 +57,9 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	
 	public KindlingEntity(EntityType<? extends KindlingEntity> entityType, World world) {
 		super(entityType, world);
-
+		
 		this.setPathfindingPenalty(PathNodeType.WATER, -0.75F);
-
+		
 		this.experiencePoints = 8;
 	}
 	
@@ -71,20 +72,20 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6D)
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 25F)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.5F)
-				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 24.0D);
+				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 12.0D);
 	}
-
+	
 	@Override
 	protected void initAttributes(Random random) {
 	}
-
+	
 	@Nullable
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
 		this.setPose(EntityPose.STANDING);
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
-
+	
 	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
@@ -103,7 +104,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 		this.targetSelector.add(1, new CoughRevengeGoal(this));
 		this.targetSelector.add(2, new FindPlayMateGoal<>(this, 4, 0.25F, HostileEntity.class));
 		this.targetSelector.add(3, new FindPlayMateGoal<>(this, 10, 1F, KindlingEntity.class));
-		this.targetSelector.add(4, new FindPlayMateGoal<>(this, 40,4F, PlayerEntity.class));
+		this.targetSelector.add(4, new FindPlayMateGoal<>(this, 40, 4F, PlayerEntity.class));
 		this.targetSelector.add(5, new UniversalAngerGoal<>(this, false));
 	}
 	
@@ -125,19 +126,25 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 			this.standingAngryAnimationState.stop();
 			this.walkingAngryAnimationState.stop();
 			this.glidingAnimationState.stop();
-
+			
 			switch (this.getPose()) {
 				case STANDING -> this.standingAnimationState.start(this.age);
 				case DIGGING -> this.walkingAnimationState.start(this.age);
 				case ROARING -> this.standingAngryAnimationState.start(this.age);
 				case SNIFFING -> this.walkingAngryAnimationState.start(this.age);
 				case FALL_FLYING -> this.glidingAnimationState.start(this.age);
-				default -> {}
+				default -> {
+				}
 			}
 		}
 		super.onTrackedDataSet(data);
 	}
-
+	
+	@Override
+	public double getMountedHeightOffset() {
+		return this.getHeight() - (this.isBaby() ? 0.2 : 0.15);
+	}
+	
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
@@ -153,12 +160,12 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 		setChillTime(nbt.getInt("chillTime"));
 		setPlaying(nbt.getBoolean("playing"));
 	}
-
+	
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return FOOD.test(stack);
 	}
-
+	
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
@@ -179,17 +186,17 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	protected SoundEvent getDeathSound() {
 		return SpectrumSoundEvents.ENTITY_KINDLING_DEATH;
 	}
-
+	
 	@Override
 	protected SoundEvent getAngrySound() {
 		return SpectrumSoundEvents.ENTITY_KINDLING_ANGRY;
 	}
-
+	
 	@Override
 	protected void playJumpSound() {
 		this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_JUMP, 0.4F, 1.0F);
 	}
-
+	
 	@Override
 	public boolean isInAir() {
 		return !this.isOnGround();
@@ -199,24 +206,24 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
 		return false;
 	}
-
+	
 	@Override
 	public boolean damage(DamageSource source, float amount) {
 		if (source.getAttacker() instanceof KindlingEntity) {
 			amount = 1;
-
+			
 			if (random.nextBoolean()) {
 				setChillTime(0);
 			}
 		}
-
+		
 		if (amount > 1) {
 			setPlaying(false);
 		}
-
+		
 		return super.damage(source, amount);
 	}
-
+	
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return 0.6F * dimensions.height;
@@ -225,7 +232,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	@Override
 	protected void mobTick() {
 		super.mobTick();
-
+		
 		if (!this.getWorld().isClient()) {
 			this.tickAngerLogic((ServerWorld) this.getWorld(), false);
 			this.setClipped(this.getClipTime() - 1);
@@ -234,12 +241,12 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 		if (this.age % 600 == 0) {
 			this.heal(1.0F);
 		}
-}
-
+	}
+	
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
-
+		
 		Vec3d vec3d = this.getVelocity();
 		if (!this.isOnGround() && vec3d.y < 0.0) {
 			this.setVelocity(vec3d.multiply(1.0, 0.6, 1.0));
@@ -255,7 +262,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 			this.setPose(EntityPose.FALL_FLYING);
 		}
 	}
-
+	
 	@Override
 	protected boolean isFlappingWings() {
 		return true;
@@ -265,51 +272,50 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	protected void addFlapEffects() {
 		// TODO - Make the Kindling flap its wings? Maybe while jumping or passively
 	}
-
+	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		if (this.getAngerTime() > 0) {
 			return ActionResult.success(this.getWorld().isClient());
 		}
+		
 		ItemStack handStack = player.getMainHandStack();
-		if (!this.isClipped()) {
-			if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-
-				if (!this.getWorld().isClient()) {
-					setTarget(player);
-					takeRevenge(player.getUuid());
-					this.playAngrySound();
-					clipAndDrop();
-				}
-
-				return ActionResult.success(this.getWorld().isClient());
-
-			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
-				// 🍆 / 🍑 = 💘
-
-				if (!this.getWorld().isClient()) {
-					handStack.decrement(1);
-
-					this.setTame(true);
-					if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
-						this.setOwnerUuid(player.getUuid());
-						Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
-					}
-
-					this.getWorld().sendEntityStatus(this, (byte)7); // heart particles
-					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
-
-					clipAndDrop();
-				}
-
-				return ActionResult.success(this.getWorld().isClient());
+		if (!this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
+			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+			
+			if (!this.getWorld().isClient()) {
+				setTarget(player);
+				takeRevenge(player.getUuid());
+				this.playAngrySound();
+				clipAndDrop();
 			}
+			
+			return ActionResult.success(this.getWorld().isClient());
+			
+		} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
+			// 🍆 / 🍑 = 💘
+			
+			if (!this.getWorld().isClient()) {
+				handStack.decrement(1);
+				
+				this.setTame(true);
+				if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
+					this.setOwnerUuid(player.getUuid());
+					Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
+				}
+				
+				this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
+				this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
+				
+				clipAndDrop();
+			}
+			
+			return ActionResult.success(this.getWorld().isClient());
 		}
-
+		
 		return super.interactMob(player, hand);
 	}
-
+	
 	@Override
 	public void tickAngerLogic(ServerWorld world, boolean angerPersistent) {
 		LivingEntity livingEntity = this.getTarget();
@@ -323,17 +329,17 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 					this.stopAnger();
 				}
 			}
-
+			
 		}
 	}
-
+	
 	private void clipAndDrop() {
 		setClipped(4800); // 4 minutes
 		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
 			dropStack(clippedStack, 0.3F);
 		}
 	}
-
+	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
 		LootTable lootTable = world.getServer().getLootManager().getLootTable(CLIPPING_LOOT_TABLE);
 		return lootTable.generateLoot(
@@ -342,7 +348,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 						.build(LootContextTypes.BARTER)
 		);
 	}
-
+	
 	protected void coughAt(LivingEntity target) {
 		KindlingCoughEntity kindlingCoughEntity = new KindlingCoughEntity(this.getWorld(), this);
 		double d = target.getX() - this.getX();
@@ -350,7 +356,7 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 		double f = target.getZ() - this.getZ();
 		double g = Math.sqrt(d * d + f * f) * 0.2;
 		kindlingCoughEntity.setVelocity(d, e + g, f, 1.5F, 10.0F);
-
+		
 		if (!this.isSilent()) {
 			this.playSound(SpectrumSoundEvents.ENTITY_KINDLING_SHOOT, 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 		}
@@ -361,42 +367,44 @@ private static final TrackedData<Integer> CHILL = DataTracker.registerData(Kindl
 	public boolean isClipped() {
 		return this.dataTracker.get(CLIPPED) > 0;
 	}
-
+	
 	public int getClipTime() {
 		return this.dataTracker.get(CLIPPED);
 	}
-
+	
 	public void setClipped(int clipTime) {
 		this.dataTracker.set(CLIPPED, clipTime);
 	}
-public int getChillTime() {
+	
+	public int getChillTime() {
 		return this.dataTracker.get(CHILL);
 	}
-
+	
 	public void setChillTime(int chillTime) {
 		this.dataTracker.set(CHILL, chillTime);
 	}
-
+	
 	public void setPlaying(boolean playing) {
 		this.dataTracker.set(PLAYING, playing);
 	}
-
+	
 	public boolean isPlaying() {
 		return this.dataTracker.get(PLAYING);
 	}
-
+	
 	public void setIncited(boolean incited) {
 		this.dataTracker.set(INCITED, incited);
 	}
-
+	
 	public boolean isIncited() {
 		return dataTracker.get(INCITED);
 	}
+	
 	@Override
 	public boolean isAngry() {
 		return this.getHorseFlag(32);
 	}
-
+	
 	@Override
 	public int getAngerTime() {
 		return this.dataTracker.get(ANGER);
@@ -416,20 +424,20 @@ public int getChillTime() {
 	public void setAngryAt(@Nullable UUID angryAt) {
 		this.angryAt = angryAt;
 	}
-
+	
 	public void takeRevenge(UUID target) {
 		setAngryAt(target);
 		setIncited(false);
 		setPlaying(false);
-
+		
 		chooseRandomAngerTime();
 	}
-
+	
 	public
 	@Override void chooseRandomAngerTime() {
 		this.setAngerTime(ANGER_TIME_RANGE.get(this.random));
 	}
-
+	
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 		this.coughAt(target);
@@ -449,9 +457,9 @@ public int getChillTime() {
 	public EntityView method_48926() {
 		return this.getWorld();
 	}
-
+	
 	protected class CoughRevengeGoal extends RevengeGoal {
-
+		
 		public CoughRevengeGoal(KindlingEntity kindling) {
 			super(kindling, KindlingEntity.class);
 		}
@@ -460,16 +468,16 @@ public int getChillTime() {
 		public boolean shouldContinue() {
 			return KindlingEntity.this.hasAngerTime() && super.shouldContinue();
 		}
-
+		
 		@Override
 		public void start() {
 			super.start();
-            var attacker = getAttacker();
-            if (attacker != null) {
-                takeRevenge(getAttacker().getUuid());
-            }
+			var attacker = getAttacker();
+			if (attacker != null) {
+				takeRevenge(getAttacker().getUuid());
+			}
 		}
-
+		
 		@Override
 		protected void setMobEntityTarget(MobEntity mob, LivingEntity target) {
 			if (mob instanceof BeeEntity && this.mob.canSee(target)) {
@@ -478,13 +486,13 @@ public int getChillTime() {
 		}
 		
 	}
-
+	
 	protected class MeleeChaseGoal extends MeleeAttackGoal {
-
+		
 		public MeleeChaseGoal(KindlingEntity kindling) {
 			super(kindling, 0.5F, true);
 		}
-
+		
 		@Override
 		public boolean canStart() {
 			var kindling = KindlingEntity.this;
@@ -493,38 +501,38 @@ public int getChillTime() {
 				return false;
 			return super.canStart() && kindling.hasAngerTime() && !isPlaying() && KindlingEntity.this.distanceTo(this.mob.getTarget()) < 5F;
 		}
-
+		
 		@Override
 		public boolean shouldContinue() {
 			return super.shouldContinue() && KindlingEntity.this.distanceTo(this.mob.getTarget()) < 9F;
 		}
 	}
-
+	
 	protected class PlayRoughGoal extends MeleeAttackGoal {
-
+		
 		public PlayRoughGoal(PathAwareEntity mob) {
 			super(mob, 0.4F, true);
 		}
-
+		
 		@Override
 		public boolean canStart() {
 			return super.canStart() && !hasAngerTime() && !hasPassengers() && isPlaying();
 		}
-
+		
 		@Override
 		public boolean shouldContinue() {
 			if (!super.shouldContinue())
 				return false;
-
+			
 			if ((getTarget() instanceof KindlingEntity playMate && playMate.hasAngerTime()) || hasPassengers()) {
 				setTarget(null);
 				setIncited(false);
 				return false;
 			}
-
+			
 			return !hasAngerTime();
 		}
-
+		
 		@Override
 		protected void attack(LivingEntity target, double squaredDistance) {
 			double d = this.getSquaredMaxAttackDistance(target);
@@ -535,7 +543,7 @@ public int getChillTime() {
 				if (target instanceof KindlingEntity playMate && !playMate.hasAngerTime() && random.nextBoolean()) {
 					playMate.setIncited(true);
 				}
-
+				
 				if (!(target instanceof Monster)) {
 					target.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200));
 				}
@@ -548,31 +556,31 @@ public int getChillTime() {
 			}
 		}
 	}
-
+	
 	protected class FindPlayMateGoal<T extends LivingEntity> extends ActiveTargetGoal<T> {
-
+		
 		private final float waitModifier;
-
+		
 		public FindPlayMateGoal(MobEntity mob, int reciprocalChance, float waitModifier, Class<T> targetClass) {
 			super(mob, targetClass, reciprocalChance, true, true, null);
 			this.waitModifier = waitModifier;
 		}
-
+		
 		@Override
 		public boolean canStart() {
 			if (hasAngerTime() || hasPassengers())
 				return false;
-
+			
 			if (!isIncited()) {
 				var chill = getChillTime();
-
+				
 				if (chill > 0)
 					return false;
 			}
-
+			
 			if (isIncited() || (this.reciprocalChance > 0 && this.mob.getRandom().nextInt(this.reciprocalChance) != 0)) {
 				this.findClosestTarget();
-
+				
 				if (this.targetEntity != null) {
 					setChillTime((int) (1200 * waitModifier));
 					return true;
@@ -580,33 +588,33 @@ public int getChillTime() {
 			}
 			return false;
 		}
-
+		
 		@Override
 		public void start() {
 			super.start();
- 			setPlaying(true);
+			setPlaying(true);
 		}
 	}
-
+	
 	protected class CancellableProjectileAttackGoal extends ProjectileAttackGoal {
-
+		
 		public CancellableProjectileAttackGoal(RangedAttackMob mob, double mobSpeed, int intervalTicks, float maxShootRange) {
 			super(mob, mobSpeed, intervalTicks, maxShootRange);
 		}
-
+		
 		@Override
 		public boolean shouldContinue() {
 			return KindlingEntity.this.hasAngerTime() && super.shouldContinue() && distanceTo(getProjectileTarget()) > 5F;
 		}
-
+		
 		@Override
 		public boolean canStart() {
-			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F ;
+			return super.canStart() && !isPlaying() && distanceTo(getProjectileTarget()) > 6F;
 		}
-
+		
 		protected LivingEntity getProjectileTarget() {
 			return ((ProjectileAttackGoalAccessor) this).getProjectileAttackTarget();
 		}
-
+		
 	}
 }

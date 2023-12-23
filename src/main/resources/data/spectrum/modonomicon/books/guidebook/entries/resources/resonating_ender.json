@@ -24,7 +24,9 @@
     {
       "type": "modonomicon:spotlight",
       "title": "Radiating Ender",
-      "item": "spectrum:radiating_ender",
+      "item": {
+        "item": "spectrum:radiating_ender"
+      },
       "text": "The Endermen come to this world to place those blocks. But what is this stuff? And _WHY_ do they leave it here?\\\\Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
     }
   ]

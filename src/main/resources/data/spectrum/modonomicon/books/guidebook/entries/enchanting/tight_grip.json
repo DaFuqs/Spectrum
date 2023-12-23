@@ -21,9 +21,19 @@
       "text": "It almost seems like a fever dream that you could strike with weapons faster than you can think. In the meantime, every blow costs you so much strength that you have to pause for a moment.\\Maybe you are getting old.\\\\With a few small tweaks to your weapon, you can reduce this downtime somewhat."
     },
     {
-      "type": "modonomicon:spotlight",
+      "type": "spectrum:nbt_spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
+      "item": {
+        "item": "minecraft:iron_sword",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:tight_grip",
+              "lvl": "2s"
+            }
+          ]
+        }
+      },
       "text": "Decreases attack cooldown.\\\\Max Level: 2\\Applicable to melee weapons."
     },
     {

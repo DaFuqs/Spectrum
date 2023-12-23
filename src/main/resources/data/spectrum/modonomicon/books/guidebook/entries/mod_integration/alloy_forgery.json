@@ -27,7 +27,7 @@
       "type": "modonomicon:multiblock",
       "name": "Basalt Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:basalt_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/basalt_alloy_forge",
       "text": ""
     },
     {
@@ -40,7 +40,7 @@
       "type": "modonomicon:multiblock",
       "name": "Calcite Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:calcite_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/calcite_alloy_forge",
       "text": ""
     },
     {
@@ -57,7 +57,7 @@
       },
       "name": "Blackslag Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:blackslag_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/blackslag_alloy_forge",
       "text": ""
     },
     {
@@ -78,7 +78,7 @@
       },
       "name": "Shale Clay Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:shale_clay_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/shale_clay_alloy_forge",
       "text": ""
     },
     {
@@ -99,7 +99,7 @@
       },
       "name": "Pyrite Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:pyrite_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/pyrite_alloy_forge",
       "text": ""
     },
     {
@@ -120,7 +120,7 @@
       },
       "name": "Bone Ash Alloy Forge",
       "show_visualize_button": true,
-      "multiblock_id": "spectrum:bone_ash_alloy_forge",
+      "multiblock_id": "spectrum:alloy_forgery/bone_ash_alloy_forge",
       "text": ""
     },
     {

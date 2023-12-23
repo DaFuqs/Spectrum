@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "[#](bb00bb)Totems of Undying[#](), while having a powerful effect, have the significant disadvantage that you always have to hold them in your hand.\\\\Using the protective powers of [Blue Pigment](entry://general/pigment#blue) as a focus you can keep its life-saving effect active, even when worn around the neck."
+      "text": "[#](bb00bb)Totems of Undying[#](), while having a powerful effect, have the significant disadvantage that you always have to hold them in your hand.\\\\Using the protective powers of [Blue Pigment](entry://general/pigment@blue) as a focus you can keep its life-saving effect active, even when worn around the neck."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

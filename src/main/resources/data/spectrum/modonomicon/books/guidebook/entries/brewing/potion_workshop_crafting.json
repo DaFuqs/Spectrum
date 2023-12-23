@@ -27,7 +27,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "As the name implies the [Potion Workshop's](entry://brewing/potion_workshop) main focus is the creation of powerful [#](bb00bb)Potions[#]().\\But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.\\All these recipes do not use [Reagents](entry://brewing@potion_workshop_reagents)."
+      "text": "As the name implies the [Potion Workshop's](entry://brewing/potion_workshop) main focus is the creation of powerful [#](bb00bb)Potions[#]().\\But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.\\All these recipes do not use [Reagents](entry://brewing/potion_workshop_reagents)."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

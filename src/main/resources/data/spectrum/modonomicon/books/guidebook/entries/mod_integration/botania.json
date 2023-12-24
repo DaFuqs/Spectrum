@@ -21,12 +21,12 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title": "Crushing Petals",
+      "title1": "Crushing Petals",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:place_pedestal"
       },
-      "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "recipe_id_1": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
       "text": "While crushing flowers seems a bit unorthodox, it _did_ work. No problem plucking the petals from the flattened blossom after that."
     },
     {

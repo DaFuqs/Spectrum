@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
+import de.dafuqs.spectrum.interfaces.GatedGuidebookPage;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.item.*;
@@ -18,7 +19,7 @@ import vazkii.patchouli.client.book.page.abstr.*;
 /**
  * Like PageGatedRecipeDouble, but only displays a single recipe
  */
-public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithText implements GatedPatchouliPage {
+public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithText implements GatedGuidebookPage {
 	
 	private final RecipeType<T> recipeType;
 	
@@ -75,7 +76,7 @@ public abstract class PageGatedRecipe<T extends GatedRecipe> extends PageWithTex
 		boolean customTitle = title != null && !title.isEmpty();
 		titleText = !customTitle ? getRecipeOutput(world, recipe).getName() : i18nText(title);
 		
-		GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, advancement, recipe);
+		GatedGuidebookPage.runSanityCheck(entry.getId(), pageNum, advancement, recipe);
 	}
 	
 	@Override

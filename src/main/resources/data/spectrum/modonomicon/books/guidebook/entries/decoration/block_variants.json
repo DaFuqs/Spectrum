@@ -101,8 +101,8 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title": "Cracking",
-      "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
+      "title1": "Cracking",
+      "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
       "text": "You can crack Bricks & Tiles via [Item Crushing](entry://general/anvil_crushing)."
     },
     {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
+import de.dafuqs.spectrum.interfaces.GatedGuidebookPage;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
@@ -36,7 +37,7 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageG
 		
 		recipe2 = loadRecipe(builder, entry, recipe2Id);
 		if (recipe2 != null) {
-			GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, this.advancement, recipe2);
+			GatedGuidebookPage.runSanityCheck(entry.getId(), pageNum, this.advancement, recipe2);
 		}
 	}
 	

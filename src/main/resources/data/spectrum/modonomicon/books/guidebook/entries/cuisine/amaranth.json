@@ -29,12 +29,12 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title": "Amaranth Grains",
+      "title1": "Amaranth Grains",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "recipe": "spectrum:anvil_crushing/amaranth_grains",
+      "recipe_id_1": "spectrum:anvil_crushing/amaranth_grains",
       "text": "You never have seen anything like it. Such an intense red. So expressive!\\These Bushels can be crushed to get more grains.\\\\They can also be planted decoratively on grass or in a flower pot."
     },
     {

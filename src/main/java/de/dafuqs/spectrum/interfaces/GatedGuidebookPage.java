@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.compat.patchouli.pages;
+package de.dafuqs.spectrum.interfaces;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-public interface GatedPatchouliPage {
+public interface GatedGuidebookPage {
 	
 	// unlocks that would be reported in the sanity check,
 	// but are manually proven to be ok (since the entry advancement + page advancement match all required criteria already)
@@ -26,20 +26,20 @@ public interface GatedPatchouliPage {
 			if (pageAdvancement != null && !pageAdvancement.isEmpty()) {
 				for (GatedRecipe recipe : recipes) {
 					if (recipe == null) {
-						SpectrumCommon.logWarning("Patchouli page " + entryId + " page " + pageNr + " is missing its recipe");
+						SpectrumCommon.logWarning("Guidebook page " + entryId + " page " + pageNr + " is missing its recipe");
 						continue;
 					}
 					Identifier recipeAdvId = recipe.getRequiredAdvancementIdentifier();
 					Identifier combinedAdvId = recipeAdvId == null ? recipe.getRecipeTypeUnlockIdentifier() : recipeAdvId;
 					if (combinedAdvId == null) {
-						SpectrumCommon.logWarning("Patchouli page " + entryId + "[" + pageNr + "] references advancement " + pageAdvancement + " for a recipe that does not have an unlock: " + recipeAdvId);
+						SpectrumCommon.logWarning("Guidebook page " + entryId + "[" + pageNr + "] references advancement " + pageAdvancement + " for a recipe that does not have an unlock: " + recipeAdvId);
 						continue;
 					}
 					if (SANITY_WHITELIST.containsKey(entryId) && SANITY_WHITELIST.get(entryId).equals(new Identifier(pageAdvancement))) {
 						continue;
 					}
 					if (!combinedAdvId.toString().equals(pageAdvancement)) {
-						SpectrumCommon.logWarning("Patchouli page " + entryId + "[" + pageNr + "] references advancement " + pageAdvancement + " that differs from the one set in the recipe: " + recipeAdvId);
+						SpectrumCommon.logWarning("Guidebook page " + entryId + "[" + pageNr + "] references advancement " + pageAdvancement + " that differs from the one set in the recipe: " + recipeAdvId);
 					}
 				}
 			}

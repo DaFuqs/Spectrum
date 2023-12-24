@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.modonomicon;
 
 import com.klikli_dev.modonomicon.book.page.BookEmptyPage;
-import com.klikli_dev.modonomicon.book.page.BookPage;
 import com.klikli_dev.modonomicon.client.render.page.*;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -19,8 +18,6 @@ import de.dafuqs.spectrum.recipe.fluid_converting.MudConvertingRecipe;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
-
-import java.util.function.Supplier;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 
@@ -89,10 +86,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(POTION_WORKSHOP_BREWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(POTION_WORKSHOP_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(SPIRIT_INSTILLER_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(LIQUID_CRYSTAL_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(MIDNIGHT_SOLUTION_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(DRAGONROT_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(MUD_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(CRYSTALLARIEUM_GROWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(CINDERHEARTH_SMELTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(TITRATION_BARREL_FERMENTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);

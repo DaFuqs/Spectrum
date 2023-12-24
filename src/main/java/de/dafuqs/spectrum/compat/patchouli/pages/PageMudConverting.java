@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 
 public class PageMudConverting extends PageFluidConverting<MudConvertingRecipe> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/mud.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/guidebook/mud.png");
 
     public PageMudConverting() {
         super(SpectrumRecipeTypes.MUD_CONVERTING);

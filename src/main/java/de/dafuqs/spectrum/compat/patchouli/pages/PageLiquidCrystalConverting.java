@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 
 public class PageLiquidCrystalConverting extends PageFluidConverting<LiquidCrystalConvertingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/liquid_crystal.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/guidebook/liquid_crystal.png");
 	
 	public PageLiquidCrystalConverting() {
 		super(SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING);

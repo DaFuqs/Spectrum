@@ -71,7 +71,7 @@
         "advancement_id": "spectrum:midgame/collect_resonant_lily"
       },
       "anchor": "resonant_lily",
-      "recipe": "spectrum:liquid_crystal_converting/resonant_lily",
+      "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
       "text": "This is an interesting one. When [#](bb00bb)Flowers[#]() absorb this magical liquid through their roots, they turn into those elusive plants."
     }
   ]

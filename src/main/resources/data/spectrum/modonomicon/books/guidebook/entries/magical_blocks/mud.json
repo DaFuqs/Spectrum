@@ -38,8 +38,8 @@
     },
     {
       "type": "spectrum:mud_converting",
-      "title": "Tanning Rotten Flesh",
-      "recipe": "spectrum:mud_converting/rabbit_hide",
+      "title1": "Tanning Rotten Flesh",
+      "recipe_id_1": "spectrum:mud_converting/rabbit_hide",
       "text": ""
     }
   ]

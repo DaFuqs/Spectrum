@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 
 public class PageMidnightSolutionConverting extends PageFluidConverting<MidnightSolutionConvertingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/midnight_solution.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/guidebook/midnight_solution.png");
 	
 	public PageMidnightSolutionConverting() {
 		super(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);

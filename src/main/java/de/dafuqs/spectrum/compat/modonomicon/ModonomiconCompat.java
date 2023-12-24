@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.modonomicon;
 
 import com.klikli_dev.modonomicon.book.page.BookEmptyPage;
+import com.klikli_dev.modonomicon.book.page.BookPage;
 import com.klikli_dev.modonomicon.client.render.page.*;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -8,8 +9,18 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.modonomicon.client.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.DragonrotConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.MudConvertingRecipe;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
+
+import java.util.function.Supplier;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 
@@ -47,7 +58,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     }
     
     public void registerPages() {
-        LoaderRegistry.registerPageLoader(ANVIL_CRUSHING_PAGE, BookAnvilCrushingPage::fromJson, BookAnvilCrushingPage::fromNetwork);
+        registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING);
 //        LoaderRegistry.registerPageLoader(PEDESTAL_CRAFTING_PAGE, BookPedestalCraftingPage::fromJson, BookPedestalCraftingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(FUSION_SHRINE_CRAFTING_PAGE, BookFusionShrineCraftingPage::fromJson, BookFusionShrineCraftingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(ENCHANTER_CRAFTING_PAGE, BookEnchanterCraftingPage::fromJson, BookEnchanterCraftingPage::fromNetwork);
@@ -55,10 +66,10 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 //        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_BREWING_PAGE, BookPotionWorkshopBrewingPage::fromJson, BookPotionWorkshopBrewingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_CRAFTING_PAGE, BookPotionWorkshopCraftingPage::fromJson, BookPotionWorkshopCraftingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(SPIRIT_INSTILLER_CRAFTING_PAGE, BookSpiritInstillerCraftingPage::fromJson, BookSpiritInstillerCraftingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(LIQUID_CRYSTAL_CONVERTING_PAGE, BookLiquidCrystalConvertingPage::fromJson, BookLiquidCrystalConvertingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(MIDNIGHT_SOLUTION_CONVERTING_PAGE, BookMidnightSolutionConvertingPage::fromJson, BookMidnightSolutionConvertingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(DRAGONROT_CONVERTING_PAGE, BookDragonrotConvertingPage::fromJson, BookDragonrotConvertingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(MUD_CONVERTING_PAGE, BookMudConvertingPage::fromJson, BookMudConvertingPage::fromNetwork);
+        registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING);
+        registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);
+        registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING);
+        registerGatedRecipePage(MUD_CONVERTING_PAGE, SpectrumRecipeTypes.MUD_CONVERTING);
 //        LoaderRegistry.registerPageLoader(CRYSTALLARIEUM_GROWING_PAGE, BookCrystallarieumGrowingPage::fromJson, BookCrystallarieumGrowingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(CINDERHEARTH_SMELTING_PAGE, BookCinderhearthSmeltingPage::fromJson, BookCinderhearthSmeltingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(TITRATION_BARREL_FERMENTING_PAGE, BookTitrationBarrelFermentingPage::fromJson, BookTitrationBarrelFermentingPage::fromNetwork);
@@ -78,10 +89,10 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(POTION_WORKSHOP_BREWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(POTION_WORKSHOP_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(SPIRIT_INSTILLER_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(LIQUID_CRYSTAL_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(MIDNIGHT_SOLUTION_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(DRAGONROT_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(MUD_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
+//        LoaderRegistry.registerPageLoader(LIQUID_CRYSTAL_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
+//        LoaderRegistry.registerPageLoader(MIDNIGHT_SOLUTION_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
+//        LoaderRegistry.registerPageLoader(DRAGONROT_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
+//        LoaderRegistry.registerPageLoader(MUD_CONVERTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(CRYSTALLARIEUM_GROWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(CINDERHEARTH_SMELTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(TITRATION_BARREL_FERMENTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
@@ -93,9 +104,16 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(LINK_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
     }
 
+    private void registerGatedRecipePage(Identifier id, RecipeType<? extends GatedRecipe> recipeType) {
+        LoaderRegistry.registerPageLoader(id,
+                json -> BookGatedRecipePage.fromJson(id, recipeType, json),
+                buffer -> BookGatedRecipePage.fromNetwork(id, recipeType, buffer));
+    }
+
     @Override
+    @SuppressWarnings("unchecked")
     public void registerClient() {
-        PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookAnvilCrushingPage) p));
+        PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookGatedRecipePage<AnvilCrushingRecipe>) p));
 //        PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookAnvilCrushingPage) p));
 //        PageRendererRegistry.registerPageRenderer(PEDESTAL_CRAFTING_PAGE, p -> new BookPedestalCraftingPageRenderer((BookPedestalCraftingPage) p));
 //        PageRendererRegistry.registerPageRenderer(FUSION_SHRINE_CRAFTING_PAGE, p -> new BookFusionShrineCraftingPageRenderer((BookFusionShrineCraftingPage) p));
@@ -104,10 +122,35 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
 //        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_BREWING_PAGE, p -> new BookPotionWorkshopBrewingPageRenderer((BookPotionWorkshopBrewingPage) p));
 //        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_CRAFTING_PAGE, p -> new BookPotionWorkshopCraftingPageRenderer((BookPotionWorkshopCraftingPage) p));
 //        PageRendererRegistry.registerPageRenderer(SPIRIT_INSTILLER_CRAFTING_PAGE, p -> new BookSpiritInstillerCraftingPageRenderer((BookSpiritInstillerCraftingPage) p));
-//        PageRendererRegistry.registerPageRenderer(LIQUID_CRYSTAL_CONVERTING_PAGE, p -> new BookLiquidCrystalConvertingPageRenderer((BookLiquidCrystalConvertingPage) p));
-//        PageRendererRegistry.registerPageRenderer(MIDNIGHT_SOLUTION_CONVERTING_PAGE, p -> new BookMidnightSolutionConvertingPageRenderer((BookMidnightSolutionConvertingPage) p));
-//        PageRendererRegistry.registerPageRenderer(DRAGONROT_CONVERTING_PAGE, p -> new BookDragonrotConvertingPageRenderer((BookDragonrotConvertingPage) p));
-//        PageRendererRegistry.registerPageRenderer(MUD_CONVERTING_PAGE, p -> new BookMudConvertingPageRenderer((BookMudConvertingPage) p));
+
+        PageRendererRegistry.registerPageRenderer(LIQUID_CRYSTAL_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<LiquidCrystalConvertingRecipe>) p) {
+            @Override
+            public Identifier getBackgroundTexture() {
+                return SpectrumCommon.locate("textures/gui/guidebook/liquid_crystal.png");
+            }
+        });
+
+        PageRendererRegistry.registerPageRenderer(MIDNIGHT_SOLUTION_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<MidnightSolutionConvertingRecipe>) p) {
+            @Override
+            public Identifier getBackgroundTexture() {
+                return SpectrumCommon.locate("textures/gui/guidebook/midnight_solution.png");
+            }
+        });
+
+        PageRendererRegistry.registerPageRenderer(DRAGONROT_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<DragonrotConvertingRecipe>) p) {
+            @Override
+            public Identifier getBackgroundTexture() {
+                return SpectrumCommon.locate("textures/gui/guidebook/dragonrot.png");
+            }
+        });
+
+        PageRendererRegistry.registerPageRenderer(MUD_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<MudConvertingRecipe>) p) {
+            @Override
+            public Identifier getBackgroundTexture() {
+                return SpectrumCommon.locate("textures/gui/guidebook/mud.png");
+            }
+        });
+
 //        PageRendererRegistry.registerPageRenderer(CRYSTALLARIEUM_GROWING_PAGE, p -> new BookCrystallarieumGrowingPageRenderer((BookCrystallarieumGrowingPage) p));
 //        PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookCinderhearthSmeltingPage) p));
 //        PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookTitrationBarrelFermentingPage) p));
@@ -120,5 +163,5 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         PageRendererRegistry.registerPageRenderer(NBT_SPOTLIGHT_PAGE, p -> new BookNbtSpotlightPageRenderer((BookNbtSpotlightPage) p));
         PageRendererRegistry.registerPageRenderer(COLLECTION_PAGE, p -> new BookCollectionPageRenderer((BookCollectionPage) p));
     }
-    
+
 }

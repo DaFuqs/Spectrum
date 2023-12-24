@@ -61,8 +61,8 @@
     },
     {
       "type": "spectrum:midnight_solution_converting",
-      "title": "Item Conversion",
-      "recipe": "spectrum:midnight_solution_converting/blackstone",
+      "title1": "Item Conversion",
+      "recipe_id_1": "spectrum:midnight_solution_converting/blackstone",
       "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
     },
     {

@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 
 public class PageDragonrotConverting extends PageFluidConverting<DragonrotConvertingRecipe> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/dragonrot.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/guidebook/dragonrot.png");
 
     public PageDragonrotConverting() {
         super(SpectrumRecipeTypes.DRAGONROT_CONVERTING);

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin.compat.connectormod.absent;
 
 import de.dafuqs.spectrum.blocks.fluid.SpectrumFluid;
 import de.dafuqs.spectrum.mixin.EntityApplyFluidsMixin;
+import de.dafuqs.spectrum.mixin.TouchingWaterAware;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
@@ -45,9 +46,8 @@ public class EntityApplyFluidsMixinNoSinytra {
         return particleEffect;
     }
 
-    @SuppressWarnings("ReferenceToMixin")
     @Inject(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D"), locals = LocalCapture.CAPTURE_FAILHARD)
     public void spectrum$updateMovementInFluid(TagKey<Fluid> tag, double speed, CallbackInfoReturnable<Boolean> info, Box box, int i, int j, int k, int l, int m, int n, double d, boolean bl, boolean bl2, Vec3d vec3d, int o, BlockPos.Mutable mutable, int p, int q, int r, FluidState fluidState) {
-        ((EntityApplyFluidsMixin)(Object)this).setActuallyTouchingWater(fluidState.isIn(FluidTags.WATER));
+        ((TouchingWaterAware) this).spectrum$setActuallyTouchingWater(fluidState.isIn(FluidTags.WATER));
     }
 }

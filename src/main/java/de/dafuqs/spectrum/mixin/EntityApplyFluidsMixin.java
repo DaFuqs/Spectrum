@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(Entity.class)
-public abstract class EntityApplyFluidsMixin {
+public abstract class EntityApplyFluidsMixin implements TouchingWaterAware{
 	
 	@Final
 	@Shadow
@@ -24,12 +24,12 @@ public abstract class EntityApplyFluidsMixin {
 	private boolean actuallyTouchingWater = false;
 
 	@Unique
-	public boolean isActuallyTouchingWater() {
+	public boolean spectrum$isActuallyTouchingWater() {
 		return this.actuallyTouchingWater;
 	}
 
 	@Unique
-	public void setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
+	public void spectrum$setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
 	
 	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {

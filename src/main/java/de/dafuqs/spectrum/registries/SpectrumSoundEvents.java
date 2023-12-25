@@ -89,6 +89,8 @@ public class SpectrumSoundEvents {
 	
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
+	public static final SoundEvent COMPACTING_CHEST_OPEN = register("compacting_chest_open");
+	public static final SoundEvent COMPACTING_CHEST_CLOSE = register("compacting_chest_close");
 	
 	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
 	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");

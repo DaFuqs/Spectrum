@@ -1232,9 +1232,6 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(preservationBlock().nonOpaque());
 	public static final Block PRESERVATION_BLOCK_DETECTOR = new PreservationBlockDetectorBlock(preservationBlock());
 	
-	public static final BiMap<SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
-	public static final BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
-	
 	private static Settings shootingStar() {
 		return FabricBlockSettings.copyOf(Blocks.STONE).nonOpaque();
 	}
@@ -1343,6 +1340,9 @@ public class SpectrumBlocks {
 	public static final Block WITHER_SKELETON_IDOL = new StatusEffectIdolBlock(idol(SpectrumBlockSoundGroups.WITHER_SKELETON_IDOL), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
 	public static final Block ZOMBIE_IDOL = new VillagerConvertingIdolBlock(idol(SpectrumBlockSoundGroups.ZOMBIE_IDOL), ParticleTypes.ENCHANTED_HIT);
 	
+	public static BiMap<SpectrumSkullBlockType, Block> MOB_HEADS;
+	public static BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS;
+	
 	static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;
 	}
@@ -1432,7 +1432,6 @@ public class SpectrumBlocks {
 		registerRedstone(IS.of());
 		registerMagicalBlocks(IS.of());
 		registerMobBlocks(IS.of());
-		registerMobHeads(IS.of());
 		registerCrystallarieumGrowingBlocks(IS.of());
 		registerPureOreBlocks(IS.of());
 		registerJadeVineBlocks(IS.of());
@@ -1493,6 +1492,8 @@ public class SpectrumBlocks {
 		registerBlock("decaying_light", DECAYING_LIGHT_BLOCK);
 		registerBlock("block_flooder", BLOCK_FLOODER);
 		registerBlock("bottomless_bundle", BOTTOMLESS_BUNDLE);
+		
+		registerMobHeads(IS.of());
 	}
 	
 	private static void registerDDFlora(FabricItemSettings settings) {
@@ -2572,6 +2573,9 @@ public class SpectrumBlocks {
 	
 	// Most mob heads vanilla is missing (vanilla only has: skeleton, wither skeleton, zombie, player, creeper, ender dragon)
 	private static void registerMobHeads(FabricItemSettings settings) {
+		MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
+		MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlockType.class);
+		
 		for (SpectrumSkullBlockType type : SpectrumSkullBlockType.values()) {
 			Block head = new SpectrumSkullBlock(type, FabricBlockSettings.copyOf(Blocks.SKELETON_SKULL));
 			registerBlock(type.name().toLowerCase(Locale.ROOT) + "_head", head);

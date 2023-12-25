@@ -528,8 +528,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.QUITOXIC_REEDS);
 		entries.add(SpectrumItems.QUITOXIC_POWDER);
 		
-		entries.add(SpectrumBlocks.AMARANTH_BUSHEL);
 		entries.add(SpectrumItems.AMARANTH_GRAINS);
+		entries.add(SpectrumBlocks.AMARANTH_BUSHEL);
 		entries.add(SpectrumItems.GLISTERING_MELON_SEEDS);
 		
 		entries.add(SpectrumBlocks.GLISTERING_SHOOTING_STAR);

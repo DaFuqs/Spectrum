@@ -39,6 +39,7 @@ public class SpectrumEntityTypes {
 	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.create(EraserEntity::new, SpawnGroup.MONSTER).setDimensions(0.3F, 0.3F).maxTrackingRange(10));
 	
 	public static void register() {
+	
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -60,6 +61,7 @@ public class SpectrumEntityTypes {
 		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
 		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
 		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
+		
 	}
 	
 }

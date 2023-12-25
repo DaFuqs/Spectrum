@@ -39,12 +39,6 @@ public class SpectrumEntityTypes {
 	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.create(EraserEntity::new, SpawnGroup.MONSTER).setDimensions(0.3F, 0.3F).maxTrackingRange(10));
 	
 	public static void register() {
-		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
-		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
-		FabricDefaultAttributeRegistry.register(PRESERVATION_TURRET, PreservationTurretEntity.createGuardianTurretAttributes());
-		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
-		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
-		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -57,6 +51,15 @@ public class SpectrumEntityTypes {
 	
 	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
 		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(id), type.build(id));
+	}
+	
+	static {
+		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
+		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
+		FabricDefaultAttributeRegistry.register(PRESERVATION_TURRET, PreservationTurretEntity.createGuardianTurretAttributes());
+		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
+		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
+		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
 	}
 	
 }

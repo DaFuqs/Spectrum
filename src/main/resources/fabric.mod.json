@@ -18,7 +18,7 @@
     "sources": "https://github.com/DaFuqs/Spectrum",
     "issues": "https://github.com/DaFuqs/Spectrum/issues"
   },
-  "license": "",
+  "license": "lGPL3",
   "icon": "assets/spectrum/icon.png",
   "environment": "*",
   "entrypoints": {

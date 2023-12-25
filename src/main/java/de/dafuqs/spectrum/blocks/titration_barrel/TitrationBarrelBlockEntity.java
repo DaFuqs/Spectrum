@@ -243,8 +243,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public void giveRecipeRemainders(PlayerEntity player) {
 		for (ItemStack stack : this.inventory.stacks) {
 			ItemStack remainder = stack.getRecipeRemainder();
-			if (remainder.isEmpty()) {
-				remainder.setCount(stack.getCount());
+			if (!remainder.isEmpty()) {
 				player.getInventory().offerOrDrop(remainder);
 			}
 		}

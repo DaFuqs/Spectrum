@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
 import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.conditional.resonant_lily.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.dd_deco.*;
 import de.dafuqs.spectrum.blocks.decay.*;
@@ -740,7 +741,7 @@ public class SpectrumBlocks {
 	public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	
-	public static final Block RESONANT_LILY = new FlowerBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY));
+	public static final Block RESONANT_LILY = new ResonantLilyBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY).mapColor(MapColor.WHITE));
 	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).offsetType(AbstractBlock.OffsetType.XYZ).ticksRandomly().luminance(state -> state.get(QuitoxicReedsBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 0));
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(state -> state.get(MermaidsBrushBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 0));
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
@@ -943,6 +944,8 @@ public class SpectrumBlocks {
 	// POTTED PLANTS
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, POTTED_PLANT_SETTINGS);
 	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_RESONANT_LILY = new PottedResonantLilyBlock(RESONANT_LILY, POTTED_PLANT_SETTINGS);
+	
 	public static final Block POTTED_BLACK_SAPLING = new PottedColoredSaplingBlock(BLACK_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.BLACK);
 	public static final Block POTTED_BLUE_SAPLING = new PottedColoredSaplingBlock(BLUE_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.BLUE);
 	public static final Block POTTED_BROWN_SAPLING = new PottedColoredSaplingBlock(BROWN_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.BROWN);
@@ -959,6 +962,7 @@ public class SpectrumBlocks {
 	public static final Block POTTED_RED_SAPLING = new PottedColoredSaplingBlock(RED_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.RED);
 	public static final Block POTTED_WHITE_SAPLING = new PottedColoredSaplingBlock(WHITE_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.WHITE);
 	public static final Block POTTED_YELLOW_SAPLING = new PottedColoredSaplingBlock(YELLOW_SAPLING, POTTED_PLANT_SETTINGS, DyeColor.YELLOW);
+	
 	
 	// FLAT COLORED BLOCKS
 	private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
@@ -2729,6 +2733,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());

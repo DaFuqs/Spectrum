@@ -14,11 +14,17 @@
     },
     {
       "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "spectrum:four_leaf_clover"
     }
   ],
   "result": {
     "item": "minecraft:name_tag",
     "count": 1
   },
-  "required_advancement": "spectrum:build_basic_pedestal_structure"
+  "required_advancement": "spectrum:collect_four_leaf_clover"
 }

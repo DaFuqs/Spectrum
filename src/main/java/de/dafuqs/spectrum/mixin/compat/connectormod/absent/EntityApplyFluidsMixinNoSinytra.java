@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin.compat.connectormod.absent;
 
 import de.dafuqs.spectrum.blocks.fluid.SpectrumFluid;
+import de.dafuqs.spectrum.mixin.EntityApplyFluidsMixin;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;
@@ -8,10 +9,16 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Entity.class)
 public class EntityApplyFluidsMixinNoSinytra {
@@ -36,5 +43,11 @@ public class EntityApplyFluidsMixinNoSinytra {
             return spectrumFluid.getSplashParticle();
         }
         return particleEffect;
+    }
+
+    @SuppressWarnings("ReferenceToMixin")
+    @Inject(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D"), locals = LocalCapture.CAPTURE_FAILHARD)
+    public void spectrum$updateMovementInFluid(TagKey<Fluid> tag, double speed, CallbackInfoReturnable<Boolean> info, Box box, int i, int j, int k, int l, int m, int n, double d, boolean bl, boolean bl2, Vec3d vec3d, int o, BlockPos.Mutable mutable, int p, int q, int r, FluidState fluidState) {
+        ((EntityApplyFluidsMixin)(Object)this).setActuallyTouchingWater(fluidState.isIn(FluidTags.WATER));
     }
 }

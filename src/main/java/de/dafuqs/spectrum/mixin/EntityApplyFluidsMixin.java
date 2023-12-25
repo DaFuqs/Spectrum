@@ -19,7 +19,7 @@ public abstract class EntityApplyFluidsMixin {
 	@Final
 	@Shadow
 	private Set<TagKey<Fluid>> submergedFluidTag;
-	
+
 	@Unique
 	private boolean actuallyTouchingWater = false;
 
@@ -27,6 +27,9 @@ public abstract class EntityApplyFluidsMixin {
 	public boolean isActuallyTouchingWater() {
 		return this.actuallyTouchingWater;
 	}
+
+	@Unique
+	public void setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
 	
 	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
@@ -45,10 +48,7 @@ public abstract class EntityApplyFluidsMixin {
 	
 
 	
-	@Inject(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D"), locals = LocalCapture.CAPTURE_FAILHARD)
-	public void spectrum$updateMovementInFluid(TagKey<Fluid> tag, double speed, CallbackInfoReturnable<Boolean> info, Box box, int i, int j, int k, int l, int m, int n, double d, boolean bl, boolean bl2, Vec3d vec3d, int o, BlockPos.Mutable mutable, int p, int q, int r, FluidState fluidState) {
-		this.actuallyTouchingWater = fluidState.isIn(FluidTags.WATER);
-	}
+
 
 
 	

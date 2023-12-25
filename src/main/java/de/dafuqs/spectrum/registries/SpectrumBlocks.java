@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
 import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.conditional.resonant_lily.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.dd_deco.*;
 import de.dafuqs.spectrum.blocks.decay.*;
@@ -816,7 +817,7 @@ public class SpectrumBlocks {
 	public static final Block FROSTBITE_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE).mapColor(MapColor.LIGHT_BLUE_GRAY));
 	public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE).mapColor(MapColor.ORANGE));
 	
-	public static final Block RESONANT_LILY = new FlowerBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY).mapColor(MapColor.WHITE));
+	public static final Block RESONANT_LILY = new ResonantLilyBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY).mapColor(MapColor.WHITE));
 	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(settings(MapColor.CLEAR, BlockSoundGroup.GRASS, 0.0F).noCollision().offset(AbstractBlock.OffsetType.XYZ).ticksRandomly().luminance(state -> state.get(QuitoxicReedsBlock.LOGGED).getLuminance()));
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(settings(MapColor.CLEAR, BlockSoundGroup.WET_GRASS, 0.0F).noCollision().ticksRandomly().luminance(state -> state.get(MermaidsBrushBlock.LOGGED).getLuminance()));
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK).mapColor(MapColor.PURPLE));
@@ -1038,6 +1039,7 @@ public class SpectrumBlocks {
 	
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, pottedPlant());
 	public static final Block POTTED_BLOOD_ORCHID = new PottedBloodOrchidBlock(BLOOD_ORCHID, pottedPlant());
+	public static final Block POTTED_RESONANT_LILY = new PottedResonantLilyBlock(RESONANT_LILY, pottedPlant());
 	
 	private static Settings glowBlock(MapColor color) {
 		return settings(color, BlockSoundGroup.BASALT, 2.5F).requiresTool().luminance(state -> 1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
@@ -1461,6 +1463,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, IS.of(), DyeColor.RED);
 		registerBlock("potted_blood_orchid", POTTED_BLOOD_ORCHID);
+		registerBlock("potted_resonant_lily", POTTED_RESONANT_LILY);
 		
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, IS.of(), DyeColor.PURPLE);
@@ -2819,6 +2822,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());

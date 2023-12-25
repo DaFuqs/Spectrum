@@ -15,9 +15,14 @@
       "above_bottom": 16
     }
   },
-  "placement_type": "on_solid_ground",
+  "bury_depth": {
+    "type": "minecraft:uniform",
+    "value": {
+      "min_inclusive": 0,
+      "max_inclusive": 16
+    }
+  },
   "placement_check_width": 10,
-  "placement_check_height": 5,
-  "placement_required": false,
+  "placement_check_height": 16,
   "spawn_overrides": {}
 }

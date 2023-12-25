@@ -70,7 +70,6 @@
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
-    "accessors.LootTableAccessor",
     "accessors.MapStateAccessor",
     "accessors.MooshroomEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",

@@ -1,11 +1,8 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
-import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -42,38 +39,23 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 				
 				ItemStack firstBowlStack = leftBowl.getStack(0);
 				ItemStack secondBowlStack = rightBowl.getStack(0);
+				ItemStack spawnerStack = spiritInstillerBlockEntity.getStack(0);
 				
-				NbtCompound spawnerNbt = spiritInstillerBlockEntity.getStack(0).getOrCreateNbt();
+				NbtCompound spawnerNbt = spawnerStack.getOrCreateNbt();
 				NbtCompound blockEntityTag;
 				if (spawnerNbt.contains("BlockEntityTag")) {
-					blockEntityTag = spawnerNbt.getCompound("BlockEntityTag");
+					blockEntityTag = spawnerNbt.getCompound("BlockEntityTag").copy();
 				} else {
 					blockEntityTag = new NbtCompound();
 				}
 				
 				blockEntityTag = getSpawnerResultNbt(blockEntityTag, firstBowlStack, secondBowlStack);
 				
-				resultStack = Items.SPAWNER.getDefaultStack();
-				NbtCompound outputNbt = resultStack.getOrCreateNbt();
-				outputNbt.put("BlockEntityTag", blockEntityTag);
-				resultStack.setNbt(outputNbt);
-				if (!resultStack.isEmpty()) {
-					// put the stack back into the instiller
-					// so the player can craft > 1x automatically
-					
-					// Calculate and spawn experience
-					int awardedExperience = 0;
-					if (getExperience() > 0) {
-						Upgradeable.UpgradeHolder upgrades = spiritInstillerBlockEntity.getUpgradeHolder();
-						double experienceModifier = upgrades.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
-						float recipeExperienceBeforeMod = getExperience();
-						awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-						MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
-					}
-					
-					// Run Advancement trigger
-					grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
-				}
+				resultStack = spawnerStack.copy();
+				resultStack.setCount(1);
+				resultStack.setSubNbt("BlockEntityTag", blockEntityTag);
+				
+				spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, spiritInstillerBlockEntity.getUpgradeHolder(), world, pos);
 			}
 		}
 		

@@ -115,20 +115,24 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 			
-			// Calculate and spawn experience
-			int awardedExperience = 0;
-			if (getExperience() > 0) {
-				double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
-				float recipeExperienceBeforeMod = getExperience();
-				awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-				MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
-			}
-			
-			// Run Advancement trigger
-			grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
+			spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, upgradeHolder, world, pos);
 		}
 		
 		return resultStack;
+	}
+	
+	// Calculate and spawn experience
+	protected void spawnXPAndGrantAdvancements(ItemStack resultStack, SpiritInstillerBlockEntity spiritInstillerBlockEntity, Upgradeable.UpgradeHolder upgradeHolder, World world, BlockPos pos) {
+		int awardedExperience = 0;
+		if (getExperience() > 0) {
+			double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
+			float recipeExperienceBeforeMod = getExperience();
+			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+			MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+		}
+		
+		// Run Advancement trigger
+		grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 	}
 	
 	protected static void grantPlayerSpiritInstillingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {

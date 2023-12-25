@@ -17,10 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(FoxEntity.EatBerriesGoal.class)
 public abstract class EatBerriesGoalMixin extends MoveToTargetPosGoal {
-	
-	@SuppressWarnings("target")
-	@Shadow(aliases = {"this$0", "field_17975"}, remap = false) // risky mixin of the day award goes to this
-	private FoxEntity foxEntity;
+
+	@Unique
+	private final FoxEntity foxEntity = (FoxEntity) mob;
 	
 	public EatBerriesGoalMixin(PathAwareEntity mob, double speed, int range) {
 		super(mob, speed, range);

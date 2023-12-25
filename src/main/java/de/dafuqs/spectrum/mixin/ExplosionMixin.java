@@ -1,9 +1,13 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectListIterator;
 import net.minecraft.block.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
@@ -29,14 +33,13 @@ public class ExplosionMixin {
 		}
 	}
 
-	@ModifyArg(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), index = 1)
-	private BlockState spectrum$modifyExplosion(BlockPos pos, BlockState state, int flags) {
-		BlockState stateAtPos = world.getBlockState(pos);
-		if(stateAtPos.getBlock() instanceof ExplosionAware explosionAware) {
-			explosionAware.beforeDestroyedByExplosion(world, pos, stateAtPos, (Explosion) (Object) this);
-			return explosionAware.getStateForExplosion(this.world, pos, stateAtPos);
+	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onDestroyedByExplosion(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/explosion/Explosion;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
+	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci, boolean bl, ObjectArrayList<Pair<ItemStack, BlockPos>> objectArrayList, boolean bl2, ObjectListIterator var5, BlockPos blockPos, BlockState blockState) {
+		if(blockState.getBlock() instanceof ExplosionAware explosionAware) {
+			explosionAware.beforeDestroyedByExplosion(world, blockPos, blockState, (Explosion) (Object) this);
+			this.world.setBlockState(blockPos, explosionAware.getStateForExplosion(this.world, blockPos, blockState), 3);
 		}
-		return state;
+		this.world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 3);
 	}
 	
 }

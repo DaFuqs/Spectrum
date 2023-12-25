@@ -479,6 +479,8 @@
   "spectrum.subtitles.unlock": "Something unlocks",
   "spectrum.subtitles.block.black_hole_chest.open": "Black Hole Chest opens",
   "spectrum.subtitles.block.black_hole_chest.close": "Black Hole Chest closes",
+  "spectrum.subtitles.block.compacting_chest.open": "Compacting Chest opens",
+  "spectrum.subtitles.block.compacting_chest.close": "Compacting Chest closes",
   "spectrum.subtitles.radiance_staff_charging": "Radiance Staff charges",
   "spectrum.subtitles.radiance_staff_place": "Radiance Staff working",
   "spectrum.subtitles.radiance_staff_break": "Light dissipates",

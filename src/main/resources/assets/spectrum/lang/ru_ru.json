@@ -2013,7 +2013,6 @@
   "item.spectrum.preservation_turret_spawn_egg": "Яйцо призыва башни-стража",
   "item.spectrum.kindling_spawn_egg": "Яйцо призыва кидлинга",
   "item.spectrum.lizard_spawn_egg": "Яйцо призыва ящерицы",
-  "item.spectrum.spawner": "Пустой спавнер",
   "item.spectrum.spawner.tooltip.unknown_mob": "Неизветное существо",
   "item.spectrum.spawner.tooltip.spawn_count": "Пявится %d существ",
   "item.spectrum.spawner.tooltip.min_spawn_delay": "Мин. время появления: %d",

@@ -441,7 +441,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			backupInventory.set(i, cinderhearth.inventory.get(i));
 		}
 		
-		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 		if (couldAdd) {
 			ItemStack remainder = inputStack.getRecipeRemainder();
 			
@@ -450,7 +450,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			inputStack.decrement(1);
 			
 			if (remainder.isEmpty()) {
-				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 				if (!remainderAdded) {
 					cinderhearth.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
 				}

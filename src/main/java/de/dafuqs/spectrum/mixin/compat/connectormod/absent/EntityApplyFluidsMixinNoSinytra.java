@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.mixin.compat.connectormod.absent;
 
 import de.dafuqs.spectrum.blocks.fluid.SpectrumFluid;
-import de.dafuqs.spectrum.mixin.EntityApplyFluidsMixin;
-import de.dafuqs.spectrum.mixin.TouchingWaterAware;
+import de.dafuqs.spectrum.interfaces.TouchingWaterAware;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluid;

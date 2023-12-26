@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.interfaces;
 
 public interface TouchingWaterAware {
 

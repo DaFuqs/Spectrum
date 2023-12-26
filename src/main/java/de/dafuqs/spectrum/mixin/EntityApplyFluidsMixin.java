@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.interfaces.TouchingWaterAware;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
-import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
-import net.minecraft.util.math.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -14,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(Entity.class)
-public abstract class EntityApplyFluidsMixin implements TouchingWaterAware{
+public abstract class EntityApplyFluidsMixin implements TouchingWaterAware {
 	
 	@Final
 	@Shadow
@@ -23,12 +21,12 @@ public abstract class EntityApplyFluidsMixin implements TouchingWaterAware{
 	@Unique
 	private boolean actuallyTouchingWater = false;
 
-	@Unique
+	@Override
 	public boolean spectrum$isActuallyTouchingWater() {
 		return this.actuallyTouchingWater;
 	}
 
-	@Unique
+	@Override
 	public void spectrum$setActuallyTouchingWater(boolean actuallyTouchingWater) { this.actuallyTouchingWater = actuallyTouchingWater; }
 	
 	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)

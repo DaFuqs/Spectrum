@@ -3,7 +3,7 @@
   "pools": [
     {
       "rolls": {
-        "min": 2,
+        "min": 1,
         "max": 3
       },
       "bonus_rolls": 0,
@@ -13,13 +13,33 @@
           "name": "spectrum:pipe_bomb"
         }
       ],
+      "functions": []
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 2
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:incandescent_amalgam"
+        }
+      ],
       "functions": [
         {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 3,
-            "max": 7
-          }
+          "function": "spectrum:merge_nbt_randomly",
+          "tags": [
+            "{AlcPercent: 10}",
+            "{AlcPercent: 11}",
+            "{AlcPercent: 12}",
+            "{AlcPercent: 13}",
+            "{AlcPercent: 14}",
+            "{AlcPercent: 15}",
+            "{AlcPercent: 16}",
+            "{AlcPercent: 20}"
+          ]
         }
       ]
     }

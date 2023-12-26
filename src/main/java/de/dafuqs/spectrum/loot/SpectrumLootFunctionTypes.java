@@ -20,7 +20,7 @@ public class SpectrumLootFunctionTypes {
 	public static void register() {
 		DYE_RANDOMLY = register("dye_randomly", new DyeRandomlyLootFunction.Serializer());
 		FERMENT_RANDOMLY = register("ferment_randomly", new FermentRandomlyLootFunction.Serializer());
-		SET_NBT_RANDOMLY = register("merge_nbt_randomly", new SetNbtRandomlyLootFunction.Serializer());
+		SET_NBT_RANDOMLY = register("merge_nbt_randomly", new MergeNbtRandomlyLootFunction.Serializer());
 		FILL_POTION_FILLABLE = register("fill_potion_fillable", new FillPotionFillableLootCondition.Serializer());
 	}
 	

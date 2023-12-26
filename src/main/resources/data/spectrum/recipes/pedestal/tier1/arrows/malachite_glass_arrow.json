@@ -10,16 +10,13 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "TMT",
-    " S ",
-    " F "
+    "M",
+    "S",
+    "F"
   ],
   "key": {
-    "T": {
-      "item": "spectrum:raw_malachite"
-    },
     "M": {
-      "item": "spectrum:refined_malachite"
+      "item": "spectrum:raw_malachite"
     },
     "S": {
       "item": "minecraft:stick"

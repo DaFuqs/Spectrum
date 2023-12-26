@@ -23,7 +23,6 @@ public class SpectrumEntityTypes {
 	public static final EntityType<? extends ItemEntity> FIREPROOF_ITEM = register("fireproof_item", 6, 20, true, EntityDimensions.changing(0.25F, 0.25F), true, FireproofItemEntity::new);
 	public static final EntityType<EggLayingWoolyPigEntity> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
 	public static final EntityType<GlassArrowEntity> GLASS_ARROW = register("glass_arrow", EntityType.Builder.<GlassArrowEntity>create(GlassArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
-	public static final EntityType<CapriciousArrowEntity> CAPRICIOUS_ARROW = register("capricious_arrow", EntityType.Builder.<CapriciousArrowEntity>create(CapriciousArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
 	public static final EntityType<MiningProjectileEntity> MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 	public static final EntityType<ParametricMiningDeviceEntity> PARAMETRIC_MINING_DEVICE_ENTITY = register("parametric_mining_device", 4, 10, true, EntityDimensions.fixed(0.25F, 0.25F), false, ParametricMiningDeviceEntity::new);
 	public static final EntityType<BidentEntity> BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);

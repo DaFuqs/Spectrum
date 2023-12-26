@@ -12,7 +12,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -311,8 +311,8 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		current().drawBackground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
 		current().drawForeground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
 		
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR);
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR);
+		this.textRenderer.drawWithShadow(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR);
+		this.textRenderer.drawWithShadow(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR);
 	}
 	
 	@Override

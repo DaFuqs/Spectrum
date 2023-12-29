@@ -107,6 +107,7 @@
     "client.accessors.BakedOverrideAccessor",
     "client.accessors.BossBarHudAccessor",
     "client.accessors.ModelOverrideListAccessor",
+    "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin"

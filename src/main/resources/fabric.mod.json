@@ -56,7 +56,10 @@
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
       "spectrum:on_primordial_fire"
-    ]
+    ],
+    "lithium:options": {
+      "entity.collisions.fluid": false
+    }
   },
   "depends": {
     "fabricloader": ">=0.14.25",

@@ -226,10 +226,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity, world.getRegistryManager());
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
-			// spawn the result stack in world
 			if (spiritInstillerBlockEntity.getStack(0).isEmpty()) {
+				// keep it on the Instiller
 				spiritInstillerBlockEntity.setStack(0, resultStack);
 			} else {
+				// spawn the result stack in world
 				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 			}
 		}

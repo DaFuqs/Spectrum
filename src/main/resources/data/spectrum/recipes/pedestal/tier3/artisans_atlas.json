@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "cyan": 8,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 2,
+  "experience": 4.0,
+  "pattern": [
+    "PPP",
+    "SCS",
+    "PPP"
+  ],
+  "key": {
+    "C": {
+      "item": "spectrum:radiating_ender"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "item": "spectrum:stardust"
+    }
+  },
+  "result": {
+    "item": "spectrum:artisans_atlas",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/items/artisans_atlas"
+}

@@ -31,17 +31,24 @@ public abstract class EntityApplyFluidsMixin {
 	@Inject(method = "isSubmergedIn", at = @At("RETURN"), cancellable = true)
 	public void spectrum$isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
 		if (!cir.getReturnValue() && fluidTag == FluidTags.WATER) {
-			cir.setReturnValue(this.submergedFluidTag.contains(fluidTag) || this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
+			cir.setReturnValue(this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID));
 		}
 	}
 	
-	@Redirect(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
-	public boolean spectrum$updateMovementInFluid(FluidState fluidState, TagKey<Fluid> tag) {
-		return isInFluid(fluidState, tag);
+	@Inject(method = "isSubmergedInWater", at = @At("RETURN"), cancellable = true)
+	public void spectrum$isSubmergedInWater(CallbackInfoReturnable<Boolean> cir) {
+		if (!cir.getReturnValue() && this.submergedFluidTag.contains(SpectrumFluidTags.SWIMMABLE_FLUID)) {
+			//this.submergedFluidTag.add(FluidTags.WATER);
+			cir.setReturnValue(true);
+		}
 	}
 	
-	@Unique
-	private boolean isInFluid(FluidState fluidState, TagKey<Fluid> tag) {
+	// 25.12.2023: Lithium's mixin cancel makes this code not run, making fluids not swimmable
+	// https://github.com/CaffeineMC/lithium-fabric/blob/300f430d7b8618ac3b0862892b36696dcfab5a85/src/main/java/me/jellysquid/mods/lithium/mixin/entity/collisions/fluid/EntityMixin.java#L46
+	// we therefore disable that mixin in our fabric.mod.json like documented in
+	// https://github.com/CaffeineMC/lithium-fabric/wiki/Disabling-Lithium's-Mixins-using-your-mod's-fabric-mod.json
+	@Redirect(method = "updateMovementInFluid", at = @At(value = "INVOKE", target = "Lnet/minecraft/fluid/FluidState;isIn(Lnet/minecraft/registry/tag/TagKey;)Z"))
+	public boolean spectrum$updateMovementInFluid(FluidState fluidState, TagKey<Fluid> tag) {
 		if (tag == FluidTags.WATER) {
 			return (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.SWIMMABLE_FLUID));
 		} else {

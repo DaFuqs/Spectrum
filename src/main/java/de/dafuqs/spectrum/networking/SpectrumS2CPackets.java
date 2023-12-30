@@ -39,5 +39,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_ASCENSION_APPLIED_EFFECTS = SpectrumCommon.locate("play_ascension_applied_effects");
 	public static final Identifier PLAY_DIVINITY_APPLIED_EFFECTS = SpectrumCommon.locate("play_divinity_applied_effects");
 	public static final Identifier MOONSTONE_BLAST = SpectrumCommon.locate("moonstone_blast");
+	public static final Identifier SYNC_ARTISANS_ATLAS = SpectrumCommon.locate("sync_artisans_atlas");
 
 }

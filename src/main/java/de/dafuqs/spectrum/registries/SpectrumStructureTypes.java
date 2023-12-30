@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import com.mojang.serialization.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.structures.*;
+import de.dafuqs.spectrum.worldgen.*;
 import net.minecraft.registry.*;
 import net.minecraft.world.gen.structure.*;
 

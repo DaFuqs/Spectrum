@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.map.ArtisansAtlasState;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
@@ -25,7 +26,11 @@ import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.network.*;
+import net.minecraft.client.render.MapRenderer;
 import net.minecraft.item.*;
+import net.minecraft.item.map.MapState;
+import net.minecraft.network.NetworkThreadUtils;
+import net.minecraft.network.packet.s2c.play.MapUpdateS2CPacket;
 import net.minecraft.particle.*;
 import net.minecraft.registry.*;
 import net.minecraft.screen.*;
@@ -390,11 +395,39 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SYNC_ARTISANS_ATLAS, (client, handler, buf, responseSender) -> {
+			String targetIdStr = buf.readString();
+			Identifier targetId = targetIdStr.length() == 0 ? null : new Identifier(targetIdStr);
+
+			MapUpdateS2CPacket packet = new MapUpdateS2CPacket(buf);
+
 			client.execute(() -> {
-				SpectrumMusicManager.getInstance().start();
+				NetworkThreadUtils.forceMainThread(packet, handler, client);
+				MapRenderer mapRenderer = client.gameRenderer.getMapRenderer();
+				int i = packet.getId();
+				String string = FilledMapItem.getMapName(i);
+
+				if (client.world != null) {
+					MapState mapState = client.world.getMapState(string);
+
+					if (mapState == null) {
+						mapState = new ArtisansAtlasState(packet.getScale(), packet.isLocked(), client.world.getRegistryKey());
+						client.world.putClientsideMapState(string, mapState);
+					}
+
+					if (mapState instanceof ArtisansAtlasState artisansAtlasState) {
+						artisansAtlasState.setTargetId(targetId);
+						packet.apply(mapState);
+						mapRenderer.updateTexture(i, mapState);
+					}
+				}
 			});
-		}));
-	}
-	
+		});
+
+        ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
+            client.execute(() -> {
+                SpectrumMusicManager.getInstance().start();
+            });
+        }));
+    }
 }

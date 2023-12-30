@@ -14,7 +14,7 @@ public class MixinWalkNodeProcessor {
 	
 	@Inject(method = "inflictsFireDamage(Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
 	private static void spectrum$burningBlockPathfinding(BlockState state, CallbackInfoReturnable<Boolean> cir) {
-		if (state.isOf(SpectrumBlocks.PRIMORDIAL_FIRE)) {
+		if (state.isIn(SpectrumBlockTags.FIRE_LAND_NODE_MARKERS)) {
 			cir.setReturnValue(true);
 		}
 	}
@@ -22,9 +22,7 @@ public class MixinWalkNodeProcessor {
 	@Inject(method = "getCommonNodeType(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/entity/ai/pathing/PathNodeType;", at = @At("RETURN"), cancellable = true)
 	private static void spectrum$addBlockNodeTypes(BlockView world, BlockPos pos, CallbackInfoReturnable<PathNodeType> cir) {
 		BlockState blockState = world.getBlockState(pos);
-		if (blockState.isOf(SpectrumBlocks.PYRITE_RIPPER)
-				|| blockState.isOf(SpectrumBlocks.SAWBLADE_GRASS)) {
-			
+		if (blockState.isIn(SpectrumBlockTags.DAMAGING_LAND_NODE_MARKERS)) {
 			cir.setReturnValue(PathNodeType.DAMAGE_OTHER);
 		}
 	}

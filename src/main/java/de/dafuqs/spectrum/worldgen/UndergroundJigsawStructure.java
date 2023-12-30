@@ -1,16 +1,16 @@
-package de.dafuqs.spectrum.structures;
+package de.dafuqs.spectrum.worldgen;
 
-import com.google.common.collect.*;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.structure.pool.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.math.random.*;
-import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.chunk.*;
@@ -19,6 +19,7 @@ import net.minecraft.world.gen.noise.*;
 import net.minecraft.world.gen.structure.*;
 
 import java.util.*;
+import java.util.function.*;
 
 /**
  * A Jigsaw Structure that has more control over where it can be placed (VerticalPlacement)
@@ -34,10 +35,9 @@ public class UndergroundJigsawStructure extends Structure {
 					Identifier.CODEC.optionalFieldOf("start_jigsaw_name").forGetter((structure) -> structure.startJigsawName),
 					Codec.intRange(0, 7).fieldOf("size").forGetter((structure) -> structure.size),
 					HeightProvider.CODEC.fieldOf("start_height").forGetter((structure) -> structure.startHeight),
-					StructurePlacementType.CODEC.fieldOf("placement_type").forGetter((structure) -> structure.structurePlacementType),
+					IntProvider.NON_NEGATIVE_CODEC.fieldOf("bury_depth").forGetter((structure) -> structure.buryDepth),
 					Codec.intRange(0, 64).fieldOf("placement_check_width").forGetter((structure) -> structure.placementCheckWidth),
 					Codec.intRange(0, 64).fieldOf("placement_check_height").forGetter((structure) -> structure.placementCheckHeight),
-					Codec.BOOL.fieldOf("placement_required").forGetter((structure) -> structure.placementRequired),
 					Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter((structure) -> structure.maxDistanceFromCenter)
 			).apply(instance, UndergroundJigsawStructure::new)).codec();
 	
@@ -46,32 +46,31 @@ public class UndergroundJigsawStructure extends Structure {
 	protected final int size;
 	protected final int placementCheckWidth;
 	protected final int placementCheckHeight;
-	protected final boolean placementRequired;
 	protected final HeightProvider startHeight;
-	protected final StructurePlacementType structurePlacementType;
+	protected final IntProvider buryDepth;
 	protected final int maxDistanceFromCenter;
 	
 	public UndergroundJigsawStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, Integer size, HeightProvider startHeight,
-									  StructurePlacementType structurePlacementType, Integer placementCheckWidth, Integer placementCheckHeight, Boolean placementRequired, Integer maxDistanceFromCenter) {
+									  IntProvider buryDepth, Integer placementCheckWidth, Integer placementCheckHeight, Integer maxDistanceFromCenter) {
 		
 		super(config);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;
 		this.size = size;
 		this.startHeight = startHeight;
-		this.structurePlacementType = structurePlacementType;
+		this.buryDepth = buryDepth;
 		this.placementCheckWidth = placementCheckWidth;
 		this.placementCheckHeight = placementCheckHeight;
-		this.placementRequired = placementRequired;
 		this.maxDistanceFromCenter = maxDistanceFromCenter;
 	}
 	
 	@Override
 	public Optional<Structure.StructurePosition> getStructurePosition(Structure.Context context) {
 		ChunkRandom chunkRandom = context.random();
+		HeightContext heightContext = new HeightContext(context.chunkGenerator(), context.world());
+		
 		int x = context.chunkPos().getStartX() + chunkRandom.nextInt(16);
 		int z = context.chunkPos().getStartZ() + chunkRandom.nextInt(16);
-		HeightContext heightContext = new HeightContext(context.chunkGenerator(), context.world());
 		int y = this.startHeight.get(chunkRandom, heightContext);
 		
 		ChunkGenerator chunkGenerator = context.chunkGenerator();
@@ -82,14 +81,12 @@ public class UndergroundJigsawStructure extends Structure {
 				new BlockPos(x - placementCheckWidth / 2, y, z - placementCheckWidth / 2),
 				new BlockPos(x + placementCheckWidth / 2, y + placementCheckHeight, z + placementCheckWidth / 2)
 		);
-		Optional<Integer> floorHeight = getFloorHeight(chunkRandom, chunkGenerator, structurePlacementType, y, placementCheckHeight, structureBox, world, noiseConfig);
-		if (floorHeight.isPresent()) {
-			y = floorHeight.get();
-		} else if (!placementRequired) {
+		Optional<Integer> floorHeight = getFloorHeight(chunkRandom, chunkGenerator, world, noiseConfig, structureBox, buryDepth);
+		if (floorHeight.isEmpty()) {
 			return Optional.empty();
 		}
 		
-		return StructurePoolBasedGenerator.generate(context, this.startPool, this.startJigsawName, this.size, new BlockPos(x, y, z), false, Optional.empty(), this.maxDistanceFromCenter);
+		return StructurePoolBasedGenerator.generate(context, this.startPool, this.startJigsawName, this.size, new BlockPos(x, floorHeight.get(), z), false, Optional.empty(), this.maxDistanceFromCenter);
 	}
 	
 	@Override
@@ -97,48 +94,63 @@ public class UndergroundJigsawStructure extends Structure {
 		return SpectrumStructureTypes.UNDERGROUND_JIGSAW;
 	}
 	
-	private static Optional<Integer> getFloorHeight(Random random, ChunkGenerator chunkGenerator, StructurePlacementType structurePlacementType, int startHeight, int structureHeight, BlockBox box, HeightLimitView world, NoiseConfig noiseConfig) {
-		int y = startHeight;
-		int lowestY = world.getBottomY() + 15;
+	private static Optional<Integer> getFloorHeight(Random random, ChunkGenerator chunkGenerator, HeightLimitView world, NoiseConfig noiseConfig, BlockBox box, IntProvider buryDepth) {
+		int lowestY = world.getBottomY() + 12;
+		
+		int floorY = box.getMinY();
+		int structureHeight = box.getMaxY() - box.getMinY();
+		if (floorY > chunkGenerator.getHeight(box.getMinX(), box.getMinZ(), Heightmap.Type.OCEAN_FLOOR_WG, world, noiseConfig) - structureHeight
+				|| floorY > chunkGenerator.getHeight(box.getMinX(), box.getMaxZ(), Heightmap.Type.OCEAN_FLOOR_WG, world, noiseConfig) - structureHeight
+				|| floorY > chunkGenerator.getHeight(box.getMaxZ(), box.getMinZ(), Heightmap.Type.OCEAN_FLOOR_WG, world, noiseConfig) - structureHeight
+				|| floorY > chunkGenerator.getHeight(box.getMaxZ(), box.getMaxZ(), Heightmap.Type.OCEAN_FLOOR_WG, world, noiseConfig) - structureHeight) {
+			
+			return Optional.empty();
+		}
 		
 		// if we are randomly picked a solid block:
 		// search downwards until we find the first non-solid block
 		// (so we do not place our structure in solid stone)
 		VerticalBlockSample heightLimitView = chunkGenerator.getColumnSample(box.getCenter().getX(), box.getCenter().getZ(), world, noiseConfig);
 		do {
-			if (y < lowestY) {
+			if (floorY < lowestY) {
 				return Optional.empty();
 			}
-			if (!heightLimitView.getState(y).isSolid()) {
+			if (!heightLimitView.getState(floorY).isSolid()) {
 				break;
 			}
-			y--;
+			floorY--;
 		} while (true);
 		
 		// then search down until we find a position 
 		// that matches the criteria of at least 3/4 corner blocks
-		List<BlockPos> boxCorners = ImmutableList.of(new BlockPos(box.getMinX(), 0, box.getMinZ()), new BlockPos(box.getMaxX(), 0, box.getMinZ()), new BlockPos(box.getMinX(), 0, box.getMaxZ()), new BlockPos(box.getMaxX(), 0, box.getMaxZ()));
-		List<VerticalBlockSample> verticalBlockSamples = boxCorners.stream().map((blockPos) -> chunkGenerator.getColumnSample(blockPos.getX(), blockPos.getZ(), world, noiseConfig)).toList();
-		Heightmap.Type type = structurePlacementType == StructurePlacementType.ON_GROUND_WATER ? Heightmap.Type.OCEAN_FLOOR_WG : Heightmap.Type.WORLD_SURFACE_WG;
+		VerticalBlockSample[] verticalBlockSamples = new VerticalBlockSample[]{
+				chunkGenerator.getColumnSample(box.getMinX(), box.getMinZ(), world, noiseConfig),
+				chunkGenerator.getColumnSample(box.getMinX(), box.getMaxZ(), world, noiseConfig),
+				chunkGenerator.getColumnSample(box.getMaxX(), box.getMinZ(), world, noiseConfig),
+				chunkGenerator.getColumnSample(box.getMaxX(), box.getMaxZ(), world, noiseConfig)
+		};
 		
-		int result;
-		for (result = y; result > lowestY; --result) {
-			int m = 0;
+		Predicate<BlockState> blockPredicate = Heightmap.Type.OCEAN_FLOOR_WG.getBlockPredicate();
+		
+		while (floorY >= lowestY) {
+			int matchingBlocks = 0;
 			for (VerticalBlockSample verticalBlockSample : verticalBlockSamples) {
-				BlockState blockState = verticalBlockSample.getState(result);
-				if (type.getBlockPredicate().test(blockState)) {
-					++m;
-					if (m == 3) {
-						if (structurePlacementType == StructurePlacementType.PARTLY_BURIED) {
-							y = -MathHelper.nextBetween(random, structureHeight / 8, structureHeight / 2);
+				BlockState blockState = verticalBlockSample.getState(floorY);
+				if (blockPredicate.test(blockState)) {
+					matchingBlocks++;
+					if (matchingBlocks == 3) {
+						floorY -= buryDepth.get(random);
+						if (floorY < lowestY) {
+							return Optional.empty();
 						}
-						return Optional.of(result);
+						return Optional.of(floorY);
 					}
 				}
 			}
+			floorY--;
 		}
 		
-		return Optional.of(result);
+		return Optional.empty();
 	}
 	
 }

@@ -8,12 +8,12 @@
   ],
   "output": {
     "id": "minecraft:lapis_lazuli",
-    "count": 4
+    "count": 8
   },
   "overrides": {
     "4+": {
       "id": "minecraft:lapis_lazuli",
-      "count": 5
+      "count": 10
     }
   },
   "min_forge_tier": 1,

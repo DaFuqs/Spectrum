@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import com.mojang.datafixers.util.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -41,8 +42,7 @@ public class StructureCompassItem extends CompassItem {
 	}
 
 	public @Nullable Pair<BlockPos, RegistryEntry<Structure>> locateStructure(@NotNull ServerWorld world, @NotNull BlockPos pos) {
-		Registry<Structure> registry = world.getRegistryManager().get(RegistryKeys.STRUCTURE);
-		Optional<RegistryEntryList.Named<Structure>> registryEntryList = registry.getEntryList(this.locatedStructures);
+		Optional<RegistryEntryList.Named<Structure>> registryEntryList = SpectrumStructureTags.entriesOf(world, locatedStructures);
 		if (registryEntryList.isPresent()) {
 			return world.getChunkManager().getChunkGenerator().locateStructure(world, registryEntryList.get(), pos, 100, false);
 		} else {

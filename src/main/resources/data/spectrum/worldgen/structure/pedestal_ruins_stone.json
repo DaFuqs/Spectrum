@@ -9,15 +9,20 @@
   "start_height": {
     "type": "minecraft:uniform",
     "max_inclusive": {
-      "absolute": 50
+      "absolute": 60
     },
     "min_inclusive": {
       "absolute": 0
     }
   },
-  "placement_type": "on_solid_ground",
+  "bury_depth": {
+    "type": "minecraft:uniform",
+    "value": {
+      "min_inclusive": 0,
+      "max_inclusive": 16
+    }
+  },
   "placement_check_width": 32,
   "placement_check_height": 16,
-  "placement_required": false,
   "spawn_overrides": {}
 }

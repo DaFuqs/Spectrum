@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
@@ -61,22 +62,24 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	public Identifier getCloakAdvancementIdentifier() {
 		return SpectrumCommon.locate("milestones/reveal_storm_stones");
 	}
-	
+
 	@Override
-	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
 		return VoxelShapes.empty();
 	}
-	
+
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if (this.isVisibleTo(context)) {
-			return SHAPE;
+		if (context instanceof EntityShapeContext entityShapeContext) {
+			Entity var4 = entityShapeContext.getEntity();
+			if (var4 instanceof PlayerEntity player) {
+				return this.isVisibleTo(player) ? SHAPE : VoxelShapes.empty();
+			}
 		}
-		return VoxelShapes.empty();
+		return VoxelShapes.fullCube();
 	}
 	
 	@Override

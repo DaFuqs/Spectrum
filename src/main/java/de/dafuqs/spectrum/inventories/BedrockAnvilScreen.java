@@ -136,11 +136,11 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 				string = "";
 			}
 			
-			handler.setNewItemName(string);
-			
-			PacketByteBuf packetByteBuf = PacketByteBufs.create();
-			packetByteBuf.writeString(name);
-			ClientPlayNetworking.send(SpectrumC2SPackets.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
+			if (handler.setNewItemName(string)) {
+				PacketByteBuf packetByteBuf = PacketByteBufs.create();
+				packetByteBuf.writeString(name);
+				ClientPlayNetworking.send(SpectrumC2SPackets.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
+			}
 		}
 	}
 	

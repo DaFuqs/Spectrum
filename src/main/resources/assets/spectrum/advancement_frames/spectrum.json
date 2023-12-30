@@ -108,6 +108,10 @@
     "advancement": "spectrum:midgame/brew_no_potion_in_potion_workshop",
     "frame": "spectrum:pile_of_poo"
   },
+  {
+    "advancement": "spectrum:midgame/build_cinderhearth_structure_without_lava",
+    "frame": "spectrum:pile_of_poo"
+  },
 
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",

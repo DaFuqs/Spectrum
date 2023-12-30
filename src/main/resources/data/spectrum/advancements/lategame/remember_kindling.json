@@ -13,13 +13,11 @@
     }
   },
   "criteria": {
-    "broken_cracked_dragonbone": {
-      "trigger": "spectrum:block_broken",
+    "remembered_kindling": {
+      "trigger": "spectrum:memory_manifesting",
       "conditions": {
-        "broken_block": {
-          "blocks": [
-            "spectrum:cracked_dragonbone"
-          ]
+        "manifested_entity": {
+          "type": "spectrum:kindling"
         }
       }
     },

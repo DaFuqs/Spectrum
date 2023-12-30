@@ -248,12 +248,12 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	@Override
 	public SoundEvent getOpenSound() {
-		return SoundEvents.BLOCK_PISTON_EXTEND;
+		return SpectrumSoundEvents.COMPACTING_CHEST_OPEN;
 	}
 	
 	@Override
 	public SoundEvent getCloseSound() {
-		return SoundEvents.BLOCK_PISTON_CONTRACT;
+		return SpectrumSoundEvents.COMPACTING_CHEST_CLOSE;
 	}
 	
 	public AutoCompactingInventory.AutoCraftingMode getAutoCraftingMode() {

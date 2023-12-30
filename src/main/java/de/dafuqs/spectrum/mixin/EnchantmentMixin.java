@@ -12,7 +12,11 @@ public abstract class EnchantmentMixin {
 	
 	@Inject(method = "isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
 	public void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-		cir.setReturnValue(cir.getReturnValue() || (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this)));
+		if (!cir.getReturnValue()) {
+			if ((stack.getItem() instanceof ExtendedEnchantable extendedEnchantable && extendedEnchantable.acceptsEnchantment((Enchantment) (Object) this))) {
+				cir.setReturnValue(true);
+			}
+		}
 	}
 	
 }

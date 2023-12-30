@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.crafting.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.dynamic.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
@@ -32,6 +33,9 @@ public class SpectrumCustomRecipeSerializers {
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");
+		
+		// Dragonrot
+		register(MeatToRottenFleshRecipe.SERIALIZER, "meat_rotting");
 		
 		// Spirit Instiller
 		register(SpawnerCreatureChangeRecipe.SERIALIZER, "spirit_instiller_spawner_creature_change");

@@ -76,7 +76,6 @@ public class EnderGlassBlock extends Block {
 	}
 	
 	@Override
-	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if ((state.get(TRANSPARENCY_STATE) == TransparencyState.NO_COLLISION)) {
 			return VoxelShapes.fullCube();

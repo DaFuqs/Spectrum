@@ -15,10 +15,9 @@
     }
   },
   "max_distance_from_center": 40,
-  "placement_type": "on_solid_ground",
+  "bury_depth": 0,
   "placement_check_width": 16,
   "placement_check_height": 10,
-  "placement_required": false,
   "spawn_overrides": {
     "creature": {
       "bounding_box": "piece",

@@ -12,13 +12,12 @@
       "absolute": 32
     },
     "min_inclusive": {
-      "absolute": 0
+      "absolute": -32
     }
   },
-  "placement_type": "on_solid_ground",
+  "bury_depth": 0,
   "placement_check_width": 32,
   "placement_check_height": 20,
-  "placement_required": true,
   "spawn_overrides": {
     "monster": {
       "bounding_box": "piece",

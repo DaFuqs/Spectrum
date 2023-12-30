@@ -66,7 +66,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			if (Support.getIntFromDecimalWithChance(amount / 80.0, world.random) > 0) {
 				double randomX = world.getRandom().nextDouble() * 0.8;
 				double randomZ = world.getRandom().nextDouble() * 0.8;
-				world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
+				world.addImportantParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
 			}
 		}
 	}

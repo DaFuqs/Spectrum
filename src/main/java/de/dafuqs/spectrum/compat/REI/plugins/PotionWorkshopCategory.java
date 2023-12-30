@@ -28,7 +28,7 @@ public abstract class PotionWorkshopCategory<T extends PotionWorkshopRecipeDispl
 	@Override
 	public void setupWidgets(Point startPoint, Rectangle bounds, List<Widget> widgets, @NotNull T display) {
 		// bubbles
-		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y + 1 + 19, 197, 0, 10, 27));
+		widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 17, startPoint.y + 21, 176, 0, 11, 27));
 		widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 18)).animationDurationTicks(display.craftingTime));
 		
 		// input slots

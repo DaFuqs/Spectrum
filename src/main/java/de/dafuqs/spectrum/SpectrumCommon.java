@@ -71,7 +71,7 @@ public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
+	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	
 	public static MinecraftServer minecraftServer;

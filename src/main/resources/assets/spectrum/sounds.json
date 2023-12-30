@@ -331,6 +331,18 @@
       "spectrum:block.black_hole_chest.close"
     ]
   },
+  "compacting_chest_open": {
+    "subtitle": "spectrum.subtitles.block.compacting_chest.open",
+    "sounds": [
+      "minecraft:tile/piston/out"
+    ]
+  },
+  "compacting_chest_close": {
+    "subtitle": "spectrum.subtitles.block.compacting_chest.close",
+    "sounds": [
+      "minecraft:tile/piston/in"
+    ]
+  },
   "fading_placed": {
     "subtitle": "spectrum.subtitles.block.fading.place",
     "sounds": [

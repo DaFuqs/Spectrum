@@ -13,11 +13,11 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
+public class MergeNbtRandomlyLootFunction extends ConditionalLootFunction {
 	
 	final List<NbtCompound> nbts;
 	
-	SetNbtRandomlyLootFunction(LootCondition[] conditions, Collection<NbtCompound> nbts) {
+	MergeNbtRandomlyLootFunction(LootCondition[] conditions, Collection<NbtCompound> nbts) {
 		super(conditions);
 		this.nbts = ImmutableList.copyOf(nbts);
 	}
@@ -43,32 +43,32 @@ public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
 	}
 	
 	public static ConditionalLootFunction.Builder<?> builder() {
-		return builder((conditions) -> new SetNbtRandomlyLootFunction(conditions, ImmutableList.of()));
+		return builder((conditions) -> new MergeNbtRandomlyLootFunction(conditions, ImmutableList.of()));
 	}
 	
-	public static class Builder extends ConditionalLootFunction.Builder<SetNbtRandomlyLootFunction.Builder> {
+	public static class Builder extends ConditionalLootFunction.Builder<MergeNbtRandomlyLootFunction.Builder> {
 		private final Set<NbtCompound> nbts = Sets.newHashSet();
 		
 		@Override
-		protected SetNbtRandomlyLootFunction.Builder getThisBuilder() {
+		protected MergeNbtRandomlyLootFunction.Builder getThisBuilder() {
 			return this;
 		}
 		
-		public SetNbtRandomlyLootFunction.Builder add(NbtCompound nbt) {
+		public MergeNbtRandomlyLootFunction.Builder add(NbtCompound nbt) {
 			this.nbts.add(nbt);
 			return this;
 		}
 		
 		@Override
 		public LootFunction build() {
-			return new SetNbtRandomlyLootFunction(this.getConditions(), this.nbts);
+			return new MergeNbtRandomlyLootFunction(this.getConditions(), this.nbts);
 		}
 	}
 	
-	public static class Serializer extends ConditionalLootFunction.Serializer<SetNbtRandomlyLootFunction> {
+	public static class Serializer extends ConditionalLootFunction.Serializer<MergeNbtRandomlyLootFunction> {
 		
 		@Override
-		public void toJson(JsonObject jsonObject, SetNbtRandomlyLootFunction lootFunction, JsonSerializationContext jsonSerializationContext) {
+		public void toJson(JsonObject jsonObject, MergeNbtRandomlyLootFunction lootFunction, JsonSerializationContext jsonSerializationContext) {
 			super.toJson(jsonObject, lootFunction, jsonSerializationContext);
 			if (!lootFunction.nbts.isEmpty()) {
 				JsonArray jsonArray = new JsonArray();
@@ -80,7 +80,7 @@ public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
 		}
 		
 		@Override
-		public SetNbtRandomlyLootFunction fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext, LootCondition[] lootConditions) {
+		public MergeNbtRandomlyLootFunction fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext, LootCondition[] lootConditions) {
 			List<NbtCompound> nbts = Lists.newArrayList();
 			if (jsonObject.has("tags")) {
 				JsonArray jsonArray = JsonHelper.getArray(jsonObject, "tags");
@@ -92,7 +92,7 @@ public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
 				}
 			}
 			
-			return new SetNbtRandomlyLootFunction(lootConditions, nbts);
+			return new MergeNbtRandomlyLootFunction(lootConditions, nbts);
 		}
 	}
 	

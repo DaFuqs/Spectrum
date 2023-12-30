@@ -6,12 +6,12 @@
   "description": "A full-feature magic mod about harnessing the powers of color",
   "authors": [
     "DaFuqs",
-    "Azzyypaaras"
+    "Azzyypaaras",
+    "Noaaan"
   ],
   "contributors": [
     "Electro_593",
-    "Maya",
-    "Noaaan"
+    "Maya"
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
@@ -56,10 +56,13 @@
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
       "spectrum:on_primordial_fire"
-    ]
+    ],
+    "lithium:options": {
+      "entity.collisions.fluid": false
+    }
   },
   "depends": {
-    "fabricloader": ">=0.14.23",
+    "fabricloader": ">=0.14.25",
     "fabric-api": ">=0.90.0",
     "minecraft": ">=1.20.1",
     "java": ">=17",

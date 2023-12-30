@@ -86,6 +86,11 @@ public class HummingstoneBlock extends BlockWithEntity {
 	}
 	
 	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(HUMMING);
+	}
+	
+	@Override
 	@SuppressWarnings("deprecation")
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);

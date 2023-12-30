@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "spectrum:black_block"
+  },
+  "color": "black",
+  "amount": 900,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_black_pigment"
+}

@@ -22,6 +22,11 @@ public class SpectrumItemStackDamageImmunities {
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageTypeTags.IS_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageTypeTags.IS_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageTypeTags.IS_FIRE);
+
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP.asItem(), DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), DamageTypeTags.IS_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP.asItem(), SpectrumDamageTypeTags.IS_PRIMORDIAL_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), SpectrumDamageTypeTags.IS_PRIMORDIAL_FIRE);
 	}
 	
 	public static void addImmunity(ItemConvertible itemConvertible, TagKey<DamageType> damageTypeTag) {

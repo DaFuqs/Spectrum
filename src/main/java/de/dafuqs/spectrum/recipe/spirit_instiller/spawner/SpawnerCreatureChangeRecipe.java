@@ -30,7 +30,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		if (entityType.isEmpty()) {
 			return false;
 		}
-		if (entityType.get().isIn(ConventionalEntityTypeTags.BOSSES)) {
+		if (entityType.get().isIn(SpectrumEntityTypeTags.SPAWNER_BOSSES)) {
 			return false;
 		}
 		

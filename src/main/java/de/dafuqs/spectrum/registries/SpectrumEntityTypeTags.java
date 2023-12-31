@@ -11,6 +11,7 @@ public class SpectrumEntityTypeTags {
 	public static final TagKey<EntityType<?>> POKING_DAMAGE_IMMUNE = getReference("poking_damage_immune");
 	public static final TagKey<EntityType<?>> PRIMORDIAL_FIRE_IMMUNE = getReference("primordial_fire_immune");
 	public static final TagKey<EntityType<?>> CONSTRUCTS = getReference("constructs");
+	public static final TagKey<EntityType<?>> SPAWNER_BOSSES = getReference("spawner_bosses");
 
 	
 	

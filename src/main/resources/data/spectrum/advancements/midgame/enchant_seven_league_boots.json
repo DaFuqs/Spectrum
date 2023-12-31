@@ -20,7 +20,7 @@
     }
   },
   "criteria": {
-    "enchanted_seven_league_boots_with_power": {
+    "enchanted_item": {
       "trigger": "minecraft:enchanted_item",
       "conditions": {
         "item": {

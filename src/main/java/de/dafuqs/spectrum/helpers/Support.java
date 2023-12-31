@@ -14,6 +14,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.math.RoundingMode;
 import java.text.*;
 import java.util.*;
 
@@ -23,6 +24,10 @@ public class Support {
 	public static final DecimalFormat DF = new DecimalFormat("0");
 	public static final DecimalFormat DF1 = new DecimalFormat("0.0");
 	public static final DecimalFormat DF2 = new DecimalFormat("0.00");
+
+	static {
+		DF1.setRoundingMode(RoundingMode.DOWN);
+	}
 	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();

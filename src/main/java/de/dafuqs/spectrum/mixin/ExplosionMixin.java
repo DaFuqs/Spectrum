@@ -22,24 +22,11 @@ public class ExplosionMixin {
 	@Final
 	private DamageSource damageSource;
 	
-	@Shadow
-	@Final
-	private World world;
-	
 	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/AbstractFireBlock;getState(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
 	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci) {
 		if (this.damageSource.isOf(SpectrumDamageTypes.INCANDESCENCE)) {
 			PrimordialFireBlock.EXPLOSION_CAUSES_PRIMORDIAL_FIRE_FLAG = true;
 		}
-	}
-
-	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;onDestroyedByExplosion(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/explosion/Explosion;)V"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci, boolean bl, ObjectArrayList<Pair<ItemStack, BlockPos>> objectArrayList, boolean bl2, ObjectListIterator var5, BlockPos blockPos, BlockState blockState) {
-		if(blockState.getBlock() instanceof ExplosionAware explosionAware) {
-			explosionAware.beforeDestroyedByExplosion(world, blockPos, blockState, (Explosion) (Object) this);
-			this.world.setBlockState(blockPos, explosionAware.getStateForExplosion(this.world, blockPos, blockState), 3);
-		}
-		this.world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 3);
 	}
 	
 }

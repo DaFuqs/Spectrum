@@ -79,7 +79,9 @@
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor",
     "accessors.TypeSpecificPredicateDeserializerMixin",
-    "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra"
+    "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra",
+    "compat.connectormod.absent.ExplosionMixin",
+    "compat.connectormod.present.ExplosionMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",

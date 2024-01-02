@@ -32,6 +32,25 @@ public class SpectrumItemStackDamageImmunities {
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.ON_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.LAVA);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, SpectrumDamageSources.PRIMORDIAL_FIRE);
+		
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP, DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.SMALL_NETHERITE_SCRAP_BUD.asItem(), DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.LARGE_NETHERITE_SCRAP_BUD.asItem(), DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.NETHERITE_SCRAP_CLUSTER.asItem(), DamageSource.IN_FIRE);
+		
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP, DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.SMALL_NETHERITE_SCRAP_BUD.asItem(), DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.LARGE_NETHERITE_SCRAP_BUD.asItem(), DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.NETHERITE_SCRAP_CLUSTER.asItem(), DamageSource.ON_FIRE);
+		
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP, DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.SMALL_NETHERITE_SCRAP_BUD.asItem(), DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.LARGE_NETHERITE_SCRAP_BUD.asItem(), DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.NETHERITE_SCRAP_CLUSTER.asItem(), DamageSource.LAVA);
+		
 	}
 	
 	public static void addImmunity(Item item, DamageSource damageSource) {

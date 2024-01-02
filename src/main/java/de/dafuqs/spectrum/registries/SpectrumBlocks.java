@@ -369,7 +369,7 @@ public class SpectrumBlocks {
 	public static final Block RADIANT_GLASS = new RadiantGlassBlock(gemstoneGlass(BlockSoundGroup.GLASS, MapColor.PALE_YELLOW).luminance(value -> 12));
 	
 	public static final Block ETHEREAL_PLATFORM = new EtherealGlassBlock(gemstoneGlass(BlockSoundGroup.AMETHYST_BLOCK, MapColor.CLEAR).pistonBehavior(PistonBehavior.NORMAL));
-	public static final Block UNIVERSE_SPYHOLE = new GlassBlock(gemstoneGlass(SpectrumBlockSoundGroups.CITRINE_BLOCK, MapColor.CLEAR));
+	public static final Block UNIVERSE_SPYHOLE = new GlassBlock(settings(MapColor.CLEAR, SpectrumBlockSoundGroups.CITRINE_BLOCK, 1.5F).requiresTool().blockVision(SpectrumBlocks::never));
 
 	private static Settings chime(AbstractBlock block) {
 		return FabricBlockSettings.copyOf(block).pistonBehavior(PistonBehavior.DESTROY).hardness(1.0F).nonOpaque();

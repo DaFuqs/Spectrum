@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -30,7 +29,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		if (entityType.isEmpty()) {
 			return false;
 		}
-		if (entityType.get().isIn(SpectrumEntityTypeTags.SPAWNER_BOSSES)) {
+		if (entityType.get().isIn(SpectrumEntityTypeTags.SPAWNER_MANIPULATION_BLACKLISTED)) {
 			return false;
 		}
 		

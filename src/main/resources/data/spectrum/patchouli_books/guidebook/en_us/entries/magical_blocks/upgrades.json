@@ -69,7 +69,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_yield",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
-      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
+      "text": "This is an interesting one. Although the chance is very small, you can increase your crafting outputs.$(br)$(italic)More bang for your buck!"
     },
     {
       "type": "spectrum:pedestal_crafting",

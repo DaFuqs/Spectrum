@@ -26,7 +26,9 @@ public class Support {
 	public static final DecimalFormat DF2 = new DecimalFormat("0.00");
 
 	static {
+		DF.setRoundingMode(RoundingMode.DOWN);
 		DF1.setRoundingMode(RoundingMode.DOWN);
+		DF2.setRoundingMode(RoundingMode.DOWN);
 	}
 	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {

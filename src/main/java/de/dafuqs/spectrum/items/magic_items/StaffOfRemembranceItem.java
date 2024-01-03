@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -72,7 +71,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		if (!entity.isAlive() || entity.isRemoved() || entity.hasPassengers()) {
 			return false;
 		}
-		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) || entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
+		if (entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
 			return false;
 		}
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();

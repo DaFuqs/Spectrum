@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-A    "#c:bosses",
+    "#c:bosses",
     "minecraft:warden"
   ]
 }

@@ -38,7 +38,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		
 		// "has advancement" criteria with nonexistent advancements
 		for (Advancement advancement : serverPlayerEntity.getServer().getAdvancementLoader().getAdvancements()) {
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (advancement.getId().getNamespace().startsWith(SpectrumCommon.MOD_ID)) {
 				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
 				if (!hasAdvancement.isDone()) {
 					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {

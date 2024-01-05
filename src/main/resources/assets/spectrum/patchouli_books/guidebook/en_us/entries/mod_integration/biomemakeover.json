@@ -1,6 +1,6 @@
 {
   "name": "Biome Makeover",
-  "icon": "biomemakeover:antidote",
+  "icon": "biomemakeover:illunite_shard",
   "flag": "mod:biomemakeover",
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
@@ -22,6 +22,13 @@
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal",
       "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Illunite Auto-Harvesting",
+      "item": "biomemakeover:illunite_shard",
+      "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(item)Gemstone Buds$(), but also $(item)Illunite Shards$()."
     }
   ]
 }

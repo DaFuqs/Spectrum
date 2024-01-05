@@ -81,6 +81,18 @@
         "item": "minecraft:redstone"
       },
       "output": "spectrum:pure_redstone"
+    },
+    {
+      "input": {
+        "item": "minecraft:ancient_debris"
+      },
+      "output": "spectrum:pure_netherite_scrap"
+    },
+    {
+      "input": {
+        "item": "minecraft:netherite_scrap"
+      },
+      "output": "spectrum:pure_netherite_scrap"
     }
   ]
 }

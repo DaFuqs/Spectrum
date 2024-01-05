@@ -20,7 +20,7 @@
     }
   },
   "criteria": {
-    "enchanted_item": {
+    "enchanted_staff": {
       "trigger": "minecraft:enchanted_item",
       "conditions": {
         "item": {

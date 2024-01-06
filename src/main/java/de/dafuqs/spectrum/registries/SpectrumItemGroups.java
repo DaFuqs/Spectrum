@@ -171,6 +171,7 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.PERTURBED_EYE);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
+				entries.add(SpectrumItems.ROD_OF_SUBMISSION);
 				entries.add(SpectrumItems.ARTISANS_ATLAS);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);

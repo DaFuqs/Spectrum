@@ -393,13 +393,13 @@ public class SpectrumItems {
 	public static final Item STAFF_OF_REMEMBRANCE = new StaffOfRemembranceItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item CONSTRUCTORS_STAFF = new ConstructorsStaffItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(IS.of(1, Rarity.UNCOMMON));
+	public static final Item ROD_OF_SUBMISSION = new RodOfSubmissionItem(IS.of(1, Rarity.UNCOMMON));
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(IS.of(Rarity.UNCOMMON));
 	public static final Item PIPE_BOMB = new PipeBombItem(IS.of(1));
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(IS.of(16, Rarity.UNCOMMON));
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
-	public static final Item ROD_OF_SUBMISSION = new RodOfSubmissionItem(IS.of(1, Rarity.UNCOMMON));
-	
+
 	public static final Item INCANDESCENT_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
 	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
 	public static final Item MOONSTONE_CORE = new CloakedItem(IS.of(8, Rarity.RARE), SpectrumCommon.locate("lategame/collect_moonstone_core"), Items.WHITE_DYE);
@@ -750,13 +750,13 @@ public class SpectrumItems {
 		register("staff_of_remembrance", STAFF_OF_REMEMBRANCE, DyeColor.LIME);
 		register("constructors_staff", CONSTRUCTORS_STAFF, DyeColor.LIGHT_GRAY);
 		register("exchanging_staff", EXCHANGING_STAFF, DyeColor.LIGHT_GRAY);
+		register("rod_of_submission", ROD_OF_SUBMISSION, DyeColor.GRAY);
 		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);
 		register("pipe_bomb", PIPE_BOMB, DyeColor.ORANGE);
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("perturbed_eye", PERTURBED_EYE, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
-		register("rod_of_submission", ROD_OF_SUBMISSION, DyeColor.GRAY);
-		
+
 		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
 		register("mysterious_compass", MYSTERIOUS_COMPASS, DyeColor.GRAY);
 	}

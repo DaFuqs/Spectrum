@@ -1934,7 +1934,7 @@
   "item.spectrum.staff_of_remembrance": "Staff of Remembrance",
   "item.spectrum.staff_of_remembrance.tooltip": "Tap a creature to recollect it into a §fMemory§r",
   "item.spectrum.rod_of_submission": "Rod of Submission",
-    "item.spectrum.rod_of_submission.tooltip": "Use to ride §fany§r mob",
+    "item.spectrum.rod_of_submission.tooltip": "Use on §fany§r mob to ride it",
   "item.spectrum.pedestal_tier_1_structure_placer": "Spectrum Focus Structure Placer",
   "item.spectrum.pedestal_tier_2_structure_placer": "Spectrum Temple Structure Placer",
   "item.spectrum.pedestal_tier_3_structure_placer": "Spectrum Palace Structure Placer",

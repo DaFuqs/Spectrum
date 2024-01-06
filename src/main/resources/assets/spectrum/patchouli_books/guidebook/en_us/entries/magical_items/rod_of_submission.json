@@ -1,0 +1,21 @@
+{
+  "name": "Rod of Submission",
+  "advancement": "spectrum:unlocks/items/rod_of_submission",
+  "icon": "spectrum:rod_of_submission",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:rod_of_submission": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Not just for bottoms!$()$(br)Allows you to easily mount any mob with a small amount of gray ink."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/rod_of_submission",
+      "text": "Use on any mob to ride it."
+    }
+  ]
+}

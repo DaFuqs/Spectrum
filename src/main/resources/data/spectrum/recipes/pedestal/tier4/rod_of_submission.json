@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 2,
+  "white": 4,
+  "black": 4,
+  "experience": 2,
+  "pattern": [
+    "  S",
+    "GWF",
+    "WG "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "G": {
+      "item": "spectrum:gray_pigment"
+    },
+    "F": {
+      "item": "spectrum:effulgent_feather"
+    },
+    "W": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "spectrum:rod_of_submission",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/items/rod_of_submission"
+}

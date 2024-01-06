@@ -165,13 +165,13 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.FORTUNE, 3, false, false));
 				entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), Enchantments.SILK_TOUCH, 1, false, false));
 				entries.add(SpectrumEnchantmentHelper.addOrExchangeEnchantment(SpectrumItems.EXCHANGING_STAFF.getDefaultStack(), SpectrumEnchantments.RESONANCE, 1, false, false));
+				entries.add(SpectrumItems.ROD_OF_SUBMISSION);
 				entries.add(SpectrumItems.BLOCK_FLOODER);
 				entries.add(SpectrumItems.ENDER_SPLICE);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.ENDER_SPLICE));
 				entries.add(SpectrumItems.PERTURBED_EYE);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
-				entries.add(SpectrumItems.ROD_OF_SUBMISSION);
 				entries.add(SpectrumItems.ARTISANS_ATLAS);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);

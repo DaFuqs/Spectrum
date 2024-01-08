@@ -14,7 +14,7 @@
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
       ],
-      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
+      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle. This would be very beneficial for recipes which can only be crafted $(l:general/onyx_shards)during a specific time frame$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

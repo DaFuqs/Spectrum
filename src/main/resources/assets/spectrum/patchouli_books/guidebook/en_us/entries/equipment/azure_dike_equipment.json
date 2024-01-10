@@ -11,12 +11,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
+      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) with the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
     },
     {
       "type": "patchouli:text",
       "title": "Azure Dike",
-      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly, but steadily recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
+      "text": "A magical aura surrounding your body, shielding you from incoming damage.$(br)Slowly but steadily recharges up to a specific amount.$(br2)Each piece of Azure Dike Equipment increases the maximum amount of protection."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -37,7 +37,7 @@
       "title": "Shieldgrasp Amulet",
       "advancement": "spectrum:unlocks/trinkets/shieldgrasp_amulet",
       "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
-      "text": "Infuse it with $(l:magic/ink)Blue Ink$(/l) in a $(l:magic/color_picker)Color Picker$() to increase the amount of $(c_blue)Azure Dike$() provided.$(br)Cheap at first, the required energy to infuse more power into this amulet increases exponentially."
+      "text": "Infuse it with $(l:magic/ink)Blue Ink$(/l) in a $(l:magic/color_picker)Color Picker$() to increase the amount of $(c_blue)Azure Dike$() provided.$(br)Cheap at first, but the required energy to infuse more power into this amulet increases exponentially."
     }
   ]
 }

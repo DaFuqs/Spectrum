@@ -7,15 +7,13 @@
     {
       "type": "patchouli:image",
       "title": "Welcome to Spectrum!",
-      "images": [
-        "spectrum:textures/gui/guidebook/spectrum.png"
-      ],
+      "images": ["spectrum:textures/gui/guidebook/spectrum.png"],
       "border": true,
       "text": "Spectrum is a progression- and exploration-driven magic mod where you combine colors."
     },
     {
       "type": "patchouli:text",
-      "text": "Its color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.$(br2)Spectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum."
+      "text": "It's color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.$(br2)Spectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum."
     },
     {
       "type": "patchouli:text",

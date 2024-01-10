@@ -47,7 +47,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much more pure, crystalline variant compared to plain $(item)Raw Ore$().$(br2)On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects $(item)Pure Copper$() from oxidization."
+      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this: a much more pure, crystalline variant compared to plain $(item)Raw Ore$().$(br2)On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects $(item)Pure Copper$() from oxidization."
     },
     {
       "type": "patchouli:blasting",

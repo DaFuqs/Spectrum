@@ -35,14 +35,14 @@
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "anchor": "dragonbone_chunks",
       "item": "spectrum:dragonbone_chunk",
-      "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, making you able to finally mine it.$(br)The dropped pieces still retained some of that ancient, magical aura."
+      "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, finally making it mineable.$(br)The dropped pieces still retained some of that ancient, magical aura."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Turning to Ash",
       "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash",
-      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates heat hot enough to turn these bones into ash."
+      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates enough heat to turn these bones into ash."
     },
     {
       "type": "spectrum:pedestal_crafting",

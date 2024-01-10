@@ -50,7 +50,7 @@
       "title": "Beers",
       "recipe": "spectrum:titration_barrel/infused_beverages/beer",
       "recipe2": "spectrum:titration_barrel/infused_beverages/ale",
-      "text": "Additionally to Haste it can grant a bit of Saturation, depending on the time it fermented."
+      "text": "In addition to Haste it can grant a bit of Saturation, depending on how long it fermented."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -72,7 +72,7 @@
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Rum",
       "recipe": "spectrum:titration_barrel/infused_beverages/rum",
-      "text": "Strong to the taste, made even more intense via the influence of the colored wood, grants $(thing)Absorption$() and $(thing)Resistance$()."
+      "text": "A strong taste, made even more intense via the influence of the colored wood, grants $(thing)Absorption$() and $(thing)Resistance$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -143,7 +143,7 @@
       "title": "Vodka",
       "recipe": "spectrum:titration_barrel/infused_beverages/vodka",
       "recipe2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
-      "text": "Gets only stronger with age. Just one question: How deadly do you want it?"
+      "text": "Only gets stronger with age. Just one question: How deadly do you want it?"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

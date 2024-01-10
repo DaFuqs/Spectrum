@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
+      "text": "Since the $(l:resources/jade_vines)Jade Vines$() are notorious for restorative properties, it's no wonder they translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -24,7 +24,7 @@
       "advancement": "spectrum:midgame/tap_sweetened_jade_wine",
       "anchor": "sweetened_jade_wine",
       "item": "spectrum:moonstruck_nectar",
-      "text": "Adding a drop of $(item)Moonstruck Nectar$() seems to make the Wine much more easy to drink. Both the fermentation process is increased and negative effects softened noticeably."
+      "text": "Adding a drop of $(item)Moonstruck Nectar$() seems to make the Wine much easier to drink. The fermentation process is increased and negative effects are noticeably softened."
     },
     {
       "type": "patchouli:spotlight",

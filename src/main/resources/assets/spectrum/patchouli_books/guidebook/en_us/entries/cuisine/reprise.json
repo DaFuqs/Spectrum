@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This beverage, brewed from $(item)Chorus Fruit$(), takes over - and amplifies - not only the special taste, but also the unique property of the plant.$(br2)When ingested, this drink randomly teleports you over great distances. The higher the alcohol content, the further."
+      "text": "This beverage, brewed from $(item)Chorus Fruit$(), inherits - and amplifies - not only the special taste, but also the unique property of the plant.$(br2)When ingested, this drink randomly teleports you over great distances. The higher the alcohol content, the further."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

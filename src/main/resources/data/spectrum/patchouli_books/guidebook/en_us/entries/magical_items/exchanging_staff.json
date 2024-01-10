@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "For all those who don't live in a simple $(item)Cobblestone$() house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
+      "text": "For all those who don't either live in a simple $(item)Cobblestone$() house, or have no walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
     },
     {
       "type": "spectrum:pedestal_crafting",

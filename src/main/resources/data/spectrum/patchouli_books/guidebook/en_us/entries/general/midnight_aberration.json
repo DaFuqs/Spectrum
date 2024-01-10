@@ -11,13 +11,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Your latest findings of your $(l:creating_life/failing)last experiment$() make you strive for more and more: to squeeze every last ounce of energy out of your Gemstones.$(br2)$(l:creating_life/failing#neolith)Neolith$() is the key! With such strength and power, it will combine the powers of all the gemstones into one. This relic will be the capstone to your creation, alone for you and ONLY for you, master of Pigment!"
+      "text": "The findings from your $(l:creating_life/failing)last experiment$() make you strive for more and more: to squeeze every last ounce of energy out of your Gemstones.$(br2)$(l:creating_life/failing#neolith)Neolith$() is the key! With such strength and power, it will combine the powers of all the gemstones into one. This relic will be the capstone to your creation, alone for you and ONLY for you, master of Pigment!"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "The fusion of these magical energies will try your Shrine like nothing before - with a display to match. Best to make sure your shrine and the blocks around it are fortified.$(br)Requires daytime and a clear sky."
+      "text": "The fusion of these magical energies will try your Shrine like nothing before - with a display to match. Who knows what might manifest? Best to make sure your shrine and the blocks around it are fortified and isolated.$(br)Requires daytime and a clear sky."
     },
     {
       "type": "patchouli:spotlight",

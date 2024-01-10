@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Compared to the $(item)Bow$(), the $(item)Crossbow$() maintains a rather inconspicuous existence.$(br2)With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
+      "text": "Compared to the $(item)Bow$(), the $(item)Crossbow$() maintains a rather inconspicuous existence.$(br2)With the Sniping Enchantment however, the crossbow becomes a deadly ranged weapon."
     },
     {
       "type": "patchouli:spotlight",

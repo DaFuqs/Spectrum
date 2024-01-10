@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of those blocks in your hands."
+      "text": "There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you can finally hold some of those blocks in your hands."
     },
     {
       "type": "patchouli:spotlight",
@@ -39,13 +39,13 @@
       "type": "patchouli:spotlight",
       "title": "Colored Leaves",
       "item": "spectrum:orange_leaves",
-      "text": "Colored Leaves get stimulated in a way to release a lot more $(item)saplings$().$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
+      "text": "Colored Leaves get stimulated in a way to release a lot more $(item)saplings$().$(br2)Applied to a hoe this will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
       "item": "minecraft:spawner",
-      "text": "In the depths, you have come across cages that seem to spit out an endless number of enemies. What madman put them there, what purpose they serve, and whether it was worth it is a mystery to you. But you can certainly find some use for them. Their creator hopefully won't miss you packing a few."
+      "text": "In the depths, you have come across cages that seem to spit out an endless number of enemies. What madman put them there, what purpose they serve, and whether it was worth it is a mystery to you. But you can certainly find some use for them. Their creator hopefully won't miss you taking a few."
     },
     {
       "type": "patchouli:spotlight",

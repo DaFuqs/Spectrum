@@ -26,7 +26,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
-      "text": "Also freezes the target, slowing them down. Also deals freezing damage over time."
+      "text": "Also freezes the target, slowing them down and dealing freezing damage over time."
     },
     {
       "type": "spectrum:pedestal_crafting",

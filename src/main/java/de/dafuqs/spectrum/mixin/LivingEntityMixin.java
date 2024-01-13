@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.TouchingWaterAware;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -357,6 +358,6 @@ public abstract class LivingEntityMixin {
 	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
 	public boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object) livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
+		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
 	}
 }

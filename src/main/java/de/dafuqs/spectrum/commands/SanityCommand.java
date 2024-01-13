@@ -107,7 +107,7 @@ public class SanityCommand {
 						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");
 					} else {
 						LootTable lootTable = source.getWorld().getServer().getLootManager().getLootTable(lootTableID);
-						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
+						LootPool[] lootPools = lootTable.pools;
 						if (lootPools.length == 0) {
 							SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
 						}

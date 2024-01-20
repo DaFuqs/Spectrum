@@ -9,14 +9,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A ribbon, gifted to pets as an everlasting promise to watch out and care for them.$(br)Name it, add Pigment to it in a Crafting Table and attach it on a creature."
+      "text": "A ribbon, gifted to pets as an everlasting promise to watch out and care for them.$(br)Name it and attach it on a creature. Should it ever die it will drop a $(item)Broken Promise$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "advancement": "spectrum:unlocks/items/everpromise_ribbon_recipe",
       "recipe": "spectrum:pedestal/tier4/everpromise_ribbon",
-      "text": "Your pet receive its new, colored name, will immediately trust you if it does not already and - should it ever die - drop a $(item)Broken Promise$()."
+      "text": "Your pet will immediately trust you if it does not already. Use a $(item)Crafting Table$() to add $(l:general/pigment)Pigment$() to the $(item)Ribbon$() to give your pet a colored name."
     }
   ]
 }

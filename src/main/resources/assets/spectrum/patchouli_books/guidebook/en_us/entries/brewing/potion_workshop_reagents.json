@@ -62,7 +62,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:moonstone_powder",
       "advancement": "spectrum:lategame/collect_moonstone_shard",
-      "text": "$(li)converts negative effects to their positive ones"
+      "text": "$(li)converts negative effects to equivalent positive ones"
     },
     {
       "type": "patchouli:spotlight",

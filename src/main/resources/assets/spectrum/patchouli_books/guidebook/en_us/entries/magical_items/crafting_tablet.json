@@ -11,7 +11,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Crafting Tablet",
       "recipe": "spectrum:pedestal/tier1/crafting_tablet",
-      "text": "The Crafting Tablet is so much more than a portable Crafting Table. It saves a recipe you inserted and let's you craft it on demand."
+      "text": "The Crafting Tablet is so much more than a portable Crafting Table. It saves a recipe you inserted and lets you craft it on demand."
     },
     {
       "type": "patchouli:text",

@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "Change it to bind it to your current position.$(br)The second use will teleport you back. Can even be used on other players. Cannot teleport you across dimensions."
+      "text": "Use via $(k:use) to bind it to your current position.$(br)The second use will teleport you back. Can even be used on other players. Cannot teleport you across dimensions."
     },
     {
       "type": "patchouli:spotlight",

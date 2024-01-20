@@ -20,7 +20,7 @@
         "spectrum:smooth_basalt_wall",
         "spectrum:calcite_wall"
       ],
-      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across, looking very clean and radiating dignity. The white Calcite is a wonderful contrast to the dark hues of Basalt."
+      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across - very clean looking and radiating dignity. A wonderful contrast to the dark hues of Basalt."
     },
     {
       "type": "patchouli:smelting",
@@ -28,7 +28,7 @@
       "title": "Polishing",
       "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
-      "text": "Applying heat emphasizes their dark and white textures even more.$(br)When smelted, the Basalt almost turns black. They can be crafted into a wide array of decoration blocks in the $(item)Crafting Table$() or $(item)Stone Cutter$()."
+      "text": "Applying heat emphasizes their dark and white textures even more.$(br)When smelted, the Basalt turns nearly black. They can be crafted into a wide array of decoration blocks in the $(item)Crafting Table$() or $(item)Stone Cutter$()."
     },
     {
       "type": "spectrum:collection",

@@ -23,7 +23,7 @@
       "type": "patchouli:text",
       "title": "Block Coloring",
       "advancement": "spectrum:collect_pigment",
-      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)$(thing)Crouch while having your Paintbrush equipped to bring up the color selection menu$(). You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into it's colored variant."
+      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)$(thing)Crouch while having your Paintbrush equipped to bring up the color selection menu$(). You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into its colored variant."
     },
     {
       "type": "patchouli:text",

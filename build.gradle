@@ -1,7 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.4-SNAPSHOT'
 	id 'maven-publish'
-	id 'io.github.juuxel.loom-quiltflower' version '1.7.2'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -12,7 +11,6 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	mavenLocal()
 	maven { url = "https://jitpack.io" } // Arrowhead, Dimensional Reverb, Step Height Entity Attribute
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
@@ -129,9 +127,16 @@ sourceSets {
 
 processResources {
 	inputs.property "version", project.version
+	inputs.property "minecraft_version", project.minecraft_version
+	inputs.property "loader_version", project.loader_version
+	inputs.property "fabric_version", project.fabric_version
+	filteringCharset "UTF-8"
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": project.version,
+				"minecraft_version": project.minecraft_version,
+				"loader_version": project.loader_version,
+				"fabric_version": project.fabric_version
 	}
 }
 

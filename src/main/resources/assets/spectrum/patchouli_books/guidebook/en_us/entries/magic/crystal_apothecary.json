@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Placed in $(l:resources/geodes)Geodes$(/l), automatically harvests fully grown $(item)Gemstone Clusters$().$(br2)Normally all your other constructions and even crops do pretty much freeze in time when you are away, but this construct seems to continue working even then. Weird."
+      "text": "Placed in $(l:resources/geodes)Geodes$(/l), automatically harvests fully grown $(item)Gemstone Clusters$().$(br2)Normally all your other constructions and even crops pretty much freeze in time when you are away, but this construct seems to continue working even then. Weird."
     },
     {
       "type": "spectrum:pedestal_crafting",

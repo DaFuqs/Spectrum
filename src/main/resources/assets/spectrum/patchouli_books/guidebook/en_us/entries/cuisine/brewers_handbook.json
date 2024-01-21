@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Hayo! The current state of relations between the overworld and the deep is rather poor, and unfortunately it seems to only be getting worse, and to that end I sadly can't do much.$(br2)As such, I have taking some of my time to collect a bunch of brewing recipes from the surface, adapt them to use ingredients found in the depths, and publish that as a gift to you all, in hopes that it will aid you."
+      "text": "Hayo! The current state of relations between the overworld and the deep is rather poor, and unfortunately it seems to only be getting worse, and to that end I sadly can't do much.$(br2)As such, I have taken some of my time to collect a bunch of brewing recipes from the surface, adapt them to use ingredients found in the depths, and publish that as a gift to you all, in hopes that it will aid you."
     },
     {
       "type": "patchouli:text",
@@ -85,7 +85,7 @@
     {
       "type": "spectrum:potion_workshop_crafting",
       "recipe": "spectrum:potion_workshop_crafting/sedatives",
-      "text": "$(italic)This took a lot out of me to get working. Through this, you should be able to use blood orchid extras more aggressively. If worse comes to worst, it should give you an edge."
+      "text": "$(italic)This took a lot out of me to get working. Through this, you should be able to use blood orchid extract more aggressively. If worse comes to worst, it should give you an edge."
     },
     {
       "type": "patchouli:text",

@@ -33,7 +33,7 @@
       "title": "Bident",
       "anchor": "bident",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
-      "text": "A true powerhouse when dealing with aquatic creatures.$(br2)$(italic)It may have only two prongs compared to a $(item)Trident$()$(italic), but those are twice as pointy!"
+      "text": "A true powerhouse when dealing with aquatic creatures.$(br2)$(italic)It may have only two prongs compared to a $(item)Trident$()$(italic), but they are twice as pointy!"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

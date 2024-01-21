@@ -65,7 +65,7 @@
     {
       "type": "patchouli:text",
       "title": "Catalysts",
-      "text": "The Crystallarieum also fits a stack of catalysts, speed up the process, or lower Ink consumption. While catalysts are mostly optional, some special materials may require them."
+      "text": "The Crystallarieum also fits a stack of catalysts, which can speed up the process or lower Ink consumption. While catalysts are mostly optional, some special materials may require them."
     },
     {
       "type": "spectrum:crystallarieum_growing",

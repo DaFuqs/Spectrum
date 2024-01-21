@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "As the name implies the $(l:brewing/potion_workshop)Potion Workshop's$() main focus is the creation of powerful $(item)Potions$().$(br)But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
+      "text": "As the name implies, the $(l:brewing/potion_workshop)Potion Workshop's$() main focus is the creation of powerful $(item)Potions$().$(br)But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

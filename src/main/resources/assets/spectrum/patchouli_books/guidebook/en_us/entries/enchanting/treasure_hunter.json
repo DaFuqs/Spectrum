@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Getting Mob Heads",
       "item": "spectrum:cow_head",
-      "text": "But then there were the Creepers! Struck by lightning, they explode so hefty that they blow their opponent's heads right off their necks (worst case: yours).$(br)To replicate this, you thought out this new enchantment using $(l:resources/storm_stones)Storm Stones$(/l).$(br)And so Treasure Hunter was born, allowing you to collect $(l:creating_life/mob_heads)all kinds of Mob Heads$(/l)."
+      "text": "But then there were the Creepers! Struck by lightning, they explode so forcefully that they blow their opponent's heads right off their necks (worst case: yours).$(br)To replicate this, you thought out this new enchantment using $(l:resources/storm_stones)Storm Stones$(/l).$(br)And so Treasure Hunter was born, allowing you to collect $(l:creating_life/mob_heads)all kinds of Mob Heads$(/l)."
     },
     {
       "type": "patchouli:spotlight",

@@ -173,7 +173,7 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent HONEY_PASTRY = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F)
+			.hunger(6).saturationModifier(1.5F)
 			.build();
 	
 	public static final FoodComponent JARAMEL_TART = new FoodComponent.Builder()

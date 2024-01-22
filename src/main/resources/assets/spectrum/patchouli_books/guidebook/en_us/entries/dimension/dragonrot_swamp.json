@@ -11,11 +11,9 @@
     {
       "type": "patchouli:image",
       "title": "Dragonrot Swamp",
-      "images": [
-        "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
-      ],
+      "images": ["spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"],
       "border": true,
-      "text": "Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here.$(br)An acidic smell lingers in the air."
+      "text": "Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervade the swamp-like thicket here.$(br)An acidic smell lingers in the air."
     },
     {
       "type": "patchouli:spotlight",

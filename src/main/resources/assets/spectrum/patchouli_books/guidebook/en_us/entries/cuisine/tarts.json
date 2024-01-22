@@ -31,7 +31,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/ashen_tart",
-      "text": "Makes you able to see & swim in Lava as were it Water.$(br)However, does NOT make you fire immune."
+      "text": "Makes you able to see & swim in Lava as if it were Water.$(br)However, does NOT make you fire immune."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -41,7 +41,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/whispy_tart",
-      "text": "Makes you feel well rested, like after a good nights sleep. Scares away creatures of nightmares."
+      "text": "Makes you feel well rested, like after a good night's sleep. Scares away creatures of nightmares."
     },
     {
       "type": "spectrum:pedestal_crafting",

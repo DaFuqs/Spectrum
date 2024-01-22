@@ -44,7 +44,7 @@
       "type": "patchouli:spotlight",
       "title": "Preservation Ruins",
       "item": "spectrum:preservation_controller",
-      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seemed to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
+      "text": "Deep underground you found this outlandish structure, which seems to be built from immensely sturdy stone. Whoever constructed them seems to have knowledge way beyond your understanding.$(br)There has to be a way to get in there! If not now, then later... better keep the location in mind."
     },
     {
       "type": "patchouli:text",
@@ -81,7 +81,7 @@
         "spectrum:textures/gui/guidebook/preservation_ruin_color_mixing.png"
       ],
       "border": true,
-      "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
+      "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)all laid out already$(/l)."
     },
     {
       "type": "patchouli:image",

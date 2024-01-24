@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
+import de.dafuqs.spectrum.helpers.FluidInput;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.id.incubus_core.recipe.*;
@@ -43,11 +44,11 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 		RenderSystem.enableBlend();
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
 		
-		Fluid fluid = recipe.getFluidInput();
-		boolean usesFluid = fluid != Fluids.EMPTY;
+		FluidInput fluid = recipe.getFluidInput();
+		boolean usesFluid = fluid != FluidInput.EMPTY;
 		IngredientStack bucketStack = IngredientStack.EMPTY;
 		if (usesFluid) {
-			bucketStack = IngredientStack.of(Ingredient.ofStacks(recipe.getFluidInput().getBucketItem().getDefaultStack()));
+			bucketStack = IngredientStack.of(recipe.getFluidInput().into());
 		}
 		
 		// the ingredients

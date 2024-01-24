@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
+import de.dafuqs.spectrum.helpers.FluidInput;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
@@ -8,7 +9,6 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.effect.*;
-import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -32,12 +32,12 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
 	protected final Item tappingItem;
-	protected final Fluid fluid;
+	protected final FluidInput fluid;
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
 	
-	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidInput fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputStacks = inputStacks;
@@ -106,7 +106,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public Fluid getFluidInput() {
+	public FluidInput getFluidInput() {
 		return fluid;
 	}
 	

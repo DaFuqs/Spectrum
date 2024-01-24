@@ -183,14 +183,19 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
-	
+
+	@Override
+	public int getMaxUseTime(ItemStack stack) {
+		return 20000;
+	}
+
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the item's usage action every x ticks
 		if (remainingUseTicks % 10 != 0) {
 			return;
 		}
-		
+
 		if (!(user instanceof PlayerEntity player)) {
 			user.stopUsingItem();
 			return;

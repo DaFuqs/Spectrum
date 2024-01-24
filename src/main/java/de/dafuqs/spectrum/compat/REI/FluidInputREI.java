@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.helpers.FluidInput;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.fluid.Fluids;

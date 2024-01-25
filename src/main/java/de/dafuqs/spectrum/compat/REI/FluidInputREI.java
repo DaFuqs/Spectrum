@@ -8,7 +8,7 @@ import net.minecraft.fluid.Fluids;
 import org.jetbrains.annotations.NotNull;
 
 public class FluidInputREI {
-
+    // don't pass null, pass FluidInput.EMPTY.
     public static EntryIngredient into(@NotNull FluidInput input) {
         // TEMP: Imitating old behavior. Not sure why *specifically* buckets,
         // but will do anyway.

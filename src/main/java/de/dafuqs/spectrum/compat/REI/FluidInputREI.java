@@ -15,7 +15,8 @@ public class FluidInputREI {
     // don't pass null, pass FluidInput.EMPTY.
     public static EntryIngredient into(@NotNull FluidInput input) {
         // TEMP: Imitating old behavior. Not sure why *specifically* buckets,
-        // but will do anyway.
+        // but will do anyway. It would be preferred to copy the display
+        // behavior of EMI.
 
         // return empty stack if input is empty.
         // Redundant: the sole caller of this *checks if input is empty.*
@@ -24,10 +25,11 @@ public class FluidInputREI {
 
         if (input.fluid().isPresent())
             return EntryIngredients.of(input.fluid().get().getBucketItem());
-        // NOTE: would use ofFluidTag if not for the buckets.
         if (input.tag().isPresent()) {
             // NOTE: Using ObjectOpenHashSet, there may be a better type
             // or mechanism for sorting out distinct buckets.
+            // Would use fluid.getDefaultState().isStill() instead of this,
+            // if REI should render the fluids themselves instead.
             ObjectOpenHashSet<Item> unique = new ObjectOpenHashSet<>();
             return EntryIngredients.ofTag(input.tag().get(),
                     (entry) -> {

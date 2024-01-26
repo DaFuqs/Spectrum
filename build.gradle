@@ -1,7 +1,6 @@
 plugins {
-	id 'fabric-loom' version '1.4-SNAPSHOT'
+	id 'fabric-loom' version '1.5-SNAPSHOT'
 	id 'maven-publish'
-	id 'io.github.juuxel.loom-quiltflower' version '1.7.2'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -56,17 +55,13 @@ dependencies {
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
-
-	modImplementation ("eu.pb4:common-protection-api:${project.cpa_version}")
-
+	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
+	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}")
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
-	modImplementation ("vazkii.patchouli:Patchouli:${project.patchouli_version}")
-
+	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
+	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 	// https://github.com/shedaniel/RoughlyEnoughItems
-	modCompileOnly ("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
-
-	// https://github.com/emilyploszaj/emi
-	modCompileOnly ("dev.emi:emi-fabric:${emi_version}")
+	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -74,9 +69,6 @@ dependencies {
 		case "disabled": break
 		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
 	}
-
-	// https://github.com/emilyploszaj/trinkets
-	modImplementation ("dev.emi:trinkets:${project.trinkets_version}")
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
 	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}")
@@ -87,18 +79,18 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
-	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}")))
+	implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}"))
+	// shipped with FAPI
 
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
-	modCompileOnly ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
-	//modLocalRuntime ("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") {transitive = false}
+	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
 
 	// Connect to local dev servers
 	modLocalRuntime("curse.maven:authme-356643:4629826")
 
 	// Ears compat by Maya!
-	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
+	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 }
 
 loom {

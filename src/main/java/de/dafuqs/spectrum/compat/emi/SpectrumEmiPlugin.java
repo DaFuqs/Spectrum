@@ -2,8 +2,10 @@ package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.idols.*;
+import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
@@ -25,6 +27,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 	public void register(EmiRegistry registry) {
 		registerCategories(registry);
 		registerRecipes(registry);
+		registerRecipeHandlers(registry);
 	}
 
 	public void registerCategories(EmiRegistry registry) {
@@ -145,6 +148,13 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 			Identifier id = syntheticId("natures_staff", key);
 			registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(SpectrumEmiRecipeCategories.NATURES_STAFF, id, in, out, SpectrumCommon.locate("unlocks/items/natures_staff")));
 		});
+	}
+
+	public void registerRecipeHandlers(EmiRegistry registry) {
+		registry.addRecipeHandler(SpectrumScreenHandlerTypes.PEDESTAL, new PedestalRecipeHandler());
+		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CRAFTING_TABLET, new CraftingTabletRecipeHandler());
+		registry.addRecipeHandler(SpectrumScreenHandlerTypes.CINDERHEARTH, new CinderhearthRecipeHandler());
+		registry.addRecipeHandler(SpectrumScreenHandlerTypes.POTION_WORKSHOP, new PotionWorkshopRecipeHandler());
 	}
 
 	public static Identifier syntheticId(String type, Block block) {

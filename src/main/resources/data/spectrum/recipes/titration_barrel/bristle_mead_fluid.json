@@ -108,9 +108,9 @@
   "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
+      "condition": "fabric:fluid_tags_populated",
       "values": [
-        "create"
+        "c:honey"
       ]
     }
   ]

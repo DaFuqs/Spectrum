@@ -114,9 +114,9 @@
     {
       "condition": "fabric:not",
       "value": {
-        "condition": "fabric:all_mods_loaded",
+        "condition": "fabric:fluid_tags_populated",
         "values": [
-          "create"
+          "c:honey"
         ]
       }
     }

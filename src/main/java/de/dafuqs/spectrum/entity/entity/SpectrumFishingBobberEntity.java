@@ -520,7 +520,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				double yDif = playerEntity.getY() - this.getY();
 				double zDif = playerEntity.getZ() - this.getZ();
 				double velocityMod = 0.15D;
-				entity.setVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
+				entity.addVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
 				
 				if (isAblaze()) {
 					entity.setOnFireFor(4);

@@ -21,9 +21,6 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
 		inputs = new ArrayList<>();
 		if (recipe.getFluidInput() != FluidInput.EMPTY) {
-			// TEMP: was EmiIngredient.of(List.of(EmiStack.of(...)))
-			// unsure why that's the case, EmiIngredient.of() for list size 1
-			// is equivalent to just passing the EmiStack. Strange...
 			inputs.add(FluidInputEmi.into(recipe.getFluidInput()));
 		}
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());

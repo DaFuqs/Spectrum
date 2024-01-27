@@ -1,43 +1,34 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.spectrum.helpers.FluidInput;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
+import net.minecraft.fluid.Fluid;
 import org.jetbrains.annotations.NotNull;
 
-import static net.minecraft.item.ItemStack.EMPTY;
+import static net.minecraft.fluid.Fluids.EMPTY;
 
 public class FluidInputREI {
-    // don't pass null, pass FluidInput.EMPTY.
+    // ALWAYS pass FluidInput.EMPTY INSTEAD OF null or hacked-in empty Input.
     public static EntryIngredient into(@NotNull FluidInput input) {
-        // TEMP: Imitating old behavior. Not sure why *specifically* buckets,
-        // but will do anyway. It would be preferred to copy the display
-        // behavior of EMI.
-
         // return empty stack if input is empty.
         // Redundant: the sole caller of this *checks if input is empty.*
         if (input == FluidInput.EMPTY)
-            return EntryIngredients.of(Fluids.EMPTY.getBucketItem());
+            return EntryIngredients.of(EMPTY);
 
         if (input.fluid().isPresent())
-            return EntryIngredients.of(input.fluid().get().getBucketItem());
-        if (input.tag().isPresent()) {
-            // NOTE: Using ObjectOpenHashSet, there may be a better type
-            // or mechanism for sorting out distinct buckets.
-            // Would use fluid.getDefaultState().isStill() instead of this,
-            // if REI should render the fluids themselves instead.
-            ObjectOpenHashSet<Item> unique = new ObjectOpenHashSet<>();
+            return EntryIngredients.of(input.fluid().get());
+        if (input.tag().isPresent())
+            // NOTE: Using EMIs fluid filter for parity.
             return EntryIngredients.ofTag(input.tag().get(),
                     (entry) -> {
-                        Item bucket = entry.value().getBucketItem();
-                        if(!unique.add(bucket)) return EntryStacks.of(EMPTY);
-                        return EntryStacks.of(bucket);
+                        Fluid fluid = entry.value();
+                        if(!fluid.getDefaultState().isStill())
+                            return EntryStacks.of(EMPTY);
+                        return EntryStacks.of(fluid);
                     });
-        }
+
         // UNREACHABLE under normal circumstances!
         throw new AssertionError("Invalid FluidInput object");
     }

@@ -43,6 +43,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			if (fluid.getDefaultState().isEmpty()) {
 				Optional<TagKey<Fluid>> tag = RegistryHelper.tryGetTagKey(Registries.FLUID, fluidIdentifier);
 				if (tag.isEmpty()) {
+					// NOTE: Triggers before tags are [fully] populated, if the fluid input is a tag identifier. Only useful if the error message still appears upon last reload.
 					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 				} else {
 					fluidInput = FluidInput.of(tag.get());

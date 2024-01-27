@@ -247,16 +247,16 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_PANNELING = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_VENT = new Block(Settings.copy(PYRITE));
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
-
-	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F));
-	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F));
+	
+	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pistonBehavior(PistonBehavior.BLOCK));
+	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_WALL = new WallBlock(Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
-
+	
 	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
 	public static final Block BONE_ASH_BRICK_STAIRS = new StairsBlock(BONE_ASH_BRICKS.getDefaultState(), Settings.copy(BONE_ASH_BRICKS));
 	public static final Block BONE_ASH_BRICK_SLAB = new SlabBlock(Settings.copy(BONE_ASH_BRICKS));

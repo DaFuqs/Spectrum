@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.helpers.FluidIngredient;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
+
+import java.util.Objects;
 
 public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerializer<T> {
 	
@@ -22,7 +25,8 @@ public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerial
 		}
 		return null;
 	}
-	
+
+	// NOTE: All 4 of these methods could be static, as they are not overridden, nor does it make sense to override them.
 	default void writeNullableIdentifier(PacketByteBuf buf, @Nullable Identifier identifier) {
 		if (identifier == null) {
 			buf.writeBoolean(false);
@@ -39,5 +43,17 @@ public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerial
 		}
 		return null;
 	}
-	
+
+	default @NotNull FluidIngredient readFluidIngredient(PacketByteBuf buf) {
+		boolean isTag = buf.readBoolean();
+		Identifier id = readNullableIdentifier(buf);
+		return FluidIngredient.fromIdentifier(id, isTag);
+	}
+
+	default void writeFluidIngredient(PacketByteBuf buf, @NotNull FluidIngredient ingredient) {
+		Objects.requireNonNull(ingredient);
+		buf.writeBoolean(ingredient.isTag());
+		writeNullableIdentifier(buf, ingredient.id());
+	}
+
 }

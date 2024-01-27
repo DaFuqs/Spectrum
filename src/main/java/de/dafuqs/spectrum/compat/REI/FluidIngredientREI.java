@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import de.dafuqs.spectrum.helpers.FluidInput;
+import de.dafuqs.spectrum.helpers.FluidIngredient;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
@@ -11,22 +11,22 @@ import java.util.Objects;
 
 import static net.minecraft.fluid.Fluids.EMPTY;
 
-public class FluidInputREI {
-    // ALWAYS pass FluidInput.EMPTY INSTEAD OF null
-    // DO NOT pass(OR EVEN USE AT ALL) hacked-in weird Inputs.
-    // Only use ones provided by FluidInput.of() or FluidInput.EMPTY.
-    public static EntryIngredient into(@NotNull FluidInput input) {
-        Objects.requireNonNull(input);
-        // Return empty stack if input is empty.
+public class FluidIngredientREI {
+    // ALWAYS pass FluidIngredient.EMPTY INSTEAD OF null
+    // DO NOT pass(OR EVEN USE AT ALL) hacked-in weird Ingredients.
+    // Only use ones provided by FluidIngredient.of() or FluidIngredient.EMPTY.
+    public static EntryIngredient into(@NotNull FluidIngredient ingredient) {
+        Objects.requireNonNull(ingredient);
+        // Return empty stack if ingredient is empty.
         // Semi-redundant: the sole caller of this *checks if input is empty*.
-        if (input == FluidInput.EMPTY)
+        if (ingredient == FluidIngredient.EMPTY)
             return EntryIngredients.of(EMPTY);
 
-        if (input.fluid().isPresent())
-            return EntryIngredients.of(input.fluid().get());
+        if (ingredient.fluid().isPresent())
+            return EntryIngredients.of(ingredient.fluid().get());
         // NOTE: Using EMIs fluid filter for parity.
-        if (input.tag().isPresent())
-            return EntryIngredients.ofTag(input.tag().get(),
+        if (ingredient.tag().isPresent())
+            return EntryIngredients.ofTag(ingredient.tag().get(),
                     (entry) -> {
                         Fluid fluid = entry.value();
                         if (!fluid.getDefaultState().isStill())
@@ -35,6 +35,6 @@ public class FluidInputREI {
                     });
 
         // UNREACHABLE under normal circumstances!
-        throw new AssertionError("Invalid FluidInput object");
+        throw new AssertionError("Invalid FluidIngredient object");
     }
 }

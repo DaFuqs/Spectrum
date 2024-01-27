@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
 import de.dafuqs.spectrum.compat.emi.*;
-import de.dafuqs.spectrum.helpers.FluidInput;
+import de.dafuqs.spectrum.helpers.FluidIngredient;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
@@ -20,8 +20,8 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
 		inputs = new ArrayList<>();
-		if (recipe.getFluidInput() != FluidInput.EMPTY) {
-			inputs.add(FluidInputEmi.into(recipe.getFluidInput()));
+		if (recipe.getFluidInput() != FluidIngredient.EMPTY) {
+			inputs.add(FluidIngredientEmi.into(recipe.getFluidInput()));
 		}
 		inputs.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
 		

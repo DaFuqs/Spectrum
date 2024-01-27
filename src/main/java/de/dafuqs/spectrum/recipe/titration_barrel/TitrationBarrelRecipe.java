@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import de.dafuqs.spectrum.helpers.FluidInput;
+import de.dafuqs.spectrum.helpers.FluidIngredient;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
@@ -32,12 +32,12 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
 	protected final Item tappingItem;
-	protected final FluidInput fluid;
+	protected final FluidIngredient fluid;
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
 	
-	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidInput fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputStacks = inputStacks;
@@ -106,7 +106,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public FluidInput getFluidInput() {
+	public FluidIngredient getFluidInput() {
 		return fluid;
 	}
 	

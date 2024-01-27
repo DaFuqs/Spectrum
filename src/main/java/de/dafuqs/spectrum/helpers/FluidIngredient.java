@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.id.incubus_core.util.RegistryHelper;
 import net.minecraft.fluid.Fluid;
@@ -11,6 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,22 +20,21 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class FluidInput {
-
+public class FluidIngredient {
     private final @Nullable Fluid fluid;
     private final @Nullable TagKey<Fluid> tag;
     // Compare against EMPTY to check if empty.
     // In order to represent an empty value, specifically use this field.
-    public static FluidInput EMPTY = new FluidInput(null, null);
+    public static FluidIngredient EMPTY = new FluidIngredient(null, null);
 
     // Can't be both fluid and tag, so ONLY use the provided of() methods
-    // NOTE: ALL FluidInput-related code assumes that either:
+    // NOTE: ALL FluidIngredient-related code assumes that either:
     // 1. there are always EITHER the fluid OR the fluid tag, NOT both
-    // 2. the object is empty AND the object is EQUAL TO FluidInput.EMPTY.
+    // 2. the object is empty AND the object is EQUAL TO FluidIngredient.EMPTY.
     // Violation of either of those results in either an AssertionError or
     // undefined behavior. As such, don't even allow creation of invalid obj.
-    // FluidInput objects with unknown/invalid tag IDs are considered valid.
-    private FluidInput(@Nullable Fluid fluid, @Nullable TagKey<Fluid> tag) {
+    // FluidIngredient objects with unknown/invalid tags are considered valid.
+    private FluidIngredient(@Nullable Fluid fluid, @Nullable TagKey<Fluid> tag) {
         this.fluid = fluid;
         this.tag = tag;
     }
@@ -42,22 +43,22 @@ public class FluidInput {
     @Override
     public String toString() {
         if (this == EMPTY)
-            return "FluidInput.EMPTY";
+            return "FluidIngredient.EMPTY";
         if (this.fluid != null)
-            return String.format("FluidInput[fluid=%s]", this.fluid);
+            return String.format("FluidIngredient[fluid=%s]", this.fluid);
         // must contain either or be FluidInput.EMPTY(as per FluidInput doc)
         assert this.tag != null;
-        return String.format("FluidInput[tag=%s]", this.tag);
+        return String.format("FluidIngredient[tag=%s]", this.tag);
     }
 
-    public static FluidInput of(@NotNull Fluid fluid) {
+    public static FluidIngredient of(@NotNull Fluid fluid) {
         Objects.requireNonNull(fluid);
-        return new FluidInput(fluid, null);
+        return new FluidIngredient(fluid, null);
     }
 
-    public static FluidInput of(@NotNull TagKey<Fluid> tag) {
+    public static FluidIngredient of(@NotNull TagKey<Fluid> tag) {
         Objects.requireNonNull(tag);
-        return new FluidInput(null, tag);
+        return new FluidIngredient(null, tag);
     }
 
     public Optional<Fluid> fluid() {
@@ -66,6 +67,9 @@ public class FluidInput {
     public Optional<TagKey<Fluid>> tag() {
         return Optional.ofNullable(this.tag);
     }
+    public boolean isTag() {
+        return this.tag != null;
+    }
 
     public Identifier id() {
         return fluid != null ? Registries.FLUID.getId(fluid)
@@ -73,7 +77,7 @@ public class FluidInput {
     }
 
     // Vanilla-friendly compatibility method.
-    // Represents this FluidInput as bucket stack(s).
+    // Represents this FluidIngredient as bucket stack(s).
     public @NotNull Ingredient into() {
         if (this == EMPTY) return Ingredient.empty();
         if (this.fluid != null)
@@ -81,7 +85,7 @@ public class FluidInput {
                                                  .getDefaultStack());
         if (this.tag != null) {
             // Handle custom fluid registries
-            // in the case of FluidInput objects created by other mods.
+            // in the case of FluidIngredient objects created by other mods.
             Registry<Fluid> registry = RegistryHelper.getRegistryOf(this.tag);
             if(registry == null) return Ingredient.empty();
             Optional<RegistryEntryList.Named<Fluid>> optional =
@@ -95,7 +99,7 @@ public class FluidInput {
         }
 
         // UNREACHABLE under normal circumstances!
-        throw new AssertionError("Invalid FluidInput object");
+        throw new AssertionError("Invalid FluidIngredient object");
     }
 
     public boolean test(@NotNull Fluid fluid) {
@@ -105,12 +109,44 @@ public class FluidInput {
         if (this.tag != null) return fluid.getDefaultState().isIn(this.tag);
 
         // UNREACHABLE under normal circumstances!
-        throw new AssertionError("Invalid FluidInput object");
+        throw new AssertionError("Invalid FluidIngredient object");
     }
 
     @SuppressWarnings("UnstableApiUsage")
     public boolean test(@NotNull FluidVariant variant) {
         Objects.requireNonNull(variant);
         return test(variant.getFluid());
+    }
+
+    public static @NotNull FluidIngredient fromIdentifier(@Nullable Identifier id, boolean isTag) {
+        if (isTag) {
+            Optional<TagKey<Fluid>> tag = RegistryHelper.tryGetTagKey(Registries.FLUID, id);
+            if (tag.isEmpty()) return FluidIngredient.EMPTY;
+            else return FluidIngredient.of(tag.get());
+        } else {
+            Fluid fluid = Registries.FLUID.get(id);
+            if (fluid.getDefaultState().isEmpty()) return FluidIngredient.EMPTY;
+            else return FluidIngredient.of(fluid);
+        }
+    }
+
+    // Interpret FluidIngredient.EMPTY as an unknown ID error.
+    public record JsonParseResult(
+            @NotNull FluidIngredient result,
+            boolean malformed,
+            boolean isTag,
+            @Nullable Identifier id
+    ) {}
+
+    public static @NotNull JsonParseResult fromJson(JsonObject fluidObject) {
+        boolean hasFluid = JsonHelper.hasString(fluidObject, "fluid");
+        boolean isTag = JsonHelper.hasString(fluidObject, "tag");
+
+        if ((hasFluid && isTag) || !(hasFluid || isTag)) {
+            return new JsonParseResult(FluidIngredient.EMPTY, true, isTag, null);
+        } else {
+            Identifier id = Identifier.tryParse(JsonHelper.getString(fluidObject, isTag ? "tag" : "fluid"));
+            return new JsonParseResult(fromIdentifier(id, isTag), false, isTag, id);
+        }
     }
 }

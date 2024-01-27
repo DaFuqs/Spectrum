@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.FluidInput;
+import de.dafuqs.spectrum.helpers.FluidIngredient;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
@@ -28,7 +28,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	
 	Item getTappingItem();
 	
-	FluidInput getFluidInput();
+	FluidIngredient getFluidInput();
 	
 	float getAngelsSharePerMcDay();
 	

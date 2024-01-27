@@ -333,7 +333,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					ItemStack slotStack = inventory.getStack(slot);
 					if (slotStack.isEmpty()) {
 						return true;
-					} else if (ItemStack.areEqual(slotStack, outputStack)) {
+					} else if (ItemStack.canCombine(slotStack, outputStack)) {
 						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount();
 						if (outputSpaceFound >= outputStack.getCount()) {
 							return true;

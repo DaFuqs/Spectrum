@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#spectrum:budding_blocks",
-    "#spectrum:unbreakable"
+    "#spectrum:unbreakable",
+    "#spectrum:structure_blocks"
   ]
 }

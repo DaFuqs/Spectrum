@@ -1,0 +1,46 @@
+{
+  "name": "玻璃箭",
+  "advancement": "spectrum:unlocks/malachite/glass_arrows",
+  "icon": "spectrum:amethyst_glass_arrow",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_glass_arrow": 0,
+
+    "spectrum:topaz_glass_arrow": 0,
+    "spectrum:amethyst_glass_arrow": 0,
+    "spectrum:citrine_glass_arrow": 0,
+    "spectrum:onyx_glass_arrow": 0,
+    "spectrum:moonstone_glass_arrow": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这些锋利的箭能够在水下射出，也能够刺穿半透明的方块，如玻璃，同时增加伤害.$(br)根据你给他们的效果，会施加不同影响。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow",
+      "text": "将目标拉向你的方向，准备受到致命的近战打击"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
+      "text": "冻结目标，使其减速。随着时间的推移还会造成冰冻伤害."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow",
+      "text": "用巨大的力量打击你的敌人，把他们打得很远。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
+      "text": "无论目标是否在无敌帧内，都造成伤害并重置无敌帧。对护甲和护盾造成额外伤害。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
+      "text": "能量爆炸，小范围aoe"
+    }
+  ]
+}

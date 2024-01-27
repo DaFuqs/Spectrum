@@ -1,0 +1,20 @@
+{
+  "name": "梦境活剥之刃",
+  "advancement": "spectrum:unlocks/equipment/dreamflayer",
+  "icon": "spectrum:dreamflayer",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:dreamflayer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "一个真正特殊的武器，它真正体现了“进攻才是最好的防守”。$(br)它能这样平衡各类力量:$(br)与你相比，你的对手装甲越多，它造成的伤害就越大。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/dreamflayer",
+      "text": "$(italic)如果你想找个理由穿得轻装上阵，这就是.$()$(br2)$(k:sneak) + $(k:use)使用 $(c_red)红墨水$()赋予它力量，让它在消耗的同时甚至能穿透最坚固的盔甲"
+    }
+  ]
+}

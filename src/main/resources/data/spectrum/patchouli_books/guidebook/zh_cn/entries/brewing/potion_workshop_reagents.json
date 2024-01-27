@@ -1,0 +1,184 @@
+{
+  "name": "加入狠活",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "name": "狠活试剂",
+      "title": "加入狠活",
+      "text": "用 $(l:resources/mermaids_brush)美人鱼宝石$() 取代$(item)烈焰粉$()作为活化剂会产生更具活性的药剂。这不仅允许你添加原有范围外的魔法成分，还可以使用其中的一些作为额外的试剂。每种试剂对$(item)药剂＄()都有独特的效果。每种试剂在每个配方中只能使用一次。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "试剂顺序",
+      "text": "你安排试剂的顺序并不重要。$(br2)$(bold)但是请把固定值加成试剂用在百分比加成试剂的前面"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:redstone",
+      "text": "$(li)+100% 持续时间"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:glowstone_dust",
+      "text": "$(li)+1 药水等级"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:gunpowder",
+      "text": "$(li)创造喷溅药剂"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:dragon_breath",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
+      "text": "$(li)和火药合用来创造喷溅药水$(li)如果后面放的是箭就可以制造药水箭"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:topaz_powder",
+      "text": "$(li)让粒子效果消失"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:amethyst_powder",
+      "text": "$(li)+60s 持续时间"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:citrine_powder",
+      "text": "$(li)+25% 药水等级"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:onyx_powder",
+      "text": "$(li)给药剂添加了一种非常奇怪的味道和气味，使其无法辨认。还将其染成完全黑色"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:moonstone_powder",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "text": "$(li)将负面影响转化为正面影响"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:shimmerstone_gem",
+      "text": "$(li)+20% 药水等级$(li)+20% 持续时间"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:quitoxic_powder",
+      "advancement": "spectrum:collect_quitoxic_reeds",
+      "text": "$(li)负面效果+1药水等级"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:stratine_fragments",
+      "advancement": "spectrum:midgame/collect_stratine",
+      "text": "$(li)+1药水等级$(li)+1负面药水等级$(li)-1产量"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paltaeria_fragments",
+      "advancement": "spectrum:lategame/collect_paltaeria",
+      "text": "$(li)+1随机正面效果"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:stardust",
+      "advancement": "spectrum:hidden/collect_stardust",
+      "text": "$(li)75%的几率添加上一次出产药剂的主要效果"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:star_fragment",
+      "advancement": "spectrum:collect_star_fragment",
+      "text": "$(li)增加上次出产药剂的主要效果，但药水等级-25%"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:storm_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
+      "text": "$(li)一开始会显著提高效力，但随着时间的推移，效力会快速减弱。对没有等级的药水无效"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:raw_azurite",
+      "advancement": "spectrum:midgame/collect_azurite",
+      "text": "$(li)取消滞留药水和药水箭的时间惩罚"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:four_leaf_clover",
+      "advancement": "spectrum:collect_four_leaf_clover",
+      "text": "$(li)加大随机值，体验抽卡乐趣"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:vegetal",
+      "advancement": "spectrum:collect_vegetal",
+      "text": "$(li)+200% 持续时长$(li)-25% 药水效果"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:neolith",
+      "advancement": "spectrum:midgame/collect_neolith",
+      "text": "$(li)+2 产量"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "$(li)+1 药水等级$(li)+30s持续时间 $(li)-2产量"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "text": "$(li)让药水更加爽口，快速喝完"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_dust",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "text": "$(li)+50%药水等级$(li)-75% 持续时间$(li)-1 产量"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bismuth_crystal",
+      "advancement": "spectrum:lategame/collect_bismuth_crystal",
+      "text": "$(li)为正面效果+1药水等级$(li)而且药会变得色彩斑斓"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:refined_malachite",
+      "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
+      "text": "$(li)+200% 持续时间$(li)但是更加涩口难喝"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:prickly_bayleaf",
+      "anchor": "prickly_bayleaf",
+      "advancement": "spectrum:lategame/collect_prickly_bayleaf",
+      "text": "$(li)-2 负面效果药水等级"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:jadeite_petals",
+      "anchor": "jadeite_petals",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "text": "$(li)+120s正面效果药水等级 "
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bone_ash",
+      "anchor": "bone_ash",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "text": "$(li)10%的几率添加上次酿造药剂的主要效果，效力和持续时间为+100%"
+    }
+  ]
+}

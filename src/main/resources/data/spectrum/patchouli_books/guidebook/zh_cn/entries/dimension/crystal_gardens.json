@@ -1,0 +1,46 @@
+{
+  "name": "水晶花园",
+  "advancement": "spectrum:hidden/visit_dd_biomes/crystal_gardens",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:overgrown_blackslag": 0,
+    "spectrum:nephrite_blossom_bulb": 0,
+    "spectrum:nephrite_blossom_leaves": 0,
+    "spectrum:nephrite_blossom_stem": 0,
+    "spectrum:jadeite_lotus_stem": 0,
+    "spectrum:jadeite_lotus_flower": 0,
+    "spectrum:jadeite_lotus_bulb": 0,
+    "spectrum:glass_peach": 0,
+    "spectrum:jadeite_petals": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "水晶花园",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_crystal_gardens.png"
+      ],
+      "border": true,
+      "text": "$(l:magical_blocks/liquid_crystal)液体水晶$()湖和巨大的$(l:dimension/hummingstone)晶体结构$()足以概括此群系的外观"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:overgrown_blackslag",
+      "text": "地面覆盖着一小层土，虽不多，但足以让苔藓厚实生长。与其他渊深生物群落不同，这个生物群落中的许多自然光源使得植物可以勉强在这里生长。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "白玉藤",
+      "advancement": "spectrum:hidden/collect_glass_peach",
+      "text": "这些小树能长得比想象中的大。。。虽然更像是大灌木或巨灌丛。$(br)Eeeeh..我是说细节上。$(br2)他们的水果不是玻璃做的，但它会像晶体一样闪闪发光。它们也很美味$(br)吃掉它们会给你$(thing)强韧$()效果, 这会减少你受到猛烈攻击的伤害。当然，晶桃也能被用来$(l:cuisine/infused_beverages)酿造$()和$(l:brewing/potion_workshop_brewing)制药$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "翡翠藤",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "item": "spectrum:jadeite_petals",
+      "text": "气势磅礴的藤蔓悬挂在高高的天花板上，用它们的光芒冲破黑暗。它们非常好吃，可以作为$(l:brewing/potion_workshop_reagents)制药试剂$()."
+    }
+  ]
+}

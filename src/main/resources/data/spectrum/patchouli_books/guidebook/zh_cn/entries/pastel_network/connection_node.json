@@ -1,0 +1,18 @@
+{
+  "name": "Connection Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As the most basic of nodes the Connection Node does not have any use by itself.$(br2)They solely act as a cheap and unobtrusive way to expand the range of your network."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/connection_node",
+      "text": "As all other nodes, the Connection Node has a range of 12 blocks."
+    }
+  ]
+}

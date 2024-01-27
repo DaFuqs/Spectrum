@@ -1,0 +1,24 @@
+{
+  "name": "黎明之石",
+  "advancement": "spectrum:lategame/reached_dd_floor",
+  "icon": "spectrum:downstone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:downstone": 0,
+    "spectrum:downstone_fragments": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone",
+      "text": "在渊深之底，这种坚不可破的顽石阻拦着你。基岩在他面前仅能视为笑话"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone_fragments",
+      "anchor": "downstone_fragments",
+      "advancement": "spectrum:lategame/collect_downstone_fragments",
+      "text": "看起来古人能够使用巨大的，令人印象深刻的钻头刨削它。$(br2)好像是为了制造$(item)保护石头$()?"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "宝石粉末",
+  "icon": "spectrum:amethyst_powder",
+  "sortnum": 4,
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_powder": 0,
+    "spectrum:amethyst_powder": 0,
+    "spectrum:citrine_powder": 0,
+    "spectrum:onyx_powder": 0,
+    "spectrum:moonstone_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "基座中的大多数配方都需要宝石粉末作为魔法能量的来源。$(br2)宝石粉末有各种颜色，可以通过$(l:general/anvil_crushing)物品分解$()磨制宝石碎片来获得。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "颜色混合",
+      "text": "对于一个即将成为艺术家的人来说，没有什么比调配正确的颜料更重要了。$(br)不幸的是，你发现用宝石粉混合颜色没有你以为的那么容易:宝石粉末不太想混合在一起。结果总是五彩缤纷的一坨。$(br2)也许你以后能找到解决办法？"
+    }
+  ]
+}

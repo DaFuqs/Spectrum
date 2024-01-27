@@ -1,0 +1,23 @@
+{
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:lategame/build_complex_pedestal_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_moonstone_core",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:lategame/collect_moonstone_core",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "The lower plains of the Deeper Down seem to have once been home to a highly developed civilisation."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:moonstone_shard#24",
+      "text": "Some of the cities left behind house a highly guarded structure. Their protectors seem mechanical, powered by delicate magitech."
+    }
+  ]
+}

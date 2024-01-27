@@ -1,0 +1,78 @@
+{
+  "name": "Imbrifer菜谱",
+  "icon": "spectrum:imbrifer_cookbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:imbrifer_cookbook": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "Imbrifer Fine Dining",
+      "resource_path": "spectrum:textures/gui/guidebook/lorraine.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Chef Lorraine of Imbrifer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "欢迎光临。让我们不要拘泥于前言的形式主义——你在这里是因为你想学习如何烹饪，我可以教你。我在Meriloux烹饪学院学习，这是美国最优秀的烹饪学院；我在御厨Aeverstrone的指导下训练，迎合 $(o)$(fuck)血月氏族$(); 我和我的一群学徒给Imbrifer带来了它的第一家全莲花餐厅。 $(br2)$(o)跟我学，我会教你什么是真正的美味。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Simple Entree",
+      "text": "$(br)每个人都必须从起点开始，对我的学生来说这就是起点。小龙虾和鸡尾酒具有欺骗性，它们看起来很简单，但要真正掌握它们需要技巧和练习。不用单独调制，就可以直接把桃子和香料烹饪成甜甜的酱汁，但是这需要非常小心。我用这个来过滤刚学厨艺的菜鸟。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/crawfish_cocktail",
+      "text": "$(italic)第一次做对可能需要数百次尝试。$(br2)许多人会在成功前崩溃。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Melancholic Bisque",
+      "text": "$(br)Bagnun是烹饪学校的经典。用一团新鲜奶油为基调加一堆香料的豪华浓汤；鲜红的胡椒味汤底与上层清爽的珍珠奶油味形成鲜明对比，让你的眼睛和舌头都享受到了一场盛宴。我以前认识一个叫Melochites的女人。她喜欢一种和这汤差不多的汤。很久以前我们是好朋友，也经常说我是个不折不扣的利己主义者"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/bagnun",
+      "text": "$(italic)    ....."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Soup of the Night",
+      "text": "$(br)玉藤属的植物作食材都非常的上品。$(br2)它们的球茎特别受欢迎，质地类似洋葱，但味道更精致、更甜、更空灵，为它们赢得了渊深松露的绰号。这个食谱利用了两种本地植物的现代杂交品种 $(l:resources/jade_vines)Jade Vine$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
+      "text": "$(italic)我听说玉藤花蜜有恢复功效...$(br2)这是多么怪异的杂交种."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Coy Koi Cold Cuts",
+      "text": "$(br)如果有人告诉你用鲜鱼做鱼糕，那他真的是有够蠢。准备鱼糕的正确方法是先给鱼调味，然后让它在软玉醋中发酵至少72小时。这不仅能杀死鱼体内的寄生虫，还能腌制它，使其呈现标志性的粉红色。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/fishcake",
+      "text": "$(italic)最好的鱼糕应该被腌几个月，甚至几年。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "An Essential Wine",
+      "text": "$(br)我不是酿酒师，因此我不能给出太多的注意事项$(br2)但我可以注意到，对于一个好厨师来说，了解你的食材以及它们是如何制作的是至关重要的。如果你不知道高品质什么样，你就无法判断什么叫高品质。"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/special/aqua_regia",
+      "text": "$(italic)了解你的配料，学习它们，理解它们。"
+    }
+  ]
+}

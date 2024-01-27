@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:midgame/collect_azurite",
+			"cost":"spectrum:neolith#8",
+			"text":"在所有生物群落的超世界中都会发现一种新的矿石。",
+			"type":"spectrum:hint",
+			"title":"在哪里可以找到"
+		},
+		{
+			"cost":"spectrum:neolith#24",
+			"text":"这种丰富的蓝色矿石在地表深处生成，相当罕见。",
+			"type":"spectrum:hint",
+			"title":"简明说明"
+		}
+	],
+	"advancement":"spectrum:milestones/reveal_azurite",
+	"read_by_default":true,
+	"name":"一种新矿石",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:midgame/collect_azurite",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

@@ -1,0 +1,115 @@
+{
+  "name": "药水工作站",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 1,
+  "extra_recipe_mappings": {
+    "minecraft:potion": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "酿造",
+      "text": "由于 $(l:brewing/potion_workshop)药水工作站$()基本上是$(item)酿造台$()的高级版, 因此您也可以创建所有以前可用的 $(item)药剂变种$()$(br)此外，使用许多魔法物品炼药为你提供了新的可能性。$(br2)其中一些更容易或更难获得增强效果。"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "狠活魔药",
+      "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
+      "text": "和酿造台同样的配方可以制造药水$(). 此外你还能用$(l:brewing/potion_workshop_reagents)加入狠活$(/l) 在工作站增强你的药水"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "吸收",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/absorption",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "发光",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/glowing",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "急迫",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/haste",
+      "text": "加入发酵蛛眼以反向效果炼制$(bold)挖掘疲劳$()"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "饱和",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/saturation",
+      "text": "加入发酵蛛眼以反向效果炼制$(bold)饥饿$()"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "漂浮",
+      "advancement": "spectrum:unlocks/potions/levitation",
+      "recipe": "spectrum:potion_workshop_brewing/levitation",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "幸运",
+      "advancement": "spectrum:unlocks/potions/luck",
+      "recipe": "spectrum:potion_workshop_brewing/luck",
+      "text": "加入发酵蛛眼以反向效果炼制$(bold)霉运$()"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "抗性提升",
+      "advancement": "spectrum:unlocks/potions/resistance",
+      "recipe": "spectrum:potion_workshop_brewing/resistance",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "凋零",
+      "advancement": "spectrum:unlocks/potions/wither",
+      "recipe": "spectrum:potion_workshop_brewing/wither",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "黑暗",
+      "advancement": "spectrum:unlocks/potions/darkness",
+      "recipe": "spectrum:potion_workshop_brewing/darkness",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "强韧",
+      "advancement": "spectrum:unlocks/potions/toughness",
+      "recipe": "spectrum:potion_workshop_brewing/toughness",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "致死剧毒",
+      "advancement": "spectrum:unlocks/potions/deadly_poison",
+      "recipe": "spectrum:potion_workshop_brewing/deadly_poison",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "生命枯竭",
+      "advancement": "spectrum:unlocks/potions/life_drain",
+      "recipe": "spectrum:potion_workshop_brewing/life_drain",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "恐慌",
+      "advancement": "spectrum:unlocks/potions/scarred",
+      "recipe": "spectrum:potion_workshop_brewing/scarred",
+      "text": ""
+    }
+  ]
+}

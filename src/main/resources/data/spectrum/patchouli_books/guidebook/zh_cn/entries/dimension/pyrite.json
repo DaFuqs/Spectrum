@@ -1,0 +1,55 @@
+{
+  "name": "黄铁矿",
+  "advancement": "spectrum:hidden/collect_pyrite",
+  "icon": "spectrum:pyrite",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:pyrite": 0,
+    "spectrum:pyrite_pile": 0,
+    "spectrum:pyrite_tile": 0,
+    "spectrum:pyrite_plating": 0,
+    "spectrum:pyrite_tubing": 0,
+    "spectrum:pyrite_relief": 0,
+    "spectrum:pyrite_stack": 0,
+    "spectrum:pyrite_panneling": 0,
+    "spectrum:pyrite_vent": 0,
+
+    "spectrum:pyrite_ripper": 0,
+
+    "spectrum:pyrite_chunk": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pyrite",
+      "text": "这毛边锐利坚硬，但极易断裂的矿物在$(l:dimension/razor_edge)剃刀边境$(/l)随处可见"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Slabs & Stairs",
+      "recipe": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
+      "text": "除非$(thing)精准采集$(),黄铁矿块会碎成渣渣。但你可以把他们重新黏在一起"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "All Variants",
+      "items": [
+        "spectrum:pyrite_pile",
+        "spectrum:pyrite_tile",
+        "spectrum:pyrite_plating",
+        "spectrum:pyrite_tubing",
+        "spectrum:pyrite_relief",
+        "spectrum:pyrite_stack",
+        "spectrum:pyrite_panneling",
+        "spectrum:pyrite_vent"
+      ],
+      "text": "You can form Pyrite into many decorational blocks via $(item)Crafting$() or using the $(item)Stonecutter$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Pyrite Rippers",
+      "item": "spectrum:pyrite_ripper",
+      "text": "$(italic)那些尖锐的东西正在把你撕裂。$()$(br2)虽然大部分被撕裂的是你的衣服...但是皮肉伤也不会不存在"
+    }
+  ]
+}

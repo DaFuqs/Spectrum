@@ -1,0 +1,55 @@
+{
+  "name": "升级晶体工具",
+  "advancement": "spectrum:unlocks/malachite/glass_crest_tools",
+  "icon": "spectrum:glass_crest_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:glass_crest_workstaff": 0,
+    "spectrum:glass_crest_ultra_greatsword": 0,
+    "spectrum:glass_crest_crossbow": 0,
+    "spectrum:ferocious_glass_crest_bident": 0,
+    "spectrum:fractal_glass_crest_bident": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Glass Crest Tools",
+      "text": "把$(l:resources/moonstone_cores)月长石核心$(/l)镶嵌到你的$(l:equipment/malachite_tools)孔雀石工具$(/l)来给他们升级新能力"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Workstaff",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
+      "text": "$(k:use)射出$(c_white)白色墨水$()来破坏方块. 你也可以选择诸如$(l:enchanting/resonance)共振$(/l)的附魔."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ultra Greatsword",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
+      "text": "造成穿甲的$(thing)魔法$()伤害. $(k:use)来进行$(thing)震击$(), 击退你周围任何生物$(thing)横扫之刃$()附魔能加强他)."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Crossbow",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_crossbow",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
+      "text": "如果箭上了子弹，你可以按住$(k:sneak) + $(k:use)让你的箭加强蓄能，提升伤害精准度速度"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ferocious Bident",
+      "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
+      "text": "Bident和Pocket Thunderstorm合力能让你甚至在沙漠中把自己抛向空中，摧毁沿路一切...只要你还有墨水(与激流的水位成比例). $(italic)飞行不是问题。着陆是。$()"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fractal Bident",
+      "advancement": "spectrum:unlocks/malachite/fractal_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
+      "text": "$(item)回响碎片$()让Bident在投掷时发出自己的虚像，在撞击时破碎——原件永远不会离开你的手$(br2)$(o)分形可以被赋予效率和力量，分别提高产量和损害。"
+    }
+  ]
+}

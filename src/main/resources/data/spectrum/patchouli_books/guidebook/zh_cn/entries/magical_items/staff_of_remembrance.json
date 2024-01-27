@@ -1,0 +1,21 @@
+{
+  "name": "记忆之杖",
+  "advancement": "spectrum:unlocks/items/staff_of_remembrance",
+  "icon": "spectrum:staff_of_remembrance",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:staff_of_remembrance": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)One to rule them all$()$(br)...well, politely, of course.$(br2)记忆之杖可以让你轻松地移动动物，无论是短距离还是长距离。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/staff_of_remembrance",
+      "text": "把动物变成 $(l:creating_life/memories)记忆$()."
+    }
+  ]
+}

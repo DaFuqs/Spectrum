@@ -1,0 +1,18 @@
+{
+  "name": "强运AnotherRoll",
+  "advancement": "spectrum:hidden/status_effects/another_roll",
+  "icon": "spectrum:four_leaf_clover",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:another_roll",
+      "text": "当你用附魔$(thing)时运$()  $(thing)抢夺$() 等需要运气的附魔时，影响掉落.$(br)每一级的强运将增加你获得最高掉落物的机会。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

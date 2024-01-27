@@ -1,0 +1,27 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:topaz_glass",
+			"text":"$(italic)你的宝石本质上已经有点透明了。还有什么比用这些材料制成一种玻璃更自然的呢？$()",
+			"type":"patchouli:spotlight",
+			"title":"宝石玻璃"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/glass/topaz_glass",
+			"text":"宝石玻璃有各种颜色的宝石供您选择。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:place_pedestal",
+	"extra_recipe_mappings":{
+		"spectrum:onyx_glass":0,
+		"spectrum:citrine_glass":0,
+		"spectrum:moonstone_glass":0,
+		"spectrum:amethyst_glass":0,
+		"spectrum:topaz_glass":0
+	},
+	"name":"宝石玻璃",
+	"icon":"spectrum:topaz_glass",
+	"category":"spectrum:decoration_category"
+}

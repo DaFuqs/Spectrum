@@ -15,7 +15,9 @@
       "count": 1
     }
   ],
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "min_fermentation_time_hours": 48,
   "result": {
     "item": "spectrum:pure_alcohol"

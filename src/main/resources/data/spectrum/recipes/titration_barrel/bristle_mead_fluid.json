@@ -14,7 +14,9 @@
       "count": 2
     }
   ],
-  "fluid": "create:honey",
+  "fluid": {
+    "tag": "c:honey"
+  },
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 0.25,

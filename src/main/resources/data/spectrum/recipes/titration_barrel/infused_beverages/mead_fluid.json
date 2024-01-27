@@ -7,7 +7,9 @@
       "count": 2
     }
   ],
-  "fluid": "create:honey",
+  "fluid": {
+    "tag": "c:honey"
+  },
   "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {

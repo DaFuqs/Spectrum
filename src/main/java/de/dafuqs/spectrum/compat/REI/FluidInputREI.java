@@ -7,24 +7,29 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.fluid.Fluid;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 import static net.minecraft.fluid.Fluids.EMPTY;
 
 public class FluidInputREI {
-    // ALWAYS pass FluidInput.EMPTY INSTEAD OF null or hacked-in empty Input.
+    // ALWAYS pass FluidInput.EMPTY INSTEAD OF null
+    // DO NOT pass(OR EVEN USE AT ALL) hacked-in weird Inputs.
+    // Only use ones provided by FluidInput.of() or FluidInput.EMPTY.
     public static EntryIngredient into(@NotNull FluidInput input) {
-        // return empty stack if input is empty.
-        // Redundant: the sole caller of this *checks if input is empty.*
+        Objects.requireNonNull(input);
+        // Return empty stack if input is empty.
+        // Semi-redundant: the sole caller of this *checks if input is empty*.
         if (input == FluidInput.EMPTY)
             return EntryIngredients.of(EMPTY);
 
         if (input.fluid().isPresent())
             return EntryIngredients.of(input.fluid().get());
+        // NOTE: Using EMIs fluid filter for parity.
         if (input.tag().isPresent())
-            // NOTE: Using EMIs fluid filter for parity.
             return EntryIngredients.ofTag(input.tag().get(),
                     (entry) -> {
                         Fluid fluid = entry.value();
-                        if(!fluid.getDefaultState().isStill())
+                        if (!fluid.getDefaultState().isStill())
                             return EntryStacks.of(EMPTY);
                         return EntryStacks.of(fluid);
                     });

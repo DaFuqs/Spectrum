@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
-import de.dafuqs.spectrum.helpers.FluidIngredient;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.id.incubus_core.recipe.*;

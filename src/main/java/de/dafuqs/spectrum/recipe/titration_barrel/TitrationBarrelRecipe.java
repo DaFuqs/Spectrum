@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import de.dafuqs.spectrum.helpers.FluidIngredient;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;

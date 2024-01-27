@@ -1,24 +1,19 @@
-package de.dafuqs.spectrum.helpers;
+package de.dafuqs.spectrum.recipe;
 
-import com.google.gson.JsonObject;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.id.incubus_core.util.RegistryHelper;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.id.incubus_core.util.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.*;
 
 public class FluidIngredient {
     private final @Nullable Fluid fluid;

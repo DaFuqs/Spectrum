@@ -20,7 +20,9 @@
     }
   ],
   "min_fermentation_time_hours": 24,
-  "fluid": "spectrum:midnight_solution",
+  "fluid": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 1.0,

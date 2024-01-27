@@ -19,7 +19,9 @@
     }
   ],
   "min_fermentation_time_hours": 24,
-  "fluid": "spectrum:midnight_solution",
+  "fluid": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "result": {
     "item": "spectrum:surstromming",
     "count": 4

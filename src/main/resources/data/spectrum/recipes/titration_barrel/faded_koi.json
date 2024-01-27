@@ -10,7 +10,9 @@
     }
   ],
   "min_fermentation_time_hours": 2,
-  "fluid": "spectrum:liquid_crystal",
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
   "tapping_item": "spectrum:aloe_leaf",
   "result": {
     "item": "spectrum:faded_koi",

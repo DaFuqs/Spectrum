@@ -7,9 +7,7 @@ import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.fluid.*;
 import net.minecraft.item.*;
-import net.minecraft.recipe.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -43,11 +41,11 @@ public class PageTitrationBarrelFermenting extends PageGatedRecipeDouble<ITitrat
 		RenderSystem.enableBlend();
 		drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
 		
-		Fluid fluid = recipe.getFluidInput();
-		boolean usesFluid = fluid != Fluids.EMPTY;
+		FluidIngredient fluid = recipe.getFluidInput();
+		boolean usesFluid = fluid != FluidIngredient.EMPTY;
 		IngredientStack bucketStack = IngredientStack.EMPTY;
 		if (usesFluid) {
-			bucketStack = IngredientStack.of(Ingredient.ofStacks(recipe.getFluidInput().getBucketItem().getDefaultStack()));
+			bucketStack = IngredientStack.of(recipe.getFluidInput().into());
 		}
 		
 		// the ingredients

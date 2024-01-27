@@ -7,9 +7,9 @@
 			"title":"微光石"
 		},
 		{
-			"recipe":"spectrum:crafting_table/storage_blocks/shimmerstone_block",
-			"text":"整个方块的闪光石发出明亮的黄色颗粒。",
-			"type":"patchouli:crafting"
+			"type": "spectrum:pedestal_crafting",
+			"recipe": "spectrum:pedestal/tier1/compacting/shimmerstone_block",
+			"text":"整个方块的闪光石发出明亮的黄色颗粒。"
 		}
 	],
 	"advancement":"spectrum:collect_shimmerstone",

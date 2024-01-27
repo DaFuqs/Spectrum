@@ -1,13 +1,13 @@
 {
 	"pages":[
 		{
-			"item":"spectrum:glowing_glass",
+			"item":"spectrum:radiant_glass",
 			"text":"$(italic)你需要一种有效照明你的庇护所和其他建筑的方法。$(br2)有什么比直接在玻璃中使用闪光石的发光特性更好？$()",
 			"type":"patchouli:spotlight",
 			"title":"辐射玻璃"
 		},
 		{
-			"recipe":"spectrum:pedestal/tier1/glowing_glass",
+			"recipe":"spectrum:pedestal/tier1/radiant_glass",
 			"text":"辐射玻璃几乎与有色玻璃相反。制造过程中使用的闪光石确保玻璃从内部发光。",
 			"type":"spectrum:pedestal_crafting",
 			"title":"基座配方"
@@ -15,9 +15,9 @@
 	],
 	"advancement":"spectrum:collect_shimmerstone",
 	"extra_recipe_mappings":{
-		"spectrum:glowing_glass":0
+		"spectrum:radiant_glass":0
 	},
 	"name":"辐射玻璃",
-	"icon":"spectrum:glowing_glass",
+	"icon":"spectrum:radiant_glass",
 	"category":"spectrum:decoration_category"
 }

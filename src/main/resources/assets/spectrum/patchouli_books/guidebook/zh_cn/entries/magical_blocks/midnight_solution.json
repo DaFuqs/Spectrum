@@ -12,7 +12,7 @@
 			"title":"午夜片"
 		},
 		{
-			"advancement":"spectrum:midgame/collect_midnight_chip",
+            "advancement": "spectrum:unlocks/blocks/midnight_solution",
 			"recipe":"spectrum:potion_workshop_crafting/midnight_solution_bucket",
 			"text":"使用这种液体杀死生物所获得的额外掉落，你可以创造更多的滴水。如果你仔细想想的话，那真是太病态了。",
 			"type":"spectrum:potion_workshop_crafting",

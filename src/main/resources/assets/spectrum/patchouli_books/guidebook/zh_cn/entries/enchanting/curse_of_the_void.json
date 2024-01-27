@@ -11,14 +11,14 @@
       "title": "特点"
     },
     {
-      "advancement": "spectrum:unlocks/enchantments/voiding",
+      "advancement": "spectrum:unlocks/enchantments/voiding_crafting",
       "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
       "text": "你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入虚空诅咒。",
       "type": "spectrum:enchanter_crafting",
       "title": "注魔基座配方"
     }
   ],
-  "advancement": "spectrum:unlocks/equipment/oblivion_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/voiding_usage",
   "name": "虚空诅咒",
   "icon": "minecraft:wooden_pickaxe",
   "category": "spectrum:enchanting_category"

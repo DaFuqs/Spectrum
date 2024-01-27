@@ -46,14 +46,14 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "雨天",
-      "advancement": "spectrum:collect_mermaids_gem",
+      "advancement": "spectrum:unlocks/weather/weather_rain",
       "recipe": "spectrum:fusion_shrine/weather/weather_rain",
       "text": "$(italic)咚咚咚$(br)是谁？$(br)天气预报$(br)预报什么？$(br)预报今晚会下雨。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "雷暴",
-      "advancement": "spectrum:midgame/collect_storm_stone",
+      "advancement": "spectrum:unlocks/weather/weather_thunder",
       "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
       "text": "$(italic)雷神为什么要喝水?$(br2)因为他脾气暴躁（thorsty）"
     }

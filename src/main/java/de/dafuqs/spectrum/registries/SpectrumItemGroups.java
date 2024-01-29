@@ -947,12 +947,12 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.MOONSTONE_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
 		
-		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
+		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.AZURITE_BLOCK);
 		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
 		entries.add(SpectrumBlocks.BLOODSTONE_BLOCK);
+		entries.add(SpectrumBlocks.BISMUTH_BLOCK);
 		
-		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.STRATINE_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.PALTAERIA_FRAGMENT_BLOCK);
 		entries.add(SpectrumBlocks.HOVER_BLOCK);

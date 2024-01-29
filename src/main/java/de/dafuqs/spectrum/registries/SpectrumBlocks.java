@@ -776,15 +776,15 @@ public class SpectrumBlocks {
 	public static final Block MALACHITE_ORE = new CloakedOreBlock(ore(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
 	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(deepslateOre(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(blackslagOre(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
+	public static final Block MALACHITE_BLOCK = new SpectrumFacingBlock(gemstoneBlock(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 9));
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 7));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN, 5));
-	public static final Block MALACHITE_BLOCK = new Block(gemstoneBlock(MapColor.EMERALD_GREEN, BlockSoundGroup.CHAIN));
 	
+	public static final Block BLOODSTONE_BLOCK = new SpectrumFacingBlock(gemstoneBlock(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER));
 	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 6));
 	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, gemstone(MapColor.RED, SpectrumBlockSoundGroups.SMALL_ONYX_BUD, 4));
 	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER, 3));
-	public static final Block BLOODSTONE_BLOCK = new PillarBlock(gemstoneBlock(MapColor.RED, SpectrumBlockSoundGroups.ONYX_CLUSTER));
 	
 	public static final Block STRATINE_ORE = new CloakedOreBlock(netherrackOre(), UniformIntProvider.create(3, 5), locate("milestones/reveal_stratine"), Blocks.NETHERRACK.getDefaultState());
 	public static final Block PALTAERIA_ORE = new CloakedOreBlock(endstoneOre(), UniformIntProvider.create(2, 4), locate("milestones/reveal_paltaeria"), Blocks.END_STONE.getDefaultState());

@@ -3,7 +3,7 @@
     "unlocked_pigment_palette": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/items/pigment_palette"
+        "advancement_identifier": "spectrum:unlocks/trinkets/pigment_palette"
       }
     },
     "created_spectral_shard": {

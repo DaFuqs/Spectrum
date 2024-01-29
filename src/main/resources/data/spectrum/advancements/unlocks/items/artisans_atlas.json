@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "gotten_radiating_ender": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:get_radiating_ender"
+      }
+    },
+    "collected_stardust": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_stardust"
+      }
+    }
+  }
+}

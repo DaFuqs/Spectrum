@@ -16,7 +16,7 @@
     "requirement": {
       "trigger": "minecraft:thrown_item_picked_up_by_entity",
       "conditions": {
-        "player": [
+        "entity": [
           {
             "condition": "minecraft:inverted",
             "term": {

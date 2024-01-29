@@ -35,7 +35,16 @@
     "item": "spectrum:dreamflayer"
   },
   "required_advancement": "spectrum:unlocks/equipment/dreamflayer",
-  "world_conditions": [],
+  "world_conditions": [
+    {
+      "type": "time_of_day",
+      "time": "midnight"
+    },
+    {
+      "type": "moon_phase",
+      "moon_phase": "full_moon"
+    }
+  ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [
     "nothing",

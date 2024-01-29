@@ -25,11 +25,20 @@ import me.shedaniel.rei.api.client.plugins.*;
 import me.shedaniel.rei.api.client.registry.category.*;
 import me.shedaniel.rei.api.client.registry.display.*;
 import me.shedaniel.rei.api.client.registry.screen.*;
+import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
+import me.shedaniel.rei.api.client.registry.transfer.simple.SimpleTransferHandler;
+import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.entry.*;
+import me.shedaniel.rei.api.common.transfer.info.stack.SlotAccessor;
 import me.shedaniel.rei.api.common.util.*;
 import me.shedaniel.rei.plugin.common.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.screen.ScreenHandler;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 @Environment(EnvType.CLIENT)
 public class REIClientIntegration implements REIClientPlugin {
@@ -157,5 +166,97 @@ public class REIClientIntegration implements REIClientPlugin {
 		
 		registry.registerDecider(REIOverlayDecider.INSTANCE);
 	}
-	
+
+	@SuppressWarnings("UnstableApiUsage")
+	@Override
+	public void registerTransferHandlers(TransferHandlerRegistry registry) {
+		// REI input magic to prevent moving incorrect amount of gem powder yet still complain about a lack of such
+		registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, SpectrumPlugins.PEDESTAL_CRAFTING,
+				new SimpleTransferHandler.IntRange(0, 8),
+				List.of(new SimpleTransferHandler.IntRange(9, 14), new SimpleTransferHandler.IntRange(16, 52))));
+		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
+			registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, BuiltinPlugin.CRAFTING,
+					new SimpleTransferHandler.IntRange(0, 8), new SimpleTransferHandler.IntRange(16, 52)));
+		}
+		registry.register(SimpleTransferHandlerExtension.create(CinderhearthScreenHandler.class, SpectrumPlugins.CINDERHEARTH,
+				new SimpleTransferHandler.IntRange(2, 3), new SimpleTransferHandler.IntRange(11, 47)));
+		registry.register(SimpleTransferHandlerExtension.create(CinderhearthScreenHandler.class, BuiltinPlugin.BLASTING,
+				new SimpleTransferHandler.IntRange(2, 3), new SimpleTransferHandler.IntRange(11, 47)));
+		registry.register(SimpleTransferHandlerExtension.create(PotionWorkshopScreenHandler.class, SpectrumPlugins.POTION_WORKSHOP_BREWING,
+				new SimpleTransferHandler.IntRange(0, 9), new SimpleTransferHandler.IntRange(21, 57)));
+		registry.register(SimpleTransferHandlerExtension.create(PotionWorkshopScreenHandler.class, SpectrumPlugins.POTION_WORKSHOP_CRAFTING,
+				new SimpleTransferHandler.IntRange(0, 9), new SimpleTransferHandler.IntRange(21, 57)));
+	}
+
+	@SuppressWarnings("UnstableApiUsage")
+	interface SimpleTransferHandlerExtension extends SimpleTransferHandler {
+		// Because REI decided to give the create method with the inventory slots argument a different container class type.
+		// Pretty much identical to the original otherwise (except with slot handling changed to resemble the EMI counterpart)
+		static <C extends ScreenHandler, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
+																								 CategoryIdentifier<D> categoryIdentifier,
+																								 SimpleTransferHandler.IntRange inputSlots,
+																								 SimpleTransferHandler.IntRange inventorySlots) {
+			return new SimpleTransferHandler() {
+				@Override
+				public ApplicabilityResult checkApplicable(Context context) {
+					if (!containerClass.isInstance(context.getMenu())
+							|| !categoryIdentifier.equals(context.getDisplay().getCategoryIdentifier())
+							|| context.getContainerScreen() == null) {
+						return ApplicabilityResult.createNotApplicable();
+					} else {
+						return ApplicabilityResult.createApplicable();
+					}
+				}
+
+				@Override
+				public Iterable<SlotAccessor> getInputSlots(Context context) {
+					return context.getMenu()
+							.slots.subList(inputSlots.min(), inputSlots.maxExclusive())
+							.stream().map(SlotAccessor::fromSlot).toList();
+				}
+
+				@Override
+				public Iterable<SlotAccessor> getInventorySlots(Context context) {
+					return context.getMenu()
+							.slots.subList(inventorySlots.min(), inventorySlots.maxExclusive())
+							.stream().map(SlotAccessor::fromSlot).toList();
+				}
+			};
+		}
+		static <C extends ScreenHandler, D extends Display> SimpleTransferHandler create(Class<? extends C> containerClass,
+																						 CategoryIdentifier<D> categoryIdentifier,
+																						 SimpleTransferHandler.IntRange inputSlots,
+																						 List<IntRange> inventorySlotsRanges) {
+			return new SimpleTransferHandler() {
+				@Override
+				public ApplicabilityResult checkApplicable(Context context) {
+					if (!containerClass.isInstance(context.getMenu())
+							|| !categoryIdentifier.equals(context.getDisplay().getCategoryIdentifier())
+							|| context.getContainerScreen() == null) {
+						return ApplicabilityResult.createNotApplicable();
+					} else {
+						return ApplicabilityResult.createApplicable();
+					}
+				}
+
+				@Override
+				public Iterable<SlotAccessor> getInputSlots(Context context) {
+					return context.getMenu()
+							.slots.subList(inputSlots.min(), inputSlots.maxExclusive())
+							.stream().map(SlotAccessor::fromSlot).toList();
+				}
+
+				@Override
+				public Iterable<SlotAccessor> getInventorySlots(Context context) {
+					Stream<SlotAccessor> s = Stream.empty();
+					for (SimpleTransferHandler.IntRange range : inventorySlotsRanges) {
+						s = Stream.concat(s, context.getMenu()
+								.slots.subList(range.min(), range.maxExclusive())
+								.stream().map(SlotAccessor::fromSlot));
+					}
+					return s.toList();
+				}
+			};
+		}
+	}
 }

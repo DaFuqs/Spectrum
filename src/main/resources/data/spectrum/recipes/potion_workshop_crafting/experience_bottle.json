@@ -17,5 +17,6 @@
   },
   "result": {
     "item": "minecraft:experience_bottle"
-  }
+  },
+  "required_advancement": "spectrum:unlocks/items/experience_bottle"
 }

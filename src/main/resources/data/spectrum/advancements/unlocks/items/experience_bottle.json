@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "unlocked_knowledge_gem": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:unlocks/items/knowledge_gem" }
+    }
+  }
+}

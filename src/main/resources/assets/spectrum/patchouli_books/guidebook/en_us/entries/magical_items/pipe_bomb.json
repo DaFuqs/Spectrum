@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:resources/moonstone_cores)Moonstone Cores$() are bursting with energy. It sounds like a very bad idea to discharge it within milliseconds.$(br2)$(italic)...but sometimes the worst ideas are the best, aren't they?"
+      "text": "$(l:resources/moonstone_cores)Moonstone Cores$() are bursting with energy. It sounds like a very bad idea to discharge one within milliseconds.$(br2)$(italic)...but sometimes the worst ideas are the best, aren't they?$()$(br2)Their explosion does not damage blocks, but causes $(l:dimension/doomblooms#primordial_fire)immensely aggressive fire$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

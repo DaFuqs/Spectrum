@@ -3,13 +3,7 @@
     "gotten_radiating_ender": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/get_radiating_ender"
-      }
-    },
-    "built_advanced_pedestal_structure": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/build_advanced_pedestal_structure"
+        "advancement_identifier": "spectrum:get_radiating_ender"
       }
     },
     "collected_stardust": {

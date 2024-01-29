@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This map shifts and changes when you move, almost seeming like it is alive and could sense your intentions.$(br)Used in a structure, this alas will guide you through treacherous terrains, across raging rivers, and through dense forests to find other structures of similar kind."
+      "text": "This map shifts and changes when you move, almost seeming like it is alive and could sense your intentions.$(br)Used in a structure, this alas will guide you through treacherous terrain, across raging rivers, and through dense forests to find structures of similar kind."
     },
     {
       "type": "spectrum:pedestal_crafting",

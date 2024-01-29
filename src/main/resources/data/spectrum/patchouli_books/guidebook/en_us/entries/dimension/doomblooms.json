@@ -19,7 +19,8 @@
     {
       "type": "patchouli:text",
       "title": "Primordial Fire",
-      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with an insatiable, blazing heat."
+      "anchor": "primordial_fire",
+      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with an insatiable, blazing heat. almost as consuming matter and souls alike."
     }
   ]
 }

@@ -78,7 +78,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.nameField.setEditableColor(-1);
 		this.nameField.setUneditableColor(-1);
 		this.nameField.setDrawsBackground(false);
-		this.nameField.setMaxLength(50);
+		this.nameField.setMaxLength(BedrockAnvilScreenHandler.MAX_NAME_LENGTH);
 		this.nameField.setText("");
 		this.nameField.setChangedListener(this::onRenamed);
 		this.addSelectableChild(this.nameField);
@@ -89,7 +89,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.loreField.setEditableColor(-1);
 		this.loreField.setUneditableColor(-1);
 		this.loreField.setDrawsBackground(false);
-		this.loreField.setMaxLength(200);
+		this.loreField.setMaxLength(BedrockAnvilScreenHandler.MAX_LORE_LENGTH);
 		this.loreField.setText("");
 		this.loreField.setChangedListener(this::onLoreChanged);
 		this.addSelectableChild(this.loreField);

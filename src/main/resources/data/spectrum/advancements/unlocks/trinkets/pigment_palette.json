@@ -12,6 +12,12 @@
         "advancement_identifier": "spectrum:midgame/collect_azurite"
       }
     },
+    "unlocked_basic_ink_storage_items": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/items/basic_ink_storage_items"
+      }
+    },
     "equipped_three_trinkets": {
       "trigger": "spectrum:trinket_change",
       "conditions": {

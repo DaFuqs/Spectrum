@@ -1,6 +1,6 @@
 {
   "name": "Ink",
-  "advancement": "spectrum:unlocks/blocks/ink_flask",
+  "advancement": "spectrum:unlocks/items/basic_ink_storage_items",
   "icon": "spectrum:ink_flask",
   "category": "spectrum:magic_category",
   "priority": true,

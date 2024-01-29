@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "unlocked_liquid_crystal": {
+    "unlocked_pigment_palette": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+        "advancement_identifier": "spectrum:unlocks/items/pigment_palette"
       }
     },
     "created_spectral_shard": {

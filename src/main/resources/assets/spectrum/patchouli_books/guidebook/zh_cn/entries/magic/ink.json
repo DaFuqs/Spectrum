@@ -10,7 +10,7 @@
       "title": "生产和储存"
     }
   ],
-  "advancement": "spectrum:unlocks/blocks/ink_flask",
+  "advancement": "spectrum:unlocks/items/basic_ink_storage_items",
   "name": "墨水",
   "icon": "spectrum:ink_flask",
   "category": "spectrum:magic_category",

@@ -51,7 +51,7 @@ public class PageCrystallarieumGrowing extends PageGatedRecipe<CrystallarieumRec
 		// growth stages
 		Iterator<BlockState> it = recipe.getGrowthStages().iterator();
 		BlockState growthState = it.next();
-		parent.renderItemStack(ms, recipeX + 23, recipeY - 2, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
+		parent.renderItemStack(ms, recipeX + 23, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
 		int x = 0;
 		while (it.hasNext()) {
 			parent.renderItemStack(ms, recipeX + 52 + 16 * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultStack());

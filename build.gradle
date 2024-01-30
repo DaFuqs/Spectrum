@@ -91,6 +91,9 @@ dependencies {
 
 	// Ears compat by Maya!
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
+
+	// Enchantment Descriptions compat
+	modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 }
 
 loom {

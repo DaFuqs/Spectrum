@@ -112,7 +112,8 @@
     "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin"
+    "compat.colorful_hearts.present.HeartMixin",
+    "compat.enchdesc.present.DescriptionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

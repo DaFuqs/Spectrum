@@ -72,7 +72,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
 		
-		if ((player != null && canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
+		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block blockToPlace = targetBlockState.getBlock();
 			Item itemToConsume;
 			

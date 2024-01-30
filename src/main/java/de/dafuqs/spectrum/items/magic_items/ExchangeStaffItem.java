@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
+import eu.pb4.common.protection.api.CommonProtection;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
@@ -110,6 +111,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 			List<ItemStack> stacks = new ArrayList<>();
 			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
+
+				// Require both place and break permissions in order to swap blocks
+				if (!CommonProtection.canPlaceBlock(world, targetPosition, player.getGameProfile(), player) || !CommonProtection.canBreakBlock(world, targetPosition, player.getGameProfile(), player))
+					continue;
+
 				if (!player.isCreative()) {
 					BlockState droppedStacks = world.getBlockState(targetPosition);
 					stacks.addAll(Block.getDroppedStacks(droppedStacks, (ServerWorld) world, targetPosition, world.getBlockEntity(targetPosition), player, exchangeStaffItemStack));

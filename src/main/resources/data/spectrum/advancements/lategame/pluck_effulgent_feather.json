@@ -13,25 +13,13 @@
   },
   "criteria": {
     "snipped_effulgent_feather": {
-      "trigger": "minecraft:player_interacted_with_entity",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "item": {
-          "tag": "c:shears"
-        },
-        "entity": [
+        "items": [
           {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "type": "spectrum:kindling",
-              "flags": {
-                "is_baby": false
-              },
-              "type_specific": {
-                "type": "spectrum:kindling",
-                "clipped": true
-              }
-            }
+            "items": [
+              "spectrum:effulgent_feather"
+            ]
           }
         ]
       }

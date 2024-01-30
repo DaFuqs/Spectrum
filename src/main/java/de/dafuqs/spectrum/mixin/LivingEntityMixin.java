@@ -302,8 +302,8 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
 	protected void drop(DamageSource source, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasRibbon(thisEntity);
-		if (hasBondingRibbon) {
+
+		if (EverpromiseRibbonComponent.hasRibbon(thisEntity)) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);
 			MemoryItem.setSpawnAsAdult(memoryStack, true);
@@ -315,45 +315,15 @@ public abstract class LivingEntityMixin {
 
 			ci.cancel();
 		}
-
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
 	protected void applyInexorableEffects(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
+		
 		if (entity.getWorld() != null && entity.getWorld().getTime() % 20 == 0) {
 			InexorableEnchantment.checkAndRemoveSlowdownModifiers(entity);
 		}
-	}
-	
-	@ModifyArg(
-			slice = @Slice(
-					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isTouchingWater()Z"),
-					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z")
-			),
-			method = "travel",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
-	private float applyInexorableAntiWaterSlowdown(float par1) {
-		var entity = (LivingEntity) (Object) this;
-		if (InexorableEnchantment.isArmorActive(entity)) {
-			return par1 + 0.2F;
-		}
-		return par1;
-	}
-
-	@ModifyArg(
-			slice = @Slice(
-					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z"),
-					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isFallFlying()Z")
-			),
-			method = "travel",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
-	private float applyInexorableAntiLavaSlowdown(float par1) {
-		var entity = (LivingEntity) (Object) this;
-		if (InexorableEnchantment.isArmorActive(entity)) {
-			return par1 + 0.25F;
-		}
-		return par1;
 	}
 	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))

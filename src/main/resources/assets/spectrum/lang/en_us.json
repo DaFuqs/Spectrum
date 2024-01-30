@@ -256,6 +256,8 @@
   "death.attack.spectrum_snapping_ivy": "%1$s was held back a bit",
   "death.attack.spectrum_primordial_fire": "%1$s had their soul turned to smouldering soot",
   "death.attack.spectrum_primordial_fire.player": "%2$s rended %1$s's spirit to ash",
+  "death.attack.spectrum_moonstone_strike": "%1$s had a blast. Literally.",
+  "death.attack.spectrum_moonstone_strike.player": "%2$s made %1$s have a blast. Literally.",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

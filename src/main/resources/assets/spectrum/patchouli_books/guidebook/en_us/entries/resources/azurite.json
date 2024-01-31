@@ -25,6 +25,18 @@
       "text": "A rich blue ore, which, at a distance, can almost be mistaken for $(item)Lapis$(). In its natural form it contains many impurities which must first be removed, before it can be used.$(br2)It is found deep underground and seems to be able to intensify any Pigment's energy."
     },
     {
+      "type": "spectrum:illustration",
+      "resource_path": "spectrum:textures/gui/guidebook/illustrations/azurite_illustration.png",
+      "resource_width": 104,
+      "resource_height": 156,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 104,
+      "texture_height": 156,
+      "y_offset": -6,
+      "border": false
+    },
+    {
       "type": "spectrum:fusion_shrine_crafting",
       "advancement": "spectrum:unlocks/resources/refined_azurite",
       "title": "Refining Azurite",

@@ -149,15 +149,21 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:bismuth_crystal",
-      "advancement": "spectrum:lategame/collect_bismuth_crystal",
+      "item": "spectrum:bismuth_flake",
+      "advancement": "spectrum:lategame/collect_bismuth",
       "text": "$(li)+1 potency for positive effects$(li)colors the potion in a random color"
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:refined_malachite",
-      "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
-      "text": "$(li)+200% duration$(li)makes the Potion much slower to drink"
+      "item": "spectrum:raw_malachite",
+      "advancement": "spectrum:lategame/collect_malachite",
+      "text": "$(li)+100% duration$(li)makes the Potion much slower to drink"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:raw_bloodstone",
+      "advancement": "spectrum:lategame/pluck_effulgent_feather",
+      "text": "$(li)+100% potency$(li)makes the Potion much slower to drink"
     },
     {
       "type": "patchouli:spotlight",

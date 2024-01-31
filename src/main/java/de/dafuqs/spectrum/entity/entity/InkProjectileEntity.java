@@ -185,8 +185,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-				if (world.getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
-					if (GenericClaimModsCompat.isProtected(world, blockPos, this.getOwner())) {
+				if (this.getWorld().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
+					if (GenericClaimModsCompat.canBreakBlock(this.getWorld(), blockPos, this.getOwner())) {
 						continue;
 					}
 					colorableBlock.color(world, blockPos, dyeColor);

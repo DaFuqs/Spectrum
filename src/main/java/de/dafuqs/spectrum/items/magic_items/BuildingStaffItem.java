@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import eu.pb4.common.protection.api.CommonProtection;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -39,7 +39,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		}
 		
 		float hardness = state.getHardness(world, pos);
-		return hardness >= 0 && CommonProtection.canInteractBlock(player.getWorld(), pos, player.getGameProfile(), player);
+		return hardness >= 0 && GenericClaimModsCompat.canInteractWith(player.getWorld(), pos, player);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		int placedBlocks = 0;
 		for (BlockPos position : targetPositions) {
 			// Only place blocks where you are allowed to do so
-			if (!CommonProtection.canPlaceBlock(world, position, player.getGameProfile(), player))
+			if (GenericClaimModsCompat.canPlaceBlock(world, position, player))
 				continue;
 
 			BlockState originalState = world.getBlockState(position);

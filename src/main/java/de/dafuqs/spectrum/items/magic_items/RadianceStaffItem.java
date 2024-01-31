@@ -39,7 +39,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	public static boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
-		if (GenericClaimModsCompat.isProtected(world, targetPos, playerEntity)) {
+		if (GenericClaimModsCompat.canBreakBlock(world, targetPos, playerEntity)) {
 			return false;
 		}
 		

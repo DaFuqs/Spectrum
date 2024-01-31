@@ -21,7 +21,7 @@ public class GenericClaimModsCompat {
 	 * @param pos   the pos that should get modified
 	 * @return if modification is allowed
 	 */
-	public static boolean isProtected(World world, BlockPos pos, @Nullable Entity cause) {
+	public static boolean canBreakBlock(World world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return !CommonProtectionApiCompat.isProtected(world, pos, cause);
 		}
@@ -31,6 +31,35 @@ public class GenericClaimModsCompat {
 	public static boolean canInteractWith(World world, Entity entity, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canInteract(world, entity, cause);
+		}
+		return true;
+	}
+
+	public static boolean canInteractWith(World world, BlockPos pos, @Nullable Entity cause) {
+		if (IS_COMMON_PROTECTION_API_PRESENT) {
+			return CommonProtectionApiCompat.canInteract(world, pos, cause);
+		}
+		return true;
+	}
+
+	/**
+	 * Used to determine whether you can break and place blocks in this area, which is useful
+	 * for swapping blocks
+	 *
+	 * @param world the world that should get modified
+	 * @param pos   the pos that should get modified
+	 * @return if modification is allowed
+	 */
+	public static boolean canModify(World world, BlockPos pos, @Nullable Entity cause) {
+		if (IS_COMMON_PROTECTION_API_PRESENT) {
+			return CommonProtectionApiCompat.canModify(world, pos, cause);
+		}
+		return true;
+	}
+
+	public static boolean canPlaceBlock(World world, BlockPos pos, @Nullable Entity cause) {
+		if (IS_COMMON_PROTECTION_API_PRESENT) {
+			return CommonProtectionApiCompat.canPlaceBlock(world, pos, cause);
 		}
 		return true;
 	}

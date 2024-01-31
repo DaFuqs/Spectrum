@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
@@ -13,6 +15,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class WandLightBlock extends LightBlock {
 	
@@ -22,13 +25,26 @@ public class WandLightBlock extends LightBlock {
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return context.isHolding(SpectrumItems.RADIANCE_STAFF) ? VoxelShapes.fullCube() : VoxelShapes.empty();
+		if(context instanceof EntityShapeContext entityShapeContext && entityShapeContext.getEntity() != null && holdsRadianceStaff(entityShapeContext.getEntity())) {
+			return VoxelShapes.fullCube();
+		}
+		return VoxelShapes.empty();
+	}
+	
+	private boolean holdsRadianceStaff(@NotNull Entity entity) {
+		// context.isHolding() only checks the main hand, so we use our own implementation
+		for(ItemStack stack : entity.getHandItems()) {
+			if(stack.getItem() instanceof RadianceStaffItem) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if (world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
+		if (world.isClient && holdsRadianceStaff(MinecraftClient.getInstance().player)) {
 			world.addImportantParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}

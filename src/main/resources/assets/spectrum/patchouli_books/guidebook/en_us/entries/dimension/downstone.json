@@ -18,7 +18,7 @@
       "item": "spectrum:downstone_fragments",
       "anchor": "downstone_fragments",
       "advancement": "spectrum:lategame/collect_downstone_fragments",
-      "text": "Looks like whoever came before you was able to harvest it - however only using colossal, imposing drills.$(br2)It seems like they used it to manufacture $(item)Preservation Stone$()?"
+      "text": "Looks like whoever came before you was able to harvest it - but only with the help of colossal, imposing drills.$(br2)It seems like they used it to manufacture $(item)Preservation Stone$()?"
     }
   ]
 }

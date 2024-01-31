@@ -1,0 +1,19 @@
+{
+  "name": "密度",
+  "advancement": "spectrum:hidden/status_effects/lightweight_density",
+  "icon": "minecraft:feather",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:lightweight",
+      "text": "$(thing)你每升一级都变轻一点$()  你注意到自己可以跳得更远一点，但下落得更慢。$(br)H高等级将使你不再受到$(thing)摔落伤害$()."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:density",
+      "text": "$(thing)你每升一级都变重一点$() ,跳得更近一点而且下落得更快。高等级让你受到更多摔落伤害."
+    }
+  ]
+}

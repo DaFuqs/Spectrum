@@ -1,0 +1,48 @@
+{
+  "name": "苋菜",
+  "advancement": "spectrum:milestones/reveal_amaranth",
+  "icon": "spectrum:amaranth_bushel",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:amaranth_grains": 0,
+    "spectrum:amaranth_bushel": 0,
+    "spectrum:honey_pastry": 0,
+    "spectrum:scone": 0,
+    "spectrum:triple_meat_pot_pie": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "不凋花",
+      "text": "虽然看起来已经被遗忘了一段时间，但这些种子看起来仍然生机勃勃。你想知道长大后会是什么样子吗？"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "苋菜叶",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "recipe": "spectrum:anvil_crushing/amaranth_grains",
+      "text": "你从未见过如此强烈鲜艳的红色！$(br)这些苋菜叶可以碾碎以获得更多的种籽。$(br2)也能把这些被称为不凋花的东西作为装饰种起来"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "title": "蜂蜜点心",
+      "recipe": "spectrum:pedestal/tier1/food/honey_pastry",
+      "text": "苋菜的味道和小麦完全不同。这让你脑子里出现了一个美味的想法，就像它一样。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "title": "奶油司康",
+      "recipe": "spectrum:pedestal/tier1/food/scone",
+      "text": "充满奶油的美味小蛋糕。.$(br2)$(italic)建议配茶一起喝"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/triple_meat_pot_pie",
+      "title": "肉夹馍",
+      "recipe": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
+      "text": "非常顶饱的肉夹馍$(br2)$(italic)脂肪碳水嗯造"
+    }
+  ]
+}

@@ -14,7 +14,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The idea of fermenting $(l:cuisine/titration_barrel#kimchi)food$(/l) and $(l:cuisine/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences its contents.$(br)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the latter could of course also be due to your cooking skills.)$(br)Holds up to a stack of items and 1 bucket of liquid."
+      "text": "The idea of fermenting $(l:cuisine/titration_barrel#kimchi)food$(/l) and $(l:cuisine/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influence its contents.$(br)The results are sometimes more and sometimes less delicious (although the latter could be due to your cooking skills), but always interesting.$(br)Holds up to a stack of items and 1 bucket of liquid."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -33,7 +33,7 @@
       "type": "spectrum:titration_barrel_fermenting",
       "anchor": "fermented_spider_eyes",
       "recipe": "spectrum:titration_barrel/fermented_spider_eyes",
-      "text": "Takes a short while, but more efficient than just slapping those together."
+      "text": "Takes a short while, but more efficient than just slapping the ingredients together."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -70,7 +70,7 @@
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "anchor": "hot_chocolate",
       "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
-      "text": "Perfect to come to the calm and in the cold season."
+      "text": "Perfect for relaxing, and refreshing in the cold season."
     }
   ]
 }

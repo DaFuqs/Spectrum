@@ -1,0 +1,21 @@
+{
+  "name": "急迫之戒",
+  "advancement": "spectrum:unlocks/trinkets/ring_of_pursuit",
+  "icon": "spectrum:ring_of_pursuit",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:ring_of_pursuit": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "我的世界是采矿游戏，可是现在才觉得不仅要升级工具，而且要全面提高挖掘能力才行。这枚戒指会随着你的能力而增长。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
+      "text": "$(l:magic/color_picker)取色器$()里注入$(l:magic/ink)品红墨水$(/l)提高挖掘速度"
+    }
+  ]
+}

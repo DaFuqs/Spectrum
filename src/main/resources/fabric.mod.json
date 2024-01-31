@@ -23,7 +23,7 @@
     "sources": "https://github.com/DaFuqs/Spectrum",
     "issues": "https://github.com/DaFuqs/Spectrum/issues"
   },
-  "license": "",
+  "license": "lGPL3",
   "icon": "assets/spectrum/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -72,11 +72,9 @@
     "minecraft": ">=1.20.1",
     "java": ">=17",
     "revelationary": "*",
-    "arrowhead": "*",
     "cloth-config": "*",
     "patchouli": "*",
-    "trinkets": "*",
-    "reverb": "*"
+    "trinkets": "*"
   },
   "suggests": {
     "chalk": "*",

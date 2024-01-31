@@ -1,0 +1,133 @@
+{
+  "name": "Alloy Forgery",
+  "icon": "alloy_forgery:bricks_forge_controller",
+  "flag": "mod:alloy_forgery",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Hardened by heat and pressure, beautiful Alloy Forges can be made from calcite and basalt.$(br2)Perhaps you will find more minerals to use during your adventure? The best thing to do is to write them all down here."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In addition, some items can be used as special fuel for Alloy Forges. Some ores have increased output when smelted in one.$(br2)Tell Noaaan I said hi!"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Basalt Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:basalt_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_basalt_alloy_forge",
+      "text": "Quite slow, but packs a lot of fuel."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Calcite Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:calcite_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge",
+      "text": "Twice as fast as the Basalt variant, but you will have to restock on fuel quite more often."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_blackslag",
+      "name": "Blackslag Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:blackslag_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "advancement": "spectrum:hidden/collect_blackslag",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_blackslag_alloy_forge",
+      "text": "A high-tier Forge with medium speed and fuel capacity."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_shale_clay",
+      "name": "Shale Clay Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:shale_clay_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "advancement": "spectrum:hidden/collect_shale_clay",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_shale_clay_alloy_forge",
+      "text": "A high-end forge with incredible capacity and reasonable smelting speed."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_pyrite",
+      "name": "Pyrite Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:pyrite_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "advancement": "spectrum:hidden/collect_pyrite",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/pyrite_alloy_forge",
+      "text": "A high-end forge that melts at an incomparable temperature. Low capacity compared to other Alloy Forges."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "name": "Bone Ash Alloy Forge",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:bone_ash_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Forge Controller",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_bone_ash_alloy_forge",
+      "text": "An exceptional forge that accelerates the melting process with additional pressure. Holds a reasonable amount of fuel."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "Pure resources can be turned into their mundane counterpart, with a nice multiplier."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_stratine",
+      "item": "spectrum:stratine_ore",
+      "text": "Using a high tier $(thing)Alloy Forge$() you can squeeze quite a bit more $(l:resources/stratine)Stratine$(/l) from the raw ore."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paltaeria_ore",
+      "advancement": "spectrum:lategame/collect_paltaeria",
+      "text": "...same is true for $(l:resources/paltaeria)Paltaeria$(/l), of course."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/blocks/lava_sponge",
+      "item": "spectrum:wet_lava_sponge",
+      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your Alloy Forge for quite some time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:fiery_powder",
+      "text": "Also a good heat source for your Alloy Forges."
+    }
+  ]
+}

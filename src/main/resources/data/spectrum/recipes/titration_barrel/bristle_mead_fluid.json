@@ -14,7 +14,9 @@
       "count": 2
     }
   ],
-  "fluid": "create:honey",
+  "fluid": {
+    "tag": "c:honey"
+  },
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 0.25,
@@ -108,9 +110,9 @@
   "required_advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
+      "condition": "fabric:fluid_tags_populated",
       "values": [
-        "create"
+        "c:honey"
       ]
     }
   ]

@@ -1,0 +1,6 @@
+{
+  "name": "Mod Integration",
+  "description": "所有附加功能和配方与其他mod相结合。一举反三是一件好事。$(br)你将继续扩展每个mod的页面。",
+  "icon": "minecraft:knowledge_book",
+  "sortnum": 16
+}

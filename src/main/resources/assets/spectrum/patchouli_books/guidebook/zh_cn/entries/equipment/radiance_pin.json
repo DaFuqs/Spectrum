@@ -1,0 +1,21 @@
+{
+  "name": "辐射别针",
+  "advancement": "spectrum:unlocks/trinkets/radiance_pin",
+  "icon": "spectrum:radiance_pin",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:radiance_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "你没有随便给它起名字，果你在一个黑暗的区域，大头针会自动在你身上创造一个看不见的光但不像$(l:magical_items/radiance_staff)Radiance Staff$(/l)是永久的光，这个临时光源最终会消失不见."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/radiance_pin",
+      "text": "看到你在洞穴探险中走过的路真是太棒了。"
+    }
+  ]
+}

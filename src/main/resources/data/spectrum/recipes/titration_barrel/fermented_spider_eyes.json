@@ -14,7 +14,9 @@
       "count": 2
     }
   ],
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "min_fermentation_time_hours": 1,
   "result": {
     "item": "minecraft:fermented_spider_eye",

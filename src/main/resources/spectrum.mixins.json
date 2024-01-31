@@ -70,7 +70,6 @@
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
-    "accessors.LootTableAccessor",
     "accessors.MapStateAccessor",
     "accessors.MooshroomEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",
@@ -79,7 +78,10 @@
     "accessors.SlimeEntityAccessor",
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor",
-    "accessors.TypeSpecificPredicateDeserializerMixin"
+    "accessors.TypeSpecificPredicateDeserializerMixin",
+    "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra",
+    "compat.connectormod.absent.ExplosionMixin",
+    "compat.connectormod.present.ExplosionMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",
@@ -109,10 +111,12 @@
     "client.accessors.BossBarHudAccessor",
     "client.accessors.GameRendererAccessor",
     "client.accessors.ModelOverrideListAccessor",
+    "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
     "client.accessors.SoundLoaderAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin"
+    "compat.colorful_hearts.present.HeartMixin",
+    "compat.enchdesc.present.DescriptionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

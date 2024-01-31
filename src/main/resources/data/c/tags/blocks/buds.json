@@ -5,6 +5,19 @@
     "#spectrum:crystallarieum_growable_buds",
 
     {
+      "id": "biomemakeover:small_illunite_bud",
+      "required": false
+    },
+    {
+      "id": "biomemakeover:medium_illunite_bud",
+      "required": false
+    },
+    {
+      "id": "biomemakeover:large_illunite_bud",
+      "required": false
+    },
+
+    {
       "id": "geode:small_celestite_bud",
       "required": false
     },

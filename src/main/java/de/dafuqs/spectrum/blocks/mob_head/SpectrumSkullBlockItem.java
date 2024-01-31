@@ -36,6 +36,8 @@ public class SpectrumSkullBlockItem extends VerticallyAttachableBlockItem {
 			return Optional.of(EntityType.SKELETON);
 		} else if (Items.WITHER_SKELETON_SKULL.equals(item)) {
 			return Optional.of(EntityType.WITHER_SKELETON);
+		} else if (Items.PIGLIN_HEAD.equals(item)) {
+			return Optional.of(EntityType.PIGLIN);
 		}
 		return Optional.empty();
 	}

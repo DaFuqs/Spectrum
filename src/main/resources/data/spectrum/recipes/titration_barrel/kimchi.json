@@ -14,7 +14,9 @@
       "count": 4
     }
   ],
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "min_fermentation_time_hours": 4,
   "result": {
     "item": "spectrum:kimchi",

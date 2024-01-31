@@ -1,0 +1,19 @@
+{
+  "name": "✟升天✟",
+  "advancement": "spectrum:hidden/status_effects/ascension_divinity",
+  "icon": "spectrum:divination_heart",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:ascension",
+      "text": "天堂呼唤之类的东西。反正是一次辉煌力量的集合$(thing)✟升天✟$() 开始嘞."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:divinity",
+      "text": "给你所有属性增益$(br)但 ($(l:creating_life/hardcore_player_revival)close to$(/l)) 你要承受“真正”死亡之重"
+    }
+  ]
+}

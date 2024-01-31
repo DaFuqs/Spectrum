@@ -12,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_fading",
-      "text": "It did not take long, there the idea for a construction plan came to you.$(br2)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
+      "text": "It did not take long before the idea for a construction plan came to you.$(br2)The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
     },
     {
       "type": "spectrum:pedestal_crafting",

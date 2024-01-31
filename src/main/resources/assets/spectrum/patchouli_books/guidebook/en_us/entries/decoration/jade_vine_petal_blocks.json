@@ -17,7 +17,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Carpet",
-      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
+      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_carpet",
       "text": ""
     }
   ]

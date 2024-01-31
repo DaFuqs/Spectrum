@@ -1,0 +1,21 @@
+{
+  "name": "赌运",
+  "advancement": "spectrum:unlocks/food/lucky_roll",
+  "icon": "spectrum:lucky_roll",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:lucky_roll": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "除了艺术家为主要工作之外，你会兼职糕点师吗？这些看起来都没那么差(味道也不错！).$(br2)$(l:cuisine/amaranth)苋菜$(/l), $(item)糖$(), $(item)Milk$(),还有 $(l:resources/clover)四叶草$()组成了这种幸运效果，让你在使用时运和抢夺附魔时具有更高的骰点"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/food/lucky_roll",
+      "text": "$(italic)Lucky Roll, get it???"
+    }
+  ]
+}

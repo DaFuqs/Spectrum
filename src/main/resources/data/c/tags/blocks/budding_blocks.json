@@ -2,6 +2,12 @@
   "replace": false,
   "values": [
     "#spectrum:budding_blocks",
+
+    {
+      "id": "biomemakeover:budding_illunite",
+      "required": false
+    },
+
     {
       "id": "geode:basalt_ancient_debris_cluster",
       "required": false

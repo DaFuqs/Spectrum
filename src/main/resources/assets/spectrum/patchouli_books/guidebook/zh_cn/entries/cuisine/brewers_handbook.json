@@ -1,0 +1,96 @@
+{
+  "name": "发酵手册",
+  "icon": "spectrum:brewers_handbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:brewers_handbook": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "“深”度发酵",
+      "resource_path": "spectrum:textures/gui/guidebook/taswell.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Reflection Of The Moon"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "呜呼！主世界和渊深之间联系相当糟糕，而且很不幸它好像只会变得更糟，为此，我很遗憾什么都做不了。$(br2)因此，我花了一些时间从地表收集了一些发酵食谱，将它们改编为使用在渊深发现的东西，并作为礼物给你，希望它能帮助你们。."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "粉桃杯子蛋糕",
+      "text": "$(br)~吃了晶桃滚豆腐，皇帝老儿不及吾~$(br2)普通人现在也能享用此等美食！这个简单易用的食谱可以制作出一杯美味的奶油晶桃———如果你有，我理解你为什么不吃，因为这玩意真的很漂亮！"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/peach_cream",
+      "text": "$(italic)不要把浆果换成黄铁冬青的，它们不好。。。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "神圣热饮",
+      "text": "$(br)那些充满黄铁刺的金属丛林...说真的那是我在渊深中最喜欢的地方，美好事物充斥其间，也反过来证明它是多么的危险。$(br2)管他的！虽然那里的棘刺灌木对我有害，但可以谨慎的避开它..."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/golden_bristle_tea",
+      "text": "$(italic)但是如果你想用这些黄铁冬青浆果做点什么，给你。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "这绝对不是一杯蜂蜜酒",
+      "text": "$(br)这不是蜂蜜酒，法律上你不能称之为蜂蜜酒，我有义务澄清这不是蜂蜜酒。$(br3) 所以这种蜂味饮料是我最喜欢的配方，我花了一些时间才弄明白如何在一个没有蜜蜂的地方弄到蜂蜜的香甜气息，但是相信我，这比真的蜂蜜还要醇味。"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead",
+      "text": "$(italic)这，真的，不是蜂蜜酒，你听我解释."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead_fluid",
+      "text": "$(italic)真的不是，真的不是酒"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "炙热之心",
+      "text": "$(br)Myceylon，一种独特肉桂香料。老实说，我真的很喜欢它，让我想起了我过去在锡兰度过的那些漫长而温柔的夜晚。虽然像大多数人一样，我把香料与温暖和舒适联系在一起，但对我来说，这是一种渴望..."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/morchella",
+      "text": "$(italic)操你妈，燃起来了！$(br2)如果你想干死某人的话"
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "title": "[Hidden Page 1]",
+      "text": "$(br)你好。很抱歉我没有给你们更多的东西，这是我能设法溜进去的全部了——任何经过洞口的东西都被严密监视着，我自己也能感觉到地表统治者的目光在灼烧着我的后背。我真的，真的想做得更多，但我需要使用假名的事实应该揭示了我的状况。这是我唯一能做的。我希望这就够了。"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/sedatives",
+      "text": "$(italic)这让我费了好大劲才回到工作。通过这个配方你可以更加有效的使用血兰。如果出现最坏的情况，它会帮你。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "[Hidden Page 2]",
+      "text": " ...阿斯特拉$(br2)我希望你能收到这条信息。自从我们上次谈话以来，事情变得更糟了，贵族们仍在搜捕你，但更令人担忧的是....很明显他们正在准备战争。他们想要闪耀之石，他们愿意为此牺牲所有人。事情会变糟，请保持安全$(br)$(o)        ... ...我想你."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:ink_converting",
+  "ingredient": {
+    "item": "spectrum:light_gray_block"
+  },
+  "color": "light_gray",
+  "amount": 900,
+  "required_advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment"
+}

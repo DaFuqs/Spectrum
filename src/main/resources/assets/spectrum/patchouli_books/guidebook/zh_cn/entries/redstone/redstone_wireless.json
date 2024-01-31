@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:redstone_wireless",
+			"text":"$(italic)柔和的共振被$(l:general/shards#onyx)玛瑙$(/l)放大到这样的程度，甚至可以通过墙壁测量，只要有合适的接收器。基于你之前对宝石碎片的实验，你很容易设计出这样的发射器和接收器系统。然而，这些继电器对快速变化的信号反应不佳。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/redstone_wireless",
+			"text":"空手点击切换发送/接收。使用染料/颜料改变传输频率，使信号不重叠。范围：16个方块。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:create_onyx_shard",
+	"extra_recipe_mappings":{
+		"spectrum:redstone_wireless":0
+	},
+	"name":"无线红石",
+	"icon":"spectrum:redstone_wireless",
+	"category":"spectrum:redstone_category"
+}

@@ -37,7 +37,7 @@
     {
       "type": "patchouli:text",
       "title": "Hearty Roast with Beer",
-      "text": "$(br)Young hare is a delicacy not just here in Melochites, but in most of any place where Dreitons roam. If you get the chance, please, $(o)please$() try using an artisanal azurte stout in this recipe, that kind of beer is only made in a sparse few areas of Melochites but trust me, hard as it may be to get, it is life changing with rabbit."
+      "text": "$(br)Young hare is a delicacy not just here in Melochites, but in almost any place where Dreitons roam. If you get the chance, please, $(o)please$() try using an artisanal azurte stout in this recipe, that kind of beer is only made in a sparse few areas of Melochites but trust me, hard as it may be to get, it is life changing with rabbit."
     },
     {
       "type": "spectrum:pedestal_crafting",

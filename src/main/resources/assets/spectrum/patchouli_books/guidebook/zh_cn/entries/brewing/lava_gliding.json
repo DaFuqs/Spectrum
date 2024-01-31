@@ -1,0 +1,18 @@
+{
+  "name": "熔岩滑行",
+  "advancement": "spectrum:hidden/status_effects/lava_gliding",
+  "icon": "minecraft:lava_bucket",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:lava_gliding",
+      "text": "$(thing)每一级增加你在熔岩中的移动速度和能见度$() ."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "可是它 $(bold)！不能！$() 护你免受火焰或熔岩伤害。$(br2)$(italic)生命为代价的喜剧笑话，不是吗？"
+    }
+  ]
+}

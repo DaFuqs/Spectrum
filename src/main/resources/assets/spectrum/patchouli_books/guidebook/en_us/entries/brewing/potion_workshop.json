@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of $(item)Blaze Powder$(), the Potion Workshop runs on $(l:resources/mermaids_brush)Mermaid's Gems$(). Main advantage is that you don't have to fill your bottles with water before."
+      "text": "Instead of $(item)Blaze Powder$(), the Potion Workshop runs on $(l:resources/mermaids_brush)Mermaid's Gems$(). The main advantage is that you don't have to fill your bottles with water before."
     }
   ]
 }

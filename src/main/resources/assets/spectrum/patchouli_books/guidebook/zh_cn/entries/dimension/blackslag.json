@@ -1,0 +1,79 @@
+{
+  "name": "黑色矿渣",
+  "advancement": "spectrum:hidden/collect_blackslag",
+  "icon": "spectrum:blackslag",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:blackslag": 0,
+    "spectrum:infested_blackslag": 0,
+
+    "spectrum:blackslag_coal_ore": 0,
+    "spectrum:blackslag_copper_ore": 0,
+    "spectrum:blackslag_iron_ore": 0,
+    "spectrum:blackslag_gold_ore": 0,
+    "spectrum:blackslag_diamond_ore": 0,
+    "spectrum:blackslag_redstone_ore": 0,
+    "spectrum:blackslag_lapis_ore": 0,
+    "spectrum:blackslag_emerald_ore": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "黑色矿渣",
+      "items": [
+        "spectrum:blackslag",
+        "spectrum:blackslag_stairs",
+        "spectrum:blackslag_slab",
+        "spectrum:blackslag_wall",
+
+        "spectrum:cobbled_blackslag",
+        "spectrum:cobbled_blackslag_stairs",
+        "spectrum:cobbled_blackslag_slab",
+        "spectrum:cobbled_blackslag_wall",
+
+        "spectrum:polished_blackslag",
+        "spectrum:polished_blackslag_button",
+        "spectrum:polished_blackslag_pressure_plate",
+        "spectrum:polished_blackslag_stairs",
+        "spectrum:polished_blackslag_slab",
+        "spectrum:polished_blackslag_wall",
+
+        "spectrum:blackslag_tiles",
+        "spectrum:blackslag_tile_stairs",
+        "spectrum:blackslag_tile_slab",
+        "spectrum:blackslag_tile_wall",
+
+        "spectrum:blackslag_bricks",
+        "spectrum:blackslag_brick_stairs",
+        "spectrum:blackslag_brick_slab",
+        "spectrum:blackslag_brick_wall",
+
+        "spectrum:polished_blackslag_pillar",
+        "spectrum:chiseled_polished_blackslag",
+        "spectrum:ancient_chiseled_polished_blackslag",
+        "spectrum:cracked_blackslag_bricks",
+        "spectrum:cracked_blackslag_tiles"
+      ],
+      "text": "一种深色坚固的地质形成物，构成了渊深的大部分结构"
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "磨制变种",
+      "recipe": "spectrum:smelting/cobbled_blackslag_to_blackslag",
+      "recipe2": "spectrum:smelting/blackslag_to_polished_blackslag",
+      "text": "$(item)高炉$()能比$(item)Furnace$()更迅速的熔化这些深岩."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "裂纹变种",
+      "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_blackslag_bricks",
+      "text": "它们也许可以被裂成更小块..."
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "熔炼如初",
+      "recipe": "spectrum:smelting/polished_blackslag_unsmelting",
+      "text": "通过加热，所有块都可以再次转换回磨制的变体。"
+    }
+  ]
+}

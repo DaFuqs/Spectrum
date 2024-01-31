@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional ones of the same type have a decreased effect."
+      "text": "The Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional upgrades of the same type have a decreased effect."
     },
 
     {
@@ -69,7 +69,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_yield",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
-      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
+      "text": "This is an interesting one. Although the chance is very small, you can increase your crafting outputs.$(br)$(italic)More bang for your buck!"
     },
     {
       "type": "spectrum:pedestal_crafting",

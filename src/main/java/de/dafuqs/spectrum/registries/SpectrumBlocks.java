@@ -1153,9 +1153,9 @@ public class SpectrumBlocks {
 	public static final Block SMALL_EMERALD_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.EMERALD_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block EMERALD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
-	public static final Block SMALL_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.GLOWSTONE), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block LARGE_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
-	public static final Block GLOWSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
+	public static final Block SMALL_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.GLOWSTONE).luminance(state -> 4), CrystallarieumGrowableBlock.GrowthStage.SMALL);
+	public static final Block LARGE_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD).luminance(state -> 8), CrystallarieumGrowableBlock.GrowthStage.LARGE);
+	public static final Block GLOWSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD).luminance(state -> 14), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GOLD_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.GOLD_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GOLD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);

@@ -38,7 +38,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
 	@Override
 	public boolean matches(Inventory inventory, World world) {
-		ItemStack nonModStack = getFirstNonModStack(inventory);
+		ItemStack nonModStack = validateGridAndFindModularExplosiveStack(inventory);
 		if (!(nonModStack.getItem() instanceof ModularExplosionProvider modularExplosionProvider)) {
 			return false;
 		}
@@ -90,7 +90,7 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inventory) {
-		ItemStack output = getFirstNonModStack(inventory).copy();
+		ItemStack output = validateGridAndFindModularExplosiveStack(inventory).copy();
 		
 		Pair<List<ExplosionArchetype>, List<ExplosionModifier>> pair = findArchetypeAndModifiers(inventory);
 		List<ExplosionArchetype> archetypes = pair.getLeft();
@@ -129,14 +129,28 @@ public class ExplosionModificationRecipe extends ShapelessPedestalRecipe {
 		}
 	}
 	
-	public ItemStack getFirstNonModStack(Inventory inventory) {
+	/**
+	 * Iterates all stacks in the grid and returns the modular explosive
+	 * if the grid only contains that one and modifiers
+	 */
+	public ItemStack validateGridAndFindModularExplosiveStack(Inventory inventory) {
+		ItemStack foundStack = ItemStack.EMPTY;
 		for (int slot : CRAFTING_GRID_SLOTS) {
 			ItemStack stack = inventory.getStack(slot);
-			if (!stack.isEmpty() && ExplosionModifierProviders.getModifier(stack) == null) {
-				return stack;
+			if (!stack.isEmpty()
+					&& stack.getItem() instanceof ModularExplosionProvider
+					&& ExplosionModifierProviders.getModifier(stack) == null
+					&& ExplosionModifierProviders.getArchetype(stack) == null) {
+				
+				if(foundStack == ItemStack.EMPTY) {
+					foundStack = stack;
+				} else {
+					return ItemStack.EMPTY; // multiple non-mod stacks found
+				}
 			}
 		}
-		return ItemStack.EMPTY;
+		
+		return foundStack;
 	}
 	
 	public Pair<List<ExplosionArchetype>, List<ExplosionModifier>> findArchetypeAndModifiers(Inventory inventory) {

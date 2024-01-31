@@ -113,7 +113,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 			for (BlockPos targetPosition : targetPositions) {
 
 				// Require both place and break permissions in order to swap blocks
-				if (GenericClaimModsCompat.canModify(world, pos, player))
+				if (!GenericClaimModsCompat.canModify(world, pos, player))
 					continue;
 
 				if (!player.isCreative()) {

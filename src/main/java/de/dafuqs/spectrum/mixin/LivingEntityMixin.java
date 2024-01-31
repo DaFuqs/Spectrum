@@ -320,10 +320,39 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "tick", at = @At("TAIL"))
 	protected void applyInexorableEffects(CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		
 		if (entity.getWorld() != null && entity.getWorld().getTime() % 20 == 0) {
 			InexorableEnchantment.checkAndRemoveSlowdownModifiers(entity);
 		}
+	}
+	
+	@ModifyArg(
+			slice = @Slice(
+					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isTouchingWater()Z"),
+					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z")
+			),
+			method = "travel",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
+	private float applyInexorableAntiWaterSlowdown(float par1) {
+		var entity = (LivingEntity) (Object) this;
+		if (InexorableEnchantment.isArmorActive(entity)) {
+			return par1 + 0.05F;
+		}
+		return par1;
+	}
+
+	@ModifyArg(
+			slice = @Slice(
+					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z"),
+					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isFallFlying()Z")
+			),
+			method = "travel",
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
+	private float applyInexorableAntiLavaSlowdown(float par1) {
+		var entity = (LivingEntity) (Object) this;
+		if (InexorableEnchantment.isArmorActive(entity)) {
+			return par1 + 0.125F;
+		}
+		return par1;
 	}
 	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))

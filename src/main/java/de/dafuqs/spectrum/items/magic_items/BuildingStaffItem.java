@@ -66,7 +66,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		int placedBlocks = 0;
 		for (BlockPos position : targetPositions) {
 			// Only place blocks where you are allowed to do so
-			if (GenericClaimModsCompat.canPlaceBlock(world, position, player))
+			if (!GenericClaimModsCompat.canPlaceBlock(world, position, player))
 				continue;
 
 			BlockState originalState = world.getBlockState(position);

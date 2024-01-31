@@ -189,7 +189,7 @@
 
   "spectrum.rei.potion_workshop_reacting.spectrum.amethyst_powder": "• +60s duration",
   "spectrum.rei.potion_workshop_reacting.spectrum.bedrock_dust": "• +50% potency\n• -75% duration\n• -1 yield",
-  "spectrum.rei.potion_workshop_reacting.spectrum.bismuth_crystal": "• +1 potency for positive effects\n• colors the potion in a random color",
+  "spectrum.rei.potion_workshop_reacting.spectrum.bismuth_flake": "• +1 potency for positive effects\n• colors the potion in a random color",
   "spectrum.rei.potion_workshop_reacting.spectrum.bone_ash": "• 10% chance to add the main effect of the potion that was brewed before with +100% potency and duration",
   "spectrum.rei.potion_workshop_reacting.spectrum.citrine_powder": "• +25% potency",
   "spectrum.rei.potion_workshop_reacting.spectrum.four_leaf_clover": "• large boost to a random stat",
@@ -202,7 +202,8 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.prickly_bayleaf": "• -2 potency for negative effects",
   "spectrum.rei.potion_workshop_reacting.spectrum.quitoxic_powder": "• +1 potency for negative effects",
   "spectrum.rei.potion_workshop_reacting.spectrum.raw_azurite": "• negates the duration penalty for Lingering Potions as well as for Tipped Arrows",
-  "spectrum.rei.potion_workshop_reacting.spectrum.refined_malachite": "• +200% duration\n• makes the Potion much slower to drink",
+  "spectrum.rei.potion_workshop_reacting.spectrum.raw_malachite": "• +100% duration\n• makes the Potion much slower to drink",
+  "spectrum.rei.potion_workshop_reacting.spectrum.raw_bloodstone": "• +100% potency\n• makes the Potion much slower to drink",
   "spectrum.rei.potion_workshop_reacting.spectrum.shimmerstone_gem": "• +20% potency\n• +20% duration",
   "spectrum.rei.potion_workshop_reacting.spectrum.star_fragment": "• adds the main effect of the Potion that was brewed before, but with -25% potency",
   "spectrum.rei.potion_workshop_reacting.spectrum.stardust": "• 75% chance to add the main effect of the Potion that was brewed before",

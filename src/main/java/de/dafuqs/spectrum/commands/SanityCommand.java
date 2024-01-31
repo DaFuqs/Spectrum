@@ -366,6 +366,26 @@ public class SanityCommand {
 				}
 			}
 		}
+		
+		// items / blocks missing in the creative tab (will also omit them from most recipe viewers)
+		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabStacks();
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			
+			if (item.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+				boolean found = false;
+				for(ItemStack stack : itemGroupStacks) {
+					if(stack.isOf(item.getValue())) {
+						found = true;
+						break;
+					}
+				}
+				
+				if (!found) {
+					SpectrumCommon.logWarning("[SANITY: ItemGroups] Item '" + item.getKey().getValue() + "' is missing from the Spectrum item group.");
+				}
+			}
+		}
+		
 
 		SpectrumCommon.logInfo("##### SANITY CHECK FINISHED ######");
 

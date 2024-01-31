@@ -252,7 +252,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 			ItemStack stack = context.getStack();
 			BlockPos blockPos = context.getBlockPos();
 			
-			if (GenericClaimModsCompat.isProtected(world, blockPos, user)) {
+			if (GenericClaimModsCompat.canBreakBlock(world, blockPos, user)) {
 				playDenySound(world, context.getPlayer());
 				return ActionResult.FAIL;
 			}

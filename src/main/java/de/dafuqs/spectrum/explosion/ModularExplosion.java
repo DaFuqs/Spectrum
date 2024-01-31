@@ -124,7 +124,7 @@ public class ModularExplosion {
 		List<BlockPos> affectedBlocks = new ArrayList<>();
 		int radius = (int) blastRadius / 2;
 		for (BlockPos p : BlockPos.iterateOutwards(center, radius, radius, radius)) {
-			if (GenericClaimModsCompat.isProtected(world, p, owner)) {
+			if (GenericClaimModsCompat.canBreakBlock(world, p, owner)) {
 				continue;
 			}
 			if (shape.isAffected(center, p) && processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {

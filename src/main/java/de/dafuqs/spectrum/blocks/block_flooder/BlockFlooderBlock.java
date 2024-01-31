@@ -87,7 +87,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if (!currentBlockState.isOf(this) && currentBlockEntity == null) {
 					if (isReplaceableBlock(world, targetBlockPos)) {
 						Vec3i nextPos = new Vec3i(targetBlockPos.offset(direction).getX(), targetBlockPos.offset(direction).getY(), targetBlockPos.offset(direction).getZ());
-						if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE) && !GenericClaimModsCompat.isProtected(world, targetBlockPos, owner)) {
+						if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE) && !GenericClaimModsCompat.canBreakBlock(world, targetBlockPos, owner)) {
 							if (shouldPropagateTo(world, targetBlockPos)) {
 								world.setBlockState(targetBlockPos, state, 3);
 								if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {

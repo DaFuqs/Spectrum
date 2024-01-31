@@ -169,6 +169,8 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumItems.ENDER_SPLICE);
 				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.ENDER_SPLICE));
 				entries.add(SpectrumItems.PERTURBED_EYE);
+				entries.add(SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
+				entries.add(SpectrumBlocks.THREAT_CONFLUX);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
 				entries.add(SpectrumItems.ARTISANS_ATLAS);
@@ -223,8 +225,9 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.REDSTONE_TRANSCEIVER);
 				entries.add(SpectrumBlocks.REDSTONE_SAND);
 				entries.add(SpectrumBlocks.ENDER_GLASS);
-				entries.add(SpectrumBlocks.BLOCK_PLACER);
 				entries.add(SpectrumBlocks.BLOCK_DETECTOR);
+				entries.add(SpectrumBlocks.BLOCK_PLACER);
+				entries.add(SpectrumBlocks.BLOCK_BREAKER);
 				
 				entries.add(SpectrumBlocks.HEARTBOUND_CHEST);
 				entries.add(SpectrumBlocks.COMPACTING_CHEST);
@@ -722,9 +725,11 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BASALT_TILE_STAIRS);
 		entries.add(SpectrumBlocks.BASALT_TILE_SLAB);
 		entries.add(SpectrumBlocks.BASALT_TILE_WALL);
+		entries.add(SpectrumBlocks.PLANED_BASALT);
 		entries.add(SpectrumBlocks.CRACKED_BASALT_TILES);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_BASALT_PRESSURE_PLATE);
+		
 		entries.add(SpectrumBlocks.CALCITE_SLAB);
 		entries.add(SpectrumBlocks.CALCITE_WALL);
 		entries.add(SpectrumBlocks.CALCITE_STAIRS);
@@ -745,10 +750,15 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CALCITE_TILE_STAIRS);
 		entries.add(SpectrumBlocks.CALCITE_TILE_SLAB);
 		entries.add(SpectrumBlocks.CALCITE_TILE_WALL);
+		entries.add(SpectrumBlocks.PLANED_CALCITE);
 		entries.add(SpectrumBlocks.CRACKED_CALCITE_TILES);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_BUTTON);
 		entries.add(SpectrumBlocks.POLISHED_CALCITE_PRESSURE_PLATE);
+		
 		entries.add(SpectrumBlocks.BLACKSLAG);
+		entries.add(SpectrumBlocks.BLACKSLAG_SLAB);
+		entries.add(SpectrumBlocks.BLACKSLAG_WALL);
+		entries.add(SpectrumBlocks.BLACKSLAG_STAIRS);
 		entries.add(SpectrumBlocks.COBBLED_BLACKSLAG);
 		entries.add(SpectrumBlocks.COBBLED_BLACKSLAG_STAIRS);
 		entries.add(SpectrumBlocks.COBBLED_BLACKSLAG_SLAB);
@@ -933,6 +943,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SNAPPING_IVY);
 		entries.add(SpectrumBlocks.HUMMINGSTONE);
 		entries.add(SpectrumBlocks.HUMMINGSTONE_GLASS);
+		entries.add(SpectrumBlocks.CLEAR_HUMMINGSTONE_GLASS);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_STEM);
 		entries.add(SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES);
 		entries.add(SpectrumBlocks.JADEITE_LOTUS_STEM);
@@ -1375,9 +1386,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);
-		entries.add(SpectrumItems.FRIGID_STARDUST);
 		
-		entries.add(SpectrumItems.SPECTRAL_SHARD);
+		//entries.add(SpectrumItems.FRIGID_STARDUST);
+		//entries.add(SpectrumItems.SPECTRAL_SHARD);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_BLOCK);
 		//entries.add(SpectrumBlocks.SPECTRAL_SHARD_STORAGE_BLOCK);
 		

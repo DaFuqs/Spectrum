@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.helpers.CustomItemRender;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;

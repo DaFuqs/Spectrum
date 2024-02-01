@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public interface CustomItemRender {
     // Useful for recursion detection when e.g. the custom render method calls the vanilla render method.
     default boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
-        return false;
+        return supportsCustomRender();
     }
     default boolean supportsCustomRender() {
         return false;
@@ -22,7 +22,7 @@ public interface CustomItemRender {
 
     // Subtly different from parent interface.
     interface Stack {
-        default boolean shouldRenderCustom(ModelTransformationMode mode) {
+        default boolean shouldRender(ModelTransformationMode mode) {
             return false;
         }
 

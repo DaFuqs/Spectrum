@@ -32,7 +32,7 @@ public abstract class ItemRendererMixin {
 
 	@Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("HEAD"), cancellable = true)
 	private void spectrum$customItemRender(ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-		if (stack.shouldRenderCustom(renderMode)) {
+		if (stack.shouldRender(renderMode)) {
 			stack.render((ItemRenderer)(Object)this, renderMode, leftHanded, matrices, vertexConsumers, light, overlay, model);
 			ci.cancel();
 		};

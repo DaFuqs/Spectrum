@@ -20,7 +20,7 @@ public abstract class ItemStackMixin implements CustomItemRender.Stack, CustomIt
     @Shadow public abstract Item getItem();
 
     @Override
-    public boolean shouldRenderCustom(ModelTransformationMode mode) {
+    public boolean shouldRender(ModelTransformationMode mode) {
         ItemStack s = ((ItemStack)(Object)this);
         return s.getItem().shouldRender(s, mode);
     }

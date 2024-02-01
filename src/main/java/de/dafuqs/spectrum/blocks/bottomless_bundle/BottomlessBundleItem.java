@@ -497,7 +497,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return 5;
 	}
 
-	// impl of CustomRenderItem
+	// impl of CustomItemRender
 	public boolean supportsCustomRender() {
 		return true;
 	}

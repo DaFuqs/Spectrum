@@ -511,10 +511,12 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
 		try (RenderRecursionGuard _g = new RenderRecursionGuard(stack)) {
 			instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+
 			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
 			MinecraftClient client = MinecraftClient.getInstance();
-			BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
 			bundledStack.setCurrentlyRendering(true); // prevent potential recursion; could use another guard(that is, if the guard becomes the stable part of Extra)
+			BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
+
 			matrices.push();
 			matrices.scale(0.5F, 0.5F, 0.5F);
 			matrices.translate(0.5F, 0.5F, 0.5F);

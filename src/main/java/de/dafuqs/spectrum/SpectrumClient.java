@@ -68,22 +68,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 
-		/*
-		// :concern:
-		logInfo("Registering custom entity renderers...");
-		ModelLoadingPlugin.register((ctx) -> {
-			ctx.modifyModelOnLoad().register((orig, c) -> {
-				Identifier id = c.id();
-				if(id instanceof ModelIdentifier mid && mid.equals(BottomlessBundleItem.Model.ID)) {
-					return new BottomlessBundleItem.Model(orig);
-				}
-				return orig;
-			});
-		});
-		BuiltinItemRendererRegistry.INSTANCE.register(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.Renderer());
-		*/
-
-
 		logInfo("Setting up client side Mod Compat...");
 		SpectrumIntegrationPacks.registerClient();
 

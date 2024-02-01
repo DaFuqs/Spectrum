@@ -25,6 +25,6 @@ public class ItemMixin implements CustomItemRender {
     @Override
     public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
         stack.setCurrentlyRendering(true);
-        stack.render(instance, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+        instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
     }
 }

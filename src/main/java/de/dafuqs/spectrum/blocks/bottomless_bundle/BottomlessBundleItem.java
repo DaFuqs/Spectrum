@@ -6,10 +6,25 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
+import net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.*;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.Baker;
+import net.minecraft.client.render.model.ModelBakeSettings;
+import net.minecraft.client.render.model.UnbakedModel;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -29,6 +44,7 @@ import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, ExtendedEnchantable {
 	
@@ -510,5 +526,91 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return stack;
 		}
 	}
-	
+
+	// This is cursed, and abuses Fabric API to do its thing, but it works!
+	// The model overrides .isBuiltIn() to always return true so that .Renderer will be used for rendering
+	// That is genuinely the only thing Model is supposed to do. All of that code for a single thing.
+	// NOTE: Should be moved into a separate package if there will be items that want the same thing.
+	// That is, if the code even survives a day in the Spectrum codebase.
+	public static class Model extends ForwardingBakedModel implements UnbakedModel {
+		public static final ModelIdentifier ID = new ModelIdentifier(SpectrumCommon.MOD_ID, "bottomless_bundle", "inventory");
+		private static class WrappingOverridesList extends ModelOverrideList {
+			private ModelOverrideList wrapped;
+			private WrappingOverridesList(ModelOverrideList orig) {
+				super(null, null, List.of());
+				this.wrapped = orig;
+			}
+
+			@Nullable
+			@Override
+			public BakedModel apply(BakedModel model, ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity entity, int seed) {
+				BakedModel newModel = wrapped.apply(model, stack, world, entity, seed);
+				return newModel == model ? model : new Model(newModel);
+			}
+		}
+		// only used pre-bake
+		private UnbakedModel baseUnbaked;
+		public Model(UnbakedModel base) {
+			this.baseUnbaked = base;
+		}
+
+		// post-bake post-override constructor
+		public Model(BakedModel base) {
+			this.wrapped = base;
+		}
+
+		@Override
+		public boolean isBuiltin() {
+			return true;
+		}
+
+		private Model wrap(BakedModel model) {
+			this.wrapped = model;
+			return this;
+		}
+
+		@Override
+		public Collection<Identifier> getModelDependencies() {
+			return this.baseUnbaked.getModelDependencies();
+		}
+
+		// override so wrap persists over override
+		// ensures that .Renderer is called
+		@Override
+		public ModelOverrideList getOverrides() {
+			return new WrappingOverridesList(super.getOverrides());
+		}
+
+		// return empty transform to prevent double apply in render
+		@Override
+		public ModelTransformation getTransformation() {
+			return ModelTransformation.NONE;
+		}
+
+		@Override
+		public void setParents(Function<Identifier, UnbakedModel> modelLoader) {
+			this.baseUnbaked.setParents(modelLoader);
+		}
+
+		@Nullable
+		@Override
+		public BakedModel bake(Baker baker, Function<SpriteIdentifier, Sprite> textureGetter, ModelBakeSettings rotationContainer, Identifier modelId) {
+			return this.wrap(this.baseUnbaked.bake(baker, textureGetter, rotationContainer, modelId));
+		}
+	}
+
+	public static class Renderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
+		public Renderer() {}
+		@Override
+		public void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+			MinecraftClient client = MinecraftClient.getInstance();
+			ItemRenderer renderer = client.getItemRenderer();
+			Model model = (Model)renderer.getModel(stack, client.world, client.player, 0);
+			//BakedModel model = renderer.getModel(new ItemStack(Items.NAME_TAG, 1), client.world, client.player, 0);
+			// cancel out translate done in caller function
+			matrices.translate(0.5F, 0.5F, 0.5F);
+			renderer.renderItem(stack, mode, false, matrices, vertexConsumers, light, overlay, model.getWrappedModel());
+			//renderer.renderItem(stack, mode, false, matrices, vertexConsumers, light, overlay, model);
+		}
+	}
 }

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleItem;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
@@ -24,6 +25,7 @@ import de.dafuqs.spectrum.render.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.*;
@@ -32,6 +34,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
+import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.item.*;
@@ -64,6 +67,19 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
+
+		// :concern:
+		logInfo("Registering custom entity renderers...");
+		ModelLoadingPlugin.register((ctx) -> {
+			ctx.modifyModelOnLoad().register((orig, c) -> {
+				Identifier id = c.id();
+				if(id instanceof ModelIdentifier mid && mid.equals(BottomlessBundleItem.Model.ID)) {
+					return new BottomlessBundleItem.Model(orig);
+				}
+				return orig;
+			});
+		});
+		BuiltinItemRendererRegistry.INSTANCE.register(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.Renderer());
 
 		logInfo("Setting up client side Mod Compat...");
 		SpectrumIntegrationPacks.registerClient();

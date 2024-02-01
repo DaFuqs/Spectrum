@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.*;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.ItemRenderer;
@@ -502,16 +503,23 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	@Override
 	public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
-		return super.shouldRender(stack, mode) && (
-				mode == ModelTransformationMode.GUI
-						|| mode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND
-						|| mode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND
-		);
+		return super.shouldRender(stack, mode)
+				&& mode == ModelTransformationMode.GUI
+				&& getStoredAmount(stack) > 0;
 	}
 	@Override
 	public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
 		try (RenderRecursionGuard _g = new RenderRecursionGuard(stack)) {
 			instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
+			MinecraftClient client = MinecraftClient.getInstance();
+			BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
+			bundledStack.setCurrentlyRendering(true); // prevent potential recursion; could use another guard(that is, if the guard becomes the stable part of Extra)
+			matrices.push();
+			matrices.scale(0.5F, 0.5F, 0.5F);
+			matrices.translate(0.5F, 0.5F, 0.5F);
+			instance.renderItem(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
+			matrices.pop();
 		}
 	}
 

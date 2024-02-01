@@ -59,6 +59,13 @@
     ],
     "lithium:options": {
       "entity.collisions.fluid": false
+    },
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1792": ["de/dafuqs/spectrum/helpers/CustomItemRender"],
+      "net/minecraft/class_1799": [
+        "de/dafuqs/spectrum/helpers/CustomItemRender\u0024Stack",
+        "de/dafuqs/spectrum/helpers/CustomItemRender\u0024Stack\u0024Extra"
+      ]
     }
   },
   "depends": {

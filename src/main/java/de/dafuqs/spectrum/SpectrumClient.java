@@ -68,6 +68,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 
+		/*
 		// :concern:
 		logInfo("Registering custom entity renderers...");
 		ModelLoadingPlugin.register((ctx) -> {
@@ -80,6 +81,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			});
 		});
 		BuiltinItemRendererRegistry.INSTANCE.register(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.Renderer());
+		*/
+
 
 		logInfo("Setting up client side Mod Compat...");
 		SpectrumIntegrationPacks.registerClient();

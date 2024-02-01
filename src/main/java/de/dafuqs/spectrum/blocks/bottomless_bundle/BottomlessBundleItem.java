@@ -510,7 +510,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	@Override
 	public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
-		SpectrumCommon.logInfo("Called");
 		try (RenderRecursionGuard _g = new RenderRecursionGuard(stack)) {
 			instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
 		}

@@ -14,6 +14,9 @@ public interface CustomItemRender {
     default boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
         return false;
     }
+    default boolean supportsCustomRender() {
+        return false;
+    }
     default void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
     }
 

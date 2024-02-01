@@ -14,6 +14,6 @@ public class ItemMixin implements CustomItemRender {
     // default impl. Relies on the UNSTABLE CustomItemRender.Stack.Extra
     @Override
     public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
-        return !stack.isCurrentlyRendering();
+        return supportsCustomRender() && !stack.isCurrentlyRendering();
     }
 }

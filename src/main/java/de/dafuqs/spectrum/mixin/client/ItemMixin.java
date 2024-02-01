@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 public class ItemMixin implements CustomItemRender {
     // default impl. Relies on the UNSTABLE CustomItemRender.Stack.Extra
     @Override
-    public boolean shouldRenderCustom(ItemStack stack, ModelTransformationMode mode) {
-        return stack.isCurrentlyRendering();
+    public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
+        return !stack.isCurrentlyRendering();
     }
 }

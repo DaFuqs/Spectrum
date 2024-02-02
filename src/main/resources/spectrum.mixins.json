@@ -91,6 +91,8 @@
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",
+    "client.ClientPlayerEntityMixin",
+    "client.ClientWorldMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",

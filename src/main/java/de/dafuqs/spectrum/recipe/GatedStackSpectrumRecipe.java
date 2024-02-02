@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe;
 
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;

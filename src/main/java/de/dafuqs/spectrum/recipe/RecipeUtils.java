@@ -5,7 +5,7 @@ import com.google.gson.*;
 import com.mojang.brigadier.*;
 import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.command.argument.*;
 import net.minecraft.item.*;

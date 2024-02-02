@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.registry.*;

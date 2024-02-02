@@ -49,6 +49,8 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
 
+	modImplementation include("com.github.Noaaan:Matchbooks:${project.matchbooks_version}")
+
 	// we need a bit of concern
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 

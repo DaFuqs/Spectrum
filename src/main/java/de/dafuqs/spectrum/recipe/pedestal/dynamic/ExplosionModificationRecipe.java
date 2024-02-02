@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;

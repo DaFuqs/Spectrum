@@ -21,6 +21,7 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.render.capes.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
@@ -133,6 +134,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
+		WorthinessChecker.init();
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);

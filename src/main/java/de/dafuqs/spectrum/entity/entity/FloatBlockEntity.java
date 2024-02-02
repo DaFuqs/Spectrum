@@ -187,9 +187,4 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	public boolean collidesWith(Entity other) {
 		return other.isCollidable() && !this.isConnectedThroughVehicle(other);
 	}
-
-	@Override
-	public void spectrum$postTick() {
-
-	}
 }

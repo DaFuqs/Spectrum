@@ -60,36 +60,6 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		
 		return BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock, blocksToPlace);
 	}
-
-	// TODO - Refactor note - Is PlacedBlocks planned on being used? At the same time, should this specific impl not be in ConstructorStaffItem?
-	protected static int placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions, int inkCostPerBlock) {
-		int placedBlocks = 0;
-		for (BlockPos position : targetPositions) {
-			// Only place blocks where you are allowed to do so
-			if (!GenericClaimModsCompat.canPlaceBlock(world, position, player))
-				continue;
-
-			BlockState originalState = world.getBlockState(position);
-			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.getMaterial().isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
-				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
-					if (world.setBlockState(position, stateToPlace)) {
-						if (placedBlocks == 0) {
-							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(), stateToPlace.getSoundGroup().getPitch());
-						}
-						placedBlocks++;
-					}
-				}
-			}
-		}
-		
-		if (!player.isCreative()) {
-			player.getInventory().remove(stack -> stack.getItem().equals(itemToConsume), placedBlocks, player.getInventory());
-			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * inkCostPerBlock);
-		}
-		
-		return placedBlocks;
-	}
 	
 	public static class BuildingStaffPlacementContext extends ItemPlacementContext {
 		

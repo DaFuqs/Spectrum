@@ -47,7 +47,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 				return;
 			}
 			BlockPos pos = entity.getBlockPos();
-			if (GenericClaimModsCompat.canBreakBlock(world, pos, entity)) {
+			if (!GenericClaimModsCompat.canPlaceBlock(world, pos, entity)) {
 				return;
 			}
 			

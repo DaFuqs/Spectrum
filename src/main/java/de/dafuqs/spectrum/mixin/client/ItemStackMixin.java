@@ -22,7 +22,8 @@ public abstract class ItemStackMixin implements CustomItemRender.Stack, CustomIt
     @Override
     public boolean shouldRender(ModelTransformationMode mode) {
         ItemStack s = ((ItemStack)(Object)this);
-        return s.getItem().shouldRender(s, mode);
+        CustomItemRender item = s.getItem();
+        return (!isCurrentlyRendering() || item.allowRecursion(s, mode)) && s.getItem().shouldRender(s, mode);
     }
 
     @Override

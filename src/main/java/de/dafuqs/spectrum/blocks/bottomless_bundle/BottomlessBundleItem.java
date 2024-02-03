@@ -498,9 +498,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 
 	// impl of CustomItemRender
-	public boolean supportsCustomRender() {
-		return true;
-	}
 	@Override
 	public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
 		return super.shouldRender(stack, mode)

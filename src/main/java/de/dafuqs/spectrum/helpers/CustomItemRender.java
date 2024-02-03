@@ -12,9 +12,11 @@ import net.minecraft.item.ItemStack;
 public interface CustomItemRender {
     // Useful for recursion detection when e.g. the custom render method calls the vanilla render method.
     default boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
-        return supportsCustomRender();
+        return false;
     }
-    default boolean supportsCustomRender() {
+
+    // Allow calling the custom render function even if the item stack is currently marked as being used for custom rendering.
+    default boolean allowRecursion(ItemStack stack, ModelTransformationMode mode) {
         return false;
     }
     default void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {

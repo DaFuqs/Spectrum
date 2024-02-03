@@ -511,7 +511,6 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
 			MinecraftClient client = MinecraftClient.getInstance();
-			bundledStack.setCurrentlyRendering(true); // prevent potential recursion; could use another guard(that is, if the guard becomes the stable part of Extra)
 			BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
 
 			matrices.push();

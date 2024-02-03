@@ -12,6 +12,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
@@ -60,6 +61,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.pigment_palette.tooltip.target").formatted(Formatting.GRAY));
 		getEnergyStorage(stack).addTooltip(tooltip, true);
 		addBannerPatternProviderTooltip(tooltip);
 	}

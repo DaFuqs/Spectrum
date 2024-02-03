@@ -1,8 +1,7 @@
-package de.dafuqs.spectrum.blocks.blocklikeentities.api;
+package de.dafuqs.spectrum.entity.entity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import de.dafuqs.spectrum.blocks.blocklikeentities.util.PostTickEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.*;
@@ -30,7 +29,7 @@ import java.util.List;
 /**
  * An entity that resembles a block.
  */
-public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
+public abstract class BlockLikeEntity extends Entity {
     private static final TrackedData<BlockPos> ORIGIN = DataTracker.registerData(BlockLikeEntity.class, TrackedDataHandlerRegistry.BLOCK_POS);
     public int moveTime;
     public boolean dropItem = true;
@@ -41,7 +40,6 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
     protected int fallHurtMax = 40;
     protected float fallHurtAmount = 2.0f;
     protected boolean collides;
-    protected boolean partOfSet = false;
 
     public BlockLikeEntity(EntityType<? extends BlockLikeEntity> entityType, World world) {
         super(entityType, world);
@@ -60,9 +58,8 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
         this.setOrigin(BlockPos.ofFloored(this.getPos()));
     }
 
-    public BlockLikeEntity(EntityType<? extends BlockLikeEntity> entityType, World world, BlockPos pos, BlockState blockState, boolean partOfSet) {
+    public BlockLikeEntity(EntityType<? extends BlockLikeEntity> entityType, World world, BlockPos pos, BlockState blockState) {
         this(entityType, world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, blockState);
-        this.partOfSet = partOfSet;
     }
 
     /**
@@ -100,21 +97,33 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
             this.fallHurtAmount = this.blockState.getBlock().getHardness() * (float)verticalSpeed;
             this.fallHurtMax = Math.max(Math.round(this.fallHurtAmount), this.fallHurtMax);
         }
-    }
-
-    /**
-     * Override me! Calculate movement.
-     */
-    public abstract void postTickMovement();
-
-    /**
-     * Take actions on entities on "collision".
-     * By default, it replicates the blockstate's behavior on collision.
-     */
-    public void postTickEntityCollision(Entity entity) {
-        if (!(entity instanceof BlockLikeEntity ble && ble.partOfSet)) {
-            this.blockState.onEntityCollision(getWorld(), this.getBlockPos(), entity);
+        
+        if (this.blockState.isAir()) {
+            this.discard();
+            return;
         }
+    
+        this.prevX = this.getX();
+        this.prevY = this.getY();
+        this.prevZ = this.getZ();
+    
+        // Destroy the block in the world that this is spawned from
+        // If no block exists, remove this entity
+        if (this.moveTime++ == 0) {
+            BlockPos blockPos = this.getBlockPos();
+            Block block = this.blockState.getBlock();
+            if (this.getWorld().getBlockState(blockPos).isOf(block)) {
+                this.getWorld().removeBlock(blockPos, false);
+            } else if (!this.getWorld().isClient) {
+                this.discard();
+                return;
+            }
+        }
+    
+        this.postTickMovement();
+        this.postTickMoveEntities();
+    
+        if (this.shouldCease()) this.cease();
     }
 
     /**
@@ -148,39 +157,20 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
         // Check if it is outside the world
         return this.moveTime > 100 && (blockPos.getY() < this.getWorld().getBottomY() || blockPos.getY() > this.getWorld().getTopY());
     }
-
+    
     /**
-     * The big kahuna. You likely don't need to override this method.
-     * Instead, override the methods that it calls.
+     * Override me! Calculate movement.
      */
-    public void spectrum$postTick() {
-        if (this.blockState.isAir()) {
-            this.discard();
-            return;
+    public abstract void postTickMovement();
+    
+    /**
+     * Take actions on entities on "collision".
+     * By default, it replicates the blockstate's behavior on collision.
+     */
+    public void postTickEntityCollision(Entity entity) {
+        if (!(entity instanceof BlockLikeEntity)) {
+            this.blockState.onEntityCollision(getWorld(), this.getBlockPos(), entity);
         }
-
-        this.prevX = this.getX();
-        this.prevY = this.getY();
-        this.prevZ = this.getZ();
-
-        // Destroy the block in the world that this is spawned from
-        // If no block exists, remove this entity (unless part of a set)
-        if (this.moveTime++ == 0) {
-            BlockPos blockPos = this.getBlockPos();
-            Block block = this.blockState.getBlock();
-            if (this.getWorld().getBlockState(blockPos).isOf(block)) {
-                this.getWorld().removeBlock(blockPos, false);
-            } else if (!this.getWorld().isClient && !this.partOfSet) {
-                this.discard();
-                return;
-            }
-        }
-
-        this.postTickMovement();
-
-        this.postTickMoveEntities();
-
-        if (this.shouldCease()) this.cease();
     }
 
     /**
@@ -276,10 +266,6 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
         return this.blockState;
     }
 
-    public void setHurtEntities(boolean hurtEntities) {
-        this.hurtEntities = hurtEntities;
-    }
-
     /**
      * End entity movement and become a block in the world (Removes this entity).
      */
@@ -361,34 +347,19 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
 
     @Override
     public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this, Block.getRawIdFromState(this.getBlockState()) * (this.partOfSet ? -1 : 1));
+        return new EntitySpawnS2CPacket(this, Block.getRawIdFromState(this.getBlockState()));
     }
 
     @Override
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
-        int data = packet.getEntityData();
-        this.partOfSet = data < 0;
-        this.blockState = Block.getStateFromRawId(packet.getEntityData() * (this.partOfSet ? -1 : 1));
+        this.blockState = Block.getStateFromRawId(packet.getEntityData());
         this.intersectionChecked = true;
         double d = packet.getX();
         double e = packet.getY();
         double f = packet.getZ();
         this.setPosition(d, e + (double) ((1.0F - this.getHeight()) / 2.0F), f);
         this.setOrigin(this.getBlockPos());
-    }
-
-    /**
-     * Aligns this block to another.
-     * @param other The other block to align with
-     * @param offset The offset from the other block. this pos - other pos.
-     * @see BlockLikeSet
-     */
-    public void alignWith(BlockLikeEntity other, Vec3i offset) {
-        if (this == other) return;
-        Vec3d newPos = other.getPos().add(Vec3d.of(offset));
-        this.setPos(newPos.x, newPos.y, newPos.z);
-        this.setVelocity(other.getVelocity());
     }
 
     @Override
@@ -404,10 +375,6 @@ public abstract class BlockLikeEntity extends Entity implements PostTickEntity {
     public void setOrigin(BlockPos origin) {
         this.dataTracker.set(ORIGIN, origin);
         this.setPosition(getX(), getY(), getZ());
-    }
-
-    public void markPartOfSet() {
-        this.partOfSet = true;
     }
 
     @Override

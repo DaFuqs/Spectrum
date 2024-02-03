@@ -1,8 +1,8 @@
-package de.dafuqs.spectrum.blocks.blocklikeentities.api.client;
+package de.dafuqs.spectrum.entity.render;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import de.dafuqs.spectrum.blocks.blocklikeentities.api.BlockLikeEntity;
+import de.dafuqs.spectrum.entity.entity.BlockLikeEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

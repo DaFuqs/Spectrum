@@ -395,12 +395,9 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.FREIGEIST);
 		
 		// adding all beverages from recipes
-		MinecraftClient client = MinecraftClient.getInstance();
-		ClientPlayNetworkHandler networkHandler = client.getNetworkHandler();
-		// This shouldn't ever be null when we get here, but it's technically nullable
-		if (networkHandler != null) {
-			for (ITitrationBarrelRecipe recipe : networkHandler.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-				ItemStack output = recipe.getOutput(networkHandler.getRegistryManager()).copy();
+		if (SpectrumCommon.minecraftServer != null) {
+			for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+				ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
 				if (output.getItem() instanceof VariantBeverageItem) {
 					output.setCount(1);
 					entries.add(output);

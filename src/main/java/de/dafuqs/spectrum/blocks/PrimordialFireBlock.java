@@ -191,7 +191,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     }
 
     private void trySpreadingFire(World world, BlockPos pos, int spreadFactor, Random random) {
-        if (GenericClaimModsCompat.canBreakBlock(world, pos, null)) {
+        if (!GenericClaimModsCompat.canBreakBlock(world, pos, null)) {
             return;
         }
     

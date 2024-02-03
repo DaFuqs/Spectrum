@@ -24,7 +24,8 @@ public class ItemMixin implements CustomItemRender {
     // Fallback. Only called if the item supporting custom rendering doesn't implement its own render method.
     @Override
     public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
-        stack.setCurrentlyRendering(true);
-        instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+        try (Stack.Extra.RenderRecursionGuard ignored = new Stack.Extra.RenderRecursionGuard(stack)) {
+            instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+        }
     }
 }

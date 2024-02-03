@@ -38,7 +38,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-import de.dafuqs.spectrum.helpers.CustomItemRender.Stack.Extra.RenderRecursionGuard;
+import de.dafuqs.spectrum.helpers.CustomItemRender.Render.Stack.Extra.RenderRecursionGuard;
 
 public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, ExtendedEnchantable {
 	
@@ -501,32 +501,46 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 	// impl of CustomItemRender
 	@Environment(EnvType.CLIENT)
-	@Override
-	public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
-		return super.shouldRender(stack, mode)
-				&& mode == ModelTransformationMode.GUI
-				&& getStoredAmount(stack) > 0;
-	}
+	private static final Renderer renderer = new Renderer();
 	@Environment(EnvType.CLIENT)
 	@Override
-	public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
-		try (RenderRecursionGuard ignored = new RenderRecursionGuard(stack)) {
-			instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+	public Object getRender() {
+		return renderer;
+	}
+	@Environment(EnvType.CLIENT)
+	private static class Renderer extends CustomItemRender.DefaultProviders.ItemRender {
+		public Renderer() {
+			super();
+		}
 
-			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
-			MinecraftClient client = MinecraftClient.getInstance();
-			BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
+		@Environment(EnvType.CLIENT)
+		@Override
+		public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
+			return super.shouldRender(stack, mode)
+					&& mode == ModelTransformationMode.GUI
+					&& getStoredAmount(stack) > 0;
+		}
 
-			matrices.push();
-			matrices.scale(0.5F, 0.5F, 0.5F);
-			matrices.translate(0.5F, 0.5F, 0.5F);
-			instance.renderItem(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
-			matrices.pop();
+		@Environment(EnvType.CLIENT)
+		@Override
+		public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
+			try (RenderRecursionGuard ignored = new RenderRecursionGuard((CustomItemRender.Render.Stack.Extra) stack.getRender())) {
+				instance.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+
+				ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
+				MinecraftClient client = MinecraftClient.getInstance();
+				BakedModel bundledModel = instance.getModel(bundledStack, client.world, client.player, 0);
+
+				matrices.push();
+				matrices.scale(0.5F, 0.5F, 0.5F);
+				matrices.translate(0.5F, 0.5F, 0.5F);
+				instance.renderItem(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
+				matrices.pop();
+			}
 		}
 	}
-
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
-		
+
 		@Override
 		protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
 			this.setSuccess(false);
@@ -535,15 +549,16 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
 				BlockPos blockPos = pointer.getPos().offset(direction);
 				Direction direction2 = pointer.getWorld().isAir(blockPos.down()) ? direction : Direction.UP;
-				
+
 				try {
 					this.setSuccess(bottomlessBundleItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), blockPos, direction, stack, direction2)).isAccepted());
 				} catch (Exception e) {
 					SpectrumCommon.logError("Error trying to place bottomless bundle at " + blockPos + " : " + e);
 				}
 			}
-			
+
 			return stack;
 		}
 	}
+
 }

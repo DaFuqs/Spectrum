@@ -16,31 +16,10 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ItemStack.class)
-public abstract class ItemStackMixin implements CustomItemRender.Stack, CustomItemRender.Stack.Extra {
+public abstract class ItemStackMixin implements CustomItemRender.Provider {
     @Shadow public abstract Item getItem();
-
     @Override
-    public boolean shouldRender(ModelTransformationMode mode) {
-        ItemStack s = ((ItemStack)(Object)this);
-        CustomItemRender item = s.getItem();
-        return (!isCurrentlyRendering() || item.allowRecursion(s, mode)) && s.getItem().shouldRender(s, mode);
-    }
-
-    @Override
-    public void render(ItemRenderer instance, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
-        ItemStack s = ((ItemStack)(Object)this);
-        s.getItem().render(instance, s, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-    }
-
-    // UNSTABLE CustomItemRender.Stack.Extra implementation.
-    @Unique
-    boolean spectrum$currentlyRendering = false;
-    @Override
-    public boolean isCurrentlyRendering() {
-        return spectrum$currentlyRendering;
-    }
-    @Override
-    public void setCurrentlyRendering(boolean value) {
-        spectrum$currentlyRendering = value;
+    public Object getRender() {
+        return this.getItem().getRender() == null ? null : new CustomItemRender.DefaultProviders.ItemStackRender((ItemStack) (Object) this);
     }
 }

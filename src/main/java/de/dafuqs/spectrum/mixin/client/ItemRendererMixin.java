@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.helpers.CustomItemRender;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
@@ -32,9 +33,12 @@ public abstract class ItemRendererMixin {
 
 	@Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("HEAD"), cancellable = true)
 	private void spectrum$customItemRender(ItemStack stack, ModelTransformationMode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-		if (stack.shouldRender(renderMode)) {
-			stack.render((ItemRenderer)(Object)this, renderMode, leftHanded, matrices, vertexConsumers, light, overlay, model);
-			ci.cancel();
+		if (stack.getRender() != null) {
+			CustomItemRender.Render.Stack s = (CustomItemRender.Render.Stack)stack.getRender();
+			if(s.shouldRender(renderMode)) {
+				s.render((ItemRenderer) (Object) this, renderMode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+				ci.cancel();
+			};
 		};
 	}
 

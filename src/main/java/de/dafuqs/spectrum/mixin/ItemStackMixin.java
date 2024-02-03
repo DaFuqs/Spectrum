@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.CustomItemRender;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(ItemStack.class)
-public abstract class ItemStackMixin {
+public abstract class ItemStackMixin implements CustomItemRender.Render {
 	
 	@Shadow
 	public abstract boolean isIn(TagKey<Item> tag);

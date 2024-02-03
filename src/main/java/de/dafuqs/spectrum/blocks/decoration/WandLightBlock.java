@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.decoration;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.entity.*;
@@ -41,10 +42,15 @@ public class WandLightBlock extends LightBlock {
 		return false;
 	}
 	
+	@Environment(EnvType.CLIENT)
+	private boolean holdsRadianceStaffClient() {
+		return holdsRadianceStaff(MinecraftClient.getInstance().player);
+	}
+	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if (world.isClient && holdsRadianceStaff(MinecraftClient.getInstance().player)) {
+		if (world.isClient && holdsRadianceStaffClient()) {
 			world.addImportantParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}

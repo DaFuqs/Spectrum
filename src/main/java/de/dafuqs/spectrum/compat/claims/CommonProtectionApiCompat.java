@@ -8,7 +8,7 @@ import net.minecraft.world.*;
 
 public class CommonProtectionApiCompat {
 	
-	public static boolean isProtected(World world, BlockPos pos, Entity cause) {
+	public static boolean canBreak(World world, BlockPos pos, Entity cause) {
 		if (cause instanceof PlayerEntity playerEntity) {
 			return CommonProtection.canBreakBlock(world, pos, playerEntity.getGameProfile(), playerEntity);
 		} else {

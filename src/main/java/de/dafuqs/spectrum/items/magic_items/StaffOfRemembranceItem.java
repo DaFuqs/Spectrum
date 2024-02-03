@@ -51,7 +51,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		World world = user.world;
 		Vec3d pos = entity.getPos();
 		
-		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
+		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
 			return ActionResult.FAIL;
 		}
 		

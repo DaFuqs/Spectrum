@@ -21,21 +21,21 @@ public class GenericClaimModsCompat {
 	 * @param pos   the pos that should get modified
 	 * @return if modification is allowed
 	 */
-	public static boolean canBreakBlock(World world, BlockPos pos, @Nullable Entity cause) {
+	public static boolean canBreak(World world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
-			return !CommonProtectionApiCompat.isProtected(world, pos, cause);
+			return CommonProtectionApiCompat.canBreak(world, pos, cause);
 		}
-		return false;
+		return true;
 	}
 	
-	public static boolean canInteractWith(World world, Entity entity, @Nullable Entity cause) {
+	public static boolean canInteract(World world, Entity entity, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canInteract(world, entity, cause);
 		}
 		return true;
 	}
 
-	public static boolean canInteractWith(World world, BlockPos pos, @Nullable Entity cause) {
+	public static boolean canInteract(World world, BlockPos pos, @Nullable Entity cause) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
 			return CommonProtectionApiCompat.canInteract(world, pos, cause);
 		}

@@ -24,7 +24,7 @@ public class EverpromiseRibbonItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if (!GenericClaimModsCompat.canInteractWith(user.world, entity, user)) {
+		if (!GenericClaimModsCompat.canInteract(user.world, entity, user)) {
 			return ActionResult.FAIL;
 		}
 		

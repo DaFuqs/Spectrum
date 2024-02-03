@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe;
 
 import com.google.gson.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
-import net.id.incubus_core.util.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;

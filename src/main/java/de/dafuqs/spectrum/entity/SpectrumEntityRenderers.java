@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity;
 import de.dafuqs.spectrum.entity.render.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.id.incubus_core.blocklikeentities.api.client.*;
 import net.minecraft.client.render.entity.*;
 import net.minecraft.entity.*;
 

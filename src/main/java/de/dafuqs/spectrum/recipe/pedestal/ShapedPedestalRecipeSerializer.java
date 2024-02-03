@@ -4,7 +4,7 @@ import com.google.gson.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;

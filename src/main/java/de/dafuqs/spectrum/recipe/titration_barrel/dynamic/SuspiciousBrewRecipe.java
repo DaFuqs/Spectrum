@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;

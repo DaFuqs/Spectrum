@@ -7,7 +7,7 @@ import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.util.collection.*;
 

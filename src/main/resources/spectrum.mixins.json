@@ -87,6 +87,7 @@
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
+    "client.AbstractClientEntityMixin",
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",

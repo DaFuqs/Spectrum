@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
-import net.id.incubus_core.recipe.matchbook.*;
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.matchbooks.recipe.matchbook.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;

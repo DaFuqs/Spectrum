@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;

@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.blocklikeentities.api.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
@@ -187,5 +186,4 @@ public class FloatBlockEntity extends BlockLikeEntity {
 	public boolean collidesWith(Entity other) {
 		return other.isCollidable() && !this.isConnectedThroughVehicle(other);
 	}
-	
 }

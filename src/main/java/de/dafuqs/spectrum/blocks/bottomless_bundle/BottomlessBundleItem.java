@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
@@ -498,12 +500,14 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 
 	// impl of CustomItemRender
+	@Environment(EnvType.CLIENT)
 	@Override
 	public boolean shouldRender(ItemStack stack, ModelTransformationMode mode) {
 		return super.shouldRender(stack, mode)
 				&& mode == ModelTransformationMode.GUI
 				&& getStoredAmount(stack) > 0;
 	}
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void render(ItemRenderer instance, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
 		try (RenderRecursionGuard ignored = new RenderRecursionGuard(stack)) {

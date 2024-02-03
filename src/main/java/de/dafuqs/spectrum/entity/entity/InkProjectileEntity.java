@@ -262,7 +262,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Vec3d vec3d = new Vec3d(posX, posY, posZ);
 		
 		for (Entity entity : list) {
-			if (!GenericClaimModsCompat.canInteractWith(this.getWorld(), entity, attacker)) {
+			if (!GenericClaimModsCompat.canInteract(this.getWorld(), entity, attacker)) {
 				continue;
 			}
 			

@@ -226,7 +226,7 @@ public class PaintbrushItem extends Item {
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		World world = user.getWorld();
-		if (canColor(user) && GenericClaimModsCompat.canInteractWith(entity.getWorld(), entity, user)) {
+		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
 			if (color.isPresent() && payBlockColorCost(user, color.get())) {
 				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());

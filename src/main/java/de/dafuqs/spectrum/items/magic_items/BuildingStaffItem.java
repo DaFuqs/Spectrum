@@ -9,15 +9,12 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
-
-import java.util.*;
 
 public abstract class BuildingStaffItem extends Item implements PrioritizedBlockInteraction, InkPowered {
 	
@@ -39,7 +36,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		}
 		
 		float hardness = state.getHardness(world, pos);
-		return hardness >= 0 && GenericClaimModsCompat.canInteractWith(player.getWorld(), pos, player);
+		return hardness >= 0 && GenericClaimModsCompat.canInteract(player.getWorld(), pos, player);
 	}
 	
 	/**

@@ -173,7 +173,6 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.THREAT_CONFLUX);
 				entries.add(SpectrumItems.PIPE_BOMB);
 				entries.add(SpectrumItems.CRESCENT_CLOCK);
-				entries.add(SpectrumItems.ARTISANS_ATLAS);
 				entries.add(SpectrumItems.MYSTERIOUS_LOCKET);
 				entries.add(SpectrumItems.MYSTERIOUS_COMPASS);
 			}).build();
@@ -1383,6 +1382,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PRESERVATION_CHEST);
 		
 		entries.add(SpectrumItems.DIVINATION_HEART);
+		
+		entries.add(SpectrumItems.ARTISANS_ATLAS);
 		
 		//entries.add(SpectrumItems.FRIGID_STARDUST);
 		//entries.add(SpectrumItems.SPECTRAL_SHARD);

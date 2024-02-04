@@ -20,7 +20,7 @@ public class IdwtialsimmoedmCompat {
             if (ench instanceof SpectrumEnchantment spectrumEnchantment && !spectrumEnchantment.canEntityUse(player)) {
                 return GatherDescriptionCallback.wrapDescription(original.copy().formatted(Formatting.OBFUSCATED));
             }
-            return DefaultDescriptions.forEnchantmentFormatted(ench);
+            return null;
         });
     }
 }

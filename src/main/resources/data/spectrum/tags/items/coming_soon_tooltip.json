@@ -12,6 +12,7 @@
     "spectrum:sacred_soil",
     "#spectrum:catkin",
 
-    "spectrum:monstrosity_head"
+    "spectrum:monstrosity_head",
+    "spectrum:artisans_atlas"
   ]
 }

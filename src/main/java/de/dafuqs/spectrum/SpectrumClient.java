@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
+import de.dafuqs.spectrum.compat.idwtialsimmoedm.IdwtialsimmoedmCompat;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.energy.*;
@@ -128,6 +129,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		if (FabricLoader.getInstance().isModLoaded("ears")) {
 			logInfo("Registering Ears Compat...");
 			EarsCompat.register();
+		}
+
+		if (FabricLoader.getInstance().isModLoaded("idwtialsimmoedm")) {
+			logInfo("Registering idwtialsimmoedm Compat...");
+			IdwtialsimmoedmCompat.register();
 		}
 
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);

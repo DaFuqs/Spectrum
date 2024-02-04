@@ -19,7 +19,7 @@ repositories {
 	maven { url = "https://maven.blamejared.com" } // Patchouli
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
-	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts
+	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	mavenCentral()
@@ -93,6 +93,9 @@ dependencies {
 
 	// Enchantment Descriptions compat
 	modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
+
+	// idwtialsimmoedm compat
+	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 }
 
 loom {

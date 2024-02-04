@@ -80,5 +80,7 @@
     "bettercombat": "*",
     "continuity": "*"
   },
-  "breaks": {}
+  "breaks": {
+    "idwtialsimmoedm": "<0.3.0-"
+  }
 }

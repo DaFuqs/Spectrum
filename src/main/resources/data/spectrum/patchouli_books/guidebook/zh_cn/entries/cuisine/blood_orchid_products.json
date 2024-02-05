@@ -1,0 +1,48 @@
+{
+  "name": "血兰制品",
+  "icon": "spectrum:bloodboil_syrup",
+  "advancement": "spectrum:midgame/collect_blood_orchid_petal",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:bloodboil_syrup": 0,
+    "spectrum:demon_tea": 0,
+    "spectrum:demon_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Blood Orchid Products",
+      "item": "spectrum:bloodboil_syrup",
+      "text": "血兰花瓣摘自$(l:resources/blood_orchid)血兰$(/l)。含有导致精神失常$(thing)癫狂$()的物质.$(br)能给你伤害攻击速度移动速度击退抗性的加成，你屠的越多就越上头，但十秒内没屠就会降低效果"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "癫狂叠加",
+      "text": "饮用癫狂药剂不会重置$(thing)癫狂$() 效果的时间而是增加他的药水等级.$(br2)为了获得最大的增益，首先应用一个持续时间长的，然后叠加效果似乎是最有效的。"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "text": "花瓣的影响成分可以被萃取成浓稠的溶液。闻起来像玫瑰水，但它的效果肯定...$(italic)让人更加...$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/demon_trifle",
+      "recipe": "spectrum:pedestal/tier1/food/demon_trifle",
+      "text": "$(thing)癫狂$()效果初始可能低一些，但是持续时间更长."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "advancement": "spectrum:unlocks/food/demon_tea",
+      "recipe": "spectrum:potion_workshop_crafting/demon_tea",
+      "text": "$(thing)癫狂$()效果持续非常短但是药水等级较高"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/rabbit_poison",
+      "title": "兔子药",
+      "recipe": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
+      "text": "难喝到令人作呕，效果和你想的一样"
+    }
+  ]
+}

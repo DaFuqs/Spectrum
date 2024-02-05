@@ -1,0 +1,35 @@
+{
+  "name": "七彩基座",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "category": "spectrum:general_category",
+  "sortnum": 2,
+  "turnin": "spectrum:place_pedestal",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_basic_amethyst": 0,
+    "spectrum:pedestal_basic_topaz": 0,
+    "spectrum:pedestal_basic_citrine": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "title": "七彩基座",
+      "recipe": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "text": "光谱世界中，大多数配方在$(bold)七彩基座$()上合成。$(br2)在其上要么啥都没有，要么是配方。开始合成之前先输入一个红石信号。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "大多配方需要$(l:general/gemstone_powder)宝石粉末$()。$(br2)基座本身也可以作为一个普通的合成台用来合成原版的物品。$(br2)你可以使用$(l:magical_items/crafting_tablet)合成模板$() 来自动合成光谱世界的物品和普通物品。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "变种",
+      "text": "七彩基座可以用不同的宝石矿石来制作，$(br2)不同的宝石矿合成的七彩基座看起来不一样但是功能是一样的。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "合成配方",
+      "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
+      "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"recipe":"spectrum:crafting_table/jade_vines/jade_vine_petal_block",
+			"text":"从$(l:resources/jade_vines)古玉藤树$(/l)上采集的花瓣中，你创造了一系列小的装饰块。",
+			"type":"patchouli:crafting",
+			"title":"玉瓣块"
+		},
+		{
+			"recipe":"spectrum:crafting_table/jade_vines/jade_vine_petal_carpet",
+			"text":"",
+			"type":"patchouli:crafting",
+			"title":"地毯"
+		}
+	],
+	"advancement":"spectrum:hidden/collect_jade_vine_petals",
+	"extra_recipe_mappings":{
+		"spectrum:jade_vine_petal_carpet":0,
+		"spectrum:jade_vine_petal_block":0
+	},
+	"name":"玉瓣块",
+	"icon":"spectrum:jade_vine_petal_block",
+	"category":"spectrum:decoration_category"
+}

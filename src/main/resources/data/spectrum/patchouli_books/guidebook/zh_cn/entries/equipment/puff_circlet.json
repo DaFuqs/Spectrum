@@ -1,0 +1,21 @@
+{
+  "name": "泡芙发箍",
+  "advancement": "spectrum:unlocks/trinkets/puff_circlet",
+  "icon": "spectrum:puff_circlet",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:puff_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这个闪闪发光的环在你周围形成了一层空气保护膜。$(br2)给予你$(c_green)4$()点$(c_blue)蔚蓝防御$()。它不仅可以保护你免受敌人的攻击，还可以缓冲长时间的坠落，还可以防止耕地被践踏。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
+      "text": "$(italic)被骷髅从背后狙击的日子一去不复返了."
+    }
+  ]
+}

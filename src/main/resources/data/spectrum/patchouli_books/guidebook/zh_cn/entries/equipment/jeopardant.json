@@ -1,0 +1,21 @@
+{
+  "name": "血怒戒指",
+  "advancement": "spectrum:unlocks/trinkets/jeopardant",
+  "icon": "spectrum:jeopardant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:jeopardant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在紧急状态下，肾上腺素不一定是你血管里唯一的东西.$(br2)你丢失的心越多，其上$(l:resources/stratine)绯红宝石$()搏动越强，给予你指数级的伤害提升。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/jeopardant",
+      "text": "$(italic)告诉我你有啥想法$(br)病情恶化"
+    }
+  ]
+}

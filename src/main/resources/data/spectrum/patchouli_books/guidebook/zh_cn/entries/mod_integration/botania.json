@@ -1,0 +1,101 @@
+{
+  "name": "Botania",
+  "icon": "botania:mana_pool",
+  "flag": "mod:botania",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You found a plethora of colorful flowers growing around forests and plains in small patches. What's up with those? Definitely worth a look if you haven't tinkered with them already."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Crushing Petals",
+      "advancement": "spectrum:place_pedestal",
+      "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() work. No problem plucking the petals from the flattened blossom after that."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ink from Petals",
+      "advancement": "spectrum:midgame/place_color_picker",
+      "item": "botania:magenta_petal",
+      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Colored Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Glimmering Flowers",
+      "advancement": "spectrum:collect_shimmerstone",
+      "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
+      "text": "Adding some $(l:resources/shimmerstone)Shimmerstone$(/l) to magical flowers makes them glimmer."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Colored Mushrooms",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
+      "text": "Applying $(l:general/pigment)Pigment$(/l) to mushrooms colors them in the respective color."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
+      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(item)Floral Fertilizer$() is quite a bit more yielding."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
+      "text": "The $(item)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed",
+      "text": "Those elusive seeds you could only find in chests hidden around the world? Pricey - maybe not even worth the hassle - but you finally found a way to replicate them."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Enchanted Soil",
+      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
+      "item": "botania:enchanted_soil",
+      "text": "Enchanted Soil can be harvested using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:black_lotus",
+      "text": "$(li)+2 positive effects$(li)+1 negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:blacker_lotus",
+      "text": "$(li)+3 positive effects$(li)50% chance for negative effect$(li)makes the potion unidentifiable.$(br2)$(italic)Fancy a gamble?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:life_essence",
+      "text": "$(li)+3 potency$(li)-3 yield$(br2)Requires other reagents to increase the yield, otherwise you will end up with nothing..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:mana_powder",
+      "text": "$(li)+25% duration$(li)15% chance to add last effect"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:pixie_dust",
+      "text": "$(li)creates Lingering Potions & Tipped Arrows$(li)-25% potency"
+    }
+  ]
+}

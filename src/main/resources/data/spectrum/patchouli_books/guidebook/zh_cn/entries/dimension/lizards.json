@@ -1,0 +1,30 @@
+{
+  "name": "匿踪蜥蜴",
+  "icon": "spectrum:lizard_head",
+  "advancement": "spectrum:hidden/entity_interact/lizard",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:lizard_head": 0,
+    "spectrum:lizard_spawn_egg": 0,
+    "spectrum:lizard_meat": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Lurking Lizards",
+      "entity": "spectrum:lizard",
+      "scale": 0.5,
+      "text": "$(italic)看来这个同辈人不是很友善啊"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "爱找人打架的不开化野兽$(br2)事实上，如果它们不总是试图马上咬掉你的四肢，它们会显得有点可爱。$(br)...其实更好的方法是把它们抓进$(item)玻璃窗$()后面。 - 你的四肢会为此感谢你的。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:lizard_meat",
+      "anchor": "lizard_meat",
+      "text": "不是特别好吃，肉很柴，但它意味着你保全了你的四肢。"
+    }
+  ]
+}

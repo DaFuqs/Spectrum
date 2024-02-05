@@ -123,7 +123,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				continue;
 			
 			BlockState originalState = world.getBlockState(position);
-			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
+			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.getMaterial().isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
 				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
 				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
 					if (world.setBlockState(position, stateToPlace)) {

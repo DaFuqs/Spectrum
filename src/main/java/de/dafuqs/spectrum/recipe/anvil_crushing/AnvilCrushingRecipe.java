@@ -47,7 +47,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+	public ItemStack craft(Inventory inv) {
 		return outputItemStack.copy();
 	}
 	

@@ -43,9 +43,9 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:axolotl_blue_head" ]}] }
     },
-    "has_axolotl_brown_head": {
+    "has_axolotl_wild_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:axolotl_brown_head" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:axolotl_wild_head" ]}] }
     },
     "has_axolotl_cyan_head": {
       "trigger": "minecraft:inventory_changed",
@@ -235,89 +235,13 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:salmon_head" ]}] }
     },
-    "has_sheep_black_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_black_head" ]}] }
-    },
-    "has_sheep_blue_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_blue_head" ]}] }
-    },
-    "has_sheep_brown_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_brown_head" ]}] }
-    },
-    "has_sheep_cyan_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_cyan_head" ]}] }
-    },
-    "has_sheep_gray_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_gray_head" ]}] }
-    },
-    "has_sheep_green_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_green_head" ]}] }
-    },
-    "has_sheep_light_blue_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_light_blue_head" ]}] }
-    },
-    "has_sheep_light_gray_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_light_gray_head" ]}] }
-    },
-    "has_sheep_lime_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_lime_head" ]}] }
-    },
-    "has_sheep_magenta_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_magenta_head" ]}] }
-    },
-    "has_sheep_orange_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_orange_head" ]}] }
-    },
-    "has_sheep_pink_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_pink_head" ]}] }
-    },
-    "has_sheep_purple_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_purple_head" ]}] }
-    },
-    "has_sheep_red_head": {
+    "has_sheep_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "spectrum:sheep_red_head"
-            ]
-          }
-        ]
-      }
-    },
-    "has_sheep_white_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:sheep_white_head"
-            ]
-          }
-        ]
-      }
-    },
-    "has_sheep_yellow_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "spectrum:sheep_yellow_head"
+              "spectrum:sheep_head"
             ]
           }
         ]

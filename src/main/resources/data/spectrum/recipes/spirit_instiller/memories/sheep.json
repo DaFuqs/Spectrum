@@ -4,7 +4,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:sheep_orange_head"
+    "item": "spectrum:sheep_head"
   },
   "ingredient2": {
     "item": "minecraft:wheat"
@@ -18,7 +18,7 @@
     "nbt": {
       "EntityTag": {
         "id": "minecraft:sheep",
-        "Color": 1
+        "Color": 0
       },
       "TicksToManifest": 4
     }

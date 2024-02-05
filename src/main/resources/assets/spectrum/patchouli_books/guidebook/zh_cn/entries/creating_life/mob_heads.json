@@ -31,7 +31,7 @@
 		"spectrum:vex_head":0,
 		"spectrum:cow_head":0,
 		"spectrum:shulker_yellow_head":0,
-		"spectrum:sheep_black_head":0,
+		"spectrum:sheep_head":0,
 		"spectrum:cave_spider_head":0,
 		"spectrum:evoker_head":0,
 		"spectrum:phantom_head":0,
@@ -107,7 +107,7 @@
 		"spectrum:zoglin_head":0,
 		"spectrum:sheep_gray_head":0,
 		"spectrum:sheep_pink_head":0,
-		"spectrum:axolotl_brown_head":0,
+		"spectrum:axolotl_wild_head":0,
 		"spectrum:squid_head":0,
 		"spectrum:zombie_villager_head":0
 	},

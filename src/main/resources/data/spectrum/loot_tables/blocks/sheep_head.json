@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:sheep_orange_head"
+          "name": "spectrum:sheep_head"
         }
       ],
       "conditions": [

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.mob_head.models;
 
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.model.*;
 
 public class GuardianHeadModel extends SpectrumHeadModel {
 
@@ -12,7 +13,7 @@ public class GuardianHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
     
         head.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, -6.0F, -8.0F, 12.0F, 12.0F, 16.0F, new Dilation(0.0F))
                 .uv(0, 28).cuboid(-8.0F, -6.0F, -6.0F, 2.0F, 12.0F, 12.0F, new Dilation(0.0F))

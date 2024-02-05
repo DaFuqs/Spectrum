@@ -12,15 +12,15 @@ public class BearHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData head = ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -7.0F, -4.0F, 7.0F, 7.0F, 7.0F)
+        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -7.0F, -4.0F, 7.0F, 7.0F, 7.0F)
                 .uv(0, 44).cuboid(-2.5F, -3.0F, -7.0F, 5.0F, 3.0F, 3.0F)
                 .uv(26, 0).mirrored().cuboid(2.5F, -8.0F, -2.0F, 2.0F, 2.0F, 1.0F).mirrored(false)
                 .uv(26, 0).cuboid(-4.5F, -8.0F, -2.0F, 2.0F, 2.0F, 1.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 128, 64);
+        return TexturedModelData.of(modelData, 128, 64);
     }
 
 }

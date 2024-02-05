@@ -11,13 +11,13 @@ public class CowHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData head = ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
                 .uv(0, 0).cuboid(-4.0F, -8.0F, -3.0F, 8.0F, 8.0F, 6.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 64, 32);
+        return TexturedModelData.of(modelData, 64, 32);
     }
 
 }

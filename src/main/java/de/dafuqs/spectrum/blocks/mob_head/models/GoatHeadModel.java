@@ -12,10 +12,10 @@ public class GoatHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData head = ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
                 .uv(12, 55).cuboid(0.25F, -14.0F, -1.0F, 2.0F, 7.0F, 2.0F)
                 .uv(12, 55).cuboid(-2.25F, -14.0F, -1.0F, 2.0F, 7.0F, 2.0F)
                 .uv(2, 61).cuboid(-5.5F, -9.0F, -1.0F, 3.0F, 2.0F, 1.0F)
@@ -25,7 +25,7 @@ public class GoatHeadModel extends SpectrumHeadModel {
         head.addChild("cube_r1", ModelPartBuilder.create()
                 .uv(34, 46).cuboid(-2.0F, -4.0F, -5.0F, 5.0F, 7.0F, 10.0F), ModelTransform.of(-0.5F, -3.5F, -2.0F, 0.7854F, 0.0F, 0.0F));
 
-        return TexturedModelData.of(ModelData, 64, 64);
+        return TexturedModelData.of(modelData, 64, 64);
     }
 
 }

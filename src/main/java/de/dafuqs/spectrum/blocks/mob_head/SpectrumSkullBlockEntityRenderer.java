@@ -37,9 +37,10 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         // Vanilla
         builder.put(SpectrumSkullBlockType.ALLAY, new Pair<>(new AllayHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ALLAY_HEAD)), new Identifier("textures/entity/allay/allay.png")));
         builder.put(SpectrumSkullBlockType.AXOLOTL_BLUE, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_BLUE_HEAD)), new Identifier("textures/entity/axolotl/axolotl_blue.png")));
+        builder.put(SpectrumSkullBlockType.AXOLOTL_WILD, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_WILD_HEAD)), new Identifier("textures/entity/axolotl/axolotl_wild.png")));
         builder.put(SpectrumSkullBlockType.AXOLOTL_CYAN, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_CYAN_HEAD)), new Identifier("textures/entity/axolotl/axolotl_cyan.png")));
-        builder.put(SpectrumSkullBlockType.AXOLOTL_GOLD, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_GOLD_HEAD)), new Identifier("textures/entity/axolotl/axolotl_gold.png"))); // renamed
-        builder.put(SpectrumSkullBlockType.AXOLOTL_BROWN, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_LEUCISTIC_HEAD)), new Identifier("textures/entity/axolotl/axolotl_lucy.png"))); // renamed
+        builder.put(SpectrumSkullBlockType.AXOLOTL_GOLD, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_GOLD_HEAD)), new Identifier("textures/entity/axolotl/axolotl_gold.png")));
+        builder.put(SpectrumSkullBlockType.AXOLOTL_LEUCISTIC, new Pair<>(new AxolotlHeadModel(modelLoader.getModelPart(SpectrumModelLayers.AXOLOTL_LEUCISTIC_HEAD)), new Identifier("textures/entity/axolotl/axolotl_lucy.png")));
         builder.put(SpectrumSkullBlockType.BAT, new Pair<>(new BatHeadModel(modelLoader.getModelPart(SpectrumModelLayers.BAT_HEAD)), new Identifier("textures/entity/bat.png")));
         builder.put(SpectrumSkullBlockType.BEE, new Pair<>(new BeeHeadModel(modelLoader.getModelPart(SpectrumModelLayers.BEE_HEAD)), new Identifier("textures/entity/bee/bee.png")));
         builder.put(SpectrumSkullBlockType.BLAZE, new Pair<>(new BlazeHeadModel(modelLoader.getModelPart(SpectrumModelLayers.BLAZE_HEAD)), new Identifier("textures/entity/blaze.png")));
@@ -88,7 +89,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         builder.put(SpectrumSkullBlockType.RABBIT, new Pair<>(new RabbitHeadModel(modelLoader.getModelPart(SpectrumModelLayers.RABBIT_HEAD)), new Identifier("textures/entity/rabbit/brown.png"))); // rabbits have variant
         builder.put(SpectrumSkullBlockType.RAVAGER, new Pair<>(new RavagerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.RAVAGER_HEAD)), new Identifier("textures/entity/illager/ravager.png")));
         builder.put(SpectrumSkullBlockType.SALMON, new Pair<>(new SalmonHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SALMON_HEAD)), new Identifier("textures/entity/fish/salmon.png"))); // other fish?
-        builder.put(SpectrumSkullBlockType.SHEEP_WHITE, new Pair<>(new SheepHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHEEP_WHITE_HEAD)), new Identifier("textures/entity/sheep/sheep.png")));
+        builder.put(SpectrumSkullBlockType.SHEEP, new Pair<>(new SheepHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHEEP_HEAD)), new Identifier("textures/entity/sheep/sheep.png")));
         builder.put(SpectrumSkullBlockType.SHULKER, new Pair<>(new ShulkerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHULKER_HEAD)), new Identifier("textures/entity/shulker_shulker.png")));
         builder.put(SpectrumSkullBlockType.SHULKER_BLACK, new Pair<>(new ShulkerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHULKER_BLACK_HEAD)), new Identifier("textures/entity/shulker/shulker_black.png")));
         builder.put(SpectrumSkullBlockType.SHULKER_BLUE, new Pair<>(new ShulkerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHULKER_BLUE_HEAD)), new Identifier("textures/entity/shulker/shulker_blue.png")));

@@ -11,15 +11,15 @@ public class EndermanHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
                 .uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F)
                 .uv(0, 16).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F)
                 .uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 64, 32);
+        return TexturedModelData.of(modelData, 64, 32);
     }
 
 }

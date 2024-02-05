@@ -11,10 +11,10 @@ public class ParrotHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData head = ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
                 .uv(2, 2).cuboid(-9.0F, -3.0F, 7.0F, 2.0F, 3.0F, 2.0F)
                 .uv(10, 0).cuboid(-9.0F, -4.0F, 5.0F, 2.0F, 1.0F, 4.0F)
                 .uv(11, 7).cuboid(-8.5F, -3.0F, 6.0F, 1.0F, 2.0F, 1.0F)
@@ -23,7 +23,7 @@ public class ParrotHeadModel extends SpectrumHeadModel {
         head.addChild("cube_r1", ModelPartBuilder.create()
                 .uv(2, 18).cuboid(-0.25F, -2.5F, -1.0F, 0.0F, 5.0F, 4.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 32, 32);
+        return TexturedModelData.of(modelData, 32, 32);
     }
 
 }

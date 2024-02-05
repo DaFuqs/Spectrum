@@ -11,16 +11,16 @@ public class BeeHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -7.0F, -5.0F, 7.0F, 7.0F, 10.0F)
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, -7.0F, -5.0F, 7.0F, 7.0F, 10.0F)
                 .uv(2, 0).cuboid(-1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
                 .uv(3, 3).cuboid(-1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
                 .uv(3, 3).cuboid(1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
                 .uv(2, 0).cuboid(1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 64, 64);
+        return TexturedModelData.of(modelData, 64, 64);
     }
 
 }

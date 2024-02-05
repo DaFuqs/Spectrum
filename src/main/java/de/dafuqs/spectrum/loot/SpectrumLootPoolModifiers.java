@@ -34,22 +34,7 @@ public class SpectrumLootPoolModifiers {
 		// Spectrum head drops
 		// ATTENTION: No specific enough loot tables exist for fox, axolotl, parrot and shulker variants.
 		// Those are handled separately in setup()
-		put(new Identifier("entities/sheep/black"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_BLACK).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/blue"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_BLUE).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/brown"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_BROWN).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/cyan"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_CYAN).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/gray"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_GRAY).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/green"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_GREEN).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/light_blue"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_LIGHT_BLUE).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/light_gray"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_LIGHT_GRAY).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/lime"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_LIME).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/magenta"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_MAGENTA).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/orange"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_ORANGE).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/pink"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_PINK).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/purple"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_PURPLE).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/red"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_RED).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/white"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_WHITE).asItem(), 0.02F));
-		put(new Identifier("entities/sheep/yellow"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP_YELLOW).asItem(), 0.02F));
+		put(new Identifier("entities/sheep"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SHEEP).asItem(), 0.02F));
 		put(new Identifier("entities/bat"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.BAT).asItem(), 0.02F));
 		put(new Identifier("entities/blaze"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.BLAZE).asItem(), 0.02F));
 		put(new Identifier("entities/cat"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.CAT).asItem(), 0.02F));
@@ -154,7 +139,7 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.CYAN, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_CYAN).asItem(), 0.02F));
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.GOLD, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_GOLD).asItem(), 0.02F));
 				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.LUCY, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_LEUCISTIC).asItem(), 0.02F));
-				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_BROWN).asItem(), 0.02F));
+				tableBuilder.pool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.AXOLOTL_WILD).asItem(), 0.02F));
 			} else if (id.equals(new Identifier("entities/parrot"))) {
 				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.RED_BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_RED).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(ParrotEntity.Variant.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PARROT_BLUE).asItem(), 0.02F));

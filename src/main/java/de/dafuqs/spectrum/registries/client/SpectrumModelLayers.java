@@ -36,10 +36,10 @@ public class SpectrumModelLayers {
 	 * Mob Heads
 	 */
 	public static final EntityModelLayer AXOLOTL_BLUE_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_blue_head"), "main");
-	public static final EntityModelLayer AXOLOTL_BROWN_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_brown_head"), "main");
+	public static final EntityModelLayer AXOLOTL_WILD_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_wild_head"), "main");
 	public static final EntityModelLayer AXOLOTL_CYAN_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_cyan_head"), "main");
 	public static final EntityModelLayer AXOLOTL_GOLD_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_gold_head"), "main");
-	public static final EntityModelLayer AXOLOTL_LEUCISTIC_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_leucistic_head"), "main");
+	public static final EntityModelLayer AXOLOTL_LEUCISTIC_HEAD = new EntityModelLayer(SpectrumCommon.locate("axolotl_lucy_head"), "main");
 	public static final EntityModelLayer BAT_HEAD = new EntityModelLayer(SpectrumCommon.locate("bat_head"), "main");
 	public static final EntityModelLayer BEE_HEAD = new EntityModelLayer(SpectrumCommon.locate("bee_head"), "main");
 	public static final EntityModelLayer BLAZE_HEAD = new EntityModelLayer(SpectrumCommon.locate("blaze_head"), "main");
@@ -164,7 +164,8 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_BLUE_HEAD, AxolotlHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_CYAN_HEAD, AxolotlHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_GOLD_HEAD, AxolotlHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_BROWN_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_WILD_HEAD, AxolotlHeadModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(AXOLOTL_LEUCISTIC_HEAD, AxolotlHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(BAT_HEAD, BatHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(BEE_HEAD, BeeHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(BLAZE_HEAD, BlazeHeadModel::getTexturedModelData);

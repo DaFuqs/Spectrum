@@ -12,14 +12,14 @@ public class ChickenHeadModel extends SpectrumHeadModel {
     }
 
     public static TexturedModelData getTexturedModelData() {
-        ModelData ModelData = new ModelData();
-        ModelPartData ModelPartData = ModelData.getRoot();
+        ModelData modelData = new ModelData();
+        ModelPartData modelPartData = modelData.getRoot();
 
-        ModelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(14, 4).cuboid(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F)
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(14, 4).cuboid(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F)
                 .uv(14, 0).cuboid(-2.0F, -4.0F, -3.0F, 4.0F, 2.0F, 2.0F)
                 .uv(0, 0).cuboid(-2.0F, -6.0F, -1.0F, 4.0F, 6.0F, 3.0F), ModelTransform.NONE);
 
-        return TexturedModelData.of(ModelData, 64, 32);
+        return TexturedModelData.of(modelData, 64, 32);
     }
 
 }

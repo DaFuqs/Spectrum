@@ -1382,6 +1382,7 @@ public class SpectrumBlocks {
 		registerBlock("amaranth", AMARANTH);
 		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_amaranth_bushel", POTTED_AMARANTH_BUSHEL);
+		registerBlock("potted_resonant_lily", POTTED_RESONANT_LILY);
 		
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.FUNCTIONAL.settings(), DyeColor.BLACK);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.FUNCTIONAL.settings(), DyeColor.PURPLE);

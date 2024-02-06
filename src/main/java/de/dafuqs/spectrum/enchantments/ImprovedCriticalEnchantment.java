@@ -43,7 +43,7 @@ public class ImprovedCriticalEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return stack.getItem() instanceof AxeItem || super.isAcceptableItem(stack);
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem;
 	}
 	
 }

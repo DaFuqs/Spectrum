@@ -18,6 +18,7 @@ import java.util.*;
 public class AttackRingItem extends SpectrumTrinketItem {
 	
 	public static final UUID ATTACK_RING_DAMAGE_UUID = UUID.fromString("15d1fb68-6440-404a-aa31-7bf3310d3f52");
+	public static final String ATTACK_RING_DAMAGE_NAME = "spectrum:jeopardant";
 	
 	public AttackRingItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/jeopardant"));
@@ -37,7 +38,7 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		super.onUnequip(stack, slot, entity);
 		if (entity.getAttributes().hasModifierForAttribute(EntityAttributes.GENERIC_ATTACK_DAMAGE, AttackRingItem.ATTACK_RING_DAMAGE_UUID)) {
 			Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
-			EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:jeopardant", AttackRingItem.getAttackModifierForEntity(entity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+			EntityAttributeModifier modifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, ATTACK_RING_DAMAGE_NAME, AttackRingItem.getAttackModifierForEntity(entity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 			map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, modifier);
 			entity.getAttributes().removeModifiers(map);
 		}

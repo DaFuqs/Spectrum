@@ -67,6 +67,7 @@
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
     "accessors.BiomeAccessor",
+    "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",

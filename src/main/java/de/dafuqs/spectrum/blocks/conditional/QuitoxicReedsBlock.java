@@ -205,7 +205,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return VoxelShapes.empty();
+		return VoxelShapes.fullCube();
 	}
 	
 	/**

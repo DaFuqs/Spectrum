@@ -163,7 +163,7 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"))
+	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	public void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity target = (LivingEntity) (Object) this;
 
@@ -185,11 +185,13 @@ public abstract class LivingEntityMixin {
 				SpectrumDamageTypes.recursiveDamageFlag = true;
 				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
 				
+				boolean damaged = false;
 				for (Pair<DamageSource, Float> entry : composition.get()) {
-					damage(entry.getLeft(), entry.getRight());
+					damaged |= damage(entry.getLeft(), entry.getRight());
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;
+				cir.setReturnValue(damaged);
 			}
 		}
 	}

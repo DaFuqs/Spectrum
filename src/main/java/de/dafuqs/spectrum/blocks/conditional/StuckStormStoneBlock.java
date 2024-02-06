@@ -83,7 +83,7 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return VoxelShapes.empty();
+		return VoxelShapes.fullCube();
 	}
 
 	@Override

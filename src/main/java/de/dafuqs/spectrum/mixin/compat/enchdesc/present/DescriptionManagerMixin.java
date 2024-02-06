@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class DescriptionManagerMixin {
     @ModifyReturnValue(method = "getDescription", at = @At("RETURN"), remap = false)
     private static MutableText spectrum$obfuscateDescription(MutableText original, Enchantment ench) {
-        Entity player = MinecraftClient.getInstance().player;
+        Entity player = MinecraftClient.getInstance().player; // that feels kinda risky, since the class is not annotated as EnvType.Client
         if (ench instanceof SpectrumEnchantment spectrumEnchantment && !spectrumEnchantment.canEntityUse(player)) {
             return original.copy().formatted(Formatting.OBFUSCATED);
         }

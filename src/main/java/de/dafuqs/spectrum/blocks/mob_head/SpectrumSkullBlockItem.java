@@ -3,16 +3,16 @@ package de.dafuqs.spectrum.blocks.mob_head;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.util.math.*;
 
 import java.util.*;
 
-public class SpectrumSkullBlockItem extends WallStandingBlockItem {
+public class SpectrumSkullBlockItem extends VerticallyAttachableBlockItem {
 	
 	protected final EntityType<?> entityType;
-	protected String artistCached;
 	
-	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType<?> entityType) {
-		super(standingBlock, wallBlock, settings);
+	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Item.Settings settings, EntityType<?> entityType) {
+		super(standingBlock, wallBlock, settings, Direction.DOWN);
 		this.entityType = entityType;
 	}
 	

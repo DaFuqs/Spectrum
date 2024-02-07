@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_head.models;
 
+import de.dafuqs.spectrum.blocks.mob_head.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;

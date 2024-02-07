@@ -127,16 +127,13 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer TADPOLE_HEAD = new EntityModelLayer(SpectrumCommon.locate("tadpole_head"), "main");
 	public static final EntityModelLayer ALLAY_HEAD = new EntityModelLayer(SpectrumCommon.locate("allay_head"), "main");
 	public static final EntityModelLayer WARDEN_HEAD = new EntityModelLayer(SpectrumCommon.locate("warden_head"), "main");
+	
 	public static final EntityModelLayer EGG_LAYING_WOOLY_PIG_HEAD = new EntityModelLayer(SpectrumCommon.locate("egg_laying_wooly_pig_head"), "main");
 	public static final EntityModelLayer KINDLING_HEAD = new EntityModelLayer(SpectrumCommon.locate("kindling_head"), "main");
 	public static final EntityModelLayer PRESERVATION_TURRET_HEAD = new EntityModelLayer(SpectrumCommon.locate("preservation_turret_head"), "main");
-	public static final EntityModelLayer WARDEN_HEAD = new EntityModelLayer(SpectrumCommon.locate("warden_head"), "main");
 	public static final EntityModelLayer ERASER_HEAD = new EntityModelLayer(SpectrumCommon.locate("eraser_head"), "body");
-	
-	public static final EntityModelLayer ENDERMITE_HEAD = new EntityModelLayer(SpectrumCommon.locate("endermite_head"), "main");
 	public static final EntityModelLayer MONSTROSITY_HEAD = new EntityModelLayer(SpectrumCommon.locate("monstrosity_head"), "main");
 	public static final EntityModelLayer LIZARD_HEAD = new EntityModelLayer(SpectrumCommon.locate("lizard_head"), "main");
-	public static final EntityModelLayer ERASER_HEAD = new EntityModelLayer(SpectrumCommon.locate("eraser_head"), "main");
 
 	/**
 	 * Armor
@@ -259,7 +256,6 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(ERASER_HEAD, EraserHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LIZARD_HEAD, LizardHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PRESERVATION_TURRET_HEAD, PreservationTurretHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(ERASER_HEAD, SpiderHeadModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(FEET_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
 		EntityModelLayerRegistry.registerModelLayer(MAIN_BEDROCK_LAYER, () -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));

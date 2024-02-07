@@ -14,9 +14,11 @@ public class AllayHeadModel extends SpectrumHeadModel {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		
-		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-				.uv(0, 0).cuboid(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)),
-				ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		modelPartData.addChild(
+				EntityModelPartNames.HEAD,
+				ModelPartBuilder.create().uv(0, 0).cuboid(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)),
+				ModelTransform.NONE
+		);
 		
 		return TexturedModelData.of(modelData, 32, 32);
 	}

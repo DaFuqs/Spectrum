@@ -108,10 +108,10 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         builder.put(SpectrumSkullBlockType.SHULKER_YELLOW, new Pair<>(new ShulkerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SHULKER_YELLOW_HEAD)), new Identifier("textures/entity/shulker/shulker_yellow.png")));
         builder.put(SpectrumSkullBlockType.SILVERFISH, new Pair<>(new SilverfishHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SILVERFISH_HEAD)), new Identifier("textures/entity/silverfish.png")));
         builder.put(SpectrumSkullBlockType.SLIME, new Pair<>(new SlimeHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SLIME_HEAD)), new Identifier("textures/entity/slime/slime.png")));
-        builder.put(SpectrumSkullBlockType.SNOW_GOLEM, new Pair<>(new SkullEntityModel(modelLoader.getModelPart(SpectrumModelLayers.SNOW_GOLEM_HEAD)), new Identifier("textures/entity/snow_golem.png")));
+        builder.put(SpectrumSkullBlockType.SNOW_GOLEM, new Pair<>(new SnowGolemHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SNOW_GOLEM_HEAD)), new Identifier("textures/entity/snow_golem.png")));
         builder.put(SpectrumSkullBlockType.SPIDER, new Pair<>(new SpiderHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SPIDER_HEAD)), new Identifier("textures/entity/spider/spider.png")));
         builder.put(SpectrumSkullBlockType.SQUID, new Pair<>(new SquidHeadModel(modelLoader.getModelPart(SpectrumModelLayers.SQUID_HEAD)), new Identifier("textures/entity/squid/squid.png")));
-        builder.put(SpectrumSkullBlockType.STRAY, new Pair<>(new SkullEntityModel(modelLoader.getModelPart(SpectrumModelLayers.STRAY_HEAD)), new Identifier("textures/entity/skeleton/stray.png")));
+        builder.put(SpectrumSkullBlockType.STRAY, new Pair<>(new CatHeadModel(modelLoader.getModelPart(SpectrumModelLayers.STRAY_HEAD)), new Identifier("textures/entity/skeleton/stray.png")));
         builder.put(SpectrumSkullBlockType.STRIDER, new Pair<>(new StriderHeadModel(modelLoader.getModelPart(SpectrumModelLayers.STRIDER_HEAD)), new Identifier("textures/entity/strider/strider.png")));
         builder.put(SpectrumSkullBlockType.TADPOLE, new Pair<>(new TadpoleHeadModel(modelLoader.getModelPart(SpectrumModelLayers.TADPOLE_HEAD)), new Identifier("textures/entity/tadpole/tadpole.png")));
         builder.put(SpectrumSkullBlockType.TURTLE, new Pair<>(new TurtleHeadModel(modelLoader.getModelPart(SpectrumModelLayers.TURTLE_HEAD)), new Identifier("textures/entity/turtle/big_sea_turtle.png")));
@@ -121,7 +121,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         builder.put(SpectrumSkullBlockType.WANDERING_TRADER, new Pair<>(new VillagerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WANDERING_TRADER_HEAD)), new Identifier("textures/entity/wandering_trader.png")));
         builder.put(SpectrumSkullBlockType.WARDEN, new Pair<>(new WardenHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WARDEN_HEAD)), new Identifier("textures/entity/warden/warden.png")));
         builder.put(SpectrumSkullBlockType.WITCH, new Pair<>(new WitchHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WITCH_HEAD)), new Identifier("textures/entity/witch.png")));
-        builder.put(SpectrumSkullBlockType.WITHER, new Pair<>(new SkullEntityModel(modelLoader.getModelPart(SpectrumModelLayers.WITHER_HEAD)), new Identifier("textures/entity/wither/wither.png")));
+        builder.put(SpectrumSkullBlockType.WITHER, new Pair<>(new WitherHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WITHER_HEAD)), new Identifier("textures/entity/wither/wither.png")));
         builder.put(SpectrumSkullBlockType.WOLF, new Pair<>(new WolfHeadModel(modelLoader.getModelPart(SpectrumModelLayers.WOLF_HEAD)), new Identifier("textures/entity/wolf/wolf.png")));
         builder.put(SpectrumSkullBlockType.ZOGLIN, new Pair<>(new HoglinHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ZOGLIN_HEAD)), new Identifier("textures/entity/hoglin/zoglin.png")));
         builder.put(SpectrumSkullBlockType.ZOMBIE_VILLAGER, new Pair<>(new VillagerHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ZOMBIE_VILLAGER_HEAD)), new Identifier("textures/entity/zombie_villager/zombie_villager.png")));

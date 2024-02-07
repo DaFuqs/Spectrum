@@ -21,7 +21,7 @@ public class RavagerHeadModel extends SpectrumHeadModel {
 		modelPartData3.addChild("left_horn", ModelPartBuilder.create().uv(74, 55).mirrored().cuboid(0.0F, -14.0F, -2.0F, 2.0F, 14.0F, 4.0F), ModelTransform.of(8.0F, -14.0F, -8.0F, 1.0995574F, 0.0F, 0.0F));
 		modelPartData3.addChild("mouth", ModelPartBuilder.create().uv(0, 36).cuboid(-8.0F, 0.0F, -16.0F, 16.0F, 3.0F, 16.0F), ModelTransform.pivot(0.0F, -2.0F, 2.0F));
 		
-		return TexturedModelData.of(modelData, 64, 64);
+		return TexturedModelData.of(modelData, 128, 128);
 	}
 
 }

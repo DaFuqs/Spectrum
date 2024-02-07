@@ -22,7 +22,7 @@ public class HoglinHeadModel extends SpectrumHeadModel {
 		modelPartData3.addChild("right_horn", ModelPartBuilder.create().uv(10, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(-7.0F, 2.0F, -12.0F));
 		modelPartData3.addChild("left_horn", ModelPartBuilder.create().uv(1, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(7.0F, 2.0F, -12.0F));
 		
-		return TexturedModelData.of(modelData, 64, 64);
+		return TexturedModelData.of(modelData, 128, 64);
 	}
 
 }

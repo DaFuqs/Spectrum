@@ -15,12 +15,14 @@ public class BearHeadModel extends SpectrumHeadModel {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
         
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-3.5F, -3.0F, -3.0F, 7.0F, 7.0F, 7.0F)
-                .uv(0, 44).cuboid("mouth", -2.5F, 1.0F, -6.0F, 5.0F, 3.0F, 3.0F)
-                .uv(26, 0).cuboid("right_ear", -4.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F)
-                .uv(26, 0).mirrored().cuboid("left_ear", 2.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F),
-                ModelTransform.pivot(0.0F, 10.0F, -16.0F)
+        modelPartData.addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create()
+                        .uv(0, 0).cuboid(-3.5F, -3.0F, -3.0F, 7.0F, 7.0F, 7.0F)
+                        .uv(0, 44).cuboid("mouth", -2.5F, 1.0F, -6.0F, 5.0F, 3.0F, 3.0F)
+                        .uv(26, 0).cuboid("right_ear", -4.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F)
+                        .uv(26, 0).mirrored().cuboid("left_ear", 2.5F, -4.0F, -1.0F, 2.0F, 2.0F, 1.0F),
+                ModelTransform.NONE
         );
     
         return TexturedModelData.of(modelData, 128, 64);

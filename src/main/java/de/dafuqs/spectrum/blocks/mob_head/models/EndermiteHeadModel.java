@@ -18,7 +18,9 @@ public class EndermiteHeadModel extends SpectrumHeadModel {
 
         modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
                 .uv(0, 0).cuboid(-2.0F, -3.0F, -5.0F, 4.0F, 3.0F, 2.0F)
-                .uv(0, 5).cuboid(-3.0F, -4.0F, -3.0F, 6.0F, 4.0F, 5.0F), ModelTransform.NONE);
+                .uv(0, 5).cuboid(-3.0F, -4.0F, -3.0F, 6.0F, 4.0F, 5.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 64, 32);
     }

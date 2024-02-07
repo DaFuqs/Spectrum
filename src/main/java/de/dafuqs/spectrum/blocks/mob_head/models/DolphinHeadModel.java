@@ -14,11 +14,12 @@ public class DolphinHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-
-        ModelPartData head = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-4.0F, -7.0F, -3.0F, 8.0F, 7.0F, 6.0F)
-                .uv(0, 13).cuboid(-1.0F, -2.0F, -7.0F, 2.0F, 2.0F, 4.0F), ModelTransform.NONE);
-
+        
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+                .uv(0, 0).cuboid(-4.0F, -3.0F, -3.0F, 8.0F, 7.0F, 6.0F),
+                ModelTransform.pivot(0.0F, -4.0F, -3.0F)
+        );
+        
         return TexturedModelData.of(modelData, 64, 64);
     }
 

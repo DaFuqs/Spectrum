@@ -13,9 +13,8 @@ public class TurtleHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-    
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(3, 0).cuboid(-11.0F, -5.0F, 5.0F, 6.0F, 5.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(8.0F, 24.0F, -8.0F));
+        
+        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(3, 0).cuboid(-3.0F, -1.0F, -3.0F, 6.0F, 5.0F, 6.0F), ModelTransform.NONE);
     
         return TexturedModelData.of(modelData, 128, 64);
     }

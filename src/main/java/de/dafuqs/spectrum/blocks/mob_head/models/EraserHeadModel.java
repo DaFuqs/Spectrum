@@ -76,7 +76,7 @@ public class EraserHeadModel extends SpectrumHeadModel {
 
 		ModelPartData stingerplane_r1 = stingers.addChild("stingerplane_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-3.5F, 0.0F, -1.0F, 7.0F, 0.0F, 9.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.0873F, 0.0F, 0.0F));
 
-		ModelPartData head = body.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -1.0F, -2.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -2.25F, 0.0F));
+		ModelPartData head = body.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, -1.0F, -2.0F, 2.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -2.25F, 0.0F));
 
 		ModelPartData nettles = head.addChild("nettles", ModelPartBuilder.create().uv(0, 4).cuboid(-1.5F, -4.0F, 0.0F, 3.0F, 5.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -0.9F, -1.0F, -0.4363F, 0.0F, 0.0F));
 

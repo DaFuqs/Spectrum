@@ -18,7 +18,9 @@ public class BeeHeadModel extends SpectrumHeadModel {
                 .uv(2, 0).cuboid(-1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
                 .uv(3, 3).cuboid(-1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
                 .uv(3, 3).cuboid(1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F)
-                .uv(2, 0).cuboid(1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F), ModelTransform.NONE);
+                .uv(2, 0).cuboid(1.5F, -7.0F, -8.0F, 0.0F, 2.0F, 3.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 64, 64);
     }

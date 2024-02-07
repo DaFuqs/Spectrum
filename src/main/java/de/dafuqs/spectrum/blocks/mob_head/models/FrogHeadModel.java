@@ -12,20 +12,17 @@ public class FrogHeadModel extends SpectrumHeadModel {
 		super(root);
 	}
 
-	public static TexturedModelData getTexturedModelData() { //TODO
+	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-
-		Dilation dilation = new Dilation(0.001F);
-		ModelPartData modelPartData3 = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 1).cuboid(-4.0F, -3.0F, -5.0F, 8.0F, 5.0F, 5.0F, dilation), ModelTransform.pivot(0.0F, 0.0F, -9.0F));
-		ModelPartBuilder modelPartBuilder = ModelPartBuilder.create().uv(3, 37).cuboid(-4.0F, -3.0F, 0.0F, 8.0F, 3.0F, 0.0F, dilation);
-		ModelPartBuilder modelPartBuilder2 = ModelPartBuilder.create().uv(0, 40).cuboid(-3.0F, -5.0F, 0.0F, 3.0F, 7.0F, 0.0F, dilation);
-		ModelPartBuilder modelPartBuilder3 = ModelPartBuilder.create().uv(11, 40).cuboid(0.0F, -5.0F, 0.0F, 3.0F, 7.0F, 0.0F, dilation);
-		modelPartData3.addChild("top_gills", modelPartBuilder, ModelTransform.pivot(0.0F, -3.0F, -1.0F));
-		modelPartData3.addChild("left_gills", modelPartBuilder2, ModelTransform.pivot(-4.0F, 0.0F, -1.0F));
-		modelPartData3.addChild("right_gills", modelPartBuilder3, ModelTransform.pivot(4.0F, 0.0F, -1.0F));
-
-		return TexturedModelData.of(modelData, 64, 64);
+		
+		ModelPartData modelPartData4 = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(23, 13).cuboid(-3.5F, -1.0F, -7.0F, 7.0F, 0.0F, 9.0F).uv(0, 13).cuboid(-3.5F, -2.0F, -7.0F, 7.0F, 3.0F, 9.0F), ModelTransform.pivot(0.0F, -2.0F, -1.0F));
+		ModelPartData modelPartData5 = modelPartData4.addChild("eyes", ModelPartBuilder.create(), ModelTransform.pivot(-0.5F, 0.0F, 2.0F));
+		modelPartData5.addChild("right_eye", ModelPartBuilder.create().uv(0, 0).cuboid(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F), ModelTransform.pivot(-1.5F, -3.0F, -6.5F));
+		modelPartData5.addChild("left_eye", ModelPartBuilder.create().uv(0, 5).cuboid(-1.5F, -1.0F, -1.5F, 3.0F, 2.0F, 3.0F), ModelTransform.pivot(2.5F, -3.0F, -6.5F));
+		
+		
+		return TexturedModelData.of(modelData, 48, 48);
 	}
 
 }

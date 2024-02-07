@@ -13,12 +13,11 @@ public class IllagerHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-12.0F, -10.0F, 4.0F, 8.0F, 10.0F, 8.0F)
-                .uv(24, 0).cuboid(-9.0F, -3.0F, 2.0F, 2.0F, 4.0F, 2.0F)
-                .uv(32, 0).cuboid(-12.0F, -10.0F, 4.0F, 8.0F, 10.0F, 8.0F), ModelTransform.NONE);
-
+        
+        ModelPartData modelPartData2 = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 8.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        modelPartData2.addChild("hat", ModelPartBuilder.create().uv(32, 0).cuboid(-4.0F, -10.0F, -4.0F, 8.0F, 12.0F, 8.0F, new Dilation(0.45F)), ModelTransform.NONE);
+        modelPartData2.addChild("nose", ModelPartBuilder.create().uv(24, 0).cuboid(-1.0F, -1.0F, -6.0F, 2.0F, 4.0F, 2.0F), ModelTransform.pivot(0.0F, -2.0F, 0.0F));
+        
         return TexturedModelData.of(modelData, 64, 64);
     }
 

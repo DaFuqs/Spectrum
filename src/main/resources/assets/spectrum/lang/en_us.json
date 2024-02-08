@@ -2685,6 +2685,8 @@
   "item.spectrum.dragonbone_broth": "Wyrmscale Jelly",
   "item.spectrum.infused_beverage": "Infused Beverage",
   "item.spectrum.infused_beverage.tooltip.age": "%d days aged - %d %% Alc.",
+  "item.spectrum.infused_beverage.tooltip.age_years": "%d years aged - %d %% Alc.",
+  "item.spectrum.infused_beverage.tooltip.age_composite": "%d years, %d days aged - %d %% Alc.",
   "item.spectrum.infused_beverage.tooltip.variant.unknown": "Undefinable flavor",
   "item.spectrum.infused_beverage.tooltip.variant.apple_cider": "Apple Cider",
   "item.spectrum.infused_beverage.tooltip.variant.apple_liquor": "Apple Liquor",

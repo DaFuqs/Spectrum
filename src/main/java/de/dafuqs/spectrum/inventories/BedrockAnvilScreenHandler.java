@@ -21,6 +21,9 @@ import java.util.*;
 
 public class BedrockAnvilScreenHandler extends ScreenHandler {
 	
+	public static final int MAX_NAME_LENGTH = 50;
+	public static final int MAX_LORE_LENGTH = 200;
+	
 	public static final int FIRST_INPUT_SLOT_INDEX = 0;
 	public static final int SECOND_INPUT_SLOT_INDEX = 1;
 	public static final int OUTPUT_SLOT_INDEX = 2;
@@ -352,8 +355,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	}
 	
 	public boolean setNewItemName(String newItemName) {
-		String string = sanitize(newItemName);
-		if (string != null && !string.equals(this.newItemName)) {
+		String string = sanitize(newItemName, MAX_NAME_LENGTH);
+		if (!string.equals(this.newItemName)) {
 			this.newItemName = string;
 			if (this.getSlot(2).hasStack()) {
 				ItemStack itemStack = this.getSlot(2).getStack();
@@ -371,14 +374,13 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		}
 	}
 	
-	@Nullable
-	private static String sanitize(String name) {
-		String string = SharedConstants.stripInvalidChars(name);
-		return string.length() <= 50 ? string : null;
+	private static String sanitize(String name, int maxLength) {
+		String s = SharedConstants.stripInvalidChars(name);
+		return s.length() > maxLength ? s.substring(0, maxLength) : s;
 	}
 	
 	public void setNewItemLore(String newLoreString) {
-		this.newLoreString = sanitize(newLoreString);
+		this.newLoreString = sanitize(newLoreString, MAX_LORE_LENGTH);
 		
 		if (this.getSlot(2).hasStack()) {
 			ItemStack itemStack = this.getSlot(2).getStack();

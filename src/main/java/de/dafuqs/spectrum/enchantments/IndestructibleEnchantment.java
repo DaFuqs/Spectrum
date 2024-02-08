@@ -34,7 +34,7 @@ public class IndestructibleEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return stack.isDamageable() && !stack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED);
+		return super.isAcceptableItem(stack) && !stack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED);
 	}
 	
 }

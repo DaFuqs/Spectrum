@@ -1,23 +1,20 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import eu.pb4.common.protection.api.CommonProtection;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
-
-import java.util.*;
 
 public abstract class BuildingStaffItem extends Item implements PrioritizedBlockInteraction, InkPowered {
 	
@@ -39,7 +36,7 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		}
 		
 		float hardness = state.getHardness(world, pos);
-		return hardness >= 0 && CommonProtection.canInteractBlock(player.getWorld(), pos, player.getGameProfile(), player);
+		return hardness >= 0 && GenericClaimModsCompat.canInteract(player.getWorld(), pos, player);
 	}
 	
 	/**
@@ -59,36 +56,6 @@ public abstract class BuildingStaffItem extends Item implements PrioritizedBlock
 		blocksToPlace = Math.min(1024, blocksToPlace); // to not yeet performance out the window
 		
 		return BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, targetBlock, blocksToPlace);
-	}
-
-	// TODO - Refactor note - Is PlacedBlocks planned on being used? At the same time, should this specific impl not be in ConstructorStaffItem?
-	protected static int placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions, int inkCostPerBlock) {
-		int placedBlocks = 0;
-		for (BlockPos position : targetPositions) {
-			// Only place blocks where you are allowed to do so
-			if (!CommonProtection.canPlaceBlock(world, position, player.getGameProfile(), player))
-				continue;
-
-			BlockState originalState = world.getBlockState(position);
-			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
-				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
-					if (world.setBlockState(position, stateToPlace)) {
-						if (placedBlocks == 0) {
-							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(), stateToPlace.getSoundGroup().getPitch());
-						}
-						placedBlocks++;
-					}
-				}
-			}
-		}
-		
-		if (!player.isCreative()) {
-			player.getInventory().remove(stack -> stack.getItem().equals(itemToConsume), placedBlocks, player.getInventory());
-			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * inkCostPerBlock);
-		}
-		
-		return placedBlocks;
 	}
 	
 	public static class BuildingStaffPlacementContext extends ItemPlacementContext {

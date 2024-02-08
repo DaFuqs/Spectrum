@@ -72,9 +72,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		nbt.putLong("SealTime", this.sealTime);
 		nbt.putLong("TapTime", this.tapTime);
 		nbt.putInt("ExtractedBottles", this.extractedBottles);
-		if (this.world != null) {
-			nbt.putString("BarrelState", this.world.getBlockState(this.pos).get(BARREL_STATE).name());
-		}
 	}
 	
 	@Override
@@ -85,20 +82,23 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
 			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
 		}
-
-		if (nbt.contains("BarrelState", NbtElement.STRING_TYPE) && world != null) {
-			BlockState blockState = world.getBlockState(pos);
-			if (blockState.isOf(SpectrumBlocks.TITRATION_BARREL)) {
-				BarrelState barrelState = BarrelState.valueOf(nbt.getString("BarrelState"));
-				world.setBlockState(this.pos, blockState.with(BARREL_STATE, barrelState));
-			}
-		}
 		
 		this.fluidStorage.variant = FluidVariant.fromNbt(nbt.getCompound("FluidVariant"));
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
 		this.tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
 		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.INT_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
+		
+		if (world != null) {
+			BlockState blockState = world.getBlockState(pos);
+			if (blockState.isOf(SpectrumBlocks.TITRATION_BARREL)) {
+				BarrelState barrelState = this.tapTime > -1
+						? BarrelState.TAPPED : this.sealTime > -1
+						? BarrelState.SEALED : this.inventory.isEmpty() && this.fluidStorage.amount == 0
+						? BarrelState.EMPTY : BarrelState.FILLED;
+				world.setBlockState(this.pos, blockState.with(BARREL_STATE, barrelState));
+			}
+		}
 	}
 	
 	public Inventory getInventory() {

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.compat.REI;
 
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

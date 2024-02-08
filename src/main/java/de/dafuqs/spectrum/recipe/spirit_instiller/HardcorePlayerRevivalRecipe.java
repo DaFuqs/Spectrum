@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.fabricmc.fabric.api.dimension.v1.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;

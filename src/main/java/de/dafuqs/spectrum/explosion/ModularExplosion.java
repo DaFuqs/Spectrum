@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.explosion;
 import com.mojang.datafixers.util.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import it.unimi.dsi.fastutil.objects.*;
@@ -124,7 +125,7 @@ public class ModularExplosion {
 		List<BlockPos> affectedBlocks = new ArrayList<>();
 		int radius = (int) blastRadius / 2;
 		for (BlockPos p : BlockPos.iterateOutwards(center, radius, radius, radius)) {
-			if (GenericClaimModsCompat.isProtected(world, p, owner)) {
+			if (!GenericClaimModsCompat.canBreak(world, p, owner)) {
 				continue;
 			}
 			if (shape.isAffected(center, p) && processBlock(world, owner, world.random, center, p, drops, miningStack, explosion)) {
@@ -160,7 +161,7 @@ public class ModularExplosion {
 						.add(LootContextParameters.TOOL, miningStack)
 						.addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity)
 						.addOptional(LootContextParameters.THIS_ENTITY, owner));
-				builder.add(LootContextParameters.EXPLOSION_RADIUS, explosion.power);
+				builder.add(LootContextParameters.EXPLOSION_RADIUS, ((ExplosionAccessor) explosion).getPower());
 				state.onStacksDropped(world, pos, miningStack, true);
 				state.getDroppedStacks(builder).forEach((stack) -> tryMergeStack(drops, stack, pos.toImmutable()));
 			}

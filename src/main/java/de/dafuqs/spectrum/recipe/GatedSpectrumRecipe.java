@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;

@@ -16,11 +16,11 @@ public class CraftingTabletRecipeHandler implements StandardRecipeHandler<Crafti
     public List<Slot> getInputSources(CraftingTabletScreenHandler handler) {
         List<Slot> slots = new ArrayList<>();
 
-        // crafting & gemstone powder slots
-        slots.addAll(handler.slots.subList(0, 14));
+        // crafting slots
+        slots.addAll(handler.slots.subList(0, 8));
 
         // player inventory & hotbar
-        slots.addAll(handler.slots.subList(16, 52));
+        slots.addAll(handler.slots.subList(15, 51));
 
         return slots;
     }

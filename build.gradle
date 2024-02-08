@@ -19,7 +19,7 @@ repositories {
 	maven { url = "https://maven.blamejared.com" } // Patchouli
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
-	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts
+	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://repo.unascribed.com" } // Ears API
 	mavenCentral()
@@ -36,7 +36,7 @@ dependencies {
 	// Some other dependency is adding annotations, and it throws an error without this
 	compileOnly ("com.demonwav.mcdev:annotations:1.0")
 
-	// fabric & api
+	// minecraft, fabric & api
 	minecraft ("com.mojang:minecraft:${project.minecraft_version}")
 	mappings ("net.fabricmc:yarn:${project.yarn_mappings}:v2")
 	modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
@@ -48,10 +48,9 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 	modImplementation include("maven.modrinth:fractal-lib:${project.fractal_version}")
+	modImplementation include("com.github.Noaaan:Matchbooks:${project.matchbooks_version}")
 
-	// we need a bit of concern
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
-
+	// external and compat
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
@@ -94,6 +93,9 @@ dependencies {
 
 	// Enchantment Descriptions compat
 	modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
+
+	// idwtialsimmoedm compat
+	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 }
 
 loom {

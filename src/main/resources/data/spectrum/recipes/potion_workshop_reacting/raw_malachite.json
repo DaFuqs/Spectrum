@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:raw_malachite",
+  "modifiers": {
+    "duration_multiplier": 2.0,
+    "additional_drink_duration_ticks": 54
+  },
+  "required_advancement": "spectrum:lategame/collect_malachite"
+}

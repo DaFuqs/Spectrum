@@ -67,14 +67,15 @@
     }
   },
   "depends": {
-    "fabricloader": ">=0.14.25",
+    "fabricloader": ">=0.15.6",
     "fabric-api": ">=0.90.0",
     "minecraft": ">=1.20.1",
     "java": ">=17",
     "revelationary": "*",
     "cloth-config": "*",
     "patchouli": "*",
-    "trinkets": "*"
+    "trinkets": "*",
+    "matchbooks": "*"
   },
   "suggests": {
     "chalk": "*",
@@ -84,5 +85,7 @@
     "bettercombat": "*",
     "continuity": "*"
   },
-  "breaks": {}
+  "breaks": {
+    "idwtialsimmoedm": "<0.3.0-"
+  }
 }

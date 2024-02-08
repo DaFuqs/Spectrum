@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "reached_midgame": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
+    "unlocked_basic_ink_storage_items": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/items/basic_ink_storage_items"
+      }
     },
     "collected_four_leaf_clover": {
       "trigger":"revelationary:advancement_gotten",

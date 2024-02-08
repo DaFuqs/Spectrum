@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.recipe.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 

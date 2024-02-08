@@ -28,5 +28,5 @@
     "item": "spectrum:ink_flask",
     "count": 1
   },
-  "required_advancement": "spectrum:unlocks/blocks/ink_flask"
+  "required_advancement": "spectrum:unlocks/items/basic_ink_storage_items"
 }

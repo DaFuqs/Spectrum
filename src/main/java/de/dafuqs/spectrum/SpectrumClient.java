@@ -6,6 +6,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
+import de.dafuqs.spectrum.compat.idwtialsimmoedm.IdwtialsimmoedmCompat;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.energy.*;
@@ -24,6 +25,7 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.sound.music.SpectrumMusicManager;
+import de.dafuqs.spectrum.render.capes.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
@@ -142,10 +144,16 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			EarsCompat.register();
 		}
 
+		if (FabricLoader.getInstance().isModLoaded("idwtialsimmoedm")) {
+			logInfo("Registering idwtialsimmoedm Compat...");
+			IdwtialsimmoedmCompat.register();
+		}
+
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
+		WorthinessChecker.init();
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);

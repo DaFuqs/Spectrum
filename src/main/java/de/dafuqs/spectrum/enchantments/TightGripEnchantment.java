@@ -25,11 +25,6 @@ public class TightGripEnchantment extends SpectrumEnchantment {
 	public int getMaxLevel() {
 		return SpectrumCommon.CONFIG.TightGripMaxLevel;
 	}
-	
-	@Override
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other);
-	}
 
 }
 

@@ -1,15 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import it.unimi.dsi.fastutil.objects.ObjectListIterator;
-import net.minecraft.block.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;

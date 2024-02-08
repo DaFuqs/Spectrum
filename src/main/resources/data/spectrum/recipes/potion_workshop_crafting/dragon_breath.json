@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "required_experience": 100,
+  "color": 13333666,
+  "ingredient1": {
+    "item": "spectrum:knowledge_gem"
+  },
+  "ingredient2": {
+    "item": "minecraft:popped_chorus_fruit"
+  },
+  "ingredient3": {
+    "item": "spectrum:bone_ash"
+  },
+  "result": {
+    "item": "minecraft:dragon_breath"
+  },
+  "required_advancement": "spectrum:unlocks/items/dragon_breath"
+}

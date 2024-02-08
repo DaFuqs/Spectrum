@@ -1,16 +1,30 @@
 {
 	"variants": {
-		"axis=x": {
+		"facing=down": {
+			"model": "spectrum:block/bloodstone_block",
+			"x": 180
+		},
+		"facing=east": {
 			"model": "spectrum:block/bloodstone_block",
 			"x": 90,
 			"y": 90
 		},
-		"axis=y": {
-			"model": "spectrum:block/bloodstone_block"
-		},
-		"axis=z": {
+		"facing=north": {
 			"model": "spectrum:block/bloodstone_block",
 			"x": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/bloodstone_block",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+			"model": "spectrum:block/bloodstone_block"
+		},
+		"facing=west": {
+			"model": "spectrum:block/bloodstone_block",
+			"x": 90,
+			"y": 270
 		}
 	}
 }

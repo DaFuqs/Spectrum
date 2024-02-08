@@ -19,8 +19,11 @@
         "items": [
           {
             "items": [
+              "spectrum:bismuth_flake",
               "spectrum:small_bismuth_bud",
-              "spectrum:large_bismuth_bud"
+              "spectrum:large_bismuth_bud",
+              "spectrum:bismuth_cluster",
+              "spectrum:bismuth_crystal"
             ]
           }
         ]

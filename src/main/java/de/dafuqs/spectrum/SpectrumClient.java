@@ -24,7 +24,7 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
-import de.dafuqs.spectrum.sound.music.SpectrumMusicManager;
+import de.dafuqs.spectrum.sound.music.SpectrumAudioManager;
 import de.dafuqs.spectrum.render.capes.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
@@ -95,8 +95,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
 
-		logInfo("Registering Mutable Music...");
-		SpectrumMusicManager.create(MinecraftClient.getInstance());
+		logInfo("Initializing Dynamic Music...");
+		SpectrumDynamicAudio.init();
+		SpectrumAudioManager.getInstance().init();
 
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
@@ -118,6 +119,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
+		ClientTickEvents.END_CLIENT_TICK.register(client -> SpectrumAudioManager.getInstance().tick());
 
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {

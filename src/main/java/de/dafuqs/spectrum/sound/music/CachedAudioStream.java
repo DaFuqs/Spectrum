@@ -1,9 +1,14 @@
 package de.dafuqs.spectrum.sound.music;
 
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.AudioStream;
+import net.minecraft.resource.ResourceFactory;
+import net.minecraft.resource.ResourceFinder;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.PointerBuffer;
@@ -15,20 +20,38 @@ import org.lwjgl.system.MemoryUtil;
 import javax.sound.sampled.AudioFormat;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
-public class DynamicAudioStream implements AudioStream {
+public class CachedAudioStream implements AudioStream {
 
     private static final int BUFFER_SIZE = 8192;
     private long pointer;
     private final AudioFormat format;
     private final InputStream inputStream;
-    private ByteBuffer buffer = MemoryUtil.memAlloc(8192);
+    private ByteBuffer buffer = MemoryUtil.memAlloc(BUFFER_SIZE);
+    //Lesbian
+    private final Supplier<ByteBuffer> decodedBuffer = Suppliers.memoize(() -> {
+        ChannelList channelList = new ChannelList(BUFFER_SIZE * 2);
 
-    public DynamicAudioStream(InputStream stream) throws IOException {
+        try {
+            while (true) {
+                if (!this.readOggFile(channelList)) break;
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        return buffer;
+    });
+
+    public CachedAudioStream(InputStream stream) throws IOException {
         this.inputStream = stream;
         this.buffer.limit(0);
 
@@ -54,10 +77,18 @@ public class DynamicAudioStream implements AudioStream {
             }
 
             this.buffer.position(this.buffer.position() + intBuffer.get(0));
-            STBVorbisInfo sTBVorbisInfo = STBVorbisInfo.mallocStack(memoryStack);
+            STBVorbisInfo sTBVorbisInfo = STBVorbisInfo.malloc(memoryStack);
             STBVorbis.stb_vorbis_get_info(this.pointer, sTBVorbisInfo);
             this.format = new AudioFormat((float)sTBVorbisInfo.sample_rate(), 16, sTBVorbisInfo.channels(), true, false);
         }
+    }
+
+    public ByteBuffer getBuffer() {
+        return decodedBuffer.get();
+    }
+
+    public float getSampleMultiplier() {
+        return format.getSampleRate() * format.getChannels() * 2;
     }
 
     private boolean readHeader() throws IOException {
@@ -164,12 +195,11 @@ public class DynamicAudioStream implements AudioStream {
 
     @Override
     public ByteBuffer getBuffer(int size) throws IOException {
-        ChannelList channelList = new ChannelList(16384);
-
-        while(this.readOggFile(channelList)) {
+        try {
+            return getBuffer();
+        } catch (UncheckedIOException e) {
+            throw e.getCause();
         }
-
-        return channelList.getBuffer();
     }
 
     @Override

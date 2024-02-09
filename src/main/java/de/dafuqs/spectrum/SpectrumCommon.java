@@ -32,7 +32,7 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.registries.color.*;
-import de.dafuqs.spectrum.sound.music.MusicResourceLoader;
+import de.dafuqs.spectrum.sound.music.DynamicAudioLoader;
 import de.dafuqs.spectrum.spells.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
@@ -74,7 +74,7 @@ public class SpectrumCommon implements ModInitializer {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
-	public static MusicResourceLoader resourceLoader;
+	public static DynamicAudioLoader resourceLoader;
 	
 	public static MinecraftServer minecraftServer;
 	/**
@@ -134,9 +134,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumSoundEvents.register();
 		logInfo("Registering Music...");
 		SpectrumMusicType.register();
-		logInfo("Registering Music Resources...");
-		resourceLoader = new MusicResourceLoader();
-		resourceLoader.init();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");

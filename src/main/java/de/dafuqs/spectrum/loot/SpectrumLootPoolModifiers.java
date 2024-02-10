@@ -73,7 +73,7 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/squid"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SQUID).asItem(), 0.02F));
 		put(new Identifier("entities/stray"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.STRAY).asItem(), 0.02F));
 		put(new Identifier("entities/strider"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.STRIDER).asItem(), 0.02F));
-		put(new Identifier("entities/trader_llama"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.TRADER_LLAMA).asItem(), 0.02F));
+		put(new Identifier("entities/trader_llama"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.LLAMA).asItem(), 0.02F));
 		put(new Identifier("entities/turtle"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.TURTLE).asItem(), 0.02F));
 		put(new Identifier("entities/vex"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.VEX).asItem(), 0.02F));
 		put(new Identifier("entities/villager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.VILLAGER).asItem(), 0.02F));

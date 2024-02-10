@@ -14,9 +14,13 @@ public class VillagerHeadModel extends SpectrumHeadModel {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-12.0F, -10.0F, 4.0F, 8.0F, 10.0F, 8.0F)
-                .uv(24, 0).cuboid(-9.0F, -3.0F, 2.0F, 2.0F, 4.0F, 2.0F), ModelTransform.NONE);
+        modelPartData.addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create()
+                        .uv(0, 0).cuboid(0.0F, -10.0F, 4.0F, 8.0F, 10.0F, 8.0F)
+                        .uv(24, 0).cuboid(3.0F, -3.0F, 2.0F, 2.0F, 4.0F, 2.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 64, 64);
     }

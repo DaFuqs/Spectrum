@@ -17,6 +17,7 @@ public class TropicalFishHeadModel extends SpectrumHeadModel {
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
+		
 		Dilation dilation = new Dilation(0.01F);
 		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 20).cuboid(-1.0F, -3.0F, -3.0F, 2.0F, 6.0F, 6.0F, dilation), ModelTransform.pivot(0.0F, 19.0F, 0.0F));
 		modelPartData.addChild("right_fin", ModelPartBuilder.create().uv(2, 16).cuboid(-2.0F, 0.0F, 0.0F, 2.0F, 2.0F, 0.0F, dilation), ModelTransform.of(-1.0F, 20.0F, 0.0F, 0.0F, 0.7853982F, 0.0F));

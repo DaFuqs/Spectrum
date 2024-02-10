@@ -16,8 +16,17 @@ public class ShulkerHeadModel extends SpectrumHeadModel {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		
-		ModelPartData base = modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 28).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-		base.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 12.0F, 16.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		ModelPartData base = modelPartData.addChild(
+				EntityModelPartNames.HEAD,
+				ModelPartBuilder.create().uv(0, 28).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F),
+				ModelTransform.NONE
+		);
+		
+		base.addChild(
+				"shulker_head",
+				ModelPartBuilder.create().uv(0, 52).cuboid(-3.0F, -7.0F, -3.0F, 6.0F, 6.0F, 6.0F),
+				ModelTransform.NONE
+		);
 
 		return TexturedModelData.of(modelData, 64, 64);
 	}

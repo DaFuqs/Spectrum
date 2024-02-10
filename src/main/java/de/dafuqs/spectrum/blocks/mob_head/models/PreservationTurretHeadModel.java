@@ -15,10 +15,14 @@ public class PreservationTurretHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
 
-        modelData.getRoot().addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F, Dilation.NONE)
-                .uv(0, 24).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 2.0F, 16.0F, Dilation.NONE)
-                .uv(0, 42).cuboid(-7.0F, -14.0F, -7.0F, 14.0F, 6.0F, 14.0F, Dilation.NONE), ModelTransform.NONE);
+        modelData.getRoot().addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create()
+                        .uv(0, 0).cuboid(-8.0F, -8.0F, -8.0F, 16.0F, 8.0F, 16.0F)
+                        .uv(0, 24).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 2.0F, 16.0F)
+                        .uv(0, 42).cuboid(-7.0F, -14.0F, -7.0F, 14.0F, 6.0F, 14.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 128, 128);
     }

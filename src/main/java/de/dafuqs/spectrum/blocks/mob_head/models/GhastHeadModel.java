@@ -14,8 +14,11 @@ public class GhastHeadModel extends SpectrumHeadModel {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F), ModelTransform.NONE);
+        modelPartData.addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 32, 16);
     }

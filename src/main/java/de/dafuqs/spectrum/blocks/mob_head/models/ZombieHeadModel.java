@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.blocks.mob_head.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.*;
 
-public class SnowGolemHeadModel extends SpectrumHeadModel {
+public class ZombieHeadModel extends SpectrumHeadModel {
 	
-	public SnowGolemHeadModel(ModelPart root) {
+	public ZombieHeadModel(ModelPart root) {
 		super(root);
 	}
 	
@@ -14,8 +14,12 @@ public class SnowGolemHeadModel extends SpectrumHeadModel {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		
-		Dilation dilation = new Dilation(-0.5F);
-		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, dilation), ModelTransform.pivot(0.0F, 4.0F, 0.0F));
+		Dilation dilation = new Dilation(0.01F);
+		modelPartData.addChild(
+				EntityModelPartNames.HEAD,
+				ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, dilation),
+				ModelTransform.NONE
+		);
 		
 		return TexturedModelData.of(modelData, 64, 64);
 	}

@@ -15,10 +15,14 @@ public class KindlingHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
 
-        ModelPartData head = modelData.getRoot().addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(0, 48)
-                .cuboid(-3.5F, -8.0F, -3.5F, 7.0F, 8.0F, 7.0F)
-                .uv(30, 76).cuboid(-4.0F, -8.5F, -4.0F, 8.0F, 9.0F, 8.0F)
-                .uv(29, 21).cuboid(-1.5F, -3.01F, -5.5F, 3.0F, 3.0F, 2.0F), ModelTransform.NONE);
+        ModelPartData head = modelData.getRoot().addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create()
+                        .uv(0, 48).cuboid(-3.5F, -8.0F, -3.5F, 7.0F, 8.0F, 7.0F)
+                        .uv(30, 76).cuboid(-4.0F, -8.5F, -4.0F, 8.0F, 9.0F, 8.0F)
+                        .uv(29, 21).cuboid(-1.5F, -3.01F, -5.5F, 3.0F, 3.0F, 2.0F),
+                ModelTransform.NONE
+        );
 
         head.addChild("middlehorn_r1", ModelPartBuilder.create().uv(54, 0).cuboid(0.0F, -10.5F, -4.0F, 0.0F, 12.0F, 8.0F), ModelTransform.of(0.0F, -7.5F, -3.5F, 0.3927F, 0.0F, 0.0F));
 

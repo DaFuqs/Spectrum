@@ -21,7 +21,7 @@ public class FrogHeadModel extends SpectrumHeadModel {
 				ModelPartBuilder.create()
 						.uv(23, 13).cuboid(-3.5F, -1.0F, -7.0F, 7.0F, 0.0F, 9.0F)
 						.uv(0, 13).cuboid(-3.5F, -2.0F, -7.0F, 7.0F, 3.0F, 9.0F),
-				ModelTransform.pivot(0.0F, -2.0F, -1.0F)
+				ModelTransform.NONE
 		);
 		
 		ModelPartData modelPartData5 = modelPartData4.addChild(

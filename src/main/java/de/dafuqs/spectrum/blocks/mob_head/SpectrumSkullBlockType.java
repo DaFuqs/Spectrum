@@ -85,7 +85,6 @@ public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
     STRAY(EntityType.STRAY),
     STRIDER(EntityType.STRIDER),
     TADPOLE(EntityType.TADPOLE),
-    TRADER_LLAMA(EntityType.TRADER_LLAMA),
     TURTLE(EntityType.TURTLE),
     VEX(EntityType.VEX),
     VILLAGER(EntityType.VILLAGER),

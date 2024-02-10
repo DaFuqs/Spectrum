@@ -14,8 +14,11 @@ public class SquidHeadModel extends SpectrumHeadModel {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-6.0F, -14.0F, -6.0F, 12.0F, 14.0F, 12.0F), ModelTransform.NONE);
+        modelPartData.addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, -14.0F, -6.0F, 12.0F, 14.0F, 12.0F),
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 64, 32);
     }

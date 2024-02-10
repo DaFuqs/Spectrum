@@ -367,10 +367,6 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:strider_head" ]}] }
     },
-    "has_trader_llama_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:trader_llama_head" ]}] }
-    },
     "has_turtle_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:turtle_head" ]}] }

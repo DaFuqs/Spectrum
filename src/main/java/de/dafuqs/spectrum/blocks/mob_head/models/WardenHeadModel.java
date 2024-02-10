@@ -15,11 +15,14 @@ public class WardenHeadModel extends SpectrumHeadModel {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
 
-        modelData.getRoot().addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
+        modelData.getRoot().addChild(
+                EntityModelPartNames.HEAD,
+                ModelPartBuilder.create()
                         .uv(0, 32).cuboid(-8.0F, -16.0F, -5.0F, 16.0F, 16.0F, 10.0F)
                         .uv(58, 2).cuboid(8.0F, -21.0F, 0.0F, 10.0F, 16.0F, 0.0F)
                         .uv(58, 34).cuboid(-18.0F, -21.0F, 0.0F, 10.0F, 16.0F, 0.0F),
-                ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+                ModelTransform.NONE
+        );
 
         return TexturedModelData.of(modelData, 128, 128);
     }

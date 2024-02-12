@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

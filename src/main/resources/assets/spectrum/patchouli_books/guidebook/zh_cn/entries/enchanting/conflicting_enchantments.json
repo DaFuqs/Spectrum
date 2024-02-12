@@ -1,0 +1,20 @@
+{
+	"pages":[
+		{
+			"item":"minecraft:diamond_chestplate{Enchantments: [{id: \"minecraft:protection\", lvl: 3s}, {id: \"minecraft:blast_protection\", lvl: 3s}, {id: \"minecraft:projectile_protection\", lvl: 3s}, {id: \"minecraft:fire_protection\", lvl: 3s}]}",
+			"text":"$(italic)你过去用多个相互冲突的附魔来附魔物品的问题已经过去了。$(br)作为一个魔术大师，没有什么可以满足你的欲望。",
+			"type":"patchouli:spotlight",
+			"title":"精通附魔"
+		},
+		{
+			"text":"你现在可以使用附魔器对你的装备应用通常相互排斥的附魔。$(br2)请注意：$(br)$(italic)此类行动需要大量经验。$()",
+			"type":"patchouli:text"
+		}
+	],
+	"advancement":"spectrum:milestones/unlock_conflicted_enchanting_with_enchanter",
+	"name":"精通附魔",
+	"icon":"minecraft:enchanted_book",
+	"sortnum":5,
+	"priority":true,
+	"category":"spectrum:enchanting_category"
+}

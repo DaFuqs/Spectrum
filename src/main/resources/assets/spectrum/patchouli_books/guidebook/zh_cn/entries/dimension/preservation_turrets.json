@@ -1,0 +1,24 @@
+{
+  "name": "哨戒机枪",
+  "icon": "spectrum:preservation_turret_head",
+  "advancement": "spectrum:hidden/entity_interact/preservation_turret",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:preservation_turret_head": 0,
+    "spectrum:preservation_turret_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "哨戒机枪",
+      "entity": "spectrum:preservation_turret",
+      "scale": 0.5,
+      "offset": 0.4,
+      "text": "$(italic)真正的卓越工程。但太有攻击性了。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "高科技机器，由玄武岩和方解石的强化外壳制成，由一种未知的能量来源提供动力，这种能量在这些精巧装置的中心轻轻地脉动.$(br2)随时准备把你颅骨开个洞"
+    }
+  ]
+}

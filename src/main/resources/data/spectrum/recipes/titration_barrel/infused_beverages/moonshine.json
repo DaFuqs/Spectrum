@@ -18,7 +18,9 @@
       "count": 2
     }
   ],
-  "fluid": "spectrum:liquid_crystal",
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
   "min_fermentation_time_hours": 24,
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {

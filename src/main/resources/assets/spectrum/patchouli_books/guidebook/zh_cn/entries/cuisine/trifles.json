@@ -1,0 +1,34 @@
+{
+  "name": "甜点",
+  "icon": "spectrum:jaramel_trifle",
+  "advancement": "spectrum:unlocks/food/trifles",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:jaramel_trifle": 0,
+    "spectrum:salted_jaramel_trifle": 0,
+    "spectrum:monster_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "甜蜜的美味佳肴，保证不仅给你单纯糖的快感——其他取决于配料。$(br)用 $(l:resources/jade_vines#jaramel)焦糖$(/l), $(thing)凝胶$() & $(l:cuisine/amaranth)苋菜$(/l)制作.$(br)简单但可口"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Jaramel Trifle",
+      "recipe": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "text": "经典。唯一能让这个更美味的是你敌人的眼泪。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
+      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "text": "$(italic)齁咸"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/monster_trifle",
+      "text": "抽卡乐趣"
+    }
+  ]
+}

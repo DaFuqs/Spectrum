@@ -13,35 +13,9 @@
     }
   },
   "criteria": {
-    "collected_brewers_handbook": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_cookbooks/brewers_handbook"
-      }
-    },
-    "collected_imbrifer_cookbook": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook"
-      }
-    },
-    "collected_imperial_cookbook": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
-      }
-    },
-    "collected_melochites_cookbook_vol_1": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1"
-      }
-    },
-    "collected_melochites_cookbook_vol_2": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2"
-      }
+    "collect_one_cookbook": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "tag": "spectrum:cookbooks" }] }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
@@ -49,17 +23,5 @@
         "advancement_identifier": "spectrum:lategame/spectrum_lategame"
       }
     }
-  },
-  "requirements": [
-    [
-      "collected_brewers_handbook",
-      "collected_imbrifer_cookbook",
-      "collected_imperial_cookbook",
-      "collected_melochites_cookbook_vol_1",
-      "collected_melochites_cookbook_vol_2"
-    ],
-    [
-      "gotten_previous"
-    ]
-  ]
+  }
 }

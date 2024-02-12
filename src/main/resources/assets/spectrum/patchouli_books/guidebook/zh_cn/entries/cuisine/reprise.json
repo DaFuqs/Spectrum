@@ -1,0 +1,21 @@
+{
+  "name": "Reprise",
+  "advancement": "spectrum:unlocks/food/reprise",
+  "icon": "spectrum:reprise",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:reprise": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这饮料由 $(item)Chorus Fruit（合体水果）$(), 接管-扩大-不仅是特殊的味道，还有是植物的独特属性。$(br2)摄入后，这种饮料会随机将你传送到很远的地方。酒精含量越高，传送的就越远."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/reprise",
+      "text": "$(italic)尝起来像覆盆子，但里面此成分含量为0%。奇怪。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "美人鱼宝石",
+  "icon": "spectrum:mermaids_gem",
+  "advancement": "spectrum:collect_mermaids_gem",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:mermaids_gem": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Mermaid's Brushes",
+      "text": "一种不起眼的植物生长在海洋的最深处，永远不受人类的影响。$(br)它们只开一朵花，慢慢地长成珍珠状的种子。$()$(br2)美人草可以用剪刀收割。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Mermaid's Gems",
+      "item": "spectrum:mermaids_gem",
+      "text": "这些空心的种子长大后会浮到水面，被柔和的海浪带走。$(br2)显然，美人鱼宝石与水有很强的亲和力."
+    }
+  ]
+}

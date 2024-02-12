@@ -6,6 +6,12 @@
         "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
       }
     },
+    "collected_doombloom_seed": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
+      }
+    },
     "opened_seed_vault_upper": {
       "trigger": "minecraft:player_generates_container_loot",
       "conditions": {

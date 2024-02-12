@@ -87,18 +87,19 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if (!currentBlockState.isOf(this) && currentBlockEntity == null) {
 					if (isReplaceableBlock(world, targetBlockPos)) {
 						Vec3i nextPos = new Vec3i(targetBlockPos.offset(direction).getX(), targetBlockPos.offset(direction).getY(), targetBlockPos.offset(direction).getZ());
-						if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE) && !GenericClaimModsCompat.isProtected(world, targetBlockPos, owner)) {
-							if (shouldPropagateTo(world, targetBlockPos)) {
-								world.setBlockState(targetBlockPos, state, 3);
-								if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
-									neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
-									neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
-								}
+						if (blockFlooderBlockEntity.getSourcePos().isWithinDistance(nextPos, MAX_DISTANCE)
+								&& GenericClaimModsCompat.canPlaceBlock(world, targetBlockPos, owner)
+								&& shouldPropagateTo(world, targetBlockPos)) {
+							
+							world.setBlockState(targetBlockPos, state, 3);
+							if (world.getBlockEntity(targetBlockPos) instanceof BlockFlooderBlockEntity neighboringBlockFlooderBlockEntity) {
+								neighboringBlockFlooderBlockEntity.setOwnerUUID(blockFlooderBlockEntity.getOwnerUUID());
+								neighboringBlockFlooderBlockEntity.setSourcePos(blockFlooderBlockEntity.getSourcePos());
 							}
 						}
 					} else {
 						Block currentBlock = currentBlockState.getBlock();
-
+						
 						if (currentBlockState.isSolidBlock(world, targetBlockPos)) {
 							if (neighboringBlockAmounts.containsKey(currentBlock)) {
 								neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);

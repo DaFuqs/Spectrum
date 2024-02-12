@@ -3,8 +3,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.*;
-import net.id.incubus_core.recipe.*;
-import net.minecraft.fluid.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.registry.*;
@@ -21,7 +20,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 	}
 	
 	public interface RecipeFactory {
-		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minTimeDays, FermentationData fermentationData);
+		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, FluidIngredient fluid, ItemStack outputItemStack, Item tappingItem, int minTimeDays, FermentationData fermentationData);
 	}
 	
 	@Override
@@ -32,16 +31,24 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
 		List<IngredientStack> ingredients = RecipeParser.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
-		
-		Fluid fluid = Fluids.EMPTY;
-		if (JsonHelper.hasString(jsonObject, "fluid")) {
-			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
-			fluid = Registries.FLUID.get(fluidIdentifier);
-			if (fluid.getDefaultState().isEmpty()) {
-				SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
+
+		FluidIngredient fluidInput = FluidIngredient.EMPTY;
+		if (JsonHelper.hasJsonObject(jsonObject, "fluid")) {
+			JsonObject fluidObject = JsonHelper.getObject(jsonObject, "fluid");
+			FluidIngredient.JsonParseResult result = FluidIngredient.fromJson(fluidObject);
+			fluidInput = result.result();
+			if (result.malformed()) {
+				// Currently handling malformed input leniently. May throw an error in the future.
+				SpectrumCommon.logError("Titration Recipe " + identifier + "contains a malformed fluid input tag! This recipe will not be craftable.");
+			} else if (result.result() == FluidIngredient.EMPTY) {
+				if (result.isTag()) {
+					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid tag " + result.id() + " that does not exist! This recipe will not be craftable.");
+				} else {
+					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
+				}
 			}
 		}
-		
+
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		int minTimeDays = JsonHelper.getInt(jsonObject, "min_fermentation_time_hours", 24);
 		
@@ -55,7 +62,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			fermentationData = FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
 		}
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, outputItemStack, tappingItem, minTimeDays, fermentationData);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluidInput, outputItemStack, tappingItem, minTimeDays, fermentationData);
 	}
 	
 	@Override
@@ -68,7 +75,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		for (IngredientStack ingredientStack : recipe.inputStacks) {
 			ingredientStack.write(packetByteBuf);
 		}
-		writeNullableIdentifier(packetByteBuf, Registries.FLUID.getId(recipe.fluid));
+		writeFluidIngredient(packetByteBuf, recipe.fluid);
 		
 		packetByteBuf.writeItemStack(recipe.outputItemStack);
 		packetByteBuf.writeString(Registries.ITEM.getId(recipe.tappingItem).toString());
@@ -91,12 +98,8 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		
 		short craftingInputCount = packetByteBuf.readShort();
 		List<IngredientStack> ingredients = IngredientStack.decodeByteBuf(packetByteBuf, craftingInputCount);
-		
-		Fluid fluid = Fluids.EMPTY;
-		Identifier fluidId = readNullableIdentifier(packetByteBuf);
-		if (fluidId != null) {
-			fluid = Registries.FLUID.get(fluidId);
-		}
+
+		FluidIngredient fluidInput = readFluidIngredient(packetByteBuf);
 		
 		ItemStack outputItemStack = packetByteBuf.readItemStack();
 		Item tappingItem = Registries.ITEM.get(Identifier.tryParse(packetByteBuf.readString()));
@@ -107,7 +110,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			fermentationData = FermentationData.read(packetByteBuf);
 		}
 		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, outputItemStack, tappingItem, minTimeDays, fermentationData);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluidInput, outputItemStack, tappingItem, minTimeDays, fermentationData);
 	}
 	
 }

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.compat.claims.GenericClaimModsCompat;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -109,6 +110,11 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 			List<ItemStack> stacks = new ArrayList<>();
 			BlockState stateToPlace;
 			for (BlockPos targetPosition : targetPositions) {
+
+				// Require both place and break permissions in order to swap blocks
+				if (!GenericClaimModsCompat.canModify(world, pos, player))
+					continue;
+
 				if (!player.isCreative()) {
 					BlockState droppedStacks = world.getBlockState(targetPosition);
 					stacks.addAll(Block.getDroppedStacks(droppedStacks, (ServerWorld) world, targetPosition, world.getBlockEntity(targetPosition), player, exchangeStaffItemStack));

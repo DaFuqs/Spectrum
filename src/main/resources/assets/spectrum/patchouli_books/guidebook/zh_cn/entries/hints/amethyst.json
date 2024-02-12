@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:hidden/collect_shards/collect_amethyst_shard",
+			"cost":"spectrum:citrine_shard#16",
+			"text":"在地下深处可以发现一种类型的晶洞。",
+			"type":"spectrum:hint",
+			"title":"在哪里可以找到"
+		}
+	],
+	"advancement":"spectrum:spectrum",
+	"read_by_default":true,
+	"name":"宝石",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:hidden/collect_shards/collect_amethyst_shard",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

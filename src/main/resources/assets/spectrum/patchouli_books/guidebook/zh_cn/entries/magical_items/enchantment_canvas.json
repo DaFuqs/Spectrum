@@ -1,0 +1,21 @@
+{
+  "name": "附魔丝巾",
+  "advancement": "spectrum:unlocks/items/enchantment_canvas",
+  "icon": "spectrum:enchantment_canvas",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:enchantment_canvas": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "你的鹤嘴锄，有一些极度珍贵的附魔？那每坏一个，对你的神经的伤害都比工具损毁更大。$(br)即使工具不能保存，至少魔法可以!这张画布不仅可以捕捉颜色:在工具上使用，还可以交换魔法。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/enchantment_canvas",
+      "text": "一旦使用，压印的工具将显示在画布上，永远不会再被删除，将其绑定到此类型的同类工具上。"
+    }
+  ]
+}

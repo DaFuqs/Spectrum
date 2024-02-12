@@ -44,11 +44,6 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 	}
 	
 	@Override
-	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other);
-	}
-	
-	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
 		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem || EnchantmentTarget.DIGGER.isAcceptableItem(stack.getItem()) || stack.getItem() instanceof SpectrumFishingRodItem;
 	}

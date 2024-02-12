@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "minecraft:glow_lichen"
+  },
+  "ingredient3": {
+    "item": "minecraft:fermented_spider_eye"
+  },
+  "effect": "victus:heartbleed",
+  "base_duration_ticks": 400,
+  "potency_modifier": 1.0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": false,
+  "required_advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+  "ink_color": "pink",
+  "ink_cost": 8,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "victus"
+      ]
+    }
+  ]
+}

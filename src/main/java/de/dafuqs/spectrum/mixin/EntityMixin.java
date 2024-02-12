@@ -34,8 +34,7 @@ public abstract class EntityMixin {
 
 	@ModifyVariable(method = "slowMovement", at = @At(value = "LOAD"), argsOnly = true)
 	private Vec3d spectrum$applyInexorableAntiBlockSlowdown(Vec3d multiplier) {
-		Entity entity = (Entity) (Object) this;
-		if (entity instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
+		if ((Object) this instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
 			return Vec3d.ZERO;
 		}
 		return multiplier;
@@ -43,13 +42,8 @@ public abstract class EntityMixin {
 	
 	@Inject(method = "getVelocityMultiplier", at = @At("RETURN"), cancellable = true)
 	private void spectrum$applyInexorableAntiSlowdown(CallbackInfoReturnable<Float> cir) {
-		var entity = (Entity) (Object) this;
-		
-		if (entity instanceof LivingEntity livingEntity) {
-			var inexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, livingEntity.getEquippedStack(EquipmentSlot.CHEST));
-			
-			if (inexorable > 0)
-				cir.setReturnValue(Math.max(cir.getReturnValue(), 1F));
+		if ((Object) this instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
+			cir.setReturnValue(Math.max(cir.getReturnValue(), 1F));
 		}
 	}
 	

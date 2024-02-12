@@ -19,7 +19,9 @@
     }
   ],
   "min_fermentation_time_hours": 4,
-  "fluid": "spectrum:liquid_crystal",
+  "fluid": {
+    "fluid": "spectrum:liquid_crystal"
+  },
   "result": {
     "item": "spectrum:peach_jam",
     "count": 4

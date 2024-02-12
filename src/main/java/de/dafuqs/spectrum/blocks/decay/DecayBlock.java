@@ -91,7 +91,7 @@ public abstract class DecayBlock extends Block {
 	}
 	
 	private boolean canSpreadTo(World world, BlockPos targetBlockPos, BlockState stateAtTargetPos) {
-		if (SpectrumCommon.CONFIG.DecayIsStoppedByClaimMods && GenericClaimModsCompat.isProtected(world, targetBlockPos, null)) {
+		if (SpectrumCommon.CONFIG.DecayIsStoppedByClaimMods && !GenericClaimModsCompat.canModify(world, targetBlockPos, null)) {
 			return false;
 		}
 		

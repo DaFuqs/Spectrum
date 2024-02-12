@@ -49,23 +49,23 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals.$(br)Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead."
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals. Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead.$(br2)Throw raw ore on top to let it crystallize into a Bud, able to be grown."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "Throw raw ore on top to let it crystallize.$(br)Each resource requires one color of Ink."
+      "text": "$(br)Growing resources requires:$(li)a Catalyst$(li)one color of Ink, supplied via $(l:magic/ink_flask)Flask$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Catalysts",
+      "text": "Each catalyst has a different effect on bud growth:$(br)while one catalyst may reduce the required amount of ink, another may alter the duration of the process.."
     },
     {
       "type": "patchouli:text",
       "title": "Metals vs. Crystals",
       "text": "$(thing)Metallic resources$() require unrefined materials such as $(item)Raw Iron$(), resulting in a $(item)Small Iron Bud$() that will grow steadily until it can be safely harvested.$(br2)For $(thing)crystalline resources$(), an existing crystal can be used as a seed to grow identical copies of itself."
-    },
-    {
-      "type": "patchouli:text",
-      "title": "Catalysts",
-      "text": "The Crystallarieum also fits a stack of catalysts, which can speed up the process or lower Ink consumption. While catalysts are mostly optional, some special materials may require them."
     },
     {
       "type": "spectrum:crystallarieum_growing",

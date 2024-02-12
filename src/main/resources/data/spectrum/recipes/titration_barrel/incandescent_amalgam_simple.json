@@ -19,7 +19,9 @@
       "count": 8
     }
   ],
-  "fluid": "spectrum:midnight_solution",
+  "fluid": {
+    "fluid": "spectrum:midnight_solution"
+  },
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 0.8,

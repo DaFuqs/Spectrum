@@ -1,0 +1,34 @@
+{
+  "name": "颜色混合",
+  "icon": "minecraft:light_blue_dye",
+  "sortnum": 5,
+  "advancement": "spectrum:collect_vegetal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:craft_colored_sapling",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "颜色混合",
+      "images": [
+        "spectrum:textures/gui/guidebook/color_mixing.png"
+      ],
+      "text": "使用这几种基本颜色： $(c_cyan)蓝绿色$(), $(c_magenta)品红色$() 和 $(c_yellow)黄色$(), (几乎) 能混合出所有颜色。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "你试图直接混合 $(l:general/gemstone_powder)宝石矿粉末$(/l) 貌似不太成功。 但你现在还有另一个办法：$(br)从你的宝石矿和自然之间的联系可以看出 $(italic)自然$() 必然即是问题又是答案！$(br2)你迫不及待的潦草几笔记下了要点并且 $(l:general/colored_trees)得出了结论！$()，看起来能成！"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "制作棕色颜料",
+      "text": "你尝试了一次又一次。 但一直没有找到通过混合宝石矿尘制作棕色颜料的办法。离成功最近的一次也仅仅是搞出了橘色 - 啧.$(br)不应该这么难吧。 因为... $(c_brown)泥土就是棕色的$() 而且那是周围最稀松平常的东西了。$(br2)肯定有办法的...$(br)肯定有办法的... $(c_black)黑色$() 就是答案。"
+    },
+    {
+      "type": "patchouli:link",
+      "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+      "text": "$(br2)$(br2)$(italic)Seriously, look it up! The way we perceive brown is fascinating!$()",
+      "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
+      "link_text": "棕色好奇怪"
+    }
+  ]
+}

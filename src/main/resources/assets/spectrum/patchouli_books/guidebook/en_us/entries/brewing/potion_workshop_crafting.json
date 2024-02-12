@@ -73,6 +73,11 @@
       "title": "Bottles o' Enchanting",
       "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
       "text": "Will consume 10 XP from the $(item)Knowledge Gem$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/dragon_breath",
+      "text": "Will consume 100 XP from the $(item)Knowledge Gem$()."
     }
   ]
 }

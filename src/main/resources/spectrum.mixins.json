@@ -67,6 +67,7 @@
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
     "accessors.BiomeAccessor",
+    "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
@@ -87,6 +88,7 @@
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
+    "client.AbstractClientEntityMixin",
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
@@ -112,7 +114,8 @@
     "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin"
+    "compat.colorful_hearts.present.HeartMixin",
+    "compat.enchdesc.present.DescriptionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

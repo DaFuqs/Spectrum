@@ -7,7 +7,9 @@
       "count": 4
     }
   ],
-  "fluid": "minecraft:water",
+  "fluid": {
+    "fluid": "minecraft:water"
+  },
   "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
@@ -107,9 +109,9 @@
     {
       "condition": "fabric:not",
       "value": {
-        "condition": "fabric:all_mods_loaded",
+        "condition": "fabric:fluid_tags_populated",
         "values": [
-          "create"
+          "c:honey"
         ]
       }
     }

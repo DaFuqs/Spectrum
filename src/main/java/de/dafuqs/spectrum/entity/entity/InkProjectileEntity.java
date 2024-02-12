@@ -186,7 +186,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
 				if (this.getWorld().getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
-					if (GenericClaimModsCompat.isProtected(this.getWorld(), blockPos, this.getOwner())) {
+					if (!GenericClaimModsCompat.canModify(this.getWorld(), blockPos, this.getOwner())) {
 						continue;
 					}
 					colorableBlock.color(this.getWorld(), blockPos, dyeColor);
@@ -262,7 +262,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Vec3d vec3d = new Vec3d(posX, posY, posZ);
 		
 		for (Entity entity : list) {
-			if (!GenericClaimModsCompat.canInteractWith(this.getWorld(), entity, attacker)) {
+			if (!GenericClaimModsCompat.canInteract(this.getWorld(), entity, attacker)) {
 				continue;
 			}
 			

@@ -4,7 +4,7 @@ import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import net.id.incubus_core.block.*;
+import de.dafuqs.spectrum.blocks.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.item.*;

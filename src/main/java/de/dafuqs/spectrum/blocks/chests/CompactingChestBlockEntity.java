@@ -25,11 +25,11 @@ import java.util.*;
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {
 	
 	private static final Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
-	final AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
-	AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
-	CraftingRecipe lastCraftingRecipe; // cache
-	ItemVariant lastItemVariant; // cache
-	boolean hasToCraft;
+	private final AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+	private AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
+	private CraftingRecipe lastCraftingRecipe; // cache
+	private ItemVariant lastItemVariant; // cache
+	private boolean hasToCraft;
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COMPACTING_CHEST, blockPos, blockState);
@@ -75,7 +75,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						}
 						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
 						doneStuff = true;
-					} else if (ItemStack.areEqual(currentStack, additionStack)) {
+					} else if (ItemStack.canCombine(currentStack, additionStack)) {
 						// add to stack;
 						int maxStackCount = currentStack.getMaxCount();
 						int canAcceptCount = maxStackCount - currentStack.getCount();

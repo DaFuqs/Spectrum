@@ -1,0 +1,43 @@
+{
+  "name": "白炽雷酸汞",
+  "advancement": "spectrum:unlocks/items/incandescent_amalgam",
+  "icon": "spectrum:incandescent_amalgam",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:incandescent_amalgam": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "理论上讲，掌中骄阳可能会好听一点$(br2)现在只是存在在那里。。。嗯，它会燃烧。它的存在几乎是一个奇迹——事实上，它应该在桶里爆炸——一种不稳定的、慢炖的乙醇混合物与讨厌存在的催化剂混合物混合。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一个错误的举动很容易导致它引爆，带走附近的一切，包括你自己。然而，由于所有这些原因，还有更多的原因，凝胶柔软温暖的光芒引发了无尽的好奇，所有的东西都被火焰所吸引。毫无疑问，一种有效的高产量神奇炸药具有无尽的潜力。你所需要的只是一点点关心，一座小山，以及一丝鲁莽的放纵。"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Snythesis",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_doom",
+      "text": "$(italic)独属于我的太阳...$()$(br2)合成时间越长，产率就越高。。。你真的不能责怪天使们不想从中分一杯羹。"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Pure Synthesis",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_pure",
+      "text": "$(italic)如此炙热！$()"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Simple Synthesis",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_simple",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Distillation",
+      "recipe": "spectrum:titration_barrel/fast_pure_alcohol",
+      "text": "汞合金造就的初火使其特别适合纯酒精蒸馏"
+    }
+  ]
+}

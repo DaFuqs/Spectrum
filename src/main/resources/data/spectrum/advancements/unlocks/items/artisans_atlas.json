@@ -1,21 +1,9 @@
 {
   "criteria": {
-    "gotten_radiating_ender": {
+    "wip": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/get_radiating_ender"
-      }
-    },
-    "built_advanced_pedestal_structure": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/build_advanced_pedestal_structure"
-      }
-    },
-    "collected_stardust": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_stardust"
+        "advancement_identifier": "spectrum:__wip"
       }
     }
   }

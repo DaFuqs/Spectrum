@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
@@ -37,7 +37,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.01F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.01F, List.of()));
 	}
 
 	@Override

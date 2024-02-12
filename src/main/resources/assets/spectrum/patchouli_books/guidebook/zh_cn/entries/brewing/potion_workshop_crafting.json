@@ -1,0 +1,78 @@
+{
+  "name": "药水站制作",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 3,
+  "extra_recipe_mappings": {
+    "minecraft:water_bucket": 0,
+    "minecraft:lava_bucket": 0,
+    "spectrum:midnight_solution_bucket": 0,
+    "minecraft:honey_bottle": 0,
+    "minecraft:powder_snow_bucket": 0,
+    "minecraft:experience_bottle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "顾名思义$(l:brewing/potion_workshop)药水工作站$()是用来制作强劲药品的工具$(item)Potions$().$(br)但是在这一堆由冷凝器滴定管安全阀门组成的alabala炫酷玩应儿的帮助下，你会发现它在创造其他东西方面也有很大的用处。$(br)$()当然那些东西不需要加入$(l:brewing/potion_workshop_reagents)狠活试剂$(/l)."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "水",
+      "recipe": "spectrum:potion_workshop_crafting/water_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "熔岩",
+      "recipe": "spectrum:potion_workshop_crafting/lava_bucket",
+      "text": "$(l:magical_blocks/lava_sponge)岩浆海绵$(/l) 不会被用完, 这让你能快速批量生产$(item)熔岩$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "泥",
+      "recipe": "spectrum:potion_workshop_crafting/mud_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "液晶",
+      "recipe": "spectrum:potion_workshop_crafting/liquid_crystal_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "午夜溶液",
+      "advancement": "spectrum:unlocks/blocks/midnight_solution",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "腐败龙浆",
+      "advancement": "spectrum:unlocks/blocks/dragonrot_bucket",
+      "recipe": "spectrum:potion_workshop_crafting/dragonrot_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "瓶装蜂蜜",
+      "recipe": "spectrum:potion_workshop_crafting/honey_bottle",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "细雪",
+      "recipe": "spectrum:potion_workshop_crafting/powder_snow_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "附魔之瓶",
+      "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
+      "text": "从$(item)知识宝石$().消耗10经验"
+    }
+  ]
+}

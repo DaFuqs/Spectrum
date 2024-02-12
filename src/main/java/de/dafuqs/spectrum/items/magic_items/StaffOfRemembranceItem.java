@@ -51,7 +51,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		World world = user.getWorld();
 		Vec3d pos = entity.getPos();
 		
-		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
+		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
 			return ActionResult.FAIL;
 		}
 		
@@ -74,10 +74,8 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		if (entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
 			return false;
 		}
+		
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
-		if (spawnGroup == SpawnGroup.MISC) {
-			return false;
-		}
 		if (spawnGroup == SpawnGroup.MONSTER && (user.isCreative() || AdvancementHelper.hasAdvancement(user, UNLOCK_HOSTILE_MEMORIZING_ID))) {
 			if (!InkPowered.tryDrainEnergy(user, TURN_HOSTILE_TO_MEMORY_COST)) {
 				return false;
@@ -87,7 +85,6 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		}
 		
 		entity.detachLeash(true, true);
-		
 		entity.playAmbientSound();
 		entity.playSpawnEffects();
 		

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity;
 import de.dafuqs.spectrum.entity.render.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.id.incubus_core.blocklikeentities.api.client.*;
 import net.minecraft.client.render.entity.*;
 import net.minecraft.entity.*;
 
@@ -11,7 +10,7 @@ import net.minecraft.entity.*;
 public class SpectrumEntityRenderers {
 	
 	public static void registerClient() {
-		register(SpectrumEntityTypes.FLOAT_BLOCK, BlockLikeEntityRenderer::new);
+		register(SpectrumEntityTypes.FLOAT_BLOCK, FloatBlockEntityRenderer::new);
 		register(SpectrumEntityTypes.SEAT, SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME, PhantomFrameEntityRenderer::new);

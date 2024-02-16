@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.chests;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -10,9 +11,11 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -29,7 +32,11 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
 	private CraftingRecipe lastCraftingRecipe; // cache
 	private ItemVariant lastItemVariant; // cache
-	private boolean hasToCraft;
+	private boolean hasToCraft, isOpen;
+	private State state = State.CLOSED;
+	float pistonPos, pistonTarget, lastPistonTarget, driverPos, driverTarget, lastDriverTarget, capPos, capTarget, lastCapTarget;
+	long interpTicks, interpLength = 1, activeTicks, craftingTicks;
+
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COMPACTING_CHEST, blockPos, blockState);
@@ -39,19 +46,80 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		this.hasToCraft = false;
 	}
 	
-	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity compactingChestBlockEntity) {
+	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
+		if (chest.hasToCraft()) {
+			chest.craftingTicks = 20;
+		}
+		else {
+			chest.craftingTicks--;
+		}
+
+		if (chest.craftingTicks >= 0) {
+			chest.activeTicks++;
+		}
+		else {
+			chest.activeTicks = 0;
+		}
+
+		if (!world.isClient()) {
+			SpectrumS2CPacketSender.sendCompactingChestStatusUpdate((ServerWorld) world, chest);
+		}
+
+		if (chest.isOpen()) {
+			chest.changeState(State.OPEN);
+			chest.interpLength = 5;
+		}
+		else if(chest.craftingTicks >= 0) {
+			chest.changeState(State.CRAFTING);
+			chest.interpLength = 20;
+			if (chest.activeTicks % 3 == 0) {
+				chest.produceRunningEffects();
+			}
+		}
+		else {
+			chest.changeState(State.CLOSED);
+			chest.interpLength = 15;
+		}
+		if (chest.interpTicks < chest.interpLength) {
+			chest.interpTicks++;
+		}
+
 		if (world.isClient) {
-			compactingChestBlockEntity.lidAnimator.step();
+			chest.lidAnimator.step();
 		} else {
-			if (compactingChestBlockEntity.hasToCraft) {
-				boolean couldCraft = compactingChestBlockEntity.tryCraftOnce();
+			if (chest.hasToCraft) {
+				boolean couldCraft = chest.tryCraftOnce();
 				if (!couldCraft) {
-					compactingChestBlockEntity.hasToCraft = false;
+					chest.shouldCraft(false);
 				}
 			}
 		}
 	}
-	
+
+	public void produceRunningEffects() {
+		var random = world.getRandom();
+		if (world.random.nextFloat() < 0.125F) {
+			world.playSoundAtBlockCenter(pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F, true);
+			for (int i = 0; i < 4 + random.nextInt(5); i++) {
+				world.addParticle(ParticleTypes.CLOUD, pos.getX() + random.nextFloat(), pos.getY() + 0.975 + random.nextFloat() * 0.667F, pos.getZ() + random.nextFloat(), 0, random.nextFloat() / 20F + 0.02F, 0);
+			}
+		}
+	}
+
+	public void changeState(State state) {
+		if (this.state != state) {
+			this.state = state;
+			lastPistonTarget = pistonPos;
+			lastDriverTarget = driverPos;
+			lastCapTarget = capPos;
+			interpTicks = 0;
+		}
+	}
+
+	public State getState() {
+		return state;
+	}
+
 	private static boolean smartAddToInventory(List<ItemStack> itemStacks, List<ItemStack> inventory, boolean test) {
 		List<ItemStack> additionStacks = new ArrayList<>();
 		for (ItemStack itemStack : itemStacks) {
@@ -149,11 +217,11 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	@Override
 	public void setStack(int slot, ItemStack stack) {
 		super.setStack(slot, stack);
-		this.hasToCraft = true;
+		shouldCraft(true);
 	}
 	
 	public void inventoryChanged() {
-		this.hasToCraft = true;
+		shouldCraft(true);
 	}
 	
 	private boolean tryCraftOnce() {
@@ -183,7 +251,27 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		}
 		return false;
 	}
-	
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void shouldCraft(boolean hasToCraft) {
+		this.hasToCraft = hasToCraft;
+	}
+
+	@Override
+	public boolean onSyncedBlockEvent(int type, int data) {
+		if (type == 1) {
+			isOpen = data > 0;
+		}
+		return super.onSyncedBlockEvent(type, data);
+	}
+
+	public boolean hasToCraft() {
+		return hasToCraft;
+	}
+
 	public Optional<CraftingRecipe> searchRecipeToCraft() {
 		for (ItemStack itemStack : inventory) {
 			if (itemStack.isEmpty()) {
@@ -276,5 +364,11 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 		buf.writeBlockPos(this.pos);
 		buf.writeInt(this.autoCraftingMode.ordinal());
 	}
-	
+
+	public enum State{
+		OPEN,
+		CRAFTING,
+		CLOSED;
+	}
+
 }

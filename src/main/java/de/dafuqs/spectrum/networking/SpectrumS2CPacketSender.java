@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
@@ -371,6 +372,16 @@ public class SpectrumS2CPacketSender {
 			buf.writeDouble(playerVelocity.z);
 
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
+		}
+	}
+
+	public static void sendCompactingChestStatusUpdate(ServerWorld serverWorld, CompactingChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.hasToCraft());
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, buf);
 		}
 	}
 

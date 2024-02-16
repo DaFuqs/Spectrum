@@ -424,6 +424,20 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var hasToCraft = buf.readBoolean();
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.COMPACTING_CHEST);
+
+				if (entity.isEmpty())
+					return;
+
+				entity.get().shouldCraft(hasToCraft);
+			});
+		})));
+
         ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
             client.execute(() -> {
                 SpectrumAudioManager.getInstance().start();

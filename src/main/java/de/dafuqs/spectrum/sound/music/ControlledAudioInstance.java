@@ -35,19 +35,19 @@ public class ControlledAudioInstance extends AbstractSoundInstance implements Ti
         relative = true;
     }
 
-    @Override
-    public CompletableFuture<AudioStream> getAudioStream(SoundLoader loader, Identifier id, boolean repeatInstantly) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                var stream = SpectrumCommon.resourceLoader.getResourceFactory().open(location);
-                var dynamicStream = new CachedAudioStream(stream);
-                cachedAudioStream = Optional.of(dynamicStream);
-                return dynamicStream;
-            } catch (IOException e) {
-                throw new CompletionException(e);
-            }
-        }, Util.getMainWorkerExecutor());
-    }
+    //@Override
+    //public CompletableFuture<AudioStream> getAudioStream(SoundLoader loader, Identifier id, boolean repeatInstantly) {
+    //    return CompletableFuture.supplyAsync(() -> {
+    //        try {
+    //            var stream = SpectrumCommon.resourceLoader.getResourceFactory().open(location);
+    //            var dynamicStream = new CachedAudioStream(stream);
+    //            cachedAudioStream = Optional.of(dynamicStream);
+    //            return dynamicStream;
+    //        } catch (IOException e) {
+    //            throw new CompletionException(e);
+    //        }
+    //    }, Util.getMainWorkerExecutor());
+    //}
 
     public boolean isDoneYielding() {
         return isDone();
@@ -79,16 +79,16 @@ public class ControlledAudioInstance extends AbstractSoundInstance implements Ti
         if (MinecraftClient.getInstance().world.getTime() % 50 != 0)
             return;
 
-        cachedAudioStream.ifPresent(stream -> {
-            var buffer = stream.getBuffer();
-            buffer.position(random.nextInt(Math.max(1, stream.getByteDuration())));
-            var sources = ((SoundSystemAccessor) ((SoundManagerAccessor) soundManager).getSoundSystem()).getSources();
-            Optional<Channel.SourceManager> sourceManager = Optional.ofNullable(sources.get(this));
-
-            sourceManager
-                    .map(manager -> ((SourceManagerAccessor) manager).getSource())
-                    .ifPresent(source -> source.setStream(stream));
-        });
+        //cachedAudioStream.ifPresent(stream -> {
+        //    var buffer = stream.getBuffer();
+        //    buffer.position(random.nextInt(Math.max(1, stream.getByteDuration())));
+        //    var sources = ((SoundSystemAccessor) ((SoundManagerAccessor) soundManager).getSoundSystem()).getSources();
+        //    Optional<Channel.SourceManager> sourceManager = Optional.ofNullable(sources.get(this));
+//
+        //    sourceManager
+        //            .map(manager -> ((SourceManagerAccessor) manager).getSource())
+        //            .ifPresent(source -> source.setStream(stream));
+        //});
     }
 
     public Random getRandom() {

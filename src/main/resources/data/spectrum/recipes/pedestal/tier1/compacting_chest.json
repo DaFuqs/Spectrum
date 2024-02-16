@@ -9,13 +9,16 @@
   "black": 0,
   "experience": 2,
   "pattern": [
-    "ICI",
+    "CIC",
     "T T",
-    "TTT"
+    "TBT"
   ],
   "key": {
     "C": {
-      "item": "spectrum:polished_calcite"
+      "item": "minecraft:copper_ingot"
+    },
+    "B": {
+      "item": "minecraft:copper_block"
     },
     "T": {
       "item": "spectrum:polished_basalt"

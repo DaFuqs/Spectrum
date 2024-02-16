@@ -23,17 +23,16 @@ import java.io.Reader;
 import java.io.UncheckedIOException;
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumAudioManager {
 
     public static final Identifier IDENTIFIER = SpectrumCommon.locate("dynamic_audio_resources");
-    public static final ResourceFinder OGG_LOCATOR = new ResourceFinder("dynamic_audio", ".ogg");
-    public static final ResourceFinder METADATA_LOCATOR = ResourceFinder.json("dynamic_audio");
+    public static final ResourceFinder DYNAUDIO = new ResourceFinder("dynamic_audio", ".ogg");
+    public static final ResourceFinder METADATA = ResourceFinder.json("dynamic_audio");
     public static final Map<SoundEvent, Predicate<MinecraftClient>> REGISTERED_EVENTS = new HashMap<>();
     public static final Map<Identifier, CachedAudioStream> AUDIO_STREAMS = new HashMap<>();
-    public static final Map<Category, List<Pair<Predicate<MinecraftClient>, Metadata>>> TICKING_EVENTS = new HashMap<>();
+    public static final Map<Category, List<Pair<Predicate<MinecraftClient>, Metadata>>> TICKING_EVENTS;
     private static final SpectrumAudioManager manager;
     private final MinecraftClient client;
     @NotNull
@@ -117,18 +116,21 @@ public class SpectrumAudioManager {
                                 oldStream.close();
                             }
                             AUDIO_STREAMS.clear();
-                            TICKING_EVENTS.clear();;
+                            TICKING_EVENTS.values().forEach(List::clear);
 
-                            var oggs = OGG_LOCATOR.findResources(manager);
-                            var jsons = METADATA_LOCATOR.findResources(manager);
+                            var dynaudioResources = DYNAUDIO.findResources(manager);
+                            var metadataResources = METADATA.findResources(manager);
                             for (Map.Entry<SoundEvent, Predicate<MinecraftClient>> entry: REGISTERED_EVENTS.entrySet()) {
                                 var id = entry.getKey().getId();
-                                var audioPair = parse(id, oggs.get(id).getInputStream(), jsons.get(id).getReader());
+
+                                if (!(dynaudioResources.containsKey(id) && metadataResources.containsKey(id)))
+                                    break;
+
+                                var audioPair = parse(id, dynaudioResources.get(id).getInputStream(), metadataResources.get(id).getReader());
                                 var metadata = audioPair.getRight();
 
                                 AUDIO_STREAMS.put(id, audioPair.getLeft());
-                                TICKING_EVENTS.computeIfAbsent(metadata.category, category -> new ArrayList<>())
-                                        .add(new Pair<>(entry.getValue(), metadata));
+                                TICKING_EVENTS.get(metadata.category).add(new Pair<>(entry.getValue(), metadata));
                             }
 
                         } catch (IOException e) {
@@ -207,5 +209,9 @@ public class SpectrumAudioManager {
 
     static {
         manager = new SpectrumAudioManager(MinecraftClient.getInstance());
+        TICKING_EVENTS = new HashMap<>();
+        for (Category category : Category.values()) {
+            TICKING_EVENTS.put(category, new ArrayList<>());
+        }
     }
 }

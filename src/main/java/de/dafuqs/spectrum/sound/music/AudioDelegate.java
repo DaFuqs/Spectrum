@@ -5,7 +5,7 @@ import net.minecraft.client.sound.TickableSoundInstance;
 
 public class AudioDelegate extends AbstractSoundInstance implements TickableSoundInstance {
 
-    private final StreamMimic mimic;
+    //private final StreamMimic mimic;
 
 
     protected AudioDelegate(ControlledAudioInstance parent) {

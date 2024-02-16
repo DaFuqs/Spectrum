@@ -41,4 +41,7 @@ public class SpectrumS2CPackets {
 	public static final Identifier MOONSTONE_BLAST = SpectrumCommon.locate("moonstone_blast");
 	public static final Identifier SYNC_ARTISANS_ATLAS = SpectrumCommon.locate("sync_artisans_atlas");
 
+	// Logic
+	public static final Identifier COMPACTING_CHEST_STATUS_UPDATE = SpectrumCommon.locate("compacting_chest_status");
+
 }

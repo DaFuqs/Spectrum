@@ -1,0 +1,273 @@
+package de.dafuqs.spectrum.api.energy.storage;
+
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import net.fabricmc.api.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
+
+import static de.dafuqs.spectrum.helpers.Support.*;
+
+public class TotalCappedElementalInkStorage implements InkStorage {
+	
+	protected final long maxEnergyTotal;
+	protected final Map<ElementalColor, Long> storedEnergy = new HashMap<>();
+	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
+	
+	public TotalCappedElementalInkStorage(long maxEnergyTotal) {
+		this.maxEnergyTotal = maxEnergyTotal;
+		this.currentTotal = 0;
+		
+		for (ElementalColor color : InkColor.elementals()) {
+			this.storedEnergy.put(color, 0L);
+		}
+	}
+	
+	public TotalCappedElementalInkStorage(long maxEnergyTotal, long cyan, long magenta, long yellow, long black, long white) {
+		this.maxEnergyTotal = maxEnergyTotal;
+		this.currentTotal = cyan + magenta + yellow + black + white;
+		
+		this.storedEnergy.put(InkColors.CYAN, cyan);
+		this.storedEnergy.put(InkColors.MAGENTA, magenta);
+		this.storedEnergy.put(InkColors.YELLOW, yellow);
+		this.storedEnergy.put(InkColors.BLACK, black);
+		this.storedEnergy.put(InkColors.WHITE, white);
+	}
+	
+	public static @Nullable TotalCappedElementalInkStorage fromNbt(@NotNull NbtCompound compound) {
+		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
+			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
+			long cyan = compound.getLong("Cyan");
+			long magenta = compound.getLong("Magenta");
+			long yellow = compound.getLong("Yellow");
+			long black = compound.getLong("Black");
+			long white = compound.getLong("White");
+			return new TotalCappedElementalInkStorage(maxEnergyTotal, cyan, magenta, yellow, black, white);
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean accepts(InkColor color) {
+		return color instanceof ElementalColor;
+	}
+	
+	@Override
+	public long addEnergy(InkColor color, long amount) {
+		if (color instanceof ElementalColor elementalColor) {
+			long currentAmount = this.storedEnergy.get(color);
+			if (amount > this.maxEnergyTotal - this.currentTotal) {
+				long resultingAmount = currentAmount + amount;
+				long overflow = resultingAmount - this.maxEnergyTotal + this.currentTotal;
+				this.currentTotal = this.currentTotal + (resultingAmount - this.maxEnergyTotal);
+				this.storedEnergy.put(elementalColor, this.maxEnergyTotal);
+				return overflow;
+			} else {
+				this.currentTotal += amount;
+				this.storedEnergy.put(elementalColor, currentAmount + amount);
+				return 0;
+			}
+		}
+		return amount;
+	}
+	
+	@Override
+	public boolean requestEnergy(InkColor color, long amount) {
+		if (color instanceof ElementalColor elementalColor) {
+			// can be output directly
+			long storedAmount = this.storedEnergy.get(elementalColor);
+			if (storedAmount < amount) {
+				return false;
+			} else {
+				this.currentTotal -= amount;
+				this.storedEnergy.put(elementalColor, storedAmount - amount);
+				return true;
+			}
+		} else if (color instanceof CompoundColor compoundColor) {
+			// mix!
+			Map<ElementalColor, Float> requiredElementals = compoundColor.getElementalColorsToMix();
+			
+			// check if we have enough
+			for (Map.Entry<ElementalColor, Float> entry : requiredElementals.entrySet()) {
+				long storedAmount = this.storedEnergy.get(entry.getKey());
+				long requiredAmount = (int) Math.ceil(entry.getValue() * amount);
+				if (storedAmount < requiredAmount) {
+					return false;
+				}
+			}
+			
+			// yes, we got stored enough. Drain
+			for (Map.Entry<ElementalColor, Float> entry : requiredElementals.entrySet()) {
+				long storedAmount = this.storedEnergy.get(entry.getKey());
+				long requiredAmount = (int) Math.ceil(entry.getValue() * amount);
+				this.currentTotal -= requiredAmount;
+				this.storedEnergy.put(entry.getKey(), storedAmount - requiredAmount);
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public long drainEnergy(InkColor color, long amount) {
+		if (color instanceof ElementalColor elementalColor) {
+			// can be output directly
+			long storedAmount = this.storedEnergy.get(elementalColor);
+			long drainedAmount = Math.min(storedAmount, amount);
+			this.storedEnergy.put(elementalColor, storedAmount - drainedAmount);
+			
+			this.currentTotal -= drainedAmount;
+			return drainedAmount;
+		} else if (color instanceof CompoundColor compoundColor) {
+			// mix!
+			Map<ElementalColor, Float> requiredElementals = compoundColor.getElementalColorsToMix();
+			
+			// calculate the max amount that can be drained over all colors
+			float percentageAbleToDrain = 1.0F;
+			for (Map.Entry<ElementalColor, Float> entry : requiredElementals.entrySet()) {
+				long storedAmount = this.storedEnergy.get(entry.getKey());
+				long requiredAmount = (int) Math.ceil(entry.getValue() * amount);
+				if (storedAmount < requiredAmount) {
+					percentageAbleToDrain = Math.min(percentageAbleToDrain, storedAmount / (float) requiredAmount);
+				}
+			}
+			
+			// drain
+			for (Map.Entry<ElementalColor, Float> entry : requiredElementals.entrySet()) {
+				long storedAmount = this.storedEnergy.get(entry.getKey());
+				long drainedAmount = (int) Math.ceil(entry.getValue() * amount * percentageAbleToDrain);
+				this.storedEnergy.put(entry.getKey(), storedAmount - drainedAmount);
+			}
+			
+			long drainedAmount = (int) Math.floor(percentageAbleToDrain * amount);
+			this.currentTotal -= drainedAmount;
+			return drainedAmount;
+		}
+		return 0;
+	}
+	
+	@Override
+	public long getEnergy(InkColor color) {
+		if (color instanceof ElementalColor elementalColor) {
+			// can be output directly
+			return this.storedEnergy.get(elementalColor);
+		} else if (color instanceof CompoundColor compoundColor) {
+			// mix!
+			long maxAmount = Long.MAX_VALUE;
+			Map<ElementalColor, Float> requiredElementals = compoundColor.getElementalColorsToMix();
+			for (Map.Entry<ElementalColor, Float> entry : requiredElementals.entrySet()) {
+				long mixedAmount = (long) Math.floor(entry.getValue() * this.storedEnergy.get(entry.getKey()));
+				maxAmount = Math.min(maxAmount, mixedAmount);
+			}
+			return maxAmount;
+		}
+		return 0;
+	}
+	
+	@Override
+	@Deprecated
+	public Map<InkColor, Long> getEnergy() {
+		return new HashMap<>(this.storedEnergy);
+	}
+	
+	@Override
+	@Deprecated
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
+			if (color instanceof ElementalColor elementalColor) {
+				this.storedEnergy.put(elementalColor, color.getValue());
+			}
+		}
+		this.currentTotal = total;
+	}
+	
+	@Override
+	public long getMaxTotal() {
+		return this.maxEnergyTotal;
+	}
+	
+	@Override
+	public long getMaxPerColor() {
+		return this.maxEnergyTotal;
+	}
+	
+	@Override
+	public long getCurrentTotal() {
+		return this.currentTotal;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return this.currentTotal == 0;
+	}
+	
+	@Override
+	public boolean isFull() {
+		return this.currentTotal >= this.maxEnergyTotal;
+	}
+	
+	public NbtCompound toNbt() {
+		NbtCompound compound = new NbtCompound();
+		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);
+		compound.putLong("Cyan", this.storedEnergy.get(InkColors.CYAN));
+		compound.putLong("Magenta", this.storedEnergy.get(InkColors.MAGENTA));
+		compound.putLong("Yellow", this.storedEnergy.get(InkColors.YELLOW));
+		compound.putLong("Black", this.storedEnergy.get(InkColors.BLACK));
+		compound.putLong("White", this.storedEnergy.get(InkColors.WHITE));
+		return compound;
+	}
+	
+	@Override
+	public void fillCompletely() {
+		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
+		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
+		this.currentTotal += this.storedEnergy.size() * energyPerColor;
+	}
+	
+	@Override
+	public void clear() {
+		this.storedEnergy.replaceAll((c, v) -> 0L);
+	}
+	
+	@Override
+	public long getRoom(InkColor color) {
+		if (color instanceof ElementalColor) {
+			return this.maxEnergyTotal - this.currentTotal;
+		} else {
+			return 0;
+		}
+	}
+	
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
+		if (includeHeader) {
+			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
+			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip.mix_on_demand"));
+		}
+		long cyan = this.storedEnergy.get(InkColors.CYAN);
+		if (cyan > 0) {
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.cyan", getShortenedNumberString(cyan)));
+		}
+		long magenta = this.storedEnergy.get(InkColors.MAGENTA);
+		if (magenta > 0) {
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.magenta", getShortenedNumberString(magenta)));
+		}
+		long yellow = this.storedEnergy.get(InkColors.YELLOW);
+		if (yellow > 0) {
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.yellow", getShortenedNumberString(yellow)));
+		}
+		long black = this.storedEnergy.get(InkColors.BLACK);
+		if (black > 0) {
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.black", getShortenedNumberString(black)));
+		}
+		long white = this.storedEnergy.get(InkColors.WHITE);
+		if (white > 0) {
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.white", getShortenedNumberString(white)));
+		}
+	}
+	
+}

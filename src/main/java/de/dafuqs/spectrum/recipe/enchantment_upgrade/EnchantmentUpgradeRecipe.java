@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.registries.*;

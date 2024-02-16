@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.status_effect.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.TouchingWaterAware;
-import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;

@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.compat.patchouli.*;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.compat.patchouli.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;

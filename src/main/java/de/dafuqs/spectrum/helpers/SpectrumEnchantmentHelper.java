@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;

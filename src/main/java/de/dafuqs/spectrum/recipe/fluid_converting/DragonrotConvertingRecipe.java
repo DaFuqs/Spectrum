@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.fluid_converting;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;

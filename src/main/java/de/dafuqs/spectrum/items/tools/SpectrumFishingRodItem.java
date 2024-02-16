@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.compat.gofish.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;

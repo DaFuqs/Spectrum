@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.REI.plugins.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;
@@ -25,20 +24,20 @@ import me.shedaniel.rei.api.client.plugins.*;
 import me.shedaniel.rei.api.client.registry.category.*;
 import me.shedaniel.rei.api.client.registry.display.*;
 import me.shedaniel.rei.api.client.registry.screen.*;
-import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry;
-import me.shedaniel.rei.api.client.registry.transfer.simple.SimpleTransferHandler;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.Display;
+import me.shedaniel.rei.api.client.registry.transfer.*;
+import me.shedaniel.rei.api.client.registry.transfer.simple.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.display.*;
 import me.shedaniel.rei.api.common.entry.*;
-import me.shedaniel.rei.api.common.transfer.info.stack.SlotAccessor;
+import me.shedaniel.rei.api.common.transfer.info.stack.*;
 import me.shedaniel.rei.api.common.util.*;
 import me.shedaniel.rei.plugin.common.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.*;
 
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.*;
 
 @Environment(EnvType.CLIENT)
 public class REIClientIntegration implements REIClientPlugin {

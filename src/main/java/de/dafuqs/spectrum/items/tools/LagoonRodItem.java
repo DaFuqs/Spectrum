@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;

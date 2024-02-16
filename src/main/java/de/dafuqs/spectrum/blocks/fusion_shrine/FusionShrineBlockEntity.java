@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.block.*;

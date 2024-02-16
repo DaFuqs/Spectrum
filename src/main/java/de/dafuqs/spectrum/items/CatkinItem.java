@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.items.conditional.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import net.minecraft.item.*;
 import org.jetbrains.annotations.*;
 

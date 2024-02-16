@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;

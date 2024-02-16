@@ -1,16 +1,17 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.explosion.*;
-import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.*;
 import net.minecraft.registry.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 

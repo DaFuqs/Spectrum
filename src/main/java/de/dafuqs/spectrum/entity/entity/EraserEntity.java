@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.*;

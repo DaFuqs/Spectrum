@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
@@ -22,8 +24,7 @@ import de.dafuqs.spectrum.items.map.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
-import de.dafuqs.spectrum.registries.color.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;

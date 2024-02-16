@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;

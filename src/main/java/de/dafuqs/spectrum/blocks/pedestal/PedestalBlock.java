@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;

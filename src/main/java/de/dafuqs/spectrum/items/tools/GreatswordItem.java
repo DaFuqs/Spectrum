@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
 import com.jamieswhiteshirt.reachentityattributes.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;

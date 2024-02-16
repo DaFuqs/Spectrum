@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;

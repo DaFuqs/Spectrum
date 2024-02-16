@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.mixin.compat.connectormod.absent;
 
-import de.dafuqs.spectrum.blocks.ExplosionAware;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import de.dafuqs.spectrum.api.block.*;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
 
 @Mixin(Explosion.class)
 public class ExplosionMixin {

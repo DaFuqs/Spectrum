@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.spells;
 
 import com.google.common.collect.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;

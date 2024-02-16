@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.blocks.energy;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;

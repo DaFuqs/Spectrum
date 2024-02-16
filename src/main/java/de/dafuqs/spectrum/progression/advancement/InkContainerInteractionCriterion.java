@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.item.*;
 import net.minecraft.predicate.entity.*;

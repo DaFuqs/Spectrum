@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;

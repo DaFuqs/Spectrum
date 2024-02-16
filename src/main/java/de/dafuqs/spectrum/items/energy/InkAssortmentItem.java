@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;

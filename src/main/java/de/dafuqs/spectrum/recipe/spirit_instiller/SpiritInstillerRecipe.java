@@ -1,17 +1,16 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;

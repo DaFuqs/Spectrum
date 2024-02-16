@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.memory;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;

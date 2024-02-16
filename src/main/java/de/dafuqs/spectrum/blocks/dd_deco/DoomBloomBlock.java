@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.compat.emi;
 
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import org.jetbrains.annotations.*;
 

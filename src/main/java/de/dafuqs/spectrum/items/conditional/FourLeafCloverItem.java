@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

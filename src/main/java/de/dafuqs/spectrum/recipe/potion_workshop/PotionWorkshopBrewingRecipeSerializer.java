@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 

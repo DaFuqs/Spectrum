@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import org.spongepowered.asm.mixin.*;

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;

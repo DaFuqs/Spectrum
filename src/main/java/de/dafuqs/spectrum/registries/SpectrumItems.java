@@ -169,6 +169,8 @@ public class SpectrumItems {
 	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
 	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
 	
+	public static final Item OMNI_ACCELERATOR = new OmniAccelerator(IS.of(Rarity.UNCOMMON));
+
 	public static final Item AZURITE_GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.UNCOMMON));
 	public static final Item MALACHITE_GLASS_AMPOULE = new MalachiteGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
 	public static final Item BLOODSTONE_GLASS_AMPOULE = new BloodstoneGlassAmpouleItem(IS.of(Rarity.UNCOMMON));
@@ -723,7 +725,9 @@ public class SpectrumItems {
 		register("citrine_glass_arrow", CITRINE_GLASS_ARROW, DyeColor.YELLOW);
 		register("onyx_glass_arrow", ONYX_GLASS_ARROW, DyeColor.BLACK);
 		register("moonstone_glass_arrow", MOONSTONE_GLASS_ARROW, DyeColor.WHITE);
-		
+
+		register("omni_accelerator", OMNI_ACCELERATOR, DyeColor.YELLOW);
+
 		register("azurite_glass_ampoule", AZURITE_GLASS_AMPOULE, DyeColor.BLUE);
 		register("bloodstone_glass_ampoule", BLOODSTONE_GLASS_AMPOULE, DyeColor.RED);
 		register("malachite_glass_ampoule", MALACHITE_GLASS_AMPOULE, DyeColor.GREEN);

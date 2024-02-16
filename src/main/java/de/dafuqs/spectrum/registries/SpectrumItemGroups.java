@@ -98,6 +98,7 @@ public class SpectrumItemGroups {
 				addEquipmentEntry(SpectrumItems.BLOODSTONE_GLASS_AMPOULE, entries);
 				addEquipmentEntry(SpectrumItems.DREAMFLAYER, entries);
 				addEquipmentEntry(SpectrumItems.NIGHTFALLS_BLADE, entries);
+				addEquipmentEntry(SpectrumItems.OMNI_ACCELERATOR, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_STONE_RING, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_BELT, entries);
 				addEquipmentEntry(SpectrumItems.FANCIFUL_PENDANT, entries);

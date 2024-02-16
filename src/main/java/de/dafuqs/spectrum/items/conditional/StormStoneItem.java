@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.item.*;

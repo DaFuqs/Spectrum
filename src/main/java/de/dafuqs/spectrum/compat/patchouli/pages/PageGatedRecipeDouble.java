@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.entity.player.*;

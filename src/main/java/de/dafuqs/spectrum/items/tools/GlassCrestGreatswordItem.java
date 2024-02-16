@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import de.dafuqs.spectrum.spells.*;

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.item.*;
 import dev.emi.stepheightentityattribute.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.enchantment.*;

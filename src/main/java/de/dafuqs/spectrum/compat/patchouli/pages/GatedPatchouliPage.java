@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.util.*;
 

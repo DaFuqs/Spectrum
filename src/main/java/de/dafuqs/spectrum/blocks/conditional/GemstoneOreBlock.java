@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.block.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.intprovider.*;

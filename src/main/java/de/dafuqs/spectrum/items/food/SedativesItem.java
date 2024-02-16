@@ -15,7 +15,7 @@ public class SedativesItem extends ItemWithTooltip {
 	
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!world.isClient) {
+		if (!world.isClient) { // TODO: do we need this? Frenzy is self-stacking
 			var frenzy = user.getStatusEffect(SpectrumStatusEffects.FRENZY);
 			
 			if (frenzy != null) {

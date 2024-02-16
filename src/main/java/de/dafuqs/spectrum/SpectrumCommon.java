@@ -2,6 +2,9 @@ package de.dafuqs.spectrum;
 
 import com.google.common.collect.*;
 import de.dafuqs.arrowhead.api.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -9,8 +12,6 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.data_loaders.resonance.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.spawners.*;
 import de.dafuqs.spectrum.events.*;
@@ -18,7 +19,6 @@ import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -27,11 +27,9 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.registries.color.*;
 import de.dafuqs.spectrum.spells.*;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.serializer.*;
@@ -167,7 +165,10 @@ public class SpectrumCommon implements ModInitializer {
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");
+		SpectrumFusionShrineWorldEffects.register();
 		SpectrumRecipeTypes.registerSerializer();
+
+		// Loot
 		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootConditionTypes.register();
 		SpectrumLootFunctionTypes.register();
@@ -175,16 +176,16 @@ public class SpectrumCommon implements ModInitializer {
 		// GUI
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
-		
-		
-		// Default enchantments for some items
+
 		logInfo("Registering Default Item Stack Damage Immunities...");
-		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
+		SpectrumItemDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
 		SpectrumLootPoolModifiers.setup();
 		logInfo("Registering Type Specific Predicates...");
 		SpectrumTypeSpecificPredicates.register();
-		
+		logInfo("Registering Custom Omni Accelerator Behaviors...");
+		SpectrumOmniAcceleratorBehaviors.register();
+
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
 		

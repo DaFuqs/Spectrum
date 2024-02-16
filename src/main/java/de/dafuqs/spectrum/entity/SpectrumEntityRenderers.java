@@ -10,7 +10,7 @@ import net.minecraft.entity.*;
 public class SpectrumEntityRenderers {
 	
 	public static void registerClient() {
-		register(SpectrumEntityTypes.FLOAT_BLOCK, BlockLikeEntityRenderer::new);
+		register(SpectrumEntityTypes.FLOAT_BLOCK, FloatBlockEntityRenderer::new);
 		register(SpectrumEntityTypes.SEAT, SeatEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
 		register(SpectrumEntityTypes.PHANTOM_FRAME, PhantomFrameEntityRenderer::new);
@@ -36,6 +36,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.KINDLING, KindlingEntityRenderer::new);
 		register(SpectrumEntityTypes.KINDLING_COUGH, KindlingCoughEntityRenderer::new);
 		register(SpectrumEntityTypes.ERASER, EraserEntityRenderer::new);
+		register(SpectrumEntityTypes.ITEM_PROJECTILE, FlyingItemEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

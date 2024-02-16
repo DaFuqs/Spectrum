@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity;
 
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.registries.*;

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -8,7 +9,6 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.minecraft.block.*;
 import net.minecraft.client.world.*;
 import net.minecraft.entity.*;

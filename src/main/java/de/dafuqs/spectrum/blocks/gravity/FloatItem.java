@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;

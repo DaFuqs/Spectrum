@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;

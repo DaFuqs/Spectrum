@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.loot.functions;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.loot.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;

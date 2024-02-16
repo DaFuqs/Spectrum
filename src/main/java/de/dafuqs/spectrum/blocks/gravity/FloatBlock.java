@@ -56,7 +56,7 @@ public class FloatBlock extends FallingBlock {
 	}
 
 	private static void launch(World world, BlockPos pos) {
-		FloatBlockEntity blockEntity = new FloatBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));
+		FloatBlockEntity blockEntity = new FloatBlockEntity(world, pos, world.getBlockState(pos));
 		world.spawnEntity(blockEntity);
 	}
 

@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;

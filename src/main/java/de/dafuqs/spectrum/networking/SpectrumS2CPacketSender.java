@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import de.dafuqs.spectrum.registries.color.*;
 import de.dafuqs.spectrum.spells.*;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.entity.*;
@@ -375,7 +376,7 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 
-	public static void sendCompactingChestStatusUpdate(ServerWorld serverWorld, CompactingChestBlockEntity chest) {
+	public static void sendCompactingChestStatusUpdate(CompactingChestBlockEntity chest) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(chest.getPos());
 		buf.writeBoolean(chest.hasToCraft());

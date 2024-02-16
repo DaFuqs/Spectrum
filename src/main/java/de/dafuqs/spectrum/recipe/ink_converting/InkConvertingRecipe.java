@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.ink_converting;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;

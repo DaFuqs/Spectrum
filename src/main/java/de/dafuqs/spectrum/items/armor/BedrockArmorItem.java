@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;

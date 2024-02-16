@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.block.*;
 import net.minecraft.nbt.*;

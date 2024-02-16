@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.crystallarieum.*;

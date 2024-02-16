@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.compat.claims.GenericClaimModsCompat;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;

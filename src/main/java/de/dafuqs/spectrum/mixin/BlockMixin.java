@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.data_loaders.resonance.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

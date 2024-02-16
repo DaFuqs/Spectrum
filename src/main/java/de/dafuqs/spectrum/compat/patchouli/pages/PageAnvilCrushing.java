@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;

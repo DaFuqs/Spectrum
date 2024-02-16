@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;

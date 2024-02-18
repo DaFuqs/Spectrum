@@ -45,7 +45,7 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "advancement": "spectrum:midgame/collect_jade_vine_petals",
       "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
       "text": "The $(item)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
     },

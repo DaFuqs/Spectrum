@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
-      "item": "spectrum:potion_workshop"
+      "item": "minecraft:glass_bottle"
     },
     "title": {
       "translate": "advancements.spectrum.brew_no_potion_in_potion_workshop.title"

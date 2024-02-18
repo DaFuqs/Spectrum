@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/plant_jade_vines",
+  "parent": "spectrum:midgame/collect_stratine",
   "display": {
     "icon": {
       "item": "spectrum:restoration_tea"
@@ -13,14 +13,15 @@
     }
   },
   "criteria": {
-    "drinking_restoration_tea_with_milk": {
+    "drank_tea_with_milk": {
       "trigger": "minecraft:consume_item",
       "conditions": {
         "item": {
           "items": [
             "spectrum:restoration_tea",
             "spectrum:glistering_jelly_tea",
-            "spectrum:demon_tea"
+            "spectrum:demon_tea",
+            "spectrum:golden_bristle_tea"
           ],
           "nbt": {
             "Milk": true
@@ -30,7 +31,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/plant_jade_vines" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
     }
   }
 }

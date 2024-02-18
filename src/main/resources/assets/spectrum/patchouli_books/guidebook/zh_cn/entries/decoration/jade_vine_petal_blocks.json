@@ -13,7 +13,7 @@
 			"title":"地毯"
 		}
 	],
-	"advancement":"spectrum:hidden/collect_jade_vine_petals",
+	"advancement":"spectrum:midgame/collect_jade_vine_petals",
 	"extra_recipe_mappings":{
 		"spectrum:jade_vine_petal_carpet":0,
 		"spectrum:jade_vine_petal_block":0

@@ -420,5 +420,13 @@
   {
     "advancement": "spectrum:lategame/collect_one_cookbook",
     "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_jade_jelly",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_jade_vine_petals",
+    "frame": "paginatedadvancements:squircle"
   }
 ]

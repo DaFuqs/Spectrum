@@ -13,13 +13,28 @@
     "hidden": true
   },
   "criteria": {
-    "has_neolith": {
+    "has_resonant_lily": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:resonant_lily" ]}] }
+    },
+    "revived_resonant_lily": {
+      "trigger": "spectrum:natures_staff_conversion",
+      "conditions": {
+        "target_block": "spectrum:resonant_lily"
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
     }
-  }
+  },
+  "requirements": [
+    [
+      "has_resonant_lily",
+      "revived_resonant_lily"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

@@ -99,7 +99,7 @@ public class FluidIngredient {
 
     public boolean test(@NotNull Fluid fluid) {
         Objects.requireNonNull(fluid);
-        if (this == EMPTY && fluid != Fluids.EMPTY) return false;
+        if (this == EMPTY) return fluid == Fluids.EMPTY;
         if (this.fluid != null) return this.fluid == fluid;
         if (this.tag != null) return fluid.getDefaultState().isIn(this.tag);
 

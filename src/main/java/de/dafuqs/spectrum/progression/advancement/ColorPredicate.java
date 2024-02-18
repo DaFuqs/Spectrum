@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

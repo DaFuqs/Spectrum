@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

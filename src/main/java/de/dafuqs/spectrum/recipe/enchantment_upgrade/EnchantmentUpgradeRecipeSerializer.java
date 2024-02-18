@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;

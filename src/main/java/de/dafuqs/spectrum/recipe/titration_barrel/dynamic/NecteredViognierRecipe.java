@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.recipe.titration_barrel.*;
-import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.matchbooks.recipe.matchbook.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;

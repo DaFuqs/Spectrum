@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.mojang.blaze3d.systems.*;
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
-import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;

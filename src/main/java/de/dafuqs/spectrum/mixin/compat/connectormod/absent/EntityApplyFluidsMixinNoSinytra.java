@@ -1,24 +1,16 @@
 package de.dafuqs.spectrum.mixin.compat.connectormod.absent;
 
-import de.dafuqs.spectrum.blocks.fluid.SpectrumFluid;
-import de.dafuqs.spectrum.interfaces.TouchingWaterAware;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import net.minecraft.entity.Entity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.fluid.*;
+import net.minecraft.particle.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Entity.class)
 public class EntityApplyFluidsMixinNoSinytra {

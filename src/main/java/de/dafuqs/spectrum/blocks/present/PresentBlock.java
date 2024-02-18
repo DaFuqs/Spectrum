@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import it.unimi.dsi.fastutil.objects.*;

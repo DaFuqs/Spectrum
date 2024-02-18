@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.spells;
 
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.networking.*;
 import net.minecraft.entity.*;
 import net.minecraft.server.world.*;

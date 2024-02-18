@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.tooltip.*;

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.emi.*;
-import de.dafuqs.spectrum.recipe.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;

@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.emi.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;

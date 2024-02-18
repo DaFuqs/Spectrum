@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.mojang.logging.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;

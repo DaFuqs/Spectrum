@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;

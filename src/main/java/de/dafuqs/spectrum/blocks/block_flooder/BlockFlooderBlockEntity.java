@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.block_flooder;
 
-import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

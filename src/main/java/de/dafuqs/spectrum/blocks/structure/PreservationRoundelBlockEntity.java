@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.structure;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.item_roundel.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

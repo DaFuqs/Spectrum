@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.enchanter;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;

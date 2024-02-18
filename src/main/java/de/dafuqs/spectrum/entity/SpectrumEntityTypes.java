@@ -36,7 +36,8 @@ public class SpectrumEntityTypes {
 	public static final EntityType<KindlingEntity> KINDLING = register("kindling", EntityType.Builder.create(KindlingEntity::new, SpawnGroup.CREATURE).setDimensions(1.0F, 1.0F).maxTrackingRange(10).makeFireImmune());
 	public static final EntityType<KindlingCoughEntity> KINDLING_COUGH = register("kindling_cough", EntityType.Builder.<KindlingCoughEntity>create(KindlingCoughEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(10).makeFireImmune());
 	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.create(EraserEntity::new, SpawnGroup.MONSTER).setDimensions(0.3F, 0.3F).maxTrackingRange(10));
-	
+	public static final EntityType<ItemProjectileEntity> ITEM_PROJECTILE = register("item_projectile", EntityType.Builder.<ItemProjectileEntity>create(ItemProjectileEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(6).trackingTickInterval(20));
+
 	public static void register() {
 	
 	}

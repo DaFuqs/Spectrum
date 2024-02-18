@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.explosion;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;

@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.item.*;

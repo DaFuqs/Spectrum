@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.REI.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import me.shedaniel.rei.api.common.category.*;
 import me.shedaniel.rei.api.common.display.basic.*;
 import me.shedaniel.rei.api.common.entry.*;
 import me.shedaniel.rei.api.common.util.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.util.collection.*;
 

@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.explosion.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.fabricmc.fabric.api.event.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.registry.*;
 
 import java.util.*;
 

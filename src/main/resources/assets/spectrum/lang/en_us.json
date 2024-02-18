@@ -153,7 +153,7 @@
   "container.spectrum.rei.ink_converting.amount": "Amount: %d",
   "container.spectrum.rei.crystallarieum.requires_catalyst": "Requires Catalyst",
   "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds": "%f seconds per stage",
-  "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required": "%f sec - req. catalyst",
+  "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional": "%f sec - catalyst opt.",
   "container.spectrum.patchouli.crystallarieum.catalyst": "Catalyst:$(br)Accel:$(br)Ink Cons:$(br)Used Up:",
   "container.spectrum.rei.crystallarieum.catalyst": "Catalyst:",
   "container.spectrum.rei.crystallarieum.accelerator": "Accel:",

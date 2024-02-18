@@ -39,7 +39,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 				
 				String ownerName = getOwnerName(world, pos);
 				if (ownerName != null && !ownerName.isBlank()) {
-					player.sendMessage(Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), true);
+					player.sendMessage(Text.translatable("block.spectrum.player_detector.owner", ownerName), true);
 				}
 				return ActionResult.CONSUME;
 			} else {

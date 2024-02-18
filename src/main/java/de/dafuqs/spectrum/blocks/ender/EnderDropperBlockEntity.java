@@ -24,7 +24,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return Text.translatable("block.spectrum.ender_dropper").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.ender_dropper.owner", this.ownerName);
 		} else {
 			return Text.translatable("block.spectrum.ender_dropper");
 		}

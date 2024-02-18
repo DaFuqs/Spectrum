@@ -137,7 +137,6 @@
   "container.spectrum.rei.ink_converting.amount": "Количество: %d",
   "container.spectrum.rei.crystallarieum.requires_catalyst": "Требуется катализатор",
   "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds": "%f секунд за этап",
-  "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required": "%f сек. - треб. катализатор",
   "container.spectrum.patchouli.crystallarieum.catalyst": "Катал.:$(br)Ускор.:$(br)Исп. Краски:$(br) Исп:",
   "container.spectrum.rei.crystallarieum.catalyst": "Катализатор:",
   "container.spectrum.rei.crystallarieum.accelerator": "Ускоритель:",

@@ -80,7 +80,7 @@ public class PageCrystallarieumGrowing extends PageGatedRecipeSingle<Crystallari
 			
 			RenderSystem.enableBlend();
 			int offsetU = growthAcceleration == 1 ? 97 : growthAcceleration >= 6 ? 85 : growthAcceleration > 1 ? 67 : growthAcceleration <= 0.25 ? 79 : 73;
-			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, offsetU, 6, 6, 6, 128, 128);
+			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, offsetU, 0, 6, 6, 128, 128);
 
 			offsetU = inkConsumption == 1 ? 97 : inkConsumption >= 8 ? 85 : inkConsumption > 1 ? 67 : inkConsumption <= 0.25 ? 79 : 73;
 			drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, offsetU, 6, 6, 6, 128, 128);

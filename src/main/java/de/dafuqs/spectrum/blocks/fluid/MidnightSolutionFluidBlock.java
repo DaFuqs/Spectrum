@@ -163,7 +163,8 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 
 			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof FluidBlock;
 			// spread to the fluid
-			if (!neighborFluidState.isEmpty()) {
+			boolean doesTickEntities = world.getWorldChunk(pos).getLevelType().isAfter(ChunkLevelType.ENTITY_TICKING);
+			if (!neighborFluidState.isEmpty() && doesTickEntities) {
 				if (!isNeighborFluidBlock) {
 					world.setBlockState(pos, SPREAD_BLOCKSTATE);
 					playExtinguishSound(world, pos);

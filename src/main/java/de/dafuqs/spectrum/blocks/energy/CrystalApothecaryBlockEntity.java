@@ -126,7 +126,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	@Override
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return Text.translatable("block.spectrum.crystal_apothecary").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.crystal_apothecary.owner", this.ownerName);
 		} else {
 			return Text.translatable("block.spectrum.crystal_apothecary");
 		}

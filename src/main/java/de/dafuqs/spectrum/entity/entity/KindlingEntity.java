@@ -23,6 +23,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -221,7 +222,21 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			setPlaying(false);
 		}
 		
+		thornsFlag = source.isOf(DamageTypes.THORNS);
+		
 		return super.damage(source, amount);
+	}
+	
+	// makes it so Kindlings are not angered by thorns damage
+	// since they play fight and may damage their owner
+	// that would make them aggro otherwise
+	boolean thornsFlag = false;
+	
+	@Override
+	public void setAttacker(@Nullable LivingEntity attacker) {
+		if(!thornsFlag) {
+			super.setAttacker(attacker);
+		}
 	}
 	
 	@Override

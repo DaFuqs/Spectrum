@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:stripped_chestnut_noxcap_hyphae",
+    "spectrum:stripped_ebony_noxcap_hyphae",
+    "spectrum:stripped_ivory_noxcap_hyphae",
+    "spectrum:stripped_slate_noxcap_hyphae"
+  ]
+}

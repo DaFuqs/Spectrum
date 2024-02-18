@@ -43,5 +43,6 @@ public class SpectrumS2CPackets {
 
 	// Logic
 	public static final Identifier COMPACTING_CHEST_STATUS_UPDATE = SpectrumCommon.locate("compacting_chest_status");
+	public static final Identifier BLACK_HOLE_CHEST_STATUS_UPDATE = SpectrumCommon.locate("black_hole_chest_status");
 
 }

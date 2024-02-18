@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.blocks.chests.BlackHoleChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
@@ -383,6 +384,16 @@ public class SpectrumS2CPacketSender {
 
 		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendBlackHoleChestUpdate(BlackHoleChestBlockEntity chest) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(chest.getPos());
+		buf.writeBoolean(chest.isFullButActually());
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, buf);
 		}
 	}
 

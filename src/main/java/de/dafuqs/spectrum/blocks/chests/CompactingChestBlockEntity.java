@@ -19,6 +19,7 @@ import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -52,61 +53,61 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, CompactingChestBlockEntity chest) {
-		if (chest.hasToCraft()) {
-			chest.craftingTicks = 20;
-		}
-		else {
-			chest.craftingTicks--;
-		}
-
-		if (chest.craftingTicks >= 0) {
-			chest.activeTicks++;
-		}
-		else {
-			chest.activeTicks = 0;
-		}
-
 		if (!world.isClient()) {
 			SpectrumS2CPacketSender.sendCompactingChestStatusUpdate(chest);
 		}
 
-		if (chest.isOpen()) {
-			chest.changeState(State.OPEN);
-			chest.interpLength = 5;
-		}
-		else if(chest.craftingTicks >= 0) {
-			chest.changeState(State.CRAFTING);
-			chest.interpLength = 20;
-			if (chest.activeTicks % 3 == 0) {
-				chest.produceRunningEffects();
+		if (world.isClient()) {
+			if (chest.hasToCraft()) {
+				chest.craftingTicks = 20;
+			}
+			else {
+				chest.craftingTicks--;
+			}
+
+			if (chest.craftingTicks >= 0) {
+				chest.activeTicks++;
+			}
+			else {
+				chest.activeTicks = 0;
+			}
+
+			if (chest.isOpen()) {
+				chest.changeState(State.OPEN);
+				chest.interpLength = 5;
+			}
+			else if(chest.craftingTicks >= 0) {
+				chest.changeState(State.CRAFTING);
+				chest.interpLength = 20;
+			}
+			else {
+				chest.changeState(State.CLOSED);
+				chest.interpLength = 15;
+			}
+			if (chest.interpTicks < chest.interpLength) {
+				chest.interpTicks++;
 			}
 		}
 		else {
-			chest.changeState(State.CLOSED);
-			chest.interpLength = 15;
-		}
-		if (chest.interpTicks < chest.interpLength) {
-			chest.interpTicks++;
-		}
-
-		if (world.isClient) {
-			chest.lidAnimator.step();
-		} else {
 			if (chest.hasToCraft) {
 				boolean couldCraft = chest.tryCraftOnce();
 				if (!couldCraft) {
 					chest.shouldCraft(false);
+				}
+				if (world.getTime() % 6 == 0) {
+					chest.produceRunningEffects();
 				}
 			}
 		}
 	}
 
 	public void produceRunningEffects() {
+		var server = (ServerWorld) world;
 		var random = world.getRandom();
-		if (world.random.nextFloat() < 0.125F) {
-			world.playSoundAtBlockCenter(pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F, true);
+		if (random.nextFloat() < 0.125F) {
+			server.playSound(null, pos, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, SoundCategory.BLOCKS, 0.05F + random.nextFloat() * 0.1F, 0.334F + random.nextFloat() / 2F);
 			for (int i = 0; i < 4 + random.nextInt(5); i++) {
-				world.addParticle(ParticleTypes.CLOUD, pos.getX() + random.nextFloat(), pos.getY() + 0.975 + random.nextFloat() * 0.667F, pos.getZ() + random.nextFloat(), 0, random.nextFloat() / 20F + 0.02F, 0);
+				server.spawnParticles(ParticleTypes.CLOUD, pos.getX() + random.nextFloat(), pos.getY() + 0.975 + random.nextFloat() * 0.667F, pos.getZ() + random.nextFloat(), 0, 0, random.nextFloat() / 20F + 0.02F, 0, 1);
 			}
 		}
 	}

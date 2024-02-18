@@ -50,12 +50,11 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 	
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-	
 }

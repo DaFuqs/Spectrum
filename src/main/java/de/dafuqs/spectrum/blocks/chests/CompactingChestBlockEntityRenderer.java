@@ -61,20 +61,22 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 		matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
 
-		if (chest.getState() == CompactingChestBlockEntity.State.OPEN) {
-			chest.pistonTarget = 14;
-			chest.driverTarget = 6;
-			chest.capTarget = 5;
-		}
-		else if (chest.getState() == CompactingChestBlockEntity.State.CRAFTING) {
-			chest.pistonTarget = (float) (Math.sin((chest.activeTicks % 500000 + tickDelta) / 10F) * 5 + 4);
-			chest.driverTarget = (float) (Math.sin(((chest.activeTicks + 13) % 500000 + tickDelta) / 10F) * 5 + 5);;
-			chest.capTarget = 0;
-		}
-		else if(chest.getState() == CompactingChestBlockEntity.State.CLOSED) {
-			chest.pistonTarget= 0;
-			chest.driverTarget = 0;
-			chest.capTarget = 0;
+		switch(chest.getState()) {
+			case OPEN -> {
+				chest.pistonTarget = 14;
+				chest.driverTarget = 6;
+				chest.capTarget = 5;
+			}
+			case CRAFTING -> {
+				chest.pistonTarget = (float) (Math.sin((chest.activeTicks % 500000 + tickDelta) / 10F) * 5 + 4);
+				chest.driverTarget = (float) (Math.sin(((chest.activeTicks + 13) % 500000 + tickDelta) / 10F) * 5 + 5);;
+				chest.capTarget = 0;
+			}
+			case CLOSED -> {
+				chest.pistonTarget= 0;
+				chest.driverTarget = 0;
+				chest.capTarget = 0;
+			}
 		}
 
 		var interp = MathHelper.clamp((chest.interpTicks + tickDelta) / chest.interpLength, 0F, 1F);
@@ -85,21 +87,7 @@ public class CompactingChestBlockEntityRenderer implements BlockEntityRenderer<C
 		driver.pivotY = 21 - chest.driverPos;
 		cap.pivotY = 21 - chest.capPos;
 
-
-		chest.onOpen();
-
-		//matrixStack.translate(-0.5D, -0.5D, -0.5D);
-
-		//float openFactor = entity.getAnimationProgress(tickDelta);
-		//openFactor = 1.0F - openFactor;
-		//openFactor = 1.0F - openFactor * openFactor * openFactor;
-		//
-		//driver.pivotY = 11 + openFactor * 6;
-		//piston.pivotY = 11 + openFactor * 6;
-		//cap.pivotY = 11 + openFactor * 6;
-
 		VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutoutNoCull);
-
 		root.render(matrixStack, vertexConsumer, light, overlay);
 
 		matrixStack.pop();

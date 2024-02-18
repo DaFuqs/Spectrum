@@ -11,6 +11,8 @@
     "#spectrum:noxwood_trapdoors",
     "#spectrum:noxwood_amphoras",
     "#spectrum:noxwood_lanterns",
+    "#spectrum:stripped_noxcap_hyphae",
+    "#spectrum:stripped_noxcap_stems",
 
     "spectrum:chestnut_noxcap_block",
     "spectrum:chestnut_noxcap_gills",
@@ -39,10 +41,6 @@
     "spectrum:slate_noxwood_beam",
     "spectrum:slate_noxwood_button",
     "spectrum:slate_noxwood_lamp",
-    "spectrum:slate_noxwood_light",
-    "spectrum:stripped_chestnut_noxcap_stem",
-    "spectrum:stripped_ebony_noxcap_stem",
-    "spectrum:stripped_ivory_noxcap_stem",
-    "spectrum:stripped_slate_noxcap_stem"
+    "spectrum:slate_noxwood_light"
   ]
 }

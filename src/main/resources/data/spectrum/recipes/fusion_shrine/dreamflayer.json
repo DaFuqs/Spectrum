@@ -38,7 +38,7 @@
   "world_conditions": [
     {
       "type": "time_of_day",
-      "time": "midnight"
+      "time": "night"
     },
     {
       "type": "moon_phase",

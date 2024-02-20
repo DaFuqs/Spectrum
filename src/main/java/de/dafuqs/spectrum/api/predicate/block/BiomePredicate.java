@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.predicate.block;
+package de.dafuqs.spectrum.api.predicate.block;
 
 import com.google.gson.*;
 import net.minecraft.registry.*;

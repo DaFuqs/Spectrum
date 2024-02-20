@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.predicate.world;
+package de.dafuqs.spectrum.api.predicate.world;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.helpers.*;

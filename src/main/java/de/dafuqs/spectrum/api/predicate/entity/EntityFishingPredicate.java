@@ -1,9 +1,9 @@
-package de.dafuqs.spectrum.predicate.entity;
+package de.dafuqs.spectrum.api.predicate.entity;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.predicate.block.LightPredicate;
-import de.dafuqs.spectrum.predicate.block.*;
-import de.dafuqs.spectrum.predicate.world.*;
+import de.dafuqs.spectrum.api.predicate.block.LightPredicate;
+import de.dafuqs.spectrum.api.predicate.block.*;
+import de.dafuqs.spectrum.api.predicate.world.*;
 import net.minecraft.predicate.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;

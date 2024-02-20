@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.data_loaders.resonance_processors;
 import com.google.gson.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.api.predicate.block.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;

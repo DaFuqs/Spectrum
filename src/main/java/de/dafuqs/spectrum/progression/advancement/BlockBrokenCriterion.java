@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.api.predicate.block.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.predicate.entity.*;

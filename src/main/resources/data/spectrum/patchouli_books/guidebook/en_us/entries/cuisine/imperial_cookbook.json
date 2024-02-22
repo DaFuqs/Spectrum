@@ -67,7 +67,7 @@
     {
       "type": "patchouli:text",
       "title": "A Pudding Wine",
-      "text": "$(br)Ah, wine, what a diverse and vibrant world. This recipe long predates me - I know, it may be surprising to hear there are things older than me, heh - it is a type of desert wine, popular in my court and used in many recipes as you've may have seen.$(br2)I'll tell you, go easy on it, this stuff hits a lot harder than you'd expect."
+      "text": "$(br)Ah, wine, what a diverse and vibrant world. This recipe predates me - I know, it may surprise you to hear that there are things older than me, heh - it's a sort of desert wine, popular in my court and used in many recipes you may have seen.$(br2)I'll tell you, go easy on it, this stuff hits a lot harder than you'd expect."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

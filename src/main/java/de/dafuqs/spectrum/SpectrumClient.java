@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.helpers.render.DynamicItemRenderer;
 import de.dafuqs.spectrum.helpers.render.DynamicRenderModel;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -105,6 +106,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			});
 		});
 		registerCustomItemRenderer("bottomless_bundle", SpectrumItems.BOTTOMLESS_BUNDLE, BottomlessBundleItem.Renderer::new);
+		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAccelerator.Renderer::new);
 
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();

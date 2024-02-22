@@ -15,7 +15,9 @@ import net.minecraft.item.ItemStack;
 @Environment(EnvType.CLIENT)
 @FunctionalInterface
 public interface DynamicItemRenderer {
-    public static final Object2ObjectArrayMap<Item, DynamicItemRenderer> RENDERERS = new Object2ObjectArrayMap<>();
+    
+    Object2ObjectArrayMap<Item, DynamicItemRenderer> RENDERERS = new Object2ObjectArrayMap<>();
+    
     /**
      * Renders an item stack.
      *

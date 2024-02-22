@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "A Mysterious Locket",
       "item": "spectrum:mysterious_locket",
-      "text": "This small locket is shut tight. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.$(br)There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seem.$(br)Who left it behind?"
+      "text": "This small locket is shut tight. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.$(br)There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seen.$(br)Who left it behind?"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -26,7 +26,7 @@
       "type": "patchouli:text",
       "title": "The Locket's Contents",
       "advancement": "spectrum:endgame/open_mysterious_compass",
-      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than its lock.$(br)While $(l:dimension/getting_deeper_down)below the Bedrock(/l), it softly vibrates as you turn."
+      "text": "The locket contained a small crystal, bearing a dim, yet warm glow.$(br)While $(l:dimension/getting_deeper_down)below the Bedrock$(), it softly vibrates as you turn."
     },
     {
       "type": "patchouli:image",

@@ -3,12 +3,21 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.helpers.render.DynamicItemRenderer;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.*;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.item.ItemRenderer;
+import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -509,5 +518,24 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return stack;
 		}
 	}
-	
+
+	@Environment(EnvType.CLIENT)
+	public static class Renderer implements DynamicItemRenderer {
+		public Renderer() {}
+		@Override
+		public void render(ItemRenderer renderer, ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model) {
+			renderer.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, model);
+			if(mode != ModelTransformationMode.GUI
+					|| getStoredAmount(stack) <= 0) return;
+			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
+			MinecraftClient client = MinecraftClient.getInstance();
+			BakedModel bundledModel = renderer.getModel(bundledStack, client.world, client.player, 0);
+
+			matrices.push();
+			matrices.scale(0.5F, 0.5F, 0.5F);
+			matrices.translate(0.5F, 0.5F, 0.5F);
+			renderer.renderItem(bundledStack, mode, leftHanded, matrices, vertexConsumers, light, overlay, bundledModel);
+			matrices.pop();
+		}
+	}
 }

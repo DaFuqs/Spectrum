@@ -1,5 +1,5 @@
 {
-  "name": "Color Mixing",
+  "name": "book.spectrum.guidebook.general.color_mixing.name",
   "icon": "minecraft:light_blue_dye",
   "sortnum": 6,
   "condition": {
@@ -11,23 +11,23 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.color_mixing.description",
+  "x": 4,
+  "y": 0,
 
   "turnin": "spectrum:craft_colored_sapling",
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Color Mixing",
+      "title": "book.spectrum.guidebook.general.color_mixing.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
-      "text": "By mixing [#](00ffff)Cyan[#](), [#](ff00ff)Magenta[#]() and [#](ffff00)Yellow[#] (almost) any colour can be created."
+      "text": "book.spectrum.guidebook.general.color_mixing.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Your attempts to mix [Gemstone Powder](entry://general/gemstone_powder) directly have not been very successful. But now you have another idea:\\The closeness of your gemstones to nature suggests that _nature_ must be both the source and the answer!\\\\You quickly scribble some notes, result being [a recipe](entry://general/colored_trees), which looks very promising."
+      "text": "book.spectrum.guidebook.general.color_mixing.page1.text"
     },
     {
       "type": "modonomicon:text",
@@ -35,8 +35,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
       },
-      "title": "Brown Pigment?",
-      "text": "You have tried and tried, to no avail. You could not find a way to create [#](654321)brown[#]() by mixing your gem powder. The closest you came was a washed-out orange - ugh.\\It can't be that hard. Like... [#](654321)Dirt is brown[#]() and it's the most common stuff around.\\\\There must be a way... \\and you're pretty sure [#](000000)Black[#]() is the answer."
+      "title": "book.spectrum.guidebook.general.color_mixing.page2.title",
+      "text": "book.spectrum.guidebook.general.color_mixing.page2.text"
     },
     {
       "type": "spectrum:link",
@@ -44,9 +44,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
       },
-      "text": "\\\\\\\\\\\\\\_Seriously, look it up! The way we perceive brown is fascinating!_",
+      "text": "book.spectrum.guidebook.general.color_mixing.page3.text",
       "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
-      "link_text": "Brown is weird"
+      "link_text": "book.spectrum.guidebook.general.color_mixing.page3.link_text"
     }
   ]
 }

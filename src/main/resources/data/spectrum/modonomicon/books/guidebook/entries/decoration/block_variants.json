@@ -95,6 +95,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
+      "anchor": "chiseled_and_notched",
       "title1": "Chiseled & Notched",
       "recipe_id_1": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
       "recipe_id_2": "spectrum:crafting_table/calcite/notched_polished_calcite"

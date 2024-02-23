@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.recipe.fluid_converting.DragonrotConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fluid_converting.MudConvertingRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
@@ -56,7 +57,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     
     public void registerPages() {
         registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING);
-//        LoaderRegistry.registerPageLoader(PEDESTAL_CRAFTING_PAGE, BookPedestalCraftingPage::fromJson, BookPedestalCraftingPage::fromNetwork);
+        registerGatedRecipePage(PEDESTAL_CRAFTING_PAGE, SpectrumRecipeTypes.PEDESTAL);
 //        LoaderRegistry.registerPageLoader(FUSION_SHRINE_CRAFTING_PAGE, BookFusionShrineCraftingPage::fromJson, BookFusionShrineCraftingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(ENCHANTER_CRAFTING_PAGE, BookEnchanterCraftingPage::fromJson, BookEnchanterCraftingPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(ENCHANTER_UPGRADING_PAGE, BookEnchanterUpgradingPage::fromJson, BookEnchanterUpgradingPage::fromNetwork);
@@ -79,7 +80,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(NBT_SPOTLIGHT_PAGE, BookNbtSpotlightPage::fromJson, BookNbtSpotlightPage::fromNetwork);
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
 
-        LoaderRegistry.registerPageLoader(PEDESTAL_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(FUSION_SHRINE_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(ENCHANTER_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(ENCHANTER_UPGRADING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
@@ -107,8 +107,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     @SuppressWarnings("unchecked")
     public void registerClient() {
         PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookGatedRecipePage<AnvilCrushingRecipe>) p));
-//        PageRendererRegistry.registerPageRenderer(ANVIL_CRUSHING_PAGE, p -> new BookAnvilCrushingPageRenderer((BookAnvilCrushingPage) p));
-//        PageRendererRegistry.registerPageRenderer(PEDESTAL_CRAFTING_PAGE, p -> new BookPedestalCraftingPageRenderer((BookPedestalCraftingPage) p));
+        PageRendererRegistry.registerPageRenderer(PEDESTAL_CRAFTING_PAGE, p -> new BookPedestalCraftingPageRenderer((BookGatedRecipePage<PedestalRecipe>) p));
 //        PageRendererRegistry.registerPageRenderer(FUSION_SHRINE_CRAFTING_PAGE, p -> new BookFusionShrineCraftingPageRenderer((BookFusionShrineCraftingPage) p));
 //        PageRendererRegistry.registerPageRenderer(ENCHANTER_CRAFTING_PAGE, p -> new BookEnchanterCraftingPageRenderer((BookEnchanterCraftingPage) p));
 //        PageRendererRegistry.registerPageRenderer(ENCHANTER_UPGRADING_PAGE, p -> new BookEnchanterUpgradingPageRenderer((BookEnchanterUpgradingPage) p));

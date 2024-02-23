@@ -1,24 +1,24 @@
 {
-  "name": "Intro",
+  "name": "book.spectrum.guidebook.general.intro.name",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
 
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "Get Started",
+  "description": "book.spectrum.guidebook.general.intro.description",
   "x": 0,
   "y": 0,
 
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Welcome to Spectrum!",
+      "title": "book.spectrum.guidebook.general.intro.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum.png"
       ],
       "border": true,
-      "text": "Spectrum is a progression- and exploration-driven magic mod."
+      "text": "book.spectrum.guidebook.general.intro.page0.text"
     },
     {
       "type": "modonomicon:text",
@@ -26,12 +26,12 @@
     },
     {
       "type": "modonomicon:text",
-      "title": "Progression System",
-      "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.\\As you delve deeper, you will notice changes in the world. Differences only you can perceive.\\\\Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
+      "title": "book.spectrum.guidebook.general.intro.page2.title",
+      "text": "book.spectrum.guidebook.general.intro.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next. Press the bottom center arrow to get started!\\\\Spectrum is still in development. If you find a bug or have a suggestion, visit Spectrum's Discord or report them on GitHub.\\Have fun!        - DaFuqs"
+      "text": "book.spectrum.guidebook.general.intro.page3.text"
     }
   ]
 }

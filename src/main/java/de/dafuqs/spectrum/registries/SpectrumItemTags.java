@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.util.*;
 
 public class SpectrumItemTags {
 	
@@ -12,7 +12,7 @@ public class SpectrumItemTags {
 
     public static final TagKey<Item> EGGPLANTS = common("eggplants");
 	public static final TagKey<Item> PEACHES = common("peaches");
-public static final TagKey<Item> SKULLS = common("skulls");
+	public static final TagKey<Item> SKULLS = common("skulls");
 
 	// "spectrum" namespace
 	public static final TagKey<Item> COLORED_SAPLINGS = of("colored_saplings");

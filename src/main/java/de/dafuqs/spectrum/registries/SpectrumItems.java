@@ -420,9 +420,9 @@ public class SpectrumItems {
 	public static final Item LUCID_WHITE_CATKIN = new CatkinItem(BuiltinGemstoneColor.WHITE, true, IS.of(Rarity.UNCOMMON));
 	
 	// Misc
-	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, IS.of(1, Rarity.RARE), 120);
-	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, IS.of(1, Rarity.RARE), 265);
-	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, IS.of(1, Rarity.RARE), 289);
+	public static final Item MUSIC_DISC_SPECTRUM_THEME = new MusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, IS.of(1, Rarity.RARE), 120);
+	public static final Item MUSIC_DISC_DIMENSION_THEME = new MusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, IS.of(1, Rarity.RARE), 265);
+	public static final Item MUSIC_DISC_EVERREFLECTIVE = new MusicDiscItem(3, SpectrumSoundEvents.DIVINITY, IS.of(1, Rarity.RARE), 289);
 	
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, IS.of());
 	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, IS.of());

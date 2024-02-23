@@ -304,7 +304,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {
-			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
+			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments).getRight();
 		}
 		
 		// START BIOME MAKEOVER COMPAT

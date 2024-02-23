@@ -42,7 +42,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		stack.setNbt(compound);
 		return stack;
 	}
-	
+
 	@Override
 	public int getMaxStoredExperience(ItemStack itemStack) {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
@@ -100,7 +100,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 							serverPlayerEntity.addExperience(experienceToTransfer);
 						}
 						ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
-						
+
 						if (remainingUseTicks % 4 == 0) {
 							world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.3F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}
@@ -138,20 +138,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		} else if (playerEntity.totalExperience < experience) {
 			return false;
 		} else {
-			playerEntity.totalExperience -= experience;
-			
-			// recalculate levels & level progress
-			playerEntity.experienceProgress -= (float) experience / (float) playerEntity.getNextLevelExperience();
-			while (playerEntity.experienceProgress < 0.0F) {
-				float f = playerEntity.experienceProgress * (float) playerEntity.getNextLevelExperience();
-				if (playerEntity.experienceLevel > 0) {
-					playerEntity.addExperienceLevels(-1);
-					playerEntity.experienceProgress = 1.0F + f / (float) playerEntity.getNextLevelExperience();
-				} else {
-					playerEntity.addExperienceLevels(-1);
-					playerEntity.experienceProgress = 0.0F;
-				}
-			}
+			playerEntity.addExperience(-experience);
 			return true;
 		}
 	}

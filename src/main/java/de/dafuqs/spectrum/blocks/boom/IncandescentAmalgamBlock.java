@@ -147,7 +147,7 @@ public class IncandescentAmalgamBlock extends PlacedItemBlock implements Waterlo
 		}
 	}
 
-	public static void explode(World world, BlockPos pos, PlayerEntity owner, ItemStack stack) {
+	public static void explode(World world, BlockPos pos, Entity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {
 			power = item.getExplosionPower(stack, false);

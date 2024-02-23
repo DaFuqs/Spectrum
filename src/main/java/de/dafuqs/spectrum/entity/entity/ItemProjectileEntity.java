@@ -25,7 +25,7 @@ public class ItemProjectileEntity extends ThrownItemEntity {
 	@Override
 	protected void onCollision(HitResult hitResult) {
 		ItemStack stack = getStack();
-		OmniAcceleratorBehavior behavior = OmniAcceleratorBehavior.get(stack.getItem());
+		ItemProjectileBehavior behavior = ItemProjectileBehavior.get(stack);
 
 		boolean handled = false;
 		if(behavior != null) {

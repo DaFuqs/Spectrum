@@ -14,6 +14,7 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -56,7 +57,7 @@ public class EnchantmentCanvasItem extends Item {
 		return false;
 	}
 	
-	private boolean tryExchangeEnchantments(ItemStack canvasStack, ItemStack targetStack, PlayerEntity player) {
+	public static boolean tryExchangeEnchantments(ItemStack canvasStack, ItemStack targetStack, @Nullable Entity receiver) {
 		Optional<Item> itemLock = getItemBoundTo(canvasStack);
 		if (itemLock.isPresent() && !targetStack.isOf(itemLock.get())) {
 			return false;
@@ -81,8 +82,12 @@ public class EnchantmentCanvasItem extends Item {
 		SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
 		EnchantmentHelper.set(canvasEnchantments, targetStack);
 		
-		if (drop) {
-			player.getInventory().offerOrDrop(canvasStack);
+		if (drop && receiver != null) {
+			if(receiver instanceof PlayerEntity player) {
+				player.getInventory().offerOrDrop(canvasStack);
+			} else {
+				receiver.dropStack(canvasStack);
+			}
 		}
 		
 		return true;
@@ -109,13 +114,13 @@ public class EnchantmentCanvasItem extends Item {
 		return !EnchantedBookItem.getEnchantmentNbt(stack).isEmpty();
 	}
 	
-	private void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {
+	private static void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {
 		NbtCompound nbt = enchantmentExchangerStack.getOrCreateNbt();
 		nbt.putString("BoundItem", Registries.ITEM.getId(targetStack.getItem()).toString());
 		enchantmentExchangerStack.setNbt(nbt);
 	}
 	
-	private Optional<Item> getItemBoundTo(ItemStack enchantmentExchangerStack) {
+	private static Optional<Item> getItemBoundTo(ItemStack enchantmentExchangerStack) {
 		NbtCompound nbt = enchantmentExchangerStack.getNbt();
 		if (nbt == null || !nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
 			return Optional.empty();

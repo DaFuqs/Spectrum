@@ -568,6 +568,10 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			if (this.inventoryInsertion) {
 				playerEntity.getInventory().offerOrDrop(itemStack);
 				playerEntity.addExperience(experienceAmount);
+				
+				playerEntity.getWorld().playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
+						SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,
+						0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			} else {
 				// fireproof item, so it does not burn when fishing in lava
 				ItemEntity itemEntity = new FireproofItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);

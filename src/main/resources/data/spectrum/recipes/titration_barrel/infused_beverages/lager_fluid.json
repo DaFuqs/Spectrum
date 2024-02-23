@@ -5,14 +5,12 @@
     {
       "item": "minecraft:wheat",
       "count": 6
-    },
-    {
-      "item": "minecraft:honey_bottle",
-      "count": 1
     }
   ],
   "min_fermentation_time_hours": 4,
-  "fluid": "minecraft:water",
+  "fluid": {
+    "tag": "c:honey"
+  },
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 1.25,
@@ -107,13 +105,10 @@
   "required_advancement": "spectrum:milestones/confirmed_drinking_age",
   "fabric:load_conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:fluid_tags_populated",
-        "values": [
-          "c:honey"
-        ]
-      }
+      "condition": "fabric:fluid_tags_populated",
+      "values": [
+        "c:honey"
+      ]
     }
   ]
 }

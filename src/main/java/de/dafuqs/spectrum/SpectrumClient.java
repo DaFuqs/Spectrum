@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleItem;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
@@ -11,8 +12,11 @@ import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.api.render.DynamicItemRenderer;
+import de.dafuqs.spectrum.api.render.DynamicRenderModel;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -23,9 +27,11 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.capes.*;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.*;
@@ -34,6 +40,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
+import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.item.*;
@@ -48,6 +55,7 @@ import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
@@ -56,6 +64,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
+
+	// initial impl
+	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 
 	@Override
 	public void onInitializeClient() {
@@ -83,6 +94,19 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumBlockEntities.registerClient();
 		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
+
+		logInfo("Setting up Item Renderers...");
+		ModelLoadingPlugin.register((ctx) -> {
+			ctx.modifyModelAfterBake().register((orig, c) -> {
+				Identifier id = c.id();
+				if(id instanceof ModelIdentifier mid && CUSTOM_ITEM_MODELS.contains(mid)) {
+					return new DynamicRenderModel(orig);
+				}
+				return orig;
+			});
+		});
+		registerCustomItemRenderer("bottomless_bundle", SpectrumItems.BOTTOMLESS_BUNDLE, BottomlessBundleItem.Renderer::new);
+		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAccelerator.Renderer::new);
 
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
@@ -146,6 +170,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		ClientAdvancementPacketCallback.registerCallback(this);
 
 		logInfo("Client startup completed!");
+	}
+
+	private void registerCustomItemRenderer(String id, Item item, Supplier<DynamicItemRenderer> renderer) {
+		CUSTOM_ITEM_MODELS.add(new ModelIdentifier(MOD_ID, id, "inventory"));
+		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
 
 	private boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {

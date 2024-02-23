@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.*;
@@ -56,6 +57,10 @@ public abstract class EntityMixin {
 					int count = stack.getCount();
 					
 					if (killer.getInventory().insertStack(stack)) {
+						killer.getWorld().playSound(null, killer.getX(), killer.getY(), killer.getZ(),
+								SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,
+								0.2F, ((killer.getRandom().nextFloat() - killer.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+						
 						if (stack.isEmpty()) {
 							killer.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), count);
 							cir.cancel();

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.helpers.render;
+package de.dafuqs.spectrum.api.render;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

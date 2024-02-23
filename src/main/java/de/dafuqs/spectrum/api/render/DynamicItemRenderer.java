@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.helpers.render;
+package de.dafuqs.spectrum.api.render;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import net.fabricmc.api.EnvType;

@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.helpers.render.DynamicItemRenderer;
+import de.dafuqs.spectrum.api.render.DynamicItemRenderer;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.EnvType;

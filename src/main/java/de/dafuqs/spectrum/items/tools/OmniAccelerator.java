@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.render.*;
+import de.dafuqs.spectrum.api.render.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.*;

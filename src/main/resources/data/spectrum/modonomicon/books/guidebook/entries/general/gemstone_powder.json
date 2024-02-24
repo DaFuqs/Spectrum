@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Powder",
+  "name": "book.spectrum.guidebook.general.gemstone_powder.name",
   "icon": "spectrum:amethyst_powder",
   "sortnum": 5,
   "condition": {
@@ -15,8 +15,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": 5,
+  "description": "book.spectrum.guidebook.general.gemstone_powder.description",
+  "x": 12,
   "y": 0,
 
   "turnin": "spectrum:collect_gemstone_powder",
@@ -30,12 +30,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Most recipes in your Pedestal require some amount of Gemstone Powder as a source of magical energy. \\ It comes in various colors and can be acquired by pulverizing [Gemstone Shards](entry://general/shards) via [Item Crushing](entry://general/anvil_crushing)."
+      "text": "book.spectrum.guidebook.general.gemstone_powder.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Mixing Colors",
-      "text": "There is nothing more important to an upcoming artist than mixing the right paint.\\Unfortunately, you found that in the case of Gemstone Powder, it's not nearly as easy as it initially seemed. The powders don't quite want to mix, the result being just a multicolored mass.\\\\Maybe you can come up with something later?"
+      "title": "book.spectrum.guidebook.general.gemstone_powder.page1.title",
+      "text": "book.spectrum.guidebook.general.gemstone_powder.page1.text"
     }
   ]
 }

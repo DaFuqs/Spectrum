@@ -20,7 +20,7 @@ public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionP
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
         if (page.hasTitle()) {
-            this.renderTitle(drawContext, page.getTitle(), true, BookContentScreen.PAGE_WIDTH / 2, 0);
+            this.renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
         }
 
         this.renderBookTextHolder(drawContext, this.getPage().getText(), 0, this.getTextY(), BookContentScreen.PAGE_WIDTH);
@@ -42,10 +42,6 @@ public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionP
                 startX += unusedEntriesInLastRow * 9;
             }
             parentScreen.renderItemStack(drawContext, startX, startY + row * 18, mouseX, mouseY, stack);
-        }
-
-        if (!page.getText().isEmpty()) {
-            BookContentScreen.drawTitleSeparator(drawContext, page.getBook(), 0, startY + 20 + row * 18);
         }
     }
 

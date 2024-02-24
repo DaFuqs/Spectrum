@@ -1,5 +1,5 @@
 {
-  "name": "Fusion Shrine",
+  "name": "book.spectrum.guidebook.general.fusion_shrine.name",
   "icon": "spectrum:fusion_shrine_basalt",
   "sortnum": 10,
   "condition": {
@@ -12,69 +12,69 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.fusion_shrine.description",
+  "x": 10,
+  "y": 0,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "Fusion Shrine",
+      "title": "book.spectrum.guidebook.general.fusion_shrine.page0.title",
       "items": [
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
       ],
-      "text": "For the process of creating [Black Shards](entry://general/onyx_shards) you have developed a special construction.\\\\You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle."
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "Can be constructed using [#](bb00bb)Calcite[#]() or [#](bb00bb)Basalt[#]().\\Requires a focus structure and clear view of the sky."
+      "title1": "book.spectrum.guidebook.general.fusion_shrine.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/fusion_shrine_basalt",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Shrine Structure",
+      "name": "book.spectrum.guidebook.general.fusion_shrine.page2.title",
       "multiblock_id": "spectrum:fusion_shrine",
       "show_visualize_button": true,
-      "text": "Dimensions: 9x9x5 blocks."
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Block Checklist",
-      "text": "-1 Fusion Shrine\\-4 Polished Gemstone Blocks\\-4 Chiseled Polished Blocks\\-8 Polished Pillars\\-12 Polished Slabs\\-77 Polished Blocks\\\\As always you are able to switch [Basalt](item://spectrum:polished_basalt) with [Calcite](item://spectrum:polished_calcite) and choose the [Gemstone Blocks](entry://decoration/gemstone_storage_blocks) to your liking."
+      "title": "book.spectrum.guidebook.general.fusion_shrine.page3.title",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Changing the Weather",
-      "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of [#](00ffff)Matter[#](), [#](ff00ff)Time[#]() and [#](ffff00)Energy[#]() and focus them on a single, central point, the Fusion Shrine itself.\\\\These powerful bundled energies seem to even have enough power to change the weather."
+      "title": "book.spectrum.guidebook.general.fusion_shrine.page4.title",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page4.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Sunny Weather",
-      "recipe": "spectrum:fusion_shrine/weather/weather_clear",
-      "text": "_It's a brand new day_\\_And the sun is high_\\_All the birds are singing_\\_That you're gonna die_"
+      "title1": "book.spectrum.guidebook.general.fusion_shrine.page5.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/weather/weather_clear",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page5.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Rainy Weather",
+      "title1": "book.spectrum.guidebook.general.fusion_shrine.page6.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/weather/weather_rain"
       },
-      "recipe": "spectrum:fusion_shrine/weather/weather_rain",
-      "text": "_Knock Knock_\\_Who's there?_\\_Accordion_\\_Accordion who?_\\_Accordion to the forecast, it's going to rain tonight._"
+      "recipe_id_1": "spectrum:fusion_shrine/weather/weather_rain",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page6.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Thunderstorms",
+      "title1": "book.spectrum.guidebook.general.fusion_shrine.page7.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/weather/weather_thunder"
       },
-      "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
-      "text": "_Why did the god of thunder drink water?_\\\\_Because he was thorsty._"
+      "recipe_id_1": "spectrum:fusion_shrine/weather/weather_thunder",
+      "text": "book.spectrum.guidebook.general.fusion_shrine.page7.text"
     }
   ]
 }

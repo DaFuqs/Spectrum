@@ -32,7 +32,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
 
     @Override
     protected int getRecipeHeight() {
-        return 100;
+        return 110;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
             if (amount > 0) {
                 ItemStack stack = color.getGemstonePowderItem().getDefaultStack();
                 stack.setCount(amount);
-                parentScreen.renderItemStack(drawContext, recipeX + startX + h * 19, recipeY + 76, mouseX, mouseY, stack);
+                parentScreen.renderItemStack(drawContext, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, stack);
             }
             h++;
         }

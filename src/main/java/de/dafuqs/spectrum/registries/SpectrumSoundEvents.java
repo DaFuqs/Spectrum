@@ -67,6 +67,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
 
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
+	public static final SoundEvent PRIMORDIAL_FIRE_CRACKLE = register("primordial_fire_crackle");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");

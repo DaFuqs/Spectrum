@@ -45,6 +45,11 @@
       "spectrum:ground_slam4"
     ]
   },
+  "color_picker_processing": {
+    "sounds": [
+      "spectrum:color_picker_processing"
+    ]
+  },
   "block.threat_conflux.arm": {
     "subtitle": "spectrum.subtitles.block.threat_conflux.arm",
     "sounds": [

@@ -9,6 +9,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.item.ItemGroup.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -58,6 +59,19 @@ public class MemoryItem extends BlockItem {
 		stackNbt.put("EntityTag", tag);
 		stack.setNbt(stackNbt);
 		
+		return stack;
+	}
+	
+	public static ItemStack getForEntityType(EntityType<?> entityType, int ticksToManifest) {
+		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultStack();
+		
+		NbtCompound stackNbt = stack.getOrCreateNbt();
+		stackNbt.putInt("TicksToManifest", ticksToManifest);
+		
+		NbtCompound entityCompound = new NbtCompound();
+		entityCompound.putString("id", Registries.ENTITY_TYPE.getId(entityType).toString());
+		stackNbt.put("EntityTag", entityCompound);
+
 		return stack;
 	}
 	
@@ -163,7 +177,6 @@ public class MemoryItem extends BlockItem {
 		nbtCompound.putBoolean("Unrecognizable", true);
 		itemStack.setNbt(nbtCompound);
 	}
-	
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

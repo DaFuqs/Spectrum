@@ -30,12 +30,12 @@ public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> impleme
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
         if (page.hasTitle()) {
-            this.renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
+            renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
         }
 
-        this.renderBookTextHolder(drawContext, this.getPage().getText(), 0, this.getTextY(), BookContentScreen.PAGE_WIDTH);
+        renderBookTextHolder(drawContext, this.getPage().getText(), 0, this.getTextY(), BookContentScreen.PAGE_WIDTH);
 
-        var style = this.getClickedComponentStyleAt(mouseX, mouseY);
+        var style = getClickedComponentStyleAt(mouseX, mouseY);
         if (style != null)
             this.parentScreen.renderComponentHoverEffect(drawContext, page.getLinkText().getComponent().getStyle(), mouseX, mouseY);
     }

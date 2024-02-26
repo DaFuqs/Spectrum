@@ -28,7 +28,7 @@ public abstract class BookFluidConvertingPageRenderer<R extends GatedRecipe, T e
         RenderSystem.enableBlend();
         drawContext.drawTexture(getBackgroundTexture(), recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
 
-        super.renderTitle(drawContext, recipeY, second);
+        renderTitle(drawContext, recipeY, second);
 
         // fluid bucket
         parentScreen.renderItemStack(drawContext, recipeX - 1, recipeY + 15, mouseX, mouseY, recipe.createIcon());

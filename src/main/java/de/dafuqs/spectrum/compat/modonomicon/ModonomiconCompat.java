@@ -11,6 +11,8 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.fluid_converting.DragonrotConvertingRecipe;
@@ -19,6 +21,10 @@ import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingReci
 import de.dafuqs.spectrum.recipe.fluid_converting.MudConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
+import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
@@ -64,16 +70,16 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         registerGatedRecipePage(FUSION_SHRINE_CRAFTING_PAGE, SpectrumRecipeTypes.FUSION_SHRINE);
         registerGatedRecipePage(ENCHANTER_CRAFTING_PAGE, SpectrumRecipeTypes.ENCHANTER);
         registerGatedRecipePage(ENCHANTER_UPGRADING_PAGE, SpectrumRecipeTypes.ENCHANTMENT_UPGRADE);
-//        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_BREWING_PAGE, BookPotionWorkshopBrewingPage::fromJson, BookPotionWorkshopBrewingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_CRAFTING_PAGE, BookPotionWorkshopCraftingPage::fromJson, BookPotionWorkshopCraftingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(SPIRIT_INSTILLER_CRAFTING_PAGE, BookSpiritInstillerCraftingPage::fromJson, BookSpiritInstillerCraftingPage::fromNetwork);
+        registerGatedRecipePage(POTION_WORKSHOP_BREWING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_BREWING);
+        registerGatedRecipePage(POTION_WORKSHOP_CRAFTING_PAGE, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING);
+        registerGatedRecipePage(SPIRIT_INSTILLER_CRAFTING_PAGE, SpectrumRecipeTypes.SPIRIT_INSTILLING);
         registerGatedRecipePage(LIQUID_CRYSTAL_CONVERTING_PAGE, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING);
         registerGatedRecipePage(MIDNIGHT_SOLUTION_CONVERTING_PAGE, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);
         registerGatedRecipePage(DRAGONROT_CONVERTING_PAGE, SpectrumRecipeTypes.DRAGONROT_CONVERTING);
         registerGatedRecipePage(MUD_CONVERTING_PAGE, SpectrumRecipeTypes.MUD_CONVERTING);
-//        LoaderRegistry.registerPageLoader(CRYSTALLARIEUM_GROWING_PAGE, BookCrystallarieumGrowingPage::fromJson, BookCrystallarieumGrowingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(CINDERHEARTH_SMELTING_PAGE, BookCinderhearthSmeltingPage::fromJson, BookCinderhearthSmeltingPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(TITRATION_BARREL_FERMENTING_PAGE, BookTitrationBarrelFermentingPage::fromJson, BookTitrationBarrelFermentingPage::fromNetwork);
+        registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM);
+        registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH);
+        registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL);
 //        LoaderRegistry.registerPageLoader(STATUS_EFFECT_PAGE, BookStatusEffectPage::fromJson, BookStatusEffectPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(HINT_PAGE, BookHintPage::fromJson, BookHintPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(CHECKLIST_PAGE, BookChecklistPage::fromJson, BookChecklistPage::fromNetwork);
@@ -83,11 +89,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(NBT_SPOTLIGHT_PAGE, BookNbtSpotlightPage::fromJson, BookNbtSpotlightPage::fromNetwork);
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
 
-        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_BREWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(POTION_WORKSHOP_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(SPIRIT_INSTILLER_CRAFTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(CRYSTALLARIEUM_GROWING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(CINDERHEARTH_SMELTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(TITRATION_BARREL_FERMENTING_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(STATUS_EFFECT_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
         LoaderRegistry.registerPageLoader(HINT_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
@@ -110,9 +111,20 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         PageRendererRegistry.registerPageRenderer(FUSION_SHRINE_CRAFTING_PAGE, p -> new BookFusionShrineCraftingPageRenderer((BookGatedRecipePage<FusionShrineRecipe>) p));
         PageRendererRegistry.registerPageRenderer(ENCHANTER_CRAFTING_PAGE, p -> new BookEnchanterCraftingPageRenderer((BookGatedRecipePage<EnchanterRecipe>) p));
         PageRendererRegistry.registerPageRenderer(ENCHANTER_UPGRADING_PAGE, p -> new BookEnchanterUpgradingPageRenderer((BookGatedRecipePage<EnchantmentUpgradeRecipe>) p));
-//        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_BREWING_PAGE, p -> new BookPotionWorkshopBrewingPageRenderer((BookPotionWorkshopBrewingPage) p));
-//        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_CRAFTING_PAGE, p -> new BookPotionWorkshopCraftingPageRenderer((BookPotionWorkshopCraftingPage) p));
-//        PageRendererRegistry.registerPageRenderer(SPIRIT_INSTILLER_CRAFTING_PAGE, p -> new BookSpiritInstillerCraftingPageRenderer((BookSpiritInstillerCraftingPage) p));
+        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_BREWING_PAGE, p -> new BookPotionWorkshopPageRenderer<>((BookGatedRecipePage<PotionWorkshopBrewingRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(POTION_WORKSHOP_CRAFTING_PAGE, p -> new BookPotionWorkshopPageRenderer<>((BookGatedRecipePage<PotionWorkshopCraftingRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(SPIRIT_INSTILLER_CRAFTING_PAGE, p -> new BookSpiritInstillerCraftingPageRenderer((BookGatedRecipePage<SpiritInstillerRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(CRYSTALLARIEUM_GROWING_PAGE, p -> new BookCrystallarieumGrowingPageRenderer((BookGatedRecipePage<CrystallarieumRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookGatedRecipePage<CinderhearthRecipe>) p));
+        PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookGatedRecipePage<TitrationBarrelRecipe>) p));
+//        PageRendererRegistry.registerPageRenderer(STATUS_EFFECT_PAGE, p -> new BookStatusEffectPageRenderer((BookStatusEffectPage) p));
+//        PageRendererRegistry.registerPageRenderer(HINT_PAGE, p -> new BookHintPageRenderer((BookHintPage) p));
+//        PageRendererRegistry.registerPageRenderer(CHECKLIST_PAGE, p -> new BookChecklistPageRenderer((BookChecklistPage) p));
+//        PageRendererRegistry.registerPageRenderer(CONFIRMATION_BUTTON_PAGE, p -> new BookConfirmationButtonPageRenderer((BookConfirmationButtonPage) p));
+//        PageRendererRegistry.registerPageRenderer(SNIPPET_PAGE, p -> new BookSnippetPageRenderer((BookSnippetPage) p));
+        PageRendererRegistry.registerPageRenderer(LINK_PAGE, p -> new BookLinkPageRenderer((BookLinkPage) p));
+        PageRendererRegistry.registerPageRenderer(NBT_SPOTLIGHT_PAGE, p -> new BookNbtSpotlightPageRenderer((BookNbtSpotlightPage) p));
+        PageRendererRegistry.registerPageRenderer(COLLECTION_PAGE, p -> new BookCollectionPageRenderer((BookCollectionPage) p));
 
         PageRendererRegistry.registerPageRenderer(LIQUID_CRYSTAL_CONVERTING_PAGE, p -> new BookFluidConvertingPageRenderer<>((BookGatedRecipePage<LiquidCrystalConvertingRecipe>) p) {
             @Override
@@ -141,18 +153,6 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
                 return SpectrumCommon.locate("textures/gui/guidebook/mud.png");
             }
         });
-
-//        PageRendererRegistry.registerPageRenderer(CRYSTALLARIEUM_GROWING_PAGE, p -> new BookCrystallarieumGrowingPageRenderer((BookCrystallarieumGrowingPage) p));
-//        PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookCinderhearthSmeltingPage) p));
-//        PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookTitrationBarrelFermentingPage) p));
-//        PageRendererRegistry.registerPageRenderer(STATUS_EFFECT_PAGE, p -> new BookStatusEffectPageRenderer((BookStatusEffectPage) p));
-//        PageRendererRegistry.registerPageRenderer(HINT_PAGE, p -> new BookHintPageRenderer((BookHintPage) p));
-//        PageRendererRegistry.registerPageRenderer(CHECKLIST_PAGE, p -> new BookChecklistPageRenderer((BookChecklistPage) p));
-//        PageRendererRegistry.registerPageRenderer(CONFIRMATION_BUTTON_PAGE, p -> new BookConfirmationButtonPageRenderer((BookConfirmationButtonPage) p));
-//        PageRendererRegistry.registerPageRenderer(SNIPPET_PAGE, p -> new BookSnippetPageRenderer((BookSnippetPage) p));
-        PageRendererRegistry.registerPageRenderer(LINK_PAGE, p -> new BookLinkPageRenderer((BookLinkPage) p));
-        PageRendererRegistry.registerPageRenderer(NBT_SPOTLIGHT_PAGE, p -> new BookNbtSpotlightPageRenderer((BookNbtSpotlightPage) p));
-        PageRendererRegistry.registerPageRenderer(COLLECTION_PAGE, p -> new BookCollectionPageRenderer((BookCollectionPage) p));
     }
 
 }

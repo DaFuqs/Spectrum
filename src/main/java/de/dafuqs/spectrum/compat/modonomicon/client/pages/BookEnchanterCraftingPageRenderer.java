@@ -34,7 +34,7 @@ public class BookEnchanterCraftingPageRenderer extends BookGatedRecipePageRender
         RenderSystem.enableBlend();
         drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY, 0, 0, 100, 80, 256, 256);
 
-        super.renderTitle(drawContext, recipeY, second);
+        renderTitle(drawContext, recipeY, second);
 
         // the ingredients
         DefaultedList<Ingredient> ingredients = recipe.getIngredients();

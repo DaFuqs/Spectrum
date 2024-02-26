@@ -31,7 +31,7 @@ public class BookAnvilCrushingPageRenderer extends BookGatedRecipePageRenderer<A
         RenderSystem.enableBlend();
         drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX, recipeY + 4, 0, 0, 84, 48, 256, 256);
 
-        super.renderTitle(drawContext, recipeY, second);
+        renderTitle(drawContext, recipeY, second);
 
         // the ingredients
         parentScreen.renderIngredient(drawContext, recipeX + 16, recipeY + 35, mouseX, mouseY, recipe.getIngredients().get(0));

@@ -41,7 +41,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
         RenderSystem.enableBlend();
         drawContext.drawTexture(getBackgroundTextureForTier(recipe.getTier()), recipeX - 2, recipeY - 2, 0, 0, 106, 97, 128, 256);
 
-        super.renderTitle(drawContext, recipeY, second);
+        renderTitle(drawContext, recipeY, second);
 
         // the output
         parentScreen.renderItemStack(drawContext, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));

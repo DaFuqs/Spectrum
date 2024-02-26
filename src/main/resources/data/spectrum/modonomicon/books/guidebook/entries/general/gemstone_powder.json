@@ -16,8 +16,8 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.gemstone_powder.description",
-  "x": 12,
-  "y": 0,
+  "x": 0,
+  "y": 2,
 
   "turnin": "spectrum:collect_gemstone_powder",
   "extra_recipe_mappings": {

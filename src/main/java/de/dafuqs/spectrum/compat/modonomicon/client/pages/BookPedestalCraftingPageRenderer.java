@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookEntry;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.compat.patchouli.PatchouliHelper;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.color.GemstoneColor;
@@ -15,7 +14,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
 
 import java.util.List;
 
@@ -59,7 +57,7 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
         List<IngredientStack> ingredients = recipe.getIngredientStacks();
         int wrap = recipe.getWidth();
         for (int i = 0; i < ingredients.size(); i++) {
-            renderIngredientStack(drawContext, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
+            ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
         }
     }
 
@@ -83,13 +81,6 @@ public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRendere
                 parentScreen.renderItemStack(drawContext, recipeX + startX + h * 19, recipeY + 72, mouseX, mouseY, stack);
             }
             h++;
-        }
-    }
-
-    public void renderIngredientStack(DrawContext drawContext, int x, int y, int mouseX, int mouseY, IngredientStack ingredientStack) {
-        List<ItemStack> stacks = ingredientStack.getStacks();
-        if (!stacks.isEmpty()) {
-            parentScreen.renderItemStack(drawContext, x, y, mouseX, mouseY, stacks.get(parentScreen.ticksInBook / 20 % stacks.size()));
         }
     }
 

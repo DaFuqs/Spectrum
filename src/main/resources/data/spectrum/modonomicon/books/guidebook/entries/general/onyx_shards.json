@@ -1,5 +1,5 @@
 {
-  "name": "Creating Onyx Shards",
+  "name": "book.spectrum.guidebook.general.onyx_shards.name",
   "icon": "spectrum:onyx_shard",
   "sortnum": 11,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.onyx_shards.description",
+  "x": 8,
+  "y": 2,
 
   "turnin": "spectrum:create_onyx_shard",
   "extra_recipe_mappings": {
@@ -23,25 +23,25 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "To create brown Pigment you needed a way to darken an orange tone.\\And then it occurred to you. It's so logical when you think about it! The three gems you found correspond to the three basic colors of color theory!\\By mixing all three colors you can create a shard that is so dark it almost looks unreal."
+      "text": "book.spectrum.guidebook.general.onyx_shards.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/onyx_shard",
-      "text": "The creation of this 'blackest of blacks' in the [Fusion Shrine](entry://general/fusion_shrine) has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a new moon it is. Best to bring a clock with you."
+      "title1": "book.spectrum.guidebook.general.onyx_shards.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/onyx_shard",
+      "text": "book.spectrum.guidebook.general.onyx_shards.page1.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "Moon Phases",
+      "title": "book.spectrum.guidebook.general.onyx_shards.page2.title",
       "images": [
         "spectrum:textures/gui/guidebook/moon_phases.png"
       ],
-      "text": "Depending on the positions of Sun and Moon, the Moon will reflect more or less light."
+      "text": "book.spectrum.guidebook.general.onyx_shards.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "These are known as [#](449900)Moon Phases[#]().\\\\When the moon is at its brightest, it is known as a [#](449900)Full Moon[#](). When at its darkest, it is a [#](449900)New Moon[#]().\\\\An entire lunar phase cycle from one new moon to the following new moon is also called a [#](449900)lunation[#]()."
+      "text": "book.spectrum.guidebook.general.onyx_shards.page3.text"
     }
   ]
 }

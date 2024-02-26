@@ -1,5 +1,5 @@
 {
-  "name": "A Mysterious Locket",
+  "name": "book.spectrum.guidebook.general.mysterious_locket.name",
   "icon": "spectrum:mysterious_locket",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.mysterious_locket.description",
+  "x": 6,
+  "y": 2,
 
   "sortnum": 21,
   "extra_recipe_mappings": {
@@ -22,30 +22,30 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "A Mysterious Locket",
+      "title": "book.spectrum.guidebook.general.mysterious_locket.page0.title",
       "item": {
         "item": "spectrum:mysterious_locket"
       },
-      "text": "This small locket is tight shut. It features an odd ornament which resembles a notch, softly glowing a pale white color, a shimmer reminiscent of the moon.\\There seems to be something inside. It also has an engraving on its back, but if it even resembles a language it's none you have ever seem.\\Who left it behind?"
+      "text": "book.spectrum.guidebook.general.mysterious_locket.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Socketing a Core",
+      "title1": "book.spectrum.guidebook.general.mysterious_locket.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"
       },
-      "recipe": "spectrum:fusion_shrine/mysterious_locket_socketing",
-      "text": "The notch you noticed perfectly seems to fit a [Moonstone Core](entry://resources/moonstone_cores)."
+      "recipe_id_1": "spectrum:fusion_shrine/mysterious_locket_socketing",
+      "text": "book.spectrum.guidebook.general.mysterious_locket.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "The Locket's Contents",
+      "title": "book.spectrum.guidebook.general.mysterious_locket.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/open_mysterious_compass"
       },
-      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.\\While [below the Bedrock](entry://dimension/getting_deeper_down), it softly vibrates as you turn."
+      "text": "book.spectrum.guidebook.general.mysterious_locket.page2.text"
     },
     {
       "type": "modonomicon:image",
@@ -57,16 +57,16 @@
         "spectrum:textures/gui/guidebook/locket.png"
       ],
       "border": true,
-      "text": "There also was a small note inside... who could it have belonged to?"
+      "text": "book.spectrum.guidebook.general.mysterious_locket.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "A Challenge?",
+      "title": "book.spectrum.guidebook.general.mysterious_locket.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:endgame/learn_dreiton"
       },
-      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:\\\\_Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light._"
+      "text": "book.spectrum.guidebook.general.mysterious_locket.page4.text"
     }
   ]
 }

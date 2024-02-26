@@ -1,14 +1,14 @@
 {
-  "name": "Paintbrush",
+  "name": "book.spectrum.guidebook.general.paintbrush.name",
   "icon": "spectrum:paintbrush",
   "category": "spectrum:general",
 
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.paintbrush.description",
+  "x": 10,
+  "y": 2,
 
   "sortnum": 3,
   "turnin": "spectrum:craft_using_pedestal",
@@ -18,32 +18,32 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Paintbrush",
-      "text": "Why a _brush_ of all things?\\\\Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
+      "title": "book.spectrum.guidebook.general.paintbrush.page0.title",
+      "text": "book.spectrum.guidebook.general.paintbrush.page0.text"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "Crafting Recipe",
+      "title1": "book.spectrum.guidebook.general.paintbrush.page1.title1",
       "recipe_id_1": "spectrum:crafting_table/paintbrush",
-      "text": "Give the [Pigment Pedestal](entry://general/pedestal) a hearty whack with it to make it start crafting."
+      "text": "book.spectrum.guidebook.general.paintbrush.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Block Coloring",
+      "title": "book.spectrum.guidebook.general.paintbrush.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "text": "What better use is there for [Pigment](entry://general/pigment) than coloring with it?\\[#](449900)Crouch while having your Paintbrush equipped to bring up the color selection menu[#](). You just have to slightly touch the block you would like to color for the [Pigment](entry://general/pigment) to flow into it and convert it into its colored variant."
+      "text": "book.spectrum.guidebook.general.paintbrush.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Paint Slinging",
+      "title": "book.spectrum.guidebook.general.paintbrush.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/fill_ink_container"
       },
-      "text": "Now that you've discovered Ink, your brush has another function: you can bundle ink as a projectile and fling it.\\The surface (or creature!) that the projectile hits will be painted as long as the block there is able to be recolored."
+      "text": "book.spectrum.guidebook.general.paintbrush.page3.text"
     }
   ]
 }

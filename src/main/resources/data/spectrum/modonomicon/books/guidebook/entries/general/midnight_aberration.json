@@ -1,5 +1,5 @@
 {
-  "name": "The Perfect Compound?",
+  "name": "book.spectrum.guidebook.general.midnight_aberration.name",
   "icon": "spectrum:midnight_aberration",
   "sortnum": 13,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.midnight_aberration.description",
+  "x": 2,
+  "y": 2,
 
   "turnin": "spectrum:midgame/create_midnight_aberration",
   "extra_recipe_mappings": {
@@ -22,13 +22,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Your latest findings of your [last experiment](entry://creating_life/failing) make you strive for more and more: to squeeze every last ounce of energy out of your Gemstones.\\\\[Neolith](entry://creating_life/failing@neolith) is the key! With such strength and power, it will combine the powers of all the gemstones into one. This relic will be the capstone to your creation, alone for you and ONLY for you, master of Pigment!"
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "The fusion of these magical energies will try your Shrine like nothing before - with a display to match. Best to make sure your shrine and the blocks around it are fortified.\\Requires daytime and a clear sky."
+      "title1": "book.spectrum.guidebook.general.midnight_aberration.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,8 +39,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/create_midnight_aberration"
       },
-      "title": "Midnight Aberration",
-      "text": "_This abomination of a Gemstone radiates an eerie aura._\\\\_It looks loosely connected at best. No wonder it falls apart in your hands in no time. Total failure._"
+      "title": "book.spectrum.guidebook.general.midnight_aberration.page2.title",
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page2.text"
     },
     {
       "type": "modonomicon:text",
@@ -48,7 +48,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/create_midnight_aberration"
       },
-      "text": "While the chaos that ensued _definitely_ was not the outcome you craved for, the result still does hold immense power.\\So much in fact, that if not used quick it crumbles into dust.\\\\And then there is that aggressive blackish fluid that manifested in the process. Because of its color you named it [Midnight Solution](entry://magical_blocks/midnight_solution)."
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page3.text"
     }
   ]
 }

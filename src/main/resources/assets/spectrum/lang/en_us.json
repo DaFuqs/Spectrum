@@ -180,6 +180,7 @@
   "container.spectrum.rei.potion_workshop_crafting.title": "Potion Workshop Crafting",
   "container.spectrum.rei.potion_workshop.crafting_time": "%f seconds",
   "container.spectrum.rei.potion_workshop_reacting.title": "Potion Reagents",
+  "container.spectrum.rei.primordial_fire_burning.title": "Primordial Fire Burning",
 
   "spectrum.rei.potion_workshop_reacting.minecraft.dragon_breath": "• Creates Lingering Potions - also requires Gunpowder as reagent\n• Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles",
   "spectrum.rei.potion_workshop_reacting.minecraft.redstone": "• +100% duration",

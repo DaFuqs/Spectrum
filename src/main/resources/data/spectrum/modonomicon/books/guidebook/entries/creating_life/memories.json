@@ -1,5 +1,5 @@
 {
-  "name": "Memories",
+  "name": "book.spectrum.guidebook.creating_life.memories.name",
   "icon": {
     "item": "spectrum:memory",
     "nbt": {
@@ -18,9 +18,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.memories.description",
+  "x": 2,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:memory": 0
@@ -28,7 +28,7 @@
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Memories",
+      "title": "book.spectrum.guidebook.creating_life.memories.page0.title",
       "item": {
         "item": "spectrum:memory",
         "nbt": {
@@ -38,18 +38,18 @@
           "TicksToManifest": 20
         }
       },
-      "text": "With the [Spirit Instiller](entry://creating_life/spirit_instiller), you are able to breathe new life into a once dead creature.\\It will materialise in the form of a _Memory_."
+      "text": "book.spectrum.guidebook.creating_life.memories.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Spirit Inst. Recipe",
-      "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "To remember the memories about a creature, you need its [Head](entry://creating_life/mob_heads), as well as its most beloved item and [Vegetal](entry://creating_life/fading@vegetal) as a bonding agent.\\Using [Neolith](entry://creating_life/failing@neolith) seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests."
+      "title1": "book.spectrum.guidebook.creating_life.memories.page1.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/memories/fox",
+      "text": "book.spectrum.guidebook.creating_life.memories.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Manifesting",
-      "text": "Memories need a certain amount of time to manifest, almost like an egg: you have to place them down and wait. Depending on the creature, it may be reasonably quick, or take forever.\\\\_Placing them on top of certain blocks seems to speed up that process or stop it entirely._"
+      "title": "book.spectrum.guidebook.creating_life.memories.page2.title",
+      "text": "book.spectrum.guidebook.creating_life.memories.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -57,11 +57,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/unlock_remembering_boss_memories"
       },
-      "title": "Reviving Bosses",
+      "title": "book.spectrum.guidebook.creating_life.memories.page3.title",
       "item": {
         "item": "minecraft:dragon_head"
       },
-      "text": "With your vast knowledge, you are now even able to resurrect Ender Dragons, Withers and Wardens."
+      "text": "book.spectrum.guidebook.creating_life.memories.page3.text"
     }
   ]
 }

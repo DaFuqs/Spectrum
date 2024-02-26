@@ -1,5 +1,5 @@
 {
-  "name": "Experiment #2: Failing",
+  "name": "book.spectrum.guidebook.creating_life.falling.name",
   "icon": "spectrum:bottle_of_failing",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.falling.description",
+  "x": 8,
+  "y": 0,
 
   "turnin": "spectrum:midgame/collect_neolith",
   "extra_recipe_mappings": {
@@ -25,13 +25,13 @@
       "item": {
         "item": "spectrum:bottle_of_failing"
       },
-      "text": "Ambition has taken hold of you, seriously. These are your first big leaps towards changing the world.\\Empowered by the potent energy of your [Onyx](entry://general/onyx_shards) and [Stratine](entry://resources/stratine), this second organism you created is clearly... more active than your last creation.\\\\**And DEFINITELY hungrier.**\\**WAY hungrier.**"
+      "text": "book.spectrum.guidebook.creating_life.falling.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/bottle_of_failing",
-      "text": "Maybe one of the sturdiest materials you know can satisfy their hunger? What has to be done has to be done."
+      "title1": "book.spectrum.guidebook.creating_life.falling.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
+      "text": "book.spectrum.guidebook.creating_life.falling.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,12 +39,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
       },
-      "title": "Neolith",
+      "title": "book.spectrum.guidebook.creating_life.falling.page2.title",
       "anchor": "neolith",
       "item": {
         "item": "spectrum:neolith"
       },
-      "text": "The Obsidian was literally pulverized. This is what you call power!\\\\The result was this sturdy reagent.\\Very powerful.\\Yes."
+      "text": "book.spectrum.guidebook.creating_life.falling.page2.text"
     }
   ]
 }

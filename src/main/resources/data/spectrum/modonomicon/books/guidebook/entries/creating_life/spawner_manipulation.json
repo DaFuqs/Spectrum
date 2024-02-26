@@ -1,5 +1,5 @@
 {
-  "name": "Spawner Manipulation",
+  "name": "book.spectrum.guidebook.creating_life.spawner_manipulation.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/unlock_spawner_manipulation"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.spawner_manipulation.description",
+  "x": 8,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "minecraft:spawner": 0
@@ -20,41 +20,41 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Harvesting Spawners",
+      "title": "book.spectrum.guidebook.creating_life.spawner_manipulation.page0.title",
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "The [Resonance](entry://enchanting/resonance) enchantment enables you to get Spawners to drop, to be collected by you.\\\\While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the [Spirit Instiller](entry://creating_life/spirit_instiller)."
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Changing Creature",
-      "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
-      "text": "Using a similar technique to [remembering Memories](entry://creating_life/memories) you can change the Spawners creature association, making it spew out another type of creature altogether."
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page1.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_creature_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page1.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Spawn Delay",
-      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
-      "text": "Lowers both min and max spawn delay."
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page2.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page2.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Spawn Count",
-      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
-      "text": "Increases the count of Creatures summoned with each cycle."
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page3.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page3.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Summoning Criteria",
-      "recipe": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
-      "text": "Increases the number of creatures allowed to be close to the spawner.\\_Spawners seem to naturally stop spawning creatures when there are a lot of them close-by already. Almost like they want to give you a chance. Pathetic, isn't it? As if you would need that._"
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page4.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page4.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Activation Range",
-      "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
-      "text": "Increases the range you can stand for the spawner to still spawn creatures."
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page5.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page5.text"
     }
   ]
 }

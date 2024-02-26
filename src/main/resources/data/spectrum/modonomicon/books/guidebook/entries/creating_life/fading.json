@@ -1,5 +1,5 @@
 {
-  "name": "Experiment #1: Fading",
+  "name": "book.spectrum.guidebook.creating_life.fading.name",
   "icon": "spectrum:bottle_of_fading",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.fading.description",
+  "x": 6,
+  "y": 0,
 
   "turnin": "spectrum:collect_vegetal",
   "extra_recipe_mappings": {
@@ -25,13 +25,13 @@
       "item": {
         "item": "spectrum:bottle_of_fading"
       },
-      "text": "It did not take long, there the idea for a construction plan came to you.\\\\The organism you came up with is weak, but it seems that your plans to create new life were successful, at least in principle! Admittedly, it is only a clump of microorganisms, but they are alive!"
+      "text": "book.spectrum.guidebook.creating_life.fading.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/bottle_of_fading",
-      "text": "Every living being has basically the same goals: eat & reproduce. So... what do these weak creatures eat? Other Blocks? Definitely something easy to digest."
+      "title1": "book.spectrum.guidebook.creating_life.fading.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/bottle_of_fading",
+      "text": "book.spectrum.guidebook.creating_life.fading.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,12 +39,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_vegetal"
       },
-      "title": "Vegetal",
+      "title": "book.spectrum.guidebook.creating_life.fading.page2.title",
       "anchor": "vegetal",
       "item": {
         "item": "spectrum:vegetal"
       },
-      "text": "The answer seemed to be organics! Easily digestible indeed.\\When digested by the organism, an interesting by-product was created that you called Vegetal. It consists of the **raw energy of nature**.\\\\You are sure that it will be very useful to you."
+      "text": "book.spectrum.guidebook.creating_life.fading.page2.text"
     }
   ]
 }

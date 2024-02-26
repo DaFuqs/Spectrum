@@ -1,5 +1,5 @@
 {
-  "name": "Kindlings",
+  "name": "book.spectrum.guidebook.creating_life.kindlings.name",
   "icon": "spectrum:kindling_head",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.kindlings.description",
+  "x": 0,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:kindling_head": 0,
@@ -21,19 +21,19 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Kindlings",
-      "text": "Those grand skeletons that dot the depths... even in death, the dragons bear so much might and life to them, there must be some way to recreate their splendor via those [Dragonbone Chunks](entry://dimension/dragonbone@dragonbone_chunks).\\\\Maybe you will be the one to restore the age of divine dragons?"
+      "title": "book.spectrum.guidebook.creating_life.kindlings.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Remembering",
-      "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
-      "text": "_Your own personal fierce dragon. This will be great._"
+      "title1": "book.spectrum.guidebook.creating_life.kindlings.page1.title1",
+      "recipe_id_1": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "A small Surprise",
-      "text": "_So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?_\\\\The result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?"
+      "title": "book.spectrum.guidebook.creating_life.kindlings.page2.title",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page2.text"
     },
     {
       "type": "modonomicon:entity",
@@ -44,7 +44,7 @@
       "entity_id": "spectrum:kindling",
       "scale": 0.45,
       "offset": 0.5,
-      "text": "Their down looks beyond soft.\\_Maybe, if you sneak up to one with [#](bb00bb)Shears[#](), you are able to snip a feather or two?_"
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page3.text"
     },
     {
       "type": "modonomicon:empty",

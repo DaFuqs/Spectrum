@@ -26,13 +26,10 @@ import net.minecraft.util.JsonHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookNbtSpotlightPage extends BookSpotlightPage implements BookConditionalPage {
+public class BookNbtSpotlightPage extends BookSpotlightPage {
 
-    private final BookCondition condition;
-
-    public BookNbtSpotlightPage(BookTextHolder title, BookTextHolder text, Ingredient item, String anchor, BookCondition condition) {
+    public BookNbtSpotlightPage(BookTextHolder title, BookTextHolder text, Ingredient item, String anchor) {
         super(title, text, item, anchor);
-        this.condition = condition;
     }
 
     public static BookNbtSpotlightPage fromJson(JsonObject json) {
@@ -40,10 +37,7 @@ public class BookNbtSpotlightPage extends BookSpotlightPage implements BookCondi
         var item = getAsIngredientWithNbt(JsonHelper.getObject(json, "item"));
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
-        var condition = json.has("condition")
-                ? BookCondition.fromJson(JsonHelper.getObject(json, "condition"))
-                : new BookNoneCondition();
-        return new BookNbtSpotlightPage(title, text, item, anchor, condition);
+        return new BookNbtSpotlightPage(title, text, item, anchor);
     }
 
     public static BookNbtSpotlightPage fromNetwork(PacketByteBuf buffer) {
@@ -51,8 +45,7 @@ public class BookNbtSpotlightPage extends BookSpotlightPage implements BookCondi
         var item = Ingredient.fromPacket(buffer);
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
-        var condition = BookCondition.fromNetwork(buffer);
-        return new BookNbtSpotlightPage(title, text, item, anchor, condition);
+        return new BookNbtSpotlightPage(title, text, item, anchor);
     }
 
     private static Ingredient getAsIngredientWithNbt(JsonObject item) {
@@ -87,19 +80,4 @@ public class BookNbtSpotlightPage extends BookSpotlightPage implements BookCondi
         return ModonomiconCompat.NBT_SPOTLIGHT_PAGE;
     }
 
-    @Override
-    public void toNetwork(PacketByteBuf buffer) {
-        title.toNetwork(buffer);
-        item.write(buffer);
-        text.toNetwork(buffer);
-        buffer.writeString(this.anchor);
-        BookCondition.toNetwork(condition, buffer);
-    }
-
-    @Override
-    public boolean isPageUnlocked() {
-//        MinecraftClient client = MinecraftClient.getInstance();
-//        return condition.test(BookConditionContext.of(book, parentEntry), client.player);
-        return true;
-    }
 }

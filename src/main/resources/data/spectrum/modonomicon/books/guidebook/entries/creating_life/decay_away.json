@@ -1,5 +1,5 @@
 {
-  "name": "Decay Away",
+  "name": "book.spectrum.guidebook.creating_life.decay_away.name",
   "icon": "spectrum:bottle_of_decay_away",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,27 +10,27 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.decay_away.description",
+  "x": 2,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:bottle_of_decay_away": 0
   },
   "pages": [
     {
-      "title": "Decay Away",
+      "title": "book.spectrum.guidebook.creating_life.decay_away.page0.title",
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:bottle_of_decay_away"
       },
-      "text": "Your last experiment was not only dangerous, but also quite a pain to get rid of.\\Just in case anything ever gets out of hand you created this modified variant. This time, though, to heal instead of flooding your base.\\\\Yeah, that's probably better."
+      "text": "book.spectrum.guidebook.creating_life.decay_away.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/bottle_of_decay_away",
-      "text": "Gets rid of 99 % of all self-replicating microorganisms."
+      "title1": "book.spectrum.guidebook.creating_life.decay_away.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_decay_away",
+      "text": "book.spectrum.guidebook.creating_life.decay_away.page1.text"
     }
   ]
 }

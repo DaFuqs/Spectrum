@@ -1,5 +1,5 @@
 {
-  "name": "Mob Heads",
+  "name": "book.spectrum.guidebook.creating_life.mob_heads.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/enchantments/treasure_hunter"
@@ -10,16 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.creating_life.mob_heads.description",
+  "x": 4,
+  "y": 2,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Mob Heads",
-      "text": "Using your new [Treasure Hunter](entry://enchanting/treasure_hunter) enchantment you are able to collect heads from all kinds of mobs.\\\\While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
+      "title": "book.spectrum.guidebook.creating_life.mob_heads.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.mob_heads.page0.text"
     },
     {
       "type": "spectrum:collection",

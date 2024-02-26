@@ -35,7 +35,7 @@
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "book.spectrum.guidebook.general.fusion_shrine.page2.title",
+      "multiblock_name": "book.spectrum.guidebook.general.fusion_shrine.page2.multiblock_name",
       "multiblock_id": "spectrum:fusion_shrine",
       "show_visualize_button": true,
       "text": "book.spectrum.guidebook.general.fusion_shrine.page2.text"

@@ -1,5 +1,5 @@
 {
-  "name": "Potion Workshop",
+  "name": "book.spectrum.guidebook.brewing.potion_workshop.name",
   "icon": "spectrum:potion_workshop",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.potion_workshop.description",
+  "x": 8,
+  "y": 2,
 
   "sortnum": 0,
   "extra_recipe_mappings": {
@@ -21,13 +21,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "In the meantime, you have come into possession of many new materials. It's time to take a close look at each of them to see what effect they have on your [#](bb00bb)Potions[#]().\\\\Your educated guess, as an expert: Awesome!"
+      "text": "book.spectrum.guidebook.brewing.potion_workshop.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of [#](bb00bb)Blaze Powder[#](), the Potion Workshop runs on [Mermaid's Gems](entry://resources/mermaids_brush). Main advantage is that you don't have to fill your bottles with water before."
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/potion_workshop",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop.page1.text"
     }
   ]
 }

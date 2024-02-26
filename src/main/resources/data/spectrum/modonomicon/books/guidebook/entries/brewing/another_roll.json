@@ -1,5 +1,5 @@
 {
-  "name": "Another Roll",
+  "name": "book.spectrum.guidebook.brewing.another_roll.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/another_roll"
@@ -10,20 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.another_roll.description",
+  "x": 0,
+  "y": 0,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:another_roll",
-      "text": "Influences the drops when using [#](449900)Fortune[#]() to mine ores, [#](449900)Looting[#]() to kill mobs, or other luck-based enchantments.\\Each level of Another Roll will increase your chances of getting the highest amount possible."
-    },
-    {
-      "type": "modonomicon:text",
-      "text": ""
+      "text": "book.spectrum.guidebook.brewing.another_roll.page0.text"
     }
   ]
 }

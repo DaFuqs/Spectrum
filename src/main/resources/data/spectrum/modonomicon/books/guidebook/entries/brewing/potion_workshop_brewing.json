@@ -1,5 +1,5 @@
 {
-  "name": "Brewing Potions",
+  "name": "book.spectrum.guidebook.brewing.potion_workshop_brewing.name",
   "icon": "spectrum:potion_workshop",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.potion_workshop_brewing.description",
+  "x": 10,
+  "y": 2,
 
   "priority": true,
   "sortnum": 1,
@@ -22,144 +22,134 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Brewing Potions",
-      "text": "Since the [Potion Workshop](entry://brewing/potion_workshop) is basically an upgraded [#](bb00bb)Brewing Stand[#](), you are able to create all the [#](bb00bb)Potion variants[#]() that were available to you before, too.\\In addition, the possibility to use magic items as ingredients opens new doors for you.\\\\Some of them are easier or harder to get enhanced effects from."
+      "title": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page0.title",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Vanilla Potion Variants",
-      "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
-      "text": "Create [#](bb00bb)Potions[#]() by using the same ingredients as you would in the vanilla [#](bb00bb)Brewing Stand[#](). Additionally, you can use [Reagents](entry://brewing@potion_workshop_reagents) to enhance their effects even further."
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page1.title1",
+      "recipe_id_1": "spectrum:potion_workshop_brewing/fire_resistance",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Absorption",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page2.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
-      "recipe": "spectrum:potion_workshop_brewing/absorption",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/absorption"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Glowing",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page3.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
-      "recipe": "spectrum:potion_workshop_brewing/glowing",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/glowing"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Haste",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page4.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
-      "recipe": "spectrum:potion_workshop_brewing/haste",
-      "text": "Adding a Fermented Spider Eye will change the Effect to **Mining Fatigue** instead."
+      "recipe_id_1": "spectrum:potion_workshop_brewing/haste",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page4.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Saturation",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page5.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
       },
-      "recipe": "spectrum:potion_workshop_brewing/saturation",
-      "text": "Adding a Fermented Spider Eye will change the Effect to **Hunger** instead."
+      "recipe_id_1": "spectrum:potion_workshop_brewing/saturation",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page5.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Levitation",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page6.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/levitation"
       },
-      "recipe": "spectrum:potion_workshop_brewing/levitation",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/levitation"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Luck",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page7.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/luck"
       },
-      "recipe": "spectrum:potion_workshop_brewing/luck",
-      "text": "Adding a Fermented Spider Eye will change the Effect to **Bad Luck** instead."
+      "recipe_id_1": "spectrum:potion_workshop_brewing/luck",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page7.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Resistance",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page8.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/resistance"
       },
-      "recipe": "spectrum:potion_workshop_brewing/resistance",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/resistance"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Wither",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page9.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/wither"
       },
-      "recipe": "spectrum:potion_workshop_brewing/wither",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/wither"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Darkness",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page10.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/darkness"
       },
-      "recipe": "spectrum:potion_workshop_brewing/darkness",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/darkness"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Toughness",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page11.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/toughness"
       },
-      "recipe": "spectrum:potion_workshop_brewing/toughness",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/toughness"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Deadly Poison",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page12.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/deadly_poison"
       },
-      "recipe": "spectrum:potion_workshop_brewing/deadly_poison",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/deadly_poison"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Life Drain",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page13.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/life_drain"
       },
-      "recipe": "spectrum:potion_workshop_brewing/life_drain",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/life_drain"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Scarred",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_brewing.page14.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/potions/scarred"
       },
-      "recipe": "spectrum:potion_workshop_brewing/scarred",
-      "text": ""
+      "recipe_id_1": "spectrum:potion_workshop_brewing/scarred"
     }
   ]
 }

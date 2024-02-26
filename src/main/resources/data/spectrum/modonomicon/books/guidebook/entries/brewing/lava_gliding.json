@@ -1,5 +1,5 @@
 {
-  "name": "Lava Gliding",
+  "name": "book.spectrum.guidebook.brewing.lava_gliding.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/lava_gliding"
@@ -10,20 +10,20 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.lava_gliding.description",
+  "x": 0,
+  "y": 2,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:lava_gliding",
-      "text": "[#](449900)Increases your movement speed and visibility in Lava[#]() with each level."
+      "text": "book.spectrum.guidebook.brewing.lava_gliding.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Does, however, **NOT** protect you from Fire or Lava damage.\\\\_Calls for a slapstick sketch at your expense, doesn't it?_"
+      "text": "book.spectrum.guidebook.brewing.lava_gliding.page1.text"
     }
   ]
 }

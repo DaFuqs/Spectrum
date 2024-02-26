@@ -1,5 +1,5 @@
 {
-  "name": "Toughness",
+  "name": "book.spectrum.guidebook.brewing.toughness.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/toughness"
@@ -10,20 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.toughness.description",
+  "x": 10,
+  "y": 4,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:toughness",
-      "text": "[#](449900)Weakens powerful attacks[#]() that hit you.\\While great against single, deadly strikes, it does little against lots of small attacks."
-    },
-    {
-      "type": "modonomicon:text",
-      "text": ""
+      "text": "book.spectrum.guidebook.brewing.toughness.page0.text"
     }
   ]
 }

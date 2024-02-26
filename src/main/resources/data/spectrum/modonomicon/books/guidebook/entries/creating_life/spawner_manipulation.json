@@ -30,7 +30,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Changing Creature",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
-      "text": "Using a similar technique to [remembering Memories](entry://creating_life/memory) you can change the Spawners creature association, making it spew out another type of creature altogether."
+      "text": "Using a similar technique to [remembering Memories](entry://creating_life/memories) you can change the Spawners creature association, making it spew out another type of creature altogether."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

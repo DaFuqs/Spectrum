@@ -1,5 +1,5 @@
 {
-  "name": "Swiftness / Stiffness",
+  "name": "book.spectrum.guidebook.brewing.swiftness_stiffness.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/swiftness_stiffness"
@@ -10,21 +10,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.swiftness_stiffness.description",
+  "x": 8,
+  "y": 4,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:swiftness",
-      "text": "[#](449900)Increases your attack speed[#]() with every level.\\Allows you to repeatedly attack at lightning speed without giving your opponents a chance to attack you."
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.text"
     },
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:stiffness",
-      "text": "[#](449900)Decreases your attack speed[#]() with every level instead."
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page1.text"
     }
   ]
 }

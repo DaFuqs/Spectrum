@@ -1,5 +1,5 @@
 {
-  "name": "Immunity",
+  "name": "book.spectrum.guidebook.brewing.immunity.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/immunity"
@@ -10,20 +10,20 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.brewing.immunity.description",
+  "x": 10,
+  "y": 0,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:immunity",
-      "text": "[#](449900)Removes all negative status effects[#](), when applied. Also prevents you from getting any new ones, as long as Immunity is active"
+      "text": "book.spectrum.guidebook.brewing.immunity.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Some effects seem to be powerful enough to resist your immunity."
+      "text": "book.spectrum.guidebook.brewing.immunity.page1.text"
     }
   ]
 }

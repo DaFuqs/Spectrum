@@ -1,5 +1,5 @@
 {
-  "name": "Moonstone Pedestal (2)",
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.name",
   "icon": "spectrum:pedestal_moonstone",
   "sortnum": 19,
   "condition": {
@@ -11,47 +11,47 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.description",
+  "x": 6,
+  "y": 4,
 
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Moonstone Pedestal",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.title",
       "item": {
         "item": "spectrum:moonstone_chiseled_basalt"
       },
-      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more [#](d0d6d7)Moonstone[#]() exactly. The tricky part: Creating the required [#](bb00bb)Moonstone Chiseled Blocks[#]() would require you being able to use your [#](bb00bb)Moonstone Pedestal[#]() to it's full capability already.\\_Could there be a way to get around that?_"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Spectrum Palace",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.multiblock_name",
       "multiblock_id": "spectrum:pedestal_complex",
       "show_visualize_button": true,
-      "text": "Dimensions: 13x13x7 blocks"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Complete)",
-      "text": "- 1 Pigment Pedestal\\- 4 Onyx Chiseled Blocks\\- 4 Notched Polished Blocks-- 8 Gemstone Lamps\\- 4 Gemstone Chiseled Blocks\\- 12 Polished Gemstone Blocks\\- 16 CMY Gemstone Chiseled Bl.\\- 28 Moonstone Chiseled Bl.\\- 36 Polished Pillars\\- 52 Polished Crests\\- 144 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Upgrade)",
-      "text": "- 28 Moonstone Chiseled Bl."
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "Individualize!",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page4.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() up to create your personal variation!"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page5.text"
     }
   ]
 }

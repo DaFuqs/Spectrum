@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Shards",
+  "name": "book.spectrum.guidebook.general.shards.name",
   "icon": "minecraft:amethyst_shard",
   "sortnum": 2,
   "category": "spectrum:general",
@@ -7,9 +7,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.shards.description",
+  "x": 2,
+  "y": 6,
 
   "turnin": "spectrum:collect_all_basic_shards",
   "extra_recipe_mappings": {
@@ -23,7 +23,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "To start delving into Spectrum you first have to find some gemstone shards.\\\\Each kind of gemstone represents an elemental color and a different kind of natural force."
+      "text": "book.spectrum.guidebook.general.shards.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -32,11 +32,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
       },
-      "title": "Topaz Shards",
+      "title": "book.spectrum.guidebook.general.shards.page1.title",
       "item": {
         "item": "spectrum:topaz_shard"
       },
-      "text": "Topaz Shards lie surprisingly heavy in your hand. This gemstone quickly turned out to be one of the most robust materials you've ever gotten your hands on - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.\\The Topaz represents [#](157687)**MATTER**.[#]()"
+      "text": "book.spectrum.guidebook.general.shards.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -45,11 +45,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
       },
-      "title": "Amethyst Shards",
+      "title": "book.spectrum.guidebook.general.shards.page2.title",
       "item": {
         "item": "minecraft:amethyst_shard"
       },
-      "text": "Magenta light refracts in this gemstone.\\Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.\\\\The Amethyst represents [#](641f9c)**TIME**[#]()."
+      "text": "book.spectrum.guidebook.general.shards.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -58,11 +58,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
       },
-      "title": "Citrine Shards",
+      "title": "book.spectrum.guidebook.general.shards.page3.title",
       "item": {
         "item": "spectrum:citrine_shard"
       },
-      "text": "This yellow gemstone is found close to surface level where the suns light dissipates into warmth.\\\\Its bright yellow luster radiates pure [#](f0af15)**ENERGY**[#]() and makes it slightly warm to the touch at all times."
+      "text": "book.spectrum.guidebook.general.shards.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -71,11 +71,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:create_onyx_shard"
       },
-      "title": "Onyx Shards",
+      "title": "book.spectrum.guidebook.general.shards.page4.title",
       "item": {
         "item": "spectrum:onyx_shard"
       },
-      "text": "Onyx is nearly pitch black. It almost seems as if it drains the light from its surroundings.\\\\The Onyx, as a combination of energy, matter, and time, serves as a reinforcing focus and [#](000000)**CATALYST**[#]() for magical tools and devices."
+      "text": "book.spectrum.guidebook.general.shards.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -84,11 +84,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"
       },
-      "title": "Moonstone Shards",
+      "title": "book.spectrum.guidebook.general.shards.page5.title",
       "item": {
         "item": "spectrum:moonstone_shard"
       },
-      "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.\\\\The Moonstone embodies pure [#](d0d6d7)**MAGIC**[#]()."
+      "text": "book.spectrum.guidebook.general.shards.page5.text"
     }
   ]
 }

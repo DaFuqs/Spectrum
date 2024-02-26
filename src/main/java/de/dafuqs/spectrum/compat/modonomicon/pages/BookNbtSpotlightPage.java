@@ -98,7 +98,8 @@ public class BookNbtSpotlightPage extends BookSpotlightPage implements BookCondi
 
     @Override
     public boolean isPageUnlocked() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        return condition.test(BookConditionContext.of(book, parentEntry), client.player);
+//        MinecraftClient client = MinecraftClient.getInstance();
+//        return condition.test(BookConditionContext.of(book, parentEntry), client.player);
+        return true;
     }
 }

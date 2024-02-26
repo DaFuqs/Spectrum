@@ -1,5 +1,5 @@
 {
-  "name": "Moonstone Pedestal",
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.name",
   "icon": "spectrum:pedestal_moonstone",
   "sortnum": 18,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.description",
+  "x": 4,
+  "y": 4,
 
   "turnin": "spectrum:hidden/build_any_complex_structure",
   "extra_recipe_mappings": {
@@ -22,26 +22,26 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Moonstone Pedestal",
-      "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
-      "text": "Upgrade your [Pigment Pedestal](entry://general/pedestal) by using one of your gathered [Moonstone Shards](entry://general/shards@moonstone)."
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page0.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pedestal_moonstone",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Spectrum Palace",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page1.multiblock_name",
       "multiblock_id": "spectrum:pedestal_complex_incomplete",
       "show_visualize_button": true,
-      "text": "Dimensions: 13x13x7 blocks"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Complete)",
-      "text": "- 1 Pigment Pedestal\\- 4 Onyx Chiseled Blocks\\- 4 Notched Polished Blocks\\- 8 Gemstone Lamps\\- 4 Gemstone Chiseled Blocks\\- 12 Polished Gemstone Blocks\\- 16 CMYK Chiseled Blocks\\- 36 Polished Pillars\\- 52 Polished Crests\\- 172 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Upgrade)",
-      "text": "- 4 Onyx Chiseled Blocks\\- 4 Polished Gemstone Blocks\\- 36 Polished Crests\\- 12 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page3.text"
     }
   ]
 }

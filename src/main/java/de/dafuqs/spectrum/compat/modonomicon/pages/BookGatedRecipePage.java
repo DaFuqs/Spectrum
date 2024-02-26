@@ -65,12 +65,13 @@ public class BookGatedRecipePage<T extends GatedRecipe> extends BookRecipePage<T
 
     @Override
     public boolean isPageUnlocked() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (!condition.test(BookConditionContext.of(book, parentEntry), client.player)) {
-            return false;
-        }
-        return (recipe1 != null && recipe1.canPlayerCraft(client.player))
-                || (recipe2 != null && recipe2.canPlayerCraft(client.player));
+//        MinecraftClient client = MinecraftClient.getInstance();
+//        if (!condition.test(BookConditionContext.of(book, parentEntry), client.player)) {
+//            return false;
+//        }
+//        return (recipe1 != null && recipe1.canPlayerCraft(client.player))
+//                || (recipe2 != null && recipe2.canPlayerCraft(client.player));
+        return true;
     }
 
 }

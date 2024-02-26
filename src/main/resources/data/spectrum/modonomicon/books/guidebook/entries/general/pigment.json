@@ -1,5 +1,5 @@
 {
-  "name": "Pigment",
+  "name": "book.spectrum.guidebook.general.pigment.name",
   "icon": "spectrum:magenta_pigment",
   "sortnum": 8,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.pigment.description",
+  "x": 10,
+  "y": 4,
 
   "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
   "extra_recipe_mappings": {
@@ -54,7 +54,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of [Colored Trees](entry://general/colored_trees).\\And by using a hoe harvesting them is pretty fast, too.\\These pigments, composed of their fundamentals [#](aa32a0)**TIME**[#](), [#](f0af15)**ENERGY**[#]() and [#](157687)**MATTER**[#](), definitely feel magical.\\\\Still not fully convinced all of these even exist. How many can you find?"
+      "text": "book.spectrum.guidebook.general.pigment.page0.text"
     },
     {
       "type": "spectrum:checklist",
@@ -76,7 +76,7 @@
         "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)White",
         "spectrum:hidden/collect_pigment/collect_yellow_pigment": "[#](f0af15)Yellow"
       },
-      "text": "A hypothetical list?"
+      "text": "book.spectrum.guidebook.general.pigment.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -88,7 +88,7 @@
       "item": {
         "item": "spectrum:black_pigment"
       },
-      "text": "The darkest material you have ever held in your hands. It looks almost surreal.\\\\[#](000000)Black[#]() represents the nothingness of the _Void_, _Power_ and _Mystery_."
+      "text": "book.spectrum.guidebook.general.pigment.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -100,7 +100,7 @@
       "item": {
         "item": "spectrum:blue_pigment"
       },
-      "text": "Holding it in your hand gives you a sign of security. Of course, all nonsense, after all, it is only a color. But still...\\\\[#](2c2e8e)Blue[#]() represents _Safety_ and _Permanence_."
+      "text": "book.spectrum.guidebook.general.pigment.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -112,7 +112,7 @@
       "item": {
         "item": "spectrum:brown_pigment"
       },
-      "text": "This rich brown makes you long for mother nature.\\\\[#](613c20)Brown[#]() represents _Nature_ and _Stability_."
+      "text": "book.spectrum.guidebook.general.pigment.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -124,7 +124,7 @@
       "item": {
         "item": "spectrum:cyan_pigment"
       },
-      "text": "It makes you feel as if you are sitting on the top of a mountain, taking in the never-ending vastness of the world.\\\\[#](157687)Cyan[#]() represents _Matter_ and _Integrity_."
+      "text": "book.spectrum.guidebook.general.pigment.page5.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -136,7 +136,7 @@
       "item": {
         "item": "spectrum:gray_pigment"
       },
-      "text": "This color looks to you like the defeated older brother of light gray. Whenever you look at it you get a little sad, but you do not know exactly why.\\\\[#](36393d)Gray[#]() represents _Evanescence_."
+      "text": "book.spectrum.guidebook.general.pigment.page6.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -148,7 +148,7 @@
       "item": {
         "item": "spectrum:green_pigment"
       },
-      "text": "This pigment softly radiates inner peace.\\\\[#](495b24)Green[#]() represents _Balance_ and _Harmony_."
+      "text": "book.spectrum.guidebook.general.pigment.page7.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -160,7 +160,7 @@
       "item": {
         "item": "spectrum:light_blue_pigment"
       },
-      "text": "Looking at this color, you feel a sense of optimism, but also departure.\\\\[#](258ac8)Light Blue[#]() represents _Luck_ and _Peace_."
+      "text": "book.spectrum.guidebook.general.pigment.page8.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -172,7 +172,7 @@
       "item": {
         "item": "spectrum:light_gray_pigment"
       },
-      "text": "You know that feeling when you are sitting serenely, looking at the landscape, feeling life pass you by, and yet everything is okay?\\\\[#](7d7d73)Light Gray[#]() represents _Change_, but also _Quiet_."
+      "text": "book.spectrum.guidebook.general.pigment.page9.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -184,7 +184,7 @@
       "item": {
         "item": "spectrum:lime_pigment"
       },
-      "text": "This juicy lime almost smells like a warm spring morning. Or are you just imagining?\\\\[#](5faa19)Lime[#]() represents _Happiness_ and _Fertility_."
+      "text": "book.spectrum.guidebook.general.pigment.page10.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -196,7 +196,7 @@
       "item": {
         "item": "spectrum:magenta_pigment"
       },
-      "text": "This soft magenta puts you in a calm and content, almost serene mood.\\\\[#](aa32a0)Magenta[#]() represents _Time_, _Kindness_ and _Tolerance_."
+      "text": "book.spectrum.guidebook.general.pigment.page11.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -208,7 +208,7 @@
       "item": {
         "item": "spectrum:orange_pigment"
       },
-      "text": "This orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.\\\\[#](e16201)Orange[#]() represents _Warmth_ and _Comfort_."
+      "text": "book.spectrum.guidebook.general.pigment.page12.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -220,7 +220,7 @@
       "item": {
         "item": "spectrum:pink_pigment"
       },
-      "text": "This bright, lively cotton candy pink makes you beam with joy.\\\\[#](d6658f)Pink[#]() represents _Health_ and _Admiration_."
+      "text": "book.spectrum.guidebook.general.pigment.page13.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -232,7 +232,7 @@
       "item": {
         "item": "spectrum:purple_pigment"
       },
-      "text": "This sight makes your mind go into high gear. It not only stimulates your thirst for knowledge, but also gives you creative ideas.\\\\[#](641f9c)Purple[#]() represents _Wisdom_ and _Creativity_."
+      "text": "book.spectrum.guidebook.general.pigment.page14.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -244,7 +244,7 @@
       "item": {
         "item": "spectrum:red_pigment"
       },
-      "text": "You feel the urge and the desire to create something beautiful.\\\\[#](8f2121)Red[#]() represents _Passion_ and _Willpower_."
+      "text": "book.spectrum.guidebook.general.pigment.page15.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -256,7 +256,7 @@
       "item": {
         "item": "spectrum:white_pigment"
       },
-      "text": "You can not exactly put it into words. This pigment radiates something unspeakably wonderful.\\\\$(c_white)White[#]() represents _LIFE_, _Light_ and _Purity_."
+      "text": "book.spectrum.guidebook.general.pigment.page16.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -268,13 +268,13 @@
       "item": {
         "item": "spectrum:yellow_pigment"
       },
-      "text": "The vibrant yellow is almost bursting with energy.\\\\[#](f0af15)Yellow[#]() represents _Energy_ and _Joy_."
+      "text": "book.spectrum.guidebook.general.pigment.page17.text"
     },
     {
-      "title": "Pigment Blocks",
+      "title1": "book.spectrum.guidebook.general.pigment.page18.title1",
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/pigment_blocks/magenta_block",
-      "text": "They can get crafted back into [#](bb00bb)Pigment[#]()."
+      "recipe_id_1": "spectrum:pedestal/tier1/pigment_blocks/magenta_block",
+      "text": "book.spectrum.guidebook.general.pigment.page18.text"
     }
   ]
 }

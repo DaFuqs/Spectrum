@@ -1,5 +1,5 @@
 {
-  "name": "Pedestal CMY Upgrade",
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.name",
   "icon": "spectrum:pedestal_all_basic",
   "sortnum": 9,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.description",
+  "x": 2,
+  "y": 4,
 
   "turnin": "spectrum:build_basic_pedestal_structure",
   "extra_recipe_mappings": {
@@ -22,37 +22,37 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "CMY Variant",
-      "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
-      "text": "Upgrade your [Pigment Pedestal](entry://general/pedestal) by using all the shards you collected on your journey."
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page0.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Pedestal Structure",
-      "text": "To make use of the [Pigment Pedestal's](entry://general/pedestal) advanced abilities you will need a structure to focus gemstone energy into it.\\\\You call it the\\**Spectrum Focus**."
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page1.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Spectrum Focus",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.multiblock_name",
       "multiblock_id": "spectrum:pedestal_simple",
       "show_visualize_button": true,
-      "text": "Dimensions: 11x11x4 blocks. But best to leave a few additional blocks of space around, just to make sure."
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Block Checklist",
-      "text": "-1 Pigment Pedestal\\-4 Polished Gemstone Blocks\\-4 Chiseled Polished Blocks\\-4 Notched Polished Blocks\\-8 Polished Pillars\\-68 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "Individualize!",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page4.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() up to create your personal variation!"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_cmy.page5.text"
     }
   ]
 }

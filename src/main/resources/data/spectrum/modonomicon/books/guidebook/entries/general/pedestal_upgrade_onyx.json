@@ -1,5 +1,5 @@
 {
-  "name": "Pedestal Onyx Upgrade",
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.name",
   "icon": "spectrum:pedestal_onyx",
   "sortnum": 12,
   "condition": {
@@ -11,9 +11,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.description",
+  "x": 8,
+  "y": 4,
 
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
   "extra_recipe_mappings": {
@@ -22,37 +22,37 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Onyx Variant",
-      "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
-      "text": "Upgrade your [Pigment Pedestal](entry://general/pedestal) by using one of your [Onyx Shards](entry://general/shards@onyx) to further increase its magical powers."
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/pedestal_onyx",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Spectrum Temple",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page1.multiblock_name",
       "multiblock_id": "spectrum:pedestal_advanced",
       "show_visualize_button": true,
-      "text": "Dimensions: 13x13x6 blocks"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Complete)",
-      "text": "- 1 Pigment Pedestal\\- 8 Polished Gemstone Blocks\\- 8 Gemstone Lamps\\- 4 Chiseled Polished Blocks\\- 16 Gemstone Chiseled Blocks\\- 16 Polished Crests\\- 4 Notched Polished Blocks\\- 36 Polished Pillars\\- 160 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Checklist (Upgrade)",
-      "text": "- 4 Polished Gemstone Blocks\\- 8 Gemstone Lamps\\- 16 Gemstone Chiseled Blocks\\- 16 Polished Crests\\- 28 Polished Pillars\\- 92 Polished Blocks"
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page3.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "Individualize!",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page4.title",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_hall_customisation.png"
       ]
     },
     {
       "type": "modonomicon:text",
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up [#](bb00bb)Calcite[#]() and [#](bb00bb)Basalt[#]() up to create your personal variation!"
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page5.text"
     }
   ]
 }

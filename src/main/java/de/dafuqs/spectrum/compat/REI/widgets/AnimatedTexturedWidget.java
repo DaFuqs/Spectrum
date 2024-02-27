@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.widgets;
 
 import com.mojang.blaze3d.systems.*;
-import me.shedaniel.clothconfig2.api.animator.*;
 import me.shedaniel.math.*;
-import me.shedaniel.rei.api.client.*;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.util.*;
@@ -19,9 +17,6 @@ public class AnimatedTexturedWidget extends BurningFire {
     private final int textureWidth;
     private final int textureHeight;
     private double animationDurationMS = -1;
-    private final NumberAnimator<Float> darkBackgroundAlpha = ValueAnimator.ofFloat()
-            .withConvention(() -> REIRuntime.getInstance().isDarkThemeEnabled() ? 1.0F : 0.0F, ValueAnimator.typicalTransitionTime())
-            .asFloat();
     
     public AnimatedTexturedWidget(Identifier texture, Rectangle bounds, int textureWidth, int textureHeight) {
         this.texture = texture;
@@ -45,15 +40,13 @@ public class AnimatedTexturedWidget extends BurningFire {
     
     @Override
     public void render(DrawContext graphics, int mouseX, int mouseY, float delta) {
-        this.darkBackgroundAlpha.update(delta);
-        
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         if (getAnimationDuration() > 0) {
             int index = MathHelper.ceil((System.currentTimeMillis() / (animationDurationMS / animationCount) % animationCount));
-            graphics.drawTexture(texture, getX(), getY(), 0, index * 16, 16, 16, textureWidth, textureHeight);
+            graphics.drawTexture(texture, getX(), getY(), 0, index * 16, textureWidth, textureWidth, textureWidth, textureHeight);
         } else {
-            graphics.drawTexture(texture, getX(), getY(), 0, 0, 16, 16, textureWidth, textureHeight);
+            graphics.drawTexture(texture, getX(), getY(), 0, 0, textureWidth, textureWidth, textureWidth, textureHeight);
         }
     }
     

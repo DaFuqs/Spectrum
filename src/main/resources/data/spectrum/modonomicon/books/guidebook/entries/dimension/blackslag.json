@@ -1,5 +1,5 @@
 {
-  "name": "Blackslag",
+  "name": "book.spectrum.guidebook.dimension.blackslag.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_blackslag"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.dimension.blackslag.description",
+  "x": 2,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:blackslag": 0,
@@ -30,7 +30,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "Blackslag",
+      "title": "book.spectrum.guidebook.dimension.blackslag.page0.title",
       "items": [
         "spectrum:blackslag",
         "spectrum:blackslag_stairs",
@@ -65,26 +65,26 @@
         "spectrum:cracked_blackslag_bricks",
         "spectrum:cracked_blackslag_tiles"
       ],
-      "text": "A common, darkish and sturdy stone that constitutes a large part of the lower levels of the Deeper Down."
+      "text": "book.spectrum.guidebook.dimension.blackslag.page0.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "Polishing",
+      "title1": "book.spectrum.guidebook.dimension.blackslag.page1.title1",
       "recipe_id_1": "spectrum:smelting/cobbled_blackslag_to_blackslag",
       "recipe_id_2": "spectrum:smelting/blackslag_to_polished_blackslag",
-      "text": "The [#](bb00bb)Blast Furnace[#]() smelts these stones even faster than a [#](bb00bb)Furnace[#]()."
+      "text": "book.spectrum.guidebook.dimension.blackslag.page1.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "Cracking",
+      "title1": "book.spectrum.guidebook.dimension.blackslag.page2.title1",
       "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_blackslag_bricks",
-      "text": "Bricks & Tiles can get cracked."
+      "text": "book.spectrum.guidebook.dimension.blackslag.page2.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "Smelting them back",
+      "title1": "book.spectrum.guidebook.dimension.blackslag.page3.title1",
       "recipe_id_1": "spectrum:smelting/polished_blackslag_unsmelting",
-      "text": "By applying heat, all blocks can be converted back to their polished variant again."
+      "text": "book.spectrum.guidebook.dimension.blackslag.page3.text"
     }
   ]
 }

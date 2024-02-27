@@ -1,5 +1,5 @@
 {
-  "name": "Black Langast",
+  "name": "book.spectrum.guidebook.dimension.black_langast.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/black_langast"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.dimension.black_langast.description",
+  "x": 0,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:black_sludge": 0
@@ -20,16 +20,16 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Black Langast",
+      "title": "book.spectrum.guidebook.dimension.black_langast.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/dd_black_langast.png"
       ],
       "border": true,
-      "text": "[Midnight Solution](entry://magical_blocks/midnight_solution) everywhere."
+      "text": "book.spectrum.guidebook.dimension.black_langast.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have had a similar experience to yours.... only much more tragic.\\\\The _things_ growing here - calling them plants would be an outrage even to [#](bb00bb)Dead Bushes[#]() - look anything but healthy."
+      "text": "book.spectrum.guidebook.dimension.black_langast.page1.text"
     }
   ]
 }

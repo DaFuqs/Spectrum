@@ -68,11 +68,13 @@ Function Set-TranslatedGuidebookEntry {
         [int] $Index = 0
     )
 
+    Write-Output "Processing $CategoryName/$EntryName..."
+
     $Output = '{}' | ConvertFrom-Json
 
+    $RawLang = Get-Content -Raw $LangPath
     if ($null -eq $Lang) {
-        $ActualLang = Get-Content $LangPath | Out-String
-        $Lang = $ActualLang | ConvertFrom-Json
+        $Lang = $RawLang | ConvertFrom-Json
     }
 
     $ContentPath = "$GuidebookPath/$CategoryName/$EntryName.json"
@@ -82,8 +84,8 @@ Function Set-TranslatedGuidebookEntry {
     Set-Translation $Lang $Output $Content $Prefix 'name'
     Set-Translation $Lang $Output $Content $Prefix 'description'
 
-    $Content.x = ($index * 2) % 10
-    $Content.y = [int][Math]::Floor(($index * 2) / 10)
+    $Content.x = ($index % 6) * 2
+    $Content.y = [int][Math]::Floor($index / 6) * 2
 
     For ($I = 0; $I -lt $Content.pages.length; $I++) {
         $Page = $Content.pages[$I]
@@ -113,32 +115,55 @@ Function Set-TranslatedGuidebookEntry {
     $JsonContent = $Content | ConvertTo-Json -Depth 100
     $JsonContent | Out-File $ContentPath
 
-    Write-Output $Output
-
     $JsonLang = $Output | ConvertTo-Json -Depth 100
     $JsonLang = $JsonLang.Replace("\\", "\\\n").Replace("\u0027", "'")
     If ($JsonLang.length -ge 3) {
-        $StrippedActualLang = $ActualLang.Substring(2)
+        $StrippedRawLang = $RawLang.Substring(2)
         $StrippedNewLang = $JsonLang.Substring(0, $JsonLang.length - 3)
-        $LangWithOutput = $StrippedNewLang + "," + $StrippedActualLang
-
+        $LangWithOutput = $StrippedNewLang + "," + $StrippedRawLang
         $LangWithOutput | Out-File $LangPath
     }
 }
 
 Function Set-TranslatedGuidebookCategory {
     Param (
-        [String] $CategoryName
+        [String] $CategoryName,
+        [Object] $Lang
     )
 
-    $Files = Get-ChildItem $Path -Filter *.json
+    Write-Output "`nBeginning $CategoryName..."
+
+    if ($null -eq $Lang) {
+        $Lang = Get-Content -Raw $LangPath | ConvertFrom-Json
+    }
+
+    $CategoryPath = "$GuidebookPath/$CategoryName"
+    $Files = Get-ChildItem $CategoryPath -Filter *.json
 
     # Reverse order so the lang ends up correctly sorted
     For ($I = $Files.length - 1; $I -ge 0; $I--) {
         $File = $Files[$I]
         $EntryName = $File.Name -replace '(.*)\.json', '$1'
-        Set-TranslatedGuidebookEntry $CategoryName $EntryName
+        Set-TranslatedGuidebookEntry $CategoryName $EntryName $Lang $I
     }
 }
 
-Set-TranslatedGuidebookEntry 'enchanting' 'big_catch'
+Function Set-TranslatedGuidebook {
+    Write-Output "Beginning Guidebook..."
+
+    $Lang = Get-Content -Raw $LangPath | ConvertFrom-Json
+    $Dirs = Get-ChildItem $GuidebookPath
+
+    # Reverse order so the lang ends up correctly sorted
+    For ($I = $Dirs.length - 1; $I -ge 0; $I--) {
+        $Dir = $Dirs[$I]
+        $CategoryName = $Dir.Name
+        Set-TranslatedGuidebookCategory $CategoryName $Lang
+    }
+
+    Write-Output "`nProcessing Complete!`n"
+}
+
+#Set-TranslatedGuidebook
+Set-TranslatedGuidebookCategory 'decoration'
+#Set-TranslatedGuidebookEntry 'enchanting' 'big_catch'

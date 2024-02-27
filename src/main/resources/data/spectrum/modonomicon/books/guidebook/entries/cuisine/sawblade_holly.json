@@ -1,5 +1,5 @@
 {
-  "name": "Sawblade Holly",
+  "name": "book.spectrum.guidebook.cuisine.sawblade_holly.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.sawblade_holly.description",
+  "x": 2,
+  "y": 6,
 
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
@@ -25,19 +25,18 @@
       "item": {
         "item": "spectrum:sawblade_holly_berry"
       },
-      "text": "These berries remind you of [#](bb00bb)Sweetberries[#](). In contrast to those, however, these are much drier.\\Can be eaten, but have an unpleasant consistency. Better than nothing, should things get tough."
+      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:prickly_bayleaf"
       },
-      "text": "Harvested by shearing a Sawblade Holly Bush. Can be used as a [Potion Reagent](entry://brewing/potion_workshop_reagents@prickly_bayleaf) and in cooking.\\\\_Clearly easier to digest cooked than raw..._"
+      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/triple_meat_pot_stew",
-      "text": ""
+      "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_stew"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -45,8 +44,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/dragonbone_broth"
       },
-      "recipe": "spectrum:pedestal/tier1/food/dragonbone_broth",
-      "text": ""
+      "recipe_id_1": "spectrum:pedestal/tier1/food/dragonbone_broth"
     }
   ]
 }

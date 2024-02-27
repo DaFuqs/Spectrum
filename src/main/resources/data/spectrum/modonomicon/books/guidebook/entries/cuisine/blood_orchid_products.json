@@ -1,5 +1,5 @@
 {
-  "name": "Blood Orchid Products",
+  "name": "book.spectrum.guidebook.cuisine.blood_orchid_products.name",
   "icon": "spectrum:bloodboil_syrup",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.blood_orchid_products.description",
+  "x": 4,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:bloodboil_syrup": 0,
@@ -22,21 +22,21 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Blood Orchid Products",
+      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.title",
       "item": {
         "item": "spectrum:bloodboil_syrup"
       },
-      "text": "Extracts of the [Blood Orchid](entry://resources/blood_orchids) have an intense effect when consumed: they may put you in a [#](449900)Frenzy[#]().\\Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Frenzy Stacking",
-      "text": "Instead of resetting the duration, applying another [#](449900)Frenzy[#]() effect will increase its potency instead.\\\\In order to get the most out of the effect apply one with a long duration first, then stack up seems to be most effective."
+      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.title",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
-      "text": "A Petals active ingredient can be extracted into a thick solution. Almost smells like rose water, but its effect is definitely... _a little more effervescent_."
+      "recipe_id_1": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -44,8 +44,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/demon_trifle"
       },
-      "recipe": "spectrum:pedestal/tier1/food/demon_trifle",
-      "text": "The [#](449900)Frenzy[#]() effect you may get is starts out low, but lasts a bit longer."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/demon_trifle",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page3.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -53,8 +53,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/demon_tea"
       },
-      "recipe": "spectrum:potion_workshop_crafting/demon_tea",
-      "text": "The [#](449900)Frenzy[#]() effect you may get is relatively short, but starts out quite high."
+      "recipe_id_1": "spectrum:potion_workshop_crafting/demon_tea",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page4.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -62,9 +62,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/rabbit_poison"
       },
-      "title": "Rabbit Poison",
-      "recipe": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
-      "text": "A truly nasty brew. Tastes exactly what you would expect."
+      "title1": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.title1",
+      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.text"
     }
   ]
 }

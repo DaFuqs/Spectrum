@@ -1,5 +1,5 @@
 {
-  "name": "Amaranth",
+  "name": "book.spectrum.guidebook.cuisine.amaranth.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/reveal_amaranth"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.amaranth.description",
+  "x": 2,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
@@ -24,18 +24,18 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Amaranth",
-      "text": "Though seemingly left behind for quite some time now, these seeds still look very much alive. You wonder what comes out of it when grown?"
+      "title": "book.spectrum.guidebook.cuisine.amaranth.page0.title",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "Amaranth Grains",
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
       "recipe_id_1": "spectrum:anvil_crushing/amaranth_grains",
-      "text": "You never have seen anything like it. Such an intense red. So expressive!\\These Bushels can be crushed to get more grains.\\\\They can also be planted decoratively on grass or in a flower pot."
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -43,9 +43,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "title": "Honey Pastry",
-      "recipe": "spectrum:pedestal/tier1/food/honey_pastry",
-      "text": "The taste of Amaranth is as different from Wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page2.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/honey_pastry",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -53,9 +53,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
       },
-      "title": "Scones",
-      "recipe": "spectrum:pedestal/tier1/food/scone",
-      "text": "Small but fine pastry filled with cream.\\\\_Perfect with tea._"
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page3.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/scone",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page3.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -63,9 +63,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/triple_meat_pot_pie"
       },
-      "title": "Triple Meat Pot Pie",
-      "recipe": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
-      "text": "This feast is guaranteed to fill your belly for quite some time.\\\\_Full of fat and meat and wine and warp!_"
+      "title1": "book.spectrum.guidebook.cuisine.amaranth.page4.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
+      "text": "book.spectrum.guidebook.cuisine.amaranth.page4.text"
     }
   ]
 }

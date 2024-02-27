@@ -1,5 +1,5 @@
 {
-  "name": "Titration Barrel",
+  "name": "book.spectrum.guidebook.cuisine.titration_barrel.name",
   "icon": "spectrum:titration_barrel",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.titration_barrel.description",
+  "x": 10,
+  "y": 6,
 
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
@@ -25,69 +25,69 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The idea of fermenting [food](entry://cuisine/titration_barrel@kimchi) and [drinks](entry://cuisine/infused_beverages) in [Colored Wood](entry://general/colored_trees@colored_wood) was not far away. Over time, the properties of the wood influences its contents.\\The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the latter could of course also be due to your cooking skills.)\\Holds up to a stack of items and 1 bucket of liquid."
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/titration_barrel",
-      "text": "_When you blink and it felt like the world stopped existing? Each time that happens, the barrel fermentation process seems to have advanced._"
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/titration_barrel",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page1.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Kimchi",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page2.title1",
       "anchor": "kimchi",
-      "recipe": "spectrum:titration_barrel/kimchi",
-      "text": "Fermentation is not for drinks alone! Made from 3 different vegetables, Kimchi is a hearty dish, best served as a side."
+      "recipe_id_1": "spectrum:titration_barrel/kimchi",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page2.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "anchor": "fermented_spider_eyes",
-      "recipe": "spectrum:titration_barrel/fermented_spider_eyes",
-      "text": "Takes a short while, but more efficient than just slapping those together."
+      "recipe_id_1": "spectrum:titration_barrel/fermented_spider_eyes",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page3.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Clotted Cream",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page4.title1",
       "anchor": "clotted_cream",
-      "recipe": "spectrum:titration_barrel/clotted_cream",
-      "text": "Slightly fermented, it still keeps the properties of [#](bb00bb)Milk[#](). Eating will remove currently active Status Effects."
+      "recipe_id_1": "spectrum:titration_barrel/clotted_cream",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page4.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Clotted Cream",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page5.title1",
       "anchor": "clotted_cream",
-      "recipe": "spectrum:titration_barrel/clotted_cream_fluid",
-      "text": "Slightly fermented, it still keeps the properties of [#](bb00bb)Milk[#](). Eating will remove currently active Status Effects."
+      "recipe_id_1": "spectrum:titration_barrel/clotted_cream_fluid",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page5.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Fresh Chocolate",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page6.title1",
       "anchor": "fresh_chocolate",
-      "recipe": "spectrum:titration_barrel/fresh_chocolate",
-      "text": "A great snack. Biting off a piece is quick and even makes you reasonably full.\\Pleasantly sweet and fruity."
+      "recipe_id_1": "spectrum:titration_barrel/fresh_chocolate",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page6.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Bodacious Berry Bar",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page7.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/bodacious_berry_bar"
       },
       "anchor": "bodacious_berry_bar",
-      "recipe": "spectrum:pedestal/tier1/food/bodacious_berry_bar",
-      "text": "An elaborate feast of flavor that is guaranteed to make your mouth water."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/bodacious_berry_bar",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page7.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Hot Chocolate",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page8.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
       "anchor": "hot_chocolate",
-      "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
-      "text": "Perfect to come to the calm and in the cold season."
+      "recipe_id_1": "spectrum:potion_workshop_crafting/hot_chocolate",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page8.text"
     }
   ]
 }

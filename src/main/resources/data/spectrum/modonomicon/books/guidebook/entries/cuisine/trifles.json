@@ -1,5 +1,5 @@
 {
-  "name": "Trifles",
+  "name": "book.spectrum.guidebook.cuisine.trifles.name",
   "icon": "spectrum:jaramel_trifle",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.trifles.description",
+  "x": 0,
+  "y": 8,
 
   "extra_recipe_mappings": {
     "spectrum:jaramel_trifle": 0,
@@ -22,13 +22,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings.\\Made from [Jaramel](entry://resources/jade_vines@jaramel), [#](449900)Gelatin[#]() & [Amaranth](entry://cuisine/amaranth).\\Even the simple one tastes great!"
+      "text": "book.spectrum.guidebook.cuisine.trifles.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Jaramel Trifle",
-      "recipe": "spectrum:pedestal/tier1/food/jaramel_trifle",
-      "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
+      "title1": "book.spectrum.guidebook.cuisine.trifles.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -36,13 +36,13 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
-      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
-      "text": "_Extra Salty_"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/monster_trifle",
-      "text": "Gives out effects at random. Fancy a gamble?"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/monster_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page3.text"
     }
   ]
 }

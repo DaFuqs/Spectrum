@@ -1,5 +1,5 @@
 {
-  "name": "Melochites Cookbook Vol. 1",
+  "name": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.name",
   "icon": "spectrum:melochites_cookbook_vol_1",
   "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1",
   "category": "spectrum:cuisine",
@@ -7,9 +7,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.description",
+  "x": 2,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:melochites_cookbook_vol_1": 0
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:snippet",
-      "title": "Melochites cuisine",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page0.title",
       "resource_path": "spectrum:textures/gui/guidebook/mehrunes_chellaya_vol_1.png",
       "resource_width": 116,
       "resource_height": 116,
@@ -26,53 +26,53 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "$(o)   Aunt Melaya"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Hoi nephews! Whether this is your first time reading perusing a cookbook, or you are a seasoned cook that has been following my tattling a while, I hope you are ready to explore some wonderful recipes with your aunt Malaya. Together we will delve into some gorgeous traditional recipes from my corner of the deep that I hope you will love~! \\\\ $(o) ~Mehrunes Chellaya of Melochites"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "A Sweet, Woody Stew",
-      "text": "\\Hearty, filling, and invigorating - Banyash may very well be the backbone of Melochites! \\\\ This simple dish of crawfish is a bit of a favorite of mine, though the recent state of the surface has made access to sweet berries somewhat difficult. Nonetheless, it remains the choice of malachite miners for good reason!"
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page2.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/banyash",
-      "text": "_A sweet and savory Banyash, with notes of the woods. made with crawfish and love~_"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/banyash",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Hearty Roast with Beer",
-      "text": "\\Young hare is a delicacy not just here in Melochites, but in most of any place where Dreitons roam. If you get the chance, please, $(o)please$() try using an artisanal azurte stout in this recipe, that kind of beer is only made in a sparse few areas of Melochites but trust me, hard as it may be to get, it is life changing with rabbit."
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page4.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/hare_roast_malt",
-      "text": "_While a malt beer is traditional, any good, artisanal brew will do_"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/hare_roast_malt",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Loaf for a Family",
-      "text": "\\Feeding an entire group of people is no easy feat, but it is something that any mother has had to deal with on the regular, I can tell you that much myself. This recipe for meatloaf has been passed down, doe to kit, in my family for generations - just thinking about how my mom used to cook it makes me tear up a bit... I hope that you will pass it down onto your own kids."
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page6.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page6.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/meatloaf",
-      "text": "_A lovely way to feed your own nieces and nephews... \\\\ you are planning to feed a family right?_"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/meatloaf",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page7.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Stuffing Buns with Meat",
-      "recipe": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
-      "text": "_Much more suitable for a single person.\\\\ Though admittedly, it is still too big to fit in me._"
+      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page8.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page8.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Fermented Fish",
-      "recipe": "spectrum:titration_barrel/surstromming",
-      "text": "_For the really freaky among you. Really takes your breath away._"
+      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page9.title1",
+      "recipe_id_1": "spectrum:titration_barrel/surstromming",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page9.text"
     }
   ]
 }

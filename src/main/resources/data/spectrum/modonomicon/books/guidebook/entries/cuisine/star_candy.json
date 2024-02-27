@@ -1,5 +1,5 @@
 {
-  "name": "Star Candy",
+  "name": "book.spectrum.guidebook.cuisine.star_candy.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/star_candy"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.star_candy.description",
+  "x": 4,
+  "y": 6,
 
   "extra_recipe_mappings": {
     "spectrum:star_candy": 0,
@@ -21,17 +21,17 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "It seems those [Shooting Stars](entry://resources/stargazing) have more secrets than you previously thought, and weird ones at that.\\Baked [Stardust](entry://resources/stargazing@stardust) tastes oddly refreshing, the magic makes your tongue tingle as the heaven-sent candy dissolves in your mouth. You felt an odd lot healthier afterwards.\\Their hard, golden flesh has some purple speckles, shimmering like star shards."
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/food/star_candy",
-      "text": "Perhaps the speckles are the source of their restorative properties? You are left to wonder if it is possible to create a fully purple one."
+      "title1": "book.spectrum.guidebook.cuisine.star_candy.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/star_candy",
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "A rare Find",
+      "title": "book.spectrum.guidebook.cuisine.star_candy.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_purple_star_candy"
@@ -39,7 +39,7 @@
       "item": {
         "item": "spectrum:purple_star_candy"
       },
-      "text": "Now THAT's a tasty one!\\Even just touching those star-laden streaks gives you much the same tingle as when you ate the whole thing."
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page2.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Restoration Tea",
+  "name": "book.spectrum.guidebook.cuisine.restoration_tea.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/restoration_tea"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.restoration_tea.description",
+  "x": 10,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:restoration_tea": 0
@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Is there anything cozier than sitting by your homemade fireplace on a rainy evening, sipping a cup of tea?\\Surely: killing a boss beforehand.\\\\This tea, brewed from the petals of [Jade Vines](entry://resources/jade_vines) is both good for relaxing and protecting you from the deadly effect of the Wither. _Convenient_."
+      "text": "book.spectrum.guidebook.cuisine.restoration_tea.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Workshop Recipe",
-      "recipe": "spectrum:potion_workshop_crafting/restoration_tea",
-      "text": "_Don't even think about drinking that with [#](bb00bb)Milk[#]()!_"
+      "title1": "book.spectrum.guidebook.cuisine.restoration_tea.page1.title1",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/restoration_tea",
+      "text": "book.spectrum.guidebook.cuisine.restoration_tea.page1.text"
     }
   ]
 }

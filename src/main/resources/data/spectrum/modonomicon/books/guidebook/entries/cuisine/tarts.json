@@ -1,5 +1,5 @@
 {
-  "name": "Tarts",
+  "name": "book.spectrum.guidebook.cuisine.tarts.name",
   "icon": "spectrum:ashen_tart",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.tarts.description",
+  "x": 8,
+  "y": 6,
 
   "extra_recipe_mappings": {
     "spectrum:jaramel_tart": 0,
@@ -25,13 +25,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! \\\\You can garnish it with different toppings to grant you [#](449900)defensive abilities[#]() for a short duration."
+      "text": "book.spectrum.guidebook.cuisine.tarts.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Jaramel Tart",
-      "recipe": "spectrum:pedestal/tier1/food/jaramel_tart",
-      "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
+      "title1": "book.spectrum.guidebook.cuisine.tarts.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -39,28 +39,28 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
       },
-      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
-      "text": "_Extra Salty_"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/ashen_tart",
-      "text": "Makes you able to see & swim in Lava as were it Water.\\However, does NOT make you fire immune."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/ashen_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page3.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/weeping_tart",
-      "text": "Makes you able to swim at light speed and greatly increases your underwater mining rate."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/weeping_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/whispy_tart",
-      "text": "Makes you feel well rested, like after a good nights sleep. Scares away creatures of nightmares."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/whispy_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page5.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/puff_tart",
-      "text": "Small chance for projectiles to simply deflect off of you."
+      "recipe_id_1": "spectrum:pedestal/tier1/food/puff_tart",
+      "text": "book.spectrum.guidebook.cuisine.tarts.page6.text"
     }
   ]
 }

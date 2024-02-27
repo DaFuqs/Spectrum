@@ -1,5 +1,5 @@
 {
-  "name": "Melochites Cookbook Vol. 2",
+  "name": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.name",
   "icon": "spectrum:melochites_cookbook_vol_2",
   "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2",
   "category": "spectrum:cuisine",
@@ -7,9 +7,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.description",
+  "x": 4,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:melochites_cookbook_vol_2": 0
@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "spectrum:snippet",
-      "title": "Melochites Desserts",
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page0.title",
       "resource_path": "spectrum:textures/gui/guidebook/mehrunes_chellaya_vol_2.png",
       "resource_width": 116,
       "resource_height": 116,
@@ -26,61 +26,61 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "$(o)   Aunt Melaya"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Hoi nephews! Whether this is your first time reading perusing a cookbook, or you are a seasoned cook that has been following my tattling a while, I hope you are ready to explore some wonderful recipes with your aunt Malaya. Together we will explore some wondrous dessert and drink recipes from my home region, which I hope you'll enjoy~! \\\\ $(o) ~Mehrunes Chellaya of Melochites"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Creamy Shots",
-      "text": "\\While Melochites may be best known for the amount and quality of malachite it exports, I can tell you there is much more to this lovely place I call home. The breweries and distilleries nestled in this corner of the caves are nothing short of wonderful, and the lovely liquors they make have resulted in the creation of a lot of cocktails and drinks!"
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page2.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/slushslide",
-      "text": "_Leaves you feeling cozy inside_"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Plump and Chocolatey",
-      "text": "\\Oh, graces, of all the wonders of the surface, I can tell you none compare to the delightful cacao and chocolate. \\\\ If there were one thing that could compel me to permanently move out and up, it would be those two, they are truly wonderful, and if you disagree with me, I assure you this recipe will make change your mind."
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page4.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/berliner",
-      "text": "_If there is any proof that the Shura are still watching over us and life is good, this is it._"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "A Dessert Tart",
-      "text": "\\You know, sometimes it is easy to get caught up in the details of things, in nuance and long recipe lists. \\Sometimes, simpler is better,and this lovely pastry is a prime example of that; milk, flour, butter, and sugar, that is all you need - don't let those stuck up Imbrifer gourmets tell you tell you otherwise!"
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page6.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page6.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/cream_pastry",
-      "text": "_Sweet, crispy and delicate. \\\\Goes great with tea!_"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page7.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Stuffed Treat!",
-      "text": "\\A lot of people would say that us of Melochites are mighty eaters, and admittedly we do tend to be a bit plump. \\\\But, be honest nephew, if you lived in a place with a culinary tradition as rich as what I've shown you, wouldn't you get a bit peckish too? At any rate, I think a lot of you lovely readers appreciate my plumpness..."
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page8.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page8.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/food/rabbit_cream_pie",
-      "text": "_A pound of eggs, a pound of sugar, a pound of flour, and a pound of cream._"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page9.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Sugar Rush",
-      "text": "\\Believe me or not, Glass peaches are not only good with hearty food, but are also suitable for desserts. Try it out! With even more sugar than these parts already have preserved in the jar, this jam gives you a proper kick and whistles vigorously through your arteries."
+      "title": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page10.title",
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page10.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe": "spectrum:titration_barrel/peach_jam",
-      "text": "_So sweet it will color your blood orange._"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page11.text"
     }
   ]
 }

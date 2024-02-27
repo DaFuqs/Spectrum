@@ -39,7 +39,7 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 
     @Override
     protected int getRecipeHeight() {
-        return 56;
+        return 70;
     }
 
     @Override
@@ -49,6 +49,8 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 
         RenderSystem.enableBlend();
         drawContext.drawTexture(BACKGROUND_TEXTURE, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
+
+        renderTitle(drawContext, recipeY, second);
 
         Fluid fluid = recipe.getFluidInput();
         boolean usesFluid = fluid != Fluids.EMPTY;

@@ -1,5 +1,5 @@
 {
-  "name": "Lucky Roll",
+  "name": "book.spectrum.guidebook.cuisine.lucky_roll.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/lucky_roll"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.lucky_roll.description",
+  "x": 0,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:lucky_roll": 0
@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Are you going to become a pastry chef after all, in addition to your main job as an artist? These don't even look that bad (taste good too!).\\\\Composed of [Amaranth](entry://cuisine/amaranth), [#](bb00bb)Sugar[#](), [#](bb00bb)Milk[#](), and a [Four-Leafed Clover](entry://resources/clover), it has a very special effect: you noticed that you were a little bit more successful handling tools with Fortune, Looting and other random-based things."
+      "text": "book.spectrum.guidebook.cuisine.lucky_roll.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/food/lucky_roll",
-      "text": "_Lucky Roll, get it???_"
+      "title1": "book.spectrum.guidebook.cuisine.lucky_roll.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/lucky_roll",
+      "text": "book.spectrum.guidebook.cuisine.lucky_roll.page1.text"
     }
   ]
 }

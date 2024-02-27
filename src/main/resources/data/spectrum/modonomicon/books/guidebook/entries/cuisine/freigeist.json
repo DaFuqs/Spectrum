@@ -1,5 +1,5 @@
 {
-  "name": "Freigeist",
+  "name": "book.spectrum.guidebook.cuisine.freigeist.name",
   "icon": "spectrum:freigeist",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.freigeist.description",
+  "x": 0,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:freigeist": 0,
@@ -21,12 +21,12 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "As the first drop touched your lips, it already filled your body with immense might. Just the memory of it makes your hand _tremble_ of tension. That's no good.\\And yet you have never felt more powerful and alive than you did at this very moment.\\However, is it really worth emptying that vial? Should you die against all odds, the price will be immense."
+      "text": "book.spectrum.guidebook.cuisine.freigeist.page0.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe": "spectrum:titration_barrel/freigeist",
-      "text": "\\_Caress the one,\\ the never-fading\\Rain in your heart,\\ the tears of\\ snow-white sorrow\\Caress the one,\\ the hiding amaranth\\In a land of the daybreak_"
+      "recipe_id_1": "spectrum:titration_barrel/freigeist",
+      "text": "book.spectrum.guidebook.cuisine.freigeist.page1.text"
     }
   ]
 }

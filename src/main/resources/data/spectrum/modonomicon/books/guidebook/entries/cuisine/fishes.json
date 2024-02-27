@@ -1,5 +1,5 @@
 {
-  "name": "Fishes",
+  "name": "book.spectrum.guidebook.cuisine.fishes.name",
   "icon": "spectrum:crawfish",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.fishes.description",
+  "x": 10,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:crawfish": 0,
@@ -29,7 +29,7 @@
       "item": {
         "item": "spectrum:crawfish"
       },
-      "text": "Well, not actually a fish, but a _crustacean_.\\\\They seem to thrive even in the [muddiest of ponds](entry://magical_blocks/mud)."
+      "text": "book.spectrum.guidebook.cuisine.fishes.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -41,7 +41,7 @@
       "item": {
         "item": "spectrum:koi"
       },
-      "text": "A pale, large and indolent fish which feels most at home in puddles of [Liquid Crystal](entry://magical_blocks/liquid_crystal)."
+      "text": "book.spectrum.guidebook.cuisine.fishes.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Imbrifer Cookbook",
+  "name": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.name",
   "icon": "spectrum:imbrifer_cookbook",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.description",
+  "x": 4,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:imbrifer_cookbook": 0
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "spectrum:snippet",
-      "title": "Imbrifer Fine Dining",
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page0.title",
       "resource_path": "spectrum:textures/gui/guidebook/lorraine.png",
       "resource_width": 116,
       "resource_height": 116,
@@ -29,61 +29,61 @@
       "texture_width": 116,
       "texture_height": 116,
       "border": false,
-      "text": "$(o)   Chef Lorraine of Imbrifer"
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Welcome. Lets not get caught up with introductions - you're here because you want to learn how to cook, I can teach you. I studied in the Meriloux Culinary College, the finest culinary institution in the deep; I trained under the mentorship of Imperial Chef Aeverstrone, catering for the $(o)[#](ff3d71)scarlet moon bloodline[#](); I, with a team of my own apprentices, brought Imbrifer its first full-lotus restaurant. \\\\$(o)Follow my lead and I'll teach you true taste."
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "A Simple Entree",
-      "text": "\\Everybody has to start somewhere, and for my students, this is that somewhere. Crawfish Cocktails are deceiving, they seem simple, but to truly master them takes finesse and practice. It is possible to flambe the peaches and spices to make a sweet, syrupy, spicy sauce without cooking the crawfish, but it demands an immense amount of care. I use this to filter new students."
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page2.title",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/crawfish_cocktail",
-      "text": "_It can take hundreds of tries to get it right the first time.\\\\Many will crack before that._"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/crawfish_cocktail",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Melancholic Bisque",
-      "text": "\\Bagnun is a culinary school classic. A heavily spiced, luxurious soup cut by a dollop of fresh cream; the contrast of scarlet, peppery soup and refreshing pearly cream makes a feast for the eyes and tongue alike. There was a woman I used to know of melochites. She loved a soup not too dissimilar to this one. We used to be good friends long ago, she called me egocentric."
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page4.title",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/bagnun",
-      "text": "_    ....._"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/bagnun",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page5.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Soup of the Night",
-      "text": "\\The various plants of the Jade genus are generally desirable.\\\\Their bulbs in particular are highly sought after, being alike onions in texture, but more delicate, sweet and ethereal in taste, earning them the moniker of truffles of the deep. This recipe makes use of a modern crossbreed of two native species - the striking [Jade Vine](entry://resources/jade_vines)."
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page6.title",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page6.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
-      "text": "_I've heard Jade Vine nectar has restorative properties...\\\\what a curious crossbreed._"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page7.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Coy Koi Cold Cuts",
-      "text": "\\If anyone tells you that you need to cook fishcake, they're not just wrong, but also stupid. The proper way to prepare fishcake is to first spice and paste your fish, then let it ferment in a bath of nephrite vinegar for at least 72 hours. This will not just kill any parasites in the fish, but also cure the cake, giving it its signature pink colour."
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page8.title",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page8.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/fishcake",
-      "text": "_The finest fishcake cures for months, if not years._"
+      "recipe_id_1": "spectrum:pedestal/tier1/food/fishcake",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page9.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "An Essential Wine",
-      "text": "\\I am not a brewer, and thus I cannot give much past the ingredients for Aqua Regia.\\\\But I can note that, for the good chef, it is essential to understand your ingredients and how they are made. You cannot judge quality if you do not know how quality is created."
+      "title": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page10.title",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page10.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe": "spectrum:titration_barrel/special/aqua_regia",
-      "text": "_Know your ingredients, learn them, understand them._"
+      "recipe_id_1": "spectrum:titration_barrel/special/aqua_regia",
+      "text": "book.spectrum.guidebook.cuisine.imbrifer_cookbook.page11.text"
     }
   ]
 }

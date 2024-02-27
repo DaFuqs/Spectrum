@@ -1,5 +1,5 @@
 {
-  "name": "Glistering Jelly Tea",
+  "name": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/food/glistering_jelly_tea"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.description",
+  "x": 2,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:glistering_jelly_tea": 0
@@ -20,13 +20,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The [Jade Vine](entry://resources/jade_vines) is known for its regenerative properties, similar to [#](bb00bb)Glistering Melons[#](). As it happens, mixed together unfolds exquisitely harmonious, sweet taste.\\\\Temporarily grants you a small health boost."
+      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Workshop Recipe",
-      "recipe": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
-      "text": "_Don't even think about drinking that with milk!_"
+      "title1": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.title1",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
+      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.text"
     }
   ]
 }

@@ -11,7 +11,6 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "book.spectrum.guidebook.general.preservation_ruins.description",
   "x": 0,
   "y": 6,
   "extra_recipe_mappings": {
@@ -74,9 +73,9 @@
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
       "checklist": {
-        "spectrum:solve_color_mixing_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.color_mixing",
-        "spectrum:solve_dike_gate_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.dike_gate",
-        "spectrum:solve_wireless_redstone_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.wireless_redstone"
+        "spectrum:solve_color_mixing_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry0",
+        "spectrum:solve_dike_gate_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry1",
+        "spectrum:solve_wireless_redstone_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.entry2"
       },
       "text": "book.spectrum.guidebook.general.preservation_ruins.page2.text"
     },

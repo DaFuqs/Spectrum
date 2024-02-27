@@ -10,7 +10,6 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "book.spectrum.guidebook.general.onyx_shards.description",
   "x": 8,
   "y": 2,
   "turnin": "spectrum:create_onyx_shard",

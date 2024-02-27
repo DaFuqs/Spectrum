@@ -45,6 +45,26 @@ Function Set-Translation {
     }
 }
 
+Function Set-CustomTranslation {
+    Param (
+        [Object] $Lang,
+        [Object] $Output,
+        [Object] $Parent,
+        [String] $Translation,
+        [String] $PropertyName
+    )
+
+    If ($Parent."$PropertyName") {
+        If ($null -eq $Lang."$Translation") {
+            $Output | Add-Member -NotePropertyName "$Translation" -NotePropertyValue $Parent."$PropertyName"
+        }
+        $Parent."$PropertyName" = "$Translation"
+    }
+    ElseIf ($null -ne $Parent."$PropertyName") {
+        $Parent.PSObject.Properties.Remove("$PropertyName")
+    }
+}
+
 Function Set-RenamedProperty {
     Param (
         [Object] $Parent,
@@ -109,6 +129,14 @@ Function Set-TranslatedGuidebookEntry {
             Set-Translation $Lang $Output $Page $PagePrefix 'title'
         }
 
+        If ($Page.type -eq "spectrum:checklist") {
+            $J = 0
+            $Page.checklist.PSObject.Properties | ForEach-Object {
+                Set-CustomTranslation $Lang $Output $Page.checklist "$PagePrefix.checklist.entry$J" $_.Name
+                $J++
+            }
+        }
+
         Set-Translation $Lang $Output $Page $PagePrefix 'text'
     }
 
@@ -166,4 +194,4 @@ Function Set-TranslatedGuidebook {
 
 Set-TranslatedGuidebook
 #Set-TranslatedGuidebookCategory 'decoration'
-#Set-TranslatedGuidebookEntry 'enchanting' 'big_catch'
+#Set-TranslatedGuidebookEntry 'equipment' 'gemstone_armor'

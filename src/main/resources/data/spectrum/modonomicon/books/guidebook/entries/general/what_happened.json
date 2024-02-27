@@ -11,7 +11,6 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "book.spectrum.guidebook.general.what_happened.description",
   "x": 4,
   "y": 6,
   "extra_recipe_mappings": {},
@@ -24,18 +23,18 @@
       "type": "spectrum:checklist",
       "title": "book.spectrum.guidebook.general.what_happened.page1.title",
       "checklist": {
-        "spectrum:lategame/find_forgotten_city": "book.spectrum.guidebook.general.what_happened.page1.checklist.find_forgotten_city",
-        "spectrum:lategame/reached_dd_floor": "book.spectrum.guidebook.general.what_happened.page1.checklist.reached_dd_floor",
-        "spectrum:lategame/find_excavation_site": "book.spectrum.guidebook.general.what_happened.page1.checklist.find_excavation_site"
+        "spectrum:lategame/find_forgotten_city": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry0",
+        "spectrum:lategame/reached_dd_floor": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry1",
+        "spectrum:lategame/find_excavation_site": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry2"
       }
     },
     {
       "type": "spectrum:checklist",
       "checklist": {
-        "spectrum:lategame/revive_black_sludge_plant": "book.spectrum.guidebook.general.what_happened.page2.checklist.revive_black_sludge_plant",
-        "spectrum:lategame/break_cracked_dragonbone": "book.spectrum.guidebook.general.what_happened.page2.checklist.break_cracked_dragonbone",
-        "spectrum:lategame/strike_up_hummingstone_hymn": "book.spectrum.guidebook.general.what_happened.page2.checklist.strike_up_hummingstone_hymn",
-        "spectrum:lategame/collect_moonstone_shard": "book.spectrum.guidebook.general.what_happened.page2.checklist.collect_moonstone_shard"
+        "spectrum:lategame/revive_black_sludge_plant": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry0",
+        "spectrum:lategame/break_cracked_dragonbone": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry1",
+        "spectrum:lategame/strike_up_hummingstone_hymn": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry2",
+        "spectrum:lategame/collect_moonstone_shard": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry3"
       }
     },
     {

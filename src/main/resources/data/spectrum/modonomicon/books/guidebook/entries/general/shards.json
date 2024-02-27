@@ -6,7 +6,6 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "book.spectrum.guidebook.general.shards.description",
   "x": 2,
   "y": 6,
   "turnin": "spectrum:collect_all_basic_shards",

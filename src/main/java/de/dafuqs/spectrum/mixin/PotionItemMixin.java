@@ -18,7 +18,7 @@ public abstract class PotionItemMixin {
 	@ModifyReturnValue(method = "getMaxUseTime(Lnet/minecraft/item/ItemStack;)I", at = @At("RETURN"))
 	private int spectrum$modifyDrinkTime(int drinkTime, ItemStack stack) {
 		NbtCompound compound = stack.getNbt();
-		if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.INT_TYPE)) {
+		if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.NUMBER_TYPE)) {
 			int additionalDrinkDuration = compound.getInt("SpectrumAdditionalDrinkDuration");
 			drinkTime += Math.max(4, drinkTime + additionalDrinkDuration);
 		}
@@ -28,7 +28,7 @@ public abstract class PotionItemMixin {
 	@Inject(method = "appendTooltip(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Ljava/util/List;Lnet/minecraft/client/item/TooltipContext;)V", at = @At("TAIL"))
 	public void spectrum$appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
 		NbtCompound compound = stack.getNbt();
-		if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.INT_TYPE)) {
+		if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.NUMBER_TYPE)) {
 			int additionalDrinkDuration = compound.getInt("SpectrumAdditionalDrinkDuration");
 			if (additionalDrinkDuration > 0) {
 				tooltip.add(Text.translatable("item.spectrum.potion.slower_to_drink"));

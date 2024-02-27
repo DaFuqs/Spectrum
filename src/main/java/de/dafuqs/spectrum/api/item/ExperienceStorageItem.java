@@ -16,7 +16,7 @@ public interface ExperienceStorageItem {
 	 */
 	static int getStoredExperience(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+		if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.NUMBER_TYPE)) {
 			return 0;
 		} else {
 			return nbtCompound.getInt("stored_experience");
@@ -57,7 +57,7 @@ public interface ExperienceStorageItem {
 			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
 			
 			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-			if (!nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+			if (!nbtCompound.contains("stored_experience", NbtElement.NUMBER_TYPE)) {
 				nbtCompound.putInt("stored_experience", amount);
 				itemStack.setNbt(nbtCompound);
 				return 0;
@@ -93,7 +93,7 @@ public interface ExperienceStorageItem {
 	static boolean removeStoredExperience(ItemStack itemStack, int amount) {
 		if (itemStack.getItem() instanceof ExperienceStorageItem) {
 			NbtCompound nbtCompound = itemStack.getNbt();
-			if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
+			if (nbtCompound == null || !nbtCompound.contains("stored_experience", NbtElement.NUMBER_TYPE)) {
 				return false;
 			} else {
 				int existingStoredExperience = nbtCompound.getInt("stored_experience");

@@ -76,7 +76,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		} else {
 			this.openerUUID = null;
 		}
-		if (nbt.contains("OpeningTick", NbtElement.INT_TYPE)) {
+		if (nbt.contains("OpeningTick", NbtElement.NUMBER_TYPE)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}

@@ -1,5 +1,5 @@
 {
-  "name": "Item Roundel",
+  "name": "book.spectrum.guidebook.decoration.item_roundel.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/item_roundel"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.item_roundel.description",
+  "x": 4,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:item_roundel": 0
@@ -23,13 +23,13 @@
       "item": {
         "item": "spectrum:item_roundel"
       },
-      "text": "You very much took a liking to the rotating roundels in those ancient structures, so much that you copied their design yourself. Definitely a nice way to present your items, or keep them ready.\\\\_Hopefully the patents have already expired._"
+      "text": "book.spectrum.guidebook.decoration.item_roundel.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/item_roundel",
-      "text": "The basalt and calcite varieties you cobbled together hold significantly more items, up to 6 whole stacks."
+      "title1": "book.spectrum.guidebook.decoration.item_roundel.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/item_roundel",
+      "text": "book.spectrum.guidebook.decoration.item_roundel.page1.text"
     }
   ]
 }

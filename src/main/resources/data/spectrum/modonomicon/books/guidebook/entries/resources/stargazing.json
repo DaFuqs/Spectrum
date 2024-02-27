@@ -75,8 +75,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_shooting_star_variants"
       },
-      "title": "Star Hardening",
-      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
+      "title1": "Star Hardening",
+      "recipe_id_1": "spectrum:fusion_shrine/shooting_star_hardening",
       "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.\\\\_Fancy a Starball tournament with your friends?_"
     }
   ]

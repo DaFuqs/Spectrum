@@ -1,5 +1,5 @@
 {
-  "name": "Jade Petal Blocks",
+  "name": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.description",
+  "x": 6,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:jade_vine_petal_block": 0,
@@ -21,15 +21,14 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Jade Petal Blocks",
-      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
-      "text": "From the petals harvested from [Jade Vines](entry://resources/jade_vines) you created a small range of decoration blocks."
+      "title1": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.page0.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
+      "text": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Carpet",
-      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
-      "text": ""
+      "title1": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block"
     }
   ]
 }

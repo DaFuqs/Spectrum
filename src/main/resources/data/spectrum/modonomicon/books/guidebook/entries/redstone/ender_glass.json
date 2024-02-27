@@ -34,8 +34,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/ender_glass",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/ender_glass",
       "test": "With the smallest external influence in the form of blocks it falls back to the state of lowest energy."
     }
   ]

@@ -26,8 +26,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/redstone_calculator",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/redstone_calculator",
       "text": "Available modes: Addition, Subtraction, Multiplication, Division, Modulo, Min and Max. First input is the back, second the highest signal on the sides."
     }
   ]

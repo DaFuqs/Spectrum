@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
+      "title1": "Fusion Recipe",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/seven_league_boots",
       "text": "Increases both Movement Speed and Step Height."
     },
     {

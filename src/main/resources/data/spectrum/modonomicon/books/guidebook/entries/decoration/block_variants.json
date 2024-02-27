@@ -1,5 +1,5 @@
 {
-  "name": "Basalt & Calcite",
+  "name": "book.spectrum.guidebook.decoration.block_variants.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:spectrum"
@@ -10,19 +10,19 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.block_variants.description",
+  "x": 2,
+  "y": 0,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Remember the blocks that shielded your precious gemstones from external influences? \\\\Maybe they also absorbed some of the magical properties of the geodes themselves?\\Who knows."
+      "text": "book.spectrum.guidebook.decoration.block_variants.page0.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "Raw Variants",
+      "title": "book.spectrum.guidebook.decoration.block_variants.page1.title",
       "items": [
         "spectrum:smooth_basalt_slab",
         "spectrum:calcite_slab",
@@ -31,19 +31,19 @@
         "spectrum:smooth_basalt_wall",
         "spectrum:calcite_wall"
       ],
-      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across, looking very clean and radiating dignity. The white Calcite is a wonderful contrast to the dark hues of Basalt."
+      "text": "book.spectrum.guidebook.decoration.block_variants.page1.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
       "anchor": "polishing",
-      "title1": "Polishing",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page2.title1",
       "recipe_id_1": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe_id_2": "spectrum:smelting/calcite_to_polished_calcite",
-      "text": "Applying heat emphasizes their dark and white textures even more.\\When smelted, the Basalt almost turns black. They can be crafted into a wide array of decoration blocks in the [#](bb00bb)Crafting Table[#]() or [#](bb00bb)Stone Cutter[#]()."
+      "text": "book.spectrum.guidebook.decoration.block_variants.page2.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "Polished Variants",
+      "title": "book.spectrum.guidebook.decoration.block_variants.page3.title",
       "items": [
         "spectrum:polished_basalt_slab",
         "spectrum:polished_calcite_slab",
@@ -89,29 +89,29 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "Pillars & Crests",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page4.title1",
       "recipe_id_1": "spectrum:crafting_table/basalt/polished_basalt_pillar",
       "recipe_id_2": "spectrum:crafting_table/calcite/polished_calcite_crest"
     },
     {
       "type": "modonomicon:crafting_recipe",
       "anchor": "chiseled_and_notched",
-      "title1": "Chiseled & Notched",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page5.title1",
       "recipe_id_1": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
       "recipe_id_2": "spectrum:crafting_table/calcite/notched_polished_calcite"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "Cracking",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page6.title1",
       "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
-      "text": "You can crack Bricks & Tiles via [Item Crushing](entry://general/anvil_crushing)."
+      "text": "book.spectrum.guidebook.decoration.block_variants.page6.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "Smelting them back",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page7.title1",
       "recipe_id_1": "spectrum:smelting/polished_basalt_unsmelting",
       "recipe_id_2": "spectrum:smelting/polished_calcite_unsmelting",
-      "text": "By applying heat, all blocks can be converted back to their polished variant again."
+      "text": "book.spectrum.guidebook.decoration.block_variants.page7.text"
     }
   ]
 }

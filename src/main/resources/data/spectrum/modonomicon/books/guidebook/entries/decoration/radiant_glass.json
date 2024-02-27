@@ -1,5 +1,5 @@
 {
-  "name": "Radiant Glass",
+  "name": "book.spectrum.guidebook.decoration.radiant_glass.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_shimmerstone"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.radiant_glass.description",
+  "x": 0,
+  "y": 8,
 
   "extra_recipe_mappings": {
     "spectrum:radiant_glass": 0
@@ -23,14 +23,14 @@
       "item": {
         "item": "spectrum:radiant_glass"
       },
-      "title": "Radiant Glass",
-      "text": "You need a way to efficiently light your shelter and other structures.\\\\What could be better than using the luminous properties of [Shimmerstone](entry://resources/shimmerstone) directly in your glass?"
+      "title": "book.spectrum.guidebook.decoration.radiant_glass.page0.title",
+      "text": "book.spectrum.guidebook.decoration.radiant_glass.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/radiant_glass",
-      "text": "Radiant Glass is pretty much the opposite of Tinted Glass. The [Shimmerstone](entry://resources/shimmerstone) used in its manufacture ensures that the glass glows from within."
+      "title1": "book.spectrum.guidebook.decoration.radiant_glass.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/radiant_glass",
+      "text": "book.spectrum.guidebook.decoration.radiant_glass.page1.text"
     }
   ]
 }

@@ -30,12 +30,12 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Paltaeria Gem",
+      "title1": "Paltaeria Gem",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_paltaeria_gem"
       },
-      "recipe": "spectrum:pedestal/tier4/paltaeria_gem",
+      "recipe_id_1": "spectrum:pedestal/tier4/paltaeria_gem",
       "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
     },
     {

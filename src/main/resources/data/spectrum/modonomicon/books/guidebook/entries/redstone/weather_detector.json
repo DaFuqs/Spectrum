@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/detectors/weather_detector",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/detectors/weather_detector",
       "text": "Rain provides a signal with strength 8, thunderstorms of full 15."
     }
   ]

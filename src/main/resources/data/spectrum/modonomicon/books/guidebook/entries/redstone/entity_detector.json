@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/detectors/entity_detector",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/detectors/entity_detector",
       "text": "Outputs a cumulative strength of 1 for each creature within a 10 block radius."
     }
   ]

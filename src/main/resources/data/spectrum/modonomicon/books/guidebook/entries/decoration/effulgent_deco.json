@@ -1,5 +1,5 @@
 {
-  "name": "Effulgent Deco",
+  "name": "book.spectrum.guidebook.decoration.effulgent_deco.name",
   "icon": "spectrum:effulgent_block",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,35 +10,32 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.effulgent_deco.description",
+  "x": 10,
+  "y": 0,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You really have to envy the [Kindlings](entry://creating_life/kindlings), spending their days covered in these fluffy, poofy things. Beyond soft - luxurious both in feel and color, even with the [#](f0af15)golden liveliness[#]() that flows through them.\\You could see yourself falling asleep on a cushion made from these."
+      "text": "book.spectrum.guidebook.decoration.effulgent_deco.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_block",
-      "text": "Can be crafted back into [#](bb00bb)0bb)Feathers[#]()."
+      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_block",
+      "text": "book.spectrum.guidebook.decoration.effulgent_deco.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_cushion",
-      "text": ""
+      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_cushion"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers",
-      "text": ""
+      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks",
-      "text": ""
+      "recipe_id_1": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks"
     }
   ]
 }

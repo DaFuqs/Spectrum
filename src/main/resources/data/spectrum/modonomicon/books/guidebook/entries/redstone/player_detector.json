@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/detectors/player_detector",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/detectors/player_detector",
       "text": "Range: 10 blocks.\\Emits a full strength signal, if the player who placed it is detected, otherwise 8."
     }
   ]

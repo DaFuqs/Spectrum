@@ -26,8 +26,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/redstone_sand",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/redstone_sand",
       "text": "Behaves like a solid block until it receives a [#](449900)redstone signal[#](). The [#](449900)redstone pulse() propagates through all connected blocks and makes them fall."
     }
   ]

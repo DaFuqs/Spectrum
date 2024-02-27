@@ -26,8 +26,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/block_breaker",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier3/block_breaker",
       "text": "Able to break blocks up to iron tier."
     }
   ]

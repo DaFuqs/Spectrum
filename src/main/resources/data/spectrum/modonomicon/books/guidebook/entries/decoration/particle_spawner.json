@@ -1,5 +1,5 @@
 {
-  "name": "Particle Spawner",
+  "name": "book.spectrum.guidebook.decoration.particle_spawner.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/particle_spawner"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.particle_spawner.description",
+  "x": 8,
+  "y": 6,
 
   "extra_recipe_mappings": {
     "spectrum:particle_spawner": 0,
@@ -21,13 +21,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The [Shooting Star](entry://resources/stargazing) you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.\\\\A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
+      "text": "book.spectrum.guidebook.decoration.particle_spawner.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/particle_spawner",
-      "text": "Use the GUI to configure the particles to your liking. Apply a [#](449900)redstone signal[#]() to start the fantastic display. You will unlock more particles as you progress."
+      "title1": "book.spectrum.guidebook.decoration.particle_spawner.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "book.spectrum.guidebook.decoration.particle_spawner.page1.text"
     }
   ]
 }

@@ -21,8 +21,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
+      "title1": "Fusion Recipe",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/whispy_circlet",
       "text": "After just a few minutes of wear, you feel physically and mentally refreshed. You also recover from negative effects more quickly.\\\\_The pleasures of a good night's sleep._"
     }
   ]

@@ -42,8 +42,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/refined_azurite"
       },
-      "title": "Refining Azurite",
-      "recipe": "spectrum:fusion_shrine/refined_azurite",
+      "title1": "Refining Azurite",
+      "recipe_id_1": "spectrum:fusion_shrine/refined_azurite",
       "text": "Refining Azurite is not a cheap task.\\In this refined ingot form Azurite can be used for a lot more recipes."
     },
     {
@@ -52,8 +52,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/resources/azurite_growing"
       },
-      "title": "Growing Azurite",
-      "recipe": "spectrum:crystallarieum/azurite",
+      "title1": "Growing Azurite",
+      "recipe_id_1": "spectrum:crystallarieum/azurite",
       "text": ""
     }
   ]

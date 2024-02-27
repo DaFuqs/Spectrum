@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Chimes",
+  "name": "book.spectrum.guidebook.decoration.gemstone_chimes.name",
   "icon": "spectrum:amethyst_chime",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.gemstone_chimes.description",
+  "x": 2,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:topaz_chime": 0,
@@ -24,14 +24,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Gemstone Chimes",
-      "text": "Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.\\\\Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
+      "title": "book.spectrum.guidebook.decoration.gemstone_chimes.page0.title",
+      "text": "book.spectrum.guidebook.decoration.gemstone_chimes.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
-      "text": "Each chime emits the soothing sound of its corresponding gemstone."
+      "title1": "book.spectrum.guidebook.decoration.gemstone_chimes.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "text": "book.spectrum.guidebook.decoration.gemstone_chimes.page1.text"
     }
   ]
 }

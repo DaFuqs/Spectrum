@@ -1,5 +1,5 @@
 {
-  "name": "Shimmerstone Lights",
+  "name": "book.spectrum.guidebook.decoration.shimmerstone_lihts.name",
   "icon": "spectrum:basalt_shimmerstone_light",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.shimmerstone_lihts.description",
+  "x": 2,
+  "y": 8,
 
   "extra_recipe_mappings": {
     "spectrum:blackslag_shimmerstone_light": 0
@@ -20,7 +20,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "Shimmerstone Lights",
+      "title": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page0.title",
       "items": [
         "spectrum:andesite_shimmerstone_light",
         "spectrum:basalt_shimmerstone_light",
@@ -30,23 +30,23 @@
         "spectrum:granite_shimmerstone_light",
         "spectrum:stone_shimmerstone_light"
       ],
-      "text": "On your first nights in this new world, you lit your improvised hut with torches. As atmospheric as that was, it was also primitive.\\To move away from your dark, torch-lit past, you created lamps based on Shimmerstone."
+      "text": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
-      "text": "There are various variants, depending on what polished block you use as a base."
+      "title1": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
+      "text": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Blackslag Variant",
+      "title1": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page2.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/blackslag_shimmerstone_light"
       },
-      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
-      "text": "Blackslag can be used, too, resulting in an especially dark variant."
+      "recipe_id_1": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
+      "text": "book.spectrum.guidebook.decoration.shimmerstone_lihts.page2.text"
     }
   ]
 }

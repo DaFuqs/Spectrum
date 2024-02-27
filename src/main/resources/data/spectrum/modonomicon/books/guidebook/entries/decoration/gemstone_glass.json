@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Glass",
+  "name": "book.spectrum.guidebook.decoration.gemstone_glass.name",
   "icon": "spectrum:topaz_glass",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.gemstone_glass.description",
+  "x": 4,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:topaz_glass": 0,
@@ -27,14 +27,14 @@
       "item": {
         "item": "spectrum:topaz_glass"
       },
-      "title": "Gemstone Glass",
-      "text": "Your gemstones are already slightly transparent by nature. What could be more natural than to form a kind of glass from these materials?"
+      "title": "book.spectrum.guidebook.decoration.gemstone_glass.page0.title",
+      "text": "book.spectrum.guidebook.decoration.gemstone_glass.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/glass/topaz_glass",
-      "text": "Gemstone Glass comes in all the colors of gemstones available to you."
+      "title1": "book.spectrum.guidebook.decoration.gemstone_glass.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/glass/topaz_glass",
+      "text": "book.spectrum.guidebook.decoration.gemstone_glass.page1.text"
     }
   ]
 }

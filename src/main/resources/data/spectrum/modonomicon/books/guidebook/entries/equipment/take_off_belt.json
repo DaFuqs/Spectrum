@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
+      "title1": "Fusion Recipe",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/take_off_belt",
       "text": "Sneak to charge a high jump, getting more powerful the longer you charge.\\\\_Even if the name implies it, please don't take it off._"
     },
     {

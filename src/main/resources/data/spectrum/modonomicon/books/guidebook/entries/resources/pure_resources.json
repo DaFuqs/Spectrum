@@ -68,9 +68,9 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title": "Cinderhearth Smelting",
-      "recipe": "spectrum:cinderhearth/pure_resources/pure_iron",
-      "recipe2": "spectrum:cinderhearth/pure_resources/pure_gold",
+      "title1": "Cinderhearth Smelting",
+      "recipe_id_1": "spectrum:cinderhearth/pure_resources/pure_iron",
+      "recipe_id_2": "spectrum:cinderhearth/pure_resources/pure_gold",
       "text": "However, smelting these in the [Cinderhearth](entry://magical_blocks/cinderhearth) yields a much more decent output."
     },
     {

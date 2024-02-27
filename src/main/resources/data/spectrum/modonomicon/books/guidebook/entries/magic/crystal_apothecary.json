@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/crystal_apothecary",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier3/crystal_apothecary",
       "text": "While it's not as efficient as breaking the clusters with a [#](bb00bb)Pickaxe[#](), the ease of use surely comes in handy."
     }
   ]

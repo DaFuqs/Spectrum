@@ -39,8 +39,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title": "Refining Malachite",
-      "recipe": "spectrum:crystallarieum/malachite",
+      "title1": "Refining Malachite",
+      "recipe_id_1": "spectrum:crystallarieum/malachite",
       "text": "The Crystallarieum seems to be the only way for you to grow Malachite in a reasonable timeframe, by speeding up its growth significantly. [Moonstone](entry://general/moonstone_shards) is required to create a suitable environment, mimicking the Deeper Down."
     }
   ]

@@ -32,12 +32,12 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Germinating",
+      "title1": "Germinating",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
-      "recipe": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
+      "recipe_id_1": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
       "text": "Once almost a lost cause, you now have an ace up your sleeve:\\With the help of the [Spirit Instiller](entry://creating_life/spirit_instiller) you are sure that you can breathe life back into the little bulb."
     },
     {
@@ -67,9 +67,9 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title": "Jaramel",
+      "title1": "Jaramel",
       "anchor": "jaramel",
-      "recipe": "spectrum:cinderhearth/jaramel",
+      "recipe_id_1": "spectrum:cinderhearth/jaramel",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/jaramel"

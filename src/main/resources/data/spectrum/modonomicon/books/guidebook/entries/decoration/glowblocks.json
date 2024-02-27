@@ -1,5 +1,5 @@
 {
-  "name": "Glowblocks",
+  "name": "book.spectrum.guidebook.decoration.glowblocks.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/glowblocks/any_glowblock"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.glowblocks.description",
+  "x": 0,
+  "y": 4,
 
   "extra_recipe_mappings": {
     "spectrum:black_glowblock": 0,
@@ -38,14 +38,14 @@
       "item": {
         "item": "spectrum:orange_glowblock"
       },
-      "title": "Glowblocks",
-      "text": "You have color as pure as can be. So why not create blocks with color as pure as can be!\\\\You thought about calling them [#](449900)Antiblocks[#](), but since they are indeed blocks that would be silly, right?"
+      "title": "book.spectrum.guidebook.decoration.glowblocks.page0.title",
+      "text": "book.spectrum.guidebook.decoration.glowblocks.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/glowblocks/orange_glowblock",
-      "text": "Glowblocks come in all colors and always look the same, no matter how much light falls on their surface."
+      "title1": "book.spectrum.guidebook.decoration.glowblocks.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/glowblocks/orange_glowblock",
+      "text": "book.spectrum.guidebook.decoration.glowblocks.page1.text"
     }
   ]
 }

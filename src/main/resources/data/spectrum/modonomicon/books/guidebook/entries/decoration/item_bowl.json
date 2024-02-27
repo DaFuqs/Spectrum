@@ -1,5 +1,5 @@
 {
-  "name": "Item Bowls",
+  "name": "book.spectrum.guidebook.decoration.item_bowl.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/item_bowl"
@@ -10,26 +10,26 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.item_bowl.description",
+  "x": 2,
+  "y": 4,
 
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "Item Bowls",
+      "title": "book.spectrum.guidebook.decoration.item_bowl.page0.title",
       "items": [
         "spectrum:item_bowl_basalt",
         "spectrum:item_bowl_calcite"
       ],
-      "text": "There's always something you forget when leaving the base - maybe placing it in this decorative Item Bowl will serve as a good reminder.$()\\\\It comes in both a [#](bb00bb)Basalt[#]() and [#](bb00bb)Calcite[#]() variant."
+      "text": "book.spectrum.guidebook.decoration.item_bowl.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
-      "text": "The Item Bowl presents a single item stack floating above it.\\Click an item into the Bowl or throw it on top to put it in."
+      "title1": "book.spectrum.guidebook.decoration.item_bowl.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "book.spectrum.guidebook.decoration.item_bowl.page1.text"
     }
   ]
 }

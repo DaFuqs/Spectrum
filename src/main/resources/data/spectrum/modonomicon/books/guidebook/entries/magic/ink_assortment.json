@@ -24,8 +24,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/ink_assortment",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier2/ink_assortment",
       "text": ""
     }
   ]

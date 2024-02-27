@@ -26,8 +26,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/redstone_timer",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier1/redstone_timer",
       "text": "You can toggle the durations for both active time ($(k:use)) and inactive time ($(k:sneak) + $(k:use) with empty hand)."
     }
   ]

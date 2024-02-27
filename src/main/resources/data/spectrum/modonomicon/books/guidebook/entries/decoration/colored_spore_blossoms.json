@@ -1,5 +1,5 @@
 {
-  "name": "Colored Spore Blossoms",
+  "name": "book.spectrum.guidebook.decoration.colored_spore_blossoms.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/colored_spore_blossoms"
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.colored_spore_blossoms.description",
+  "x": 6,
+  "y": 0,
 
   "extra_recipe_mappings": {
     "spectrum:black_spore_blossom": 0,
@@ -35,13 +35,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "As you wandered through a leafy cave, you noticed the many petals sailing through the air.\\\\You were so enchanted by this sight that you set out to design your own, colorful variations."
+      "text": "book.spectrum.guidebook.decoration.colored_spore_blossoms.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/colored_spore_blossoms/orange_spore_blossom",
-      "text": "By using different pigment you can color the petals in a wide variety of colors."
+      "title1": "book.spectrum.guidebook.decoration.colored_spore_blossoms.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/colored_spore_blossoms/orange_spore_blossom",
+      "text": "book.spectrum.guidebook.decoration.colored_spore_blossoms.page1.text"
     }
   ]
 }

@@ -21,8 +21,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/color_picker",
+      "title1": "Pedestal Recipe",
+      "recipe_id_1": "spectrum:pedestal/tier2/color_picker",
       "text": "_Never develop a passion you can't afford. It'll eat your heart away like a bookworm._"
     }
   ]

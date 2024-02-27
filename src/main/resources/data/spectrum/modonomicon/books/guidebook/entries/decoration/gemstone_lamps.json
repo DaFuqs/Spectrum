@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Lamps",
+  "name": "book.spectrum.guidebook.decoration.gemstone_lamps.name",
   "icon": "spectrum:citrine_basalt_lamp",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,9 +10,9 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "description": "book.spectrum.guidebook.decoration.gemstone_lamps.description",
+  "x": 6,
+  "y": 2,
 
   "extra_recipe_mappings": {
     "spectrum:topaz_basalt_lamp": 0,
@@ -32,14 +32,14 @@
       "item": {
         "item": "spectrum:citrine_basalt_lamp"
       },
-      "title": "Gemstone Lamps",
-      "text": "When you set foot in the first geode, you were met with pleasant cozy glow. With your knowledge and the help of Shimmerstone, it is easy to amplify this light to create fancy lamps."
+      "title": "book.spectrum.guidebook.decoration.gemstone_lamps.page0.title",
+      "text": "book.spectrum.guidebook.decoration.gemstone_lamps.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
-      "text": "Gemstone Lamps come in all the colors of gemstones available to you. Both [Chiseled Calcite](entry://decoration/block_variants@chiseled_and_notched) and [Chiseled Basalt](entry://decoration/block_variants@polishing) can be used as a base."
+      "title1": "book.spectrum.guidebook.decoration.gemstone_lamps.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
+      "text": "book.spectrum.guidebook.decoration.gemstone_lamps.page1.text"
     }
   ]
 }

@@ -55,7 +55,7 @@ public class InkPoweredStatusEffectInstance {
 		StatusEffectInstance statusEffectInstance = StatusEffectInstance.fromNbt(nbt);
 		InkCost cost = InkCost.fromNbt(nbt);
 		int customColor = -1;
-		if (nbt.contains(CUSTOM_COLOR_NBT_KEY, NbtElement.INT_TYPE)) {
+		if (nbt.contains(CUSTOM_COLOR_NBT_KEY, NbtElement.NUMBER_TYPE)) {
 			customColor = nbt.getInt(CUSTOM_COLOR_NBT_KEY);
 		}
 		boolean unidentifiable = false;

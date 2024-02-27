@@ -249,7 +249,7 @@ public class NbtHelper {
 		}
 		
 		switch (original.getType()) {
-			case NbtElement.BYTE_TYPE, NbtElement.SHORT_TYPE, NbtElement.INT_TYPE, NbtElement.LONG_TYPE, NbtElement.FLOAT_TYPE, NbtElement.DOUBLE_TYPE, NbtElement.STRING_TYPE, NbtElement.END_TYPE,
+			case NbtElement.BYTE_TYPE, NbtElement.SHORT_TYPE, NbtElement.NUMBER_TYPE, NbtElement.LONG_TYPE, NbtElement.FLOAT_TYPE, NbtElement.DOUBLE_TYPE, NbtElement.STRING_TYPE, NbtElement.END_TYPE,
 					NbtElement.BYTE_ARRAY_TYPE, NbtElement.INT_ARRAY_TYPE, NbtElement.LONG_ARRAY_TYPE, NbtElement.LIST_TYPE -> {
 				
 			}

@@ -95,7 +95,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public int getAoERange(ItemStack stack) {
 		NbtCompound nbt = stack.getNbt();
-		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.INT_TYPE)) {
+		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.NUMBER_TYPE)) {
 			return 0;
 		}
 		return nbt.getInt(RANGE_NBT_STRING);
@@ -169,7 +169,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		
 		NbtCompound nbt = stack.getOrCreateNbt();
 		if (enchantment == Enchantments.FORTUNE) {
-			if (nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
+			if (nbt.contains("FortuneLevel", NbtElement.NUMBER_TYPE)) {
 				level = nbt.getInt("FortuneLevel");
 				nbt.remove("FortuneLevel");
 			}

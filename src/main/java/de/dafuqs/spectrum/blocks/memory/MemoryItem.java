@@ -89,7 +89,7 @@ public class MemoryItem extends BlockItem {
 	// Same nbt format as SpawnEggs
 	// That way we can reuse entityType.spawnFromItemStack()
 	public static int getTicksToManifest(@Nullable NbtCompound nbtCompound) {
-		if (nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.INT_TYPE)) {
+		if (nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.NUMBER_TYPE)) {
 			return nbtCompound.getInt("TicksToManifest");
 		}
 		return -1;

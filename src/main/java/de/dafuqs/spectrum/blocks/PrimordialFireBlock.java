@@ -3,17 +3,13 @@ package de.dafuqs.spectrum.blocks;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -25,7 +21,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -117,10 +112,12 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
+            entity.damage(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
-
-        entity.damage(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
+        if (world.getTime() % 20 == 0 && entity instanceof ItemEntity itemEntity) {
+            PrimordialFireBurningRecipe.processItemEntity(world, itemEntity);
+        }
     }
     
     @Override

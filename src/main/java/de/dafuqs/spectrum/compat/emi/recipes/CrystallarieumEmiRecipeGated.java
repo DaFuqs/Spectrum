@@ -17,7 +17,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 	
 	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
+		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, recipe, 124, 100);
 		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().get(0).getBlock())

@@ -164,6 +164,6 @@ Function Set-TranslatedGuidebook {
     Write-Output "`nProcessing Complete!`n"
 }
 
-#Set-TranslatedGuidebook
-Set-TranslatedGuidebookCategory 'decoration'
+Set-TranslatedGuidebook
+#Set-TranslatedGuidebookCategory 'decoration'
 #Set-TranslatedGuidebookEntry 'enchanting' 'big_catch'

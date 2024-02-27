@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.falling.name",
+  "name": "book.spectrum.guidebook.creating_life.failing.name",
   "icon": "spectrum:bottle_of_failing",
   "condition": {
     "type": "modonomicon:advancement",
@@ -10,7 +10,7 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "book.spectrum.guidebook.creating_life.falling.description",
+  "description": "book.spectrum.guidebook.creating_life.failing.description",
   "x": 8,
   "y": 0,
 
@@ -25,13 +25,13 @@
       "item": {
         "item": "spectrum:bottle_of_failing"
       },
-      "text": "book.spectrum.guidebook.creating_life.falling.page0.text"
+      "text": "book.spectrum.guidebook.creating_life.failing.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.falling.page1.title1",
+      "title1": "book.spectrum.guidebook.creating_life.failing.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
-      "text": "book.spectrum.guidebook.creating_life.falling.page1.text"
+      "text": "book.spectrum.guidebook.creating_life.failing.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -39,12 +39,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_neolith"
       },
-      "title": "book.spectrum.guidebook.creating_life.falling.page2.title",
+      "title": "book.spectrum.guidebook.creating_life.failing.page2.title",
       "anchor": "neolith",
       "item": {
         "item": "spectrum:neolith"
       },
-      "text": "book.spectrum.guidebook.creating_life.falling.page2.text"
+      "text": "book.spectrum.guidebook.creating_life.failing.page2.text"
     }
   ]
 }

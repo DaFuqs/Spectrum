@@ -443,6 +443,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			int amount = BottomlessBundleItem.getStoredAmount(stack);
 			bundledStack.setCount(amount);
 			bundledStack.getItem().inventoryTick(bundledStack, world, entity, slot, selected);
+			BottomlessBundleItem.bundleStack(stack, bundledStack);
 		}
 	}
 	

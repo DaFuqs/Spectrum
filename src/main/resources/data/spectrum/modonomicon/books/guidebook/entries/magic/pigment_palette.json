@@ -1,32 +1,29 @@
 {
-  "name": "Pigment Palette",
+  "name": "book.spectrum.guidebook.magic.pigment_palette.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/pigment_palette"
   },
   "icon": "spectrum:pigment_palette",
   "category": "spectrum:magic",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:pigment_palette": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Carrying around enough [Ink](entry://magic/ink) with you to maintain your magical equipment has become both a chore and a space hog in your inventory.\\Now that you're familiar with [Ink](entry://magic/ink), it's time for a new creation: the Pigment Palette."
+      "text": "book.spectrum.guidebook.magic.pigment_palette.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.magic.pigment_palette.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "Capable of storing sizable amounts of [Ink](entry://magic/ink), making you able to supply all your magical equipment. It is not suited for powering your machines, though.\\_Now you are a true Artist of Color._"
+      "text": "book.spectrum.guidebook.magic.pigment_palette.page1.text"
     }
   ]
 }

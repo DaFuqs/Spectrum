@@ -1,33 +1,30 @@
 {
-  "name": "Deep Dripstone Caves",
+  "name": "book.spectrum.guidebook.dimension.deep_dripstone_caves.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves"
   },
   "icon": "minecraft:dripstone_block",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Deep Dripstone Caves",
+      "title": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
       ],
       "border": true,
-      "text": "Same, but different."
+      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "These caves must have existed since time began.\\You wonder how big the gigantic stalactites here can get. You've seen ones that span hundreds of blocks already.\\The ground is speckled in puddles of [#](bb00bb)Water[#]()."
+      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page1.text"
     }
   ]
 }

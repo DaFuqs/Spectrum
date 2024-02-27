@@ -1,5 +1,5 @@
 {
-  "name": "Quitoxic Reeds",
+  "name": "book.spectrum.guidebook.resources.quitoxic_reeds.name",
   "icon": "spectrum:quitoxic_reeds",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:quitoxic_reeds": 0,
     "spectrum:quitoxic_powder": 0
@@ -20,21 +18,21 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Quitoxic Reeds",
+      "title": "book.spectrum.guidebook.resources.quitoxic_reeds.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/quitoxic_reed.png"
       ],
       "border": true,
-      "text": "Grows exclusively in Swamps and seems to devour Clay as a form of nutrient."
+      "text": "book.spectrum.guidebook.resources.quitoxic_reeds.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Quitoxic Powder",
+      "title": "book.spectrum.guidebook.resources.quitoxic_reeds.page1.title",
       "anchor": "quitoxic_powder",
       "item": {
         "item": "spectrum:quitoxic_powder"
       },
-      "text": "A purple glittering powder can be extracted from the stems of the alien-looking plant by crushing it with an anvil.\\Smell and consistency are very unusual when rubbed between your fingers.\\\\_...wait a moment, what are fingers?_"
+      "text": "book.spectrum.guidebook.resources.quitoxic_reeds.page1.text"
     }
   ]
 }

@@ -1,19 +1,16 @@
 {
-  "name": "Glass Crest Tools",
+  "name": "book.spectrum.guidebook.equipment.glass_crest_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/glass_crest_tools"
   },
   "icon": "spectrum:glass_crest_ultra_greatsword",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:glass_crest_workstaff": 0,
     "spectrum:glass_crest_ultra_greatsword": 0,
@@ -24,58 +21,58 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Glass Crest Tools",
-      "text": "Socketing [Moonstone Cores](entry://resources/moonstone_cores) into your [Malachite Tools](entry://equipment/malachite_tools) grants them powerful new abilities."
+      "title": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.title",
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Workstaff",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
       },
-      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
-      "text": "$(k:use) will shoot out $(c_white)White Ink[#]() which will break blocks on impact. You can also choose from [Resonance](entry://enchanting/resonance) when switching enchantments."
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Ultra Greatsword",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword"
       },
-      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
-      "text": "Deals a chunk of it's damage via [#](449900)Magic[#]() - piercing armor. $(k:use) to charge a [#](449900)ground slam[#](), knocking back everything around you. This ability scales with [#](449900)(449900)Sweeping[#]()."
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Crossbow",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_crossbow"
       },
-      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
-      "text": "If an arrow is loaded, you can overcharge the shot by holding $(k:sneak) + $(k:use) to increase your shot's accuracy, speed and damage even further."
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Ferocious Bident",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/ferocious_glass_crest_bident"
       },
-      "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
-      "text": "The result of combining a Bident and a Pocket Thunderstorm. Hurl yourself into the air and damage everything in your path, even in the driest of deserts! ...as long as you don't run out of ink (scales with the level of Riptide). _Flying isn't the problem. Landing is._"
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fractal Bident",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/malachite/fractal_glass_crest_bident"
       },
-      "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
-      "text": "The [#](bb00bb)Echo Shards[#]() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand.\\\\$(o)The fractal may be empowered with efficiency and power, improving yield and damage."
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident"
     }
   ]
 }

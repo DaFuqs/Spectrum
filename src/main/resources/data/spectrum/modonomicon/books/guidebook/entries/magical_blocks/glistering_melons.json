@@ -1,5 +1,5 @@
 {
-  "name": "Glistering Melons",
+  "name": "book.spectrum.guidebook.magical_blocks.glistering_melons.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_vegetal"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 2,
   "extra_recipe_mappings": {
     "minecraft:glistering_melon_slice": 0,
     "spectrum:glistering_melon": 0,
@@ -21,16 +19,16 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Glistering Melon Plants",
+      "title": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.title",
       "item": {
         "item": "minecraft:glistering_melon_slice"
       },
-      "text": "With the magic inherent in gemstone dust you have [already managed to change seedlings](entry://general/colored_trees). What's stopping you from trying it on other plants?\\Not because you're greedy or anything, of course."
+      "text": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
+      "title1": "book.spectrum.guidebook.magical_blocks.glistering_melons.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/glistering_melon_seeds"
     }
   ]
 }

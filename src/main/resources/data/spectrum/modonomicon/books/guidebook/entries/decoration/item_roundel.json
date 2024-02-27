@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:item_roundel",
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.item_roundel.description",
   "x": 4,
   "y": 4,
-
   "extra_recipe_mappings": {
     "spectrum:item_roundel": 0
   },

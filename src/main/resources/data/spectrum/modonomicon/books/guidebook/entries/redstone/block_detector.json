@@ -1,5 +1,5 @@
 {
-  "name": "Block Detector",
+  "name": "book.spectrum.guidebook.redstone.block_detector.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/block_detector"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:block_detector": 0
   },
@@ -22,13 +20,12 @@
       "item": {
         "item": "spectrum:block_detector"
       },
-      "text": "Almost like an [#](bb00bb)Observer[#](), but more specific.\\Gives off a [#](449900)redstone pulse[#]() every time a block is placed in front of it that matches the block below it (or above it, if facing down)."
+      "text": "book.spectrum.guidebook.redstone.block_detector.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
-      "recipe_id_1": "spectrum:pedestal/tier1/block_detector",
-      "text": ""
+      "title1": "book.spectrum.guidebook.redstone.block_detector.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/block_detector"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Redstone Interactions",
+  "name": "book.spectrum.guidebook.pastel_network.redstone_interaction.name",
   "icon": "minecraft:redstone",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,20 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "priority": true,
   "sortnum": 1,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "When you expose a [#](bb00bb)Pastel Node[#]() to a [#](449900)redstone signal[#](), it loses its link to the connected inventory."
+      "text": "book.spectrum.guidebook.pastel_network.redstone_interaction.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "\\- [Gather Nodes](entry://pastel_network/gather_node) will stop requesting items\\- [Provider Nodes](entry://pastel_network/provider_node) are unable to offer their items\\- [Sender Nodes](entry://pastel_network/sender_node) will stop emptying their inventory\\- [Storage Nodes](entry://pastel_network/storage_node) will be unable to accept and offer their items"
+      "text": "book.spectrum.guidebook.pastel_network.redstone_interaction.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Radiating Ender",
+  "name": "book.spectrum.guidebook.resources.radiating_ender.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/reveal_radiating_ender"
@@ -9,25 +9,23 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:radiating_ender": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Those pesky Endermen!\\\\They always show up at night and steal blocks off the ground right from your nose. You have the feeling that the whole area here will be nothing but a single crater landscape in a month."
+      "text": "book.spectrum.guidebook.resources.radiating_ender.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Radiating Ender",
+      "title": "book.spectrum.guidebook.resources.radiating_ender.page1.title",
       "item": {
         "item": "spectrum:radiating_ender"
       },
-      "text": "The Endermen come to this world to place those blocks. But what is this stuff? And _WHY_ do they leave it here?\\\\Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
+      "text": "book.spectrum.guidebook.resources.radiating_ender.page1.text"
     }
   ]
 }

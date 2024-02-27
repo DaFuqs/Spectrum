@@ -1,5 +1,5 @@
 {
-  "name": "End Portal Relocation",
+  "name": "book.spectrum.guidebook.magical_items.perturbed_eye.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/perturbed_eye"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:perturbed_eye": 0,
     "spectrum:cracked_end_portal_frame": 0
@@ -20,7 +18,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.\\\\Well, almost. Probably.\\You still haven't figured out how to create such portals yourself, but packing them up and taking them home? _No problem._"
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text"
     },
     {
       "type": "modonomicon:image",
@@ -28,19 +26,19 @@
         "spectrum:textures/gui/guidebook/end_portal.png"
       ],
       "border": true,
-      "text": "The End Portal, like found in Strongholds."
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/perturbed_eye",
-      "text": "Due to the extremely sturdy portal frames, these can be quite destructive. It is best to keep a bit of distance after socketing."
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.text",
+      "title1": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.title1",
+      "recipe_id_1": "spectrum:pedestal/tier4/perturbed_eye"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Reconstructed Portal",
       "multiblock_id": "spectrum:perturbed_eye",
-      "text": "You just put the portal back together the way it was, add Ender Pearls, done!"
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.multiblock_name"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Stratine",
+  "name": "book.spectrum.guidebook.resources.stratine.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_stratine"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:stratine_ore": 0,
     "spectrum:stratine_fragments": 0,
@@ -22,25 +20,25 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Stratine",
+      "title": "book.spectrum.guidebook.resources.stratine.page0.title",
       "item": {
         "item": "spectrum:stratine_fragments"
       },
-      "text": "This very heavy ore is scattered around the depths of the Nether.\\It's probably not the best idea to carry large amounts of it home at once."
+      "text": "book.spectrum.guidebook.resources.stratine.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Stratine Gem",
+      "title1": "book.spectrum.guidebook.resources.stratine.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stratine_gem"
       },
       "recipe_id_1": "spectrum:pedestal/tier3/stratine_gem",
-      "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
+      "text": "book.spectrum.guidebook.resources.stratine.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Stratine Floatblock",
+      "title": "book.spectrum.guidebook.resources.stratine.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
@@ -48,17 +46,17 @@
       "item": {
         "item": "spectrum:stratine_fragment_block"
       },
-      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.\\\\However, shaping it via your [Pedestal](entry://general/pedestal) should not be a problem whatsoever."
+      "text": "book.spectrum.guidebook.resources.stratine.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
-      "recipe": "spectrum:pedestal/tier1/compacting/stratine_fragment_block",
-      "text": "_Heavy Metal_"
+      "text": "book.spectrum.guidebook.resources.stratine.page3.text",
+      "title1": "book.spectrum.guidebook.resources.stratine.page3.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
     }
   ]
 }

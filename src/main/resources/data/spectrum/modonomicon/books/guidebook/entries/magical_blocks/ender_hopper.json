@@ -1,5 +1,5 @@
 {
-  "name": "Ender Hopper",
+  "name": "book.spectrum.guidebook.magical_blocks.ender_hopper.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/ender_blocks"
@@ -9,27 +9,25 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:ender_hopper": 1
   },
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Ender Hopper",
+      "title": "book.spectrum.guidebook.magical_blocks.ender_hopper.page0.title",
       "item": {
         "item": "spectrum:ender_hopper"
       },
-      "text": "Designed to resemble an ordinary hopper in form and function, the Ender Hopper has the special ability to put items directly into your [#](bb00bb)Ender Chest[#](). Counterpart to the [Ender Dropper](entry://magical_blocks/ender_dropper)."
+      "text": "book.spectrum.guidebook.magical_blocks.ender_hopper.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/ender_hopper",
-      "text": "The Ender Hopper only works while you are online."
+      "text": "book.spectrum.guidebook.magical_blocks.ender_hopper.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.ender_hopper.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/ender_hopper"
     }
   ]
 }

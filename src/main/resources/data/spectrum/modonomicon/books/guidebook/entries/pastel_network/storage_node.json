@@ -1,5 +1,5 @@
 {
-  "name": "Storage Node",
+  "name": "book.spectrum.guidebook.pastel_network.storage_node.name",
   "icon": "spectrum:provider_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,21 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Storage Node",
-      "text": "The Storage Node will show their greatest use in combination with [Sender Nodes](entry://pastel_network/sender_node) (will push to it) and [Gather Nodes](entry://pastel_network/gather_node) (will pull from it).\\\\Its [#](449900)filter[#]() allows you to specify which items it will receive & provide. An empty filter makes it act as a general storage for all types of items."
+      "title": "book.spectrum.guidebook.pastel_network.storage_node.page0.title",
+      "text": "book.spectrum.guidebook.pastel_network.storage_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/storage_node",
-      "text": ""
+      "title1": "book.spectrum.guidebook.pastel_network.storage_node.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/storage_node"
     }
   ]
 }

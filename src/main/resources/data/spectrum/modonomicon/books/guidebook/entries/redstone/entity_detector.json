@@ -1,5 +1,5 @@
 {
-  "name": "Entity Detector",
+  "name": "book.spectrum.guidebook.redstone.entity_detector.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/entity_detector"
@@ -9,24 +9,22 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:entity_detector": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Creature Detector",
-      "text": "The gemstone built into the Entity Detector reacts to micro-vibrations in the ground. This gives it the ability to measure the number of creatures near it."
+      "title": "book.spectrum.guidebook.redstone.entity_detector.page0.title",
+      "text": "book.spectrum.guidebook.redstone.entity_detector.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.redstone.entity_detector.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier1/detectors/entity_detector",
-      "text": "Outputs a cumulative strength of 1 for each creature within a 10 block radius."
+      "text": "book.spectrum.guidebook.redstone.entity_detector.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Inertia",
+  "name": "book.spectrum.guidebook.enchanting.inertia.name",
   "icon": "minecraft:iron_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_inertia",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You'd almost think this enchantment breathes a little bit of life into your tools.\\\\Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
+      "text": "book.spectrum.guidebook.enchanting.inertia.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.inertia.page1.title",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Decreased mining speed. Speed increases with each block mined of the same type.\\\\Max Level: 3\\Applicable to mining tools.\\Mutually exclusive with Efficiency."
+      "text": "book.spectrum.guidebook.enchanting.inertia.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Inertia by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.inertia.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.inertia.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_inertia"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
-      "text": "Upgrading Inertia from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.inertia.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.inertia.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/inertia_level_2"
     }
   ]
 }

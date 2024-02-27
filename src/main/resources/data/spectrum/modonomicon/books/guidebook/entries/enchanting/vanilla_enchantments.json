@@ -1,413 +1,371 @@
 {
-  "name": "Vanilla Enchantments",
+  "name": "book.spectrum.guidebook.enchanting.vanilla_enchantments.name",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 8,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The Enchanter is also able to create most Enchantments you are already familiar with, using your mundane Crafting Table.\\\\All Enchantments can be upgraded to higher levels, too - using the same [Pigment](entry://general/pigment) you used for creating it."
+      "text": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page0.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Aqua Affinity",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_water"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_aqua_affinity",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page1.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_aqua_affinity"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Bane Of Arthropods",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_bane_of_arthropods",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_bane_of_arthropods"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Curse of Binding",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_curses"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_binding_curse",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page3.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_binding_curse"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Blast Protection",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_protection"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_blast_protection",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page4.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_blast_protection"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Channeling",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_trident_channeling"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_channeling",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page5.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_channeling"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Depth Strider",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_water"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_depth_strider",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page6.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_depth_strider"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Efficiency",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_quitoxic"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_efficiency",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page7.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_efficiency"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Feather Falling",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_quitoxic"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_feather_falling",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page8.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_feather_falling"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Fire Aspect",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_fire_aspect",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page9.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_fire_aspect"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Fire Protection",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_protection"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_fire_protection",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page10.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_fire_protection"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Flame",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_flame",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page11.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_flame"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Fortune",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_luck"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_fortune",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page12.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_fortune"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Frost Walker",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_treasure"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_frost_walker",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page13.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_frost_walker"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Impaling",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_trident"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_impaling",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page14.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_impaling"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Infinity",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile_infinity"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_infinity",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page15.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_infinity"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Knockback",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_knockback",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page16.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_knockback"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Looting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_luck"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_looting",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page17.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_looting"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Loyalty",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_trident"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_loyalty",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page18.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_loyalty"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Luck Of The Sea",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_water_luck"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_luck_of_the_sea",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page19.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_luck_of_the_sea"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Lure",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_water"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_lure",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page20.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_lure"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Mending",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_treasure"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_mending",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page21.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_mending"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Multishot",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_multishot",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page22.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_multishot"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Piercing",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_piercing",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page23.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_piercing"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Power",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_power",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page24.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_power"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Projectile Protection",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_protection"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_projectile_protection",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page25.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_projectile_protection"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Protection",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_protection"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_protection",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page26.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_protection"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Punch",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_punch",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page27.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_punch"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Quick Charge",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_quick_charge",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page28.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_quick_charge"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Respiration",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_water"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_respiration",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page29.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_respiration"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Riptide",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_trident"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_riptide",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page30.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_riptide"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Sharpness",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_sharpness",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page31.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_sharpness"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Silk Touch",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_silk_touch"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_silk_touch",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page32.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_silk_touch"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Smite",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_smite",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page33.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_smite"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Soul Speed",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_treasure"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_soul_speed",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page34.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_soul_speed"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Sweeping",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_damage"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_sweeping",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page35.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_sweeping"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Swift Sneak",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_swift_sneak"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_swift_sneak",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page36.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_swift_sneak"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Thorns",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_protection"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_thorns",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page37.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_thorns"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Unbreaking",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_unbreaking"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_unbreaking",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page38.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_unbreaking"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Curse of Vanishing",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_curses"
       },
-      "recipe": "spectrum:enchanter/vanilla_books/book_vanishing_curse",
-      "text": ""
+      "title1": "book.spectrum.guidebook.enchanting.vanilla_enchantments.page39.title1",
+      "recipe_id_1": "spectrum:enchanter/vanilla_books/book_vanishing_curse"
     }
   ]
 }

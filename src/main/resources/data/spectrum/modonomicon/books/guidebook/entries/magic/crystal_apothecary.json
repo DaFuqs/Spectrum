@@ -1,32 +1,29 @@
 {
-  "name": "Crystal Apothecary",
+  "name": "book.spectrum.guidebook.magic.crystal_apothecary.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
   },
   "icon": "spectrum:crystal_apothecary",
   "category": "spectrum:magic",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:crystal_apothecary": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Placed in [Geodes](entry://resources/geodes), automatically harvests fully grown [#](bb00bb)Gemstone Clusters[#]().\\\\Normally all your other constructions and even crops do pretty much freeze in time when you are away, but this construct seems to continue working even then. Weird."
+      "text": "book.spectrum.guidebook.magic.crystal_apothecary.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.magic.crystal_apothecary.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier3/crystal_apothecary",
-      "text": "While it's not as efficient as breaking the clusters with a [#](bb00bb)Pickaxe[#](), the ease of use surely comes in handy."
+      "text": "book.spectrum.guidebook.magic.crystal_apothecary.page1.text"
     }
   ]
 }

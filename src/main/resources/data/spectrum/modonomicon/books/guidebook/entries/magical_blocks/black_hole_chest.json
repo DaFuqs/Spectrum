@@ -1,5 +1,5 @@
 {
-  "name": "Black Hole Chest",
+  "name": "book.spectrum.guidebook.magical_blocks.black_hole_chest.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/black_hole_chest"
@@ -9,32 +9,30 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:black_hole_chest": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The problem with hoppers is that they are not only slow, but also poorly suited for larger farms due to their non-existent range.\\\\With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/black_hole_chest",
-      "text": "Radius of 12 blocks. You can disable it by placing a block on top. Offers filters to specify which items it should accept."
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/black_hole_chest"
     },
     {
       "type": "modonomicon:text",
-      "title": "XP Orb Absorption",
+      "title": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/items/knowledge_gem"
       },
-      "text": "Putting a [Knowledge Gem](entry://magical_items/knowledge_gem) into a Black Hole Chest allows it to absorb XP orbs, putting the experience into the gem."
+      "text": "book.spectrum.guidebook.magical_blocks.black_hole_chest.page2.text"
     }
   ]
 }

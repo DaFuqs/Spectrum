@@ -8,14 +8,12 @@
   "sortnum": 16,
   "turnin": "spectrum:hidden/solve_every_preservation_ruin",
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.preservation_ruins.description",
   "x": 0,
   "y": 6,
-
   "extra_recipe_mappings": {
     "spectrum:preservation_stone": 0,
     "spectrum:preservation_stairs": 0,

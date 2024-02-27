@@ -1,5 +1,5 @@
 {
-  "name": "Paginated Advancements",
+  "name": "book.spectrum.guidebook.mod_integration.paginatedadvancements.name",
   "icon": "minecraft:grass_block",
   "flag": "mod:paginatedadvancements",
   "condition": {
@@ -10,18 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Oh, so you're an Advancement Hunter with style!\\\\With Paginated Advancements installed, you will find that Spectrum's advancements use new, unique frames."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.text"
     },
     {
       "type": "spectrum:snippet",
-      "title": "Milestones",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page1.title",
       "resource_path": "spectrum:textures/gui/advancement_frames.png",
       "resource_width": 256,
       "resource_height": 256,
@@ -29,11 +27,11 @@
       "texture_y": 0,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "Marks the start and end of an advancement tree: major milestones in your journey."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page1.text"
     },
     {
       "type": "spectrum:snippet",
-      "title": "Additional Unlocks",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page2.title",
       "resource_path": "paginatedadvancements:textures/gui/frames.png",
       "resource_width": 256,
       "resource_height": 256,
@@ -41,11 +39,11 @@
       "texture_y": 52,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "Advancements using this slightly altered frame have some kind of unlock attached to them: new recipes, a new revelation or something else. (for all you completionists out there!)\\\\The default frame is used for advancements without additional unlocks."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page2.text"
     },
     {
       "type": "spectrum:snippet",
-      "title": "Structure Building",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page3.title",
       "resource_path": "paginatedadvancements:textures/gui/frames.png",
       "resource_width": 256,
       "resource_height": 256,
@@ -53,11 +51,11 @@
       "texture_y": 52,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "Advancements using this frame show you that you have a new structure to build."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page3.text"
     },
     {
       "type": "spectrum:snippet",
-      "title": "Unique Advancements",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page4.title",
       "resource_path": "paginatedadvancements:textures/gui/frames.png",
       "resource_width": 256,
       "resource_height": 256,
@@ -65,11 +63,11 @@
       "texture_y": 104,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "For affairs of heart, which require an extraordinary eye to detail."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page4.text"
     },
     {
       "type": "spectrum:snippet",
-      "title": "Shitpost Advancements",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page5.title",
       "resource_path": "spectrum:textures/gui/advancement_frames.png",
       "resource_width": 256,
       "resource_height": 256,
@@ -77,7 +75,7 @@
       "texture_y": 0,
       "texture_width": 26,
       "texture_height": 26,
-      "text": "Granted when doing something remarkably stupid.\\These are purely optional meme advancements without any unlocks."
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page5.text"
     }
   ]
 }

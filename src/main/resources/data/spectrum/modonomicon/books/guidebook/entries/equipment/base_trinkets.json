@@ -1,19 +1,16 @@
 {
-  "name": "Base Trinkets",
+  "name": "book.spectrum.guidebook.equipment.base_trinkets.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/any_base_trinket"
   },
   "icon": "spectrum:fanciful_stone_ring",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:fanciful_stone_ring": 0,
     "spectrum:fanciful_belt": 0,
@@ -24,67 +21,61 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the [Fusion Shrine](entry://general/fusion_shrine)."
+      "text": "book.spectrum.guidebook.equipment.base_trinkets.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Stone Ring",
-      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_stone_ring"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Circlet",
-      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_circlet",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_circlet"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page2.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_circlet"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Belt",
-      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_belt",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_belt"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page3.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_belt"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Pendant",
-      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_pendant",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_pendant"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page4.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_pendant"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Gloves",
-      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_gloves",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_gloves"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page5.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_gloves"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fanciful Bismuth Ring",
-      "recipe": "spectrum:pedestal/tier4/fanciful_bismuth_ring",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"
       },
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page6.title1",
+      "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring"
     }
   ]
 }

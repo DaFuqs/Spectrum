@@ -1,32 +1,28 @@
 {
-  "name": "Ink Assortment",
+  "name": "book.spectrum.guidebook.magic.ink_assortment.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/ink_assortment"
   },
   "icon": "spectrum:ink_assortment",
   "category": "spectrum:magic",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:ink_assortment": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This collection of small vials is able to store all kinds of [Ink](entry://magic/ink), albeit just small amounts of it."
+      "text": "book.spectrum.guidebook.magic.ink_assortment.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
-      "recipe_id_1": "spectrum:pedestal/tier2/ink_assortment",
-      "text": ""
+      "title1": "book.spectrum.guidebook.magic.ink_assortment.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/ink_assortment"
     }
   ]
 }

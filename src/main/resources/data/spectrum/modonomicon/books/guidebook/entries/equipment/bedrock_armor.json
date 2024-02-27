@@ -1,19 +1,16 @@
 {
-  "name": "Bedrock Armor",
+  "name": "book.spectrum.guidebook.equipment.bedrock_armor.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
   },
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:bedrock_helmet": 0,
     "spectrum:bedrock_chestplate": 0,
@@ -23,27 +20,27 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The strongest material you could find so far was Netherite. However, repairing [#](bb00bb)Netherite Armor[#]() had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply _cannot_ be damaged.\\\\_Never wilt, stone blossom._"
+      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
-      "text": "The Bedrock Helmet comes with **Projectile Protection V**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page1.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_helmet"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
-      "text": "The Bedrock Chestplate comes with **Protection V**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page2.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_chestplate"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
-      "text": "The Bedrock Leggings come with **Blast Protection V**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page3.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_leggings"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
-      "text": "The Bedrock Boots come with **Fire Protection V**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_armor.page4.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_boots"
     }
   ]
 }

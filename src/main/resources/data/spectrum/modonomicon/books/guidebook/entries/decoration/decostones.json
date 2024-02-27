@@ -6,14 +6,12 @@
     "advancement_id": "spectrum:unlocks/decostones/any_decostone"
   },
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.decostones.description",
   "x": 8,
   "y": 0,
-
   "extra_recipe_mappings": {
     "spectrum:topaz_decostone": 0,
     "spectrum:amethyst_decostone": 0,

@@ -1,5 +1,5 @@
 {
-  "name": "Block Placer",
+  "name": "book.spectrum.guidebook.redstone.block_placer.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/block_placer"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:block_placer": 0
   },
@@ -22,13 +20,13 @@
       "item": {
         "item": "spectrum:block_placer"
       },
-      "text": "You are able to automatically break blocks, weight them, sort them or put them in one of your chests with ease. There is one thing that all your creative contraptions could never do: Place stuff. This is a thing of the past now.\\[Topaz](entry://general/shards@topaz), with its affinity to matter, lets you materialize blocks out of its inventory."
+      "text": "book.spectrum.guidebook.redstone.block_placer.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.redstone.block_placer.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier1/block_placer",
-      "text": "It does the thing!"
+      "text": "book.spectrum.guidebook.redstone.block_placer.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Bloodstone",
+  "name": "book.spectrum.guidebook.resources.bloodstone.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/resources/bloodstone"
@@ -9,16 +9,13 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:raw_bloodstone": 0,
     "spectrum:refined_bloodstone": 0,
     "spectrum:bloodstone_block": 0,
-
     "spectrum:small_bloodstone_bud": 0,
     "spectrum:large_bloodstone_bud": 0,
     "spectrum:bloodstone_cluster": 0
@@ -26,11 +23,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Bloodstone",
+      "title": "book.spectrum.guidebook.resources.bloodstone.page0.title",
       "item": {
         "item": "spectrum:effulgent_feather"
       },
-      "text": "The rather [Effulgent Feathers](entry://creating_life/kindlings@effulgent_feather) of the [Kindlings](entry://creating_life/kindlings) are notable, enough so to compel you to regularly give the little bumpkins coat trimmings.\\\\However, you've noticed that, sadly quite frequently, drops of blood will come along with the feathers. The ichor dries quickly, leaving behind a sparkly, crystalline residue."
+      "text": "book.spectrum.guidebook.resources.bloodstone.page0.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -38,9 +35,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title1": "Refining Bloodstone",
+      "title1": "book.spectrum.guidebook.resources.bloodstone.page1.title1",
       "recipe_id_1": "spectrum:crystallarieum/bloodstone",
-      "text": "Set upon the crystallarieum and given a [#](ff3d71)**_precarious_**[#]() amount of [#](bb00bb)copper[#](), the speck of dragonblood will grow and crystallize into a grand slab of glass, shining in stunning scarlet and bleeding with willful magic!"
+      "text": "book.spectrum.guidebook.resources.bloodstone.page1.text"
     }
   ]
 }

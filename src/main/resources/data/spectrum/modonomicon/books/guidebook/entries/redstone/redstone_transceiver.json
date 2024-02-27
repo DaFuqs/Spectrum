@@ -1,5 +1,5 @@
 {
-  "name": "Redstone Transceiver",
+  "name": "book.spectrum.guidebook.redstone.redstone_transceiver.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:create_onyx_shard"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:redstone_transceiver": 0
   },
@@ -22,13 +20,13 @@
       "item": {
         "item": "spectrum:redstone_transceiver"
       },
-      "text": "Gentle resonances are amplified by [Onyx](entry://general/shards@onyx) to such an extent that they can even be measured through walls, given a suitable receiver.\\Based on your previous experiments with gemstone shards, it was easy for you to devise such transmitter and receiver systems."
+      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.redstone.redstone_transceiver.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier2/redstone_transceiver",
-      "text": "Use with empty hands to toggle sending/receiving. When in receiving mode, the output is directional. Change the frequency by using dye/pigment. Range: 16 blocks."
+      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page1.text"
     }
   ]
 }

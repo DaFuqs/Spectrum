@@ -1,5 +1,5 @@
 {
-  "name": "Oh The Biomes You'll Go",
+  "name": "book.spectrum.guidebook.mod_integration.byg.name",
   "icon": "byg:budding_ametrine_ore",
   "flag": "mod:byg",
   "condition": {
@@ -10,18 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Scattered around the world you have discovered numerous geodes, which produce valuable resources."
+      "text": "book.spectrum.guidebook.mod_integration.byg.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Auto-Harvesting",
+      "title": "book.spectrum.guidebook.mod_integration.byg.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
@@ -29,11 +27,11 @@
       "item": {
         "item": "spectrum:crystal_apothecary"
       },
-      "text": "The [Crystal Apothecary](entry://magic/crystal_apothecary) is able to harvest [#](bb00bb)Crystals[#]() automatically - even if you are not near those geodes at all!"
+      "text": "book.spectrum.guidebook.mod_integration.byg.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Moving Budding Blocks",
+      "title": "book.spectrum.guidebook.mod_integration.byg.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
@@ -41,7 +39,7 @@
       "item": {
         "item": "spectrum:resonant_pickaxe"
       },
-      "text": "Tools enchanted with [Resonance](entry://enchanting/resonance) are able to harvest Budding Blocks."
+      "text": "book.spectrum.guidebook.mod_integration.byg.page2.text"
     }
   ]
 }

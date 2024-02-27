@@ -1,32 +1,29 @@
 {
-  "name": "Greater Potion Pendant",
+  "name": "book.spectrum.guidebook.equipment.greater_potion_pendant.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/greater_potion_pendant"
   },
   "icon": "spectrum:greater_potion_pendant",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:greater_potion_pendant": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Works very much like its [little brother](entry://equipment/lesser_potion_pendant).\\However, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I."
+      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-      "text": "Use the [Potion Workshop](entry://brewing/potion_workshop) to infuse it, by placing it where the [#](bb00bb)Bottle[#]() would normally go.\\\\To clear its effect, put it in a crafting grid."
+      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/greater_potion_pendant"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Mermaid's Gems",
+  "name": "book.spectrum.guidebook.resources.mermaids_brush.name",
   "icon": "spectrum:mermaids_gem",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,26 +9,24 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:mermaids_gem": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Mermaid's Brushes",
-      "text": "Mermaid's Brushes are inconspicuous plants that grow in the deepest depths of the oceans, forever untouched by human influence.\\\\They grow a single blossom, which slowly develops into a pearl-shaped seed. Fully grown, these hollow seeds float to the surface to be carried away by the soft waves."
+      "title": "book.spectrum.guidebook.resources.mermaids_brush.page0.title",
+      "text": "book.spectrum.guidebook.resources.mermaids_brush.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Mermaid's Gems",
+      "title": "book.spectrum.guidebook.resources.mermaids_brush.page1.title",
       "item": {
         "item": "spectrum:mermaids_gem"
       },
-      "text": "Those seeds can be planted again, growing an additional plant.\\\\Mermaid's Gems have a strong bond with water - obviously."
+      "text": "book.spectrum.guidebook.resources.mermaids_brush.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Resonance",
+  "name": "book.spectrum.guidebook.enchanting.resonance.name",
   "icon": "spectrum:resonant_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_resonance",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.\\If you hit the right frequency, you finally can hold some of those blocks in your hands."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page1.title",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -34,29 +31,29 @@
           ]
         }
       },
-      "text": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties.\\\\Max Level: 1\\Applicable to mining tools.\\Mutually exclusive with Silk Touch, Fortune and Pest Control.\\\\\\\\"
+      "text": "book.spectrum.guidebook.enchanting.resonance.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_crafting"
       },
-      "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Resonance by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.resonance.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_resonance"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Gemstone Buds",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page3.title",
       "item": {
         "item": "minecraft:medium_amethyst_bud"
       },
-      "text": "The smaller gem buds are usually too fragile to be broken from their mother block.\\\\However, if you hit the right frequency, the small bods will break from the stone almost by themselves, as if you used [#](449900)Silk Touch[#]()."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Pure Resources",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page4.title",
       "item": {
         "item": "spectrum:pure_iron"
       },
@@ -64,69 +61,69 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_pure_resource"
       },
-      "text": "Breaking Ores with Resonance directly drops [Pure Resources](entry://resources/pure_resources) instead of Raw Ores.\\\\This would stack with Fortune... if you somehow could combine these 2 mutually exclusive Enchantments."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Colored Leaves",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page5.title",
       "item": {
         "item": "spectrum:orange_leaves"
       },
-      "text": "Colored Leaves get stimulated in a way to release a lot more [#](bb00bb)saplings[#]().\\\\Applied to a hoe his will finally be your key to get [Colored Saplings](entry://general/colored_trees) renewably."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page5.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Harvesting Spawners",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page6.title",
       "item": {
         "item": "minecraft:spawner"
       },
-      "text": "In the depths, you have come across cages that seem to spit out an endless number of enemies. What madman put them there, what purpose they serve, and whether it was worth it is a mystery to you. But you can certainly find some use for them. Their creator hopefully won't miss you packing a few."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page6.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:reinforced_deepslate"
       },
-      "text": "This immensely sturdy stone found in underground cities can be harvested."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page7.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:sculk_shrieker"
       },
-      "text": "Sculk Shriekers retain their ability to summon the Warden."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page8.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "Brushable Blocks",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page9.title",
       "items": [
         "minecraft:suspicious_sand",
         "minecraft:suspicious_gravel"
       ],
-      "text": "Sculk Shriekers retain their ability to summon the Warden."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page9.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:respawn_anchor"
       },
-      "text": "Respawn Anchors retain their charges."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page10.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Signs",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page11.title",
       "item": {
         "item": "minecraft:oak_sign"
       },
-      "text": "Signs keep their text & color."
+      "text": "book.spectrum.guidebook.enchanting.resonance.page11.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Infested Blocks",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page12.title",
       "item": {
         "item": "minecraft:infested_stone_bricks"
       },
-      "text": "The gentle vibrations lull the silverfish hiding in the blocks.\\\\You can pack up the blocks including the silverfish and take them with you, without them knowing what is happening to them.\\Sweet, sweet revenge?"
+      "text": "book.spectrum.guidebook.enchanting.resonance.page12.text"
     }
   ]
 }

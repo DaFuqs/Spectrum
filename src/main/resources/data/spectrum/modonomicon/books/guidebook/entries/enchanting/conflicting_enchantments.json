@@ -1,5 +1,5 @@
 {
-  "name": "Enchanting Mastery",
+  "name": "book.spectrum.guidebook.enchanting.conflicting_enchantments.name",
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "hide_while_locked": true,
@@ -9,18 +9,15 @@
     "advancement_id": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Enchanting Mastery",
+      "title": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.title",
       "item": {
         "item": "minecraft:diamond_chestplate",
         "nbt": {
@@ -44,11 +41,11 @@
           ]
         }
       },
-      "text": "The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.\\As a master of magic, nothing is left to your desires."
+      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "You are now able to use the enchanter to apply enchantments to your equipment that are normally mutually exclusive.\\\\Be aware:\\_Such actions will require a lot of experience_."
+      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page1.text"
     }
   ]
 }

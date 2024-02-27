@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:amaranth_bushel",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.amaranth.description",
   "x": 2,
   "y": 0,
-
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
     "spectrum:amaranth_bushel": 0,

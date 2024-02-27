@@ -1,5 +1,5 @@
 {
-  "name": "Big Catch",
+  "name": "book.spectrum.guidebook.enchanting.big_catch.name",
   "icon": "spectrum:lagoon_rod",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_big_catch",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Your new magic fishing rods have the interesting property of attracting even living creatures. Why that wasn't a thing with your boring rods? I don't know.\\With this enchantment, you can further increase the chance of catching living creatures."
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.big_catch.page1.title",
       "item": {
         "item": "spectrum:lagoon_rod",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Increases the chance to reel in living creatures when fishing.\\\\Max Level: 3\\Applicable to Spectrum's Fishing Rods."
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_big_catch",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Big Catch by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_big_catch"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2",
-      "text": "Upgrading Big Catch from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment)$() and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2"
     }
   ]
 }

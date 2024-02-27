@@ -1,5 +1,5 @@
 {
-  "name": "Fabrication Chest",
+  "name": "book.spectrum.guidebook.magical_blocks.fabrication_chest.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/restocking_chest"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:restocking_chest": 0
   },
@@ -22,13 +20,13 @@
       "item": {
         "item": "spectrum:restocking_chest"
       },
-      "text": "The Pigment Pedestal is wonderful for automatically creating items. But if you need the same few items over and over again, you'll have to rearrange your whole construction.\\\\Of course, you have found a more than adequate solution for that."
+      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/restocking_chest",
-      "text": "The Fabrication Chest has four slots for [Crafting Tablets](entry://magical_items/crafting_tablet). The recipes you have defined in these are always kept in stock - as long as the ingredients in the chest allow it."
+      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/restocking_chest"
     }
   ]
 }

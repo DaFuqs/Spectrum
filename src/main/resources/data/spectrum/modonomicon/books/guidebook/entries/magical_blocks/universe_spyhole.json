@@ -1,5 +1,5 @@
 {
-  "name": "Universe Spyhole",
+  "name": "book.spectrum.guidebook.magical_blocks.universe_spyhole.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/universe_spyhole"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:universe_spyhole": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This strange block lets your vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.\\\\_The creations that [Radiating Ender](entry://resources/radiating_ender) allows you to create with its strange properties never cease to amaze you._"
+      "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/universe_spyhole",
-      "text": "_I see what you did there_"
+      "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/universe_spyhole"
     }
   ]
 }

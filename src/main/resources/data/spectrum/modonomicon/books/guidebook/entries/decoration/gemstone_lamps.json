@@ -6,14 +6,12 @@
     "advancement_id": "spectrum:collect_shimmerstone"
   },
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.gemstone_lamps.description",
   "x": 6,
   "y": 2,
-
   "extra_recipe_mappings": {
     "spectrum:topaz_basalt_lamp": 0,
     "spectrum:amethyst_basalt_lamp": 0,

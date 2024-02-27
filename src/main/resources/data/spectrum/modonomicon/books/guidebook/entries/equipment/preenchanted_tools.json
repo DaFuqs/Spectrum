@@ -1,19 +1,16 @@
 {
-  "name": "Preenchanted Tools",
+  "name": "book.spectrum.guidebook.equipment.preenchanted_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/any_preenchanted_tool"
   },
   "icon": "spectrum:lucky_pickaxe",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:tender_pickaxe": 0,
     "spectrum:lucky_pickaxe": 0,
@@ -25,11 +22,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "That stupid obsidian table is very stubborn when it comes to giving you the enchantments you seek.\\Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so stupid and only too happy to be eaten by Zombies)."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "The advantage of knowing exactly what you want gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.\\\\Unfortunately, these features make these tools very fragile for the most part."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -37,8 +34,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/tender_pickaxe"
       },
-      "recipe": "spectrum:pedestal/tier1/tools/tender_pickaxe",
-      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.\\Pre-enchanted with [#](157687)**Silk Touch**[#]()."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page2.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/tools/tender_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -46,8 +43,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/lucky_pickaxe"
       },
-      "recipe": "spectrum:pedestal/tier1/tools/lucky_pickaxe",
-      "text": "Infused with the power of [#](f0af15)energy[#](), it allows you to carve out every last bit of ore from every vein.\\Pre-enchanted with [#](f0af15)**Fortune III**[#]()."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/tools/lucky_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -55,8 +52,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/razor_falchion"
       },
-      "recipe": "spectrum:pedestal/tier1/tools/razor_falchion",
-      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.\\Pre-enchanted with [#](aa32a0)**Looting III**[#]()."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page4.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/tools/razor_falchion"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -64,26 +61,26 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/oblivion_pickaxe"
       },
-      "recipe": "spectrum:pedestal/tier2/oblivion_pickaxe",
-      "text": "As an outlier in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks [are destroyed](entry://enchanting/curse_of_the_void)."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier2/oblivion_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/resonant_pickaxe"
       },
-      "text": "Matches its own gentle vibrations to those of its surroundings. [Allows you to keep blocks intact](entry://enchanting/resonance) that would otherwise be irreparably destroyed."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page6.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/resonant_pickaxe"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier4/dragonrending_pickaxe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/dragonrending_pickaxe"
       },
-      "text": "A real Powerhouse of a Pickaxe for when you want to break hard blocks.\\Comes pre-enchanted with [Razing](entry://enchanting/razing)."
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page7.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/dragonrending_pickaxe"
     }
   ]
 }

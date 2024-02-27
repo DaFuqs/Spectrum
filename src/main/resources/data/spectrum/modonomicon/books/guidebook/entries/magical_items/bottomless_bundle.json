@@ -1,5 +1,5 @@
 {
-  "name": "Bottomless Bundle",
+  "name": "book.spectrum.guidebook.magical_items.bottomless_bundle.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/bottomless_bundle"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:bottomless_bundle": 0
   },
@@ -22,26 +20,25 @@
       "item": {
         "item": "spectrum:bottomless_bundle"
       },
-      "text": "On your journeys through the underground you collect a whole lot of identical blocks, which you will never need again. But they are too good to throw away, you think.\\Time to develop a storage solution that takes care of your little homemade problem:\\The Bottomless Bundle stores a virtually unlimited number of items, but of only one type."
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/bottomless_bundle",
-      "text": "Right click it on stacks or empty slots in your inventory to fill / empty it."
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/bottomless_bundle"
     },
     {
       "type": "modonomicon:image",
-      "title": "Automation",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.title",
       "images": [
         "spectrum:textures/gui/guidebook/bottomless_bundle_automation.png"
       ],
-      "text": "Crouching places it down, making it able to be automatically filled / emptied."
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "",
-      "text": "A placed Bottomless Bundle will always remember the last item you put into it.\\Even if it is emptied it will only accept new items that it was holding before, making it also usable as a filter.\\\\_Note: If it was placed empty it will accept the first item pumped into it and get locked to that._"
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page3.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -49,7 +46,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Enchanting - Power",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.title",
       "item": {
         "item": "spectrum:bottomless_bundle",
         "nbt": {
@@ -61,7 +58,7 @@
           ]
         }
       },
-      "text": "Enchanting a Bottomless Bundle with Power by using the [Enchanter](entry://enchanting/enchanting_items) you can increase its capacity tenfold for each level of Power.\\\\_Are you able to fill a Bottomless Bundle with Power V?_"
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -69,7 +66,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Curse of the Void",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.title",
       "item": {
         "item": "spectrum:bottomless_bundle",
         "nbt": {
@@ -81,7 +78,7 @@
           ]
         }
       },
-      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the [Enchanter](entry://enchanting/enchanting_items) will result in voiding all items that would overfill the Bottomless Bundle.\\\\_No more useless blocks cluttering your path when mining._"
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.text"
     }
   ]
 }

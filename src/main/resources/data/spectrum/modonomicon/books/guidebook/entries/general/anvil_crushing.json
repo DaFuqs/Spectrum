@@ -7,14 +7,12 @@
     "advancement_id": "spectrum:place_pedestal"
   },
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.anvil_crushing.description",
-  "x": 2,
+  "x": 0,
   "y": 0,
-
   "turnin": "spectrum:collect_gemstone_powder",
   "pages": [
     {

@@ -1,5 +1,5 @@
 {
-  "name": "The Enchanter",
+  "name": "book.spectrum.guidebook.enchanting.enchanter.name",
   "icon": "spectrum:enchanter",
   "priority": true,
   "sortnum": 0,
@@ -8,36 +8,33 @@
     "advancement_id": "spectrum:unlocks/blocks/enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "In your search for the perfect tool, you've found that the [#](bb00bb)Enchanting Table[#]() often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issues you had with your original one.\\\\It allows you to:\\- [create new Enchanted Books](entry://enchanting/creating_enchanted_books)\\- [upgrade them](entry://enchanting/upgrading_enchanted_books)\\- [enchant items without consuming Enchanted Books](entry://enchanting/enchanting_items)"
+      "text": "book.spectrum.guidebook.enchanting.enchanter.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Pedestal Recipe",
+      "title": "book.spectrum.guidebook.enchanting.enchanter.page1.title",
       "recipe": "spectrum:pedestal/tier3/enchanter",
-      "text": "The Enchanter needs a focus structure to work. TODO: switch back page type"
+      "text": "book.spectrum.guidebook.enchanting.enchanter.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Enchanting Structure",
       "multiblock_id": "spectrum:enchanter",
       "show_visualize_button": true,
-      "text": "Dimensions: 11x11x5 blocks\\Can be enhanced using [Upgrades](entry://magical_blocks/upgrades) by placing them on the four Gemstone Blocks."
+      "text": "book.spectrum.guidebook.enchanting.enchanter.page2.text",
+      "multiblock_name": "book.spectrum.guidebook.enchanting.enchanter.page2.multiblock_name"
     },
     {
       "type": "modonomicon:text",
-      "title": "Block Checklist",
-      "text": "- 1 Enchanter\\- 8 Item Bowls\\- 4+ Liquid Crystal Buckets\\- 4 Polished Gemstone Blocks\\- 8 Gemstone Lamps\\- 12 Polished Pillars\\- 24 Polished Slabs\\- 159 Polished Blocks\\\\_Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks._"
+      "title": "book.spectrum.guidebook.enchanting.enchanter.page3.title",
+      "text": "book.spectrum.guidebook.enchanting.enchanter.page3.text"
     }
   ]
 }

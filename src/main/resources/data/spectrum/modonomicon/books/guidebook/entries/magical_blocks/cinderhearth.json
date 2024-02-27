@@ -1,5 +1,5 @@
 {
-  "name": "Cinderhearth",
+  "name": "book.spectrum.guidebook.magical_blocks.cinderhearth.name",
   "icon": "spectrum:cinderhearth",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,44 +9,42 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:cinderhearth": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "A state-of-your-art blast furnace, which consumes [#](e16201)Orange Ink[#]() to smelt ores and the like."
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/cinderhearth",
-      "text": "Supplying a Knowledge Gem(entry://magical_items/knowledge_gem) allows you to automatically collect XP while smelting."
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.cinderhearth.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/cinderhearth"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Cinderhearth Structure",
       "multiblock_id": "spectrum:cinderhearth",
       "show_visualize_button": true,
-      "text": "The Cinderhearth's abilities can be enhanced via [Upgrades](entry://magical_blocks/upgrades). Place them on the two Chiseled Blocks."
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page2.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.cinderhearth.page2.multiblock_name"
     },
     {
       "type": "modonomicon:text",
-      "title": "Block Checklist",
-      "text": "- 1 Cinderhearth\\- 21 Polished Blocks\\- 6 Crest Blocks\\- 5 Glass-like Blocks\\- 2 Chiseled Blocks\\- 6 Buckets of Lava\\\\_Did it really need that [#](bb00bb)Lava[#]() underneath since you already have [#](e16201)Ink[#]()? No, not really. But it looks so much better._"
+      "title": "book.spectrum.guidebook.magical_blocks.cinderhearth.page3.title",
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page3.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Upgrades",
-      "text": "[Upgrades](entry://magical_blocks/upgrades) placed on the [#](bb00bb)Chiseled Blocks[#]() do not work automatically, but requires you to supply an additional type of Ink(entry://magic/ink) to the Cinderhearth. The higher the upgrades, the higher the consumption."
+      "title": "book.spectrum.guidebook.magical_blocks.cinderhearth.page4.title",
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page4.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "- Speed ([#](aa32a0)Magenta Ink[#]()):\\faster smelt times\\- Yield ([#](258ac8)Light Blue Ink[#]()):\\chance to multiply the output for most blocks\\- Experience ([#](641f9c)Purple Ink[#]()):\\vastly increases experience gain\\- Efficiency ([#](000000)Black Ink[#]()):\\greatly decreases Ink consumption of the other types, including [#](e16201)Orange[#]()"
+      "text": "book.spectrum.guidebook.magical_blocks.cinderhearth.page5.text"
     }
   ]
 }

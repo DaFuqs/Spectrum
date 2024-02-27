@@ -1,5 +1,5 @@
 {
-  "name": "Celestial Pocketwatch",
+  "name": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/celestial_pocketwatch"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:celestial_pocketwatch": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The problem with [Onyx Shards](entry://general/onyx_shards) is that their creation is tied to very specific conditions. It is not every day that there is a new moon. Every time you look at the clock, the window of time seems to have just passed by for two minutes.\\Time to break out the big guns: Magenta's affinity for time."
+      "text": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
-      "text": "_What a stellar idea of yours_"
+      "text": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.celestial_pocketwatch.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier4/celestial_pocketwatch"
     }
   ]
 }

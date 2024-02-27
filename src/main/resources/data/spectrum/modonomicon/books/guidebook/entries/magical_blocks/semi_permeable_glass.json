@@ -1,5 +1,5 @@
 {
-  "name": "Semi-permeable Glass",
+  "name": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:semi_permeable_glass": 0,
     "spectrum:tinted_semi_permeable_glass": 0,
@@ -26,39 +24,37 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Semi-permeable Glass",
+      "title": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page0.title",
       "item": {
         "item": "spectrum:amethyst_semi_permeable_glass"
       },
-      "text": "For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.\\You spend more time keeping those pesky monsters out of your base than you care to admit."
+      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Then you remember the [Gemstone Glass recipe](entry://decoration/gemstone_glass) you thought up earlier.\\\\With a bit of magical energy, it should be no problem to make it not only transparent, but also passable for you (not for them!).\\\\Bonus: If you make it look exactly like regular glass you might even be able to fool your competition."
+      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Simple Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/semi_permeable_glass",
-      "text": "While it looks exactly like its [mundane counterpart](entry://decoration/gemstone_glass), only players can pass through it. All other creatures will bounce, like a fly off a window."
+      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page2.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page2.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/player_only_glass/semi_permeable_glass"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Gemstone Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_semi_permeable_glass",
-      "text": "Semi-permeable Glass comes in all gemstone colors. Simply replace the [#](bb00bb)Amethyst[#]() with the gem of your choice."
+      "text": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page3.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page3.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/player_only_glass/amethyst_semi_permeable_glass"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Tinted Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/tinted_semi_permeable_glass",
-      "text": ""
+      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page4.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/player_only_glass/tinted_semi_permeable_glass"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Radiant Variant",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/radiant_semi_permeable_glass",
-      "text": ""
+      "title1": "book.spectrum.guidebook.magical_blocks.semi_permeable_glass.page5.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/player_only_glass/radiant_semi_permeable_glass"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Exuberance",
+  "name": "book.spectrum.guidebook.enchanting.exuberance.name",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_exuberance",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "That fancy book table of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.\\\\Squeezing the last bit of experience out of your opponents will help a lot."
+      "text": "book.spectrum.guidebook.enchanting.exuberance.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.exuberance.page1.title",
       "item": {
         "item": "spectrum:multitool",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Increases dropped XP for mob kills.\\\\Max Level: 5\\Applicable to melee weapons, mining tools and Spectrum's Fishing Rods."
+      "text": "book.spectrum.guidebook.enchanting.exuberance.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Exuberance by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.exuberance.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.exuberance.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_exuberance"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
-      "text": "Upgrading Exuberance from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.exuberance.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.exuberance.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2"
     }
   ]
 }

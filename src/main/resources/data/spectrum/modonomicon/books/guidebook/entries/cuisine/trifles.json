@@ -6,14 +6,12 @@
     "advancement_id": "spectrum:unlocks/food/trifles"
   },
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.trifles.description",
   "x": 0,
   "y": 8,
-
   "extra_recipe_mappings": {
     "spectrum:jaramel_trifle": 0,
     "spectrum:salted_jaramel_trifle": 0,

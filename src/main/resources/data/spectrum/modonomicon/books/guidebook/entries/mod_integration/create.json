@@ -1,5 +1,5 @@
 {
-  "name": "Create",
+  "name": "book.spectrum.guidebook.mod_integration.create.name",
   "icon": "create:crushing_wheel",
   "flag": "mod:create",
   "condition": {
@@ -10,18 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Everywhere it rattles and fizzles, whistles and smokes. An ensemble of Assemblage.\\\\Surely a few of those machines will come in handy."
+      "text": "book.spectrum.guidebook.mod_integration.create.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Crushing Gemstones",
+      "title": "book.spectrum.guidebook.mod_integration.create.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:spectrum"
@@ -29,11 +27,11 @@
       "item": {
         "item": "minecraft:amethyst_shard"
       },
-      "text": "[#](bb00bb)Gemstones[#]() can be crushed, yielding some [#](bb00bb)Gemstone Powder[#]()."
+      "text": "book.spectrum.guidebook.mod_integration.create.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Milling Leaves",
+      "title": "book.spectrum.guidebook.mod_integration.create.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
@@ -41,11 +39,11 @@
       "item": {
         "item": "spectrum:magenta_leaves"
       },
-      "text": "[#](bb00bb)Colored Leaves[#]() can be crushed, yielding [#](bb00bb)Pigment[#]() and a higher chance for [#](bb00bb)Colored Saplings[#]()."
+      "text": "book.spectrum.guidebook.mod_integration.create.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Crushing Colored Logs",
+      "title": "book.spectrum.guidebook.mod_integration.create.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
@@ -53,11 +51,11 @@
       "item": {
         "item": "spectrum:magenta_log"
       },
-      "text": "Crushing [#](449900)Colored Logs[#]() results in some additional [#](449900)Pigment[#]()."
+      "text": "book.spectrum.guidebook.mod_integration.create.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Milling Quitoxic Reeds",
+      "title": "book.spectrum.guidebook.mod_integration.create.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_quitoxic_reeds"
@@ -65,11 +63,11 @@
       "item": {
         "item": "spectrum:quitoxic_reeds"
       },
-      "text": "[Quitoxic Reeds](entry://resources/quitoxic_reeds) can be milled into powder."
+      "text": "book.spectrum.guidebook.mod_integration.create.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Milling Amaranth",
+      "title": "book.spectrum.guidebook.mod_integration.create.page5.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_amaranth_bushel"
@@ -77,11 +75,11 @@
       "item": {
         "item": "spectrum:amaranth_bushel"
       },
-      "text": "[Amaranth](entry://cuisine/amaranth) can be milled into grains."
+      "text": "book.spectrum.guidebook.mod_integration.create.page5.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Milling Frostbite Crystal",
+      "title": "book.spectrum.guidebook.mod_integration.create.page6.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
@@ -89,11 +87,11 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "Milling [Frostbite Crystal](entry://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Frostbite Essence[#]()."
+      "text": "book.spectrum.guidebook.mod_integration.create.page6.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Milling Blazing Crystal",
+      "title": "book.spectrum.guidebook.mod_integration.create.page7.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
@@ -101,7 +99,7 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "Milling [Blazing Crystal](entry://resources/liquid_crystal_essences) will yield you a nice amount of [#](bb00bb)Incandescent Essence[#]()."
+      "text": "book.spectrum.guidebook.mod_integration.create.page7.text"
     }
   ]
 }

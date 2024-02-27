@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.moonstone_cores.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.moonstone_cores.page0.title",
       "completion_advancement": "spectrum:lategame/collect_moonstone_core",
       "cost": "spectrum:moonstone_shard#8",
-      "text": "The lower plains of the Deeper Down seem to have once been home to a highly developed civilisation."
+      "text": "book.spectrum.guidebook.hints.moonstone_cores.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.moonstone_cores.page1.title",
       "cost": "spectrum:moonstone_shard#24",
-      "text": "Some of the cities left behind house a highly guarded structure. Their protectors seem mechanical, powered by delicate magitech."
+      "text": "book.spectrum.guidebook.hints.moonstone_cores.page1.text"
     }
   ]
 }

@@ -7,14 +7,12 @@
     "advancement_id": "spectrum:collect_vegetal"
   },
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.color_mixing.description",
-  "x": 4,
+  "x": 2,
   "y": 0,
-
   "turnin": "spectrum:craft_colored_sapling",
   "pages": [
     {

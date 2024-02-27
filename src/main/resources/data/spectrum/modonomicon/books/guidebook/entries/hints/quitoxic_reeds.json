@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.quitoxic_reeds.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.quitoxic_reeds.page0.title",
       "completion_advancement": "spectrum:collect_quitoxic_reeds",
       "cost": "minecraft:clay_ball#16",
-      "text": "Time for an adventure trip on the surface. Visit a Swamp or Mangrove Swamp!"
+      "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.title",
       "cost": "minecraft:clay_ball#48",
-      "text": "Strange looking plants have been seen in (Mangrove) Swamps, growing on patches of Clay or Mud. When growing, they will consume Clay/Mud in the process, turning it to Dirt."
+      "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.text"
     }
   ]
 }

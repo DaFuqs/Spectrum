@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:jade_vine_petal_block",
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.description",
   "x": 6,
   "y": 4,
-
   "extra_recipe_mappings": {
     "spectrum:jade_vine_petal_block": 0,
     "spectrum:jade_vine_petal_carpet": 0

@@ -7,14 +7,12 @@
     "advancement_id": "spectrum:create_onyx_shard"
   },
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.description",
-  "x": 8,
+  "x": 6,
   "y": 4,
-
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_onyx": 0

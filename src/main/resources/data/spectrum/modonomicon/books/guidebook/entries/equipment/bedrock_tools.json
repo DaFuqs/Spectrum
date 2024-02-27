@@ -1,19 +1,16 @@
 {
-  "name": "Bedrock Tools",
+  "name": "book.spectrum.guidebook.equipment.bedrock_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/bedrock_tools"
   },
   "icon": "spectrum:bedrock_pickaxe",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:bedrock_pickaxe": 0,
     "spectrum:bedrock_axe": 0,
@@ -28,52 +25,52 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Whenever you enter a new world you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of [#](449900)Mending[#](). All this, just so you don't have to fix your tools.\\That's neither exciting nor species-appropriate. Now you have a much more convenient solution."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_pickaxe",
-      "text": "The Bedrock Pickaxe comes with **Silk Touch**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page1.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_pickaxe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_axe",
-      "text": "The Bedrock Axe comes with **Efficiency VI**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page2.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_axe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shovel",
-      "text": "The Bedrock Shovel comes with **Efficiency VI**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page3.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_shovel"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_sword",
-      "text": "The Bedrock Sword comes with **Sharpness VI**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page4.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_sword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_hoe",
-      "text": "The Bedrock Hoe comes with **Fortune IV**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page5.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_hoe"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_bow",
-      "text": "The Bedrock Bow comes with **Power VI**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page6.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_bow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
-      "text": "The Bedrock Crossbow comes with **Quick Charge IV**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page7.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_crossbow"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
-      "text": "The Bedrock Shears come with **Efficiency VI**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page8.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_shears"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
-      "text": "The Bedrock Fishing Rod comes with **Luck of the Sea IV**."
+      "text": "book.spectrum.guidebook.equipment.bedrock_tools.page9.text",
+      "recipe_id_1": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod"
     }
   ]
 }

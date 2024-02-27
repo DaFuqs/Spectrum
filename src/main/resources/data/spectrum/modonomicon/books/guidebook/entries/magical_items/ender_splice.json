@@ -1,5 +1,5 @@
 {
-  "name": "Ender Splice",
+  "name": "book.spectrum.guidebook.magical_items.ender_splice.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/ender_splice"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:ender_splice": 0
   },
@@ -22,13 +20,13 @@
       "item": {
         "item": "spectrum:ender_splice"
       },
-      "text": "The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of your teleport, you must first take a snapshot of the position.\\Endermen don't have to do that, it seems. Why?"
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "Change it to bind it to your current position.\\The second use will teleport you back. Can even be used on other players. Cannot teleport you across dimensions."
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.ender_splice.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/ender_splice"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -36,7 +34,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Unbreaking",
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page2.title",
       "item": {
         "item": "spectrum:ender_splice",
         "nbt": {
@@ -48,7 +46,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Unbreaking by using the [Enchanter](entry://enchanting/enchanting_items) decreases the chance of it breaking on use."
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page2.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -56,7 +54,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/create_resonance_enchanted_book"
       },
-      "title": "Resonance",
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page3.title",
       "item": {
         "item": "spectrum:ender_splice",
         "nbt": {
@@ -68,7 +66,7 @@
           ]
         }
       },
-      "text": "Enchanting an Ender Splice with Resonance by using the [Enchanter](entry://enchanting/enchanting_items) will allow for interdimensional teleport."
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page3.text"
     }
   ]
 }

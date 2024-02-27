@@ -1,32 +1,29 @@
 {
-  "name": "Seven League Boots",
+  "name": "book.spectrum.guidebook.equipment.seven_league_boots.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/seven_league_boots"
   },
   "icon": "spectrum:seven_league_boots",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:seven_league_boots": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Getting from A to B is tedious. Your travel time only seems to go up, especially with [Geodes](entry://resources/geodes) scattered across the land as they are. To solve this issue, you designed the Seven League Boots, making you much more mobile than before."
+      "text": "book.spectrum.guidebook.equipment.seven_league_boots.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.equipment.seven_league_boots.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/seven_league_boots",
-      "text": "Increases both Movement Speed and Step Height."
+      "text": "book.spectrum.guidebook.equipment.seven_league_boots.page1.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,7 +31,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "title": "Power",
+      "title": "book.spectrum.guidebook.equipment.seven_league_boots.page2.title",
       "item": {
         "item": "spectrum:seven_league_boots",
         "nbt": {
@@ -46,7 +43,7 @@
           ]
         }
       },
-      "text": "The Power enchantment increases the movement speed bonus further."
+      "text": "book.spectrum.guidebook.equipment.seven_league_boots.page2.text"
     }
   ]
 }

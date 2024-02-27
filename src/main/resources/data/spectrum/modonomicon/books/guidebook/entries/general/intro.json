@@ -2,14 +2,12 @@
   "name": "book.spectrum.guidebook.general.intro.name",
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.intro.description",
   "x": 0,
-  "y": 0,
-
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:image",

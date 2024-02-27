@@ -1,5 +1,5 @@
 {
-  "name": "Heartbound Chest",
+  "name": "book.spectrum.guidebook.magical_blocks.heartbound_chest.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/heartbound_chest"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:heartbound_chest": 0
   },
@@ -22,18 +20,18 @@
       "item": {
         "item": "spectrum:heartbound_chest"
       },
-      "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.\\To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
+      "text": "book.spectrum.guidebook.magical_blocks.heartbound_chest.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/heartbound_chest",
-      "text": "The Heartbound Chest can only be opened by its placer and provides the same space as two normal chests."
+      "text": "book.spectrum.guidebook.magical_blocks.heartbound_chest.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.heartbound_chest.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/heartbound_chest"
     },
     {
       "type": "modonomicon:text",
-      "title": "Redstone Component",
-      "text": "Similar to a Trapped Chest it also outputs a [#](449900)redstone signal[#]().\\If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "title": "book.spectrum.guidebook.magical_blocks.heartbound_chest.page2.title",
+      "text": "book.spectrum.guidebook.magical_blocks.heartbound_chest.page2.text"
     }
   ]
 }

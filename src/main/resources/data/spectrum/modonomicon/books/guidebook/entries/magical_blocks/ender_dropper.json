@@ -1,5 +1,5 @@
 {
-  "name": "Ender Dropper",
+  "name": "book.spectrum.guidebook.magical_blocks.ender_dropper.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/ender_blocks"
@@ -9,27 +9,25 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:ender_dropper": 0
   },
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Ender Dropper",
+      "title": "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.title",
       "item": {
         "item": "spectrum:ender_dropper"
       },
-      "text": "The Ender Dropper is the counterpart to the [Ender Hopper](entry://magical_blocks/ender_hopper). With every [#](449900)redstone pulse[#]() it ejects an item from your personal [#](bb00bb)Ender Chest[#]().\\\\Beware: Who's stopping anyone from placing a button next to it and emptying your [#](bb00bb)Ender Chest[#]()?"
+      "text": "book.spectrum.guidebook.magical_blocks.ender_dropper.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/ender_dropper",
-      "text": "The Ender Dropper only works while you are online."
+      "text": "book.spectrum.guidebook.magical_blocks.ender_dropper.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.ender_dropper.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/ender_dropper"
     }
   ]
 }

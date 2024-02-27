@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:prickly_bayleaf",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.sawblade_holly.description",
   "x": 2,
   "y": 6,
-
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
     "spectrum:sawblade_holly_berry": 0,

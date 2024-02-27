@@ -1,5 +1,5 @@
 {
-  "name": "Tight Grip",
+  "name": "book.spectrum.guidebook.enchanting.tight_grip.name",
   "icon": "minecraft:iron_sword",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_tight_grip",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "It almost seems like a fever dream that you could strike with weapons faster than you can think. In the meantime, every blow costs you so much strength that you have to pause for a moment.\\Maybe you are getting old.\\\\With a few small tweaks to your weapon, you can reduce this downtime somewhat."
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.tight_grip.page1.title",
       "item": {
         "item": "minecraft:iron_sword",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Decreases attack cooldown.\\\\Max Level: 2\\Applicable to melee weapons."
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_tight_grip",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Tight Grip by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.tight_grip.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_tight_grip"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
-      "text": "Upgrading Tight Grip from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.tight_grip.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.tight_grip.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2"
     }
   ]
 }

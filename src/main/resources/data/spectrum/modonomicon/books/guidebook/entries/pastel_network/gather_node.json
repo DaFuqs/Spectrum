@@ -1,5 +1,5 @@
 {
-  "name": "Gather Node",
+  "name": "book.spectrum.guidebook.pastel_network.gather_node.name",
   "icon": "spectrum:gather_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,20 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The Gather Node will actively request from other nodes in its [Pastel Network](entry://pastel_network/pastel_network) and put them in its connected inventory.\\\\Specify the items to collect in its [#](449900)filter[#]()."
+      "text": "book.spectrum.guidebook.pastel_network.gather_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/gather_node",
-      "text": "Gathering Order:\\1. [Sender Nodes](entry://pastel_network/sender_node)\\2. [Provider Nodes](entry://pastel_network/provider_node)\\3. [Storage Nodes](entry://pastel_network/storage_node)"
+      "text": "book.spectrum.guidebook.pastel_network.gather_node.page1.text",
+      "title1": "book.spectrum.guidebook.pastel_network.gather_node.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/gather_node"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Inexorable",
+  "name": "book.spectrum.guidebook.enchanting.inexorable.name",
   "icon": "minecraft:iron_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_inexorable",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...\\\\_Hm, written out like this, that was a bit more than expected_."
+      "text": "book.spectrum.guidebook.enchanting.inexorable.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.inexorable.page1.title",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Prevents mining speed slowdowns (on tools) or movement slowdowns (on chestplates).\\\\Max Level: 1\\Applicable to mining tools and chestplates."
+      "text": "book.spectrum.guidebook.enchanting.inexorable.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_inexorable",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Inexorable by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.inexorable.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.inexorable.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_inexorable"
     }
   ]
 }

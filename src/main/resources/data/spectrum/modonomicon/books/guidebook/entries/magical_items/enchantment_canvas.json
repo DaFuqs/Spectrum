@@ -1,5 +1,5 @@
 {
-  "name": "Enchantment Canvas",
+  "name": "book.spectrum.guidebook.magical_items.enchantment_canvas.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/enchantment_canvas"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:enchantment_canvas": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Your pickaxe, which was sinfully expensive to enchant? Almost broken and each additional broken block damages your nerves more than the tool itself.\\Even if the tool can't be saved, at least the enchantments will! This canvas does not only capture color: Used on a tool, the enchantments are exchanged."
+      "text": "book.spectrum.guidebook.magical_items.enchantment_canvas.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/enchantment_canvas",
-      "text": "Once used, an image of the item you used it on will manifest on the canvas, never be removed again, binding it to this type of item."
+      "text": "book.spectrum.guidebook.magical_items.enchantment_canvas.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.enchantment_canvas.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/enchantment_canvas"
     }
   ]
 }

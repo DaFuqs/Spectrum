@@ -1,5 +1,5 @@
 {
-  "name": "Light Level Detector",
+  "name": "book.spectrum.guidebook.redstone.light_level_detector.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/redstone/light_level_detector"
@@ -9,24 +9,22 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:light_level_detector": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Block Light Detector",
-      "text": "[#](bb00bb)Daylight Detectors[#]() are imprecise when it comes to measuring light: the [#](bb00bb)Nether Quartz[#]() used is so crudely processed that only sunlight can trigger the detector reliably.\\Amethyst, shaped by a Pigment Pedestal, is much more sensitive when it comes to measuring light. Even the dim glow of a [#](bb00bb)Torch[#]() is sufficient to output decent strength."
+      "title": "book.spectrum.guidebook.redstone.light_level_detector.page0.title",
+      "text": "book.spectrum.guidebook.redstone.light_level_detector.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.redstone.light_level_detector.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier1/detectors/light_level_detector",
-      "text": "The Light Level Detector does not only react to sunlight, but is also able to pick up other light sources, like light emitting blocks."
+      "text": "book.spectrum.guidebook.redstone.light_level_detector.page1.text"
     }
   ]
 }

@@ -1,19 +1,16 @@
 {
-  "name": "Azure Dike Equipment",
+  "name": "book.spectrum.guidebook.equipment.azure_dike_equipment.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/any_azure_dike_equipment"
   },
   "icon": "spectrum:azure_dike_ring",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:azure_dike_ring": 0,
     "spectrum:azure_dike_belt": 0,
@@ -22,42 +19,42 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The results of combining [Azurite](entry://resources/azurite) and the protective properties of [Blue Pigment](entry://general/pigment@blue) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.\\\\_This is going to be interesting..._"
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Azure Dike",
-      "text": "A magical aura surrounding your body, shielding you from incoming damage.\\Slowly, but steadily recharges up to a specific amount.\\\\Each piece of Azure Dike Equipment increases the maximum amount of protection."
+      "title": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.title",
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Azure Dike Ring",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_ring"
       },
-      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
-      "text": "- Grants you [#](495b24)4[#]() points of [#](2c2e8e)Azure Dike[#]()\\- Slightly speeds up [#](2c2e8e)Azure Dike[#]() charging"
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page2.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page2.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_ring"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Azure Dike Belt",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/azure_dike_belt"
       },
-      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
-      "text": "- Grants you [#](495b24)6[#]() points of [#](2c2e8e)Azure Dike[#]()\\- Increases [#](2c2e8e)Azure Dike[#]() recovery after a hit, making it recharge quicker"
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page3.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page3.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_belt"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Shieldgrasp Amulet",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
       },
-      "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
-      "text": "Infuse it with [Blue Ink](entry://magic/ink) in a [Color Picker](entry://magic/color_picker) to increase the amount of [#](2c2e8e)Azure Dike[#]() provided.\\Cheap at first, the required energy to infuse more power into this amulet increases exponentially."
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page4.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page4.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet"
     }
   ]
 }

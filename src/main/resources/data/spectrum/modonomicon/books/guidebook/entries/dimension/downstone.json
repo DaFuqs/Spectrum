@@ -1,19 +1,16 @@
 {
-  "name": "Downstone",
+  "name": "book.spectrum.guidebook.dimension.downstone.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/reached_dd_floor"
   },
   "icon": "spectrum:downstone",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:downstone": 0,
     "spectrum:downstone_fragments": 0
@@ -24,7 +21,7 @@
       "item": {
         "item": "spectrum:downstone"
       },
-      "text": "At the deepest parts of the Deeper Down, this stone was waiting for you.\\Immensely hard, even Bedrock is a laugh compared to it."
+      "text": "book.spectrum.guidebook.dimension.downstone.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -36,7 +33,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_downstone_fragments"
       },
-      "text": "Looks like whoever came before you was able to harvest it - however only using colossal, imposing drills.\\\\It seems like they used it to manufacture [#](bb00bb)Preservation Stone[#]()?"
+      "text": "book.spectrum.guidebook.dimension.downstone.page1.text"
     }
   ]
 }

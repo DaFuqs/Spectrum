@@ -3,14 +3,12 @@
   "icon": "spectrum:melochites_cookbook_vol_2",
   "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.description",
   "x": 4,
   "y": 4,
-
   "extra_recipe_mappings": {
     "spectrum:melochites_cookbook_vol_2": 0
   },
@@ -39,8 +37,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/slushslide",
-      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page3.text"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/slushslide"
     },
     {
       "type": "modonomicon:text",
@@ -49,8 +47,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/berliner",
-      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page5.text"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/berliner"
     },
     {
       "type": "modonomicon:text",
@@ -59,8 +57,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/cream_pastry",
-      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page7.text"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page7.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/cream_pastry"
     },
     {
       "type": "modonomicon:text",
@@ -69,8 +67,8 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/food/rabbit_cream_pie",
-      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page9.text"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page9.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/rabbit_cream_pie"
     },
     {
       "type": "modonomicon:text",
@@ -79,8 +77,8 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "recipe": "spectrum:titration_barrel/peach_jam",
-      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page11.text"
+      "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.page11.text",
+      "recipe_id_1": "spectrum:titration_barrel/peach_jam"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Connection Node",
+  "name": "book.spectrum.guidebook.pastel_network.connection_node.name",
   "icon": "spectrum:provider_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,20 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "As the most basic of nodes the Connection Node does not have any use by itself.\\\\They solely act as a cheap and unobtrusive way to expand the range of your network."
+      "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/connection_node",
-      "text": "As all other nodes, the Connection Node has a range of 12 blocks."
+      "text": "book.spectrum.guidebook.pastel_network.connection_node.page1.text",
+      "title1": "book.spectrum.guidebook.pastel_network.connection_node.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/connection_node"
     }
   ]
 }

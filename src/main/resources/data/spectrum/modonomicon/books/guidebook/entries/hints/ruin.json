@@ -1,14 +1,11 @@
 {
-  "name": "Experiment #3",
+  "name": "book.spectrum.guidebook.hints.ruin.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 4,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Small Clue",
+      "title": "book.spectrum.guidebook.hints.ruin.page0.title",
       "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
       "cost": "spectrum:brown_pigment#8",
-      "text": "This absolutely aggressive variant called Ruin is able to consume the most resistant material there is. Even ones too resistant for you to ever break before."
+      "text": "book.spectrum.guidebook.hints.ruin.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "A Warning",
+      "title": "book.spectrum.guidebook.hints.ruin.page1.title",
       "cost": "spectrum:brown_pigment#24",
-      "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a backup plan up your sleeve if anything goes wrong."
+      "text": "book.spectrum.guidebook.hints.ruin.page1.text"
     }
   ]
 }

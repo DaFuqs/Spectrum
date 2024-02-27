@@ -1,32 +1,29 @@
 {
-  "name": "Takeoff Belt",
+  "name": "book.spectrum.guidebook.equipment.take_off_belt.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/take_off_belt"
   },
   "icon": "spectrum:take_off_belt",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:take_off_belt": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Climbing mountains or misshapen caves is always very time-consuming. If you don't see an option to scramble up over misshapen ledges, you have no choice but to carve a path into the rock.\\Using your new Takeoff Belt you are able to put great vertical distances behind you, saving time and sparing your beautiful nature from destruction."
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.equipment.take_off_belt.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/take_off_belt",
-      "text": "Sneak to charge a high jump, getting more powerful the longer you charge.\\\\_Even if the name implies it, please don't take it off._"
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page1.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -34,7 +31,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
       },
-      "title": "Power",
+      "title": "book.spectrum.guidebook.equipment.take_off_belt.page2.title",
       "item": {
         "item": "spectrum:take_off_belt",
         "nbt": {
@@ -46,7 +43,7 @@
           ]
         }
       },
-      "text": "The Power enchantment increases the jump height even further."
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page2.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -54,7 +51,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/vanilla_quitoxic"
       },
-      "title": "Feather Falling",
+      "title": "book.spectrum.guidebook.equipment.take_off_belt.page3.title",
       "item": {
         "item": "spectrum:take_off_belt",
         "nbt": {
@@ -66,7 +63,7 @@
           ]
         }
       },
-      "text": "Feather Falling will grant you a short slow fall effect, allowing you to better navigate to where you want to land. A high level of Feather Falling may be a very viable way to safely descend down those cliffs again, actually."
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page3.text"
     }
   ]
 }

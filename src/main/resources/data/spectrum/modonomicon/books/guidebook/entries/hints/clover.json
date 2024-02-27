@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.clover.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to look",
+      "title": "book.spectrum.guidebook.hints.clover.page0.title",
       "completion_advancement": "spectrum:collect_four_leaf_clover",
       "cost": "spectrum:vegetal#16",
-      "text": "Search for a Plains biome. Maybe you get lucky!"
+      "text": "book.spectrum.guidebook.hints.clover.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.clover.page1.title",
       "cost": "spectrum:vegetal#48",
-      "text": "In Plains biomes, you will find Clover growing in small patches, most of them with three, but some with four leaves. You can immediately notice a Four-Leaved Clover in its block form already and distinguish it from a three-leaved one. Break to harvest, Bonemeal/Nature's Staff to spread."
+      "text": "book.spectrum.guidebook.hints.clover.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Chalk",
+  "name": "book.spectrum.guidebook.mod_integration.chalk.name",
   "icon": "chalk:chalk",
   "flag": "mod:chalk",
   "condition": {
@@ -10,14 +10,12 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Getting lost in the belows time and time again made you carry a bit of [#](bb00bb)Chalk[#]() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite never last long before breaking."
+      "text": "book.spectrum.guidebook.mod_integration.chalk.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -25,9 +23,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "title": "Unbreakable Chalk",
-      "recipe": "spectrum:mod_integration/chalk/pedestal/chalk",
-      "text": "By using Pigments instead of Dye, the [#](bb00bb)Chalk[#]() provides you with a never-ending supply of color."
+      "text": "book.spectrum.guidebook.mod_integration.chalk.page1.text",
+      "title1": "book.spectrum.guidebook.mod_integration.chalk.page1.title1",
+      "recipe_id_1": "spectrum:mod_integration/chalk/pedestal/chalk"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -35,9 +33,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "title": "Unbr. Glow Chalk",
-      "recipe": "spectrum:mod_integration/chalk/pedestal/glow_chalk",
-      "text": "Of course you are able to create unbreakable [#](bb00bb)Glow Chalk[#](), too."
+      "text": "book.spectrum.guidebook.mod_integration.chalk.page2.text",
+      "title1": "book.spectrum.guidebook.mod_integration.chalk.page2.title1",
+      "recipe_id_1": "spectrum:mod_integration/chalk/pedestal/glow_chalk"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -46,9 +44,9 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "flag": "mod:chalk-colorful-addon",
-      "title": "Chalk Colorful Addon",
-      "recipe": "spectrum:mod_integration/chalk/pedestal/red_chalk",
-      "text": "Oh, you thought about creating colored chalk, too? Of course those can be made unbreakable, too."
+      "text": "book.spectrum.guidebook.mod_integration.chalk.page3.text",
+      "title1": "book.spectrum.guidebook.mod_integration.chalk.page3.title1",
+      "recipe_id_1": "spectrum:mod_integration/chalk/pedestal/red_chalk"
     }
   ]
 }

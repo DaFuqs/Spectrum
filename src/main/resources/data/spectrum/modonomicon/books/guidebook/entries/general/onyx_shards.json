@@ -7,14 +7,12 @@
     "advancement_id": "spectrum:unlocks/blocks/fusion_shrine"
   },
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.onyx_shards.description",
   "x": 8,
   "y": 2,
-
   "turnin": "spectrum:create_onyx_shard",
   "extra_recipe_mappings": {
     "spectrum:onyx_shard": 0,

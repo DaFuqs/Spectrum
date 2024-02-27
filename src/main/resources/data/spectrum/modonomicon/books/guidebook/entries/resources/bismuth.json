@@ -1,5 +1,5 @@
 {
-  "name": "Bismuth",
+  "name": "book.spectrum.guidebook.resources.bismuth.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_bismuth"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "turnin": "spectrum:lategame/collect_bismuth_crystal",
   "extra_recipe_mappings": {
     "spectrum:bismuth_flake": 0,
@@ -25,8 +23,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.\\The small seedlings you collected are far too small to be used for any meaningful purpose.\\\\How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals."
+      "title": "book.spectrum.guidebook.resources.bismuth.page0.title",
+      "text": "book.spectrum.guidebook.resources.bismuth.page0.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -34,9 +32,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title1": "Growing Bismuth",
+      "title1": "book.spectrum.guidebook.resources.bismuth.page1.title1",
       "recipe_id_1": "spectrum:crystallarieum/bismuth",
-      "text": "Instead of sacrificing whole metal blocks, the [Crystallarieum](entry://magical_blocks/crystallarieum) provides a controlled substrate as well as a finer and more efficient way to provide nutrients."
+      "text": "book.spectrum.guidebook.resources.bismuth.page1.text"
     }
   ]
 }

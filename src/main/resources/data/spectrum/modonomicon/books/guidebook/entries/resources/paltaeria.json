@@ -1,5 +1,5 @@
 {
-  "name": "Paltaeria",
+  "name": "book.spectrum.guidebook.resources.paltaeria.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_paltaeria"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:paltaeria_ore": 0,
     "spectrum:paltaeria_fragments": 0,
@@ -22,25 +20,25 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Paltaeria",
+      "title": "book.spectrum.guidebook.resources.paltaeria.page0.title",
       "item": {
         "item": "spectrum:paltaeria_fragments"
       },
-      "text": "The light blue color is the trademark of this ore. It is found exclusively in the End in small clusters.\\\\Like the End itself, the curious properties of this material are not to be overlooked."
+      "text": "book.spectrum.guidebook.resources.paltaeria.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Paltaeria Gem",
+      "title1": "book.spectrum.guidebook.resources.paltaeria.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_paltaeria_gem"
       },
       "recipe_id_1": "spectrum:pedestal/tier4/paltaeria_gem",
-      "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
+      "text": "book.spectrum.guidebook.resources.paltaeria.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Paltaeria Floatblock",
+      "title": "book.spectrum.guidebook.resources.paltaeria.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
@@ -48,17 +46,17 @@
       "item": {
         "item": "spectrum:paltaeria_fragment_block"
       },
-      "text": "From your previous experiences with Paltaeria, you can already guess that it would not be a good idea to place this block in open sky - your future self will thank you."
+      "text": "book.spectrum.guidebook.resources.paltaeria.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/carry_too_many_low_gravity_blocks"
       },
-      "recipe": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block",
-      "text": "\\       _~ Fly far away ~_"
+      "text": "book.spectrum.guidebook.resources.paltaeria.page3.text",
+      "title1": "book.spectrum.guidebook.resources.paltaeria.page3.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block"
     }
   ]
 }

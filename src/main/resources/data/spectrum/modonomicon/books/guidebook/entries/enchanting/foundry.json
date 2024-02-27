@@ -1,5 +1,5 @@
 {
-  "name": "Foundry",
+  "name": "book.spectrum.guidebook.enchanting.foundry.name",
   "icon": "minecraft:iron_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_autosmelt",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You still remember the first days in this world, when you laboriously knocked coal out of the stone to melt your mined ore. But those days are numbered, you vowed. The future is now, old man.\\\\Everything comes with a price, though: you'll lose the experience you'd normally get from smelting the ore."
+      "text": "book.spectrum.guidebook.enchanting.foundry.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.foundry.page1.title",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Automatically smelts broken blocks. Used on a [#](bb00bb)Fishing Rod[#]() sets its hook on fire.\\\\Max Level: 1\\Applicable to mining tools and [#](bb00bb)Spectrum's Fishing Rods[#]().\\Mutually exclusive with Silk Touch."
+      "text": "book.spectrum.guidebook.enchanting.foundry.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_autosmelt",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Foundry by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.foundry.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.foundry.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_autosmelt"
     }
   ]
 }

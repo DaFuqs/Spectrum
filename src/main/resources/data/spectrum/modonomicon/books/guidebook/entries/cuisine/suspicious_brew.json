@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:suspicious_brew",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.suspicious_brew.description",
   "x": 6,
   "y": 6,
-
   "extra_recipe_mappings": {
     "spectrum:suspicious_brew": 0
   },

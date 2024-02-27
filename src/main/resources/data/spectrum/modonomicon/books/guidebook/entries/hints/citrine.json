@@ -1,14 +1,11 @@
 {
-  "name": "A Gemstone",
+  "name": "book.spectrum.guidebook.hints.citrine.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,10 +16,10 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.citrine.page0.title",
       "completion_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "cost": "spectrum:topaz_shard#16",
-      "text": "There is one type of geode that is commonly found near the surface. It is most likely to be found exposed in lakes or ravines."
+      "text": "book.spectrum.guidebook.hints.citrine.page0.text"
     }
   ]
 }

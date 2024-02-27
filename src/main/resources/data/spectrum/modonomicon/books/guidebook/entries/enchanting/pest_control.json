@@ -1,5 +1,5 @@
 {
-  "name": "Pest Control",
+  "name": "book.spectrum.guidebook.enchanting.pest_control.name",
   "icon": "minecraft:iron_pickaxe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_pest_control",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "On your way to the End you found a huge underground structure that looked like the fortress of a civilisation that lived far before you.\\\\Although they seemed to have technology that allowed them to open a portal to another world, they definitely should have done something about their vermin problem."
+      "text": "book.spectrum.guidebook.enchanting.pest_control.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.pest_control.page1.title",
       "item": {
         "item": "minecraft:iron_pickaxe",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Gets rid of Silverfish when breaking [#](bb00bb)Infested Blocks[#](), dropping double XP.\\\\Max Level: 1\\Applicable to mining tools.\\Mutually exclusive with Resonance."
+      "text": "book.spectrum.guidebook.enchanting.pest_control.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Pest Control by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.pest_control.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.pest_control.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_pest_control"
     }
   ]
 }

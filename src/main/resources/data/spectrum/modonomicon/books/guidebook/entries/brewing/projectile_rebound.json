@@ -6,14 +6,12 @@
   },
   "icon": "minecraft:arrow",
   "category": "spectrum:brewing",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.brewing.projectile_rebound.description",
   "x": 4,
   "y": 4,
-
   "extra_recipe_mappings": {},
   "pages": [
     {

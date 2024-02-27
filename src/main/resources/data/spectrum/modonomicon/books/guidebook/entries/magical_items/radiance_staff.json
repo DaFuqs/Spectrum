@@ -1,5 +1,5 @@
 {
-  "name": "Radiance Staff",
+  "name": "book.spectrum.guidebook.magical_items.radiance_staff.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/radiance_staff"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:radiance_staff": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Torches have one crucial weakness: you can only place them when you're already standing in the dark. In contrast the Radiance Staff can place lights far away and in the air, illuminating large caverns at a distance.\\As a final goodie, these lights are invisible, making them great for illuminating your structures atmospherically."
+      "text": "book.spectrum.guidebook.magical_items.radiance_staff.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/radiance_staff",
-      "text": "Right click placed lights with the staff to adjust the emitted light level.\\They can even be summoned under water."
+      "text": "book.spectrum.guidebook.magical_items.radiance_staff.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.radiance_staff.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/radiance_staff"
     }
   ]
 }

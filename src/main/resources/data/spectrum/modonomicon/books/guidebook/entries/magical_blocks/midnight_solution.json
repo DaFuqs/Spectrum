@@ -1,5 +1,5 @@
 {
-  "name": "Midnight Solution",
+  "name": "book.spectrum.guidebook.magical_blocks.midnight_solution.name",
   "icon": "spectrum:midnight_solution_bucket",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "turnin": "spectrum:midgame/collect_midnight_chip",
   "extra_recipe_mappings": {
     "spectrum:midnight_solution_bucket": 0,
@@ -22,11 +20,11 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You stumbled upon this bizarre liquid as a direct result of [your failed fusion experiment](entry://general/midnight_aberration). Pity, really, but look what you have now.\\Creatures that touch it seem to get their life drained out of them. Interesting...\\Better not get caught in it yourself."
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Midnight Chip",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page1.title",
       "item": {
         "item": "spectrum:midnight_chip"
       },
@@ -35,21 +33,21 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/collect_midnight_chip"
       },
-      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a [Midnight Aberration](entry://general/midnight_aberration), just way, way smaller. Sharp-Edged and vicious.\\Creatures unalived by this cruel process also seem to [#](449900)drop items as if they were killed by a player[#]()."
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page1.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Midnight Solution Bucket",
-      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
       },
-      "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.title1",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Black Materia",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page3.title",
       "item": {
         "item": "spectrum:black_materia"
       },
@@ -57,18 +55,18 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/break_black_materia"
       },
-      "text": "A seemingly useless material that forms around pools of Midnight Solution."
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page3.text"
     },
     {
       "type": "spectrum:midnight_solution_converting",
-      "title1": "Item Conversion",
+      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.title1",
       "recipe_id_1": "spectrum:midnight_solution_converting/blackstone",
-      "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Disenchanting",
-      "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience."
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page5.title",
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page5.text"
     }
   ]
 }

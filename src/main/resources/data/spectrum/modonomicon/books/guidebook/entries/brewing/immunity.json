@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:germinated_jade_vine_bulb",
   "category": "spectrum:brewing",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.brewing.immunity.description",
   "x": 10,
   "y": 0,
-
   "extra_recipe_mappings": {},
   "pages": [
     {

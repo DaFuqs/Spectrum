@@ -1,32 +1,29 @@
 {
-  "name": "Ring of Pursuit",
+  "name": "book.spectrum.guidebook.equipment.ring_of_pursuit.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/ring_of_pursuit"
   },
   "icon": "spectrum:ring_of_pursuit",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:ring_of_pursuit": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Mining is your game. It's almost a miracle that you're only now coming around to the idea of upgrading not only your tools, but your mining proficiency in general. This ring will grow with your abilities."
+      "text": "book.spectrum.guidebook.equipment.ring_of_pursuit.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.equipment.ring_of_pursuit.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
-      "text": "Infuse it with [Magenta Ink](entry://magic/ink) in a [Color Picker](entry://magic/color_picker) to increase your Mining Speed."
+      "text": "book.spectrum.guidebook.equipment.ring_of_pursuit.page1.text"
     }
   ]
 }

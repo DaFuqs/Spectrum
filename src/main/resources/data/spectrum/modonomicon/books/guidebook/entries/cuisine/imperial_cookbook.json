@@ -6,14 +6,12 @@
     "advancement_id": "spectrum:hidden/collect_cookbooks/imperial_cookbook"
   },
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.imperial_cookbook.description",
   "x": 6,
   "y": 2,
-
   "extra_recipe_mappings": {
     "spectrum:imperial_cookbook": 0
   },

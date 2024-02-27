@@ -1,5 +1,5 @@
 {
-  "name": "First Strike",
+  "name": "book.spectrum.guidebook.enchanting.first_strike.name",
   "icon": "minecraft:iron_sword",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_first_strike",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "All it takes is a single well-considered hit... or so the saying must have gone.\\\\Whatever.\\On a related note: you invented First Strike. It will be a great help especially against many weak opponents."
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.first_strike.page1.title",
       "item": {
         "item": "minecraft:iron_sword",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Greatly increased damage if the target has full life.\\\\Max Level: 2\\Applicable to melee weapons."
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with First Strike by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.first_strike.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_first_strike"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
-      "text": "Upgrading First Strike from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.first_strike.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.first_strike.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2"
     }
   ]
 }

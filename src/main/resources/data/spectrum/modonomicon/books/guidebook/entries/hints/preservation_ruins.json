@@ -1,14 +1,11 @@
 {
-  "name": "3 Structures",
+  "name": "book.spectrum.guidebook.hints.preservation_ruins.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,43 +16,43 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.preservation_ruins.page0.title",
       "completion_advancement": "spectrum:generate_preservation_ruins_loot",
       "cost": "spectrum:refined_azurite#4",
-      "text": "There are 3 different kinds of impenetrable structures hidden at around the start of the Deepslate layer in the Overworld in any biome. They seem to be built from an unbreakable stone."
+      "text": "book.spectrum.guidebook.hints.preservation_ruins.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Blue Hearts",
+      "title": "book.spectrum.guidebook.hints.preservation_ruins.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:find_preservation_ruins"
       },
       "completion_advancement": "spectrum:generate_preservation_ruins_loot",
       "cost": "spectrum:refined_azurite#12",
-      "text": "The entrance seems to be blocked by a powerful force field. Whoever built those was kind enough to leave you clues, however! The hearts on the force field's sides seem to indicate you have to have Azure Dike active."
+      "text": "book.spectrum.guidebook.hints.preservation_ruins.page1.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Colored Spore Blossoms",
+      "title": "book.spectrum.guidebook.hints.preservation_ruins.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:find_preservation_ruins"
       },
       "completion_advancement": "spectrum:enter_color_mixing_preservation_ruin",
       "cost": "spectrum:refined_azurite#12",
-      "text": "The Colored Spore Blossoms at the ceiling and the engravings behind them on the walls seem to hint at the solution. A powder engraving and a '? + ?'. You have to mix Powders?"
+      "text": "book.spectrum.guidebook.hints.preservation_ruins.page2.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Bedrock Seal",
+      "title": "book.spectrum.guidebook.hints.preservation_ruins.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:find_preservation_ruins"
       },
       "completion_advancement": "spectrum:enter_wireless_redstone_preservation_ruin",
       "cost": "spectrum:refined_azurite#12",
-      "text": "Is there a way to crack open the Bedrock? After you get in, best to take a look at the corresponding pages in your book of everything you find there. Always good to have some dyes with you."
+      "text": "book.spectrum.guidebook.hints.preservation_ruins.page3.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Knowledge Gem",
+  "name": "book.spectrum.guidebook.magical_items.knowledge_gem.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/knowledge_gem"
@@ -14,32 +14,30 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:knowledge_gem": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Whenever you pick up one of those little green orbs that appear whenever you kill an enemy, you get smarter - supposedly.\\\\However, the inevitable death by clumsiness means that you always lose this experience quickly. Crystallized and safely stored in your chests, however, they will be as safe as can be."
+      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/knowledge_gem",
-      "text": "A Gem holds up to 10,000 experience. [Enchanting](entry://enchanting/enchanting_items) it with [#](449900)Efficiency[#]() increases that limit, [#](449900)Quick Charge[#]() boosts the pushing/pulling of XP."
+      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.knowledge_gem.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/knowledge_gem"
     },
     {
       "type": "modonomicon:text",
-      "title": "XP Orb Absorption",
+      "title": "book.spectrum.guidebook.magical_items.knowledge_gem.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/black_hole_chest"
       },
-      "text": "Putting a Knowledge Gem into a [Black Hole Chest](entry://magical_blocks/black_hole_chest) allows it to absorb XP orbs, putting the experience into the Gem."
+      "text": "book.spectrum.guidebook.magical_items.knowledge_gem.page2.text"
     }
   ]
 }

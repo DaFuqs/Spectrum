@@ -1,38 +1,35 @@
 {
-  "name": "Noxshroom Forest",
+  "name": "book.spectrum.guidebook.dimension.noxshroom_forest.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/visit_dd_biomes/noxshroom_forest"
   },
   "icon": "spectrum:shimmel",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:shimmel": 0
   },
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Noxshroom Forest",
+      "title": "book.spectrum.guidebook.dimension.noxshroom_forest.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
       ],
       "border": true,
-      "text": "A [weird mix between Tree and Mushroom](entry://dimension/noxwood) is towering over this biome."
+      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:shimmel"
       },
-      "text": "Blackslag, overgrown with a thin layer of a mycelium-like fungi."
+      "text": "book.spectrum.guidebook.dimension.noxshroom_forest.page1.text"
     }
   ]
 }

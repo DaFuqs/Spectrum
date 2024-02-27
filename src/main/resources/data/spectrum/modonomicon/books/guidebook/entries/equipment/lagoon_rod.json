@@ -1,32 +1,29 @@
 {
-  "name": "Lagoon Rod",
+  "name": "book.spectrum.guidebook.equipment.lagoon_rod.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/lagoon_rod"
   },
   "icon": "spectrum:lagoon_rod",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:lagoon_rod": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "On quiet days on your patio you could observe that the [Mermaid's Gems](entry://resources/mermaids_brush) you found that marine life seems oddly attracted to them. Along with the fact that they naturally float on water, you decided to use one as a bobber.\\\\Lo and behold, not only does it increase your success, but also have quite a few other interesting side effects..."
+      "text": "book.spectrum.guidebook.equipment.lagoon_rod.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/tools/lagoon_rod",
-      "text": "_You wonder what you can bring to the surface?_"
+      "text": "book.spectrum.guidebook.equipment.lagoon_rod.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.lagoon_rod.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/tools/lagoon_rod"
     }
   ]
 }

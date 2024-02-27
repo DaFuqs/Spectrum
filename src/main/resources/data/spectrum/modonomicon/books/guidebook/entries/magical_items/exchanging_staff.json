@@ -1,5 +1,5 @@
 {
-  "name": "Exchanging Staff",
+  "name": "book.spectrum.guidebook.magical_items.exchanging_staff.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/exchanging_staff"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:exchanging_staff": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "For all those who don't live in a simple [#](bb00bb)Cobblestone[#]() house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff."
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/exchanging_staff",
-      "text": "_Mining just got a whole bunch more fun_"
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier4/exchanging_staff"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -33,7 +31,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Fortune",
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.title",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {
@@ -45,7 +43,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Fortune by using the [Enchanter](entry://enchanting/enchanting_items)$ allows it to multiply ore drops when exchanging similar to using a common Fortune tool."
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -53,7 +51,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Silk Touch",
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.title",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {
@@ -65,7 +63,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Silk Touch by using the Enchanter(entry://enchanting/enchanting_items) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like glass or ores."
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -73,7 +71,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
       },
-      "title": "Resonance",
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.title",
       "item": {
         "item": "spectrum:exchanging_staff",
         "nbt": {
@@ -85,7 +83,7 @@
           ]
         }
       },
-      "text": "Enchanting an Exchanging Staff with Resonance by using the Enchanter(entry://enchanting/enchanting_items) will give it the power to harvest some special blocks as-is."
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.text"
     }
   ]
 }

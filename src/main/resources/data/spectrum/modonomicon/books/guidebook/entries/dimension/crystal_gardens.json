@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.dimension.crystal_gardens.description",
   "x": 4,
   "y": 0,
-
   "extra_recipe_mappings": {
     "spectrum:overgrown_blackslag": 0,
     "spectrum:nephrite_blossom_bulb": 0,

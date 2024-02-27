@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:star_candy",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.star_candy.description",
   "x": 4,
   "y": 6,
-
   "extra_recipe_mappings": {
     "spectrum:star_candy": 0,
     "spectrum:purple_star_candy": 0

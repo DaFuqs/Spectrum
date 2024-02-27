@@ -1,5 +1,5 @@
 {
-  "name": "Terralith",
+  "name": "book.spectrum.guidebook.mod_integration.terralith.name",
   "icon": "minecraft:grass_block",
   "flag": "mod:terralith",
   "condition": {
@@ -10,17 +10,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
+  "x": 2,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "So your lands have especially intriguing terrain, congrats!\\Sadly, with the way Terralith modifies terrain and replaces biomes, it makes some of Spectrum's worldgen near-impossible to generate. The terrain does not have the required layout anymore."
+      "text": "book.spectrum.guidebook.mod_integration.terralith.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Rest assured, you will not be locked out of anything. If your book calls for you to look out for [#](449900)Swamps[#](), just look for [#](449900)Mangrove Swamps[#]() only. There is also another way to get that resource, once you require it."
+      "text": "book.spectrum.guidebook.mod_integration.terralith.page1.text"
     }
   ]
 }

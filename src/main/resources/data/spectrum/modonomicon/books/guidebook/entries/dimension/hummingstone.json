@@ -1,19 +1,16 @@
 {
-  "name": "Hummingstone",
+  "name": "book.spectrum.guidebook.dimension.hummingstone.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_hummingstone"
   },
   "icon": "spectrum:hummingstone",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,
     "spectrum:hummingstone_glass": 0,
@@ -26,19 +23,19 @@
       "item": {
         "item": "spectrum:hummingstone_glass"
       },
-      "text": "This very sturdy, very blast resistant glass is scattered all around the [Crystal Gardens](entry://dimension/crystal_gardens)."
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:hummingstone"
       },
-      "text": "Between this glass you find these pretty stones that emit a pleasant hum when triggered. You fittingly called those _Hummingstones_."
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page1.text"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "recipe": "spectrum:cinderhearth/clear_hummingstone_glass",
-      "text": "Only the Cinderhearth develops enough heat to shape the stone. This makes it almost transparent."
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page2.text",
+      "recipe_id_1": "spectrum:cinderhearth/clear_hummingstone_glass"
     },
     {
       "type": "modonomicon:spotlight",
@@ -49,7 +46,7 @@
       "item": {
         "item": "spectrum:resonance_shard"
       },
-      "text": "It turns out that the pretty sounds of the Hummingstones can build each other up until they shatter in one final anthem.\\The shattered remains never seem to stop vibrating, as if they retain some form of inherent energy."
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page3.text"
     }
   ]
 }

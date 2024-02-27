@@ -1,32 +1,28 @@
 {
-  "name": "Neat Ring",
+  "name": "book.spectrum.guidebook.equipment.neat_ring.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/neat_ring"
   },
   "icon": "spectrum:neat_ring",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:neat_ring": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "_I just think it's neat._"
+      "text": "book.spectrum.guidebook.equipment.neat_ring.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/neat_ring",
-      "text": ""
+      "title1": "book.spectrum.guidebook.equipment.neat_ring.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/neat_ring"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Alloy Forgery",
+  "name": "book.spectrum.guidebook.mod_integration.alloy_forgery.name",
   "icon": "alloy_forgery:bricks_forge_controller",
   "flag": "mod:alloy_forgery",
   "condition": {
@@ -10,44 +10,40 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Hardened by heat and pressure, beautiful Alloy Forges can be made from calcite and basalt.\\\\Perhaps you will find more minerals to use during your adventure? The best thing to do is to write them all down here."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "In addition, some items can be used as special fuel for Alloy Forges. Some ores have increased output when smelted in one.\\\\Tell Noaaan I said hi!"
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page1.text"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Basalt Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/basalt_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page2.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_basalt_alloy_forge",
-      "text": "Quite slow, but packs a lot of fuel."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page3.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page3.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/polished_basalt_alloy_forge"
     },
     {
       "type": "modonomicon:multiblock",
-      "name": "Calcite Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/calcite_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page4.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge",
-      "text": "Twice as fast as the Basalt variant, but you will have to restock on fuel quite more often."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page5.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page5.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge"
     },
     {
       "type": "modonomicon:multiblock",
@@ -55,20 +51,19 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blackslag"
       },
-      "name": "Blackslag Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/blackslag_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page6.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blackslag"
       },
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_blackslag_alloy_forge",
-      "text": "A high-tier Forge with medium speed and fuel capacity."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page7.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page7.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/polished_blackslag_alloy_forge"
     },
     {
       "type": "modonomicon:multiblock",
@@ -76,20 +71,19 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shale_clay"
       },
-      "name": "Shale Clay Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/shale_clay_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page8.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shale_clay"
       },
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_shale_clay_alloy_forge",
-      "text": "A high-end forge with incredible capacity and reasonable smelting speed."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page9.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page9.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/polished_shale_clay_alloy_forge"
     },
     {
       "type": "modonomicon:multiblock",
@@ -97,20 +91,19 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pyrite"
       },
-      "name": "Pyrite Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/pyrite_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page10.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_pyrite"
       },
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/pyrite_alloy_forge",
-      "text": "A high-end forge that melts at an incomparable temperature. Low capacity compared to other Alloy Forges."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page11.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page11.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/pyrite_alloy_forge"
     },
     {
       "type": "modonomicon:multiblock",
@@ -118,20 +111,19 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
-      "name": "Bone Ash Alloy Forge",
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/bone_ash_alloy_forge",
-      "text": ""
+      "multiblock_name": "book.spectrum.guidebook.mod_integration.alloy_forgery.page12.multiblock_name"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Forge Controller",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
-      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_bone_ash_alloy_forge",
-      "text": "An exceptional forge that accelerates the melting process with additional pressure. Holds a reasonable amount of fuel."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page13.text",
+      "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page13.title1",
+      "recipe_id_1": "spectrum:mod_integration/alloy_forgery/pedestal/polished_bone_ash_alloy_forge"
     },
     {
       "type": "modonomicon:spotlight",
@@ -142,7 +134,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_pure_resource"
       },
-      "text": "Pure resources can be turned into their mundane counterpart, with a nice multiplier."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page14.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -153,7 +145,7 @@
       "item": {
         "item": "spectrum:stratine_ore"
       },
-      "text": "Using a high tier [#](449900)Alloy Forge[#]() you can squeeze quite a bit more [Stratine](entry://resources/stratine) from the raw ore."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page15.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -164,7 +156,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_paltaeria"
       },
-      "text": "...same is true for [Paltaeria](entry://resources/paltaeria), of course."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page16.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -175,7 +167,7 @@
       "item": {
         "item": "spectrum:wet_lava_sponge"
       },
-      "text": "A dripping [#](bb00bb)Lava Sponge[#]() contains enough heat to fuel your Alloy Forge for quite some time."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page17.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -186,7 +178,7 @@
       "item": {
         "item": "spectrum:incandescent_essence"
       },
-      "text": "Also a good heat source for your Alloy Forges."
+      "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page18.text"
     }
   ]
 }

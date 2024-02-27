@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.mermaids_gems.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 2,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.mermaids_gems.page0.title",
       "completion_advancement": "spectrum:collect_mermaids_gem",
       "cost": "spectrum:onyx_shard#4",
-      "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
+      "text": "book.spectrum.guidebook.hints.mermaids_gems.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.mermaids_gems.page1.title",
       "cost": "spectrum:onyx_shard#12",
-      "text": "The source of these gems is a coral-looking plant that grows on the seabed in small groups, looking like sea grass. Wait next to it until it is fully grown, releases its precious treasure and then collect it. After you got one, you will be able to see the plant for what it is."
+      "text": "book.spectrum.guidebook.hints.mermaids_gems.page1.text"
     }
   ]
 }

@@ -1,32 +1,29 @@
 {
-  "name": "Radiance Pin",
+  "name": "book.spectrum.guidebook.equipment.radiance_pin.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/radiance_pin"
   },
   "icon": "spectrum:radiance_pin",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:radiance_pin": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You didn't randomly choose the name of the Radiance Pin to resemble the [Radiance Staff](entry://magical_items/radiance_staff).\\If you are in a dark area, the pin automatically creates an invisible light on you. Unlike the lights of the [Radiance Staff](entry://magical_items/radiance_staff), however, they slowly become fainter and fainter until they eventually dissipate completely."
+      "text": "book.spectrum.guidebook.equipment.radiance_pin.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.equipment.radiance_pin.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/radiance_pin",
-      "text": "Fantastic to see the paths you've already taken in your cave explorations."
+      "text": "book.spectrum.guidebook.equipment.radiance_pin.page1.text"
     }
   ]
 }

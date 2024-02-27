@@ -1,5 +1,5 @@
 {
-  "name": "Nature's Staff",
+  "name": "book.spectrum.guidebook.magical_items.natures_staff.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/natures_staff"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:natures_staff": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Using the magic elements of [#](613c20)Nature[#]() and [#](5faa19)Fertility[#](), you have come up with this stroke of genius.\\Bonemeal is a joke when compared to your new gadget."
+      "text": "book.spectrum.guidebook.magical_items.natures_staff.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/natures_staff",
-      "text": "_Point at something you want to see blossom_"
+      "text": "book.spectrum.guidebook.magical_items.natures_staff.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.natures_staff.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/natures_staff"
     },
     {
       "type": "spectrum:nbt_spotlight",
@@ -33,7 +31,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_enchanting_structure"
       },
-      "title": "Enchanting - Efficiency",
+      "title": "book.spectrum.guidebook.magical_items.natures_staff.page2.title",
       "item": {
         "item": "spectrum:natures_staff",
         "nbt": {
@@ -45,7 +43,7 @@
           ]
         }
       },
-      "text": "Enchanting the Nature's Staff with Efficiency by using the [Enchanter](entry://enchanting/enchanting_items) decreases the chance of [Vegetal](entry://creating_life/fading@vegetal) to get consumed for each level."
+      "text": "book.spectrum.guidebook.magical_items.natures_staff.page2.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Conjuring",
+  "name": "book.spectrum.guidebook.mod_integration.conjuring.name",
   "icon": "conjuring:conjurer",
   "flag": "mod:conjuring",
   "condition": {
@@ -10,42 +10,40 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "_Souls, Spirits, Cages_\\Now if that isn't a work of shrewd occultism you do not know what is."
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Resistance Potions",
-      "recipe": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
       },
-      "text": "Distilled Spirits can be... \\umm.. distilled?\\_distilled further?_\\into long lasting [#](449900)Resistance[#]() Potions."
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page1.text",
+      "title1": "book.spectrum.guidebook.mod_integration.conjuring.page1.title1",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
-      "text": "You're not even sure yourself how you came up with this recipe anymore.\\Maybe you inhaled a little too much [#](bb00bb)Quitoxic Powder[#]() when you combined various ingredients. But the result is interesting, no question."
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page2.text",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
-      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create plain [#](bb00bb)Mob Spawners[#]() yourself.\\You only need to assign a Creature to spawn using the [Spirit Instiller](entry://creating_life/spirit_instiller)."
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page3.text",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner"
     }
   ]
 }

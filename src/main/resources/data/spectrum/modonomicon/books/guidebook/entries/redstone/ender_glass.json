@@ -1,5 +1,5 @@
 {
-  "name": "Ender Glass",
+  "name": "book.spectrum.guidebook.redstone.ender_glass.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/ender_glass"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:ender_glass": 0
   },
@@ -22,19 +20,19 @@
       "item": {
         "item": "spectrum:ender_glass"
       },
-      "text": "You already thought the moment you put the recipe on paper that this creation will be something special.\\\\The combination of the power of [#](449900)The End[#](), [#](449900)Redstone[#]() and [#](449900)Magic[#]() gives it very strange properties."
+      "text": "book.spectrum.guidebook.redstone.ender_glass.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Depending on the strength of the applied [#](449900)redstone signal[#](), this block takes on different properties:\\- Without redstone, it is completely solid\\- when a [#](449900)redstone signal[#]() reaches it, it becomes transparent, almost like glass\\-however, it reaches its most curious state when a redstone signal of full strength is applied..."
+      "text": "book.spectrum.guidebook.redstone.ender_glass.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.\\\\Truly a curiosity from the End."
+      "text": "book.spectrum.guidebook.redstone.ender_glass.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.redstone.ender_glass.page3.title1",
       "recipe_id_1": "spectrum:pedestal/tier1/ender_glass",
       "test": "With the smallest external influence in the form of blocks it falls back to the state of lowest energy."
     }

@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:citrine_chiseled_calcite",
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.gemstone_runes.description",
   "x": 8,
   "y": 2,
-
   "extra_recipe_mappings": {
     "spectrum:topaz_chiseled_basalt": 0,
     "spectrum:amethyst_chiseled_basalt": 0,

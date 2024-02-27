@@ -1,5 +1,5 @@
 {
-  "name": "Botania",
+  "name": "book.spectrum.guidebook.mod_integration.botania.name",
   "icon": "botania:mana_pool",
   "flag": "mod:botania",
   "condition": {
@@ -10,28 +10,26 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You found a plethora of colorful flowers growing around forests and plains in small patches. What's up with those? Definitely worth a look if you haven't tinkered with them already."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "Crushing Petals",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:place_pedestal"
       },
       "recipe_id_1": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
-      "text": "While crushing flowers seems a bit unorthodox, it _did_ work. No problem plucking the petals from the flattened blossom after that."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Ink from Petals",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/place_color_picker"
@@ -39,27 +37,17 @@
       "item": {
         "item": "botania:magenta_petal"
       },
-      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble [Colored Trees](entry://general/colored_trees) in more than just one point.\\\\No wonder that their petals can also be used to create [Ink](entry://magic/ink)."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Glimmering Flowers",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_shimmerstone"
       },
-      "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
-      "text": "Adding some [Shimmerstone](entry://resources/shimmerstone) to magical flowers makes them glimmer."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Colored Mushrooms",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_pigment"
-      },
-      "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
-      "text": "Applying [Pigment](entry://general/pigment) to mushrooms colors them in the respective color."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page3.text",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title1",
+      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -67,8 +55,18 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_pigment"
       },
-      "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
-      "text": "Using [Pigment](entry://general/pigment) instead of mundane Dye when creating [#](bb00bb)Floral Fertilizer[#]() is quite a bit more yielding."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page4.text",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title1",
+      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.botania.page5.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -76,8 +74,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
       },
-      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
-      "text": "The [#](bb00bb)Black Lotus[#]() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some [#](449900)Jade Petals[#]()"
+      "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -85,12 +83,12 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
       },
-      "recipe": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed",
-      "text": "Those elusive seeds you could only find in chests hidden around the world? Pricey - maybe not even worth the hassle - but you finally found a way to replicate them."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page7.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Enchanted Soil",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page8.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/resonant_pickaxe"
@@ -98,11 +96,11 @@
       "item": {
         "item": "botania:enchanted_soil"
       },
-      "text": "Enchanted Soil can be harvested using tools enchanted with [Resonance](entry://enchanting/resonance)."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page8.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page9.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -110,11 +108,11 @@
       "item": {
         "item": "botania:black_lotus"
       },
-      "text": "- +2 positive effects\\- +1 negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
+      "text": "book.spectrum.guidebook.mod_integration.botania.page9.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page10.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -122,11 +120,11 @@
       "item": {
         "item": "botania:blacker_lotus"
       },
-      "text": "- +3 positive effects\\- 50% chance for negative effect\\- makes the potion unidentifiable.\\\\_Fancy a gamble?_"
+      "text": "book.spectrum.guidebook.mod_integration.botania.page10.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page11.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -134,11 +132,11 @@
       "item": {
         "item": "botania:life_essence"
       },
-      "text": "- +3 potency\\- -3 yield\\\\Requires other reagents to increase the yield, otherwise you will end up with nothing..."
+      "text": "book.spectrum.guidebook.mod_integration.botania.page11.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page12.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -146,11 +144,11 @@
       "item": {
         "item": "botania:mana_powder"
       },
-      "text": "- +25% duration\\- 15% chance to add last effect"
+      "text": "book.spectrum.guidebook.mod_integration.botania.page12.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page13.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
@@ -158,7 +156,7 @@
       "item": {
         "item": "botania:pixie_dust"
       },
-      "text": "- creates Lingering Potions & Tipped Arrows\\- -25% potency"
+      "text": "book.spectrum.guidebook.mod_integration.botania.page13.text"
     }
   ]
 }

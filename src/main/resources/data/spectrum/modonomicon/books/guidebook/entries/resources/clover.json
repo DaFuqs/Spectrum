@@ -1,5 +1,5 @@
 {
-  "name": "Clover",
+  "name": "book.spectrum.guidebook.resources.clover.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_clover"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:clover": 0,
     "spectrum:four_leaf_clover": 0
@@ -20,11 +18,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Clover",
+      "title": "book.spectrum.guidebook.resources.clover.page0.title",
       "item": {
         "item": "spectrum:clover"
       },
-      "text": "Plains and other green biomes are home to these lush green clovers, sprouting with life.\\\\_Is today your lucky day?_"
+      "text": "book.spectrum.guidebook.resources.clover.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -35,7 +33,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"
       },
-      "text": "Indeed it is!\\You are sure this tiny sign of luck could come in handy."
+      "text": "book.spectrum.guidebook.resources.clover.page1.text"
     }
   ]
 }

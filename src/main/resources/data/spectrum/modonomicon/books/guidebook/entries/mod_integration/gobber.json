@@ -1,5 +1,5 @@
 {
-  "name": "Gobber",
+  "name": "book.spectrum.guidebook.mod_integration.gobber.name",
   "icon": "gobber2:gobber2_globette",
   "flag": "mod:gobber2",
   "condition": {
@@ -10,10 +10,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:small_globette_bud": 0,
     "spectrum:large_globette_bud": 0,
@@ -28,34 +26,34 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This material seems ridiculously powerful at first glance for how common it is. That's why you gave it such a funny name. Let's see what you can do with it."
+      "text": "book.spectrum.guidebook.mod_integration.gobber.page0.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "text": "It grows!"
+      "text": "book.spectrum.guidebook.mod_integration.gobber.page1.text",
+      "recipe_id_1": "spectrum:mod_integration/gobber/crystallarieum/globette"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette_nether",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "text": "It also grows!"
+      "text": "book.spectrum.guidebook.mod_integration.gobber.page2.text",
+      "recipe_id_1": "spectrum:mod_integration/gobber/crystallarieum/globette_nether"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette_end",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "text": "You are not going to believe this."
+      "text": "book.spectrum.guidebook.mod_integration.gobber.page3.text",
+      "recipe_id_1": "spectrum:mod_integration/gobber/crystallarieum/globette_end"
     }
   ]
 }

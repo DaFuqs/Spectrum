@@ -3,14 +3,12 @@
   "icon": "spectrum:melochites_cookbook_vol_1",
   "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.description",
   "x": 2,
   "y": 4,
-
   "extra_recipe_mappings": {
     "spectrum:melochites_cookbook_vol_1": 0
   },

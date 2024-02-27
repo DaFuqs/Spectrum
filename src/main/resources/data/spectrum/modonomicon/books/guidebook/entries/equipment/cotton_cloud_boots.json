@@ -1,32 +1,29 @@
 {
-  "name": "Cotton Cloud Boots",
+  "name": "book.spectrum.guidebook.equipment.cotton_cloud_boots.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/cotton_cloud_boots"
   },
   "icon": "spectrum:cotton_cloud_boots",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:cotton_cloud_boots": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "To be able to fly like the birds has always been the dream of many people, including you.\\\\Now you got those boots. The freedom is almost overwhelming. You didn't get it quite right without a catch, but what can you do."
+      "text": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
-      "recipe": "spectrum:fusion_shrine/trinkets/cotton_cloud_boots",
-      "text": "Small clouds form under your feet as soon as you start sprinting. Those clouds are too fuzzy to jump on, but safely levitate you in the air.\\\\There's just one kicker:\\_you better not stop sprinting high in the air_."
+      "text": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/cotton_cloud_boots"
     }
   ]
 }

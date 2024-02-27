@@ -1,5 +1,5 @@
 {
-  "name": "Stargazing",
+  "name": "book.spectrum.guidebook.resources.stargazing.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/unlock_shooting_stars"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:star_fragment": 0,
     "spectrum:stardust": 0,
@@ -25,12 +23,12 @@
   "pages": [
     {
       "type": "modonomicon:image",
-      "title": "Wishing upon a star",
+      "title": "book.spectrum.guidebook.resources.stargazing.page0.title",
       "images": [
         "spectrum:textures/gui/guidebook/stargazing.png"
       ],
       "border": true,
-      "text": "The calmness of the night invites you to lie down in the grass and watch the stars."
+      "text": "book.spectrum.guidebook.resources.stargazing.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -38,11 +36,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
       },
-      "title": "Shooting Stars",
+      "title": "book.spectrum.guidebook.resources.stargazing.page1.title",
       "item": {
         "item": "spectrum:glistering_shooting_star"
       },
-      "text": "The small Shooting Stars are made of a material unknown to you thus far.\\\\Can you catch one right out of the sky?\\\\_Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision._"
+      "text": "book.spectrum.guidebook.resources.stargazing.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -50,11 +48,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_star_fragment"
       },
-      "title": "Star Fragments",
+      "title": "book.spectrum.guidebook.resources.stargazing.page2.title",
       "item": {
         "item": "spectrum:star_fragment"
       },
-      "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.\\\\Picking up a Shooting Star by crouching and [smashing it via an Anvil](entry://general/anvil_crushing) will yield double the Star Fragments, albeit at the cost of the other materials."
+      "text": "book.spectrum.guidebook.resources.stargazing.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -63,11 +61,11 @@
         "advancement_id": "spectrum:collect_star_fragment"
       },
       "anchor": "stardust",
-      "title": "Stardust",
+      "title": "book.spectrum.guidebook.resources.stargazing.page3.title",
       "item": {
         "item": "spectrum:stardust"
       },
-      "text": "A powder of unknown origin blessed with the soul of the stars.\\Bears coy, yet latent power."
+      "text": "book.spectrum.guidebook.resources.stargazing.page3.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -75,9 +73,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_all_shooting_star_variants"
       },
-      "title1": "Star Hardening",
+      "title1": "book.spectrum.guidebook.resources.stargazing.page4.title1",
       "recipe_id_1": "spectrum:fusion_shrine/shooting_star_hardening",
-      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.\\\\_Fancy a Starball tournament with your friends?_"
+      "text": "book.spectrum.guidebook.resources.stargazing.page4.text"
     }
   ]
 }

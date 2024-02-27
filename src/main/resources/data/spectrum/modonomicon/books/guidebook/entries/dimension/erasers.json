@@ -1,19 +1,16 @@
 {
-  "name": "Erasers",
+  "name": "book.spectrum.guidebook.dimension.erasers.name",
   "icon": "spectrum:eraser_head",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/entity_interact/eraser"
   },
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:eraser_head": 0,
     "spectrum:eraser_spawn_egg": 0
@@ -21,14 +18,14 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "name": "Erasers",
+      "name": "book.spectrum.guidebook.dimension.erasers.page0.name",
       "entity_id": "spectrum:eraser",
       "scale": 1.0,
-      "text": "_Don't let them overwhelm you!_"
+      "text": "book.spectrum.guidebook.dimension.erasers.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "Tiny, hard-to-hit, pack-hunting spiders that inflict a variety of nasty effects when hit.\\\\Those darn critters are a real pest down here. You wouldn't be surprised if THESE were responsible for the downfall of civilizations.\\\\Your usual approach with sword or bow doesn't help much against them, they are too fast for that. Something that does area damage is more likely to."
+      "text": "book.spectrum.guidebook.dimension.erasers.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Staff of Remembrance",
+  "name": "book.spectrum.guidebook.magical_items.staff_of_remembrance.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/staff_of_remembrance"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:staff_of_remembrance": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "_One to rule them all_\\...well, politely, of course.\\\\The Staff of Remembrance allows you to move around your animals with ease, both short and long distance."
+      "text": "book.spectrum.guidebook.magical_items.staff_of_remembrance.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier4/staff_of_remembrance",
-      "text": "Tap animals to recollect them into a [Memory](entry://creating_life/memories)."
+      "text": "book.spectrum.guidebook.magical_items.staff_of_remembrance.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.staff_of_remembrance.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier4/staff_of_remembrance"
     }
   ]
 }

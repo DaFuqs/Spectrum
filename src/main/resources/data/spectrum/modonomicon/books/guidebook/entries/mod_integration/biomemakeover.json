@@ -1,5 +1,5 @@
 {
-  "name": "Biome Makeover",
+  "name": "book.spectrum.guidebook.mod_integration.biomemakeover.name",
   "icon": "biomemakeover:antidote",
   "flag": "mod:biomemakeover",
   "condition": {
@@ -10,34 +10,30 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You recently found new materials scattered across the landscape in new, beautiful terrain. You are sure you can make use of those in some way."
+      "text": "book.spectrum.guidebook.mod_integration.biomemakeover.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Antidote Potions",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "recipe": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/antidote",
-      "text": ""
+      "title1": "book.spectrum.guidebook.mod_integration.biomemakeover.page1.title1",
+      "recipe_id_1": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/antidote"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Nocturnal Potions",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "recipe": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal",
-      "text": ""
+      "title1": "book.spectrum.guidebook.mod_integration.biomemakeover.page2.title1",
+      "recipe_id_1": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal"
     }
   ]
 }

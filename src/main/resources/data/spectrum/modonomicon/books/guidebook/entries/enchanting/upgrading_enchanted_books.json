@@ -1,5 +1,5 @@
 {
-  "name": "Upgrading Books",
+  "name": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.name",
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "sortnum": 3,
@@ -8,18 +8,15 @@
     "advancement_id": "spectrum:unlocks/blocks/enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 8,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Enchantments and your Color Magic have a lot in common. That's why you weren't surprised when your first attempt to combine [#](bb00bb)Enchanted Books[#]() with [Pigment](entry://general/pigment) was an instant success.\\\\Placing an [#](bb00bb)Enchanted Book[#]() onto the [Enchanter](entry://enchanting/enchanter), surrounding it with matching [Pigment](entry://general/pigment) and supplying a steady stream of experience increases your books level."
+      "text": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.page0.text"
     },
     {
       "type": "modonomicon:image",
@@ -27,7 +24,7 @@
         "spectrum:textures/gui/guidebook/upgrading_enchanted_books.png"
       ],
       "border": true,
-      "text": "Just try not to interrupt said process, otherwise it will stop entirely."
+      "text": "book.spectrum.guidebook.enchanting.upgrading_enchanted_books.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Lava Sponge",
+  "name": "book.spectrum.guidebook.magical_blocks.lava_sponge.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/lava_sponge"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:lava_sponge": 0,
     "spectrum:wet_lava_sponge": 0
@@ -20,19 +18,19 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Lava Sponge",
-      "text": "When you held a [#](bb00bb)Wet Sponge[#]() in your hands, you thought that there must be a counterpart for [#](bb00bb)Lava[#](), too. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.\\\\This should make navigation in the depths of the world and beyond that hellish portal much easier."
+      "title": "book.spectrum.guidebook.magical_blocks.lava_sponge.page0.title",
+      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/lava_sponge",
-      "text": "...or so you thought, until you realized that the lava-soaked sponge also has an _unfortunate_ side effect.\\You should have guessed."
+      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/lava_sponge"
     },
     {
       "type": "modonomicon:text",
-      "title": "Furnace Fuel",
-      "text": "The Lava Sponge can be used as highly efficient fuel in the [#](bb00bb)Furnace[#](), drying it in the process."
+      "title": "book.spectrum.guidebook.magical_blocks.lava_sponge.page2.title",
+      "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page2.text"
     }
   ]
 }

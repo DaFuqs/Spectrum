@@ -1,32 +1,29 @@
 {
-  "name": "Weeping Circlet",
+  "name": "book.spectrum.guidebook.equipment.weeping_circlet.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/weeping_circlet"
   },
   "icon": "spectrum:weeping_circlet",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 10,
   "extra_recipe_mappings": {
     "spectrum:weeping_circlet": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "These hostile underwater temples are hell to maneuver in. Luckily, in your search for treasure, you stumbled upon a [#](bb00bb)Heart of The Sea[#]().\\This circlet allows you to live and mine underwater as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.\\It also heals your little close by Axolotl friends. ♥"
+      "text": "book.spectrum.guidebook.equipment.weeping_circlet.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "Fusion Recipe",
+      "title1": "book.spectrum.guidebook.equipment.weeping_circlet.page1.title1",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/weeping_circlet",
-      "text": "_Have you ever wanted to live underwater?\\No? Whatever, now you can. Time to build an underwater base!_"
+      "text": "book.spectrum.guidebook.equipment.weeping_circlet.page1.text"
     }
   ]
 }

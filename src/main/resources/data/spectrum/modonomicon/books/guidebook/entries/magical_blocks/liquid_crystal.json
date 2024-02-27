@@ -1,5 +1,5 @@
 {
-  "name": "Liquid Crystal",
+  "name": "book.spectrum.guidebook.magical_blocks.liquid_crystal.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "turnin": "spectrum:midgame/enter_liquid_crystal",
   "extra_recipe_mappings": {
     "spectrum:liquid_crystal_bucket": 0,
@@ -23,24 +21,24 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Liquid Crystal",
+      "title": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page0.title",
       "item": {
         "item": "spectrum:liquid_crystal_bucket"
       },
-      "text": "The pure energy of gemstones in liquid form. It is said to have a healing effect."
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-      "text": "Combining it with various other liquids results in all kinds of interesting looking materials."
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/liquid_crystal_bucket"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "minecraft:clay"
       },
-      "text": "Letting Liquid Crystal collide with [Liquid Mud](entry://magical_blocks/mud) created [#](bb00bb)Clay[#]()! Surely there are more combinations to discover!\\\\_Thomas had never seen such unbalance before._"
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -51,7 +49,7 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "Letting a full block of Liquid Crystal absorb the immense heat of Lava resulted in this.\\Almost feels like a [#](bb00bb)Magma Block[#](), albeit way hotter."
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -62,7 +60,7 @@
       "item": {
         "item": "spectrum:frostbite_crystal"
       },
-      "text": "As [#](bb00bb)Water[#]() tried to flow into a full block of Liquid Crystal the crystal solidified.\\Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page4.text"
     },
     {
       "type": "spectrum:liquid_crystal_converting",
@@ -72,7 +70,7 @@
       },
       "anchor": "resonant_lily",
       "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
-      "text": "This is an interesting one. When [#](bb00bb)Flowers[#]() absorb this magical liquid through their roots, they turn into those elusive plants."
+      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page5.text"
     }
   ]
 }

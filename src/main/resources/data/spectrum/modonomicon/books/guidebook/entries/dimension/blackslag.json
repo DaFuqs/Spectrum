@@ -6,18 +6,15 @@
   },
   "icon": "spectrum:blackslag",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.dimension.blackslag.description",
   "x": 2,
   "y": 0,
-
   "extra_recipe_mappings": {
     "spectrum:blackslag": 0,
     "spectrum:infested_blackslag": 0,
-
     "spectrum:blackslag_coal_ore": 0,
     "spectrum:blackslag_copper_ore": 0,
     "spectrum:blackslag_iron_ore": 0,
@@ -36,29 +33,24 @@
         "spectrum:blackslag_stairs",
         "spectrum:blackslag_slab",
         "spectrum:blackslag_wall",
-
         "spectrum:cobbled_blackslag",
         "spectrum:cobbled_blackslag_stairs",
         "spectrum:cobbled_blackslag_slab",
         "spectrum:cobbled_blackslag_wall",
-
         "spectrum:polished_blackslag",
         "spectrum:polished_blackslag_button",
         "spectrum:polished_blackslag_pressure_plate",
         "spectrum:polished_blackslag_stairs",
         "spectrum:polished_blackslag_slab",
         "spectrum:polished_blackslag_wall",
-
         "spectrum:blackslag_tiles",
         "spectrum:blackslag_tile_stairs",
         "spectrum:blackslag_tile_slab",
         "spectrum:blackslag_tile_wall",
-
         "spectrum:blackslag_bricks",
         "spectrum:blackslag_brick_stairs",
         "spectrum:blackslag_brick_slab",
         "spectrum:blackslag_brick_wall",
-
         "spectrum:polished_blackslag_pillar",
         "spectrum:chiseled_polished_blackslag",
         "spectrum:ancient_chiseled_polished_blackslag",

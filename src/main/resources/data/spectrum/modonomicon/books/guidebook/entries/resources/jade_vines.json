@@ -1,5 +1,5 @@
 {
-  "name": "Jade Vines",
+  "name": "book.spectrum.guidebook.resources.jade_vines.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_hibernating_jade_vine_bulb"
@@ -9,10 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 2,
   "extra_recipe_mappings": {
     "spectrum:hibernating_jade_vine_bulb": 0,
     "spectrum:germinated_jade_vine_bulb": 0,
@@ -24,25 +22,25 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Jade Vines",
+      "title": "book.spectrum.guidebook.resources.jade_vines.page0.title",
       "item": {
         "item": "spectrum:hibernating_jade_vine_bulb"
       },
-      "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.\\\\_Will the history of this plant remain elusive to you forever?_"
+      "text": "book.spectrum.guidebook.resources.jade_vines.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "Germinating",
+      "title1": "book.spectrum.guidebook.resources.jade_vines.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "recipe_id_1": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
-      "text": "Once almost a lost cause, you now have an ace up your sleeve:\\With the help of the [Spirit Instiller](entry://creating_life/spirit_instiller) you are sure that you can breathe life back into the little bulb."
+      "text": "book.spectrum.guidebook.resources.jade_vines.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Planting & Growing",
+      "title": "book.spectrum.guidebook.resources.jade_vines.page2.title",
       "item": {
         "item": "spectrum:germinated_jade_vine_bulb"
       },
@@ -50,11 +48,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.\\[#](8f2121)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.\\[#](5faa19)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
+      "text": "book.spectrum.guidebook.resources.jade_vines.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Jade Jelly",
+      "title": "book.spectrum.guidebook.resources.jade_vines.page3.title",
       "anchor": "jade_jelly",
       "item": {
         "item": "spectrum:jade_jelly"
@@ -63,22 +61,22 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_jelly"
       },
-      "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.\\\\_Unexpectedly tasty_."
+      "text": "book.spectrum.guidebook.resources.jade_vines.page3.text"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "Jaramel",
+      "title1": "book.spectrum.guidebook.resources.jade_vines.page4.title1",
       "anchor": "jaramel",
       "recipe_id_1": "spectrum:cinderhearth/jaramel",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/jaramel"
       },
-      "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.\\\\_Fancy a sugar rush?_"
+      "text": "book.spectrum.guidebook.resources.jade_vines.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Petals",
+      "title": "book.spectrum.guidebook.resources.jade_vines.page5.title",
       "anchor": "petals",
       "item": {
         "item": "spectrum:jade_vine_petals"
@@ -87,11 +85,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "Shiny petals can be plucked when partly grown.\\They can be used as [decoration](entry://decoration/jade_vine_petal_blocks).\\Rarely, when searching the petals, [#](449900)another Bulb[#]() can be found. How will Jade Vines look when you let them grow further, tough?"
+      "text": "book.spectrum.guidebook.resources.jade_vines.page5.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Moonstruck Nectar",
+      "title": "book.spectrum.guidebook.resources.jade_vines.page6.title",
       "anchor": "nectar",
       "item": {
         "item": "spectrum:moonstruck_nectar"
@@ -100,7 +98,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.\\Bears great restorative properties:\\- can be drunk for healing\\- able to repair any damaged item$()."
+      "text": "book.spectrum.guidebook.resources.jade_vines.page6.text"
     }
   ]
 }

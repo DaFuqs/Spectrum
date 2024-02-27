@@ -6,14 +6,12 @@
   },
   "icon": "minecraft:spawner",
   "category": "spectrum:creating_life",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.creating_life.spawner_manipulation.description",
   "x": 8,
   "y": 2,
-
   "extra_recipe_mappings": {
     "minecraft:spawner": 0
   },

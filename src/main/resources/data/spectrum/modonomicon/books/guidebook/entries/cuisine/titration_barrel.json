@@ -6,14 +6,12 @@
     "advancement_id": "spectrum:unlocks/blocks/titration_barrel"
   },
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.titration_barrel.description",
   "x": 10,
   "y": 6,
-
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,

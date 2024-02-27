@@ -8,14 +8,12 @@
   },
   "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.fusion_shrine.description",
-  "x": 10,
+  "x": 8,
   "y": 0,
-
   "extra_recipe_mappings": {},
   "pages": [
     {

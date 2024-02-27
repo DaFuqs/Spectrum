@@ -1,5 +1,5 @@
 {
-  "name": "Block Flooder",
+  "name": "book.spectrum.guidebook.magical_items.block_flooder.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/block_flooder"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:block_flooder": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Like a caveman, you've always run around manually illuminating caves, or closing their unsightly entries in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of [Fading](entry://creating_life/fading) as an inspiration and developed the Block Flooder.\\Thrown into a narrow path, pond or ravine, those get filled - in 5% of the cases the result even looks acceptable!"
+      "text": "book.spectrum.guidebook.magical_items.block_flooder.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/block_flooder",
-      "text": "Pulls matching blocks directly from your inventory to fill the gaps. If you don't have any matching ones, it will fall back to Cobblestone."
+      "text": "book.spectrum.guidebook.magical_items.block_flooder.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.block_flooder.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/block_flooder"
     }
   ]
 }

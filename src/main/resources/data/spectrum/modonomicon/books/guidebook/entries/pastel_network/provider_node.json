@@ -1,5 +1,5 @@
 {
-  "name": "Provider Node",
+  "name": "book.spectrum.guidebook.pastel_network.provider_node.name",
   "icon": "spectrum:provider_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,21 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Provider Node",
-      "text": "Makes the items in the connected inventory available in its [Pastel Network](entry://pastel_network/pastel_network).\\\\Items will not be pushed to other nodes, but can be requested by [Gather Nodes](entry://pastel_network/gather_node)."
+      "title": "book.spectrum.guidebook.pastel_network.provider_node.page0.title",
+      "text": "book.spectrum.guidebook.pastel_network.provider_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
-      "text": ""
+      "title1": "book.spectrum.guidebook.pastel_network.provider_node.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/provider_node"
     }
   ]
 }

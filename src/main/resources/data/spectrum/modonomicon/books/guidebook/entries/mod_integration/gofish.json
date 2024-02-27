@@ -1,5 +1,5 @@
 {
-  "name": "Go Fish",
+  "name": "book.spectrum.guidebook.mod_integration.gofish.name",
   "icon": "gofish:starry_salmon",
   "flag": "mod:go-fish",
   "condition": {
@@ -10,14 +10,12 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Fishing is a relaxing activity to do in your leisure time. Let's see what's biting today."
+      "text": "book.spectrum.guidebook.mod_integration.gofish.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -25,15 +23,15 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/equipment/molten_rod"
       },
-      "title": "Lava Fishing",
+      "title": "book.spectrum.guidebook.mod_integration.gofish.page1.title",
       "item": {
         "item": "spectrum:molten_rod"
       },
-      "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the Go Fish fishing rods.\\Crates can also be fished, as long as you are in the open."
+      "text": "book.spectrum.guidebook.mod_integration.gofish.page1.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Deepfry",
+      "title": "book.spectrum.guidebook.mod_integration.gofish.page2.title",
       "item": {
         "item": "minecraft:enchanted_book",
         "nbt": {
@@ -45,17 +43,16 @@
           ]
         }
       },
-      "text": "While the Deepfry Enchantment cooks fish as usual, you did not find a way to attach lures to Rods made with Pigment. But you are sure you will find a way to enhance your rod later.\\Deepfry on Fishing Rods is also mutually exclusive to Foundry."
+      "text": "book.spectrum.guidebook.mod_integration.gofish.page2.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/enchanter"
       },
-      "recipe": "spectrum:mod_integration/gofish/enchanter/book_deepfry",
-      "text": ""
+      "title1": "book.spectrum.guidebook.mod_integration.gofish.page3.title1",
+      "recipe_id_1": "spectrum:mod_integration/gofish/enchanter/book_deepfry"
     }
   ]
 }

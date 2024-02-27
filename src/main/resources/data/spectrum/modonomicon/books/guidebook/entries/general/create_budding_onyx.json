@@ -8,14 +8,12 @@
   },
   "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.create_budding_onyx.description",
-  "x": 8,
+  "x": 6,
   "y": 0,
-
   "extra_recipe_mappings": {
     "spectrum:small_onyx_bud": 0,
     "spectrum:medium_onyx_bud": 0,

@@ -6,14 +6,12 @@
   },
   "icon": "spectrum:ethereal_platform",
   "category": "spectrum:decoration",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.decoration.ethereal_platform.description",
   "x": 0,
   "y": 2,
-
   "extra_recipe_mappings": {
     "spectrum:ethereal_platform": 0
   },

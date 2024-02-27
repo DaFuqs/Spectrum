@@ -1,30 +1,27 @@
 {
-  "name": "Shale Clay",
+  "name": "book.spectrum.guidebook.dimension.shale_clay.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_shale_clay"
   },
   "icon": "spectrum:shale_clay",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:tilled_shale_clay": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "A sedimentary rock composed of, well, layered shale and clay. Pretty unspectacular, besides being nice to look at."
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page0.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "All Variants",
+      "title": "book.spectrum.guidebook.dimension.shale_clay.page1.title",
       "items": [
         "spectrum:shale_clay",
         "spectrum:shale_clay_bricks",
@@ -54,25 +51,25 @@
         "spectrum:weathered_shale_clay_tile_stairs",
         "spectrum:weathered_shale_clay_tiles"
       ],
-      "text": "You can form Shale-Clay into many decorational blocks via [#](bb00bb)Crafting[#]() or the [#](bb00bb)Stonecutter[#]()."
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page1.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
       "recipe_id_1": "spectrum:smelting/shale_clay_to_polished_shale_clay",
-      "text": "Polishing Shale Clay brings out a nice, grayish color.\\Though it seems to [#](449900)weather over time[#](), when exposed to the elements (direct sunlight, rain), returning its natural brownish tint."
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page2.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "Smelting them back",
+      "title1": "book.spectrum.guidebook.dimension.shale_clay.page3.title1",
       "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
-      "text": "By applying heat, all blocks can be converted back to their clean, polished variant again."
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page3.text"
     },
     {
       "type": "modonomicon:spotlight",
       "item": {
         "item": "spectrum:tilled_shale_clay"
       },
-      "text": "Looks like farmland, tastes like farmland, but is poorly suited to use as such. You can plant crops on it, but they will never grow an inch."
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page4.text"
     }
   ]
 }

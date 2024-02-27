@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.stargazing.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 6,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "What to look for",
+      "title": "book.spectrum.guidebook.hints.stargazing.page0.title",
       "completion_advancement": "spectrum:collect_star_fragment",
       "cost": "spectrum:shimmerstone_gem#8",
-      "text": "Shooting Stars only show up at night. Having something ready to better see them in the darkness will surely help a lot. They show up with a noticeable particle trail."
+      "text": "book.spectrum.guidebook.hints.stargazing.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.stargazing.page1.title",
       "cost": "spectrum:shimmerstone_gem#24",
-      "text": "Your best chances to see a Shooting Star are to search for it with Night Vision and a Spyglass equipped. If you see one crashing down try to trace its steps to find out where it landed. They shoot up particles like a beam."
+      "text": "book.spectrum.guidebook.hints.stargazing.page1.text"
     }
   ]
 }

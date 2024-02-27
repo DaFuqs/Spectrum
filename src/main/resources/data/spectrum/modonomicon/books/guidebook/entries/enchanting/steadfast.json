@@ -1,5 +1,5 @@
 {
-  "name": "Steadfast",
+  "name": "book.spectrum.guidebook.enchanting.steadfast.name",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_steadfast",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.\\\\This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
+      "text": "book.spectrum.guidebook.enchanting.steadfast.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.steadfast.page1.title",
       "item": {
         "item": "spectrum:multitool",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Protects tools from all kinds of damage when on the ground, even from Lava or falling into the Void.\\\\Max Level: 1\\Applicable to all tools."
+      "text": "book.spectrum.guidebook.enchanting.steadfast.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Steadfast by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.steadfast.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.steadfast.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_steadfast"
     }
   ]
 }

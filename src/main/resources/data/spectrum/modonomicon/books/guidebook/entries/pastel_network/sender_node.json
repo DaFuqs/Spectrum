@@ -1,5 +1,5 @@
 {
-  "name": "Sender Node",
+  "name": "book.spectrum.guidebook.pastel_network.sender_node.name",
   "icon": "spectrum:sender_node",
   "condition": {
     "type": "modonomicon:advancement",
@@ -9,21 +9,18 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Sender Node",
-      "text": "The Sender Node actively tries to keep the connected inventory empty from items.\\\\The order, in which it pushes items to, is as follows:\\1. [Gather Nodes](entry://pastel_network/gather_node)\\2. [Storage Nodes](entry://pastel_network/storage_node)"
+      "title": "book.spectrum.guidebook.pastel_network.sender_node.page0.title",
+      "text": "book.spectrum.guidebook.pastel_network.sender_node.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/sender_node",
-      "text": ""
+      "title1": "book.spectrum.guidebook.pastel_network.sender_node.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/sender_node"
     }
   ]
 }

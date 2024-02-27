@@ -1,5 +1,5 @@
 {
-  "name": "Constructor's Staff",
+  "name": "book.spectrum.guidebook.magical_items.constructors_staff.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/constructors_staff"
@@ -9,23 +9,21 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:constructors_staff": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You always spend a lot of time placing blocks. You could almost think that this is the main reason for your existence. Placing a lot of similar blocks is tedious.\\\\Or more like: _Was_ tedious."
+      "text": "book.spectrum.guidebook.magical_items.constructors_staff.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/constructors_staff",
-      "text": "Crouch-Click to get a selection of all available placement modi."
+      "text": "book.spectrum.guidebook.magical_items.constructors_staff.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.constructors_staff.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/constructors_staff"
     }
   ]
 }

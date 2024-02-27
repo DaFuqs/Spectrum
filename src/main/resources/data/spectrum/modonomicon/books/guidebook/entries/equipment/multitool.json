@@ -1,19 +1,16 @@
 {
-  "name": "Multitool",
+  "name": "book.spectrum.guidebook.equipment.multitool.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:build_basic_pedestal_structure"
   },
   "icon": "spectrum:multitool",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:multitool": 0
   },
@@ -23,13 +20,13 @@
       "item": {
         "item": "spectrum:multitool"
       },
-      "text": "Whenever you leave your home, you carry half a tool shed with you. Given the tons of stone you can carry around with you, that's almost nothing. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe, shovel and hoe would suit you well."
+      "text": "book.spectrum.guidebook.equipment.multitool.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/multitool",
-      "text": "_Not as efficient in the individual tasks, but much better than having to change tools every three seconds._"
+      "text": "book.spectrum.guidebook.equipment.multitool.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.multitool.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier2/multitool"
     }
   ]
 }

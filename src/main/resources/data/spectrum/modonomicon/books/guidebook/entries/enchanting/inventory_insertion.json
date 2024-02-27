@@ -1,5 +1,5 @@
 {
-  "name": "Inventory Insertion",
+  "name": "book.spectrum.guidebook.enchanting.inventory_insertion.name",
   "icon": "spectrum:multitool",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_inventory_insertion",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "If you got a [#](bb00bb)Dirt Block[#]() whenever you mined an ore and it fell right into [#](bb00bb)Lava[#](), you'd have a whole lot of [#](bb00bb)Dirt[#]().\\No idea what you would do with that much [#](bb00bb)Dirt[#](). Maybe give it to a friend who has just arrived here and needs shelter on his first night?\\Anyway, the dropping stuff into [#](bb00bb)Lava[#]() thing has to stop. Oh yeah, Lava! Same with every [#](bb00bb)Ghast Tear[#]() dropping into it, too."
+      "text": "book.spectrum.guidebook.enchanting.inventory_insertion.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.inventory_insertion.page1.title",
       "item": {
         "item": "spectrum:multitool",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Puts broken blocks and mob drops directly into your inventory instead of dropping them onto the ground.\\\\Max Level: 1\\Applicable to mining tools, shears, weapons, bows, crossbows, tridents and Spectrum's fishing rods."
+      "text": "book.spectrum.guidebook.enchanting.inventory_insertion.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Inventory Insertion by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.inventory_insertion.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.inventory_insertion.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_inventory_insertion"
     }
   ]
 }

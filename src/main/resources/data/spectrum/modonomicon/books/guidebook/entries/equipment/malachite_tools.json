@@ -1,19 +1,16 @@
 {
-  "name": "Malachite Tools",
+  "name": "book.spectrum.guidebook.equipment.malachite_tools.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/malachite_tools"
   },
   "icon": "spectrum:malachite_ultra_greatsword",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:malachite_workstaff": 0,
     "spectrum:malachite_ultra_greatsword": 0,
@@ -23,35 +20,35 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "[Malachite](entry://resources/malachite) as a material seems perfect for tools, best compared to [#](bb00bb)Diamond[#](), but much easier to combine with other materials.\\These combinations are where the fun begins, allowing for some uniquely intricate tools."
+      "text": "book.spectrum.guidebook.equipment.malachite_tools.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Workstaff",
       "anchor": "workstaff",
-      "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
-      "text": "The perfect [Multitool](entry://equipment/multitool):\\$(k:sneak) + $(k:use) allows you to switch between [#](449900)Silk Touch[#]() and [#](449900)Fortune[#](), mining large tunnels at once and allows you to [#](449900)strip[#](), [#](449900)till[#]() and [#](449900)flatten[#]()."
+      "text": "book.spectrum.guidebook.equipment.malachite_tools.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page1.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_workstaff"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Ultra Greatsword",
       "anchor": "greatsword",
-      "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
-      "text": "Its sheer size allows you to hit enemies from a greater distance.\\If you hadn't included the [Paltaeria](entry://resources/paltaeria), you probably wouldn't even be able to lift it."
+      "text": "book.spectrum.guidebook.equipment.malachite_tools.page2.text",
+      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page2.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Bident",
       "anchor": "bident",
-      "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
-      "text": "A true powerhouse when dealing with aquatic creatures.\\\\_It may have only two prongs compared to a [#](bb00bb)Trident[#](), but those are twice as pointy!_"
+      "text": "book.spectrum.guidebook.equipment.malachite_tools.page3.text",
+      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page3.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_bident"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Crossbow",
       "anchor": "crossbow",
-      "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
-      "text": "Shoots projectiles at a higher speed and precision compared to a mundane [#](bb00bb)Crossbow[#]()."
+      "text": "book.spectrum.guidebook.equipment.malachite_tools.page4.text",
+      "title1": "book.spectrum.guidebook.equipment.malachite_tools.page4.title1",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/malachite_crossbow"
     }
   ]
 }

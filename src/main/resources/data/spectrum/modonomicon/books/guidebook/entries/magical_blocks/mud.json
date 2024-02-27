@@ -1,5 +1,5 @@
 {
-  "name": "Liquid Mud",
+  "name": "book.spectrum.guidebook.magical_blocks.mud.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/mud"
@@ -9,38 +9,35 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:mud_bucket": 0
   },
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Liquid Mud",
+      "title": "book.spectrum.guidebook.magical_blocks.mud.page0.title",
       "item": {
         "item": "spectrum:mud_bucket"
       },
-      "text": "Mud. It is wet mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like [#](bb00bb)Water[#]() or [#](bb00bb)Lava[#](). This creates [#](bb00bb)Dirt[#]() or [#](bb00bb)Coarse Dirt[#](), respectively."
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/mud_bucket",
-      "text": "_While a mud bath sounds like wellness, it is not advised._"
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.mud.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
     },
     {
       "type": "modonomicon:text",
-      "title": "Item Conversion",
-      "text": "Some items that come into contact with Mud get tanned.\\For example, [#](bb00bb)Rotten Flesh[#]() will be converted to a tiny piece of [#](bb00bb)Hide[#]()."
+      "title": "book.spectrum.guidebook.magical_blocks.mud.page2.title",
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page2.text"
     },
     {
       "type": "spectrum:mud_converting",
-      "title1": "Tanning Rotten Flesh",
-      "recipe_id_1": "spectrum:mud_converting/rabbit_hide",
-      "text": ""
+      "title1": "book.spectrum.guidebook.magical_blocks.mud.page3.title1",
+      "recipe_id_1": "spectrum:mud_converting/rabbit_hide"
     }
   ]
 }

@@ -1,29 +1,26 @@
 {
-  "name": "Color Picker",
+  "name": "book.spectrum.guidebook.magic.color_picker.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/color_picker"
   },
   "icon": "spectrum:color_picker",
   "category": "spectrum:magic",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Converts [Pigment](entry://general/pigment) into pure [Ink](entry://magic/ink), which you can supply to your magical items.\\Used to fill Ink Containers, like [Ink Flasks](entry://magic/ink_flask).\\Unfortunately - [you remember how Ink is transferred](entry://magic/ink@transfer) - there is always residue left behind. You can't use the full amount, though the transfer is quicker, the bigger the difference."
+      "text": "book.spectrum.guidebook.magic.color_picker.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "Pedestal Recipe",
+      "title1": "book.spectrum.guidebook.magic.color_picker.page1.title1",
       "recipe_id_1": "spectrum:pedestal/tier2/color_picker",
-      "text": "_Never develop a passion you can't afford. It'll eat your heart away like a bookworm._"
+      "text": "book.spectrum.guidebook.magic.color_picker.page1.text"
     }
   ]
 }

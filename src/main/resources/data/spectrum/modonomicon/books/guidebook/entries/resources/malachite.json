@@ -1,5 +1,5 @@
 {
-  "name": "Malachite",
+  "name": "book.spectrum.guidebook.resources.malachite.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_malachite"
@@ -9,20 +9,16 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 4,
+  "y": 2,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:malachite_ore": 0,
     "spectrum:deepslate_malachite_ore": 0,
     "spectrum:blackslag_malachite_ore": 0,
-
     "spectrum:raw_malachite": 0,
     "spectrum:refined_malachite": 0,
     "spectrum:malachite_block": 0,
-
     "spectrum:small_malachite_bud": 0,
     "spectrum:large_malachite_bud": 0,
     "spectrum:malachite_cluster": 0
@@ -30,8 +26,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "Malachite",
-      "text": "A pristine material, that sparkles in a deep green hue. It seems to have strong magical properties, almost like a Deeper Down analog of [Azurite](entry://resources/azurite). In another similarity to [Azurite](entry://resources/azurite), Malachite also needs to be refined. The small fragments you obtain must first grow into full, usable crystals - though you're not sure you'll see them finished in your lifetime."
+      "title": "book.spectrum.guidebook.resources.malachite.page0.title",
+      "text": "book.spectrum.guidebook.resources.malachite.page0.text"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -39,9 +35,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
       },
-      "title1": "Refining Malachite",
+      "title1": "book.spectrum.guidebook.resources.malachite.page1.title1",
       "recipe_id_1": "spectrum:crystallarieum/malachite",
-      "text": "The Crystallarieum seems to be the only way for you to grow Malachite in a reasonable timeframe, by speeding up its growth significantly. [Moonstone](entry://general/moonstone_shards) is required to create a suitable environment, mimicking the Deeper Down."
+      "text": "book.spectrum.guidebook.resources.malachite.page1.text"
     }
   ]
 }

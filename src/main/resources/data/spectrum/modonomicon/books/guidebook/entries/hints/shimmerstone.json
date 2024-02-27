@@ -1,14 +1,11 @@
 {
-  "name": "A new Ore",
+  "name": "book.spectrum.guidebook.hints.shimmerstone.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 6,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.shimmerstone.page0.title",
       "completion_advancement": "spectrum:collect_shimmerstone",
       "cost": "minecraft:copper_ingot#8",
-      "text": "There is a new ore to be found in the Overworld at and above surface level."
+      "text": "book.spectrum.guidebook.hints.shimmerstone.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.shimmerstone.page1.title",
       "cost": "minecraft:copper_ingot#24",
-      "text": "It generates in all biomes in the center and upper layers of the Overworld in large veins. Most often you can find it exposed in mountains."
+      "text": "book.spectrum.guidebook.hints.shimmerstone.page1.text"
     }
   ]
 }

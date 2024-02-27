@@ -1,5 +1,5 @@
 {
-  "name": "Present",
+  "name": "book.spectrum.guidebook.magical_blocks.present.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/present"
@@ -9,33 +9,31 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:present": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of [Shimmerstone](entry://resources/shimmerstone) allows the package to explode in a colorful shower of particles.\\Click the Present onto the items you want to gift, wrap it in a [#](bb00bb)Crafting Table[#](), then all you have to do is place it down for the recipient to open it and watch them jump in joy."
+      "text": "book.spectrum.guidebook.magical_blocks.present.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier1/present",
-      "text": "_(Or, you know, you can always gift your future self!)_"
+      "text": "book.spectrum.guidebook.magical_blocks.present.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page1.title1",
+      "recipe_id_1": "spectrum:pedestal/tier1/present"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "Customizing &",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page2.title1",
       "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
-      "text": "- Place a filled Present in a crafting grid to wrap it.\\- Optional: add [Pigment](entry://general/pigment) for a colorful particle shower\\- Optional: add a special item to choose a wrapping paper:\\- Red Dye: Red\\- Blue Dye: Blue"
+      "text": "book.spectrum.guidebook.magical_blocks.present.page2.text"
     },
     {
       "type": "spectrum:collection",
-      "title": "Wrapping",
+      "title": "book.spectrum.guidebook.magical_blocks.present.page3.title",
       "items": [
         "spectrum:present{Variant: \"red\", Wrapped: 1b}",
         "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
@@ -48,7 +46,7 @@
         "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
         "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
       ],
-      "text": "- Cyan Dye: Cyan\\- Green Dye: Green\\- Purple Dye: Purple\\- Cake: Cake\\- Flower: Stripes\\- Firework Star: Starry\\- Snowball: Winter\\- Spore Blossom: Rainbow"
+      "text": "book.spectrum.guidebook.magical_blocks.present.page3.text"
     }
   ]
 }

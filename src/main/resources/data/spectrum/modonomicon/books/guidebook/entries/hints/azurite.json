@@ -1,14 +1,11 @@
 {
-  "name": "A new Ore",
+  "name": "book.spectrum.guidebook.hints.azurite.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.azurite.page0.title",
       "completion_advancement": "spectrum:midgame/collect_azurite",
       "cost": "spectrum:neolith#8",
-      "text": "There is a new blue ore that can be found in the Overworld in all biomes."
+      "text": "book.spectrum.guidebook.hints.azurite.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.azurite.page1.title",
       "cost": "spectrum:neolith#24",
-      "text": "This rich blue ore generates very deep down under the surface and is fairly rare."
+      "text": "book.spectrum.guidebook.hints.azurite.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Overchanting",
+  "name": "book.spectrum.guidebook.enchanting.overchanting.name",
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "hide_while_locked": true,
@@ -9,18 +9,15 @@
     "advancement_id": "spectrum:milestones/unlock_overenchanting_with_enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 4,
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Overchanting",
+      "title": "book.spectrum.guidebook.enchanting.overchanting.page0.title",
       "item": {
         "item": "minecraft:enchanted_book",
         "nbt": {
@@ -32,21 +29,21 @@
           ]
         }
       },
-      "text": "Your familiarity with both magic and the [Enchanter](entry://enchanting/enchanter) has opened new doors for you:\\[#](449900)Overchanting[#]().\\\\Packing so much magical energy into a single [#](bb00bb)Enchanted Book[#]() will be expensive. _Very expensive_."
+      "text": "book.spectrum.guidebook.enchanting.overchanting.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Spectrum Enchantments",
-      "text": "- Clovers' Favor: 3 => 6\\- Disarming: 2 => 4\\- Exuberance: 5 => 10\\- First Strike: 2 => 5\\- Improved Critical: 2 => 4\\- Inertia: 2 => 5\\- Tight Grip: 2 => 4\\- Treasure Hunter: 3 => 5\\- Sniper: 2 => 4"
+      "title": "book.spectrum.guidebook.enchanting.overchanting.page1.title",
+      "text": "book.spectrum.guidebook.enchanting.overchanting.page1.text"
     },
     {
       "type": "modonomicon:text",
-      "title": "Vanilla Enchantments",
-      "text": "- Bane of Arthropods: 5 => 8\\- Blast Protection: 4 => 8\\- Depth Strider: 3 => 3\\- Efficiency: 5 => 8\\- Feather Falling: 4 => 6\\- Fire Aspect: 2 => 4\\- Fire Protection: 4 => 8\\- Fortune: 3 => 5\\- Frost Walker: 2 => 4\\- Impaling: 5 => 8\\- Knockback: 2 => 5\\- Looting: 3 => 6\\- Loyalty: 3 => 4\\- Luck of the Sea: 3 => 5"
+      "title": "book.spectrum.guidebook.enchanting.overchanting.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.overchanting.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "- Lure: 3 => 5\\- Piercing: 4 => 8\\- Power: 5 => 8\\- Proj. Protection: 4 => 8\\- Protection: 4 => 8\\- Punch: 2 => 5\\- Quick Charge: 3 => 5\\- Respiration: 3 => 6\\- Riptide: 3 => 4\\- Sharpness: 5 => 8\\- Smite: 5 => 8\\- Soul Speed: 3 => 4\\- Sweeping Edge: 3 => 7\\- Thorns: 3 => 6\\- Unbreaking: 3 => 6"
+      "text": "book.spectrum.guidebook.enchanting.overchanting.page3.text"
     }
   ]
 }

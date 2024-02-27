@@ -6,21 +6,19 @@
   },
   "icon": "spectrum:glistering_jelly_tea",
   "category": "spectrum:cuisine",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.description",
   "x": 2,
   "y": 2,
-
   "extra_recipe_mappings": {
     "spectrum:glistering_jelly_tea": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.text"
+      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",

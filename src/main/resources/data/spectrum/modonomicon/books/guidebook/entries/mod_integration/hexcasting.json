@@ -1,5 +1,5 @@
 {
-  "name": "Hex Casting",
+  "name": "book.spectrum.guidebook.mod_integration.hexcasting.name",
   "icon": "hexcasting:charged_amethyst",
   "flag": "mod:hexcasting",
   "condition": {
@@ -10,44 +10,42 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Unlike your other gemstones, [#](bb00bb)Amethyst[#]() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.\\What more is there?"
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page0.text"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "Edified Leaves Crushing",
+      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page1.title1",
       "recipe_id_1": "spectrum:mod_integration/hexcasting/anvil_crushing/aventurine_edified_leaves",
-      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. _Clearly_ these cyan-colored leaves have the essence of [#](bb00bb)Topaz[#]()..."
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page1.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Edified Leaves Crafting",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
       },
-      "recipe": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves",
-      "text": "By infusing [#](bb00bb)Leaves[#]() with [#](bb00bb)Amethyst[#](), [#](bb00bb)Citrine[#]() or [#](bb00bb)Topaz[#](), you get out glistening, colorful [#](bb00bb)Gemstone Leaves[#](), from your [Colored Trees](entry://general/colored_trees). Intriguingly different, yet familiar."
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page2.text",
+      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page2.title1",
+      "recipe_id_1": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Charging Amethyst",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
       },
-      "recipe": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion",
-      "text": "You can charge up [#](bb00bb)Amethyst Shards[#]() using the [Fusion Shrine](entry://general/fusion_shrine)."
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page3.text",
+      "title1": "book.spectrum.guidebook.mod_integration.hexcasting.page3.title1",
+      "recipe_id_1": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "New Potion Reagent",
+      "title": "book.spectrum.guidebook.mod_integration.hexcasting.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
@@ -55,7 +53,7 @@
       "item": {
         "item": "hexcasting:charged_amethyst"
       },
-      "text": "- +15-120s duration. Sometimes more, sometimes less\\\\As you expected, [#](bb00bb)Charged Amethyst[#]() serves as a more potent, but also more fluctuate, [#](bb00bb)Amethyst[#]() reagent in regards to prolonging durations."
+      "text": "book.spectrum.guidebook.mod_integration.hexcasting.page4.text"
     }
   ]
 }

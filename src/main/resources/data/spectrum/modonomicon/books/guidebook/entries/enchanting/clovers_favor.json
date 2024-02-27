@@ -1,5 +1,5 @@
 {
-  "name": "Clovers' Favor",
+  "name": "book.spectrum.guidebook.enchanting.clovers_favor.name",
   "icon": "minecraft:iron_sword",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_clovers_favor",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Every now and then you are lucky enough to have an enemy leave behind a single rare item.\\The connection of [Clovers](entry://resources/clover) and [Light Blue Pigment](entry://general/pigment@light_blue) to luck you can increase those chances dramatically."
+      "text": "book.spectrum.guidebook.enchanting.clovers_favor.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.clovers_favor.page1.title",
       "item": {
         "item": "minecraft:iron_sword",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Higher chance to get rare loot drops, like [#](bb00bb)Iron Ingots[#]() from Zombies.\\_May even increase your chances of getting the most valuable of drops?_\\\\Max Level: 3\\Applicable to melee weapons.\\Mutually exclusive with Looting."
+      "text": "book.spectrum.guidebook.enchanting.clovers_favor.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Clovers' Favor by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.clovers_favor.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.clovers_favor.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_clovers_favor"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-      "text": "Upgrading Clovers' Favor from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.clovers_favor.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.clovers_favor.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2"
     }
   ]
 }

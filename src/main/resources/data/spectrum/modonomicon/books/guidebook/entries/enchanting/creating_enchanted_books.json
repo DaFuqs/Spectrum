@@ -1,5 +1,5 @@
 {
-  "name": "Enchanting Books",
+  "name": "book.spectrum.guidebook.enchanting.creating_enchanted_books.name",
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "sortnum": 2,
@@ -8,18 +8,15 @@
     "advancement_id": "spectrum:unlocks/blocks/enchanter"
   },
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Using [Pigment](entry://general/pigment), selected ingredients and some experience the [Enchanter](entry://enchanting/enchanter) enables you to add Enchantments to [#](bb00bb)regular Books[#]().\\\\While this process consumes more experience than enchanting in a common Enchanting Table you have granular control about which Enchantment you want to create."
+      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page0.text"
     },
     {
       "type": "modonomicon:image",
@@ -27,7 +24,7 @@
         "spectrum:textures/gui/guidebook/creating_enchanted_books.png"
       ],
       "border": true,
-      "text": "You can also use this process to enchant your magical tools."
+      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page1.text"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Delving Deeper Down",
+  "name": "book.spectrum.guidebook.dimension.getting_deeper_down.name",
   "icon": "minecraft:bedrock",
   "priority": true,
   "sortnum": 1,
@@ -9,22 +9,19 @@
   },
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "Delving Deeper Down",
+      "title": "book.spectrum.guidebook.dimension.getting_deeper_down.page0.title",
       "item": {
         "item": "minecraft:bedrock"
       },
-      "text": "You wouldn't have thought it possible. As you burst deeper and deeper down through the bedrock, a pitch-black portal opened up. Where does it lead? Only one way to find out.\\*Still, you can't get rid of the lump in your throat...*"
+      "text": "book.spectrum.guidebook.dimension.getting_deeper_down.page0.text"
     },
     {
       "type": "modonomicon:text",
@@ -32,8 +29,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/enter_dimension"
       },
-      "title": "Deeper Down",
-      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.\\\\What is waiting for you to discover down there?"
+      "title": "book.spectrum.guidebook.dimension.getting_deeper_down.page1.title",
+      "text": "book.spectrum.guidebook.dimension.getting_deeper_down.page1.text"
     },
     {
       "type": "modonomicon:text",
@@ -41,8 +38,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:__todo/monstrosity"
       },
-      "title": "Horrors Below?",
-      "text": "There is something lurking for you in the dark, you are sure. Or is it just your nerves?"
+      "title": "book.spectrum.guidebook.dimension.getting_deeper_down.page2.title",
+      "text": "book.spectrum.guidebook.dimension.getting_deeper_down.page2.text"
     }
   ]
 }

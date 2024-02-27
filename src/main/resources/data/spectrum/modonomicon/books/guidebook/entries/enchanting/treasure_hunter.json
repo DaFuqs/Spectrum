@@ -1,5 +1,5 @@
 {
-  "name": "Treasure Hunter",
+  "name": "book.spectrum.guidebook.enchanting.treasure_hunter.name",
   "icon": "minecraft:iron_axe",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,30 +7,27 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 8,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "In a painting you have seen a fantastic creature that seems to be made of [#](bb00bb)Soul Sand[#]() and [#](bb00bb)Wither Skeleton Skulls[#](). For hours you waited in a Nether Fortress, only to almost lose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "Getting Mob Heads",
+      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.title",
       "item": {
         "item": "spectrum:cow_head"
       },
-      "text": "But then there were the Creepers! Struck by lightning, they explode so hefty that they blow their opponent's heads right off their necks (worst case: yours).\\To replicate this, you thought out this new enchantment using [Storm Stones](entry://resources/storm_stones).\\And so Treasure Hunter was born, allowing you to collect [all kinds of Mob Heads](entry://creating_life/mob_heads)."
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page2.title",
       "item": {
         "item": "minecraft:iron_axe",
         "nbt": {
@@ -42,19 +39,19 @@
           ]
         }
       },
-      "text": "Occasionally drops Mob Heads on kill.\\\\Max Level: 3\\Applicable to axes and melee weapons.\\Mutually exclusive with Looting."
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page2.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Treasure Hunter by surrounding your[Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.treasure_hunter.page3.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_treasure_hunter"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
-      "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page4.text",
+      "title1": "book.spectrum.guidebook.enchanting.treasure_hunter.page4.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2"
     }
   ]
 }

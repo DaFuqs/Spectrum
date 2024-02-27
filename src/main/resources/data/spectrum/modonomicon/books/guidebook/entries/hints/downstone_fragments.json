@@ -1,14 +1,11 @@
 {
-  "name": "A new Resource",
+  "name": "book.spectrum.guidebook.hints.downstone_fragments.name",
   "category": "spectrum:hints",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 8,
+  "y": 0,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
@@ -19,16 +16,16 @@
   "pages": [
     {
       "type": "spectrum:hint",
-      "title": "Where to find",
+      "title": "book.spectrum.guidebook.hints.downstone_fragments.page0.title",
       "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
       "cost": "spectrum:moonstone_shard#8",
-      "text": "The deeper you dig into the underground of the Deeper Down, the more often you come across rocks that seem indestructible. There is something to discover at this height."
+      "text": "book.spectrum.guidebook.hints.downstone_fragments.page0.text"
     },
     {
       "type": "spectrum:hint",
-      "title": "Concise Instructions",
+      "title": "book.spectrum.guidebook.hints.downstone_fragments.page1.title",
       "cost": "spectrum:moonstone_shard#24",
-      "text": "Near the lowest layers of the Deeper Down, you will sometimes stumble about structures with which the former inhabitants that were intricate enough to carve this stone."
+      "text": "book.spectrum.guidebook.hints.downstone_fragments.page1.text"
     }
   ]
 }

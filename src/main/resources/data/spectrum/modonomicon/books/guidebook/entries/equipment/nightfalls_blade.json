@@ -1,31 +1,28 @@
 {
-  "name": "Nightfall's Blade",
+  "name": "book.spectrum.guidebook.equipment.nightfalls_blade.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/equipment/nightfalls_blade"
   },
   "icon": "spectrum:nightfalls_blade",
   "category": "spectrum:equipment",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:nightfalls_blade": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "This small blade is too fine to inflict serious wounds, but has many sharp spikes that drill themselves into the flesh of your opponent.\\\\Infused in the [Potion Workshop](entry://brewing/potion_workshop), all struck opponents are afflicted with the effect - provided you have enough [Ink](entry://magic/ink) on you."
+      "text": "book.spectrum.guidebook.equipment.nightfalls_blade.page0.text"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/nightfalls_blade",
-      "text": "_Cruel, really. But effective._"
+      "text": "book.spectrum.guidebook.equipment.nightfalls_blade.page1.text",
+      "recipe_id_1": "spectrum:fusion_shrine/nightfalls_blade"
     }
   ]
 }

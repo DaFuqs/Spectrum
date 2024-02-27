@@ -1,19 +1,16 @@
 {
-  "name": "Preservation Turrets",
+  "name": "book.spectrum.guidebook.dimension.preservation_turrets.name",
   "icon": "spectrum:preservation_turret_head",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/entity_interact/preservation_turret"
   },
   "category": "spectrum:dimension",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 10,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:preservation_turret_head": 0,
     "spectrum:preservation_turret_spawn_egg": 0
@@ -21,15 +18,15 @@
   "pages": [
     {
       "type": "modonomicon:entity",
-      "name": "Preservation Turrets",
+      "name": "book.spectrum.guidebook.dimension.preservation_turrets.page0.name",
       "entity_id": "spectrum:preservation_turret",
       "scale": 0.5,
       "offset": 0.4,
-      "text": "_True engineering excellence. But boy does it hurt._"
+      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "High-tech machines, crafted from a reinforced shell of basalt and calcite, powered by an unknown energy source that gently pulsates in the center of these contraptions.\\\\Ready to poke holes in you any time you make your presence known."
+      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page1.text"
     }
   ]
 }

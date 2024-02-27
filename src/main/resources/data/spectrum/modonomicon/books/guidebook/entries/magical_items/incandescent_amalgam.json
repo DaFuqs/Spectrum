@@ -1,5 +1,5 @@
 {
-  "name": "Incandescent Amalgam",
+  "name": "book.spectrum.guidebook.magical_items.incandescent_amalgam.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/incandescent_amalgam"
@@ -9,45 +9,42 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 2,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:incandescent_amalgam": 0
   },
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "The sun on the palm of your hand sounded far better in theory. \\\\Now that it sits there... well, it burns. The simple fact that it exists is almost a miracle - really, it should have exploded in the barrel - an unstable, simmering amalgam of ethanol blended with a cocktail of accelerants that hates existing."
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "A single wrong move could easily cause it to detonate, taking everything nearby with it including yourself. And yet, for all those reasons and yet more, the soft, warm glow of the gel elicits endless curiosity, all things are drawn to the flame. There is no question that what is effectively a high yield magical explosive bears endless potential. All you need is a little care, a small mountain of it, and a hint of reckless abandon."
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page1.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Titration Snythesis",
-      "recipe": "spectrum:titration_barrel/incandescent_amalgam_doom",
-      "text": "_my very own sun..._\\\\The longer the synthesis goes on, the higher the yield... you really can't blame the angels for not wanting a cut of this."
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page2.text",
+      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page2.title1",
+      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_doom"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Pure Synthesis",
-      "recipe": "spectrum:titration_barrel/incandescent_amalgam_pure",
-      "text": "_...so grossly incandescent!_"
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page3.text",
+      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page3.title1",
+      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_pure"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Simple Synthesis",
-      "recipe": "spectrum:titration_barrel/incandescent_amalgam_simple",
-      "text": ""
+      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page4.title1",
+      "recipe_id_1": "spectrum:titration_barrel/incandescent_amalgam_simple"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Distillation",
-      "recipe": "spectrum:titration_barrel/fast_pure_alcohol",
-      "text": "The pristine burn of the amalgam makes it uniquely suited for pure alcohol distillation"
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page5.text",
+      "title1": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page5.title1",
+      "recipe_id_1": "spectrum:titration_barrel/fast_pure_alcohol"
     }
   ]
 }

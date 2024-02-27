@@ -1,5 +1,5 @@
 {
-  "name": "Sniping",
+  "name": "book.spectrum.guidebook.enchanting.sniper.name",
   "icon": "minecraft:crossbow",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_sniper",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 6,
+  "y": 6,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "Compared to the [#](bb00bb)Bow[#](), the [#](bb00bb)Crossbow[#]() maintains a rather inconspicuous existence.\\\\With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
+      "text": "book.spectrum.guidebook.enchanting.sniper.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.sniper.page1.title",
       "item": {
         "item": "minecraft:crossbow",
         "nbt": {
@@ -34,13 +31,13 @@
           ]
         }
       },
-      "text": "Increases damage, accuracy and projectile speed.\\\\Max Level: 2\\Applicable to Crossbows.\\Mutually exclusive with Multishot."
+      "text": "book.spectrum.guidebook.enchanting.sniper.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Sniping by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.sniper.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.sniper.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_sniper"
     }
   ]
 }

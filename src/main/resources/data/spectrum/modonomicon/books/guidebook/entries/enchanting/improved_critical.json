@@ -1,5 +1,5 @@
 {
-  "name": "Improved Critical",
+  "name": "book.spectrum.guidebook.enchanting.improved_critical.name",
   "icon": "minecraft:iron_sword",
   "condition": {
     "type": "modonomicon:advancement",
@@ -7,22 +7,19 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
   "category": "spectrum:enchanting",
-
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "description": "",
-  "x": -2,
-  "y": 1,
-
+  "x": 0,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "You already noticed dealing significantly more damage to enemies if you jump while attacking.\\To further improve those jump attacks, you have developed this enhancement, which increases the additional damage even more."
+      "text": "book.spectrum.guidebook.enchanting.improved_critical.page0.text"
     },
     {
       "type": "spectrum:nbt_spotlight",
-      "title": "Characteristics",
+      "title": "book.spectrum.guidebook.enchanting.improved_critical.page1.title",
       "item": {
         "item": "minecraft:iron_sword",
         "nbt": {
@@ -34,19 +31,19 @@
           ]
         }
       },
-      "text": "Additional damage when dealing crits.\\\\Max Level: 2\\Applicable to melee weapons.\\Mutually exclusive with Sharpness."
+      "text": "book.spectrum.guidebook.enchanting.improved_critical.page1.text"
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Enchanter Recipe",
-      "recipe": "spectrum:enchanter/spectrum_books/book_improved_critical",
-      "text": "You can infuse a [#](bb00bb)common Book[#]() with Improved Critical by surrounding your [Enchanter](entry://enchanting/enchanter) with [Pigment](entry://general/pigment) and the other required materials."
+      "text": "book.spectrum.guidebook.enchanting.improved_critical.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.improved_critical.page2.title1",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_improved_critical"
     },
     {
       "type": "spectrum:enchanter_upgrading",
-      "title": "Enchantment Upgrading",
-      "recipe": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
-      "text": "Upgrading Improved Critical from level 1 to level 2 is fairly cheap at first.\\This price will quickly increase to more and more [Pigment](entry://general/pigment) and experience for each additional level."
+      "text": "book.spectrum.guidebook.enchanting.improved_critical.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.improved_critical.page3.title1",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2"
     }
   ]
 }

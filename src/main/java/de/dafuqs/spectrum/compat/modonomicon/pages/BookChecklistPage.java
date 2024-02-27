@@ -1,0 +1,101 @@
+package de.dafuqs.spectrum.compat.modonomicon.pages;
+
+import com.google.gson.JsonObject;
+import com.klikli_dev.modonomicon.book.BookTextHolder;
+import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
+import com.klikli_dev.modonomicon.book.page.BookTextPage;
+import com.klikli_dev.modonomicon.client.gui.book.markdown.BookTextRenderer;
+import com.klikli_dev.modonomicon.util.BookGsonHelper;
+import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class BookChecklistPage extends BookTextPage {
+
+    private final Map<Identifier, BookTextHolder> checklist;
+    private RenderedBookTextHolder renderedChecklist;
+
+    public BookChecklistPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, Map<Identifier, BookTextHolder> checklist) {
+        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor);
+        this.checklist = checklist;
+    }
+
+    public static BookChecklistPage fromJson(JsonObject json) {
+        var title = BookGsonHelper.getAsBookTextHolder(json, "title", BookTextHolder.EMPTY);
+        var useMarkdownInTitle = JsonHelper.getBoolean(json, "use_markdown_title", false);
+        var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
+        var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
+        var anchor = JsonHelper.getString(json, "anchor", "");
+        var checklistObject = JsonHelper.getObject(json, "checklist", new JsonObject());
+        var checklist = new HashMap<Identifier, BookTextHolder>();
+        for (var key : checklistObject.keySet()) {
+            var value = BookGsonHelper.getAsBookTextHolder(checklistObject, key, BookTextHolder.EMPTY);
+            checklist.put(new Identifier(key), value);
+        }
+        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checklist);
+    }
+
+    public static BookChecklistPage fromNetwork(PacketByteBuf buffer) {
+        var title = BookTextHolder.fromNetwork(buffer);
+        var useMarkdownInTitle = buffer.readBoolean();
+        var showTitleSeparator = buffer.readBoolean();
+        var text = BookTextHolder.fromNetwork(buffer);
+        var anchor = buffer.readString();
+        var checklist = buffer.readMap(PacketByteBuf::readIdentifier, BookTextHolder::fromNetwork);
+        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checklist);
+    }
+
+    public Map<Identifier, BookTextHolder> getChecklist() {
+        return checklist;
+    }
+
+    @Override
+    public void prerenderMarkdown(BookTextRenderer textRenderer) {
+        super.prerenderMarkdown(textRenderer);
+
+        List<MutableText> mutableTexts = new ArrayList<>();
+
+        int i = 1;
+        for (Map.Entry<Identifier, BookTextHolder> entry : checklist.entrySet()) {
+            BookTextHolder entryText = entry.getValue();
+            List<MutableText> rendered = textRenderer.render(entryText.getString());
+
+            MutableText parent = Text.literal(String.format("%d. ", i));
+            for (MutableText mutableText : rendered) {
+                parent.append(mutableText);
+            }
+            parent.append(Text.literal(""));
+
+            mutableTexts.add(parent);
+            i++;
+        }
+
+        if (text instanceof RenderedBookTextHolder renderedText) {
+            mutableTexts.addAll(renderedText.getRenderedText());
+        } else {
+            mutableTexts.add(text.getComponent().copy());
+        }
+
+        text = new RenderedBookTextHolder(new BookTextHolder(""), mutableTexts);
+    }
+
+    @Override
+    public Identifier getType() {
+        return ModonomiconCompat.CHECKLIST_PAGE;
+    }
+
+    @Override
+    public void toNetwork(PacketByteBuf buffer) {
+        super.toNetwork(buffer);
+        buffer.writeMap(checklist, PacketByteBuf::writeIdentifier, (buf, value) -> value.toNetwork(buf));
+    }
+
+}

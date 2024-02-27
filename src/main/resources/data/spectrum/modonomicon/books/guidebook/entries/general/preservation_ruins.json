@@ -76,9 +76,9 @@
         "advancement_id": "spectrum:hidden/solve_any_preservation_ruin"
       },
       "checklist": {
-        "spectrum:solve_color_mixing_preservation_ruin": "Preservation Ruin #1",
-        "spectrum:solve_dike_gate_preservation_ruin": "Preservation Ruin #2",
-        "spectrum:solve_wireless_redstone_preservation_ruin": "Preservation Ruin #3"
+        "spectrum:solve_color_mixing_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.color_mixing",
+        "spectrum:solve_dike_gate_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.dike_gate",
+        "spectrum:solve_wireless_redstone_preservation_ruin": "book.spectrum.guidebook.general.preservation_ruins.page2.checklist.wireless_redstone"
       },
       "text": "book.spectrum.guidebook.general.preservation_ruins.page2.text"
     },

@@ -55,6 +55,7 @@ public class SpectrumCustomRecipeSerializers {
 		
 		// Primordial Fire Burning
 		register(MemoryDementiaRecipe.SERIALIZER, "memory_dementia");
+		register(EnchantedBookUnsoulingRecipe.SERIALIZER, "enchanted_book_unsouling");
 	}
 	
 }

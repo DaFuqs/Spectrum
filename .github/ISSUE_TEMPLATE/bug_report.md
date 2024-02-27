@@ -16,6 +16,9 @@ Steps to reproduce the behavior.
 **Expected behavior**
 A concise description of what you expected to happen.
 
+**Minecraft version**
+Which version of Minecraft are you currently using?
+
 **Mod version**
 Which version of the mod are you currently using?
 

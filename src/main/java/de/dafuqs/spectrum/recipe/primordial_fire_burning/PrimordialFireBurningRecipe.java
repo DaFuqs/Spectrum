@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.recipe.primordial_fire_burning;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -23,6 +23,8 @@ import java.util.*;
 public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("lategame/collect_doombloom_seed");
+	
+	private static AutoCraftingInventory AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
 	
 	protected final Ingredient input;
 	protected final ItemStack output;
@@ -88,38 +90,55 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe {
 		return SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING_ID;
 	}
 	
-	private static AutoCraftingInventory AUTO_INVENTORY;
-	
-	public static PrimordialFireBurningRecipe getConversionRecipeFor(@NotNull World world, ItemStack stack) {
-		if (AUTO_INVENTORY == null) {
-			AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
-		}
+	public static PrimordialFireBurningRecipe getRecipeFor(@NotNull World world, ItemStack stack) {
 		AUTO_INVENTORY.setInputInventory(Collections.singletonList(stack));
 		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, AUTO_INVENTORY, world).orElse(null);
 	}
 	
-	public void processBlock(World world, BlockPos pos) {
-		ItemStack stack = getOutput(world.getRegistryManager()).copy();
+	public static boolean processBlock(World world, BlockPos pos, BlockState state) {
+		Item item = state.getBlock().asItem();
+		if(item == Items.AIR) {
+			return false;
+		}
+		
+		PrimordialFireBurningRecipe recipe = PrimordialFireBurningRecipe.getRecipeFor(world, item.getDefaultStack());
+		if (recipe == null) {
+			return false;
+		}
+		
+		AUTO_INVENTORY.setInputInventory(Collections.singletonList(state.getBlock().asItem().getDefaultStack()));
+		ItemStack output = recipe.craft(AUTO_INVENTORY, world.getRegistryManager()).copy();
+		
 		world.playSound(null, pos, SpectrumSoundEvents.PRIMORDIAL_FIRE_CRACKLE, SoundCategory.BLOCKS, 0.7F, 1.0F);
-		if(stack.getItem() instanceof BlockItem blockItem) {
+		if(output.getItem() instanceof BlockItem blockItem) {
 			world.setBlockState(pos, blockItem.getBlock().getDefaultState());
 		} else {
-			FireproofItemEntity.scatter(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+			FireproofItemEntity.scatter(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, output);
 		}
+		
+		return true;
 	}
 	
-	public void processItemEntity(World world, ItemEntity itemEntity) {
+	public static boolean processItemEntity(World world, ItemEntity itemEntity) {
 		Vec3d pos = itemEntity.getPos();
-		ItemStack input = itemEntity.getStack();
-		int inputCount = input.getCount();
 		
-		ItemStack outputStack = getOutput(world.getRegistryManager()).copy();
+		ItemStack inputStack = itemEntity.getStack();
+		PrimordialFireBurningRecipe recipe = PrimordialFireBurningRecipe.getRecipeFor(world, inputStack);
+		if (recipe == null) {
+			return false;
+		}
+		
+		int inputCount = inputStack.getCount();
+		AUTO_INVENTORY.setInputInventory(Collections.singletonList(inputStack));
+		ItemStack outputStack = recipe.craft(AUTO_INVENTORY, world.getRegistryManager()).copy();
 		outputStack.setCount(outputStack.getCount() * inputCount);
 		
-		input.setCount(0);
+		inputStack.setCount(0);
 		itemEntity.discard();
 		
 		FireproofItemEntity.scatter(world, pos.getX(), pos.getY(), pos.getZ(), outputStack);
 		world.playSound(null, itemEntity.getBlockPos(), SpectrumSoundEvents.PRIMORDIAL_FIRE_CRACKLE, SoundCategory.BLOCKS, 0.7F, 1.0F);
+		
+		return true;
 	}
 }

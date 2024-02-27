@@ -207,15 +207,9 @@ public class PrimordialFireBlock extends AbstractFireBlock {
         int spreadChance = this.getSpreadChance(world.getBlockState(pos));
         if (random.nextInt(spreadFactor) < spreadChance) {
             BlockState currentState = world.getBlockState(pos);
-            if (random.nextBoolean()) {
-                
-                Item item = currentState.getBlock().asItem();
-                if(item != Items.AIR) {
-                    PrimordialFireBurningRecipe recipe = PrimordialFireBurningRecipe.getConversionRecipeFor(world, item.getDefaultStack());
-                    if (recipe != null) {
-                        recipe.processBlock(world, pos);
-                        return;
-                    }
+            if (random.nextBoolean() ) {
+                if(PrimordialFireBurningRecipe.processBlock(world, pos, currentState)) {
+                    return;
                 }
                 
                 // replace the current block with fire

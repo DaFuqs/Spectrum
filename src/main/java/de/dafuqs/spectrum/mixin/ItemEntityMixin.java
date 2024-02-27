@@ -73,9 +73,8 @@ public abstract class ItemEntityMixin {
 		if(source.isOf(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
 			ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
 			World world = thisItemEntity.getWorld();
-			PrimordialFireBurningRecipe recipe = PrimordialFireBurningRecipe.getConversionRecipeFor(world, thisItemEntity.getStack());
-			if (recipe != null) {
-				recipe.processItemEntity(world, thisItemEntity);
+
+			if(PrimordialFireBurningRecipe.processItemEntity(world, thisItemEntity)) {
 				callbackInfoReturnable.setReturnValue(true);
 			}
 		}

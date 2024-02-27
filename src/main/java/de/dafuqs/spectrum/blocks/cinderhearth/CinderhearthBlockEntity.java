@@ -209,7 +209,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		if (nbt.contains("Structure", NbtElement.INT_TYPE)) {
+		if (nbt.contains("Structure", NbtElement.NUMBER_TYPE)) {
 			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
 		} else {
 			this.structure = CinderHearthStructureType.NONE;

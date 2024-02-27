@@ -98,7 +98,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
 		this.tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
-		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.INT_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
+		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.NUMBER_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
 	}
 	
 	public Inventory getInventory() {

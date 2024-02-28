@@ -31,7 +31,8 @@
         "item": "spectrum:doombloom_seed",
         "count": 12
       },
-      "text": "book.spectrum.guidebook.hints.dragonbone.page1.text"
+      "text": "book.spectrum.guidebook.hints.dragonbone.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/dragonbone_page1"
     }
   ]
 }

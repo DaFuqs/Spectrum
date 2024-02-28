@@ -31,7 +31,8 @@
         "item": "spectrum:onyx_shard",
         "count": 12
       },
-      "text": "book.spectrum.guidebook.hints.mermaids_gems.page1.text"
+      "text": "book.spectrum.guidebook.hints.mermaids_gems.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/mermaids_gems_page1"
     }
   ]
 }

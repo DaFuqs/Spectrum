@@ -31,7 +31,8 @@
         "item": "minecraft:clay_ball",
         "count": 48
       },
-      "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.text"
+      "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/quitoxic_reeds_page1"
     }
   ]
 }

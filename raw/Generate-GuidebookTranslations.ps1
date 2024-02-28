@@ -162,6 +162,12 @@ Function Set-TranslatedGuidebookEntry {
                 New-Item $HintDir -ItemType Directory
             }
             If (-not (Test-Path $HintPath -PathType Leaf)) {
+                If ($null -ne $Page.completion_advancement) {
+                    $Condition = $Page.completion_advancement
+                }
+                Else {
+                    $Condition = (Get-Content -Raw "$HintDir/$($EntryName)_page0.json" | ConvertFrom-Json).criteria.advancement_gotten.conditions.advancement_identifier
+                }
                 $HintAdvancement = @"
 {
   "criteria": {
@@ -171,16 +177,20 @@ Function Set-TranslatedGuidebookEntry {
     "advancement_gotten": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "$($Page.completion_advancement)"
+        "advancement_identifier": "$Condition"
       }
     }
   }
 }
 "@
-                $Page.completion_advancement = "$($Page.completion_advancement)_page$I"
-                Rename-Item "$HintDir/$($EntryName).json" "$($EntryName)_page$I.json"
-#                $Page.completion_advancement = "spectrum:triggers/$CategoryName/$EntryName"
-#                $HintAdvancement | Out-File $HintPath
+                $AdvancementName = "spectrum:triggers/$CategoryName/$($EntryName)_page$I"
+                If ($null -eq $Page.completion_advancement) {
+                    $Page | Add-Member -NotePropertyName completion_advancement -NotePropertyValue $AdvancementName
+                }
+                Else {
+                    $Page.completion_advancement = $AdvancementName
+                }
+                $HintAdvancement | Out-File $HintPath
             }
         }
 

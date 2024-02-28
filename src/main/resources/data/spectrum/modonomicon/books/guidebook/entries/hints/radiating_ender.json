@@ -31,7 +31,8 @@
         "item": "minecraft:ender_pearl",
         "count": 12
       },
-      "text": "book.spectrum.guidebook.hints.radiating_ender.page1.text"
+      "text": "book.spectrum.guidebook.hints.radiating_ender.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/radiating_ender_page1"
     }
   ]
 }

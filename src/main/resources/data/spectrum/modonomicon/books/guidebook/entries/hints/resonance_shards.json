@@ -31,7 +31,8 @@
         "item": "spectrum:hummingstone_glass",
         "count": 48
       },
-      "text": "book.spectrum.guidebook.hints.resonance_shards.page1.text"
+      "text": "book.spectrum.guidebook.hints.resonance_shards.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/resonance_shards_page1"
     }
   ]
 }

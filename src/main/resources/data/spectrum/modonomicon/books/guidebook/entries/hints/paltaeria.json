@@ -31,7 +31,8 @@
         "item": "spectrum:moonstone_shard",
         "count": 32
       },
-      "text": "book.spectrum.guidebook.hints.paltaeria.page1.text"
+      "text": "book.spectrum.guidebook.hints.paltaeria.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/paltaeria_page1"
     }
   ]
 }

@@ -27,7 +27,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.midnight_chip.page1.title",
-      "completion_advancement": "spectrum:midgame/collect_midnight_chip_page1",
+      "completion_advancement": "spectrum:triggers/hints/midnight_chip_page1",
       "cost": {
         "item": "spectrum:neolith",
         "count": 24

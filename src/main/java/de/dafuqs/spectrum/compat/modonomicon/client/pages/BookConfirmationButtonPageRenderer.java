@@ -8,7 +8,6 @@ import com.klikli_dev.modonomicon.client.render.page.BookTextPageRenderer;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookConfirmationButtonPage;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 
 public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
@@ -19,8 +18,7 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 
     public boolean isConfirmed() {
         if (!(page instanceof BookConfirmationButtonPage confirmationPage)) return false;
-        MinecraftClient client = MinecraftClient.getInstance();
-        return AdvancementHelper.hasAdvancement(client.player, confirmationPage.getCheckedAdvancement());
+        return AdvancementHelper.hasAdvancement(mc.player, confirmationPage.getCheckedAdvancement());
     }
 
     @Override
@@ -45,7 +43,7 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 
     protected void confirmationButtonClicked(ButtonWidget button) {
         if (!(page instanceof BookConfirmationButtonPage confirmationPage)) return;
-        SpectrumC2SPacketSender.sendConfirmationButtonPressedPaket(confirmationPage.getConfirmationString());
+        SpectrumC2SPacketSender.sendConfirmationButtonPressedPacket(confirmationPage.getConfirmationString());
         button.setMessage(confirmationPage.getConfirmedButtonText().getComponent());
         BookGuiManager.get().openEntry(page.getBook().getId(), page.getParentEntry().getId(), page.getPageNumber());
     }

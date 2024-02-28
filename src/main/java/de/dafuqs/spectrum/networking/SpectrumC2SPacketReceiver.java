@@ -20,6 +20,7 @@ import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.Identifier;
 
 import java.util.*;
 
@@ -80,15 +81,16 @@ public class SpectrumC2SPacketReceiver {
 		});
 		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, (server, player, handler, buf, responseSender) -> {
-			// pay cost
+			Identifier completionAdvancement = buf.readIdentifier();
 			Ingredient payment = Ingredient.fromPacket(buf);
-			
+
 			for (ItemStack remainder : InventoryHelper.removeFromInventoryWithRemainders(List.of(payment), player.getInventory())) {
 				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
 			}
 			
 			// give the player the hidden "used_tip" advancement and play a sound
 			Support.grantAdvancementCriterion(player, "hidden/used_tip", "used_tip");
+			Support.grantAdvancementCriterion(player, completionAdvancement, "hint_purchased");
 			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		});
 		

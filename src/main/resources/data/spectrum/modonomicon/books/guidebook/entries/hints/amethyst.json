@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.amethyst.page0.title",
-      "completion_advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "completion_advancement": "spectrum:triggers/hint_amethyst",
       "cost": {
         "item": "spectrum:citrine_shard",
         "count": 16

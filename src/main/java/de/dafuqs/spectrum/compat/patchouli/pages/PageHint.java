@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.sound.*;
@@ -44,8 +45,10 @@ public class PageHint extends BookPage {
 	
 	IVariable cost;
 	IVariable text;
+	IVariable completion_advancement;
 	transient BookTextRenderer textRender;
 	transient Ingredient ingredient;
+	transient Identifier completionAdvancement;
 	
 	// this once was a single property. But because the world sometimes got backdated we have to go this
 	// a tad more complicated approach, comparing the current tick with the last reveled tick every time
@@ -65,10 +68,12 @@ public class PageHint extends BookPage {
 	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
 		super.build(world, entry, builder, pageNum);
 		ingredient = cost.as(Ingredient.class);
+		completionAdvancement = Identifier.tryParse(completion_advancement.asString());
 	}
 	
 	public boolean isQuestDone(Book book) {
-		return PersistentData.data.getBookData(book).completedManualQuests.contains(getEntryId());
+		return PersistentData.data.getBookData(book).completedManualQuests.contains(getEntryId())
+				|| AdvancementHelper.hasAdvancement(mc.player, completionAdvancement);
 	}
 	
 	@Override
@@ -128,15 +133,11 @@ public class PageHint extends BookPage {
 			return;
 		}
 		if (client.player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), client.player.getInventory())) {
-			// mark as complete in book data
-			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);
-			data.completedManualQuests.add(getEntryId());
-			PersistentData.save();
 			entry.markReadStateDirty();
 			
 			MinecraftClient.getInstance().getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.getString().length()));
 			
-			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
+			SpectrumC2SPacketSender.sendGuidebookHintBoughtPacket(completionAdvancement, ingredient);
 			revealProgress = 1;
 			lastRevealTick = client.world.getTime();
 			client.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);

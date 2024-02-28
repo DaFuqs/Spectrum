@@ -1,0 +1,11 @@
+{
+  "criteria": {
+    "hint_purchased": {
+      "trigger": "minecraft:impossible"
+    },
+    "advancement_gotten": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:spectrum:hidden/collect_shards/collect_amethyst_shard" }
+    }
+  }
+}

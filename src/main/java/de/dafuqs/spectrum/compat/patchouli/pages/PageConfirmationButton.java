@@ -65,7 +65,7 @@ public class PageConfirmationButton extends PageWithText {
 	}
 	
 	protected void confirmationButtonClicked(ButtonWidget button) {
-		SpectrumC2SPacketSender.sendConfirmationButtonPressedPaket(confirmationString);
+		SpectrumC2SPacketSender.sendConfirmationButtonPressedPacket(confirmationString);
 		button.setMessage(buttonTextConfirmed);
 		entry.markReadStateDirty();
 	}

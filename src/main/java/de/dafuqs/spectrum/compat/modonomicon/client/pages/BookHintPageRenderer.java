@@ -53,20 +53,20 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     public void onBeginDisplayPage(BookContentScreen parentScreen, int left, int top) {
         super.onBeginDisplayPage(parentScreen, left, top);
 
-//        boolean isDone = page.isQuestDone(page.getBook());
-//        if (!isDone) {
-//            revealProgress = -1;
+        boolean isDone = page.isUnlocked();
+        if (!isDone) {
+            revealProgress = -1;
 //            displayedText = calculateTextToRender(page.getText());
-//
-//            PageHint.PaymentButtonWidget paymentButtonWidget = new PageHint.PaymentButtonWidget(
-//                    BookContentScreen.PAGE_WIDTH / 2 - 50, BookContentScreen.PAGE_HEIGHT - 35,
-//                    100, 20, Text.empty(), this::paymentButtonClicked, this);
-//            addButton(paymentButtonWidget);
-//        } else {
+
+            PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(
+                    BookContentScreen.PAGE_WIDTH / 2 - 50, BookContentScreen.PAGE_HEIGHT - 35,
+                    100, 20, Text.empty(), this::paymentButtonClicked, this);
+            addButton(paymentButtonWidget);
+        } else {
 //            displayedText = page.getText();
-//            revealProgress = 0;
-//        }
-//
+            revealProgress = 0;
+        }
+
 //        textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
     }
 
@@ -84,21 +84,21 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             }
         }
 
-//        // Show a new letter each tick
+        // Show a new letter each tick
 //        Text calculatedText = Text.literal(text.getString().substring(0, (int) revealProgress) + "$(obf)" + text.getString().substring((int) revealProgress));
-//
-//        long currentTime = mc.world.getTime();
-//        if (currentTime != lastRevealTick) {
-//            lastRevealTick = currentTime;
-//
-//            revealProgress++;
+
+        long currentTime = mc.world.getTime();
+        if (currentTime != lastRevealTick) {
+            lastRevealTick = currentTime;
+
+            revealProgress++;
 //            revealProgress = Math.min(text.getString().length(), revealProgress);
 //            if (text.getString().length() < revealProgress) {
 //                revealProgress = 0;
 //                return text;
 //            }
-//        }
-//
+        }
+
 //        return calculatedText;
         return text;
     }
@@ -110,14 +110,9 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             return;
         }
         if (mc.player.isCreative() || InventoryHelper.hasInInventory(List.of(page.getCost()), mc.player.getInventory())) {
-            // mark as complete in book data
-//            PersistentData.BookData data = PersistentData.data.getBookData(page.getBook());
-//            data.completedManualQuests.add(page.getParentEntry().getId());
-//            PersistentData.save();
-
             MinecraftClient.getInstance().getSoundManager().play(new HintRevelationSoundInstance(mc.player, page.getText().getString().length()));
 
-            SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(page.getCost());
+            SpectrumC2SPacketSender.sendGuidebookHintBoughtPacket(page.getCompletionAdvancement(), page.getCost());
             revealProgress = 1;
             lastRevealTick = mc.world.getTime();
             mc.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);

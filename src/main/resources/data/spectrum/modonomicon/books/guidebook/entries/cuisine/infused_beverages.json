@@ -49,7 +49,7 @@
     {
       "type": "spectrum:confirmation_button",
       "title": "book.spectrum.guidebook.cuisine.infused_beverages.page5.title",
-      "checked_advancement": "spectrum:milestones/confirmed_drinking_age",
+      "checked_advancement": "spectrum:triggers/confirmed_drinking_age",
       "button_text": "book.spectrum.guidebook.cuisine.infused_beverages.page5.button_text",
       "button_text_confirmed": "book.spectrum.guidebook.cuisine.infused_beverages.page5.button_text_confirmed",
       "confirmation": "confirm_drinking_age",

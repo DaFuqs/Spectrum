@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;

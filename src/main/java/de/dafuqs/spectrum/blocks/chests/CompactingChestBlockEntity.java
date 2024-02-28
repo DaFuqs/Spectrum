@@ -25,11 +25,11 @@ import java.util.*;
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {
 	
 	private static final Map<AutoCompactingInventory.AutoCraftingMode, Map<ItemVariant, Optional<CraftingRecipe>>> cache = new EnumMap<>(AutoCompactingInventory.AutoCraftingMode.class);
-	final AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
-	AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
-	CraftingRecipe lastCraftingRecipe; // cache
-	ItemVariant lastItemVariant; // cache
-	boolean hasToCraft;
+	private final AutoCompactingInventory autoCompactingInventory = new AutoCompactingInventory();
+	private AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
+	private CraftingRecipe lastCraftingRecipe; // cache
+	private ItemVariant lastItemVariant; // cache
+	private boolean hasToCraft;
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.COMPACTING_CHEST, blockPos, blockState);
@@ -75,7 +75,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						}
 						additionStack.setCount(additionStack.getCount() - maxAcceptCount);
 						doneStuff = true;
-					} else if (ItemStack.areEqual(currentStack, additionStack)) {
+					} else if (ItemStack.canCombine(currentStack, additionStack)) {
 						// add to stack;
 						int maxStackCount = currentStack.getMaxCount();
 						int canAcceptCount = maxStackCount - currentStack.getCount();
@@ -129,7 +129,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		if (tag.contains("AutoCraftingMode", NbtElement.INT_TYPE)) {
+		if (tag.contains("AutoCraftingMode", NbtElement.NUMBER_TYPE)) {
 			int autoCraftingModeInt = tag.getInt("AutoCraftingMode");
 			this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.values()[autoCraftingModeInt];
 		}
@@ -248,12 +248,12 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	@Override
 	public SoundEvent getOpenSound() {
-		return SoundEvents.BLOCK_PISTON_EXTEND;
+		return SpectrumSoundEvents.COMPACTING_CHEST_OPEN;
 	}
 	
 	@Override
 	public SoundEvent getCloseSound() {
-		return SoundEvents.BLOCK_PISTON_CONTRACT;
+		return SpectrumSoundEvents.COMPACTING_CHEST_CLOSE;
 	}
 	
 	public AutoCompactingInventory.AutoCraftingMode getAutoCraftingMode() {

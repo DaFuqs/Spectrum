@@ -1,0 +1,22 @@
+{
+  "name": "Artisan's Atlas",
+  "advancement": "spectrum:unlocks/items/artisans_atlas",
+  "icon": "spectrum:artisans_atlas",
+  "secret": true,
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:artisans_atlas": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This map shifts and changes when you move, almost seeming like it is alive and could sense your intentions.$(br)Used in a structure, this alas will guide you through treacherous terrain, across raging rivers, and through dense forests to find structures of similar kind."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/artisans_atlas",
+      "text": ""
+    }
+  ]
+}

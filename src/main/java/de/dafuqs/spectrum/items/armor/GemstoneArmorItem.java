@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;

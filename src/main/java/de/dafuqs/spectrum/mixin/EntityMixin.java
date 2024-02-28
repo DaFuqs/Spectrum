@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.*;
@@ -34,8 +35,7 @@ public abstract class EntityMixin {
 
 	@ModifyVariable(method = "slowMovement", at = @At(value = "LOAD"), argsOnly = true)
 	private Vec3d spectrum$applyInexorableAntiBlockSlowdown(Vec3d multiplier) {
-		Entity entity = (Entity) (Object) this;
-		if (entity instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
+		if ((Object) this instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
 			return Vec3d.ZERO;
 		}
 		return multiplier;
@@ -43,13 +43,8 @@ public abstract class EntityMixin {
 	
 	@Inject(method = "getVelocityMultiplier", at = @At("RETURN"), cancellable = true)
 	private void spectrum$applyInexorableAntiSlowdown(CallbackInfoReturnable<Float> cir) {
-		var entity = (Entity) (Object) this;
-		
-		if (entity instanceof LivingEntity livingEntity) {
-			var inexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, livingEntity.getEquippedStack(EquipmentSlot.CHEST));
-			
-			if (inexorable > 0)
-				cir.setReturnValue(Math.max(cir.getReturnValue(), 1F));
+		if ((Object) this instanceof LivingEntity livingEntity && InexorableEnchantment.isArmorActive(livingEntity)) {
+			cir.setReturnValue(Math.max(cir.getReturnValue(), 1F));
 		}
 	}
 	
@@ -62,6 +57,10 @@ public abstract class EntityMixin {
 					int count = stack.getCount();
 					
 					if (killer.getInventory().insertStack(stack)) {
+						killer.getWorld().playSound(null, killer.getX(), killer.getY(), killer.getZ(),
+								SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,
+								0.2F, ((killer.getRandom().nextFloat() - killer.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+						
 						if (stack.isEmpty()) {
 							killer.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), count);
 							cir.cancel();

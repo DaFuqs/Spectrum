@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:collect_four_leaf_clover",
+			"cost":"spectrum:vegetal#16",
+			"text":"寻找平原生物群落。也许你会幸运！",
+			"type":"spectrum:hint",
+			"title":"去哪里看"
+		},
+		{
+			"cost":"spectrum:vegetal#48",
+			"text":"平原生物群落中生长着三叶草。你可以立即注意到一个四叶三叶草在其方块的形式已经。破坏以收集，使用骨粉将其传播。",
+			"type":"spectrum:hint",
+			"title":"简明说明"
+		}
+	],
+	"advancement":"spectrum:midgame/build_enchanting_structure",
+	"read_by_default":true,
+	"name":"新资源",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:collect_four_leaf_clover",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

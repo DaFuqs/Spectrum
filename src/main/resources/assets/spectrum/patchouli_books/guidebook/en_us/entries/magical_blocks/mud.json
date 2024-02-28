@@ -1,0 +1,34 @@
+{
+  "name": "Liquid Mud",
+  "advancement": "spectrum:unlocks/blocks/mud",
+  "icon": "spectrum:mud_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:mud_bucket": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Liquid Mud",
+      "item": "spectrum:mud_bucket",
+      "text": "Mud. It is wet mud. Not particularly interesting in and of itself. What is practical is the collision of the mud with other liquids, like $(item)Water$() or $(item)Lava$(). This creates $(item)Dirt$() or $(item)Coarse Dirt$(), respectively."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/mud_bucket",
+      "text": "$(italic)While a mud bath sounds like wellness, it is not advised."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Item Conversion",
+      "text": "Some items that come into contact with Mud get tanned.$(br)For example, $(item)Rotten Flesh$() will be converted to a tiny piece of $(item)Hide$()."
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "Tanning Rotten Flesh",
+      "recipe": "spectrum:mud_converting/rabbit_hide",
+      "text": ""
+    }
+  ]
+}

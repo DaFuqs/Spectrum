@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.REI.*;
-import de.dafuqs.spectrum.recipe.*;
 import me.shedaniel.rei.api.common.util.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;

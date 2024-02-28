@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.state.property.Properties;

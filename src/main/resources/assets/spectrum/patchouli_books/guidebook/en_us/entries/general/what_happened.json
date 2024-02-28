@@ -1,0 +1,77 @@
+{
+  "name": "What Happened Below?",
+  "icon": "spectrum:black_materia",
+  "sortnum": 20,
+  "advancement": "spectrum:lategame/visit_all_deeper_down_biomes",
+  "turnin": "spectrum:endgame/collect_enough_hints",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)On the trail of the history of the Deeper Down$().$(br2)There is no question that, despite the lack of light, there must once have lived a highly advanced civilisation down here. But all you found were ruins.$(br)What happened? Surely you can find clues to their whereabouts. Demise? Legacy?"
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "Where to look",
+      "checklist": {
+        "spectrum:lategame/find_forgotten_city": "Was the place below Bedrock inhabited?",
+        "spectrum:lategame/reached_dd_floor": "Now that Bedrock isn't the bottom anymore, what is there to find?",
+        "spectrum:lategame/find_excavation_site": "How were the ruins you found in the Overworld created?"
+      },
+      "text": ""
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:lategame/revive_black_sludge_plant": "How did the Black Langast come to be?",
+        "spectrum:lategame/break_cracked_dragonbone": "Those bones in the Dragonrot Swamps... can they be broken?",
+        "spectrum:lategame/strike_up_hummingstone_hymn": "What about these weird Crystals in the Crystal Gardens?",
+        "spectrum:lategame/collect_moonstone_shard": "Can you find Geodes here, too?"
+      },
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/find_forgotten_city",
+      "title": "Clue: Cities",
+      "text": "Civilisation! ...or at least what is left of it. Everything gives the impression of being bustling, with everything looking as if it is still very much inhabited and yet there is not a dying soul to be seen."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/reached_dd_floor",
+      "title": "Clue: Dimension Floor",
+      "text": "It's like a matryoshka doll all the way down. A moment ago you thought Bedrock was indestructible and now here you are."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/find_excavation_site",
+      "title": "Clue: Excavation Sites",
+      "text": "Apparently Downstone was not completely indestructible for the previous inhabitants? It took immense, high-tech constructs, but they were able to process the stone and make what you called \"Preservation Stone\"."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/revive_black_sludge_plant",
+      "title": "Clue: Black Langast",
+      "text": "The remains growing in $(l:dimension/black_langast)Black Langast$(/l) were actually Resonant Lilies, once. What happened here? Does that mean..."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "title": "Clue: Dragonbone",
+      "text": "You keep coming across gigantic skeletons. Whether they were really dragons is still written in the stars, but whatever they were, they were certainly powerful. Did they wipe out the inhabitants and then somehow meet their own end?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
+      "title": "Clue: Hummingstone",
+      "text": "Humming stones with a lot of indwelling energy. When vibrated, they rock each other without any other external influences until they break into splinters. Some kind of energy source?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "title": "Clue: Moonstone",
+      "text": "The dazzling white geodes down here are unlike any you have seen before and harbour immense magical power. But why do they only exist here? More questions..."
+    }
+  ]
+}

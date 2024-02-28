@@ -1,0 +1,63 @@
+{
+  "name": "Fusion Shrine",
+  "icon": "spectrum:fusion_shrine_basalt",
+  "sortnum": 10,
+  "advancement": "spectrum:unlocks/blocks/fusion_shrine",
+  "turnin": "spectrum:build_fusion_shrine",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Fusion Shrine",
+      "items": [
+        "spectrum:fusion_shrine_basalt",
+        "spectrum:fusion_shrine_calcite"
+      ],
+      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle. This would be very beneficial for recipes which can only be crafted $(l:general/onyx_shards)during a specific time frame$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
+      "text": "Can be constructed using $(item)Calcite$() or $(item)Basalt$().$(br)Requires a focus structure and clear view of the sky."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Shrine Structure",
+      "multiblock_id": "spectrum:fusion_shrine_structure",
+      "enable_visualize": true,
+      "text": "Dimensions: 9x9x5 blocks."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks$(br2)As always you are able to switch $(item)Basalt$() with $(item)Calcite$() and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Changing the Weather",
+      "text": "You have designed the structure for the Fusion Shrine to bundle the magical energies of $(c_cyan)Matter$(), $(c_magenta)Time$() and $(c_yellow)Energy$() and focus them on a single, central point, the Fusion Shrine itself.$(br2)These powerful bundled energies seem to even have enough power to change the weather."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Sunny Weather",
+      "recipe": "spectrum:fusion_shrine/weather/weather_clear",
+      "text": "$(italic)It's a brand new day$(br)And the sun is high$(br)All the birds are singing$(br)That you're gonna die"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Rainy Weather",
+      "advancement": "spectrum:unlocks/weather/weather_rain",
+      "recipe": "spectrum:fusion_shrine/weather/weather_rain",
+      "text": "$(italic)Knock Knock$(br)Who's there?$(br)Accordion$(br)Accordion who?$(br)Accordion to the forecast, it's going to rain tonight."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Thunderstorms",
+      "advancement": "spectrum:unlocks/weather/weather_thunder",
+      "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
+      "text": "$(italic)Why did the god of thunder drink water?$(br2)Because he was thorsty."
+    }
+  ]
+}

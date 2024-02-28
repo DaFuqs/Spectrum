@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
+import de.dafuqs.spectrum.api.item.*;
 import dev.emi.trinkets.api.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.item.*;

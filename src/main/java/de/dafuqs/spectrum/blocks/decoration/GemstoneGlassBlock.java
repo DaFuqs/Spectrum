@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.util.math.*;

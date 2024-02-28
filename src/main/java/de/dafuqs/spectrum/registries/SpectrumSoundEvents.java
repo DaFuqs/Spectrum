@@ -67,6 +67,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
 
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
+	public static final SoundEvent PRIMORDIAL_FIRE_CRACKLE = register("primordial_fire_crackle");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");
@@ -86,9 +87,12 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent STRUCTURE_SUCCESS = register("structure_success");
 	public static final SoundEvent UNLOCK = register("unlock");
 	public static final SoundEvent HUMMINGSTONE_HUM = register("hummingstone_hum");
+	public static final SoundEvent COLOR_PICKER_PROCESSING = register("color_picker_processing");
 	
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
+	public static final SoundEvent COMPACTING_CHEST_OPEN = register("compacting_chest_open");
+	public static final SoundEvent COMPACTING_CHEST_CLOSE = register("compacting_chest_close");
 	
 	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
 	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
@@ -220,7 +224,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_LOVE = register("entity.kindling.love");
 	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
-	
 	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);

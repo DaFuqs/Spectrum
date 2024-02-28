@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.math.*;

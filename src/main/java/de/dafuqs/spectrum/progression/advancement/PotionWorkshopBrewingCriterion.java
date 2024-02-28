@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.inventories.*;

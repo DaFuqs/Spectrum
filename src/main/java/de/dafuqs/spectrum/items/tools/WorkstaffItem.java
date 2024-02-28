@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
@@ -94,7 +94,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public int getAoERange(ItemStack stack) {
 		NbtCompound nbt = stack.getNbt();
-		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.INT_TYPE)) {
+		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.NUMBER_TYPE)) {
 			return 0;
 		}
 		return nbt.getInt(RANGE_NBT_STRING);
@@ -168,7 +168,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		
 		NbtCompound nbt = stack.getOrCreateNbt();
 		if (enchantment == Enchantments.FORTUNE) {
-			if (nbt.contains("FortuneLevel", NbtElement.INT_TYPE)) {
+			if (nbt.contains("FortuneLevel", NbtElement.NUMBER_TYPE)) {
 				level = nbt.getInt("FortuneLevel");
 				nbt.remove("FortuneLevel");
 			}

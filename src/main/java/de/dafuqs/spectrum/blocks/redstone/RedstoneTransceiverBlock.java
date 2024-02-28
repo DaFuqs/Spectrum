@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

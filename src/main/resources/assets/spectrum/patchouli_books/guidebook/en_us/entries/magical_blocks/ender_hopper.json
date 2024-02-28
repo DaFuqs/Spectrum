@@ -1,0 +1,23 @@
+{
+  "name": "Ender Hopper",
+  "advancement": "spectrum:unlocks/blocks/ender_blocks",
+  "icon": "spectrum:ender_hopper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_hopper": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Hopper",
+      "item": "spectrum:ender_hopper",
+      "text": "Designed to resemble an ordinary hopper in form and function, the Ender Hopper has the special ability to put items directly into your $(item)Ender Chest$(). Counterpart to the $(l:magical_blocks/ender_dropper)Ender Dropper$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ender_hopper",
+      "text": "The Ender Hopper only works while you are online."
+    }
+  ]
+}

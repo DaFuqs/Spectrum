@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.block.*;

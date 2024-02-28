@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

@@ -2,10 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.*;
 import net.minecraft.entity.damage.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -18,25 +15,11 @@ public class ExplosionMixin {
 	@Final
 	private DamageSource damageSource;
 	
-	@Shadow
-	@Final
-	private World world;
-	
 	@Inject(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/AbstractFireBlock;getState(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;"))
 	private void spectrum$modifyExplosion(boolean particles, CallbackInfo ci) {
 		if (this.damageSource.isOf(SpectrumDamageTypes.INCANDESCENCE)) {
 			PrimordialFireBlock.EXPLOSION_CAUSES_PRIMORDIAL_FIRE_FLAG = true;
 		}
-	}
-
-	@ModifyArg(method = "affectWorld(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;I)Z"), index = 1)
-	private BlockState spectrum$modifyExplosion(BlockPos pos, BlockState state, int flags) {
-		BlockState stateAtPos = world.getBlockState(pos);
-		if(stateAtPos.getBlock() instanceof ExplosionAware explosionAware) {
-			explosionAware.beforeDestroyedByExplosion(world, pos, stateAtPos, (Explosion) (Object) this);
-			return explosionAware.getStateForExplosion(this.world, pos, stateAtPos);
-		}
-		return state;
 	}
 	
 }

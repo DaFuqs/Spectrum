@@ -4,9 +4,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.*;
@@ -17,6 +15,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.math.*;
 import java.text.*;
 import java.util.*;
 
@@ -26,6 +25,12 @@ public class Support {
 	public static final DecimalFormat DF = new DecimalFormat("0");
 	public static final DecimalFormat DF1 = new DecimalFormat("0.0");
 	public static final DecimalFormat DF2 = new DecimalFormat("0.00");
+
+	static {
+		DF.setRoundingMode(RoundingMode.DOWN);
+		DF1.setRoundingMode(RoundingMode.DOWN);
+		DF2.setRoundingMode(RoundingMode.DOWN);
+	}
 	
 	@Nullable
 	@SuppressWarnings("unchecked")

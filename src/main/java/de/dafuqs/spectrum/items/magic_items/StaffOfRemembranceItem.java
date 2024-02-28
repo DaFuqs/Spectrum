@@ -2,16 +2,15 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -52,7 +51,7 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		World world = user.getWorld();
 		Vec3d pos = entity.getPos();
 		
-		if (!GenericClaimModsCompat.canInteractWith(world, entity, user)) {
+		if (!GenericClaimModsCompat.canInteract(world, entity, user)) {
 			return ActionResult.FAIL;
 		}
 		
@@ -72,13 +71,11 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		if (!entity.isAlive() || entity.isRemoved() || entity.hasPassengers()) {
 			return false;
 		}
-		if (entity.getType().isIn(ConventionalEntityTypeTags.BOSSES) || entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
+		if (entity.getType().isIn(SpectrumEntityTypeTags.STAFF_OF_REMEMBRANCE_BLACKLISTED)) {
 			return false;
 		}
+		
 		SpawnGroup spawnGroup = entity.getType().getSpawnGroup();
-		if (spawnGroup == SpawnGroup.MISC) {
-			return false;
-		}
 		if (spawnGroup == SpawnGroup.MONSTER && (user.isCreative() || AdvancementHelper.hasAdvancement(user, UNLOCK_HOSTILE_MEMORIZING_ID))) {
 			if (!InkPowered.tryDrainEnergy(user, TURN_HOSTILE_TO_MEMORY_COST)) {
 				return false;
@@ -88,7 +85,6 @@ public class StaffOfRemembranceItem extends Item implements InkPowered, Prioriti
 		}
 		
 		entity.detachLeash(true, true);
-		
 		entity.playAmbientSound();
 		entity.playSpawnEffects();
 		

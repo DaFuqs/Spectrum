@@ -3,8 +3,6 @@
     "spectrum:frigid_stardust",
     "spectrum:artists_palette",
     "spectrum:spectral_shard",
-    "spectrum:spectral_shard_block",
-    "spectrum:spectral_shard_storage_block",
 
     "spectrum:ominous_sapling",
     "spectrum:spirit_sallow_roots",
@@ -14,6 +12,7 @@
     "spectrum:sacred_soil",
     "#spectrum:catkin",
 
-    "spectrum:monstrosity_head"
+    "spectrum:monstrosity_head",
+    "spectrum:artisans_atlas"
   ]
 }

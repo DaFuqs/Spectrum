@@ -2,8 +2,10 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.crafting.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.dynamic.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
@@ -33,6 +35,9 @@ public class SpectrumCustomRecipeSerializers {
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");
 		
+		// Dragonrot
+		register(MeatToRottenFleshRecipe.SERIALIZER, "meat_rotting");
+		
 		// Spirit Instiller
 		register(SpawnerCreatureChangeRecipe.SERIALIZER, "spirit_instiller_spawner_creature_change");
 		register(SpawnerMaxNearbyEntitiesChangeRecipe.SERIALIZER, "spirit_instiller_spawner_max_nearby_entities_change");
@@ -47,6 +52,10 @@ public class SpectrumCustomRecipeSerializers {
 		register(AquaRegiaRecipe.SERIALIZER, "titration_barrel_aqua_regia");
 		register(NecteredViognierRecipe.SERIALIZER, "titration_barrel_nectered_viognier");
 		register(SuspiciousBrewRecipe.SERIALIZER, "titration_barrel_suspicious_brew");
+		
+		// Primordial Fire Burning
+		register(MemoryDementiaRecipe.SERIALIZER, "memory_dementia");
+		register(EnchantedBookUnsoulingRecipe.SERIALIZER, "enchanted_book_unsouling");
 	}
 	
 }

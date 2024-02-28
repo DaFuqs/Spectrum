@@ -1,0 +1,31 @@
+{
+  "name": "Bloodstone",
+  "advancement": "spectrum:unlocks/resources/bloodstone",
+  "icon": "spectrum:raw_bloodstone",
+  "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "extra_recipe_mappings": {
+    "spectrum:raw_bloodstone": 0,
+    "spectrum:refined_bloodstone": 0,
+    "spectrum:bloodstone_block": 0,
+
+    "spectrum:small_bloodstone_bud": 0,
+    "spectrum:large_bloodstone_bud": 0,
+    "spectrum:bloodstone_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe": "spectrum:liquid_crystal_converting/raw_bloodstone",
+      "title": "Bloodstone",
+      "text": "The rather effulgent feathers of the $(l:creating_life/kindlings)Kindlings$(/l) are notable, enough so to compel you to regularly give the little bumpkins coat trimmings.$(br)However, you've noticed that, sadly quite frequently, drops of blood will come along with the feathers. Dipped in $(l:magical_blocks/liquid_crystal)Liquid Crystal$(), it leaves behind a sparkly, crystalline residue."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Refining Bloodstone",
+      "recipe": "spectrum:crystallarieum/bloodstone",
+      "text": "Set upon the crystallarieum and given a $(bold)$(italic)$(fuck)precarious$() amount of $(item)Copper$(), the speck of dragonblood will grow and crystallize into a grand slab of glass, shining in stunning scarlet and bleeding with willful magic!"
+    }
+  ]
+}

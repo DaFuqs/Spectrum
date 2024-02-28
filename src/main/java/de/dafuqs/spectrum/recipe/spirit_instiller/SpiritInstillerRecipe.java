@@ -1,17 +1,16 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -115,20 +114,24 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 			
-			// Calculate and spawn experience
-			int awardedExperience = 0;
-			if (getExperience() > 0) {
-				double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
-				float recipeExperienceBeforeMod = getExperience();
-				awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-				MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
-			}
-			
-			// Run Advancement trigger
-			grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
+			spawnXPAndGrantAdvancements(resultStack, spiritInstillerBlockEntity, upgradeHolder, world, pos);
 		}
 		
 		return resultStack;
+	}
+	
+	// Calculate and spawn experience
+	protected void spawnXPAndGrantAdvancements(ItemStack resultStack, SpiritInstillerBlockEntity spiritInstillerBlockEntity, Upgradeable.UpgradeHolder upgradeHolder, World world, BlockPos pos) {
+		int awardedExperience = 0;
+		if (getExperience() > 0) {
+			double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
+			float recipeExperienceBeforeMod = getExperience();
+			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+			MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);
+		}
+		
+		// Run Advancement trigger
+		grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 	}
 	
 	protected static void grantPlayerSpiritInstillingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {

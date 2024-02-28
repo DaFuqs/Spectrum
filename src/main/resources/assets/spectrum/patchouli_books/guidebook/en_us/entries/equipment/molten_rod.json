@@ -1,0 +1,21 @@
+{
+  "name": "Molten Rod",
+  "advancement": "spectrum:unlocks/equipment/molten_rod",
+  "icon": "spectrum:molten_rod",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:molten_rod": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Orange, representing warmth, can be used to do the most interesting things.$(br2)Unlike a normal $(item)Fishing Rod$(), this one is a lot more sturdy and is able to fish where a common rod fails.$(br)You wonder what you can bring to the surface?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/tools/molten_rod",
+      "text": "$(italic)Caution, hot!$()$(br)Its flaming fishing hook can burn more than just your fingers..."
+    }
+  ]
+}

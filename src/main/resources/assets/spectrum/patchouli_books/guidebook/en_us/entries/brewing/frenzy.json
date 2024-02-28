@@ -1,0 +1,19 @@
+{
+  "name": "Frenzy (Stacking)",
+  "advancement": "spectrum:hidden/status_effects/frenzy",
+  "icon": "spectrum:blood_orchid_petal",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:frenzy",
+      "text": "Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effect's level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stacking Effect",
+      "text": "Getting a level of Frenzy will instead stack additional Levels on top of existing ones, increasing the effect's Potency instead of resetting its duration."
+    }
+  ]
+}

@@ -17,7 +17,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 	
 	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
+		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, recipe, 124, 100);
 		inputs = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().get(0).getBlock())
@@ -30,7 +30,7 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 				recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
 		).toList();
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(inputs.get(0), 0, 8);
@@ -59,24 +59,24 @@ public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<Crystal
 			CrystallarieumCatalyst catalyst = catalysts.get(i);
 			int xOff = 46 + 18 * i;
 			widgets.addSlot(EmiIngredient.of(catalyst.ingredient), xOff, 38);
-
+			
 			float growthAcceleration = catalyst.growthAccelerationMod;
 			int uOff = growthAcceleration == 1 ? 97 : growthAcceleration >= 6 ? 85 : growthAcceleration > 1 ? 67 : growthAcceleration <= 0.25 ? 79 : 73;
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 59, 6, 6, uOff, 0, 6, 6, 128, 128);
-
+			
 			float inkConsumption = catalyst.inkConsumptionMod;
 			uOff = inkConsumption == 1 ? 97 : inkConsumption >= 8 ? 85 : inkConsumption > 1 ? 67 : inkConsumption <= 0.25 ? 79 : 73;
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 69, 6, 6, uOff, 6, 6, 6, 128, 128);
-
+			
 			float consumeChance = catalyst.consumeChancePerSecond;
 			uOff = consumeChance == 0 ? 97 : consumeChance >= 0.2 ? 85 : consumeChance >= 0.05 ? 67 : 91;
 			widgets.addTexture(BACKGROUND_TEXTURE, xOff + 5, 79, 6, 6, uOff, 6, 6, 6, 128, 128);
 		}
-
+		
 		if (recipe.growsWithoutCatalyst()) {
-			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
+			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		} else {
-			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
+			widgets.addText(Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", recipe.getSecondsPerGrowthStage()), 0, 90, 0x3f3f3f, false);
 		}
 	}
 	

@@ -1,0 +1,21 @@
+{
+  "name": "发光啫喱茶",
+  "advancement": "spectrum:unlocks/food/glistering_jelly_tea",
+  "icon": "spectrum:glistering_jelly_tea",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:glistering_jelly_tea": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/jade_vines)翡翠藤$()有令人吃惊的再生效力, 如同 $(item)闪烁的西瓜$().把他们混合在一起会展现出精致和谐、甜美的味道。$(br2)暂时提升你一点点生命值."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "工作配方",
+      "recipe": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
+      "text": "$(italic)别想和牛奶一起喝!"
+    }
+  ]
+}

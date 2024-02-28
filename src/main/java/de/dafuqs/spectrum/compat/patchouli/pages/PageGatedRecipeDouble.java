@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.patchouli.pages;
 
 import com.google.gson.annotations.*;
+import de.dafuqs.spectrum.api.recipe.GatedRecipe;
 import de.dafuqs.spectrum.interfaces.GatedGuidebookPage;
-import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.entity.player.*;

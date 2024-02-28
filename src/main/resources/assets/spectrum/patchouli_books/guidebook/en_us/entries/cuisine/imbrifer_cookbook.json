@@ -1,0 +1,78 @@
+{
+  "name": "Imbrifer Cookbook",
+  "icon": "spectrum:imbrifer_cookbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/imbrifer_cookbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:imbrifer_cookbook": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "Imbrifer Fine Dining",
+      "resource_path": "spectrum:textures/gui/guidebook/lorraine.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Chef Lorraine of Imbrifer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Welcome. Lets not get caught up with introductions - you're here because you want to learn how to cook, I can teach you. I studied in the Meriloux Culinary College, the finest culinary institution in the deep; I trained under the mentorship of Imperial Chef Aeverstrone, catering for the $(o)$(fuck)scarlet moon bloodline$(); I, with a team of my own apprentices, brought Imbrifer its first full-lotus restaurant. $(br2)$(o)Follow my lead and I'll teach you true taste."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Simple Entree",
+      "text": "$(br)Everybody has to start somewhere, and for my students, this is that somewhere. Crawfish Cocktails are deceiving, they seem simple, but to truly master them takes finesse and practice. It is possible to flambé the peaches and spices to make a sweet, syrupy, spicy sauce without cooking the crawfish, but it demands an immense amount of care. I use this to filter new students."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/crawfish_cocktail",
+      "text": "$(italic)It can take hundreds of tries to get it right the first time.$(br2)Many will crack before that."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Melancholic Bisque",
+      "text": "$(br)Bagnun is a culinary school classic. A heavily spiced, luxurious soup cut by a dollop of fresh cream; the contrast of scarlet, peppery soup and refreshing pearly cream makes a feast for the eyes and tongue alike. There was a woman I used to know of melochites. She loved a soup not too dissimilar to this one. We used to be good friends long ago, she called me egocentric."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/bagnun",
+      "text": "$(italic)    ....."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Soup of the Night",
+      "text": "$(br)The various plants of the Jade genus are generally desirable.$(br2)Their bulbs in particular are highly sought after, being alike onions in texture, but more delicate, sweet and ethereal in taste, earning them the moniker of truffles of the deep. This recipe makes use of a modern crossbreed of two native species - the striking $(l:resources/jade_vines)Jade Vine$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/mellow_shallot_soup",
+      "text": "$(italic)I've heard Jade Vine nectar has restorative properties...$(br2)what a curious crossbreed."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Coy Koi Cold Cuts",
+      "text": "$(br)If anyone tells you that you need to cook fishcake, they're not just wrong, but also stupid. The proper way to prepare fishcake is to first spice and paste your fish, then let it ferment in a bath of nephrite vinegar for at least 72 hours. This will not just kill any parasites in the fish, but also cure the cake, giving it its signature pink colour."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/fishcake",
+      "text": "$(italic)The finest fishcake cures for months, if not years."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "An Essential Wine",
+      "text": "$(br)I am not a brewer, and thus I cannot give much past the ingredients for Aqua Regia.$(br2)But I can note that, for the good chef, it is essential to understand your ingredients and how they are made. You cannot judge quality if you do not know how quality is created."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/special/aqua_regia",
+      "text": "$(italic)Know your ingredients, learn them, understand them."
+    }
+  ]
+}

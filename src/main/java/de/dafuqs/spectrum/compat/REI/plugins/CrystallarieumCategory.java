@@ -91,9 +91,9 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 		
 		// description texts
 		if (display.growsWithoutCatalyst) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 1 + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 		}
 	}
 	

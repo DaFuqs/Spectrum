@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 
@@ -20,7 +20,7 @@ public class BedrockShearsItem extends ShearsItem implements Preenchanted {
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.SILK_TOUCH, 1);
+		return Map.of(Enchantments.EFFICIENCY, 6);
 	}
 	
 	@Override

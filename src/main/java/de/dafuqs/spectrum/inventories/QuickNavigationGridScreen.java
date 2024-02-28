@@ -101,13 +101,11 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		}
 		
 		protected final Text text;
-		protected final int halfTextWidth;
 		protected final @Nullable GridEntryCallback onClickCallback;
 		
 		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
 			MinecraftClient client = MinecraftClient.getInstance();
 			this.text = Text.translatable(text);
-			this.halfTextWidth = client.textRenderer.getWidth(this.text) / 2;
 			this.onClickCallback = onClickCallback;
 		}
 		
@@ -147,12 +145,12 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		
 		void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawText(client.textRenderer, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR, false);
+			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.text, startX + 19, startY + 40, TEXT_COLOR);
 		}
 		
 		void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawText(client.textRenderer, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR, false);
+			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.text, startX + 14, startY + 34, TEXT_COLOR);
 		}
 		
 	}
@@ -242,13 +240,13 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 		@Override
         void drawBigForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawText(client.textRenderer, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR, false);
+			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.innerText, startX + 19, startY + 15, TEXT_COLOR);
 		}
 		
 		@Override
         void drawSmallForeground(Screen screen, DrawContext drawContext, int startX, int startY) {
 			MinecraftClient client = MinecraftClient.getInstance();
-			drawContext.drawText(client.textRenderer, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR, false);
+			drawContext.drawCenteredTextWithShadow(client.textRenderer, this.innerText, startX + 14, startY + 10, TEXT_COLOR);
 		}
 	}
 	
@@ -304,9 +302,9 @@ public class QuickNavigationGridScreen<T extends ScreenHandler> extends HandledS
 	protected void drawForeground(DrawContext drawContext, int mouseX, int mouseY) {
 		current().drawBackground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
 		current().drawForeground(this, drawContext, backgroundWidth / 2, backgroundHeight / 2);
-
-		drawContext.drawText(this.textRenderer, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR, false);
-		drawContext.drawText(this.textRenderer, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR, false);
+		
+		drawContext.drawCenteredTextWithShadow(this.textRenderer, CONTROLS_TEXT_1, backgroundWidth / 2, 228, TEXT_COLOR);
+		drawContext.drawCenteredTextWithShadow(this.textRenderer, CONTROLS_TEXT_2, backgroundWidth / 2, 238, TEXT_COLOR);
 	}
 	
 	@Override

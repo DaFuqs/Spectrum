@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
+import de.dafuqs.spectrum.api.status_effect.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;

@@ -1,0 +1,35 @@
+{
+  "name": "The Perfect Compound?",
+  "icon": "spectrum:midnight_aberration",
+  "sortnum": 13,
+  "advancement": "spectrum:midgame/collect_neolith",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:midgame/create_midnight_aberration",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_aberration": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The findings from your $(l:creating_life/failing)last experiment$() make you strive for more and more: to squeeze every last ounce of energy out of your Gemstones.$(br2)$(l:creating_life/failing#neolith)Neolith$() is the key! With such strength and power, it will combine the powers of all the gemstones into one. This relic will be the capstone to your creation, alone for you and ONLY for you, master of Pigment!"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "The fusion of these magical energies will try your Shrine like nothing before - with a display to match. Who knows what might manifest? Best to make sure your shrine and the blocks around it are fortified and isolated.$(br)Requires daytime and a clear sky."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:midnight_aberration",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
+      "title": "Midnight Aberration",
+      "text": "$(italic)This abomination of a Gemstone radiates an eerie aura.$()$(br2)It looks loosely connected at best. No wonder it falls apart in your hands in no time. Total failure."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
+      "text": "While the chaos that ensued $(italic)definitely$() was not the outcome you craved for, the result still does hold immense power.$(br)So much in fact, that if not used quick it crumbles into dust.$(br2)And then there is that aggressive blackish fluid that manifested in the process. Because of its color you named it $(l:magical_blocks/midnight_solution)Midnight Solution$(/l)."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.memory;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -78,8 +78,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		if (nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
-			NbtCompound creatureSpawnCompound = nbt.getCompound("MemoryItem");
-			this.memoryItemStack = ItemStack.fromNbt(creatureSpawnCompound);
+			this.memoryItemStack = ItemStack.fromNbt(nbt.getCompound("MemoryItem"));
 		}
 	}
 	
@@ -108,6 +107,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 						MemoryItem.setTicksToManifest(this.memoryItemStack, newTicksToManifest);
 						SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, entityTypeOptional.get(), 3);
 						world.playSound(null, this.pos, SpectrumSoundEvents.BLOCK_MEMORY_ADVANCE, SoundCategory.BLOCKS, 0.7F, 0.9F + world.random.nextFloat() * 0.2F);
+						this.markDirty();
 					}
 				}
 			}
@@ -147,10 +147,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 				SpectrumAdvancementCriteria.MEMORY_MANIFESTING.trigger(serverPlayerEntity, hatchedEntity);
 			}
 		}
-	}
-	
-	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
-
 	}
 	
 	public int getEggColor(int tintIndex) {

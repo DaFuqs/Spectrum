@@ -1,0 +1,26 @@
+{
+  "name": "Doomblooms",
+  "advancement": "spectrum:hidden/interact_with_doombloom",
+  "icon": "spectrum:doombloom_seed",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:doombloom_seed": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This plant has a rather... unusual way to dispense its seed and scare away predators: Its blossom houses a capsule of explosive gas that pops, when disturbed. When not being cautious around this flower, such as touching it a bit too harshly, you risk converting your surroundings into a burning crater."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:doombloom_seed",
+      "text": "When fully grown, you can harvest $(item)Gunpowder$() from it. Breaking it without blowing it up requires a Silk Touch tool or Shears."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Primordial Fire",
+      "anchor": "primordial_fire",
+      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with an insatiable, blazing heat. almost as consuming matter and souls alike."
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -183,14 +183,19 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
-	
+
+	@Override
+	public int getMaxUseTime(ItemStack stack) {
+		return 20000;
+	}
+
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the item's usage action every x ticks
 		if (remainingUseTicks % 10 != 0) {
 			return;
 		}
-		
+
 		if (!(user instanceof PlayerEntity player)) {
 			user.stopUsingItem();
 			return;
@@ -200,7 +205,9 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 		}
 		
 		if (world.isClient) {
-			usageTickClient();
+			// Simple equality check to make sure this method doesn't execute on other clients.
+			// Always true if the current player is the one wielding the staff under normal circumstances.
+			if(MinecraftClient.getInstance().player == player) usageTickClient();
 		}
 	}
 	
@@ -245,7 +252,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 			ItemStack stack = context.getStack();
 			BlockPos blockPos = context.getBlockPos();
 			
-			if (GenericClaimModsCompat.isProtected(world, blockPos, user)) {
+			if (!GenericClaimModsCompat.canInteract(world, blockPos, user)) {
 				playDenySound(world, context.getPlayer());
 				return ActionResult.FAIL;
 			}

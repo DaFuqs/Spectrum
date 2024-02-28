@@ -1,0 +1,21 @@
+{
+  "name": "骄纵王冠",
+  "advancement": "spectrum:unlocks/trinkets/circlet_of_arrogance",
+  "icon": "spectrum:circlet_of_arrogance",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:circlet_of_arrogance": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "就是这样：升天——终极buff——以可穿戴的形式.$(br)如果你受到致命打击将要付出非常昂贵的代价。假若你的生存不会有危险，你会毫不犹豫地穿上它。$(br)真的吗..？?$(br2)那当然."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/circlet_of_arrogance",
+      "text": "$(italic)放荡功不遂,满盈身必灾"
+    }
+  ]
+}

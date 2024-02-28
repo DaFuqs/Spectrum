@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;

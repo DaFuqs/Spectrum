@@ -22,6 +22,7 @@ import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -31,6 +32,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -169,7 +171,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return SpectrumEntityTypes.KINDLING.create(world);
+		HorseEntity baby = SpectrumEntityTypes.KINDLING.create(world);
+		this.setChildAttributes(entity, baby);
+		return baby;
 	}
 	
 	@Override
@@ -221,7 +225,21 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			setPlaying(false);
 		}
 		
+		thornsFlag = source.isOf(DamageTypes.THORNS);
+		
 		return super.damage(source, amount);
+	}
+	
+	// makes it so Kindlings are not angered by thorns damage
+	// since they play fight and may damage their owner
+	// that would make them aggro otherwise
+	boolean thornsFlag = false;
+	
+	@Override
+	public void setAttacker(@Nullable LivingEntity attacker) {
+		if(!thornsFlag) {
+			super.setAttacker(attacker);
+		}
 	}
 	
 	@Override
@@ -275,45 +293,88 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		if(player.shouldCancelInteraction()) {
+			return super.interactMob(player, hand);
+		}
+		
 		if (this.getAngerTime() > 0) {
 			return ActionResult.success(this.getWorld().isClient());
 		}
 		
 		ItemStack handStack = player.getMainHandStack();
-		if (!this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
-			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-			
-			if (!this.getWorld().isClient()) {
-				setTarget(player);
-				takeRevenge(player.getUuid());
-				this.playAngrySound();
-				clipAndDrop();
-			}
-			
-			return ActionResult.success(this.getWorld().isClient());
-			
-		} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
-			// 🍆 / 🍑 = 💘
-			
-			if (!this.getWorld().isClient()) {
-				handStack.decrement(1);
+		if(!this.isBaby()) {
+			if (!this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
+				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 				
-				this.setTame(true);
-				if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
-					this.setOwnerUuid(player.getUuid());
-					Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
+				if (!this.getWorld().isClient()) {
+					setTarget(player);
+					takeRevenge(player.getUuid());
+					this.playAngrySound();
+					clipAndDrop();
 				}
 				
-				this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
-				this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
+				return ActionResult.success(this.getWorld().isClient());
 				
-				clipAndDrop();
+			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
+				// 🍆 / 🍑 = 💘
+				
+				if (!this.getWorld().isClient()) {
+					handStack.decrement(1);
+					
+					this.setTame(true);
+					if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
+						this.setOwnerUuid(player.getUuid());
+						Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
+					}
+					
+					this.lovePlayer(player);
+					
+					this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
+					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
+					
+					clipAndDrop();
+				}
+				
+				return ActionResult.success(this.getWorld().isClient());
 			}
-			
-			return ActionResult.success(this.getWorld().isClient());
 		}
 		
 		return super.interactMob(player, hand);
+	}
+	
+	@Override
+	protected boolean receiveFood(PlayerEntity player, ItemStack item) {
+		boolean canEat = false;
+
+		this.lovePlayer(player);
+		
+		if (this.getHealth() < this.getMaxHealth()) {
+			this.heal(2.0F);
+			canEat = true;
+		}
+		
+		if (this.isBaby()) {
+			this.getWorld().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getParticleX(1.0), this.getRandomBodyY() + 0.5, this.getParticleZ(1.0), 0.0, 0.0, 0.0);
+			if (!this.getWorld().isClient) {
+				this.growUp(20);
+			}
+			
+			canEat = true;
+		}
+		
+		if ((canEat || !this.isTame()) && this.getTemper() < this.getMaxTemper()) {
+			canEat = true;
+			if (!this.getWorld().isClient) {
+				this.addTemper(3);
+			}
+		}
+		
+		if (canEat) {
+			//this.playEatingAnimation();
+			this.emitGameEvent(GameEvent.EAT);
+		}
+		
+		return canEat;
 	}
 	
 	@Override
@@ -402,7 +463,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public boolean isAngry() {
-		return this.getHorseFlag(32);
+		return super.isAngry() || this.getAngerTime() > 0;
 	}
 	
 	@Override

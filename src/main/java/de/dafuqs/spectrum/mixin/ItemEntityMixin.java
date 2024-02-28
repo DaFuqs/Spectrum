@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -34,10 +36,10 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("TAIL"), method = "tick()V")
 	public void tick(CallbackInfo ci) {
-		// protect damage proof enchanted item stacks from the void by letting them float above it
+		// protect steadfast enchanted item stacks from the void by letting them float above it
 		ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
 		if (!thisItemEntity.hasNoGravity() && thisItemEntity.getWorld().getTime() % 8 == 0) {
-			int worldMinY = thisItemEntity.getWorld().getDimension().minY();
+			int worldMinY = thisItemEntity.getWorld().getBottomY();
 			if (!thisItemEntity.isOnGround()
 					&& thisItemEntity.getPos().getY() < worldMinY + 2
 					&& EnchantmentHelper.getLevel(SpectrumEnchantments.STEADFAST, thisItemEntity.getStack()) > 0) {
@@ -58,21 +60,29 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (amount > 1 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
+		if (amount > 0 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
 			damageAwareItem.onItemEntityDamaged(source, amount, (ItemEntity) (Object) this);
 		}
 	}
 	
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (SpectrumItemStackDamageImmunities.isImmuneTo(((ItemEntity) (Object) this).getStack(), source)) {
+		if (ItemDamageImmunity.isImmuneTo(((ItemEntity) (Object) this).getStack(), source)) {
 			callbackInfoReturnable.setReturnValue(true);
+		}
+		if(source.isOf(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
+			ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
+			World world = thisItemEntity.getWorld();
+
+			if(PrimordialFireBurningRecipe.processItemEntity(world, thisItemEntity)) {
+				callbackInfoReturnable.setReturnValue(true);
+			}
 		}
 	}
 	
 	@Inject(method = "isFireImmune()Z", at = @At("HEAD"), cancellable = true)
 	private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (SpectrumItemStackDamageImmunities.isImmuneTo(((ItemEntity) (Object) this).getStack(), DamageTypeTags.IS_FIRE)) {
+		if (ItemDamageImmunity.isImmuneTo(((ItemEntity) (Object) this).getStack(), DamageTypeTags.IS_FIRE)) {
 			callbackInfoReturnable.setReturnValue(true);
 		}
 	}

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.context.*;
@@ -11,6 +10,7 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -208,7 +208,23 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+		BlockState state = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+		
+		NbtCompound nbt = ctx.getStack().getSubNbt("BlockEntityTag");
+		if(nbt != null) {
+			boolean inventoryEmpty = nbt.getList("Inventory", NbtElement.COMPOUND_TYPE).isEmpty();
+			long fluidAmount = nbt.getLong("FluidAmount");
+			long sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
+			long tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
+
+			BarrelState barrelState = tapTime > -1
+					? BarrelState.TAPPED : sealTime > -1
+					? BarrelState.SEALED : inventoryEmpty && fluidAmount == 0
+					? BarrelState.EMPTY : BarrelState.FILLED;
+			state = state.with(BARREL_STATE, barrelState);
+		}
+		
+		return state;
 	}
 	
 	@Override

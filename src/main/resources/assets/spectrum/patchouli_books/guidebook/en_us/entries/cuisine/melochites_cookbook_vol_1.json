@@ -1,0 +1,70 @@
+{
+  "name": "Melochites Cookbook Vol. 1",
+  "icon": "spectrum:melochites_cookbook_vol_1",
+  "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_1",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:melochites_cookbook_vol_1": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "Melochites Cuisine",
+      "resource_path": "spectrum:textures/gui/guidebook/mehrunes_chellaya_vol_1.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Aunt Melaya"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hoi nephews! Whether this is your first time reading perusing a cookbook, or you are a seasoned cook that has been following my tattling a while, I hope you are ready to explore some wonderful recipes with your aunt Malaya. Together we will delve into some gorgeous traditional recipes from my corner of the deep that I hope you will love~! $(br2) $(o) ~Mehrunes Chellaya of Melochites"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "A Sweet, Woody Stew",
+      "text": "$(br)Hearty, filling, and invigorating - Banyash may very well be the backbone of Melochites! $(br2) This simple dish of crawfish is a bit of a favorite of mine, though the recent state of the surface has made access to sweet berries somewhat difficult. Nonetheless, it remains the choice of malachite miners for good reason!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/banyash",
+      "text": "$(italic)A sweet and savory Banyash, with notes of the woods. made with crawfish and love~"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Hearty Roast with Beer",
+      "text": "$(br)Young hare is a delicacy not just here in Melochites, but in almost any place where Dreitons roam. If you get the chance, please, $(o)please$() try using an artisanal azurte stout in this recipe, that kind of beer is only made in a sparse few areas of Melochites but trust me, hard as it may be to get, it is life changing with rabbit."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/hare_roast_malt",
+      "text": "$(italic)While a malt beer is traditional, any good, artisanal brew will do"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Loaf for a Family",
+      "text": "$(br)Feeding an entire group of people is no easy feat, but it is something that any mother has had to deal with on the regular, I can tell you that much myself. This recipe for meatloaf has been passed down, doe to kit, in my family for generations - just thinking about how my mom used to cook it makes me tear up a bit... I hope that you will pass it down onto your own kids."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/meatloaf",
+      "text": "$(italic)A lovely way to feed your own nieces and nephews... $(br2) you are planning to feed a family right?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Stuffing Buns with Meat",
+      "recipe": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
+      "text": "$(italic)Much more suitable for a single person.$(br2) Though admittedly, it is still too big to fit in me."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Fermented Fish",
+      "recipe": "spectrum:titration_barrel/surstromming",
+      "text": "$(italic)For the really freaky among you. Really takes your breath away."
+    }
+  ]
+}

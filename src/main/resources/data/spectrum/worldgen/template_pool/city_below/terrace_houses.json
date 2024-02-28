@@ -1,6 +1,6 @@
 {
   "name": "spectrum:city_below/terrace_houses",
-  "fallback": "minecraft:empty",
+  "fallback": "spectrum:city_below/terrace_houses",
   "elements": [
     {
       "weight": 1,

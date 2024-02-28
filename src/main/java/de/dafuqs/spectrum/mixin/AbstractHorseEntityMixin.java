@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
-import de.dafuqs.spectrum.items.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;

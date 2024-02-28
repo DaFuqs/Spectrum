@@ -23,7 +23,7 @@
         },
         "nbt": {
           "MemoryItem": {
-            "count": 1,
+            "Count": 1,
             "id": "spectrum:memory",
             "tag": {
               "TicksToManifest": 5,
@@ -35,7 +35,7 @@
                 ],
                 "HandItems": [
                   {
-                    "count": 1,
+                    "Count": 1,
                     "id": "minecraft:emerald"
                   },
                   {}
@@ -56,7 +56,7 @@
         },
         "nbt": {
           "MemoryItem": {
-            "count": 1,
+            "Count": 1,
             "id": "spectrum:memory",
             "tag": {
               "TicksToManifest": 5,
@@ -68,7 +68,7 @@
                 ],
                 "HandItems": [
                   {
-                    "count": 1,
+                    "Count": 1,
                     "id": "minecraft:cookie"
                   },
                   {}
@@ -90,7 +90,7 @@
         },
         "nbt": {
           "MemoryItem": {
-            "count": 1,
+            "Count": 1,
             "id": "spectrum:memory",
             "tag": {
               "TicksToManifest": 5,
@@ -102,7 +102,7 @@
                 ],
                 "HandItems": [
                   {
-                    "count": 1,
+                    "Count": 1,
                     "id": "minecraft:diamond"
                   },
                   {}
@@ -124,7 +124,7 @@
         },
         "nbt": {
           "MemoryItem": {
-            "count": 1,
+            "Count": 1,
             "id": "spectrum:memory",
             "tag": {
               "TicksToManifest": 5,
@@ -148,7 +148,7 @@
         },
         "nbt": {
           "MemoryItem": {
-            "count": 1,
+            "Count": 1,
             "id": "spectrum:memory",
             "tag": {
               "TicksToManifest": 5,

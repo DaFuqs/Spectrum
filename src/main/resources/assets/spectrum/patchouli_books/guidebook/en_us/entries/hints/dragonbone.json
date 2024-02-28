@@ -1,0 +1,23 @@
+{
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_dragonbone",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/break_cracked_dragonbone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Small Clue",
+      "completion_advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "cost": "spectrum:doombloom_seed#4",
+      "text": "In Dragonrot Swamps, the remains of gigantic creatures can be found. These blocks seem to be impossible to mine in the classical way, as they are protected by a magical aura. Is there an unconventional way to break this aura, maybe using great force?"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:doombloom_seed#12",
+      "text": "Dragonbone Blocks can be damaged using powerful explosions. You will need something with quite a bit more explosion power than TNT, for example Incandescent Amalgam. Though you feel that strong magical explosions might have a similar effect, breaching their protective aura."
+    }
+  ]
+}

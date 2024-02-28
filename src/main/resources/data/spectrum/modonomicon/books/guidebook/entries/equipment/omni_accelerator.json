@@ -1,0 +1,20 @@
+{
+  "name": "Omni Accelerator",
+  "advancement": "spectrum:unlocks/equipment/omni_accelerator",
+  "icon": "spectrum:omni_accelerator",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:omni_accelerator": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "When you came up with its name, you really meant it.$(br)The Omni-Accelerator is loaded with items or blocks and can shoot them at a distance.$(br)Blocks are placed and the poor thing that gets hit by your flying items receives its effects. All it needed was a powerful energy source in the form of a $(l:resources/moonstone_cores)Moonstone Core$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/omni_accelerator",
+      "text": "Sharp Dripstone is not the only thing that can be used as a projectile. There are some... $(italic)interesting$()... things you can do with this fun toy if you load it correctly."
+    }
+  ]
+}

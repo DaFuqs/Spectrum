@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.mojang.logging.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -520,7 +520,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				double yDif = playerEntity.getY() - this.getY();
 				double zDif = playerEntity.getZ() - this.getZ();
 				double velocityMod = 0.15D;
-				entity.setVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
+				entity.addVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
 				
 				if (isAblaze()) {
 					entity.setOnFireFor(4);
@@ -568,6 +568,10 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			if (this.inventoryInsertion) {
 				playerEntity.getInventory().offerOrDrop(itemStack);
 				playerEntity.addExperience(experienceAmount);
+				
+				playerEntity.getWorld().playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
+						SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,
+						0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 			} else {
 				// fireproof item, so it does not burn when fishing in lava
 				ItemEntity itemEntity = new FireproofItemEntity(this.getWorld(), this.getX(), this.getY(), this.getZ(), itemStack);

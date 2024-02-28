@@ -1,0 +1,61 @@
+{
+  "name": "Gemstone Shards",
+  "icon": "minecraft:amethyst_shard",
+  "sortnum": 2,
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_shards",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_shard": 0,
+    "minecraft:amethyst_shard": 0,
+    "spectrum:citrine_shard": 0,
+    "spectrum:onyx_shard": 0,
+    "spectrum:moonstone_shard": 0,
+    "spectrum:spectral_shard": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "To start delving into Spectrum you first have to find some gemstone shards.$(br2)Each kind of gemstone represents an elemental color and a different kind of natural force."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "topaz",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "title": "Topaz Shards",
+      "item": "spectrum:topaz_shard",
+      "text": "Topaz Shards lie surprisingly heavy in your hand. This gemstone quickly turned out to be one of the most robust materials you've ever gotten your hands on - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br)The Topaz represents $(bold)$(c_cyan)MATTER.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "amethyst",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "title": "Amethyst Shards",
+      "item": "minecraft:amethyst_shard",
+      "text": "Magenta light refracts in this gemstone.$(br)Formed over eons in the geodes, this gemstone radiates awe. It is a symbol of permanence and found in the deepest layers of the world.$(br2)The Amethyst represents $(bold)$(c_purple)TIME$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "citrine",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "title": "Citrine Shards",
+      "item": "spectrum:citrine_shard",
+      "text": "This yellow gemstone is found close to surface level where the suns light dissipates into warmth.$(br2)Its bright yellow luster radiates pure $(bold)$(c_yellow)ENERGY$() and makes it slightly warm to the touch at all times."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "onyx",
+      "advancement": "spectrum:create_onyx_shard",
+      "title": "Onyx Shards",
+      "item": "spectrum:onyx_shard",
+      "text": "Onyx is nearly pitch black. It almost seems as if it drains the light from its surroundings.$(br2)The Onyx, as a combination of energy, matter, and time, serves as a reinforcing focus and $(bold)$(c_black)CATALYST$() for magical tools and devices."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "moonstone",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "title": "Moonstone Shards",
+      "item": "spectrum:moonstone_shard",
+      "text": "Its bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies pure $(bold)$(c_white)MAGIC$()."
+    }
+  ]
+}

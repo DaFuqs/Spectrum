@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
@@ -11,12 +12,17 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public class BedrockAnvilScreenHandler extends ScreenHandler {
+	
+	public static final int MAX_NAME_LENGTH = 50;
+	public static final int MAX_LORE_LENGTH = 200;
 	
 	public static final int FIRST_INPUT_SLOT_INDEX = 0;
 	public static final int SECOND_INPUT_SLOT_INDEX = 1;
@@ -348,22 +354,33 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		}
 	}
 	
-	public void setNewItemName(String newItemName) {
-		this.newItemName = newItemName;
-		
-		if (this.getSlot(2).hasStack()) {
-			ItemStack itemStack = this.getSlot(2).getStack();
-			if (StringUtils.isBlank(newItemName)) {
-				itemStack.removeCustomName();
-			} else {
-				itemStack.setCustomName(Text.literal(this.newItemName));
+	public boolean setNewItemName(String newItemName) {
+		String string = sanitize(newItemName, MAX_NAME_LENGTH);
+		if (!string.equals(this.newItemName)) {
+			this.newItemName = string;
+			if (this.getSlot(2).hasStack()) {
+				ItemStack itemStack = this.getSlot(2).getStack();
+				if (Util.isBlank(string)) {
+					itemStack.removeCustomName();
+				} else {
+					itemStack.setCustomName(Text.literal(string));
+				}
 			}
+			
+			this.updateResult();
+			return true;
+		} else {
+			return false;
 		}
-		this.updateResult();
+	}
+	
+	private static String sanitize(String name, int maxLength) {
+		String s = SharedConstants.stripInvalidChars(name);
+		return s.length() > maxLength ? s.substring(0, maxLength) : s;
 	}
 	
 	public void setNewItemLore(String newLoreString) {
-		this.newLoreString = newLoreString;
+		this.newLoreString = sanitize(newLoreString, MAX_LORE_LENGTH);
 		
 		if (this.getSlot(2).hasStack()) {
 			ItemStack itemStack = this.getSlot(2).getStack();
@@ -379,6 +396,5 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	public int getLevelCost() {
 		return this.levelCost.get();
 	}
-	
 	
 }

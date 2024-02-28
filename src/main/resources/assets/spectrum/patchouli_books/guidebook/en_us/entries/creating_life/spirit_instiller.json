@@ -1,0 +1,33 @@
+{
+  "name": "Spirit Instiller",
+  "icon": "spectrum:spirit_instiller",
+  "advancement": "spectrum:unlocks/blocks/spirit_instiller",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:spirit_instiller": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With all the knowledge you have gathered, you have created the Spirit Instiller. It seems to be able to connect the energies of two items, with the help of a third object to bind them.$(br2)An almost spiritual process."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/spirit_instiller",
+      "text": "The Spirit Instiller needs a focus structure to work. To rotate the structure hologram in the direction you want, click on the placed Spirit Instiller itself."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Instiller Structure",
+      "multiblock_id": "spectrum:spirit_instiller_structure",
+      "enable_visualize": true,
+      "text": "Dimensions: 8x9x5 blocks$(br)It can be enhanced by placing $(l:magical_blocks/upgrades)Upgrades$() on the two $(item)Onyx Chiseled Blocks$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Spirit Instiller$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Chiseled Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)41 Polished Blocks$(li)2 Gemstone Chimes"
+    }
+  ]
+}

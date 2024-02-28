@@ -1,0 +1,85 @@
+{
+  "name": "Dragonbone",
+  "icon": "spectrum:dragonbone",
+  "advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:dragonbone": 0,
+    "spectrum:cracked_dragonbone": 0,
+
+    "spectrum:dragonbone_chunk": 0,
+    "spectrum:bone_ash": 0,
+
+    "spectrum:polished_bone_ash": 0,
+    "spectrum:polished_bone_ash_slab": 0,
+    "spectrum:polished_bone_ash_stairs": 0,
+    "spectrum:polished_bone_ash_wall": 0,
+    "spectrum:bone_ash_bricks": 0,
+    "spectrum:bone_ash_brick_slab": 0,
+    "spectrum:bone_ash_brick_stairs": 0,
+    "spectrum:bone_ash_brick_wall": 0,
+    "spectrum:bone_ash_tiles": 0,
+    "spectrum:bone_ash_tile_slab": 0,
+    "spectrum:bone_ash_tile_stairs": 0,
+    "spectrum:bone_ash_tile_wall": 0,
+    "spectrum:polished_bone_ash_pillar": 0,
+    "spectrum:bone_ash_shingles": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Is it really dragons these giant remains come from?$(br)You don't know, honestly. But judging by the size, it could very well be!$(br2)Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "anchor": "dragonbone_chunks",
+      "item": "spectrum:dragonbone_chunk",
+      "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, finally making it mineable.$(br)The dropped pieces still retained some of that ancient, magical aura."
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "Turning to Ash",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:cinderhearth/bone_ash",
+      "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates enough heat to turn these bones into ash."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "All Variants",
+      "items": [
+        "spectrum:polished_bone_ash",
+        "spectrum:polished_bone_ash_slab",
+        "spectrum:polished_bone_ash_stairs",
+        "spectrum:polished_bone_ash_wall",
+        "spectrum:bone_ash_bricks",
+        "spectrum:bone_ash_brick_slab",
+        "spectrum:bone_ash_brick_stairs",
+        "spectrum:bone_ash_brick_wall",
+        "spectrum:bone_ash_tiles",
+        "spectrum:bone_ash_tile_slab",
+        "spectrum:bone_ash_tile_stairs",
+        "spectrum:bone_ash_tile_wall",
+        "spectrum:polished_bone_ash_pillar",
+        "spectrum:bone_ash_shingles"
+      ]
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "Smelting them back",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:cinderhearth/bone_ash_unsmelting",
+      "text": "Most blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
+    }
+  ]
+}

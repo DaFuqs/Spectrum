@@ -1,0 +1,23 @@
+{
+  "name": "消色虫",
+  "icon": "spectrum:eraser_head",
+  "advancement": "spectrum:hidden/entity_interact/eraser",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:eraser_head": 0,
+    "spectrum:eraser_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Erasers",
+      "entity": "spectrum:eraser",
+      "scale": 1.0,
+      "text": "$(italic)别让他们接近你!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "小, 意味着难以击杀, 这种群居蜘蛛的咬伤会造成严重的后果$(br2)那些扭曲生物丑恶无比，如果是这些东西导致古文明的衰落，你也不会感到惊讶。.$(br2)他们过于灵活，所以用剑或弓的通常方法对他们没有多大帮助...也许造成群体伤害的东西更有帮助。"
+    }
+  ]
+}

@@ -17,7 +17,6 @@
     "CropAndStemBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
-    "DefaultedRegistryMixin",
     "EatBerriesGoalMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
@@ -67,10 +66,10 @@
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
     "accessors.BiomeAccessor",
+    "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
-    "accessors.LootTableAccessor",
     "accessors.MapStateAccessor",
     "accessors.MooshroomEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",
@@ -80,12 +79,16 @@
     "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor",
     "accessors.TypeSpecificPredicateDeserializerMixin",
+    "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra",
+    "compat.connectormod.absent.ExplosionMixin",
+    "compat.connectormod.present.ExplosionMixin",
     "compat.modonomicon.BookIconMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
+    "client.AbstractClientEntityMixin",
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
@@ -108,9 +111,11 @@
     "client.accessors.BakedOverrideAccessor",
     "client.accessors.BossBarHudAccessor",
     "client.accessors.ModelOverrideListAccessor",
+    "client.accessors.ParticleManagerAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
-    "compat.colorful_hearts.present.HeartMixin"
+    "compat.colorful_hearts.present.HeartMixin",
+    "compat.enchdesc.present.DescriptionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

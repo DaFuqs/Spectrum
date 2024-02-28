@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
@@ -49,7 +48,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 2;
 	public static final int FIRST_OUTPUT_SLOT_ID = 3;
 	public static final int LAST_OUTPUT_SLOT_ID = 10;
-	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10, 10};
+	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10};
 
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
@@ -209,7 +208,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		if (nbt.contains("Structure", NbtElement.INT_TYPE)) {
+		if (nbt.contains("Structure", NbtElement.NUMBER_TYPE)) {
 			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
 		} else {
 			this.structure = CinderHearthStructureType.NONE;
@@ -333,7 +332,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					ItemStack slotStack = inventory.getStack(slot);
 					if (slotStack.isEmpty()) {
 						return true;
-					} else if (ItemStack.areEqual(slotStack, outputStack)) {
+					} else if (ItemStack.canCombine(slotStack, outputStack)) {
 						outputSpaceFound += outputStack.getMaxCount() - slotStack.getCount();
 						if (outputSpaceFound >= outputStack.getCount()) {
 							return true;
@@ -442,7 +441,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			backupInventory.set(i, cinderhearth.inventory.get(i));
 		}
 		
-		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 		if (couldAdd) {
 			ItemStack remainder = inputStack.getRecipeRemainder();
 			
@@ -451,7 +450,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			inputStack.decrement(1);
 			
 			if (remainder.isEmpty()) {
-				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearth, remainder, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID + 1);
 				if (!remainderAdded) {
 					cinderhearth.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder);
 				}

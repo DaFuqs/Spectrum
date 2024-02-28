@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.mixin.client.accessors.ParticleManagerAccessor;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.fabricmc.api.*;
-import net.fabricmc.fabric.mixin.client.particle.*;
 import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;

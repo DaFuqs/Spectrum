@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -60,7 +60,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 	@Override
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return Text.translatable("block.spectrum.heartbound_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.heartbound_chest.owner", this.ownerName);
 		} else {
 			return Text.translatable("block.spectrum.heartbound_chest");
 		}
@@ -142,7 +142,7 @@ public class HeartboundChestBlockEntity extends SpectrumChestBlockEntity impleme
 		if (!isOwner && this.getWorld() != null) {
 			this.lastNonOwnerOpenedTick = this.getWorld().getTime();
 			updateRedstone(this.pos, this.getWorld().getBlockState(pos));
-			player.sendMessage(Text.translatable("block.spectrum.heartbound_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), true);
+			player.sendMessage(Text.translatable("block.spectrum.heartbound_chest.owner", this.ownerName), true);
 		}
 		
 		return isOwner;

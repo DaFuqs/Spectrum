@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.pedestal;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;

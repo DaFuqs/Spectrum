@@ -45,6 +45,11 @@
       "spectrum:ground_slam4"
     ]
   },
+  "color_picker_processing": {
+    "sounds": [
+      "spectrum:color_picker_processing"
+    ]
+  },
   "block.threat_conflux.arm": {
     "subtitle": "spectrum.subtitles.block.threat_conflux.arm",
     "sounds": [
@@ -301,6 +306,19 @@
       "spectrum:cracker8"
     ]
   },
+  "primordial_fire_crackle": {
+    "subtitle": "spectrum.subtitles.primordial_fire_crackle",
+    "sounds": [
+      "spectrum:cracker1",
+      "spectrum:cracker2",
+      "spectrum:cracker3",
+      "spectrum:cracker4",
+      "spectrum:cracker5",
+      "spectrum:cracker6",
+      "spectrum:cracker7",
+      "spectrum:cracker8"
+    ]
+  },
   "radiance_staff_charging": {
     "subtitle": "spectrum.subtitles.radiance_staff_charging",
     "sounds": [
@@ -329,6 +347,18 @@
     "subtitle": "spectrum.subtitles.block.black_hole_chest.close",
     "sounds": [
       "spectrum:block.black_hole_chest.close"
+    ]
+  },
+  "compacting_chest_open": {
+    "subtitle": "spectrum.subtitles.block.compacting_chest.open",
+    "sounds": [
+      "minecraft:tile/piston/out"
+    ]
+  },
+  "compacting_chest_close": {
+    "subtitle": "spectrum.subtitles.block.compacting_chest.close",
+    "sounds": [
+      "minecraft:tile/piston/in"
     ]
   },
   "fading_placed": {

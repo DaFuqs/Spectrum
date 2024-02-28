@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 3600,
+  "tier": "advanced",
+  "cyan": 4,
+  "magenta": 0,
+  "yellow": 16,
+  "white": 0,
+  "black": 2,
+  "experience": 4.0,
+  "pattern": [
+    "BMB",
+    "STS",
+    "PBP"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:bismuth_crystal"
+    },
+    "M": {
+      "item": "spectrum:moonstone_core"
+    },
+    "T": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "P": {
+      "item": "spectrum:black_pigment"
+    }
+  },
+  "result": {
+    "item": "spectrum:omni_accelerator",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/equipment/omni_accelerator"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Glass Arrows",
+  "advancement": "spectrum:unlocks/malachite/glass_arrows",
+  "icon": "spectrum:amethyst_glass_arrow",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_glass_arrow": 0,
+
+    "spectrum:topaz_glass_arrow": 0,
+    "spectrum:amethyst_glass_arrow": 0,
+    "spectrum:citrine_glass_arrow": 0,
+    "spectrum:onyx_glass_arrow": 0,
+    "spectrum:moonstone_glass_arrow": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
+      "text": "These razor-sharp arrows deal increased damage, can be fired underwater and can pierce translucent blocks such as $(item)Glass$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow",
+      "text": "Also pulls the target in your direction, ready to be dealt a deadly melee hit."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
+      "text": "Also freezes the target, slowing them down and dealing freezing damage over time."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow",
+      "text": "Also hits your foe with enormous force, knocking them far away."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
+      "text": "Deals damage regardless of the target's invincibility frames and resets them. Deals additional damage to shields."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
+      "text": "Explodes in an orb of pure energy, dealing damage to creatures close by."
+    }
+  ]
+}

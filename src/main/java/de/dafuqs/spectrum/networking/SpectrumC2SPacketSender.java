@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;

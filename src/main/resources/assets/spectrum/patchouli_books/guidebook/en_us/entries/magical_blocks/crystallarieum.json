@@ -1,0 +1,149 @@
+{
+  "name": "Crystallarieum",
+  "icon": "spectrum:crystallarieum",
+  "advancement": "spectrum:unlocks/blocks/crystallarieum",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystallarieum": 0,
+
+    "spectrum:small_coal_bud": 0,
+    "spectrum:large_coal_bud": 0,
+    "spectrum:coal_cluster": 0,
+    "spectrum:small_copper_bud": 0,
+    "spectrum:large_copper_bud": 0,
+    "spectrum:copper_cluster": 0,
+    "spectrum:small_diamond_bud": 0,
+    "spectrum:large_diamond_bud": 0,
+    "spectrum:diamond_cluster": 0,
+    "spectrum:small_emerald_bud": 0,
+    "spectrum:large_emerald_bud": 0,
+    "spectrum:emerald_cluster": 0,
+    "spectrum:small_glowstone_bud": 0,
+    "spectrum:large_glowstone_bud": 0,
+    "spectrum:glowstone_cluster": 0,
+    "spectrum:small_gold_bud": 0,
+    "spectrum:large_gold_bud": 0,
+    "spectrum:gold_cluster": 0,
+    "spectrum:small_iron_bud": 0,
+    "spectrum:large_iron_bud": 0,
+    "spectrum:iron_cluster": 0,
+    "spectrum:small_lapis_bud": 0,
+    "spectrum:large_lapis_bud": 0,
+    "spectrum:lapis_cluster": 0,
+    "spectrum:small_netherite_scrap_bud": 0,
+    "spectrum:large_netherite_scrap_bud": 0,
+    "spectrum:netherite_scrap_cluster": 0,
+    "spectrum:small_echo_bud": 0,
+    "spectrum:large_echo_bud": 0,
+    "spectrum:echo_cluster": 0,
+    "spectrum:small_prismarine_bud": 0,
+    "spectrum:large_prismarine_bud": 0,
+    "spectrum:prismarine_cluster": 0,
+    "spectrum:small_quartz_bud": 0,
+    "spectrum:large_quartz_bud": 0,
+    "spectrum:quartz_cluster": 0,
+    "spectrum:small_redstone_bud": 0,
+    "spectrum:large_redstone_bud": 0,
+    "spectrum:redstone_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With budding blocks in mind you designed the Crystallarieum: an Ink-powered contraption that grows chunks of raw ore into sparkling crystals. Though your best efforts failed to grow actual $(l:general/shards)gems$(/l), you quickly realised that it could grow all sorts of other resources instead.$(br2)Throw raw ore on top to let it crystallize into a Bud, able to be grown."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/crystallarieum",
+      "text": "$(br)Growing resources requires:$(li)a Catalyst$(li)one color of Ink, supplied via $(l:magic/ink_flask)Flask$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Catalysts",
+      "text": "Each catalyst has a different effect on bud growth:$(br)while one catalyst may reduce the required amount of ink, another may alter the duration of the process.."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Metals vs. Crystals",
+      "text": "$(thing)Metallic resources$() require unrefined materials such as $(item)Raw Iron$(), resulting in a $(item)Small Iron Bud$() that will grow steadily until it can be safely harvested.$(br2)For $(thing)crystalline resources$(), an existing crystal can be used as a seed to grow identical copies of itself."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Coal",
+      "recipe": "spectrum:crystallarieum/vanilla/coal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Copper",
+      "recipe": "spectrum:crystallarieum/vanilla/copper",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Diamond",
+      "recipe": "spectrum:crystallarieum/vanilla/diamond",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Echo",
+      "recipe": "spectrum:crystallarieum/vanilla/echo",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Emerald",
+      "recipe": "spectrum:crystallarieum/vanilla/emerald",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Glowstone",
+      "recipe": "spectrum:crystallarieum/vanilla/glowstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Gold",
+      "recipe": "spectrum:crystallarieum/vanilla/gold",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Iron",
+      "recipe": "spectrum:crystallarieum/vanilla/iron",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Lapis",
+      "recipe": "spectrum:crystallarieum/vanilla/lapis",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Netherite",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite_scrap",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Prismarine",
+      "recipe": "spectrum:crystallarieum/vanilla/prismarine_crystal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Quartz",
+      "recipe": "spectrum:crystallarieum/vanilla/quartz",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Redstone",
+      "recipe": "spectrum:crystallarieum/vanilla/redstone",
+      "text": ""
+    }
+  ]
+}

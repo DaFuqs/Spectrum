@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import net.minecraft.block.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;

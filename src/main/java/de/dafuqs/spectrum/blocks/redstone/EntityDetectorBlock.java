@@ -20,6 +20,7 @@ public class EntityDetectorBlock extends DetectorBlock {
 		
 		int power = Math.min(entities.size(), 15);
 		
+		power = state.get(INVERTED) ? 15 - power : power;
 		if (state.get(POWER) != power) {
 			world.setBlockState(pos, state.with(POWER, power), 3);
 		}

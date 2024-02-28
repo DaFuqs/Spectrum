@@ -1,0 +1,26 @@
+{
+  "name": "鱼们",
+  "icon": "spectrum:crawfish",
+  "advancement": "spectrum:hidden/collect_any_spectrum_fish",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:crawfish": 0,
+    "spectrum:koi": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_crawfish",
+      "anchor": "crawfish",
+      "item": "spectrum:crawfish",
+      "text": "emm其实准确来说他不应该被称为鱼，因为实际上它属$(italic)甲壳纲$().$(br2)。这东西只存在于$(l:magical_blocks/mud)泥泞到土壤液化的地区$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_koi",
+      "anchor": "koi",
+      "item": "spectrum:koi",
+      "text": "一条又大又苍白还懒惰的生物 ，栖息在$(l:magical_blocks/liquid_crystal)水晶花园$(/l)."
+    }
+  ]
+}

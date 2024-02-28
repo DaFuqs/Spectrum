@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
@@ -12,6 +14,7 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import oshi.util.tuples.*;
@@ -72,7 +75,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
 
-		if ((player != null && canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
+		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block blockToPlace = targetBlockState.getBlock();
 			Item itemToConsume;
 
@@ -98,7 +101,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				}
 
 				if (!world.isClient) {
-					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions, INK_COST_PER_BLOCK);
+					placeBlocksAndDecrementInventory(player, world, blockToPlace, itemToConsume, side, targetPositions);
 				}
 
 				return ActionResult.SUCCESS;
@@ -110,6 +113,33 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		}
 		
 		return ActionResult.FAIL;
+	}
+	
+	protected static void placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions) {
+		int placedBlocks = 0;
+		for (BlockPos position : targetPositions) {
+			// Only place blocks where you are allowed to do so
+			if (!GenericClaimModsCompat.canPlaceBlock(world, position, player))
+				continue;
+			
+			BlockState originalState = world.getBlockState(position);
+			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
+				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
+				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
+					if (world.setBlockState(position, stateToPlace)) {
+						if (placedBlocks == 0) {
+							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(), stateToPlace.getSoundGroup().getPitch());
+						}
+						placedBlocks++;
+					}
+				}
+			}
+		}
+		
+		if (!player.isCreative()) {
+			player.getInventory().remove(stack -> stack.getItem().equals(itemToConsume), placedBlocks, player.getInventory());
+			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
+		}
 	}
 	
 	@Override

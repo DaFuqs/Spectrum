@@ -28,8 +28,8 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 	
 	@Override
 	public void render(PedestalUpgradeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		// do not render the floating disk when there is a block on top of the pedestal upgrade block
-		if (entity.getWorld() != null && !entity.getWorld().getBlockState(entity.getPos().up()).isAir()) {
+		// do not render the floating disk when there is a non-opaque block on top of the pedestal upgrade block
+		if (entity.getWorld() != null && entity.getWorld().getBlockState(entity.getPos().up()).isOpaque()) {
 			return;
 		}
 		

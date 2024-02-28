@@ -1,0 +1,31 @@
+{
+  "name": "Improved Critical",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/improved_critical",
+  "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You already noticed that you deal significantly more damage to enemies if you jump while attacking.$(br)To further improve those jump attacks, you have developed this enchantment, which increases the additional damage even more."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
+      "text": "Additional damage when dealing crits.$(br2)Max Level: 2$(br)Applicable to melee weapons.$(br)Mutually exclusive with Sharpness."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_improved_critical",
+      "text": "You can infuse a $(item)common Book$() with Improved Critical by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
+      "text": "Upgrading Improved Critical from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more $(l:general/pigment)Pigment$() and experience for each additional level."
+    }
+  ]
+}

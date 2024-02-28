@@ -5,6 +5,11 @@
     "#spectrum:crystallarieum_growable_clusters",
 
     {
+      "id": "biomemakeover:illunite_cluster",
+      "required": false
+    },
+
+    {
       "id": "geode:celestite_cluster",
       "required": false
     },

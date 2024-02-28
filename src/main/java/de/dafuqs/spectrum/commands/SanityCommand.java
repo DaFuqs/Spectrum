@@ -4,21 +4,20 @@ import com.mojang.brigadier.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.mininglevel.v1.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
@@ -107,7 +106,7 @@ public class SanityCommand {
 						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");
 					} else {
 						LootTable lootTable = source.getWorld().getServer().getLootManager().getLootTable(lootTableID);
-						LootPool[] lootPools = ((LootTableAccessor) lootTable).getPools();
+						LootPool[] lootPools = lootTable.pools;
 						if (lootPools.length == 0) {
 							SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has an empty loot table");
 						}
@@ -366,6 +365,26 @@ public class SanityCommand {
 				}
 			}
 		}
+		
+		// items / blocks missing in the creative tab (will also omit them from most recipe viewers)
+		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabStacks();
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			
+			if (item.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+				boolean found = false;
+				for(ItemStack stack : itemGroupStacks) {
+					if(stack.isOf(item.getValue())) {
+						found = true;
+						break;
+					}
+				}
+				
+				if (!found) {
+					SpectrumCommon.logWarning("[SANITY: ItemGroups] Item '" + item.getKey().getValue() + "' is missing from the Spectrum item group.");
+				}
+			}
+		}
+		
 
 		SpectrumCommon.logInfo("##### SANITY CHECK FINISHED ######");
 

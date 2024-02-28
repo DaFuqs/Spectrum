@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.boom;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.explosion.*;
 import net.minecraft.block.*;
 import net.minecraft.client.item.*;

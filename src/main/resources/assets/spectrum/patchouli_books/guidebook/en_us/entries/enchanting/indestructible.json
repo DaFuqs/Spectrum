@@ -1,0 +1,25 @@
+{
+  "name": "Indestructible",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:unlocks/enchantments/indestructible",
+  "flag": "spectrum:enchantment_exists_spectrum_indestructible",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You've come this far and you still have to deal with the fact that your common tools like $(item)Flint and Steel$() keep breaking once you use them too many times. And you have more than enough equipment which was previously too fragile to use for long.$(br)With your full armada of nearly-indestructible items now, though? No problem."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
+      "text": "Makes a tool fully unbreakable, not taking damage anymore.$(br2)Max Level: 1$(br)Applicable to all tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_indestructible",
+      "text": "You can infuse a $(item)common Book$() with Indestructible by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

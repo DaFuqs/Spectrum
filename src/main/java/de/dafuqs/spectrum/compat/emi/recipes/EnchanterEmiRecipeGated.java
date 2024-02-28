@@ -42,7 +42,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 	}
 	
 	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
-		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 80);
+		super(category, recipe, 132, 80);
 		this.craftingTime = craftingTime;
 		this.description = description;
 		
@@ -51,7 +51,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		widgets.addTexture(BACKGROUND_TEXTURE, 12, 12, 54, 54, 0, 0);
+		widgets.addTexture(BACKGROUND_TEXTURE, 13, 13, 54, 54, 0, 0);
 		
 		// Knowledge Gem and Enchanter
 		widgets.addSlot(inputs.get(9), 111, 5);

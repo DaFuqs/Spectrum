@@ -3,7 +3,8 @@ package de.dafuqs.spectrum.recipe.crystallarieum;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
@@ -49,7 +50,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCostTier = JsonHelper.getInt(jsonObject, "ink_cost_tier");
 		int inkPerSecond = inkCostTier == 0 ? 0 : (int) Math.pow(2, inkCostTier - 1); // 0=0; 1=1; 2=4; 3=16; 4=64; 5=256)
-		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject, "grows_without_catalyst");
+		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject,   "grows_without_catalyst", false);
 		
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();
 		if (jsonObject.has("catalysts")) {

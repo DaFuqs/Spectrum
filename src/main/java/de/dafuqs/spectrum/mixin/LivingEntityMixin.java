@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.status_effect.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.items.armor.*;
-import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
@@ -81,9 +81,6 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-	
-	@Shadow
-	public abstract void endCombat();
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -165,7 +162,7 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"))
+	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	public void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity target = (LivingEntity) (Object) this;
 
@@ -187,11 +184,13 @@ public abstract class LivingEntityMixin {
 				SpectrumDamageTypes.recursiveDamageFlag = true;
 				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
 				
+				boolean damaged = false;
 				for (Pair<DamageSource, Float> entry : composition.get()) {
-					damage(entry.getLeft(), entry.getRight());
+					damaged |= damage(entry.getLeft(), entry.getRight());
 				}
 				
 				SpectrumDamageTypes.recursiveDamageFlag = false;
+				cir.setReturnValue(damaged);
 			}
 		}
 	}
@@ -301,8 +300,8 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
 	protected void drop(DamageSource source, CallbackInfo ci) {
 		LivingEntity thisEntity = (LivingEntity) (Object) this;
-		boolean hasBondingRibbon = EverpromiseRibbonComponent.hasRibbon(thisEntity);
-		if (hasBondingRibbon) {
+
+		if (EverpromiseRibbonComponent.hasRibbon(thisEntity)) {
 			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
 			MemoryItem.setTicksToManifest(memoryStack, 20);
 			MemoryItem.setSpawnAsAdult(memoryStack, true);
@@ -314,7 +313,6 @@ public abstract class LivingEntityMixin {
 
 			ci.cancel();
 		}
-
 	}
 
 	@Inject(method = "tick", at = @At("TAIL"))
@@ -325,38 +323,8 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
-	@ModifyArg(
-			slice = @Slice(
-					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isTouchingWater()Z"),
-					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z")
-			),
-			method = "travel",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
-	private float applyInexorableAntiWaterSlowdown(float par1) {
-		var entity = (LivingEntity) (Object) this;
-		if (InexorableEnchantment.isArmorActive(entity)) {
-			return par1 + 0.2F;
-		}
-		return par1;
-	}
-
-	@ModifyArg(
-			slice = @Slice(
-					from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isInLava()Z"),
-					to = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isFallFlying()Z")
-			),
-			method = "travel",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;updateVelocity(FLnet/minecraft/util/math/Vec3d;)V"))
-	private float applyInexorableAntiLavaSlowdown(float par1) {
-		var entity = (LivingEntity) (Object) this;
-		if (InexorableEnchantment.isArmorActive(entity)) {
-			return par1 + 0.25F;
-		}
-		return par1;
-	}
-	
 	@Redirect(method = "tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isWet()Z"))
 	public boolean spectrum$isWet(LivingEntity livingEntity) {
-		return livingEntity.isTouchingWater() ? ((EntityApplyFluidsMixin)(Object) livingEntity).isActuallyTouchingWater() : livingEntity.isWet();
+		return livingEntity.isTouchingWater() ? ((TouchingWaterAware) livingEntity).spectrum$isActuallyTouchingWater() : livingEntity.isWet();
 	}
 }

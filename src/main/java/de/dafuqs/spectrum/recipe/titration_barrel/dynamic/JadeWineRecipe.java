@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.matchbooks.recipe.matchbook.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.id.incubus_core.recipe.*;
-import net.id.incubus_core.recipe.matchbook.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
@@ -31,7 +32,7 @@ public class JadeWineRecipe extends SweetenableTitrationBarrelRecipe {
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.075F, 0.01F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.075F, 0.01F, List.of()));
 	}
 	
 	@Override

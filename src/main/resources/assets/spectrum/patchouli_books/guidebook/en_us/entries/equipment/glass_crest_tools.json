@@ -1,0 +1,55 @@
+{
+  "name": "Glass Crest Tools",
+  "advancement": "spectrum:unlocks/malachite/glass_crest_tools",
+  "icon": "spectrum:glass_crest_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:glass_crest_workstaff": 0,
+    "spectrum:glass_crest_ultra_greatsword": 0,
+    "spectrum:glass_crest_crossbow": 0,
+    "spectrum:ferocious_glass_crest_bident": 0,
+    "spectrum:fractal_glass_crest_bident": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Glass Crest Tools",
+      "text": "Socketing $(l:resources/moonstone_cores)Moonstone Cores$(/l) into your $(l:equipment/malachite_tools)Malachite Tools$(/l) grants them powerful new abilities."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Workstaff",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
+      "text": "$(k:use) will shoot out $(c_white)White Ink$() which will break blocks on impact. You can also choose from $(l:enchanting/resonance)Resonance$(/l) when switching enchantments."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ultra Greatsword",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
+      "text": "Deals a chunk of its damage via $(thing)Magic$(), which pierces armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you. This ability scales with $(thing)Sweeping$())."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Crossbow",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_crossbow",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
+      "text": "If an arrow is loaded, you can overcharge the shot by holding $(k:sneak) + $(k:use) to increase your shot's accuracy, speed and damage even further."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Ferocious Bident",
+      "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
+      "text": "The result of combining a Bident and a Pocket Thunderstorm. Hurl yourself into the air and damage everything in your path, even in the driest of deserts! ...as long as you don't run out of ink (scales with the level of Riptide). $(italic)Flying isn't the problem. Landing is.$()"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fractal Bident",
+      "advancement": "spectrum:unlocks/malachite/fractal_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
+      "text": "The $(item)Echo Shards$() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand.$(br2)$(o)The fractal may be empowered with efficiency and power, improving yield and damage."
+    }
+  ]
+}

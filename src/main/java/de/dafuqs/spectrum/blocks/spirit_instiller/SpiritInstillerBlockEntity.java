@@ -1,19 +1,18 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
-import net.id.incubus_core.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
@@ -226,10 +225,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity, world.getRegistryManager());
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
-			// spawn the result stack in world
 			if (spiritInstillerBlockEntity.getStack(0).isEmpty()) {
+				// keep it on the Instiller
 				spiritInstillerBlockEntity.setStack(0, resultStack);
 			} else {
+				// spawn the result stack in world
 				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 			}
 		}

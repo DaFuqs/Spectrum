@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import net.id.incubus_core.recipe.*;
+import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.item.*;
 import vazkii.patchouli.client.book.gui.*;

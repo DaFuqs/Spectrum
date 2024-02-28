@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;

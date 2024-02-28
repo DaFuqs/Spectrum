@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

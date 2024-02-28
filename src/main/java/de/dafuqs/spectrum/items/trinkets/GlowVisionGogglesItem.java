@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
@@ -32,7 +32,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 		super.tick(stack, slot, entity);
 		
 		World world = entity.getWorld();
-		if (world != null && !world.isClient && world.getTimeOfDay() % 20 == 0) {
+		if (world != null && !world.isClient && world.getTime() % 20 == 0) {
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
 				giveEffect(world, serverPlayerEntity);
 			}
@@ -53,7 +53,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 		
 		if (lightLevelAtPlayerPos < 7) {
 			StatusEffectInstance nightVisionInstance = serverPlayerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
-			if (nightVisionInstance == null || nightVisionInstance.getDuration() < 10 * 20) { // prevent "night vision running out" flashing
+			if (nightVisionInstance == null || nightVisionInstance.getDuration() < 220) { // prevent "night vision running out" flashing
 				// no / short night vision => search for glow ink sac and add night vision if found
 				
 				boolean paid = serverPlayerEntity.isCreative();

@@ -1,6 +1,11 @@
 package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.inventories.*;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
 import net.minecraft.block.entity.*;
@@ -74,6 +79,7 @@ public class EnderDropperBlock extends DispenserBlock {
 		}
 	}
 	
+	@SuppressWarnings("UnstableApiUsage")
 	@Override
 	protected void dispense(ServerWorld world, BlockPos pos) {
 		BlockPointerImpl blockPointerImpl = new BlockPointerImpl(world, pos);
@@ -90,6 +96,20 @@ public class EnderDropperBlock extends DispenserBlock {
 					ItemStack itemStack3 = BEHAVIOR.dispense(blockPointerImpl, itemStack);
 					enderDropperBlockEntity.setStack(i, itemStack3);
 				} else {
+					Storage<ItemVariant> target = ItemStorage.SIDED.find(world, pos.offset(direction), direction.getOpposite());
+					if (target != null) {
+						// getting inv will always work since .chooseNonEmptySlot() and others would fail otherwise
+						Inventory inv = enderDropperBlockEntity.getOwnerIfOnline().getEnderChestInventory();
+						long moved = StorageUtil.move(
+								InventoryStorage.of(inv, direction).getSlot(i),
+								target,
+								iv -> true,
+								1,
+								null
+						);
+						// return without triggering fail event if successfully moved
+						if (moved == 1) return;
+					}
 					world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0); // no room to dispense to
 				}
 			}

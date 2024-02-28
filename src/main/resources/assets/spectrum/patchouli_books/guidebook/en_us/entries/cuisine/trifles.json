@@ -1,0 +1,34 @@
+{
+  "name": "Trifles",
+  "icon": "spectrum:jaramel_trifle",
+  "advancement": "spectrum:unlocks/food/trifles",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:jaramel_trifle": 0,
+    "spectrum:salted_jaramel_trifle": 0,
+    "spectrum:monster_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sweet delicacies, guaranteed to give you more than a sugar rush - depending on the toppings.$(br)Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Gelatin$() & $(l:cuisine/amaranth)Amaranth$(/l).$(br)Even the simple one tastes great!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Jaramel Trifle",
+      "recipe": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
+      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "text": "$(italic)Extra Salty"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/monster_trifle",
+      "text": "Gives out effects at random. Fancy a gamble?"
+    }
+  ]
+}

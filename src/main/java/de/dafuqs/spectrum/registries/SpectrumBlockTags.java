@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.util.*;
 
 public class SpectrumBlockTags {
 	
@@ -61,10 +61,14 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> MEMORY_FAST_MANIFESTERS = of("memory_fast_manifesters");
 	public static final TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS = of("memory_very_fast_manifesters");
 	
+	// PATH FINDING
+	public static final TagKey<Block> FIRE_LAND_NODE_MARKERS = of("fire_land_node_markers");
+	public static final TagKey<Block> DAMAGING_LAND_NODE_MARKERS = of("damaging_land_node_markers");
+	
 	// COMMON TAGS ("c" namespace)
 	public static final TagKey<Block> LIGHTNING_RODS = common("lightning_rods");
-
-
+	
+	
 	private static TagKey<Block> of(String id) {
 		return TagKey.of(RegistryKeys.BLOCK, SpectrumCommon.locate(id));
 	}

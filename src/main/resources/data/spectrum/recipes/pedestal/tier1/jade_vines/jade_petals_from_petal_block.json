@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:pedestal_shapeless",
+  "group": "jade_decorations",
+  "time": 40,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "ingredients": [
+    {
+      "item": "spectrum:jade_vine_petal_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:jade_vine_petals",
+    "count": 4
+  },
+  "required_advancement": "spectrum:midgame/collect_jade_vine_petals",
+  "disable_yield_upgrades": true
+}

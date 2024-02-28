@@ -23,7 +23,6 @@ public class SpectrumEntityTypes {
 	public static final EntityType<? extends ItemEntity> FIREPROOF_ITEM = register("fireproof_item", 6, 20, true, EntityDimensions.changing(0.25F, 0.25F), true, FireproofItemEntity::new);
 	public static final EntityType<EggLayingWoolyPigEntity> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
 	public static final EntityType<GlassArrowEntity> GLASS_ARROW = register("glass_arrow", EntityType.Builder.<GlassArrowEntity>create(GlassArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
-	public static final EntityType<CapriciousArrowEntity> CAPRICIOUS_ARROW = register("capricious_arrow", EntityType.Builder.<CapriciousArrowEntity>create(CapriciousArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
 	public static final EntityType<MiningProjectileEntity> MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 	public static final EntityType<ParametricMiningDeviceEntity> PARAMETRIC_MINING_DEVICE_ENTITY = register("parametric_mining_device", 4, 10, true, EntityDimensions.fixed(0.25F, 0.25F), false, ParametricMiningDeviceEntity::new);
 	public static final EntityType<BidentEntity> BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
@@ -37,14 +36,10 @@ public class SpectrumEntityTypes {
 	public static final EntityType<KindlingEntity> KINDLING = register("kindling", EntityType.Builder.create(KindlingEntity::new, SpawnGroup.CREATURE).setDimensions(1.0F, 1.0F).maxTrackingRange(10).makeFireImmune());
 	public static final EntityType<KindlingCoughEntity> KINDLING_COUGH = register("kindling_cough", EntityType.Builder.<KindlingCoughEntity>create(KindlingCoughEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(10).makeFireImmune());
 	public static final EntityType<EraserEntity> ERASER = register("eraser", EntityType.Builder.create(EraserEntity::new, SpawnGroup.MONSTER).setDimensions(0.3F, 0.3F).maxTrackingRange(10));
-	
+	public static final EntityType<ItemProjectileEntity> ITEM_PROJECTILE = register("item_projectile", EntityType.Builder.<ItemProjectileEntity>create(ItemProjectileEntity::new, SpawnGroup.MISC).setDimensions(0.25F, 0.25F).maxTrackingRange(6).trackingTickInterval(20));
+
 	public static void register() {
-		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
-		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
-		FabricDefaultAttributeRegistry.register(PRESERVATION_TURRET, PreservationTurretEntity.createGuardianTurretAttributes());
-		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
-		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
-		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
+	
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -57,6 +52,16 @@ public class SpectrumEntityTypes {
 	
 	private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
 		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(id), type.build(id));
+	}
+	
+	static {
+		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
+		FabricDefaultAttributeRegistry.register(MONSTROSITY, MonstrosityEntity.createMonstrosityAttributes());
+		FabricDefaultAttributeRegistry.register(PRESERVATION_TURRET, PreservationTurretEntity.createGuardianTurretAttributes());
+		FabricDefaultAttributeRegistry.register(LIZARD, LizardEntity.createLizardAttributes());
+		FabricDefaultAttributeRegistry.register(KINDLING, KindlingEntity.createKindlingAttributes());
+		FabricDefaultAttributeRegistry.register(ERASER, EraserEntity.createEraserAttributes());
+		
 	}
 	
 }

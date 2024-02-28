@@ -1,0 +1,96 @@
+{
+  "name": "Brewers Handbook",
+  "icon": "spectrum:brewers_handbook",
+  "advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:brewers_handbook": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:snippet",
+      "title": "Brewing for the Deep",
+      "resource_path": "spectrum:textures/gui/guidebook/taswell.png",
+      "resource_width": 116,
+      "resource_height": 116,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 116,
+      "texture_height": 116,
+      "border": false,
+      "text": "$(o)   Reflection Of The Moon"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hayo! The current state of relations between the overworld and the deep is rather poor, and unfortunately it seems to only be getting worse, and to that end I sadly can't do much.$(br2)As such, I have taken some of my time to collect a bunch of brewing recipes from the surface, adapt them to use ingredients found in the depths, and publish that as a gift to you all, in hopes that it will aid you."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Pink Cups",
+      "text": "$(br)Heya, glass peaches are not just for imperators!$(br2)We can enjoy them too! This brief and easy to follow recipe makes for a nice, creamy cup of peachy goodness - if you have any, and I understand why you wouldn't, sweet berries make for a great garnish!"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/peach_cream",
+      "text": "$(italic)Do not swap the berries out for holly ones, they are no good..."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Holly Hot Drinks",
+      "text": "$(br)Those thickets of pyrite... they are I think my favorite places in the depths, there is something just so pretty about them, even accounting for how dangerous just existing in them is.$(br2)Regardless! While the berries of the bushes that grow there are poisonous, we can side step that..."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/golden_bristle_tea",
+      "text": "$(italic)But if you do want to use those holly berries for something, here you go."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Not Honey Wine",
+      "text": "$(br)This not mead, you could not legally call it mead, I am obligated to clarify it is not mead.$(br3) So this mead is a bit of a favorite recipe of mine, it took a while to figure out how to adapt honey wine for a place that has no bees, but trust me, this genuinely outdoes the real deal."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead",
+      "text": "$(italic)Not a mead, no no no."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/bristle_mead_fluid",
+      "text": "$(italic)Not a mead, no no no."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Heat for the Heart",
+      "text": "$(br)Myceylon, that odd cinnamon-esque spice you all have down there. I am honestly really fond of the stuff, it reminds me of those long, tender nights I used to spend down there. Though like most, I associate the spice with a level of warmth and comfort, for me there is this undertone of longing..."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/morchella",
+      "text": "$(italic)Burns on the way down and when it gets there too.$(br2) Great if you have someone you want to get hot and bothered."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "title": "[Hidden Page 1]",
+      "text": "$(br)Hi. I'm sorry I did not get more to you all, this is all I could manage to sneak in - anything passing by the mouth of the caves is closely monitored, and I myself can feel the gaze of the surface imperators scorching my back. I really, really wanted to do more, but the fact that I need to use a pseudonym should reveal the state of my condition. This is all I can do. I hope it will be enough."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/sedatives",
+      "text": "$(italic)This took a lot out of me to get working. Through this, you should be able to use blood orchid extract more aggressively. If worse comes to worst, it should give you an edge."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "[Hidden Page 2]",
+      "text": " ...Asteras$(br2)I hope that this message will reach you. The state of things has only worsened since we last spoke, the nobles are still targeting you, but more worryingly.... They are preparing for war, it is clear by now. They want the bloomstone, and they are willing to sacrifice a lot for it. Things are going to get bad, please stay safe.$(br)$(o)        ... I miss you."
+    }
+  ]
+}

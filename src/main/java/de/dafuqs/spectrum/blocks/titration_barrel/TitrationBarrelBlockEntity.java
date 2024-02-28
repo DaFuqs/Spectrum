@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.titration_barrel;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
@@ -72,9 +71,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		nbt.putLong("SealTime", this.sealTime);
 		nbt.putLong("TapTime", this.tapTime);
 		nbt.putInt("ExtractedBottles", this.extractedBottles);
-		if (this.world != null) {
-			nbt.putString("BarrelState", this.world.getBlockState(this.pos).get(BARREL_STATE).name());
-		}
 	}
 	
 	@Override
@@ -85,20 +81,12 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
 			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
 		}
-
-		if (nbt.contains("BarrelState", NbtElement.STRING_TYPE) && world != null) {
-			BlockState blockState = world.getBlockState(pos);
-			if (blockState.isOf(SpectrumBlocks.TITRATION_BARREL)) {
-				BarrelState barrelState = BarrelState.valueOf(nbt.getString("BarrelState"));
-				world.setBlockState(this.pos, blockState.with(BARREL_STATE, barrelState));
-			}
-		}
 		
 		this.fluidStorage.variant = FluidVariant.fromNbt(nbt.getCompound("FluidVariant"));
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
 		this.tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
-		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.INT_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
+		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.NUMBER_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
 	}
 	
 	public Inventory getInventory() {
@@ -155,7 +143,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	private boolean isEmpty(float temperature, int extractedBottles, ITitrationBarrelRecipe recipe) {
-		if (recipe.isEmpty() || !getFluidVariant().isOf(recipe.getFluidInput())) {
+		if (recipe.isEmpty() || !recipe.getFluidInput().test(getFluidVariant())) {
 			return true;
 		}
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
@@ -186,7 +174,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			shouldReset = true;
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get();
-			if (this.getFluidVariant().isOf(recipe.getFluidInput())) {
+			if (recipe.getFluidInput().test(this.getFluidVariant())) {
 				if (recipe.canPlayerCraft(player)) {
 					boolean canTap = true;
 					Item tappingItem = recipe.getTappingItem();
@@ -243,8 +231,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public void giveRecipeRemainders(PlayerEntity player) {
 		for (ItemStack stack : this.inventory.stacks) {
 			ItemStack remainder = stack.getRecipeRemainder();
-			if (remainder.isEmpty()) {
-				remainder.setCount(stack.getCount());
+			if (!remainder.isEmpty()) {
 				player.getInventory().offerOrDrop(remainder);
 			}
 		}
@@ -269,7 +256,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
 			return optionalRecipe.isPresent()
 					&& optionalRecipe.get().canPlayerCraft(player)
-					&& this.getFluidVariant().getFluid() == optionalRecipe.get().getFluidInput();
+					&& optionalRecipe.get().getFluidInput().test(this.getFluidVariant().getFluid());
 		}
 
 		return false;

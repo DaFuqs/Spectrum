@@ -1,0 +1,24 @@
+{
+  "name": "Downstone",
+  "advancement": "spectrum:lategame/reached_dd_floor",
+  "icon": "spectrum:downstone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:downstone": 0,
+    "spectrum:downstone_fragments": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone",
+      "text": "At the deepest parts of the Deeper Down, this stone was waiting for you.$(br)Immensely hard, even Bedrock is a laugh compared to it."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone_fragments",
+      "anchor": "downstone_fragments",
+      "advancement": "spectrum:lategame/collect_downstone_fragments",
+      "text": "Looks like whoever came before you was able to harvest it - but only with the help of colossal, imposing drills.$(br2)It seems like they used it to manufacture $(item)Preservation Stone$()?"
+    }
+  ]
+}

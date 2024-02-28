@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe.ink_converting;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;

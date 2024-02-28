@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -76,7 +76,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		} else {
 			this.openerUUID = null;
 		}
-		if (nbt.contains("OpeningTick", NbtElement.INT_TYPE)) {
+		if (nbt.contains("OpeningTick", NbtElement.NUMBER_TYPE)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}

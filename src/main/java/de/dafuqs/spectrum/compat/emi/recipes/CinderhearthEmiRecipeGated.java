@@ -10,7 +10,7 @@ import dev.emi.emi.api.widget.*;
 public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<CinderhearthRecipe> {
 	
 	public CinderhearthEmiRecipeGated(CinderhearthRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.CINDERHEARTH, CinderhearthRecipe.UNLOCK_IDENTIFIER, recipe, 136, 48);
+		super(SpectrumEmiRecipeCategories.CINDERHEARTH, recipe, 136, 48);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 		this.outputs = recipe.getOutputsWithChance(getRegistryManager()).stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
 	}

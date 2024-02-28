@@ -32,6 +32,21 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 	}
 	
 	@Override
+	public VoxelShape getCameraCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return VoxelShapes.empty();
+	}
+	
+	@Override
+	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+		return 1.0F;
+	}
+	
+	@Override
+	public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+		return true;
+	}
+	
+	@Override
 	@SuppressWarnings("deprecation")
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -68,7 +83,7 @@ public class StuckStormStoneBlock extends Block implements RevelationAware {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;
 		}
-		return VoxelShapes.empty();
+		return VoxelShapes.fullCube();
 	}
 
 	@Override

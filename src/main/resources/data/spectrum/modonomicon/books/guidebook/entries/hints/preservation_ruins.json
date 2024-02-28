@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.preservation_ruins.page0.title",
-      "completion_advancement": "spectrum:generate_preservation_ruins_loot",
+      "completion_advancement": "spectrum:triggers/hints/preservation_ruins",
       "cost": {
         "item": "spectrum:refined_azurite",
         "count": 4

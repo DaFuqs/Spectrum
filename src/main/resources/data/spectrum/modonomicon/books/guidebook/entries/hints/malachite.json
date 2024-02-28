@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.malachite.page0.title",
-      "completion_advancement": "spectrum:lategame/collect_malachite",
+      "completion_advancement": "spectrum:triggers/hints/malachite",
       "cost": {
         "item": "spectrum:bismuth_crystal",
         "count": 8

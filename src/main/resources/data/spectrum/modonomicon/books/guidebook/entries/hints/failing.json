@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.failing.page0.title",
-      "completion_advancement": "spectrum:midgame/collect_neolith",
+      "completion_advancement": "spectrum:triggers/hints/failing",
       "cost": {
         "item": "spectrum:stratine_fragments",
         "count": 8

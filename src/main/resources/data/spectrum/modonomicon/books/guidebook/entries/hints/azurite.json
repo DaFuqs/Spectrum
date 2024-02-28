@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.azurite.page0.title",
-      "completion_advancement": "spectrum:midgame/collect_azurite",
+      "completion_advancement": "spectrum:triggers/hints/azurite",
       "cost": {
         "item": "spectrum:neolith",
         "count": 8

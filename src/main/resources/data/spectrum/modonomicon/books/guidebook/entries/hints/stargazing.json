@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stargazing.page0.title",
-      "completion_advancement": "spectrum:collect_star_fragment",
+      "completion_advancement": "spectrum:triggers/hints/stargazing",
       "cost": {
         "item": "spectrum:shimmerstone_gem",
         "count": 8

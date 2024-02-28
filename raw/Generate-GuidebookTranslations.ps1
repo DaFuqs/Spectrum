@@ -24,6 +24,7 @@ $RecipeTypes =
 
 $LangPath = 'src/main/resources/assets/spectrum/lang/en_us.json'
 $GuidebookPath = 'src/main/resources/data/spectrum/modonomicon/books/guidebook/entries'
+$AdvancementPath = 'src/main/resources/data/spectrum/advancements'
 
 Function Set-Translation {
     Param (
@@ -148,7 +149,36 @@ Function Set-TranslatedGuidebookEntry {
         ElseIf ($Page.type -eq 'spectrum:hint') {
             If ($Page.cost.GetType().Name -eq 'String') {
                 $Parts = $Page.cost.Split('#')
-                $Page.cost = "{`"item`":`"$($Parts[0])`",`"count`":$($Parts[1])}" | ConvertFrom-Json
+                $Page.cost = @"
+{
+  "item": "$($Parts[0])",
+  "count": $($Parts[1])
+}
+"@ | ConvertFrom-Json
+            }
+            $HintDir = "$AdvancementPath/triggers/$CategoryName"
+            $HintPath = "$HintDir/$EntryName.json"
+            If (-not (Test-Path $HintDir -PathType Container)) {
+                New-Item $HintDir -ItemType Directory
+            }
+            If (-not (Test-Path $HintPath -PathType Leaf)) {
+                $HintAdvancement = @"
+{
+  "criteria": {
+    "hint_purchased": {
+      "trigger": "minecraft:impossible"
+    },
+    "advancement_gotten": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "$($Page.completion_advancement)"
+      }
+    }
+  }
+}
+"@
+                $Page.completion_advancement = "spectrum:triggers/$CategoryName/$EntryName"
+                $HintAdvancement | Out-File $HintPath
             }
         }
 

@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.storm_stones.page0.title",
-      "completion_advancement": "spectrum:midgame/collect_storm_stone",
+      "completion_advancement": "spectrum:triggers/hints/storm_stones",
       "cost": {
         "item": "spectrum:neolith",
         "count": 8

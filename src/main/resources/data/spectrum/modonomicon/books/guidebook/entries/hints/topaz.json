@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.topaz.page0.title",
-      "completion_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "completion_advancement": "spectrum:triggers/hints/topaz",
       "cost": {
         "item": "minecraft:amethyst_shard",
         "count": 16

@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.ruin.page0.title",
-      "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
+      "completion_advancement": "spectrum:triggers/hints/ruin",
       "cost": {
         "item": "spectrum:brown_pigment",
         "count": 8

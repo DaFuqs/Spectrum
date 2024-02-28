@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.compat.modonomicon.pages;
 
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
 import com.klikli_dev.modonomicon.book.page.BookTextPage;
 import com.klikli_dev.modonomicon.util.BookGsonHelper;
 import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
@@ -19,8 +21,8 @@ public class BookSnippetPage extends BookTextPage {
     private final int textureWidth;
     private final int textureHeight;
 
-    public BookSnippetPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, Identifier resourcePath, int resourceWidth, int resourceHeight, int textureX, int textureY, int textureWidth, int textureHeight) {
-        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor);
+    public BookSnippetPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Identifier resourcePath, int resourceWidth, int resourceHeight, int textureX, int textureY, int textureWidth, int textureHeight) {
+        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
         this.resourcePath = resourcePath;
         this.resourceWidth = resourceWidth;
         this.resourceHeight = resourceHeight;
@@ -36,6 +38,9 @@ public class BookSnippetPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", false);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
+        var condition = json.has("condition")
+                ? BookCondition.fromJson(json.getAsJsonObject("condition"))
+                : new BookNoneCondition();
         var resourcePath = Identifier.tryParse(JsonHelper.getString(json, "resource_path"));
         var resourceWidth = JsonHelper.getInt(json, "resource_width");
         var resourceHeight = JsonHelper.getInt(json, "resource_height");
@@ -43,7 +48,7 @@ public class BookSnippetPage extends BookTextPage {
         var textureY = JsonHelper.getInt(json, "texture_y");
         var textureWidth = JsonHelper.getInt(json, "texture_width");
         var textureHeight = JsonHelper.getInt(json, "texture_height");
-        return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
+        return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
     }
 
     public static BookSnippetPage fromNetwork(PacketByteBuf buffer) {
@@ -52,6 +57,7 @@ public class BookSnippetPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
+        var condition = BookCondition.fromNetwork(buffer);
         var resourcePath = buffer.readIdentifier();
         var resourceWidth = buffer.readVarInt();
         var resourceHeight = buffer.readVarInt();
@@ -59,7 +65,7 @@ public class BookSnippetPage extends BookTextPage {
         var textureY = buffer.readVarInt();
         var textureWidth = buffer.readVarInt();
         var textureHeight = buffer.readVarInt();
-        return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
+        return new BookSnippetPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, resourcePath, resourceWidth, resourceHeight, textureX, textureY, textureWidth, textureHeight);
     }
 
     public Identifier getResourcePath() {

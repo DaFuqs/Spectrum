@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.compat.modonomicon.pages;
 
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
 import com.klikli_dev.modonomicon.book.page.BookTextPage;
 import com.klikli_dev.modonomicon.client.gui.book.markdown.BookTextRenderer;
 import com.klikli_dev.modonomicon.util.BookGsonHelper;
@@ -18,8 +20,8 @@ public class BookConfirmationButtonPage extends BookTextPage {
     private BookTextHolder confirmedButtonText;
     private final String confirmationString;
 
-    public BookConfirmationButtonPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, Identifier checkedAdvancement, BookTextHolder buttonText, BookTextHolder confirmedButtonText, String confirmationString) {
-        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor);
+    public BookConfirmationButtonPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Identifier checkedAdvancement, BookTextHolder buttonText, BookTextHolder confirmedButtonText, String confirmationString) {
+        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
         this.checkedAdvancement = checkedAdvancement;
         this.buttonText = buttonText;
         this.confirmedButtonText = confirmedButtonText;
@@ -32,11 +34,14 @@ public class BookConfirmationButtonPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
+        var condition = json.has("condition")
+                ? BookCondition.fromJson(json.getAsJsonObject("condition"))
+                : new BookNoneCondition();
         var checkedAdvancement = Identifier.tryParse(JsonHelper.getString(json, "checked_advancement"));
         var buttonText = BookGsonHelper.getAsBookTextHolder(json, "button_text", BookTextHolder.EMPTY);
         var confirmedButtonText = BookGsonHelper.getAsBookTextHolder(json, "button_text_confirmed", BookTextHolder.EMPTY);
         var confirmationString = JsonHelper.getString(json, "confirmation", "");
-        return new BookConfirmationButtonPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checkedAdvancement, buttonText, confirmedButtonText, confirmationString);
+        return new BookConfirmationButtonPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checkedAdvancement, buttonText, confirmedButtonText, confirmationString);
     }
 
     public static BookConfirmationButtonPage fromNetwork(PacketByteBuf buffer) {
@@ -45,11 +50,12 @@ public class BookConfirmationButtonPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
+        var condition = BookCondition.fromNetwork(buffer);
         var checkedAdvancement = buffer.readIdentifier();
         var buttonText = BookTextHolder.fromNetwork(buffer);
         var confirmedButtonText = BookTextHolder.fromNetwork(buffer);
         var confirmationString = buffer.readString();
-        return new BookConfirmationButtonPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checkedAdvancement, buttonText, confirmedButtonText, confirmationString);
+        return new BookConfirmationButtonPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checkedAdvancement, buttonText, confirmedButtonText, confirmationString);
     }
 
     @Override

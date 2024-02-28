@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.compat.modonomicon.pages;
 import com.google.gson.JsonObject;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
 import com.klikli_dev.modonomicon.book.page.BookTextPage;
 import com.klikli_dev.modonomicon.client.gui.book.markdown.BookTextRenderer;
 import com.klikli_dev.modonomicon.util.BookGsonHelper;
@@ -21,10 +23,9 @@ import java.util.Map;
 public class BookChecklistPage extends BookTextPage {
 
     private final Map<Identifier, BookTextHolder> checklist;
-    private RenderedBookTextHolder renderedChecklist;
 
-    public BookChecklistPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, Map<Identifier, BookTextHolder> checklist) {
-        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor);
+    public BookChecklistPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Map<Identifier, BookTextHolder> checklist) {
+        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
         this.checklist = checklist;
     }
 
@@ -34,13 +35,16 @@ public class BookChecklistPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
+        var condition = json.has("condition")
+                ? BookCondition.fromJson(json.getAsJsonObject("condition"))
+                : new BookNoneCondition();
         var checklistObject = JsonHelper.getObject(json, "checklist", new JsonObject());
         var checklist = new HashMap<Identifier, BookTextHolder>();
         for (var key : checklistObject.keySet()) {
             var value = BookGsonHelper.getAsBookTextHolder(checklistObject, key, BookTextHolder.EMPTY);
             checklist.put(new Identifier(key), value);
         }
-        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checklist);
+        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist);
     }
 
     public static BookChecklistPage fromNetwork(PacketByteBuf buffer) {
@@ -49,8 +53,9 @@ public class BookChecklistPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
+        var condition = BookCondition.fromNetwork(buffer);
         var checklist = buffer.readMap(PacketByteBuf::readIdentifier, BookTextHolder::fromNetwork);
-        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, checklist);
+        return new BookChecklistPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, checklist);
     }
 
     public Map<Identifier, BookTextHolder> getChecklist() {

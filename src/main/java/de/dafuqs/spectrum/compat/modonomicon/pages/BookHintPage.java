@@ -1,8 +1,9 @@
 package de.dafuqs.spectrum.compat.modonomicon.pages;
 
 import com.google.gson.JsonObject;
-import com.klikli_dev.modonomicon.book.Book;
 import com.klikli_dev.modonomicon.book.BookTextHolder;
+import com.klikli_dev.modonomicon.book.conditions.BookCondition;
+import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
 import com.klikli_dev.modonomicon.book.page.BookTextPage;
 import com.klikli_dev.modonomicon.util.BookGsonHelper;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
@@ -20,8 +21,8 @@ public class BookHintPage extends BookTextPage {
     private final Identifier completionAdvancement;
     private final Ingredient cost;
 
-    public BookHintPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, Identifier completionAdvancement,Ingredient cost) {
-        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor);
+    public BookHintPage(BookTextHolder title, BookTextHolder text, boolean useMarkdownInTitle, boolean showTitleSeparator, String anchor, BookCondition condition, Identifier completionAdvancement,Ingredient cost) {
+        super(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition);
         this.completionAdvancement = completionAdvancement;
         this.cost = cost;
     }
@@ -32,6 +33,9 @@ public class BookHintPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
+        var condition = json.has("condition")
+                ? BookCondition.fromJson(json.getAsJsonObject("condition"))
+                : new BookNoneCondition();
         var completionAdvancement = Identifier.tryParse(JsonHelper.getString(json, "completion_advancement"));
         var cost = Ingredient.EMPTY;
         if (json.has("cost")) {
@@ -40,7 +44,7 @@ public class BookHintPage extends BookTextPage {
             cost = Ingredient.fromJson(ingredient);
             Arrays.stream(cost.getMatchingStacks()).forEach(itemStack -> itemStack.setCount(count));
         }
-        return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, completionAdvancement, cost);
+        return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, completionAdvancement, cost);
     }
 
     public static BookHintPage fromNetwork(PacketByteBuf buffer) {
@@ -49,9 +53,10 @@ public class BookHintPage extends BookTextPage {
         var showTitleSeparator = buffer.readBoolean();
         var text = BookTextHolder.fromNetwork(buffer);
         var anchor = buffer.readString();
+        var condition = BookCondition.fromNetwork(buffer);
         var completionAdvancement = buffer.readIdentifier();
         var cost = Ingredient.fromPacket(buffer);
-        return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, completionAdvancement, cost);
+        return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, condition, completionAdvancement, cost);
     }
 
     public Identifier getCompletionAdvancement() {

@@ -14,12 +14,28 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> implements PageWithTextRenderer {
+
+    private static final Style OBFUSCATED_STYLE = Style.EMPTY
+            .withColor(TextColor.fromRgb(0x000000))
+            .withBold(false)
+            .withItalic(false)
+            .withUnderline(false)
+            .withStrikethrough(false)
+            .withObfuscated(true)
+            .withClickEvent(null)
+            .withHoverEvent(null)
+            .withInsertion(null)
+            .withFont(null);
 
     public static class PaymentButtonWidget extends ButtonWidget {
 
@@ -40,10 +56,15 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
     }
 
+    @Nullable
+    private BookTextHolder obfuscatedTitle;
+    @Nullable
+    private BookTextHolder obfuscatedText;
+
     // this once was a single property. But because the world sometimes got backdated we have to go this
-    // a tad more complicated approach, comparing the current tick with the last reveled tick every time
-    long lastRevealTick; // advance revealProgress each time this does not match the previous tick
-    long revealProgress; // -1: not revealed, 0: fully revealed; 1+: currently revealing (+1 every tick)
+    // a tad more complicated approach, comparing the current time with the last reveled time every tick
+    long lastRevealTime = 0; // advance revealProgress each time this does not match the previous tick
+    int revealProgress; // -1: not revealed, 0: fully revealed; 1+: currently revealing (+1 every tick)
 
     public BookHintPageRenderer(BookHintPage page) {
         super(page);
@@ -53,54 +74,126 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     public void onBeginDisplayPage(BookContentScreen parentScreen, int left, int top) {
         super.onBeginDisplayPage(parentScreen, left, top);
 
+        obfuscatedTitle = null;
+        obfuscatedText = null;
+
         boolean isDone = page.isUnlocked();
         if (!isDone) {
             revealProgress = -1;
-//            displayedText = calculateTextToRender(page.getText());
 
             PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(
-                    BookContentScreen.PAGE_WIDTH / 2 - 50, BookContentScreen.PAGE_HEIGHT - 35,
-                    100, 20, Text.empty(), this::paymentButtonClicked, this);
+                    2, BookContentScreen.PAGE_HEIGHT - 3,
+                    BookContentScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT,
+                    Text.empty(), this::paymentButtonClicked, this);
             addButton(paymentButtonWidget);
         } else {
-//            displayedText = page.getText();
             revealProgress = 0;
         }
-
-//        textRender = new BookTextRenderer(parent, displayedText, 0, getTextHeight());
     }
 
-    private BookTextHolder obfuscateText(BookTextHolder text) {
+    private BookTextHolder splitObfuscateText(BookTextHolder text) {
+        if (text.hasComponent()) {
+            List<MutableText> newText = new ArrayList<>(1);
+            newText.add(splitObfuscateText(text.getComponent().copy()));
+            return new RenderedBookTextHolder(text, newText);
+        } else if (text instanceof RenderedBookTextHolder renderedText) {
+            List<MutableText> newRenderedText = new ArrayList<>(renderedText.getRenderedText().size());
+            for (MutableText mutableText : renderedText.getRenderedText()) {
+                newRenderedText.add(splitObfuscateText(mutableText));
+            }
+            return new RenderedBookTextHolder(text, newRenderedText);
+        }
+        return BookTextHolder.EMPTY;
+    }
+
+    private MutableText splitObfuscateText(MutableText text) {
+        MutableText out = Text.empty();
+        text.asOrderedText().accept((index, style, codepoint) -> {
+            String charStr = String.valueOf((char) codepoint);
+            out.append(Text.empty()
+                    .append(Text.literal(charStr).setStyle(OBFUSCATED_STYLE))
+                    .setStyle(style));
+            return true;
+        });
+        return out;
+    }
+
+    private MutableText floodStyle(Text text, Style style) {
+        MutableText out = MutableText.of(text.getContent()).setStyle(style);
+        for (Text sibling : text.getSiblings()) {
+            out.append(floodStyle(sibling, style));
+        }
+        return out;
+    }
+
+    private BookTextHolder obfuscateText(BookTextHolder text, @Nullable BookTextHolder splitText, int start) {
         if (mc.world == null) return BookTextHolder.EMPTY;
 
         if (revealProgress == 0) {
             return text;
-        } else if (revealProgress < 0) {
+        } else if (revealProgress == -1) {
+            if (splitText != null) return splitText;
             if (text.hasComponent()) {
-                return new BookTextHolder(text.getComponent().copy().fillStyle(Style.EMPTY.withObfuscated(true)));
+                return new BookTextHolder(floodStyle(text.getComponent(), OBFUSCATED_STYLE));
             } else if (text instanceof RenderedBookTextHolder renderedText) {
-                renderedText.getRenderedText().forEach(mutableText -> mutableText.fillStyle(Style.EMPTY.withObfuscated(true)));
-                return text;
+
+                List<MutableText> mutableTexts = renderedText.getRenderedText().stream()
+                        .map(mutableText -> floodStyle(mutableText, OBFUSCATED_STYLE))
+                        .toList();
+                return new RenderedBookTextHolder(renderedText, mutableTexts);
             }
         }
 
-        // Show a new letter each tick
-//        Text calculatedText = Text.literal(text.getString().substring(0, (int) revealProgress) + "$(obf)" + text.getString().substring((int) revealProgress));
-
-        long currentTime = mc.world.getTime();
-        if (currentTime != lastRevealTick) {
-            lastRevealTick = currentTime;
-
-            revealProgress++;
-//            revealProgress = Math.min(text.getString().length(), revealProgress);
-//            if (text.getString().length() < revealProgress) {
-//                revealProgress = 0;
-//                return text;
-//            }
+        if (revealProgress == 1 || revealProgress + 1 == start) {
+            splitText = splitObfuscateText(text);
         }
 
-//        return calculatedText;
-        return text;
+        if (revealProgress < start) return splitText;
+
+        if (splitText instanceof RenderedBookTextHolder renderedText) {
+            int c = 0;
+            List<MutableText> mutableTexts = renderedText.getRenderedText();
+            for (int i = 0; i < mutableTexts.size(); i++) {
+                MutableText mutableText = mutableTexts.get(i);
+
+                if (c + mutableText.getSiblings().size() > revealProgress - start) {
+                    MutableText newMutableText = Text.empty();
+                    for (int s = 0; s < mutableText.getSiblings().size(); s++) {
+                        Text sibling = mutableText.getSiblings().get(s);
+                        newMutableText.append(c + s == revealProgress - start && sibling.getSiblings().size() == 1
+                                ? sibling.getSiblings().get(0).copy().setStyle(sibling.getStyle())
+                                : sibling);
+                    }
+                    mutableTexts.set(i, newMutableText);
+                    break;
+                }
+
+                c += mutableText.getSiblings().size();
+            }
+        }
+
+        return splitText;
+    }
+
+    private boolean isDoneRevealing(BookTextHolder obfText) {
+        if (obfText instanceof RenderedBookTextHolder renderedText) {
+            var mutableTexts = renderedText.getRenderedText();
+            var lastText = mutableTexts.get(mutableTexts.size() - 1);
+            var siblings = lastText.getSiblings();
+            var lastSibling = siblings.get(siblings.size() - 1);
+            return lastSibling.getSiblings().size() == 0;
+        }
+        return true;
+    }
+
+    private int getSplitLength(BookTextHolder obfText) {
+        int length = 0;
+        if (obfText instanceof RenderedBookTextHolder renderedText) {
+            for (MutableText mutableText : renderedText.getRenderedText()) {
+                length += mutableText.getSiblings().size();
+            }
+        }
+        return length;
     }
 
     protected void paymentButtonClicked(ButtonWidget button) {
@@ -114,7 +207,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
             SpectrumC2SPacketSender.sendGuidebookHintBoughtPacket(page.getCompletionAdvancement(), page.getCost());
             revealProgress = 1;
-            lastRevealTick = mc.world.getTime();
+            lastRevealTime = mc.world.getTime();
             mc.player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
     }
@@ -129,15 +222,57 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
+        if (mc.world == null) return;
+
+        int textStart = 1;
         if (page.hasTitle()) {
-            renderTitle(drawContext, obfuscateText(page.getTitle()), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
+            obfuscatedTitle = obfuscateText(page.getTitle(), obfuscatedTitle, textStart);
+            renderTitle(drawContext, obfuscatedTitle, page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
+            textStart += getSplitLength(obfuscatedTitle);
         }
 
-        renderBookTextHolder(drawContext, obfuscateText(page.getText()), 0, getTextY(), BookContentScreen.PAGE_WIDTH);
+        obfuscatedText = obfuscateText(page.getText(), obfuscatedText, textStart);
+        renderBookTextHolder(drawContext, obfuscatedText, 0, getTextY(), BookContentScreen.PAGE_WIDTH);
+
+        var style = this.getClickedComponentStyleAt(mouseX, mouseY);
+        if (style != null)
+            this.parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
 
         if (revealProgress == -1) {
-            parentScreen.renderIngredient(drawContext, BookContentScreen.PAGE_WIDTH / 2 + 23, BookContentScreen.PAGE_HEIGHT - 34, mouseX, mouseY, page.getCost());
+            parentScreen.renderIngredient(drawContext, BookContentScreen.PAGE_WIDTH / 2 + 23, BookContentScreen.PAGE_HEIGHT - 3, mouseX, mouseY, page.getCost());
         }
+
+        if (revealProgress > 0) {
+            long currentTime = System.currentTimeMillis() / 20;
+
+            if (isDoneRevealing(obfuscatedTitle) && isDoneRevealing(obfuscatedText)) {
+                revealProgress = 0;
+                obfuscatedText = null;
+                obfuscatedTitle = null;
+            } else if (currentTime != lastRevealTime) {
+                lastRevealTime = currentTime;
+                revealProgress++;
+            }
+        }
+    }
+
+    @Nullable
+    @Override
+    public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+        if (pMouseX > 0 && pMouseY > 0) {
+            if (this.page.hasTitle()) {
+                var titleStyle = this.getClickedComponentStyleAtForTitle(obfuscatedTitle, BookContentScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
+                if (titleStyle != null) {
+                    return titleStyle;
+                }
+            }
+
+            var textStyle = this.getClickedComponentStyleAtForTextHolder(obfuscatedText, 0, this.getTextY(), BookContentScreen.PAGE_WIDTH, pMouseX, pMouseY);
+            if (textStyle != null) {
+                return textStyle;
+            }
+        }
+        return super.getClickedComponentStyleAt(pMouseX, pMouseY);
     }
 
 }

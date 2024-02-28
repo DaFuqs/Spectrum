@@ -34,7 +34,7 @@ public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {
 
         ButtonWidget button = ButtonWidget.builder(buttonText.getComponent(), this::confirmationButtonClicked)
                 .size(BookContentScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT)
-                .position(2, 125)
+                .position(2, BookContentScreen.PAGE_HEIGHT - 3)
                 .build();
 
         button.active = !completed;

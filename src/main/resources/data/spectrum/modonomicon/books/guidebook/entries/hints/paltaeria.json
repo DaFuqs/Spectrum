@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.paltaeria.page0.title",
       "completion_advancement": "spectrum:hidden/collect_paltaeria_gem",
-      "cost": "spectrum:moonstone_shard#8",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.paltaeria.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.paltaeria.page1.title",
-      "cost": "spectrum:moonstone_shard#32",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 32
+      },
       "text": "book.spectrum.guidebook.hints.paltaeria.page1.text"
     }
   ]

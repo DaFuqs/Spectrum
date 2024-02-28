@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.storm_stones.page0.title",
       "completion_advancement": "spectrum:midgame/collect_storm_stone",
-      "cost": "spectrum:neolith#8",
+      "cost": {
+        "item": "spectrum:neolith",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.storm_stones.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.storm_stones.page1.title",
-      "cost": "spectrum:neolith#24",
+      "cost": {
+        "item": "spectrum:neolith",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.storm_stones.page1.text"
     }
   ]

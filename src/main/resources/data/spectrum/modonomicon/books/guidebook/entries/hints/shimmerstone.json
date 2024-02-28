@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.shimmerstone.page0.title",
       "completion_advancement": "spectrum:collect_shimmerstone",
-      "cost": "minecraft:copper_ingot#8",
+      "cost": {
+        "item": "minecraft:copper_ingot",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.shimmerstone.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.shimmerstone.page1.title",
-      "cost": "minecraft:copper_ingot#24",
+      "cost": {
+        "item": "minecraft:copper_ingot",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.shimmerstone.page1.text"
     }
   ]

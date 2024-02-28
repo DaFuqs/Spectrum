@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.quitoxic_reeds.page0.title",
       "completion_advancement": "spectrum:collect_quitoxic_reeds",
-      "cost": "minecraft:clay_ball#16",
+      "cost": {
+        "item": "minecraft:clay_ball",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.title",
-      "cost": "minecraft:clay_ball#48",
+      "cost": {
+        "item": "minecraft:clay_ball",
+        "count": 48
+      },
       "text": "book.spectrum.guidebook.hints.quitoxic_reeds.page1.text"
     }
   ]

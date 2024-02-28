@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stratine.page0.title",
       "completion_advancement": "spectrum:hidden/collect_stratine_gem",
-      "cost": "minecraft:quartz#16",
+      "cost": {
+        "item": "minecraft:quartz",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.stratine.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stratine.page1.title",
-      "cost": "minecraft:quartz#48",
+      "cost": {
+        "item": "minecraft:quartz",
+        "count": 48
+      },
       "text": "book.spectrum.guidebook.hints.stratine.page1.text"
     }
   ]

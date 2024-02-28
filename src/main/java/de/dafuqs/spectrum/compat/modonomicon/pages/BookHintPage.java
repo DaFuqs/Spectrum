@@ -11,6 +11,8 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
+import java.util.Arrays;
+
 public class BookHintPage extends BookTextPage {
 
     private final Ingredient cost;
@@ -26,7 +28,13 @@ public class BookHintPage extends BookTextPage {
         var showTitleSeparator = JsonHelper.getBoolean(json, "show_title_separator", true);
         var text = BookGsonHelper.getAsBookTextHolder(json, "text", BookTextHolder.EMPTY);
         var anchor = JsonHelper.getString(json, "anchor", "");
-        var cost = json.has("cost") ? Ingredient.fromJson(JsonHelper.getElement(json, "cost")) : Ingredient.EMPTY;
+        var cost = Ingredient.EMPTY;
+        if (json.has("cost")) {
+            var ingredient = JsonHelper.getObject(json, "cost");
+            var count = JsonHelper.getInt(ingredient, "count", 1);
+            cost = Ingredient.fromJson(ingredient);
+            Arrays.stream(cost.getMatchingStacks()).forEach(itemStack -> itemStack.setCount(count));
+        }
         return new BookHintPage(title, text, useMarkdownInTitle, showTitleSeparator, anchor, cost);
     }
 

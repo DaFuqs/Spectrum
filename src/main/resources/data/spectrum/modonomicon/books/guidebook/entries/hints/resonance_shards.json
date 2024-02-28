@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.resonance_shards.page0.title",
       "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
-      "cost": "spectrum:hummingstone_glass#16",
+      "cost": {
+        "item": "spectrum:hummingstone_glass",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.resonance_shards.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.resonance_shards.page1.title",
-      "cost": "spectrum:hummingstone_glass#48",
+      "cost": {
+        "item": "spectrum:hummingstone_glass",
+        "count": 48
+      },
       "text": "book.spectrum.guidebook.hints.resonance_shards.page1.text"
     }
   ]

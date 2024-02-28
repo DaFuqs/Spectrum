@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.fading.page0.title",
       "completion_advancement": "spectrum:collect_vegetal",
-      "cost": "spectrum:shimmerstone_gem#16",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.fading.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.fading.page1.title",
-      "cost": "spectrum:shimmerstone_gem#48",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 48
+      },
       "text": "book.spectrum.guidebook.hints.fading.page1.text"
     }
   ]

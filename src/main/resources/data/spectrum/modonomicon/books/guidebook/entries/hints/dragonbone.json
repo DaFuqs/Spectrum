@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.dragonbone.page0.title",
       "completion_advancement": "spectrum:lategame/break_cracked_dragonbone",
-      "cost": "spectrum:doombloom_seed#4",
+      "cost": {
+        "item": "spectrum:doombloom_seed",
+        "count": 4
+      },
       "text": "book.spectrum.guidebook.hints.dragonbone.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.dragonbone.page1.title",
-      "cost": "spectrum:doombloom_seed#12",
+      "cost": {
+        "item": "spectrum:doombloom_seed",
+        "count": 12
+      },
       "text": "book.spectrum.guidebook.hints.dragonbone.page1.text"
     }
   ]

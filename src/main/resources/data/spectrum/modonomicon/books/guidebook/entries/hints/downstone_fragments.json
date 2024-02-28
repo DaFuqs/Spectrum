@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.downstone_fragments.page0.title",
       "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
-      "cost": "spectrum:moonstone_shard#8",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.downstone_fragments.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.downstone_fragments.page1.title",
-      "cost": "spectrum:moonstone_shard#24",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.downstone_fragments.page1.text"
     }
   ]

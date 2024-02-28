@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.malachite.page0.title",
       "completion_advancement": "spectrum:lategame/collect_malachite",
-      "cost": "spectrum:bismuth_crystal#8",
+      "cost": {
+        "item": "spectrum:bismuth_crystal",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.malachite.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.malachite.page1.title",
-      "cost": "spectrum:bismuth_crystal#24",
+      "cost": {
+        "item": "spectrum:bismuth_crystal",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.malachite.page1.text"
     }
   ]

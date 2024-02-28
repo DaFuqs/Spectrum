@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stargazing.page0.title",
       "completion_advancement": "spectrum:collect_star_fragment",
-      "cost": "spectrum:shimmerstone_gem#8",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.stargazing.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stargazing.page1.title",
-      "cost": "spectrum:shimmerstone_gem#24",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.stargazing.page1.text"
     }
   ]

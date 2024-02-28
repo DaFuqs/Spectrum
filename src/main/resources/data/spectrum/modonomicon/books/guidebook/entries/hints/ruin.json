@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.ruin.page0.title",
       "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
-      "cost": "spectrum:brown_pigment#8",
+      "cost": {
+        "item": "spectrum:brown_pigment",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.ruin.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.ruin.page1.title",
-      "cost": "spectrum:brown_pigment#24",
+      "cost": {
+        "item": "spectrum:brown_pigment",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.ruin.page1.text"
     }
   ]

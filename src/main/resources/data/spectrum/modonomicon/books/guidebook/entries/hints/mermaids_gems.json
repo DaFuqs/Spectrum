@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.mermaids_gems.page0.title",
       "completion_advancement": "spectrum:collect_mermaids_gem",
-      "cost": "spectrum:onyx_shard#4",
+      "cost": {
+        "item": "spectrum:onyx_shard",
+        "count": 4
+      },
       "text": "book.spectrum.guidebook.hints.mermaids_gems.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.mermaids_gems.page1.title",
-      "cost": "spectrum:onyx_shard#12",
+      "cost": {
+        "item": "spectrum:onyx_shard",
+        "count": 12
+      },
       "text": "book.spectrum.guidebook.hints.mermaids_gems.page1.text"
     }
   ]

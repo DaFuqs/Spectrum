@@ -145,6 +145,12 @@ Function Set-TranslatedGuidebookEntry {
         ElseIf ($Page.type -eq 'spectrum:link') {
             Set-Translation $Lang $Output $Page $PagePrefix 'link_text'
         }
+        ElseIf ($Page.type -eq 'spectrum:hint') {
+            If ($Page.cost.GetType().Name -eq 'String') {
+                $Parts = $Page.cost.Split('#')
+                $Page.cost = "{`"item`":`"$($Parts[0])`",`"count`":$($Parts[1])}" | ConvertFrom-Json
+            }
+        }
 
         Set-Translation $Lang $Output $Page $PagePrefix 'text'
     }

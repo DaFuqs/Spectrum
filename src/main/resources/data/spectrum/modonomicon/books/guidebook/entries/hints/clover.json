@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.clover.page0.title",
       "completion_advancement": "spectrum:collect_four_leaf_clover",
-      "cost": "spectrum:vegetal#16",
+      "cost": {
+        "item": "spectrum:vegetal",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.clover.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.clover.page1.title",
-      "cost": "spectrum:vegetal#48",
+      "cost": {
+        "item": "spectrum:vegetal",
+        "count": 48
+      },
       "text": "book.spectrum.guidebook.hints.clover.page1.text"
     }
   ]

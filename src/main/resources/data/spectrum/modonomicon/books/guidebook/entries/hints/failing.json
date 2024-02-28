@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.failing.page0.title",
       "completion_advancement": "spectrum:midgame/collect_neolith",
-      "cost": "spectrum:stratine_fragments#8",
+      "cost": {
+        "item": "spectrum:stratine_fragments",
+        "count": 8
+      },
       "text": "book.spectrum.guidebook.hints.failing.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.failing.page1.title",
-      "cost": "spectrum:stratine_fragments#24",
+      "cost": {
+        "item": "spectrum:stratine_fragments",
+        "count": 24
+      },
       "text": "book.spectrum.guidebook.hints.failing.page1.text"
     }
   ]

@@ -18,7 +18,10 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.citrine.page0.title",
       "completion_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
-      "cost": "spectrum:topaz_shard#16",
+      "cost": {
+        "item": "spectrum:topaz_shard",
+        "count": 16
+      },
       "text": "book.spectrum.guidebook.hints.citrine.page0.text"
     }
   ]

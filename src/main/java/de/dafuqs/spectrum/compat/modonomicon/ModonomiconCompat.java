@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.compat.modonomicon;
 
-import com.klikli_dev.modonomicon.book.page.BookEmptyPage;
 import com.klikli_dev.modonomicon.client.render.page.*;
 import com.klikli_dev.modonomicon.data.LoaderRegistry;
 import de.dafuqs.spectrum.SpectrumCommon;

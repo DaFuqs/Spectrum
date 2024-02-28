@@ -18,13 +18,19 @@
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.radiating_ender.page0.title",
       "completion_advancement": "spectrum:get_radiating_ender",
-      "cost": "minecraft:ender_pearl#4",
+      "cost": {
+        "item": "minecraft:ender_pearl",
+        "count": 4
+      },
       "text": "book.spectrum.guidebook.hints.radiating_ender.page0.text"
     },
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.radiating_ender.page1.title",
-      "cost": "minecraft:ender_pearl#12",
+      "cost": {
+        "item": "minecraft:ender_pearl",
+        "count": 12
+      },
       "text": "book.spectrum.guidebook.hints.radiating_ender.page1.text"
     }
   ]

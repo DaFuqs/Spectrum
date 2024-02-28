@@ -157,7 +157,7 @@ Function Set-TranslatedGuidebookEntry {
 "@ | ConvertFrom-Json
             }
             $HintDir = "$AdvancementPath/triggers/$CategoryName"
-            $HintPath = "$HintDir/$EntryName.json"
+            $HintPath = "$HintDir/$($EntryName)_page$I.json"
             If (-not (Test-Path $HintDir -PathType Container)) {
                 New-Item $HintDir -ItemType Directory
             }
@@ -177,8 +177,10 @@ Function Set-TranslatedGuidebookEntry {
   }
 }
 "@
-                $Page.completion_advancement = "spectrum:triggers/$CategoryName/$EntryName"
-                $HintAdvancement | Out-File $HintPath
+                $Page.completion_advancement = "$($Page.completion_advancement)_page$I"
+                Rename-Item "$HintDir/$($EntryName).json" "$($EntryName)_page$I.json"
+#                $Page.completion_advancement = "spectrum:triggers/$CategoryName/$EntryName"
+#                $HintAdvancement | Out-File $HintPath
             }
         }
 

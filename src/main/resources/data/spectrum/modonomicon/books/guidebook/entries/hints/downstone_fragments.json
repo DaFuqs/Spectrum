@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.downstone_fragments.page0.title",
-      "completion_advancement": "spectrum:triggers/hints/downstone_fragments",
+      "completion_advancement": "spectrum:triggers/hints/downstone_fragments_page0",
       "cost": {
         "item": "spectrum:moonstone_shard",
         "count": 8

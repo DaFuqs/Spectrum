@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.failing.page0.title",
-      "completion_advancement": "spectrum:triggers/hints/failing",
+      "completion_advancement": "spectrum:triggers/hints/failing_page0",
       "cost": {
         "item": "spectrum:stratine_fragments",
         "count": 8

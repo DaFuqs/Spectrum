@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.stratine.page0.title",
-      "completion_advancement": "spectrum:triggers/hints/stratine",
+      "completion_advancement": "spectrum:triggers/hints/stratine_page0",
       "cost": {
         "item": "minecraft:quartz",
         "count": 16

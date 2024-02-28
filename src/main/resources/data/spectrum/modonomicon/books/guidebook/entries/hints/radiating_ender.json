@@ -17,7 +17,7 @@
     {
       "type": "spectrum:hint",
       "title": "book.spectrum.guidebook.hints.radiating_ender.page0.title",
-      "completion_advancement": "spectrum:triggers/hints/radiating_ender",
+      "completion_advancement": "spectrum:triggers/hints/radiating_ender_page0",
       "cost": {
         "item": "minecraft:ender_pearl",
         "count": 4

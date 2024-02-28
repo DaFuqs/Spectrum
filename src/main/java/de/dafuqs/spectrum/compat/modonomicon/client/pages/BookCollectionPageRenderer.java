@@ -18,7 +18,7 @@ public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionP
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
         if (page.hasTitle()) {
             renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
         }

@@ -128,9 +128,9 @@
   "spectrum.tooltip.able_to_summon_warden": "Calls out to the Warden",
   "spectrum.tooltip.biomemakeover_cursed": "Got cursed by a wicked altar",
 
-  "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
-  "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
-  "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",
+  "spectrum.gui.guidebook.reveal_hint_button.text": "Reveal Hint    ",
+  "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
+  "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",
   "container.spectrum.owned_by_player": " of %s",
   "container.spectrum.rei.pedestal_crafting.title": "Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",

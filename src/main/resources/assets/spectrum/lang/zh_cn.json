@@ -61,9 +61,9 @@
     "item.spectrum.tipped_arrow": "§2染§3§7色之箭",
     "item.spectrum.potion.tooltip.unidentifiable": "§0漆黑一片, 难以辨认",
     "spectrum.tooltip.coming_soon": "§4在生存中暂不可用",
-    "spectrum.gui.lexicon.reveal_hint_button.text": "显示提示    ",
-    "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "支付一点费用来解锁提示",
-    "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "背包中没有可用的费用",
+    "spectrum.gui.guidebook.reveal_hint_button.text": "显示提示    ",
+    "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "支付一点费用来解锁提示",
+    "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "背包中没有可用的费用",
     "container.spectrum.owned_by_player": " of %s",
     "container.spectrum.rei.pedestal_crafting.title": "七彩基座合成",
     "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "花费 %f 秒 - %f 经验",
@@ -1998,4 +1998,3 @@
     "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",
     "advancements.spectrum.place_bottle_of_ruin.description": "There is no going back... (for now?)"
   }
-  

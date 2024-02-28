@@ -74,7 +74,7 @@ public class PageConfirmationButton extends PageWithText {
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
 		super.render(drawContext, mouseX, mouseY, pticks);
 		
-		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.guidebook.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
 		GuiBook.drawSeparator(drawContext, book, 0, 12);
 		GuiBook.drawSeparator(drawContext, book, 0, GuiBook.PAGE_HEIGHT - 44);
 	}

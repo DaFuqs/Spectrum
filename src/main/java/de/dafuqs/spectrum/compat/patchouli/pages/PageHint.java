@@ -30,7 +30,7 @@ public class PageHint extends BookPage {
 		public PaymentButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress, PageHint pageHint) {
 			super(x, y, width, height, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER);
 			this.pageHint = pageHint;
-			setMessage(Text.translatable("spectrum.gui.lexicon.reveal_hint_button.text"));
+			setMessage(Text.translatable("spectrum.gui.guidebook.reveal_hint_button.text"));
 		}
 		
 		@Override
@@ -155,7 +155,7 @@ public class PageHint extends BookPage {
 			parent.renderIngredient(drawContext, GuiBook.PAGE_WIDTH / 2 + 23, GuiBook.PAGE_HEIGHT - 34, mouseX, mouseY, ingredient);
 		}
 		
-		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.lexicon.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+		parent.drawCenteredStringNoShadow(drawContext, title == null || title.isEmpty() ? I18n.translate("patchouli.gui.guidebook.objective") : i18n(title), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
 		GuiBook.drawSeparator(drawContext, book, 0, 12);
 	}
 	

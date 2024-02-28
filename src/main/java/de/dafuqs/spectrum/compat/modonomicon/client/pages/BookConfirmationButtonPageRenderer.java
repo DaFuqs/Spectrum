@@ -9,7 +9,6 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookConfirmationButtonPage;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 
 public class BookConfirmationButtonPageRenderer extends BookTextPageRenderer {

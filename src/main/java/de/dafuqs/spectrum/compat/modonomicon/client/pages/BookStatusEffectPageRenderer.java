@@ -25,11 +25,11 @@ public class BookStatusEffectPageRenderer extends BookTextPageRenderer {
     }
 
     @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float pticks) {
+    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
         RenderSystem.enableBlend();
         drawContext.drawSprite(49, 24, 0, 18, 18, statusEffectSprite);
 
-        super.render(drawContext, mouseX, mouseY, pticks);
+        super.render(drawContext, mouseX, mouseY, ticks);
     }
 
 }

@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:collect_quitoxic_reeds"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

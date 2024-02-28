@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:generate_preservation_ruins_loot"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:get_radiating_ender"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

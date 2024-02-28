@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:enter_wireless_redstone_preservation_ruin"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

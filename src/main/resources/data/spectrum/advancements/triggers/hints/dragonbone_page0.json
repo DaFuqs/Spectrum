@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

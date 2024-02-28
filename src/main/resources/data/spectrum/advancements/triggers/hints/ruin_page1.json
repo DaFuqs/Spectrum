@@ -9,5 +9,11 @@
         "advancement_identifier": "spectrum:midgame/break_decayed_bedrock"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "hint_purchased",
+      "advancement_gotten"
+    ]
+  ]
 }

@@ -21,14 +21,23 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 
     private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
 
-    private final List<BookTextHolder> chanceTexts1;
-    private final List<BookTextHolder> chanceTexts2;
+    private List<BookTextHolder> chanceTexts1 = null;
+    private List<BookTextHolder> chanceTexts2 = null;
 
     public BookCinderhearthSmeltingPageRenderer(BookGatedRecipePage<CinderhearthRecipe> page) {
         super(page);
+    }
 
-        chanceTexts1 = createChanceTexts(page.getRecipe1());
-        chanceTexts2 = createChanceTexts(page.getRecipe2());
+    @Override
+    public void onBeginDisplayPage(BookContentScreen parentScreen, int left, int top) {
+        super.onBeginDisplayPage(parentScreen, left, top);
+
+        if (chanceTexts1 == null) {
+            chanceTexts1 = createChanceTexts(page.getRecipe1());
+        }
+        if (chanceTexts2 == null) {
+            chanceTexts2 = createChanceTexts(page.getRecipe2());
+        }
     }
 
     private List<BookTextHolder> createChanceTexts(CinderhearthRecipe recipe) {

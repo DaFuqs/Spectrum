@@ -85,7 +85,7 @@ Function Set-TranslatedGuidebookEntry {
         [String] $CategoryName,
         [String] $EntryName,
         [Object] $Lang,
-        [int] $Index = 0
+        [int] $Index = -1
     )
 
     Write-Output "Processing $CategoryName/$EntryName..."
@@ -104,8 +104,10 @@ Function Set-TranslatedGuidebookEntry {
     Set-Translation $Lang $Output $Content $Prefix 'name'
     Set-Translation $Lang $Output $Content $Prefix 'description'
 
-    $Content.x = ($index % 6) * 2
-    $Content.y = [int][Math]::Floor($index / 6) * 2
+    If ($Index -ge 0) {
+        $Content.x = ($index % 6) * 2
+        $Content.y = [int][Math]::Floor($index / 6) * 2
+    }
 
     For ($I = 0; $I -lt $Content.pages.length; $I++) {
         $Page = $Content.pages[$I]
@@ -156,7 +158,8 @@ Function Set-TranslatedGuidebookEntry {
 Function Set-TranslatedGuidebookCategory {
     Param (
         [String] $CategoryName,
-        [Object] $Lang
+        [Object] $Lang,
+        [Boolean] $SetLayout = $false
     )
 
     Write-Output "`nBeginning $CategoryName..."
@@ -172,11 +175,17 @@ Function Set-TranslatedGuidebookCategory {
     For ($I = $Files.length - 1; $I -ge 0; $I--) {
         $File = $Files[$I]
         $EntryName = $File.Name -replace '(.*)\.json', '$1'
-        Set-TranslatedGuidebookEntry $CategoryName $EntryName $Lang $I
+        If ($SetLayout) { $Index = $I }
+        Else { $Index = -1 }
+        Set-TranslatedGuidebookEntry $CategoryName $EntryName $Lang $Index
     }
 }
 
 Function Set-TranslatedGuidebook {
+    Param (
+        [Boolean] $SetLayout = $false
+    )
+
     Write-Output "Beginning Guidebook..."
 
     $Lang = Get-Content -Raw $LangPath | ConvertFrom-Json
@@ -186,7 +195,7 @@ Function Set-TranslatedGuidebook {
     For ($I = $Dirs.length - 1; $I -ge 0; $I--) {
         $Dir = $Dirs[$I]
         $CategoryName = $Dir.Name
-        Set-TranslatedGuidebookCategory $CategoryName $Lang
+        Set-TranslatedGuidebookCategory $CategoryName $Lang $SetLayout
     }
 
     Write-Output "`nProcessing Complete!`n"

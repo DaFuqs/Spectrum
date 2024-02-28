@@ -80,18 +80,17 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         registerGatedRecipePage(CRYSTALLARIEUM_GROWING_PAGE, SpectrumRecipeTypes.CRYSTALLARIEUM);
         registerGatedRecipePage(CINDERHEARTH_SMELTING_PAGE, SpectrumRecipeTypes.CINDERHEARTH);
         registerGatedRecipePage(TITRATION_BARREL_FERMENTING_PAGE, SpectrumRecipeTypes.TITRATION_BARREL);
+
         LoaderRegistry.registerPageLoader(STATUS_EFFECT_PAGE, BookStatusEffectPage::fromJson, BookStatusEffectPage::fromNetwork);
 //        LoaderRegistry.registerPageLoader(HINT_PAGE, BookHintPage::fromJson, BookHintPage::fromNetwork);
         LoaderRegistry.registerPageLoader(CHECKLIST_PAGE, BookChecklistPage::fromJson, BookChecklistPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(CONFIRMATION_BUTTON_PAGE, BookConfirmationButtonPage::fromJson, BookConfirmationButtonPage::fromNetwork);
+        LoaderRegistry.registerPageLoader(CONFIRMATION_BUTTON_PAGE, BookConfirmationButtonPage::fromJson, BookConfirmationButtonPage::fromNetwork);
         LoaderRegistry.registerPageLoader(SNIPPET_PAGE, BookSnippetPage::fromJson, BookSnippetPage::fromNetwork);
         LoaderRegistry.registerPageLoader(LINK_PAGE, BookLinkPage::fromJson, BookLinkPage::fromNetwork);
         LoaderRegistry.registerPageLoader(NBT_SPOTLIGHT_PAGE, BookNbtSpotlightPage::fromJson, BookNbtSpotlightPage::fromNetwork);
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
 
         LoaderRegistry.registerPageLoader(HINT_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-        LoaderRegistry.registerPageLoader(CONFIRMATION_BUTTON_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
-//        LoaderRegistry.registerPageLoader(SNIPPET_PAGE, BookEmptyPage::fromJson, BookEmptyPage::fromNetwork);
     }
 
     private void registerGatedRecipePage(Identifier id, RecipeType<? extends GatedRecipe> recipeType) {
@@ -114,10 +113,11 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         PageRendererRegistry.registerPageRenderer(CRYSTALLARIEUM_GROWING_PAGE, p -> new BookCrystallarieumGrowingPageRenderer((BookGatedRecipePage<CrystallarieumRecipe>) p));
         PageRendererRegistry.registerPageRenderer(CINDERHEARTH_SMELTING_PAGE, p -> new BookCinderhearthSmeltingPageRenderer((BookGatedRecipePage<CinderhearthRecipe>) p));
         PageRendererRegistry.registerPageRenderer(TITRATION_BARREL_FERMENTING_PAGE, p -> new BookTitrationBarrelFermentingPageRenderer((BookGatedRecipePage<TitrationBarrelRecipe>) p));
+        
         PageRendererRegistry.registerPageRenderer(STATUS_EFFECT_PAGE, p -> new BookStatusEffectPageRenderer((BookStatusEffectPage) p));
 //        PageRendererRegistry.registerPageRenderer(HINT_PAGE, p -> new BookHintPageRenderer((BookHintPage) p));
         PageRendererRegistry.registerPageRenderer(CHECKLIST_PAGE, p -> new BookChecklistPageRenderer((BookChecklistPage) p));
-//        PageRendererRegistry.registerPageRenderer(CONFIRMATION_BUTTON_PAGE, p -> new BookConfirmationButtonPageRenderer((BookConfirmationButtonPage) p));
+        PageRendererRegistry.registerPageRenderer(CONFIRMATION_BUTTON_PAGE, p -> new BookConfirmationButtonPageRenderer((BookConfirmationButtonPage) p));
         PageRendererRegistry.registerPageRenderer(SNIPPET_PAGE, p -> new BookSnippetPageRenderer((BookSnippetPage) p));
         PageRendererRegistry.registerPageRenderer(LINK_PAGE, p -> new BookLinkPageRenderer((BookLinkPage) p));
         PageRendererRegistry.registerPageRenderer(NBT_SPOTLIGHT_PAGE, p -> new BookSpotlightPageRenderer((BookNbtSpotlightPage) p));

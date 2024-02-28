@@ -3774,6 +3774,8 @@
   "book.spectrum.guidebook.cuisine.infused_beverages.page4.title1": "Myceylon Apple Juice",
   "book.spectrum.guidebook.cuisine.infused_beverages.page4.text": "Sweet with a Cinnamon finish",
   "book.spectrum.guidebook.cuisine.infused_beverages.page5.title": "Safety Question",
+  "book.spectrum.guidebook.cuisine.infused_beverages.page5.button_text": "I confirm",
+  "book.spectrum.guidebook.cuisine.infused_beverages.page5.button_text_confirmed": "Confirmed ✔",
   "book.spectrum.guidebook.cuisine.infused_beverages.page5.text": "The [#](bb00bb)Titration Barrel[#]() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.\\\nIf not don't worry - you won't miss anything important.",
   "book.spectrum.guidebook.cuisine.infused_beverages.page6.title1": "Beers",
   "book.spectrum.guidebook.cuisine.infused_beverages.page6.text": "Additionally to Haste it can grant a bit of Saturation, depending on the time it fermented.",

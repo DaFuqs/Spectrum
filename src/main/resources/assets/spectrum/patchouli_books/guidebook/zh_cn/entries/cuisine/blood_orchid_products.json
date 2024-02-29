@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Blood Orchid Products",
       "item": "spectrum:bloodboil_syrup",
-      "text": "血兰花瓣摘自$(l:resources/blood_orchid)血兰$(/l)。含有导致精神失常$(thing)癫狂$()的物质.$(br)能给你伤害攻击速度移动速度击退抗性的加成，你屠的越多就越上头，但十秒内没屠就会降低效果"
+      "text": "血兰花瓣摘自$(l:resources/blood_orchids)血兰$(/l)。含有导致精神失常$(thing)癫狂$()的物质.$(br)能给你伤害攻击速度移动速度击退抗性的加成，你屠的越多就越上头，但十秒内没屠就会降低效果"
     },
     {
       "type": "patchouli:text",

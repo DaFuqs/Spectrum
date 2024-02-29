@@ -84,6 +84,7 @@
     },
     {
       "type": "patchouli:crafting",
+      "anchor": "chiseled_and_notched",
       "title": "Chiseled & Notched",
       "recipe": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
       "recipe2": "spectrum:crafting_table/calcite/notched_polished_calcite"

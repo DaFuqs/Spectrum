@@ -8,7 +8,7 @@
 		},
 		{
 			"recipe":"spectrum:spirit_instiller/spawner/spawner_creature_change",
-			"text":"使用与$(l:creating_life/memory)记忆$(/l)类似的技术，你可以改变怪物笼的生物，使其同时生成另一种类型的生物。",
+			"text":"使用与$(l:creating_life/memories)记忆$(/l)类似的技术，你可以改变怪物笼的生物，使其同时生成另一种类型的生物。",
 			"type":"spectrum:spirit_instiller_crafting",
 			"title":"改变生物"
 		},

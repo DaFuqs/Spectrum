@@ -35,7 +35,7 @@
       "title": "Moving Budding Quartz",
       "advancement": "spectrum:unlocks/enchantments/resonance_usage",
       "item": "spectrum:resonant_pickaxe",
-      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest $(item)Budding Quartz$(), while retaining their $(italic)flawless$() state."
+      "text": "Tools enchanted with $(l:enchanting/resonance)Resonance$() are able to harvest $(item)Budding Quartz$(), while retaining their $(italic)flawless$() state."
     },
     {
       "type": "spectrum:anvil_crushing",

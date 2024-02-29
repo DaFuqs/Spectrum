@@ -1,13 +1,14 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:midgame/break_decayed_bedrock",
+			"completion_advancement": "spectrum:triggers/hints/ruin_page0",
 			"cost":"spectrum:brown_pigment#8",
 			"text":"这种被称为毁灭的绝对侵略性变体能够消耗最具抵抗力的材料。即使是那些对你来说太难打破的。",
 			"type":"spectrum:hint",
 			"title":"小线索"
 		},
 		{
+			"completion_advancement": "spectrum:triggers/hints/ruin_page1",
 			"cost":"spectrum:brown_pigment#24",
 			"text":"还有什么比牢不可破的基岩本身更具抵抗力？如果出了什么问题，最好有一个后备计划。",
 			"type":"spectrum:hint",

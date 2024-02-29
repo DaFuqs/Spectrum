@@ -1,13 +1,14 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:midgame/collect_stratine",
+			"completion_advancement": "spectrum:triggers/hints/stratine_page0",
 			"cost":"minecraft:quartz#16",
 			"text":"在地下发现了一个新的矿石。",
 			"type":"spectrum:hint",
 			"title":"在哪里可以找到"
 		},
 		{
+			"completion_advancement": "spectrum:triggers/hints/stratine_page1",
 			"cost":"minecraft:quartz#48",
 			"text":"它产生于熔岩层以下的所有生物群落的底层。",
 			"type":"spectrum:hint",

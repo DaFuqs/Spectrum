@@ -1,13 +1,14 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:midgame/collect_neolith",
+			"completion_advancement": "spectrum:triggers/hints/failing_page0",
 			"cost":"spectrum:stratine_fragments#8",
 			"text":"就像褪色一样，他们更喜欢放在旁边的特定方块。不过，这次要强大得多。”确切地说，我讨厌挖掘这种“强大”。",
 			"type":"spectrum:hint",
 			"title":"小线索"
 		},
 		{
+			"completion_advancement": "spectrum:triggers/hints/failing_page1",
 			"cost":"spectrum:stratine_fragments#24",
 			"text":"最喜欢的食物是黑曜石。不过，要提防他们的贪得无厌。如果有机会，他们会吃很多。。。",
 			"type":"spectrum:hint",

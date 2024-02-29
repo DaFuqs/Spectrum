@@ -1,7 +1,7 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:hidden/collect_shards/collect_citrine_shard",
+			"completion_advancement": "spectrum:triggers/hints/citrine_page0",
 			"cost":"spectrum:topaz_shard#16",
 			"text":"在地表附近通常会发现一种类型的晶洞。你可能会发现它最常暴露在湖泊或沟壑中。",
 			"type":"spectrum:hint",

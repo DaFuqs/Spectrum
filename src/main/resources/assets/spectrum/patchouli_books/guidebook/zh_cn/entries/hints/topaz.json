@@ -1,7 +1,7 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:hidden/collect_shards/collect_topaz_shard",
+			"completion_advancement": "spectrum:triggers/hints/topaz_page0",
 			"cost":"minecraft:amethyst_shard#16",
 			"text":"这种类型的晶洞位于很高的地方，通常位于丘陵和天高的山脉顶部。",
 			"type":"spectrum:hint",

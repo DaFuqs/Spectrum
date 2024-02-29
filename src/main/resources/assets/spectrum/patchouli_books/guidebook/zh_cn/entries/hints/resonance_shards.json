@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
+      "completion_advancement": "spectrum:triggers/hints/resonance_shards_page0",
       "cost": "spectrum:hummingstone_glass#16",
       "text": "Between Liquid Crystal lakes, you frequently find crystalline structures that consist of blocks that inherit interesting properties when interacted with."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/resonance_shards_page1",
       "cost": "spectrum:hummingstone_glass#48",
       "text": "Hummingstones, which are part of Hummingstone Crystals, start to vibrate when disturbed, making other Hummingstones in their vicinity vibrate, too. The more stones are close to each other, the stronger the echo will be."
     }

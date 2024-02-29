@@ -16,6 +16,7 @@
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/clover_page1",
       "cost": "spectrum:vegetal#48",
       "text": "In Plains biomes, you will find Clover growing in small patches, most of them with three, but some with four leaves. You can immediately notice a Four-Leaved Clover in its block form already and distinguish it from a three-leaved one. Break to harvest, Bonemeal/Nature's Staff to spread."
     }

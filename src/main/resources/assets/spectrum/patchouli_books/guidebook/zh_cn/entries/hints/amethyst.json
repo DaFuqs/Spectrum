@@ -1,7 +1,7 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:hidden/collect_shards/collect_amethyst_shard",
+			"completion_advancement": "spectrum:triggers/hints/amethyst_page0",
 			"cost":"spectrum:citrine_shard#16",
 			"text":"在地下深处可以发现一种类型的晶洞。",
 			"type":"spectrum:hint",

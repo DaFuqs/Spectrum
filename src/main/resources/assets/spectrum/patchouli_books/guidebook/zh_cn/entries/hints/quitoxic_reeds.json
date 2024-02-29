@@ -1,13 +1,14 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:collect_quitoxic_reeds",
+			"completion_advancement": "spectrum:triggers/hints/quitoxic_reeds_page0",
 			"cost":"minecraft:clay_ball#16",
 			"text":"是时候在水面上探险了。参观沼泽！",
 			"type":"spectrum:hint",
 			"title":"在哪里可以找到"
 		},
 		{
+			"completion_advancement": "spectrum:triggers/hints/quitoxic_reeds_page1",
 			"cost":"minecraft:clay_ball#48",
 			"text":"在沼泽地里，人们看到了长在粘土片上的奇怪植物。它们生长得更高，周围有更多的粘土，并在这个过程中消耗这些粘土。",
 			"type":"spectrum:hint",

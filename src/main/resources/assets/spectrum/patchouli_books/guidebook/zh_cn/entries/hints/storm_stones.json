@@ -1,13 +1,14 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:midgame/collect_storm_stone",
+			"completion_advancement": "spectrum:triggers/hints/storm_stones_page0",
 			"cost":"spectrum:neolith#8",
 			"text":"雷雨是大自然的有力展示。有巨大的能量在发挥。",
 			"type":"spectrum:hint",
 			"title":"在哪里可以找到"
 		},
 		{
+			"completion_advancement": "spectrum:triggers/hints/storm_stones_page1",
 			"cost":"spectrum:neolith#24",
 			"text":"有时你可以在闪电击中的地方找到奇怪的碎片。甚至有一种方法可以将闪电聚焦在特定位置，使收集它们更加有效。",
 			"type":"spectrum:hint",

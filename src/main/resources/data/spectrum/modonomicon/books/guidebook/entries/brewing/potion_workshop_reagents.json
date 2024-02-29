@@ -270,6 +270,17 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
+        "item": "spectrum:raw_bloodstone"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/pluck_effulgent_feather"
+      },
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page27.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
         "item": "spectrum:prickly_bayleaf"
       },
       "anchor": "prickly_bayleaf",
@@ -277,7 +288,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
       },
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page27.text"
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page28.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -289,7 +300,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jadeite"
       },
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page28.text"
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page29.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -301,7 +312,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
       },
-      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page29.text"
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page30.text"
     }
   ]
 }

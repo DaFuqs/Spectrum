@@ -1,27 +1,39 @@
 {
-  "name": "Victus",
+  "name": "book.spectrum.guidebook.mod_integration.victus.name",
   "icon": "victus:draconic_heart_aspect",
   "flag": "mod:victus",
-  "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:mod_integration",
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 8,
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "You took heart... and another and another. Now you've got a whole bunch of them. Exciting, huh."
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.victus.page0.text"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Resurgence",
-      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
-      "recipe": "spectrum:mod_integration/victus/potion_workshop_brewing/resurgence",
-      "text": ""
+      "title1": "book.spectrum.guidebook.mod_integration.victus.page1.title1",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "recipe_id_1": "spectrum:mod_integration/victus/potion_workshop_brewing/resurgence"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Heartbleed",
-      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
-      "recipe": "spectrum:mod_integration/victus/potion_workshop_brewing/heartbleed",
-      "text": ""
+      "title1": "book.spectrum.guidebook.mod_integration.victus.page2.title1",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_potion_in_potion_workshop"
+      },
+      "recipe_id_1": "spectrum:mod_integration/victus/potion_workshop_brewing/heartbleed"
     }
   ]
 }

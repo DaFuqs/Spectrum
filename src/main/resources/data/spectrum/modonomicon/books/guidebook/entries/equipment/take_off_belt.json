@@ -9,8 +9,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 8,
+  "x": 0,
+  "y": 10,
   "extra_recipe_mappings": {
     "spectrum:take_off_belt": 0
   },

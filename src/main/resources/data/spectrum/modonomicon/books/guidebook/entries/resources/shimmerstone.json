@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title1": "Shimmerstone",
+      "title": "Shimmerstone",
       "item": {
         "item": "spectrum:shimmerstone_gem"
       },

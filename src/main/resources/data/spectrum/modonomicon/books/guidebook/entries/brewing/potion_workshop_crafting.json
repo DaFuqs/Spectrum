@@ -80,6 +80,11 @@
       "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.title1",
       "recipe_id_1": "spectrum:potion_workshop_crafting/experience_bottle",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/dragon_breath",
+      "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page10.text"
     }
   ]
 }

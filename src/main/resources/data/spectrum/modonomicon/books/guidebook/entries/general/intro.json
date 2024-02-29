@@ -28,8 +28,10 @@
       "text": "book.spectrum.guidebook.general.intro.page2.text"
     },
     {
-      "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.intro.page3.text"
+      "type": "spectrum:link",
+      "text": "book.spectrum.guidebook.general.intro.page3.text",
+      "link_text": "book.spectrum.guidebook.general.intro.page3.link_text",
+      "url": "https://discord.com/invite/EXU9XFXT8a"
     }
   ]
 }

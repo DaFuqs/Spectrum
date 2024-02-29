@@ -34,6 +34,18 @@
       },
       "title1": "book.spectrum.guidebook.mod_integration.biomemakeover.page2.title1",
       "recipe_id_1": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.biomemakeover.page3.title",
+      "item": {
+        "item": "biomemakeover:illunite_shard"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.biomemakeover.page3.text"
     }
   ]
 }

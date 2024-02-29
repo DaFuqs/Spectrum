@@ -2,7 +2,7 @@
   "name": "Vanilla Enchantments",
   "icon": "spectrum:multitool",
   "advancement": "spectrum:unlocks/blocks/enchanter",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

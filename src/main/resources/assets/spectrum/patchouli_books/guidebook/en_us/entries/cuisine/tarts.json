@@ -2,7 +2,7 @@
   "name": "Tarts",
   "icon": "spectrum:ashen_tart",
   "advancement": "spectrum:unlocks/food/tarts",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:jaramel_tart": 0,
     "spectrum:salted_jaramel_tart": 0,

@@ -26,5 +26,5 @@
   "advancement": "spectrum:unlocks/enchantments/tight_grip",
   "name": "快手",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

@@ -2,7 +2,7 @@
   "name": "发酵手册",
   "icon": "spectrum:brewers_handbook",
   "advancement": "spectrum:hidden/collect_cookbooks/brewers_handbook",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:brewers_handbook": 0
   },

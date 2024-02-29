@@ -2,7 +2,7 @@
   "name": "Gleaming Pin",
   "advancement": "spectrum:unlocks/trinkets/gleaming_pin",
   "icon": "spectrum:gleaming_pin",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:gleaming_pin": 0
   },

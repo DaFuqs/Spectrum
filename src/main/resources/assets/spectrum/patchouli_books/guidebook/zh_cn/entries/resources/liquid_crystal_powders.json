@@ -2,7 +2,7 @@
   "name": "温度水晶",
   "advancement": "spectrum:hidden/collect_any_crystallized_block",
   "icon": "spectrum:liquid_crystal_bucket",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:blazing_crystal": 0,
     "spectrum:incandescent_essence": 0,

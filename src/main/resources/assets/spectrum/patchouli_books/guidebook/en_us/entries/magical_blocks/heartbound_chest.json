@@ -2,7 +2,7 @@
   "name": "Heartbound Chest",
   "advancement": "spectrum:unlocks/blocks/heartbound_chest",
   "icon": "spectrum:heartbound_chest",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:heartbound_chest": 0
   },

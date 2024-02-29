@@ -2,7 +2,7 @@
   "name": "哨戒机枪",
   "icon": "spectrum:preservation_turret_head",
   "advancement": "spectrum:hidden/entity_interact/preservation_turret",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:preservation_turret_head": 0,
     "spectrum:preservation_turret_spawn_egg": 0

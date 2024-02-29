@@ -2,7 +2,7 @@
   "name": "黑蚀天坑",
   "advancement": "spectrum:hidden/visit_dd_biomes/black_langast",
   "icon": "spectrum:black_materia",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:black_sludge": 0
   },

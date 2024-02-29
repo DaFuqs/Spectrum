@@ -2,7 +2,7 @@
   "name": "Puff Circlet",
   "advancement": "spectrum:unlocks/trinkets/puff_circlet",
   "icon": "spectrum:puff_circlet",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:puff_circlet": 0
   },

@@ -2,7 +2,7 @@
   "name": "Stargazing",
   "advancement": "spectrum:milestones/unlock_shooting_stars",
   "icon": "minecraft:spyglass",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:star_fragment": 0,
     "spectrum:stardust": 0,

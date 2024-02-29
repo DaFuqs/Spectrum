@@ -2,7 +2,7 @@
   "name": "Downstone",
   "advancement": "spectrum:lategame/reached_dd_floor",
   "icon": "spectrum:downstone",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:downstone": 0,
     "spectrum:downstone_fragments": 0

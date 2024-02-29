@@ -2,7 +2,7 @@
   "name": "Totem Pendant",
   "advancement": "spectrum:unlocks/trinkets/totem_pendant",
   "icon": "spectrum:totem_pendant",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:totem_pendant": 0
   },

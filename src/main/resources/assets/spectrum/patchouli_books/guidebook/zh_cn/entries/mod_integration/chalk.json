@@ -3,7 +3,7 @@
   "icon": "chalk:chalk",
   "flag": "mod:chalk",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

@@ -1,6 +1,6 @@
 {
   "name": "A Gemstone",
-  "category": "spectrum:hints_category",
+  "category": "spectrum:hints",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:spectrum",
   "read_by_default": true,

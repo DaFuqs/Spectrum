@@ -2,7 +2,7 @@
   "name": "Seven League Boots",
   "advancement": "spectrum:unlocks/trinkets/seven_league_boots",
   "icon": "spectrum:seven_league_boots",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:seven_league_boots": 0
   },

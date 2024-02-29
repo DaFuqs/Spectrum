@@ -2,7 +2,7 @@
   "name": "Blackslag",
   "advancement": "spectrum:hidden/collect_blackslag",
   "icon": "spectrum:blackslag",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:blackslag": 0,
     "spectrum:infested_blackslag": 0,

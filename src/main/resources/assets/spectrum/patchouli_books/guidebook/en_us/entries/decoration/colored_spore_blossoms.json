@@ -2,7 +2,7 @@
   "name": "Colored Spore Blossoms",
   "advancement": "spectrum:unlocks/blocks/colored_spore_blossoms",
   "icon": "spectrum:orange_spore_blossom",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:black_spore_blossom": 0,
     "spectrum:blue_spore_blossom": 0,

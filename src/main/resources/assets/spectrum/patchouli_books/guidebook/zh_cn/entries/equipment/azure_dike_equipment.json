@@ -2,7 +2,7 @@
   "name": "蔚蓝系列装备",
   "advancement": "spectrum:unlocks/trinkets/any_azure_dike_equipment",
   "icon": "spectrum:azure_dike_ring",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:azure_dike_ring": 0,
     "spectrum:azure_dike_belt": 0,

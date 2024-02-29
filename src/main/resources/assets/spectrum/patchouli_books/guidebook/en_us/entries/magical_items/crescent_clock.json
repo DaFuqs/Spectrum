@@ -2,7 +2,7 @@
   "name": "Crescent Clock",
   "advancement": "spectrum:unlocks/items/crescent_clock",
   "icon": "spectrum:crescent_clock",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:crescent_clock": 0
   },

@@ -3,7 +3,7 @@
   "icon": "spectrum:pedestal_moonstone",
   "sortnum": 19,
   "advancement": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "pages": [
     {

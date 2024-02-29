@@ -2,7 +2,7 @@
   "name": "Geodes",
   "advancement": "spectrum:spectrum",
   "icon": "minecraft:amethyst_cluster",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:topaz_ore": 0,
     "spectrum:amethyst_ore": 0,

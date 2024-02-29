@@ -20,5 +20,5 @@
 	"icon":"minecraft:writable_book",
 	"turnin":"spectrum:midgame/collect_neolith",
 	"secret":true,
-	"category":"spectrum:hints_category"
+	"category":"spectrum:hints"
 }

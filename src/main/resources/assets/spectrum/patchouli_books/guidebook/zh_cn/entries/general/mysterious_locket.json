@@ -2,7 +2,7 @@
   "name": "谜样的吊坠",
   "icon": "spectrum:mysterious_locket",
   "advancement": "spectrum:lategame/collect_mysterious_locket",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "sortnum": 21,
   "extra_recipe_mappings": {
     "spectrum:mysterious_locket": 0,

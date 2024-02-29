@@ -2,7 +2,7 @@
   "name": "夜菇木",
   "advancement": "spectrum:lategame/collect_noxwood",
   "icon": "spectrum:slate_noxshroom",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {},
   "pages": [
     {

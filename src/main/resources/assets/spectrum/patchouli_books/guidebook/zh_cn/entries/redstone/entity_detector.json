@@ -18,5 +18,5 @@
   },
   "name": "实体检测器",
   "icon": "spectrum:player_detector",
-  "category": "spectrum:redstone_category"
+  "category": "spectrum:redstone"
 }

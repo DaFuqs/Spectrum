@@ -2,7 +2,7 @@
   "name": "玻璃箭",
   "advancement": "spectrum:unlocks/malachite/glass_arrows",
   "icon": "spectrum:amethyst_glass_arrow",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:malachite_glass_arrow": 0,
 

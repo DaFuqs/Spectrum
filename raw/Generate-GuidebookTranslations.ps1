@@ -135,18 +135,17 @@ Function SetTranslatedGuidebookCategory {
     )
 
     Write-Output "`nProcessing $CategoryName..."
-    $CategoryDir = $CategoryName.Substring(0, $CategoryName.length - 9)
-    $Prefix = "$LangPrefix.$CategoryDir"
+    $Prefix = "$LangPrefix.$CategoryName"
 
     $Category = Get-Content -Raw "$PatchouliPath/categories/$CategoryName.json" | ConvertFrom-Json
     SetProperty $Lang "$Prefix.name" $Category.name
 
-    $Entries = Get-ChildItem "$PatchouliPath/entries/$CategoryDir"
+    $Entries = Get-ChildItem "$PatchouliPath/entries/$CategoryName"
     For ($I = 0; $I -lt $Entries.length; $I++) {
         $EntryName = $Entries[$I].Name -replace '(.*)\.json', '$1'
         If ($SetLayout) { $Index = $I }
         Else { $Index = -1 }
-        SetTranslatedGuidebookEntry $Lang $CategoryDir $EntryName $Index
+        SetTranslatedGuidebookEntry $Lang $CategoryName $EntryName $Index
     }
 }
 

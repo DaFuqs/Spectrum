@@ -2,7 +2,7 @@
   "name": "Stratine",
   "advancement": "spectrum:midgame/collect_stratine",
   "icon": "spectrum:stratine_fragments",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:stratine_ore": 0,
     "spectrum:stratine_fragments": 0,

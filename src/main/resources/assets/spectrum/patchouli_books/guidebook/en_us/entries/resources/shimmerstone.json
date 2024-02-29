@@ -2,7 +2,7 @@
   "name": "Shimmerstone",
   "advancement": "spectrum:collect_shimmerstone",
   "icon": "spectrum:shimmerstone_gem",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:shimmerstone_ore": 0,
     "spectrum:deepslate_shimmerstone_ore": 0,

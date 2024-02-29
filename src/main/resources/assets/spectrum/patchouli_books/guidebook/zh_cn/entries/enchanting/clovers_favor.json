@@ -26,5 +26,5 @@
   "advancement": "spectrum:unlocks/enchantments/clovers_favor",
   "name": "三叶草的青睐",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

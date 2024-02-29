@@ -3,7 +3,7 @@
   "icon": "geodes:echo_cluster",
   "flag": "mod:geodes",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

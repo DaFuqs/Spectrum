@@ -2,7 +2,7 @@
   "name": "大药水吊坠",
   "advancement": "spectrum:unlocks/trinkets/greater_potion_pendant",
   "icon": "spectrum:greater_potion_pendant",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:greater_potion_pendant": 0
   },

@@ -1,7 +1,7 @@
 {
   "name": "Pigment Pedestal",
   "icon": "spectrum:pedestal_basic_amethyst",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "sortnum": 2,
   "turnin": "spectrum:craft_using_pedestal",
   "extra_recipe_mappings": {

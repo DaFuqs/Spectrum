@@ -2,7 +2,7 @@
   "name": "The Pastel Network",
   "icon": "spectrum:provider_node",
   "advancement": "spectrum:unlocks/blocks/pastel_network",
-  "category": "spectrum:pastel_network_category",
+  "category": "spectrum:pastel_network",
   "priority": true,
   "sortnum": 0,
   "pages": [

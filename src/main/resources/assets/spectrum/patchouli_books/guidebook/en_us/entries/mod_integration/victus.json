@@ -3,7 +3,7 @@
   "icon": "victus:draconic_heart_aspect",
   "flag": "mod:victus",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

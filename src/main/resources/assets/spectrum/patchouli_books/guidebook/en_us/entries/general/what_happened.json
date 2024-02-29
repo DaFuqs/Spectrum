@@ -4,7 +4,7 @@
   "sortnum": 20,
   "advancement": "spectrum:lategame/visit_all_deeper_down_biomes",
   "turnin": "spectrum:endgame/collect_enough_hints",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {},
   "pages": [
     {

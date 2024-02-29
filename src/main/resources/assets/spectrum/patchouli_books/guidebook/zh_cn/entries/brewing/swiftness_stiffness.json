@@ -2,7 +2,7 @@
   "name": "迅捷 / 僵硬",
   "advancement": "spectrum:hidden/status_effects/swiftness_stiffness",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

@@ -2,7 +2,7 @@
   "name": "Memories",
   "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
   "advancement": "spectrum:unlocks/blocks/memories",
-  "category": "spectrum:creating_life_category",
+  "category": "spectrum:creating_life",
   "extra_recipe_mappings": {
     "spectrum:memory": 0
   },

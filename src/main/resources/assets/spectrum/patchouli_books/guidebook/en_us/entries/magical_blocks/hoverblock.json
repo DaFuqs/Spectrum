@@ -2,7 +2,7 @@
   "name": "Hoverblock",
   "advancement": "spectrum:lategame/collect_hover_block",
   "icon": "spectrum:hover_block",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:hover_block": 0
   },

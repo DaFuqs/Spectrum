@@ -2,7 +2,7 @@
   "name": "Storm Stones",
   "advancement": "spectrum:midgame/collect_storm_stone",
   "icon": "spectrum:storm_stone",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:storm_stone": 0
   },

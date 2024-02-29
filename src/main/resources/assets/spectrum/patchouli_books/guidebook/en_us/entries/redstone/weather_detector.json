@@ -2,7 +2,7 @@
   "name": "Weather Detector",
   "advancement": "spectrum:unlocks/redstone/weather_detector",
   "icon": "spectrum:player_detector",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:weather_detector": 0
   },

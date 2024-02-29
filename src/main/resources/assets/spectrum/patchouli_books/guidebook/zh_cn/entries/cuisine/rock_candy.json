@@ -2,7 +2,7 @@
   "name": "晶糖",
   "advancement": "spectrum:unlocks/food/rock_candy",
   "icon": "spectrum:rock_candy",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:sugar_stick": 0,
     "spectrum:topaz_sugar_stick": 0,

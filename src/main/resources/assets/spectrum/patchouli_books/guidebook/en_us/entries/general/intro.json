@@ -1,7 +1,7 @@
 {
   "name": "Intro",
   "icon": "spectrum:pedestal_basic_amethyst",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "sortnum": 0,
   "pages": [
     {

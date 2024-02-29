@@ -2,7 +2,7 @@
   "name": "发酵桶",
   "icon": "spectrum:titration_barrel",
   "advancement": "spectrum:unlocks/blocks/titration_barrel",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,

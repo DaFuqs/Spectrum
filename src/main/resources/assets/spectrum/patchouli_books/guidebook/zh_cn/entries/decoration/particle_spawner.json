@@ -18,5 +18,5 @@
   },
   "name": "粒子怪物笼",
   "icon": "spectrum:particle_spawner",
-  "category": "spectrum:decoration_category"
+  "category": "spectrum:decoration"
 }

@@ -3,7 +3,7 @@
   "icon": "minecraft:crossbow",
   "advancement": "spectrum:unlocks/enchantments/sniper",
   "flag": "spectrum:enchantment_exists_spectrum_sniper",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

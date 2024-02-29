@@ -3,7 +3,7 @@
   "icon": "spectrum:multitool",
   "advancement": "spectrum:unlocks/enchantments/indestructible",
   "flag": "spectrum:enchantment_exists_spectrum_indestructible",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

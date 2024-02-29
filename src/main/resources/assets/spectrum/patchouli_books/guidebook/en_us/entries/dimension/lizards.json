@@ -2,7 +2,7 @@
   "name": "Lurking Lizards",
   "icon": "spectrum:lizard_head",
   "advancement": "spectrum:hidden/entity_interact/lizard",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:lizard_head": 0,
     "spectrum:lizard_spawn_egg": 0,

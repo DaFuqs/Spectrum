@@ -20,5 +20,5 @@
 	"icon":"minecraft:writable_book",
 	"turnin":"spectrum:collect_quitoxic_reeds",
 	"secret":true,
-	"category":"spectrum:hints_category"
+	"category":"spectrum:hints"
 }

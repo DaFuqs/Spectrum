@@ -33,5 +33,5 @@
   "name": "实验#3：损毁",
   "icon": "spectrum:bottle_of_ruin",
   "turnin": "spectrum:midgame/break_decayed_bedrock",
-  "category": "spectrum:creating_life_category"
+  "category": "spectrum:creating_life"
 }

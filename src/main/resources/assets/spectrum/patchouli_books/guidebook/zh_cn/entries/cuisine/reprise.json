@@ -2,7 +2,7 @@
   "name": "Reprise",
   "advancement": "spectrum:unlocks/food/reprise",
   "icon": "spectrum:reprise",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:reprise": 0
   },

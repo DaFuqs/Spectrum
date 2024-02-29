@@ -3,7 +3,7 @@
   "icon": "alloy_forgery:bricks_forge_controller",
   "flag": "mod:alloy_forgery",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

@@ -2,7 +2,7 @@
   "name": "Entity Detector",
   "advancement": "spectrum:unlocks/redstone/entity_detector",
   "icon": "spectrum:player_detector",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:entity_detector": 0
   },

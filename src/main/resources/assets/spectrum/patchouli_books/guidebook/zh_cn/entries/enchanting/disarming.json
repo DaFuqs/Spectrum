@@ -26,5 +26,5 @@
   "advancement": "spectrum:unlocks/enchantments/disarming",
   "name": "解除防护",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

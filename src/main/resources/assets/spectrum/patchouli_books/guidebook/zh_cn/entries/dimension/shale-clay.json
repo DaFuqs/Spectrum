@@ -2,7 +2,7 @@
   "name": "泥页岩",
   "advancement": "spectrum:hidden/collect_shale_clay",
   "icon": "spectrum:shale_clay",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:tilled_shale_clay": 0
   },

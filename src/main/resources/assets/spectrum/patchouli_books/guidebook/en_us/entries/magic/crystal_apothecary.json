@@ -2,7 +2,7 @@
   "name": "Crystal Apothecary",
   "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
   "icon": "spectrum:crystal_apothecary",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "extra_recipe_mappings": {
     "spectrum:crystal_apothecary": 0
   },

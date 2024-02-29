@@ -3,7 +3,7 @@
   "icon": "byg:budding_ametrine_ore",
   "flag": "mod:byg",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

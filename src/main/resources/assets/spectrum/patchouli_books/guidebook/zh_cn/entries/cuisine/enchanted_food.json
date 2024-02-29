@@ -2,7 +2,7 @@
   "name": "附魔食物",
   "advancement": "spectrum:lategame/collect_pure_resource",
   "icon": "spectrum:enchanted_golden_carrot",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "minecraft:enchanted_golden_apple": 0,
     "spectrum:enchanted_golden_carrot": 0

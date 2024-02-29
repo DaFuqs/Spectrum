@@ -2,7 +2,7 @@
   "name": "Block Breaker",
   "advancement": "spectrum:unlocks/redstone/block_breaker",
   "icon": "spectrum:block_breaker",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:block_breaker": 0
   },

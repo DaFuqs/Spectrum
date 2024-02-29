@@ -3,7 +3,7 @@
   "icon": "spectrum:resonant_pickaxe",
   "advancement": "spectrum:unlocks/enchantments/resonance_usage",
   "flag": "spectrum:enchantment_exists_spectrum_resonance",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

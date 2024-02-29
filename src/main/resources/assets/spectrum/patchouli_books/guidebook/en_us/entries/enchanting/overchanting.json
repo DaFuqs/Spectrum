@@ -5,7 +5,7 @@
   "secret": true,
   "sortnum": 4,
   "advancement": "spectrum:milestones/unlock_overenchanting_with_enchanter",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:spotlight",

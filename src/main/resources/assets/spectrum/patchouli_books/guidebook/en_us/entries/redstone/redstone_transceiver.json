@@ -2,7 +2,7 @@
   "name": "Redstone Transceiver",
   "advancement": "spectrum:create_onyx_shard",
   "icon": "spectrum:redstone_transceiver",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:redstone_transceiver": 0
   },

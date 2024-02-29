@@ -2,7 +2,7 @@
   "name": "月长核心",
   "advancement": "spectrum:lategame/collect_moonstone_core",
   "icon": "spectrum:moonstone_core",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:moonstone_core": 0
   },

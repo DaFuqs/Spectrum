@@ -2,7 +2,7 @@
   "name": "Glistering Melons",
   "advancement": "spectrum:collect_vegetal",
   "icon": "minecraft:glistering_melon_slice",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "minecraft:glistering_melon_slice": 0,
     "spectrum:glistering_melon": 0,

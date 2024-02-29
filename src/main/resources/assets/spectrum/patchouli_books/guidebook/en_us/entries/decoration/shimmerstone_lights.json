@@ -2,7 +2,7 @@
   "name": "Shimmerstone Lights",
   "icon": "spectrum:basalt_shimmerstone_light",
   "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:blackslag_shimmerstone_light": 0
   },

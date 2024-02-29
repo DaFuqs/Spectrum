@@ -4,7 +4,7 @@
   "sortnum": 10,
   "advancement": "spectrum:unlocks/blocks/fusion_shrine",
   "turnin": "spectrum:build_fusion_shrine",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {},
   "pages": [
     {

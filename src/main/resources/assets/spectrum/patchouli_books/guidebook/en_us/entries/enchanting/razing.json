@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:unlocks/enchantments/razing_usage",
   "flag": "spectrum:enchantment_exists_spectrum_razing",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

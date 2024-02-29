@@ -5,7 +5,7 @@
   "secret": true,
   "sortnum": 5,
   "advancement": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:spotlight",

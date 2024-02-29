@@ -2,7 +2,7 @@
   "name": "Ender Hopper",
   "advancement": "spectrum:unlocks/blocks/ender_blocks",
   "icon": "spectrum:ender_hopper",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:ender_hopper": 1
   },

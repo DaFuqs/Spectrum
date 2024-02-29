@@ -3,7 +3,7 @@
   "icon": "spectrum:midnight_aberration",
   "sortnum": 12,
   "advancement": "spectrum:midgame/collect_neolith",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:midgame/create_midnight_aberration",
   "extra_recipe_mappings": {
     "spectrum:midnight_aberration": 0

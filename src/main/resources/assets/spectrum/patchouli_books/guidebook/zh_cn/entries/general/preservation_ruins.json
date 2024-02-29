@@ -4,7 +4,7 @@
   "advancement": "spectrum:find_preservation_ruins",
   "sortnum": 16,
   "turnin": "spectrum:generate_preservation_ruins_loot",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {
     "spectrum:preservation_stone": 0,
     "spectrum:preservation_controller": 0,

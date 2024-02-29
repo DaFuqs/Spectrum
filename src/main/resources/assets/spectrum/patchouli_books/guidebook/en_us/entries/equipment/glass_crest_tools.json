@@ -2,7 +2,7 @@
   "name": "Glass Crest Tools",
   "advancement": "spectrum:unlocks/malachite/glass_crest_tools",
   "icon": "spectrum:glass_crest_ultra_greatsword",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:glass_crest_workstaff": 0,
     "spectrum:glass_crest_ultra_greatsword": 0,

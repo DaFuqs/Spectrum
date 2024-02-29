@@ -3,7 +3,7 @@
   "icon": "gofish:starry_salmon",
   "flag": "mod:go-fish",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

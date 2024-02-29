@@ -2,7 +2,7 @@
   "name": "Block Detector",
   "advancement": "spectrum:unlocks/redstone/block_detector",
   "icon": "spectrum:block_detector",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:block_detector": 0
   },

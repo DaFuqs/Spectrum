@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:unlocks/enchantments/first_strike",
   "flag": "spectrum:enchantment_exists_spectrum_first_strike",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

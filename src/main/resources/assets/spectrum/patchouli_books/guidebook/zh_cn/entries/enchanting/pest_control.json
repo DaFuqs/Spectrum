@@ -20,5 +20,5 @@
   "advancement": "spectrum:unlocks/enchantments/pest_control",
   "name": "害虫防治",
   "icon": "minecraft:iron_pickaxe",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

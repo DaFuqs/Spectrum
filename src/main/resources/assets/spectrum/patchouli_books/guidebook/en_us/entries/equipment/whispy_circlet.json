@@ -2,7 +2,7 @@
   "name": "Whispy Circlet",
   "icon": "spectrum:whispy_circlet",
   "advancement": "spectrum:unlocks/trinkets/whispy_circlet",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "pages": [
     {
       "type": "patchouli:text",

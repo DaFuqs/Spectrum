@@ -2,7 +2,7 @@
   "name": "礼物",
   "advancement": "spectrum:unlocks/blocks/present",
   "icon": "spectrum:present",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:present": 0
   },

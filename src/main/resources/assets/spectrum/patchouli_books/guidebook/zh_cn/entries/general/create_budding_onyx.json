@@ -4,7 +4,7 @@
   "sortnum": 14,
   "advancement": "spectrum:unlocks/blocks/budding_onyx",
   "turnin": "spectrum:midgame/create_budding_onyx",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {
     "spectrum:small_onyx_bud": 0,
     "spectrum:medium_onyx_bud": 0,

@@ -15,5 +15,5 @@
   "advancement": "spectrum:unlocks/blocks/pastel_network",
   "name": "存储节点",
   "icon": "spectrum:provider_node",
-  "category": "spectrum:pastel_network_category"
+  "category": "spectrum:pastel_network"
 }

@@ -26,5 +26,5 @@
   "advancement": "spectrum:unlocks/enchantments/inertia",
   "name": "惯性",
   "icon": "minecraft:iron_pickaxe",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

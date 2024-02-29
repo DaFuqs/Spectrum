@@ -2,7 +2,7 @@
   "name": "炫酷戒指",
   "advancement": "spectrum:unlocks/trinkets/neat_ring",
   "icon": "spectrum:neat_ring",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:neat_ring": 0
   },

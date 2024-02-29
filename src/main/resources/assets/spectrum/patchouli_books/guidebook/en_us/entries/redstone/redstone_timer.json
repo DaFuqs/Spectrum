@@ -2,7 +2,7 @@
   "name": "Redstone Timer",
   "advancement": "spectrum:unlocks/redstone/redstone_timer",
   "icon": "spectrum:redstone_timer",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:redstone_timer": 0
   },

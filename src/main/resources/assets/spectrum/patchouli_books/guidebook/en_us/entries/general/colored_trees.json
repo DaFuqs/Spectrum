@@ -4,7 +4,7 @@
   "sortnum": 7,
   "advancement": "spectrum:collect_vegetal",
   "turnin": "spectrum:collect_pigment",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {
     "spectrum:black_sapling": 0,
     "spectrum:blue_sapling": 0,

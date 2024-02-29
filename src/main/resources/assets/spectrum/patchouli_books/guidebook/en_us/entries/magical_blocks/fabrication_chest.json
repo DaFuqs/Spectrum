@@ -2,7 +2,7 @@
   "name": "Fabrication Chest",
   "advancement": "spectrum:unlocks/blocks/restocking_chest",
   "icon": "spectrum:restocking_chest",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:restocking_chest": 0
   },

@@ -2,7 +2,7 @@
   "name": "鱼们",
   "icon": "spectrum:crawfish",
   "advancement": "spectrum:hidden/collect_any_spectrum_fish",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:crawfish": 0,
     "spectrum:koi": 0

@@ -2,7 +2,7 @@
   "name": "Bedrock Armor",
   "advancement": "spectrum:unlocks/equipment/bedrock_tools",
   "icon": "spectrum:bedrock_chestplate",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:bedrock_helmet": 0,
     "spectrum:bedrock_chestplate": 0,

@@ -2,7 +2,7 @@
   "name": "Omni Accelerator",
   "advancement": "spectrum:unlocks/equipment/omni_accelerator",
   "icon": "spectrum:omni_accelerator",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:omni_accelerator": 0
   },

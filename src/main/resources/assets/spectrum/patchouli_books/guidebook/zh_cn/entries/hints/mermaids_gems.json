@@ -20,5 +20,5 @@
 	"icon":"minecraft:writable_book",
 	"turnin":"spectrum:collect_mermaids_gem",
 	"secret":true,
-	"category":"spectrum:hints_category"
+	"category":"spectrum:hints"
 }

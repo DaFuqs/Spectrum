@@ -2,7 +2,7 @@
   "name": "承诺缎带",
   "advancement": "spectrum:unlocks/items/everpromise_ribbon_guidebook",
   "icon": "spectrum:everpromise_ribbon",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:everpromise_ribbon": 0
   },

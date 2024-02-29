@@ -4,7 +4,7 @@
   "sortnum": 9,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "turnin": "spectrum:build_fusion_shrine",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {
     "spectrum:fusion_shrine_basalt": 1,
     "spectrum:fusion_shrine_calcite": 0

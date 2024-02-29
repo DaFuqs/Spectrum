@@ -20,5 +20,5 @@
 	"icon":"minecraft:writable_book",
 	"turnin":"spectrum:get_radiating_ender",
 	"secret":true,
-	"category":"spectrum:hints_category"
+	"category":"spectrum:hints"
 }

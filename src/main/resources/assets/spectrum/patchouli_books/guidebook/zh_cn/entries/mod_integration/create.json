@@ -3,7 +3,7 @@
   "icon": "create:crushing_wheel",
   "flag": "mod:create",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

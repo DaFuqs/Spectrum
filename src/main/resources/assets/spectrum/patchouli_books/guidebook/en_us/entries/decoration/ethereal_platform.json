@@ -2,7 +2,7 @@
   "name": "Ethereal Platform",
   "advancement": "spectrum:unlocks/blocks/ethereal_platform",
   "icon": "spectrum:ethereal_platform",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:ethereal_platform": 0
   },

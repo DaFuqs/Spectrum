@@ -2,7 +2,7 @@
   "name": "剃刀边境",
   "advancement": "spectrum:hidden/visit_dd_biomes/razor_edge",
   "icon": "spectrum:shale_clay",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:sawblade_grass": 0,
     "spectrum:bristle_sprouts": 0

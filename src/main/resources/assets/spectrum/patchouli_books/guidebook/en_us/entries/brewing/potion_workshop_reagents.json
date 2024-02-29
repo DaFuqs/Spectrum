@@ -2,7 +2,7 @@
   "name": "Using Reagents",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "priority": true,
   "sortnum": 2,
   "pages": [

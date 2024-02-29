@@ -2,7 +2,7 @@
   "name": "反弹保护",
   "advancement": "spectrum:hidden/status_effects/projectile_rebound",
   "icon": "minecraft:arrow",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

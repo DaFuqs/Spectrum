@@ -1,7 +1,7 @@
 {
   "name": "笔刷",
   "icon": "spectrum:paintbrush",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "sortnum": 3,
   "turnin": "spectrum:craft_using_pedestal",
   "extra_recipe_mappings": {

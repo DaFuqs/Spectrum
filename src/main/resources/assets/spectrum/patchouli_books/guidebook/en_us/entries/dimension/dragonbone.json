@@ -2,7 +2,7 @@
   "name": "Dragonbone",
   "icon": "spectrum:dragonbone",
   "advancement": "spectrum:lategame/break_cracked_dragonbone",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
     "spectrum:cracked_dragonbone": 0,

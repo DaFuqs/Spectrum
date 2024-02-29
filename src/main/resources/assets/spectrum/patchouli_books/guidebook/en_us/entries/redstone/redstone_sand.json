@@ -2,7 +2,7 @@
   "name": "Redstone Sand",
   "advancement": "spectrum:unlocks/redstone/redstone_sand",
   "icon": "spectrum:redstone_sand",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:redstone_sand": 0
   },

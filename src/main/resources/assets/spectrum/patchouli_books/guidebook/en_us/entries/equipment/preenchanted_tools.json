@@ -2,7 +2,7 @@
   "name": "Preenchanted Tools",
   "advancement": "spectrum:unlocks/equipment/any_preenchanted_tool",
   "icon": "spectrum:lucky_pickaxe",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:tender_pickaxe": 0,
     "spectrum:lucky_pickaxe": 0,

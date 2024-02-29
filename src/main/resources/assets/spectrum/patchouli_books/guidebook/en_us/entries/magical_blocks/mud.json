@@ -2,7 +2,7 @@
   "name": "Liquid Mud",
   "advancement": "spectrum:unlocks/blocks/mud",
   "icon": "spectrum:mud_bucket",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:mud_bucket": 0
   },

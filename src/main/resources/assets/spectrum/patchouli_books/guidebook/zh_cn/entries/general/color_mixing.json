@@ -3,7 +3,7 @@
   "icon": "minecraft:light_blue_dye",
   "sortnum": 5,
   "advancement": "spectrum:collect_vegetal",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:craft_colored_sapling",
   "pages": [
     {

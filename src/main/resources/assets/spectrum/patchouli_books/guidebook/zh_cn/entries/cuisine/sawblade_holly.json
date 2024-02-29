@@ -2,7 +2,7 @@
   "name": "黄铁冬青",
   "advancement": "spectrum:lategame/collect_prickly_bayleaf",
   "icon": "spectrum:prickly_bayleaf",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
     "spectrum:sawblade_holly_berry": 0,

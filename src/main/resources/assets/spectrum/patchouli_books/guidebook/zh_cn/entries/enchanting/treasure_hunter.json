@@ -31,5 +31,5 @@
   "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "name": "灵魂猎手",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

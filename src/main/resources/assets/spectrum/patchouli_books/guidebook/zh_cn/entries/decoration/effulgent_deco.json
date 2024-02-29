@@ -2,7 +2,7 @@
   "name": "火龙翎块",
   "icon": "spectrum:effulgent_block",
   "advancement": "spectrum:lategame/pluck_effulgent_feather",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {},
   "pages": [
     {

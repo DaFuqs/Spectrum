@@ -4,7 +4,7 @@
   "priority": true,
   "sortnum": 0,
   "advancement": "spectrum:unlocks/blocks/enchanter",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

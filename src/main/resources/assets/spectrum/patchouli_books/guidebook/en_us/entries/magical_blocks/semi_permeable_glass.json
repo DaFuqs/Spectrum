@@ -2,7 +2,7 @@
   "name": "Semi-permeable Glass",
   "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
   "icon": "spectrum:amethyst_semi_permeable_glass",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:semi_permeable_glass": 0,
     "spectrum:tinted_semi_permeable_glass": 0,

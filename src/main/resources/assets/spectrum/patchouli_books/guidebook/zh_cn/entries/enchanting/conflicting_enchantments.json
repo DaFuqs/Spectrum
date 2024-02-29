@@ -16,5 +16,5 @@
 	"icon":"minecraft:enchanted_book",
 	"sortnum":5,
 	"priority":true,
-	"category":"spectrum:enchanting_category"
+	"category":"spectrum:enchanting"
 }

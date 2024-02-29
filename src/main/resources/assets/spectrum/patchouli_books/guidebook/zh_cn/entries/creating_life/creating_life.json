@@ -13,6 +13,6 @@
   "advancement": "spectrum:unlocks/items/bottle_of_fading",
   "name": "创造生命",
   "icon": "minecraft:egg",
-  "category": "spectrum:creating_life_category",
+  "category": "spectrum:creating_life",
   "priority": true
 }

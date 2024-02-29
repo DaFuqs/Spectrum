@@ -3,7 +3,7 @@
   "icon": "spectrum:amethyst_powder",
   "sortnum": 5,
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:collect_gemstone_powder",
   "extra_recipe_mappings": {
     "spectrum:topaz_powder": 0,

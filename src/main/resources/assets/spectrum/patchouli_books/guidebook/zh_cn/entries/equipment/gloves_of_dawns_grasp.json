@@ -2,7 +2,7 @@
   "name": "黎明手套",
   "advancement": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp",
   "icon": "spectrum:gloves_of_dawns_grasp",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:gloves_of_dawns_grasp": 0
   },

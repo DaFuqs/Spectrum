@@ -3,7 +3,7 @@
   "advancement": "spectrum:unlocks/items/artisans_atlas",
   "icon": "spectrum:artisans_atlas",
   "secret": true,
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:artisans_atlas": 0
   },

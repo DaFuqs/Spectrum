@@ -2,7 +2,7 @@
   "name": "Restoration Tea",
   "advancement": "spectrum:unlocks/food/restoration_tea",
   "icon": "spectrum:restoration_tea",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:restoration_tea": 0
   },

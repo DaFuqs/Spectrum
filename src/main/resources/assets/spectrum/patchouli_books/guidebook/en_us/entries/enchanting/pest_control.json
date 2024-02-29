@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:unlocks/enchantments/pest_control",
   "flag": "spectrum:enchantment_exists_spectrum_pest_control",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

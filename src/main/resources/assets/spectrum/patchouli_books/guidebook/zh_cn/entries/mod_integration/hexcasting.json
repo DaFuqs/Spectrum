@@ -3,7 +3,7 @@
   "icon": "hexcasting:charged_amethyst",
   "flag": "mod:hexcasting",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

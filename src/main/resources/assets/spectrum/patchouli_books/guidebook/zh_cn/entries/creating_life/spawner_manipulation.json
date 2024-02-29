@@ -43,5 +43,5 @@
   },
   "name": "怪物笼操作",
   "icon": "minecraft:spawner",
-  "category": "spectrum:creating_life_category"
+  "category": "spectrum:creating_life"
 }

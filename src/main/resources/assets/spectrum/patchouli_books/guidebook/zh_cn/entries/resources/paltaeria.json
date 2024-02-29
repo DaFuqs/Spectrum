@@ -2,7 +2,7 @@
   "name": "苍绿宝石",
   "advancement": "spectrum:lategame/collect_paltaeria",
   "icon": "spectrum:paltaeria_fragments",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:paltaeria_ore": 0,
     "spectrum:paltaeria_fragments": 0,

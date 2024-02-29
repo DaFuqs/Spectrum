@@ -2,7 +2,7 @@
   "name": "Midnight Solution",
   "icon": "spectrum:midnight_solution_bucket",
   "advancement": "spectrum:midgame/create_midnight_aberration",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "turnin": "spectrum:midgame/collect_midnight_chip",
   "extra_recipe_mappings": {
     "spectrum:midnight_solution_bucket": 0,

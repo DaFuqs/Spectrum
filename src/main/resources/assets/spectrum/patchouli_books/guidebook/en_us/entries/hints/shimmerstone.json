@@ -1,6 +1,6 @@
 {
   "name": "A new Ore",
-  "category": "spectrum:hints_category",
+  "category": "spectrum:hints",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:milestones/reveal_shimmerstone",
   "read_by_default": true,

@@ -4,7 +4,7 @@
   "advancement": "spectrum:find_preservation_ruins",
   "sortnum": 16,
   "turnin": "spectrum:hidden/solve_every_preservation_ruin",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "extra_recipe_mappings": {
     "spectrum:preservation_stone": 0,
     "spectrum:preservation_stairs": 0,

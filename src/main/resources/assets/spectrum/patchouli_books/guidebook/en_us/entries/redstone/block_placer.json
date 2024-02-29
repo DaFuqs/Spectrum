@@ -2,7 +2,7 @@
   "name": "Block Placer",
   "advancement": "spectrum:unlocks/redstone/block_placer",
   "icon": "spectrum:block_placer",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:block_placer": 0
   },

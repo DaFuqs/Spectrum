@@ -2,7 +2,7 @@
   "name": "孔雀石",
   "advancement": "spectrum:lategame/collect_malachite",
   "icon": "spectrum:raw_malachite",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:malachite_ore": 0,

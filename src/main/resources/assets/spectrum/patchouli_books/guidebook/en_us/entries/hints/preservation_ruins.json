@@ -1,6 +1,6 @@
 {
   "name": "3 Structures",
-  "category": "spectrum:hints_category",
+  "category": "spectrum:hints",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:midgame/break_decayed_bedrock",
   "read_by_default": true,

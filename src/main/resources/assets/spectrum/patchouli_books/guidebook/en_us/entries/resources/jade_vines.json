@@ -2,7 +2,7 @@
   "name": "Jade Vines",
   "advancement": "spectrum:hidden/collect_hibernating_jade_vine_bulb",
   "icon": "spectrum:hibernating_jade_vine_bulb",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "turnin": "spectrum:hidden/collect_all_jade_vine_products",
   "extra_recipe_mappings": {
     "spectrum:hibernating_jade_vine_bulb": 0,

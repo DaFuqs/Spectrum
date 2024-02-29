@@ -18,5 +18,5 @@
   },
   "name": "方块放置器",
   "icon": "spectrum:block_placer",
-  "category": "spectrum:redstone_category"
+  "category": "spectrum:redstone"
 }

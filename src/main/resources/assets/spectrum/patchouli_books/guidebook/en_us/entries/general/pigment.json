@@ -3,7 +3,7 @@
   "icon": "spectrum:magenta_pigment",
   "sortnum": 8,
   "advancement": "spectrum:collect_pigment",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
   "extra_recipe_mappings": {
     "spectrum:black_pigment": 0,

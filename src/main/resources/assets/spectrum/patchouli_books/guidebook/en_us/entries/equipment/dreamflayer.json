@@ -2,7 +2,7 @@
   "name": "Dreamflayer",
   "advancement": "spectrum:unlocks/equipment/dreamflayer",
   "icon": "spectrum:dreamflayer",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:dreamflayer": 0
   },

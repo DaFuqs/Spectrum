@@ -2,7 +2,7 @@
   "name": "Radiant Glass",
   "advancement": "spectrum:collect_shimmerstone",
   "icon": "spectrum:radiant_glass",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:radiant_glass": 0
   },

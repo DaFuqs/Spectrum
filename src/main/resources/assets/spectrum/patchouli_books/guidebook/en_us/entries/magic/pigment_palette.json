@@ -2,7 +2,7 @@
   "name": "Pigment Palette",
   "advancement": "spectrum:unlocks/trinkets/pigment_palette",
   "icon": "spectrum:pigment_palette",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "extra_recipe_mappings": {
     "spectrum:pigment_palette": 0
   },

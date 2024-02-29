@@ -20,5 +20,5 @@
   "advancement": "spectrum:unlocks/enchantments/autosmelt",
   "name": "铸造厂",
   "icon": "minecraft:iron_pickaxe",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

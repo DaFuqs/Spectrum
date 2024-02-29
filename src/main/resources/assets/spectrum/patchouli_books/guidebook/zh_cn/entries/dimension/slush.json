@@ -2,7 +2,7 @@
   "name": "淤泥",
   "advancement": "spectrum:hidden/collect_slush",
   "icon": "spectrum:slush",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:slush": 0,
     "spectrum:tilled_slush": 0

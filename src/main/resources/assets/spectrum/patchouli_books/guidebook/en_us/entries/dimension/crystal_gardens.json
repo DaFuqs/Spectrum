@@ -2,7 +2,7 @@
   "name": "Crystal Gardens",
   "advancement": "spectrum:hidden/visit_dd_biomes/crystal_gardens",
   "icon": "spectrum:liquid_crystal_bucket",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:overgrown_blackslag": 0,
     "spectrum:nephrite_blossom_bulb": 0,

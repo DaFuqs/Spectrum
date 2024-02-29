@@ -2,7 +2,7 @@
   "name": "Item Detector",
   "advancement": "spectrum:unlocks/redstone/item_detector",
   "icon": "spectrum:player_detector",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:item_detector": 0
   },

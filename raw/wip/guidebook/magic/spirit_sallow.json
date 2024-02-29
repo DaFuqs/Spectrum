@@ -3,7 +3,7 @@
   "advancement": "spectrum:unlocks/blocks/ominous_sapling",
   "secret": true,
   "icon": "spectrum:ominous_sapling",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "priority": true,
   "extra_recipe_mappings": {
     "spectrum:ominous_sapling": 0,

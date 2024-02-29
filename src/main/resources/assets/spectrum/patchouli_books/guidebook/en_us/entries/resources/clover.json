@@ -2,7 +2,7 @@
   "name": "Clover",
   "advancement": "spectrum:hidden/collect_clover",
   "icon": "spectrum:four_leaf_clover",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:clover": 0,
     "spectrum:four_leaf_clover": 0

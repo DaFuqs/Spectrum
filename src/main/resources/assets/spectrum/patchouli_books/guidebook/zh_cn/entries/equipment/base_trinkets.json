@@ -2,7 +2,7 @@
   "name": "幻想基础",
   "advancement": "spectrum:unlocks/trinkets/any_base_trinket",
   "icon": "spectrum:fanciful_stone_ring",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:fanciful_stone_ring": 0,
     "spectrum:fanciful_belt": 0,

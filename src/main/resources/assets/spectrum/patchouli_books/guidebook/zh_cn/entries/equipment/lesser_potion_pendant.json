@@ -2,7 +2,7 @@
   "name": "小药水吊坠",
   "advancement": "spectrum:unlocks/trinkets/lesser_potion_pendant",
   "icon": "spectrum:lesser_potion_pendant",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:lesser_potion_pendant": 0
   },

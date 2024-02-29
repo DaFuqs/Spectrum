@@ -2,7 +2,7 @@
   "name": "Ashen Circlet",
   "advancement": "spectrum:unlocks/trinkets/ashen_circlet",
   "icon": "spectrum:ashen_circlet",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:ashen_circlet": 0
   },

@@ -2,7 +2,7 @@
   "name": "Idols",
   "advancement": "spectrum:unlocks/blocks/idols",
   "icon": "spectrum:fox_idol",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:axolotl_idol": 0,
     "spectrum:bat_idol": 0,

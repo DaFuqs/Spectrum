@@ -3,7 +3,7 @@
   "icon": "ants:dirt_ant_nest",
   "flag": "mod:ants",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:text",

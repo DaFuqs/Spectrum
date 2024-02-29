@@ -2,7 +2,7 @@
   "name": "龙棘草",
   "advancement": "spectrum:hidden/collect_dragonjag",
   "icon": "spectrum:small_purple_dragonjag",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {},
   "pages": [
     {

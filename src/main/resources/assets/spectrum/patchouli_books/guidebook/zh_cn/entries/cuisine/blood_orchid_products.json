@@ -2,7 +2,7 @@
   "name": "血兰制品",
   "icon": "spectrum:bloodboil_syrup",
   "advancement": "spectrum:midgame/collect_blood_orchid_petal",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:bloodboil_syrup": 0,
     "spectrum:demon_tea": 0,

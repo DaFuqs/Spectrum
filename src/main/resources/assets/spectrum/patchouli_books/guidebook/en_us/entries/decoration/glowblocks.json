@@ -2,7 +2,7 @@
   "name": "Glowblocks",
   "advancement": "spectrum:unlocks/glowblocks/any_glowblock",
   "icon": "spectrum:orange_glowblock",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:black_glowblock": 0,
     "spectrum:blue_glowblock": 0,

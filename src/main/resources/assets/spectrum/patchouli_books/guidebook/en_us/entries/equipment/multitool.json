@@ -2,7 +2,7 @@
   "name": "Multitool",
   "advancement": "spectrum:build_basic_pedestal_structure",
   "icon": "spectrum:multitool",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:multitool": 0
   },

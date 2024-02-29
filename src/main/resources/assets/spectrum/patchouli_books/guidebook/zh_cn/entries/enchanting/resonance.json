@@ -50,5 +50,5 @@
   "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
   "name": "共振",
   "icon": "minecraft:diamond_pickaxe",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

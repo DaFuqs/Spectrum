@@ -2,7 +2,7 @@
   "name": "Black Hole Chest",
   "advancement": "spectrum:unlocks/blocks/black_hole_chest",
   "icon": "spectrum:black_hole_chest",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:magical_blocks",
   "extra_recipe_mappings": {
     "spectrum:black_hole_chest": 0
   },

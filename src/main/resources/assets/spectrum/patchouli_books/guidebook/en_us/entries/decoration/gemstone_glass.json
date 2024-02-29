@@ -2,7 +2,7 @@
   "name": "Gemstone Glass",
   "icon": "spectrum:topaz_glass",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:topaz_glass": 0,
     "spectrum:amethyst_glass": 0,

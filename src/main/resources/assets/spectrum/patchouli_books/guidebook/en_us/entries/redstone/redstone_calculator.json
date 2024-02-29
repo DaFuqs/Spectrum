@@ -2,7 +2,7 @@
   "name": "Redstone Calculator",
   "advancement": "spectrum:unlocks/redstone/redstone_calculator",
   "icon": "spectrum:redstone_calculator",
-  "category": "spectrum:redstone_category",
+  "category": "spectrum:redstone",
   "extra_recipe_mappings": {
     "spectrum:redstone_calculator": 0
   },

@@ -2,7 +2,7 @@
   "name": "Color Picker",
   "advancement": "spectrum:unlocks/blocks/color_picker",
   "icon": "spectrum:color_picker",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "pages": [
     {
       "type": "patchouli:text",

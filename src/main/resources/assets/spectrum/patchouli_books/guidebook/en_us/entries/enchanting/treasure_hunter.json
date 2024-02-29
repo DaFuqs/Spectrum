@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_axe",
   "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

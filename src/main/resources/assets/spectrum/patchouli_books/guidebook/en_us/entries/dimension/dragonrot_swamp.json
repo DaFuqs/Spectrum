@@ -2,7 +2,7 @@
   "name": "Dragonrot Swamp",
   "advancement": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp",
   "icon": "spectrum:rotten_ground",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:snapping_ivy": 0,
     "spectrum:rotten_ground": 0

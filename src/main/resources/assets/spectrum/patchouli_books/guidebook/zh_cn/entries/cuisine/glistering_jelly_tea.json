@@ -2,7 +2,7 @@
   "name": "发光啫喱茶",
   "advancement": "spectrum:unlocks/food/glistering_jelly_tea",
   "icon": "spectrum:glistering_jelly_tea",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:glistering_jelly_tea": 0
   },

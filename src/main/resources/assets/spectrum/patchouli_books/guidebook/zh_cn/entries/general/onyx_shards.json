@@ -3,7 +3,7 @@
   "icon": "spectrum:onyx_shard",
   "sortnum": 10,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:create_onyx_shard",
   "extra_recipe_mappings": {
     "spectrum:onyx_shard": 0

@@ -112,5 +112,5 @@
 	},
 	"name":"生物头颅",
 	"icon":"minecraft:wither_skeleton_skull",
-	"category":"spectrum:creating_life_category"
+	"category":"spectrum:creating_life"
 }

@@ -2,7 +2,7 @@
   "name": "Magic Annulation",
   "advancement": "spectrum:hidden/status_effects/magic_annulation",
   "icon": "minecraft:potion",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

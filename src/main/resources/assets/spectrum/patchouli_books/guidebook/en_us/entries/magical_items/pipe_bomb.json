@@ -2,7 +2,7 @@
   "name": "Pipe Bomb",
   "advancement": "spectrum:unlocks/items/pipe_bomb",
   "icon": "spectrum:pipe_bomb",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:pipe_bomb": 0
   },

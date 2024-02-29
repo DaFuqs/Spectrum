@@ -2,7 +2,7 @@
   "name": "Bottomless Bundle",
   "advancement": "spectrum:unlocks/items/bottomless_bundle",
   "icon": "spectrum:bottomless_bundle",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:bottomless_bundle": 0
   },

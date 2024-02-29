@@ -2,7 +2,7 @@
   "name": "Blood Orchids",
   "icon": "spectrum:blood_orchid_petal",
   "advancement": "spectrum:midgame/collect_blood_orchid_petal",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:blood_orchid": 0,
     "spectrum:blood_orchid_petal": 0

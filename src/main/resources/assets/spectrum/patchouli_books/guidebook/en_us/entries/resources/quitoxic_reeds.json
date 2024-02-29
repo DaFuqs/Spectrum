@@ -2,7 +2,7 @@
   "name": "Quitoxic Reeds",
   "icon": "spectrum:quitoxic_reeds",
   "advancement": "spectrum:collect_quitoxic_reeds",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:quitoxic_reeds": 0,
     "spectrum:quitoxic_powder": 0

@@ -2,7 +2,7 @@
   "name": "急迫之戒",
   "advancement": "spectrum:unlocks/trinkets/ring_of_pursuit",
   "icon": "spectrum:ring_of_pursuit",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:ring_of_pursuit": 0
   },

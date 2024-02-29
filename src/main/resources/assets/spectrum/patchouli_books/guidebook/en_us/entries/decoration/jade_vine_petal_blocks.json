@@ -2,7 +2,7 @@
   "name": "Jade Petal Blocks",
   "advancement": "spectrum:midgame/collect_jade_vine_petals",
   "icon": "spectrum:jade_vine_petal_block",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:jade_vine_petal_block": 0,
     "spectrum:jade_vine_petal_carpet": 0

@@ -2,7 +2,7 @@
   "name": "Life Drain",
   "advancement": "spectrum:hidden/status_effects/life_drain",
   "icon": "minecraft:rotten_flesh",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

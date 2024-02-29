@@ -2,7 +2,7 @@
   "name": "深层岩原",
   "advancement": "spectrum:hidden/visit_dd_biomes/deep_barrens",
   "icon": "spectrum:blackslag",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {},
   "pages": [
     {

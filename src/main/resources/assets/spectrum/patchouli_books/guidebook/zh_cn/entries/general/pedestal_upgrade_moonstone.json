@@ -3,7 +3,7 @@
   "icon": "spectrum:pedestal_moonstone",
   "sortnum": 18,
   "advancement": "spectrum:lategame/collect_moonstone_shard",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:hidden/build_any_complex_structure",
   "extra_recipe_mappings": {
     "spectrum:pedestal_moonstone": 0

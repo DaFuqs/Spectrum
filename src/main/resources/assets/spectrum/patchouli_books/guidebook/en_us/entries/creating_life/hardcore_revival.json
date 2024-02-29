@@ -2,7 +2,7 @@
   "name": "Hardcore Revival",
   "icon": "spectrum:divination_heart",
   "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-  "category": "spectrum:creating_life_category",
+  "category": "spectrum:creating_life",
   "extra_recipe_mappings": {},
   "pages": [
     {

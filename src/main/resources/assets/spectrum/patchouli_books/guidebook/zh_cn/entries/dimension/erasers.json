@@ -2,7 +2,7 @@
   "name": "消色虫",
   "icon": "spectrum:eraser_head",
   "advancement": "spectrum:hidden/entity_interact/eraser",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:eraser_head": 0,
     "spectrum:eraser_spawn_egg": 0

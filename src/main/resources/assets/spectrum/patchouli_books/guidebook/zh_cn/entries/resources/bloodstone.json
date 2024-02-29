@@ -2,7 +2,7 @@
   "name": "血石",
   "advancement": "spectrum:unlocks/resources/bloodstone",
   "icon": "spectrum:refined_bloodstone",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:raw_bloodstone": 0,

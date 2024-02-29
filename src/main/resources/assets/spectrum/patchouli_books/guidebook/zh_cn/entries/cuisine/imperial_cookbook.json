@@ -2,7 +2,7 @@
   "name": "皇室菜谱",
   "icon": "spectrum:imperial_cookbook",
   "advancement": "spectrum:hidden/collect_cookbooks/imperial_cookbook",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:imperial_cookbook": 0
   },

@@ -2,7 +2,7 @@
   "name": "Immunity",
   "advancement": "spectrum:hidden/status_effects/immunity",
   "icon": "spectrum:germinated_jade_vine_bulb",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

@@ -1,8 +1,8 @@
 {
   "name": "宝石护体",
-  "advancement": "spectrum:unlocks/equipment/gemstone_armor_category",
+  "advancement": "spectrum:unlocks/equipment/gemstone_armor",
   "icon": "spectrum:ferocious_chestplate",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:fetchling_helmet": 0,
     "spectrum:ferocious_chestplate": 0,

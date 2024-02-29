@@ -1,6 +1,6 @@
 {
   "name": "A new Resource",
-  "category": "spectrum:hints_category",
+  "category": "spectrum:hints",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:midgame/create_midnight_aberration",
   "read_by_default": true,

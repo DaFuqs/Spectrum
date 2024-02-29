@@ -1,7 +1,7 @@
 {
   "name": "七彩基座",
   "icon": "spectrum:pedestal_basic_amethyst",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "sortnum": 2,
   "turnin": "spectrum:place_pedestal",
   "extra_recipe_mappings": {

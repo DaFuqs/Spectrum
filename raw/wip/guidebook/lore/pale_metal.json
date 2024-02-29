@@ -3,7 +3,7 @@
   "icon": "spectrum:malachite_workstaff",
   "secret": true,
   "advancement": "spectrum:unlocks/malachite/malachite_tools",
-  "category": "spectrum:lore_category",
+  "category": "spectrum:lore",
   "pages": [
     {
       "type": "patchouli:text",

@@ -2,7 +2,7 @@
   "name": "Basalt & Calcite",
   "advancement": "spectrum:spectrum",
   "icon": "spectrum:chiseled_polished_basalt",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {},
   "pages": [
     {

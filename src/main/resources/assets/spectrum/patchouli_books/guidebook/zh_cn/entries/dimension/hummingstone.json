@@ -2,7 +2,7 @@
   "name": "共鸣晶体",
   "advancement": "spectrum:hidden/collect_hummingstone",
   "icon": "spectrum:hummingstone",
-  "category": "spectrum:dimension_category",
+  "category": "spectrum:dimension",
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,
     "spectrum:hummingstone_glass": 0,

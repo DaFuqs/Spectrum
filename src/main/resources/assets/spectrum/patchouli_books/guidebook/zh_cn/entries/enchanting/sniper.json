@@ -20,5 +20,5 @@
   "advancement": "spectrum:unlocks/enchantments/sniper",
   "name": "狙击",
   "icon": "minecraft:crossbow",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

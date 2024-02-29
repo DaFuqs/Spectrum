@@ -2,7 +2,7 @@
   "name": "棉云靴",
   "advancement": "spectrum:unlocks/trinkets/cotton_cloud_boots",
   "icon": "spectrum:cotton_cloud_boots",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:cotton_cloud_boots": 0
   },

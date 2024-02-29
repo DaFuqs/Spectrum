@@ -2,7 +2,7 @@
   "name": "Jade Wine",
   "advancement": "spectrum:unlocks/food/jade_wine",
   "icon": "spectrum:jade_wine",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:jade_wine": 0,
     "spectrum:chrysocolla": 0

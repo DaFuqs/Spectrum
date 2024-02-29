@@ -2,7 +2,7 @@
   "name": "Enchantment Canvas",
   "advancement": "spectrum:unlocks/items/enchantment_canvas",
   "icon": "spectrum:enchantment_canvas",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:magical_items",
   "extra_recipe_mappings": {
     "spectrum:enchantment_canvas": 0
   },

@@ -1,6 +1,6 @@
 {
   "name": "Experiment #2",
-  "category": "spectrum:hints_category",
+  "category": "spectrum:hints",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:midgame/craft_bottle_of_failing",
   "read_by_default": true,

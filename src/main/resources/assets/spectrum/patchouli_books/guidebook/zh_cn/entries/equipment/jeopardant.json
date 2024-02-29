@@ -2,7 +2,7 @@
   "name": "血怒戒指",
   "advancement": "spectrum:unlocks/trinkets/jeopardant",
   "icon": "spectrum:jeopardant",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:jeopardant": 0
   },

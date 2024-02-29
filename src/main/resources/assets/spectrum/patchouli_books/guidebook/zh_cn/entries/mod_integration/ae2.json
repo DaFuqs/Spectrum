@@ -3,7 +3,7 @@
   "icon": "ae2:controller",
   "flag": "mod:ae2",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "extra_recipe_mappings": {
     "spectrum:small_certus_quartz_bud": 0,
     "spectrum:large_certus_quartz_bud": 0,

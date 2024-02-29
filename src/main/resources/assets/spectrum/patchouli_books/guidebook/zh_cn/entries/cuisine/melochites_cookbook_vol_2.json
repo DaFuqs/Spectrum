@@ -2,7 +2,7 @@
   "name": "Melochites 菜谱 Vol. 2",
   "icon": "spectrum:melochites_cookbook_vol_2",
   "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2",
-  "category": "spectrum:cuisine_category",
+  "category": "spectrum:cuisine",
   "extra_recipe_mappings": {
     "spectrum:melochites_cookbook_vol_2": 0
   },

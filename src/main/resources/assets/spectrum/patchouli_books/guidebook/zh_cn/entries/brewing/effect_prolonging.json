@@ -2,7 +2,7 @@
   "name": "效果延长（叠加）",
   "advancement": "spectrum:hidden/status_effects/effect_prolonging",
   "icon": "minecraft:clock",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

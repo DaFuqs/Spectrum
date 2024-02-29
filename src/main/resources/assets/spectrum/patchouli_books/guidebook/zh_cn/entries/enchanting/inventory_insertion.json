@@ -20,5 +20,5 @@
   "advancement": "spectrum:unlocks/enchantments/inventory_insertion",
   "name": "自动收集",
   "icon": "minecraft:iron_pickaxe",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

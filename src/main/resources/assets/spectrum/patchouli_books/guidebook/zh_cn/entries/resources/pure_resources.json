@@ -2,7 +2,7 @@
   "name": "原生的资源",
   "advancement": "spectrum:lategame/collect_pure_resource",
   "icon": "spectrum:pure_iron",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:resources",
   "extra_recipe_mappings": {
     "spectrum:pure_coal": 0,
     "spectrum:pure_iron": 0,

@@ -13,6 +13,6 @@
   "advancement": "spectrum:unlocks/items/basic_ink_storage_items",
   "name": "墨水",
   "icon": "spectrum:ink_flask",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "priority": true
 }

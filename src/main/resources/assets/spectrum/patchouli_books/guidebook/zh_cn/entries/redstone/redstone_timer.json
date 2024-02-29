@@ -18,5 +18,5 @@
   },
   "name": "红石计时器",
   "icon": "spectrum:redstone_timer",
-  "category": "spectrum:redstone_category"
+  "category": "spectrum:redstone"
 }

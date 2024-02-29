@@ -2,7 +2,7 @@
   "name": "Ink Assortment",
   "advancement": "spectrum:unlocks/items/ink_assortment",
   "icon": "spectrum:ink_assortment",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "extra_recipe_mappings": {
     "spectrum:ink_assortment": 0
   },

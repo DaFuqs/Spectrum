@@ -14,5 +14,5 @@
 	"icon":"minecraft:writable_book",
 	"turnin":"spectrum:hidden/collect_shards/collect_topaz_shard",
 	"secret":true,
-	"category":"spectrum:hints_category"
+	"category":"spectrum:hints"
 }

@@ -2,7 +2,7 @@
   "name": "心之歌手",
   "advancement": "spectrum:unlocks/trinkets/heartsingers_reward",
   "icon": "spectrum:heartsingers_reward",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:heartsingers_reward": 0
   },

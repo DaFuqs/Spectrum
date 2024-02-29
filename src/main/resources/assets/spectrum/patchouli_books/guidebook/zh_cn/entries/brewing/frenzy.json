@@ -2,7 +2,7 @@
   "name": "癫狂 (叠加)",
   "advancement": "spectrum:hidden/status_effects/frenzy",
   "icon": "spectrum:blood_orchid_petal",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "extra_recipe_mappings": {},
   "pages": [
     {

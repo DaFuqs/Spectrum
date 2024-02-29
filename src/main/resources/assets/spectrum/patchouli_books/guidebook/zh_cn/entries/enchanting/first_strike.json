@@ -26,5 +26,5 @@
   "advancement": "spectrum:unlocks/enchantments/first_strike",
   "name": "先发制人",
   "icon": "minecraft:iron_sword",
-  "category": "spectrum:enchanting_category"
+  "category": "spectrum:enchanting"
 }

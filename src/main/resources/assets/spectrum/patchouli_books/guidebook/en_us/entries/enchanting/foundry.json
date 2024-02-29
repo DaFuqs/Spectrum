@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:unlocks/enchantments/autosmelt",
   "flag": "spectrum:enchantment_exists_spectrum_autosmelt",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

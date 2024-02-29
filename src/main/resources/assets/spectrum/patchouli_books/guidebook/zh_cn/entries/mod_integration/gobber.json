@@ -3,7 +3,7 @@
   "icon": "gobber2:gobber2_globette",
   "flag": "mod:gobber2",
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "extra_recipe_mappings": {
     "spectrum:small_globette_bud": 0,
     "spectrum:large_globette_bud": 0,

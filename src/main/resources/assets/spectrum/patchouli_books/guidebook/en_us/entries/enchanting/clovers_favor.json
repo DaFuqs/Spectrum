@@ -3,7 +3,7 @@
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:unlocks/enchantments/clovers_favor",
   "flag": "spectrum:enchantment_exists_spectrum_clovers_favor",
-  "category": "spectrum:enchanting_category",
+  "category": "spectrum:enchanting",
   "pages": [
     {
       "type": "patchouli:text",

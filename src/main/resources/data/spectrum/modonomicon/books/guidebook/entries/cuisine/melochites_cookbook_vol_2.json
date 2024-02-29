@@ -1,7 +1,10 @@
 {
   "name": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_2.name",
   "icon": "spectrum:melochites_cookbook_vol_2",
-  "advancement": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_cookbooks/melochites_cookbook_vol_2"
+  },
   "category": "spectrum:cuisine",
   "parents": [],
   "background_u_index": 0,

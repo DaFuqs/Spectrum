@@ -3,7 +3,7 @@
   "icon": "minecraft:anvil",
   "sortnum": 4,
   "advancement": "spectrum:place_pedestal",
-  "category": "spectrum:general_category",
+  "category": "spectrum:general",
   "turnin": "spectrum:collect_gemstone_powder",
   "pages": [
     {

@@ -3,7 +3,7 @@
   "icon": "spectrum:multitool",
   "flag": "mod:veinmining",
   "advancement": "spectrum:lategame/collect_paltaeria",
-  "category": "spectrum:mod_integration_category",
+  "category": "spectrum:mod_integration",
   "pages": [
     {
       "type": "patchouli:spotlight",

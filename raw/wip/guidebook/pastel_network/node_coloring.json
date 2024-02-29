@@ -2,7 +2,7 @@
   "name": "Node Coloring",
   "icon": "minecraft:red_dye",
   "advancement": "spectrum:unlocks/milestones/__todo_unlock_pastel_node_coloring",
-  "category": "spectrum:pastel_network_category",
+  "category": "spectrum:pastel_network",
   "priority": true,
   "sortnum": 2,
   "secret": true,

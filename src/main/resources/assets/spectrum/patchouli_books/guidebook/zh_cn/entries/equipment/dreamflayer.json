@@ -2,7 +2,7 @@
   "name": "梦境活剥之刃",
   "advancement": "spectrum:unlocks/equipment/dreamflayer",
   "icon": "spectrum:dreamflayer",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:dreamflayer": 0
   },

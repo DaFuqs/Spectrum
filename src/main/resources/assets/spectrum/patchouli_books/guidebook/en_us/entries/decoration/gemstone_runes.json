@@ -2,7 +2,7 @@
   "name": "Gemstone Runes",
   "advancement": "spectrum:create_onyx_shard",
   "icon": "spectrum:citrine_chiseled_calcite",
-  "category": "spectrum:decoration_category",
+  "category": "spectrum:decoration",
   "extra_recipe_mappings": {
     "spectrum:topaz_chiseled_basalt": 0,
     "spectrum:amethyst_chiseled_basalt": 0,

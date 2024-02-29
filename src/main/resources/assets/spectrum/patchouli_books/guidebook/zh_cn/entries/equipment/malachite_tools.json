@@ -2,7 +2,7 @@
   "name": "孔雀石工具",
   "advancement": "spectrum:unlocks/malachite/malachite_tools",
   "icon": "spectrum:malachite_ultra_greatsword",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:equipment",
   "extra_recipe_mappings": {
     "spectrum:malachite_workstaff": 0,
     "spectrum:malachite_ultra_greatsword": 0,

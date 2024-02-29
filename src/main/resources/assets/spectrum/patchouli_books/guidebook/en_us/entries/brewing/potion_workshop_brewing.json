@@ -2,7 +2,7 @@
   "name": "Brewing Potions",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
-  "category": "spectrum:brewing_category",
+  "category": "spectrum:brewing",
   "priority": true,
   "sortnum": 1,
   "extra_recipe_mappings": {

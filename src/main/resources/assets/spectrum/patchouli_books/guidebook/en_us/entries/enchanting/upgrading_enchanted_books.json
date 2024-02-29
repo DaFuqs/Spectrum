@@ -1,0 +1,22 @@
+{
+  "name": "Upgrading Books",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 3,
+  "advancement": "spectrum:unlocks/blocks/enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Enchantments and your Color Magic have a lot in common. That's why you weren't surprised when your first attempt to combine $(item)Enchanted Books$() with $(l:general/pigment)Pigment$(/l) was an instant success.$()$(br2)Placing an $(item)Enchanted Book$() onto the $(l:enchanting/enchanter)Enchanter$(), surrounding it with matching $(l:general/pigment)Pigment$(/l) and supplying a steady stream of experience increases your books level."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/upgrading_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "Just try not to interrupt said process, otherwise it will stop entirely."
+    }
+  ]
+}

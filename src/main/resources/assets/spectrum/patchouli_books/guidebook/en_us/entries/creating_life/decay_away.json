@@ -1,0 +1,23 @@
+{
+  "name": "Decay Away",
+  "icon": "spectrum:bottle_of_decay_away",
+  "advancement": "spectrum:unlocks/items/bottle_of_decay_away",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_decay_away": 0
+  },
+  "pages": [
+    {
+      "title": "Decay Away",
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_decay_away",
+      "text": "Your last experiment was not only dangerous, but also quite a pain to get rid of.$(br)Just in case anything ever gets out of hand you created this modified variant. This time, though, to heal instead of flooding your base.$(br2)Yeah, that's probably better."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_decay_away",
+      "text": "Gets rid of 99 % of all self-replicating microorganisms."
+    }
+  ]
+}

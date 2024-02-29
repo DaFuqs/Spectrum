@@ -1,0 +1,38 @@
+{
+  "name": "Shimmerstone Lights",
+  "icon": "spectrum:basalt_shimmerstone_light",
+  "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:blackslag_shimmerstone_light": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Shimmerstone Lights",
+      "items": [
+        "spectrum:andesite_shimmerstone_light",
+        "spectrum:basalt_shimmerstone_light",
+        "spectrum:calcite_shimmerstone_light",
+        "spectrum:deepslate_shimmerstone_light",
+        "spectrum:diorite_shimmerstone_light",
+        "spectrum:granite_shimmerstone_light",
+        "spectrum:stone_shimmerstone_light"
+      ],
+      "text": "On your first nights in this new world, you lit your improvised hut with torches. As atmospheric as that was, it was also primitive.$(br)To move away from your dark, torch-lit past, you created lamps based on Shimmerstone."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
+      "text": "There are various variants, depending on what polished block you use as a base."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Blackslag Variant",
+      "advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
+      "text": "Blackslag can be used, too, resulting in an especially dark variant."
+    }
+  ]
+}

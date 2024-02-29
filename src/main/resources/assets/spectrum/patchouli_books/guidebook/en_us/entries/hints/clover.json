@@ -1,0 +1,23 @@
+{
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/build_enchanting_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_four_leaf_clover",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to look",
+      "completion_advancement": "spectrum:collect_four_leaf_clover",
+      "cost": "spectrum:vegetal#16",
+      "text": "Search for a Plains biome. Maybe you get lucky!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:vegetal#48",
+      "text": "In Plains biomes, you will find Clover growing in small patches, most of them with three, but some with four leaves. You can immediately notice a Four-Leaved Clover in its block form already and distinguish it from a three-leaved one. Break to harvest, Bonemeal/Nature's Staff to spread."
+    }
+  ]
+}

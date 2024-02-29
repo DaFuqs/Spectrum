@@ -1,0 +1,36 @@
+{
+  "name": "Moonstone Pedestal",
+  "icon": "spectrum:pedestal_moonstone",
+  "sortnum": 18,
+  "advancement": "spectrum:lategame/collect_moonstone_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:hidden/build_any_complex_structure",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_moonstone": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Moonstone Pedestal",
+      "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
+      "text": "Upgrade your $(l:general/pedestal)Pigment Pedestal$() by using one of your gathered $(l:general/shards#moonstone)Moonstone Shards$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Spectrum Palace",
+      "multiblock_id": "spectrum:pedestal_complex_structure_without_moonstone_check",
+      "enable_visualize": true,
+      "text": "Dimensions: 13x13x7 blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Checklist (Complete)",
+      "text": "$(li)1 Pigment Pedestal$(li)4 Onyx Chiseled Blocks$(li)4 Notched Polished Blocks$(li)8 Gemstone Lamps$(li)4 Gemstone Chiseled Blocks$(li)12 Polished Gemstone Blocks$(li)16 CMYK Chiseled Blocks$(li)36 Polished Pillars$(li)52 Polished Crests$(li)172 Polished Blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Checklist (Upgrade)",
+      "text": "$(li)4 Onyx Chiseled Blocks$(li)4 Polished Gemstone Blocks$(li)36 Polished Crests$(li)12 Polished Blocks"
+    }
+  ]
+}

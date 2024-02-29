@@ -1,0 +1,22 @@
+{
+  "name": "Enchanting Books",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 2,
+  "advancement": "spectrum:unlocks/blocks/enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Using $(l:general/pigment)Pigment$(/l), selected ingredients and some experience the $(l:enchanting/enchanter)Enchanter$(/l) enables you to add Enchantments to $(item)regular Books$().$(br2)While this process consumes more experience than enchanting in a common Enchanting Table you have granular control about which Enchantment you want to create."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/creating_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "You can also use this process to enchant your magical tools."
+    }
+  ]
+}

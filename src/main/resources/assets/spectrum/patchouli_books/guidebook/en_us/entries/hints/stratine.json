@@ -1,0 +1,23 @@
+{
+  "name": "A new Ore",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_stratine",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_stratine_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:hidden/collect_stratine_gem",
+      "cost": "minecraft:quartz#16",
+      "text": "There is a new ore that can be found in the Nether."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "minecraft:quartz#48",
+      "text": "It generates in the lower layers of the Nether in all biomes, below lava level."
+    }
+  ]
+}

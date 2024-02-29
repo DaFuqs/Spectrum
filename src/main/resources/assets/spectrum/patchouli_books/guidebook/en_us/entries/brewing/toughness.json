@@ -1,0 +1,18 @@
+{
+  "name": "Toughness",
+  "advancement": "spectrum:hidden/status_effects/toughness",
+  "icon": "minecraft:netherite_chestplate",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:toughness",
+      "text": "$(thing)Weakens powerful attacks$() that hit you.$(br)While great against single, deadly strikes, it does little against lots of small attacks."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

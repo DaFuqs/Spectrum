@@ -1,0 +1,23 @@
+{
+  "name": "A new Ore",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_paltaeria",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_paltaeria_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:hidden/collect_paltaeria_gem",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "There is a new turquoise ore that can be found in the End."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:moonstone_shard#32",
+      "text": "This ore, which you can now perceive, is formed both on the central island and in the outer regions of the End. Catch it before it's too late!"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Overchanting",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "secret": true,
+  "sortnum": 4,
+  "advancement": "spectrum:milestones/unlock_overenchanting_with_enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Overchanting",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
+      "text": "Your familiarity with both magic and the $(l:enchanting/enchanter)Enchanter$() has opened new doors for you:$(br)$(thing)Overchanting$().$(br2)Packing so much magical energy into a single $(item)Enchanted Book$() will be expensive. $(italic)Very expensive$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Spectrum Enchantments",
+      "text": "$(li)Clovers' Favor: 3 => 6$(li)Disarming: 2 => 4$(li)Exuberance: 5 => 10$(li)First Strike: 2 => 5$(li)Improved Critical: 2 => 4$(li)Inertia: 2 => 5$(li)Tight Grip: 2 => 4$(li)Treasure Hunter: 3 => 5$(li)Sniper: 2 => 4"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Vanilla Enchantments",
+      "text": "$(li)Bane of Arthropods: 5 => 8$(li)Blast Protection: 4 => 8$(li)Depth Strider: 3 => 3$(li)Efficiency: 5 => 8$(li)Feather Falling: 4 => 6$(li)Fire Aspect: 2 => 4$(li)Fire Protection: 4 => 8$(li)Fortune: 3 => 5$(li)Frost Walker: 2 => 4$(li)Impaling: 5 => 8$(li)Knockback: 2 => 5$(li)Looting: 3 => 6$(li)Loyalty: 3 => 4$(li)Luck of the Sea: 3 => 5"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Lure: 3 => 5$(li)Piercing: 4 => 8$(li)Power: 5 => 8$(li)Proj. Protection: 4 => 8$(li)Protection: 4 => 8$(li)Punch: 2 => 5$(li)Quick Charge: 3 => 5$(li)Respiration: 3 => 6$(li)Riptide: 3 => 4$(li)Sharpness: 5 => 8$(li)Smite: 5 => 8$(li)Soul Speed: 3 => 4$(li)Sweeping Edge: 3 => 7$(li)Thorns: 3 => 6$(li)Unbreaking: 3 => 6"
+    }
+  ]
+}

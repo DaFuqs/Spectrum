@@ -1,0 +1,20 @@
+{
+  "name": "Hoverblock",
+  "advancement": "spectrum:lategame/collect_hover_block",
+  "icon": "spectrum:hover_block",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:hover_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:hover_block",
+      "text": "Created from a collision of $(l:resources/stratine)Stratine$(/l) and $(l:resources/stratine)Paltaeria$(/l), this block just sits around in the air when placed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "...well, other blocks seem to be able to float in the air without support just fine for whatever reason, too, but this one is special: $(thing)it preserves any momentum that you give it$(), like via $(item)Piston$(), even if you stand on it.$(br2)Tip: $(k:sneak) + $(k:use) to pick it back up."
+    }
+  ]
+}

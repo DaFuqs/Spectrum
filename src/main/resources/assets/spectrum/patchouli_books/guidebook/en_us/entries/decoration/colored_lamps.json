@@ -1,0 +1,36 @@
+{
+  "name": "Colored Lamps",
+  "icon": "spectrum:cyan_lamp",
+  "advancement": "spectrum:unlocks/colored_lamps/any_colored_lamp",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_lamp": 0,
+    "spectrum:blue_lamp": 0,
+    "spectrum:brown_lamp": 0,
+    "spectrum:cyan_lamp": 0,
+    "spectrum:gray_lamp": 0,
+    "spectrum:green_lamp": 0,
+    "spectrum:light_blue_lamp": 0,
+    "spectrum:light_gray_lamp": 0,
+    "spectrum:lime_lamp": 0,
+    "spectrum:magenta_lamp": 0,
+    "spectrum:orange_lamp": 0,
+    "spectrum:pink_lamp": 0,
+    "spectrum:purple_lamp": 0,
+    "spectrum:red_lamp": 0,
+    "spectrum:white_lamp": 0,
+    "spectrum:yellow_lamp": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You've finally managed to mix colors properly. What could be more natural than to try out the properties of your new $(l:general/pigment)Pigments$() right away? You've had enough of the normal $(item)Redstone Lamps$() by now. Time to add a splash of color!$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
+      "text": "They are surrounded by a vibrant light when activated. Besides that, Colored Lamps function similar to their boring Redstone counterpart."
+    }
+  ]
+}

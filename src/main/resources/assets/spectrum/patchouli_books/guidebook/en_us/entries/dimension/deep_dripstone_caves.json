@@ -1,0 +1,22 @@
+{
+  "name": "Deep Dripstone Caves",
+  "advancement": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves",
+  "icon": "minecraft:dripstone_block",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Deep Dripstone Caves",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
+      ],
+      "border": true,
+      "text": "Same, but different."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "These caves must have existed since time began.$(br)You wonder how big the gigantic stalactites here can get. You've seen ones that span hundreds of blocks already.$(br)The ground is speckled in puddles of $(item)Water$()."
+    }
+  ]
+}

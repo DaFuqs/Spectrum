@@ -1,0 +1,23 @@
+{
+  "name": "Erasers",
+  "icon": "spectrum:eraser_head",
+  "advancement": "spectrum:hidden/entity_interact/eraser",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:eraser_head": 0,
+    "spectrum:eraser_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Erasers",
+      "entity": "spectrum:eraser",
+      "scale": 1.0,
+      "text": "$(italic)Don't let them overwhelm you!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Tiny, hard-to-hit, pack-hunting spiders that inflict a variety of nasty effects when hit.$(br2)Those darn critters are a real pest down here. You wouldn't be surprised if THESE were responsible for the downfall of civilizations.$(br2)Your usual approach with sword or bow doesn't help much against them, they are too fast for that. Something that does area damage is more likely to."
+    }
+  ]
+}

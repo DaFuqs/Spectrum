@@ -1,0 +1,55 @@
+{
+  "name": "Vanilla Items",
+  "advancement": "spectrum:craft_using_pedestal",
+  "icon": "minecraft:bell",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Vanilla Items",
+      "text": "There are a few items that have always been difficult to get. Your new skills should make it much easier to get them."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/bundle",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/cobweb",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/spectral_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Unstable TNT",
+      "recipe": "spectrum:pedestal/tier1/vanilla/unstable_tnt",
+      "text": "Explodes when punched"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/vanilla/bell",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/vanilla/name_tag",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/vanilla/elytra",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/vanilla/trident",
+      "text": ""
+    }
+  ]
+}

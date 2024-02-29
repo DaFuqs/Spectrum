@@ -1,0 +1,22 @@
+{
+  "name": "Enchanted Food",
+  "advancement": "spectrum:lategame/collect_pure_resource",
+  "icon": "spectrum:enchanted_golden_carrot",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "minecraft:enchanted_golden_apple": 0,
+    "spectrum:enchanted_golden_carrot": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe": "spectrum:enchanter/enchanted_golden_apple",
+      "text": "Almost as tough as your life."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe": "spectrum:enchanter/enchanted_golden_carrot",
+      "text": "As you can clearly see, the effect is conceivably weaker than the one of $(item)Enchanted Golden Apples$(), but they still make a handy crunchy snack for short trips."
+    }
+  ]
+}

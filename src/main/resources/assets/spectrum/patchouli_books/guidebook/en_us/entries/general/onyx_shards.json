@@ -1,0 +1,36 @@
+{
+  "name": "Creating Onyx Shards",
+  "icon": "spectrum:onyx_shard",
+  "sortnum": 11,
+  "advancement": "spectrum:unlocks/blocks/fusion_shrine",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:create_onyx_shard",
+  "extra_recipe_mappings": {
+    "spectrum:onyx_shard": 0,
+    "spectrum:onyx_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "To create brown Pigment you needed a way to darken an orange tone.$(br)And then it occurred to you. It's so logical when you think about it! The three gems you found correspond to the three basic colors of color theory!$(br)By mixing all three colors you can create a shard that is so dark it almost looks unreal."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/onyx_shard",
+      "text": "The creation of this 'blackest of blacks' in the $(l:general/fusion_shrine)Fusion Shrine$() has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a new moon it is. Best to bring a clock with you."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Moon Phases",
+      "images": [
+        "spectrum:textures/gui/guidebook/moon_phases.png"
+      ],
+      "text": "Depending on the positions of Sun and Moon, the Moon will reflect more or less light."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "These are known as $(thing)Moon Phases$().$(br2)When the moon is at its brightest, it is known as a $(thing)Full Moon$(). When at its darkest, it is a $(thing)New Moon$().$(br2)An entire lunar phase cycle from one new moon to the following new moon is also called a $(thing)lunation$()."
+    }
+  ]
+}

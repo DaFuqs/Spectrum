@@ -1,0 +1,22 @@
+{
+  "name": "Redstone Timer",
+  "advancement": "spectrum:unlocks/redstone/redstone_timer",
+  "icon": "spectrum:redstone_timer",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_timer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_timer",
+      "text": "Though there are lots of ways to calculate time, most seem relatively... rustic. They are no match for this new trick up your sleeve: the time-affinity of $(l:general/shards#amethyst)Amethyst Shards$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/redstone_timer",
+      "text": "You can toggle the durations for both active time ($(k:use)) and inactive time ($(k:sneak) + $(k:use) with empty hand)."
+    }
+  ]
+}

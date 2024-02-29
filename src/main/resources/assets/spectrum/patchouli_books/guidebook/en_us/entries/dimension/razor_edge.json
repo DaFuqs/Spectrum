@@ -1,0 +1,31 @@
+{
+  "name": "Razor Edge",
+  "advancement": "spectrum:hidden/visit_dd_biomes/razor_edge",
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:sawblade_grass": 0,
+    "spectrum:bristle_sprouts": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Razor Edge",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_razor_edge.png"
+      ],
+      "border": true,
+      "text": "Everything here seems to thrive on stabbing you. Not the most welcoming place to be."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:sawblade_grass",
+      "text": "Even the ground: Parched and razor sharp due to lack of light and water - hence the name."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bristle_sprouts",
+      "text": "Little mean plants that sting immensely when you make contact with them."
+    }
+  ]
+}

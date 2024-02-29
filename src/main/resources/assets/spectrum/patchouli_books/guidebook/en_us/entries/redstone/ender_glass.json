@@ -1,0 +1,30 @@
+{
+  "name": "Ender Glass",
+  "advancement": "spectrum:unlocks/blocks/ender_glass",
+  "icon": "spectrum:ender_glass",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_glass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:ender_glass",
+      "text": "You already thought the moment you put the recipe on paper that this creation will be something special.$(br2)The combination of the power of $(thing)The End$(), $(thing)Redstone$() and $(thing)Magic$() gives it very strange properties."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Depending on the strength of the applied $(thing)redstone signal$(), this block takes on different properties:$(li)Without redstone, it is completely solid$(li)when a $(thing)redstone signal$() reaches it, it becomes transparent, almost like glass$(li)however, it reaches its most curious state when a redstone signal of full strength is applied..."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the End."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/ender_glass",
+      "test": "With the smallest external influence in the form of blocks it falls back to the state of lowest energy."
+    }
+  ]
+}

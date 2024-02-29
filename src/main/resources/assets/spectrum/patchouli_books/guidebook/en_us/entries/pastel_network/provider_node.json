@@ -1,0 +1,19 @@
+{
+  "name": "Provider Node",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Provider Node",
+      "text": "Makes the items in the connected inventory available in its $(l:pastel_network/pastel_network)Pastel Network$(/l).$(br2)Items will not be pushed to other nodes, but can be requested by $(l:pastel_network/gather_node)Gather Nodes$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
+      "text": ""
+    }
+  ]
+}

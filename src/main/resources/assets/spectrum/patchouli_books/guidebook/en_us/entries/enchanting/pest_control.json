@@ -1,0 +1,25 @@
+{
+  "name": "Pest Control",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/pest_control",
+  "flag": "spectrum:enchantment_exists_spectrum_pest_control",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "On your way to the End you found a huge underground structure that looked like the fortress of a civilisation that lived far before you.$(br2)Although they seemed to have technology that allowed them to open a portal to another world, they definitely should have done something about their vermin problem."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "Gets rid of Silverfish when breaking $(item)Infested Blocks$(), dropping double XP.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Resonance."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
+      "text": "You can infuse a $(item)common Book$() with Pest Control by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

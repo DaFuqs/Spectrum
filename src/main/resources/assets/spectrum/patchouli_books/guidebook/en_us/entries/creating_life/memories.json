@@ -1,0 +1,35 @@
+{
+  "name": "Memories",
+  "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+  "advancement": "spectrum:unlocks/blocks/memories",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:memory": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Memories",
+      "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+      "text": "With the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l), you are able to breathe new life into a once dead creature.$(br)It will materialise in the form of a $(italic)Memory$()."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Spirit Inst. Recipe",
+      "recipe": "spectrum:spirit_instiller/memories/fox",
+      "text": "To remember the memories about a creature, you need its $(l:creating_life/mob_heads)Head$(/l), as well as its most beloved item and $(l:creating_life/fading#vegetal)Vegetal$(/l) as a bonding agent.$(br)Using $(l:creating_life/failing#neolith)Neolith$(/l) seems to completely overpower the energies of the creature, making the resulting Memory unrecognizable, until it manifests."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Manifesting",
+      "text": "Memories need a certain amount of time to manifest, almost like an egg: you have to place them down and wait. Depending on the creature, it may be reasonably quick, or take forever.$(br2)$(italic)Placing them on top of certain blocks seems to speed up that process or stop it entirely."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:milestones/unlock_remembering_boss_memories",
+      "title": "Reviving Bosses",
+      "item": "minecraft:dragon_head",
+      "text": "With your vast knowledge, you are now even able to resurrect Ender Dragons, Withers and Wardens."
+    }
+  ]
+}

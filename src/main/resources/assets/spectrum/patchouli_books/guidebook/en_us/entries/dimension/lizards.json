@@ -1,0 +1,30 @@
+{
+  "name": "Lurking Lizards",
+  "icon": "spectrum:lizard_head",
+  "advancement": "spectrum:hidden/entity_interact/lizard",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:lizard_head": 0,
+    "spectrum:lizard_spawn_egg": 0,
+    "spectrum:lizard_meat": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Lurking Lizards",
+      "entity": "spectrum:lizard",
+      "scale": 0.5,
+      "text": "$(italic)Not particularly affable contemporaries."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Quarrelsome beasts that are always looking for trouble.$(br2)Actually, they would be kind of cute if they didn't always try to bite off your limbs right away.$(br)...maybe you'd better keep them behind a $(item)Glass Pane$() - your extremities will thank you for it."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:lizard_meat",
+      "anchor": "lizard_meat",
+      "text": "Not particularly tasty and quite chewy, but it gets the job done."
+    }
+  ]
+}

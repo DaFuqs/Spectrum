@@ -1,0 +1,29 @@
+{
+  "name": "Delving Deeper Down",
+  "icon": "minecraft:bedrock",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/open_deeper_down_portal",
+  "turnin": "spectrum:midgame/enter_dimension",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Delving Deeper Down",
+      "item": "minecraft:bedrock",
+      "text": "You wouldn't have thought it possible. As you burst deeper and deeper down through the bedrock, a pitch-black portal opened up. Where does it lead? Only one way to find out.$(br)$(italic)Still, you can't get rid of the lump in your throat..."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/enter_dimension",
+      "title": "Deeper Down",
+      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.$(br2)What is waiting for you to discover down there?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:__todo/monstrosity",
+      "title": "Horrors Below?",
+      "text": "There is something lurking for you in the dark, you are sure. Or is it just your nerves?"
+    }
+  ]
+}

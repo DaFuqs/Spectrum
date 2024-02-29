@@ -1,0 +1,33 @@
+{
+  "name": "Effulgent Deco",
+  "icon": "spectrum:effulgent_block",
+  "advancement": "spectrum:lategame/pluck_effulgent_feather",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You really have to envy the $(l:creating_life/kindlings)Kindlings$(), spending their days covered in these fluffy, poofy things. Beyond soft - luxurious both in feel and color, even with the $(c_yellow)golden liveliness$() that flows through them.$(br)You could see yourself falling asleep on a cushion made from these."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_block",
+      "text": "Can be crafted back into $(item)Feathers$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_cushion",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks",
+      "text": ""
+    }
+  ]
+}

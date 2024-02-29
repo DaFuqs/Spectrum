@@ -1,0 +1,41 @@
+{
+  "name": "Paltaeria",
+  "advancement": "spectrum:lategame/collect_paltaeria",
+  "icon": "spectrum:paltaeria_fragments",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:paltaeria_ore": 0,
+    "spectrum:paltaeria_fragments": 0,
+    "spectrum:paltaeria_gem": 0,
+    "spectrum:paltaeria_fragment_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Paltaeria",
+      "item": "spectrum:paltaeria_fragments",
+      "text": "The light blue color is the trademark of this ore. It is found exclusively in the End in small clusters.$(br2)Like the End itself, the curious properties of this material are not to be overlooked."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Paltaeria Gem",
+      "advancement": "spectrum:hidden/collect_paltaeria_gem",
+      "recipe": "spectrum:pedestal/tier4/paltaeria_gem",
+      "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Paltaeria Floatblock",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "item": "spectrum:paltaeria_fragment_block",
+      "text": "From your previous experiences with Paltaeria, you can already guess that it would not be a good idea to place this block in open sky - your future self will thank you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "recipe": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block",
+      "text": "$(br)       $(italic)~ Fly far away ~"
+    }
+  ]
+}

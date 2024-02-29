@@ -1,0 +1,18 @@
+{
+  "name": "Whispy Circlet",
+  "icon": "spectrum:whispy_circlet",
+  "advancement": "spectrum:unlocks/trinkets/whispy_circlet",
+  "category": "spectrum:equipment_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The bags under your eyes aren't the only evidence of your lack of sleep. There are those creatures that come haunt you straight out of your missed nightmares when you don't regularly lay down to sleep - almost like they feel cheated.$(br)The manifestation of relaxation, no sleep necessary."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
+      "text": "After just a few minutes of wear, you feel physically and mentally refreshed. You also recover from negative effects more quickly.$(br2)$(italic)The pleasures of a good night's sleep."
+    }
+  ]
+}

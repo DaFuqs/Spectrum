@@ -1,0 +1,42 @@
+{
+  "name": "Cinderhearth",
+  "icon": "spectrum:cinderhearth",
+  "advancement": "spectrum:unlocks/blocks/cinderhearth",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:cinderhearth": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A state-of-your-art blast furnace, which consumes $(c_orange)Orange Ink$() to smelt ores and the like."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/cinderhearth",
+      "text": "Supplying a $(l:magical_items/knowledge_gem)Knowledge Gem$() allows you to automatically collect XP while smelting."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Cinderhearth Structure",
+      "multiblock_id": "spectrum:cinderhearth_structure",
+      "enable_visualize": true,
+      "text": "The Cinderhearth's abilities can be enhanced via $(l:magical_blocks/upgrades)Upgrades$(). Place them on the two Chiseled Blocks."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Cinderhearth$(li)21 Polished Blocks$(li)6 Crest Blocks$(li)5 Glass-like Blocks$(li)2 Chiseled Blocks$(li)6 Buckets of Lava$(br2)$(italic)Did it really need that $(item)Lava$()$(italic) underneath since you already have $(c_orange)Ink$()$(italic)? No, not really. But it looks so much better."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Upgrades",
+      "text": "$(l:magical_blocks/upgrades)Upgrades$() placed on the $(item)Chiseled Blocks$() do not work automatically, but requires you to supply an additional type of $(l:magic/ink)Ink$(/l) to the Cinderhearth. The higher the upgrades, the higher the consumption."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Speed ($(c_magenta)Magenta Ink$()):$(br)faster smelt times$(br)$(li)Yield ($(c_light_blue)Light Blue Ink$()):$(br)chance to multiply the output for most blocks$(br)$(li)Experience ($(c_purple)Purple Ink$()):$(br)vastly increases experience gain$(br)$(li)Efficiency ($(c_black)Black Ink$()):$(br)greatly decreases Ink consumption of the other types, including $(c_orange)Orange$()"
+    }
+  ]
+}

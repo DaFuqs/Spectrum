@@ -1,0 +1,29 @@
+{
+  "name": "Dragonjags",
+  "advancement": "spectrum:hidden/collect_dragonjag",
+  "icon": "spectrum:small_purple_dragonjag",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Dragonjags",
+      "items": [
+        "spectrum:small_red_dragonjag",
+        "spectrum:small_yellow_dragonjag",
+        "spectrum:small_pink_dragonjag",
+        "spectrum:small_purple_dragonjag",
+        "spectrum:small_black_dragonjag"
+      ],
+      "text": "These undemanding plants are able to grow virtually everywhere, even on hard stone."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_dragonjags.png"
+      ],
+      "border": true,
+      "text": "Bonemeal makes them grow and spread."
+    }
+  ]
+}

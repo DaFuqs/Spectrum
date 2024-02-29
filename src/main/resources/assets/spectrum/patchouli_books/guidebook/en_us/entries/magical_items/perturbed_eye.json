@@ -1,0 +1,58 @@
+{
+  "name": "End Portal Relocation",
+  "advancement": "spectrum:unlocks/items/perturbed_eye",
+  "icon": "minecraft:end_portal_frame",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:perturbed_eye": 0,
+    "spectrum:cracked_end_portal_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Every time you want to enter the realm of the Endermen, you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. Probably.$(br)You still haven't figured out how to create such portals yourself, but packing them up and taking them home? $(italic)No problem."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/end_portal.png"
+      ],
+      "border": true,
+      "text": "The End Portal, like found in Strongholds."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/perturbed_eye",
+      "text": "Due to the extremely sturdy portal frames, these can be quite destructive. It is best to keep a bit of distance after socketing."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Reconstructed Portal",
+      "multiblock": {
+        "pattern": [
+          [
+            " HHH ",
+            "VPPPV",
+            "VPPPV",
+            "VPPPV",
+            " HHH ",
+            "  0  "
+          ]
+        ],
+        "mapping": {
+          "H": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=false]",
+          "V": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=true]",
+          "P": "minecraft:end_portal"
+        },
+        "offset": [
+          0,
+          3,
+          0
+        ],
+        "symmetrical": false
+      },
+      "text": "You just put the portal back together the way it was, add Ender Pearls, done!"
+    }
+  ]
+}

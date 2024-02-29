@@ -1,0 +1,18 @@
+{
+  "name": "Creating Life",
+  "icon": "minecraft:egg",
+  "advancement": "spectrum:unlocks/items/bottle_of_fading",
+  "category": "spectrum:creating_life_category",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Creating Life",
+      "text": "It has always been the dream of people to create artificial life.$(br2)Since you are now dealing with magical gems yourself, which seem to have magical powers, this should be a piece of cake."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The raw magical powers, which are bundled by the gems, are the best starting point for such research.$(br2)Since you seem to be immortal, you have all the time in the world to think about it.$(br)(last time a green pig walking upright surprised you, you woke up in your bed the next morning)$(br2)It's time for... experiments!"
+    }
+  ]
+}

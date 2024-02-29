@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
+      "completion_advancement": "spectrum:triggers/hints/downstone_fragments_page0",
       "cost": "spectrum:moonstone_shard#8",
       "text": "The deeper you dig into the underground of the Deeper Down, the more often you come across rocks that seem indestructible. There is something to discover at this height."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/downstone_fragments_page1",
       "cost": "spectrum:moonstone_shard#24",
       "text": "Near the lowest layers of the Deeper Down, you will sometimes stumble across structures with which the former inhabitants were able to carve this stone."
     }

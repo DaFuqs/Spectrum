@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:collect_mermaids_gem",
+      "completion_advancement": "spectrum:triggers/hints/mermaids_gems_page0",
       "cost": "spectrum:onyx_shard#4",
       "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/mermaids_gems_page1",
       "cost": "spectrum:onyx_shard#12",
       "text": "The source of these gems is a coral-looking plant that grows on the seabed in small groups, disguised as sea grass. Wait next to it until it is fully grown and releases its precious treasure, then collect it. After you collect one, you will be able to see the plant for what it is."
     }

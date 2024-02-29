@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:hidden/collect_stratine_gem",
+      "completion_advancement": "spectrum:triggers/hints/stratine_page0",
       "cost": "minecraft:quartz#16",
       "text": "There is a new ore that can be found in the Nether."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/stratine_page1",
       "cost": "minecraft:quartz#48",
       "text": "It generates in the lower layers of the Nether in all biomes, below lava level."
     }

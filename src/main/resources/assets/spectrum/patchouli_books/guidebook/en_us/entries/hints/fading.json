@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Small Clue",
-      "completion_advancement": "spectrum:collect_vegetal",
+      "completion_advancement": "spectrum:triggers/hints/fading_page0",
       "cost": "spectrum:shimmerstone_gem#16",
       "text": "Fading, as a small and weak organism, feeds on organic blocks placed next to it."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/fading_page1",
       "cost": "spectrum:shimmerstone_gem#48",
       "text": "Place organic blocks like Leaves, Pumpkins or Melons next to a Block of Fading and wait a while. The block will get consumed and replaced with a different looking variant. Break those converted blocks to get a new resource."
     }

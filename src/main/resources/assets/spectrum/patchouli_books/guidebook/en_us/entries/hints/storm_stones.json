@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:midgame/collect_storm_stone",
+      "completion_advancement": "spectrum:triggers/hints/storm_stones_page0",
       "cost": "spectrum:neolith#8",
       "text": "Thunderstorms are a powerful display of nature. There are tremendous energies playing."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/storm_stones_page1",
       "cost": "spectrum:neolith#24",
       "text": "Sometimes you are able to find weird shards at places where lightning struck. There even is a way to focus lightning at a specific position, to make gathering them even more efficient."
     }

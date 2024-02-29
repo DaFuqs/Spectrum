@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Small Clue",
-      "completion_advancement": "spectrum:midgame/collect_neolith",
+      "completion_advancement": "spectrum:triggers/hints/failing_page0",
       "cost": "spectrum:stratine_fragments#8",
       "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot stronger, though. 'I hate mining this'-strong, to be precise."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/failing_page1",
       "cost": "spectrum:stratine_fragments#24",
       "text": "The preferred food is Obsidian. Watch out for their insatiable hunger, though. They will eat quite a lot, if given the chance..."
     }

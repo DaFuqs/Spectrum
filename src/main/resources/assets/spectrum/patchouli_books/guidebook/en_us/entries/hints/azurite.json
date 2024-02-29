@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:midgame/collect_azurite",
+      "completion_advancement": "spectrum:triggers/hints/azurite_page0",
       "cost": "spectrum:neolith#8",
       "text": "There is a new blue ore that can be found in the Overworld in all biomes."
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
+      "completion_advancement": "spectrum:triggers/hints/azurite_page1",
       "cost": "spectrum:neolith#24",
       "text": "This rich blue ore generates very deep down under the surface and is fairly rare."
     }

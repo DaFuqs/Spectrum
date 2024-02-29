@@ -9,13 +9,14 @@
     {
       "type": "spectrum:hint",
       "title": "Small Clue",
-      "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
+      "completion_advancement": "spectrum:triggers/hints/ruin_page0",
       "cost": "spectrum:brown_pigment#8",
       "text": "This absolutely aggressive variant called Ruin is able to consume the most resistant material there is. Even ones too resistant for you to ever break before."
     },
     {
       "type": "spectrum:hint",
       "title": "A Warning",
+      "completion_advancement": "spectrum:triggers/hints/ruin_page1",
       "cost": "spectrum:brown_pigment#24",
       "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a backup plan up your sleeve if anything goes wrong."
     }

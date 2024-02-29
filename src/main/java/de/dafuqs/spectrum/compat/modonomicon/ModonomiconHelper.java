@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.modonomicon;
 
 import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import net.id.incubus_core.recipe.IngredientStack;
+import de.dafuqs.matchbooks.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 

@@ -4,10 +4,11 @@ import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.api.recipe.FluidIngredient;
 import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import net.id.incubus_core.recipe.IngredientStack;
+import de.dafuqs.matchbooks.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -52,11 +53,11 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 
         renderTitle(drawContext, recipeY, second);
 
-        Fluid fluid = recipe.getFluidInput();
-        boolean usesFluid = fluid != Fluids.EMPTY;
+        FluidIngredient fluid = recipe.getFluidInput();
+        boolean usesFluid = fluid != FluidIngredient.EMPTY;
         IngredientStack bucketStack = IngredientStack.EMPTY;
         if (usesFluid) {
-            bucketStack = IngredientStack.of(Ingredient.ofStacks(recipe.getFluidInput().getBucketItem().getDefaultStack()));
+            bucketStack = IngredientStack.of(recipe.getFluidInput().into());
         }
 
         // the ingredients

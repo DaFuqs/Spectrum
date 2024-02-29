@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.gui.GuidebookProvider;
 import de.dafuqs.spectrum.api.item.LoomPatternProvider;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.interfaces.GuidebookProvider;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;

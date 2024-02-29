@@ -2,12 +2,12 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.api.item.GemstoneColor;
 import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
-import de.dafuqs.spectrum.recipe.pedestal.color.GemstoneColor;
-import net.id.incubus_core.recipe.IngredientStack;
+import de.dafuqs.matchbooks.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;

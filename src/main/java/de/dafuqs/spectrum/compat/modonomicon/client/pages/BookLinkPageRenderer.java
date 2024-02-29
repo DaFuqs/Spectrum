@@ -9,8 +9,6 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Style;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-
 public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> implements PageWithTextRenderer {
 
     public BookLinkPageRenderer(BookLinkPage page) {

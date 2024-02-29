@@ -12,7 +12,6 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import vazkii.patchouli.client.book.gui.GuiBook;
 
 import java.util.ArrayList;
 import java.util.List;

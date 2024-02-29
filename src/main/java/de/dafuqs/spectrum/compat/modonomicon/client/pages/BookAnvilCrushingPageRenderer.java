@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;

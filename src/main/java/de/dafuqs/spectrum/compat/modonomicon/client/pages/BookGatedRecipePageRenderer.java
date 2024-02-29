@@ -4,7 +4,7 @@ import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.page.BookRecipePage;
 import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
 import com.klikli_dev.modonomicon.client.render.page.BookRecipePageRenderer;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.api.recipe.GatedRecipe;
 import net.minecraft.client.gui.DrawContext;
 
 public abstract class BookGatedRecipePageRenderer<R extends GatedRecipe, T extends BookRecipePage<R>> extends BookRecipePageRenderer<R, T> {

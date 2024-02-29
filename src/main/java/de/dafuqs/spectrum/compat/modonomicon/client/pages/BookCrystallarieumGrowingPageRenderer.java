@@ -23,6 +23,8 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
     private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 
     private static BookTextHolder catalystText;
+    private BookTextHolder craftingTimeText1 = null;
+    private BookTextHolder craftingTimeText2 = null;
 
     public BookCrystallarieumGrowingPageRenderer(BookGatedRecipePage<CrystallarieumRecipe> page) {
         super(page);
@@ -30,11 +32,23 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         if (catalystText == null) {
             catalystText = new BookTextHolder(Text.translatable("container.spectrum.modonomicon.crystallarieum.catalyst"));
         }
+
+        if (page.getRecipe1() != null) {
+            craftingTimeText1 = new BookTextHolder(Text.translatable(page.getRecipe1().growsWithoutCatalyst()
+                    ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
+                    : "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe1().getSecondsPerGrowthStage()));
+        }
+
+        if (page.getRecipe2() != null) {
+            craftingTimeText2 = new BookTextHolder(Text.translatable(page.getRecipe2().growsWithoutCatalyst()
+                    ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
+                    : "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe2().getSecondsPerGrowthStage()));
+        }
     }
 
     @Override
     protected int getRecipeHeight() {
-        return 90;
+        return 100;
     }
 
     @Override
@@ -54,7 +68,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         // growth stages
         Iterator<BlockState> it = recipe.getGrowthStages().iterator();
         BlockState growthState = it.next();
-        parentScreen.renderItemStack(drawContext, recipeX + 23, recipeY - 2, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
+        parentScreen.renderItemStack(drawContext, recipeX + 23, recipeY - 1, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
         int x = 0;
         while (it.hasNext()) {
             parentScreen.renderItemStack(drawContext, recipeX + 52 + 16 * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultStack());
@@ -66,6 +80,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 
         // catalyst text
         renderBookTextHolder(drawContext, catalystText, 0, 38, BookContentScreen.PAGE_WIDTH);
+        renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 74, BookContentScreen.PAGE_WIDTH);
 
         // the catalysts
         x = 0;
@@ -81,7 +96,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 
             RenderSystem.enableBlend();
             int offsetU = growthAcceleration == 1 ? 97 : growthAcceleration >= 6 ? 85 : growthAcceleration > 1 ? 67 : growthAcceleration <= 0.25 ? 79 : 73;
-            drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, offsetU, 6, 6, 6, 128, 128);
+            drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 45, offsetU, 0, 6, 6, 128, 128);
 
             offsetU = inkConsumption == 1 ? 97 : inkConsumption >= 8 ? 85 : inkConsumption > 1 ? 67 : inkConsumption <= 0.25 ? 79 : 73;
             drawContext.drawTexture(BACKGROUND_TEXTURE, offsetX + 5, recipeY + 54, offsetU, 6, 6, 6, 128, 128);

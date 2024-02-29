@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.spectrum.api.recipe.GatedRecipe;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;

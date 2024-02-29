@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
-import net.id.incubus_core.recipe.IngredientStack;
+import de.dafuqs.matchbooks.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;

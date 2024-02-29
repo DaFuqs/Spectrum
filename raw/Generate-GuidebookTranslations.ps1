@@ -14,248 +14,240 @@ $RecipeTypes =
     'spectrum:crystallarieum_growing',
     'spectrum:cinderhearth_smelting',
     'spectrum:titration_barrel_fermenting',
-    'modonomicon:crafting_recipe',
-    'modonomicon:smoking_recipe',
-    'modonomicon:smelting_recipe',
-    'modonomicon:blasting_recipe',
-    'modonomicon:campfire_cooking_recipe',
-    'modonomicon:stonecutting_recipe',
-    'modonomicon:smithing_recipe'
+    'patchouli:crafting',
+    'patchouli:smoking',
+    'patchouli:smelting',
+    'patchouli:blasting',
+    'patchouli:campfire_cooking',
+    'patchouli:stonecutting',
+    'patchouli:smithing'
 
-$LangPath = 'src/main/resources/assets/spectrum/lang/en_us.json'
-$GuidebookPath = 'src/main/resources/data/spectrum/modonomicon/books/guidebook/entries'
+$LangCode = 'en_us'
+$LangPath = "src/main/resources/assets/spectrum/lang/$LangCode.json"
+$PatchouliPath = "src/main/resources/assets/spectrum/patchouli_books/guidebook/$LangCode"
+$PatchouliBookPath = "src/main/resources/data/spectrum/patchouli_books/guidebook"
+$ModonomiconPath = 'src/main/resources/data/spectrum/modonomicon/books/guidebook'
 $AdvancementPath = 'src/main/resources/data/spectrum/advancements'
+$LangPrefix = 'book.spectrum.guidebook'
 
-Function Set-Translation {
+Function SetProperty {
+    Param (
+        [Object] $To,
+        [String] $Name,
+        $Value
+    )
+
+    If ($null -ne $Value -and $Value -ne '') {
+        If ($null -eq $To."$Name") {
+            $To | Add-Member -NotePropertyName $Name -NotePropertyValue $Value
+        }
+        Else {
+            $To."$Name" = $Value
+        }
+    }
+}
+
+Function CopyProperty {
+    Param (
+        [Object] $From,
+        [Object] $To,
+        [String] $FromName,
+        [String] $ToName = $FromName
+    )
+
+    If ($null -ne $From."$FromName") {
+        SetProperty $To $ToName $From."$FromName"
+    }
+}
+
+Function TranslateProperty {
     Param (
         [Object] $Lang,
-        [Object] $Output,
-        [Object] $Parent,
+        [Object] $To,
         [String] $Prefix,
-        [String] $Name
+        [String] $Name,
+        [String] $Value
     )
 
-    If ($Parent."$Name") {
-        If ($null -eq $Lang."$Prefix.$Name") {
-            $Output | Add-Member -NotePropertyName "$Prefix.$Name" -NotePropertyValue $Parent."$Name"
-        }
-        $Parent."$Name" = "$Prefix.$Name"
-    }
-    ElseIf ($null -ne $Parent."$Name") {
-        $Parent.PSObject.Properties.Remove("$Name")
+    If ($null -ne $Value) {
+        SetProperty $Lang "$Prefix.$Name" $Value
+        SetProperty $To $Name "$Prefix.$Name"
     }
 }
 
-Function Set-CustomTranslation {
+Function SetTranslatedGuidebookEntry {
     Param (
         [Object] $Lang,
-        [Object] $Output,
-        [Object] $Parent,
-        [String] $Translation,
-        [String] $PropertyName
-    )
-
-    If ($Parent."$PropertyName") {
-        If ($null -eq $Lang."$Translation") {
-            $Output | Add-Member -NotePropertyName "$Translation" -NotePropertyValue $Parent."$PropertyName"
-        }
-        $Parent."$PropertyName" = "$Translation"
-    }
-    ElseIf ($null -ne $Parent."$PropertyName") {
-        $Parent.PSObject.Properties.Remove("$PropertyName")
-    }
-}
-
-Function Set-RenamedProperty {
-    Param (
-        [Object] $Parent,
-        [String] $OldName,
-        [String] $NewName
-    )
-
-    If ($null -eq $Parent."$NewName" -and $Parent."$OldName") {
-        $Parent | Add-Member -NotePropertyName $NewName -NotePropertyValue $Parent."$OldName"
-    }
-    If ($null -ne $Parent."$OldName") {
-        $Parent.PSObject.Properties.Remove("$OldName")
-    }
-}
-
-Function Set-TranslatedGuidebookEntry {
-    Param (
         [String] $CategoryName,
         [String] $EntryName,
-        [Object] $Lang,
         [int] $Index = -1
     )
 
     Write-Output "Processing $CategoryName/$EntryName..."
+    $Prefix = "$LangPrefix.$CategoryName.$EntryName"
+    $Entry = Get-Content "$PatchouliPath/entries/$CategoryName/$EntryName.json" -Raw | ConvertFrom-Json
 
-    $Output = '{}' | ConvertFrom-Json
+    SetProperty $Lang "$Prefix.name" $Entry.name
 
-    $RawLang = Get-Content -Raw $LangPath
-    if ($null -eq $Lang) {
-        $Lang = $RawLang | ConvertFrom-Json
+    If ($CategoryName -eq 'general' -and $EntryName -eq 'intro') {
+        SetProperty $Lang "$Prefix.description" 'Getting Started'
     }
 
-    $ContentPath = "$GuidebookPath/$CategoryName/$EntryName.json"
-    $Content = Get-Content -Raw $ContentPath | ConvertFrom-Json
-    $Prefix = "book.spectrum.guidebook.$CategoryName.$EntryName"
-
-    Set-Translation $Lang $Output $Content $Prefix 'name'
-    Set-Translation $Lang $Output $Content $Prefix 'description'
-
-    If ($Index -ge 0) {
-        $Content.x = ($index % 6) * 2
-        $Content.y = [int][Math]::Floor($index / 6) * 2
-    }
-
-    For ($I = 0; $I -lt $Content.pages.length; $I++) {
-        $Page = $Content.pages[$I]
+    For ($I = 0; $I -lt $Entry.pages.length; $I++) {
+        $Page = $Entry.pages[$I]
         $PagePrefix = "$Prefix.page$I"
 
         If ($RecipeTypes -contains $Page.type) {
-            Set-RenamedProperty $Page 'title' 'title1'
-            Set-RenamedProperty $Page 'recipe' 'recipe_id_1'
-            Set-RenamedProperty $Page 'recipe2' 'recipe_id_2'
-            Set-Translation $Lang $Output $Page $PagePrefix 'title1'
-            Set-Translation $Lang $Output $Page $PagePrefix 'title2'
-        }
-        ElseIf ($Page.type -eq 'modonomicon:entity') {
-            Set-Translation $Lang $Output $Page $PagePrefix 'name'
-        }
-        ElseIf ($Page.type -eq 'modonomicon:multiblock') {
-            Set-RenamedProperty $Page 'name' 'multiblock_name'
-            Set-Translation $Lang $Output $Page $PagePrefix 'multiblock_name'
+            SetProperty $Lang "$PagePrefix.title1" $Page.title
         }
         Else {
-            Set-Translation $Lang $Output $Page $PagePrefix 'title'
+            SetProperty $Lang "$PagePrefix.title" $Page.title
+        }
+        SetProperty $Lang "$PagePrefix.title2" $Page.title2
+
+        If ($Page.type -eq 'patchouli:multiblock') {
+            SetProperty $Lang "$PagePrefix.multiblock_name" $Page.name
+        }
+        Else {
+            SetProperty $Lang "$PagePrefix.name" $Page.name
         }
 
         If ($Page.type -eq 'spectrum:checklist') {
             $J = 0
             $Page.checklist.PSObject.Properties | ForEach-Object {
-                Set-CustomTranslation $Lang $Output $Page.checklist "$PagePrefix.checklist.entry$J" $_.Name
+                SetProperty $Lang "$PagePrefix.checklist.entry$J" $_.Name
                 $J++
             }
         }
-        ElseIf ($Page.type -eq 'spectrum:confirmation_button') {
-            Set-Translation $Lang $Output $Page $PagePrefix 'button_text'
-            Set-Translation $Lang $Output $Page $PagePrefix 'button_text_confirmed'
-        }
-        ElseIf ($Page.type -eq 'spectrum:link') {
-            Set-Translation $Lang $Output $Page $PagePrefix 'link_text'
-        }
-        ElseIf ($Page.type -eq 'spectrum:hint') {
-            If ($Page.cost.GetType().Name -eq 'String') {
-                $Parts = $Page.cost.Split('#')
-                $Page.cost = @"
-{
-  "item": "$($Parts[0])",
-  "count": $($Parts[1])
-}
-"@ | ConvertFrom-Json
-            }
-            $HintDir = "$AdvancementPath/triggers/$CategoryName"
-            $HintPath = "$HintDir/$($EntryName)_page$I.json"
-            If (-not (Test-Path $HintDir -PathType Container)) {
-                New-Item $HintDir -ItemType Directory
-            }
-            If (-not (Test-Path $HintPath -PathType Leaf)) {
-                If ($null -ne $Page.completion_advancement) {
-                    $Condition = $Page.completion_advancement
-                }
-                Else {
-                    $Condition = (Get-Content -Raw "$HintDir/$($EntryName)_page0.json" | ConvertFrom-Json).criteria.advancement_gotten.conditions.advancement_identifier
-                }
-                $HintAdvancement = @"
-{
-  "criteria": {
-    "hint_purchased": {
-      "trigger": "minecraft:impossible"
-    },
-    "advancement_gotten": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "$Condition"
-      }
-    }
-  }
-}
-"@
-                $AdvancementName = "spectrum:triggers/$CategoryName/$($EntryName)_page$I"
-                If ($null -eq $Page.completion_advancement) {
-                    $Page | Add-Member -NotePropertyName completion_advancement -NotePropertyValue $AdvancementName
-                }
-                Else {
-                    $Page.completion_advancement = $AdvancementName
-                }
-                $HintAdvancement | Out-File $HintPath
-            }
-        }
 
-        Set-Translation $Lang $Output $Page $PagePrefix 'text'
-    }
-
-    $JsonContent = $Content | ConvertTo-Json -Depth 100
-    $JsonContent | Out-File $ContentPath
-
-    $JsonLang = $Output | ConvertTo-Json -Depth 100
-    $JsonLang = $JsonLang.Replace('\\', '\\\n').Replace('\u0027', "'")
-    If ($JsonLang.length -ge 3) {
-        $StrippedRawLang = $RawLang.Substring(2)
-        $StrippedNewLang = $JsonLang.Substring(0, $JsonLang.length - 3)
-        $LangWithOutput = $StrippedNewLang + ',' + $StrippedRawLang
-        $LangWithOutput | Out-File $LangPath
+        SetProperty $Lang "$PagePrefix.button_text" $Page.button_text
+        SetProperty $Lang "$PagePrefix.button_text_confirmed" $Page.button_text_confirmed
+        SetProperty $Lang "$PagePrefix.link_text" $Page.link_text
+        SetProperty $Lang "$PagePrefix.text" $Page.text
     }
 }
 
-Function Set-TranslatedGuidebookCategory {
+Function SetTranslatedGuidebookCategory {
     Param (
-        [String] $CategoryName,
         [Object] $Lang,
+        [String] $CategoryName,
         [Boolean] $SetLayout = $false
     )
 
-    Write-Output "`nBeginning $CategoryName..."
+    Write-Output "`nProcessing $CategoryName..."
+    $CategoryDir = $CategoryName.Substring(0, $CategoryName.length - 9)
+    $Prefix = "$LangPrefix.$CategoryDir"
 
-    if ($null -eq $Lang) {
-        $Lang = Get-Content -Raw $LangPath | ConvertFrom-Json
-    }
+    $Category = Get-Content -Raw "$PatchouliPath/categories/$CategoryName.json" | ConvertFrom-Json
+    SetProperty $Lang "$Prefix.name" $Category.name
 
-    $CategoryPath = "$GuidebookPath/$CategoryName"
-    $Files = Get-ChildItem $CategoryPath -Filter *.json
-
-    # Reverse order so the lang ends up correctly sorted
-    For ($I = $Files.length - 1; $I -ge 0; $I--) {
-        $File = $Files[$I]
-        $EntryName = $File.Name -replace '(.*)\.json', '$1'
+    $Entries = Get-ChildItem "$PatchouliPath/entries/$CategoryDir"
+    For ($I = 0; $I -lt $Entries.length; $I++) {
+        $EntryName = $Entries[$I].Name -replace '(.*)\.json', '$1'
         If ($SetLayout) { $Index = $I }
         Else { $Index = -1 }
-        Set-TranslatedGuidebookEntry $CategoryName $EntryName $Lang $Index
+        SetTranslatedGuidebookEntry $Lang $CategoryDir $EntryName $Index
     }
 }
 
-Function Set-TranslatedGuidebook {
+Function SetTranslatedGuidebook {
     Param (
         [Boolean] $SetLayout = $false
     )
 
-    Write-Output 'Beginning Guidebook...'
+    Write-Output "`Processing book..."
+    $RawLang = Get-Content -Raw $LangPath
+    $ModonomiconLang = '{}' | ConvertFrom-Json
 
-    $Lang = Get-Content -Raw $LangPath | ConvertFrom-Json
-    $Dirs = Get-ChildItem $GuidebookPath
+    $Categories = Get-ChildItem "$PatchouliPath/categories"
+    For ($I = 0; $I -lt $Categories.length; $I++) {
+        $CategoryName = $Categories[$I].Name -replace '(.*)\.json', '$1'
+        SetTranslatedGuidebookCategory $ModonomiconLang $CategoryName $SetLayout
+    }
 
-    # Reverse order so the lang ends up correctly sorted
-    For ($I = $Dirs.length - 1; $I -ge 0; $I--) {
-        $Dir = $Dirs[$I]
-        $CategoryName = $Dir.Name
-        Set-TranslatedGuidebookCategory $CategoryName $Lang $SetLayout
+    # Dummy, to get a comma at the end for the regex
+    SetProperty $ModonomiconLang '_' '_'
+
+    $RawModonomiconLang = ($ModonomiconLang | ConvertTo-Json -Depth 100) `
+        -replace('\u0027', "'") `
+        `
+        -replace('\$\(c_black\)', '$(#000000)') `
+        -replace('\$\(c_blue\)', '$(#2c2e8e)') `
+        -replace('\$\(c_brown\)', '$(#613c20)') `
+        -replace('\$\(c_cyan\)', '$(#157687)') `
+        -replace('\$\(c_gray\)', '$(#36393d)') `
+        -replace('\$\(c_green\)', '$(#495b24)') `
+        -replace('\$\(c_light_blue\)', '$(#258ac8)') `
+        -replace('\$\(c_light_gray\)', '$(#7d7d73)') `
+        -replace('\$\(c_lime\)', '$(#5faa19)') `
+        -replace('\$\(c_magenta\)', '$(#aa32a0)') `
+        -replace('\$\(c_orange\)', '$(#e16201)') `
+        -replace('\$\(c_pink\)', '$(#d6658f)') `
+        -replace('\$\(c_purple\)', '$(#641f9c)') `
+        -replace('\$\(c_red\)', '$(#8f2121)') `
+        -replace('\$\(c_white\)', '$(#d0d6d7)') `
+        -replace('\$\(c_yellow\)', '$(#f0af15)') `
+        -replace('\$\(br3\)', '$(br2)$(br)') `
+        -replace('\$\(br4\)', '$(br2)$(br2)') `
+        -replace('\$\(fuck\)', '$(#ff3d71)') `
+        `
+        -replace('\$\(obf\)', '$(k)') `
+        -replace('\$\(bold\)', '$(l)') `
+        -replace('\$\(strike\)', '$(m)') `
+        -replace('\$\(italic\)', '$(o)') `
+        -replace('\$\(italics\)', '$(o)') `
+        -replace('\$\(list', '$(li') `
+        -replace('\$\(reset\)', '$()') `
+        -replace('\$\(clear\)', '$()') `
+        -replace('\$\(2br\)', '$(br2)') `
+        -replace('\$\(p\)', '$(br2)') `
+        -replace('\/\$', '$()') `
+        -replace('<br>', '$(br)') `
+        -replace('\$\(nocolor\)', '$(#000000)') `
+        -replace('\$\(item\)', '$(#bb00bb)') `
+        -replace('\$\(thing\)', '$(#449900)') `
+        `
+        -replace('": "\$\(li\d*\)', '": "- ') `
+        -replace('\$\(li\d*\)', '$(br)- ') `
+        -replace('\$\(#(\w)(\w)(\w)\)', '$(#$1$1$2$2$3$3)') `
+        -replace('\$\(0\)', '$(#000000)') `
+        -replace('\$\(1\)', '$(#0000aa)') `
+        -replace('\$\(2\)', '$(#00aa00)') `
+        -replace('\$\(3\)', '$(#00aaaa)') `
+        -replace('\$\(4\)', '$(#aa0000)') `
+        -replace('\$\(5\)', '$(#aa00aa)') `
+        -replace('\$\(6\)', '$(#ffaa00)') `
+        -replace('\$\(7\)', '$(#aaaaaa)') `
+        -replace('\$\(8\)', '$(#555555)') `
+        -replace('\$\(9\)', '$(#5555ff)') `
+        -replace('\$\([aA]\)', '$(#55ff55)') `
+        -replace('\$\([bB]\)', '$(#55ffff)') `
+        -replace('\$\([cC]\)', '$(#ff5555)') `
+        -replace('\$\([dD]\)', '$(#ff55ff)') `
+        -replace('\$\([eE]\)', '$(#ffff55)') `
+        -replace('\$\([fF]\)', '$(#ffffff)') `
+        `
+        -replace('\$\(#(\w\w\w\w\w\w)\)', '[#]($1)') `
+        -replace('\$\(l:(\w+\/\w+)#(\w+)\)(.*?)(?:(?=\$\(\))|\$\(\/l\)|\$\(\/t\))', '[$3](entry://$1@$2)') `
+        -replace('\$\(l:(\w+\/\w+)\)(.*?)(?:(?=\$\(\))|\$\(\/l\)|\$\(\/t\))', '[$2](entry://$1)') `
+        -replace('\$\(l:(\w+)\)(.*?)(?:(?=\$\(\))|\$\(\/l\)|\$\(\/t\))', '[$2](category://$1)') `
+        -replace('\$\(l:https:\/\/(.*?)\)(.*?)(?:(?=\$\(\))|\$\(\/l\)|\$\(\/t\))', '[$2](https://$1)') `
+        -replace('\$\(l\)(.*?[^\\])(?=\$\(\)|",)', '**$1**') `
+        -replace('\$\(m\)(.*?[^\\])(?=\$\(\)|",)', '~~$1~~') `
+        -replace('\$\(n\)(.*?[^\\])(?=\$\(\)|",)', '++$1++') `
+        -replace('\$\(o\)(.*?[^\\])(?=\$\(\)|",)', '*$1*') `
+        -replace('\$\(br\)', '\\\n') `
+        -replace('\$\(br2\)', '\\\n\\\n') `
+        -replace('\$\(\)', '[#]()')
+
+    If ($RawModonomiconLang.length -gt 2) {
+        $StrippedLang = $RawLang.Substring(2)
+        $StrippedModonomiconLang = $RawModonomiconLang.Substring(0, $RawModonomiconLang.length - 15)
+        $OutputLang = $StrippedModonomiconLang + $StrippedLang
+        $OutputLang | Out-File $LangPath
     }
 
     Write-Output "`nProcessing Complete!`n"
 }
 
-Set-TranslatedGuidebook
-#Set-TranslatedGuidebookCategory 'decoration'
-#Set-TranslatedGuidebookEntry 'equipment' 'gemstone_armor'
+SetTranslatedGuidebook

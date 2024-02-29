@@ -41,7 +41,7 @@
       "type": "spectrum:anvil_crushing",
       "title": "Anvil Crushing",
       "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
-      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$/l): $(item)Certus Quartz$(), $(item)Fluix$(), $(item)Skystone$() and $(item)Ender Pearls$()."
+      "text": "Many of AE2's items can be $(l:general/anvil_crushing)crushed to dust with an anvil$(/l): $(item)Certus Quartz$(), $(item)Fluix$(), $(item)Skystone$() and $(item)Ender Pearls$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

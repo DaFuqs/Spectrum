@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.name",
+  "name": "item.spectrum.guidebook",
   "tooltip": "book.spectrum.guidebook.tooltip",
 
   "custom_book_item": "spectrum:guidebook",

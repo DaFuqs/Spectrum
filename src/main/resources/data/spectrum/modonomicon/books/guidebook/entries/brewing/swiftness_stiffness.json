@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:swiftness",
-      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.text"
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.text",
+      "title": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.title"
     },
     {
       "type": "spectrum:status_effect",

@@ -50,7 +50,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.pigment.page0.text"
+      "text": "book.spectrum.guidebook.general.pigment.page0.text",
+      "title": "book.spectrum.guidebook.general.pigment.page0.title"
     },
     {
       "type": "spectrum:checklist",

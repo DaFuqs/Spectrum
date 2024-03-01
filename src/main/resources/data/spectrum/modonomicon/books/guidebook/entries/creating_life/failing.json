@@ -22,7 +22,8 @@
       "item": {
         "item": "spectrum:bottle_of_failing"
       },
-      "text": "book.spectrum.guidebook.creating_life.failing.page0.text"
+      "text": "book.spectrum.guidebook.creating_life.failing.page0.text",
+      "title": "book.spectrum.guidebook.creating_life.failing.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

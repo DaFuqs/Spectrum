@@ -22,7 +22,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page0.text"
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.titration_barrel.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

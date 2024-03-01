@@ -23,7 +23,8 @@
       "item": {
         "item": "spectrum:hummingstone_glass"
       },
-      "text": "book.spectrum.guidebook.dimension.hummingstone.page0.text"
+      "text": "book.spectrum.guidebook.dimension.hummingstone.page0.text",
+      "title": "book.spectrum.guidebook.dimension.hummingstone.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

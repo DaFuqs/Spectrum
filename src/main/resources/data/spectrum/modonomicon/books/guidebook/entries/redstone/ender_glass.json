@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:ender_glass"
       },
-      "text": "book.spectrum.guidebook.redstone.ender_glass.page0.text"
+      "text": "book.spectrum.guidebook.redstone.ender_glass.page0.text",
+      "title": "book.spectrum.guidebook.redstone.ender_glass.page0.title"
     },
     {
       "type": "modonomicon:text",

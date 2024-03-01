@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:another_roll",
-      "text": "book.spectrum.guidebook.brewing.another_roll.page0.text"
+      "text": "book.spectrum.guidebook.brewing.another_roll.page0.text",
+      "title": "book.spectrum.guidebook.brewing.another_roll.page0.title"
     }
   ]
 }

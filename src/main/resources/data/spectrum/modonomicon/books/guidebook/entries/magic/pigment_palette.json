@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magic.pigment_palette.page0.text"
+      "text": "book.spectrum.guidebook.magic.pigment_palette.page0.text",
+      "title": "book.spectrum.guidebook.magic.pigment_palette.page0.title"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

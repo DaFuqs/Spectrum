@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:redstone_calculator"
       },
-      "text": "book.spectrum.guidebook.redstone.redstone_calculator.page0.text"
+      "text": "book.spectrum.guidebook.redstone.redstone_calculator.page0.text",
+      "title": "book.spectrum.guidebook.redstone.redstone_calculator.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:lava_gliding",
-      "text": "book.spectrum.guidebook.brewing.lava_gliding.page0.text"
+      "text": "book.spectrum.guidebook.brewing.lava_gliding.page0.text",
+      "title": "book.spectrum.guidebook.brewing.lava_gliding.page0.title"
     },
     {
       "type": "modonomicon:text",

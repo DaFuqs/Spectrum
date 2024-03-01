@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.restoration_tea.page0.text"
+      "text": "book.spectrum.guidebook.cuisine.restoration_tea.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.restoration_tea.page0.title"
     },
     {
       "type": "spectrum:potion_workshop_crafting",

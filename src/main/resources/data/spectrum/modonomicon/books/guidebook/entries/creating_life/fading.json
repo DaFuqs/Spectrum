@@ -22,7 +22,8 @@
       "item": {
         "item": "spectrum:bottle_of_fading"
       },
-      "text": "book.spectrum.guidebook.creating_life.fading.page0.text"
+      "text": "book.spectrum.guidebook.creating_life.fading.page0.text",
+      "title": "book.spectrum.guidebook.creating_life.fading.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

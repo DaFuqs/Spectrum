@@ -27,7 +27,8 @@
       "item": {
         "item": "spectrum:blazing_crystal"
       },
-      "text": "book.spectrum.guidebook.resources.liquid_crystal_essences.page0.text"
+      "text": "book.spectrum.guidebook.resources.liquid_crystal_essences.page0.text",
+      "title": "book.spectrum.guidebook.resources.liquid_crystal_essences.page0.title"
     },
     {
       "type": "spectrum:anvil_crushing",

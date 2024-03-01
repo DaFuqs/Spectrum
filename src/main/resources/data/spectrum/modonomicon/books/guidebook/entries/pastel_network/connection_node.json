@@ -14,7 +14,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text"
+      "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text",
+      "title": "book.spectrum.guidebook.pastel_network.connection_node.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

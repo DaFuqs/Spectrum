@@ -15,7 +15,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.mod_integration.gofish.page0.text"
+      "text": "book.spectrum.guidebook.mod_integration.gofish.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.gofish.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

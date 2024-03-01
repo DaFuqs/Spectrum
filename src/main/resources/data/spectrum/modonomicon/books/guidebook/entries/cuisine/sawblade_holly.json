@@ -22,7 +22,8 @@
       "item": {
         "item": "spectrum:sawblade_holly_berry"
       },
-      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.text"
+      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

@@ -27,7 +27,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.gemstone_powder.page0.text"
+      "text": "book.spectrum.guidebook.general.gemstone_powder.page0.text",
+      "title": "book.spectrum.guidebook.general.gemstone_powder.page0.title"
     },
     {
       "type": "modonomicon:text",

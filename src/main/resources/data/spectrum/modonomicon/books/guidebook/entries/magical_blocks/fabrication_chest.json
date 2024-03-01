@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:restocking_chest"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.text"
+      "text": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.fabrication_chest.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:glow_vision_goggles"
       },
-      "text": "book.spectrum.guidebook.equipment.glow_vision_goggles.page0.text"
+      "text": "book.spectrum.guidebook.equipment.glow_vision_goggles.page0.text",
+      "title": "book.spectrum.guidebook.equipment.glow_vision_goggles.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

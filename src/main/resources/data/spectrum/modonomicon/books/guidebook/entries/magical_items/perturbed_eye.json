@@ -18,7 +18,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text"
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.title"
     },
     {
       "type": "modonomicon:image",

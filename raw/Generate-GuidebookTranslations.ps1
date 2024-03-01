@@ -85,7 +85,8 @@ Function SetTranslatedGuidebookEntry {
 
     Write-Output "Processing $CategoryName/$EntryName..."
     $Prefix = "$LangPrefix.$CategoryName.$EntryName"
-    $Entry = Get-Content "$PatchouliPath/entries/$CategoryName/$EntryName.json" -Raw | ConvertFrom-Json
+    $PathSuffix = "entries/$CategoryName/$EntryName.json"
+    $Entry = Get-Content "$PatchouliPath/$PathSuffix" -Raw | ConvertFrom-Json
 
     SetProperty $Lang "$Prefix.name" $Entry.name
 
@@ -96,6 +97,13 @@ Function SetTranslatedGuidebookEntry {
     For ($I = 0; $I -lt $Entry.pages.length; $I++) {
         $Page = $Entry.pages[$I]
         $PagePrefix = "$Prefix.page$I"
+
+        If ($I -eq 0 -and (-not ($RecipeTypes -contains $Page.type)) -and $null -eq $Page.title) {
+            $ModonomiconEntry = Get-Content -Raw "$ModonomiconPath/$PathSuffix" | ConvertFrom-Json
+            SetProperty $Lang "$PagePrefix.title" $Entry.name
+            SetProperty $ModonomiconEntry.pages[$I] 'title' "$PagePrefix.title"
+            $ModonomiconEntry | ConvertTo-Json -Depth 100 | Out-File "$ModonomiconPath/$PathSuffix"
+        }
 
         If ($RecipeTypes -contains $Page.type) {
             SetProperty $Lang "$PagePrefix.title1" $Page.title

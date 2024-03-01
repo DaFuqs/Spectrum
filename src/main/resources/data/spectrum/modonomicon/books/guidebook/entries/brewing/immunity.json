@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:immunity",
-      "text": "book.spectrum.guidebook.brewing.immunity.page0.text"
+      "text": "book.spectrum.guidebook.brewing.immunity.page0.text",
+      "title": "book.spectrum.guidebook.brewing.immunity.page0.title"
     },
     {
       "type": "modonomicon:text",

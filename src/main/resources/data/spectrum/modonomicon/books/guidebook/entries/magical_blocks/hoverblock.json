@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:hover_block"
       },
-      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.text"
+      "text": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.hoverblock.page0.title"
     },
     {
       "type": "modonomicon:text",

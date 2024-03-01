@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:item_roundel"
       },
-      "text": "book.spectrum.guidebook.decoration.item_roundel.page0.text"
+      "text": "book.spectrum.guidebook.decoration.item_roundel.page0.text",
+      "title": "book.spectrum.guidebook.decoration.item_roundel.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

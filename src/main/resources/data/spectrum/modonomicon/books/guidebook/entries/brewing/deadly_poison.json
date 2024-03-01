@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:deadly_poison",
-      "text": "book.spectrum.guidebook.brewing.deadly_poison.page0.text"
+      "text": "book.spectrum.guidebook.brewing.deadly_poison.page0.text",
+      "title": "book.spectrum.guidebook.brewing.deadly_poison.page0.title"
     }
   ]
 }

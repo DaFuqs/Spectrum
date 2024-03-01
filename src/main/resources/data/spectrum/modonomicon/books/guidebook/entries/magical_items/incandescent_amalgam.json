@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.text"
+      "text": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.incandescent_amalgam.page0.title"
     },
     {
       "type": "modonomicon:text",

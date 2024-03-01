@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:block_detector"
       },
-      "text": "book.spectrum.guidebook.redstone.block_detector.page0.text"
+      "text": "book.spectrum.guidebook.redstone.block_detector.page0.text",
+      "title": "book.spectrum.guidebook.redstone.block_detector.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

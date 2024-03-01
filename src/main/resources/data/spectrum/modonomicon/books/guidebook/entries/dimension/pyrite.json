@@ -30,7 +30,8 @@
       "item": {
         "item": "spectrum:pyrite"
       },
-      "text": "book.spectrum.guidebook.dimension.pyrite.page0.text"
+      "text": "book.spectrum.guidebook.dimension.pyrite.page0.text",
+      "title": "book.spectrum.guidebook.dimension.pyrite.page0.title"
     },
     {
       "type": "modonomicon:crafting_recipe",

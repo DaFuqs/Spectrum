@@ -26,7 +26,8 @@
       "item": {
         "item": "spectrum:crawfish"
       },
-      "text": "book.spectrum.guidebook.cuisine.fishes.page0.text"
+      "text": "book.spectrum.guidebook.cuisine.fishes.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.fishes.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:redstone_transceiver"
       },
-      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.text"
+      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.text",
+      "title": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -19,7 +19,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.general.midnight_aberration.page0.text"
+      "text": "book.spectrum.guidebook.general.midnight_aberration.page0.text",
+      "title": "book.spectrum.guidebook.general.midnight_aberration.page0.title"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

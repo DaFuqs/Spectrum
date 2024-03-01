@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:multitool"
       },
-      "text": "book.spectrum.guidebook.equipment.multitool.page0.text"
+      "text": "book.spectrum.guidebook.equipment.multitool.page0.text",
+      "title": "book.spectrum.guidebook.equipment.multitool.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

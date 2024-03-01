@@ -15,7 +15,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.disarming.page0.text"
+      "text": "book.spectrum.guidebook.enchanting.disarming.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.disarming.page0.title"
     },
     {
       "type": "spectrum:nbt_spotlight",

@@ -25,7 +25,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page0.text"
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.upgrades.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

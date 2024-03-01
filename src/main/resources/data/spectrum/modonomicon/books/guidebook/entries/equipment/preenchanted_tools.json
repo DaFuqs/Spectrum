@@ -22,7 +22,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.text"
+      "text": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.text",
+      "title": "book.spectrum.guidebook.equipment.preenchanted_tools.page0.title"
     },
     {
       "type": "modonomicon:text",

@@ -16,7 +16,8 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:magic_annulation",
-      "text": "book.spectrum.guidebook.brewing.magic_annulation.page0.text"
+      "text": "book.spectrum.guidebook.brewing.magic_annulation.page0.text",
+      "title": "book.spectrum.guidebook.brewing.magic_annulation.page0.title"
     }
   ]
 }

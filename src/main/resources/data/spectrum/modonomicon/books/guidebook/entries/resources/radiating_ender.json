@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.resources.radiating_ender.page0.text"
+      "text": "book.spectrum.guidebook.resources.radiating_ender.page0.text",
+      "title": "book.spectrum.guidebook.resources.radiating_ender.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

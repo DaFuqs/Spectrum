@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.cuisine.suspicious_brew.page0.text"
+      "text": "book.spectrum.guidebook.cuisine.suspicious_brew.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.suspicious_brew.page0.title"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

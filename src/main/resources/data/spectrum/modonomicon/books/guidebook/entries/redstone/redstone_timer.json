@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:redstone_timer"
       },
-      "text": "book.spectrum.guidebook.redstone.redstone_timer.page0.text"
+      "text": "book.spectrum.guidebook.redstone.redstone_timer.page0.text",
+      "title": "book.spectrum.guidebook.redstone.redstone_timer.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

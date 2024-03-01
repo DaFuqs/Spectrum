@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magic.ink_assortment.page0.text"
+      "text": "book.spectrum.guidebook.magic.ink_assortment.page0.text",
+      "title": "book.spectrum.guidebook.magic.ink_assortment.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

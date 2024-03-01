@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:bottomless_bundle"
       },
-      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text"
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

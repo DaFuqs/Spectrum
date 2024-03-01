@@ -16,7 +16,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.enchanting.enchanter.page0.text"
+      "text": "book.spectrum.guidebook.enchanting.enchanter.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.enchanter.page0.title"
     },
     {
       "type": "modonomicon:text",

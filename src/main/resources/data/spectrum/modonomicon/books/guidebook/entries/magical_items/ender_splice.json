@@ -20,7 +20,8 @@
       "item": {
         "item": "spectrum:ender_splice"
       },
-      "text": "book.spectrum.guidebook.magical_items.ender_splice.page0.text"
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

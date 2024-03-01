@@ -21,7 +21,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.equipment.base_trinkets.page0.text"
+      "text": "book.spectrum.guidebook.equipment.base_trinkets.page0.text",
+      "title": "book.spectrum.guidebook.equipment.base_trinkets.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

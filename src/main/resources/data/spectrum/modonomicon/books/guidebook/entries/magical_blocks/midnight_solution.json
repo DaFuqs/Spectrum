@@ -20,7 +20,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.text"
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.title"
     },
     {
       "type": "modonomicon:spotlight",

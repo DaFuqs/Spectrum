@@ -17,7 +17,8 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.text"
+      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.text",
+      "title": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.title"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -123,7 +123,7 @@ Function SetTranslatedGuidebookEntry {
         If ($Page.type -eq 'spectrum:checklist') {
             $J = 0
             $Page.checklist.PSObject.Properties | ForEach-Object {
-                SetProperty $Lang "$PagePrefix.checklist.entry$J" $_.Name
+                SetProperty $Lang "$PagePrefix.checklist.entry$J" $_.Value
                 $J++
             }
         }

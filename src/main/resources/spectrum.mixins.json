@@ -82,7 +82,7 @@
     "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra",
     "compat.connectormod.absent.ExplosionMixin",
     "compat.connectormod.present.ExplosionMixin",
-    "compat.modonomicon.BookIconMixin"
+    "compat.modonomicon.present.BookIconMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",
@@ -115,7 +115,8 @@
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin",
-    "compat.enchdesc.present.DescriptionManagerMixin"
+    "compat.enchdesc.present.DescriptionManagerMixin",
+    "compat.modonomicon.present.BookPageRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

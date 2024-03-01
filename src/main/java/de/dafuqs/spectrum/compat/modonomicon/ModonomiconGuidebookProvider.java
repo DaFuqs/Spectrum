@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class ModonomiconGuidebookProvider implements GuidebookProvider {
 
-    public final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
+    public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
 
     @Override
     public void openGuidebook(ClientPlayerEntity clientPlayerEntity) {

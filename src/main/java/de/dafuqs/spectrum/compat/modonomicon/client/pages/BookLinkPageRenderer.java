@@ -20,8 +20,8 @@ public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> impleme
         super.onBeginDisplayPage(parentScreen, left, top);
 
         addButton(ButtonWidget.builder(page.getLinkText().getComponent(), (b) -> {})
-                .position(BookContentScreen.PAGE_WIDTH / 2 - 50, BookContentScreen.PAGE_HEIGHT - 35)
-                .size(100, 20)
+                .size(BookContentScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT)
+                .position(2, BookContentScreen.PAGE_HEIGHT - 3)
                 .build());
     }
 

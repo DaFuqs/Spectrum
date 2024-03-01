@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.compat.modonomicon;
+package de.dafuqs.spectrum.mixin.compat.modonomicon.present;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

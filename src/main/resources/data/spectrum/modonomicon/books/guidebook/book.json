@@ -14,9 +14,9 @@
   "frame_texture": "modonomicon:textures/gui/book_frame.png",
   "book_content_texture": "modonomicon:textures/gui/book_content.png",
   "book_overview_texture": "modonomicon:textures/gui/book_overview.png",
-  "book_text_offset_width": 0,
-  "book_text_offset_x": 0,
-  "book_text_offset_y": 0,
+  "book_text_offset_width": -4,
+  "book_text_offset_x": 2,
+  "book_text_offset_y": 2,
   "bottom_frame_overlay": {
     "frame_height": 8,
     "frame_width": 72,

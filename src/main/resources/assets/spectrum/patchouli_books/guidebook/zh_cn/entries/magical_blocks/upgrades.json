@@ -43,7 +43,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:unlocks/upgrades/upgrade_experience",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience",
-      "text":"$(italic)用$(l:general/pedestal)颜料基座$(/l)制作会给你一些经验。不过，在大多数情况下，几乎可以忽略不计。通过使用类似的技术，如你的$(l:general/speed_upgrade)基座加速器$(/l)，你发现你可以大大增加获得的经验。"
+      "text":"$(italic)用$(l:general/pedestal)颜料基座$(/l)制作会给你一些经验。不过，在大多数情况下，几乎可以忽略不计。通过使用类似的技术，如你的$(l:magical_blocks/upgrades)基座加速器$(/l)，你发现你可以大大增加获得的经验。"
     },
     {
       "type": "spectrum:pedestal_crafting",

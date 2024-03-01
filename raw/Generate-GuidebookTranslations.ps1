@@ -22,7 +22,7 @@ $RecipeTypes =
     'patchouli:stonecutting',
     'patchouli:smithing'
 
-$LangCode = 'en_us'
+$LangCode = 'zh_cn'
 $LangPath = "src/main/resources/assets/spectrum/lang/$LangCode.json"
 $PatchouliPath = "src/main/resources/assets/spectrum/patchouli_books/guidebook/$LangCode"
 $PatchouliBookPath = "src/main/resources/data/spectrum/patchouli_books/guidebook"
@@ -99,10 +99,12 @@ Function SetTranslatedGuidebookEntry {
         $PagePrefix = "$Prefix.page$I"
 
         If ($I -eq 0 -and (-not ($RecipeTypes -contains $Page.type)) -and $null -eq $Page.title) {
-            $ModonomiconEntry = Get-Content -Raw "$ModonomiconPath/$PathSuffix" | ConvertFrom-Json
-            SetProperty $Lang "$PagePrefix.title" $Entry.name
-            SetProperty $ModonomiconEntry.pages[$I] 'title' "$PagePrefix.title"
-            $ModonomiconEntry | ConvertTo-Json -Depth 100 | Out-File "$ModonomiconPath/$PathSuffix"
+            If (Test-Path "$ModonomiconPath/$PathSuffix" -PathType Leaf) {
+                $ModonomiconEntry = Get-Content -Raw "$ModonomiconPath/$PathSuffix" | ConvertFrom-Json
+                SetProperty $Lang "$PagePrefix.title" $Entry.name
+                SetProperty $ModonomiconEntry.pages[$I] 'title' "$PagePrefix.title"
+                $ModonomiconEntry | ConvertTo-Json -Depth 100 | Out-File "$ModonomiconPath/$PathSuffix"
+            }
         }
 
         If ($RecipeTypes -contains $Page.type) {

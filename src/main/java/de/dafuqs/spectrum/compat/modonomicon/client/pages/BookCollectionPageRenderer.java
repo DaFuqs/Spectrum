@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.klikli_dev.modonomicon.client.render.page.BookPageRenderer;
-import com.klikli_dev.modonomicon.client.render.page.PageWithTextRenderer;
+import com.klikli_dev.modonomicon.client.render.page.BookTextPageRenderer;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookCollectionPage;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionPage> implements PageWithTextRenderer {
+public class BookCollectionPageRenderer extends BookTextPageRenderer {
 
     private static final int ENTRIES_PER_ROW = 6;
 
@@ -19,13 +17,11 @@ public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionP
 
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
-        if (page.hasTitle()) {
-            renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
-        }
+        if (!(page instanceof BookCollectionPage collectionPage)) return;
 
-        renderBookTextHolder(drawContext, this.getPage().getText(), 0, this.getTextY(), BookContentScreen.PAGE_WIDTH);
+        super.render(drawContext, mouseX, mouseY, ticks);
 
-        List<ItemStack> items = page.getItems();
+        List<ItemStack> items = collectionPage.getItems();
         int startY = page.hasTitle() ? 18 : 0;
         int row = 0;
         int column = -1;
@@ -47,7 +43,8 @@ public class BookCollectionPageRenderer extends BookPageRenderer<BookCollectionP
 
     @Override
     public int getTextY() {
-        return 8 + (page.hasTitle() ? 18 : 0) + (int) Math.ceil(page.getItems().size() / (float) ENTRIES_PER_ROW) * 18;
+        if (!(page instanceof BookCollectionPage collectionPage)) return super.getTextY();
+        return super.getTextY() + (int) Math.ceil(collectionPage.getItems().size() / (float) ENTRIES_PER_ROW) * 18;
     }
 
 }

@@ -6,7 +6,6 @@ import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
 import com.klikli_dev.modonomicon.client.render.page.BookTextPageRenderer;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.modonomicon.pages.BookChecklistPage;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -41,18 +40,4 @@ public class BookChecklistPageRenderer extends BookTextPageRenderer {
         }
     }
 
-    @Override
-    public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
-        if (!(page.getText() instanceof RenderedBookTextHolder renderedText)) return;
-
-        if (page.hasTitle()) {
-            this.renderTitle(drawContext, page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
-        }
-
-        renderBookTextHolder(drawContext, renderedText, 0, super.getTextY(), BookContentScreen.PAGE_WIDTH);
-
-        var style = getClickedComponentStyleAt(mouseX, mouseY);
-        if (style != null)
-            parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
-    }
 }

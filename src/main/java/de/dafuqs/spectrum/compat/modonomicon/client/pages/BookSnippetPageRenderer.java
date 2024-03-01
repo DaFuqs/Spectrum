@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
+import com.klikli_dev.modonomicon.book.BookTextHolder;
 import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
 import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
 import com.klikli_dev.modonomicon.client.gui.book.markdown.MarkdownComponentRenderUtils;
@@ -10,6 +11,8 @@ import de.dafuqs.spectrum.compat.modonomicon.pages.BookSnippetPage;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.OrderedText;
+import net.minecraft.text.Style;
+import org.jetbrains.annotations.Nullable;
 
 public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> implements PageWithTextRenderer {
 
@@ -28,14 +31,12 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
             for (MutableText component : renderedText.getRenderedText()) {
                 var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookContentScreen.PAGE_WIDTH, BookContentScreen.PAGE_WIDTH - 10, font);
                 for (OrderedText orderedText : wrapped) {
-                    drawCenteredStringNoShadow(drawContext, orderedText,
-                            BookContentScreen.PAGE_WIDTH / 2, y, 0, 1);
+                    drawCenteredStringNoShadow(drawContext, orderedText, BookContentScreen.PAGE_WIDTH / 2, y, 0, 1);
                     y += font.fontHeight;
                 }
             }
         } else {
-            drawCenteredStringNoShadow(drawContext, page.getText().getComponent().asOrderedText(),
-                    BookContentScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
+            drawCenteredStringNoShadow(drawContext, page.getText().getComponent().asOrderedText(), BookContentScreen.PAGE_WIDTH / 2, getTextY(), 0, 1);
         }
 
         RenderSystem.enableBlend();
@@ -43,6 +44,61 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
                 page.getTextureX(), page.getTextureY(),
                 page.getTextureWidth(), page.getTextureHeight(),
                 page.getResourceWidth(), page.getResourceHeight());
+
+        var style = this.getClickedComponentStyleAt(mouseX, mouseY);
+        if (style != null)
+            this.parentScreen.renderComponentHoverEffect(drawContext, style, mouseX, mouseY);
+    }
+
+    @Nullable
+    @Override
+    public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
+        if (pMouseX > 0 && pMouseY > 0) {
+            if (page.hasTitle()) {
+                var titleStyle = getClickedComponentStyleAtForTitle(page.getTitle(), BookContentScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
+                if (titleStyle != null) {
+                    return titleStyle;
+                }
+            }
+
+            var textStyle = getClickedComponentStyleAtForTextHolder(page.getText(), BookContentScreen.PAGE_WIDTH / 2, getTextY(), BookContentScreen.PAGE_WIDTH, pMouseX, pMouseY);
+            if (textStyle != null) {
+                return textStyle;
+            }
+        }
+        return super.getClickedComponentStyleAt(pMouseX, pMouseY);
+    }
+
+    @Nullable
+    @Override
+    protected Style getClickedComponentStyleAtForTextHolder(BookTextHolder text, int x, int y, int width, double pMouseX, double pMouseY) {
+        if (text.hasComponent()) {
+            for (OrderedText formattedCharSequence : font.wrapLines(text.getComponent(), width)) {
+                if (pMouseY > y && pMouseY < y + font.fontHeight) {
+                    x -= font.getWidth(formattedCharSequence) / 2;
+                    if (pMouseX < x)
+                        return null;
+                    return font.getTextHandler().getStyleAt(formattedCharSequence, (int) pMouseX - x);
+                }
+                y += font.fontHeight;
+            }
+        } else if (text instanceof RenderedBookTextHolder renderedText) {
+            var components = renderedText.getRenderedText();
+            for (var component : components) {
+                var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, width, width - 10, font);
+                for (OrderedText formattedCharSequence : wrapped) {
+                    if (pMouseY > y && pMouseY < y + font.fontHeight) {
+                        x -= font.getWidth(formattedCharSequence) / 2;
+                        if (pMouseX < x)
+                            return null;
+                        return font.getTextHandler().getStyleAt(formattedCharSequence, (int) pMouseX - x);
+                    }
+                    y += font.fontHeight;
+                }
+            }
+        }
+
+        return null;
     }
 
     private int getImageY() {

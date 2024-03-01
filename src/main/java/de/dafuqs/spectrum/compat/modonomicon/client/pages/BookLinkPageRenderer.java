@@ -11,6 +11,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> implements PageWithTextRenderer {
 
+    private static final int BUTTON_X = 2;
+    private static final int BUTTON_Y = BookContentScreen.PAGE_HEIGHT - 3;
+    private static final int BUTTON_WIDTH = BookContentScreen.PAGE_WIDTH - 12;
+    private static final int BUTTON_HEIGHT = ButtonWidget.DEFAULT_HEIGHT;
+
     public BookLinkPageRenderer(BookLinkPage page) {
         super(page);
     }
@@ -18,10 +23,9 @@ public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> impleme
     @Override
     public void onBeginDisplayPage(BookContentScreen parentScreen, int left, int top) {
         super.onBeginDisplayPage(parentScreen, left, top);
-
         addButton(ButtonWidget.builder(page.getLinkText().getComponent(), (b) -> {})
-                .size(BookContentScreen.PAGE_WIDTH - 12, ButtonWidget.DEFAULT_HEIGHT)
-                .position(2, BookContentScreen.PAGE_HEIGHT - 3)
+                .size(BUTTON_WIDTH, BUTTON_HEIGHT)
+                .position(BUTTON_X, BUTTON_Y)
                 .build());
     }
 
@@ -41,10 +45,10 @@ public class BookLinkPageRenderer extends BookPageRenderer<BookLinkPage> impleme
     @Nullable
     @Override
     public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
-        int buttonX = BookContentScreen.PAGE_WIDTH / 2 - 50;
-        int buttonY = BookContentScreen.PAGE_HEIGHT - 35;
+        int buttonX = BUTTON_X;
+        int buttonY = BUTTON_Y;
 
-        if (pMouseX >= buttonX && pMouseY >= buttonY && pMouseX <= buttonX + 100 && pMouseY <= buttonY + 20) {
+        if (pMouseX >= buttonX && pMouseY >= buttonY && pMouseX < buttonX + BUTTON_WIDTH && pMouseY < buttonY + BUTTON_HEIGHT) {
             return page.getLinkText().getComponent().getStyle();
         }
 

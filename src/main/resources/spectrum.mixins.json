@@ -116,7 +116,8 @@
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin",
     "compat.enchdesc.present.DescriptionManagerMixin",
-    "compat.modonomicon.present.BookPageRendererMixin"
+    "compat.modonomicon.present.BookPageRendererMixin",
+    "compat.modonomicon.present.BookRecipePageRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

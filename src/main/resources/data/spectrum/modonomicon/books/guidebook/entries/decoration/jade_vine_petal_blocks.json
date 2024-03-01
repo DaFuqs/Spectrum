@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.decoration.jade_vine_petal_blocks.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
+    "advancement_id": "spectrum:midgame/collect_jade_vine_petals"
   },
   "icon": "spectrum:jade_vine_petal_block",
   "category": "spectrum:decoration",

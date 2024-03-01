@@ -2,14 +2,14 @@
   "name": "book.spectrum.guidebook.magic.ink.name",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/blocks/ink_flask"
+    "advancement_id": "spectrum:unlocks/items/basic_ink_storage_items"
   },
   "icon": "spectrum:ink_flask",
   "category": "spectrum:magic",
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
+  "x": 4,
   "y": 0,
   "priority": true,
   "pages": [

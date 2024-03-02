@@ -19,7 +19,9 @@ import org.jetbrains.annotations.*;
 @Environment(EnvType.CLIENT)
 public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<BlackHoleChestBlockEntity> {
 	
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_hole_chest"));
+	private static final SpriteIdentifier defaultSprite = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_hole_chest"));
+	private static final SpriteIdentifier experienceSprite = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_hole_chest_experience"));
+
 	private final ModelPart root;
 	private final ModelPart shell;
 	private final ModelPart cap;
@@ -55,6 +57,8 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 	@Override
 	public void render(BlackHoleChestBlockEntity chest, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		matrixStack.push();
+
+		var sprite = chest.hasXPStorage() ? experienceSprite : defaultSprite;
 
 		boolean bl = chest.getWorld() != null;
 		BlockState blockState = bl ? chest.getCachedState() : SpectrumBlocks.BLACK_HOLE_CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
@@ -108,10 +112,26 @@ public class BlackHoleChestBlockEntityRenderer implements BlockEntityRenderer<Bl
 		orb.pivotY = 15.4F - chest.orbPos;
 		orb.yaw = chest.yawTarget;
 
-
 		storage.hidden = storage.pivotY > 23.99F;
-		VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucent);
-		root.render(matrixStack, vertexConsumer, light, overlay);
+		VertexConsumer vertexConsumer = sprite.getVertexConsumer(vertexConsumers, RenderLayer::getEntityTranslucent);
+		cap.render(matrixStack, vertexConsumer, light, overlay);
+		shell.render(matrixStack, vertexConsumer, light, overlay);
+		storage.render(matrixStack, vertexConsumer, light, overlay);
+
+		int orbLight;
+
+		if (chest.hasXPStorage()) {
+			var xpDelta = (float) chest.storedXP / chest.maxStoredXP;
+			var altLight = Math.round(MathHelper.clampedLerp(0, 15, xpDelta));
+			orbLight = LightmapTextureManager.pack(altLight, altLight);
+		} else {
+            orbLight = light;
+        }
+
+        orb.forEachCuboid(matrixStack, ((matrix, path, index, cuboid) -> {
+			cuboid.renderCuboid(matrixStack.peek(), vertexConsumer, index == 0 ? orbLight : light, overlay, 1, 1, 1, 1);
+		}));
+
 
 		matrixStack.pop();
 	}

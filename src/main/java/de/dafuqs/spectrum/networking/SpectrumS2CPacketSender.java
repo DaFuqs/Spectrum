@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.item.ExperienceStorageItem;
 import de.dafuqs.spectrum.blocks.chests.BlackHoleChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.*;
@@ -388,9 +389,21 @@ public class SpectrumS2CPacketSender {
 	}
 
 	public static void sendBlackHoleChestUpdate(BlackHoleChestBlockEntity chest) {
+		var xpStack = chest.getStack(BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT);
+
+
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(chest.getPos());
 		buf.writeBoolean(chest.isFullButActually());
+		buf.writeBoolean(chest.canStoreExperience());
+		if (xpStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+			buf.writeLong(ExperienceStorageItem.getStoredExperience(xpStack));
+			buf.writeLong(experienceStorageItem.getMaxStoredExperience(xpStack));
+		}
+		else {
+			buf.writeLong(0);
+			buf.writeLong(0);
+		}
 
 		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, buf);

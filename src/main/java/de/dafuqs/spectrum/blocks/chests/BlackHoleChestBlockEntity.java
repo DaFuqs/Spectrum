@@ -43,9 +43,9 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
 	private final List<Item> filterItems;
 	private State state;
-	private boolean isOpen, isFull;
+	private boolean isOpen, isFull, hasXPStorage;
 	float storageTarget, storagePos, lastStorageTarget, capTarget, capPos, lastCapTarget, orbTarget, orbPos, lastOrbTarget, yawTarget, orbYaw, lastYawTarget;
-	long interpTicks, interpLength = 1, age;
+	long interpTicks, interpLength = 1, age, storedXP, maxStoredXP;
 
 	
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -119,6 +119,11 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		}
 	}
 
+	public void setXPData(long xp, long max) {
+		this.storedXP = xp;
+		this.maxStoredXP = max;
+	}
+
 	public State getState() {
 		return state;
 	}
@@ -135,7 +140,17 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		}
 
+		if (canStoreExperience()) {
+			var experienceStack = inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT);
+			var experienceStorage = (ExperienceStorageItem) experienceStack.getItem();
+			return ExperienceStorageItem.getStoredExperience(experienceStack) >= experienceStorage.getMaxStoredExperience(experienceStack);
+		}
+
 		return true;
+	}
+
+	public boolean canStoreExperience() {
+		return inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT).getItem() instanceof ExperienceStorageItem;
 	}
 
 	public boolean isFullButActually() {
@@ -144,6 +159,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 
 	public void setFull(boolean full) {
 		isFull = full;
+	}
+
+	public void setHasXPStorage(boolean hasXPStorage) {
+		this.hasXPStorage = hasXPStorage;
+	}
+
+	public boolean hasXPStorage() {
+		return hasXPStorage;
 	}
 
 	private static void searchForNearbyEntities(@NotNull BlackHoleChestBlockEntity blockEntity) {

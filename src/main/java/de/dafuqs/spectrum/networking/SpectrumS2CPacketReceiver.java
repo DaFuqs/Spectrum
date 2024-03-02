@@ -441,14 +441,18 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
 			var pos = buf.readBlockPos();
 			var isFull = buf.readBoolean();
+			var canStoreXP = buf.readBoolean();
+			var xp = buf.readLong();
+			var max = buf.readLong();
 
 			client.execute(() -> {
 				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.BLACK_HOLE_CHEST);
 
-				if (entity.isEmpty())
-					return;
-
-				entity.get().setFull(isFull);
+				entity.ifPresent(chest -> {
+					chest.setFull(isFull);
+					chest.setHasXPStorage(canStoreXP);
+					chest.setXPData(xp, max);
+				});
 			});
 		})));
 

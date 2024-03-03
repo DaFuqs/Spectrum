@@ -49,7 +49,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
-			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
+			return SpectrumItems.CHRYSOCOLLA.getDefaultStack();
 		} else {
 			List<StatusEffectInstance> effects = getEffects(nectar, bloominess, alcPercent);
 			

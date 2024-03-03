@@ -45,20 +45,18 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
       "text": "In desperate need of $(item)Charged Certus Quartz$()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Certus Crushing",
-      "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal",
       "text": "...and then create $(item)Fluix$() from it, if you get impatient."
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Certus Charging",
+      "title": "Growing Certus Quartz",
       "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
       "text": "Being crystalline structures, $(item)Certus Quartz$() and $(item)Fluix Crystals$() can be grown in the Crystallarieum."

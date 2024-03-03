@@ -483,8 +483,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
-		if (slot == MERMAIDS_GEM_INPUT_SLOT_ID) {
-			return stack.isOf(SpectrumItems.MERMAIDS_GEM);
+		if(stack.isOf(SpectrumItems.MERMAIDS_GEM)) {
+			return slot == MERMAIDS_GEM_INPUT_SLOT_ID;
 		} else if (slot == BASE_INPUT_SLOT_ID) {
 			return true;
 		} else if (slot < FIRST_REAGENT_SLOT) {

@@ -18,6 +18,6 @@
     "item": "spectrum:jade_vine_petals",
     "count": 4
   },
-  "required_advancement": "spectrum:hidden/collect_jade_vine_petals",
+  "required_advancement": "spectrum:midgame/collect_jade_vine_petals",
   "disable_yield_upgrades": true
 }

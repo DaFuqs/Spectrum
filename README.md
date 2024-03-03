@@ -24,4 +24,18 @@ https://discord.com/invite/EXU9XFXT8a
 ## Mod Integration
 - [RoughlyEnoughItems](https://github.com/shedaniel/RoughlyEnoughItems): Integration for all of Spectrum's recipe types
 - [Enchantment Descriptions](https://github.com/Darkhax-Minecraft/Enchantment-Descriptions): Descriptions for all of Spectrum's enchantments
-- [Colored Lights](https://github.com/Gegy/colored-lights): Colored Lights support for all of Spectrum's light sources
+- Alloy Forgery: Additional recipes & Allow Forgery fuel
+- Little Ants: Ants can collect rare resources if they get hold of Spectrum's leaves
+- Chalk: Making Chalk unbreakable
+- AE2: Lots of Additional Recipes
+- Botania: Additional Recipes & Potion Workshop reagents
+- Conjuring: Additional Recipes & Potion Workshop reagents
+- Gobber: Additional Recipes
+- Tech Reborn: Additional Recipes
+
+## Support Us
+
+| ![DaFuqs](https://avatars.githubusercontent.com/u/26429514?s=40&v=4) DaFuqs               | ![Azzy](https://avatars.githubusercontent.com/u/20349662?s=40&v=4) Azzy                     |
+|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Creative Lead & Programming                                                               | Design Lead                                                                                 |
+| [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U7U66NEVX)        | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/azzyypaaras)        |

@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.recipe.ink_converting.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.recipe.*;
@@ -88,6 +89,10 @@ public class SpectrumRecipeTypes {
 	public static RecipeSerializer<TitrationBarrelRecipe> TITRATION_BARREL_RECIPE_SERIALIZER;
 	public static RecipeType<ITitrationBarrelRecipe> TITRATION_BARREL;
 	
+	public static final String PRIMORDIAL_FIRE_BURNING_ID = "primordial_fire_burning";
+	public static RecipeSerializer<PrimordialFireBurningRecipe> PRIMORDIAL_FIRE_BURNING_RECIPE_SERIALIZER;
+	public static RecipeType<PrimordialFireBurningRecipe> PRIMORDIAL_FIRE_BURNING;
+	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), serializer);
 	}
@@ -153,6 +158,9 @@ public class SpectrumRecipeTypes {
 		
 		TITRATION_BARREL_RECIPE_SERIALIZER = registerSerializer(TITRATION_BARREL_ID, new TitrationBarrelRecipeSerializer(TitrationBarrelRecipe::new));
 		TITRATION_BARREL = registerRecipeType(TITRATION_BARREL_ID);
+		
+		PRIMORDIAL_FIRE_BURNING_RECIPE_SERIALIZER = registerSerializer(PRIMORDIAL_FIRE_BURNING_ID, new PrimordialFireBurningRecipeSerializer(PrimordialFireBurningRecipe::new));
+		PRIMORDIAL_FIRE_BURNING = registerRecipeType(PRIMORDIAL_FIRE_BURNING_ID);
 		
 	}
 	

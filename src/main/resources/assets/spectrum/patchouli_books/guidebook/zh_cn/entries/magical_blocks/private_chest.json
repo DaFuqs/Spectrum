@@ -1,12 +1,12 @@
 {
   "pages": [
     {
-      "item": "spectrum:private_chest",
+      "item": "spectrum:heartbound_chest",
       "text": "$(italic)一次又一次，你只是快速放下一个盒子来存放你的物品，一旦你回来，所有东西都被洗劫一空。$(br)为了解决这个问题，你开发了这个特殊的箱子，它可以解决这个问题，甚至可以帮助当场抓到小偷。",
       "type": "patchouli:spotlight"
     },
     {
-      "recipe": "spectrum:pedestal/tier1/private_chest",
+      "recipe": "spectrum:pedestal/tier1/heartbound_chest",
       "text": "心形箱只能通过放置器打开，并提供与两个正常箱子相同的空间。",
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方"
@@ -17,11 +17,11 @@
       "title": "红石组件"
     }
   ],
-  "advancement": "spectrum:unlocks/blocks/private_chest",
+  "advancement": "spectrum:unlocks/blocks/heartbound_chest",
   "extra_recipe_mappings": {
-    "spectrum:private_chest": 0
+    "spectrum:heartbound_chest": 0
   },
   "name": "心形箱子",
-  "icon": "spectrum:private_chest",
+  "icon": "spectrum:heartbound_chest",
   "category": "spectrum:magical_blocks_category"
 }

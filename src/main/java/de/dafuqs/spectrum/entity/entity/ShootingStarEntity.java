@@ -452,7 +452,7 @@ public class ShootingStarEntity extends Entity {
 	@Override
 	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
 		this.age = tag.getShort("Age");
-		if (tag.contains("LastCollisionCount", NbtElement.INT_TYPE)) {
+		if (tag.contains("LastCollisionCount", NbtElement.NUMBER_TYPE)) {
 			this.lastCollisionCount = tag.getInt("LastCollisionCount");
 		}
 		

@@ -1,0 +1,105 @@
+{
+  "name": "Basalt & Calcite",
+  "advancement": "spectrum:spectrum",
+  "icon": "spectrum:chiseled_polished_basalt",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Remember the blocks that shielded your precious gemstones from external influences? $(br2)Maybe they also absorbed some of the magical properties of the geodes themselves?$(br)Who knows."
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "Raw Variants",
+      "items": [
+        "spectrum:smooth_basalt_slab",
+        "spectrum:calcite_slab",
+        "spectrum:smooth_basalt_stairs",
+        "spectrum:calcite_stairs",
+        "spectrum:smooth_basalt_wall",
+        "spectrum:calcite_wall"
+      ],
+      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across - very clean looking and radiating dignity. A wonderful contrast to the dark hues of Basalt."
+    },
+    {
+      "type": "patchouli:smelting",
+      "anchor": "polishing",
+      "title": "Polishing",
+      "recipe": "spectrum:smelting/smooth_basalt_to_polished_basalt",
+      "recipe2": "spectrum:smelting/calcite_to_polished_calcite",
+      "text": "Applying heat emphasizes their dark and white textures even more.$(br)When smelted, the Basalt turns nearly black. They can be crafted into a wide array of decoration blocks in the $(item)Crafting Table$() or $(item)Stone Cutter$()."
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "Polished Variants",
+      "items": [
+        "spectrum:polished_basalt_slab",
+        "spectrum:polished_calcite_slab",
+        "spectrum:polished_basalt_stairs",
+        "spectrum:polished_calcite_stairs",
+        "spectrum:polished_basalt_pillar",
+        "spectrum:polished_calcite_pillar",
+        "spectrum:polished_basalt_crest",
+        "spectrum:polished_calcite_crest",
+        "spectrum:chiseled_polished_basalt",
+        "spectrum:chiseled_polished_calcite",
+        "spectrum:notched_polished_basalt",
+        "spectrum:notched_polished_calcite",
+        "spectrum:polished_basalt_wall",
+        "spectrum:polished_calcite_wall",
+        "spectrum:basalt_bricks",
+        "spectrum:calcite_bricks",
+        "spectrum:cracked_basalt_bricks",
+        "spectrum:cracked_calcite_bricks",
+        "spectrum:basalt_brick_slab",
+        "spectrum:calcite_brick_slab",
+        "spectrum:basalt_brick_stairs",
+        "spectrum:calcite_brick_stairs",
+        "spectrum:basalt_brick_wall",
+        "spectrum:calcite_brick_wall",
+        "spectrum:polished_calcite_button",
+        "spectrum:polished_basalt_button",
+        "spectrum:polished_calcite_pressure_plate",
+        "spectrum:polished_basalt_pressure_plate",
+        "spectrum:basalt_tiles",
+        "spectrum:calcite_tiles",
+        "spectrum:cracked_basalt_tiles",
+        "spectrum:cracked_calcite_tiles",
+        "spectrum:calcite_tile_stairs",
+        "spectrum:basalt_tile_stairs",
+        "spectrum:calcite_tile_wall",
+        "spectrum:basalt_tile_wall",
+        "spectrum:calcite_tile_slab",
+        "spectrum:basalt_tile_slab",
+        "spectrum:planed_calcite",
+        "spectrum:planed_basalt"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Pillars & Crests",
+      "recipe": "spectrum:crafting_table/basalt/polished_basalt_pillar",
+      "recipe2": "spectrum:crafting_table/calcite/polished_calcite_crest"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Chiseled & Notched",
+      "recipe": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
+      "recipe2": "spectrum:crafting_table/calcite/notched_polished_calcite"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Cracking",
+      "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
+      "text": "You can crack Bricks & Tiles via $(l:general/anvil_crushing)Item Crushing$()."
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "Smelting them back",
+      "recipe": "spectrum:smelting/polished_basalt_unsmelting",
+      "recipe2": "spectrum:smelting/polished_calcite_unsmelting",
+      "text": "By applying heat, all blocks can be converted back to their polished variant again."
+    }
+  ]
+}

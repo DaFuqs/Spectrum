@@ -10,8 +10,8 @@ import java.util.*;
 public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends SpectrumEmiRecipe {
 	public final T recipe;
 
-	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, Identifier unlockIdentifier, T recipe, int width, int height) {
-		super(category, unlockIdentifier, recipe.getId(), width, height);
+	public GatedSpectrumEmiRecipe(EmiRecipeCategory category, T recipe, int width, int height) {
+		super(category, recipe.getRecipeTypeUnlockIdentifier(), recipe.getId(), width, height);
 		this.recipe = recipe;
 		this.outputs = List.of(EmiStack.of(recipe.getOutput(getRegistryManager())));
 	}

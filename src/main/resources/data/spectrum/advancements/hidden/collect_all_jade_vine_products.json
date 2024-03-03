@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "harvested_moonstruck_nectar": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/harvest_moonstruck_nectar" }
+    },
+    "collected_jade_vine_petals": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_jade_vine_petals" }
+    },
+    "collected_jade_jelly": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_jade_jelly" }
+    }
+  }
+}

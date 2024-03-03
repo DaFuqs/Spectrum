@@ -5,9 +5,9 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:blazing_crystal": 0,
-    "spectrum:fiery_powder": 0,
+    "spectrum:incandescent_essence": 0,
     "spectrum:frostbite_crystal": 0,
-    "spectrum:blizzard_powder": 0
+    "spectrum:frostbite_essence": 0
   },
   "pages": [
     {
@@ -31,7 +31,7 @@
     {
       "type": "spectrum:anvil_crushing",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
-      "recipe": "spectrum:anvil_crushing/blizzard_powder_from_frostbite_crystal",
+      "recipe": "spectrum:anvil_crushing/frostbite_essence_from_frostbite_crystal",
       "text": "用$(item)铁砧$()压碎整块寒霜水晶, 你会得到这种冰冷的晶粉，当你触摸它时，它几乎会把你的手冻伤. 粉碎$(item)寒霜晶块$()也可以得到寒霜晶粉，但是产量不多"
     }
   ]

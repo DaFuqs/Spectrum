@@ -14,8 +14,7 @@
           "MemoryItem": {
             "Count": 1,
             "id": "spectrum:memory"
-          },
-          "TicksToManifest": -1
+          }
         }
       }
     }

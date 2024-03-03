@@ -71,7 +71,6 @@
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pague uma pequena taxa para revelar uma dica",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "Você não tem essa taxa no seu invetário",
 
-  "container.spectrum.owned_by_player": " de %s",
   "container.spectrum.rei.pedestal_crafting.title": "Fabricação no Pedestal",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f segundos - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f segundos - %f XP",

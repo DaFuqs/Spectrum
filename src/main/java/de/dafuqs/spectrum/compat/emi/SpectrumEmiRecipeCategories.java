@@ -30,6 +30,7 @@ public class SpectrumEmiRecipeCategories {
 	public static final EmiRecipeCategory CRYSTALLARIEUM = new SpectrumCategory(SpectrumCommon.locate("crystallarieum"), EmiStack.of(SpectrumBlocks.CRYSTALLARIEUM), "block.spectrum.crystallarieum");
 	public static final EmiRecipeCategory CINDERHEARTH = new SpectrumCategory(SpectrumCommon.locate("cinderhearth"), EmiStack.of(SpectrumBlocks.CINDERHEARTH), SpectrumBlocks.CINDERHEARTH.getTranslationKey());
 	public static final EmiRecipeCategory TITRATION_BARREL = new SpectrumCategory(SpectrumCommon.locate("titration_barrel"), EmiStack.of(SpectrumBlocks.TITRATION_BARREL), SpectrumBlocks.TITRATION_BARREL.getTranslationKey());
+	public static final EmiRecipeCategory PRIMORDIAL_FIRE_BURNING = new SpectrumCategory(SpectrumCommon.locate("primordial_fire_burning"), EmiStack.of(SpectrumItems.DOOMBLOOM_SEED), "container.spectrum.rei.primordial_fire_burning.title");
 	
 	private static class SpectrumCategory extends EmiRecipeCategory {
 		private final String key;

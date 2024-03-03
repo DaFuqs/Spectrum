@@ -18,7 +18,7 @@ import java.util.*;
 public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalRecipe> {
 	
 	public PedestalCraftingEmiRecipeGated(PedestalRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, null, recipe, 124, 90);
+		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, recipe, 124, 90);
 		this.inputs = getIngredients(recipe);
 	}
 	

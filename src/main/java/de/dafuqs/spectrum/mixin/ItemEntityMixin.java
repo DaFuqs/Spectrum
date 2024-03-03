@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -58,7 +60,7 @@ public abstract class ItemEntityMixin {
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrumItemStackDamageActions(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (amount > 1 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
+		if (amount > 0 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
 			damageAwareItem.onItemEntityDamaged(source, amount, (ItemEntity) (Object) this);
 		}
 	}
@@ -67,6 +69,14 @@ public abstract class ItemEntityMixin {
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		if (ItemDamageImmunity.isImmuneTo(((ItemEntity) (Object) this).getStack(), source)) {
 			callbackInfoReturnable.setReturnValue(true);
+		}
+		if(source.isOf(SpectrumDamageTypes.PRIMORDIAL_FIRE)) {
+			ItemEntity thisItemEntity = ((ItemEntity) (Object) this);
+			World world = thisItemEntity.getWorld();
+
+			if(PrimordialFireBurningRecipe.processItemEntity(world, thisItemEntity)) {
+				callbackInfoReturnable.setReturnValue(true);
+			}
 		}
 	}
 	

@@ -14,15 +14,15 @@
 			"title":"发芽"
 		},
 		{
-			"item":"spectrum:germinated_jade_vine_bulb",
-			"advancement":"spectrum:hidden/instilled_germinated_jade_vine_seeds",
-			"text":"栅栏，脆弱但美丽的悬挂植物，缠绕着木质栅栏。$(br)$(c_red)经历了这么多年，它们还不习惯强光，直接暴露在阳光下会死去。$(br)$(c_lime)它们每晚只生长一个阶段，并且只有当暴露在更柔和的、间接的月球光下时。",
-			"type":"patchouli:spotlight",
-			"title":"种植和生长"
-		},
+          "item": "spectrum:germinated_jade_vine_bulb",
+          "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
+          "text": "栅栏，脆弱但美丽的悬挂植物，缠绕着木质栅栏。$(br)$(c_red)经历了这么多年，它们还不习惯强光，直接暴露在阳光下会死去。$(br)$(c_lime)它们每晚只生长一个阶段，并且只有当暴露在更柔和的、间接的月球光下时。",
+          "type": "patchouli:spotlight",
+          "title": "种植和生长"
+        },
 		{
 			"item":"spectrum:jade_jelly",
-			"advancement":"spectrum:hidden/collect_jade_jelly",
+			"advancement":"spectrum:midgame/collect_jade_jelly",
 			"text":"当你不小心把其中一株植物放在强烈的阳光下，你发现它枯萎了。这种枯萎的灌木不仅给你留下了新的鳞茎，还留下了这种凝胶状的果冻。$(br)$(italic)出人意料的美味。$()",
 			"type":"patchouli:spotlight",
 			"title":"玉质果冻"
@@ -41,16 +41,16 @@
 			"type":"patchouli:spotlight",
 			"title":"月相花蜜"
 		}
-	],
-	"advancement":"spectrum:hidden/collect_hibernating_jade_vine_bulb",
-	"extra_recipe_mappings":{
-		"spectrum:moonstruck_nectar":0,
-		"spectrum:hibernating_jade_vine_seeds":0,
-		"spectrum:jade_jelly":0,
-		"spectrum:germinated_jade_vine_seeds":0,
-		"spectrum:jade_vine_petals":0
-	},
-	"name":"古玉藤树",
-	"icon":"spectrum:hibernating_jade_vine_seeds",
-	"category":"spectrum:resources_category"
+    ],
+  "advancement": "spectrum:hidden/collect_hibernating_jade_vine_bulb",
+  "extra_recipe_mappings": {
+    "spectrum:moonstruck_nectar": 0,
+    "spectrum:hibernating_jade_vine_bulb": 0,
+    "spectrum:jade_jelly": 0,
+    "spectrum:germinated_jade_vine_bulb": 0,
+    "spectrum:jade_vine_petals": 0
+  },
+  "name": "古玉藤树",
+  "icon": "spectrum:hibernating_jade_vine_bulb",
+  "category": "spectrum:resources_category"
 }

@@ -26,5 +26,6 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<CrystallarieumDisplay> CRYSTALLARIEUM = CategoryIdentifier.of(SpectrumCommon.locate("crystallarieum"));
 	public static final CategoryIdentifier<CinderhearthDisplay> CINDERHEARTH = CategoryIdentifier.of(SpectrumCommon.locate("cinderhearth"));
 	public static final CategoryIdentifier<TitrationBarrelDisplay> TITRATION_BARREL = CategoryIdentifier.of(SpectrumCommon.locate("titration_barrel"));
+	public static final CategoryIdentifier<PrimordialFireBurningDisplay> PRIMORDIAL_FIRE_BURNING = CategoryIdentifier.of(SpectrumCommon.locate("primordial_fire_burning"));
 
 }

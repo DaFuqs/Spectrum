@@ -53,16 +53,16 @@
         "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 25,
+            "min_alc": 12,
             "min_thickness": 1.5
           },
           {
-            "min_alc": 25,
+            "min_alc": 15,
             "min_thickness": 2.0,
             "potency": 1
           },
           {
-            "min_alc": 25,
+            "min_alc": 18,
             "min_thickness": 2.5,
             "potency": 2
           }
@@ -73,16 +73,16 @@
         "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 45,
+            "min_alc": 13,
             "min_thickness": 1.5
           },
           {
-            "min_alc": 45,
+            "min_alc": 16,
             "min_thickness": 2.0,
             "potency": 1
           },
           {
-            "min_alc": 45,
+            "min_alc": 19,
             "min_thickness": 2.5,
             "potency": 2
           }
@@ -113,7 +113,7 @@
             "min_thickness": 3
           },
           {
-            "min_alc": 30
+            "min_alc": 22
           }
         ]
       }

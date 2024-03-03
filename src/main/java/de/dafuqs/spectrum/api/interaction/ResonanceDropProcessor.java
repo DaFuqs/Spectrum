@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.api.interaction;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.api.predicate.block.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;

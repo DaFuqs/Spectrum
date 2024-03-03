@@ -11,16 +11,14 @@ import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-import java.util.*;
-
 public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 	
 	public static final RecipeSerializer<EnchantedBookUnsoulingRecipe> SERIALIZER = new EmptyRecipeSerializer<>(EnchantedBookUnsoulingRecipe::new);
 	
 	public EnchantedBookUnsoulingRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER,
-				Ingredient.ofStacks(SpectrumEnchantmentHelper.addOrExchangeEnchantment(Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SOUL_SPEED, 1, false, false)),
-				SpectrumEnchantmentHelper.addOrExchangeEnchantment(Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SWIFT_SNEAK, 1, false, false));
+				Ingredient.ofStacks(SpectrumEnchantmentHelper.addOrUpgradeEnchantment(Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SOUL_SPEED, 1, false, false).getRight()),
+				SpectrumEnchantmentHelper.addOrUpgradeEnchantment(Items.ENCHANTED_BOOK.getDefaultStack(), Enchantments.SWIFT_SNEAK, 1, false, false).getRight());
 	}
 	
 	@Override
@@ -36,7 +34,7 @@ public class EnchantedBookUnsoulingRecipe extends PrimordialFireBurningRecipe {
 		int level = EnchantmentHelper.get(stack).getOrDefault(Enchantments.SOUL_SPEED, 0);
 		if(level > 0) {
 			stack = SpectrumEnchantmentHelper.removeEnchantments(stack, Enchantments.SOUL_SPEED).getLeft();
-			stack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.SWIFT_SNEAK, level, false, false);
+			stack = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(stack, Enchantments.SWIFT_SNEAK, level, false, false).getRight();
 		}
 		return stack;
 	}

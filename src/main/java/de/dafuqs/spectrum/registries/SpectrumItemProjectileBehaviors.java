@@ -163,7 +163,7 @@ public class SpectrumItemProjectileBehaviors {
 				boolean success = false;
 				for (ItemStack equip : equipment) {
 					for (Map.Entry<Enchantment, Integer> enchantment : enchantments.entrySet()) {
-						Pair<Boolean, ItemStack> result = SpectrumEnchantmentHelper.addOrExchangeEnchantment(equip, enchantment.getKey(), enchantment.getValue(), false, false);
+						Pair<Boolean, ItemStack> result = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(equip, enchantment.getKey(), enchantment.getValue(), false, false);
 						if (success || result.getLeft()) {
 							success = true;
 						} else {

@@ -4,7 +4,7 @@
       "model": "spectrum:block/preservation_slab"
     },
     "type=double": {
-      "model": "spectrum:block/preservation_slab"
+      "model": "spectrum:block/preservation_stone"
     },
     "type=top": {
       "model": "spectrum:block/preservation_slab_top"

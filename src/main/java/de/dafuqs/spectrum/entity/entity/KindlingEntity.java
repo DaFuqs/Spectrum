@@ -463,7 +463,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public boolean isAngry() {
-		return this.getHorseFlag(32);
+		return super.isAngry() || this.getAngerTime() > 0;
 	}
 	
 	@Override

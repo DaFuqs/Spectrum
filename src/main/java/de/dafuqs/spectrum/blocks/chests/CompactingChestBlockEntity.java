@@ -129,7 +129,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		if (tag.contains("AutoCraftingMode", NbtElement.INT_TYPE)) {
+		if (tag.contains("AutoCraftingMode", NbtElement.NUMBER_TYPE)) {
 			int autoCraftingModeInt = tag.getInt("AutoCraftingMode");
 			this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.values()[autoCraftingModeInt];
 		}

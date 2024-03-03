@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.*;
@@ -111,10 +112,12 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
+            entity.damage(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
             OnPrimordialFireComponent.addPrimordialFireTicks(livingEntity, 5);
         }
-
-        entity.damage(SpectrumDamageTypes.primordialFire(world, null), DAMAGE);
+        if (world.getTime() % 20 == 0 && entity instanceof ItemEntity itemEntity) {
+            PrimordialFireBurningRecipe.processItemEntity(world, itemEntity);
+        }
     }
     
     @Override
@@ -200,17 +203,22 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     
         int spreadChance = this.getSpreadChance(world.getBlockState(pos));
         if (random.nextInt(spreadFactor) < spreadChance) {
-            BlockState blockState = world.getBlockState(pos);
-            if (random.nextBoolean()) {
+            BlockState currentState = world.getBlockState(pos);
+            if (random.nextBoolean() ) {
+                if(PrimordialFireBurningRecipe.processBlock(world, pos, currentState)) {
+                    return;
+                }
+                
+                // replace the current block with fire
                 world.setBlockState(pos, getStateForPosition(world, pos), 3);
             }
-            Block block = blockState.getBlock();
-            if (block instanceof TntBlock) {
+            
+            if (currentState.getBlock() instanceof TntBlock) {
                 TntBlock.primeTnt(world, pos);
             }
         }
     }
-
+    
     private boolean areBlocksAroundFlammable(BlockView world, BlockPos pos) {
         for (Direction direction : Direction.values()) {
             if (this.isFlammable(world.getBlockState(pos.offset(direction)))) {

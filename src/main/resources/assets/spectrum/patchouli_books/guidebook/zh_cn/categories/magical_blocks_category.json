@@ -1,6 +1,6 @@
 {
   "name": "墨法方块",
   "description": "许多繁琐任务可以让这些神奇宝石方块的魔力来完成。$(br2)某些方块需要某种形式的能量来保持运转。",
-  "icon": "spectrum:private_chest",
+  "icon": "spectrum:heartbound_chest",
   "sortnum": 6
 }

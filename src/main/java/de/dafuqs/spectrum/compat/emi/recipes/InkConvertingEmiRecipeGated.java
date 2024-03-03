@@ -10,7 +10,7 @@ import net.minecraft.text.*;
 public class InkConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<InkConvertingRecipe> {
 	
 	public InkConvertingEmiRecipeGated(InkConvertingRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
+		super(SpectrumEmiRecipeCategories.INK_CONVERTING, recipe, 136, 20);
 		this.inputs = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
 	}
 	

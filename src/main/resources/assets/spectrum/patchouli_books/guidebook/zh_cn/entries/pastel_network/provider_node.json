@@ -12,7 +12,7 @@
       "title": "基座配方"
     }
   ],
-  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
   "name": "提供节点",
   "icon": "spectrum:provider_node",
   "category": "spectrum:pastel_network_category"

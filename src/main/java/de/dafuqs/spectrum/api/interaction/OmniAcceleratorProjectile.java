@@ -5,16 +5,16 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.predicate.item.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface OmniAcceleratorProjectile {
-
-	List<Pair<ItemPredicate, OmniAcceleratorProjectile>> BEHAVIORS = new ArrayList<>();
+	
+	List<Pair<ItemPredicate, OmniAcceleratorProjectile>> PROJECTILES = new ArrayList<>();
 
 	OmniAcceleratorProjectile DEFAULT = (stack, shooter, world) -> {
 		ItemProjectileEntity itemProjectileEntity = new ItemProjectileEntity(world, shooter);
@@ -25,30 +25,46 @@ public interface OmniAcceleratorProjectile {
 	};
 
 	static void register(OmniAcceleratorProjectile behavior, ItemPredicate predicate) {
-		BEHAVIORS.add(new Pair<>(predicate, behavior));
+		PROJECTILES.add(new Pair<>(predicate, behavior));
 	}
-
+	
 	static void register(OmniAcceleratorProjectile behavior, Item... items) {
-		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().items(items).build(), behavior));
+		PROJECTILES.add(new Pair<>(ItemPredicate.Builder.create().items(items).build(), behavior));
 	}
-
+	
 	static void register(OmniAcceleratorProjectile behavior, TagKey<Item> tag) {
-		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().tag(tag).build(), behavior));
+		PROJECTILES.add(new Pair<>(ItemPredicate.Builder.create().tag(tag).build(), behavior));
 	}
-
-	static @Nullable OmniAcceleratorProjectile get(ItemStack stack) {
-		for (Pair<ItemPredicate, OmniAcceleratorProjectile> entry : BEHAVIORS) {
+	
+	static OmniAcceleratorProjectile get(ItemStack stack) {
+		for (Pair<ItemPredicate, OmniAcceleratorProjectile> entry : PROJECTILES) {
 			if (entry.getLeft().test(stack)) {
 				return entry.getRight();
 			}
 		}
 		return DEFAULT;
 	}
-
-	// Only triggers server side
+	
+	/**
+	 * Invoked when an entity uses the Omni Accelerator to fire a projectile.
+	 * Implement your custom projectile spawning behavior here. Only triggers server side.
+	 *
+	 * @param stack   The stack used as projectile (always count of 1)
+	 * @param shooter The entity shooting the Omni Accelerator
+	 * @param world   The World
+	 * @return Weather or not the projectile was created successfully. Decrements the item and plays the getSoundEffect() sound
+	 */
 	boolean fireProjectile(ItemStack stack, LivingEntity shooter, World world);
-
-
+	
+	/**
+	 * The sound effect to play when the projectile has been fired successfully
+	 *
+	 * @return The sound effect to play when the projectile has been fired successfully
+	 */
+	default SoundEvent getSoundEffect() {
+		return SoundEvents.ENTITY_SNOWBALL_THROW;
+	}
+	
 	static void setVelocity(Entity projectile, double x, double y, double z, float speed, float divergence) {
 		Vec3d vec3d = (new Vec3d(x, y, z)).normalize().add(
 				projectile.getWorld().getRandom().nextTriangular(0.0, 0.0172275 * (double) divergence),
@@ -71,5 +87,5 @@ public interface OmniAcceleratorProjectile {
 		Vec3d vec3d = shooter.getVelocity();
 		projectile.setVelocity(projectile.getVelocity().add(vec3d.x, shooter.isOnGround() ? 0.0 : vec3d.y, vec3d.z));
 	}
-
+	
 }

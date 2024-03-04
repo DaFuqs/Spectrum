@@ -169,7 +169,7 @@ public class SpectrumItems {
 	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
 	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
 	
-	public static final Item OMNI_ACCELERATOR = new OmniAccelerator(IS.of(Rarity.UNCOMMON));
+	public static final Item OMNI_ACCELERATOR = new OmniAcceleratorItem(IS.of(1, Rarity.UNCOMMON));
 
 	public static final Item AZURITE_GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.UNCOMMON));
 	public static final Item MALACHITE_GLASS_AMPOULE = new MalachiteGlassAmpouleItem(IS.of(Rarity.UNCOMMON));

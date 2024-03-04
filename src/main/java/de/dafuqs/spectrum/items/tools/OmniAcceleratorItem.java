@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
@@ -20,12 +20,12 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class OmniAccelerator extends BundleItem {
-
-	public OmniAccelerator(Settings settings) {
+public class OmniAcceleratorItem extends BundleItem {
+	
+	public OmniAcceleratorItem(Settings settings) {
 		super(settings);
 	}
-
+	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		return ItemUsage.consumeHeldItem(world, user, hand);
@@ -44,52 +44,47 @@ public class OmniAccelerator extends BundleItem {
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		if (user instanceof ServerPlayerEntity player) {
-			Optional<ItemStack> shootStackOptional = decrementFirstItem(stack);
+			Optional<ItemStack> shootStackOptional = getFirstStack(stack);
 			if (shootStackOptional.isPresent()) {
 				ItemStack shootStack = shootStackOptional.get();
-
-				world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+				
 				if (!world.isClient) {
-					ItemProjectileEntity itemProjectileEntity = new ItemProjectileEntity(world, user);
-					itemProjectileEntity.setItem(shootStack);
-					itemProjectileEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 0.5F);
-					world.spawnEntity(itemProjectileEntity);
+					OmniAcceleratorProjectile projectile = OmniAcceleratorProjectile.get(shootStack);
+					if (projectile.fireProjectile(shootStack, user, world)) {
+						world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+						if (!player.isCreative()) {
+							decrementFirstItem(stack);
+						}
+					}
 				}
 			} else {
 				player.playSound(SoundEvents.BLOCK_DISPENSER_FAIL, 1.0F, 1.0F);
 			}
 		}
-
+		
 		return stack;
 	}
-
-	private static Optional<ItemStack> decrementFirstItem(ItemStack stack) {
-		NbtCompound nbtCompound = stack.getOrCreateNbt();
-		if (!nbtCompound.contains("Items")) {
-			return Optional.empty();
-		} else {
+	
+	public static void decrementFirstItem(ItemStack acceleratorStack) {
+		NbtCompound nbtCompound = acceleratorStack.getOrCreateNbt();
+		if (nbtCompound.contains("Items")) {
 			NbtList itemsList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
-			if (itemsList.isEmpty()) {
-				return Optional.empty();
-			} else {
+			if (!itemsList.isEmpty()) {
 				NbtCompound stackNbt = itemsList.getCompound(0);
-				ItemStack itemStack = ItemStack.fromNbt(stackNbt);
-
-				if (itemStack.getCount() > 1) {
-					stackNbt.putByte("Count", (byte) (itemStack.getCount() - 1));
+				int count = stackNbt.getByte("Count");
+				if (count > 1) {
+					stackNbt.putByte("Count", (byte) (count - 1));
 				} else {
 					itemsList.remove(0);
 					if (itemsList.isEmpty()) {
-						stack.removeSubNbt("Items");
+						acceleratorStack.removeSubNbt("Items");
 					}
 				}
-
-				return Optional.of(itemStack);
 			}
 		}
 	}
 	
-	private static Optional<ItemStack> getFirstStack(ItemStack stack) {
+	public static Optional<ItemStack> getFirstStack(ItemStack stack) {
 		NbtCompound nbtCompound = stack.getOrCreateNbt();
 		if (!nbtCompound.contains("Items")) {
 			return Optional.empty();

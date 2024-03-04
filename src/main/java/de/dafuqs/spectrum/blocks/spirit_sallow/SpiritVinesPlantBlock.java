@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritVine {
+public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritVines {
 	
 	private final GemstoneColor gemstoneColor;
 	
@@ -56,12 +56,12 @@ public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritV
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpiritVine.getYieldItem(state, true));
+		return new ItemStack(SpiritVines.getYieldItem(state, true));
 	}
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		return SpiritVine.pick(state, world, pos);
+		return SpiritVines.pick(state, world, pos);
 	}
 	
 	@Override

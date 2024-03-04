@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;

@@ -103,18 +103,15 @@ public interface ItemProjectileBehavior {
 		
 		@Override
 		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
-			if (owner instanceof PlayerEntity playerOwner) {
-				stack.useOnBlock(new ItemPlacementContext(new ItemUsageContext(playerOwner, Hand.MAIN_HAND, hitResult)));
-			} else {
-				World world = projectile.getWorld();
-				BlockPos hitPos = hitResult.getBlockPos();
-				
-				hitResult.withSide(hitResult.getSide());
-				Direction facing = hitResult.getSide().getOpposite();
-				BlockPos placementPos = hitPos.offset(facing);
-				Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
-				stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
-			}
+			World world = projectile.getWorld();
+			BlockPos hitPos = hitResult.getBlockPos();
+			
+			hitResult.withSide(hitResult.getSide());
+			Direction facing = hitResult.getSide().getOpposite();
+			BlockPos placementPos = hitPos.offset(facing);
+			Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
+			stack.useOnBlock(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+			
 			return stack;
 		}
 	}

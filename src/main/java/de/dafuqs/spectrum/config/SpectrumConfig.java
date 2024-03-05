@@ -144,6 +144,8 @@ public class SpectrumConfig implements ConfigData {
 	public float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
+	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ...")
+	public boolean OmniAcceleratorPvP = true;
 	
 	public int GemstoneArmorHelmetProtection = 3;
 	public int GemstoneArmorChestplateProtection = 7;

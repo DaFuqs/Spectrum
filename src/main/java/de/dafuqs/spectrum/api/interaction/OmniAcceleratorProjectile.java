@@ -21,7 +21,7 @@ public interface OmniAcceleratorProjectile {
 		itemProjectileEntity.setItem(stack);
 		itemProjectileEntity.setVelocity(shooter, shooter.getPitch(), shooter.getYaw(), 0.0F, 2.0F, 0.5F);
 		world.spawnEntity(itemProjectileEntity);
-		return true;
+		return itemProjectileEntity;
 	};
 
 	static void register(OmniAcceleratorProjectile behavior, ItemPredicate predicate) {
@@ -52,9 +52,9 @@ public interface OmniAcceleratorProjectile {
 	 * @param stack   The stack used as projectile (always count of 1)
 	 * @param shooter The entity shooting the Omni Accelerator
 	 * @param world   The World
-	 * @return Weather or not the projectile was created successfully. Decrements the item and plays the getSoundEffect() sound
+	 * @return The created projectile. If not null, the fired stack will be decremented and the getSoundEffect() sound will play
 	 */
-	boolean fireProjectile(ItemStack stack, LivingEntity shooter, World world);
+	Entity createProjectile(ItemStack stack, LivingEntity shooter, World world);
 	
 	/**
 	 * The sound effect to play when the projectile has been fired successfully

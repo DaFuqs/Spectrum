@@ -129,6 +129,7 @@ public class PrintConfigCommand {
 		}
 		
 		send(source, "GlowVisionGogglesDuration: " + SpectrumCommon.CONFIG.GlowVisionGogglesDuration);
+		send(source, "OmniAcceleratorPvP: " + SpectrumCommon.CONFIG.OmniAcceleratorPvP);
 		
 		send(source, "Bedrock Armor Protection: " + SpectrumCommon.CONFIG.BedrockArmorHelmetProtection + ", " + SpectrumCommon.CONFIG.BedrockArmorLeggingsProtection + ", " + SpectrumCommon.CONFIG.BedrockArmorChestplateProtection + ", " + SpectrumCommon.CONFIG.BedrockArmorBootsProtection + " (Toughness: " + SpectrumCommon.CONFIG.BedrockArmorToughness + ", Knockback Resistance: " + SpectrumCommon.CONFIG.BedrockArmorKnockbackResistance + ")");
 		send(source, "Gemstone Armor Protection: " + SpectrumCommon.CONFIG.GemstoneArmorHelmetProtection + ", " + SpectrumCommon.CONFIG.GemstoneArmorChestplateProtection + ", " + SpectrumCommon.CONFIG.GemstoneArmorLeggingsProtection + ", " + SpectrumCommon.CONFIG.GemstoneArmorBootsProtection + " (Toughness: " + SpectrumCommon.CONFIG.GemstoneArmorToughness + ", Knockback Resistance: " + SpectrumCommon.CONFIG.GemstoneArmorKnockbackResistance + ")");

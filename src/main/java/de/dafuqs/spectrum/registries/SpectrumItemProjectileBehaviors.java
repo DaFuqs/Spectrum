@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.boom.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.thrown.*;
@@ -17,7 +17,6 @@ import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
-import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -26,8 +25,15 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class SpectrumItemProjectileBehaviors {
-
+	
 	public static void register() {
+		registerHarmless();
+		if (SpectrumCommon.CONFIG.OmniAcceleratorPvP) {
+			registerPvP();
+		}
+	}
+	
+	protected static void registerHarmless() {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, EntityHitResult hitResult) {
@@ -44,7 +50,7 @@ public class SpectrumItemProjectileBehaviors {
 				}
 				return stack;
 			}
-
+			
 			private boolean strikeLightning(World world, BlockPos pos) {
 				if (world.isSkyVisible(pos.up())) {
 					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
@@ -57,7 +63,7 @@ public class SpectrumItemProjectileBehaviors {
 				return false;
 			}
 		}, SpectrumItems.STORM_STONE);
-
+		
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(4F, true), SpectrumItemTags.GEMSTONE_SHARDS);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.POINTED_DRIPSTONE);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
@@ -67,7 +73,7 @@ public class SpectrumItemProjectileBehaviors {
 			public boolean destroyItemOnHit() {
 				return false;
 			}
-
+			
 			@Override
 			public boolean dealDamage(ThrownItemEntity projectile, Entity owner, Entity target) {
 				return target.damage(target.getDamageSources().thrown(projectile, owner), 6F);
@@ -88,7 +94,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, ItemTags.MUSIC_DISCS);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -103,7 +109,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, Items.FIRE_CHARGE);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -119,35 +125,37 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, SpectrumBlocks.INCANDESCENT_AMALGAM.asItem());
-
-		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				Entity target = hitResult.getEntity();
-				List<ItemStack> equipment = new ArrayList<>();
-				target.getItemsEquipped().forEach(equipment::add);
-				Collections.shuffle(equipment);
-				
-				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(stack);
-				
-				boolean success = false;
-				for (ItemStack equip : equipment) {
-					for (Map.Entry<Enchantment, Integer> enchantment : enchantments.entrySet()) {
-						Pair<Boolean, ItemStack> result = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(equip, enchantment.getKey(), enchantment.getValue(), false, false);
-						if (success || result.getLeft()) {
-							success = true;
-						} else {
-							break;
-						}
-					}
-				}
-				if (success) {
-					stack.decrement(1);
-				}
 				return stack;
 			}
-		}, Items.ENCHANTED_BOOK);
-
+			
+			@Override
+			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack accelerator, @Nullable Entity owner, BlockHitResult hitResult) {
+				Optional<ItemStack> optionalAcceleratorContentStack = OmniAcceleratorItem.getFirstStack(accelerator);
+				if (optionalAcceleratorContentStack.isPresent() && owner instanceof LivingEntity livingOwner) {
+					ItemStack acceleratorContentStack = optionalAcceleratorContentStack.get();
+					
+					World world = projectile.getWorld();
+					OmniAcceleratorProjectile newProjectile = OmniAcceleratorProjectile.get(optionalAcceleratorContentStack.get());
+					Entity newEntity = newProjectile.createProjectile(acceleratorContentStack, livingOwner, world);
+					
+					if (newEntity != null) {
+						Vec3d pos = hitResult.getPos();
+						newEntity.setPos(pos.getX(), pos.getY(), pos.getZ());
+						OmniAcceleratorProjectile.setVelocity(newEntity, projectile, 20, world.getRandom().nextFloat() * 360, 0.0F, 2.0F, 1.0F);
+						world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), newProjectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+						OmniAcceleratorItem.decrementFirstItem(accelerator);
+					}
+				}
+				return accelerator;
+			}
+		}, SpectrumItems.OMNI_ACCELERATOR);
+	}
+	
+	protected static void registerPvP() {
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -164,7 +172,7 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, SpectrumItems.ENCHANTMENT_CANVAS);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
@@ -195,27 +203,6 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, SpectrumItems.CRAFTING_TABLET);
-		
-		/*ItemProjectileBehavior.register(new ItemProjectileBehavior() {
-			@Override
-			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				return stack;
-			}
-			
-			@Override
-			public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, BlockHitResult hitResult) {
-				OmniAcceleratorProjectile projectile = OmniAcceleratorProjectile.get(stack);
-				World world = projectile.getWorld();
-				if(projectile.fireProjectile(stack, owner, world)) {
-					world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-					if(!player.isCreative()) {
-						OmniAcceleratorItem.decrementFirstItem(stack);
-					}
-				}
-				
-				return stack;
-			}
-		}, SpectrumItems.OMNI_ACCELERATOR);*/ // TODO
 	}
-
+	
 }

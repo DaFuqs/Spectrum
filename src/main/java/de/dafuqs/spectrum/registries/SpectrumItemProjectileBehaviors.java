@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.*;
@@ -67,6 +68,8 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(4F, true), SpectrumItemTags.GEMSTONE_SHARDS);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.POINTED_DRIPSTONE);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
+		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
 			@Override
@@ -203,6 +206,19 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, SpectrumItems.CRAFTING_TABLET);
+		
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			@Override
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				Entity target = hitResult.getEntity();
+				if (target instanceof LivingEntity livingTarget) {
+					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 0));
+					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 0));
+				}
+				stack.decrement(1);
+				return stack;
+			}
+		}, Items.CAKE);
 	}
 	
 }

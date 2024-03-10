@@ -9,19 +9,19 @@
   "black": 0,
   "experience": 1,
   "pattern": [
-    "CCC",
-    "BRB",
-    "BBB"
+    "PPP",
+    "WGW",
+    "WWW"
   ],
   "key": {
-    "C": {
-      "item": "spectrum:polished_calcite"
+    "P": {
+      "item": "minecraft:paper"
     },
-    "B": {
-      "item": "spectrum:polished_basalt"
+    "W": {
+      "tag": "minecraft:planks"
     },
-    "R": {
-      "item": "minecraft:red_dye"
+    "G": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

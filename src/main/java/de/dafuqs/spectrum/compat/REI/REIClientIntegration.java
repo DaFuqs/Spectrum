@@ -172,11 +172,11 @@ public class REIClientIntegration implements REIClientPlugin {
 	public void registerTransferHandlers(TransferHandlerRegistry registry) {
 		// REI input magic to prevent moving incorrect amount of gem powder yet still complain about a lack of such
 		registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, SpectrumPlugins.PEDESTAL_CRAFTING,
-				new SimpleTransferHandler.IntRange(0, 8),
-				List.of(new SimpleTransferHandler.IntRange(9, 14), new SimpleTransferHandler.IntRange(16, 52))));
+				new SimpleTransferHandler.IntRange(0, 9),
+				List.of(new SimpleTransferHandler.IntRange(9, 15), new SimpleTransferHandler.IntRange(16, 52))));
 		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, BuiltinPlugin.CRAFTING,
-					new SimpleTransferHandler.IntRange(0, 8), new SimpleTransferHandler.IntRange(16, 52)));
+					new SimpleTransferHandler.IntRange(0, 9), new SimpleTransferHandler.IntRange(16, 52)));
 		}
 		registry.register(SimpleTransferHandlerExtension.create(CinderhearthScreenHandler.class, SpectrumPlugins.CINDERHEARTH,
 				new SimpleTransferHandler.IntRange(2, 3), new SimpleTransferHandler.IntRange(11, 47)));

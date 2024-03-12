@@ -6,12 +6,9 @@ import net.minecraft.entity.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
-
-import java.util.*;
 
 public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 	
@@ -52,8 +49,10 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumPlacedFeatures.BRISTLE_SPROUT_PATCH);
-		feature.ifPresent(placedFeature -> placedFeature.generate(world, world.getChunkManager().getChunkGenerator(), random, pos));
+		world.getRegistryManager()
+				.get(RegistryKeys.CONFIGURED_FEATURE)
+				.get(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH)
+				.generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.dd_deco.*;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.registry.*;
@@ -9,23 +8,8 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.*;
 
-import java.util.*;
-
 public class SpectrumPlacedFeatures {
-	
-	// OVERWORLD
-	public static final RegistryKey<PlacedFeature> CLOVER_PATCH = of("clover_patch");
 
-	// DEEPER DOWN
-	public static final RegistryKey<PlacedFeature> BRISTLE_SPROUT_PATCH = of("bristle_sprouts");
-	public static final Map<Dragonjag.Variant, RegistryKey<PlacedFeature>> DRAGONJAGS = new HashMap<>() {{
-		put(Dragonjag.Variant.PINK,of("dragonjags/pink"));
-		put(Dragonjag.Variant.RED, of("dragonjags/red"));
-		put(Dragonjag.Variant.BLACK, of("dragonjags/black"));
-		put(Dragonjag.Variant.YELLOW, of("dragonjags/yellow"));
-		put(Dragonjag.Variant.PURPLE, of("dragonjags/purple"));
-	}};
-	
 	public static RegistryKey<PlacedFeature> of(String id) {
 		return RegistryKey.of(RegistryKeys.PLACED_FEATURE, SpectrumCommon.locate(id));
 	}

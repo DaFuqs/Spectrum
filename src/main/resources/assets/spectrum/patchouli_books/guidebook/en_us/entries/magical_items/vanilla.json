@@ -1,5 +1,5 @@
 {
-  "name": "Vanilla Items",
+  "name": "Mundane Items",
   "advancement": "spectrum:craft_using_pedestal",
   "icon": "minecraft:bell",
   "category": "spectrum:magical_items_category",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Vanilla Items",
+      "title": "Mundane Items",
       "text": "There are a few items that have always been difficult to get. Your new skills should make it much easier to get them."
     },
     {

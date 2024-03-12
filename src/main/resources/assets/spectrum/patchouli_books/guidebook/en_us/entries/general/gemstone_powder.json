@@ -21,6 +21,18 @@
       "type": "patchouli:text",
       "title": "Mixing Colors",
       "text": "There is nothing more important to an upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of Gemstone Powder, it's not nearly as easy as it initially seemed. The powders don't quite want to mix, the result being just a multicolored mass.$(br2)Maybe you can come up with something later?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe": "spectrum:pedestal/tier1/compacting/amethyst_powder_block",
+      "text": "$(item)Gemstone Powder$() can be compacted for storage or decoration."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe": "spectrum:pedestal/tier1/compacting/amethyst_powder_from_amethyst_powder_block",
+      "text": ""
     }
   ]
 }

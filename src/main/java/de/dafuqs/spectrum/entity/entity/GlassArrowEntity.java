@@ -31,15 +31,11 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	public GlassArrowEntity(World world, LivingEntity owner) {
 		super(SpectrumEntityTypes.GLASS_ARROW, owner, world);
+		setDamage(getDamage() * DAMAGE_MODIFIER);
 	}
 	
 	public GlassArrowEntity(World world, double x, double y, double z) {
 		super(SpectrumEntityTypes.GLASS_ARROW, x, y, z, world);
-	}
-	
-	@Override
-	public void applyEnchantmentEffects(LivingEntity entity, float damageModifier) {
-		super.applyEnchantmentEffects(entity, damageModifier);
 		setDamage(getDamage() * DAMAGE_MODIFIER);
 	}
 	

@@ -4,14 +4,15 @@
   commercial
   use (“Commons Clause” License Condition). If you want to use Spectrum in a Commercial Project you are required to
   contact the developers, like explained at https://commonsclause.com/ to obtain a license as described in
-  #commons_clause.
+  [#commons_clause](#commons-clause-license-condition).
 
 While not strictly required via the license, it is good practice asking before using huge chunks of Spectrums code for
 personal projects, like ports for other mod loaders.
 If you just want to use it for integration, addons and similar projects: go ahead!
 
-## “Commons Clause” License Condition v1.0
+## Commons Clause License Condition
 
+## Version 1.0
 The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
 Without limiting other conditions in the License, the grant of rights under the License will not include, and the
 License does not grant to you, the right to Sell the Software.

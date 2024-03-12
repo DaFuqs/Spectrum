@@ -235,7 +235,6 @@ public class SpectrumItemGroups {
 				entries.add(SpectrumBlocks.ENDER_DROPPER);
 				
 				entries.add(SpectrumBlocks.PARTICLE_SPAWNER);
-				entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 				
 				entries.add(SpectrumBlocks.GLISTERING_MELON);
 				entries.add(SpectrumBlocks.LAVA_SPONGE);
@@ -1352,7 +1351,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.PIGMENT_PALETTE.getFullStack());
 		entries.add(SpectrumItems.ARTISTS_PALETTE);
 		entries.add(SpectrumItems.ARTISTS_PALETTE.getFullStack());
-		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
 	}).build();
 	
 	public static final ItemSubGroup CREATIVE = new ItemSubGroup.Builder(MAIN, Text.translatable("itemGroup.spectrum.creative")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
@@ -1363,7 +1361,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.ENCHANTER_STRUCTURE_PLACER);
 		entries.add(SpectrumItems.SPIRIT_INSTILLER_STRUCTURE_PLACER);
 		entries.add(SpectrumItems.CINDERHEARTH_STRUCTURE_PLACER);
-		
+
+		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
+		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
+
 		entries.add(SpectrumBlocks.DOWNSTONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STAIRS);

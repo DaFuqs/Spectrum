@@ -22,7 +22,7 @@ import net.minecraft.text.*;
 
 @SuppressWarnings("unused")
 public class SpectrumItemGroups {
-	
+
 	public static final ItemGroup MAIN = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(SpectrumBlocks.PEDESTAL_ALL_BASIC))
 			.entries((displayContext, entries) -> {
@@ -409,33 +409,46 @@ public class SpectrumItemGroups {
 	}).build();
 	
 	public static final ItemSubGroup RESOURCES = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_RESOURCES, Text.translatable("itemGroup.spectrum.resources")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
-		entries.add(Items.AMETHYST_SHARD);
 		entries.add(SpectrumItems.TOPAZ_SHARD);
+		entries.add(Items.AMETHYST_SHARD);
 		entries.add(SpectrumItems.CITRINE_SHARD);
 		entries.add(SpectrumItems.ONYX_SHARD);
 		entries.add(SpectrumItems.MOONSTONE_SHARD);
-		
-		entries.add(SpectrumItems.AMETHYST_POWDER);
-		entries.add(SpectrumItems.TOPAZ_POWDER);
-		entries.add(SpectrumItems.CITRINE_POWDER);
-		entries.add(SpectrumItems.ONYX_POWDER);
-		entries.add(SpectrumItems.MOONSTONE_POWDER);
-		
+
 		entries.add(SpectrumBlocks.TOPAZ_BLOCK);
+		entries.add(Blocks.AMETHYST_BLOCK);
 		entries.add(SpectrumBlocks.CITRINE_BLOCK);
 		entries.add(SpectrumBlocks.ONYX_BLOCK);
 		entries.add(SpectrumBlocks.MOONSTONE_BLOCK);
-		
+
+		entries.add(SpectrumItems.TOPAZ_POWDER);
+		entries.add(SpectrumItems.AMETHYST_POWDER);
+		entries.add(SpectrumItems.CITRINE_POWDER);
+		entries.add(SpectrumItems.ONYX_POWDER);
+		entries.add(SpectrumItems.MOONSTONE_POWDER);
+
+		entries.add(SpectrumBlocks.TOPAZ_POWDER_BLOCK);
+		entries.add(SpectrumBlocks.AMETHYST_POWDER_BLOCK);
+		entries.add(SpectrumBlocks.CITRINE_POWDER_BLOCK);
+		entries.add(SpectrumBlocks.ONYX_POWDER_BLOCK);
+		entries.add(SpectrumBlocks.MOONSTONE_POWDER_BLOCK);
+
 		entries.add(SpectrumBlocks.BUDDING_TOPAZ);
+		entries.add(Blocks.BUDDING_AMETHYST);
 		entries.add(SpectrumBlocks.BUDDING_CITRINE);
 		entries.add(SpectrumBlocks.BUDDING_ONYX);
 		entries.add(SpectrumBlocks.BUDDING_MOONSTONE);
-		
+
 		entries.add(SpectrumBlocks.SMALL_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.LARGE_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.TOPAZ_CLUSTER);
-		
+
+		entries.add(Blocks.SMALL_AMETHYST_BUD);
+		entries.add(Blocks.MEDIUM_AMETHYST_BUD);
+		entries.add(Blocks.LARGE_AMETHYST_BUD);
+		entries.add(Blocks.AMETHYST_CLUSTER);
+
 		entries.add(SpectrumBlocks.SMALL_CITRINE_BUD);
 		entries.add(SpectrumBlocks.MEDIUM_CITRINE_BUD);
 		entries.add(SpectrumBlocks.LARGE_CITRINE_BUD);
@@ -533,6 +546,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PRISTINE_SHOOTING_STAR);
 		entries.add(SpectrumBlocks.GEMSTONE_SHOOTING_STAR);
 		entries.add(SpectrumItems.STARDUST);
+		entries.add(SpectrumBlocks.STARDUST_BLOCK);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
 		
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
@@ -573,7 +587,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.NEPHRITE_BLOSSOM_BULB);
 		entries.add(SpectrumItems.JADEITE_LOTUS_BULB);
 		entries.add(SpectrumItems.JADEITE_PETALS);
-		
+
 		entries.add(SpectrumItems.MERMAIDS_GEM);
 		entries.add(SpectrumItems.STORM_STONE);
 		entries.add(SpectrumItems.DOOMBLOOM_SEED);
@@ -948,8 +962,11 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.ONYX_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.MOONSTONE_STORAGE_BLOCK);
+
+		entries.add(SpectrumBlocks.VEGETAL_BLOCK);
+		entries.add(SpectrumBlocks.NEOLITH_BLOCK);
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
-		
+
 		entries.add(SpectrumBlocks.SHIMMERSTONE_BLOCK);
 		entries.add(SpectrumBlocks.AZURITE_BLOCK);
 		entries.add(SpectrumBlocks.MALACHITE_BLOCK);
@@ -1012,7 +1029,10 @@ public class SpectrumItemGroups {
 		
 		entries.add(SpectrumBlocks.JADE_VINE_PETAL_BLOCK);
 		entries.add(SpectrumBlocks.JADE_VINE_PETAL_CARPET);
-		
+
+		entries.add(SpectrumBlocks.JADEITE_PETAL_BLOCK);
+		entries.add(SpectrumBlocks.JADEITE_PETAL_CARPET);
+
 		entries.add(SpectrumBlocks.EFFULGENT_BLOCK);
 		entries.add(SpectrumBlocks.EFFULGENT_CUSHION);
 		entries.add(SpectrumBlocks.EFFULGENT_CARPET);

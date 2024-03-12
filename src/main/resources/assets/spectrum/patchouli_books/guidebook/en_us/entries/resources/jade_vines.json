@@ -8,6 +8,8 @@
     "spectrum:hibernating_jade_vine_bulb": 0,
     "spectrum:germinated_jade_vine_bulb": 0,
     "spectrum:jade_vine_petals": 0,
+    "spectrum:jade_vine_petal_block": 0,
+    "spectrum:jade_vine_petal_carpet": 0,
     "spectrum:moonstruck_nectar": 0,
     "spectrum:jade_jelly": 0,
     "spectrum:jaramel": 0
@@ -42,6 +44,14 @@
       "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.$(br2)$(italic)Unexpectedly tasty$()."
     },
     {
+      "type": "patchouli:spotlight",
+      "title": "Moonstruck Nectar",
+      "anchor": "nectar",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
+      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
+    },
+    {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Jaramel",
       "anchor": "jaramel",
@@ -58,12 +68,18 @@
       "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found. How will Jade Vines look when you let them grow further, tough?"
     },
     {
-      "type": "patchouli:spotlight",
-      "title": "Moonstruck Nectar",
-      "anchor": "nectar",
-      "item": "spectrum:moonstruck_nectar",
-      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_bulb",
-      "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."
+      "type": "spectrum:pedestal_crafting",
+      "title": "Jade Petal Blocks",
+      "advancement": "spectrum:midgame/collect_jade_vine_petals",
+      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
+      "text": "From the petals you created a small range of decoration blocks."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Jade Petal Carpet",
+      "advancement": "spectrum:midgame/collect_jade_vine_petals",
+      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_carpet",
+      "text": ""
     }
   ]
 }

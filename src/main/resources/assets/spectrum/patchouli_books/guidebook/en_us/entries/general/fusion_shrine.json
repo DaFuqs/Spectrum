@@ -14,13 +14,13 @@
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"
       ],
-      "text": "For the process of creating $(l:general/onyx_shards)Black Shards$() you have developed a special construction.$(br2)You can either click or throw items and buckets onto it. You are even able to process entire stacks of fusion ingredients at once, making fusing much more efficient than with a single item per cycle. This would be very beneficial for recipes which can only be crafted $(l:general/onyx_shards)during a specific time frame$()."
+      "text": "To create $(l:general/onyx_shards)Black Shards$(), you have developed a special construction.$(br)You can either click or throw items and buckets onto it. You can even process entire stacks of fusion ingredients at once, making fusing much more efficient than using a single item per cycle. Very useful for recipes that require $(l:general/onyx_shards)good timing$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "Can be constructed using $(item)Calcite$() or $(item)Basalt$().$(br)Requires a focus structure and clear view of the sky."
+      "text": "Can be constructed using $(item)Calcite$() or $(item)Basalt$().$(br)Requires a $(thing)focus structure$() and $(thing)clear view of the sky$()."
     },
     {
       "type": "patchouli:multiblock",

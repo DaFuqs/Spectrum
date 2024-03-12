@@ -9,6 +9,7 @@ import java.util.*;
 
 public class SpectrumConfiguredFeatures {
 
+	public static final RegistryKey<ConfiguredFeature<?, ?>> CLOVER_PATCH = of("clover_patch");
 	public static final RegistryKey<ConfiguredFeature<?,?>> SNAPPING_IVY_PATCH = of("snapping_ivy_patch");
 	public static final RegistryKey<ConfiguredFeature<?,?>> JADEITE_LOTUS = of("jadeite_lotus");
 	public static final RegistryKey<ConfiguredFeature<?,?>> NEPHRITE_BLOSSOM_BULB = of("nephrite_blossom");

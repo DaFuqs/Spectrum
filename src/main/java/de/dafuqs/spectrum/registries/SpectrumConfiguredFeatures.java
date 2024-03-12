@@ -1,22 +1,28 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.dd_deco.*;
-import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.*;
 
+import java.util.*;
+
 public class SpectrumConfiguredFeatures {
 
-	// OVERWORLD
-	public static final Identifier CLOVER_PATCH = SpectrumCommon.locate("clover_patch");
-	public static final Map<DyeColor, RegistryEntry<ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
+	public static final RegistryKey<ConfiguredFeature<?, ?>> CLOVER_PATCH = of("clover_patch");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> SNAPPING_IVY_PATCH = of("snapping_ivy_patch");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> JADEITE_LOTUS = of("jadeite_lotus");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> NEPHRITE_BLOSSOM_BULB = of("nephrite_blossom");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> BRISTLE_SPROUT_PATCH = of("bristle_sprouts");
+
+	public static final RegistryKey<ConfiguredFeature<?, ?>> SLATE_NOXFUNGUS = of("noxfungi/slate");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> EBONY_NOXFUNGUS = of("noxfungi/ebony");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> IVORY_NOXFUNGUS = of("noxfungi/ivory");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> CHESTNUT_NOXFUNGUS = of("noxfungi/chestnut");
 
 	// DEEPER DOWN
 	public static final Identifier SNAPPING_IVY_PATCH = SpectrumCommon.locate("snapping_ivy_patch");

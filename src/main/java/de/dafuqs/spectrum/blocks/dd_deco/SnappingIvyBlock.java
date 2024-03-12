@@ -39,12 +39,12 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
-    
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(SpectrumBlockTags.SNAPPING_IVY_PLANTABLE);
     }
-    
+
     @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
@@ -57,7 +57,10 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        world.getRegistryManager()
+                .get(Registry.CONFIGURED_FEATURE_KEY)
+                .get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH)
+                .generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
     
     @Override
@@ -67,7 +70,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(AXIS, ctx.getPlayerFacing().getAxis());
+        return this.getDefaultState().with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
     }
     
     @Override
@@ -85,7 +88,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         boolean snapped = state.get(SNAPPED);
-    
+
         if (!snapped && entity instanceof ItemEntity) {
             snap(state, world, pos, true);
         }
@@ -94,12 +97,12 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
             if (!snapped) {
                 entity.damage(SpectrumDamageSources.SNAPPING_IVY, 7.0F);
                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
-            
+
                 snap(state, world, pos, true);
             }
         }
     }
-    
+
     private static void snap(BlockState state, World world, BlockPos pos, boolean close) {
         BlockState newState = state.with(SNAPPED, close);
         world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);

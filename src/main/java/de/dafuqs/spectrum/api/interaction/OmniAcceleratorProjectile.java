@@ -27,8 +27,8 @@ public interface OmniAcceleratorProjectile {
 	static void register(OmniAcceleratorProjectile behavior, ItemPredicate predicate) {
 		PROJECTILES.add(new Pair<>(predicate, behavior));
 	}
-	
-	static void register(OmniAcceleratorProjectile behavior, Item... items) {
+
+	static void register(OmniAcceleratorProjectile behavior, ItemConvertible... items) {
 		PROJECTILES.add(new Pair<>(ItemPredicate.Builder.create().items(items).build(), behavior));
 	}
 	

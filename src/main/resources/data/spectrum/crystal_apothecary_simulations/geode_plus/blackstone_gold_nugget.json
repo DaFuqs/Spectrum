@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_blackstone_gold_nugget",
+  "budding_block": "geode_plus:budding_blackstone_gold_nugget",
   "valid_neighbor_blocks": [
-    "geode:small_nether_gold_nugget_bud",
-    "geode:medium_nether_gold_nugget_bud",
-    "geode:large_nether_gold_nugget_bud",
-    "geode:nether_gold_nugget_cluster",
+    "geode_plus:small_nether_gold_nugget_bud",
+    "geode_plus:medium_nether_gold_nugget_bud",
+    "geode_plus:large_nether_gold_nugget_bud",
+    "geode_plus:nether_gold_nugget_cluster",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

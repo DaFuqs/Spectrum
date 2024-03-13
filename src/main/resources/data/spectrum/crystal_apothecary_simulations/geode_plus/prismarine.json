@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_prismarine",
+  "budding_block": "geode_plus:budding_prismarine",
   "valid_neighbor_blocks": [
-    "geode:small_prismarine_bud",
-    "geode:medium_prismarine_bud",
-    "geode:large_prismarine_bud",
-    "geode:prismarine_cluster",
+    "geode_plus:small_prismarine_bud",
+    "geode_plus:medium_prismarine_bud",
+    "geode_plus:large_prismarine_bud",
+    "geode_plus:prismarine_cluster",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

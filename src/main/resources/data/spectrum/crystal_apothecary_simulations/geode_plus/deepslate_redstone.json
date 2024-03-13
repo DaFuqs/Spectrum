@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_deepslate_redstone",
+  "budding_block": "geode_plus:budding_deepslate_redstone",
   "valid_neighbor_blocks": [
-    "geode:small_redstone_bud",
-    "geode:medium_redstone_bud",
-    "geode:large_redstone_bud",
-    "geode:redstone_crystal",
+    "geode_plus:small_redstone_bud",
+    "geode_plus:medium_redstone_bud",
+    "geode_plus:large_redstone_bud",
+    "geode_plus:redstone_crystal",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

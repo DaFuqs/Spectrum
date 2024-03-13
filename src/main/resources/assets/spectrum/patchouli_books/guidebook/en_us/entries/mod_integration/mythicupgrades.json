@@ -1,7 +1,7 @@
 {
-  "name": "Geode+",
-  "icon": "geode_plus:celestite_cluster",
-  "flag": "mod:geode_plus",
+  "name": "Mythic Upgrades",
+  "icon": "mythicupgrades:ruby_crystal_cluster",
+  "flag": "mod:mythicupgrades",
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [

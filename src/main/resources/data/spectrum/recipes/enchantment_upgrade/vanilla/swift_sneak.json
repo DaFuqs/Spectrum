@@ -24,5 +24,13 @@
       "item_count": 256
     }
   ],
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:swift_sneak"
+      ]
+    }
+  ]
 }

@@ -39,5 +39,13 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:efficiency"
+      ]
+    }
+  ]
 }

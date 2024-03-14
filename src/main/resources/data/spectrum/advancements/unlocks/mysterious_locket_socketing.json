@@ -1,21 +1,9 @@
 {
   "criteria": {
-    "collected_mysterious_locket": {
+    "reached_endgame": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_mysterious_locket"
-      }
-    },
-    "collected_moonstone_core": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
-      }
-    },
-    "collected_enough_hints": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:endgame/collect_enough_hints"
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
       }
     }
   }

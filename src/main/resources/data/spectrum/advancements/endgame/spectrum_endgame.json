@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "spectrum:pedestal_moonstone"
+      "item": "spectrum:mysterious_locket"
     },
     "title": {
       "translate": "advancements.spectrum.spectrum_endgame.title"
@@ -18,10 +18,16 @@
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     },
-    "visited_all_deeper_down_biomes": {
+    "collected_enough_hints": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/visit_all_deeper_down_biomes"
+        "advancement_identifier": "spectrum:lategame/collect_enough_hints"
+      }
+    },
+    "collected_mysterious_locket": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_mysterious_locket"
       }
     }
   }

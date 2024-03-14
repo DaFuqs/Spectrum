@@ -8,10 +8,9 @@
     },
     "description": {
       "translate": "advancements.spectrum.collect_enough_hints.description"
-    },
-    "background": "spectrum:textures/gui/advancement_background_lategame.png"
+    }
   },
-  "parent": "spectrum:endgame/spectrum_endgame",
+  "parent": "spectrum:lategame/find_forgotten_city",
   "criteria": {
     "has_collected_enough_hints": {
       "trigger": "revelationary:advancement_count",
@@ -20,6 +19,7 @@
           "min": 5
         },
         "advancement_identifiers": [
+          "spectrum:lategame/visit_all_deeper_down_biomes",
           "spectrum:lategame/revive_black_sludge_plant",
           "spectrum:lategame/break_cracked_dragonbone",
           "spectrum:lategame/find_excavation_site",
@@ -33,7 +33,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+        "advancement_identifier": "spectrum:lategame/find_forgotten_city"
       }
     }
   }

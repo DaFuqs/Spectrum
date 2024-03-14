@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.open_mysterious_compass.description"
     }
   },
-  "parent": "spectrum:endgame/collect_enough_hints",
+  "parent": "spectrum:endgame/spectrum_endgame",
   "criteria": {
     "socketed_mysterious_locket": {
       "trigger": "spectrum:crafted_with_fusion_shrine",
@@ -40,7 +40,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/collect_enough_hints"
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
       }
     }
   },

@@ -43,5 +43,13 @@
       ]
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_curses"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_curses",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:binding_curse"
+      ]
+    }
+  ]
 }

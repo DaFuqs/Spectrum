@@ -19,5 +19,13 @@
       "item_count": 128
     }
   ],
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trident"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_trident",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:loyalty"
+      ]
+    }
+  ]
 }

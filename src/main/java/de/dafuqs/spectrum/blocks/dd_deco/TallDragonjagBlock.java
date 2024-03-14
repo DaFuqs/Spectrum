@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
@@ -17,7 +17,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable, NaturesStaffItem.NaturesStaffTriggered {
+public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable, NaturesStaffTriggered {
     
     protected static final VoxelShape SHAPE_UPPER = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 7.0, 14.0);
     protected static final VoxelShape SHAPE_UPPER_DEAD = Block.createCuboidShape(2.0, 0.0, 2.0, 10.0, 3.0, 14.0);

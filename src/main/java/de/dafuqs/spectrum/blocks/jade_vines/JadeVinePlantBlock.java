@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffItem.NaturesStaffTriggered {
+public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffTriggered {
 	
 	public static final EnumProperty<JadeVinesPlantPart> PART = EnumProperty.of("part", JadeVinesPlantPart.class);
 	public static final IntProperty AGE = Properties.AGE_7;

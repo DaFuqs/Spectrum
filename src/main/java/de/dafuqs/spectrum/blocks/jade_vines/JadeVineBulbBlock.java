@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -14,7 +14,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffItem.NaturesStaffTriggered {
+public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffTriggered {
 	
 	public static final BooleanProperty DEAD = JadeVine.DEAD;
 	

@@ -18,10 +18,16 @@ import net.minecraft.util.math.*;
 public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private final ItemRenderer itemRenderer;
+	private final float scale;
 	
 	public BidentEntityRenderer(EntityRendererFactory.Context context) {
+		this(context, 2F);
+	}
+
+	public BidentEntityRenderer(EntityRendererFactory.Context context, float scale) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
+		this.scale = scale;
 	}
 	
 	@Override
@@ -39,7 +45,6 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
 		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
 
-		float scale = 2.0F;
 		matrixStack.scale(scale, scale, scale);
 
 		this.itemRenderer.renderItem(itemStack, ModelTransformationMode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);

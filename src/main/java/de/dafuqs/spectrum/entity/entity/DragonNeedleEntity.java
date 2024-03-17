@@ -223,12 +223,21 @@ public class DragonNeedleEntity extends BidentBaseEntity {
             DragonNeedleItem.markReserved(rootStack, false);
             return true;
         }
+        else if(player == getOwner()) {
+            remove(RemovalReason.DISCARDED);
+        }
         return false;
     }
 
     @Nullable
     @Override
     public ItemEntity dropStack(ItemStack stack) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public ItemEntity dropStack(ItemStack stack, float yOffset) {
         return null;
     }
 }

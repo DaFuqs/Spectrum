@@ -38,14 +38,14 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "title": "Bedrock Blocks",
+      "title": "Blocks of Bedrock",
       "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
       "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your $(l:general/pedestal)Pigment Pedestal$(/l) handles it no problem."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "title": "Converting back",
+      "title": "Decompression",
       "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
       "text": "These seem so sturdy, not even a Wither would be able to break them.$(br2)Of course you are also able to convert it back again."
     }

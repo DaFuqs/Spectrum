@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -9,6 +11,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.tools.DragonNeedleItem;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
@@ -19,6 +22,8 @@ import dev.emi.trinkets.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
@@ -37,6 +42,7 @@ import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.util.*;
 
@@ -81,7 +87,15 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-	
+
+	@Shadow public abstract ItemStack getOffHandStack();
+
+	@Shadow public abstract void damageArmor(DamageSource source, float amount);
+
+	@Shadow public abstract int getArmor();
+
+	@Shadow public abstract double getAttributeValue(EntityAttribute attribute);
+
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -94,6 +108,26 @@ public abstract class LivingEntityMixin {
 			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
 		} else {
 			return 1.0F;
+		}
+	}
+
+	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
+	public void spectrum$modifyDragPhysics(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
+		var needle = (DragonNeedleItem) SpectrumItems.DRAGON_NEEDLE;
+		if (needle.isReservingSlot(this.getMainHandStack()) || needle.isReservingSlot(this.getOffHandStack())) {
+			if (!((LivingEntity) (Object) this).isOnGround()) {
+				f.set(0.945F);
+			}
+		}
+	}
+
+	@Inject(method = "applyArmorToDamage", at = @At("HEAD"), cancellable = true)
+	public void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+		if (source.isOf(SpectrumDamageTypes.IMPALING)) {
+			this.damageArmor(source, amount * 10);
+			amount = DamageUtil.getDamageLeft(amount, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS), Float.MAX_VALUE);
+			cir.setReturnValue(amount);
+			cir.cancel();
 		}
 	}
 

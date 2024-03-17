@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
@@ -14,11 +14,10 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
 
-public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable, NaturesStaffItem.NaturesStaffTriggered {
+public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable, NaturesStaffTriggered {
     
     protected static final VoxelShape SHAPE_UPPER = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 7.0, 14.0);
     protected static final VoxelShape SHAPE_UPPER_DEAD = Block.createCuboidShape(2.0, 0.0, 2.0, 10.0, 3.0, 14.0);
@@ -79,9 +78,12 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        Optional<PlacedFeature> feature = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumPlacedFeatures.DRAGONJAGS.get(this.variant));
-		boolean success = feature.isPresent() && feature.get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
-        if (success) {
+		boolean success = world.getRegistryManager()
+				.get(RegistryKeys.CONFIGURED_FEATURE)
+				.get(SpectrumConfiguredFeatures.DRAGONJAGS.get(variant))
+				.generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+
+		if (success) {
             setDead(world, pos, state, true);
         }
     }

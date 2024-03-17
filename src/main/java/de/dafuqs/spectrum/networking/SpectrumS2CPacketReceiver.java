@@ -230,10 +230,14 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
-			if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
-				ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
-				((ParticleSpawnerBlockEntity) client.world.getBlockEntity(pos)).applySettings(configuration);
-			}
+			ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
+
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
+					particleSpawnerBlockEntity.applySettings(configuration);
+				}
+			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_TRANSMISSION, (client, handler, buf, responseSender) -> {

@@ -69,7 +69,8 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.POINTED_DRIPSTONE);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
-		
+		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT);
+
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
 			@Override
@@ -156,6 +157,19 @@ public class SpectrumItemProjectileBehaviors {
 				return accelerator;
 			}
 		}, SpectrumItems.OMNI_ACCELERATOR);
+
+		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
+			@Override
+			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
+				Entity target = hitResult.getEntity();
+				if (target instanceof LivingEntity livingTarget) {
+					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 0));
+					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 0));
+				}
+				stack.decrement(1);
+				return stack;
+			}
+		}, Items.CAKE);
 	}
 	
 	protected static void registerPvP() {
@@ -206,19 +220,6 @@ public class SpectrumItemProjectileBehaviors {
 				return stack;
 			}
 		}, SpectrumItems.CRAFTING_TABLET);
-		
-		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
-			@Override
-			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {
-				Entity target = hitResult.getEntity();
-				if (target instanceof LivingEntity livingTarget) {
-					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20, 0));
-					livingTarget.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 0));
-				}
-				stack.decrement(1);
-				return stack;
-			}
-		}, Items.CAKE);
 	}
 	
 }

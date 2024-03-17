@@ -194,8 +194,8 @@ public class PresentItem extends BlockItem {
 	public int getItemBarColor(ItemStack stack) {
 		return ITEM_BAR_COLOR;
 	}
-	
-	private static int addToPresent(ItemStack present, ItemStack stackToAdd) {
+
+	public static int addToPresent(ItemStack present, ItemStack stackToAdd) {
 		if (!stackToAdd.isEmpty() && stackToAdd.getItem().canBeNested()) {
 			NbtCompound nbt = present.getOrCreateNbt();
 			if (!nbt.contains(ITEMS_KEY)) {

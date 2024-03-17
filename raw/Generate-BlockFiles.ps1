@@ -1126,6 +1126,8 @@ Function Generate-BlockFiles {
         Write-Output "- Mineable Block tags"
         Write-Output "- Guidebook Entry"
         Write-Output "- Recipes"
+        Write-Output "- Item Group"
+        Write-Output "- Transparency"
 
         $BlockNames | ForEach-Object {
 

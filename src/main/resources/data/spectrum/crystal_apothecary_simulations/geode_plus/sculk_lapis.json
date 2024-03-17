@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_sculk_lapis",
+  "budding_block": "geode_plus:budding_sculk_lapis",
   "valid_neighbor_blocks": [
-    "geode:small_lapis_bud",
-    "geode:medium_lapis_bud",
-    "geode:large_lapis_bud",
-    "geode:lapis_cluster",
+    "geode_plus:small_lapis_bud",
+    "geode_plus:medium_lapis_bud",
+    "geode_plus:large_lapis_bud",
+    "geode_plus:lapis_cluster",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

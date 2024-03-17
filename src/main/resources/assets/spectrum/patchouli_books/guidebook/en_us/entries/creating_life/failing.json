@@ -27,6 +27,18 @@
       "anchor": "neolith",
       "item": "spectrum:neolith",
       "text": "The Obsidian was literally pulverized. This is what you call power!$(br2)The result was this sturdy reagent.$(br)Very powerful.$(br)Yes."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe": "spectrum:pedestal/tier1/compacting/neolith_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
+      "text": ""
     }
   ]
 }

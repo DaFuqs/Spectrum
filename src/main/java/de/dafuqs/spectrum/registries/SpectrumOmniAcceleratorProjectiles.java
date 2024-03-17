@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.api.interaction.*;
+import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
@@ -130,7 +131,7 @@ public class SpectrumOmniAcceleratorProjectiles {
 			public SoundEvent getSoundEffect() {
 				return SpectrumSoundEvents.BLOCK_PARAMETRIC_MINING_DEVICE_THROWN;
 			}
-		}, SpectrumBlocks.PARAMETRIC_MINING_DEVICE.asItem());
+		}, SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
@@ -146,6 +147,28 @@ public class SpectrumOmniAcceleratorProjectiles {
 				return SoundEvents.ENTITY_FIREWORK_ROCKET_LAUNCH;
 			}
 		}, Items.FIREWORK_ROCKET);
+
+		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
+			@Override
+			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world) {
+				ShootingStarEntity shootingStarEntity = ((ShootingStarItem) stack.getItem()).getEntityForStack(world, shooter.getEyePos(), stack);
+				OmniAcceleratorProjectile.setVelocity(shootingStarEntity, shooter, shooter.getPitch(), shooter.getYaw(), 0, 3.0F, 0F);
+				world.spawnEntity(shootingStarEntity);
+
+				shootingStarEntity.noClip = true;
+				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
+				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
+				shootingStarEntity.noClip = false;
+
+				return shootingStarEntity;
+			}
+
+			@Override
+			public SoundEvent getSoundEffect() {
+				return SpectrumSoundEvents.SHOOTING_STAR_CRACKER;
+			}
+		}, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR);
+
 	}
 
 }

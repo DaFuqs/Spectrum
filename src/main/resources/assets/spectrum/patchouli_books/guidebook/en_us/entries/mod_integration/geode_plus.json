@@ -1,7 +1,7 @@
 {
   "name": "Geode+",
-  "icon": "geode:celestite_cluster",
-  "flag": "mod:geode",
+  "icon": "geode_plus:celestite_cluster",
+  "flag": "mod:geode_plus",
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [

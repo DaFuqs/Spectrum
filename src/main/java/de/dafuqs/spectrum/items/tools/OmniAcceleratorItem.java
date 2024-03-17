@@ -1,9 +1,13 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.item.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.item.*;
 import net.minecraft.client.render.model.*;
@@ -15,12 +19,15 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
 import java.util.*;
 
-public class OmniAcceleratorItem extends BundleItem {
+public class OmniAcceleratorItem extends BundleItem implements InkPowered {
+
+	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
 	
 	public OmniAcceleratorItem(Settings settings) {
 		super(settings);
@@ -43,22 +50,27 @@ public class OmniAcceleratorItem extends BundleItem {
 
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (user instanceof ServerPlayerEntity player) {
-			Optional<ItemStack> shootStackOptional = getFirstStack(stack);
-			if (shootStackOptional.isPresent()) {
-				ItemStack shootStack = shootStackOptional.get();
-				
-				if (!world.isClient) {
-					OmniAcceleratorProjectile projectile = OmniAcceleratorProjectile.get(shootStack);
-					if (projectile.createProjectile(shootStack, user, world) != null) {
-						world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
-						if (!player.isCreative()) {
-							decrementFirstItem(stack);
-						}
-					}
-				}
-			} else {
-				player.playSound(SoundEvents.BLOCK_DISPENSER_FAIL, 1.0F, 1.0F);
+		if (!(user instanceof ServerPlayerEntity player)) {
+			return stack;
+		}
+
+		Optional<ItemStack> shootStackOptional = getFirstStack(stack);
+		if (shootStackOptional.isEmpty()) {
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			return stack;
+		}
+
+		if (!InkPowered.tryDrainEnergy(player, COST)) {
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			return stack;
+		}
+
+		ItemStack shootStack = shootStackOptional.get();
+		OmniAcceleratorProjectile projectile = OmniAcceleratorProjectile.get(shootStack);
+		if (projectile.createProjectile(shootStack, user, world) != null) {
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), projectile.getSoundEffect(), SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+			if (!player.isCreative()) {
+				decrementFirstItem(stack);
 			}
 		}
 		
@@ -99,7 +111,18 @@ public class OmniAcceleratorItem extends BundleItem {
 			}
 		}
 	}
-	
+
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(COST.getColor());
+	}
+
+	@Override
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		addInkPoweredTooltip(tooltip);
+	}
+
 	@Environment(EnvType.CLIENT)
 	public static class Renderer implements DynamicItemRenderer {
 		public Renderer() {}

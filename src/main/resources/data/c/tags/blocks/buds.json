@@ -16,101 +16,281 @@
       "id": "biomemakeover:large_illunite_bud",
       "required": false
     },
+    {
+      "id": "mythicupgrades:small_ametrine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_ametrine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_ametrine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:small_aquamarine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_aquamarine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_aquamarine_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:small_jade_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_jade_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_jade_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:small_ruby_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_ruby_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_ruby_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:small_sapphire_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_sapphire_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_sapphire_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:small_topaz_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:medium_topaz_crystal_bud",
+      "required": false
+    },
+    {
+      "id": "mythicupgrades:large_topaz_crystal_bud",
+      "required": false
+    },
 
     {
-      "id": "geode:small_celestite_bud",
+      "id": "geode_plus:small_celestite_bud",
       "required": false
     },
     {
-      "id": "geode:small_prismarine_bud",
+      "id": "geode_plus:small_diamond_bud",
       "required": false
     },
     {
-      "id": "geode:small_lapis_bud",
+      "id": "geode_plus:small_echo_bud",
       "required": false
     },
     {
-      "id": "geode:small_emerald_bud",
+      "id": "geode_plus:small_emerald_bud",
       "required": false
     },
     {
-      "id": "geode:small_nether_gold_nugget_bud",
+      "id": "geode_plus:small_lapis_bud",
       "required": false
     },
     {
-      "id": "geode:small_nether_glowstone_bud",
+      "id": "geode_plus:small_nether_ancient_debris_bud",
       "required": false
     },
     {
-      "id": "geode:small_nether_ancient_debris_bud",
+      "id": "geode_plus:small_nether_glowstone_bud",
       "required": false
     },
     {
-      "id": "geode:small_wrappist_bud",
+      "id": "geode_plus:small_nether_gold_nugget_bud",
       "required": false
     },
     {
-      "id": "geode:medium_celestite_bud",
+      "id": "geode_plus:small_nether_quartz_bud",
       "required": false
     },
     {
-      "id": "geode:medium_prismarine_bud",
+      "id": "geode_plus:small_pink_topaz_bud",
       "required": false
     },
     {
-      "id": "geode:medium_lapis_bud",
+      "id": "geode_plus:small_prismarine_bud",
       "required": false
     },
     {
-      "id": "geode:medium_emerald_bud",
+      "id": "geode_plus:small_redstone_bud",
       "required": false
     },
     {
-      "id": "geode:medium_nether_gold_nugget_bud",
+      "id": "geode_plus:small_wrappist_bud",
       "required": false
     },
     {
-      "id": "geode:medium_nether_glowstone_bud",
+      "id": "geode_plus:celestite_cluster",
       "required": false
     },
     {
-      "id": "geode:medium_nether_ancient_debris_bud",
+      "id": "geode_plus:prismarine_cluster",
       "required": false
     },
     {
-      "id": "geode:medium_wrappist_bud",
+      "id": "geode_plus:lapis_cluster",
       "required": false
     },
     {
-      "id": "geode:large_celestite_bud",
+      "id": "geode_plus:emerald_cluster",
       "required": false
     },
     {
-      "id": "geode:large_prismarine_bud",
+      "id": "geode_plus:nether_gold_nugget_cluster",
       "required": false
     },
     {
-      "id": "geode:large_lapis_bud",
+      "id": "geode_plus:nether_glowstone_cluster",
       "required": false
     },
     {
-      "id": "geode:large_emerald_bud",
+      "id": "geode_plus:nether_ancient_debris_cluster",
       "required": false
     },
     {
-      "id": "geode:large_nether_gold_nugget_bud",
+      "id": "geode_plus:wrappist_cluster",
       "required": false
     },
     {
-      "id": "geode:large_nether_glowstone_bud",
+      "id": "geode_plus:echo_crystal",
       "required": false
     },
     {
-      "id": "geode:large_nether_ancient_debris_bud",
+      "id": "geode_plus:diamond_crystal",
       "required": false
     },
     {
-      "id": "geode:large_wrappist_bud",
+      "id": "geode_plus:redstone_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:nether_quartz_crystal",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_celestite_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_diamond_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_echo_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_emerald_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_lapis_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_nether_ancient_debris_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_nether_glowstone_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_nether_gold_nugget_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_nether_quartz_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_pink_topaz_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_prismarine_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_redstone_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:large_wrappist_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_celestite_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_diamond_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_echo_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_emerald_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_lapis_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_nether_ancient_debris_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_nether_glowstone_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_nether_gold_nugget_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_nether_quartz_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_pink_topaz_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_prismarine_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_redstone_bud",
+      "required": false
+    },
+    {
+      "id": "geode_plus:medium_wrappist_bud",
       "required": false
     },
 

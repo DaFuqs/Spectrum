@@ -37,6 +37,13 @@
       "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
     },
     {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:collect_all_shooting_star_variants",
+      "title": "Star Hardening",
+      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
+      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.$(br2)$(italic)Fancy a Starball tournament with your friends?"
+    },
+    {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:collect_star_fragment",
       "anchor": "stardust",
@@ -45,11 +52,16 @@
       "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
     },
     {
-      "type": "spectrum:fusion_shrine_crafting",
-      "advancement": "spectrum:collect_all_shooting_star_variants",
-      "title": "Star Hardening",
-      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
-      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.$(br2)$(italic)Fancy a Starball tournament with your friends?"
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe": "spectrum:pedestal/tier1/compacting/stardust_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
+      "text": ""
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "budding_block": "geode_plus:budding_pink_topaz",
+  "valid_neighbor_blocks": [
+    "geode_plus:small_pink_topaz_bud",
+    "geode_plus:medium_pink_topaz_bud",
+    "geode_plus:large_pink_topaz_bud",
+    "geode_plus:pink_topaz_crystal",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "geode_plus:pink_topaz",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geode_plus"
+      ]
+    }
+  ]
+}

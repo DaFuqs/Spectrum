@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.data_loaders.*;
@@ -35,22 +36,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPowered {
-	
-	/**
-	 * Blocks that have an effect when a Nature's Staff is used on them
-	 */
-	public interface NaturesStaffTriggered {
-		/**
-		 * @return if the staff can be used on the state
-		 */
-		boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state);
-		
-		/**
-		 * @return if effects should play on that pos
-		 */
-		boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player);
-	}
-	
+
 	public static final ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
 	public static final InkCost INK_COST = new InkCost(InkColors.LIME, 20);
 	

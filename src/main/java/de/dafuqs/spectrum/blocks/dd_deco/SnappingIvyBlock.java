@@ -57,7 +57,10 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        world.getRegistryManager()
+                .get(RegistryKeys.CONFIGURED_FEATURE)
+                .get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH)
+                .generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
     
     @Override

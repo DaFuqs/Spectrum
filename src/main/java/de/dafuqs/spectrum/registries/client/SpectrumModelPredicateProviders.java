@@ -47,7 +47,11 @@ public class SpectrumModelPredicateProviders {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
-		
+
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_NEEDLE);
+		registerSlotReservingItem(SpectrumItems.DRAGON_NEEDLE);
+
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW);
@@ -205,6 +209,16 @@ public class SpectrumModelPredicateProviders {
 	private static void registerActivatableItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (ActivatableItem.isActivated(itemStack)) {
+				return 1.0F;
+			} else {
+				return 0.0F;
+			}
+		});
+	}
+
+	private static void registerSlotReservingItem(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier(SlotReservingItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
+			if (itemStack.getItem() instanceof SlotReservingItem reserver && reserver.isReservingSlot(itemStack)) {
 				return 1.0F;
 			} else {
 				return 0.0F;

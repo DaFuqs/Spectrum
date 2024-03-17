@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "spectrum:block/jadeite_petal_block"
+  }
+}

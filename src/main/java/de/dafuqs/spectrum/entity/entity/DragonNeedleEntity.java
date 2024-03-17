@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
@@ -93,48 +94,79 @@ public class DragonNeedleEntity extends BidentBaseEntity {
 
     @Override
     protected void onHit(LivingEntity target) {
+        if (getOwner() == null)
+            return;
+
         var owner = getOwner();
-        var targetPos = target.getPos();
-        var ownerPos = owner.getPos();
-        var relativePos = targetPos.relativize(ownerPos);
-        var angle = relativePos.normalize();
+        var difMod = 4F;
+        var airborne = !owner.isOnGround();
+        var sneaking = owner.isSneaking();
 
-        var sizeDif = getVolumeDif(target);
+        if (sneaking)
+            difMod *= 3;
 
-        var horizontal = relativePos.multiply(1, 0, 1).length() * -0.25;
-        var vertical = Math.min(relativePos.multiply(0, 1, 0).length() * 0.25, 20);
+        if (airborne)
+            difMod /=2;
 
-        target.addVelocity(new Vec3d(-horizontal * sizeDif, vertical, -horizontal * sizeDif).multiply(angle));
-        target.velocityModified = true;
-        target.velocityDirty = true;
+        var sizeDif = getVolumeDif(target, difMod);
+        yoink(target, getOwner().getPos(), 0.25 * sizeDif, 0.175);
+
+        if (airborne)
+            yoink(owner, target.getPos(), 0.125 / sizeDif, 0.16);
     }
 
-    private float getVolumeDif(LivingEntity target) {
+    private float getVolumeDif(LivingEntity target, float pullMod) {
         var ownerBox = getOwner().getBoundingBox();
         var targetBox = target.getBoundingBox();
         float ownerVolume = (float) (ownerBox.getXLength() * ownerBox.getYLength() * ownerBox.getZLength());
         float targetVolume = (float) (targetBox.getXLength() * targetBox.getYLength() * targetBox.getZLength());
-        return Math.max(Math.min(ownerVolume / (targetVolume / 3), 0.8F), 0.4F);
+
+        return Math.max(Math.min(ownerVolume / (targetVolume / pullMod), 0.8F), 0.5F);
     }
 
     public void recall() {
         if (dataTracker.get(HIT) && !isNoClip()) {
-            var owner = getOwner();
-            var needlePos = getPos();
-            var ownerPos = owner.getPos();
-            var relativePos = needlePos.relativize(ownerPos);
-            var angle = relativePos.normalize();
-
-            var horizontal = relativePos.multiply(1, 0, 1).length() * -0.65;
-            var vertical = relativePos.multiply(0, 1, 0).length() * -0.5;
-
-            owner.addVelocity(new Vec3d(horizontal, vertical, horizontal).multiply(angle));
-            owner.velocityModified = true;
-            owner.velocityDirty = true;
+            yoink(getOwner(), getPos(), 0.125, 0.165);
         }
 
         getDataTracker().set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) 4);
         setNoClip(true);
+    }
+
+    public void yoink(@Nullable Entity yoinked, Vec3d target, double xMod, double yMod) {
+        if (yoinked == null)
+            return;
+
+        var yPos = yoinked.getPos();
+        var heightDif = Math.abs(yPos.y - target.y);
+        var velocity = target.subtract(yPos);
+        var sneaking = yoinked.isSneaking();
+        var bonusMod = 1f;
+
+        if (yoinked instanceof LivingEntity livingYoink) {
+            bonusMod /= Optional.ofNullable(livingYoink.getStatusEffect(SpectrumStatusEffects.DENSITY))
+                    .map(effect -> effect.getAmplifier() + 2).orElse(1);
+            bonusMod *= Optional.ofNullable(livingYoink.getStatusEffect(SpectrumStatusEffects.LIGHTWEIGHT))
+                    .map(effect -> (effect.getAmplifier() + 2) / 1.5F).orElse(1F);
+        }
+
+        if (!yoinked.isOnGround()) {
+            yMod += 0.05;
+            xMod -= 0.015;
+        }
+
+        yMod = Math.max(0.0725, yMod * (1 - (heightDif * 0.024)));
+
+        xMod *= bonusMod;
+        yMod *= bonusMod;
+
+        if (yoinked == getOwner() && yPos.y > target.y && !sneaking)
+            yMod = 0;
+
+        yoinked.setVelocity(velocity.multiply(xMod, yMod, xMod).add(0, sneaking ? 0 : 0.25, 0));
+        yoinked.fallDistance = 0F;
+        yoinked.velocityModified = true;
+        yoinked.velocityDirty = true;
     }
 
     @Override

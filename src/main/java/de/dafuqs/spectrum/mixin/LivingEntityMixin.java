@@ -129,6 +129,12 @@ public abstract class LivingEntityMixin {
 			cir.setReturnValue(amount);
 			cir.cancel();
 		}
+		else if(source.isOf(SpectrumDamageTypes.EVISCERATION)) {
+			this.damageArmor(source, amount);
+			amount = DamageUtil.getDamageLeft(amount, (float) getArmor() / 2, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS));
+			cir.setReturnValue(amount);
+			cir.cancel();
+		}
 	}
 
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")

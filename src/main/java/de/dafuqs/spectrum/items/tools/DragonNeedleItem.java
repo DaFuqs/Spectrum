@@ -3,9 +3,10 @@ package de.dafuqs.spectrum.items.tools;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import de.dafuqs.spectrum.api.item.ExtendedEnchantable;
-import de.dafuqs.spectrum.api.item.MergeableItem;
-import de.dafuqs.spectrum.api.item.SlotReservingItem;
+import de.dafuqs.spectrum.api.energy.InkPowered;
+import de.dafuqs.spectrum.api.energy.color.InkColor;
+import de.dafuqs.spectrum.api.energy.color.InkColors;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.BidentBaseEntity;
 import de.dafuqs.spectrum.entity.entity.BidentEntity;
 import de.dafuqs.spectrum.entity.entity.BidentMirrorImageEntity;
@@ -13,10 +14,14 @@ import de.dafuqs.spectrum.entity.entity.DragonNeedleEntity;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
@@ -32,13 +37,17 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 
-public class DragonNeedleItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable {
+public class DragonNeedleItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, SplitDamageItem, TranstargetItem {
 
     protected static final UUID REACH_MODIFIER_ID = UUID.fromString("3b9a13c8-a9a7-4545-8c32-e60baf25823e");
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers, phantomModifiers;
@@ -48,11 +57,12 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
         super(settings, 0);
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage + toolMaterial.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
-        builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.5, EntityAttributeModifier.Operation.ADDITION));
+        builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8, EntityAttributeModifier.Operation.ADDITION));
         builder.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(REACH_MODIFIER_ID, "Tool modifier", extraReach, EntityAttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
 
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> phantom = ImmutableMultimap.builder();
+        phantom.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -4.0, EntityAttributeModifier.Operation.ADDITION));
         this.phantomModifiers = phantom.build();
     }
 
@@ -69,13 +79,15 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
     }
 
     @Override
-    public boolean acceptsEnchantment(Enchantment enchantment) {
-        return false;
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable("item.spectrum.dragon_needle.tooltip").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.spectrum.dragon_needle.tooltip2").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.spectrum.dragon_needle.tooltip3").formatted(Formatting.GRAY));
     }
 
     @Override
     public float getThrowSpeed() {
-        return 5F;
+        return 3.5F;
     }
 
     @Override
@@ -85,6 +97,8 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
         needleEntity.setOwner(playerEntity);
         needleEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
         needleEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(), 1.0F);
+        needleEntity.velocityDirty = true;
+        needleEntity.velocityModified = true;
         needleEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
 
         world.spawnEntity(needleEntity);
@@ -109,7 +123,7 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
 
         if (isReservingSlot(firstHalf) || isReservingSlot(secondHalf)) {
             durability  += player.getAbilities().creativeMode ? 0 : 500;
-            player.getItemCooldownManager().set(result.getItem(), 1200);
+            player.getItemCooldownManager().set(result.getItem(), 400);
         }
         result.setDamage(durability);
 
@@ -177,5 +191,22 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
+        var composition = new DamageComposition();
+        composition.add(SpectrumDamageTypes.evisceration(attacker.getWorld(), attacker), damage);
+        return composition;
+    }
+
+    @Override
+    public boolean acceptsEnchantment(Enchantment enchantment) {
+        return enchantment == Enchantments.IMPALING || enchantment == Enchantments.INFINITY;
+    }
+
+    @Override
+    public EnchantmentTarget getRealTarget() {
+        return EnchantmentTarget.WEAPON;
     }
 }

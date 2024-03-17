@@ -35,7 +35,8 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
 	public static final RegistryKey<DamageType> PRIMORDIAL_FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("primordial_fire"));
 	public static final RegistryKey<DamageType> IMPALING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("impaling"));
-	
+	public static final RegistryKey<DamageType> EVISCERATION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("evisceration"));
+
 	public static DamageSource sawtooth(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(SAWTOOTH));
 	}
@@ -62,6 +63,10 @@ public class SpectrumDamageTypes {
 
 	public static DamageSource impaling(World world, Entity weapon, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), weapon, attacker);
+	}
+
+	public static DamageSource evisceration(World world, @Nullable Entity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(EVISCERATION), attacker);
 	}
 
 	public static DamageSource setHealth(World world, @Nullable LivingEntity attacker) {

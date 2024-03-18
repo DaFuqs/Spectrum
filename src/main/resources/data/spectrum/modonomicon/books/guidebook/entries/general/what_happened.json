@@ -4,9 +4,9 @@
   "sortnum": 20,
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/visit_all_deeper_down_biomes"
+    "advancement_id": "spectrum:lategame/find_forgotten_city"
   },
-  "turnin": "spectrum:endgame/collect_enough_hints",
+  "turnin": "spectrum:lategame/collect_enough_hints",
   "category": "spectrum:general",
   "parents": [],
   "background_u_index": 0,
@@ -24,7 +24,7 @@
       "type": "spectrum:checklist",
       "title": "book.spectrum.guidebook.general.what_happened.page1.title",
       "checklist": {
-        "spectrum:lategame/find_forgotten_city": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry0",
+        "spectrum:lategame/visit_all_deeper_down_biomes": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry0",
         "spectrum:lategame/reached_dd_floor": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry1",
         "spectrum:lategame/find_excavation_site": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry2"
       }
@@ -42,7 +42,7 @@
       "type": "modonomicon:text",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/find_forgotten_city"
+        "advancement_id": "spectrum:lategame/visit_all_deeper_down_biomes"
       },
       "title": "book.spectrum.guidebook.general.what_happened.page3.title",
       "text": "book.spectrum.guidebook.general.what_happened.page3.text"

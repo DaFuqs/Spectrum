@@ -43,6 +43,18 @@
         "item": "spectrum:vegetal"
       },
       "text": "book.spectrum.guidebook.creating_life.fading.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe": "spectrum:pedestal/tier1/compacting/vegetal_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
+      "text": ""
     }
   ]
 }

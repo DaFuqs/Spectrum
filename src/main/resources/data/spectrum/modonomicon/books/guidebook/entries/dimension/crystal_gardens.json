@@ -20,7 +20,9 @@
     "spectrum:jadeite_lotus_flower": 0,
     "spectrum:jadeite_lotus_bulb": 0,
     "spectrum:glass_peach": 0,
-    "spectrum:jadeite_petals": 0
+    "spectrum:jadeite_petals": 0,
+    "spectrum:jadeite_petal_block": 0,
+    "spectrum:jadeite_petal_carpet": 0
   },
   "pages": [
     {
@@ -59,6 +61,20 @@
         "item": "spectrum:jadeite_petals"
       },
       "text": "book.spectrum.guidebook.dimension.crystal_gardens.page3.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page4.title",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "recipe": "spectrum:pedestal/tier1/jadeite/jadeite_petal_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page5.title",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "recipe": "spectrum:pedestal/tier1/jadeite/jadeite_petal_carpet",
+      "text": ""
     }
   ]
 }

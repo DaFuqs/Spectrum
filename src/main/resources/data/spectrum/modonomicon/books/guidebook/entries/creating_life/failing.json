@@ -43,6 +43,18 @@
         "item": "spectrum:neolith"
       },
       "text": "book.spectrum.guidebook.creating_life.failing.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe": "spectrum:pedestal/tier1/compacting/neolith_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
+      "text": ""
     }
   ]
 }

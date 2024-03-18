@@ -34,6 +34,18 @@
       "type": "modonomicon:text",
       "title": "book.spectrum.guidebook.general.gemstone_powder.page1.title",
       "text": "book.spectrum.guidebook.general.gemstone_powder.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.general.gemstone_powder.page2.title",
+      "recipe": "spectrum:pedestal/tier1/compacting/amethyst_powder_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.general.gemstone_powder.page3.title",
+      "recipe": "spectrum:pedestal/tier1/compacting/amethyst_powder_from_amethyst_powder_block",
+      "text": ""
     }
   ]
 }

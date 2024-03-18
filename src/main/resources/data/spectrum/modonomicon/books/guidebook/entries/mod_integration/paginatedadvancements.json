@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.paginatedadvancements.name",
   "icon": "minecraft:grass_block",
-  "flag": "mod:paginatedadvancements",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "paginatedadvancements"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

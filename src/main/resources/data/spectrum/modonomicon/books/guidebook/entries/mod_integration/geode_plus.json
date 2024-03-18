@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.geode_plus.name",
   "icon": "geode:celestite_cluster",
-  "flag": "mod:geode",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "geode_plus"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

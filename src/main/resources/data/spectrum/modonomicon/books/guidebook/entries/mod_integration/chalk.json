@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.chalk.name",
   "icon": "chalk:chalk",
-  "flag": "mod:chalk",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "chalk"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

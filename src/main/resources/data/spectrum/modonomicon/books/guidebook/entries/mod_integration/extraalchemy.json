@@ -6,10 +6,18 @@
       "Potion": "minecraft:night_vision"
     }
   },
-  "flag": "mod:extraalchemy",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "extraalchemy"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

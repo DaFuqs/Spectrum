@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.ae2.name",
   "icon": "ae2:controller",
-  "flag": "mod:ae2",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "ae2"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

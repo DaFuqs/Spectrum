@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.vein_mining.name",
   "icon": "spectrum:multitool",
-  "flag": "mod:veinmining",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_paltaeria"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "veinmining"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

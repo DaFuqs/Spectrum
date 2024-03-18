@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.gobber.name",
   "icon": "gobber2:gobber2_globette",
-  "flag": "mod:gobber2",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "gobber2"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

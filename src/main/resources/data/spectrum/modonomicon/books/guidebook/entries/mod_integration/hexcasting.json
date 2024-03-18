@@ -1,10 +1,18 @@
 {
   "name": "book.spectrum.guidebook.mod_integration.hexcasting.name",
   "icon": "hexcasting:charged_amethyst",
-  "flag": "mod:hexcasting",
   "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "hexcasting"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
   },
   "category": "spectrum:mod_integration",
   "parents": [],

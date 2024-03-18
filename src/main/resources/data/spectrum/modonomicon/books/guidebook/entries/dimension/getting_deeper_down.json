@@ -9,6 +9,7 @@
   },
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
+  "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,

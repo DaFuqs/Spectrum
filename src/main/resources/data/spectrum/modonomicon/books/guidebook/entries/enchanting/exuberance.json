@@ -7,6 +7,7 @@
   },
   "flag": "spectrum:enchantment_exists_spectrum_exuberance",
   "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,

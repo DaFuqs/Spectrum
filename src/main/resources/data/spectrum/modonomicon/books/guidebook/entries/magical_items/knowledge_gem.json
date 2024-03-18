@@ -11,6 +11,7 @@
     }
   },
   "category": "spectrum:magical_items",
+  "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,

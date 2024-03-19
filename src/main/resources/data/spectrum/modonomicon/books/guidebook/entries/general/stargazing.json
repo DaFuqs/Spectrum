@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:milestones/unlock_shooting_stars"
   },
   "icon": "minecraft:spyglass",
-  "category": "spectrum:resources",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

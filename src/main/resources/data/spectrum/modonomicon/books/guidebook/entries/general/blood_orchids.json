@@ -5,7 +5,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_blood_orchid_petal"
   },
-  "category": "spectrum:resources",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

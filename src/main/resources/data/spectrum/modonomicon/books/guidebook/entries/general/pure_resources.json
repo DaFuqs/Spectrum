@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:lategame/collect_pure_resource"
   },
   "icon": "spectrum:pure_iron",
-  "category": "spectrum:resources",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

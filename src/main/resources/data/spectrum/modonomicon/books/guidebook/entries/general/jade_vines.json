@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:hidden/collect_hibernating_jade_vine_bulb"
   },
   "icon": "spectrum:hibernating_jade_vine_bulb",
-  "category": "spectrum:resources",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

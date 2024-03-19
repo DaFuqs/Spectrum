@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:hidden/collect_clover"
   },
   "icon": "spectrum:four_leaf_clover",
-  "category": "spectrum:resources",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

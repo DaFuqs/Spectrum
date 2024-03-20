@@ -2,7 +2,7 @@
   "name": "book.spectrum.guidebook.creating_life.decay_away.name",
   "icon": "spectrum:bottle_of_decay_away",
   "condition": {
-    "type": "modonomicon:advancement",
+    "type": "modonomicon:general",
     "advancement_id": "spectrum:unlocks/items/bottle_of_decay_away"
   },
   "category": "spectrum:creating_life",

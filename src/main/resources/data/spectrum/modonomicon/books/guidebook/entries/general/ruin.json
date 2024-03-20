@@ -5,7 +5,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/bottle_of_ruin"
   },
-  "category": "spectrum:creating_life",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

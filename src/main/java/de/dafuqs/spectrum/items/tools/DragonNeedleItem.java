@@ -45,6 +45,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class DragonNeedleItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, SplitDamageItem, TranstargetItem {
@@ -203,6 +204,11 @@ public class DragonNeedleItem extends MalachiteBidentItem implements MergeableIt
     @Override
     public boolean acceptsEnchantment(Enchantment enchantment) {
         return enchantment == Enchantments.IMPALING || enchantment == Enchantments.INFINITY;
+    }
+
+    @Override
+    public Map<Enchantment, Integer> getDefaultEnchantments() {
+        return Map.of();
     }
 
     @Override

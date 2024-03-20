@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.blood_orchids.name",
+  "name": "book.spectrum.guidebook.general.blood_orchids.name",
   "icon": "spectrum:blood_orchid_petal",
   "condition": {
     "type": "modonomicon:advancement",
@@ -22,8 +22,8 @@
       "item": {
         "item": "spectrum:blood_orchid_petal"
       },
-      "title": "book.spectrum.guidebook.resources.blood_orchids.page0.title",
-      "text": "book.spectrum.guidebook.resources.blood_orchids.page0.text"
+      "title": "book.spectrum.guidebook.general.blood_orchids.page0.title",
+      "text": "book.spectrum.guidebook.general.blood_orchids.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -31,9 +31,9 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/blood_orchid"
       },
-      "title1": "book.spectrum.guidebook.resources.blood_orchids.page1.title1",
+      "title1": "book.spectrum.guidebook.general.blood_orchids.page1.title1",
       "recipe_id_1": "spectrum:spirit_instiller/blood_orchid",
-      "text": "book.spectrum.guidebook.resources.blood_orchids.page1.text"
+      "text": "book.spectrum.guidebook.general.blood_orchids.page1.text"
     }
   ]
 }

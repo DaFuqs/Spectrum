@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.clover.name",
+  "name": "book.spectrum.guidebook.general.clover.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_clover"
@@ -19,11 +19,11 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.clover.page0.title",
+      "title": "book.spectrum.guidebook.general.clover.page0.title",
       "item": {
         "item": "spectrum:clover"
       },
-      "text": "book.spectrum.guidebook.resources.clover.page0.text"
+      "text": "book.spectrum.guidebook.general.clover.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
@@ -34,7 +34,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:collect_four_leaf_clover"
       },
-      "text": "book.spectrum.guidebook.resources.clover.page1.text"
+      "text": "book.spectrum.guidebook.general.clover.page1.text"
     }
   ]
 }

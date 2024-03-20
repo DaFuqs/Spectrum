@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.mermaids_brush.name",
+  "name": "book.spectrum.guidebook.general.mermaids_brush.name",
   "icon": "spectrum:mermaids_gem",
   "condition": {
     "type": "modonomicon:advancement",
@@ -18,16 +18,16 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.resources.mermaids_brush.page0.title",
-      "text": "book.spectrum.guidebook.resources.mermaids_brush.page0.text"
+      "title": "book.spectrum.guidebook.general.mermaids_brush.page0.title",
+      "text": "book.spectrum.guidebook.general.mermaids_brush.page0.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.mermaids_brush.page1.title",
+      "title": "book.spectrum.guidebook.general.mermaids_brush.page1.title",
       "item": {
         "item": "spectrum:mermaids_gem"
       },
-      "text": "book.spectrum.guidebook.resources.mermaids_brush.page1.text"
+      "text": "book.spectrum.guidebook.general.mermaids_brush.page1.text"
     }
   ]
 }

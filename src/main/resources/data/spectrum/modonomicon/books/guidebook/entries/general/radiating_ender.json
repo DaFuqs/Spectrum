@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.radiating_ender.name",
+  "name": "book.spectrum.guidebook.general.radiating_ender.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/reveal_radiating_ender"
@@ -18,16 +18,16 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.resources.radiating_ender.page0.text",
-      "title": "book.spectrum.guidebook.resources.radiating_ender.page0.title"
+      "text": "book.spectrum.guidebook.general.radiating_ender.page0.text",
+      "title": "book.spectrum.guidebook.general.radiating_ender.page0.title"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.radiating_ender.page1.title",
+      "title": "book.spectrum.guidebook.general.radiating_ender.page1.title",
       "item": {
         "item": "spectrum:radiating_ender"
       },
-      "text": "book.spectrum.guidebook.resources.radiating_ender.page1.text"
+      "text": "book.spectrum.guidebook.general.radiating_ender.page1.text"
     }
   ]
 }

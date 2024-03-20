@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.stratine.name",
+  "name": "book.spectrum.guidebook.general.stratine.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_stratine"
@@ -21,25 +21,25 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.stratine.page0.title",
+      "title": "book.spectrum.guidebook.general.stratine.page0.title",
       "item": {
         "item": "spectrum:stratine_fragments"
       },
-      "text": "book.spectrum.guidebook.resources.stratine.page0.text"
+      "text": "book.spectrum.guidebook.general.stratine.page0.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.resources.stratine.page1.title1",
+      "title1": "book.spectrum.guidebook.general.stratine.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stratine_gem"
       },
       "recipe_id_1": "spectrum:pedestal/tier3/stratine_gem",
-      "text": "book.spectrum.guidebook.resources.stratine.page1.text"
+      "text": "book.spectrum.guidebook.general.stratine.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.stratine.page2.title",
+      "title": "book.spectrum.guidebook.general.stratine.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
@@ -47,7 +47,7 @@
       "item": {
         "item": "spectrum:stratine_fragment_block"
       },
-      "text": "book.spectrum.guidebook.resources.stratine.page2.text"
+      "text": "book.spectrum.guidebook.general.stratine.page2.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -55,8 +55,8 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
-      "text": "book.spectrum.guidebook.resources.stratine.page3.text",
-      "title1": "book.spectrum.guidebook.resources.stratine.page3.title1",
+      "text": "book.spectrum.guidebook.general.stratine.page3.text",
+      "title1": "book.spectrum.guidebook.general.stratine.page3.title1",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
     }
   ]

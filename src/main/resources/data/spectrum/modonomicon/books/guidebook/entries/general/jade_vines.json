@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.resources.jade_vines.name",
+  "name": "book.spectrum.guidebook.general.jade_vines.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_hibernating_jade_vine_bulb"
@@ -23,25 +23,25 @@
   "pages": [
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.jade_vines.page0.title",
+      "title": "book.spectrum.guidebook.general.jade_vines.page0.title",
       "item": {
         "item": "spectrum:hibernating_jade_vine_bulb"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page0.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page0.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.resources.jade_vines.page1.title1",
+      "title1": "book.spectrum.guidebook.general.jade_vines.page1.title1",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
       },
       "recipe_id_1": "spectrum:spirit_instiller/germinated_jade_vine_bulb",
-      "text": "book.spectrum.guidebook.resources.jade_vines.page1.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.jade_vines.page2.title",
+      "title": "book.spectrum.guidebook.general.jade_vines.page2.title",
       "item": {
         "item": "spectrum:germinated_jade_vine_bulb"
       },
@@ -49,11 +49,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page2.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page2.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.jade_vines.page3.title",
+      "title": "book.spectrum.guidebook.general.jade_vines.page3.title",
       "anchor": "jade_jelly",
       "item": {
         "item": "spectrum:jade_jelly"
@@ -62,22 +62,22 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_jade_jelly"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page3.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page3.text"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "book.spectrum.guidebook.resources.jade_vines.page4.title1",
+      "title1": "book.spectrum.guidebook.general.jade_vines.page4.title1",
       "anchor": "jaramel",
       "recipe_id_1": "spectrum:cinderhearth/jaramel",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/jaramel"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page4.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page4.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.jade_vines.page5.title",
+      "title": "book.spectrum.guidebook.general.jade_vines.page5.title",
       "anchor": "petals",
       "item": {
         "item": "spectrum:jade_vine_petals"
@@ -86,11 +86,11 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page5.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page5.text"
     },
     {
       "type": "modonomicon:spotlight",
-      "title": "book.spectrum.guidebook.resources.jade_vines.page6.title",
+      "title": "book.spectrum.guidebook.general.jade_vines.page6.title",
       "anchor": "nectar",
       "item": {
         "item": "spectrum:moonstruck_nectar"
@@ -99,7 +99,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/instilled_germinated_jade_vine_bulb"
       },
-      "text": "book.spectrum.guidebook.resources.jade_vines.page6.text"
+      "text": "book.spectrum.guidebook.general.jade_vines.page6.text"
     }
   ]
 }

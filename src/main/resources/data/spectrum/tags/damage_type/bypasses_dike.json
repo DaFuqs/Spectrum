@@ -2,8 +2,9 @@
   "replace": false,
   "values": [
     "#minecraft:bypasses_invulnerability",
-    "#minecraft:bypasses_resistance",
     "#minecraft:is_drowning",
-    "#minecraft:no_impact"
+    "#minecraft:no_impact",
+    "minecraft:out_of_world",
+    "minecraft:generic_kill"
   ]
 }

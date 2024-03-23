@@ -8,11 +8,16 @@
   "flag": "spectrum:enchantment_exists_spectrum_exuberance",
   "category": "spectrum:enchanting",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 2,
+  "y": -6,
+  "x": 3,
   "pages": [
     {
       "type": "modonomicon:text",

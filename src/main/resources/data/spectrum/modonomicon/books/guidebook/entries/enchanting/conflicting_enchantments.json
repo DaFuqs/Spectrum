@@ -3,18 +3,22 @@
   "icon": "minecraft:enchanted_book",
   "priority": true,
   "hide_while_locked": true,
-  "sortnum": 5,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter"
   },
   "category": "spectrum:enchanting",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_enabled": false
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 0,
+  "x": -1,
+  "y": 2,
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",

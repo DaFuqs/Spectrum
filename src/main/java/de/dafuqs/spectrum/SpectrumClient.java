@@ -3,17 +3,15 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
-import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleItem;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
-import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.api.render.DynamicItemRenderer;
-import de.dafuqs.spectrum.api.render.DynamicRenderModel;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -27,11 +25,11 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
 import de.dafuqs.spectrum.render.capes.*;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
-import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
+import net.fabricmc.fabric.api.client.model.loading.v1.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.resource.*;
@@ -40,7 +38,7 @@ import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.item.*;
@@ -55,7 +53,7 @@ import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
@@ -118,10 +116,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
-
-		logInfo("Registering custom Patchouli Pages & Flags...");
-		PatchouliPages.register();
-		PatchouliFlags.register();
 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();

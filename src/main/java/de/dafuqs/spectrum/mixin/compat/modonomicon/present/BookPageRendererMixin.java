@@ -1,22 +1,15 @@
 package de.dafuqs.spectrum.mixin.compat.modonomicon.present;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
-import com.klikli_dev.modonomicon.book.page.BookPage;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.klikli_dev.modonomicon.client.gui.book.markdown.MarkdownComponentRenderUtils;
-import com.klikli_dev.modonomicon.client.render.page.BookPageRenderer;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconGuidebookProvider;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.text.OrderedText;
-import net.minecraft.text.Style;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.book.page.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.client.render.page.*;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.client.font.*;
+import net.minecraft.client.gui.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(BookPageRenderer.class)
 public class BookPageRendererMixin {
@@ -32,16 +25,16 @@ public class BookPageRendererMixin {
 
     @Inject(method = "renderBookTextHolder(Lnet/minecraft/client/gui/DrawContext;Lcom/klikli_dev/modonomicon/book/BookTextHolder;III)V", at = @At(value = "HEAD"), cancellable = true)
     private void spectrum$resizeTextStart(DrawContext guiGraphics, BookTextHolder text, int x, int y, int width, CallbackInfo ci) {
-        if (page.getBook().getId().equals(ModonomiconGuidebookProvider.GUIDEBOOK_ID)) {
+        if (page.getBook().getId().equals(GuidebookItem.GUIDEBOOK_ID)) {
             x += parentScreen.getBook().getBookTextOffsetX();
-
+        
             y += parentScreen.getBook().getBookTextOffsetY();
             y /= SCALE;
-
+        
             width += parentScreen.getBook().getBookTextOffsetWidth();
             width -= parentScreen.getBook().getBookTextOffsetX(); //always remove the offset x from the width to avoid overflow
             width /= SCALE;
-
+        
             guiGraphics.getMatrices().push();
             guiGraphics.getMatrices().scale(SCALE, SCALE, 0);
             BookPageRenderer.renderBookTextHolder(guiGraphics, text, font, x, y, width);

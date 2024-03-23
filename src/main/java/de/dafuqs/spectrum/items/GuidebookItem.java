@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.items;
 
+import com.klikli_dev.modonomicon.client.gui.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.gui.GuidebookProvider;
-import de.dafuqs.spectrum.api.item.LoomPatternProvider;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
-import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.entry.*;
@@ -23,14 +23,11 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class GuidebookItem extends Item implements LoomPatternProvider {
-
-	private final List<GuidebookProvider> providers;
-	private int providerIndex;
-
+	
+	public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
+	
 	public GuidebookItem(Settings settings) {
 		super(settings);
-		this.providerIndex = 0;
-		this.providers = new ArrayList<>();
 	}
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
@@ -64,27 +61,23 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		user.incrementStat(Stats.USED.getOrCreateStat(this));
-
 		if (user instanceof ClientPlayerEntity clientPlayer) {
-			if (user.isSneaking()) {
-				this.providerIndex = (this.providerIndex + 1) % this.providers.size();
-			} else if (!this.providers.isEmpty()) {
-				// if the player has never opened the book before
-				// automatically open the introduction page
-				if (isNewPlayer(clientPlayer)) {
-					openGuidebook(clientPlayer, SpectrumCommon.locate("general/intro"), 0);
-				} else {
-					openGuidebook(clientPlayer);
-				}
-
-				return TypedActionResult.success(user.getStackInHand(hand));
+			// if the player has never opened the book before
+			// automatically open the introduction page
+			if (isNewPlayer(clientPlayer)) {
+				openGuidebook(SpectrumCommon.locate("general/intro"), 0);
+			} else {
+				openGuidebook();
 			}
+			
+			return TypedActionResult.success(user.getStackInHand(hand));
 		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+			user.incrementStat(Stats.USED.getOrCreateStat(this));
+			
 			// Workaround for new advancement unlocks getting added after spectrum has been installed
 			reprocessAdvancementUnlocks(serverPlayerEntity);
 		}
-
+		
 		return TypedActionResult.consume(user.getStackInHand(hand));
 	}
 	
@@ -92,14 +85,14 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		return user.getStatHandler().getStat(Stats.USED, this) == 0;
 	}
 	
-	public void openGuidebook(ClientPlayerEntity serverPlayerEntity) {
-		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity);
+	public void openGuidebook() {
+		BookGuiManager.get().openBook(GUIDEBOOK_ID);
 	}
 	
-	public void openGuidebook(ClientPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		providers.get(this.providerIndex).openGuidebook(serverPlayerEntity, entry, page);
+	public void openGuidebook(Identifier entry, int page) {
+		BookGuiManager.get().openEntry(GUIDEBOOK_ID, entry, page);
 	}
-
+	
 	@Override
 	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.GUIDEBOOK;
@@ -109,10 +102,6 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addBannerPatternProviderTooltip(tooltip);
-	}
-
-	public void registerProvider(GuidebookProvider provider) {
-		this.providers.add(provider);
 	}
 
 }

@@ -7,13 +7,17 @@
   },
   "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop",
+      "line_enabled": false
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 2,
+  "x": -1,
+  "y": 0,
   "priority": true,
-  "sortnum": 1,
   "extra_recipe_mappings": {
     "minecraft:potion": 0
   },

@@ -7,11 +7,16 @@
   "icon": "spectrum:germinated_jade_vine_bulb",
   "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 0,
+  "x": 3,
+  "y": -2,
   "extra_recipe_mappings": {},
   "pages": [
     {

@@ -7,13 +7,17 @@
   },
   "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop",
+      "line_enabled": false
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 4,
+  "x": -1,
+  "y": 1,
   "priority": true,
-  "sortnum": 2,
   "pages": [
     {
       "type": "modonomicon:text",

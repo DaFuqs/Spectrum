@@ -1,31 +1,27 @@
 package de.dafuqs.spectrum.compat.modonomicon;
 
 import com.klikli_dev.modonomicon.client.render.page.*;
-import com.klikli_dev.modonomicon.data.LoaderRegistry;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.api.recipe.GatedRecipe;
+import com.klikli_dev.modonomicon.data.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.modonomicon.client.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
-import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
-import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.fluid_converting.DragonrotConvertingRecipe;
-import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
-import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
-import de.dafuqs.spectrum.recipe.fluid_converting.MudConvertingRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
+import de.dafuqs.spectrum.compat.modonomicon.unlock_conditions.*;
+import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 
@@ -52,14 +48,13 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     public static final Identifier LINK_PAGE = SpectrumCommon.locate("link");
     public static final Identifier NBT_SPOTLIGHT_PAGE = SpectrumCommon.locate("nbt_spotlight");
     public static final Identifier COLLECTION_PAGE = SpectrumCommon.locate("collection");
-
+    
+    public static final Identifier ENCHANTMENT_REGISTERED = SpectrumCommon.locate("enchantment_registered");
+    
     @Override
     public void register() {
-        if (SpectrumItems.GUIDEBOOK instanceof GuidebookItem guidebook) {
-            guidebook.registerProvider(new ModonomiconGuidebookProvider());
-        }
-        
         registerPages();
+        registerUnlockConditions();
     }
     
     public void registerPages() {
@@ -88,13 +83,17 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
         LoaderRegistry.registerPageLoader(NBT_SPOTLIGHT_PAGE, BookNbtSpotlightPage::fromJson, BookNbtSpotlightPage::fromNetwork);
         LoaderRegistry.registerPageLoader(COLLECTION_PAGE, BookCollectionPage::fromJson, BookCollectionPage::fromNetwork);
     }
-
+    
     private void registerGatedRecipePage(Identifier id, RecipeType<? extends GatedRecipe> recipeType) {
         LoaderRegistry.registerPageLoader(id,
                 json -> BookGatedRecipePage.fromJson(id, recipeType, json),
                 buffer -> BookGatedRecipePage.fromNetwork(id, recipeType, buffer));
     }
-
+    
+    public void registerUnlockConditions() {
+        LoaderRegistry.registerConditionLoader(SpectrumCommon.locate("enchantment_registered"), EnchantmentRegisteredCondition::fromJson, EnchantmentRegisteredCondition::fromNetwork);
+    }
+    
     @Override
     @SuppressWarnings("unchecked")
     public void registerClient() {

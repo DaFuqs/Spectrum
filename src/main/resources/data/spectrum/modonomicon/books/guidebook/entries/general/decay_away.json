@@ -2,12 +2,19 @@
   "name": "book.spectrum.guidebook.creating_life.decay_away.name",
   "icon": "spectrum:bottle_of_decay_away",
   "condition": {
-    "type": "modonomicon:general",
+    "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/bottle_of_decay_away"
   },
-  "category": "spectrum:creating_life",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/failing"
+    },
+    {
+      "entry": "spectrum:general/azurite"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,

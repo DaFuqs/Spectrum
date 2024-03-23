@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.general.create_budding_onyx.name",
   "icon": "spectrum:onyx_cluster",
-  "sortnum": 15,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/budding_onyx"
@@ -9,7 +8,17 @@
   "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/onyx_shards"
+    },
+    {
+      "entry": "spectrum:creating_life/spirit_instiller"
+    },
+    {
+      "entry": "spectrum:general/jade_vines"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 6,

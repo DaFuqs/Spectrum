@@ -1,14 +1,20 @@
 {
   "name": "book.spectrum.guidebook.general.midnight_aberration.name",
   "icon": "spectrum:midnight_aberration",
-  "sortnum": 13,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:midgame/collect_neolith"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/failing"
+    },
+    {
+      "entry": "spectrum:general/liquid_crystal"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,

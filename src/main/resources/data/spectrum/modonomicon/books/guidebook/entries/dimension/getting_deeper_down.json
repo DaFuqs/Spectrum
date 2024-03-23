@@ -2,11 +2,10 @@
   "name": "book.spectrum.guidebook.dimension.getting_deeper_down.name",
   "icon": "minecraft:bedrock",
   "priority": true,
-  "sortnum": 1,
-  "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:midgame/open_deeper_down_portal"
-  },
+    "condition": {
+      "type": "modonomicon:advancement",
+      "advancement_id": "spectrum:midgame/open_deeper_down_portal"
+    },
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,

@@ -7,12 +7,21 @@
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/preservation_ruins"
+    },
+    {
+      "entry": "spectrum:general/moonstone_cores"
+    },
+    {
+      "entry": "spectrum:general/pedestal_upgrade_moonstone_2"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 6,
   "y": 2,
-  "sortnum": 21,
   "extra_recipe_mappings": {
     "spectrum:mysterious_locket": 0,
     "spectrum:mysterious_compass": 0

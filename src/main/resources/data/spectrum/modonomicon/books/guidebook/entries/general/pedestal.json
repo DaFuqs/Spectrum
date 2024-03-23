@@ -3,12 +3,15 @@
   "icon": "spectrum:pedestal_basic_amethyst",
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/intro"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 8,
   "y": 4,
-  "sortnum": 2,
   "turnin": "spectrum:craft_using_pedestal",
   "extra_recipe_mappings": {
     "spectrum:pedestal_basic_amethyst": 0,

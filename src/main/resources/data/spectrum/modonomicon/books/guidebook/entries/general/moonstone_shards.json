@@ -1,11 +1,10 @@
 {
   "name": "book.spectrum.guidebook.general.moonstone_shards.name",
   "icon": "spectrum:moonstone_shard",
-  "sortnum": 17,
-  "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/collect_moonstone_shard"
-  },
+    "condition": {
+      "type": "modonomicon:advancement",
+      "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+    },
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],

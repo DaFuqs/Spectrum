@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.general.what_happened.name",
   "icon": "spectrum:black_materia",
-  "sortnum": 20,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/find_forgotten_city"
@@ -9,7 +8,11 @@
   "turnin": "spectrum:lategame/collect_enough_hints",
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/dimension"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 4,

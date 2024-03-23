@@ -5,7 +5,6 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:find_preservation_ruins"
   },
-  "sortnum": 16,
   "turnin": "spectrum:hidden/solve_every_preservation_ruin",
   "category": "spectrum:general",
   "hide_while_locked ": true,

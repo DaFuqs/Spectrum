@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.name",
   "icon": "spectrum:pedestal_onyx",
-  "sortnum": 12,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:create_onyx_shard"
@@ -9,7 +8,7 @@
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [],
-  "background_u_index": 0,
+  "background_u_index": 26,
   "background_v_index": 0,
   "x": 6,
   "y": 4,

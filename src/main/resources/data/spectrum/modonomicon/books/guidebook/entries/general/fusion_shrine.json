@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.general.fusion_shrine.name",
   "icon": "spectrum:fusion_shrine_basalt",
-  "sortnum": 10,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/fusion_shrine"
@@ -9,7 +8,14 @@
   "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/pedestal_upgrade_cmy"
+    },
+    {
+      "entry": "spectrum:general/pigment"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 8,

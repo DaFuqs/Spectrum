@@ -1,14 +1,17 @@
 {
   "name": "book.spectrum.guidebook.general.anvil_crushing.name",
   "icon": "minecraft:anvil",
-  "sortnum": 4,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:place_pedestal"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/intro"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,

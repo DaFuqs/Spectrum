@@ -1,11 +1,10 @@
 {
   "name": "book.spectrum.guidebook.general.gemstone_powder.name",
   "icon": "spectrum:amethyst_powder",
-  "sortnum": 5,
-  "condition": {
-    "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:place_pedestal"
-  },
+    "condition": {
+      "type": "modonomicon:advancement",
+      "advancement_id": "spectrum:place_pedestal"
+    },
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [

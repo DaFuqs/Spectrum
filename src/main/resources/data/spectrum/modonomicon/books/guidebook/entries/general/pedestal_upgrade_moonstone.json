@@ -1,14 +1,17 @@
 {
   "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.name",
   "icon": "spectrum:pedestal_moonstone",
-  "sortnum": 18,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_moonstone_shard"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/moonstone_shards"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 4,

@@ -1,14 +1,17 @@
 {
   "name": "book.spectrum.guidebook.general.color_mixing.name",
   "icon": "minecraft:light_blue_dye",
-  "sortnum": 6,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_vegetal"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/gemstone_powder"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,

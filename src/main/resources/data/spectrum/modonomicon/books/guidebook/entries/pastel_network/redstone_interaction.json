@@ -7,13 +7,17 @@
   },
   "category": "spectrum:pastel_network",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:pastel_network/pastel_network",
+      "line_enabled": false
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
+  "x": -1,
   "y": 0,
   "priority": true,
-  "sortnum": 1,
   "pages": [
     {
       "type": "modonomicon:text",

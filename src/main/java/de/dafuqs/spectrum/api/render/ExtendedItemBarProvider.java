@@ -5,11 +5,12 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface ExtendedItemBars {
+public interface ExtendedItemBarProvider {
 
     BarSignature PASS = new BarSignature(0, 0, 0, 0, 0, 0);
 
     int DEFAULT_BACKGROUND_COLOR = 0xFF000000;
+    int LIGHT_BACKGROUND_COLOR = 0xFFFFFFFF;
 
     int barCount(ItemStack stack);
 

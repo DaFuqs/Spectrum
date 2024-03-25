@@ -2,7 +2,8 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.render.ExtendedItemBars;
+import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // right click ability: able to overload an already loaded arrow
-public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBars {
+public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBarProvider, SlotBackgroundEffectProvider {
     
     private static final InkCost OVERCHARGE_COST = new InkCost(InkColors.WHITE, 1000);
     private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
@@ -135,6 +136,17 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
     }
 
     @Override
+    public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+        var usable = InkPowered.hasAvailableInk(player, OVERCHARGE_COST);
+        return usable ? SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
+    }
+
+    @Override
+    public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+        return 0xFFFFFF;
+    }
+
+    @Override
     public int barCount(ItemStack stack) {
         return 1;
     }
@@ -160,6 +172,6 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements Ext
             return PASS;
 
         var progress = (int) Math.floor(MathHelper.clampedLerp(0, 13, usage ? ((float) player.getItemUseTime() / OVERCHARGE_DURATION_MAX_TICKS) : getOvercharge(stack)));
-        return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBars.DEFAULT_BACKGROUND_COLOR);
+        return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
     }
 }

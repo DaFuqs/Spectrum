@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.api.energy.color.InkColors;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.items.tools.DragonTalonItem;
 import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;

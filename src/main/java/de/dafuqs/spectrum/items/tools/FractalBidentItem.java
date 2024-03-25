@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
@@ -15,7 +17,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 // gets thrown as copy instead of getting removed from the player's inv
-public class FractalBidentItem extends MalachiteBidentItem {
+public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgroundEffectProvider {
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
@@ -45,6 +47,17 @@ public class FractalBidentItem extends MalachiteBidentItem {
 	@Override
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return super.acceptsEnchantment(enchantment) || enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.POWER;
+	}
+
+	@Override
+	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+		var usable = InkPowered.hasAvailableInk(player, MIRROR_IMAGE_COST);
+		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
+	}
+
+	@Override
+	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		return ColorHelper.colorVecToRGB(InkColors.PURPLE.getColor());
 	}
 	
 }

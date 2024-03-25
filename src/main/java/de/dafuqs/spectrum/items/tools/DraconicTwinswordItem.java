@@ -2,11 +2,14 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import de.dafuqs.spectrum.api.energy.color.InkColors;
 import de.dafuqs.spectrum.api.item.Preenchanted;
 import de.dafuqs.spectrum.api.item.SlotReservingItem;
 import de.dafuqs.spectrum.api.item.SplittableItem;
-import de.dafuqs.spectrum.api.render.ExtendedItemBars;
+import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DraconicTwinswordEntity;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
@@ -39,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBars {
+public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 
     public static final float MAX_CHARGE_TIME = 60;
     private final Multimap<EntityAttribute, EntityAttributeModifier> phantomModifiers;
@@ -226,14 +229,24 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
     @Override
     public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
         if (player == null || isReservingSlot(stack) || !player.isUsingItem())
-            return ExtendedItemBars.PASS;
+            return ExtendedItemBarProvider.PASS;
 
         var activeStack = player.getStackInHand(player.getActiveHand());
         if (activeStack != stack)
-            return ExtendedItemBars.PASS;
+            return ExtendedItemBarProvider.PASS;
 
 
         var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / MAX_CHARGE_TIME)));
-        return new BarSignature(2, 13, 13, progress, 1, 0xffffe659, 2, ExtendedItemBars.DEFAULT_BACKGROUND_COLOR);
+        return new BarSignature(2, 13, 13, progress, 1, ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor()), 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+    }
+
+    @Override
+    public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+        return SlotEffect.BORDER_FADE;
+    }
+
+    @Override
+    public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+        return ColorHelper.colorVecToRGB(InkColors.RED.getColor());
     }
 }

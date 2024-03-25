@@ -22,10 +22,11 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class OmniAcceleratorItem extends BundleItem implements InkPowered {
+public class OmniAcceleratorItem extends BundleItem implements InkPowered, SlotBackgroundEffectProvider {
 
 	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
 	
@@ -148,4 +149,14 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered {
 		}
 	}
 
+	@Override
+	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+		var usable = InkPowered.hasAvailableInk(player, COST);
+		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
+	}
+
+	@Override
+	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		return 0xFFFFFF;
+	}
 }

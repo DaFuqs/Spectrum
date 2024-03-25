@@ -3,8 +3,11 @@ package de.dafuqs.spectrum.items.tools;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import de.dafuqs.spectrum.api.energy.color.InkColors;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DragonTalonEntity;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.client.item.TooltipContext;
@@ -37,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, SplitDamageItem, TranstargetItem {
+public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, SplitDamageItem, TranstargetItem, SlotBackgroundEffectProvider {
 
     protected static final UUID REACH_MODIFIER_ID = UUID.fromString("3b9a13c8-a9a7-4545-8c32-e60baf25823e");
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers, phantomModifiers;
@@ -222,5 +225,15 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
     @Override
     public EnchantmentTarget getRealTarget() {
         return EnchantmentTarget.WEAPON;
+    }
+
+    @Override
+    public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+        return SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE;
+    }
+
+    @Override
+    public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+        return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
     }
 }

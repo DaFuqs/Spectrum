@@ -3,7 +3,8 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
-import de.dafuqs.spectrum.api.render.ExtendedItemBars;
+import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBars {
+public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	/**
 	 * TODO: set to the original value again, once ink networking is in. Currently the original max value cannot be achieved.
@@ -116,11 +117,30 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	@Override
 	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
 		var inkTank = getEnergyStorage(stack);
-		var progress = (int) Math.round(MathHelper.clampedLerp(0, 13, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
+		var progress = (int) Math.round(MathHelper.clampedLerp(0, 14, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
 
-		if (progress == 0)
+		if (progress == 0 || progress == 14)
 			return PASS;
 
-		return new BarSignature(2, 13, 13, progress, 1, ColorHelper.colorVecToRGB(inkColor.getColor()), 2, ExtendedItemBars.DEFAULT_BACKGROUND_COLOR);
+		var dark = inkColor == InkColors.GRAY || inkColor == InkColors.BLACK || inkColor == InkColors.BROWN;
+
+		return new BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(inkColor.getColor()), 2, dark ? ExtendedItemBarProvider.LIGHT_BACKGROUND_COLOR : ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+	}
+
+	@Override
+	public float getEffectOpacity(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		var inkTank = getEnergyStorage(stack);
+		return (float) (Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F);
+	}
+
+	@Override
+	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+		var inkTank = getEnergyStorage(stack);
+		return inkTank.isFull() ? SlotEffect.PULSE : SlotEffect.NONE;
+	}
+
+	@Override
+	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		return ColorHelper.colorVecToRGB(inkColor.getColor());
 	}
 }

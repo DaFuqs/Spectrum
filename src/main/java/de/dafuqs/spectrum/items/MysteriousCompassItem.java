@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -10,7 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class MysteriousCompassItem extends StructureCompassItem {
+public class MysteriousCompassItem extends StructureCompassItem implements SlotBackgroundEffectProvider {
 
 	private static final Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("unlocks/mysterious_locket_socketing");
 
@@ -28,4 +29,13 @@ public class MysteriousCompassItem extends StructureCompassItem {
 		}
 	}
 
+	@Override
+	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+		return SlotEffect.FULL_PACKAGE;
+	}
+
+	@Override
+	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		return 0xFFFFFF;
+	}
 }

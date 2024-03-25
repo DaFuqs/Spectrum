@@ -45,6 +45,11 @@ public class ColorHelper {
 		return new Vector3f(argb[0], argb[1], argb[2]);
 	}
 
+	public static int colorVecToRGB(Vector3f color) {
+		Color colorObj = new Color(color.x, color.y, color.z);
+		return colorObj.getRGB();
+	}
+
 	public static Optional<DyeColor> getDyeColorOfItemStack(@NotNull ItemStack itemStack) {
 		if (!itemStack.isEmpty()) {
 			Item item = itemStack.getItem();

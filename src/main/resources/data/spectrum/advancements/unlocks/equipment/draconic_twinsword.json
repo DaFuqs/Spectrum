@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "grow_bloodstone_in_crystallarieum": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_bloodstone_in_crystallarieum"
+      }
+    },
+    "collected_red_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_red_pigment"
+      }
+    }
+  }
+}

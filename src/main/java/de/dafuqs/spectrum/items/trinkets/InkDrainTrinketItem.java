@@ -3,22 +3,27 @@ package de.dafuqs.spectrum.items.trinkets;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.render.ExtendedItemBars;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage> {
+public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBars {
 	
 	/**
 	 * TODO: set to the original value again, once ink networking is in. Currently the original max value cannot be achieved.
 	 * Players WILL grind out that amount of pigment in some way and will then complain
+	 * <p>
+	 * lmao trueee ~ Azzyypaaras.
 	 */
 	public static final int MAX_INK = 3276800; // 1677721600;
 	public final InkColor inkColor;
@@ -97,5 +102,25 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	public ItemStack getFullStack() {
 		return InkStorageItem.super.getFullStack();
 	}
-	
+
+	@Override
+	public int barCount(ItemStack stack) {
+		return 1;
+	}
+
+	@Override
+	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
+		return false;
+	}
+
+	@Override
+	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+		var inkTank = getEnergyStorage(stack);
+		var progress = (int) Math.round(MathHelper.clampedLerp(0, 13, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
+
+		if (progress == 0)
+			return PASS;
+
+		return new BarSignature(2, 13, 13, progress, 1, ColorHelper.colorVecToRGB(inkColor.getColor()), 2, ExtendedItemBars.DEFAULT_BACKGROUND_COLOR);
+	}
 }

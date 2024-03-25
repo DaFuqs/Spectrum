@@ -48,9 +48,10 @@ public class SpectrumModelPredicateProviders {
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
 
+		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
-		registerOversizedItemPredicate(SpectrumItems.DRAGON_NEEDLE);
-		registerSlotReservingItem(SpectrumItems.DRAGON_NEEDLE);
+		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
+		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD);
 
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);

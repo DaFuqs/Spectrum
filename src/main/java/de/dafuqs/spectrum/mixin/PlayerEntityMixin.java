@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.sugar.Local;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -23,6 +24,8 @@ import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
+import net.minecraft.util.Hand;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -30,8 +33,12 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
-	
+public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityAccessor {
+
+	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+		super(entityType, world);
+	}
+
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
 
@@ -70,7 +77,23 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		
 		player.getAttributes().addTemporaryModifiers(map);
 	}
-	
+
+	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getNonSpectatingEntities(Ljava/lang/Class;Lnet/minecraft/util/math/Box;)Ljava/util/List;"))
+	protected List<LivingEntity> spectrum$increaseSweepRadius(List<LivingEntity> original, Entity target) {
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD)
+			return this.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(2.5, 0.4, 2.5));
+		return original;
+	}
+
+	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;squaredDistanceTo(Lnet/minecraft/entity/Entity;)D", shift = At.Shift.AFTER))
+	protected double spectrum$increaseSweepMaxDistance(double original) {
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD)
+			return original * 5;
+		return original;
+	}
+
 	@Inject(at = @At("TAIL"), method = "jump()V")
 	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
 

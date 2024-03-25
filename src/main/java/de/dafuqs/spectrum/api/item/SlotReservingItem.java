@@ -6,7 +6,9 @@ import net.minecraft.item.ItemStack;
 
 public interface SlotReservingItem {
 
-    public static final String NBT_STRING = "reserved";
+    public static String NBT_STRING = "reserved";
 
     boolean isReservingSlot(ItemStack stack);
+
+    void markReserved(ItemStack stack, boolean reserved);
 }

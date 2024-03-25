@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.api.energy;
 
 import de.dafuqs.spectrum.api.energy.color.*;
 import net.minecraft.text.*;
+import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -140,6 +141,16 @@ public interface InkStorage {
 	
 	// completely empty the storage
 	void clear();
+
+	// Returns how full the storage is, as a float.
+	default float getFillPercent(InkColor color) {
+		return MathHelper.clamp((float) getEnergy(color) / getMaxPerColor(), 0, 1);
+	}
+
+	// Same as above, but in total.
+	default float getTotalFillPercent() {
+		return MathHelper.clamp((float) getCurrentTotal() / getMaxTotal(), 0, 1);
+	}
 	
 	// returns true if all energy could be drained successfully
 	// boolean requestEnergy(Map<CMYKColor, Integer> colors);

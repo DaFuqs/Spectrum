@@ -179,8 +179,8 @@ public class SpectrumItems {
 	// Special tools
 	public static final Item DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, IS.of(1, Rarity.UNCOMMON));
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, IS.of(1, Rarity.UNCOMMON));
-	public static final Item  DRAGON_TALON = new DragonTalonItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 7, -3.0F, IS.of(1, Rarity.RARE));
-	public static final Item  DRAGON_NEEDLE = new DragonNeedleItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, -1, -1.0, IS.of(1, Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability()));
+	public static final DraconicTwinswordItem DRACONIC_TWINSWORD = new DraconicTwinswordItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, 7, -3.0F, IS.of(1, Rarity.RARE));
+	public static final DragonTalonItem DRAGON_TALON = new DragonTalonItem(SpectrumToolMaterials.ToolMaterial.DRACONIC, -2, -1.0, IS.of(1, Rarity.RARE).maxDamage(SpectrumToolMaterials.ToolMaterial.DRACONIC.getDurability()));
 
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, IS.of(Rarity.UNCOMMON).fireproof().maxDamage(-1)) {
@@ -737,8 +737,8 @@ public class SpectrumItems {
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);
-		register("dragon_talon", DRAGON_TALON, DyeColor.YELLOW);
-		register("dragon_needle", DRAGON_NEEDLE, DyeColor.YELLOW);
+		register("dragon_talon", DRACONIC_TWINSWORD, DyeColor.YELLOW);
+		register("dragon_needle", DRAGON_TALON, DyeColor.YELLOW);
 	}
 	
 	public static void registerMagicalTools() {

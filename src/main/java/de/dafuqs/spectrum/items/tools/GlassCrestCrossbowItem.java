@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.render.ExtendedItemBars;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
@@ -16,13 +17,14 @@ import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 // right click ability: able to overload an already loaded arrow
-public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
+public class GlassCrestCrossbowItem extends MalachiteCrossbowItem implements ExtendedItemBars {
     
     private static final InkCost OVERCHARGE_COST = new InkCost(InkColors.WHITE, 1000);
     private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
@@ -131,5 +133,33 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         float overcharge = getOvercharge(stack);
         return overcharge == 0 ? parent : parent * (1 - overcharge * 0.5F);
     }
-    
+
+    @Override
+    public int barCount(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
+        if (player == null || !isCharged(stack))
+            return true;
+
+        var usage = player.isUsingItem() && player.getStackInHand(player.getActiveHand()) == stack;
+
+        return !(usage || isOvercharged(stack));
+    }
+
+    @Override
+    public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+        if (player == null || !isCharged(stack))
+            return PASS;
+
+        var usage = player.isUsingItem() && player.getStackInHand(player.getActiveHand()) == stack;
+
+        if (!usage && !isOvercharged(stack))
+            return PASS;
+
+        var progress = (int) Math.floor(MathHelper.clampedLerp(0, 13, usage ? ((float) player.getItemUseTime() / OVERCHARGE_DURATION_MAX_TICKS) : getOvercharge(stack)));
+        return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBars.DEFAULT_BACKGROUND_COLOR);
+    }
 }

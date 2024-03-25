@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.items.tools.DragonNeedleItem;
+import de.dafuqs.spectrum.items.tools.DragonTalonItem;
 import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -30,20 +30,33 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class DragonNeedleEntity extends BidentBaseEntity {
+public class DragonTalonEntity extends BidentBaseEntity {
 
-    private static final TrackedData<Boolean> HIT = DataTracker.registerData(DragonNeedleEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> HIT = DataTracker.registerData(DragonTalonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-    public DragonNeedleEntity(World world) {
-        this(SpectrumEntityTypes.DRAGON_NEEDLE, world);
+    public DragonTalonEntity(World world) {
+        this(SpectrumEntityTypes.DRAGON_TALON, world);
     }
 
-    public DragonNeedleEntity(EntityType<? extends TridentEntity> entityType, World world) {
+    public DragonTalonEntity(EntityType<? extends TridentEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
+        var pos = blockHitResult.getBlockPos();
+        var state = getWorld().getBlockState(pos);
+
+        if (state.isOf(Blocks.SLIME_BLOCK) && getVelocity().lengthSquared() > 1) {
+            switch (blockHitResult.getSide().getAxis()) {
+                case X -> setVelocity(getVelocity().multiply(-1, 1, 1));
+                case Y -> setVelocity(getVelocity().multiply(1, -1, 1));
+                case Z -> setVelocity(getVelocity().multiply(1, 1, -1));
+            }
+            playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1, 2);
+            return;
+        }
+
         super.onBlockHit(blockHitResult);
         if (dataTracker.get(HIT) || isNoClip())
             return;
@@ -56,7 +69,7 @@ public class DragonNeedleEntity extends BidentBaseEntity {
         Entity attacked = entityHitResult.getEntity();
         float f = 2.0F;
         if (attacked instanceof LivingEntity livingAttacked) {
-            f *= (getDamage(getStack()) + EnchantmentHelper.getAttackDamage(getStack(), livingAttacked.getGroup()));
+            f *= (getDamage(getTrackedStack()) + EnchantmentHelper.getAttackDamage(getTrackedStack(), livingAttacked.getGroup()));
         }
 
         Entity owner = this.getOwner();
@@ -185,7 +198,7 @@ public class DragonNeedleEntity extends BidentBaseEntity {
     public void remove(RemovalReason reason) {
         var rootStack = getRootStack();
         if (!rootStack.isEmpty()) {
-            DragonNeedleItem.markReserved(rootStack, false);
+            SpectrumItems.DRAGON_TALON.markReserved(rootStack, false);
         }
         super.remove(reason);
     }
@@ -210,7 +223,7 @@ public class DragonNeedleEntity extends BidentBaseEntity {
 
     private ItemStack getRootStack() {
         if (getOwner() instanceof PlayerEntity player) {
-            var rootStack = DragonNeedleItem.findThrownStack(player, uuid);
+            var rootStack = DragonTalonItem.findThrownStack(player, uuid);
             return rootStack;
         }
         return ItemStack.EMPTY;
@@ -218,13 +231,13 @@ public class DragonNeedleEntity extends BidentBaseEntity {
 
     @Override
     protected boolean tryPickup(PlayerEntity player) {
-        var rootStack = DragonNeedleItem.findThrownStack(player, uuid);
+        var rootStack = DragonTalonItem.findThrownStack(player, uuid);
         if (!rootStack.isEmpty()) {
-            DragonNeedleItem.markReserved(rootStack, false);
+            SpectrumItems.DRAGON_TALON.markReserved(rootStack, false);
             return true;
         }
         else if(player == getOwner()) {
-            remove(RemovalReason.DISCARDED);
+            discard();
         }
         return false;
     }

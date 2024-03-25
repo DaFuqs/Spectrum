@@ -2213,6 +2213,7 @@
   "item.spectrum.dragon_talon": "Draconic Twinsword",
   "item.spectrum.dragon_talon.tooltip": "Can be thrown - Crits airborne targets",
   "item.spectrum.dragon_talon.tooltip2": "Swap hands to split",
+  "item.spectrum.dragon_talon.tooltip3": "On Miss: Hit yourself. Idiot.",
   "item.spectrum.dragon_needle": "Dragon Talon",
   "item.spectrum.dragon_needle.tooltip": "Ignores §fInvincibility Frames",
   "item.spectrum.dragon_needle.tooltip2": "Use offhand to throw and recall",

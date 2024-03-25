@@ -21,6 +21,11 @@
       "spectrum:paintbrush_select"
     ]
   },
+  "critical_hit": {
+    "sounds": [
+      "spectrum:critical_hit"
+    ]
+  },
   "paintbrush_paint": {
     "subtitle": "spectrum.subtitles.paintbrush_paint",
     "sounds": [

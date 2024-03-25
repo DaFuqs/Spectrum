@@ -63,6 +63,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent GLASS_SHIMMER = register("glass_shimmer");
 	public static final SoundEvent SOFT_HUM = register("soft_hum");
 
+	public static final SoundEvent CRITICAL_HIT = register("critical_hit");
+
 	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
 

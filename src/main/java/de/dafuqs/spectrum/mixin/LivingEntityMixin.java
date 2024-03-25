@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.tools.DragonNeedleItem;
+import de.dafuqs.spectrum.items.tools.DragonTalonItem;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
@@ -42,7 +42,6 @@ import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 import java.util.*;
 
@@ -113,7 +112,7 @@ public abstract class LivingEntityMixin {
 
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
 	public void spectrum$modifyDragPhysics(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
-		var needle = (DragonNeedleItem) SpectrumItems.DRAGON_NEEDLE;
+		var needle = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
 		if (needle.isReservingSlot(this.getMainHandStack()) || needle.isReservingSlot(this.getOffHandStack())) {
 			if (!((LivingEntity) (Object) this).isOnGround()) {
 				f.set(0.945F);

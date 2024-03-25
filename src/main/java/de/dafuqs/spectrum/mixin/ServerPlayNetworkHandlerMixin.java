@@ -1,13 +1,16 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.api.entity.NonLivingAttackable;
 import de.dafuqs.spectrum.api.item.MergeableItem;
 import de.dafuqs.spectrum.api.item.SplittableItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -40,6 +43,26 @@ public class ServerPlayNetworkHandlerMixin {
         else if(mainItem instanceof MergeableItem mergeable && offItem instanceof MergeableItem && mergeable.canMerge(player, mainStack, offStack)) {
            mergeItems(mainStack, offStack, mergeable);
             ci.cancel();
+        }
+    }
+
+    @Mixin(targets = "net/minecraft/server/network/ServerPlayNetworkHandler$1")
+    static class NetworkEntityValidationMixin {
+
+        @Final
+        @Shadow(aliases = "field_28963")
+        private ServerPlayNetworkHandler this$0;
+
+        @Final
+        @Shadow(aliases = "field_28962")
+        private Entity innerEntity;
+
+        @Inject(method = "attack", at = @At(value = "HEAD"), cancellable = true)
+        public void allowNonLivingEntityAttack(CallbackInfo ci) {
+            if (innerEntity instanceof NonLivingAttackable) {
+                this$0.player.attack(innerEntity);
+                ci.cancel();
+            }
         }
     }
 

@@ -1,25 +1,23 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.world.World;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRenderer<CinderhearthRecipe, BookGatedRecipePage<CinderhearthRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/cinderhearth.png");
 
     private List<BookTextHolder> chanceTexts1 = null;
     private List<BookTextHolder> chanceTexts2 = null;

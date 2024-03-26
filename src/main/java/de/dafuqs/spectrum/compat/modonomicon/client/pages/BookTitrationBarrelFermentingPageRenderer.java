@@ -1,27 +1,24 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.api.recipe.FluidIngredient;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import de.dafuqs.matchbooks.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePageRenderer<TitrationBarrelRecipe, BookGatedRecipePage<TitrationBarrelRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/titration_barrel.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/titration_barrel.png");
 
     private final BookTextHolder durationText1;
     private final BookTextHolder durationText2;

@@ -19,9 +19,6 @@ public class SpectrumIntegrationPacks {
 		
 		public void registerClient() {
 		}
-		
-		public void registerMultiblocks() {
-		}
 	}
 	
 	protected static void registerIntegrationPack(String modId, ModIntegrationPack container) {
@@ -54,12 +51,6 @@ public class SpectrumIntegrationPacks {
 	public static void registerClient() {
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();
-		}
-	}
-	
-	public static void registerMultiblocks() {
-		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
-			container.registerMultiblocks();
 		}
 	}
 	

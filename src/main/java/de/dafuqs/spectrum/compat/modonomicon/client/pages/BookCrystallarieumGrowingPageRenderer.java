@@ -1,26 +1,25 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.helpers.NullableDyeColor;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.Iterator;
+import java.util.*;
 
 public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRenderer<CrystallarieumRecipe, BookGatedRecipePage<CrystallarieumRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 
     private static BookTextHolder catalystText;
     private BookTextHolder craftingTimeText1 = null;

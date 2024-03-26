@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -37,7 +38,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 import java.util.*;
 
@@ -801,27 +801,27 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 	@NotNull
 	private PedestalRecipeTier getStructureTier() {
-		IMultiblock multiblock;
-
-		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
+		Multiblock multiblock;
+		
+		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.COMPLEX;
 		}
-
-		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK);
+		
+		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_WITHOUT_MOONSTONE);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
-
-		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
+		
+		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_ADVANCED);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
-
-		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
+		
+		multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.PEDESTAL_SIMPLE);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.SIMPLE;

@@ -102,12 +102,12 @@
   "container.spectrum.rei.potion_workshop.crafting_time": "%f segundos",
 
   "multiblock.spectrum.pedestal.upgrade_available": "Melhoria de Estrutura disponível!",
-  "multiblock.spectrum.pedestal.simple_structure": "Foco Spectrum",
-  "multiblock.spectrum.pedestal.advanced_structure": "Templo Spectrum",
-  "multiblock.spectrum.pedestal.complex_structure": "Palácio Spectrum",
-  "multiblock.spectrum.fusion_shrine.structure": "Altar de Fusão",
-  "multiblock.spectrum.enchanter.structure": "Encantador",
-  "multiblock.spectrum.spirit_instiller.structure": "Instilador de Espíritos",
+  "multiblock.spectrum.pedestal_simple": "Foco Spectrum",
+  "multiblock.spectrum.pedestal_advanced": "Templo Spectrum",
+  "multiblock.spectrum.pedestal_complex": "Palácio Spectrum",
+  "multiblock.spectrum.fusion_shrine": "Altar de Fusão",
+  "multiblock.spectrum.enchanter": "Encantador",
+  "multiblock.spectrum.spirit_instiller": "Instilador de Espíritos",
 
   "death.attack.spectrum_decay": "%s foi devorado vivo",
   "death.attack.spectrum_floatblock": "%s foi esmagado por um Bloco Flutuante",

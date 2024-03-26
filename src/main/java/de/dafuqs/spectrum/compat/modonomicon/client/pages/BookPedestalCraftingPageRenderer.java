@@ -1,37 +1,35 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.api.item.GemstoneColor;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipeTier;
-import de.dafuqs.matchbooks.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BookPedestalCraftingPageRenderer extends BookGatedRecipePageRenderer<PedestalRecipe, BookGatedRecipePage<PedestalRecipe>> {
-
-    private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting1.png");
-    private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting2.png");
-    private static final Identifier BACKGROUND_TEXTURE3 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting3.png");
-    private static final Identifier BACKGROUND_TEXTURE4 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting4.png");
-
-    public BookPedestalCraftingPageRenderer(BookGatedRecipePage<PedestalRecipe> page) {
-        super(page);
-    }
-
-    @Override
-    protected int getRecipeHeight() {
-        return 110;
-    }
+	
+	private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/modonomicon/pedestal_crafting1.png");
+	private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/modonomicon/pedestal_crafting2.png");
+	private static final Identifier BACKGROUND_TEXTURE3 = SpectrumCommon.locate("textures/gui/modonomicon/pedestal_crafting3.png");
+	private static final Identifier BACKGROUND_TEXTURE4 = SpectrumCommon.locate("textures/gui/modonomicon/pedestal_crafting4.png");
+	
+	public BookPedestalCraftingPageRenderer(BookGatedRecipePage<PedestalRecipe> page) {
+		super(page);
+	}
+	
+	@Override
+	protected int getRecipeHeight() {
+		return 110;
+	}
 
     @Override
     protected void drawRecipe(DrawContext drawContext, PedestalRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {

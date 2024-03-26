@@ -263,7 +263,6 @@ public class SpectrumCommon implements ModInitializer {
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
 			if (client) {
 				SpectrumColorProviders.resetToggleableProviders();
-				SpectrumMultiblocks.register();
 			}
 		});
 
@@ -292,9 +291,6 @@ public class SpectrumCommon implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;
-
-			logInfo("Registering MultiBlocks...");
-			SpectrumMultiblocks.register();
 		});
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {

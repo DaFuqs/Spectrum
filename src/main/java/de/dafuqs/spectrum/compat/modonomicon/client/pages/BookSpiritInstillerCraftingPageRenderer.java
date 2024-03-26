@@ -1,22 +1,22 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.matchbooks.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BookSpiritInstillerCraftingPageRenderer extends BookGatedRecipePageRenderer<SpiritInstillerRecipe, BookGatedRecipePage<SpiritInstillerRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/spirit_instiller.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/spirit_instiller.png");
     private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
 
     public BookSpiritInstillerCraftingPageRenderer(BookGatedRecipePage<SpiritInstillerRecipe> page) {

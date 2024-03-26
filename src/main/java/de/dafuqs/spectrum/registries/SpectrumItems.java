@@ -66,13 +66,13 @@ public class SpectrumItems {
 	public static final Item PAINTBRUSH = new PaintbrushItem(IS.of(1));
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(IS.of(1));
 	
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_simple_structure_place"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_advanced_structure_place"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_complex_structure_place"));
-	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("fusion_shrine_structure"));
-	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("enchanter_structure"));
-	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("spirit_instiller_structure"));
-	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("cinderhearth_structure"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_SIMPLE);
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_ADVANCED);
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_COMPLEX);
+	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.FUSION_SHRINE);
+	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.ENCHANTER);
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.SPIRIT_INSTILLER);
+	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.CINDERHEARTH);
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(IS.of());

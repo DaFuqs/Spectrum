@@ -1,21 +1,21 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
 
 public class BookEnchanterCraftingPageRenderer extends BookGatedRecipePageRenderer<EnchanterRecipe, BookGatedRecipePage<EnchanterRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/enchanter_crafting.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/enchanter_crafting.png");
 
     public BookEnchanterCraftingPageRenderer(BookGatedRecipePage<EnchanterRecipe> page) {
         super(page);

@@ -1,23 +1,22 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconHelper;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookGatedRecipePage;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.matchbooks.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BookFusionShrineCraftingPageRenderer extends BookGatedRecipePageRenderer<FusionShrineRecipe, BookGatedRecipePage<FusionShrineRecipe>> {
 
-    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/fusion_shrine.png");
+    private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/fusion_shrine.png");
 
     public BookFusionShrineCraftingPageRenderer(BookGatedRecipePage<FusionShrineRecipe> page) {
         super(page);

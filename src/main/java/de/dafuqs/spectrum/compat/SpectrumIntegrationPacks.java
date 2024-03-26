@@ -32,7 +32,6 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create";
 	public static final String MYTHIC_METALS_ID = "mythicmetals";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
-	public static final String PATCHOULI_ID = "patchouli";
 	public static final String MODONOMICON_ID = "modonomicon";
 
 	public static void register() {

@@ -10,7 +10,7 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "modonomicon:text",
       "title": "Spectral Shard",
       "text": "Your first attempt to reach for the stars - long, long ago - was not too successful.$(br)Looking back, you can only laugh at how simple-minded you were. You learned a lot and came a long way.$(br)Now you are here. Take 2, here we go."
     }

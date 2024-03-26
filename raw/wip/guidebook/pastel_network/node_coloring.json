@@ -7,13 +7,13 @@
   "secret": true,
   "pages": [
     {
-      "type": "patchouli:spotlight",
+      "type": "modonomicon:spotlight",
       "title": "Node Coloring",
       "item": "spectrum:purple_pigment",
       "text": "Using $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes dyes them.$(br2)Each node will only be able to transfer items to nodes of the same color or ones it composites into, but not the other way around: ($(c_cyan)Cyan$() nodes will transfer to $(c_blue)Blue$() ones, but not $(c_blue)Blue$() nodes to $(c_cyan)Cyan$())"
     },
     {
-      "type": "patchouli:image",
+      "type": "modonomicon:image",
       "title": "",
       "images": [
         "spectrum:textures/gui/guidebook/composite_colors.png"
@@ -22,13 +22,13 @@
       "text": "You can finely adjust which Nodes are able to interact with others, allowing you to build complex transfer chains. $(bold)White$() nodes are only able to connect to other Whites."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "modonomicon:spotlight",
       "title": "Spectral Colored Nodes",
       "item": "spectrum:spectral_shard",
       "text": "Nodes colored with spectral pigment are able to interact with all nodes, regardless of their color."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "modonomicon:spotlight",
       "title": "",
       "item": "spectrum:purple_pigment",
       "text": "Using a $(l:resources/mermaids_brush)Mermaid's Gem$(/l) on a Node will change it to a Fluid Node.$(br)It will transfer liquid instead of items."

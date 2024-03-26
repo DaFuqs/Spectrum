@@ -68,7 +68,7 @@
     "java": ">=17",
     "revelationary": "*",
     "cloth-config": "*",
-    "patchouli": "*",
+    "modonomicon": "*",
     "trinkets": "*",
     "matchbooks": "*"
   },

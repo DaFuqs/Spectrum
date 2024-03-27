@@ -5,12 +5,14 @@ import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.api.energy.color.InkColors;
 import de.dafuqs.spectrum.api.item.Preenchanted;
 import de.dafuqs.spectrum.api.item.SlotReservingItem;
+import de.dafuqs.spectrum.api.item.SoundProvider;
 import de.dafuqs.spectrum.api.item.SplittableItem;
 import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
 import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DraconicTwinswordEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -27,7 +29,6 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -76,9 +77,9 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
         var twinsword = initiateTwinswordEntity(stack, world, user, strength);
 
         world.spawnEntity(twinsword);
-        SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_THROW;
+        SoundEvent soundEvent = SpectrumSoundEvents.METALLIC_UNSHEATHE;
 
-        world.playSoundFromEntity(null, twinsword, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        world.playSoundFromEntity(null, twinsword, soundEvent, SoundCategory.PLAYERS, 0.5F + strength / 2, 1.0F);
         var nbt = stack.getOrCreateNbt();
         markReserved(stack, true);
         nbt.putUuid("lastTwinsword", twinsword.getUuid());
@@ -182,8 +183,8 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
     }
 
     @Override
-    public SoundEvent getSplitSound() {
-        return SoundEvents.ITEM_LODESTONE_COMPASS_LOCK;
+    public SoundProvider getSplitSound() {
+        return (player -> player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F));
     }
 
     @Override
@@ -247,6 +248,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 
     @Override
     public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-        return ColorHelper.colorVecToRGB(InkColors.RED.getColor());
+        return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
     }
 }

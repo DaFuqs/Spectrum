@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.api.render;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+@Environment(EnvType.CLIENT)
 public interface SlotBackgroundEffectProvider {
 
     SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack);

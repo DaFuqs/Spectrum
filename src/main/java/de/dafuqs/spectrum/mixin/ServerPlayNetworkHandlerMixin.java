@@ -72,7 +72,7 @@ public class ServerPlayNetworkHandlerMixin {
         player.setStackInHand(Hand.MAIN_HAND, split);
         player.setStackInHand(Hand.OFF_HAND, split.copy());
         player.clearActiveItem();
-        player.playSound(splittable.getSplitSound(), SoundCategory.PLAYERS, 1, 0.8F + player.getRandom().nextFloat() * 0.4F);
+        splittable.getSplitSound().playSound(player);
     }
 
     @Unique
@@ -81,6 +81,6 @@ public class ServerPlayNetworkHandlerMixin {
         player.setStackInHand(Hand.OFF_HAND, ItemStack.EMPTY);
         player.setStackInHand(Hand.MAIN_HAND, mergeable.getResult(player, firstHalf, secondHalf));
         player.clearActiveItem();
-        player.playSound(mergeable.getMergeSound(), SoundCategory.PLAYERS, 1, 0.8F + player.getRandom().nextFloat() * 0.4F);
+        mergeable.getMergeSound().playSound(player);
     }
 }

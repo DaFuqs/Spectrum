@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -56,7 +57,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
                 case Y -> setVelocity(getVelocity().multiply(1, -1, 1));
                 case Z -> setVelocity(getVelocity().multiply(1, 1, -1));
             }
-            playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1, 2);
+            playSound(SpectrumSoundEvents.METAL_HIT, 1, 1.5F);
             return;
         }
 
@@ -78,7 +79,7 @@ public class DragonTalonEntity extends BidentBaseEntity {
         Entity owner = this.getOwner();
         DamageSource damageSource = SpectrumDamageTypes.impaling(getWorld(), this, owner);
         ((TridentEntityAccessor) this).spectrum$setDealtDamage(true);
-        SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_HIT;
+        SoundEvent soundEvent = SpectrumSoundEvents.IMPALING_HIT;
         if (attacked.damage(damageSource, f)) {
             if (attacked.getType() == EntityType.ENDERMAN) {
                 return;

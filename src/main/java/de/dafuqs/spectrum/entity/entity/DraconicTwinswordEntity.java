@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.api.entity.NonLivingAttackable;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.items.tools.DraconicTwinswordItem;
-import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -60,21 +59,25 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
         var pos = blockHitResult.getBlockPos();
         var state = getWorld().getBlockState(pos);
 
-        if (state.isOf(Blocks.SLIME_BLOCK) && getVelocity().lengthSquared() > 1) {
+        var slime = state.isOf(Blocks.SLIME_BLOCK);
+        var bounce = (state.isOf(Blocks.SLIME_BLOCK) || state.getHardness(getWorld(), pos) >= 25F) && !state.isIn(BlockTags.PLANKS) && !state.isIn(BlockTags.DIRT);
+        var boost = getVelocity().length() < 1 || slime ? 1.4 : 0.9;
+
+        if (isPropelled() && bounce && getVelocity().lengthSquared() > 1) {
             switch (blockHitResult.getSide().getAxis()) {
-                case X -> setVelocity(getVelocity().multiply(-1, 1, 1));
-                case Y -> setVelocity(getVelocity().multiply(1, -1, 1));
-                case Z -> setVelocity(getVelocity().multiply(1, 1, -1));
+                case X -> setVelocity(getVelocity().multiply(-boost, boost, boost));
+                case Y -> setVelocity(getVelocity().multiply(boost, -boost, boost));
+                case Z -> setVelocity(getVelocity().multiply(boost, boost, -boost));
             }
-            playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1, 2);
+            playSound(SpectrumSoundEvents.METAL_HIT, 1, 1.5F);
             travelingTicks = 0;
             return;
         }
 
-        if (!isRebounding() && state.getHardness(getWorld(), pos) >= 25F && !state.isIn(BlockTags.PLANKS) && !state.isIn(BlockTags.DIRT)) {
+        if (!isRebounding() && !isPropelled() && bounce) {
             travelingTicks = 0;
             rebound(getOwner().getPos(), 0.105, 0.15);
-            playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1, 2);
+            playSound(SpectrumSoundEvents.METAL_TAP, 1, 1.5F);
             return;
         }
 
@@ -154,13 +157,13 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
             setPropelled(true);
             setRebounding(false);
             ((TridentEntityAccessor) this).spectrum$setDealtDamage(false);
+            playSound(SpectrumSoundEvents.METAL_HIT, 0.8F, 0.8F + random.nextFloat() * 0.4F);
         }
         else {
             jiggleTicks = 0;
             jiggleIntensity = 8;
+            playSound(SoundEvents.ITEM_TRIDENT_HIT_GROUND, 1, 1);
         }
-
-        playSound(SoundEvents.ITEM_TRIDENT_HIT_GROUND, 1, 1);
 
         return false;
     }
@@ -217,7 +220,7 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
         Entity owner = this.getOwner();
         DamageSource damageSource = SpectrumDamageTypes.impaling(getWorld(), this, owner);
         ((TridentEntityAccessor) this).spectrum$setDealtDamage(true);
-        SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_HIT;
+        SoundEvent soundEvent = SpectrumSoundEvents.IMPALING_HIT;
         if (attacked.damage(damageSource, f)) {
             if (attacked.getType() == EntityType.ENDERMAN) {
                 return;
@@ -243,7 +246,11 @@ public class DraconicTwinswordEntity extends BidentBaseEntity implements NonLivi
 
         this.playSound(soundEvent, g, 1.0F);
         if (crit) {
-            this.playSound(SpectrumSoundEvents.CRITICAL_HIT, 1.25F, 1.0F);
+            this.playSound(SpectrumSoundEvents.CRITICAL_CRUNCH, 1F, 1.0F);
+            this.playSound(SpectrumSoundEvents.IMPACT_BASE, 1.8F, 0.5F);
+        }
+        else {
+            this.playSound(SpectrumSoundEvents.IMPALING_HIT, 1F, 0.9F + random.nextFloat() * 0.2F);
         }
     }
 

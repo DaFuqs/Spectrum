@@ -25,5 +25,5 @@ public interface MergeableItem {
         return false;
     }
 
-    SoundEvent getMergeSound();
+    SoundProvider getMergeSound();
 }

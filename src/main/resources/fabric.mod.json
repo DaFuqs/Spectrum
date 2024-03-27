@@ -11,7 +11,10 @@
   ],
   "contributors": [
     "Electro_593",
-    "Maya"
+    "Maya",
+    "Notawallplan",
+    "Quarx_",
+    "HoneyHive"
   ],
   "contact": {
     "homepage": "https://github.com/DaFuqs/",
@@ -55,8 +58,7 @@
       "spectrum:hardcore_deaths",
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
-      "spectrum:on_primordial_fire",
-      "spectrum:stuck_needles"
+      "spectrum:on_primordial_fire"
     ],
     "lithium:options": {
       "entity.collisions.fluid": false

@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.entity.entity.DragonTalonEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
@@ -164,8 +165,8 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
     }
 
     @Override
-    public SoundEvent getMergeSound() {
-        return SoundEvents.ITEM_LODESTONE_COMPASS_LOCK;
+    public SoundProvider getMergeSound() {
+        return (player -> player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.3F, 0.4F + player.getRandom().nextFloat() * 0.2F));
     }
 
     @Override

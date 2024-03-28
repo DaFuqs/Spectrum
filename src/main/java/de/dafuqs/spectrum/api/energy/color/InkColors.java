@@ -14,6 +14,13 @@ public class InkColors {
 	public static final Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone_shard");
+
+	/**
+	 * A lot of places where color is displayed have black backgrounds, which would make displaying normal black on them... daft.
+	 * <p>
+	 * So, instead, we use something closer to midnight solution in shade.
+	 */
+	public static final int ALT_BLACK = 0x302951;
 	
 	public static final ElementalColor CYAN = registerElemental("cyan", new ElementalColor(DyeColor.CYAN, ColorHelper.colorIntToVec(0x45ecff), BASE_ADVANCEMENT_ID));
 	public static final ElementalColor MAGENTA = registerElemental("magenta", new ElementalColor(DyeColor.MAGENTA, ColorHelper.colorIntToVec(0xff4ff6), BASE_ADVANCEMENT_ID));
@@ -29,7 +36,7 @@ public class InkColors {
 		put(CYAN, 1F / 3F);
 		put(YELLOW, 2F / 3F);
 	}}));
-	public static final CompoundColor PINK = registerCompound("pink", new CompoundColor(DyeColor.PINK, ColorHelper.colorIntToVec(0xff9eab), BASE_ADVANCEMENT_ID, new HashMap<>() {{
+	public static final CompoundColor PINK = registerCompound("pink", new CompoundColor(DyeColor.PINK, ColorHelper.colorIntToVec(0xff94a6), BASE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 2F / 3F);
 		put(YELLOW, 1F / 3F);
 	}}));
@@ -56,7 +63,7 @@ public class InkColors {
 		put(MAGENTA, 3F / 6F);
 		put(YELLOW, 1F / 6F);
 	}}));
-	public static final CompoundColor BROWN = registerCompound("brown", new CompoundColor(DyeColor.BROWN, ColorHelper.colorIntToVec(0x731627), BLACK_ADVANCEMENT_ID, new HashMap<>() {{
+	public static final CompoundColor BROWN = registerCompound("brown", new CompoundColor(DyeColor.BROWN, ColorHelper.colorIntToVec(0x6f322a), BLACK_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 2F / 5F);
 		put(YELLOW, 1F / 5F);
 		put(BLACK, 2F / 5F);

@@ -13,7 +13,6 @@ public interface ExtendedItemBarProvider {
     BarSignature PASS = new BarSignature(0, 0, 0, 0, 0, 0);
 
     int DEFAULT_BACKGROUND_COLOR = 0xFF000000;
-    int LIGHT_BACKGROUND_COLOR = 0xFFacacac;
 
     int barCount(ItemStack stack);
 

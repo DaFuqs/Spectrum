@@ -18,7 +18,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedInkStorage>, ExtendedItemBarProvider {
 	
@@ -77,21 +79,28 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 		if (player == null || storage.isEmpty())
 			return ExtendedItemBarProvider.PASS;
 
-		var time = player.getWorld().getTime() % 432000;
+		var time = player.getWorld().getTime() % 864000;
 
 		for (InkColor inkColor : SpectrumRegistries.INK_COLORS) {
 			if (storage.getEnergy(inkColor) > 0)
 				colors.add(inkColor);
 		}
 
-		//var delta = MinecraftClient.getInstance().getTickDelta();
-		var curColor = colors.get((int) (time % (20L * colors.size()) / 20));
-		var nextColor = colors.get((int) ((time % (20L * colors.size()) / 20 + 1) % colors.size()));
-		var blendedColor = (int) MathHelper.clampedLerp(ColorHelper.colorVecToRGB(curColor.getColor()), ColorHelper.colorVecToRGB(nextColor.getColor()), (time % 20) / 20F);
-
-		var background = curColor.isDarkShade() ? ExtendedItemBarProvider.LIGHT_BACKGROUND_COLOR : DEFAULT_BACKGROUND_COLOR;
-
 		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
-		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, background);
+		if (colors.size() == 1) {
+			var color = colors.get(0);
+			return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(color.getColor()) | 0xFF000000, 2, DEFAULT_BACKGROUND_COLOR);
+		}
+
+		var delta = MinecraftClient.getInstance().getTickDelta();
+		var curColor = colors.get((int) (time % (30L * colors.size()) / 30));
+		var nextColor = colors.get((int) ((time % (30L * colors.size()) / 30 + 1) % colors.size()));
+
+
+		var blendFactor = (((float) time + delta) % 30) / 30F;
+		var blendedColor = ColorHelper.interpolate(
+				curColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : curColor.getColor(), nextColor == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : nextColor.getColor(), blendFactor);
+
+		return new ExtendedItemBarProvider.BarSignature(1, 13, 14, progress, 1, blendedColor, 2, DEFAULT_BACKGROUND_COLOR);
 	}
 }

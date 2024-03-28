@@ -122,9 +122,9 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		if (progress == 0 || progress == 14)
 			return PASS;
 
-		var dark = inkColor == InkColors.GRAY || inkColor == InkColors.BLACK || inkColor == InkColors.BROWN;
+		var color = inkColor == InkColors.BLACK ? InkColors.ALT_BLACK : ColorHelper.colorVecToRGB(inkColor.getColor());
 
-		return new BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(inkColor.getColor()), 2, dark ? ExtendedItemBarProvider.LIGHT_BACKGROUND_COLOR : ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+		return new BarSignature(1, 13, 14, progress, 1, color, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 
 	@Override

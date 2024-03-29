@@ -48,7 +48,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
       },
-      "name": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page3.name",
+      "title": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page3.title",
       "entity_id": "spectrum:egg_laying_wooly_pig",
       "text": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page3.text"
     }

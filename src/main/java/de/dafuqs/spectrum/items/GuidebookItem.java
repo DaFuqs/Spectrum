@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.items;
 
 import com.klikli_dev.modonomicon.client.gui.*;
+import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.entity.*;
@@ -61,28 +64,34 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (user instanceof ClientPlayerEntity clientPlayer) {
+		if (user instanceof ClientPlayerEntity) {
 			// if the player has never opened the book before
 			// automatically open the introduction page
-			if (isNewPlayer(clientPlayer)) {
-				openGuidebook(SpectrumCommon.locate("general/intro"), 0);
-			} else {
+			if (hasOpenedGuidebookBefore()) {
 				openGuidebook();
+			} else {
+				openGuidebook(SpectrumCommon.locate("general/intro"), 0);
 			}
-			
-			return TypedActionResult.success(user.getStackInHand(hand));
 		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-			user.incrementStat(Stats.USED.getOrCreateStat(this));
-			
-			// Workaround for new advancement unlocks getting added after spectrum has been installed
+			// Process new advancement unlocks that got added
+			// after spectrum has been installed / updated
 			reprocessAdvancementUnlocks(serverPlayerEntity);
+			
+			// there is no "use_item" advancement trigger smh
+			Support.grantAdvancementCriterion(serverPlayerEntity, "hidden/opened_guidebook", "opened_guidebook");
 		}
+		user.incrementStat(Stats.USED.getOrCreateStat(this));
 		
-		return TypedActionResult.consume(user.getStackInHand(hand));
+		return TypedActionResult.success(user.getStackInHand(hand), world.isClient);
 	}
 	
-	private boolean isNewPlayer(ClientPlayerEntity user) {
-		return user.getStatHandler().getStat(Stats.USED, this) == 0;
+	/**
+	 * If clientside and the client does not have stats synced yet (not opened the stats screen)
+	 * this is always false 💀
+	 */
+	@Environment(EnvType.CLIENT)
+	private boolean hasOpenedGuidebookBefore() {
+		return ClientAdvancements.hasDone(SpectrumCommon.locate("hidden/opened_guidebook"));
 	}
 	
 	public void openGuidebook() {
@@ -103,5 +112,5 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		super.appendTooltip(stack, world, tooltip, context);
 		addBannerPatternProviderTooltip(tooltip);
 	}
-
+	
 }

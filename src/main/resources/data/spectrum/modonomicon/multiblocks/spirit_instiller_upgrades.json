@@ -24,7 +24,7 @@
       "________"
     ],
     [
-      "________",
+      "______U_",
       "K_______",
       "__I_____",
       "________",
@@ -32,7 +32,7 @@
       "________",
       "__I_____",
       "K_______",
-      "________"
+      "______U_"
     ],
     [
       "______G_",
@@ -93,6 +93,10 @@
     "M": {
       "type": "modonomicon:tag",
       "tag": "#spectrum:gemstone_chimes"
+    },
+    "U": {
+      "type": "modonomicon:block",
+      "block": "spectrum:upgrade_speed"
     },
     "0": {
       "type": "modonomicon:tag",

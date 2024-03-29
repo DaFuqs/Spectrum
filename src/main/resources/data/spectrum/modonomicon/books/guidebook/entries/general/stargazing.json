@@ -81,13 +81,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.general.stargazing.page5.title",
-      "recipe": "spectrum:pedestal/tier1/compacting/stardust_block",
+      "recipe_1": "spectrum:pedestal/tier1/compacting/stardust_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.general.stargazing.page6.title",
-      "recipe": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
+      "recipe_1": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
       "text": ""
     }
   ]

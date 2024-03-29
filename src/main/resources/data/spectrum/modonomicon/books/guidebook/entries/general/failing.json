@@ -55,13 +55,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Compression",
-      "recipe": "spectrum:pedestal/tier1/compacting/neolith_block",
+      "recipe_1": "spectrum:pedestal/tier1/compacting/neolith_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Decompression",
-      "recipe": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
+      "recipe_1": "spectrum:pedestal/tier1/compacting/neolith_from_neolith_block",
       "text": ""
     }
   ]

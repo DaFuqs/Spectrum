@@ -67,14 +67,14 @@
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.dimension.crystal_gardens.page4.title",
       "advancement": "spectrum:hidden/collect_jadeite",
-      "recipe": "spectrum:pedestal/tier1/jadeite/jadeite_petal_block",
+      "recipe_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.dimension.crystal_gardens.page5.title",
       "advancement": "spectrum:hidden/collect_jadeite",
-      "recipe": "spectrum:pedestal/tier1/jadeite/jadeite_petal_carpet",
+      "recipe_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_carpet",
       "text": ""
     }
   ]

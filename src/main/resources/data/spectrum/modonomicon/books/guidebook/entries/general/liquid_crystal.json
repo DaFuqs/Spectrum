@@ -5,7 +5,7 @@
     "advancement_id": "spectrum:unlocks/blocks/liquid_crystal"
   },
   "icon": "spectrum:liquid_crystal_bucket",
-  "category": "spectrum:magical_blocks",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [
     {

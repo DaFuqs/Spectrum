@@ -7,11 +7,16 @@
   "icon": "spectrum:ink_assortment",
   "category": "spectrum:magic",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:magic/color_picker",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 6,
-  "y": 0,
+  "y": -1,
   "extra_recipe_mappings": {
     "spectrum:ink_assortment": 0
   },

@@ -35,7 +35,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.failing.page1.title1",
+      "title1": "book.spectrum.guidebook.creating_life.failing.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/bottle_of_failing",
       "text": "book.spectrum.guidebook.creating_life.failing.page1.text"
     },

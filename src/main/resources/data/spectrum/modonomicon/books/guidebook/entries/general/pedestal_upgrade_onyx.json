@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.title1",
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.title",
       "recipe_id_1": "spectrum:pedestal/tier2/pedestal_onyx",
       "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.text"
     },

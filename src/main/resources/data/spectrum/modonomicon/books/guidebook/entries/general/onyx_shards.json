@@ -29,7 +29,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.general.onyx_shards.page1.title1",
+      "title1": "book.spectrum.guidebook.general.onyx_shards.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/onyx_shard",
       "text": "book.spectrum.guidebook.general.onyx_shards.page1.text"
     },

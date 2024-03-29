@@ -28,7 +28,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.enchanting.gilded_book.page1.text",
-      "title1": "book.spectrum.guidebook.enchanting.gilded_book.page1.title1",
+      "title1": "book.spectrum.guidebook.enchanting.gilded_book.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/gilded_book"
     }
   ]

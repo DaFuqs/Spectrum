@@ -29,7 +29,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page1.title1",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:place_pedestal"
@@ -56,7 +56,7 @@
         "advancement_id": "spectrum:collect_shimmerstone"
       },
       "text": "book.spectrum.guidebook.mod_integration.botania.page3.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title1",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title",
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
     },
     {
@@ -66,7 +66,7 @@
         "advancement_id": "spectrum:collect_pigment"
       },
       "text": "book.spectrum.guidebook.mod_integration.botania.page4.text",
-      "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title1",
+      "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title",
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
     },
     {

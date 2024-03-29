@@ -24,12 +24,12 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.present.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.present.page1.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/present"
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.magical_blocks.present.page2.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page2.title",
       "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
       "text": "book.spectrum.guidebook.magical_blocks.present.page2.text"
     },

@@ -32,7 +32,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.fading.page1.title1",
+      "title1": "book.spectrum.guidebook.creating_life.fading.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/bottle_of_fading",
       "text": "book.spectrum.guidebook.creating_life.fading.page1.text"
     },

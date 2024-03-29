@@ -24,13 +24,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page1.title1",
+      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/phantom_frame",
       "text": "book.spectrum.guidebook.decoration.phantom_frame.page1.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page2.title1",
+      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier1/glow_phantom_frame",
       "text": "book.spectrum.guidebook.decoration.phantom_frame.page2.text"
     }

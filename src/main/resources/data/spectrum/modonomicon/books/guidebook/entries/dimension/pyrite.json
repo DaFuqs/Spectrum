@@ -36,7 +36,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.dimension.pyrite.page1.title1",
+      "title1": "book.spectrum.guidebook.dimension.pyrite.page1.title",
       "recipe_id_1": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
       "text": "book.spectrum.guidebook.dimension.pyrite.page1.text"
     },

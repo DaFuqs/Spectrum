@@ -24,7 +24,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.decoration.particle_spawner.page1.title1",
+      "title1": "book.spectrum.guidebook.decoration.particle_spawner.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier2/particle_spawner",
       "text": "book.spectrum.guidebook.decoration.particle_spawner.page1.text"
     }

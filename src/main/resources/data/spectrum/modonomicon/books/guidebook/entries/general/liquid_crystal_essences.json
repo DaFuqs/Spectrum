@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page1.title1",
+      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_blazing_crystal"
@@ -58,7 +58,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page3.title1",
+      "title1": "book.spectrum.guidebook.general.liquid_crystal_essences.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_frostbite_crystal"

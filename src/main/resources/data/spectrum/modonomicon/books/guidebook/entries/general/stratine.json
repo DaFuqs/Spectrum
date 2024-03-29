@@ -29,7 +29,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.general.stratine.page1.title1",
+      "title1": "book.spectrum.guidebook.general.stratine.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_stratine_gem"
@@ -56,7 +56,7 @@
         "advancement_id": "spectrum:midgame/carry_too_many_heavy_gravity_blocks"
       },
       "text": "book.spectrum.guidebook.general.stratine.page3.text",
-      "title1": "book.spectrum.guidebook.general.stratine.page3.title1",
+      "title1": "book.spectrum.guidebook.general.stratine.page3.title",
       "recipe_id_1": "spectrum:pedestal/tier1/compacting/stratine_fragment_block"
     }
   ]

@@ -47,7 +47,7 @@
         "advancement_id": "spectrum:unlocks/enchantments/voiding_crafting"
       },
       "text": "book.spectrum.guidebook.enchanting.curse_of_the_void.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.curse_of_the_void.page2.title1",
+      "title1": "book.spectrum.guidebook.enchanting.curse_of_the_void.page2.title",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/book_voiding"
     }
   ]

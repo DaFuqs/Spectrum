@@ -33,13 +33,13 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page3.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page3.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/malt_beer",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page3.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page4.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_myceylon"
@@ -62,7 +62,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page6.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page6.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/beer",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/ale",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page6.text"
@@ -73,7 +73,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page7.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page7.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/lager",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/porter",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page7.text"
@@ -84,7 +84,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page8.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page8.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/lager",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/lager_fluid",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page8.text"
@@ -95,7 +95,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/gin"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page9.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page9.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/gin",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page9.text"
     },
@@ -105,7 +105,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page10.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page10.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rum",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page10.text"
     },
@@ -115,7 +115,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page11.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page11.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/mead",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page11.text"
@@ -126,7 +126,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page12.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page12.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/apple_cider",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page12.text"
     },
@@ -136,7 +136,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page13.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page13.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page13.text"
@@ -147,7 +147,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page14.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page14.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/berry_cider",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page14.text"
@@ -158,7 +158,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page15.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page15.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/berry_liquor",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page15.text"
@@ -169,7 +169,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/mint_beverages"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page16.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page16.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/mint_cream",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/mint_schnapps",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page16.text"
@@ -180,7 +180,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page17.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page17.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/artemisa",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/advocaat"
     },
@@ -190,7 +190,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page18.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page18.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/damassine",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/hare_bane_creme"
     },
@@ -200,7 +200,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page19.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page19.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/vodka",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page19.text"
@@ -211,7 +211,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:milestones/confirmed_drinking_age"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page20.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page20.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/tequila",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page20.text"
     },
@@ -221,31 +221,31 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/food/moonshine"
       },
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page21.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page21.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/moonshine",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page21.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page22.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page22.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page22.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page23.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page23.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/spiked_mullet_wine",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page23.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page24.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page24.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/glass_peach_cider",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/glass_peach_liquor"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page25.title1",
+      "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page25.title",
       "recipe_id_1": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor"
     },

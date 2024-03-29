@@ -32,7 +32,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.title1",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
     },
     {
@@ -42,7 +42,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.title1",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword"
     },
     {
@@ -52,7 +52,7 @@
         "advancement_id": "spectrum:unlocks/malachite/glass_crest_crossbow"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.title1",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
     },
     {
@@ -62,7 +62,7 @@
         "advancement_id": "spectrum:unlocks/malachite/ferocious_glass_crest_bident"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.title1",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident"
     },
     {
@@ -72,7 +72,7 @@
         "advancement_id": "spectrum:unlocks/malachite/fractal_glass_crest_bident"
       },
       "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.text",
-      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.title1",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.title",
       "recipe_id_1": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident"
     }
   ]

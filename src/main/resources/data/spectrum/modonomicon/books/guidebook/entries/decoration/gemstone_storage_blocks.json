@@ -27,7 +27,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page1.title1",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
@@ -37,7 +37,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page2.title1",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page2.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
@@ -47,7 +47,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page3.title1",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page3.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
@@ -57,7 +57,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page4.title1",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page4.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:create_onyx_shard"
@@ -67,7 +67,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page5.title1",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page5.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:lategame/collect_moonstone_shard"

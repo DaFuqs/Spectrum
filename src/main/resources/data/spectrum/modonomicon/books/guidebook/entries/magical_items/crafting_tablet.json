@@ -19,7 +19,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.text",
-      "title1": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.title1",
+      "title1": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.title",
       "recipe_id_1": "spectrum:pedestal/tier1/crafting_tablet"
     },
     {

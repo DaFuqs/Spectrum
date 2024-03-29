@@ -37,7 +37,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.general.mysterious_locket.page1.title1",
+      "title1": "book.spectrum.guidebook.general.mysterious_locket.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/mysterious_locket_socketing"

@@ -63,7 +63,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier4/crystallarieum"
     },
     {
@@ -78,67 +78,67 @@
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page4.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page4.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/coal"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page5.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page5.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/copper"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page6.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page6.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/diamond"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page7.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page7.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/echo"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page8.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page8.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/emerald"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page9.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page9.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/glowstone"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page10.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page10.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/gold"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page11.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page11.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/iron"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page12.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page12.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/lapis"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page13.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page13.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/netherite_scrap"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page14.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page14.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/prismarine_crystal"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page15.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page15.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/quartz"
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page16.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.crystallarieum.page16.title",
       "recipe_id_1": "spectrum:crystallarieum/vanilla/redstone"
     }
   ]

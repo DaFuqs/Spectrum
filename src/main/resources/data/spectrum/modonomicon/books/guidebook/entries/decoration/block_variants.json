@@ -35,7 +35,7 @@
     {
       "type": "modonomicon:smelting_recipe",
       "anchor": "polishing",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page2.title1",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page2.title",
       "recipe_id_1": "spectrum:smelting/smooth_basalt_to_polished_basalt",
       "recipe_id_2": "spectrum:smelting/calcite_to_polished_calcite",
       "text": "book.spectrum.guidebook.decoration.block_variants.page2.text"
@@ -88,26 +88,26 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page4.title1",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page4.title",
       "recipe_id_1": "spectrum:crafting_table/basalt/polished_basalt_pillar",
       "recipe_id_2": "spectrum:crafting_table/calcite/polished_calcite_crest"
     },
     {
       "type": "modonomicon:crafting_recipe",
       "anchor": "chiseled_and_notched",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page5.title1",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page5.title",
       "recipe_id_1": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
       "recipe_id_2": "spectrum:crafting_table/calcite/notched_polished_calcite"
     },
     {
       "type": "spectrum:anvil_crushing",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page6.title1",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page6.title",
       "recipe_id_1": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
       "text": "book.spectrum.guidebook.decoration.block_variants.page6.text"
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "book.spectrum.guidebook.decoration.block_variants.page7.title1",
+      "title1": "book.spectrum.guidebook.decoration.block_variants.page7.title",
       "recipe_id_1": "spectrum:smelting/polished_basalt_unsmelting",
       "recipe_id_2": "spectrum:smelting/polished_calcite_unsmelting",
       "text": "book.spectrum.guidebook.decoration.block_variants.page7.text"

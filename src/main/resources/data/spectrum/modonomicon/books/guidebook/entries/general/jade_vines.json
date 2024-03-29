@@ -35,7 +35,7 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.general.jade_vines.page1.title1",
+      "title1": "book.spectrum.guidebook.general.jade_vines.page1.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
@@ -70,7 +70,7 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "title1": "book.spectrum.guidebook.general.jade_vines.page4.title1",
+      "title1": "book.spectrum.guidebook.general.jade_vines.page4.title",
       "anchor": "jaramel",
       "recipe_id_1": "spectrum:cinderhearth/jaramel",
       "condition": {

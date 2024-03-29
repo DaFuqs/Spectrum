@@ -65,13 +65,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page8.title1",
+      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page8.title",
       "recipe_id_1": "spectrum:pedestal/tier1/food/meatloaf_sandwich",
       "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page8.text"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page9.title1",
+      "title1": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page9.title",
       "recipe_id_1": "spectrum:titration_barrel/surstromming",
       "text": "book.spectrum.guidebook.cuisine.melochites_cookbook_vol_1.page9.text"
     }

@@ -25,7 +25,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.pastel_network.sender_node.page1.title1",
+      "title1": "book.spectrum.guidebook.pastel_network.sender_node.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/sender_node"
     }
   ]

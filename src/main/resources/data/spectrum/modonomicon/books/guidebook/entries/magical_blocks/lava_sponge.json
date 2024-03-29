@@ -25,7 +25,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.text",
-      "title1": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.title1",
+      "title1": "book.spectrum.guidebook.magical_blocks.lava_sponge.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/lava_sponge"
     },
     {

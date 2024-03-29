@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.title1",
+      "title1": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
       "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.text"
     },

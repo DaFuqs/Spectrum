@@ -24,7 +24,7 @@
     },
     {
       "type": "modonomicon:crafting_recipe",
-      "title1": "book.spectrum.guidebook.general.paintbrush.page1.title1",
+      "title1": "book.spectrum.guidebook.general.paintbrush.page1.title",
       "recipe_id_1": "spectrum:crafting_table/paintbrush",
       "text": "book.spectrum.guidebook.general.paintbrush.page1.text"
     },

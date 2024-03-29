@@ -62,7 +62,7 @@
     },
     {
       "type": "modonomicon:smelting_recipe",
-      "title1": "book.spectrum.guidebook.dimension.shale_clay.page3.title1",
+      "title1": "book.spectrum.guidebook.dimension.shale_clay.page3.title",
       "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
       "text": "book.spectrum.guidebook.dimension.shale_clay.page3.text"
     },

@@ -31,7 +31,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_stone_ring"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page1.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring"
     },
     {
@@ -40,7 +40,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_circlet"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page2.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_circlet"
     },
     {
@@ -49,7 +49,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_belt"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page3.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page3.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_belt"
     },
     {
@@ -58,7 +58,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_pendant"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page4.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page4.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_pendant"
     },
     {
@@ -67,7 +67,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_gloves"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page5.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page5.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_gloves"
     },
     {
@@ -76,7 +76,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"
       },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page6.title1",
+      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page6.title",
       "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring"
     }
   ]

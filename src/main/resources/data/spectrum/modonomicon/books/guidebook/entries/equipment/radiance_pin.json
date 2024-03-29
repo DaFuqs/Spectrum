@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.equipment.radiance_pin.page1.title1",
+      "title1": "book.spectrum.guidebook.equipment.radiance_pin.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/radiance_pin",
       "text": "book.spectrum.guidebook.equipment.radiance_pin.page1.text"
     }

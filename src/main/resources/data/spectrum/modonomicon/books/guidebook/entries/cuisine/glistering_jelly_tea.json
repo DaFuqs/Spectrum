@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.title1",
+      "title1": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
       "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.text"
     }

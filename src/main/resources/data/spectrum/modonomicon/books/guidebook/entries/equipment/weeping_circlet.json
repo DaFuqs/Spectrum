@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.equipment.weeping_circlet.page1.title1",
+      "title1": "book.spectrum.guidebook.equipment.weeping_circlet.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/weeping_circlet",
       "text": "book.spectrum.guidebook.equipment.weeping_circlet.page1.text"
     }

@@ -21,7 +21,7 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.hardcore_revival.page1.title1",
+      "title1": "book.spectrum.guidebook.creating_life.hardcore_revival.page1.title",
       "recipe_id_1": "spectrum:spirit_instiller/hardcore_player_revival",
       "text": "book.spectrum.guidebook.creating_life.hardcore_revival.page1.text"
     }

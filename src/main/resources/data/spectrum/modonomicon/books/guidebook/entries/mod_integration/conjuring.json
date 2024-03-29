@@ -34,7 +34,7 @@
         "advancement_id": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
       },
       "text": "book.spectrum.guidebook.mod_integration.conjuring.page1.text",
-      "title1": "book.spectrum.guidebook.mod_integration.conjuring.page1.title1",
+      "title1": "book.spectrum.guidebook.mod_integration.conjuring.page1.title",
       "recipe_id_1": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance"
     },
     {

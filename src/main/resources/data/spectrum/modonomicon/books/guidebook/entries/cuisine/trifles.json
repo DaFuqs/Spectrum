@@ -25,7 +25,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.cuisine.trifles.page1.title1",
+      "title1": "book.spectrum.guidebook.cuisine.trifles.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_trifle",
       "text": "book.spectrum.guidebook.cuisine.trifles.page1.text"
     },

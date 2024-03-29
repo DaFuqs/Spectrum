@@ -52,13 +52,13 @@
     {
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.big_catch.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.big_catch.page2.title1",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page2.title",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/book_big_catch"
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "text": "book.spectrum.guidebook.enchanting.big_catch.page3.text",
-      "title1": "book.spectrum.guidebook.enchanting.big_catch.page3.title1",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page3.title",
       "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2"
     }
   ]

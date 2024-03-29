@@ -33,7 +33,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.text",
-      "title1": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.title1",
+      "title1": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.title",
       "recipe_id_1": "spectrum:pedestal/tier4/perturbed_eye"
     },
     {

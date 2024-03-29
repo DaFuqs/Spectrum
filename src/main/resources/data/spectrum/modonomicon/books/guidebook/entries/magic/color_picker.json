@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.magic.color_picker.page1.title1",
+      "title1": "book.spectrum.guidebook.magic.color_picker.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier2/color_picker",
       "text": "book.spectrum.guidebook.magic.color_picker.page1.text"
     }

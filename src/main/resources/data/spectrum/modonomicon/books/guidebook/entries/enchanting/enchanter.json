@@ -20,9 +20,9 @@
       "title": "book.spectrum.guidebook.enchanting.enchanter.page0.title"
     },
     {
-      "type": "modonomicon:text",
+      "type": "spectrum:pedestal_crafting",
       "title": "book.spectrum.guidebook.enchanting.enchanter.page1.title",
-      "recipe": "spectrum:pedestal/tier3/enchanter",
+      "recipe_id_1": "spectrum:pedestal/tier3/enchanter",
       "text": "book.spectrum.guidebook.enchanting.enchanter.page1.text"
     },
     {

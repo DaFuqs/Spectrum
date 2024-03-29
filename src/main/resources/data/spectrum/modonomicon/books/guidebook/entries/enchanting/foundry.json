@@ -43,7 +43,7 @@
     {
       "type": "spectrum:enchanter_crafting",
       "text": "book.spectrum.guidebook.enchanting.foundry.page2.text",
-      "title1": "book.spectrum.guidebook.enchanting.foundry.page2.title1",
+      "title1": "book.spectrum.guidebook.enchanting.foundry.page2.title",
       "recipe_id_1": "spectrum:enchanter/spectrum_books/book_autosmelt"
     }
   ]

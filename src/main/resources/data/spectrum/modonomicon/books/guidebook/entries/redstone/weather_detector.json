@@ -23,7 +23,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.redstone.weather_detector.page1.title1",
+      "title1": "book.spectrum.guidebook.redstone.weather_detector.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/detectors/weather_detector",
       "text": "book.spectrum.guidebook.redstone.weather_detector.page1.text"
     }

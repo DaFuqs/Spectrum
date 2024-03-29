@@ -35,7 +35,7 @@
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/blood_orchid"
       },
-      "title1": "book.spectrum.guidebook.general.blood_orchids.page1.title1",
+      "title1": "book.spectrum.guidebook.general.blood_orchids.page1.title",
       "recipe_id_1": "spectrum:spirit_instiller/blood_orchid",
       "text": "book.spectrum.guidebook.general.blood_orchids.page1.text"
     }

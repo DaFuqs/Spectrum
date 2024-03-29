@@ -27,7 +27,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.text",
-      "title1": "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.title1",
+      "title1": "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.title",
       "recipe_id_1": "spectrum:pedestal/tier1/glow_vision_goggles"
     }
   ]

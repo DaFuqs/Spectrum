@@ -34,28 +34,28 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page1.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page1.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/water_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page2.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page2.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/lava_bucket",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page2.text"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page3.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page3.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/mud_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page4.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page4.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/liquid_crystal_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page5.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page5.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
@@ -64,7 +64,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page6.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page6.title",
       "condition": {
         "type": "modonomicon:advancement",
         "advancement_id": "spectrum:unlocks/blocks/dragonrot_bucket"
@@ -73,17 +73,17 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page7.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page7.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/honey_bottle"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page8.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page8.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/powder_snow_bucket"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.title1",
+      "title1": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.title",
       "recipe_id_1": "spectrum:potion_workshop_crafting/experience_bottle",
       "text": "book.spectrum.guidebook.brewing.potion_workshop_crafting.page9.text"
     },

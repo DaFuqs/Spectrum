@@ -5,13 +5,17 @@
     "advancement_id": "spectrum:unlocks/resources/bloodstone"
   },
   "icon": "spectrum:refined_bloodstone",
-  "category": "spectrum:general",
+  "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/kindlings"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 0,
+  "x": 2,
+  "y": 6,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:raw_bloodstone": 0,

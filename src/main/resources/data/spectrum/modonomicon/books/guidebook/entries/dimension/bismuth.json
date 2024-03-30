@@ -5,15 +5,17 @@
     "advancement_id": "spectrum:lategame/collect_bismuth"
   },
   "icon": "spectrum:bismuth_flake",
-  "category": "spectrum:general",
+  "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [
-
+    {
+      "entry": "spectrum:dimension/crystal_gardens"
+    }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 0,
+  "x": 6,
+  "y": 1,
   "turnin": "spectrum:lategame/collect_bismuth_crystal",
   "extra_recipe_mappings": {
     "spectrum:bismuth_flake": 0,

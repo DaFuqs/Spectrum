@@ -7,11 +7,18 @@
   },
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/dragonrot_swamp"
+    },
+    {
+      "entry": "spectrum:dimension/black_langast"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 2,
+  "x": 12,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:eraser_head": 0,
     "spectrum:eraser_spawn_egg": 0

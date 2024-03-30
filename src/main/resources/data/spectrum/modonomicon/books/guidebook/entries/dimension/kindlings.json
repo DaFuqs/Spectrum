@@ -5,13 +5,17 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/kindling_memory"
   },
-  "category": "spectrum:creating_life",
+  "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/dragonbone"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 2,
+  "x": 2,
+  "y": 4,
   "extra_recipe_mappings": {
     "spectrum:kindling_head": 0,
     "spectrum:kindling_spawn_egg": 0

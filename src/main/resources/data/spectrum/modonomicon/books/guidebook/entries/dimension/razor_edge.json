@@ -7,11 +7,15 @@
   "icon": "spectrum:shale_clay",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/getting_deeper_down"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 6,
+  "x": 3,
+  "y": 12,
   "extra_recipe_mappings": {
     "spectrum:sawblade_grass": 0,
     "spectrum:bristle_sprouts": 0

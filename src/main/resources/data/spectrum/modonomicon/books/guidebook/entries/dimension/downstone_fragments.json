@@ -1,0 +1,48 @@
+{
+  "name": "book.spectrum.guidebook.dimension.downstone_fragments.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_downstone_fragments"
+  },
+  "icon": "spectrum:downstone_fragments",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/downstone"
+    },
+    {
+      "entry": "spectrum:dimension/excavation_sites"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 4,
+  "extra_recipe_mappings": {
+    "spectrum:downstone": 0,
+    "spectrum:downstone_fragments": 0
+  },
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:downstone"
+      },
+      "text": "book.spectrum.guidebook.dimension.downstone_fragments.page0.text",
+      "title": "book.spectrum.guidebook.dimension.downstone_fragments.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:downstone_fragments"
+      },
+      "anchor": "downstone_fragments",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_downstone_fragments"
+      },
+      "text": "book.spectrum.guidebook.dimension.downstone_fragments.page1.text"
+    }
+  ]
+}

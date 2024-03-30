@@ -7,11 +7,15 @@
   "icon": "spectrum:rotten_ground",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/getting_deeper_down"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 2,
+  "x": 3,
+  "y": 6,
   "extra_recipe_mappings": {
     "spectrum:snapping_ivy": 0,
     "spectrum:rotten_ground": 0

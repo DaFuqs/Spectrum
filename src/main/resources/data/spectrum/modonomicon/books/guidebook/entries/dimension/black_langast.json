@@ -7,11 +7,15 @@
   "icon": "spectrum:black_materia",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/getting_deeper_down"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 0,
+  "x": 3,
+  "y": -3,
   "extra_recipe_mappings": {
     "spectrum:black_sludge": 0
   },

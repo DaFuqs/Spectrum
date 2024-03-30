@@ -7,11 +7,15 @@
   "icon": "spectrum:small_purple_dragonjag",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/deep_barrens"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 2,
+  "x": 9,
+  "y": 0,
   "extra_recipe_mappings": {},
   "pages": [
     {

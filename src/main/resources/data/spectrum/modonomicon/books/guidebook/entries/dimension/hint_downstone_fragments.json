@@ -1,12 +1,12 @@
 {
   "name": "book.spectrum.guidebook.hints.downstone_fragments.name",
-  "category": "spectrum:general",
+  "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 80,
+  "x": 0,
+  "y": 5,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",

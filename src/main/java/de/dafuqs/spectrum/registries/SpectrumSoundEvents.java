@@ -71,6 +71,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent METAL_TAP = register("metal_tap");
 	public static final SoundEvent METALLIC_UNSHEATHE = register("metallic_unsheathe");
 
+	public static final SoundEvent ELECTRIC_DISCHARGE = register("discharge");
+
+
 	public static final SoundEvent INCANDESCENT_CHARGE = register("incandescent_charge");
 	public static final SoundEvent INCANDESCENT_ARM = register("incandescent_arm");
 

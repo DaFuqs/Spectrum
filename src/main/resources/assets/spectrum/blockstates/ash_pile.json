@@ -1,0 +1,28 @@
+{
+	"variants": {
+		"layers=1": {
+			"model": "spectrum:block/ash_pile_height2"
+		},
+		"layers=2": {
+			"model": "spectrum:block/ash_pile_height4"
+		},
+		"layers=3": {
+			"model": "spectrum:block/ash_pile_height6"
+		},
+		"layers=4": {
+			"model": "spectrum:block/ash_pile_height8"
+		},
+		"layers=5": {
+			"model": "spectrum:block/ash_pile_height10"
+		},
+		"layers=6": {
+			"model": "spectrum:block/ash_pile_height12"
+		},
+		"layers=7": {
+			"model": "spectrum:block/ash_pile_height14"
+		},
+		"layers=8": {
+			"model": "spectrum:block/ash"
+		}
+	}
+}

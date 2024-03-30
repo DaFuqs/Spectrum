@@ -94,6 +94,7 @@
   "biome.spectrum.black_langast": "Black Langast",
   "biome.spectrum.noxshroom_forest": "Noxshroom Forest",
   "biome.spectrum.razor_edge": "Razor Edge",
+  "biome.spectrum.howling_spires": "Howling Spires",
 
   "gui.spectrum.quick_navigation.controls1": "Movement Keys to move",
   "gui.spectrum.quick_navigation.controls2": "Drop/Inventory to select",
@@ -408,6 +409,7 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Nights on a full moon",
   "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword": "Handle with care",
+  "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword_reclaim": "For if you ever loose one",
   "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Protects star from breaking",
   "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head": "An all-purpose Allrounder",
   "spectrum.recipe.fusion_shrine.explanation.no_rgb": "Saw you peeking",
@@ -518,6 +520,15 @@
   "spectrum.subtitles.incandescent_charge": "Apparatus charges",
   "spectrum.subtitles.incandescent_arm": "Apparatus arms",
   "spectrum.subtitles.block.parametric_mining_device.throw": "Mining Device flies",
+
+  "spectrum.subtitles.critical_crunch": "Critical Hit!",
+  "spectrum.subtitles.impact_base": "Intense impact",
+  "spectrum.subtitles.impaling_hit": "Something is impaled",
+  "spectrum.subtitles.legendary_weapon_craft": "Legendary Weapon is Forged",
+  "spectrum.subtitles.metal_hit": "Metal Clinks",
+  "spectrum.subtitles.metal_tap": "Metal Rings",
+  "spectrum.subtitles.metallic_unsheathe": "Weapon is unsheathed",
+  "spectrum.subtitles.discharge": "Electricity discharges",
 
   "spectrum.subtitles.entity.kindling.shoot": "Kindling shoots",
   "spectrum.subtitles.entity.kindling.ambient": "Kindling bawls",

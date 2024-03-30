@@ -2,19 +2,19 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import de.dafuqs.spectrum.api.energy.InkCost;
 import de.dafuqs.spectrum.api.energy.color.InkColors;
-import de.dafuqs.spectrum.api.item.Preenchanted;
-import de.dafuqs.spectrum.api.item.SlotReservingItem;
-import de.dafuqs.spectrum.api.item.SoundProvider;
-import de.dafuqs.spectrum.api.item.SplittableItem;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
 import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DraconicTwinswordEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -43,8 +43,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
+public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedEnchantable, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 
+    private static final InkCost THROW_COST = new InkCost(InkColors.YELLOW, 20);
     public static final float MAX_CHARGE_TIME = 60;
     private final Multimap<EntityAttribute, EntityAttributeModifier> phantomModifiers;
 
@@ -105,6 +106,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 
         twinsword.updatePosition(user.getX() + f * 1.334, user.getEyeY() - 0.2, user.getZ() + h * 1.334);
         twinsword.setVelocity(0, strength, 0);
+        twinsword.setMaxPierce(EnchantmentHelper.getLevel(Enchantments.PIERCING, stack));
         twinsword.velocityDirty = true;
         twinsword.velocityModified = true;
         twinsword.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
@@ -147,6 +149,11 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
                 nbt.remove("cooldown");
             }
         }
+    }
+
+    @Override
+    public boolean acceptsEnchantment(Enchantment enchantment) {
+        return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
     }
 
     @Override

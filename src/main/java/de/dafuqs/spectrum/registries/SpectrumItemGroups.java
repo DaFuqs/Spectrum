@@ -837,7 +837,11 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SLUSH);
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
-		
+
+		entries.add(SpectrumBlocks.ASHEN_BLACKSLAG);
+		entries.add(SpectrumBlocks.ASH);
+		entries.add(SpectrumBlocks.ASH_PILE);
+
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);
 		entries.add(SpectrumBlocks.PYRITE_PILE);
@@ -849,7 +853,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.PYRITE_PANNELING);
 		entries.add(SpectrumBlocks.PYRITE_VENT);
 		entries.add(SpectrumBlocks.PYRITE_RIPPER);
-		
+
 		entries.add(SpectrumBlocks.DRAGONBONE);
 		entries.add(SpectrumBlocks.CRACKED_DRAGONBONE);
 		entries.add(SpectrumBlocks.SAWBLADE_GRASS);

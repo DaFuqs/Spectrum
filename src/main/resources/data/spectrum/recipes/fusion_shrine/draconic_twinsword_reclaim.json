@@ -38,5 +38,6 @@
     "visual_explosions_on_shrine",
     "nothing"
   ],
-  "finish_crafting_effect": "legendary_tool_craft"
+  "finish_crafting_effect": "legendary_tool_craft",
+  "description": "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword_reclaim"
 }

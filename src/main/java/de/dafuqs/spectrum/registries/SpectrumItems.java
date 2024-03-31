@@ -256,7 +256,9 @@ public class SpectrumItems {
 	public static final Item REFINED_BLOODSTONE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
 	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
 	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
-	
+
+	public static final Item VARIA_OPAL = new Item(IS.of());
+
 	public static final Item QUITOXIC_POWDER = new CloakedItem(IS.of(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final Item STORM_STONE = new StormStoneItem(IS.of(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final Item MERMAIDS_GEM = new MermaidsGemItem(SpectrumBlocks.MERMAIDS_BRUSH, IS.of(16));
@@ -632,6 +634,8 @@ public class SpectrumItems {
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
+
+		register("varia_opal", VARIA_OPAL, DyeColor.BLUE);
 		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);

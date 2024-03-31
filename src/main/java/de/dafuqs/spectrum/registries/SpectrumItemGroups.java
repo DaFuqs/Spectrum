@@ -549,7 +549,8 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.STARDUST);
 		entries.add(SpectrumBlocks.STARDUST_BLOCK);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
-		
+
+		entries.add(SpectrumItems.VARIA_OPAL);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		
 		entries.add(SpectrumItems.WHITE_PIGMENT);
@@ -838,7 +839,6 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
 
-		entries.add(SpectrumBlocks.ASHEN_BLACKSLAG);
 		entries.add(SpectrumBlocks.ASH);
 		entries.add(SpectrumBlocks.ASH_PILE);
 
@@ -859,6 +859,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SAWBLADE_GRASS);
 		entries.add(SpectrumBlocks.OVERGROWN_BLACKSLAG);
 		entries.add(SpectrumBlocks.SHIMMEL);
+		entries.add(SpectrumBlocks.ASHEN_BLACKSLAG);
 		entries.add(SpectrumBlocks.ROTTEN_GROUND);
 		entries.add(SpectrumBlocks.SLATE_NOXSHROOM);
 		entries.add(SpectrumBlocks.SLATE_NOXCAP_BLOCK);
@@ -950,6 +951,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SMALL_PURPLE_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_BLACK_DRAGONJAG);
 		entries.add(SpectrumBlocks.BRISTLE_SPROUTS);
+		entries.add(SpectrumBlocks.VARIA_SPROUT);
 		entries.add(SpectrumBlocks.DOOMBLOOM);
 		entries.add(SpectrumBlocks.SNAPPING_IVY);
 		entries.add(SpectrumBlocks.HUMMINGSTONE);

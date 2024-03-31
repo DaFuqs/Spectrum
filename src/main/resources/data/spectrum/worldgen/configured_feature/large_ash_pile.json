@@ -4,15 +4,15 @@
     "node_spread": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 6,
-        "max_inclusive": 16
+        "min_inclusive": 8,
+        "max_inclusive": 14
       }
     },
     "node_quantity": {
       "type": "minecraft:uniform",
       "value": {
         "min_inclusive": 5,
-        "max_inclusive": 11
+        "max_inclusive": 13
       }
     },
     "cutout_quantity": {
@@ -25,11 +25,11 @@
     "emitter_strength": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 13.0,
-        "max_exclusive": 49.0
+        "min_inclusive": 11.0,
+        "max_exclusive": 40.0
       }
     },
-    "emitter_decay_modifier": 8.0,
-    "emitter_cutout_modifier":  8.0
+    "emitter_decay_modifier": 6.0,
+    "emitter_cutout_modifier":  4.0
   }
 }

@@ -598,6 +598,7 @@ public class SpectrumBlocks {
 	public static final Block ASHEN_BLACKSLAG = new BlackslagBlock(blackslag(BlockSoundGroup.POWDER_SNOW).mapColor(MapColor.WHITE));
 	public static final Block ASH = new AshBlock(ash(BlockSoundGroup.POWDER_SNOW));
 	public static final Block ASH_PILE = new AshPileBlock(ash(BlockSoundGroup.POWDER_SNOW).replaceable().blockVision((state, world, pos) -> state.get(SnowBlock.LAYERS) >= 8).pistonBehavior(PistonBehavior.DESTROY));
+	public static final Block VARIA_SPROUT = new AshFloraBlock(settings(MapColor.WHITE, BlockSoundGroup.NETHER_STEM, 0F).breakInstantly().luminance(state -> 11).offset(OffsetType.XZ).dynamicBounds().noCollision().postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 
 	public static Settings noxshroom(MapColor color) {
 		return settings(color, BlockSoundGroup.FUNGUS, 0.0F).noCollision();
@@ -1644,6 +1645,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
+
+		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -2870,6 +2873,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());

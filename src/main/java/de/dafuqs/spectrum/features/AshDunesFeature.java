@@ -3,13 +3,10 @@ package de.dafuqs.spectrum.features;
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.blocks.dd_deco.AshPileBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.floatprovider.FloatProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
@@ -199,7 +196,7 @@ public class AshDunesFeature extends Feature<AshDunesFeatureConfig> {
     }
 
     private static boolean canPlaceAt(StructureWorldAccess world, BlockPos pos) {
-        return world.isAir(pos) && SpectrumBlocks.ASH_PILE.getDefaultState().canPlaceAt(world, pos);
+        return (world.isAir(pos) || world.getBlockState(pos).isOf(SpectrumBlocks.VARIA_SPROUT)) && SpectrumBlocks.ASH_PILE.getDefaultState().canPlaceAt(world, pos);
     }
 
     private record Emitter(BlockPos.Mutable pos, float strength, boolean cutout) {}

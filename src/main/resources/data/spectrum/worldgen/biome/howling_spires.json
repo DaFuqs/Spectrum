@@ -4,7 +4,7 @@
   "creature_spawn_probability": 0,
   "effects": {
     "sky_color": 0,
-    "fog_color": 924965,
+    "fog_color": 0,
     "water_color": 10085631,
     "water_fog_color": 6993885,
     "grass_color": 3512181,
@@ -49,7 +49,7 @@
       "spectrum:moonstone_geode",
       "spectrum:blackslag_pile",
       "spectrum:large_ash_pile",
-      "spectrum:moderate_ash_pile"
+      "spectrum:small_ash_pile"
     ],
     [],
     [],
@@ -75,8 +75,7 @@
     ],
     [],
     [
-      "minecraft:brown_mushroom_nether",
-      "minecraft:red_mushroom_nether"
+      "spectrum:varia_sprouts"
     ],
     [
       "spectrum:small_ash_pile"

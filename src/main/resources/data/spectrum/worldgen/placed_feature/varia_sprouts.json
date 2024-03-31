@@ -1,19 +1,15 @@
 {
-  "feature": "spectrum:large_ash_pile",
+  "feature": "spectrum:varia_sprouts",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
       "count": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 0,
-          "max_inclusive": 1
+          "min_inclusive": 1,
+          "max_inclusive": 8
         }
       }
-    },
-    {
-      "type": "minecraft:rarity_filter",
-      "chance": 3
     },
     {
       "type": "minecraft:biome"

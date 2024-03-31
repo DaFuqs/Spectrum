@@ -67,9 +67,8 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		if (user instanceof ClientPlayerEntity) {
 			// if the player has never opened the book before
 			// automatically open the introduction page
-			if (hasOpenedGuidebookBefore()) {
-				openGuidebook();
-			} else {
+			openGuidebook();
+			if (!hasOpenedGuidebookBefore()) {
 				openGuidebook(SpectrumCommon.locate("general/intro"), 0);
 			}
 		} else if (user instanceof ServerPlayerEntity serverPlayerEntity) {

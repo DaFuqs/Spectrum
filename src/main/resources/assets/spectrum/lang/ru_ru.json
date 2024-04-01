@@ -88,6 +88,7 @@
   "biome.spectrum.black_langast": "Чёрный Лангаст",
   "biome.spectrum.noxshroom_forest": "Лес Мракодерева",
   "biome.spectrum.razor_edge": "Остриё",
+  "biome.spectrum.howling_spires": "Воющие Пики",
 
   "gui.spectrum.quick_navigation.controls1": "Клавиши Движения для передвижения",
   "gui.spectrum.quick_navigation.controls2": "Бросить/Инвентарь для выбора",
@@ -404,6 +405,8 @@
   "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Защищает звёзды от повреждений",
   "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head": "Универсальный Универсал",
   "spectrum.recipe.fusion_shrine.explanation.no_rgb": "Видел, как ты подглядываешь",
+  "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword": "Обращаться с осторожностью",
+  "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword_reclaim": "Если когда-либо потеряешь свой",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Не пробивается Эндер Драконом и Иссушителем",
 
@@ -514,6 +517,14 @@
   "spectrum.subtitles.incandescent_arm": "Аппарат на взводе",
   "spectrum.subtitles.block.parametric_mining_device.throw": "Добыватель летит",
 
+  "spectrum.subtitles.critical_crunch": "Критический Удар!",
+  "spectrum.subtitles.impact_base": "Интенсивное воздействиеt",
+  "spectrum.subtitles.impaling_hit": "Что-то пронзено",
+  "spectrum.subtitles.legendary_weapon_craft": "Легендарное оружие выковано",
+  "spectrum.subtitles.metal_hit": "Метал Звенит",
+  "spectrum.subtitles.metal_tap": "Метал Звонит",
+  "spectrum.subtitles.metallic_unsheathe": "Оружие обнажено",
+  "spectrum.subtitles.discharge": "Разряды электричества",
   "spectrum.subtitles.entity.kindling.shoot": "Киндлинг стреляет",
   "spectrum.subtitles.entity.kindling.ambient": "Киндлинг ревёт",
   "spectrum.subtitles.entity.kindling.death": "Киндлинг умирает",

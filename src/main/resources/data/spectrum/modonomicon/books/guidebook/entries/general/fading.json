@@ -52,13 +52,13 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Compression",
-      "recipe_1": "spectrum:pedestal/tier1/compacting/vegetal_block",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_block",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Decompression",
-      "recipe_1": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
       "text": ""
     }
   ]

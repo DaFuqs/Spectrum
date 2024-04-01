@@ -1854,12 +1854,4 @@
   "advancements.spectrum.craft_energy_collector.description": "Construa um coletor poderoso o suficiente para coletar energia de geodos",
   "advancements.spectrum.place_energy_collector.title": "Uma nova forma de energia",
   "advancements.spectrum.place_energy_collector.description": "Coloque o coletor no centro do geodo e observe ele funcionar",
-
-  "______unused" : "UNUSED:",
-  "advancements.spectrum.place_bottle_of_failing.title": "Se alimenta... de Obsidiana?",
-  "advancements.spectrum.place_bottle_of_failing.description": "É MUITO mais poderoso que o seu primeiro experimento. Parece destruir tudo que encosta por um tempo. Será que existe alguma coisa resistente o suficiente para aguentar o seu poder destrutivo?",
-  "advancements.spectrum.place_bottle_of_ruin.title": "O que você fez",
-  "advancements.spectrum.place_bottle_of_ruin.description": "Não tem volta... (por agora?)",
-  "advancements.spectrum.craft_spawn_egg.title": "De volta a Vida",
-  "advancements.spectrum.craft_spawn_egg.description": "Use os resultados de seus experimentos para trazer de volta uma criatura que já foi morta"
 }

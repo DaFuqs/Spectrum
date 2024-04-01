@@ -61,10 +61,10 @@ public class EnchantmentRegisteredCondition extends BookCondition {
     }
     
     @Override
-    public List<Text> getTooltip(BookConditionContext context) {
+    public List<Text> getTooltip(PlayerEntity player, BookConditionContext context) {
         if (this.tooltip == null && context instanceof BookConditionEntryContext entryContext) {
             this.tooltip = Text.translatable(TOOLTIP, Text.translatable(entryContext.getBook().getEntry(this.enchantmentID).getName()));
         }
-        return super.getTooltip(context);
+        return super.getTooltip(player, context);
     }
 }

@@ -15,7 +15,7 @@ import java.util.*;
 
 public class EnchantmentRegisteredCondition extends BookCondition {
     
-    protected static final String TOOLTIP = "tooltip." + SpectrumCommon.MOD_ID + ".enchantment_registered";
+    protected static final String TOOLTIP = "book.condition.tooltip." + SpectrumCommon.MOD_ID + ".enchantment_registered";
     
     protected Identifier enchantmentID;
     

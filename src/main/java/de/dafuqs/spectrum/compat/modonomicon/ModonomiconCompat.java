@@ -50,6 +50,7 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     public static final Identifier COLLECTION_PAGE = SpectrumCommon.locate("collection");
     
     public static final Identifier ENCHANTMENT_REGISTERED = SpectrumCommon.locate("enchantment_registered");
+    public static final Identifier RECIPE_LOADED_AND_UNLOCKED = SpectrumCommon.locate("recipe_loaded_and_unlocked");
     
     @Override
     public void register() {
@@ -91,7 +92,8 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     }
     
     public void registerUnlockConditions() {
-        LoaderRegistry.registerConditionLoader(SpectrumCommon.locate("enchantment_registered"), EnchantmentRegisteredCondition::fromJson, EnchantmentRegisteredCondition::fromNetwork);
+        LoaderRegistry.registerConditionLoader(ENCHANTMENT_REGISTERED, EnchantmentRegisteredCondition::fromJson, EnchantmentRegisteredCondition::fromNetwork);
+        LoaderRegistry.registerConditionLoader(RECIPE_LOADED_AND_UNLOCKED, RecipesLoadedAndUnlockedCondition::fromJson, RecipesLoadedAndUnlockedCondition::fromNetwork);
     }
     
     @Override

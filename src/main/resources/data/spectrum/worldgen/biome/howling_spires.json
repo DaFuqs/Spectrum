@@ -1,0 +1,85 @@
+{
+  "temperature": -1.0,
+  "downfall": 0.2,
+  "creature_spawn_probability": 0,
+  "effects": {
+    "sky_color": 0,
+    "fog_color": 0,
+    "water_color": 10085631,
+    "water_fog_color": 6993885,
+    "grass_color": 3512181,
+    "foliage_color": 2521181,
+    "grass_color_modifier": "none",
+    "mood_sound": {
+      "sound": {
+        "sound_id": "spectrum:ambient.dimension_sounds"
+      },
+      "tick_delay": 4000,
+      "block_search_extent": 8,
+      "offset": 2
+    },
+    "music": {
+      "sound": "spectrum:music.deeper_down_theme",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
+  },
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "spectrum:dd_cave"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [
+      "spectrum:dd_downstone_sloped",
+      "spectrum:moonstone_geode",
+      "spectrum:blackslag_pile",
+      "spectrum:large_ash_pile",
+      "spectrum:small_ash_pile"
+    ],
+    [],
+    [],
+    [
+      "spectrum:dd_malachite_ore",
+      "spectrum:dd_shimmerstone_ore",
+      "spectrum:dd_iron_ore",
+      "spectrum:dd_iron_ore_extra",
+      "spectrum:dd_gold_ore",
+      "spectrum:dd_gold_ore_extra",
+      "spectrum:dd_diamond_ore",
+      "spectrum:dd_emerald_ore",
+      "spectrum:dd_slush",
+      "spectrum:dd_tuff",
+      "spectrum:dd_gravel",
+      "spectrum:dd_infested",
+      "spectrum:dd_granite",
+      "spectrum:dd_diorite",
+      "spectrum:dd_andesite",
+      "spectrum:dd_stone"
+    ],
+    [
+    ],
+    [],
+    [
+      "spectrum:varia_sprouts"
+    ],
+    [
+      "spectrum:small_ash_pile"
+    ]
+  ],
+  "has_precipitation": false
+}

@@ -4,15 +4,14 @@ import de.dafuqs.spectrum.api.energy.color.InkColors;
 import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.items.tools.DragonTalonItem;
 import de.dafuqs.spectrum.mixin.accessors.PersistentProjectileEntityAccessor;
 import de.dafuqs.spectrum.mixin.accessors.TridentEntityAccessor;
-import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -24,6 +23,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
@@ -118,12 +120,17 @@ public class DragonTalonEntity extends BidentBaseEntity {
         var difMod = 4F;
         var airborne = !owner.isOnGround();
         var sneaking = owner.isSneaking();
+        var inertia = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INERTIA, getTrackedStack(), owner);
 
         if (sneaking)
             difMod *= 3;
 
         if (airborne)
             difMod /=2;
+
+        if (inertia > 0) {
+            difMod *= inertia * 1.5F + 1;
+        }
 
         var sizeDif = getVolumeDif(target, difMod);
         yoink(target, getOwner().getPos(), 0.25 * sizeDif, 0.175);
@@ -142,8 +149,26 @@ public class DragonTalonEntity extends BidentBaseEntity {
     }
 
     public void recall() {
+        var owner = getOwner();
         if (dataTracker.get(HIT) && !isNoClip()) {
-            yoink(getOwner(), getPos(), 0.125, 0.165);
+            yoink(owner, getPos(), 0.125, 0.165);
+        }
+
+        if (EnchantmentHelper.getLevel(Enchantments.CHANNELING, getTrackedStack()) > 0 && owner != null) {
+            if (!getWorld().isClient()) {
+                var world = (ServerWorld) getWorld();
+                for (int i = 0; i < 10; i++) {
+                    world.spawnParticles(ParticleTypes.GLOW,
+                            getParticleX(1),
+                            getY() + getHeight() * random.nextFloat(),
+                            getParticleZ(1),
+                            1 + random.nextInt(2), 0, random.nextFloat() + 0.25F, 0, 0);
+                }
+
+                world.playSound(null, getPos().x, getPos().y, getPos().z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, SoundCategory.AMBIENT, 1F, 0.6F + random.nextFloat() * 0.2F, 0);
+            }
+            remove(RemovalReason.DISCARDED);
+            return;
         }
 
         getDataTracker().set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) 4);

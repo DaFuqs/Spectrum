@@ -589,7 +589,17 @@ public class SpectrumBlocks {
 	public static final Block SHIMMEL = new BlackslagVegetationBlock(overgrownBlackslag(MapColor.TERRACOTTA_GRAY, BlockSoundGroup.WART_BLOCK));
 	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(overgrownBlackslag(MapColor.DARK_GREEN, BlockSoundGroup.VINE).velocityMultiplier(0.925F));
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(Settings.copy(Blocks.MUD).mapColor(MapColor.PALE_PURPLE).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
-	
+
+	public static final float ASH_STRENGTH = 2F;
+	public static Settings ash(BlockSoundGroup soundGroup) {
+		return settings(MapColor.WHITE, soundGroup, ASH_STRENGTH, ASH_STRENGTH).requiresTool();
+	}
+
+	public static final Block ASHEN_BLACKSLAG = new BlackslagBlock(blackslag(BlockSoundGroup.POWDER_SNOW).mapColor(MapColor.WHITE));
+	public static final Block ASH = new AshBlock(ash(BlockSoundGroup.POWDER_SNOW));
+	public static final Block ASH_PILE = new AshPileBlock(ash(BlockSoundGroup.POWDER_SNOW).replaceable().blockVision((state, world, pos) -> state.get(SnowBlock.LAYERS) >= 8).pistonBehavior(PistonBehavior.DESTROY));
+	public static final Block VARIA_SPROUT = new AshFloraBlock(settings(MapColor.WHITE, BlockSoundGroup.NETHER_STEM, 0F).breakInstantly().luminance(state -> 11).offset(OffsetType.XZ).dynamicBounds().noCollision().postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+
 	public static Settings noxshroom(MapColor color) {
 		return settings(color, BlockSoundGroup.FUNGUS, 0.0F).noCollision();
 	}
@@ -1522,7 +1532,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("overgrown_blackslag", OVERGROWN_BLACKSLAG, settings, DyeColor.LIME);
 		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
 		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
-		
+		registerBlockWithItem("ashen_blackslag", ASHEN_BLACKSLAG, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("ash", ASH, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("ash_pile", ASH_PILE, settings, DyeColor.LIGHT_GRAY);
+
 		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_block", SLATE_NOXCAP_BLOCK, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_stem", SLATE_NOXCAP_STEM, settings, DyeColor.LIME);
@@ -1632,6 +1645,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
+
+		registerBlockWithItem("varia_sprout", VARIA_SPROUT, settings, DyeColor.WHITE);
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -2858,6 +2873,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RESONANT_LILY, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(VARIA_SPROUT, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());

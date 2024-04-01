@@ -56,6 +56,11 @@
       "spectrum:metallic_unsheathe"
     ]
   },
+  "discharge": {
+    "sounds": [
+      "spectrum:discharge"
+    ]
+  },
   "paintbrush_paint": {
     "subtitle": "spectrum.subtitles.paintbrush_paint",
     "sounds": [

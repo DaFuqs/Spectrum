@@ -1,0 +1,116 @@
+{
+	"variants": {
+		"layers=1": [
+			{
+				"model": "spectrum:block/ash_pile_height2"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height2"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height2"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height2"
+			}
+		],
+		"layers=2": [
+			{
+				"model": "spectrum:block/ash_pile_height4"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height4"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height4"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height4"
+			}
+		],
+		"layers=3": [
+			{
+				"model": "spectrum:block/ash_pile_height6"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height6"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height6"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height6"
+			}
+		],
+		"layers=4": [
+			{
+				"model": "spectrum:block/ash_pile_height8"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height8"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height8"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height8"
+			}
+		],
+		"layers=5": [
+			{
+				"model": "spectrum:block/ash_pile_height10"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height10"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height10"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height10"
+			}
+		],
+		"layers=6": [
+			{
+				"model": "spectrum:block/ash_pile_height12"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height12"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height12"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height12"
+			}
+		],
+		"layers=7": [
+			{
+				"model": "spectrum:block/ash_pile_height14"
+			},
+			{
+				"model": "spectrum:block/ash2_pile_height14"
+			},
+			{
+				"model": "spectrum:block/ash3_pile_height14"
+			},
+			{
+				"model": "spectrum:block/ash4_pile_height14"
+			}
+		],
+		"layers=8": [
+			{
+				"model": "spectrum:block/ash"
+			},
+			{
+				"model": "spectrum:block/ash2"
+			},
+			{
+				"model": "spectrum:block/ash3"
+			},
+			{
+				"model": "spectrum:block/ash4"
+			}
+		]
+	}
+}

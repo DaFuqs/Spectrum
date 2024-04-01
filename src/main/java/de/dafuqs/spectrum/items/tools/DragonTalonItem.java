@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DragonTalonEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.SpectrumDamageTypes;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
@@ -215,7 +216,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 
     @Override
     public boolean acceptsEnchantment(Enchantment enchantment) {
-        return enchantment == Enchantments.IMPALING || enchantment == Enchantments.INFINITY;
+        return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
     }
 
     @Override

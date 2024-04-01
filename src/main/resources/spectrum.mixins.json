@@ -91,6 +91,7 @@
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
     "client.AbstractClientEntityMixin",
+    "client.BackgroundRendererMixin",
     "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",

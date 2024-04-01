@@ -1,0 +1,18 @@
+{
+	"variants": {
+		"": [
+			{
+				"model": "spectrum:block/ash"
+			},
+			{
+				"model": "spectrum:block/ash2"
+			},
+			{
+				"model": "spectrum:block/ash3"
+			},
+			{
+				"model": "spectrum:block/ash4"
+			}
+		]
+	}
+}

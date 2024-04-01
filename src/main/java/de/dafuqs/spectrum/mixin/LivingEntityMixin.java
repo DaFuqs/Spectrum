@@ -124,7 +124,7 @@ public abstract class LivingEntityMixin {
 	public void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
 		if (source.isOf(SpectrumDamageTypes.IMPALING)) {
 			this.damageArmor(source, amount * 10);
-			amount = DamageUtil.getDamageLeft(amount, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS), Float.MAX_VALUE);
+			amount = DamageUtil.getDamageLeft(amount, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 1.334F, Float.MAX_VALUE);
 			cir.setReturnValue(amount);
 			cir.cancel();
 		}

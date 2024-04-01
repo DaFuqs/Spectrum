@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:ash_dunes",
+  "config": {
+    "node_spread": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 8,
+        "max_inclusive": 14
+      }
+    },
+    "node_quantity": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 5,
+        "max_inclusive": 13
+      }
+    },
+    "cutout_quantity": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 4,
+        "max_inclusive": 7
+      }
+    },
+    "emitter_strength": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 11.0,
+        "max_exclusive": 40.0
+      }
+    },
+    "emitter_decay_modifier": 6.0,
+    "emitter_cutout_modifier":  4.0
+  }
+}

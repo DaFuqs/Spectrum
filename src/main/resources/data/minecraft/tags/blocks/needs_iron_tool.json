@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:gemstone_ores",
-
-    "spectrum:neolith_block"
+    "#spectrum:gemstone_ores"
   ]
 }

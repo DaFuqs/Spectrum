@@ -50,18 +50,6 @@
       "title": "Stardust",
       "item": "spectrum:stardust",
       "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Compression",
-      "recipe": "spectrum:pedestal/tier1/compacting/stardust_block",
-      "text": ""
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "title": "Decompression",
-      "recipe": "spectrum:pedestal/tier1/compacting/stardust_from_stardust_block",
-      "text": ""
     }
   ]
 }

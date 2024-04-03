@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.models.*;
 import de.dafuqs.spectrum.entity.render.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -110,7 +111,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 				return SpectrumCommon.locate("textures/entity/lizard/lizard_head.png");
 			}
 			case KINDLING -> {
-				return KindlingEntityRenderer.TEXTURE;
+				return KindlingVariant.DEFAULT.defaultTexture();
 			}
 			case ERASER -> {
 				return SpectrumCommon.locate("textures/entity/eraser/eraser_combined.png");

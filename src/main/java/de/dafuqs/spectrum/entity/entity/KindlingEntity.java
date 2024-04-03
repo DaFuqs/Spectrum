@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
@@ -38,7 +39,9 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable {
-	
+
+	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
+
 	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
@@ -113,6 +116,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
+		this.dataTracker.startTracking(VARIANT, KindlingVariant.DEFAULT);
 		this.dataTracker.startTracking(ANGER, 0);
 		this.dataTracker.startTracking(CHILL, 40);
 		this.dataTracker.startTracking(CLIPPED, 0);
@@ -141,7 +145,15 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 		super.onTrackedDataSet(data);
 	}
-	
+
+	public KindlingVariant getKindlingVariant() {
+		return this.dataTracker.get(VARIANT);
+	}
+
+	public void setKindlingVariant(KindlingVariant variant) {
+		this.dataTracker.set(VARIANT, variant);
+	}
+
 	@Override
 	public double getMountedHeightOffset() {
 		return this.getHeight() - (this.isBaby() ? 0.2 : 0.15);
@@ -151,6 +163,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		this.writeAngerToNbt(nbt);
+		nbt.putString("kindling_variant", SpectrumRegistries.KINDLING_VARIANT.getId(this.getKindlingVariant()).toString());
 		nbt.putInt("chillTime", getChillTime());
 		nbt.putBoolean("playing", isPlaying());
 	}
@@ -159,6 +172,10 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.getWorld(), nbt);
+
+		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(Identifier.tryParse(nbt.getString("kindling_variant")));
+		this.setKindlingVariant(variant == null ? KindlingVariant.DEFAULT : variant);
+
 		setChillTime(nbt.getInt("chillTime"));
 		setPlaying(nbt.getBoolean("playing"));
 	}

@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.registry.*;
 import net.minecraft.server.command.*;
 import net.minecraft.text.*;
+import net.minecraft.util.registry.*;
 
 import java.io.*;
 

@@ -70,7 +70,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
+		return this.getDefaultState().with(AXIS, ctx.getPlayerFacing().getAxis());
     }
     
     @Override

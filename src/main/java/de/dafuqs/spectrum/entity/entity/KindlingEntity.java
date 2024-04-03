@@ -22,6 +22,7 @@ import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
@@ -31,6 +32,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -223,7 +225,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			setPlaying(false);
 		}
 
-		thornsFlag = source.isOf(DamageTypes.THORNS);
+		thornsFlag = source instanceof EntityDamageSource entityDamageSource && entityDamageSource.isThorns();
 		
 		return super.damage(source, amount);
 	}
@@ -510,11 +512,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Override
 	public boolean canBreedWith(AnimalEntity other) {
 		return other != this && other instanceof KindlingEntity otherKindling && this.canBreed() && otherKindling.canBreed();
-	}
-
-	@Override
-	public EntityView method_48926() {
-		return this.getWorld();
 	}
 	
 	protected class CoughRevengeGoal extends RevengeGoal {

@@ -209,7 +209,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		BlockState state = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+		BlockState state = this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
 
 		NbtCompound nbt = ctx.getStack().getSubNbt("BlockEntityTag");
 		if (nbt != null) {

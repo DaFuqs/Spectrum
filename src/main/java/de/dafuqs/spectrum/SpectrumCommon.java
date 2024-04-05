@@ -186,9 +186,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumLootPoolModifiers.setup();
 		logInfo("Registering Type Specific Predicates...");
 		SpectrumTypeSpecificPredicates.register();
-		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
-		SpectrumOmniAcceleratorProjectiles.register();
-		SpectrumItemProjectileBehaviors.register();
 		
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
@@ -196,6 +193,12 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Entities...");
 		SpectrumTrackedDataHandlerRegistry.register();
 		SpectrumEntityTypes.register();
+		
+		logInfo("Registering Omni Accelerator Projectiles & Behaviors...");
+		SpectrumOmniAcceleratorProjectiles.register();
+		SpectrumItemProjectileBehaviors.register();
+		
+		SpectrumEntityColorProcessors.register();
 		
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();

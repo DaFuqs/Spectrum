@@ -50,18 +50,19 @@ public class SanityCommand {
 
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register(CommandManager.literal("spectrum_sanity")
-			.requires((source) -> source.hasPermissionLevel(2))
-				.executes((context) -> execute(context.getSource()))
-		);
+				.requires((source) -> source.hasPermissionLevel(2))
+				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID))
+				.then(CommandManager.argument("mod_id", StringArgumentType.word())
+						.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id")))));
 	}
 
-	private static int execute(ServerCommandSource source) {
+	private static int execute(ServerCommandSource source, String modId) {
 		SpectrumCommon.logInfo("##### SANITY CHECK START ######");
 
 		// All blocks that do not have a mineable tag
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				BlockState blockState = entry.getValue().getDefaultState();
 
 				// unbreakable or instabreak blocks do not need to have an entry
@@ -84,7 +85,7 @@ public class SanityCommand {
 		// All blocks without a loot table
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				Block block = entry.getValue();
 				
 				if (block instanceof PlaceableItemBlock) {
@@ -227,7 +228,7 @@ public class SanityCommand {
 		// advancements that dont require parent
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
 			String path = advancement.getId().getPath();
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
+			if (advancement.getId().getNamespace().equals(modId) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
 				Identifier previousAdvancementIdentifier = null;
 				for (String[] requirement : advancement.getRequirements()) {
 					if (requirement.length > 0 && requirement[0].equals("gotten_previous")) {
@@ -315,7 +316,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput();
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0) {
+				if (!enchantments.isEmpty()) {
 					for (Ingredient ingredient : recipe.getIngredients()) {
 						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
 							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
@@ -330,7 +331,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput();
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+				if (!enchantments.isEmpty() && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
 					upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
 				}
 			}
@@ -349,7 +350,7 @@ public class SanityCommand {
 		}
 		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registry.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
-			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
+			if (entry.getKey().getValue().getNamespace().equals(modId) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");
 			}
 		}

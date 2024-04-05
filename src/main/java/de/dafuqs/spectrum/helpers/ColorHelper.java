@@ -1,15 +1,8 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
@@ -56,29 +49,6 @@ public class ColorHelper {
 			}
 		}
 		return Optional.empty();
-	}
-	
-	public static boolean tryColorEntity(PlayerEntity user, Entity entity, DyeColor dyeColor) {
-		if (entity instanceof SheepEntity sheepEntity && sheepEntity.isAlive() && !sheepEntity.isSheared()) {
-			if (sheepEntity.getColor() != dyeColor) {
-				sheepEntity.world.playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				sheepEntity.setColor(dyeColor);
-				return true;
-			}
-		} else if (entity instanceof EggLayingWoolyPigEntity woolyPig && woolyPig.isAlive()) {
-			if (woolyPig.getColor() != dyeColor) {
-				woolyPig.world.playSoundFromEntity(user, woolyPig, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				woolyPig.setColor(dyeColor);
-				return true;
-			}
-		} else if (entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
-			if (shulkerEntity.getColor() != dyeColor) {
-				shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				((ShulkerEntityAccessor) shulkerEntity).invokeSetColor(dyeColor);
-				return true;
-			}
-		}
-		return false;
 	}
 	
 }

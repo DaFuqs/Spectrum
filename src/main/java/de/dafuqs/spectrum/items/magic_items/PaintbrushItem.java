@@ -2,12 +2,10 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
@@ -229,10 +227,15 @@ public class PaintbrushItem extends Item {
 		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
 			if (color.isPresent() && payBlockColorCost(user, color.get())) {
-				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
-				if (colored) {
-					return ActionResult.success(user.world.isClient);
+
+				@Nullable EntityColorProcessor colorProcessor = EntityColorProcessor.get(entity.getType());
+				if (colorProcessor != null) {
+					if (colorProcessor.colorEntity(entity, color.get().getDyeColor())) {
+						entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						return ActionResult.success(world.isClient);
+					}
 				}
+
 			}
 		}
 		return super.useOnEntity(stack, user, entity, hand);

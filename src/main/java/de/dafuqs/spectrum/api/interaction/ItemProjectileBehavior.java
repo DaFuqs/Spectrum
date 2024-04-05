@@ -37,7 +37,7 @@ public interface ItemProjectileBehavior {
 		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().tag(tag).build(), behavior));
 	}
 	
-	static @Nullable ItemProjectileBehavior get(ItemStack stack) {
+	static ItemProjectileBehavior get(ItemStack stack) {
 		for (Pair<ItemPredicate, ItemProjectileBehavior> entry : BEHAVIORS) {
 			if (entry.getLeft().test(stack)) {
 				return entry.getRight();

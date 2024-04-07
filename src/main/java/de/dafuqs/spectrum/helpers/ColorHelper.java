@@ -10,9 +10,16 @@ import org.joml.*;
 
 import java.awt.*;
 import java.lang.Math;
+import java.util.List;
 import java.util.*;
 
 public class ColorHelper {
+	
+	/**
+	 * A list of the first 16 dye colors
+	 * In case a mod extends the DyeColor enum
+	 */
+	public static List<DyeColor> VANILLA_DYE_COLORS = Arrays.stream(DyeColor.values()).filter(dyeColor -> dyeColor.getId() < 16).toList();
 	
 	public static Vector3f getRGBVec(DyeColor dyeColor) {
 		return InkColor.of(dyeColor).getColor();

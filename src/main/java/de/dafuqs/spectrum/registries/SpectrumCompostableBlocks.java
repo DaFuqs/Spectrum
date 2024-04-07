@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.util.*;
 
@@ -56,7 +57,7 @@ public class SpectrumCompostableBlocks {
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXCAP_BLOCK, HIGHER);
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CHESTNUT_NOXCAP_GILLS, HIGHER);
 		
-		for (DyeColor dyeColor : DyeColor.values()) {
+		for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 			CompostingChanceRegistry.INSTANCE.add(ColoredSaplingBlock.byColor(dyeColor), LOW);
 			CompostingChanceRegistry.INSTANCE.add(ColoredLeavesBlock.byColor(dyeColor), LOW);
 		}

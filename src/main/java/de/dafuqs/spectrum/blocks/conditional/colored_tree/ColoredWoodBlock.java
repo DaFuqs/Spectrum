@@ -43,5 +43,9 @@ public class ColoredWoodBlock extends PillarBlock implements RevelationAware, Co
 	public static ColoredWoodBlock byColor(DyeColor color) {
 		return WOOD.get(color);
 	}
+
+	public static Collection<ColoredWoodBlock> all() {
+		return WOOD.values();
+	}
 	
 }

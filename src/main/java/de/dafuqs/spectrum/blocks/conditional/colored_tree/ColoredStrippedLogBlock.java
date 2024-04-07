@@ -48,5 +48,9 @@ public class ColoredStrippedLogBlock extends PillarBlock implements RevelationAw
 	public static ColoredStrippedLogBlock byColor(DyeColor color) {
 		return LOGS.get(color);
 	}
+
+	public static Collection<ColoredStrippedLogBlock> all() {
+		return LOGS.values();
+	}
 	
 }

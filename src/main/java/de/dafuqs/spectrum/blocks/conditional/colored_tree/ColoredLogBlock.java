@@ -48,5 +48,9 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware, Col
 	public static ColoredLogBlock byColor(DyeColor color) {
 		return LOGS.get(color);
 	}
+
+	public static Collection<ColoredLogBlock> all() {
+		return LOGS.values();
+	}
 	
 }

@@ -48,5 +48,9 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	public static ColoredSaplingBlock byColor(DyeColor color) {
 		return SAPLINGS.get(color);
 	}
+
+	public static Collection<ColoredSaplingBlock> all() {
+		return SAPLINGS.values();
+	}
 	
 }

@@ -43,5 +43,9 @@ public class ColoredStrippedWoodBlock extends PillarBlock implements RevelationA
 	public static ColoredStrippedWoodBlock byColor(DyeColor color) {
 		return WOOD.get(color);
 	}
+
+	public static Collection<ColoredStrippedWoodBlock> all() {
+		return WOOD.values();
+	}
 	
 }

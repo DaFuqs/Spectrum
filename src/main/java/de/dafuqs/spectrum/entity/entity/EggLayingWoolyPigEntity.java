@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
@@ -30,6 +30,7 @@ import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
@@ -39,7 +40,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	private static final int MAX_GRASS_TIMER = 40;
 	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	private static final Map<DyeColor, float[]> COLORS = Maps.<DyeColor, float[]>newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
+	private static final Map<DyeColor, float[]> COLORS = new EnumMap<>(ColorHelper.VANILLA_DYE_COLORS.stream().collect(Collectors.toMap(Function.identity(), EggLayingWoolyPigEntity::getDyedColor)));
 	private static final Identifier SHEARING_LOOT_TABLE_ID = SpectrumCommon.locate("entities/egg_laying_wooly_pig_shearing");
 	
 	private int eatGrassTimer;
@@ -54,7 +55,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack handStack = player.getStackInHand(hand);
-		
+
 		if (handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getColor()) {
 			world.playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			if (!world.isClient) {

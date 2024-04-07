@@ -39,7 +39,7 @@ public class BackgroundRendererMixin {
                 adjustedTicks = SpectrumClient.spireTicks - tickDelta;
             }
 
-            fogPoint = MathHelper.clampedLerp(fogPoint, -32.0F, adjustedTicks / 60F);
+            fogPoint = MathHelper.clampedLerp(fogPoint, -fogData.fogEnd, adjustedTicks / 60F);
             fogData.fogStart = fogPoint;
         }
     }

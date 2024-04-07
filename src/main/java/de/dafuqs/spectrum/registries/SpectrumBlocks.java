@@ -591,14 +591,20 @@ public class SpectrumBlocks {
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(Settings.copy(Blocks.MUD).mapColor(MapColor.PALE_PURPLE).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 
 	public static final float ASH_STRENGTH = 2F;
+	public static final float OPALINE_STRENGTH = 15F;
 	public static Settings ash(BlockSoundGroup soundGroup) {
 		return settings(MapColor.WHITE, soundGroup, ASH_STRENGTH, ASH_STRENGTH).requiresTool();
+	}
+
+	public static Settings opal(BlockSoundGroup soundGroup) {
+		return settings(MapColor.LIGHT_BLUE, soundGroup, OPALINE_STRENGTH, OPALINE_STRENGTH / 2F);
 	}
 
 	public static final Block ASHEN_BLACKSLAG = new BlackslagBlock(blackslag(BlockSoundGroup.POWDER_SNOW).mapColor(MapColor.WHITE));
 	public static final Block ASH = new AshBlock(ash(BlockSoundGroup.POWDER_SNOW));
 	public static final Block ASH_PILE = new AshPileBlock(ash(BlockSoundGroup.POWDER_SNOW).replaceable().blockVision((state, world, pos) -> state.get(SnowBlock.LAYERS) >= 8).pistonBehavior(PistonBehavior.DESTROY));
 	public static final Block VARIA_SPROUT = new AshFloraBlock(settings(MapColor.WHITE, BlockSoundGroup.NETHER_STEM, 0F).breakInstantly().luminance(state -> 11).offset(OffsetType.XZ).dynamicBounds().noCollision().postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block OPAL_SPIRE = new OpalSpireBlock(opal(BlockSoundGroup.AMETHYST_BLOCK).luminance(state -> 13).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 
 	public static Settings noxshroom(MapColor color) {
 		return settings(color, BlockSoundGroup.FUNGUS, 0.0F).noCollision();
@@ -1535,6 +1541,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ashen_blackslag", ASHEN_BLACKSLAG, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("ash", ASH, settings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("ash_pile", ASH_PILE, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("opal_spire", OPAL_SPIRE, settings, DyeColor.BLUE);
 
 		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_block", SLATE_NOXCAP_BLOCK, settings, DyeColor.LIME);

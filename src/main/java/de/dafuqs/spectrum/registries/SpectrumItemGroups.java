@@ -841,6 +841,7 @@ public class SpectrumItemGroups {
 
 		entries.add(SpectrumBlocks.ASH);
 		entries.add(SpectrumBlocks.ASH_PILE);
+		entries.add(SpectrumBlocks.OPAL_SPIRE);
 
 		entries.add(SpectrumItems.PYRITE_CHUNK);
 		entries.add(SpectrumBlocks.PYRITE);

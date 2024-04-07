@@ -17,7 +17,11 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
-	
+
+	@Comment("Graphical options for spectrum's dimension")
+	public boolean WindSim = true;
+	public boolean ReducedParticles = false;
+
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	

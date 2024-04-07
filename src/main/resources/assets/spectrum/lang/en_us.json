@@ -702,6 +702,8 @@
   "text.autoconfig.Spectrum.option.AddItemTooltips": "Add advanced tooltips for Spawners, Signs, Skulk Shriekers and much more",
   "text.autoconfig.Spectrum.option.LogPlacingOfDecay": "Log Placing of Decay",
   "text.autoconfig.Spectrum.option.OmniAcceleratorPvP": "Allow Omni Accelerator PvP",
+  "text.autoconfig.Spectrum.option.WindSim": "Enable Wind Simulation",
+  "text.autoconfig.Spectrum.option.ReducedParticles": "Reduced Environmental Particles",
 
   "block.spectrum.upgrade_speed": "Crafting Accelerator",
   "block.spectrum.upgrade_speed2": "Crafting Accelerator T2",

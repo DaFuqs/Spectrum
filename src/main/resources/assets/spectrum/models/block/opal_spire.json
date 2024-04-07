@@ -1,0 +1,7 @@
+{
+  "parent": "spectrum:templates/base_pylon_body",
+  "textures": {
+    "side": "spectrum:block/opal_spire_side",
+    "end": "spectrum:block/opal_spire_top"
+  }
+}

@@ -11,13 +11,26 @@ import org.spongepowered.asm.mixin.injection.*;
 
 public class LightmapTextureManagerMixin {
 
-	@ModifyReturnValue(method = "getDarkness(Lnet/minecraft/entity/LivingEntity;FF)F", at = @At("RETURN"))
-	private static float spectrum$getDarkness(float original) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (SpectrumDimensions.DIMENSION_KEY.equals(client.player.getWorld().getRegistryKey())) {
+	@ModifyReturnValue(method = "getDarkness", at = @At("RETURN"))
+	private float spectrum$getDarkness(float original) {
+		if (isInDim()) {
 			return Math.max(0.12F, original);
 		}
 		return original;
+	}
+
+	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
+	private float spectrum$decreaseGamma(float original) {
+		if (isInDim()) {
+			return original - 0.5F;
+		}
+		return original;
+	}
+
+	@Unique
+	private static boolean isInDim() {
+		MinecraftClient client = MinecraftClient.getInstance();
+		return SpectrumDimensions.DIMENSION_KEY.equals(client.player.getWorld().getRegistryKey());
 	}
 
 }

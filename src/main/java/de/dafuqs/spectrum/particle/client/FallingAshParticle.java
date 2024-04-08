@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.registries.SpectrumBiomes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -19,8 +19,10 @@ public class FallingAshParticle extends SpriteBillboardParticle {
     private static final float GRAVITY = 0.15F;
     private static double targetVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
     private static Direction.Axis primaryAxis = Direction.Axis.X;
+    private static Direction.Axis lastAxis = primaryAxis;
     private final float rotateFactor, lightness;
-    private int slowTicks;
+    private final int simInterval = SpectrumCommon.CONFIG.WindSimInterval, simOffset;
+    private int slowTicks, axisTicks = 0;
 
     protected FallingAshParticle(ClientWorld clientWorld, double x, double y, double z,  double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
         super(clientWorld, x, y, z);
@@ -37,24 +39,39 @@ public class FallingAshParticle extends SpriteBillboardParticle {
         this.rotateFactor = ((float) Math.random() - 0.5F) * 0.002F;
         this.scale = (float) (0.06 + (random.nextDouble() / 14));
         this.lightness = random.nextFloat() * 0.6F + 0.4F;
+        this.simOffset = random.nextInt(simInterval);
         setAlpha(0F);
     }
 
     @Override
     public void tick() {
         this.prevAngle = this.angle;
-        var water = this.world.getFluidState(new BlockPos((int) this.x, (int) this.y, (int) this.z)).isIn(FluidTags.WATER);
+        var water = !this.world.getFluidState(new BlockPos((int) this.x, (int) this.y, (int) this.z)).isEmpty();
         var time = world.getTime() % 432000;
+
+        if ((age + 2 < maxAge)
+                && world.getBiome(new BlockPos((int) x, (int) y, (int) z)).getKey().map(key -> !key.equals(SpectrumBiomes.HOWLING_SPIRES)).orElse(true)) {
+            age++;
+        }
+
+        if (lastAxis != primaryAxis) {
+            lastAxis = primaryAxis;
+            axisTicks = 0;
+        }
 
         switch(primaryAxis) {
             case X -> {
-                velocityX = adjustVelocity(velocityX, water);
-                velocityZ = getNonPrimaryVelocity(time);
+                velocityX = MathHelper.clampedLerp(velocityX, adjustVelocity(velocityX, water), axisTicks / 20F);
+                velocityZ = MathHelper.clampedLerp(velocityZ, getNonPrimaryVelocity(time), axisTicks / 20F);
             }
             case Z -> {
-                velocityZ = adjustVelocity(velocityZ, water);
-                velocityX = getNonPrimaryVelocity(time);
+                velocityZ = MathHelper.clampedLerp(velocityZ, adjustVelocity(velocityZ, water), axisTicks / 20F);
+                velocityX = MathHelper.clampedLerp(velocityX, getNonPrimaryVelocity(time), axisTicks / 20F);
             }
+        }
+
+        if (axisTicks < 20) {
+            axisTicks++;
         }
 
         if (Math.abs(velocityX) + Math.abs(velocityZ) < 0.1) {
@@ -68,12 +85,14 @@ public class FallingAshParticle extends SpriteBillboardParticle {
         if (!this.onGround && !water) {
             this.angle += (float) (Math.PI * Math.sin(this.rotateFactor * this.age) / 2);
 
-            if(SpectrumCommon.CONFIG.WindSim) {
+            if(verifySimConfig(time)) {
                 adjustGravityForLift();
             }
         }
         else if (water) {
             this.velocityY /= 4;
+            this.velocityX /= 4;
+            this.velocityZ /= 4;
             this.gravityStrength = 0;
         } else {
             this.gravityStrength = GRAVITY;
@@ -82,10 +101,14 @@ public class FallingAshParticle extends SpriteBillboardParticle {
         adjustAlpha(water);
 
 
-        if (SpectrumCommon.CONFIG.WindSim && Math.abs(velocityX) + Math.abs(velocityZ) > 0.125) {
+        if (verifySimConfig(time) && Math.abs(velocityX) + Math.abs(velocityZ) > 0.125) {
             applyAirflowTransforms();
         }
         super.tick();
+    }
+
+    private boolean verifySimConfig(long time) {
+        return SpectrumCommon.CONFIG.WindSim && (time + simOffset) % simInterval == 0;
     }
 
     private void adjustGravityForLift() {
@@ -132,7 +155,7 @@ public class FallingAshParticle extends SpriteBillboardParticle {
         var movementNormal = direction.crossProduct(VERTICAL);
 
         for (int i = 0; i <= 6; i++) {
-            var deflection = -0.0125F * (1 - (i / 24F)) * lightness;
+            var deflection = -0.0125F * (1 - (i / 24F)) * lightness * simInterval;
             var shift = velocity.multiply(i).add(x, y, z);
             var maxDist = 6 - i;
             for (int orthogonal = 1; orthogonal <= maxDist; orthogonal++) {

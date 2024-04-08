@@ -104,7 +104,6 @@ public class PaintbrushItem extends Item {
 	}
 
 	@Override
-	@SuppressWarnings("resource")
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(context.getWorld().isClient);
@@ -226,17 +225,15 @@ public class PaintbrushItem extends Item {
 		World world = user.getWorld();
 		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
-			if (color.isPresent() && payBlockColorCost(user, color.get())) {
 
-				@Nullable EntityColorProcessor colorProcessor = EntityColorProcessor.get(entity.getType());
-				if (colorProcessor != null) {
-					if (colorProcessor.colorEntity(entity, color.get().getDyeColor())) {
-						entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-						return ActionResult.success(world.isClient);
-					}
-				}
+			if (color.isPresent()
+					&& payBlockColorCost(user, color.get())
+					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor())) {
 
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				return ActionResult.success(world.isClient);
 			}
+
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}

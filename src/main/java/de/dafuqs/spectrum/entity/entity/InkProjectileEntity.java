@@ -25,7 +25,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.explosion.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -123,11 +122,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Entity entity = entityHitResult.getEntity();
 
-		@Nullable EntityColorProcessor colorProcessor = EntityColorProcessor.get(entity.getType());
-		if (colorProcessor != null) {
-			if (colorProcessor.colorEntity(entity, getDyeColor())) {
-				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			}
+		if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+			entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 		
 		float velocity = (float) this.getVelocity().length();
@@ -273,11 +269,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 
-			@Nullable EntityColorProcessor colorProcessor = EntityColorProcessor.get(entity.getType());
-			if (colorProcessor != null) {
-				if (colorProcessor.colorEntity(entity, getDyeColor())) {
-					entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				}
+			if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 			
 			if (!entity.isImmuneToExplosion()) {

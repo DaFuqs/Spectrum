@@ -2,21 +2,8 @@ package de.dafuqs.spectrum.api.interaction;
 
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
-
-import java.util.*;
 
 public interface EntityColorProcessor<E extends Entity> {
-
-	Map<EntityType<?>, EntityColorProcessor<?>> PROCESSOR = new HashMap<>();
-
-	static void register(EntityType<?> entityType, EntityColorProcessor<?> processor) {
-		PROCESSOR.put(entityType, processor);
-	}
-
-	static @Nullable EntityColorProcessor<?> get(EntityType<?> entityType) {
-		return PROCESSOR.getOrDefault(entityType, null);
-	}
 
 	/**
 	 * Logic for coloring an entity type in a dyecolor

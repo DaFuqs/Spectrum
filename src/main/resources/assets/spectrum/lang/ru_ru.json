@@ -102,7 +102,7 @@
   "effect.spectrum.density": "Скученность",
   "effect.spectrum.density.desc": "Делает вас тяжелее, предотвращая вас от совершения длинных прыжков, а так же увеличивает урон от падения.",
   "effect.spectrum.swiftness": "Быстрота",
-  "effect.spectrum.swiftness.desc": "Увеличивает скорость атаки."
+  "effect.spectrum.swiftness.desc": "Увеличивает скорость атаки.",
   "effect.spectrum.stiffness": "Оцепенелость",
   "effect.spectrum.stiffness.desc": "Уменьшает скорость атаки.",
   "effect.spectrum.life_drain": "Истощение",
@@ -112,7 +112,7 @@
   "effect.spectrum.divinity": "Божественность",
   "effect.spectrum.divinity.desc": "Дает огромные усиления... большой ценой, если вы умрете.",
   "effect.spectrum.frenzy": "Неистовство",
-  "effect.spectrum.frenzy.desc": "Увеличивает урон, скорость атаки, скорость движения, и сопротивление отталкиванию с каждым убийством. Если за 10 секунд вы не продолжите серию убийств, вы наоборот станете слабее."
+  "effect.spectrum.frenzy.desc": "Увеличивает урон, скорость атаки, скорость движения, и сопротивление отталкиванию с каждым убийством. Если за 10 секунд вы не продолжите серию убийств, вы наоборот станете слабее.",
   "effect.spectrum.lava_gliding": "Скольжение по Лаве",
   "effect.spectrum.lava_gliding.desc": "Увеличивает вашу скорость и видимость в лаве. Не даёт огнестойкость!",
   "effect.spectrum.projectile_rebound": "Рикошет",
@@ -124,7 +124,7 @@
   "effect.spectrum.magic_annulation": "Магическое Аннулирование",
   "effect.spectrum.magic_annulation.desc": "Понижает входящий магический урон на 1 за каждый уровень.",
   "effect.spectrum.deadly_poison": "Смертельное Отравление",
-  "effect.spectrum.deadly_poison": "Как отравление, но смертельное.",
+  "effect.spectrum.deadly_poison.desc": "Как отравление, но смертельное.",
   "effect.spectrum.toughness": "Прочность",
   "effect.spectrum.toughness.desc": "Ослабляет входящие атаки.",
   "effect.spectrum.effect_prolonging": "Продление Эффекта",

@@ -116,7 +116,7 @@
   "effect.spectrum.divinity": "Divinity",
   "effect.spectrum.divinity.desc": "Grants massive buffs... at great cost, should you die.",
   "effect.spectrum.frenzy": "Frenzy",
-  "effect.spectrum.frenzy.desc": "Buffs damage, attack speed, movement speed, and knockback resistance with each kill. Not scoring a kill in 10 seconds will debuff you instead."
+  "effect.spectrum.frenzy.desc": "Buffs damage, attack speed, movement speed, and knockback resistance with each kill. Not scoring a kill in 10 seconds will debuff you instead.",
   "effect.spectrum.lava_gliding": "Lava Gliding",
   "effect.spectrum.lava_gliding.desc": "Increases your movement speed and visibility in Lava. Does not provide Fire Resistance, however",
   "effect.spectrum.projectile_rebound": "Projectile Rebound",
@@ -128,7 +128,7 @@
   "effect.spectrum.magic_annulation": "Magic Annulation",
   "effect.spectrum.magic_annulation.desc": "Reduces incoming magic damage by 1 point per level.",
   "effect.spectrum.deadly_poison": "Deadly Poison",
-  "effect.spectrum.deadly_poison": "Like Poison, but lethal.",
+  "effect.spectrum.deadly_poison.desc": "Like Poison, but lethal.",
   "effect.spectrum.toughness": "Toughness",
   "effect.spectrum.toughness.desc": "Weakens incoming powerful attacks.",
   "effect.spectrum.effect_prolonging": "Effect Prolonging",

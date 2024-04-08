@@ -13,6 +13,7 @@ enum BlockType {
     Button
     PressurePlate
     Orientable
+    Beam
 }
 
 Function Generate-BlockFiles {
@@ -101,6 +102,28 @@ Function Generate-BlockFiles {
 		}
 	}
 }
+"@
+        }
+
+                function Get-BlockStateBeam($Name) {
+            Write-Output @"
+{
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/$Name",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/$Name"
+		},
+		"axis=z": {
+			"model": "spectrum:block/$Name",
+			"x": 90
+		}
+	}
+}
+
 "@
         }
 
@@ -775,6 +798,18 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-BlockModelBeam($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/$Name`_top",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+}
+
         function Get-BlockModelLampOn($Name) {
             Write-Output @"
 {
@@ -1155,8 +1190,10 @@ Function Generate-BlockFiles {
             } elseif ($blockType -eq [BlockType]::PressurePlate) {
                 $blockState = Get-BlockStatePressurePlate -Name $_
             } elseif ($blockType -eq [BlockType]::Slab) {
-              $blockState = Get-BlockStateSlab -Name $_
-          }
+                $blockState = Get-BlockStateSlab -Name $_
+            } elseif ($blockType -eq [BlockType]::Beam) {
+                $blockState = Get-BlockStateBeam -Name $_
+            }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
             # BLOCK MODELS
@@ -1201,10 +1238,12 @@ Function Generate-BlockFiles {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlate -Name $textureName) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_down.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlateDown -Name $textureName) | Out-Null
             } elseif ($blockType -eq [BlockType]::Slab) {
-              $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
-              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelSlab -Name $textureName) | Out-Null
-              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
-          }
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelSlab -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Beam) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelBeam -Name $_) | Out-Null
+            }
 
             # ITEM MODEL
             if($blockType -eq [BlockType]::Upgrade) {
@@ -1265,4 +1304,4 @@ Function Generate-BlockFiles {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Orientable)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Beam)

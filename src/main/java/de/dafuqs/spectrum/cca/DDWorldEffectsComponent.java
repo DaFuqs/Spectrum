@@ -1,10 +1,14 @@
 package de.dafuqs.spectrum.cca;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.deeper_down.Season;
+import de.dafuqs.spectrum.deeper_down.weather.WeatherState;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.client.FallingAshParticle;
 import de.dafuqs.spectrum.registries.SpectrumBiomes;
 import de.dafuqs.spectrum.registries.SpectrumDimensions;
+import de.dafuqs.spectrum.registries.SpectrumWeatherStates;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
@@ -25,12 +29,30 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
     private final World world;
     private boolean dirty = false, initialized = false;
 
+    public static final int DAY_LENGTH = 24000;
+    public static final long SEASON_DURATION = DAY_LENGTH * 60;
+    public static final long SEASON_PERIOD_INTERVAL = DAY_LENGTH * 20;
+    private static Season season = Season.FLOW;
+    private static long seasonProgress = 0;
+
+
     //Ash Effects - changes on average every half hour
-    private static final double BASE_ASH_VELOCITY = 0.25;
     private static final long ASH_UPDATE_INTERVAL = 1600;
+    private static final double BASE_ASH_VELOCITY = 0.25;
     private static double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
     private static int ashSwitchTicks = 50, ashSpawns;
     private static Direction.Axis ashAxis = Direction.Axis.X;
+
+    /*
+    Weather Data - It takes a full lunar cycle
+        -(8 in-game days / 2.3 hours) -
+    to fully fill the aquifers at base flow rate.
+    */
+    private static final long WEATHER_UPDATE_INTERVAL = 600;
+    private static final float AQUIFER_CAP = 1000;
+    private static final float BASE_AQUIFER_FLOW = AQUIFER_CAP / (DAY_LENGTH * 8F);
+    private static float aquiferFillPercent = 0F, aquiferSaturation = 50F;
+    private static WeatherState weatherState = SpectrumWeatherStates.PLAIN_WEATHER;
 
     public DDWorldEffectsComponent(World world) {
         this.world = world;
@@ -45,7 +67,22 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         var time = world.getTime();
         var random = world.getRandom();
 
+        if (seasonProgress >= SEASON_DURATION) {
+            seasonProgress = 0;
+            season = season.getNextSeason();
+        }
+        else {
+            seasonProgress++;
+        }
+
         updateAshEffects(time, random);
+        updateAquiferFill();
+
+        if (time % WEATHER_UPDATE_INTERVAL == 0) {
+            /**
+             * TODO: Draw the rest of the fucking owl
+             */
+        }
 
 
         if (dirty) {
@@ -55,6 +92,31 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
 
         if (!initialized)
             initialized = true;
+    }
+
+    private void updateAquiferFill() {
+        var moonPhase = world.getMoonPhase();
+        var timeOfDay = TimeHelper.getTimeOfDay(world);
+
+        var moonMod = 0.75F + (1 - moonPhase / 7F);
+        var surfaceRainMod = (world.isRaining() ? 1.5F : 1) * (world.isThundering() ? 2 : 1);
+        float dayTimeMod;
+
+        if (timeOfDay.isNight()) {
+            dayTimeMod = 1.25F;
+        }
+        else if (timeOfDay == TimeHelper.TimeOfDay.NOON) {
+            dayTimeMod = 0.667F;
+        }
+        else if (timeOfDay == TimeHelper.TimeOfDay.DAY) {
+            dayTimeMod = 0.9F;
+        }
+        else {
+            dayTimeMod = 1.05F;
+        }
+
+        var flowMod = (dayTimeMod * surfaceRainMod + moonMod) * season.aquiferMod * season.getPeriod(seasonProgress).effectMod;
+        aquiferFillPercent = Math.min(aquiferFillPercent + BASE_AQUIFER_FLOW * flowMod, AQUIFER_CAP);
     }
 
     private void updateAshEffects(long time, Random random) {
@@ -95,6 +157,8 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
 
         var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
         spawnHowlingSpiresAsh(maxAsh, random, clientWorld);
+
+
 
         if (!world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
             return;
@@ -155,6 +219,9 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         ashScaleC = tag.getDouble("ashScaleC");
         ashSpawns = tag.getInt("ashSpawns");
         ashAxis = Direction.Axis.fromName(tag.getString("ashAxis"));
+        if (tag.contains("weatherState")) {
+            weatherState = SpectrumWeatherStates.fromTag(tag);
+        }
     }
 
     @Override
@@ -165,6 +232,7 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         tag.putDouble("ashScaleC", ashScaleC);
         tag.putInt("ashSpawns", ashSpawns);
         tag.putString("ashAxis", ashAxis.getName());
+        weatherState.save(tag);
     }
 
     @Override

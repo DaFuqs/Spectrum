@@ -9,7 +9,7 @@ import net.minecraft.structure.pool.*;
 public class SpectrumStructurePoolElementTypes {
 	
 	/**
-	 * Pool element that replaces the jigsaw with a single block
+	 * WeightedPool element that replaces the jigsaw with a single block
 	 * that block supports state tags and block entity nbt
 	 */
 	public static final StructurePoolElementType<SingleBlockPoolElement> SINGLE_BLOCK_ELEMENT = registerType("single_block_element", SingleBlockPoolElement.CODEC);

@@ -21,6 +21,7 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:lategame/remember_kindling",
       "title": "A small Surprise",
       "text": "$(italic)呃，侏罗纪公园计划可能失败了，也许把他叫粉红毛兔兔公园更好$()$(br2)结果肯定不尽如人意...但是...它确实很“暴”。通常你会说失败就失败了，但是结果已经出来了，你还有什么好抱怨的呢？"
     },

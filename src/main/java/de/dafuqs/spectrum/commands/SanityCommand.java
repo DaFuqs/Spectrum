@@ -153,6 +153,19 @@ public class SanityCommand {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
+		
+		// Items / Blocks without a translation
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			if (!Language.getInstance().hasTranslation(item.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Item Lang] Missing translation string " + item.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<Block>, Block> block : Registries.BLOCK.getEntrySet()) {
+			if (!Language.getInstance().hasTranslation(block.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Block Lang] Missing translation string " + block.getValue().getTranslationKey());
+			}
+		}
+		
 		// recipe groups without localisation
 		Set<String> recipeGroups = new HashSet<>();
 		recipeManager.keys().forEach(identifier -> {
@@ -173,7 +186,7 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Recipe Group Lang] Recipe group " + recipeGroup + " is not localized.");
 			}
 		}
-
+		
 		// Impossible to unlock recipes
 		testRecipeUnlocks(SpectrumRecipeTypes.PEDESTAL, "Pedestal", recipeManager, advancementLoader);
 		testRecipeUnlocks(SpectrumRecipeTypes.ANVIL_CRUSHING, "Anvil Crushing", recipeManager, advancementLoader);

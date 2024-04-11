@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.boom;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -88,7 +87,7 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 	public boolean shouldDropItemsOnExplosion(Explosion explosion) {
 		return false;
 	}
-	
+
 	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		super.onSteppedOn(world, pos, state, entity);
@@ -122,16 +121,17 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 			explode(world, pos);
 		}
 	}
-	
-	// does not run in creative
-	// => creative players can easily break it without causing an explosion
+
 	@Override
-	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		if (state.get(WATERLOGGED) || EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
-			super.afterBreak(world, player, pos, state, blockEntity, stack);
-		} else {
+	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!state.get(WATERLOGGED)
+				&& !player.isCreative()
+				&& EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, player.getStackInHand(player.getActiveHand())) == 0) {
+
 			explode(world, pos);
 		}
+
+		super.onBreak(world, pos, state, player);
 	}
 	
 	protected static void explode(World world, BlockPos pos) {
@@ -145,7 +145,7 @@ public class IncandescentAmalgamBlock extends PlaceableItemBlock implements Wate
 			}
 		}
 	}
-	
+
 	public static void explode(World world, BlockPos pos, PlayerEntity owner, ItemStack stack) {
 		float power = 8.0F;
 		if (stack.getItem() instanceof IncandescentAmalgamItem item) {

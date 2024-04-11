@@ -12,7 +12,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
-      "text": "By mixing $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$() (almost) any colour can be created."
+      "text": "By mixing $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$() (almost) any color can be created."
     },
     {
       "type": "patchouli:text",

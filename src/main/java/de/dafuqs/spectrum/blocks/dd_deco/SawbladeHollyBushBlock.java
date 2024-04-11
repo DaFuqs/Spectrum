@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -53,6 +54,24 @@ public class SawbladeHollyBushBlock extends PlantBlock implements Fertilizable {
             BlockState blockState = state.with(AGE, i + 1);
             world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
+        }
+    }
+    
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (state.get(AGE) == 0) {
+            return;
+        }
+        
+        if (entity instanceof LivingEntity && !entity.getType().isIn(SpectrumEntityTypeTags.POKING_DAMAGE_IMMUNE)) {
+            entity.slowMovement(state, new Vec3d(0.8, 0.75, 0.8));
+            if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
+                double difX = Math.abs(entity.getX() - entity.lastRenderX);
+                double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
+                if (difX >= 0.003 || difZ >= 0.003) {
+                    entity.damage(SpectrumDamageTypes.bristeSprouts(world), 1.0F);
+                }
+            }
         }
     }
     

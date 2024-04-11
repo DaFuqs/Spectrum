@@ -21,6 +21,7 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:lategame/remember_kindling",
       "title": "A small Surprise",
       "text": "$(italic)So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?$()$(br2)The result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?"
     },

@@ -1,7 +1,7 @@
 {
   "name": "龙骨",
   "icon": "spectrum:dragonbone",
-  "advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "advancement": "spectrum:hidden/collect_dragonbone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
@@ -32,7 +32,6 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "anchor": "dragonbone_chunks",
       "item": "spectrum:dragonbone_chunk",
       "text": "也许力大砖飞的用$(thing)爆炸$()似乎可以突破保护光环, 让你最终能够挖掘它。$(br)掉落的碎片仍然保留着这种古老而神奇的光环。"
@@ -40,18 +39,15 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "尘归尘",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash",
       "text": "$(l:magical_blocks/cinderhearth)煤渣炉$()是唯一一种高热到能把龙骨变为骨灰的器材"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
     {
@@ -77,7 +73,6 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "熔炼如初",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash_unsmelting",
       "text": "大多数可以通过$(l:magical_blocks/cinderhearth)Cinderhearth$()恢复原状."
     }

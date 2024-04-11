@@ -183,7 +183,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:bone_ash",
       "anchor": "bone_ash",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "advancement": "spectrum:hidden/collect_dragonbone",
       "text": "$(li)10% chance to add the main effect of the potion that was brewed before with +100% potency and duration"
     }
   ]

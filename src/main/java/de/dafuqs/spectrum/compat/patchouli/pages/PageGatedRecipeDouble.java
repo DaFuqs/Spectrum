@@ -27,16 +27,16 @@ public abstract class PageGatedRecipeDouble<T extends GatedRecipe> extends PageG
 	
 	@Override
 	public void build(World world, BookEntry entry, BookContentsBuilder builder, int pageNum) {
-		if (recipe == null && recipe2 != null) {
-			recipe = recipe2;
-			recipe2 = null;
-		}
-		
 		super.build(world, entry, builder, pageNum);
 		
 		recipe2 = loadRecipe(builder, entry, recipe2Id);
 		if (recipe2 != null) {
 			GatedPatchouliPage.runSanityCheck(entry.getId(), pageNum, this.advancement, recipe2);
+		}
+		
+		if (recipe == null && recipe2 != null) {
+			recipe = recipe2;
+			recipe2 = null;
 		}
 	}
 	

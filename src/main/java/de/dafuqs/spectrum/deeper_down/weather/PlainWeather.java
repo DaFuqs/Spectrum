@@ -7,29 +7,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
+import java.util.Collections;
+import java.util.List;
+
 public class PlainWeather extends NoParticleState {
 
     public static final PlainWeather INSTANCE = new PlainWeather();
 
     private PlainWeather() {
-        super(SpectrumCommon.locate("plain_weather"),false, false);
+        super(SpectrumCommon.locate("plain_weather"));
     }
 
     @Override
-    void applyEnvironmentalEffects(Entity target, RegistryKey<Biome> biome) {}
-
-    @Override
-    WeightedPool<? extends WeatherState> getTransitionOptions() {
-        return null;
-    }
-
-    @Override
-    boolean canReturnToBaseState(Season season, Season.Period period) {
-        return true;
-    }
-
-    @Override
-    boolean hasAltStates() {
-        return false;
+    public float getThirst() {
+        return 0F;
     }
 }

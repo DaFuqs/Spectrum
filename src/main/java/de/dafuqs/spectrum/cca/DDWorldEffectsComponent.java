@@ -23,17 +23,20 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSyncedComponent {
+import java.util.Date;
+
+public final class DDWorldEffectsComponent implements CommonTickingComponent, AutoSyncedComponent {
 
     public static final ComponentKey<DDWorldEffectsComponent> DD_WORLD_EFFECTS_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("dd_world_effects"), DDWorldEffectsComponent.class);
     private final World world;
     private boolean dirty = false, initialized = false;
 
     public static final int DAY_LENGTH = 24000;
-    public static final long SEASON_DURATION = DAY_LENGTH * 60;
-    public static final long SEASON_PERIOD_INTERVAL = DAY_LENGTH * 20;
-    private static Season season = Season.FLOW;
-    private static long seasonProgress = 0;
+    public static final long REAL_DAY_LENGTH = 86400 * 20;
+    public static final int RESET_PERIOD = DAY_LENGTH * 72;
+    public static final long SEASON_DURATION = REAL_DAY_LENGTH * 13;
+    public static final long SEASON_PERIOD_INTERVAL = SEASON_DURATION / 3;
+    private static long seasonCycleStart = new Date().getTime();
 
 
     //Ash Effects - changes on average every half hour
@@ -49,10 +52,11 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
     to fully fill the aquifers at base flow rate.
     */
     private static final long WEATHER_UPDATE_INTERVAL = 600;
-    private static final float AQUIFER_CAP = 1000;
+    private static final float AQUIFER_CAP = 10000;
     private static final float BASE_AQUIFER_FLOW = AQUIFER_CAP / (DAY_LENGTH * 8F);
-    private static float aquiferFillPercent = 0F, aquiferSaturation = 50F;
+    private static float aquiferFill = 0F, aquiferSaturation = 0F;
     private static WeatherState weatherState = SpectrumWeatherStates.PLAIN_WEATHER;
+    private static long weatherTicks = 0;
 
     public DDWorldEffectsComponent(World world) {
         this.world = world;
@@ -65,25 +69,18 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         }
 
         var time = world.getTime();
+        var seasonTime = getSeasonalTime();
         var random = world.getRandom();
 
-        if (seasonProgress >= SEASON_DURATION) {
-            seasonProgress = 0;
-            season = season.getNextSeason();
-        }
-        else {
-            seasonProgress++;
-        }
+        var season = getSeasonByDate(seasonTime);
+        var period = getPeriodByDate(seasonTime);
+
+        weatherTicks++;
 
         updateAshEffects(time, random);
-        updateAquiferFill();
-
-        if (time % WEATHER_UPDATE_INTERVAL == 0) {
-            /**
-             * TODO: Draw the rest of the fucking owl
-             */
-        }
-
+        updateAquiferSaturation((float) time);
+        updateAquiferFill(season, period);
+        updateWeatherTransitions(season, period, time, random);
 
         if (dirty) {
             dirty = false;
@@ -94,7 +91,29 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
             initialized = true;
     }
 
-    private void updateAquiferFill() {
+    private void updateWeatherTransitions(Season season, Season.Period period, long time, Random random) {
+        if (time % WEATHER_UPDATE_INTERVAL == 0) {
+            //TODO: rewrite.
+        }
+    }
+
+    private void updateAquiferSaturation(float time) {
+        time = time % RESET_PERIOD;
+        var period = time / SEASON_PERIOD_INTERVAL;
+        var floor = (float) Math.sin(time / (SEASON_DURATION * 4)) * 0.25F + 0.75F;
+        var firstOctave = (float) Math.sin(period) / 2;
+        var secondOctave = (float) Math.cos(period / 2) / 4;
+        var thirdOctave = (float) Math.sin(period / 4) / 8;
+        var fourthOctave = (float) Math.cos(period / 6) / 16;
+        var fifthOctave = (float) Math.sin(period / 8) / 32;
+        var sixthOctave = (float) Math.cos(period / 10) / 64;
+        var seventhOctave = (float) Math.sin(period / 12) / 128;
+        var eightOctave = (float) Math.cos(period / 14) / 256;
+        var flux = (float) Math.abs(Math.sin(period) * Math.cos(period / 23));
+        aquiferSaturation = (floor * (firstOctave + secondOctave + thirdOctave + fourthOctave + fifthOctave + sixthOctave + seventhOctave + eightOctave) * flux) * 0.5F + 0.5F;
+    }
+
+    private void updateAquiferFill(Season season, Season.Period period) {
         var moonPhase = world.getMoonPhase();
         var timeOfDay = TimeHelper.getTimeOfDay(world);
 
@@ -115,8 +134,8 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
             dayTimeMod = 1.05F;
         }
 
-        var flowMod = (dayTimeMod * surfaceRainMod + moonMod) * season.aquiferMod * season.getPeriod(seasonProgress).effectMod;
-        aquiferFillPercent = Math.min(aquiferFillPercent + BASE_AQUIFER_FLOW * flowMod, AQUIFER_CAP);
+        var flowMod = (dayTimeMod * surfaceRainMod + moonMod + aquiferSaturation) * season.aquiferMod * period.effectMod;
+        aquiferFill = MathHelper.clamp(aquiferFill + BASE_AQUIFER_FLOW * flowMod - weatherState.getThirst(), 0, AQUIFER_CAP);
     }
 
     private void updateAshEffects(long time, Random random) {
@@ -146,6 +165,23 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
             targetAshVelocity = BASE_ASH_VELOCITY * (random.nextDouble() * 0.5 + 0.5) * (random.nextBoolean() ? -1 : 1);
             ashAxis = newAxis;
         }
+    }
+
+    private static Season.Period getPeriodByDate(long seasonTime) {
+        return Season.getPeriodByDate((int) ((seasonTime / SEASON_PERIOD_INTERVAL) % 3));
+    }
+
+    private static Season getSeasonByDate(long seasonTime) {
+        return Season.getSeasonByDate((int) ((seasonTime / SEASON_DURATION) % 3));
+    }
+
+    public long getSeasonalTime() {
+        var time = new Date().getTime() - seasonCycleStart;
+
+        if (time <= 0)
+            return 0;
+
+        return time;
     }
 
     @Override
@@ -219,6 +255,9 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         ashScaleC = tag.getDouble("ashScaleC");
         ashSpawns = tag.getInt("ashSpawns");
         ashAxis = Direction.Axis.fromName(tag.getString("ashAxis"));
+        aquiferFill = tag.getFloat("aquiferFill");
+        weatherTicks = tag.getLong("weatherTicks");
+        seasonCycleStart = tag.getLong("seasonCycleStart");
         if (tag.contains("weatherState")) {
             weatherState = SpectrumWeatherStates.fromTag(tag);
         }
@@ -232,6 +271,9 @@ public class DDWorldEffectsComponent implements CommonTickingComponent, AutoSync
         tag.putDouble("ashScaleC", ashScaleC);
         tag.putInt("ashSpawns", ashSpawns);
         tag.putString("ashAxis", ashAxis.getName());
+        tag.putFloat("aquiferFill", aquiferFill);
+        tag.putLong("weatherTicks", weatherTicks);
+        tag.putLong("seasonCycleStart", seasonCycleStart);
         weatherState.save(tag);
     }
 

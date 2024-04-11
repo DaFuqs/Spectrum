@@ -2,44 +2,36 @@ package de.dafuqs.spectrum.deeper_down.weather;
 
 import de.dafuqs.spectrum.deeper_down.Season;
 import de.dafuqs.spectrum.helpers.WeightedPool;
-import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 public abstract class WeatherState {
 
     private final Identifier id;
-    protected final boolean airParticles, groundParticles, affectsMobs, affectsBlocks;
 
-    public WeatherState(Identifier id, boolean airParticles, boolean groundParticles, boolean affectsMobs, boolean affectsBlocks) {
+    public WeatherState(Identifier id) {
         this.id = id;
-        this.airParticles = airParticles;
-        this.groundParticles = groundParticles;
-        this.affectsMobs = affectsMobs;
-        this.affectsBlocks = affectsBlocks;
     }
 
-    abstract void spawnCeilingParticle(double x, double y, double z);
+    public abstract void spawnCeilingParticle(World world, double x, double y, double z);
 
-    abstract void spawnAirParticle(double x, double y, double z);
+    public abstract void spawnAirParticle(World world, double x, double y, double z);
 
-    abstract void applyEnvironmentalEffects(Entity target, RegistryKey<Biome> biome);
+    public abstract void spawnGroundParticle(World world, double x, double y, double z);
 
-    abstract WeightedPool<RaindropEntry> getRaindropDistribution();
+    public abstract WeightedPool<RaindropEntry> getRaindropDistribution();
 
-    abstract WeightedPool<? extends WeatherState> getTransitionOptions();
+    public abstract IntProvider getPrecipitation(RegistryKey<Biome> biome);
 
-    abstract boolean hasAltStates();
-
-    abstract int getPrecipitation(RegistryKey<Biome> biome);
-
-    public WeatherState getAltState(RegistryKey<Biome> biome) {
+    public WeatherState getStateFor(RegistryKey<Biome> biome) {
         return this;
     }
 
-    abstract boolean canReturnToBaseState(Season season, Season.Period period);
+    public abstract float getThirst();
 
     public float rippleChance(RegistryKey<Biome> biome) {
         return 0.125F;
@@ -49,21 +41,11 @@ public abstract class WeatherState {
         return 1F;
     }
 
-    public boolean hasAirParticles() {
-        return airParticles;
-    }
+    public abstract boolean hasCeilingParticles();
 
-    public boolean hasGroundParticles() {
-        return groundParticles;
-    }
+    public abstract boolean hasAirParticles();
 
-    public boolean affectsBlocks() {
-        return affectsBlocks;
-    }
-
-    public boolean affectsMobs() {
-        return affectsMobs;
-    }
+    public abstract boolean hasGroundParticles();
 
     public Identifier getId() {
         return id;

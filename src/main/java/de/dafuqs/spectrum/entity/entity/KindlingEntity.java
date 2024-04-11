@@ -156,7 +156,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 
 	@Override
 	public double getMountedHeightOffset() {
-		return this.getHeight() - (this.isBaby() ? 0.2 : 0.15);
+		return this.getHeight() - (this.isBaby() ? 0.4 : 0.3);
 	}
 	
 	@Override

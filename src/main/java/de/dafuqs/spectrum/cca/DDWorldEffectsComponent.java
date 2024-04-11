@@ -34,7 +34,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     public static final int DAY_LENGTH = 24000;
     public static final long REAL_DAY_LENGTH = 86400 * 20;
     public static final int RESET_PERIOD = DAY_LENGTH * 72;
-    public static final long SEASON_DURATION = REAL_DAY_LENGTH * 29;
+    public static final long SEASON_DURATION = REAL_DAY_LENGTH * 13;
     public static final long SEASON_PERIOD_INTERVAL = SEASON_DURATION / 3;
     private static long seasonCycleStart = new Date().getTime();
 

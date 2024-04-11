@@ -7,9 +7,9 @@ import net.minecraft.util.math.MathHelper;
 import static de.dafuqs.spectrum.registries.SpectrumWeatherStates.*;
 
 /**
- * Season last 60 ingame days each.
+ * Seasons last 120 in-game days each.
  * <p>
- * Every season is subdivided into three 20 day blocks which determine effect intensities.
+ * Every season is subdivided into three 40 day blocks which determine effect intensities.
  * <p>
  * If this seems a lil bit excessive... yeah - but hey, being fancy is fun.
  */
@@ -30,12 +30,12 @@ public enum Season {
         this.lateDefault = lateDefault;
     }
 
-    public Period getPeriod(long seasonProgress) {
-        return Period.values()[MathHelper.clamp((int) (seasonProgress / DDWorldEffectsComponent.SEASON_PERIOD_INTERVAL), 0, 2)];
+    public static Period getPeriodByDate(int date) {
+        return Period.values()[date];
     }
 
-    public Season getNextSeason() {
-        return Season.values()[(this.ordinal() + 1) % 3];
+    public static Season getSeasonByDate(int date) {
+        return Season.values()[date];
     }
 
     public WeatherState getStateFor(Period period) {
@@ -47,14 +47,16 @@ public enum Season {
     }
 
     public enum Period {
-        EARLY(0.667F),
-        MIDDLE(1.25F),
-        LATE(1F);
+        EARLY(0.667F, DDWorldEffectsComponent.DAY_LENGTH / 3),
+        MIDDLE(1.25F, DDWorldEffectsComponent.DAY_LENGTH * 2),
+        LATE(1F, DDWorldEffectsComponent.DAY_LENGTH);
 
         public final float effectMod;
+        public final long minDefaultWeatherDuration;
 
-        Period(float effectMod) {
+        Period(float effectMod, long minDefaultWeatherDuration) {
             this.effectMod = effectMod;
+            this.minDefaultWeatherDuration = minDefaultWeatherDuration;
         }
     }
 }

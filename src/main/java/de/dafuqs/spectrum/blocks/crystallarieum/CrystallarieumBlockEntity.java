@@ -75,10 +75,11 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (crystallarieum.canWork) {
 			transferInk(crystallarieum);
 			
-			if (crystallarieum.currentRecipe != null) {
+			CrystallarieumRecipe recipe = crystallarieum.currentRecipe;
+			if (recipe != null) {
 				crystallarieum.tickLooper.tick();
 				if (crystallarieum.tickLooper.reachedCap()) {
-					tickRecipe(world, blockPos, crystallarieum);
+					tickRecipe(world, blockPos, crystallarieum, recipe);
 					crystallarieum.tickLooper.reset();
 				}
 			}
@@ -89,14 +90,19 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	 * Progress the recipe
 	 * gets called 1/second
 	 */
-	private static void tickRecipe(@NotNull World world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum) {
-		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+	private static void tickRecipe(@NotNull World world, BlockPos blockPos, CrystallarieumBlockEntity crystallarieum, @NotNull CrystallarieumRecipe recipe) {
+		if (crystallarieum.currentCatalyst == CrystallarieumCatalyst.EMPTY && !recipe.growsWithoutCatalyst()) {
+			return;
+		}
+		
+		if (crystallarieum.inkStorage.getEnergy(recipe.getInkColor()) == 0) {
 			return;
 		}
 		
 		// advance growing
-		int consumedInk = (int) (crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod * crystallarieum.currentCatalyst.inkConsumptionMod);
-		if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
+		float consumedInkFloat = (recipe.getInkPerSecond() * crystallarieum.currentCatalyst.growthAccelerationMod * crystallarieum.currentCatalyst.inkConsumptionMod);
+		int consumedInt = Support.getIntFromDecimalWithChance(consumedInkFloat, world.random);
+		if (crystallarieum.inkStorage.drainEnergy(recipe.getInkColor(), consumedInt) < consumedInt) {
 			crystallarieum.canWork = false;
 			crystallarieum.setInkDirty();
 			crystallarieum.updateInClientWorld();
@@ -113,17 +119,17 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 			crystallarieum.updateInClientWorld();
 			if (catalystStack.isEmpty()) {
 				crystallarieum.currentCatalyst = CrystallarieumCatalyst.EMPTY;
-				if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+				if (!recipe.growsWithoutCatalyst()) {
 					crystallarieum.canWork = false;
 				}
 			}
 		}
 		
 		// advanced enough? grow!
-		if (crystallarieum.currentGrowthStageTicks >= crystallarieum.currentRecipe.getSecondsPerGrowthStage() * SECOND) {
+		if (crystallarieum.currentGrowthStageTicks >= recipe.getSecondsPerGrowthStage() * SECOND) {
 			BlockPos topPos = blockPos.up();
 			BlockState topState = world.getBlockState(topPos);
-			for (Iterator<BlockState> it = crystallarieum.currentRecipe.getGrowthStages().iterator(); it.hasNext(); ) {
+			for (Iterator<BlockState> it = recipe.getGrowthStages().iterator(); it.hasNext(); ) {
 				BlockState state = it.next();
 				if (state.equals(topState)) {
 					if (it.hasNext()) {

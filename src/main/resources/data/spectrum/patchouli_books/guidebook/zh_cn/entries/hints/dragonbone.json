@@ -4,12 +4,12 @@
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:milestones/reveal_dragonbone",
   "read_by_default": true,
-  "turnin": "spectrum:lategame/break_cracked_dragonbone",
+  "turnin": "spectrum:hidden/collect_dragonbone",
   "pages": [
     {
       "type": "spectrum:hint",
       "title": "Small Clue",
-      "completion_advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "completion_advancement": "spectrum:hidden/collect_dragonbone",
       "cost": "spectrum:doombloom_seed#4",
       "text": "In Dragonrot Swamps, the remains of gigantic creatures can be found. These blocks seem to be impossible to mine in the classical way, as they are protected by a magical aura. Is there an unconventional way to break this aura, maybe using great force?"
     },

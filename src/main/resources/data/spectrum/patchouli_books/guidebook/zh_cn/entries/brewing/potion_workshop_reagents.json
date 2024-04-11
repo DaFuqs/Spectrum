@@ -177,7 +177,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:bone_ash",
       "anchor": "bone_ash",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "advancement": "spectrum:hidden/collect_dragonbone",
       "text": "$(li)10%的几率添加上次酿造药剂的主要效果，效力和持续时间为+100%"
     }
   ]

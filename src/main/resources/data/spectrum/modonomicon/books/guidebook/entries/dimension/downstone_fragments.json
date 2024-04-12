@@ -9,7 +9,8 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/downstone"
+      "entry": "spectrum:dimension/downstone",
+      "line_reversed": true
     },
     {
       "entry": "spectrum:dimension/excavation_sites"
@@ -17,8 +18,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 4,
+  "x": -5,
+  "y": 5,
   "extra_recipe_mappings": {
     "spectrum:downstone": 0,
     "spectrum:downstone_fragments": 0

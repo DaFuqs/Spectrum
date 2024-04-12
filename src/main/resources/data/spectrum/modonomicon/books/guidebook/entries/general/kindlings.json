@@ -5,11 +5,11 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/kindling_memory"
   },
-  "category": "spectrum:dimension",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/dragonbone"
+      "entry": "spectrum:general/dragonbone"
     }
   ],
   "background_u_index": 0,

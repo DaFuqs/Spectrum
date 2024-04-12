@@ -9,13 +9,14 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/getting_deeper_down"
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 3,
-  "y": 9,
+  "x": 4,
+  "y": 8,
   "extra_recipe_mappings": {
     "spectrum:shimmel": 0
   },

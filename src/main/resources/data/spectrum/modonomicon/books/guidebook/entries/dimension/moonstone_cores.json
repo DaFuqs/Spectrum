@@ -15,7 +15,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": -6,
-  "y": 2,
+  "y": -2,
   "extra_recipe_mappings": {
     "spectrum:moonstone_core": 0
   },

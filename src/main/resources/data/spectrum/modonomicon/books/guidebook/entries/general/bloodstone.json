@@ -5,11 +5,11 @@
     "advancement_id": "spectrum:unlocks/resources/bloodstone"
   },
   "icon": "spectrum:refined_bloodstone",
-  "category": "spectrum:dimension",
+  "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/kindlings"
+      "entry": "spectrum:general/kindlings"
     }
   ],
   "background_u_index": 0,

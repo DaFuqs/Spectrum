@@ -9,13 +9,13 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:dimension/getting_deeper_down"
+      "entry": "spectrum:dimension/blackslag"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 2,
+  "x": 0,
+  "y": 6,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "extra_recipe_mappings": {
     "spectrum:malachite_ore": 0,

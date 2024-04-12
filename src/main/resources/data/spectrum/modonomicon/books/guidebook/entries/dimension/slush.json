@@ -15,7 +15,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 6,
-  "y": 6,
+  "y": 3,
   "extra_recipe_mappings": {
     "spectrum:slush": 0,
     "spectrum:tilled_slush": 0

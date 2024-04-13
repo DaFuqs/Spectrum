@@ -7,11 +7,15 @@
   "icon": "spectrum:heartsingers_reward",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 4,
+  "x": 13,
+  "y": 1,
   "pages": [
     {
       "type": "modonomicon:text",

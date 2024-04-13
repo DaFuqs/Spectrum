@@ -7,11 +7,15 @@
   "icon": "spectrum:totem_pendant",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 10,
+  "x": 13,
+  "y": 9,
   "pages": [
     {
       "type": "modonomicon:text",

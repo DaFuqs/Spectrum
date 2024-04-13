@@ -7,10 +7,14 @@
   "icon": "spectrum:weeping_circlet",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
+  "x": 13,
   "y": 10,
   "pages": [
     {

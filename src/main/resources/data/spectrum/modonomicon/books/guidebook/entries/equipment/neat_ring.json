@@ -7,11 +7,15 @@
   "icon": "spectrum:neat_ring",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 6,
+  "x": 13,
+  "y": 3,
   "pages": [
     {
       "type": "modonomicon:text",

@@ -7,11 +7,15 @@
   "icon": "spectrum:circlet_of_arrogance",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 0,
+  "x": 13,
+  "y": -3,
   "pages": [
     {
       "type": "modonomicon:text",

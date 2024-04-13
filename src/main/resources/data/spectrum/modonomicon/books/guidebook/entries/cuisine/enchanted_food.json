@@ -10,8 +10,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 0,
+  "x": 4,
+  "y": 5,
   "extra_recipe_mappings": {
     "minecraft:enchanted_golden_apple": 0,
     "spectrum:enchanted_golden_carrot": 0

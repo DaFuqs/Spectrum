@@ -5,7 +5,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/cinderhearth"
   },
-  "category": "spectrum:magical_blocks",
+  "category": "spectrum:magic",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,

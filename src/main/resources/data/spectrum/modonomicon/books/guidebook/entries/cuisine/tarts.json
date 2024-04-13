@@ -7,11 +7,16 @@
   },
   "category": "spectrum:cuisine",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/amaranth",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 6,
+  "x": 9,
+  "y": 1,
   "extra_recipe_mappings": {
     "spectrum:jaramel_tart": 0,
     "spectrum:salted_jaramel_tart": 0,

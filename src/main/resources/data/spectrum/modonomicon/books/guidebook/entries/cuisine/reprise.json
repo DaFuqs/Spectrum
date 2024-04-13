@@ -7,11 +7,16 @@
   "icon": "spectrum:reprise",
   "category": "spectrum:cuisine",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/titration_barrel",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 4,
+  "x": 3,
+  "y": 3,
   "extra_recipe_mappings": {
     "spectrum:reprise": 0
   },

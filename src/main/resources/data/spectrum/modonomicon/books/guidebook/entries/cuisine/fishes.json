@@ -10,8 +10,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 0,
+  "x": 0,
+  "y": 5,
   "extra_recipe_mappings": {
     "spectrum:crawfish": 0,
     "spectrum:koi": 0

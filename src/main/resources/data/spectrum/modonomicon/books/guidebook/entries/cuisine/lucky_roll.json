@@ -7,11 +7,16 @@
   "icon": "spectrum:lucky_roll",
   "category": "spectrum:cuisine",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/amaranth",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 4,
+  "x": 9,
+  "y": 0,
   "extra_recipe_mappings": {
     "spectrum:lucky_roll": 0
   },

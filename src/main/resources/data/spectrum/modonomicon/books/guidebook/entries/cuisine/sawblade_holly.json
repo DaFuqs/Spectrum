@@ -10,8 +10,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 6,
+  "x": 6,
+  "y": 5,
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
     "spectrum:sawblade_holly_berry": 0,

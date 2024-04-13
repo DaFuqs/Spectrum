@@ -10,13 +10,13 @@
       "stored_experience": 500
     }
   },
-  "category": "spectrum:equipment",
+  "category": "spectrum:enchanting",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 14,
+  "x": -2,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",

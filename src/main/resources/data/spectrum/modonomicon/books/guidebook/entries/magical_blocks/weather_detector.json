@@ -5,12 +5,12 @@
     "advancement_id": "spectrum:unlocks/redstone/weather_detector"
   },
   "icon": "spectrum:player_detector",
-  "category": "spectrum:redstone",
+  "category": "spectrum:magical_blocks",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
+  "x": 5,
   "y": 4,
   "pages": [
     {

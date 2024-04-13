@@ -4,14 +4,14 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:collect_vegetal"
   },
-  "icon": "minecraft:glistering_melon",
-  "category": "spectrum:magical_blocks",
+  "icon": "spectrum:glistering_melon",
+  "category": "spectrum:cuisine",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 2,
+  "x": 0,
+  "y": 5,
   "pages": [
     {
       "type": "modonomicon:spotlight",

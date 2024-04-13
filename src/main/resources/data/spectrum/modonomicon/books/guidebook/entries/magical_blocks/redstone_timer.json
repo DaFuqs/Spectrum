@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/redstone/redstone_timer"
   },
   "icon": "spectrum:redstone_timer",
-  "category": "spectrum:redstone",
+  "category": "spectrum:magical_blocks",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 2,
+  "x": 4,
+  "y": 5,
   "pages": [
     {
       "type": "modonomicon:spotlight",

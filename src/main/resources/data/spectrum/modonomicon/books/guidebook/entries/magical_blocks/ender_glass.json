@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/blocks/ender_glass"
   },
   "icon": "spectrum:ender_glass",
-  "category": "spectrum:redstone",
+  "category": "spectrum:magical_blocks",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 0,
+  "x": 7,
+  "y": 3,
   "pages": [
     {
       "type": "modonomicon:spotlight",

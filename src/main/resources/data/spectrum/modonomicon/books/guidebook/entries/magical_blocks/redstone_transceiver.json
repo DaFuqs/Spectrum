@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:create_onyx_shard"
   },
   "icon": "spectrum:redstone_transceiver",
-  "category": "spectrum:redstone",
+  "category": "spectrum:magical_blocks",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 2,
+  "x": 5,
+  "y": 5,
   "pages": [
     {
       "type": "modonomicon:spotlight",

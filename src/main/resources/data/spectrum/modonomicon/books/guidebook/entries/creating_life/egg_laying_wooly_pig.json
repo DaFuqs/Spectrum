@@ -7,11 +7,15 @@
   },
   "category": "spectrum:creating_life",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/mob_heads"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 0,
+  "x": 2,
+  "y": 4,
   "pages": [
     {
       "type": "modonomicon:text",

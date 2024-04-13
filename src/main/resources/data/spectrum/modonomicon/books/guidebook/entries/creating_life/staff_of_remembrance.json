@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/items/staff_of_remembrance"
   },
   "icon": "spectrum:staff_of_remembrance",
-  "category": "spectrum:equipment",
+  "category": "spectrum:creating_life",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 16,
+  "x": -1,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",

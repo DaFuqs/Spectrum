@@ -7,11 +7,15 @@
   },
   "category": "spectrum:creating_life",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/spirit_instiller"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 0,
+  "x": 0,
+  "y": -2,
   "pages": [
     {
       "type": "modonomicon:text",

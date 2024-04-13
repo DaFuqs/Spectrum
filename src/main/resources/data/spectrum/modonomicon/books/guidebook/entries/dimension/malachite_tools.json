@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/malachite_tools"
   },
-  "icon": "spectrum:malachite_ultra_greatsword",
+  "icon": "spectrum:malachite_workstaff",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [

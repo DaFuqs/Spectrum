@@ -4,14 +4,18 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/glass_crest_tools"
   },
-  "icon": "spectrum:glass_crest_ultra_greatsword",
-  "category": "spectrum:equipment",
+  "icon": "spectrum:glass_crest_workstaff",
+  "category": "spectrum:dimension",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:dimension/malachite_tools"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 2,
+  "x": -1,
+  "y": 9,
   "pages": [
     {
       "type": "modonomicon:text",

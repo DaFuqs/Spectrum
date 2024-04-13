@@ -17,11 +17,6 @@
   "background_v_index": 0,
   "x": 9,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:jaramel_trifle": 0,
-    "spectrum:salted_jaramel_trifle": 0,
-    "spectrum:monster_trifle": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

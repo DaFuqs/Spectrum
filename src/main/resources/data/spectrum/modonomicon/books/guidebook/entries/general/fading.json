@@ -17,10 +17,6 @@
   "x": 6,
   "y": 0,
   "turnin": "spectrum:collect_vegetal",
-  "extra_recipe_mappings": {
-    "spectrum:bottle_of_fading": 0,
-    "spectrum:vegetal": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

@@ -12,13 +12,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:amaranth_grains": 0,
-    "spectrum:amaranth_bushel": 0,
-    "spectrum:honey_pastry": 0,
-    "spectrum:scone": 0,
-    "spectrum:triple_meat_pot_pie": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

@@ -12,11 +12,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 2,
-  "extra_recipe_mappings": {
-    "minecraft:glistering_melon_slice": 0,
-    "spectrum:glistering_melon": 0,
-    "spectrum:glistering_melon_seeds": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

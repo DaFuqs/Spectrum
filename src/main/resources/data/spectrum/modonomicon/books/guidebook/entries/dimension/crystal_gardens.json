@@ -17,19 +17,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:overgrown_blackslag": 0,
-    "spectrum:nephrite_blossom_bulb": 0,
-    "spectrum:nephrite_blossom_leaves": 0,
-    "spectrum:nephrite_blossom_stem": 0,
-    "spectrum:jadeite_lotus_stem": 0,
-    "spectrum:jadeite_lotus_flower": 0,
-    "spectrum:jadeite_lotus_bulb": 0,
-    "spectrum:glass_peach": 0,
-    "spectrum:jadeite_petals": 0,
-    "spectrum:jadeite_petal_block": 0,
-    "spectrum:jadeite_petal_carpet": 0
-  },
   "pages": [
     {
       "type": "modonomicon:image",

@@ -17,17 +17,6 @@
   "x": 0,
   "y": 0,
   "turnin": "spectrum:midgame/create_refined_azurite",
-  "extra_recipe_mappings": {
-    "spectrum:azurite_ore": 0,
-    "spectrum:deepslate_azurite_ore": 0,
-    "spectrum:blackslag_azurite_ore": 0,
-    "spectrum:raw_azurite": 0,
-    "spectrum:refined_azurite": 0,
-    "spectrum:azurite_block": 0,
-    "spectrum:small_azurite_bud": 0,
-    "spectrum:large_azurite_bud": 0,
-    "spectrum:azurite_cluster": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

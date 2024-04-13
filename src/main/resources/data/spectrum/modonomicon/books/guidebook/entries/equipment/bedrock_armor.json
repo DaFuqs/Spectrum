@@ -12,12 +12,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:bedrock_helmet": 0,
-    "spectrum:bedrock_chestplate": 0,
-    "spectrum:bedrock_leggings": 0,
-    "spectrum:bedrock_boots": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

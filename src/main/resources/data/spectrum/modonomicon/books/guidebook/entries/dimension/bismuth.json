@@ -17,14 +17,6 @@
   "x": 6,
   "y": 1,
   "turnin": "spectrum:lategame/collect_bismuth_crystal",
-  "extra_recipe_mappings": {
-    "spectrum:bismuth_flake": 0,
-    "spectrum:bismuth_block": 0,
-    "spectrum:small_bismuth_bud": 0,
-    "spectrum:large_bismuth_bud": 0,
-    "spectrum:bismuth_cluster": 0,
-    "spectrum:bismuth_crystal": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

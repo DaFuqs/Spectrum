@@ -17,10 +17,6 @@
   "x": 8,
   "y": 2,
   "turnin": "spectrum:create_onyx_shard",
-  "extra_recipe_mappings": {
-    "spectrum:onyx_shard": 0,
-    "spectrum:onyx_block": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

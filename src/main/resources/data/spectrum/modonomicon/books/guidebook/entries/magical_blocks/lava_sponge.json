@@ -12,10 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:lava_sponge": 0,
-    "spectrum:wet_lava_sponge": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

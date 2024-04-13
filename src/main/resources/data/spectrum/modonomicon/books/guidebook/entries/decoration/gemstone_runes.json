@@ -12,18 +12,6 @@
   "background_v_index": 0,
   "x": 8,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:topaz_chiseled_basalt": 0,
-    "spectrum:amethyst_chiseled_basalt": 0,
-    "spectrum:citrine_chiseled_basalt": 0,
-    "spectrum:onyx_chiseled_basalt": 0,
-    "spectrum:moonstone_chiseled_basalt": 0,
-    "spectrum:topaz_chiseled_calcite": 0,
-    "spectrum:amethyst_chiseled_calcite": 0,
-    "spectrum:citrine_chiseled_calcite": 0,
-    "spectrum:onyx_chiseled_calcite": 0,
-    "spectrum:moonstone_chiseled_calcite": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

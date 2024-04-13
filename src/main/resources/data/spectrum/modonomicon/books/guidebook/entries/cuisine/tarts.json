@@ -17,14 +17,6 @@
   "background_v_index": 0,
   "x": 9,
   "y": 1,
-  "extra_recipe_mappings": {
-    "spectrum:jaramel_tart": 0,
-    "spectrum:salted_jaramel_tart": 0,
-    "spectrum:ashen_tart": 0,
-    "spectrum:weeping_tart": 0,
-    "spectrum:whispy_tart": 0,
-    "spectrum:puff_tart": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

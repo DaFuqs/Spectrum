@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.enchanting.creating_enchanted_books.name",
   "icon": "minecraft:enchanted_book",
-  "priority": true,
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/enchanter"

@@ -13,14 +13,6 @@
   "x": 2,
   "y": 6,
   "turnin": "spectrum:collect_all_basic_shards",
-  "extra_recipe_mappings": {
-    "spectrum:topaz_shard": 0,
-    "minecraft:amethyst_shard": 0,
-    "spectrum:citrine_shard": 0,
-    "spectrum:onyx_shard": 0,
-    "spectrum:moonstone_shard": 0,
-    "spectrum:spectral_shard": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

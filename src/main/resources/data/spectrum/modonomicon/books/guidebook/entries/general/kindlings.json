@@ -16,10 +16,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:kindling_head": 0,
-    "spectrum:kindling_spawn_egg": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

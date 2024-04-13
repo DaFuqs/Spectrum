@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 10,
-  "extra_recipe_mappings": {
-    "spectrum:weeping_circlet": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

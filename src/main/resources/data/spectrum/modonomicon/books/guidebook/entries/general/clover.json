@@ -16,10 +16,6 @@
   "background_v_index": 0,
   "x": 8,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:clover": 0,
-    "spectrum:four_leaf_clover": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

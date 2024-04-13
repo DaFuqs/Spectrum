@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:restocking_chest": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

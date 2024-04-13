@@ -12,24 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:black_glowblock": 0,
-    "spectrum:blue_glowblock": 0,
-    "spectrum:brown_glowblock": 0,
-    "spectrum:cyan_glowblock": 0,
-    "spectrum:gray_glowblock": 0,
-    "spectrum:green_glowblock": 0,
-    "spectrum:light_blue_glowblock": 0,
-    "spectrum:light_gray_glowblock": 0,
-    "spectrum:lime_glowblock": 0,
-    "spectrum:magenta_glowblock": 0,
-    "spectrum:orange_glowblock": 0,
-    "spectrum:pink_glowblock": 0,
-    "spectrum:purple_glowblock": 0,
-    "spectrum:red_glowblock": 0,
-    "spectrum:white_glowblock": 0,
-    "spectrum:yellow_glowblock": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

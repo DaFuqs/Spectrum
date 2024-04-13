@@ -19,10 +19,6 @@
   "background_v_index": 0,
   "x": -4,
   "y": -2,
-  "extra_recipe_mappings": {
-    "spectrum:preservation_turret_head": 0,
-    "spectrum:preservation_turret_spawn_egg": 0
-  },
   "pages": [
     {
       "type": "modonomicon:entity",

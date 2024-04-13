@@ -12,10 +12,6 @@
   "background_v_index": 0,
   "x": 8,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:particle_spawner": 0,
-    "spectrum:creative_particle_spawner": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

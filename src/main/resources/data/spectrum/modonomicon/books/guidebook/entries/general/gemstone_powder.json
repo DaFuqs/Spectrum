@@ -1,10 +1,10 @@
 {
   "name": "book.spectrum.guidebook.general.gemstone_powder.name",
   "icon": "spectrum:amethyst_powder",
-    "condition": {
-      "type": "modonomicon:advancement",
-      "advancement_id": "spectrum:place_pedestal"
-    },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
   "category": "spectrum:general",
   "hide_while_locked ": true,
   "parents": [
@@ -17,13 +17,6 @@
   "x": 10,
   "y": 0,
   "turnin": "spectrum:collect_gemstone_powder",
-  "extra_recipe_mappings": {
-    "spectrum:topaz_powder": 0,
-    "spectrum:amethyst_powder": 0,
-    "spectrum:citrine_powder": 0,
-    "spectrum:onyx_powder": 0,
-    "spectrum:moonstone_powder": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

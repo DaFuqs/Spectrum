@@ -13,9 +13,6 @@
   "x": 6,
   "y": 4,
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
-  "extra_recipe_mappings": {
-    "spectrum:pedestal_onyx": 0
-  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

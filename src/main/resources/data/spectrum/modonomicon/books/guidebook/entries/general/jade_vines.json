@@ -16,14 +16,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:hibernating_jade_vine_bulb": 0,
-    "spectrum:germinated_jade_vine_bulb": 0,
-    "spectrum:jade_vine_petals": 0,
-    "spectrum:moonstruck_nectar": 0,
-    "spectrum:jade_jelly": 0,
-    "spectrum:jaramel": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

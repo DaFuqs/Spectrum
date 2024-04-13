@@ -12,13 +12,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:shimmerstone_ore": 0,
-    "spectrum:deepslate_shimmerstone_ore": 0,
-    "spectrum:blackslag_shimmerstone_ore": 0,
-    "spectrum:shimmerstone_gem": 0,
-    "spectrum:shimmerstone_block": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

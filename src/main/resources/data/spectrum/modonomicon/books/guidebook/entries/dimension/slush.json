@@ -16,10 +16,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 3,
-  "extra_recipe_mappings": {
-    "spectrum:slush": 0,
-    "spectrum:tilled_slush": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

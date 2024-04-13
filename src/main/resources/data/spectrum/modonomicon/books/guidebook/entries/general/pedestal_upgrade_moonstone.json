@@ -17,9 +17,6 @@
   "x": 4,
   "y": 4,
   "turnin": "spectrum:hidden/build_any_complex_structure",
-  "extra_recipe_mappings": {
-    "spectrum:pedestal_moonstone": 0
-  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

@@ -17,7 +17,6 @@
   "background_v_index": 0,
   "x": 3,
   "y": -5,
-  "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",

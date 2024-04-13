@@ -12,11 +12,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 5,
-  "extra_recipe_mappings": {
-    "spectrum:prickly_bayleaf": 0,
-    "spectrum:sawblade_holly_berry": 0,
-    "spectrum:triple_meat_pot_stew": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": -2,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:melochites_cookbook_vol_2": 0
-  },
   "pages": [
     {
       "type": "spectrum:snippet",

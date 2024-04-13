@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": -2,
   "y": 1,
-  "extra_recipe_mappings": {
-    "spectrum:imperial_cookbook": 0
-  },
   "pages": [
     {
       "type": "spectrum:snippet",

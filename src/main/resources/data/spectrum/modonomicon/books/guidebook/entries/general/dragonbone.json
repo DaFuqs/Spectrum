@@ -19,26 +19,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:dragonbone": 0,
-    "spectrum:cracked_dragonbone": 0,
-    "spectrum:dragonbone_chunk": 0,
-    "spectrum:bone_ash": 0,
-    "spectrum:polished_bone_ash": 0,
-    "spectrum:polished_bone_ash_slab": 0,
-    "spectrum:polished_bone_ash_stairs": 0,
-    "spectrum:polished_bone_ash_wall": 0,
-    "spectrum:bone_ash_bricks": 0,
-    "spectrum:bone_ash_brick_slab": 0,
-    "spectrum:bone_ash_brick_stairs": 0,
-    "spectrum:bone_ash_brick_wall": 0,
-    "spectrum:bone_ash_tiles": 0,
-    "spectrum:bone_ash_tile_slab": 0,
-    "spectrum:bone_ash_tile_stairs": 0,
-    "spectrum:bone_ash_tile_wall": 0,
-    "spectrum:polished_bone_ash_pillar": 0,
-    "spectrum:bone_ash_shingles": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

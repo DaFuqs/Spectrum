@@ -12,12 +12,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:fetchling_helmet": 0,
-    "spectrum:ferocious_chestplate": 0,
-    "spectrum:sylph_leggings": 0,
-    "spectrum:oread_boots": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

@@ -12,13 +12,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:fanciful_stone_ring": 0,
-    "spectrum:fanciful_belt": 0,
-    "spectrum:fanciful_pendant": 0,
-    "spectrum:fanciful_circlet": 0,
-    "spectrum:fanciful_bismuth_ring": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

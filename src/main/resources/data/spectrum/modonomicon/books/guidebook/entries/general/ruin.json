@@ -17,11 +17,6 @@
   "x": 6,
   "y": 2,
   "turnin": "spectrum:midgame/break_decayed_bedrock",
-  "extra_recipe_mappings": {
-    "spectrum:bottle_of_ruin": 0,
-    "spectrum:bedrock_dust": 0,
-    "spectrum:bedrock_storage_block": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

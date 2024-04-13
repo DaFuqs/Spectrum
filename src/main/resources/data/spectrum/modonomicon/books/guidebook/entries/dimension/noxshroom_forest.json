@@ -17,9 +17,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 8,
-  "extra_recipe_mappings": {
-    "spectrum:shimmel": 0
-  },
   "pages": [
     {
       "type": "modonomicon:image",

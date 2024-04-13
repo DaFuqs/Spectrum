@@ -17,11 +17,6 @@
   "x": 4,
   "y": 4,
   "turnin": "spectrum:midgame/collect_midnight_chip",
-  "extra_recipe_mappings": {
-    "spectrum:midnight_solution_bucket": 0,
-    "spectrum:midnight_chip": 0,
-    "spectrum:black_materia": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

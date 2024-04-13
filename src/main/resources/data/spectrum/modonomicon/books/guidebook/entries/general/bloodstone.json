@@ -17,14 +17,6 @@
   "x": 2,
   "y": 6,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
-  "extra_recipe_mappings": {
-    "spectrum:raw_bloodstone": 0,
-    "spectrum:refined_bloodstone": 0,
-    "spectrum:bloodstone_block": 0,
-    "spectrum:small_bloodstone_bud": 0,
-    "spectrum:large_bloodstone_bud": 0,
-    "spectrum:bloodstone_cluster": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

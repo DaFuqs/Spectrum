@@ -12,17 +12,6 @@
   "background_v_index": 0,
   "x": 4,
   "y": 6,
-  "extra_recipe_mappings": {
-    "spectrum:upgrade_speed": 0,
-    "spectrum:upgrade_speed2": 0,
-    "spectrum:upgrade_speed3": 0,
-    "spectrum:upgrade_experience": 0,
-    "spectrum:upgrade_experience2": 0,
-    "spectrum:upgrade_efficiency": 0,
-    "spectrum:upgrade_efficiency2": 0,
-    "spectrum:upgrade_yield": 0,
-    "spectrum:upgrade_yield2": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

@@ -20,12 +20,6 @@
   "x": 2,
   "y": 4,
   "turnin": "spectrum:midgame/enter_liquid_crystal",
-  "extra_recipe_mappings": {
-    "spectrum:liquid_crystal_bucket": 0,
-    "spectrum:blazing_crystal": 0,
-    "spectrum:frostbite_crystal": 0,
-    "spectrum:resonant_lily": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

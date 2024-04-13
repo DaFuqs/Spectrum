@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:gloves_of_dawns_grasp": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

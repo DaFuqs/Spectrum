@@ -21,17 +21,6 @@
   "background_v_index": 0,
   "x": 10,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:small_globette_bud": 0,
-    "spectrum:large_globette_bud": 0,
-    "spectrum:globette_cluster": 0,
-    "spectrum:small_globette_end_bud": 0,
-    "spectrum:large_globette_end_bud": 0,
-    "spectrum:globette_end_cluster": 0,
-    "spectrum:small_globette_nether_bud": 0,
-    "spectrum:large_globette_nether_bud": 0,
-    "spectrum:globette_nether_cluster": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

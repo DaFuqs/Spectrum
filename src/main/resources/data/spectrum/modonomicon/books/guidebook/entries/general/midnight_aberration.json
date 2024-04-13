@@ -20,9 +20,6 @@
   "x": 2,
   "y": 2,
   "turnin": "spectrum:midgame/create_midnight_aberration",
-  "extra_recipe_mappings": {
-    "spectrum:midnight_aberration": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

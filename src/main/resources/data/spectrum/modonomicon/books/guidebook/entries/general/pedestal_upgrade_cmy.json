@@ -13,9 +13,6 @@
   "x": 0,
   "y": 4,
   "turnin": "spectrum:build_basic_pedestal_structure",
-  "extra_recipe_mappings": {
-    "spectrum:pedestal_all_basic": 0
-  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

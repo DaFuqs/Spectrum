@@ -12,17 +12,6 @@
   "background_v_index": 0,
   "x": 8,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:bedrock_pickaxe": 0,
-    "spectrum:bedrock_axe": 0,
-    "spectrum:bedrock_shovel": 0,
-    "spectrum:bedrock_sword": 0,
-    "spectrum:bedrock_hoe": 0,
-    "spectrum:bedrock_bow": 0,
-    "spectrum:bedrock_crossbow": 0,
-    "spectrum:bedrock_shears": 0,
-    "spectrum:bedrock_fishing_rod": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

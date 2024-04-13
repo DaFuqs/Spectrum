@@ -12,13 +12,6 @@
   "background_v_index": 0,
   "x": 8,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:glass_crest_workstaff": 0,
-    "spectrum:glass_crest_ultra_greatsword": 0,
-    "spectrum:glass_crest_crossbow": 0,
-    "spectrum:ferocious_glass_crest_bident": 0,
-    "spectrum:fractal_glass_crest_bident": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

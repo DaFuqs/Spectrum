@@ -13,11 +13,6 @@
   "x": 8,
   "y": 4,
   "turnin": "spectrum:craft_using_pedestal",
-  "extra_recipe_mappings": {
-    "spectrum:pedestal_basic_amethyst": 0,
-    "spectrum:pedestal_basic_topaz": 0,
-    "spectrum:pedestal_basic_citrine": 0
-  },
   "pages": [
     {
       "type": "modonomicon:crafting_recipe",

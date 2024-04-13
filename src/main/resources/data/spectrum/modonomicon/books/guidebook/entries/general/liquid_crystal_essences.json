@@ -16,12 +16,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 2,
-  "extra_recipe_mappings": {
-    "spectrum:blazing_crystal": 0,
-    "spectrum:incandescent_essence": 0,
-    "spectrum:frostbite_crystal": 0,
-    "spectrum:frostbite_essence": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

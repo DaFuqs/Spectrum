@@ -12,12 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 6,
-  "extra_recipe_mappings": {
-    "spectrum:stratine_ore": 0,
-    "spectrum:stratine_fragments": 0,
-    "spectrum:stratine_gem": 0,
-    "spectrum:stratine_fragment_block": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

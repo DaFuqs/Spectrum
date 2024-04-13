@@ -21,14 +21,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:small_certus_quartz_bud": 0,
-    "spectrum:large_certus_quartz_bud": 0,
-    "spectrum:certus_quartz_cluster": 0,
-    "spectrum:small_fluix_bud": 0,
-    "spectrum:large_fluix_bud": 0,
-    "spectrum:fluix_cluster": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

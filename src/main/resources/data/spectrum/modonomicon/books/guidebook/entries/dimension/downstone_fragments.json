@@ -20,10 +20,6 @@
   "background_v_index": 0,
   "x": -5,
   "y": 5,
-  "extra_recipe_mappings": {
-    "spectrum:downstone": 0,
-    "spectrum:downstone_fragments": 0
-  },
   "pages": [
     {
       "type": "modonomicon:spotlight",

@@ -12,11 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:azurite_glass_ampoule": 0,
-    "spectrum:malachite_glass_ampoule": 0,
-    "spectrum:bloodstone_glass_ampoule": 0
-  },
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

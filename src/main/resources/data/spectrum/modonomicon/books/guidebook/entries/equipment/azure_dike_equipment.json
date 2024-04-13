@@ -12,11 +12,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:azure_dike_ring": 0,
-    "spectrum:azure_dike_belt": 0,
-    "spectrum:shieldgrasp_amulet": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

@@ -13,9 +13,6 @@
   "x": 10,
   "y": 2,
   "turnin": "spectrum:craft_using_pedestal",
-  "extra_recipe_mappings": {
-    "spectrum:paintbrush": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

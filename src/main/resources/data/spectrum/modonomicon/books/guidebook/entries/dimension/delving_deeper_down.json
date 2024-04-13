@@ -1,7 +1,6 @@
 {
   "name": "book.spectrum.guidebook.dimension.delving_deeper_down.name",
   "icon": "minecraft:bedrock",
-  "priority": true,
   "turnin": "spectrum:midgame/enter_dimension",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,

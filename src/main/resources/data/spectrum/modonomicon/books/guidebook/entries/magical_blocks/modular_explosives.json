@@ -12,10 +12,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 4,
-  "extra_recipe_mappings": {
-    "spectrum:threat_conflux": 0,
-    "spectrum:parametric_mining_device": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

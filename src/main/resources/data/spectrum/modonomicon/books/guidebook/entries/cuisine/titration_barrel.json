@@ -12,14 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 0,
-  "extra_recipe_mappings": {
-    "spectrum:titration_barrel": 0,
-    "spectrum:kimchi": 0,
-    "spectrum:clotted_cream": 0,
-    "spectrum:fresh_chocolate": 0,
-    "spectrum:hot_chocolate": 0,
-    "spectrum:bodacious_berry_bar": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

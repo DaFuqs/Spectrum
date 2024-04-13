@@ -12,7 +12,6 @@
   "background_v_index": 0,
   "x": 0,
   "y": 0,
-  "priority": true,
   "pages": [
     {
       "type": "modonomicon:text",

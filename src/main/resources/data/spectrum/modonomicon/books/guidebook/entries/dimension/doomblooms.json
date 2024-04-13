@@ -16,9 +16,6 @@
   "background_v_index": 0,
   "x": 6,
   "y": 7,
-  "extra_recipe_mappings": {
-    "spectrum:doombloom_seed": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

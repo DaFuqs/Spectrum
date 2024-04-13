@@ -12,9 +12,6 @@
   "background_v_index": 0,
   "x": 2,
   "y": 6,
-  "extra_recipe_mappings": {
-    "spectrum:universe_spyhole": 0
-  },
   "pages": [
     {
       "type": "modonomicon:text",

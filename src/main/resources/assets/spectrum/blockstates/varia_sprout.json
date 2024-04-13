@@ -1,0 +1,24 @@
+{
+	"variants": {
+		"": [
+			{
+				"model": "spectrum:block/varia_sprout"
+			},
+			{
+				"model": "spectrum:block/varia_sprout_2"
+			},
+			{
+				"model": "spectrum:block/varia_sprout_3"
+			},
+			{
+				"model": "spectrum:block/varia_sprout_4"
+			},
+			{
+				"model": "spectrum:block/varia_sprout_5"
+			},
+			{
+				"model": "spectrum:block/varia_sprout_6"
+			}
+		]
+	}
+}

@@ -67,6 +67,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	// initial impl
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
 
+	public static int spireTicks, lastSpireTicks;
+
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
@@ -137,6 +139,24 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
+			}
+		});
+
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			var world = client.world;
+			if (client.getCameraEntity() == null)
+				return;
+
+			var biome = world.getBiome(client.getCameraEntity().getBlockPos());
+			lastSpireTicks = spireTicks;
+
+			if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
+				if (spireTicks < 60) {
+					spireTicks++;
+				}
+			}
+			else if (spireTicks > 0) {
+				spireTicks--;
 			}
 		});
 

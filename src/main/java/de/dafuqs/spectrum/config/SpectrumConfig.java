@@ -17,7 +17,14 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
-	
+
+	@Comment("Graphical options for spectrum's dimension")
+	public boolean WindSim = true;
+	public boolean ReducedParticles = false;
+
+	@Comment("Affects how often the wind simulation updates - A lower number makes the simulation smoother, but increases the performance impact significantly")
+	public int WindSimInterval = 3;
+
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
@@ -245,6 +252,13 @@ public class SpectrumConfig implements ConfigData {
 			StormStonesWorlds.add("minecraft:overworld");
 			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
+		}
+
+		if (WindSimInterval <= 0) {
+			WindSimInterval = 1;
+		}
+		else if (WindSimInterval > 10) {
+			WindSimInterval = 10;
 		}
 	}
 	

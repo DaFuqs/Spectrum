@@ -14,7 +14,7 @@ import net.minecraft.world.*;
 
 public abstract class BidentBaseEntity extends TridentEntity {
 	
-	private static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+	protected static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 	
 	public BidentBaseEntity(EntityType<? extends TridentEntity> entityType, World world) {
 		super(entityType, world);

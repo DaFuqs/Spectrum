@@ -86,7 +86,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "advancement": "spectrum:hidden/collect_dragonbone",
       "name": "Bone Ash Alloy Forge",
       "enable_visualize": true,
       "multiblock_id": "spectrum:bone_ash_alloy_forge",
@@ -95,7 +95,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Forge Controller",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "advancement": "spectrum:hidden/collect_dragonbone",
       "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_bone_ash_alloy_forge",
       "text": "An exceptional forge that accelerates the melting process with additional pressure. Holds a reasonable amount of fuel."
     },

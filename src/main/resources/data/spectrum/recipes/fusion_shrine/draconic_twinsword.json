@@ -1,0 +1,59 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 2400,
+  "experience": 16.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_sword"
+    },
+    {
+      "item": "minecraft:netherite_sword"
+    },
+    {
+      "item": "spectrum:refined_bloodstone",
+      "count": 4
+    },
+    {
+      "item": "spectrum:pure_gold",
+      "count": 8
+    },
+    {
+      "item": "spectrum:pure_quartz",
+      "count": 8
+    },
+    {
+      "item": "minecraft:enchanted_book",
+      "recipeViewNbt": "{StoredEnchantments: [{id: \"spectrum:sniper\", lvl:2s}]}",
+      "matchbook": {
+        "mode": "AND",
+        "matches": [
+          {
+            "type": "enchantment",
+            "key": "StoredEnchantments",
+            "minLevel": 2,
+            "maxLevel": 255,
+            "enchantmentId": "spectrum:sniper"
+          }
+        ]
+      }
+    },
+    {
+      "item": "spectrum:yellow_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:dragon_talon"
+  },
+  "required_advancement": "spectrum:unlocks/equipment/draconic_twinsword",
+  "world_conditions": [],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine",
+    "nothing"
+  ],
+  "finish_crafting_effect": "legendary_tool_craft",
+  "description": "spectrum.recipe.fusion_shrine.explanation.draconic_twinsword"
+}

@@ -16,13 +16,15 @@ public abstract class InkColor {
 	
 	protected final DyeColor dyeColor;
 	protected final Vector3f color;
+	protected final boolean darkShade;
 	
 	protected final Identifier requiredAdvancement;
 	
-	protected InkColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement) {
+	protected InkColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement, boolean darkShade) {
 		this.dyeColor = dyeColor;
 		this.color = color;
 		this.requiredAdvancement = requiredAdvancement;
+		this.darkShade = darkShade;
 		
 		ALL_COLORS.add(this);
 		DYE_TO_COLOR.put(dyeColor, this);
@@ -78,7 +80,11 @@ public abstract class InkColor {
 	public Identifier getRequiredAdvancement() {
 		return requiredAdvancement;
 	}
-	
+
+	public boolean isDarkShade() {
+		return darkShade;
+	}
+
 	public static InkColor getRandomMixedColor(InkColor color1, InkColor color2, net.minecraft.util.math.random.Random random) {
 		boolean color1Elemental = color1 instanceof ElementalColor;
 		boolean color2Elemental = color2 instanceof ElementalColor;

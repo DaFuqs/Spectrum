@@ -21,9 +21,44 @@
       "spectrum:paintbrush_select"
     ]
   },
-  "critical_hit": {
+  "critical_crunch": {
     "sounds": [
-      "spectrum:critical_hit"
+      "spectrum:critical_crunch"
+    ]
+  },
+  "impact_base": {
+    "sounds": [
+      "spectrum:impact_base"
+    ]
+  },
+  "impaling_hit": {
+    "sounds": [
+      "spectrum:impaling_hit"
+    ]
+  },
+  "legendary_weapon_craft": {
+    "sounds": [
+      "spectrum:legendary_weapon_craft"
+    ]
+  },
+  "metal_hit": {
+    "sounds": [
+      "spectrum:metal_hit"
+    ]
+  },
+  "metal_tap": {
+    "sounds": [
+      "spectrum:metal_tap"
+    ]
+  },
+  "metallic_unsheathe": {
+    "sounds": [
+      "spectrum:metallic_unsheathe"
+    ]
+  },
+  "discharge": {
+    "sounds": [
+      "spectrum:discharge"
     ]
   },
   "paintbrush_paint": {

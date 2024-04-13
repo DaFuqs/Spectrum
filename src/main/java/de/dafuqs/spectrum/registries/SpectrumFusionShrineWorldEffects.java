@@ -178,6 +178,14 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.up(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	});
+
+	public static FusionShrineRecipeWorldEffect LEGENDARY_TOOL_CRAFT = FusionShrineRecipeWorldEffect.register("legendary_tool_craft", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
+		@Override
+		public void trigger(ServerWorld world, BlockPos pos) {
+			world.playSound(null, pos.up(), SpectrumSoundEvents.LEGENDARY_WEAPON_CRAFT, SoundCategory.BLOCKS, 1.5F, 1F);
+		}
+	});
+
 	public static FusionShrineRecipeWorldEffect RIDICULOUSLY_SQUEAKY_FART = FusionShrineRecipeWorldEffect.register("ridiculously_squeaky_fart", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {

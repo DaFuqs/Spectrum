@@ -2,17 +2,19 @@ package de.dafuqs.spectrum.items.tools;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import de.dafuqs.spectrum.api.energy.InkCost;
 import de.dafuqs.spectrum.api.energy.color.InkColors;
-import de.dafuqs.spectrum.api.item.Preenchanted;
-import de.dafuqs.spectrum.api.item.SlotReservingItem;
-import de.dafuqs.spectrum.api.item.SplittableItem;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
 import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
 import de.dafuqs.spectrum.entity.entity.DraconicTwinswordEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -27,7 +29,6 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -42,8 +43,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
+public class DraconicTwinswordItem extends SwordItem implements SplittableItem, SlotReservingItem, Preenchanted, ExtendedEnchantable, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 
+    private static final InkCost THROW_COST = new InkCost(InkColors.YELLOW, 20);
     public static final float MAX_CHARGE_TIME = 60;
     private final Multimap<EntityAttribute, EntityAttributeModifier> phantomModifiers;
 
@@ -76,9 +78,9 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
         var twinsword = initiateTwinswordEntity(stack, world, user, strength);
 
         world.spawnEntity(twinsword);
-        SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_THROW;
+        SoundEvent soundEvent = SpectrumSoundEvents.METALLIC_UNSHEATHE;
 
-        world.playSoundFromEntity(null, twinsword, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        world.playSoundFromEntity(null, twinsword, soundEvent, SoundCategory.PLAYERS, 0.5F + strength / 2, 1.0F);
         var nbt = stack.getOrCreateNbt();
         markReserved(stack, true);
         nbt.putUuid("lastTwinsword", twinsword.getUuid());
@@ -104,6 +106,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 
         twinsword.updatePosition(user.getX() + f * 1.334, user.getEyeY() - 0.2, user.getZ() + h * 1.334);
         twinsword.setVelocity(0, strength, 0);
+        twinsword.setMaxPierce(EnchantmentHelper.getLevel(Enchantments.PIERCING, stack));
         twinsword.velocityDirty = true;
         twinsword.velocityModified = true;
         twinsword.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
@@ -149,6 +152,11 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
     }
 
     @Override
+    public boolean acceptsEnchantment(Enchantment enchantment) {
+        return enchantment == Enchantments.CHANNELING || enchantment == Enchantments.PIERCING || enchantment == SpectrumEnchantments.INERTIA;
+    }
+
+    @Override
     public ItemStack getResult(ServerPlayerEntity player, ItemStack parent) {
         var result = new ItemStack(SpectrumItems.DRAGON_TALON);
         var durability = parent.getDamage();
@@ -182,8 +190,8 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
     }
 
     @Override
-    public SoundEvent getSplitSound() {
-        return SoundEvents.ITEM_LODESTONE_COMPASS_LOCK;
+    public SoundProvider getSplitSound() {
+        return (player -> player.playSound(SpectrumSoundEvents.METALLIC_UNSHEATHE, SoundCategory.PLAYERS, 0.5F, 0.8F + player.getRandom().nextFloat() * 0.4F));
     }
 
     @Override
@@ -247,6 +255,6 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 
     @Override
     public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
-        return ColorHelper.colorVecToRGB(InkColors.RED.getColor());
+        return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
     }
 }

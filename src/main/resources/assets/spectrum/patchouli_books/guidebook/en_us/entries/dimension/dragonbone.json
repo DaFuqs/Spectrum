@@ -1,7 +1,7 @@
 {
   "name": "Dragonbone",
   "icon": "spectrum:dragonbone",
-  "advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "advancement": "spectrum:hidden/collect_dragonbone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
@@ -32,7 +32,6 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "anchor": "dragonbone_chunks",
       "item": "spectrum:dragonbone_chunk",
       "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, finally making it mineable.$(br)The dropped pieces still retained some of that ancient, magical aura."
@@ -40,18 +39,15 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Turning to Ash",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash",
       "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing that generates enough heat to turn these bones into ash."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
     {
@@ -77,7 +73,6 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Smelting them back",
-      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash_unsmelting",
       "text": "Most blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
     }

@@ -21,14 +21,17 @@ import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class OmniAcceleratorItem extends BundleItem implements InkPowered, SlotBackgroundEffectProvider {
+public class OmniAcceleratorItem extends BundleItem implements InkPowered, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 
 	protected static final InkCost COST = new InkCost(InkColors.YELLOW, 20);
+	protected static final int CHARGE_TIME = 20;
 	
 	public OmniAcceleratorItem(Settings settings) {
 		super(settings);
@@ -46,7 +49,7 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, SlotB
 
 	@Override
 	public int getMaxUseTime(ItemStack stack) {
-		return 20;
+		return CHARGE_TIME;
 	}
 
 	@Override
@@ -158,5 +161,32 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, SlotB
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;
+	}
+
+	@Override
+	public int barCount(ItemStack stack) {
+		return 1;
+	}
+
+	@Override
+	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
+		if (player == null || player.getStackInHand(player.getActiveHand()) != stack)
+			return true;
+
+		return !player.isUsingItem();
+	}
+
+	@Override
+	public ExtendedItemBarProvider.BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+		if (player == null || !player.isUsingItem())
+			return ExtendedItemBarProvider.PASS;
+
+		var activeStack = player.getStackInHand(player.getActiveHand());
+		if (activeStack != stack)
+			return ExtendedItemBarProvider.PASS;
+
+
+		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / CHARGE_TIME)));
+		return new ExtendedItemBarProvider.BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}
 }

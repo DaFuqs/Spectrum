@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.inventories.storage.*;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -19,7 +19,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -57,14 +57,20 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	public static boolean verifySkyAccess(ServerWorld world, BlockPos blockPos) {
 		if (!world.getBlockState(blockPos.up()).isAir()) {
 			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, blockPos.up().toCenterPos(), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
 			return false;
 		}
-		if (!world.isSkyVisible(blockPos)) {
-			SpectrumS2CPacketSender.playParticleWithExactVelocity(world, new Vec3d(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 1, new Vec3d(0, 0.5, 0));
-			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			return false;
+		// getTopY() returns the topmost "air" block, so we have to subtract 1 to get the first solid block
+		// which may or may not be the pos of the Fusion Shrine
+		int topY = world.getTopY(Heightmap.Type.WORLD_SURFACE, blockPos.getX(), blockPos.getZ()) - 1;
+		if (topY == blockPos.getY()) {
+			return true;
 		}
-		return true;
+		
+		SpectrumS2CPacketSender.playParticleWithExactVelocity(world, new Vec3d(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 1, new Vec3d(0, 0.5, 0));
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, new Vec3d(blockPos.getX() + 0.5, topY + 0.5, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
+		world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		return false;
 	}
 	
 	public static boolean verifyStructure(World world, BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {

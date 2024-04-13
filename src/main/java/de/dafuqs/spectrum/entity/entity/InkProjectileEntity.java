@@ -2,9 +2,9 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
@@ -18,6 +18,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
@@ -121,7 +122,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Entity entity = entityHitResult.getEntity();
 		
-		ColorHelper.tryColorEntity(null, entity, getDyeColor());
+		if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+			entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		}
 		
 		float velocity = (float) this.getVelocity().length();
 		int damage = MathHelper.ceil(MathHelper.clamp((double) velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
@@ -266,7 +269,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 				continue;
 			}
 			
-			ColorHelper.tryColorEntity(null, entity, getDyeColor());
+			if (EntityColorProcessorRegistry.colorEntity(entity, getDyeColor())) {
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 			
 			if (!entity.isImmuneToExplosion()) {
 				double w = Math.sqrt(entity.squaredDistanceTo(vec3d)) / (double) q;

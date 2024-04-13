@@ -14,11 +14,18 @@ public class InkColors {
 	public static final Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone_shard");
+
+	/**
+	 * A lot of places where color is displayed have black backgrounds, which would make displaying normal black on them... daft.
+	 * <p>
+	 * So, instead, we use something closer to midnight solution in shade.
+	 */
+	public static final int ALT_BLACK = 0x302951;
 	
 	public static final ElementalColor CYAN = registerElemental("cyan", new ElementalColor(DyeColor.CYAN, ColorHelper.colorIntToVec(0x45ecff), BASE_ADVANCEMENT_ID));
 	public static final ElementalColor MAGENTA = registerElemental("magenta", new ElementalColor(DyeColor.MAGENTA, ColorHelper.colorIntToVec(0xff4ff6), BASE_ADVANCEMENT_ID));
 	public static final ElementalColor YELLOW = registerElemental("yellow", new ElementalColor(DyeColor.YELLOW, ColorHelper.colorIntToVec(0xffe736), BASE_ADVANCEMENT_ID));
-	public static final ElementalColor BLACK = registerElemental("black", new ElementalColor(DyeColor.BLACK, ColorHelper.colorIntToVec(0x020106), BLACK_ADVANCEMENT_ID));
+	public static final ElementalColor BLACK = registerElemental("black", new ElementalColor(DyeColor.BLACK, ColorHelper.colorIntToVec(0x020106), BLACK_ADVANCEMENT_ID, true));
 	public static final ElementalColor WHITE = registerElemental("white", new ElementalColor(DyeColor.WHITE, ColorHelper.colorIntToVec(0xFFFFFF), WHITE_ADVANCEMENT_ID));
 
 	public static final CompoundColor ORANGE = registerCompound("orange", new CompoundColor(DyeColor.ORANGE, ColorHelper.colorIntToVec(0xff6303), BASE_ADVANCEMENT_ID, new HashMap<>() {{
@@ -29,7 +36,7 @@ public class InkColors {
 		put(CYAN, 1F / 3F);
 		put(YELLOW, 2F / 3F);
 	}}));
-	public static final CompoundColor PINK = registerCompound("pink", new CompoundColor(DyeColor.PINK, ColorHelper.colorIntToVec(0xff9eab), BASE_ADVANCEMENT_ID, new HashMap<>() {{
+	public static final CompoundColor PINK = registerCompound("pink", new CompoundColor(DyeColor.PINK, ColorHelper.colorIntToVec(0xff94a6), BASE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 2F / 3F);
 		put(YELLOW, 1F / 3F);
 	}}));
@@ -56,21 +63,21 @@ public class InkColors {
 		put(MAGENTA, 3F / 6F);
 		put(YELLOW, 1F / 6F);
 	}}));
-	public static final CompoundColor BROWN = registerCompound("brown", new CompoundColor(DyeColor.BROWN, ColorHelper.colorIntToVec(0x731627), BLACK_ADVANCEMENT_ID, new HashMap<>() {{
+	public static final CompoundColor BROWN = registerCompound("brown", new CompoundColor(DyeColor.BROWN, ColorHelper.colorIntToVec(0x6f322a), BLACK_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 2F / 5F);
 		put(YELLOW, 1F / 5F);
 		put(BLACK, 2F / 5F);
-	}}));
-	public static final CompoundColor LIGHT_GRAY = registerCompound("light_gray", new CompoundColor(DyeColor.LIGHT_GRAY, ColorHelper.colorIntToVec(0xc1c2d9), WHITE_ADVANCEMENT_ID, new HashMap<>() {{
+	}}, true));
+	public static final CompoundColor LIGHT_GRAY = registerCompound("light_gray", new CompoundColor(DyeColor.LIGHT_GRAY, ColorHelper.colorIntToVec(0xc2c2c2), WHITE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(CYAN, 2F / 6F);
 		put(MAGENTA, 2F / 6F);
 		put(YELLOW, 2F / 6F);
 	}}));
-	public static final CompoundColor GRAY = registerCompound("gray", new CompoundColor(DyeColor.GRAY, ColorHelper.colorIntToVec(0x626177), WHITE_ADVANCEMENT_ID, new HashMap<>() {{
+	public static final CompoundColor GRAY = registerCompound("gray", new CompoundColor(DyeColor.GRAY, ColorHelper.colorIntToVec(0x464646), WHITE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(CYAN, 2F / 6F);
 		put(MAGENTA, 2F / 6F);
 		put(YELLOW, 2F / 6F);
-	}}));
+	}}, true));
 	
 	public static void register() {
 	

@@ -10,16 +10,6 @@
         "model": "spectrum:block/blackslag_mirrored",
         "x": 90,
         "y": 90
-      },
-      {
-        "model": "spectrum:block/blackslag",
-        "x": 90,
-        "y": 90
-      },
-      {
-        "model": "spectrum:block/blackslag_mirrored",
-        "x": 90,
-        "y": 90
       }
     ],
     "axis=y": [
@@ -28,14 +18,6 @@
       },
       {
         "model": "spectrum:block/blackslag_mirrored"
-      },
-      {
-        "model": "spectrum:block/blackslag",
-        "y": 180
-      },
-      {
-        "model": "spectrum:block/blackslag_mirrored",
-        "y": 180
       }
     ],
     "axis=z": [
@@ -46,16 +28,6 @@
       {
         "model": "spectrum:block/blackslag_mirrored",
         "x": 90
-      },
-      {
-        "model": "spectrum:block/blackslag",
-        "x": 90,
-        "y": 180
-      },
-      {
-        "model": "spectrum:block/blackslag_mirrored",
-        "x": 90,
-        "y": 180
       }
     ]
   }

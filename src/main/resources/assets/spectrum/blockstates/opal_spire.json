@@ -1,0 +1,30 @@
+{
+	"variants": {
+		"facing=down": {
+			"model": "spectrum:block/opal_spire",
+			"x": 180
+		},
+		"facing=east": {
+			"model": "spectrum:block/opal_spire",
+			"x": 90,
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/opal_spire",
+			"x": 90
+		},
+		"facing=south": {
+			"model": "spectrum:block/opal_spire",
+			"x": 90,
+			"y": 180
+		},
+		"facing=up": {
+			"model": "spectrum:block/opal_spire"
+		},
+		"facing=west": {
+			"model": "spectrum:block/opal_spire",
+			"x": 90,
+			"y": 270
+		}
+	}
+}

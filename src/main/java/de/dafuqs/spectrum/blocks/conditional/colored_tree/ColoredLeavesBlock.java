@@ -66,4 +66,8 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 		return LEAVES.get(color);
 	}
 	
+	public static Collection<ColoredLeavesBlock> all() {
+		return LEAVES.values();
+	}
+	
 }

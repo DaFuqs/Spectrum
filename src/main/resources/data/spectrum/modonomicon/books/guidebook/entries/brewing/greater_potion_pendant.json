@@ -5,13 +5,17 @@
     "advancement_id": "spectrum:unlocks/trinkets/greater_potion_pendant"
   },
   "icon": "spectrum:greater_potion_pendant",
-  "category": "spectrum:equipment",
+  "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:brewing/lesser_potion_pendant"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 4,
+  "x": -3,
+  "y": 3,
   "pages": [
     {
       "type": "modonomicon:text",

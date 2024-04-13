@@ -5087,7 +5087,7 @@
   "book.spectrum.guidebook.hints.topaz.name": "A Gemstone",
   "book.spectrum.guidebook.hints.topaz.page0.title": "Where to find",
   "book.spectrum.guidebook.hints.topaz.page0.text": "This type of geode is found at great heights, typically on top of hills and sky-high mountains.",
-  "book.spectrum.guidebook.magic.name": "Ink Magic",
+  "book.spectrum.guidebook.magic.name": "Ink",
   "book.spectrum.guidebook.magic.color_picker.name": "Color Picker",
   "book.spectrum.guidebook.magic.color_picker.page0.title": "Color Picker",
   "book.spectrum.guidebook.magic.color_picker.page0.text": "Converts [Pigment](entry://general/pigment) into pure [Ink](entry://magic/ink)[#](), which you can supply to your magical items.\\\nUsed to fill Ink Containers, like [Ink Flasks](entry://magic/ink_flask)[#]().\\\nUnfortunately - [you remember how Ink is transferred](entry://magic/ink@transfer)[#]() - there is always residue left behind. You can't use the full amount, though the transfer is quicker the bigger the difference.",

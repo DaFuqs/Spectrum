@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/items/incandescent_amalgam"
   },
   "icon": "spectrum:incandescent_amalgam",
-  "category": "spectrum:magical_items",
+  "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,
-  "y": 4,
+  "y": 14,
   "pages": [
     {
       "type": "modonomicon:text",

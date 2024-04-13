@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/items/radiance_staff"
   },
   "icon": "spectrum:radiance_staff",
-  "category": "spectrum:magical_items",
+  "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,
-  "y": 6,
+  "y": 16,
   "pages": [
     {
       "type": "modonomicon:text",

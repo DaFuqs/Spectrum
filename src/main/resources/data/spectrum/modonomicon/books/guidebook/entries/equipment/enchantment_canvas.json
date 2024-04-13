@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/items/enchantment_canvas"
   },
   "icon": "spectrum:enchantment_canvas",
-  "category": "spectrum:magical_items",
+  "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 4,
-  "y": 2,
+  "y": 12,
   "pages": [
     {
       "type": "modonomicon:text",

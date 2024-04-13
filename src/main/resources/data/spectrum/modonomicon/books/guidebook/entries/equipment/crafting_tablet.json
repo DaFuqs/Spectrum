@@ -5,13 +5,13 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/crafting_tablet"
   },
-  "category": "spectrum:magical_items",
+  "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,
-  "y": 2,
+  "y": 12,
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

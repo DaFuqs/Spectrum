@@ -5,13 +5,13 @@
     "advancement_id": "spectrum:unlocks/items/celestial_pocketwatch"
   },
   "icon": "spectrum:celestial_pocketwatch",
-  "category": "spectrum:magical_items",
+  "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 8,
-  "y": 0,
+  "y": 10,
   "pages": [
     {
       "type": "modonomicon:text",

@@ -2636,7 +2636,7 @@
   "item.spectrum.creative_ink_assortment": "Креативный Ассортимент Краски",
   "item.spectrum.creative_ink_assortment.tooltip": "§7Нескончаемый поток краски",
   "block.spectrum.color_picker": "Сборщик Краски",
-  "block.spectrum.color_picker.tooltip": "Конвертирует §2П§3и§гg§6м§bе§eн§dт§7 в Краску",
+  "block.spectrum.color_picker.tooltip": "Конвертирует §2П§3и§gг§6м§bе§eн§dт§7 в Краску",
   "block.spectrum.crystal_apothecary": "Сборщик Осколков",
   "block.spectrum.crystal_apothecary.owner": "Сборщик Осколков %s",
   "block.spectrum.crystal_apothecary.tooltip": "Поместите в Жеоде для сбора осколков Самоцветов",

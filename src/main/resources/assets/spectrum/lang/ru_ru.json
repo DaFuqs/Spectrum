@@ -1598,7 +1598,7 @@
   "item.spectrum.pedestal.tooltip.basic_topaz": "§bТопазовый§7",
   "item.spectrum.pedestal.tooltip.basic_amethyst": "§dАметистовый§7",
   "item.spectrum.pedestal.tooltip.basic_citrine": "§eЦитриновый§7",
-  "item.spectrum.pedestal.tooltip.all_basic": "Тройная игра цветов",
+  "item.spectrum.pedestal.tooltip.all_basic": "§bC§dM§eY§7",
   "item.spectrum.pedestal.tooltip.onyx": "§8Ониксовый§7",
   "item.spectrum.pedestal.tooltip.moonstone": "§fЛунокаменный§7",
   "block.spectrum.pastel_node": "Вайдовый Узел",

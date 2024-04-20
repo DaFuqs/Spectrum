@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
@@ -25,7 +24,6 @@ import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
@@ -331,28 +329,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				}
 
 				return ActionResult.success(this.getWorld().isClient());
-
-			} else if (handStack.isIn(SpectrumItemTags.PEACHES) || handStack.isIn(SpectrumItemTags.EGGPLANTS)) {
-				// 🍆 / 🍑 = 💘
-
-				if (!this.getWorld().isClient()) {
-					handStack.decrement(1);
-
-					this.setTame(true);
-					if (getOwnerUuid() == null && player instanceof ServerPlayerEntity serverPlayerEntity) {
-						this.setOwnerUuid(player.getUuid());
-						Criteria.TAME_ANIMAL.trigger(serverPlayerEntity, this);
-					}
-
-					this.lovePlayer(player);
-
-					this.getWorld().sendEntityStatus(this, (byte) 7); // heart particles
-					this.playSoundIfNotSilent(SpectrumSoundEvents.ENTITY_KINDLING_LOVE);
-
-					clipAndDrop();
-				}
-
-				return ActionResult.success(this.getWorld().isClient());
 			}
 		}
 		
@@ -411,7 +387,7 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 		}
 	}
 
-	private void clipAndDrop() {
+	public void clipAndDrop() {
 		setClipped(4800); // 4 minutes
 		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
 			dropStack(clippedStack, 0.3F);

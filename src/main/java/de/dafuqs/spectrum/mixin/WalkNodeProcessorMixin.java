@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LandPathNodeMaker.class)
-public class MixinWalkNodeProcessor {
+public class WalkNodeProcessorMixin {
 	
 	@Inject(method = "inflictsFireDamage(Lnet/minecraft/block/BlockState;)Z", at = @At("HEAD"), cancellable = true)
 	private static void spectrum$burningBlockPathfinding(BlockState state, CallbackInfoReturnable<Boolean> cir) {

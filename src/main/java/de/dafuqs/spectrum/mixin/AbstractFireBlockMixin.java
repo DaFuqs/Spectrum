@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(AbstractFireBlock.class)
-public abstract class MixinAbstractFireBlock {
+public abstract class AbstractFireBlockMixin {
 
     @Inject(at = @At("HEAD"), method = "getState", cancellable = true)
     private static void spectrum$getFireState(BlockView world, BlockPos pos, CallbackInfoReturnable<BlockState> cir) {

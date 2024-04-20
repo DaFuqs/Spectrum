@@ -149,7 +149,7 @@ public class SpectrumBlocks {
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
-	
+
 	public static final Block BLOODSTONE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block LARGE_BLOODSTONE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.SMALL_ONYX_BUD));
 	public static final Block SMALL_BLOODSTONE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER));
@@ -694,7 +694,7 @@ public class SpectrumBlocks {
 	public static final Block NEPHRITE_BLOSSOM_BULB = new NephriteBlossomBulbBlock(FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM));
 
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(FabricBlockSettings.of(Material.PLANT, MapColor.BLACK).strength(2F).sounds(BlockSoundGroup.WOOL).nonOpaque().noCollision());
-	public static final Block JADEITE_LOTUS_FLOWER = new JadeiteFlowerBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM).mapColor(MapColor.WHITE).luminance(14).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
+	public static final Block JADEITE_LOTUS_FLOWER = new JadeiteFlowerBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM).mapColor(MapColor.WHITE).luminance(14).nonOpaque().postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
 	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM));
 
 	// ORES

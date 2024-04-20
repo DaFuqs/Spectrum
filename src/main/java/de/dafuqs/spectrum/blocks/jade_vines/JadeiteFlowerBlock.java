@@ -8,15 +8,23 @@ import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
 public class JadeiteFlowerBlock extends SpectrumFacingBlock {
-    
+
+    public static final VoxelShape SHAPE = Block.createCuboidShape(0, 8, 0, 16, 16, 16);
+
     public JadeiteFlowerBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState());
     }
-    
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         var facing = state.get(FACING);
@@ -36,7 +44,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
         if (!state.canPlaceAt(world, pos)) {
             world.createAndScheduleBlockTick(pos, this, 1);
         }
-    
+
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
@@ -50,7 +58,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
             world.addImportantParticle(ParticleTypes.END_ROD, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025);
         }
     }
-    
+
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.scheduledTick(state, world, pos, random);
@@ -58,5 +66,5 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock {
             world.breakBlock(pos, true);
         }
     }
-    
+
 }

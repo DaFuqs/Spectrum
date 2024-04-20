@@ -1650,12 +1650,6 @@
       "spectrum:entity.kindling.angy"
     ]
   },
-  "entity.kindling.love": {
-    "subtitle": "spectrum.subtitles.entity.kindling.love",
-    "sounds": [
-      "spectrum:entity.kindling.love"
-    ]
-  },
   "entity.kindling.jump": {
     "subtitle": "spectrum.subtitles.entity.kindling.jump",
     "sounds": [

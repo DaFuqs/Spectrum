@@ -18,6 +18,7 @@ import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.context.*;
@@ -29,15 +30,16 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends HorseEntity implements RangedAttackMob, Angerable {
-
+public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable {
+	
+	private static final UUID HORSE_ARMOR_BONUS_ID = UUID.fromString("f55b70e7-db42-4384-8843-6e9c843336af");
+	
 	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
 
 	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
@@ -76,10 +78,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 25F)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.5F)
 				.add(EntityAttributes.HORSE_JUMP_STRENGTH, 12.0D);
-	}
-	
-	@Override
-	protected void initAttributes(Random random) {
 	}
 	
 	@Nullable
@@ -161,21 +159,34 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		this.writeAngerToNbt(nbt);
-		nbt.putString("kindling_variant", SpectrumRegistries.KINDLING_VARIANT.getId(this.getKindlingVariant()).toString());
+		nbt.putString("variant", SpectrumRegistries.KINDLING_VARIANT.getId(this.getKindlingVariant()).toString());
 		nbt.putInt("chillTime", getChillTime());
 		nbt.putBoolean("playing", isPlaying());
+		
+		if (!this.items.getStack(1).isEmpty()) {
+			nbt.put("ArmorItem", this.items.getStack(1).writeNbt(new NbtCompound()));
+		}
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.readAngerFromNbt(this.getWorld(), nbt);
-
-		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(Identifier.tryParse(nbt.getString("kindling_variant")));
+		
+		KindlingVariant variant = SpectrumRegistries.KINDLING_VARIANT.get(Identifier.tryParse(nbt.getString("variant")));
 		this.setKindlingVariant(variant == null ? KindlingVariant.DEFAULT : variant);
 
 		setChillTime(nbt.getInt("chillTime"));
 		setPlaying(nbt.getBoolean("playing"));
+		
+		if (nbt.contains("ArmorItem", 10)) {
+			ItemStack itemStack = ItemStack.fromNbt(nbt.getCompound("ArmorItem"));
+			if (!itemStack.isEmpty() && this.isHorseArmor(itemStack)) {
+				this.items.setStack(1, itemStack);
+			}
+		}
+		
+		this.updateSaddle();
 	}
 	
 	@Override
@@ -186,9 +197,58 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		HorseEntity baby = SpectrumEntityTypes.KINDLING.create(world);
-		this.setChildAttributes(entity, baby);
+		KindlingEntity baby = SpectrumEntityTypes.KINDLING.create(world);
+		if (baby != null) {
+			baby.setKindlingVariant(this.random.nextBoolean() ? this.getKindlingVariant() : ((KindlingEntity) entity).getKindlingVariant());
+		}
 		return baby;
+	}
+	
+	public ItemStack getArmorType() {
+		return this.getEquippedStack(EquipmentSlot.CHEST);
+	}
+	
+	private void equipArmor(ItemStack stack) {
+		this.equipStack(EquipmentSlot.CHEST, stack);
+		this.setEquipmentDropChance(EquipmentSlot.CHEST, 0.0F);
+	}
+	
+	protected void updateSaddle() {
+		if (!this.getWorld().isClient) {
+			super.updateSaddle();
+			this.setArmorTypeFromStack(this.items.getStack(1));
+			this.setEquipmentDropChance(EquipmentSlot.CHEST, 0.0F);
+		}
+	}
+	
+	private void setArmorTypeFromStack(ItemStack stack) {
+		this.equipArmor(stack);
+		if (!this.getWorld().isClient) {
+			this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).removeModifier(HORSE_ARMOR_BONUS_ID);
+			if (this.isHorseArmor(stack)) {
+				int armorBonus = ((HorseArmorItem) stack.getItem()).getBonus();
+				if (armorBonus != 0) {
+					this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR).addTemporaryModifier(new EntityAttributeModifier(HORSE_ARMOR_BONUS_ID, "Horse armor bonus", armorBonus, EntityAttributeModifier.Operation.ADDITION));
+				}
+			}
+		}
+	}
+	
+	public void onInventoryChanged(Inventory sender) {
+		ItemStack itemStack = this.getArmorType();
+		super.onInventoryChanged(sender);
+		ItemStack itemStack2 = this.getArmorType();
+		if (this.age > 20 && this.isHorseArmor(itemStack2) && itemStack != itemStack2) {
+			this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 0.5F, 1.0F);
+		}
+	}
+	
+	public boolean hasArmorSlot() {
+		return true;
+	}
+	
+	public boolean isHorseArmor(ItemStack item) {
+		return item.getItem() instanceof HorseArmorItem;
 	}
 	
 	@Override
@@ -308,27 +368,40 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		if(player.shouldCancelInteraction()) {
-			return super.interactMob(player, hand);
+		if (this.getAngerTime() > 0) {
+			return ActionResult.FAIL;
 		}
 		
-		if (this.getAngerTime() > 0) {
+		// clipping using shears
+		ItemStack handStack = player.getMainHandStack();
+		if (!this.isBaby() && !this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
+			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+			
+			if (!this.getWorld().isClient()) {
+				setTarget(player);
+				takeRevenge(player.getUuid());
+				this.playAngrySound();
+				clipAndDrop();
+			}
+			
 			return ActionResult.success(this.getWorld().isClient());
 		}
 		
-		ItemStack handStack = player.getMainHandStack();
-		if(!this.isBaby()) {
-			if (!this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
-				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-				
-				if (!this.getWorld().isClient()) {
-					setTarget(player);
-					takeRevenge(player.getUuid());
-					this.playAngrySound();
-					clipAndDrop();
+		boolean bl = !this.isBaby() && this.isTame() && player.shouldCancelInteraction();
+		if (!this.hasPassengers() && !bl) {
+			if (!handStack.isEmpty()) {
+				if (this.isBreedingItem(handStack)) {
+					return this.interactHorse(player, handStack);
 				}
 				
-				return ActionResult.success(this.getWorld().isClient());
+				if (!this.isTame()) {
+					this.playAngrySound();
+					return ActionResult.success(this.getWorld().isClient);
+				}
+			}
+			
+			if (player.shouldCancelInteraction()) {
+				return super.interactMob(player, hand);
 			}
 		}
 		

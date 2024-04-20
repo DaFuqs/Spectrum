@@ -688,9 +688,9 @@ public class SpectrumBlocks {
 	public static final Block JADE_VINES = new JadeVinePlantBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVinePlantBlock.AGE) == 0 ? 0 : 5).nonOpaque());
 	public static final Block JADE_VINE_PETAL_BLOCK = new JadeVinePetalBlock(FabricBlockSettings.of(Material.LEAVES, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(FabricBlockSettings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
-	
+
 	public static final Block NEPHRITE_BLOSSOM_STEM = new NephriteBlossomStemBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PINK).strength(2F).sounds(BlockSoundGroup.WOOL).nonOpaque().noCollision());
-	public static final Block NEPHRITE_BLOSSOM_LEAVES = new NephriteBlossomLeavesBlock((FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM).ticksRandomly().collidable(true).strength(0.2F).sounds(BlockSoundGroup.GRASS).luminance(13)));
+	public static final Block NEPHRITE_BLOSSOM_LEAVES = new NephriteBlossomLeavesBlock((FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM).nonOpaque().ticksRandomly().collidable(true).strength(0.2F).sounds(BlockSoundGroup.GRASS).luminance(13)));
 	public static final Block NEPHRITE_BLOSSOM_BULB = new NephriteBlossomBulbBlock(FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM));
 
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(FabricBlockSettings.of(Material.PLANT, MapColor.BLACK).strength(2F).sounds(BlockSoundGroup.WOOL).nonOpaque().noCollision());

@@ -747,7 +747,7 @@
   "block.spectrum.cinderhearth": "Пепельный Очаг",
   "block.spectrum.stonesetting_workshop": "Мастерская Отделки",
   "block.spectrum.memory": "Воспоминание",
-  "item.spectrum.memory.tooltip.entity_type": "§7Хранит память о§f%s",
+  "item.spectrum.memory.tooltip.entity_type": "§7Хранит память о §f%s",
   "item.spectrum.memory.tooltip.named": "§7Помнит ",
   "item.spectrum.memory.tooltip.entity_type_broken_promise": "§7 Пустое обещание §f%s",
   "item.spectrum.memory.tooltip.named_broken_promise": "§7Пустое обещание ",

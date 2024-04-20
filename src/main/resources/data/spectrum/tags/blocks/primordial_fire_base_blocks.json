@@ -1,5 +1,6 @@
 {
   "values": [
-    "#minecraft:soul_fire_base_blocks"
+    "spectrum:black_sludge",
+    "spectrum:rotten_ground"
   ]
 }

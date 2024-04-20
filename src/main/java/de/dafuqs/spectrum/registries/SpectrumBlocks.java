@@ -53,8 +53,6 @@ import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -158,7 +156,6 @@ public class SpectrumBlocks {
 	public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.SMALL_MOONSTONE_BUD, 6));
 	public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
-	
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 	
 	public static final AmethystClusterBlock BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 8));
@@ -418,7 +415,7 @@ public class SpectrumBlocks {
 		return settings(mapColor, soundGroup, strength, resistance).pistonBehavior(pistonBehavior).ticksRandomly().allowsSpawning((state, world, pos, type) -> false);
 	}
 	
-	public static final Block FADING = new FadingBlock(decay(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 0.5F, 0.5F, PistonBehavior.NORMAL));
+	public static final Block FADING = new FadingBlock(decay(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 0.5F, 0.5F, PistonBehavior.DESTROY));
 	public static final Block FAILING = new FailingBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 20.0F, 50.0F, PistonBehavior.BLOCK));
 	public static final Block RUIN = new RuinBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 100.0F, 3600000.0F, PistonBehavior.BLOCK));
 	public static final Block FORFEITURE = new ForfeitureBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 100.0F, 3600000.0F, PistonBehavior.BLOCK));
@@ -742,8 +739,8 @@ public class SpectrumBlocks {
 	}
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(settings(MapColor.BLACK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision());
 	public static final Block JADEITE_LOTUS_FLOWER = new JadeiteFlowerBlock(settings(MapColor.WHITE, BlockSoundGroup.WOOL, 2.0F).luminance(state -> 14).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
-	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM));
-
+	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM).nonOpaque());
+	
 	private static Settings ore() {
 		return FabricBlockSettings.copyOf(Blocks.IRON_ORE);
 	}
@@ -1251,7 +1248,7 @@ public class SpectrumBlocks {
 	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.COLORFUL);
 	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.PRISTINE);
 	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.GEMSTONE);
-
+	
 	public static final Block INCANDESCENT_AMALGAM = new IncandescentAmalgamBlock(FabricBlockSettings.create().breakInstantly().nonOpaque());
 	
 	private static Settings idol(BlockSoundGroup soundGroup) {
@@ -1622,7 +1619,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
-		
+
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
 		registerBlockWithItem("clear_hummingstone_glass", CLEAR_HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -1826,6 +1823,7 @@ public class SpectrumBlocks {
 		//registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, IS.of(Rarity.UNCOMMON), DyeColor.BLACK);
+		
 		//registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, IS.of(), DyeColor.BLUE);

@@ -339,8 +339,6 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 	protected boolean receiveFood(PlayerEntity player, ItemStack item) {
 		boolean canEat = false;
 
-		this.lovePlayer(player);
-
 		if (this.getHealth() < this.getMaxHealth()) {
 			this.heal(2.0F);
 			canEat = true;
@@ -351,7 +349,9 @@ public class KindlingEntity extends HorseEntity implements RangedAttackMob, Ange
 			if (!this.getWorld().isClient) {
 				this.growUp(20);
 			}
-
+			canEat = true;
+		} else if (!this.getWorld().isClient && !this.isInLove()) {
+			this.lovePlayer(player);
 			canEat = true;
 		}
 

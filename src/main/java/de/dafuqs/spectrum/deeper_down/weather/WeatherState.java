@@ -2,16 +2,25 @@ package de.dafuqs.spectrum.deeper_down.weather;
 
 import de.dafuqs.spectrum.deeper_down.Season;
 import de.dafuqs.spectrum.helpers.WeightedPool;
+import de.dafuqs.spectrum.registries.SpectrumRegistries;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.Collections;
+import java.util.Map;
+
 public abstract class WeatherState {
 
+    private final Map<RegistryKey<Biome>, WeatherState> BLANK = Collections.emptyMap();
     private final Identifier id;
+    private String translationKey;
 
     public WeatherState(Identifier id) {
         this.id = id;
@@ -27,8 +36,8 @@ public abstract class WeatherState {
 
     public abstract IntProvider getPrecipitation(RegistryKey<Biome> biome);
 
-    public WeatherState getStateFor(RegistryKey<Biome> biome) {
-        return this;
+    public Map<RegistryKey<Biome>, WeatherState> getAltStates() {
+        return BLANK;
     }
 
     public abstract float getThirst();
@@ -46,6 +55,18 @@ public abstract class WeatherState {
     public abstract boolean hasAirParticles();
 
     public abstract boolean hasGroundParticles();
+
+    public String getOrCreateTranslationKey() {
+        if (this.translationKey == null) {
+            this.translationKey = Util.createTranslationKey("weather", SpectrumRegistries.WEATHER_STATES.getId(this));
+        }
+
+        return this.translationKey;
+    }
+
+    public Text getName() {
+        return Text.translatable(getOrCreateTranslationKey());
+    }
 
     public Identifier getId() {
         return id;

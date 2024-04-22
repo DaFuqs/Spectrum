@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.commands.*;
 import net.fabricmc.fabric.api.command.v2.*;
+import net.minecraft.registry.Registry;
 
 public class SpectrumCommands {
 	
@@ -12,6 +13,8 @@ public class SpectrumCommands {
 			PrintConfigCommand.register(dispatcher);
 			PrimordialFireCommand.register(dispatcher);
 			DumpRegistriesCommand.register(dispatcher);
+			DimWeatherCommand.register(dispatcher);
+			SeasonCommand.register(dispatcher);
 		});
 	}
 }

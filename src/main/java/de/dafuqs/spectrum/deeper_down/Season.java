@@ -2,14 +2,17 @@ package de.dafuqs.spectrum.deeper_down;
 
 import de.dafuqs.spectrum.cca.DDWorldEffectsComponent;
 import de.dafuqs.spectrum.deeper_down.weather.WeatherState;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Locale;
 
 import static de.dafuqs.spectrum.registries.SpectrumWeatherStates.*;
 
 /**
- * Seasons last 120 in-game days each.
+ * Seasons last 13 real life days each.
  * <p>
- * Every season is subdivided into three 40 day blocks which determine effect intensities.
+ * Every season is subdivided into three blocks which determine effect intensities.
  * <p>
  * If this seems a lil bit excessive... yeah - but hey, being fancy is fun.
  */
@@ -20,6 +23,7 @@ public enum Season {
 
     public final float aquiferMod, windMod, tempMod;
     public final WeatherState earlyDefault, midDefault, lateDefault;
+    public final String translationKey;
 
     Season(float aquiferMod, float windMod, float tempMod, WeatherState earlyDefault, WeatherState midDefault, WeatherState lateDefault) {
         this.aquiferMod = aquiferMod;
@@ -28,6 +32,11 @@ public enum Season {
         this.earlyDefault = earlyDefault;
         this.midDefault = midDefault;
         this.lateDefault = lateDefault;
+        this.translationKey = "season.spectrum." + name().toLowerCase();
+    }
+
+    public Text getName() {
+        return Text.translatable(translationKey);
     }
 
     public static Period getPeriodByDate(int date) {
@@ -53,10 +62,16 @@ public enum Season {
 
         public final float effectMod;
         public final long minDefaultWeatherDuration;
+        public final String translationKey;
 
         Period(float effectMod, long minDefaultWeatherDuration) {
             this.effectMod = effectMod;
             this.minDefaultWeatherDuration = minDefaultWeatherDuration;
+            translationKey = "season.spectrum.period." + name().toLowerCase();
+        }
+
+        public Text getName() {
+            return Text.translatable(translationKey);
         }
     }
 }

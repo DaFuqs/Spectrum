@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.cca;
 
+import com.mojang.brigadier.context.CommandContext;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.deeper_down.Season;
 import de.dafuqs.spectrum.deeper_down.weather.WeatherState;
@@ -23,7 +24,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public final class DDWorldEffectsComponent implements CommonTickingComponent, AutoSyncedComponent {
 
@@ -36,15 +39,15 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     public static final int RESET_PERIOD = DAY_LENGTH * 72;
     public static final long SEASON_DURATION = REAL_DAY_LENGTH * 13;
     public static final long SEASON_PERIOD_INTERVAL = SEASON_DURATION / 3;
-    private static long seasonCycleStart = new Date().getTime();
+    private long seasonCycleStart = new Date().getTime();
 
 
     //Ash Effects - changes on average every half hour
     private static final long ASH_UPDATE_INTERVAL = 1600;
     private static final double BASE_ASH_VELOCITY = 0.25;
-    private static double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
-    private static int ashSwitchTicks = 50, ashSpawns;
-    private static Direction.Axis ashAxis = Direction.Axis.X;
+    private double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
+    private int ashSwitchTicks = 50, ashSpawns;
+    private Direction.Axis ashAxis = Direction.Axis.X;
 
     /*
     Weather Data - It takes a full lunar cycle
@@ -52,11 +55,12 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     to fully fill the aquifers at base flow rate.
     */
     private static final long WEATHER_UPDATE_INTERVAL = 600;
-    private static final float AQUIFER_CAP = 10000;
-    private static final float BASE_AQUIFER_FLOW = AQUIFER_CAP / (DAY_LENGTH * 8F);
-    private static float aquiferFill = 0F, aquiferSaturation = 0F;
-    private static WeatherState weatherState = SpectrumWeatherStates.PLAIN_WEATHER;
-    private static long weatherTicks = 0;
+    public static final float AQUIFER_CAP = 10000;
+    public static final float BASE_AQUIFER_FLOW = AQUIFER_CAP / (DAY_LENGTH * 8F);
+    private float aquiferFill = 0F, aquiferSaturation = 0F;
+    private WeatherState weatherState = SpectrumWeatherStates.PLAIN_WEATHER;
+    private long weatherTicks = 0;
+    private boolean forced;
 
     public DDWorldEffectsComponent(World world) {
         this.world = world;
@@ -175,6 +179,14 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         return Season.getSeasonByDate((int) ((seasonTime / SEASON_DURATION) % 3));
     }
 
+    public Season getCurrentSeason() {
+        return getSeasonByDate(getSeasonalTime());
+    }
+
+    public Season.Period getCurrentPeriod() {
+        return getPeriodByDate(getSeasonalTime());
+    }
+
     public long getSeasonalTime() {
         var time = new Date().getTime() - seasonCycleStart;
 
@@ -258,6 +270,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         aquiferFill = tag.getFloat("aquiferFill");
         weatherTicks = tag.getLong("weatherTicks");
         seasonCycleStart = tag.getLong("seasonCycleStart");
+        forced = tag.getBoolean("forced");
         if (tag.contains("weatherState")) {
             weatherState = SpectrumWeatherStates.fromTag(tag);
         }
@@ -274,6 +287,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         tag.putFloat("aquiferFill", aquiferFill);
         tag.putLong("weatherTicks", weatherTicks);
         tag.putLong("seasonCycleStart", seasonCycleStart);
+        tag.putBoolean("forced", forced);
         weatherState.save(tag);
     }
 
@@ -286,6 +300,84 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         if (lastAshVelocity != targetAshVelocity) {
             ashSwitchTicks = 0;
         }
+    }
+
+    public boolean isForced() {
+        return forced;
+    }
+
+    public void setForced(boolean forced) {
+        this.forced = forced;
+    }
+
+    public void setWeatherState(WeatherState weatherState) {
+        this.weatherState = weatherState;
+        weatherTicks = 0;
+    }
+
+    public void setAquiferFill(float fill) {
+        aquiferFill = fill;
+    }
+
+    public boolean verifyFillRequest(float fill) {
+        return !(fill < 0) && !(fill > AQUIFER_CAP);
+    }
+
+    public WeatherState getWeatherState() {
+        return weatherState;
+    }
+
+    public long getWeatherTicks() {
+        return weatherTicks;
+    }
+
+    public float getAquiferFill() {
+        return aquiferFill;
+    }
+
+    public List<Float> getFillRateModifiers() {
+        var modifiers = new ArrayList<Float>();
+        var season = getCurrentSeason();
+        var period = getCurrentPeriod();
+
+        var moonPhase = world.getMoonPhase();
+        var timeOfDay = TimeHelper.getTimeOfDay(world);
+
+        var moonMod = 0.75F + (1 - moonPhase / 7F);
+        var surfaceRainMod = (world.isRaining() ? 1.5F : 1) * (world.isThundering() ? 2 : 1);
+        float dayTimeMod;
+
+        if (timeOfDay.isNight()) {
+            dayTimeMod = 1.25F;
+        }
+        else if (timeOfDay == TimeHelper.TimeOfDay.NOON) {
+            dayTimeMod = 0.667F;
+        }
+        else if (timeOfDay == TimeHelper.TimeOfDay.DAY) {
+            dayTimeMod = 0.9F;
+        }
+        else {
+            dayTimeMod = 1.05F;
+        }
+
+        modifiers.add(dayTimeMod);
+        modifiers.add(surfaceRainMod);
+        modifiers.add(moonMod);
+        modifiers.add(aquiferSaturation);
+        modifiers.add(season.aquiferMod * period.effectMod);
+
+        var flowMod = (dayTimeMod * surfaceRainMod + moonMod + aquiferSaturation) * season.aquiferMod * period.effectMod;
+
+        modifiers.add(flowMod * BASE_AQUIFER_FLOW);
+        return modifiers;
+    }
+
+    public static void sync(World world) {
+        DD_WORLD_EFFECTS_COMPONENT.sync(world);
+    }
+
+    public static DDWorldEffectsComponent of(World world) {
+        return DD_WORLD_EFFECTS_COMPONENT.get(world);
     }
 
     @Override

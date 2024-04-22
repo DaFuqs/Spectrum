@@ -17,8 +17,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 4,
+  "x": 18,
+  "y": 3,
   "turnin": "spectrum:midgame/enter_liquid_crystal",
   "pages": [
     {
@@ -41,38 +41,6 @@
         "item": "minecraft:clay"
       },
       "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page2.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_blazing_crystal"
-      },
-      "item": {
-        "item": "spectrum:blazing_crystal"
-      },
-      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page3.text"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
-      },
-      "item": {
-        "item": "spectrum:frostbite_crystal"
-      },
-      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page4.text"
-    },
-    {
-      "type": "spectrum:liquid_crystal_converting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/collect_resonant_lily"
-      },
-      "anchor": "resonant_lily",
-      "recipe_id_1": "spectrum:liquid_crystal_converting/resonant_lily",
-      "text": "book.spectrum.guidebook.magical_blocks.liquid_crystal.page5.text"
     }
   ]
 }

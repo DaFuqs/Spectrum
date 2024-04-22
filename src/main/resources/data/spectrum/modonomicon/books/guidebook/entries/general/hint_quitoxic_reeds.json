@@ -5,8 +5,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 84,
+  "x": 8,
+  "y": -3,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",

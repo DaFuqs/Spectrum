@@ -9,13 +9,16 @@
   "hide_while_locked ": true,
   "parents": [
     {
+      "entry": "spectrum:general/pedestal"
+    },
+    {
       "entry": "spectrum:general/shimmerstone"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 0,
+  "x": 8,
+  "y": 2,
   "turnin": "spectrum:collect_vegetal",
   "pages": [
     {

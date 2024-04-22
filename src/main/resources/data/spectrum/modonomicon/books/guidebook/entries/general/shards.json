@@ -8,10 +8,10 @@
       "entry": "spectrum:general/geodes"
     }
   ],
-  "background_u_index": 52,
+  "background_u_index": 0,
   "background_v_index": 0,
   "x": 2,
-  "y": 6,
+  "y": 0,
   "turnin": "spectrum:collect_all_basic_shards",
   "pages": [
     {

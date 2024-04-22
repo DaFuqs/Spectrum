@@ -10,16 +10,20 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/color_mixing"
+      "entry": "spectrum:general/color_mixing",
+      "line_reversed": true
     },
     {
       "entry": "spectrum:general/gemstone_powder"
+    },
+    {
+      "entry": "spectrum:general/vegetal"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
-  "y": 0,
+  "x": 12,
+  "y": -1,
   "pages": [
     {
       "type": "modonomicon:text",

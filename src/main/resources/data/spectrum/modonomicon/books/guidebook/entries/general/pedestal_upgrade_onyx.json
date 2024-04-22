@@ -7,11 +7,19 @@
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/onyx_shards"
+    },
+    {
+      "entry": "spectrum:general/pedestal_upgrade_cmy",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 26,
   "background_v_index": 0,
-  "x": 6,
-  "y": 4,
+  "x": 18,
+  "y": 1,
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
   "pages": [
     {

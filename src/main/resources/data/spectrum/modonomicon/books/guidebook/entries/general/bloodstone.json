@@ -10,12 +10,15 @@
   "parents": [
     {
       "entry": "spectrum:general/kindlings"
+    },
+    {
+      "entry": "spectrum:general/liquid_crystal"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 6,
+  "x": 18,
+  "y": 5,
   "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
   "pages": [
     {

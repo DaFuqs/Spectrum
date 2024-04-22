@@ -7,11 +7,15 @@
   "icon": "minecraft:spyglass",
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/brown_is_weird"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 4,
+  "x": 17,
+  "y": -4,
   "pages": [
     {
       "type": "modonomicon:image",

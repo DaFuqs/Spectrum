@@ -12,10 +12,10 @@
       "entry": "spectrum:general/colored_trees"
     }
   ],
-  "background_u_index": 52,
+  "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 4,
+  "x": 14,
+  "y": -1,
   "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
   "pages": [
     {

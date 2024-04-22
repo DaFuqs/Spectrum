@@ -6,7 +6,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,
-  "y": 82,
+  "y": 20,
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",

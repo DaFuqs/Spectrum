@@ -9,13 +9,17 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/intro"
+      "entry": "spectrum:general/item_crushing"
+    },
+    {
+      "entry": "spectrum:general/shards",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 10,
-  "y": 0,
+  "x": 4,
+  "y": -1,
   "turnin": "spectrum:collect_gemstone_powder",
   "pages": [
     {

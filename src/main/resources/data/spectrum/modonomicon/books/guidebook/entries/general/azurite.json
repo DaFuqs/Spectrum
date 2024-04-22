@@ -15,7 +15,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,
-  "y": 0,
+  "y": 20,
   "turnin": "spectrum:midgame/create_refined_azurite",
   "pages": [
     {

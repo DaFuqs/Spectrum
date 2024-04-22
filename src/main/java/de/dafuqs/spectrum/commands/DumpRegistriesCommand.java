@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.fabricmc.loader.api.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.command.*;
@@ -11,8 +11,9 @@ import java.io.*;
 
 public class DumpRegistriesCommand {
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_dump_registries").executes((context) -> execute(context.getSource())));
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> dumpRegistries = CommandManager.literal("dump_registries").executes((context) -> execute(context.getSource())).build();
+		root.addChild(dumpRegistries);
 	}
 
 	private static int execute(ServerCommandSource source) {

@@ -1,27 +1,27 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import de.dafuqs.spectrum.cca.DDWorldEffectsComponent;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.StringUtils;
 
-import static net.minecraft.server.command.CommandManager.literal;
-
 public class SeasonCommand {
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(literal("spectrum_seasons")
-                .requires((source) -> source.hasPermissionLevel(2))
-                .then(literal("query")
-                        .executes(SeasonCommand::printSeasonAndPeriod))
-                .then(literal("progress")
-                        .then(literal("season")
-                                .executes(context -> getProgress(context, false)))
-                        .then(literal("period")
-                                .executes(context -> getProgress(context, true))))
-        );
+    public static void register(LiteralCommandNode<ServerCommandSource> root) {
+        LiteralCommandNode<ServerCommandSource> seasons = CommandManager.literal("seasons").requires((source) -> source.hasPermissionLevel(2)).build();
+        LiteralCommandNode<ServerCommandSource> query = CommandManager.literal("query").executes(SeasonCommand::printSeasonAndPeriod).build();
+        LiteralCommandNode<ServerCommandSource> progress = CommandManager.literal("progress").build();
+        LiteralCommandNode<ServerCommandSource> progressSeason = CommandManager.literal("season").executes(context -> getProgress(context, false)).build();
+        LiteralCommandNode<ServerCommandSource> progressPeriod = CommandManager.literal("period").executes(context -> getProgress(context, true)).build();
+
+        seasons.addChild(query);
+        progress.addChild(progressSeason);
+        progress.addChild(progressPeriod);
+        seasons.addChild(progress);
+        root.addChild(seasons);
     }
 
     private static int printSeasonAndPeriod(CommandContext<ServerCommandSource> context) {

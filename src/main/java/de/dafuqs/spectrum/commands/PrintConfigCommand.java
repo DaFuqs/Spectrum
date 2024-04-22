@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import de.dafuqs.spectrum.*;
 import net.minecraft.server.command.*;
 import net.minecraft.text.*;
@@ -8,8 +8,9 @@ import net.minecraft.text.*;
 
 public class PrintConfigCommand {
 	
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_config").executes((context) -> execute(context.getSource())));
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> config = CommandManager.literal("config").executes((context) -> execute(context.getSource())).build();
+		root.addChild(config);
 	}
 	
 	private static int execute(ServerCommandSource source) {

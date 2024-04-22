@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
 import com.mojang.brigadier.arguments.*;
+import com.mojang.brigadier.tree.ArgumentCommandNode;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
@@ -48,12 +49,15 @@ public class SanityCommand {
 			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
 	);
 
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_sanity")
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> sanity = CommandManager.literal("sanity")
 				.requires((source) -> source.hasPermissionLevel(2))
-				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID))
-				.then(CommandManager.argument("mod_id", StringArgumentType.word())
-						.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id")))));
+				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID)).build();
+		ArgumentCommandNode<ServerCommandSource, String> modId = CommandManager.argument("mod_id", StringArgumentType.word())
+				.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id"))).build();
+
+		sanity.addChild(modId);
+		root.addChild(sanity);
 	}
 	
 	private static int execute(ServerCommandSource source, String modId) {

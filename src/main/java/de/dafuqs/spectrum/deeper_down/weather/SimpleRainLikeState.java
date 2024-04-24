@@ -9,9 +9,9 @@ import net.minecraft.world.biome.Biome;
 public abstract class SimpleRainLikeState extends WeatherState {
 
     protected final float thirst;
-    private final IntProvider precipitation;
+    private final float precipitation;
 
-    public SimpleRainLikeState(Identifier id, IntProvider precipitation, float thirst) {
+    public SimpleRainLikeState(Identifier id, float precipitation, float thirst) {
         super(id);
         this.thirst = thirst;
         this.precipitation = precipitation;
@@ -23,7 +23,7 @@ public abstract class SimpleRainLikeState extends WeatherState {
     }
 
     @Override
-    public IntProvider getPrecipitation(RegistryKey<Biome> biome) {
+    public float getPrecipitationChance(Biome biome) {
         return precipitation;
     }
 

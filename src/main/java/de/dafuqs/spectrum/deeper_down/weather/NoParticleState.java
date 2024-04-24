@@ -26,8 +26,8 @@ public abstract class NoParticleState extends WeatherState {
     public void spawnGroundParticle(World world, double x, double y, double z) {}
 
     @Override
-    public IntProvider getPrecipitation(RegistryKey<Biome> biome) {
-        return ConstantIntProvider.ZERO;
+    public float getPrecipitationChance(Biome biome) {
+        return 0;
     }
 
     @Override

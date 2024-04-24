@@ -14,7 +14,7 @@ public class ShowerWeatherState extends SimpleRainLikeState {
     private final WeightedPool<RaindropEntry> DISTRIBUTION;
 
     public ShowerWeatherState() {
-        super(SpectrumCommon.locate("shower"), UniformIntProvider.create(1, 3), 0.25F);
+        super(SpectrumCommon.locate("shower"), 0.1F, 0.25F);
 
         DISTRIBUTION = WeightedPool.of(
                 new RaindropEntry(RaindropType.DISCARD, 1),

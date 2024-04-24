@@ -26,43 +26,53 @@ import java.util.concurrent.CompletableFuture;
 public class DimWeatherCommand {
 
     public static void register(LiteralCommandNode<ServerCommandSource> root) {
-        LiteralCommandNode<ServerCommandSource> weather = CommandManager.literal("weather").requires((source) -> source.hasPermissionLevel(2)).build();
-        LiteralCommandNode<ServerCommandSource> state = CommandManager.literal("state").build();
-        LiteralCommandNode<ServerCommandSource> stateSet = CommandManager.literal("set").build();
-        ArgumentCommandNode<ServerCommandSource, Identifier> stateSetState = CommandManager.argument("state", IdentifierArgumentType.identifier())
+        var weather = CommandManager.literal("weather").requires((source) -> source.hasPermissionLevel(2)).build();
+        var state = CommandManager.literal("state").build();
+        var stateSet = CommandManager.literal("set").build();
+
+        var stateSetState = CommandManager.argument("state", IdentifierArgumentType.identifier())
                 .suggests(DimWeatherCommand::getSuggestions)
                 .executes(DimWeatherCommand::setWeatherState)
                 .build();
-        LiteralCommandNode<ServerCommandSource> stateQuery = CommandManager.literal("query").executes(DimWeatherCommand::printWeatherState).build();
-        LiteralCommandNode<ServerCommandSource> stateDebug = CommandManager.literal("debug").executes(DimWeatherCommand::printDebugInfo).build();
-        LiteralCommandNode<ServerCommandSource> stateUnlock = CommandManager.literal("unlock").executes(DimWeatherCommand::clearWeatherState).build();
-        LiteralCommandNode<ServerCommandSource> aquifer = CommandManager.literal("aquifer").build();
-        LiteralCommandNode<ServerCommandSource> aquiferSet = CommandManager.literal("set").build();
-        LiteralCommandNode<ServerCommandSource> aquiferSetEmpty = CommandManager.literal("empty").executes(context -> setAquiferFill(context, 0)).build();
-        LiteralCommandNode<ServerCommandSource> aquiferSetFull = CommandManager.literal("full").executes(context -> setAquiferFill(context, DDWorldEffectsComponent.AQUIFER_CAP)).build();
-        ArgumentCommandNode<ServerCommandSource, Float> aquiferSetFill = CommandManager.argument("fill", FloatArgumentType.floatArg())
+
+        var stateQuery = CommandManager.literal("query").executes(DimWeatherCommand::printWeatherState).build();
+        var stateDebug = CommandManager.literal("debug").executes(DimWeatherCommand::printDebugInfo).build();
+        var stateUnlock = CommandManager.literal("unlock").executes(DimWeatherCommand::clearWeatherState).build();
+        var aquifer = CommandManager.literal("aquifer").build();
+        var aquiferSet = CommandManager.literal("set").build();
+        var aquiferSetEmpty = CommandManager.literal("empty").executes(context -> setAquiferFill(context, 0)).build();
+        var aquiferSetFull = CommandManager.literal("full").executes(context -> setAquiferFill(context, DDWorldEffectsComponent.AQUIFER_CAP)).build();
+
+        var aquiferSetFill = CommandManager.argument("fill", FloatArgumentType.floatArg())
                 .executes(context -> setAquiferFill(context, FloatArgumentType.getFloat(context, "fill")))
                 .build();
-        LiteralCommandNode<ServerCommandSource> aquiferQuery = CommandManager.literal("query").executes(DimWeatherCommand::printAquiferFill).build();
-        LiteralCommandNode<ServerCommandSource> aquiferRates = CommandManager.literal("rates").build();
-        LiteralCommandNode<ServerCommandSource> aquiferRatesGet = CommandManager.literal("get").executes(DimWeatherCommand::printAquiferRates).build();
-        LiteralCommandNode<ServerCommandSource> aquiferRatesFormula = CommandManager.literal("formula").executes(DimWeatherCommand::aquiferFillFormulaReminder).build();
+
+        var aquiferQuery = CommandManager.literal("query").executes(DimWeatherCommand::printAquiferFill).build();
+        var aquiferRates = CommandManager.literal("rates").build();
+        var aquiferRatesGet = CommandManager.literal("get").executes(DimWeatherCommand::printAquiferRates).build();
+        var aquiferRatesFormula = CommandManager.literal("formula").executes(DimWeatherCommand::aquiferFillFormulaReminder).build();
 
         aquiferRates.addChild(aquiferRatesFormula);
         aquiferRates.addChild(aquiferRatesGet);
+
         aquiferSet.addChild(aquiferSetFill);
         aquiferSet.addChild(aquiferSetFull);
         aquiferSet.addChild(aquiferSetEmpty);
+
         stateSet.addChild(stateSetState);
+
         aquifer.addChild(aquiferRates);
         aquifer.addChild(aquiferQuery);
         aquifer.addChild(aquiferSet);
+
         state.addChild(stateUnlock);
         state.addChild(stateDebug);
         state.addChild(stateQuery);
         state.addChild(stateSet);
+
         weather.addChild(aquifer);
         weather.addChild(state);
+
         root.addChild(weather);
     }
 

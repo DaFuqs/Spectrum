@@ -34,7 +34,7 @@ public abstract class WeatherState {
 
     public abstract WeightedPool<RaindropEntry> getRaindropDistribution();
 
-    public abstract IntProvider getPrecipitation(RegistryKey<Biome> biome);
+    public abstract float getPrecipitationChance(Biome biome);
 
     public Map<RegistryKey<Biome>, WeatherState> getAltStates() {
         return BLANK;

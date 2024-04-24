@@ -7,15 +7,21 @@ import de.dafuqs.spectrum.deeper_down.weather.WeatherState;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.client.FallingAshParticle;
+import de.dafuqs.spectrum.particle.client.RaindropParticle;
 import de.dafuqs.spectrum.registries.SpectrumBiomes;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumDimensions;
 import de.dafuqs.spectrum.registries.SpectrumWeatherStates;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.MinecraftVersion;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +29,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProperties;
+import org.joml.Vector3d;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +42,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     private final World world;
     private boolean dirty = false, initialized = false;
 
+    //Date Data
     public static final int DAY_LENGTH = 24000;
     public static final long REAL_DAY_LENGTH = 86400 * 20;
     public static final int RESET_PERIOD = DAY_LENGTH * 72;
@@ -43,7 +52,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
 
     //Ash Effects - changes on average every half hour
-    private static final long ASH_UPDATE_INTERVAL = 1600;
+    private static final long ASH_UPDATE_INTERVAL = 2;
     private static final double BASE_ASH_VELOCITY = 0.25;
     private double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
     private int ashSwitchTicks = 50, ashSpawns;
@@ -68,7 +77,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
     @Override
     public void serverTick() {
-        if (!world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
+        if (world == null || !world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
             return;
         }
 
@@ -198,19 +207,21 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
     @Override
     public void clientTick() {
+        if (world == null)
+            return;
+
         var clientWorld = (ClientWorld) world;
 
         var time = world.getTime();
         var random = world.getRandom();
+        var cameraEntity = MinecraftClient.getInstance().getCameraEntity();
 
-        var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
-        spawnHowlingSpiresAsh(maxAsh, random, clientWorld);
-
-
-
-        if (!world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
-            return;
+        if (cameraEntity != null) {
+            var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
+            spawnHowlingSpiresAsh(cameraEntity, maxAsh, random, clientWorld);
+            spawnPrecipitation(cameraEntity, random, clientWorld);
         }
+
 
         var ashVelocity = targetAshVelocity;
         if (ashSwitchTicks < 50) {
@@ -230,12 +241,55 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
             initialized = true;
     }
 
-    private void spawnHowlingSpiresAsh(int maxAsh, Random random, ClientWorld clientWorld) {
-        var cameraEntity = MinecraftClient.getInstance().cameraEntity;
+    private void spawnPrecipitation(Entity cameraEntity, Random random, ClientWorld clientWorld) {
+        var camera = cameraEntity.getPos();
+        var attempts = 100;
 
-        if (cameraEntity == null)
+        if (!weatherState.hasAirParticles())
             return;
 
+        for (int i = 0; i < attempts; i++) {
+            var x = camera.getX() + random.nextInt(192) - 96;
+            var y = camera.getY() + random.nextInt(16) + 8;
+            var z = camera.getZ() + random.nextInt(192) - 96;
+
+            var root = new BlockPos((int) x, (int) y, (int) z);
+            var mutable = root.mutableCopy();
+
+            var biome = world.getBiome(root);
+            var weather = weatherState.getAltStates().getOrDefault(biome.getKey().orElse(null), weatherState);
+            var potentialWeatherPositions = new ArrayList<Integer>();
+            var precipitationChance = weather.getPrecipitationChance(biome.value());
+
+            if(!weather.hasAirParticles()) {
+                continue;
+            }
+
+            int checkedHeight = 0;
+            while (world.isAir(mutable)) {
+                if (checkedHeight > 24)
+                    break;
+
+                if (random.nextFloat() <= precipitationChance) {
+                    potentialWeatherPositions.add(mutable.getY());
+                }
+
+                mutable.move(Direction.UP);
+                checkedHeight++;
+            }
+
+            var roofState = world.getBlockState(mutable);
+            if (!roofState.isAir() && !roofState.isIn(SpectrumBlockTags.PRECIPITATION_SOURCES)) {
+                continue;
+            }
+
+            for (Integer position : potentialWeatherPositions) {
+                clientWorld.addParticle(SpectrumParticleTypes.LIGHT_RAIN, root.getX() - 1 + random.nextDouble() * 3, position + random.nextDouble(), root.getZ() - 1 + random.nextDouble() * 3, 0, 0, 0);
+            }
+        }
+    }
+
+    private void spawnHowlingSpiresAsh(Entity cameraEntity, int maxAsh, Random random, ClientWorld clientWorld) {
         var camera = cameraEntity.getPos();
 
         for (int i = 0; i < maxAsh; i++) {

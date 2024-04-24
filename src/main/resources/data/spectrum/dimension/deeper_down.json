@@ -71,11 +71,11 @@
           "parameters": {
             "temperature": [
               -1,
-              0
+              -0.25
             ],
             "humidity": [
               -1,
-              1
+              0
             ],
             "continentalness": [
               0.5,

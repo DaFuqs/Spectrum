@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.deeper_down.weather.WeatherThread;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -63,6 +64,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
+	public static final WeatherThread WEATHER_THREAD = new WeatherThread();
 
 	// initial impl
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
@@ -187,6 +189,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
+
+		logInfo("Initializing Weather Thread...");
+		WEATHER_THREAD.initialize();
 
 		logInfo("Client startup completed!");
 	}
@@ -339,5 +344,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		}
 
 		return false;
+	}
+
+	public static WeatherThread weatherThread() {
+		return WEATHER_THREAD;
 	}
 }

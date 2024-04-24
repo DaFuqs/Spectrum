@@ -22,8 +22,8 @@ public class RaindropParticle extends SpriteBillboardParticle {
     public RaindropParticle(ClientWorld clientWorld, double d, double e, double f, SpriteProvider spriteProvider) {
         super(clientWorld, d, e, f);
         setSprite(spriteProvider);
-        gravityStrength = 4.334F;
-        scale = 0.4F + random.nextFloat() * 0.1F;
+        gravityStrength = 5.25F;
+        scale = 0.25F + random.nextFloat() * 0.2F;
         this.simOffset = random.nextInt(simInterval);
         maxAge = 25;
     }

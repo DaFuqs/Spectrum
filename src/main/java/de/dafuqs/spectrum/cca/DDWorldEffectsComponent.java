@@ -49,7 +49,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
 
     //Ash Effects - changes on average every half hour
-    private static final long ASH_UPDATE_INTERVAL = 2;
+    private static final long ASH_UPDATE_INTERVAL = 1600;
     private static final double BASE_ASH_VELOCITY = 0.25;
     private double targetAshVelocity = 0.215, lastAshVelocity = 0.215, ashScaleA = 20000, ashScaleB = 2200, ashScaleC = 200;
     private int ashSwitchTicks = 50, ashSpawns;
@@ -248,7 +248,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
             return;
 
         for (Vector3d spawnPos : spawnWave.get()) {
-            weatherState.spawnCeilingParticle(clientWorld, spawnPos, random);
+            weatherState.spawnAirParticle(clientWorld, spawnPos, random);
         }
     }
 

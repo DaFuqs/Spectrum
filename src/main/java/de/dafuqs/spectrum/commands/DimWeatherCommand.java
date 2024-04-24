@@ -132,17 +132,6 @@ public class DimWeatherCommand {
         source.sendFeedback(() -> Text.translatable("commands.spectrum.weather.debug.windStrength", state.getWindIntensityModifier()), false);
         source.sendFeedback(() -> Text.translatable("commands.spectrum.weather.debug.thirst", state.getThirst()), false);
 
-        var altStates = state.getAltStates();
-        if (altStates.isEmpty()) {
-            source.sendFeedback(() -> Text.translatable("commands.spectrum.weather.debug.alts.empty"), false);
-        }
-        else {
-            source.sendFeedback(() -> Text.translatable("commands.spectrum.weather.debug.alts.present"), false);
-            for (Map.Entry<RegistryKey<Biome>, WeatherState> entry : altStates.entrySet()) {
-                source.sendFeedback(() -> Text.translatable("commands.spectrum.weather.debug.alts.entry", entry.getValue().getName(), Util.createTranslationKey("biome", entry.getKey().getValue())), false);
-            }
-        }
-
         return 1;
     }
 

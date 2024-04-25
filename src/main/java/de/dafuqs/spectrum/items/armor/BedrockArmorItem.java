@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -77,6 +78,11 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 			model = provideArmorModelForSlot(slot);
 		}
 		return model;
+	}
+
+	// this takes the "unused" stack, so addons can mixin into it
+	public RenderLayer getRenderLayer(ItemStack stack) {
+		return RenderLayer.getEntitySolid(SpectrumModelLayers.BEDROCK_ARMOR_MAIN_ID);
 	}
 	
 	@NotNull

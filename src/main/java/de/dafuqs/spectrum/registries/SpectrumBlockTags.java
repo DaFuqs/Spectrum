@@ -52,6 +52,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = of("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
 	public static final TagKey<Block> SPREADS_TO_BLACKSLAG = of("spreads_to_blackslag");
 	public static final TagKey<Block> ASH = of("ash");
+	public static final TagKey<Block> PRECIPITATION_SOURCES = of("precipitation_source");
 
 	// DEBUG
 	public static final TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = of("exempt_from_mineable_debug_check");

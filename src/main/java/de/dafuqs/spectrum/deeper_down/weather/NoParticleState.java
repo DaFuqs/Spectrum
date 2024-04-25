@@ -1,12 +1,18 @@
 package de.dafuqs.spectrum.deeper_down.weather;
 
 import de.dafuqs.spectrum.helpers.WeightedPool;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import org.joml.Vector3d;
+
+import java.util.Optional;
 
 public abstract class NoParticleState extends WeatherState {
 
@@ -17,22 +23,27 @@ public abstract class NoParticleState extends WeatherState {
     }
 
     @Override
-    public void spawnCeilingParticle(World world, double x, double y, double z) {}
+    public void spawnCeilingParticle(ClientWorld world, Vector3d pos, Random random) {}
 
     @Override
-    public void spawnAirParticle(World world, double x, double y, double z) {}
+    public void spawnAirParticle(ClientWorld world, Vector3d pos, Random random) {}
 
     @Override
-    public void spawnGroundParticle(World world, double x, double y, double z) {}
+    public void spawnGroundParticle(ClientWorld world, Vector3d pos, Random random) {}
 
     @Override
-    public IntProvider getPrecipitation(RegistryKey<Biome> biome) {
-        return ConstantIntProvider.ZERO;
+    public float getPrecipitationChance(Biome biome, RegistryKey<Biome> key) {
+        return 0;
     }
 
     @Override
-    public WeightedPool<RaindropEntry> getRaindropDistribution() {
-        return NO_PRECIPITATION;
+    public int getPrecipitationQuantity() {
+        return 0;
+    }
+
+    @Override
+    public Optional<ParticleType<?>> getCeilingDropletType() {
+        return Optional.empty();
     }
 
     @Override

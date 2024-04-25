@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Environment(EnvType.CLIENT)
 public interface ExtendedItemBarProvider {
 
     BarSignature PASS = new BarSignature(0, 0, 0, 0, 0, 0);

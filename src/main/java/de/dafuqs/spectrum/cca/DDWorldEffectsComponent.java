@@ -1,13 +1,15 @@
 package de.dafuqs.spectrum.cca;
 
-import com.mojang.brigadier.context.CommandContext;
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.deeper_down.Season;
 import de.dafuqs.spectrum.deeper_down.weather.WeatherState;
+import de.dafuqs.spectrum.deeper_down.weather.WeatherThread;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.client.FallingAshParticle;
 import de.dafuqs.spectrum.registries.SpectrumBiomes;
+import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumDimensions;
 import de.dafuqs.spectrum.registries.SpectrumWeatherStates;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
@@ -16,6 +18,7 @@ import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +26,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import org.joml.Vector3d;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +37,9 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     public static final ComponentKey<DDWorldEffectsComponent> DD_WORLD_EFFECTS_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("dd_world_effects"), DDWorldEffectsComponent.class);
     private final World world;
     private boolean dirty = false, initialized = false;
+    private Thread weatherThread;
 
+    //Date Data
     public static final int DAY_LENGTH = 24000;
     public static final long REAL_DAY_LENGTH = 86400 * 20;
     public static final int RESET_PERIOD = DAY_LENGTH * 72;
@@ -68,7 +74,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
     @Override
     public void serverTick() {
-        if (!world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
+        if (world == null || !world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
             return;
         }
 
@@ -198,19 +204,21 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
 
     @Override
     public void clientTick() {
+        if (world == null)
+            return;
+
         var clientWorld = (ClientWorld) world;
 
         var time = world.getTime();
         var random = world.getRandom();
+        var cameraEntity = MinecraftClient.getInstance().getCameraEntity();
 
-        var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
-        spawnHowlingSpiresAsh(maxAsh, random, clientWorld);
-
-
-
-        if (!world.getRegistryKey().equals(SpectrumDimensions.DIMENSION_KEY)) {
-            return;
+        if (cameraEntity != null) {
+            var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
+            spawnHowlingSpiresAsh(cameraEntity, maxAsh, random, clientWorld);
+            spawnPrecipitation(cameraEntity, random, clientWorld);
         }
+
 
         var ashVelocity = targetAshVelocity;
         if (ashSwitchTicks < 50) {
@@ -230,12 +238,21 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
             initialized = true;
     }
 
-    private void spawnHowlingSpiresAsh(int maxAsh, Random random, ClientWorld clientWorld) {
-        var cameraEntity = MinecraftClient.getInstance().cameraEntity;
+    private void spawnPrecipitation(Entity cameraEntity, Random random, ClientWorld clientWorld) {
+        var thread = SpectrumClient.weatherThread();
+        thread.offer(new WeatherThread.Offer(cameraEntity.getPos(), clientWorld, weatherState));
 
-        if (cameraEntity == null)
+        var spawnWave = thread.requestPrecipitationSpawn();
+
+        if (spawnWave.isEmpty())
             return;
 
+        for (Vector3d spawnPos : spawnWave.get()) {
+            weatherState.spawnAirParticle(clientWorld, spawnPos, random);
+        }
+    }
+
+    private void spawnHowlingSpiresAsh(Entity cameraEntity, int maxAsh, Random random, ClientWorld clientWorld) {
         var camera = cameraEntity.getPos();
 
         for (int i = 0; i < maxAsh; i++) {

@@ -54,7 +54,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected boolean inventoryChanged;
 	
 	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.PURPLE, InkColors.BLACK);
-	public static final long INK_STORAGE_SIZE = 64 * 100;
+	public static final long INK_STORAGE_SIZE = 8 * 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
 	
 	private UUID ownerUUID;

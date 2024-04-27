@@ -94,6 +94,11 @@ public interface Upgradeable {
 			int efficiencyMod = getRawValue(Upgradeable.UpgradeType.EFFICIENCY);
 			return 1L << Math.max(this.upgrades.get(upgradeType) - efficiencyMod, 0);
 		}
+		
+		public long getEffectiveCostUsingEfficiency(long amount) {
+			int efficiencyMod = getRawValue(Upgradeable.UpgradeType.EFFICIENCY);
+			return Math.max(1, amount >> efficiencyMod);
+		}
 
 		public Iterable<? extends Map.Entry<UpgradeType, Integer>> entrySet() {
 			return this.upgrades.entrySet();

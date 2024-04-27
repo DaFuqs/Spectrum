@@ -42,7 +42,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
-
+	
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int INK_PROVIDER_SLOT_ID = 1;
@@ -50,19 +50,21 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static final int FIRST_OUTPUT_SLOT_ID = 3;
 	public static final int LAST_OUTPUT_SLOT_ID = 10;
 	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10};
-
+	
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
-
+	
 	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.PURPLE, InkColors.BLACK);
 	public static final long INK_STORAGE_SIZE = 8 * 64 * 100;
+	public static final long INK_COST_PER_TICK = 8;
 	protected IndividualCappedInkStorage inkStorage;
-
+	
 	private UUID ownerUUID;
 	private UpgradeHolder upgrades;
 	private Recipe<?> currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
+	private boolean usesEfficiency;
 	protected boolean canTransferInk;
 	protected boolean inkDirty;
 	
@@ -207,6 +209,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		}
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+		this.usesEfficiency = nbt.getBoolean("UsesEfficiency");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
 		if (nbt.contains("Structure", NbtElement.NUMBER_TYPE)) {
@@ -240,6 +243,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbt.putBoolean("UsesEfficiency", this.usesEfficiency);
 		nbt.putBoolean("Paused", this.canTransferInk);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putInt("Structure", this.structure.ordinal());
@@ -294,8 +298,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			
 			if (cinderhearthBlockEntity.craftingTime == 0) {
 				Recipe<?> recipe = cinderhearthBlockEntity.currentRecipe;
+				
+				cinderhearthBlockEntity.usesEfficiency = cinderhearthBlockEntity.drainInkForUpgradesRequired(cinderhearthBlockEntity, UpgradeType.EFFICIENCY, InkColors.BLACK, false);
+				
 				int baseTime = recipe instanceof AbstractCookingRecipe abstractCookingRecipe ? abstractCookingRecipe.getCookTime() : ((CinderhearthRecipe) recipe).getCraftingTime();
-				float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, true);
+				float speedModifier = cinderhearthBlockEntity.drainInkForUpgrades(cinderhearthBlockEntity, UpgradeType.SPEED, InkColors.MAGENTA, cinderhearthBlockEntity.usesEfficiency);
 				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(baseTime / speedModifier);
 			}
 			
@@ -323,7 +330,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				return false;
 			}
 			// consume orange ink
-			return cinderhearthBlockEntity.drainInkForUpdatesRequired(cinderhearthBlockEntity, UpgradeType.EFFICIENCY, InkColors.ORANGE, true);
+			return cinderhearthBlockEntity.drainInkForUpgradesRequired(cinderhearthBlockEntity, InkColors.ORANGE, INK_COST_PER_TICK, cinderhearthBlockEntity.usesEfficiency);
 		}
 		
 		return true;
@@ -404,7 +411,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, true);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
 		ItemStack output = blastingRecipe.getOutput(world.getRegistryManager()).copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
@@ -427,7 +434,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, true);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.YIELD, InkColors.LIGHT_BLUE, cinderhearth.usesEfficiency);
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 		
 		// craft
@@ -463,7 +470,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			cinderhearth.inventoryChanged();
 			
 			// grant experience & advancements
-			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, true);
+			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, cinderhearth.world.random);
 			ExperienceStorageItem.addStoredExperience(cinderhearth.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);

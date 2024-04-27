@@ -94,6 +94,10 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	
+	@ConfigEntry.Gui.Tooltip
+	@Comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")
+	public String NameForUnrevealedEnchantments = "";
+	
 	@Comment("""
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
 			This does only disable the registration of said Enchantments, not all recipes based on them (except for Enchantment Upgrade Recipes)

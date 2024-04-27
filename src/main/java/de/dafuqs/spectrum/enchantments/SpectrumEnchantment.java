@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.*;
 import net.minecraft.enchantment.*;
@@ -37,14 +38,19 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	@Override
 	@SuppressWarnings("resource")
 	public Text getName(int level) {
+		MinecraftClient client = MinecraftClient.getInstance();
 		MutableText mutableText = Text.translatable(this.getTranslationKey());
 		if (this.isCursed()) {
 			mutableText.formatted(Formatting.RED);
 		} else {
 			mutableText.formatted(Formatting.GRAY);
 		}
-		if (!canEntityUse(MinecraftClient.getInstance().player)) {
-			mutableText.formatted(Formatting.byCode('k'));
+		if (!canEntityUse(client.player)) {
+			if (SpectrumCommon.CONFIG.NameForUnrevealedEnchantments.isBlank()) {
+				mutableText.formatted(Formatting.byCode('k'));
+			} else {
+				return Text.literal(SpectrumCommon.CONFIG.NameForUnrevealedEnchantments).formatted(Formatting.GRAY);
+			}
 		}
 		
 		if (level != 1 || this.getMaxLevel() != 1) {

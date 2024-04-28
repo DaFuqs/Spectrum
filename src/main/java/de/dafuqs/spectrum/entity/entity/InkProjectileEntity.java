@@ -47,7 +47,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 
 	public InkProjectileEntity(World world, LivingEntity owner) {
-		this(owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
+		this(owner.getX(), owner.getEyeY() - 0.1, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
@@ -179,7 +179,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		
 		Vec3d vec3d = blockHitResult.getPos().subtract(this.getX(), this.getY(), this.getZ());
 		this.setVelocity(vec3d);
-		Vec3d vec3d2 = vec3d.normalize().multiply(0.05000000074505806D);
+		Vec3d vec3d2 = vec3d.normalize().multiply(0.05);
 		this.setPos(this.getX() - vec3d2.x, this.getY() - vec3d2.y, this.getZ() - vec3d2.z);
 		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 		
@@ -299,6 +299,19 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 					}
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void spawnImpactParticles() {
+		DyeColor dyeColor = getDyeColor();
+		World world = getWorld();
+		Vec3d targetPos = getPos();
+		Vec3d velocity = getVelocity();
+		
+		world.addParticle(SpectrumParticleTypes.getExplosionParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, 0, 0, 0);
+		for (int i = 0; i < 10; i++) {
+			world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), targetPos.x, targetPos.y, targetPos.z, -velocity.x * 3, -velocity.y * 3, -velocity.z * 3);
 		}
 	}
 	

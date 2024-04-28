@@ -3698,6 +3698,27 @@
   "potion.potency.29": "XXIX",
   "potion.potency.30": "XXX",
 
+  "______sign_text_used_in_structures": "",
+  "signtext.spectrum.stall_to_let.1": "STALL TO LET",
+  "signtext.spectrum.stall_to_let.2": "",
+  "signtext.spectrum.stall_to_let.3": "12 Bamboo",
+  "signtext.spectrum.stall_to_let.4": "for the day",
+
+  "signtext.spectrum.stall_to_let2.1": "STALL TO LET",
+  "signtext.spectrum.stall_to_let2.2": "",
+  "signtext.spectrum.stall_to_let2.3": "5 Diamonds",
+  "signtext.spectrum.stall_to_let2.4": "for the day",
+
+  "signtext.spectrum.seed_vault_danger.1": "STATE PROPERTY",
+  "signtext.spectrum.seed_vault_danger.2": "",
+  "signtext.spectrum.seed_vault_danger.3": "DANGER",
+  "signtext.spectrum.seed_vault_danger.4": "KEEP OUT",
+
+  "signtext.spectrum.biohazard_ruin.1": "☣",
+  "signtext.spectrum.biohazard_ruin.2": "BIOHAZARD",
+  "signtext.spectrum.biohazard_ruin.3": "Ruin",
+  "signtext.spectrum.biohazard_ruin.4": "8 Blocks",
+
   "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger That",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",

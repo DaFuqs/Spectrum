@@ -143,7 +143,7 @@ public class PresentItem extends BlockItem {
 	
 	@Override
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
+		if (clickType == ClickType.RIGHT && slot.canTakePartial(player) && !isCraftingInventory(slot)) {
 			if (otherStack.isEmpty()) {
 				removeFirstStack(stack).ifPresent((itemStack) -> {
 					this.playRemoveOneSound(player);
@@ -161,6 +161,13 @@ public class PresentItem extends BlockItem {
 		} else {
 			return false;
 		}
+	}
+	
+	// CraftingInventory does not recalculate the recipe after inputting / retrieving stacks from the present.
+	// The recipes output will still hold the original present data from when it was put into the crafting grid
+	// If the player then puts / receives items from the present they are able to duplicate items
+	private boolean isCraftingInventory(Slot slot) {
+		return slot.inventory instanceof CraftingInventory;
 	}
 	
 	@Override

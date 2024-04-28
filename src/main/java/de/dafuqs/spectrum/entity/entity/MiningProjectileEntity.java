@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.spells.MoonstoneStrike;
+import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -84,6 +84,10 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 		}
 
 		this.discard();
+	}
+	
+	@Override
+	public void spawnImpactParticles() {
 	}
 
 	@Override

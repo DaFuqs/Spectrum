@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -60,8 +59,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		if (state.isIn(BlockTags.FLOWERS)) {
 			Block.dropStacks(SpectrumBlocks.RESONANT_LILY.getDefaultState(), world, pos, null);
 		} else {
-			final BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-			Block.dropStacks(state, world, pos, blockEntity);
+			super.beforeBreakingBlock(world, pos, state);
 		}
 	}
 	

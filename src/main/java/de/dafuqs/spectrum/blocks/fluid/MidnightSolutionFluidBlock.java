@@ -31,9 +31,9 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 
 	public static final BlockState SPREAD_BLOCKSTATE = SpectrumBlocks.BLACK_MATERIA.getDefaultState().with(BlackMateriaBlock.AGE, 0);
 	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
-
-	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
-		super(fluid, settings);
+	
+	public MidnightSolutionFluidBlock(FlowableFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
 	@Override
@@ -63,20 +63,6 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 
 	public static void playExtinguishSound(@NotNull WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
-	}
-
-	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-		}
-	}
-
-	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-		}
 	}
 
 	@Override
@@ -150,7 +136,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	 * @param state BlockState of the midnight solution. Included the height/fluid level
 	 * @return Dunno, actually. I just mod things.
 	 */
-	private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
+	public boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
 		for (Direction direction : Direction.values()) {
 			BlockPos neighborPos = pos.offset(direction);
 			FluidState neighborFluidState = world.getFluidState(neighborPos);

@@ -90,7 +90,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			var channeling = getChanneling(stack) + 1;
 			var size = channeling * 2 + 0.5;
 			var entities = this.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(size, 0.4 * channeling , size));
-			if (!getWorld().isClient() && channeling > 0) {
+			if (!getWorld().isClient() && (channeling - 1) > 0) {
 				for (LivingEntity living : entities) {
 					if (living.canTakeDamage()) {
 						for (int i = 0; i < 5; i++) {
@@ -124,7 +124,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	protected double spectrum$increaseSweepMaxDistance(double original) {
 		var stack = this.getStackInHand(Hand.MAIN_HAND);
 		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD)
-			return original * 3 * (getChanneling(stack) * 1.5);
+			return original * 3 * ((getChanneling(stack) + 1) * 1.5);
 		return original;
 	}
 

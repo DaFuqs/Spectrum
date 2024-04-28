@@ -19,7 +19,7 @@ import java.util.Optional;
 public class ShowerWeatherState extends SimpleRainLikeState {
 
     public ShowerWeatherState() {
-        super(SpectrumCommon.locate("shower"), 0.025F, 40, 0.075F);
+        super(SpectrumCommon.locate("shower"), 0.02F, 50, 0.075F);
     }
 
     @Override

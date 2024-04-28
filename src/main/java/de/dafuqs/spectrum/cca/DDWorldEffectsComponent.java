@@ -241,7 +241,6 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
     private void spawnPrecipitation(Entity cameraEntity, Random random, ClientWorld clientWorld) {
         var thread = SpectrumClient.weatherThread();
         thread.offer(new WeatherThread.Offer(cameraEntity.getPos(), clientWorld, weatherState));
-
         var spawnWave = thread.requestPrecipitationSpawn();
 
         if (spawnWave.isEmpty())

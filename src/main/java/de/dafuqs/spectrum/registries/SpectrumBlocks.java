@@ -403,13 +403,7 @@ public class SpectrumBlocks {
 	private static Settings fluid(Material material) {
 		return Settings.of(material).noCollision().strength(100.0F).dropsNothing();
 	}
-	
-	// FLUIDS
-	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(SpectrumBlockMaterials.LIQUID_CRYSTAL).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE));
-	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, fluid(SpectrumBlockMaterials.MUD));
-	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, fluid(SpectrumBlockMaterials.MIDNIGHT_SOLUTION));
-	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, fluid(SpectrumBlockMaterials.DRAGONROT).luminance((state) -> 15));
-	
+
 	// ROCK CANDY
 	private static final ToIntFunction<BlockState> ROCK_CANDY_LUMINANCE = state -> Math.max(15, state.get(Properties.AGE_2) * 3 + (state.get(SugarStickBlock.LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? LiquidCrystalFluidBlock.LUMINANCE : 8));
 	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(0.5F).luminance(ROCK_CANDY_LUMINANCE).ticksRandomly(), RockCandy.RockCandyVariant.SUGAR);
@@ -1252,7 +1246,13 @@ public class SpectrumBlocks {
 	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.BREAK);
 	public static final Block WITHER_SKELETON_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
 	public static final Block ZOMBIE_MOB_BLOCK = new VillagerConvertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT);
-	
+
+	// FLUIDS
+	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState(), fluid(SpectrumBlockMaterials.LIQUID_CRYSTAL).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE));
+	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, Blocks.MUD.getDefaultState(), fluid(SpectrumBlockMaterials.MUD));
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumBlocks.BLACK_MATERIA.getDefaultState(), fluid(SpectrumBlockMaterials.MIDNIGHT_SOLUTION));
+	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, Blocks.BLACKSTONE.getDefaultState(), fluid(SpectrumBlockMaterials.DRAGONROT).luminance((state) -> 15));
+
 	static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;
 	}

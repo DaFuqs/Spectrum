@@ -50,6 +50,11 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	}
 	
 	@Override
+	public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+		return SpectrumToolMaterials.ToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.canRepair(stack, ingredient);
+	}
+	
+	@Override
 	public Predicate<ItemStack> getProjectiles() {
 		return PROJECTILES;
 	}

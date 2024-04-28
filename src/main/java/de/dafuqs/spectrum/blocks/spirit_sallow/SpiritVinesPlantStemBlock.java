@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -14,11 +14,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
+public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements SpiritVine {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
+	public SpiritVinesPlantStemBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
@@ -38,19 +38,19 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	protected Block getPlant() {
 		switch (gemstoneColor.getDyeColor()) {
 			case MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case YELLOW -> {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			default -> {
 				return null;
@@ -71,12 +71,12 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return new ItemStack(SpiritVines.getYieldItem(state, true));
+		return new ItemStack(SpiritVine.getYieldItem(state, true));
 	}
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		return SpiritVines.pick(state, world, pos);
+		return SpiritVine.pick(state, world, pos);
 	}
 	
 	@Override

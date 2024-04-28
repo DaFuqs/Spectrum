@@ -22,7 +22,9 @@
             "predicate": {
               "effects": {
                 "spectrum:frenzy": {
-                  "amplifier": 2
+                  "amplifier": {
+                    "min": 2
+                  }
                 }
               }
             }

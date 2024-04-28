@@ -149,10 +149,10 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	public void setKindlingVariant(KindlingVariant variant) {
 		this.dataTracker.set(VARIANT, variant);
 	}
-
+	
 	@Override
 	public double getMountedHeightOffset() {
-		return this.getHeight() - (this.isBaby() ? 0.4 : 0.3);
+		return super.getMountedHeightOffset() - 0.25;
 	}
 	
 	@Override

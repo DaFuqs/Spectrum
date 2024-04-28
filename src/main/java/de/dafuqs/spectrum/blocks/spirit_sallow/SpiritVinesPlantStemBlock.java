@@ -14,11 +14,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVine {
+public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements SpiritVine {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
+	public SpiritVinesPlantStemBlock(Settings settings, GemstoneColor gemstoneColor) {
 		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
@@ -38,19 +38,19 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	protected Block getPlant() {
 		switch (gemstoneColor.getDyeColor()) {
 			case MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case YELLOW -> {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			default -> {
 				return null;

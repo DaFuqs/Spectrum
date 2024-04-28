@@ -35,51 +35,51 @@ public interface SpiritVine {
 		Comparable<YieldType> yield = blockState.get(YIELD);
 
 		if (yield.equals(YieldType.NORMAL)) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_CYAN_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_MAGENTA_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_YELLOW_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_BLACK_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_WHITE_CATKIN;
 			}
 		} else if (yield.equals(YieldType.LUCID)) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.LUCID_CYAN_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.LUCID_MAGENTA_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.LUCID_YELLOW_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.LUCID_BLACK_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.LUCID_WHITE_CATKIN;
 			}
 		} else if (yield.equals(YieldType.NONE) && pickStack) {
-			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_CYAN_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_MAGENTA_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_YELLOW_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_BLACK_CATKIN;
 			}
-			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY)) {
+			if (blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES) || blockState.isOf(SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT)) {
 				return SpectrumItems.VIBRANT_WHITE_CATKIN;
 			}
 		}

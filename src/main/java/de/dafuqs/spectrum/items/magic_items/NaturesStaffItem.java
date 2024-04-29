@@ -26,10 +26,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -56,87 +53,6 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 	
 	public NaturesStaffItem(Settings settings) {
 		super(settings);
-	}
-	
-	/**
-	 * Near identical copy of BonemealItem.useOnFertilizable
-	 * just with stack decrement removed
-	 */
-	public static boolean useOnFertilizable(@NotNull World world, BlockPos pos) {
-		BlockState blockState = world.getBlockState(pos);
-		if (blockState.getBlock() instanceof Fertilizable fertilizable) {
-			if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
-				if (world instanceof ServerWorld) {
-					if (fertilizable.canGrow(world, world.random, pos, blockState)) {
-						fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
-					}
-				}
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Near identical copy of BonemealItem.useOnGround
-	 * just with stack decrement removed
-	 */
-	public static boolean useOnGround(@NotNull World world, BlockPos blockPos, @Nullable Direction facing) {
-		if (world.getBlockState(blockPos).isOf(Blocks.WATER) && world.getFluidState(blockPos).getLevel() == 8) {
-			if (world instanceof ServerWorld) {
-				Random random = world.getRandom();
-				
-				label78:
-				for (int i = 0; i < 128; ++i) {
-					BlockPos blockPos2 = blockPos;
-					BlockState grownState = Blocks.SEAGRASS.getDefaultState();
-					
-					for (int j = 0; j < i / 16; ++j) {
-						blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1);
-						if (world.getBlockState(blockPos2).isFullCube(world, blockPos2)) {
-							continue label78;
-						}
-					}
-					
-					RegistryEntry<Biome> biomeKey = world.getBiome(blockPos2);
-					if (biomeKey.isIn(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
-						if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
-							grownState = Registry.BLOCK.getEntryList(BlockTags.WALL_CORALS)
-									.flatMap((blocks) -> blocks.getRandom(world.random))
-									.map((blockEntry) -> blockEntry.value().getDefaultState())
-									.orElse(grownState);
-							if (grownState.contains(DeadCoralWallFanBlock.FACING)) {
-								grownState = grownState.with(DeadCoralWallFanBlock.FACING, facing);
-							}
-						} else if (random.nextInt(4) == 0) {
-							grownState = Registry.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS)
-									.flatMap((blocks) -> blocks.getRandom(world.random))
-									.map((blockEntry) -> blockEntry.value().getDefaultState())
-									.orElse(grownState);
-						}
-					}
-					
-					if (grownState.isIn(BlockTags.WALL_CORALS, (state) -> state.contains(DeadCoralWallFanBlock.FACING))) {
-						for (int k = 0; !grownState.canPlaceAt(world, blockPos2) && k < 4; ++k) {
-							grownState = grownState.with(DeadCoralWallFanBlock.FACING, Direction.Type.HORIZONTAL.random(random));
-						}
-					}
-					
-					if (grownState.canPlaceAt(world, blockPos2)) {
-						BlockState currentState = world.getBlockState(blockPos2);
-						if (currentState.isOf(Blocks.WATER) && world.getFluidState(blockPos2).getLevel() == 8) {
-							world.setBlockState(blockPos2, grownState, 3);
-						} else if (currentState.isOf(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
-							((Fertilizable) Blocks.SEAGRASS).grow((ServerWorld) world, random, blockPos2, currentState);
-						}
-					}
-				}
-				
-			}
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 	@Override
@@ -282,13 +198,13 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 					SpectrumAdvancementCriteria.NATURES_STAFF_USE.trigger(player, blockState, destinationState);
 					
 					return ActionResult.CONSUME;
-					// fertilizable? => grow
-				} else if (useOnFertilizable(world, blockPos)) {
+				} else if (BoneMealItem.useOnFertilizable(Items.BONE_MEAL.getDefaultStack(), world, blockPos)) {
+					// fertilizable => grow!
 					payForUse(player, stack);
 					world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos, 0);
 					return ActionResult.CONSUME;
-					// blockstate marked as stackable? => stack on top!
 				} else if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
+					// blockstate marked as stackable => stack more on top!
 					int i = 0;
 					BlockState state;
 					do {
@@ -307,10 +223,10 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 						world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, targetPos, 0);
 						return ActionResult.CONSUME;
 					}
-					
+				} else if (blockState.hasRandomTicks() && blockState.isIn(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
 					// random tickable and whitelisted? => tick
 					// without whitelist we would be able to tick budding blocks, ...
-				} else if (blockState.hasRandomTicks() && blockState.isIn(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
+
 					if (world instanceof ServerWorld) {
 						blockState.randomTick((ServerWorld) world, blockPos, world.random);
 					}
@@ -320,7 +236,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 				} else {
 					BlockPos blockPos2 = blockPos.offset(context.getSide());
 					boolean bl = blockState.isSideSolidFullSquare(world, blockPos, context.getSide());
-					if (bl && useOnGround(world, blockPos2, context.getSide())) {
+					if (bl && BoneMealItem.useOnGround(Items.BONE_MEAL.getDefaultStack(), world, blockPos2, context.getSide())) {
 						payForUse(player, stack);
 						world.syncWorldEvent(WorldEvents.PLANT_FERTILIZED, blockPos2, 0);
 						return ActionResult.CONSUME;

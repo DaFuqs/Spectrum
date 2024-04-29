@@ -12,6 +12,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -91,11 +92,11 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return getDefaultTap(1);
 	}
 	
-	// used for display mods like REI to show recipe outputs with a few example fermentation times
+	// used for recipe viewers to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
 		for (int timeMultiplier : timeMultipliers) {

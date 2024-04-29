@@ -95,8 +95,8 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
 		return getDefaultTap(1);
 	}
-	
-	// used for display mods like REI to show recipe outputs with a few example fermentation times
+
+	// used for recipe viewers to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
 		for (int timeMultiplier : timeMultipliers) {

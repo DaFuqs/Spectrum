@@ -166,4 +166,16 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 		return additionalOutputs;
 	}
 
+	public Optional<BlockState> getNextState(CrystallarieumRecipe recipe, BlockState currentState) {
+		for (Iterator<BlockState> it = recipe.getGrowthStages().iterator(); it.hasNext(); ) {
+			BlockState state = it.next();
+			if (state.equals(currentState)) {
+				if (it.hasNext()) {
+					return Optional.of(it.next());
+				}
+			}
+		}
+		return Optional.empty();
+	}
+
 }

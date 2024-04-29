@@ -126,24 +126,15 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		if (crystallarieum.currentGrowthStageTicks >= recipe.getSecondsPerGrowthStage() * SECOND) {
 			BlockPos topPos = blockPos.up();
 			BlockState topState = world.getBlockState(topPos);
-			for (Iterator<BlockState> it = recipe.getGrowthStages().iterator(); it.hasNext(); ) {
-				BlockState state = it.next();
-				if (state.equals(topState)) {
-					if (it.hasNext()) {
-						BlockState targetState = it.next();
-						world.setBlockState(topPos, targetState);
-						
-						// if the stone on top can not grow any further: pause
-						if (!it.hasNext()) {
-							crystallarieum.canWork = false;
-						}
-						
-						ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();
-						if (owner != null) {
-							SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerWorld) world, topPos, crystallarieum.getStack(CATALYST_SLOT_ID));
-						}
-					}
+			Optional<BlockState> nextState = recipe.getNextState(recipe, topState);
+			if (nextState.isPresent()) {
+				world.setBlockState(topPos, nextState.get());
+				ServerPlayerEntity owner = (ServerPlayerEntity) crystallarieum.getOwnerIfOnline();
+				if (owner != null) {
+					SpectrumAdvancementCriteria.CRYSTALLARIEUM_GROWING.trigger(owner, (ServerWorld) world, topPos, crystallarieum.getStack(CATALYST_SLOT_ID));
 				}
+			} else {
+				crystallarieum.canWork = false;
 			}
 			crystallarieum.currentGrowthStageTicks = 0;
 		}
@@ -162,8 +153,15 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	
 	@Override
 	public void inventoryChanged() {
-		this.currentCatalyst = this.currentRecipe == null ? CrystallarieumCatalyst.EMPTY : this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
-		this.canWork = true;
+		if (this.currentRecipe == null) {
+			this.currentCatalyst = CrystallarieumCatalyst.EMPTY;
+			this.canWork = false;
+		} else {
+			this.currentCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
+			BlockState topState = this.world.getBlockState(this.pos.up());
+			this.canWork = this.currentRecipe.getNextState(this.currentRecipe, topState).isPresent()
+					&& (this.currentRecipe.growsWithoutCatalyst() || this.currentCatalyst != CrystallarieumCatalyst.EMPTY);
+		}
 		super.inventoryChanged();
 	}
 	

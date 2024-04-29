@@ -19,7 +19,6 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -233,15 +232,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 
         this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
-					this.currentRecipe = optionalFusionRecipe;
-				}
-			}
-		}
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, FusionShrineRecipe.class);
 
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));

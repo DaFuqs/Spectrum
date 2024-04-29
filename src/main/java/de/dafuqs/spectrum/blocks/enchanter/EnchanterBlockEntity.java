@@ -31,7 +31,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.listener.*;
 import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -182,6 +181,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 						if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
 							playCraftingFinishedEffects(enchanterBlockEntity);
 							craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+							SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 							craftingSuccess = true;
 						}
 					}
@@ -196,6 +197,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					if (!drained) {
 						enchanterBlockEntity.currentItemProcessingTime = -1;
 						enchanterBlockEntity.updateInClientWorld();
+						SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 					}
 				}
 				if (enchanterBlockEntity.currentItemProcessingTime > 0 && enchanterBlockEntity.craftingTime >= enchanterBlockEntity.currentItemProcessingTime) {
@@ -205,7 +208,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					enchanterBlockEntity.currentItemProcessingTime = -1;
 					enchanterBlockEntity.craftingTime = 0;
 					enchanterBlockEntity.updateInClientWorld();
-					
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 					craftingSuccess = true;
 				}
 				enchanterBlockEntity.markDirty();
@@ -216,8 +220,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanterBlockEntity.craftingTime = 0;
 				enchanterBlockEntity.inventoryChanged();
 			}
-		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -633,18 +635,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
-					if (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe) {
-						this.currentRecipe = gatedSpectrumRecipe;
-					}
-				}
-			}
-		}
-		
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, GatedSpectrumRecipe.class);
 		if (this.currentRecipe == null && this.world != null && this.world.isClient) {
 			stopCraftingMusic();
 		}

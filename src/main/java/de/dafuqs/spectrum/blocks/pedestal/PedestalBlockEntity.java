@@ -567,10 +567,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			Identifier recipeIdentifier = new Identifier(nbt.getString("CurrentRecipe"));
-			this.currentRecipe = MultiblockCrafter.getRecipeFromId(this.getWorld(), recipeIdentifier);
-		}
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, Recipe.class);
 	}
 	
 	@Override

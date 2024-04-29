@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.matchbooks.recipe.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -20,7 +19,6 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -305,17 +303,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 				this.multiblockRotation = BlockRotation.NONE;
 			}
 		}
-		
-		this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
-					this.currentRecipe = spiritInstillerRecipe;
-				}
-			}
-		}
+
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, SpiritInstillerRecipe.class);
 		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));

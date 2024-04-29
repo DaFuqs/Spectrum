@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
@@ -32,7 +31,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
-import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -217,24 +215,14 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			this.structure = CinderHearthStructureType.NONE;
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				this.currentRecipe = optionalRecipe.orElse(null);
-			} else {
-				this.currentRecipe = null;
-			}
-		} else {
-			this.currentRecipe = null;
-		}
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, Recipe.class);
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
 			this.upgrades = new UpgradeHolder();
 		}
 	}
-	
+
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);

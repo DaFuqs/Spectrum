@@ -64,6 +64,8 @@ import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 import org.slf4j.*;
 
 import java.util.*;
@@ -507,6 +509,16 @@ public class SpectrumCommon implements ModInitializer {
 			
 			minecraftServer.getRecipeManager().setRecipes(newList);
 		}
+	}
+
+	/**
+	 * When initializing a block entity, world can still be null
+	 * Therefore we use the RecipeManager reference from MinecraftServer
+	 * This in turn does not work on clients connected to dedicated servers, though
+	 * since SpectrumCommon.minecraftServer is null
+	 */
+	public static Optional<RecipeManager> getRecipeManager(@Nullable World world) {
+		return world == null ? SpectrumCommon.minecraftServer == null ? Optional.empty() : Optional.of(SpectrumCommon.minecraftServer.getRecipeManager()) : Optional.of(world.getRecipeManager());
 	}
 	
 }

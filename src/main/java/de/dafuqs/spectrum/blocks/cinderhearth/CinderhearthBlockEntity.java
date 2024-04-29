@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.cinderhearth.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
@@ -33,7 +31,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
-import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -218,17 +215,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			this.structure = CinderHearthStructureType.NONE;
 		}
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				this.currentRecipe = optionalRecipe.orElse(null);
-			} else {
-				this.currentRecipe = null;
-			}
-		} else {
-			this.currentRecipe = null;
-		}
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, Recipe.class);
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {

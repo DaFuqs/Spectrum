@@ -92,7 +92,6 @@ public class InkMeterWidget implements Drawable, Element, Selectable {
 	@Override
 	public void render(DrawContext drawContext, int mouseX, int mouseY, float delta) {
 		this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
-
-
 	}
+	
 }

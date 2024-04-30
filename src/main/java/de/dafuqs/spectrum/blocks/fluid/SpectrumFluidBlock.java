@@ -21,8 +21,11 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 	
 	private static AutoCraftingInventory AUTO_INVENTORY;
 	
-	public SpectrumFluidBlock(FlowableFluid fluid, Settings settings) {
+	public final BlockState ultrawarmReplacementBlockState;
+	
+	public SpectrumFluidBlock(FlowableFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
 		super(fluid, settings);
+		this.ultrawarmReplacementBlockState = ultrawarmReplacementBlockState;
 	}
 	
 	public abstract DefaultParticleType getSplashParticle();
@@ -58,5 +61,38 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 			}
 		}
 	}
+	
+	@Override
+	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+		if (this.receiveNeighborFluids(world, pos, state)) {
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+		}
+	}
+	
+	@Override
+	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+		if (world.getDimension().ultrawarm()) {
+			world.setBlockState(pos, ultrawarmReplacementBlockState);
+			
+			int x = pos.getX();
+			int y = pos.getY();
+			int z = pos.getZ();
+			world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
+			
+			for (int l = 0; l < 8; ++l) {
+				world.addParticle(ParticleTypes.LARGE_SMOKE, (double) x + Math.random(), (double) y + Math.random(), (double) z + Math.random(), 0.0, 0.0, 0.0);
+			}
+			
+			return;
+		}
+		
+		if (this.receiveNeighborFluids(world, pos, state)) {
+			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
+		}
+		
+		super.onBlockAdded(state, world, pos, oldState, notify);
+	}
+	
+	abstract boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state);
 	
 }

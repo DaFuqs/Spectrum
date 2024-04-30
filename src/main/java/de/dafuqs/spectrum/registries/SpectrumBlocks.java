@@ -158,7 +158,6 @@ public class SpectrumBlocks {
 	public static final Block SMALL_MOONSTONE_BUD = new AmethystClusterBlock(3, 4, gemstone(MapColor.WHITE, SpectrumBlockSoundGroups.SMALL_MOONSTONE_BUD, 6));
 	public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK).pistonBehavior(PistonBehavior.DESTROY).ticksRandomly(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(gemstoneBlock(MapColor.WHITE, SpectrumBlockSoundGroups.MOONSTONE_BLOCK), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
-	
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(settings(MapColor.STONE_GRAY, BlockSoundGroup.STONE, 100.0F, 3600.0F).requiresTool().instrument(Instrument.BASEDRUM), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 	
 	public static final AmethystClusterBlock BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, gemstone(MapColor.DARK_AQUA, BlockSoundGroup.CHAIN, 8));
@@ -248,7 +247,7 @@ public class SpectrumBlocks {
 	public static final Block PYRITE_RIPPER = new PyriteRipperBlock(Settings.copy(PYRITE).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	
 	public static final Block DRAGONBONE = new DragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(-1.0F, 22.0F).pistonBehavior(PistonBehavior.BLOCK));
-	public static final Block CRACKED_DRAGONBONE = new CrackedDragonboneBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pistonBehavior(PistonBehavior.BLOCK));
+	public static final Block CRACKED_DRAGONBONE = new PillarBlock(Settings.copy(Blocks.BONE_BLOCK).strength(100.0F, 1200.0F).pistonBehavior(PistonBehavior.BLOCK));
 	public static final Block POLISHED_BONE_ASH = new Block(FabricBlockSettings.copyOf(CRACKED_DRAGONBONE).hardness(1500.0F).mapColor(DyeColor.WHITE));
 	public static final Block POLISHED_BONE_ASH_STAIRS = new StairsBlock(POLISHED_BONE_ASH.getDefaultState(), Settings.copy(POLISHED_BONE_ASH));
 	public static final Block POLISHED_BONE_ASH_SLAB = new SlabBlock(Settings.copy(POLISHED_BONE_ASH));
@@ -418,22 +417,11 @@ public class SpectrumBlocks {
 		return settings(mapColor, soundGroup, strength, resistance).pistonBehavior(pistonBehavior).ticksRandomly().allowsSpawning((state, world, pos, type) -> false);
 	}
 	
-	public static final Block FADING = new FadingBlock(decay(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 0.5F, 0.5F, PistonBehavior.NORMAL));
+	public static final Block FADING = new FadingBlock(decay(MapColor.DARK_GREEN, BlockSoundGroup.GRASS, 0.5F, 0.5F, PistonBehavior.DESTROY));
 	public static final Block FAILING = new FailingBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 20.0F, 50.0F, PistonBehavior.BLOCK));
 	public static final Block RUIN = new RuinBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 100.0F, 3600000.0F, PistonBehavior.BLOCK));
 	public static final Block FORFEITURE = new ForfeitureBlock(decay(MapColor.BLACK, BlockSoundGroup.STONE, 100.0F, 3600000.0F, PistonBehavior.BLOCK));
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT).pistonBehavior(PistonBehavior.DESTROY));
-	
-	// FLUIDS
-	private static Settings fluid(MapColor mapColor) {
-		return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F).replaceable().noCollision().pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid();
-	}
-	
-	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(MapColor.DULL_PINK).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable());
-	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, fluid(MapColor.TERRACOTTA_BROWN).replaceable());
-	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, fluid(MapColor.DARK_AQUA).replaceable());
-	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, fluid(MapColor.PALE_PURPLE).luminance((state) -> 15).replaceable());
-	
 	
 	// ROCK CANDY
 	private static Settings rockCandy(AbstractBlock block) {
@@ -734,7 +722,7 @@ public class SpectrumBlocks {
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(jadeVine().luminance(state -> 3));
 
 	public static final Block NEPHRITE_BLOSSOM_STEM = new NephriteBlossomStemBlock(settings(MapColor.PINK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision());
-	public static final Block NEPHRITE_BLOSSOM_LEAVES = new NephriteBlossomLeavesBlock(settings(MapColor.PINK, BlockSoundGroup.GRASS, 0.2F).ticksRandomly().luminance(state -> 13));
+	public static final Block NEPHRITE_BLOSSOM_LEAVES = new NephriteBlossomLeavesBlock(settings(MapColor.PINK, BlockSoundGroup.GRASS, 0.2F).nonOpaque().ticksRandomly().luminance(state -> 13));
 	public static final Block NEPHRITE_BLOSSOM_BULB = new NephriteBlossomBulbBlock(FabricBlockSettings.copyOf(NEPHRITE_BLOSSOM_STEM));
 
 	public static Settings jadeite() {
@@ -742,8 +730,8 @@ public class SpectrumBlocks {
 	}
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(settings(MapColor.BLACK, BlockSoundGroup.WOOL, 2.0F).nonOpaque().noCollision());
 	public static final Block JADEITE_LOTUS_FLOWER = new JadeiteFlowerBlock(settings(MapColor.WHITE, BlockSoundGroup.WOOL, 2.0F).luminance(state -> 14).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
-	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM));
-
+	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM).nonOpaque());
+	
 	private static Settings ore() {
 		return FabricBlockSettings.copyOf(Blocks.IRON_ORE);
 	}
@@ -857,16 +845,17 @@ public class SpectrumBlocks {
 	private static Settings spiritVines(MapColor mapColor) {
 		return settings(mapColor, BlockSoundGroup.CAVE_VINES, 0.0F).noCollision();
 	}
-	public static final Block CYAN_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
-	public static final Block CYAN_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
-	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
-	public static final Block MAGENTA_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
-	public static final Block YELLOW_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
-	public static final Block YELLOW_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
-	public static final Block BLACK_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
-	public static final Block BLACK_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
-	public static final Block WHITE_SPIRIT_SALLOW_VINES_BODY = new SpiritVinesBodyBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
-	public static final Block WHITE_SPIRIT_SALLOW_VINES_HEAD = new SpiritVinesHeadBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
+	
+	public static final SpiritVinesPlantBlock CYAN_SPIRIT_SALLOW_VINES_PLANT = new SpiritVinesPlantBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
+	public static final SpiritVinesPlantStemBlock CYAN_SPIRIT_SALLOW_VINES = new SpiritVinesPlantStemBlock(spiritVines(MapColor.CYAN), BuiltinGemstoneColor.CYAN);
+	public static final SpiritVinesPlantBlock MAGENTA_SPIRIT_SALLOW_VINES_PLANT = new SpiritVinesPlantBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
+	public static final SpiritVinesPlantStemBlock MAGENTA_SPIRIT_SALLOW_VINES = new SpiritVinesPlantStemBlock(spiritVines(MapColor.MAGENTA), BuiltinGemstoneColor.MAGENTA);
+	public static final SpiritVinesPlantBlock YELLOW_SPIRIT_SALLOW_VINES_PLANT = new SpiritVinesPlantBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
+	public static final SpiritVinesPlantStemBlock YELLOW_SPIRIT_SALLOW_VINES = new SpiritVinesPlantStemBlock(spiritVines(MapColor.YELLOW), BuiltinGemstoneColor.YELLOW);
+	public static final SpiritVinesPlantBlock BLACK_SPIRIT_SALLOW_VINES_PLANT = new SpiritVinesPlantBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
+	public static final SpiritVinesPlantStemBlock BLACK_SPIRIT_SALLOW_VINES = new SpiritVinesPlantStemBlock(spiritVines(MapColor.TERRACOTTA_BLACK), BuiltinGemstoneColor.BLACK);
+	public static final SpiritVinesPlantBlock WHITE_SPIRIT_SALLOW_VINES_PLANT = new SpiritVinesPlantBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
+	public static final SpiritVinesPlantStemBlock WHITE_SPIRIT_SALLOW_VINES = new SpiritVinesPlantStemBlock(spiritVines(MapColor.TERRACOTTA_WHITE), BuiltinGemstoneColor.WHITE);
 	
 	public static final Block STUCK_STORM_STONE = new StuckStormStoneBlock(settings(MapColor.CLEAR, BlockSoundGroup.SMALL_AMETHYST_BUD, 0.0F).noCollision().nonOpaque().suffocates(SpectrumBlocks::never).noBlockBreakParticles().blockVision(SpectrumBlocks::never).replaceable());
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(settings(MapColor.BLACK, BlockSoundGroup.INTENTIONALLY_EMPTY, -1.0F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK).luminance(state -> 8).dropsNothing());
@@ -1251,7 +1240,7 @@ public class SpectrumBlocks {
 	public static final ShootingStarBlock COLORFUL_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.COLORFUL);
 	public static final ShootingStarBlock PRISTINE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.PRISTINE);
 	public static final ShootingStarBlock GEMSTONE_SHOOTING_STAR = new ShootingStarBlock(shootingStar(), ShootingStar.Type.GEMSTONE);
-
+	
 	public static final Block INCANDESCENT_AMALGAM = new IncandescentAmalgamBlock(FabricBlockSettings.create().breakInstantly().nonOpaque());
 	
 	private static Settings idol(BlockSoundGroup soundGroup) {
@@ -1353,6 +1342,16 @@ public class SpectrumBlocks {
 	
 	public static BiMap<SpectrumSkullBlockType, Block> MOB_HEADS;
 	public static BiMap<SpectrumSkullBlockType, Block> MOB_WALL_HEADS;
+	
+	// FLUIDS
+	private static Settings fluid(MapColor mapColor) {
+		return settings(mapColor, BlockSoundGroup.INTENTIONALLY_EMPTY, 100.0F).replaceable().noCollision().pistonBehavior(PistonBehavior.DESTROY).dropsNothing().liquid();
+	}
+	
+	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState(), fluid(MapColor.DULL_PINK).luminance((state) -> LiquidCrystalFluidBlock.LUMINANCE).replaceable());
+	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, Blocks.MUD.getDefaultState(), fluid(MapColor.TERRACOTTA_BROWN).replaceable());
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumBlocks.BLACK_MATERIA.getDefaultState(), fluid(MapColor.DARK_AQUA).replaceable());
+	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, Blocks.BLACKSTONE.getDefaultState(), fluid(MapColor.PALE_PURPLE).luminance((state) -> 15).replaceable());
 	
 	static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;
@@ -1622,7 +1621,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlock("doombloom", DOOMBLOOM);
 		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
-		
+
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
 		registerBlockWithItem("clear_hummingstone_glass", CLEAR_HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -1754,17 +1753,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("spirit_sallow_leaves", SPIRIT_SALLOW_LEAVES, settings, DyeColor.GREEN);
 		registerBlockWithItem("spirit_sallow_heart", SPIRIT_SALLOW_HEART, settings, DyeColor.GREEN);
 		
-		registerBlock("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES_HEAD);
-		registerBlock("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES_HEAD);
-		registerBlock("yellow_spirit_sallow_vines_head", YELLOW_SPIRIT_SALLOW_VINES_HEAD);
-		registerBlock("black_spirit_sallow_vines_head", BLACK_SPIRIT_SALLOW_VINES_HEAD);
-		registerBlock("white_spirit_sallow_vines_head", WHITE_SPIRIT_SALLOW_VINES_HEAD);
+		registerBlock("cyan_spirit_sallow_vines_head", CYAN_SPIRIT_SALLOW_VINES);
+		registerBlock("magenta_spirit_sallow_vines_head", MAGENTA_SPIRIT_SALLOW_VINES);
+		registerBlock("yellow_spirit_sallow_vines_head", YELLOW_SPIRIT_SALLOW_VINES);
+		registerBlock("black_spirit_sallow_vines_head", BLACK_SPIRIT_SALLOW_VINES);
+		registerBlock("white_spirit_sallow_vines_head", WHITE_SPIRIT_SALLOW_VINES);
 		
-		registerBlock("cyan_spirit_sallow_vines_body", CYAN_SPIRIT_SALLOW_VINES_BODY);
-		registerBlock("magenta_spirit_sallow_vines_body", MAGENTA_SPIRIT_SALLOW_VINES_BODY);
-		registerBlock("yellow_spirit_sallow_vines_body", YELLOW_SPIRIT_SALLOW_VINES_BODY);
-		registerBlock("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_BODY);
-		registerBlock("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_BODY);
+		registerBlock("cyan_spirit_sallow_vines_body", CYAN_SPIRIT_SALLOW_VINES_PLANT);
+		registerBlock("magenta_spirit_sallow_vines_body", MAGENTA_SPIRIT_SALLOW_VINES_PLANT);
+		registerBlock("yellow_spirit_sallow_vines_body", YELLOW_SPIRIT_SALLOW_VINES_PLANT);
+		registerBlock("black_spirit_sallow_vines_body", BLACK_SPIRIT_SALLOW_VINES_PLANT);
+		registerBlock("white_spirit_sallow_vines_body", WHITE_SPIRIT_SALLOW_VINES_PLANT);
 		
 		registerBlockWithItem("sacred_soil", SACRED_SOIL, settings, DyeColor.LIME);
 	}
@@ -1826,6 +1825,7 @@ public class SpectrumBlocks {
 		//registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, IS.of(Rarity.UNCOMMON), DyeColor.BLACK);
+		
 		//registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, IS.of(Rarity.RARE), DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, IS.of(), DyeColor.BLUE);

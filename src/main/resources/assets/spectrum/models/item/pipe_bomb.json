@@ -1,5 +1,5 @@
 {
-  "parent": "item/bow",
+  "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "spectrum:item/pipe_bomb"
   },

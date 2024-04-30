@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:hover_block",
-      "text": "Created from a collision of $(l:resources/stratine)Stratine$(/l) and $(l:resources/stratine)Paltaeria$(/l), this block just sits around in the air when placed."
+      "text": "Created from a collision of $(l:resources/stratine)Stratine$(/l) and $(l:resources/paltaeria)Paltaeria$(/l), this block just sits around in the air when placed."
     },
     {
       "type": "patchouli:text",

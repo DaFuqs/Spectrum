@@ -97,8 +97,8 @@
       "spectrum:blackslag_pile"
     ],
     [
-      "spectrum:buried_dragon_fossil",
-      "spectrum:exposed_dragon_fossil",
+      "spectrum:dragon_fossil_buried",
+      "spectrum:dragon_fossil_exposed",
       "minecraft:fossil_lower"
     ],
     [],

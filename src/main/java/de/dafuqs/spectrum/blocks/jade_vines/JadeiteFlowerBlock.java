@@ -8,13 +8,21 @@ import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
 public class JadeiteFlowerBlock extends SpectrumFacingBlock {
-
+    
+    public static final VoxelShape SHAPE = Block.createCuboidShape(0, 8, 0, 16, 16, 16);
+    
     public JadeiteFlowerBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState());
+    }
+    
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
     
     @Override

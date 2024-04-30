@@ -28,6 +28,10 @@ public class SpectrumRegistries {
 	public static final RegistryKey<Registry<LizardHornVariant>> LIZARD_HORN_VARIANT_KEY = RegistryKey.ofRegistry(LIZARD_HORN_VARIANT_ID);
 	public static final Registry<LizardHornVariant> LIZARD_HORN_VARIANT = FabricRegistryBuilder.createSimple(LIZARD_HORN_VARIANT_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
 
+	private static final Identifier KINDLING_VARIANT_ID = SpectrumCommon.locate("kindling_variant");
+	public static final RegistryKey<Registry<KindlingVariant>> KINDLING_VARIANT_KEY = RegistryKey.ofRegistry(KINDLING_VARIANT_ID);
+	public static final Registry<KindlingVariant> KINDLING_VARIANT = FabricRegistryBuilder.createSimple(KINDLING_VARIANT_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
+
 	private static final Identifier GLASS_ARROW_VARIANT_ID = SpectrumCommon.locate("glass_arrow_variant");
 	public static final RegistryKey<Registry<GlassArrowVariant>> GLASS_ARROW_VARIANT_KEY = RegistryKey.ofRegistry(GLASS_ARROW_VARIANT_ID);
 	public static final Registry<GlassArrowVariant> GLASS_ARROW_VARIANT = FabricRegistryBuilder.createSimple(GLASS_ARROW_VARIANT_KEY).attribute(RegistryAttribute.SYNCED).buildAndRegister();
@@ -57,6 +61,7 @@ public class SpectrumRegistries {
 	public static void register() {
 		LizardFrillVariant.init();
 		LizardHornVariant.init();
+		KindlingVariant.init();
 		GlassArrowVariant.init();
 	}
 	

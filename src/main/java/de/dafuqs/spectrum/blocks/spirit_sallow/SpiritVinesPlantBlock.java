@@ -14,43 +14,33 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
+public class SpiritVinesPlantBlock extends AbstractPlantBlock implements SpiritVines {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesHeadBlock(Settings settings, GemstoneColor gemstoneColor) {
-		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
+	public SpiritVinesPlantBlock(Settings settings, GemstoneColor gemstoneColor) {
+		super(settings, Direction.DOWN, SHAPE, false);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
 	}
 	
 	@Override
-	protected int getGrowthLength(Random random) {
-		return 1;
-	}
-	
-	@Override
-	protected boolean chooseStemState(BlockState state) {
-		return state.isAir();
-	}
-	
-	@Override
-	protected Block getPlant() {
+	protected AbstractPlantStemBlock getStem() {
 		switch (gemstoneColor.getDyeColor()) {
 			case MAGENTA -> {
-				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES;
 			}
 			case BLACK -> {
-				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES;
 			}
 			case CYAN -> {
-				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES;
 			}
 			case WHITE -> {
-				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES;
 			}
 			case YELLOW -> {
-				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_HEAD;
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES;
 			}
 			default -> {
 				return null;
@@ -61,11 +51,6 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	@Override
 	protected BlockState copyState(BlockState from, BlockState to) {
 		return to.with(YIELD, from.get(YIELD));
-	}
-	
-	@Override
-	protected BlockState age(BlockState state, Random random) {
-		return super.age(state, random).with(YIELD, YieldType.NONE);
 	}
 	
 	@Override
@@ -81,7 +66,6 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
 		builder.add(YIELD);
 	}
 	

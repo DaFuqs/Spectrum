@@ -14,33 +14,43 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 
-public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVines {
+public class SpiritVinesPlantStemBlock extends AbstractPlantStemBlock implements SpiritVines {
 	
 	private final GemstoneColor gemstoneColor;
 	
-	public SpiritVinesBodyBlock(Settings settings, GemstoneColor gemstoneColor) {
-		super(settings, Direction.DOWN, SHAPE, false);
+	public SpiritVinesPlantStemBlock(Settings settings, GemstoneColor gemstoneColor) {
+		super(settings, Direction.DOWN, SHAPE, false, 0.0D);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(YIELD, YieldType.NONE));
 		this.gemstoneColor = gemstoneColor;
 	}
 	
 	@Override
-	protected AbstractPlantStemBlock getStem() {
+	protected int getGrowthLength(Random random) {
+		return 1;
+	}
+	
+	@Override
+	protected boolean chooseStemState(BlockState state) {
+		return state.isAir();
+	}
+	
+	@Override
+	protected Block getPlant() {
 		switch (gemstoneColor.getDyeColor()) {
 			case MAGENTA -> {
-				return (AbstractPlantStemBlock) SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_BODY;
+				return SpectrumBlocks.MAGENTA_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case BLACK -> {
-				return (AbstractPlantStemBlock) SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_BODY;
+				return SpectrumBlocks.BLACK_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case CYAN -> {
-				return (AbstractPlantStemBlock) SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_BODY;
+				return SpectrumBlocks.CYAN_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case WHITE -> {
-				return (AbstractPlantStemBlock) SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_BODY;
+				return SpectrumBlocks.WHITE_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			case YELLOW -> {
-				return (AbstractPlantStemBlock) SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_BODY;
+				return SpectrumBlocks.YELLOW_SPIRIT_SALLOW_VINES_PLANT;
 			}
 			default -> {
 				return null;
@@ -51,6 +61,11 @@ public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVi
 	@Override
 	protected BlockState copyState(BlockState from, BlockState to) {
 		return to.with(YIELD, from.get(YIELD));
+	}
+	
+	@Override
+	protected BlockState age(BlockState state, Random random) {
+		return super.age(state, random).with(YIELD, YieldType.NONE);
 	}
 	
 	@Override
@@ -66,6 +81,7 @@ public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVi
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
 		builder.add(YIELD);
 	}
 	

@@ -14,7 +14,7 @@
         "spectrum:ivory_noxshroom",
         "spectrum:chestnut_noxshroom"
       ],
-      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colours.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
+      "text": "A mushroom / tree (?) found all across the $(l:dimension/noxshroom_forest)Noxshroom Forest$(/l).$(br)They come in different colors.$(br2)The trunks are as firm as wood, while the caps are almost soft and squishy. The bioluminescent gills give off a pleasant glow, which qualifies them as excellent light sources."
     },
     {
       "type": "patchouli:crafting",
@@ -114,6 +114,12 @@
         "spectrum:chestnut_noxwood_light",
         "spectrum:chestnut_noxwood_lamp"
       ]
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Hyphae",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_noxcap_hyphae",
+      "text": "Both stripped and non-stripped."
     },
     {
       "type": "spectrum:pedestal_crafting",

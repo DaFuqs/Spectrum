@@ -2,7 +2,7 @@
   "values": [
     "minecraft:generic.movement_speed",
     "minecraft:generic.flying_speed",
-    "additionalentityattributes:water_speed",
-    "additionalentityattributes:lava_speed"
+    "additionalentityattributes:generic.water_speed",
+    "additionalentityattributes:generic.lava_speed"
   ]
 }

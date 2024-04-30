@@ -13,13 +13,15 @@ public class SpectrumTrackedDataHandlerRegistry {
 	
 	public static final TrackedDataHandler<LizardFrillVariant> LIZARD_FRILL_VARIANT = TrackedDataHandler.of(SpectrumRegistries.LIZARD_FRILL_VARIANT);
 	public static final TrackedDataHandler<LizardHornVariant> LIZARD_HORN_VARIANT = TrackedDataHandler.of(SpectrumRegistries.LIZARD_HORN_VARIANT);
-	
+	public static final TrackedDataHandler<KindlingVariant> KINDLING_VARIANT = TrackedDataHandler.of(SpectrumRegistries.KINDLING_VARIANT);
+
 	public static void register() {
 		TrackedDataHandlerRegistry.register(INK_COLOR);
 		TrackedDataHandlerRegistry.register(GLASS_ARROW_VARIANT);
 		
 		TrackedDataHandlerRegistry.register(LIZARD_FRILL_VARIANT);
 		TrackedDataHandlerRegistry.register(LIZARD_HORN_VARIANT);
+		TrackedDataHandlerRegistry.register(KINDLING_VARIANT);
 	}
 	
 }

@@ -11,77 +11,77 @@
           "features": [
             {
               "data": {
-                "feature": "spectrum:colored_trees/blue_tree",
+                "feature": "spectrum:colored_trees/blue",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/cyan_tree",
+                "feature": "spectrum:colored_trees/cyan",
                 "placement": []
               },
               "weight": 3
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/green_tree",
+                "feature": "spectrum:colored_trees/green",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/light_blue_tree",
+                "feature": "spectrum:colored_trees/light_blue",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/lime_tree",
+                "feature": "spectrum:colored_trees/lime",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/magenta_tree",
+                "feature": "spectrum:colored_trees/magenta",
                 "placement": []
               },
               "weight": 3
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/orange_tree",
+                "feature": "spectrum:colored_trees/orange",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/pink_tree",
+                "feature": "spectrum:colored_trees/pink",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/purple_tree",
+                "feature": "spectrum:colored_trees/purple",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/red_tree",
+                "feature": "spectrum:colored_trees/red",
                 "placement": []
               },
               "weight": 1
             },
             {
               "data": {
-                "feature": "spectrum:colored_trees/yellow_tree",
+                "feature": "spectrum:colored_trees/yellow",
                 "placement": []
               },
               "weight": 3

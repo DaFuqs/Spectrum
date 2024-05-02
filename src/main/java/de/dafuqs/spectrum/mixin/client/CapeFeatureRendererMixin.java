@@ -36,13 +36,7 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
 		// Check for the chestplate, and begin rendering the cape if equipped
 		ItemStack chestStack = player.getEquippedStack(EquipmentSlot.CHEST);
 		if (chestStack.getItem() == SpectrumItems.BEDROCK_CHESTPLATE) {
-			
-			if (!BedrockCapeRenderer.renderBedrockCapeAndCloth(ms, vertices, light, player, h, chestStack)) {
-				return;
-			}
-			
-			// Cancel any other capes from rendering
-			ci.cancel();
+			BedrockCapeRenderer.renderBedrockCapeAndCloth(ms, vertices, light, player, h, chestStack);
 		}
 	}
 	

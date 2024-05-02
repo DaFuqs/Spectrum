@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.render.capes;
 
-import java.util.UUID;
+import java.util.*;
 
 public class Players {
     public static final UUID AZZY = UUID.fromString("f7957087-549e-4ca3-878e-48f36569dd3e");
@@ -11,7 +11,6 @@ public class Players {
     public static final UUID SUNSETTE = UUID.fromString("904bc7cc-c99d-40c8-9297-2efc3e08205c");
     public static final UUID GUDY = UUID.fromString("510d0e83-67ef-49c6-83b4-d83ed34efeee");
     public static final UUID TWENTYFOUR = UUID.fromString("9bab9ead-385d-421e-812f-b8cac440d183");
-    public static final UUID CDA = UUID.fromString("5c868fb2-7727-4cb8-a7d6-3083fa175063");
     public static final UUID KRAK = UUID.fromString("6105cb83-5d33-4e45-8adb-f24ee0085bf5");
     public static final UUID DRA = UUID.fromString("f962000a-ee12-40ea-abd5-e15f7492f039");
     public static final UUID OPL = UUID.fromString("f791d11d-5415-4c28-99e7-ac6a0b2fec28");

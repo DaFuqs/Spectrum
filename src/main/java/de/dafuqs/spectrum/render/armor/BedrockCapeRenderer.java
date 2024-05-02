@@ -10,8 +10,11 @@ import net.minecraft.item.*;
 import net.minecraft.util.math.*;
 
 public class BedrockCapeRenderer {
-	
-	public static boolean renderBedrockCapeAndCloth(MatrixStack ms, VertexConsumerProvider vertices, int light, AbstractClientPlayerEntity player, float h, ItemStack stack) {
+
+	/**
+	 * Renders the bedrock cloth and cape on the player
+	 */
+	public static void renderBedrockCapeAndCloth(MatrixStack ms, VertexConsumerProvider vertices, int light, AbstractClientPlayerEntity player, float h, ItemStack stack) {
 		// Vanilla cape values
 		double x = MathHelper.lerpAngleDegrees(h / 2, (float) player.prevCapeX, (float) player.capeX)
 				- MathHelper.lerpAngleDegrees(h / 2, (float) player.prevX, (float) player.getX());
@@ -61,7 +64,7 @@ public class BedrockCapeRenderer {
 		
 		// Respect the players own cape, Elytras and Fabrics Render Event
 		if (player.getCapeTexture() != null || RenderingContext.isElytraRendered || !LivingEntityFeatureRenderEvents.ALLOW_CAPE_RENDER.invoker().allowCapeRender(player)) {
-			return true;
+			return;
 		}
 		
 		float backCapeRotation = MathHelper.clamp(6.0F + r / 2.0F + q, -30, 60);
@@ -79,7 +82,6 @@ public class BedrockCapeRenderer {
 		
 		BedrockArmorCapeModel.CAPE_MODEL.render(ms, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
 		ms.pop();
-		return false;
 	}
 	
 }

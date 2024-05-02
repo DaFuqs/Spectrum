@@ -124,6 +124,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SQUEAKER = register("squeaker");
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
+	public static final SoundEvent ITEM_PRIMORDIAL_LIGHTER_USE = register("item.primordial_lighter.use");
 	
 	public static final SoundEvent BLOCK_THREAT_CONFLUX_ARM = register("block.threat_conflux.arm");
 	public static final SoundEvent BLOCK_THREAT_CONFLUX_PRIME = register("block.threat_conflux.prime");
@@ -234,7 +235,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENTITY_KINDLING_SHOOT = register("entity.kindling.shoot");
 	public static final SoundEvent ENTITY_KINDLING_ANGRY = register("entity.kindling.angry");
 	public static final SoundEvent ENTITY_KINDLING_JUMP = register("entity.kindling.jump");
-	
+
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));

@@ -514,7 +514,7 @@
   "enchantment.spectrum.inexorable.desc": "Prevents tool and movement slowdown effects",
   "enchantment.spectrum.razing": "Razing",
   "enchantment.spectrum.razing.desc": "Higher mining speed the harder a block is to break",
-
+  "spectrum.subtitles.primordial_lighter.use": "Primordial Lighter click",
   "spectrum.subtitles.overcharging": "Overcharging",
   "spectrum.subtitles.hummingstone_hum": "Hummingstone hums",
   "spectrum.subtitles.ground_slam": "Sword slamming ground",
@@ -2856,6 +2856,8 @@
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
   "item.spectrum.crescent_clock": "Crescent Clock",
+  "item.spectrum.primordial_lighter": "Primordial Lighter",
+  "item.spectrum.primordial_lighter.tooltip": "Sets the world on fire",
   "item.spectrum.omni_accelerator": "Omni-Accelerator",
   "item.spectrum.gilded_book": "Gilded Book",
   "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",

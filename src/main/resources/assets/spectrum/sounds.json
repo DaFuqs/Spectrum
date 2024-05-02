@@ -1,4 +1,10 @@
 {
+  "item.primordial_lighter.use": {
+    "subtitle": "spectrum.subtitles.primordial_lighter.use",
+    "sounds": [
+      "minecraft:fire/ignite"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [

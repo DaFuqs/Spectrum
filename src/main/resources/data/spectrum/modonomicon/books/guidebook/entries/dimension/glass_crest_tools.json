@@ -12,13 +12,14 @@
       "entry": "spectrum:dimension/malachite_tools"
     },
     {
-      "entry": "spectrum:dimension/moonstone_cores"
+      "entry": "spectrum:dimension/moonstone_cores",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": -1,
-  "y": 9,
+  "x": -7,
+  "y": 7,
   "pages": [
     {
       "type": "modonomicon:text",

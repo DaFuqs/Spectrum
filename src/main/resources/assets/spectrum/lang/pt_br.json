@@ -1771,8 +1771,8 @@
   "advancements.spectrum.finish_progression.description": "Chegue no fim da sua jornada mágica. Parabéns, Ciêntista de Pigmentos!",
   "advancements.spectrum.finish_progression_without_tips.title": "Artista Lendário",
   "advancements.spectrum.finish_progression_without_tips.description": "Complete o Spectrum completamente sem usar dicas. Uau! Aproveite seu pequeno Presente",
-  "advancements.spectrum.create_budding_onyx.title": "Meu melhor Amigo",
-  "advancements.spectrum.create_budding_onyx.description": "Crie uma Drusa de Ônix no Instilador de Espíritos. Parece que você não depende mais de fundir eles!",
+  "advancements.spectrum.budding_onyx.title": "Meu melhor Amigo",
+  "advancements.spectrum.budding_onyx.description": "Crie uma Drusa de Ônix no Instilador de Espíritos. Parece que você não depende mais de fundir eles!",
   "advancements.spectrum.collect_all_shooting_star_variants.title": "Estrela Criança",
   "advancements.spectrum.collect_all_shooting_star_variants.description": "Clique agachado em uma Estrela Cadente para coletá-la. Você consegue coletar todas as variantes?",
   "advancements.spectrum.equip_neat_ring.title": "Da Hora",
@@ -1853,5 +1853,5 @@
   "advancements.spectrum.craft_energy_collector.title": "Sim capitão",
   "advancements.spectrum.craft_energy_collector.description": "Construa um coletor poderoso o suficiente para coletar energia de geodos",
   "advancements.spectrum.place_energy_collector.title": "Uma nova forma de energia",
-  "advancements.spectrum.place_energy_collector.description": "Coloque o coletor no centro do geodo e observe ele funcionar",
+  "advancements.spectrum.place_energy_collector.description": "Coloque o coletor no centro do geodo e observe ele funcionar"
 }

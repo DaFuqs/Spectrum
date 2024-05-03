@@ -5,10 +5,10 @@
       "item": "spectrum:budding_onyx"
     },
     "title": {
-      "translate": "advancements.spectrum.create_budding_onyx.title"
+      "translate": "advancements.spectrum.budding_onyx.title"
     },
     "description": {
-      "translate": "advancements.spectrum.create_budding_onyx.description"
+      "translate": "advancements.spectrum.budding_onyx.description"
     }
   },
   "criteria": {

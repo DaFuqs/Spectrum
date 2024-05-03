@@ -6,7 +6,7 @@
     "advancement_id": "spectrum:unlocks/blocks/budding_onyx"
   },
   "turnin": "spectrum:midgame/budding_onyx",
-  "category": "spectrum:general",
+  "category": "spectrum:creating_life",
   "hide_while_locked ": true,
   "parents": [
     {
@@ -15,7 +15,7 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
+  "x": -1,
   "y": -1,
   "pages": [
     {

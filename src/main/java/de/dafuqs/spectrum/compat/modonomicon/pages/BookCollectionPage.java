@@ -1,30 +1,24 @@
 package de.dafuqs.spectrum.compat.modonomicon.pages;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.klikli_dev.modonomicon.Modonomicon;
-import com.klikli_dev.modonomicon.book.BookEntry;
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.conditions.BookCondition;
-import com.klikli_dev.modonomicon.book.conditions.BookNoneCondition;
-import com.klikli_dev.modonomicon.book.page.BookTextPage;
-import com.klikli_dev.modonomicon.util.BookGsonHelper;
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import de.dafuqs.spectrum.compat.modonomicon.ModonomiconCompat;
-import net.minecraft.client.resource.language.I18n;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.ItemStackArgument;
-import net.minecraft.command.argument.ItemStackArgumentType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.world.World;
+import com.google.gson.*;
+import com.klikli_dev.modonomicon.*;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.book.conditions.*;
+import com.klikli_dev.modonomicon.book.entries.*;
+import com.klikli_dev.modonomicon.book.page.*;
+import com.klikli_dev.modonomicon.util.*;
+import com.mojang.brigadier.*;
+import com.mojang.brigadier.exceptions.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
+import net.minecraft.client.resource.language.*;
+import net.minecraft.command.*;
+import net.minecraft.command.argument.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BookCollectionPage extends BookTextPage {
 
@@ -71,7 +65,7 @@ public class BookCollectionPage extends BookTextPage {
     }
 
     @Override
-    public void build(World world, BookEntry parentEntry, int pageNum) {
+    public void build(World world, ContentBookEntry parentEntry, int pageNum) {
         super.build(world, parentEntry, pageNum);
 
         for (String itemString : itemStrings) {

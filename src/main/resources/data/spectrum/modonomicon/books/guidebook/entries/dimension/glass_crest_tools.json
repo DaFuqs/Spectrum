@@ -10,6 +10,9 @@
   "parents": [
     {
       "entry": "spectrum:dimension/malachite_tools"
+    },
+    {
+      "entry": "spectrum:dimension/moonstone_cores"
     }
   ],
   "background_u_index": 0,

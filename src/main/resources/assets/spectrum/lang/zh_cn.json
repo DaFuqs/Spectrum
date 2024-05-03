@@ -1095,7 +1095,7 @@
   "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.text": "如果你在黑暗区域并且你身上有辉光墨囊，辉光视镜赋予你夜视效果。",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.name": "大药水吊坠",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.title": "大药水吊坠",
-  "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text": "工作原理和[药水吊坠](entry://equipment/lesser_potion_pendant)相同.\\\n然而，这个版本有三个小瓶，每个小瓶都可以装满不同的药水，这也意味着它只能支持第一级的效果.",
+  "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text": "工作原理和[药水吊坠](entry://brewing/lesser_potion_pendant)相同.\\\n然而，这个版本有三个小瓶，每个小瓶都可以装满不同的药水，这也意味着它只能支持第一级的效果.",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.title": "Fusion Recipe",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.text": "用[药水工作站](entry://brewing/potion_workshop)灌注效果\\\n\\\n放入工作网格可以祛除效果",
   "book.spectrum.guidebook.equipment.heartsingers_reward.name": "心之歌手",

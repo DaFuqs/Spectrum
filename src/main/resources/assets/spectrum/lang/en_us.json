@@ -4617,7 +4617,7 @@
   "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.text": "If you are in a dark area and have Glow Ink Sacs on you, the Glow Vision Goggles grant you the Night Vision effect.",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.name": "Greater Potion Pendant",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.title": "Greater Potion Pendant",
-  "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text": "Works very much like its [little brother](entry://equipment/lesser_potion_pendant).\\\nHowever, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I.",
+  "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text": "Works very much like its [little brother](entry://brewing/lesser_potion_pendant).\\\nHowever, this version has three chambers, each of which can be filled with a different potion - which also means it can only support effects of level I.",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.title": "Fusion Recipe",
   "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.text": "Use the [Potion Workshop](entry://brewing/potion_workshop) to infuse it, by placing it where the [#](bb00bb)Bottle[#]() would normally go.\\\n\\\nTo clear its effect, put it in a crafting grid.",
   "book.spectrum.guidebook.equipment.heartsingers_reward.name": "Heartsinger's Reward",

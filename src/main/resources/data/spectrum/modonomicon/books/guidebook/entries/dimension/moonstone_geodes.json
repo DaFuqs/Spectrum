@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.moonstone_shards.name",
+  "name": "book.spectrum.guidebook.general.moonstone_geodes.name",
   "icon": "spectrum:moonstone_cluster",
   "condition": {
     "type": "modonomicon:advancement",

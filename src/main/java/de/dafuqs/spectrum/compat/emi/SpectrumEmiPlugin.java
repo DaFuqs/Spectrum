@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
@@ -92,7 +91,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.POTION_WORKSHOP_REACTING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.CINDERHEARTH, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.TITRATION_BARREL, EmiStack.of(SpectrumBlocks.TITRATION_BARREL));
-		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiIngredient.of(List.of(EmiStack.of(SpectrumItems.DOOMBLOOM_SEED), EmiStack.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EmiStack.of(SpectrumItems.PIPE_BOMB))));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiIngredient.of(List.of(EmiStack.of(SpectrumItems.DOOMBLOOM_SEED), EmiStack.of(SpectrumItems.PRIMORDIAL_LIGHTER), EmiStack.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EmiStack.of(SpectrumItems.PIPE_BOMB))));
 	}
 
 	public void registerRecipes(EmiRegistry registry) {

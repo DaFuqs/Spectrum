@@ -405,7 +405,8 @@ public class SpectrumItems {
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(IS.of(16, Rarity.UNCOMMON));
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(IS.of(Rarity.UNCOMMON));
 	public static final Item CRESCENT_CLOCK = new Item(IS.of(1));
-	
+	public static final Item PRIMORDIAL_LIGHTER = new PrimordialLighterItem(IS.of(1));
+
 	public static final Item INCANDESCENT_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.ORANGE_DYE);
 	public static final Item FROSTBITE_ESSENCE = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/spectrum_midgame"), Items.LIGHT_BLUE_DYE);
 	public static final Item MOONSTONE_CORE = new CloakedItem(IS.of(8, Rarity.RARE), SpectrumCommon.locate("lategame/find_forgotten_city"), Items.WHITE_DYE);
@@ -767,7 +768,8 @@ public class SpectrumItems {
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("perturbed_eye", PERTURBED_EYE, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
-		
+		register("primordial_lighter", PRIMORDIAL_LIGHTER, DyeColor.ORANGE);
+
 		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
 		register("mysterious_compass", MYSTERIOUS_COMPASS, DyeColor.GRAY);
 	}

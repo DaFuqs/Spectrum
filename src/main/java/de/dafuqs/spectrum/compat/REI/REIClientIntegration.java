@@ -103,7 +103,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
-		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
+		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumItems.PRIMORDIAL_LIGHTER), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
 	}
 	
 	@Override

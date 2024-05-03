@@ -8,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
@@ -24,6 +25,13 @@ public class MemoryDementiaRecipe extends PrimordialFireBurningRecipe {
 	@Override
 	public boolean matches(Inventory inv, World world) {
 		return MemoryItem.getEntityType(inv.getStack(0).getNbt()).isPresent();
+	}
+
+	@Override
+	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
+		ItemStack stack = inv.getStack(0);
+		stack.setNbt(null);
+		return stack;
 	}
 	
 	@Override

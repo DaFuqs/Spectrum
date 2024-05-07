@@ -14,13 +14,20 @@ import java.util.*;
 import java.util.function.*;
 
 public class LightShardEntity extends LightShardBaseEntity {
-	
+
+	private static final Identifier[] SPRITES;
+	private final int spriteId;
+
 	public LightShardEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
+		scaleOffset /= 1.5F;
+		spriteId = world.getRandom().nextInt(4);
 	}
 	
 	public LightShardEntity(World world, LivingEntity owner, Optional<LivingEntity> target, float damageMod, float lifeSpanTicks) {
 		super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target, 48, damageMod, lifeSpanTicks);
+		scaleOffset /= 1.5F;
+		spriteId = world.getRandom().nextInt(4);
 	}
 	
 	public static void summonBarrage(World world, @NotNull LivingEntity user, @Nullable LivingEntity target) {
@@ -37,7 +44,14 @@ public class LightShardEntity extends LightShardBaseEntity {
 	
 	@Override
 	public Identifier getTexture() {
-		return SpectrumCommon.locate("textures/entity/projectile/light_shard.png");
+		return SPRITES[spriteId];
 	}
-	
+
+	static {
+		SPRITES = new Identifier[4];
+		SPRITES[0] = SpectrumCommon.locate("textures/entity/projectile/light_shard_0.png");
+		SPRITES[1] = SpectrumCommon.locate("textures/entity/projectile/light_shard_1.png");
+		SPRITES[2] = SpectrumCommon.locate("textures/entity/projectile/light_shard_2.png");
+		SPRITES[3] = SpectrumCommon.locate("textures/entity/projectile/light_shard_3.png");
+	}
 }

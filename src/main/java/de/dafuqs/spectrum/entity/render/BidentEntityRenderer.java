@@ -19,17 +19,17 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private final ItemRenderer itemRenderer;
 	private final float scale;
-	private final boolean center;
+	private final float offset;
 	
 	public BidentEntityRenderer(EntityRendererFactory.Context context) {
-		this(context, 2F, false);
+		this(context, 2F, -0.625F);
 	}
 
-	public BidentEntityRenderer(EntityRendererFactory.Context context, float scale, boolean center) {
+	public BidentEntityRenderer(EntityRendererFactory.Context context, float scale, float offset) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
 		this.scale = scale;
-		this.center = center;
+		this.offset = offset;
 	}
 	
 	@Override
@@ -44,9 +44,10 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
 		
 		matrixStack.push();
-		matrixStack.translate(0, entity.calculateBoundingBox().getAverageSideLength() / 2, 0);
+		matrixStack.translate(entity.calculateBoundingBox().getAverageSideLength() / 2, entity.calculateBoundingBox().getAverageSideLength() / 2, entity.calculateBoundingBox().getAverageSideLength() / 2);
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
 		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
+		matrixStack.translate(0, offset, 0);
 
 		matrixStack.scale(scale, scale, scale);
 

@@ -53,9 +53,14 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 
 	@Override
 	public float getProjectileVelocityModifier(ItemStack stack) {
-		return 1.25F;
+		return 1.5F;
 	}
-	
+
+	@Override
+	public float getPullTimeModifier(ItemStack stack) {
+		return 2.0F;
+	}
+
 	@Override
 	public float getDivergenceMod(ItemStack stack) {
 		return 0.75F;

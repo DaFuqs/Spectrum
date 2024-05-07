@@ -25,11 +25,11 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
-	public MalachiteBidentItem(Settings settings, double damage) {
+	public MalachiteBidentItem(Settings settings, double attackSpeed, double damage) {
 		super(settings);
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage, EntityAttributeModifier.Operation.ADDITION));
-		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.6, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
 	}
 	
@@ -146,7 +146,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	}
 	
 	public float getThrowSpeed() {
-		return 2.5F;
+		return 3F;
 	}
 	
 	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {

@@ -21,8 +21,8 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	
 	public static final InkCost MIRROR_IMAGE_COST = new InkCost(InkColors.WHITE, 25);
 	
-	public FractalBidentItem(Settings settings, double damage) {
-		super(settings, damage);
+	public FractalBidentItem(Settings settings, double attackSpeed, double damage) {
+		super(settings, attackSpeed, damage);
 	}
 	
 	@Override

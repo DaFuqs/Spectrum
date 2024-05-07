@@ -49,7 +49,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
 
 
     public DragonTalonItem(ToolMaterial toolMaterial, double damage, double extraReach, Settings settings) {
-        super(settings, 0);
+        super(settings, 0, 0);
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage + toolMaterial.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8, EntityAttributeModifier.Operation.ADDITION));

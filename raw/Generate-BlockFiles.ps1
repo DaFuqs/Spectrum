@@ -816,9 +816,9 @@ Function Generate-BlockFiles {
         function Get-BlockModelCrystallarieum($Name) {
             Write-Output @"
 {
-  "parent": "minecraft:block/crop",
+  "parent": "spectrum:block/crystallarieum_farmable",
   "textures": {
-    "crop": "spectrum:block/$Name"
+    "cross": "spectrum:block/$Name"
   }
 }
 "@

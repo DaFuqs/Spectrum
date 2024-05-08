@@ -331,8 +331,8 @@ public class SpectrumItems {
 	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, IS.of().food(SpectrumFoodComponents.ALOE_LEAF));
 	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, IS.of().food(FoodComponents.SWEET_BERRIES));
 	public static final Item PRICKLY_BAYLEAF = new Item(IS.of().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
-	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(IS.of().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
-	public static final Item DRAGONBONE_BROTH = new StewItem(IS.of().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
+	public static final Item TRIPLE_MEAT_POT_STEW = new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW), 96);
+	public static final Item DRAGONBONE_BROTH = new StackableStewItem(IS.of(8).food(SpectrumFoodComponents.DRAGONBONE_BROTH));
 	public static final Item DOOMBLOOM_SEED = new AliasedBlockItem(SpectrumBlocks.DOOMBLOOM, IS.of());
 	
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, IS.of());

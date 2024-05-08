@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "bone_ash_blocks",
   "time": 200,
   "tier": "basic",
   "cyan": 0,

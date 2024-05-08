@@ -356,8 +356,8 @@ public class SpectrumItems {
 	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, Tab.CUISINE.settings().food(SpectrumFoodComponents.ALOE_LEAF));
 	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, Tab.CUISINE.settings().food(FoodComponents.SWEET_BERRIES));
 	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CUISINE.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
-	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
-	public static final Item DRAGONBONE_BROTH = new StewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
+	public static final Item TRIPLE_MEAT_POT_STEW = new StackableStewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW), 96);
+	public static final Item DRAGONBONE_BROTH = new StackableStewItem(Tab.CUISINE.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
 	public static final Item DOOMBLOOM_SEED = new AliasedBlockItem(SpectrumBlocks.DOOMBLOOM, Tab.RESOURCES.settings());
 	
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());

@@ -41,8 +41,6 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	private static final UUID HORSE_ARMOR_BONUS_ID = UUID.fromString("f55b70e7-db42-4384-8843-6e9c843336af");
 	
 	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
-
-	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
@@ -406,6 +404,21 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		}
 		
 		return super.interactMob(player, hand);
+	}
+
+	@Override
+	public void sheared(SoundCategory shearedSoundCategory) {
+		this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+
+		setClipped(4800); // 4 minutes
+		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
+			dropStack(clippedStack, 0.3F);
+		}
+	}
+
+	@Override
+	public boolean isShearable() {
+		return this.isAlive() && !this.isBaby() && !this.isClipped();
 	}
 	
 	@Override

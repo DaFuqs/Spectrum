@@ -22,7 +22,7 @@
       "item": "minecraft:stick"
     },
     "F": {
-      "item": "spectrum:effulgent_feather"
+      "tag": "spectrum:effulgent_feathers"
     }
   },
   "result": {

@@ -2,7 +2,7 @@
   "type": "spectrum:liquid_crystal_converting",
   "required_advancement": "spectrum:lategame/pluck_effulgent_feather",
   "ingredient": {
-    "item": "spectrum:effulgent_feather"
+    "tag": "spectrum:effulgent_feathers"
   },
   "result": {
     "item": "spectrum:raw_bloodstone",

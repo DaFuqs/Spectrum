@@ -7,10 +7,6 @@
     "collected_stratine": {
         "trigger":"revelationary:advancement_gotten",
         "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
-    },
-    "collected_quitoxic_reeds": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
     }
   }
 }

@@ -13,6 +13,7 @@ public class SpectrumTypeSpecificPredicates {
 	public static final TypeSpecificPredicate.Deserializer AXOLOTL = ParrotPredicate::fromJson;
 	public static final TypeSpecificPredicate.Deserializer FOX = FoxPredicate::fromJson;
 	public static final TypeSpecificPredicate.Deserializer MOOSHROOM = MooshroomPredicate::fromJson;
+	public static final TypeSpecificPredicate.Deserializer KINDLING = KindlingPredicate::fromJson;
 	
 	public static void register() {
 		// creating a new map, in case the previous one was immutable (it usually is)
@@ -26,6 +27,7 @@ public class SpectrumTypeSpecificPredicates {
 		newMap.put("spectrum:axolotl", AXOLOTL);
 		newMap.put("spectrum:fox", FOX);
 		newMap.put("spectrum:mooshroom", MOOSHROOM);
+		newMap.put("spectrum:kindling", KINDLING);
 		
 		TypeSpecificPredicateDeserializerMixin.setTypes(newMap);
 	}

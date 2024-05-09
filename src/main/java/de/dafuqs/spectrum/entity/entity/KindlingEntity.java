@@ -36,7 +36,7 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable, Shearable {
-
+	
 	private static final UUID HORSE_ARMOR_BONUS_ID = UUID.fromString("f55b70e7-db42-4384-8843-6e9c843336af");
 
 	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
@@ -371,14 +371,18 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 
 		// clipping using shears
 		ItemStack handStack = player.getMainHandStack();
-		if (!this.isBaby() && !this.isClipped() && handStack.isIn(ConventionalItemTags.SHEARS)) {
-			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-
+		if (this.isShearable() && handStack.isIn(ConventionalItemTags.SHEARS)) {
+			
 			if (!this.getWorld().isClient()) {
 				setTarget(player);
 				takeRevenge(player.getUuid());
 				this.playAngrySound();
-				clipAndDrop();
+				
+				this.sheared(SoundCategory.PLAYERS);
+				this.emitGameEvent(GameEvent.SHEAR, player);
+				if (!this.getWorld().isClient) {
+					handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+				}
 			}
 
 			return ActionResult.success(this.getWorld().isClient());
@@ -471,16 +475,9 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 
 		}
 	}
-
-	public void clipAndDrop() {
-		setClipped(4800); // 4 minutes
-		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
-			dropStack(clippedStack, 0.3F);
-		}
-	}
 	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
-		LootTable lootTable = world.getServer().getLootManager().getTable(getKindlingVariant().clippingLootTable());
+		LootTable lootTable = world.getServer().getLootManager().getLootTable(this.getKindlingVariant().clippingLootTable());
 		return lootTable.generateLoot(
 				new LootContext.Builder(world)
 						.parameter(LootContextParameters.THIS_ENTITY, KindlingEntity.this)

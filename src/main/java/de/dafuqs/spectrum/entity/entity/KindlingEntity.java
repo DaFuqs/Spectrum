@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
-import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -36,13 +35,11 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable {
+public class KindlingEntity extends AbstractHorseEntity implements RangedAttackMob, Angerable, Shearable {
 
 	private static final UUID HORSE_ARMOR_BONUS_ID = UUID.fromString("f55b70e7-db42-4384-8843-6e9c843336af");
 
 	protected static final TrackedData<KindlingVariant> VARIANT = DataTracker.registerData(KindlingEntity.class, SpectrumTrackedDataHandlerRegistry.KINDLING_VARIANT);
-
-	protected static final Identifier CLIPPING_LOOT_TABLE = SpectrumCommon.locate("gameplay/kindling_clipping");
 	protected static final Ingredient FOOD = Ingredient.fromTag(SpectrumItemTags.KINDLING_FOOD);
 	
 	private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(30, 59);
@@ -407,7 +404,22 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		
 		return super.interactMob(player, hand);
 	}
-
+	
+	@Override
+	public void sheared(SoundCategory shearedSoundCategory) {
+		this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+		
+		setClipped(4800); // 4 minutes
+		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
+			dropStack(clippedStack, 0.3F);
+		}
+	}
+	
+	@Override
+	public boolean isShearable() {
+		return this.isAlive() && !this.isBaby() && !this.isClipped();
+	}
+	
 	@Override
 	protected boolean receiveFood(PlayerEntity player, ItemStack item) {
 		boolean canEat = false;
@@ -468,7 +480,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	}
 	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
-		LootTable lootTable = world.getServer().getLootManager().getTable(CLIPPING_LOOT_TABLE);
+		LootTable lootTable = world.getServer().getLootManager().getTable(getKindlingVariant().clippingLootTable());
 		return lootTable.generateLoot(
 				new LootContext.Builder(world)
 						.parameter(LootContextParameters.THIS_ENTITY, KindlingEntity.this)

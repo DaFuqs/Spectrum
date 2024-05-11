@@ -476,6 +476,8 @@
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
+  "spectrum.tooltip.press_shift_for_more": "press Shift to view additional stats",
+
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties",
   "enchantment.spectrum.pest_control": "Pest Control",
@@ -2244,6 +2246,10 @@
   "item.spectrum.malachite_ultra_greatsword": "Malachite Ultra Greatsword",
   "item.spectrum.malachite_crossbow": "Malachite Crossbow",
   "item.spectrum.malachite_bident": "Malachite Bident",
+  "item.spectrum.bident.toolTip.disabled": "throwing effects disabled",
+  "item.spectrum.bident.postToolTip.disable": "Right Click in inventory to toggle ability",
+  "item.spectrum.bident.postToolTip.ap": " %d%% Armor Piercing",
+  "item.spectrum.bident.postToolTip.pp": " %d%% Enchantment Piercing",
 
   "item.spectrum.glass_crest_ultra_greatsword": "Glass Crest Ultra Greatsword",
   "item.spectrum.glass_crest_ultra_greatsword.tooltip": "§7Deals §f%d%%§7 of it's damage via Magic",
@@ -2259,7 +2265,7 @@
   "item.spectrum.fractal_glass_crest_bident": "Fractal Glass Crest Bident",
   "item.spectrum.fractal_glass_crest_bident.tooltip": "Will not leave your hands when thrown",
   "item.spectrum.fractal_glass_crest_bident.tooltip2": "Instead, creates a §fMirror Image§r of itself",
-  "item.spectrum.fractal_glass_crest_bident.tooltip3": "Explodes on impact",
+  "item.spectrum.fractal_glass_crest_bident.tooltip3": "Shatters on impact",
   "item.spectrum.malachite_glass_arrow": "Glass Arrow",
   "item.spectrum.glass_arrow.tooltip": "Able to be shot underwater, pierces",
   "item.spectrum.glass_arrow.tooltip2": "translucent blocks & deals increased damage",

@@ -47,6 +47,7 @@ public class SpectrumModelPredicateProviders {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
 
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
@@ -146,6 +147,9 @@ public class SpectrumModelPredicateProviders {
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (currentItemRenderMode == ModelTransformationMode.NONE) {
+				if (itemStack.getItem() instanceof FractalBidentItem fractal) {
+					return fractal.isDisabled(itemStack) ? 0.5F : 1F;
+				}
 				return 1.0F;
 			}
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;

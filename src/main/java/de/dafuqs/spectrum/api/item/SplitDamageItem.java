@@ -28,6 +28,14 @@ public interface SplitDamageItem {
             }
         }
 
+        public DamageSource getPlayerOrEntity(LivingEntity entity) {
+            if (entity instanceof PlayerEntity player) {
+                return player.getDamageSources().playerAttack(player);
+            } else {
+                return entity.getDamageSources().mobAttack(entity);
+            }
+        }
+
         public void add(DamageSource damageSource, float ratio) {
             this.damageSourcesWithPercentage.add(new Pair<>(damageSource, ratio));
         }

@@ -1,6 +1,14 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "spectrum:item/handheld_oversized",
   "textures": {
     "layer0": "spectrum:item/bedrock_sword"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0
+      },
+      "model": "spectrum:item/bedrock_sword_oversized"
+    }
+  ]
 }

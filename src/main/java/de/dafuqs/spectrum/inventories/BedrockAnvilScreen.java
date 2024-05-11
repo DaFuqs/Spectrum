@@ -50,7 +50,6 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		int j = (this.height - this.backgroundHeight) / 2;
 		
 		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, Text.translatable("container.spectrum.bedrock_anvil"));
-		this.nameField.setFocusUnlocked(false);
 		this.nameField.setEditableColor(-1);
 		this.nameField.setUneditableColor(-1);
 		this.nameField.setDrawsBackground(false);
@@ -60,7 +59,6 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		this.addSelectableChild(this.nameField);
 		
 		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, Text.translatable("container.spectrum.bedrock_anvil.lore"));
-		this.loreField.setFocusUnlocked(false);
 		this.loreField.setEditableColor(-1);
 		this.loreField.setUneditableColor(-1);
 		this.loreField.setDrawsBackground(false);
@@ -93,10 +91,8 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
 			Element focusedElement = getFocused();
 			if (focusedElement == this.nameField) {
-				this.nameField.setFocused(false);
 				setFocused(this.loreField);
 			} else if (focusedElement == this.loreField) {
-				this.loreField.setFocused(false);
 				setFocused(this.nameField);
 			}
 		}

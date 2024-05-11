@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
@@ -84,17 +83,17 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 	
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		if (keyCode == 256) {
-			this.client.player.closeHandledScreen();
+		if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
+			this.close();
+			return true;
 		}
 		
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
 			Element focusedElement = getFocused();
-			if (focusedElement == this.nameField) {
-				setFocused(this.loreField);
-			} else if (focusedElement == this.loreField) {
-				setFocused(this.nameField);
-			}
+			if (focusedElement == this.nameField)
+				this.setFocused(this.loreField);
+			else if (focusedElement == this.loreField)
+				this.setFocused(this.nameField);
 		}
 		
 		return this.nameField.keyPressed(keyCode, scanCode, modifiers) || this.nameField.isActive()

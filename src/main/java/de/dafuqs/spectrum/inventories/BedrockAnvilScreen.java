@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
@@ -50,7 +49,6 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		int j = (this.height - this.backgroundHeight) / 2;
 		
 		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, Text.translatable("container.spectrum.bedrock_anvil"));
-		this.nameField.setFocusUnlocked(false);
 		this.nameField.setEditableColor(-1);
 		this.nameField.setUneditableColor(-1);
 		this.nameField.setDrawsBackground(false);
@@ -60,7 +58,6 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		this.addSelectableChild(this.nameField);
 		
 		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, Text.translatable("container.spectrum.bedrock_anvil.lore"));
-		this.loreField.setFocusUnlocked(false);
 		this.loreField.setEditableColor(-1);
 		this.loreField.setUneditableColor(-1);
 		this.loreField.setDrawsBackground(false);
@@ -86,23 +83,21 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 	
 	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-		if (keyCode == 256) {
-			this.client.player.closeHandledScreen();
+		if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
+			this.close();
+			return true;
 		}
 		
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
-			Element focusedElement = getFocused();
-			if (focusedElement == this.nameField) {
-				this.nameField.setFocused(false);
-				setFocused(this.loreField);
-			} else if (focusedElement == this.loreField) {
-				this.loreField.setFocused(false);
-				setFocused(this.nameField);
-			}
+			Element focusedElement = this.getFocused();
+			if (focusedElement == this.nameField)
+				this.setFocused(this.loreField);
+			else if (focusedElement == this.loreField)
+				this.setFocused(this.nameField);
+			return true;
 		}
-		
-		return this.nameField.keyPressed(keyCode, scanCode, modifiers) || this.nameField.isActive()
-				|| this.loreField.keyPressed(keyCode, scanCode, modifiers) || this.loreField.isActive()
+
+		return (this.getFocused() != null && this.getFocused().keyPressed(keyCode, scanCode, modifiers))
 				|| super.keyPressed(keyCode, scanCode, modifiers);
 	}
 	
@@ -199,5 +194,5 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 			this.setFocused(this.nameField);
 		}
 	}
-	
+
 }

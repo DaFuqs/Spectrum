@@ -96,8 +96,7 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 				this.setFocused(this.nameField);
 		}
 		
-		return this.nameField.keyPressed(keyCode, scanCode, modifiers) || this.nameField.isActive()
-				|| this.loreField.keyPressed(keyCode, scanCode, modifiers) || this.loreField.isActive()
+		return this.getFocused() != null && this.getFocused().keyPressed(keyCode, scanCode, modifiers)
 				|| super.keyPressed(keyCode, scanCode, modifiers);
 	}
 	

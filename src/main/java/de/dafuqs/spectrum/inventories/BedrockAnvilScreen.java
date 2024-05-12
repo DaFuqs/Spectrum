@@ -89,14 +89,15 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 		}
 		
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
-			Element focusedElement = getFocused();
+			Element focusedElement = this.getFocused();
 			if (focusedElement == this.nameField)
 				this.setFocused(this.loreField);
 			else if (focusedElement == this.loreField)
 				this.setFocused(this.nameField);
+			return true;
 		}
-		
-		return this.getFocused() != null && this.getFocused().keyPressed(keyCode, scanCode, modifiers)
+
+		return (this.getFocused() != null && this.getFocused().keyPressed(keyCode, scanCode, modifiers))
 				|| super.keyPressed(keyCode, scanCode, modifiers);
 	}
 	
@@ -193,5 +194,5 @@ public class BedrockAnvilScreen extends ForgingScreen<BedrockAnvilScreenHandler>
 			this.setFocused(this.nameField);
 		}
 	}
-	
+
 }

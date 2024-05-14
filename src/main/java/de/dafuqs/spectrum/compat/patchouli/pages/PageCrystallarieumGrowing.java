@@ -21,7 +21,7 @@ import java.util.*;
 public class PageCrystallarieumGrowing extends PageGatedRecipe<CrystallarieumRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
-	private static BookTextRenderer textRenderer;
+	private transient BookTextRenderer textRenderer;
 	
 	public PageCrystallarieumGrowing() {
 		super(SpectrumRecipeTypes.CRYSTALLARIEUM);

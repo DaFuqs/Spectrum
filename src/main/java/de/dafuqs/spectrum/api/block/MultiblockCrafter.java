@@ -47,10 +47,10 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 	}
 	
 	static void spawnItemStackAsEntitySplitViaMaxCount(World world, BlockPos blockPos, ItemStack itemStack, int amount, Vec3d velocity) {
-		spawnItemStackAsEntitySplitViaMaxCount(world, Vec3d.ofCenter(blockPos), itemStack, amount, velocity);
+		spawnItemStackAsEntitySplitViaMaxCount(world, Vec3d.ofCenter(blockPos), itemStack, amount, velocity, true, null);
 	}
 	
-	static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d pos, ItemStack itemStack, int amount, Vec3d velocity) {
+	static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d pos, ItemStack itemStack, int amount, Vec3d velocity, boolean neverDespawn, @Nullable Entity owner) {
 		while (amount > 0) {
 			int currentAmount = Math.min(amount, itemStack.getMaxCount());
 			
@@ -58,7 +58,12 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 			resultStack.setCount(currentAmount);
 			ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), resultStack);
 			itemEntity.setVelocity(velocity);
-			itemEntity.setNeverDespawn();
+			if (neverDespawn) {
+				itemEntity.setNeverDespawn();
+			}
+			if (owner != null) {
+				itemEntity.setOwner(owner.getUuid());
+			}
 			world.spawnEntity(itemEntity);
 			
 			amount -= currentAmount;

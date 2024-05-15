@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -9,6 +10,8 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -49,12 +52,21 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 		
 		if (!world.isClient) {
 			if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-				if (world.random.nextInt(200) == 0) {
+				if (world.random.nextInt(100) == 0) {
 					ItemStack itemStack = itemEntity.getStack();
 					FluidConvertingRecipe recipe = getConversionRecipeFor(getDippingRecipeType(), world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(world.getRegistryManager()), recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount(), Vec3d.ZERO);
+						
+						ItemStack result = recipe.getOutput(world.getRegistryManager());
+						int count = recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount();
+						result.setCount(count);
+						
+						if (itemEntity.getOwner() instanceof ServerPlayerEntity serverPlayerEntity) {
+							SpectrumAdvancementCriteria.FLUID_DIPPING.trigger(serverPlayerEntity, (ServerWorld) world, pos, itemStack, result);
+						}
+						
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), result, count, Vec3d.ZERO, false, itemEntity.getOwner());
 						itemEntity.discard();
 					}
 				}

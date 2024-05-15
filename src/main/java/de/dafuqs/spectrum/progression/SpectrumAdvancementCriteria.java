@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.progression.advancement.*;
-import net.fabricmc.fabric.mixin.object.builder.*;
-import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.advancement.criterion.*;
 
 public class SpectrumAdvancementCriteria {
 
@@ -41,6 +40,7 @@ public class SpectrumAdvancementCriteria {
 	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
 	public static PastelNetworkCreatingCriterion PASTEL_NETWORK_CREATING;
 	public static PreservationCheckCriterion PRESERVATION_CHECK;
+	public static FluidDippingCriterion FLUID_DIPPING;
 
 	public static void register() {
 		PEDESTAL_RECIPE_CALCULATED = Criteria.register(new PedestalRecipeCalculatedCriterion());
@@ -78,6 +78,7 @@ public class SpectrumAdvancementCriteria {
 		CREATE_HUMMINGSTONE_HYMN = Criteria.register(new HummingstoneHymnCriterion());
 		PASTEL_NETWORK_CREATING = Criteria.register(new PastelNetworkCreatingCriterion());
 		PRESERVATION_CHECK = Criteria.register(new PreservationCheckCriterion());
+		FLUID_DIPPING = Criteria.register(new FluidDippingCriterion());
 	}
 	
 }

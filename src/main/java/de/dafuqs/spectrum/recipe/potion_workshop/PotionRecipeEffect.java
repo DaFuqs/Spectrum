@@ -15,7 +15,8 @@ import org.jetbrains.annotations.*;
 
 public record PotionRecipeEffect(boolean applicableToPotions, boolean applicableToTippedArrows,
 								 boolean applicableToPotionFillabes, boolean applicableToWeapons,
-								 int baseDurationTicks, int hardCap, float potencyModifier, StatusEffect statusEffect,
+								 int baseDurationTicks, int potencyHardCap, float potencyModifier,
+								 StatusEffect statusEffect,
 								 InkColor inkColor, int inkCost) {
 	
 	public static PotionRecipeEffect read(JsonObject jsonObject) {
@@ -23,8 +24,8 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		boolean applicableToTippedArrows = JsonHelper.getBoolean(jsonObject, "applicable_to_tipped_arrows", true);
 		boolean applicableToPotionFillabes = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_fillables", true);
 		boolean applicableToWeapons = JsonHelper.getBoolean(jsonObject, "applicable_to_potion_weapons", true);
-
-		int hardCap = JsonHelper.getInt(jsonObject, "potency_hard_cap", -1);
+		
+		int potencyHardCap = JsonHelper.getInt(jsonObject, "potency_hard_cap", -1);
 		int baseDurationTicks = JsonHelper.getInt(jsonObject, "base_duration_ticks", 1600);
 		float potencyModifier = JsonHelper.getFloat(jsonObject, "potency_modifier", 1.0F);
 		
@@ -37,13 +38,13 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCost = JsonHelper.getInt(jsonObject, "ink_cost");
 		
-		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, hardCap, potencyModifier, statusEffect, inkColor, inkCost);
+		return new PotionRecipeEffect(applicableToPotions, applicableToTippedArrows, applicableToPotionFillabes, applicableToWeapons, baseDurationTicks, potencyHardCap, potencyModifier, statusEffect, inkColor, inkCost);
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
 		packetByteBuf.writeIdentifier(Registries.STATUS_EFFECT.getId(statusEffect));
 		packetByteBuf.writeInt(baseDurationTicks);
-		packetByteBuf.writeInt(hardCap);
+		packetByteBuf.writeInt(potencyHardCap);
 		packetByteBuf.writeFloat(potencyModifier);
 		packetByteBuf.writeBoolean(applicableToPotions);
 		packetByteBuf.writeBoolean(applicableToTippedArrows);
@@ -102,8 +103,8 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 		// Prevents some status effects from getting out of hand.
 		// While strong potions are always fun, there are things the player should not be able to make,
 		// such as resistance 5 which would grant invulnerability.
-		if (hardCap > -1 && potency > hardCap) {
-			potency = hardCap();
+		if (potencyHardCap > -1 && potency > potencyHardCap) {
+			potency = potencyHardCap;
 		}
 		
 		if (potency >= 0 && durationTicks > 0) {

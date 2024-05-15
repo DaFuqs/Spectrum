@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:midgame/enter_liquid_crystal",
+  "display": {
+    "icon": {
+      "item": "spectrum:liquid_crystal_bucket"
+    },
+    "title": {
+      "translate": "advancements.spectrum.dip_something_into_liquid_crystal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.dip_something_into_liquid_crystal.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "dipped_something_into_liquid_crystal": {
+      "trigger": "spectrum:fluid_dipping",
+      "conditions": {
+        "fluid": {
+          "tag": "spectrum:liquid_crystal"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/enter_liquid_crystal"
+      }
+    }
+  }
+}

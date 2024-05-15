@@ -3502,10 +3502,6 @@
   "advancements.spectrum.open_mysterious_compass.description": "Socket a Moonstone Core into a Mysterious Locket and open it",
   "advancements.spectrum.collect_enough_hints.title": "Blue's Clues",
   "advancements.spectrum.collect_enough_hints.description": "Find out why the Deeper Down is abandoned. Tinker will all sorts of stuff to find clues",
-  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
-  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
-  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
-  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
   "advancements.spectrum.find_forsaken_cathedral.title": "Artists' Academy",
   "advancements.spectrum.find_forsaken_cathedral.description": "Find a run down Sacred Site",
   "advancements.spectrum.no_rgb.title": "Not Very Enlightening",
@@ -3515,7 +3511,7 @@
   "advancements.spectrum.fish_charged_creeper.title": "Dynamite Fishing",
   "advancements.spectrum.fish_charged_creeper.description": "Fish up a charged Creeper. Sometimes everyone has their bad day",
   "advancements.spectrum.crumble_midnight_aberration.title": "An Immense Failure",
-  "advancements.spectrum.crumble_midnight_aberration.description": "Definitely not as 'perfect' as you anticipated it to be. Your 'perfect compound' quickly crumbled in your hands, item for item.",
+  "advancements.spectrum.crumble_midnight_aberration.description": "Definitely not as 'perfect' as you anticipated it to be. Your 'perfect compound' quickly crumbled in your hands, item by item.",
 
   "advancements.spectrum.collect_one_cookbook.title": "Another's Nostalgia",
   "advancements.spectrum.collect_one_cookbook.description": "How old could these be? Certainly, their writers are long, long gone",
@@ -3523,6 +3519,8 @@
   "advancements.spectrum.collect_all_cookbooks.description": "To peer into this small collection is to peer into the vibrant cultures of peoples long gone. A reminder that they lived",
   "advancements.spectrum.eat_each_cookbook_heavy_meal.title": "The Gourmand",
   "advancements.spectrum.eat_each_cookbook_heavy_meal.description": "Take a culinary tour of all the great meals in the underground cookbooks",
+  "advancements.spectrum.dip_something_into_liquid_crystal.title": "Sparkle Infused",
+  "advancements.spectrum.dip_something_into_liquid_crystal.description": "Some things turn into something else when coming in contact with Liquid Crystal",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",
@@ -3632,5 +3630,9 @@
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from a geodes",
   "advancements.spectrum.place_energy_collector.title": "A new Form of Energy",
   "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-  "advancements.spectrum.unused2.title": "Having a Blast"
+  "advancements.spectrum.unused2.title": "Having a Blast",
+  "advancements.spectrum.meet_paintlich.title": "Marked by Time",
+  "advancements.spectrum.meet_paintlich.description": "Meet a Certain Someone",
+  "advancements.spectrum.defeat_paintlich.title": "Crossed Paintbrushes",
+  "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity"
 }

@@ -3517,8 +3517,9 @@
   "advancements.spectrum.fish_charged_creeper.title": "Dynamite Fishing",
   "advancements.spectrum.fish_charged_creeper.description": "Fish up a charged Creeper. Sometimes everyone has their bad day",
   "advancements.spectrum.crumble_midnight_aberration.title": "An Immense Failure",
-  "advancements.spectrum.crumble_midnight_aberration.description": "Definitely not as 'perfect' as you anticipated it to be. Your 'perfect compound' quickly crumbled in your hands, item for item.",
-
+  "advancements.spectrum.crumble_midnight_aberration.description": "Definitely not as 'perfect' as you anticipated it to be. Your 'perfect compound' quickly crumbled in your hands, item by item.",
+  "advancements.spectrum.use_decay_away_on_sculk.title": "Undarks your Deep",
+  "advancements.spectrum.use_decay_away_on_sculk.description": "Looks like Sculk very much qualifies as self replicating organism, too",
   "advancements.spectrum.collect_one_cookbook.title": "Another's Nostalgia",
   "advancements.spectrum.collect_one_cookbook.description": "How old could these be? Certainly, their writers are long, long gone",
   "advancements.spectrum.collect_all_cookbooks.title": "Yet Another's Requiem",

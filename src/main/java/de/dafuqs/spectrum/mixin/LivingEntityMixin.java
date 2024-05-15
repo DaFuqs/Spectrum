@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
+import com.llamalad7.mixinextras.sugar.*;
+import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.tools.DragonTalonItem;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
@@ -22,8 +22,7 @@ import dev.emi.trinkets.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
@@ -94,7 +93,7 @@ public abstract class LivingEntityMixin {
 	@Shadow public abstract int getArmor();
 
 	@Shadow public abstract double getAttributeValue(EntityAttribute attribute);
-
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -119,16 +118,22 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
+	
+	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+	private float spectrum$damageArmor(float amount, DamageSource source) {
+		if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
+			return amount * 10;
+		}
+		return amount;
+	}
 
 	@Inject(method = "applyArmorToDamage", at = @At("HEAD"), cancellable = true)
-	public void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
-		if (source.isOf(SpectrumDamageTypes.IMPALING)) {
-			this.damageArmor(source, amount * 10);
-			amount = DamageUtil.getDamageLeft(amount, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 1.334F, Float.MAX_VALUE);
+	private void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+		if (source.isIn(SpectrumDamageTypeTags.CALCULATES_DAMAGE_BASED_ON_TOUGHNESS)) {
+			amount = DamageUtil.getDamageLeft(amount, (float) this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 1.5F, Float.MAX_VALUE);
 			cir.setReturnValue(amount);
 			cir.cancel();
-		}
-		else if(source.isOf(SpectrumDamageTypes.EVISCERATION)) {
+		} else if (source.isIn(SpectrumDamageTypeTags.PARTLY_IGNORES_PROTECTION)) {
 			this.damageArmor(source, amount);
 			amount = DamageUtil.getDamageLeft(amount, (float) getArmor() / 2, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS));
 			cir.setReturnValue(amount);

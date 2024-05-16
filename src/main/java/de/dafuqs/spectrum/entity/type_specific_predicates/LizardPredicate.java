@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.type_specific_predicates;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.entity.variants.*;

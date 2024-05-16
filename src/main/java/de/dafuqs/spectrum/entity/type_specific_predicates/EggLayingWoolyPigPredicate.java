@@ -15,24 +15,41 @@ import java.util.*;
 public class EggLayingWoolyPigPredicate implements TypeSpecificPredicate {
 	
 	private static final String COLOR_KEY = "color";
-	
+	private static final String HATLESS_KEY = "hatless";
+	private static final String SHEARED_KEY = "sheared";
+
 	private final DyeColor color;
-	
-	private EggLayingWoolyPigPredicate(DyeColor color) {
+	private final Optional<Boolean> hatless;
+	private final Optional<Boolean> sheared;
+
+	private EggLayingWoolyPigPredicate(DyeColor color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
 		this.color = color;
+		this.hatless = hatless;
+		this.sheared = sheared;
 	}
-	
-	public static EggLayingWoolyPigPredicate of(DyeColor color) {
-		return new EggLayingWoolyPigPredicate(color);
+
+	public static EggLayingWoolyPigPredicate of(DyeColor color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
+		return new EggLayingWoolyPigPredicate(color, hatless, sheared);
 	}
 	
 	public static EggLayingWoolyPigPredicate fromJson(JsonObject json) {
-		return new EggLayingWoolyPigPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
+		JsonElement hatlessElement = json.get(HATLESS_KEY);
+		Optional<Boolean> hatless = hatlessElement == null ? Optional.empty() : Optional.of(hatlessElement.getAsBoolean());
+
+		JsonElement shearedElement = json.get(SHEARED_KEY);
+		Optional<Boolean> sheared = shearedElement == null ? Optional.empty() : Optional.of(shearedElement.getAsBoolean());
+
+		return new EggLayingWoolyPigPredicate(
+				DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)),
+				hatless, sheared
+		);
 	}
 	
 	@Override
 	public JsonObject typeSpecificToJson() {
 		JsonObject jsonObject = new JsonObject();
+		this.hatless.ifPresent(clipped -> jsonObject.add(HATLESS_KEY, new JsonPrimitive(clipped)));
+		this.sheared.ifPresent(angry -> jsonObject.add(SHEARED_KEY, new JsonPrimitive(angry)));
 		jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color.toString().toLowerCase(Locale.ROOT)));
 		return jsonObject;
 	}
@@ -47,7 +64,9 @@ public class EggLayingWoolyPigPredicate implements TypeSpecificPredicate {
 		if (!(entity instanceof EggLayingWoolyPigEntity eggLayingWoolyPigEntity)) {
 			return false;
 		} else {
-			return this.color == eggLayingWoolyPigEntity.getColor();
+			return this.color == eggLayingWoolyPigEntity.getColor()
+					&& (this.hatless.isEmpty() || this.hatless.get() == eggLayingWoolyPigEntity.isHatless())
+					&& (this.sheared.isEmpty() || this.sheared.get() == eggLayingWoolyPigEntity.isSheared());
 		}
 	}
 }

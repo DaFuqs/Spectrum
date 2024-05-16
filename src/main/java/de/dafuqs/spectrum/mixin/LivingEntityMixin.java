@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.damage_type.StackTracking;
+import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.status_effect.*;
@@ -111,7 +111,7 @@ public abstract class LivingEntityMixin {
 	}
 
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
-	public void spectrum$modifyDragPhysics(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
+	public void spectrum$travel(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
 		var needle = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
 		if (needle.isReservingSlot(this.getMainHandStack()) || needle.isReservingSlot(this.getOffHandStack())) {
 			if (!((LivingEntity) (Object) this).isOnGround()) {
@@ -129,7 +129,7 @@ public abstract class LivingEntityMixin {
 	}
 
 	@ModifyArg(method = "modifyAppliedDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/DamageUtil;getInflictedDamage(FF)F"), index = 1)
-	public float modifyProtectionValues(float protection, @Local(argsOnly = true) DamageSource source) {
+	public float spectrum$modifyAppliedDamage(float protection, @Local(argsOnly = true) DamageSource source) {
 		var pair = getArmorPiercing(source);
 
 		if (pair.isPresent()) {
@@ -142,9 +142,9 @@ public abstract class LivingEntityMixin {
 
 		return protection;
 	}
-
-	@Inject(method = "applyArmorToDamage", at = @At("HEAD"), cancellable = true)
-	public void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+	
+	@ModifyVariable(method = "applyArmorToDamage", at = @At("STORE"))
+	public float spectrum$applyArmorToDamage(float amount, DamageSource source) {
 		float defense = getArmor();
 		float toughness = getToughness();
 		var modified = false;
@@ -161,14 +161,15 @@ public abstract class LivingEntityMixin {
 		
 		if (source.isIn(SpectrumDamageTypeTags.CALCULATES_DAMAGE_BASED_ON_TOUGHNESS)) {
 			amount = DamageUtil.getDamageLeft(amount, toughness * 1.334F, Float.MAX_VALUE);
-			cir.setReturnValue(amount);
-			cir.cancel();
 		} else if (source.isIn(SpectrumDamageTypeTags.PARTLY_IGNORES_PROTECTION)) {
-			this.damageArmor(source, amount);
 			amount = DamageUtil.getDamageLeft(amount, defense / 2, toughness);
-			cir.setReturnValue(amount);
-			cir.cancel();
 		}
+		
+		if (modified) {
+			amount = DamageUtil.getDamageLeft(amount, defense, toughness);
+		}
+		
+		return amount;
 	}
 	
 	@Unique
@@ -195,7 +196,7 @@ public abstract class LivingEntityMixin {
 	}
 
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")
-	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
+	public void spectrum$fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
 		if (onGround) {
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
 			if (!thisEntity.isInvulnerableTo(thisEntity.getDamageSources().fall()) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {

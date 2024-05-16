@@ -10,7 +10,7 @@ import net.minecraft.predicate.entity.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 
-public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetworkCreatingCriterion.Conditions> {
+public class PastelNetworkCreationCriterion extends AbstractCriterion<PastelNetworkCreationCriterion.Conditions> {
 
 	static final Identifier ID = SpectrumCommon.locate("pastel_network_creation");
 	
@@ -20,15 +20,15 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 	}
 	
 	@Override
-	public PastelNetworkCreatingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public PastelNetworkCreationCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate predicate, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.IntRange totalNodes = NumberRange.IntRange.fromJson(jsonObject.get("total_nodes"));
 		NumberRange.IntRange connectionNodes = NumberRange.IntRange.fromJson(jsonObject.get("connection_nodes"));
 		NumberRange.IntRange providerNodes = NumberRange.IntRange.fromJson(jsonObject.get("provider_nodes"));
 		NumberRange.IntRange storageNodes = NumberRange.IntRange.fromJson(jsonObject.get("storage_nodes"));
 		NumberRange.IntRange senderNodes = NumberRange.IntRange.fromJson(jsonObject.get("sender_nodes"));
 		NumberRange.IntRange gatherNodes = NumberRange.IntRange.fromJson(jsonObject.get("gather_nodes"));
-		
-		return new PastelNetworkCreatingCriterion.Conditions(predicate, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
+
+		return new PastelNetworkCreationCriterion.Conditions(predicate, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
 	}
 
 	public void trigger(ServerPlayerEntity player, ServerPastelNetwork network) {
@@ -46,7 +46,7 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 		private final NumberRange.IntRange gatherNodes;
 
 		public Conditions(LootContextPredicate playerPredicate, NumberRange.IntRange totalNodes, NumberRange.IntRange connectionNodes, NumberRange.IntRange providerNodes, NumberRange.IntRange storageNodes, NumberRange.IntRange senderNodes, NumberRange.IntRange gatherNodes) {
-			super(PastelNetworkCreatingCriterion.ID, playerPredicate);
+			super(PastelNetworkCreationCriterion.ID, playerPredicate);
 			this.totalNodes = totalNodes;
 			this.connectionNodes = connectionNodes;
 			this.providerNodes = providerNodes;

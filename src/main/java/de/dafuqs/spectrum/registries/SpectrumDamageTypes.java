@@ -1,12 +1,21 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.api.damage_type.StackTracking;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.text.Text;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+
+import java.util.Optional;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
@@ -124,6 +133,10 @@ public class SpectrumDamageTypes {
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
+
+	public static void wrapWithStackTracking(DamageSource source, ItemStack stack) {
+		((StackTracking) source).spectrum$setTrackedStack(stack);
+	}
 	
 	public static class SetHealthDamageSource extends DamageSource {
 		
@@ -163,5 +176,4 @@ public class SpectrumDamageTypes {
 			super(world.getDamageSources().registry.entryOf(PRIMORDIAL_FIRE), attacker);
 		}
 	}
-
 }

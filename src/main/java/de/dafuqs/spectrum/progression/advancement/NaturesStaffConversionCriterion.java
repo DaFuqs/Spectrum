@@ -11,7 +11,7 @@ import net.minecraft.server.network.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
-public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseCriterion.Conditions> {
+public class NaturesStaffConversionCriterion extends AbstractCriterion<NaturesStaffConversionCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("natures_staff_conversion");
 	
@@ -31,7 +31,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 	}
 	
 	@Override
-	public NaturesStaffUseCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public NaturesStaffConversionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, LootContextPredicate extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Block sourceBlock = getBlock(jsonObject, "source_block");
 		StatePredicate sourceStatePredicate = StatePredicate.fromJson(jsonObject.get("source_state"));
 		
@@ -48,8 +48,8 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 				throw new JsonSyntaxException("Block " + targetBlock + " has no property " + name);
 			});
 		}
-		
-		return new NaturesStaffUseCriterion.Conditions(extended, sourceBlock, sourceStatePredicate, targetBlock, targetStatePredicate);
+
+		return new NaturesStaffConversionCriterion.Conditions(extended, sourceBlock, sourceStatePredicate, targetBlock, targetStatePredicate);
 	}
 	
 	public void trigger(ServerPlayerEntity player, BlockState sourceBlockState, BlockState targetBlockState) {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import com.llamalad7.mixinextras.sugar.*;
 import com.llamalad7.mixinextras.sugar.ref.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.damage_type.StackTracking;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.api.status_effect.*;
@@ -127,18 +128,70 @@ public abstract class LivingEntityMixin {
 		return amount;
 	}
 
+	@ModifyArg(method = "modifyAppliedDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/DamageUtil;getInflictedDamage(FF)F"), index = 1)
+	public float modifyProtectionValues(float protection, @Local(argsOnly = true) DamageSource source) {
+		var pair = getArmorPiercing(source);
+
+		if (pair.isPresent()) {
+			var ap = pair.get().getLeft();
+			var stack = pair.get().getRight();
+
+			var modProt = Math.max(protection, 20F) / 25F;
+			protection = Math.max(modProt - ap.getProtReduction((LivingEntity) (Object) this, stack), 0) * 20F;
+		}
+
+		return protection;
+	}
+
 	@Inject(method = "applyArmorToDamage", at = @At("HEAD"), cancellable = true)
-	private void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+	public void spectrum$applySpecialArmorEffects(DamageSource source, float amount, CallbackInfoReturnable<Float> cir) {
+		float defense = getArmor();
+		float toughness = getToughness();
+		var modified = false;
+		var pair = getArmorPiercing(source);
+		
+		if (pair.isPresent()) {
+			var ap = pair.get().getLeft();
+			var stack = pair.get().getRight();
+			
+			defense *= ap.getDefenseMultiplier((LivingEntity) (Object) this, stack);
+			toughness *= ap.getToughnessMultiplier((LivingEntity) (Object) this, stack);
+			modified = true;
+		}
+		
 		if (source.isIn(SpectrumDamageTypeTags.CALCULATES_DAMAGE_BASED_ON_TOUGHNESS)) {
-			amount = DamageUtil.getDamageLeft(amount, (float) this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 1.5F, Float.MAX_VALUE);
+			amount = DamageUtil.getDamageLeft(amount, toughness * 1.334F, Float.MAX_VALUE);
 			cir.setReturnValue(amount);
 			cir.cancel();
 		} else if (source.isIn(SpectrumDamageTypeTags.PARTLY_IGNORES_PROTECTION)) {
 			this.damageArmor(source, amount);
-			amount = DamageUtil.getDamageLeft(amount, (float) getArmor() / 2, (float)this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS));
+			amount = DamageUtil.getDamageLeft(amount, defense / 2, toughness);
 			cir.setReturnValue(amount);
 			cir.cancel();
 		}
+	}
+	
+	@Unique
+	private Optional<Pair<ArmorPiercingItem, ItemStack>> getArmorPiercing(DamageSource source) {
+		if (!(source instanceof StackTracking stackTracking))
+			return Optional.empty();
+		
+		var stackOptional = stackTracking.spectrum$getTrackedStack();
+		
+		if (stackOptional.isEmpty())
+			return Optional.empty();
+		
+		var stack = stackOptional.get();
+		
+		if (!(stack.getItem() instanceof  ArmorPiercingItem ap))
+			return Optional.empty();
+		
+		return Optional.of(new Pair<>(ap, stack));
+	}
+	
+	@Unique
+	private float getToughness() {
+		return (float) this.getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS);
 	}
 
 	@Inject(at = @At("HEAD"), method = "fall(DZLnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)V")
@@ -226,7 +279,7 @@ public abstract class LivingEntityMixin {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
 				SpectrumDamageTypes.recursiveDamageFlag = true;
-				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
+				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, mainHandStack, amount);
 				
 				boolean damaged = false;
 				for (Pair<DamageSource, Float> entry : composition.get()) {

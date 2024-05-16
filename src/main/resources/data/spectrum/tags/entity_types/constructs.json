@@ -2,8 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:armor_stand",
-    "minecraft:snow_golem",
-    "minecraft:iron_golem",
     "spectrum:preservation_turret"
   ]
 }

@@ -152,15 +152,15 @@ public class SpectrumItems {
 	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, IS.of(1, Rarity.UNCOMMON));
 	public static final Item MALACHITE_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 7, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON));
 	public static final Item MALACHITE_CROSSBOW = new MalachiteCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireproof().maxDamage(MALACHITE.getDurability()));
-	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(MALACHITE.getDurability()), -2.6, 9);
+	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(MALACHITE.getDurability()), -2.4, 9, 0.25F, 0F);
 	
 	// variants by socketing a moonstone core
 	public static final SpectrumToolMaterials.ToolMaterial GLASS_CREST = SpectrumToolMaterials.ToolMaterial.GLASS_CREST;
 	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, IS.of(1, Rarity.UNCOMMON));
-	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON));
+	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 5, -2.8F, 1.0F, IS.of(1, Rarity.UNCOMMON));
 	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(IS.of(1, Rarity.UNCOMMON).fireproof().maxDamage(GLASS_CREST.getDurability()));
-	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), -2.2, 13);
-	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), -2.4, 6.5);
+	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), -2.2, 13, 0.33F, 0.33F);
+	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(IS.of(1, Rarity.UNCOMMON).maxDamage(GLASS_CREST.getDurability()), -2.4, 6.5, 0.25F, 0.25F);
 	
 	public static final Item MALACHITE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MALACHITE, SpectrumParticleTypes.LIME_CRAFTING);
 	public static final Item TOPAZ_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.TOPAZ, SpectrumParticleTypes.CYAN_CRAFTING);

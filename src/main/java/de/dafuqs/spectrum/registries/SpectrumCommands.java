@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.spectrum.commands.*;
 import net.fabricmc.fabric.api.command.v2.*;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.command.*;
 
 public class SpectrumCommands {
 	
@@ -16,6 +15,7 @@ public class SpectrumCommands {
 			PrintConfigCommand.register(spectrumNode);
 			PrimordialFireCommand.register(spectrumNode);
 			DumpRegistriesCommand.register(spectrumNode);
+			DumpTagsCommand.register(spectrumNode);
 			DimWeatherCommand.register(spectrumNode);
 			SeasonCommand.register(spectrumNode);
 

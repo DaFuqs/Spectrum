@@ -18,15 +18,8 @@ public class BidentEntity extends BidentBaseEntity {
 	}
 	
 	@Override
-	protected void onEntityHit(EntityHitResult entityHitResult) {
-		super.onEntityHit(entityHitResult);
-		MoonstoneStrike.create(entityHitResult.getEntity().getWorld(), this, null, this.getX(), this.getY(), this.getZ(), 2);
-	}
-	
-	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		MoonstoneStrike.create(this.getWorld(), this, null, this.getX(), this.getY(), this.getZ(), 2);
 	}
     
 }

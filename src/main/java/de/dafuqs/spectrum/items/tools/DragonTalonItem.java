@@ -42,14 +42,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, SplitDamageItem, TranstargetItem, SlotBackgroundEffectProvider {
+public class DragonTalonItem extends MalachiteBidentItem implements MergeableItem, SlotReservingItem, ExtendedEnchantable, TranstargetItem, SlotBackgroundEffectProvider {
 
     protected static final UUID REACH_MODIFIER_ID = UUID.fromString("3b9a13c8-a9a7-4545-8c32-e60baf25823e");
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers, phantomModifiers;
 
 
     public DragonTalonItem(ToolMaterial toolMaterial, double damage, double extraReach, Settings settings) {
-        super(settings, 0, 0);
+        super(settings, 0, 0, 0, 0);
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage + toolMaterial.getAttackDamage(), EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8, EntityAttributeModifier.Operation.ADDITION));
@@ -81,7 +81,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
     }
 
     @Override
-    public float getThrowSpeed() {
+    public float getThrowSpeed(ItemStack stack) {
         return 3.5F;
     }
 
@@ -91,7 +91,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
         needleEntity.setStack(stack);
         needleEntity.setOwner(playerEntity);
         needleEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-        needleEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(), 1.0F);
+        needleEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(stack), 1.0F);
         needleEntity.velocityDirty = true;
         needleEntity.velocityModified = true;
         needleEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
@@ -230,6 +230,11 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
     }
 
     @Override
+    public float getDefenseMultiplier(LivingEntity target, ItemStack stack) {
+        return 1F;
+    }
+
+    @Override
     public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
         return SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE;
     }
@@ -238,4 +243,7 @@ public class DragonTalonItem extends MalachiteBidentItem implements MergeableIte
     public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
         return ColorHelper.colorVecToRGB(InkColors.YELLOW.getColor());
     }
+
+    @Override
+    public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {}
 }

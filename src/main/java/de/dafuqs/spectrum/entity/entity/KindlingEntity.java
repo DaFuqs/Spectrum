@@ -477,7 +477,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 	}
 	
 	public List<ItemStack> getClippedStacks(ServerWorld world) {
-		LootTable lootTable = world.getServer().getLootManager().getLootTable(this.getKindlingVariant().clippingLootTable());
+		LootTable lootTable = world.getServer().getLootManager().getTable(this.getKindlingVariant().clippingLootTable());
 		return lootTable.generateLoot(
 				new LootContext.Builder(world)
 						.parameter(LootContextParameters.THIS_ENTITY, KindlingEntity.this)

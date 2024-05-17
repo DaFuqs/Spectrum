@@ -108,13 +108,17 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 		if (world.isClient) {
 			// Simple equality check to make sure this method doesn't execute on other clients.
 			// Always true if the current player is the one wielding the staff under normal circumstances.
-			usageTickClient();
+			usageTickClient(user);
 		}
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void usageTickClient() {
+	@SuppressWarnings("resource")
+	public void usageTickClient(LivingEntity user) {
 		MinecraftClient client = MinecraftClient.getInstance();
+		if (client.player != user) {
+			return;
+		}
 		if (client.crosshairTarget.getType() == HitResult.Type.BLOCK) {
 			client.interactionManager.interactBlock(
 					client.player,

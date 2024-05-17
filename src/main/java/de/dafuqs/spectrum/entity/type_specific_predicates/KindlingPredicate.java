@@ -37,10 +37,13 @@ public class KindlingPredicate implements TypeSpecificPredicate {
 	public static KindlingPredicate fromJson(JsonObject json) {
 		JsonElement clippedElement = json.get(CLIPPED_KEY);
 		Optional<Boolean> clippedOptional = clippedElement == null ? Optional.empty() : Optional.of(clippedElement.getAsBoolean());
+
 		JsonElement angryElement = json.get(ANGRY_KEY);
 		Optional<Boolean> angryOptional = angryElement == null ? Optional.empty() : Optional.of(angryElement.getAsBoolean());
+
 		JsonElement variantElement = json.get(VARIANT_KEY);
 		Optional<KindlingVariant> variantOptional = variantElement == null ? Optional.empty() : SpectrumRegistries.KINDLING_VARIANT.getOrEmpty(Identifier.tryParse(variantElement.getAsString()));
+
 		return new KindlingPredicate(clippedOptional, angryOptional, variantOptional);
 	}
 	

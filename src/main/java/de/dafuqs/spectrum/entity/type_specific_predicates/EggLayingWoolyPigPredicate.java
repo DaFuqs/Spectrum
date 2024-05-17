@@ -18,31 +18,31 @@ public class EggLayingWoolyPigPredicate implements TypeSpecificPredicate {
 	private static final String HATLESS_KEY = "hatless";
 	private static final String SHEARED_KEY = "sheared";
 
-	private final DyeColor color;
+	private final Optional<DyeColor> color;
 	private final Optional<Boolean> hatless;
 	private final Optional<Boolean> sheared;
 
-	private EggLayingWoolyPigPredicate(DyeColor color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
+	private EggLayingWoolyPigPredicate(Optional<DyeColor> color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
 		this.color = color;
 		this.hatless = hatless;
 		this.sheared = sheared;
 	}
 
-	public static EggLayingWoolyPigPredicate of(DyeColor color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
+	public static EggLayingWoolyPigPredicate of(Optional<DyeColor> color, Optional<Boolean> hatless, Optional<Boolean> sheared) {
 		return new EggLayingWoolyPigPredicate(color, hatless, sheared);
 	}
 	
 	public static EggLayingWoolyPigPredicate fromJson(JsonObject json) {
+		JsonElement colorElement = json.get(COLOR_KEY);
+		Optional<DyeColor> color = colorElement == null ? Optional.empty() : Optional.of(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
+
 		JsonElement hatlessElement = json.get(HATLESS_KEY);
 		Optional<Boolean> hatless = hatlessElement == null ? Optional.empty() : Optional.of(hatlessElement.getAsBoolean());
 
 		JsonElement shearedElement = json.get(SHEARED_KEY);
 		Optional<Boolean> sheared = shearedElement == null ? Optional.empty() : Optional.of(shearedElement.getAsBoolean());
 
-		return new EggLayingWoolyPigPredicate(
-				DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)),
-				hatless, sheared
-		);
+		return new EggLayingWoolyPigPredicate(color, hatless, sheared);
 	}
 	
 	@Override
@@ -61,12 +61,12 @@ public class EggLayingWoolyPigPredicate implements TypeSpecificPredicate {
 	
 	@Override
 	public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
-		if (!(entity instanceof EggLayingWoolyPigEntity eggLayingWoolyPigEntity)) {
+		if (!(entity instanceof EggLayingWoolyPigEntity wooly)) {
 			return false;
 		} else {
-			return this.color == eggLayingWoolyPigEntity.getColor()
-					&& (this.hatless.isEmpty() || this.hatless.get() == eggLayingWoolyPigEntity.isHatless())
-					&& (this.sheared.isEmpty() || this.sheared.get() == eggLayingWoolyPigEntity.isSheared());
+			return (this.color.isEmpty() || this.color.get() == wooly.getColor())
+					&& (this.hatless.isEmpty() || this.hatless.get() == wooly.isHatless())
+					&& (this.sheared.isEmpty() || this.sheared.get() == wooly.isSheared());
 		}
 	}
 }

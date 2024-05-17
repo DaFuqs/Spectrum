@@ -21,6 +21,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	public static final int FIRST_INPUT_SLOT_INDEX = 0;
 	public static final int SECOND_INPUT_SLOT_INDEX = 1;
 	public static final int OUTPUT_SLOT_INDEX = 2;
+	private static final int PLAYER_INVENTORY_START_INDEX = 3;
+	private static final int PLAYER_INVENTORY_END_INDEX = 39;
 	
 	protected final CraftingResultInventory output = new CraftingResultInventory();
 	protected final ScreenHandlerContext context;
@@ -192,9 +194,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			if (!repairSlotStack.isEmpty()) {
 				combined = true;
 				
-				boolean enchantedBookInInputSlot = inputStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(inputStack).isEmpty();
 				boolean enchantedBookInRepairSlot = repairSlotStack.isOf(Items.ENCHANTED_BOOK) && !EnchantedBookItem.getEnchantmentNbt(repairSlotStack).isEmpty();
-
 				int o;
 				int repairItemCount;
 				int newOutputStackDamage;
@@ -276,8 +276,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 							bl3 = true;
 						} else {
 							bl2 = true;
-							boolean capToMaxLevel = enchantedBookInInputSlot || !SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel;
-							if (capToMaxLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
+							if (!SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
 								newEnchantmentLevel = enchantment.getMaxLevel();
 							}
 							
@@ -377,6 +376,5 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	public int getLevelCost() {
 		return this.levelCost.get();
 	}
-	
 	
 }

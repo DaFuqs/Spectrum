@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.commands;
 
 import com.mojang.brigadier.*;
+import com.mojang.brigadier.arguments.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
@@ -155,12 +156,12 @@ public class SanityCommand {
 		}
 		
 		// Items / Blocks without a translation
-		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
 			if (!Language.getInstance().hasTranslation(item.getValue().getTranslationKey())) {
 				SpectrumCommon.logWarning("[SANITY: Item Lang] Missing translation string " + item.getValue().getTranslationKey());
 			}
 		}
-		for (Map.Entry<RegistryKey<Block>, Block> block : Registries.BLOCK.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Block>, Block> block : Registry.BLOCK.getEntrySet()) {
 			if (!Language.getInstance().hasTranslation(block.getValue().getTranslationKey())) {
 				SpectrumCommon.logWarning("[SANITY: Block Lang] Missing translation string " + block.getValue().getTranslationKey());
 			}

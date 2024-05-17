@@ -4,12 +4,14 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.world.*;
+
+import java.util.*;
 
 /**
  * In contrast to most other Minecraft things, the titration barrel also counts the fermenting time
@@ -30,8 +32,8 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	float getAngelsSharePerMcDay();
 	
 	// the amount of bottles able to get out of a single barrel
-	default int getOutputCountAfterAngelsShare(World world, float temperature, long secondsFermented) {
-		int originalOutputCount = getOutput(world.getRegistryManager()).getCount();
+	default int getOutputCountAfterAngelsShare(float temperature, long secondsFermented) {
+		int originalOutputCount = getOutput().getCount();
 		
 		if (getFermentationData() == null) {
 			return originalOutputCount;

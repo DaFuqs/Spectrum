@@ -15,8 +15,8 @@ import java.util.*;
 public class ShulkerPredicate implements TypeSpecificPredicate {
 	
 	private static final String COLOR_KEY = "color";
-	
-	private final @Nullable DyeColor color;
+
+	private final DyeColor color;
 	
 	private ShulkerPredicate(@Nullable DyeColor color) {
 		this.color = color;
@@ -27,8 +27,8 @@ public class ShulkerPredicate implements TypeSpecificPredicate {
 	}
 	
 	public static ShulkerPredicate fromJson(JsonObject json) {
-		String c = json.get(COLOR_KEY).getAsString();
-		return new ShulkerPredicate(DyeColor.valueOf(c.isBlank() ? null : c.toUpperCase(Locale.ROOT)));
+		String color = json.get(COLOR_KEY).getAsString();
+		return new ShulkerPredicate(DyeColor.valueOf(color.isBlank() ? null : color.toUpperCase(Locale.ROOT)));
 	}
 	
 	@Override

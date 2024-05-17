@@ -14,6 +14,20 @@ public class SpectrumEntityColorProcessors {
 			entity.setColor(dyeColor);
 			return true;
 		});
+		EntityColorProcessorRegistry.register(EntityType.WOLF, (entity, dyeColor) -> {
+			if (entity.getCollarColor() == dyeColor) {
+				return false;
+			}
+			entity.setCollarColor(dyeColor);
+			return true;
+		});
+		EntityColorProcessorRegistry.register(EntityType.CAT, (entity, dyeColor) -> {
+			if (entity.getCollarColor() == dyeColor) {
+				return false;
+			}
+			entity.setCollarColor(dyeColor);
+			return true;
+		});
 		EntityColorProcessorRegistry.register(EntityType.SHULKER, (entity, dyeColor) -> {
 			if (entity.getColor() == dyeColor) {
 				return false;
@@ -21,6 +35,7 @@ public class SpectrumEntityColorProcessors {
 			entity.setColor(dyeColor);
 			return true;
 		});
+		
 		EntityColorProcessorRegistry.register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, (entity, dyeColor) -> {
 			if (entity.getColor() == dyeColor) {
 				return false;

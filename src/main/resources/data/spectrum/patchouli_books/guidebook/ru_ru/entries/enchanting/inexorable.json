@@ -1,0 +1,25 @@
+{
+  "name": "Неумолимость",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/inexorable",
+  "flag": "spectrum:enchantment_exists_spectrum_inexorable",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы прошли долгий путь, и ничто вас не остановит. За исключением нескольких случаев в подводных храмах, когда вы испытываете усталость при добыче, медлительность при добыче под водой, в воздухе и в других неблагоприятных условиях...$(br2)$(italic)Хм, записал так, это оказалось чуть больше, чем я думал.$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inexorable\", lvl: 1s}]}",
+      "text": "Предотвращает замедление скорости добычи (на инструментах) или передвижения (на нагрудниках).$(br2)Макс. Уровень: 1$(br)Применимо к инструментам и нагрудникам."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inexorable",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Неумолимостью окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

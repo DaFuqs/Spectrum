@@ -1,0 +1,21 @@
+{
+  "name": "Рентген-Блок",
+  "advancement": "spectrum:unlocks/blocks/universe_spyhole",
+  "icon": "spectrum:universe_spyhole",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:universe_spyhole": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот странный блок позволяет видеть сквозь землю и камень. Поместите его прямо на стену или на землю, и он позволит вам заглянуть на другую сторону.$(br2)$(italic)Удивительные вещи, которые $(l:resources/resonating_ender)Эндерин$()$(italic) позволяет создавать благодаря своим странным свойствам, не перестают вас удивлять."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/universe_spyhole",
+      "text": "$(italic)Я вижу, что вы сделали."
+    }
+  ]
+}

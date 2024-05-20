@@ -1,0 +1,20 @@
+{
+  "name": "Лётоблок",
+  "advancement": "spectrum:lategame/collect_hover_block",
+  "icon": "spectrum:hover_block",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:hover_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:hover_block",
+      "text": "Созданный в результате столкновения $(l:resources/stratine)Стратина$(/l) и $(l:resources/paltaeria)Платерия$(/l), этот блок просто висит в воздухе при размещении."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "...другие блоки тоже по каким-то причинам могут парить в воздухе без опоры, но этот - особенный: $(thing)он сохраняет любой импульс, который вы ему придадите$(), например $(item)Поршнем$(), даже если вы встанете на него.$(br2)Совет: $(k:sneak) + $(k:use) чтобы поднять его обратно."
+    }
+  ]
+}

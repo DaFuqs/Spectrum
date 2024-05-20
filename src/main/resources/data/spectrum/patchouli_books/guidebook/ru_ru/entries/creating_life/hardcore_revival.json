@@ -1,0 +1,20 @@
+{
+  "name": "Возрождение Хардкорщика",
+  "icon": "spectrum:divination_heart",
+  "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Возрождение хардкорного игрока",
+      "text": "Кажется, что мир гораздо более добр к вам, чем ко всему остальному вокруг. Когда вы теряли сознание после слишком сильного урона, вы всегда просыпались здоровым и подтянутым, как будто вам дали новую жизнь.$(br)Однако в исключительных ситуациях обмануть смерть невозможно.$(br)Увы! Теперь у тебя есть, что придумать на случай, если дела пойдут туго."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Рецепт Высекатель Духа",
+      "recipe": "spectrum:spirit_instiller/hardcore_player_revival",
+      "text": "Чтобы оживить игрока, погибшего в $(thing)Хардкоре$(), вам понадобится $(item)его личная игровая голова$(), солидная сумма ресурсов и немного времени."
+    }
+  ]
+}

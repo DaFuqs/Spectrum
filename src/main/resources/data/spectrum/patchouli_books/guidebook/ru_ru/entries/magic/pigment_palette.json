@@ -1,0 +1,21 @@
+{
+  "name": "Пигментная Палитра",
+  "advancement": "spectrum:unlocks/trinkets/pigment_palette",
+  "icon": "spectrum:pigment_palette",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:pigment_palette": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Носить с собой достаточное количество $(l:magic/ink)Красок$() для поддержания магического снаряжения стало не только нудно, но и занимает много места в инвентаре.$(br)Теперь, когда вы знакомы с $(l:magic/ink)Красокой$(), пришло время для нового творения: Пигментная Палитра."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт на Святыне Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
+      "text": "Может хранить большое количество $(l:magic/ink)Красок$(), что позволяет снабжать ей все ваше магическое предметы. Однако для питания машин она не подходит.$(br)$(italic)Теперь вы настоящий Художник цвета."
+    }
+  ]
+}

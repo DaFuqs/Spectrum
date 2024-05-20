@@ -1,0 +1,45 @@
+{
+  "name": "Загадочный Амулет",
+  "icon": "spectrum:mysterious_locket",
+  "advancement": "spectrum:lategame/collect_mysterious_locket",
+  "category": "spectrum:general_category",
+  "sortnum": 21,
+  "extra_recipe_mappings": {
+    "spectrum:mysterious_locket": 0,
+    "spectrum:mysterious_compass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Загадочный Амулет",
+      "item": "spectrum:mysterious_locket",
+      "text": "Этот маленький медальон плотно закрыт. Он украшен странным орнаментом, напоминающим выемку, мягко светящуюся бледно-белым цветом, по мерцанию напоминающим луну.$(br)Кажется, внутри что-то есть. На обратной стороне также есть гравировка, но если она и похожа на язык, то ни на один из тех, что вы когда-либо видели.$(br)Кто оставил его?"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Подключение Ядра",
+      "advancement": "spectrum:unlocks/mysterious_locket_socketing",
+      "recipe": "spectrum:fusion_shrine/mysterious_locket_socketing",
+      "text": "Выемка, которую вы заметили, идеально подходит для $(l:resources/moonstone_cores)Луннокаменного Ядра$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Содержимое Амулета",
+      "advancement": "spectrum:endgame/open_mysterious_compass",
+      "text": "В медальоне был маленький кристалл, излучавший более тусклое, но гораздо более теплое сияние, чем его замок.$(br)Находясь $(l:dimension/getting_deeper_down)ниже Бедрока(/l), он мягко вибрирует при поворотах."
+    },
+    {
+      "type": "patchouli:image",
+      "advancement": "spectrum:__todo",
+      "images": ["spectrum:textures/gui/guidebook/locket.png"],
+      "border": true,
+      "text": "Внутри также была небольшая записка... кому она могла принадлежать?"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Вызов?",
+      "advancement": "spectrum:endgame/learn_dreiton",
+      "text": "Теперь, когда вы понимаете дрейтонский язык, вам не составит труда расшифровать надпись на обратной стороне:$(br2)$(italic)Не говори глупостей, Астерас, - луна не может светиться, она может только отражать солнечный свет."
+    }
+  ]
+}

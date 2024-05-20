@@ -1,0 +1,17 @@
+{
+  "name": "Драгоценный камень",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:spectrum",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_topaz_shard",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "cost": "minecraft:amethyst_shard#16",
+      "text": "Один из типов Жеод встречается на большой высоте, обычно на вершинах холмов и заоблачных гор."
+    }
+  ]
+}

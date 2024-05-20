@@ -1,0 +1,25 @@
+{
+  "name": "Неразрушимость",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:unlocks/enchantments/indestructible",
+  "flag": "spectrum:enchantment_exists_spectrum_indestructible",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы зашли так далеко, а вам все еще приходится сталкиваться с тем, что ваши обычные инструменты, такие как $(item)Зажигалка$() продолжают ломаться, когда вы используете их слишком часто. И у вас более чем достаточно оборудования, которое раньше было слишком хрупким, чтобы им можно было долго пользоваться.$(br)Теперь у вас полная армада почти неразрушимых предметов? Нет проблем."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
+      "text": "Делает инструмент полностью неломаемым, он больше не получает урона.$(br2)Макс. Уровень: 1$(br)Применимо ко всем инструментам."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_indestructible",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Неразрушимостью окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

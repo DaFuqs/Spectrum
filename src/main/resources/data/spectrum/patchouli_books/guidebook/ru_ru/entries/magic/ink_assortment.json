@@ -1,0 +1,21 @@
+{
+  "name": "Ассортимент Краски",
+  "advancement": "spectrum:unlocks/items/ink_assortment",
+  "icon": "spectrum:ink_assortment",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:ink_assortment": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Эта коллекция маленьких флаконов способна хранить все виды $(l:magic/ink)Красок$(), хоть и в небольшом количестве."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ink_assortment",
+      "text": ""
+    }
+  ]
+}

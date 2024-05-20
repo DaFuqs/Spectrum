@@ -1,0 +1,23 @@
+{
+  "name": "Новая Руда",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_paltaeria",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_paltaeria_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:hidden/collect_paltaeria_gem",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "В Энде появилась новая бирюзовая руда, которую можно найти."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:moonstone_shard#32",
+      "text": "Эта руда, которую вы сейчас видите, образуется как на центральном острове, так и во внешних областях Энда. Поймайте ее, пока не стало слишком поздно!"
+    }
+  ]
+}

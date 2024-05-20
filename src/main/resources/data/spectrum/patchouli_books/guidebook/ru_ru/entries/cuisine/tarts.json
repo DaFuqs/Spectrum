@@ -1,0 +1,52 @@
+{
+  "name": "Тарталетки",
+  "icon": "spectrum:ashen_tart",
+  "advancement": "spectrum:unlocks/food/tarts",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:jaramel_tart": 0,
+    "spectrum:salted_jaramel_tart": 0,
+    "spectrum:ashen_tart": 0,
+    "spectrum:weeping_tart": 0,
+    "spectrum:whispy_tart": 0,
+    "spectrum:puff_tart": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Даже если вы не самый искусный шеф-повар, то даже этот примитивный рецепт будет вкусным! $(br2)Вы можете украсить его различными начинками, которые дадут вам $(thing)защитные свойства$() на короткое время."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Джарамельная Тарталетка",
+      "recipe": "spectrum:pedestal/tier1/food/jaramel_tart",
+      "text": "Классика. Единственное, что может сделать его еще вкуснее, - это слезы ваших врагов."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
+      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_tart",
+      "text": "$(italic)Очень соленый"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/ashen_tart",
+      "text": "Благодаря этому вы сможете видеть и плавать в лаве, как в воде.$(br)Однако это НЕ ДЕЛАЕТ вас неуязвимым для огня."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/weeping_tart",
+      "text": "Позволяет вам плавать со скоростью света и значительно увеличивает скорость подводной добычи."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/whispy_tart",
+      "text": "Позволяет чувствовать себя хорошо выспавшимся, как после крепкого сна. Отпугивает кошмарных существ."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/puff_tart",
+      "text": "Небольшая вероятность того, что снаряды просто отлетят от вас."
+    }
+  ]
+}

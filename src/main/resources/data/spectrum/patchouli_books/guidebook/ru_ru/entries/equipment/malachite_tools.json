@@ -1,0 +1,46 @@
+{
+  "name": "Малахитовые Инструменты",
+  "advancement": "spectrum:unlocks/malachite/malachite_tools",
+  "icon": "spectrum:malachite_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_workstaff": 0,
+    "spectrum:malachite_ultra_greatsword": 0,
+    "spectrum:malachite_crossbow": 0,
+    "spectrum:malachite_bident": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/malachite)Малахит$() как материал, идеально подходит для изготовления инструментов, лучше всего сочетается с $(item)Алмазом$(), но гораздо легче комбинируется с другими материалами.$(br)Именно с этих комбинаций начинается веселье, позволяющее создавать уникальные замысловатые инструменты."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рабочий Посох",
+      "anchor": "workstaff",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
+      "text": "Идеальный $(l:equipment/multitool)Мультиинструмент$():$(br)$(k:sneak) + $(k:use) позволяет переключаться между $(thing)Шёлковым Касанием$() и $(thing)Удачей$(), позволяет копать большие туннели за один раз $(thing)обдирать$(), $(thing)обрабатывать $() и $(thing)разравнивать$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Супервеликий Меч",
+      "anchor": "greatsword",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
+      "text": "Его огромные размеры позволяют поражать врагов с большого расстояния.$(br)Если бы в комплект не входила $(l:resources/paltaeria)Палтерия$(), вы, вероятно, даже не смогли бы его поднять."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Двузубец",
+      "anchor": "bident",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
+      "text": "Настоящая сила, когда речь идет о водных существах.$(br2)$(italic)Пусть у него всего два зубца по сравнению с $(item)трезубцем$()$(italic), но они вдвое острее!"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Арбалет",
+      "anchor": "crossbow",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
+      "text": "Стреляет снарядами с большей скоростью и точностью по сравнению с обычным $(item)Арбалетом$()."
+    }
+  ]
+}

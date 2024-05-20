@@ -1,0 +1,49 @@
+{
+  "name": "Жрустальный Ампулы",
+  "advancement": "spectrum:unlocks/items/glass_ampoules",
+  "icon": "spectrum:azurite_glass_ampoule",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:azurite_glass_ampoule": 0,
+    "spectrum:malachite_glass_ampoule": 0,
+    "spectrum:bloodstone_glass_ampoule": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Азуритовый Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/azurite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Азуритовый Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/azurite_from_refined",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Малахитовый Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/malachite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Малахитовый Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/malachite_from_refined",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Кровокаменный Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/bloodstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Кровокаменный Вариант",
+      "recipe": "spectrum:pedestal/tier4/glass_ampoules/bloodstone_from_refined",
+      "text": ""
+    }
+  ]
+}

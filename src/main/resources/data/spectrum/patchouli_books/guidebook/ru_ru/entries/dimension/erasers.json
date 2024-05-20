@@ -1,0 +1,23 @@
+{
+  "name": "Стиратель",
+  "icon": "spectrum:eraser_head",
+  "advancement": "spectrum:hidden/entity_interact/eraser",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:eraser_head": 0,
+    "spectrum:eraser_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Стиратель",
+      "entity": "spectrum:eraser",
+      "scale": 1.0,
+      "text": "$(italic)Не позволяйте им одолеть вас!"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Крошечные, трудноубиваемые пауки, охотящиеся стаями, при ударе наносят различные неприятные эффекты.$(br2)Эти чертовы твари - настоящие вредители. Вы не удивитесь, если именно ОНИ станут причиной гибели цивилизаций.$(br2)Обычный подход с мечом или луком мало чем поможет, они слишком быстры для этого. А вот что-то, наносящее урон по площади, поможет с большей вероятностью."
+    }
+  ]
+}

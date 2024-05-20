@@ -1,0 +1,23 @@
+{
+  "name": "Эксперимент №3",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_ruin",
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Маленькое Открытие",
+      "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
+      "cost": "spectrum:brown_pigment#8",
+      "text": "Этот абсолютно агрессивный вариант под названием 'Порча' способна поглощать самые прочные материалы. Даже слишком прочный, чтобы вы могли его сломать."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Предупреждение",
+      "cost": "spectrum:brown_pigment#24",
+      "text": "Что может быть более прочным, чем сам Бедрок? Лучше иметь в рукаве запасной план на случай, если что-то пойдет не так."
+    }
+  ]
+}

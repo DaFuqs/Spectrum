@@ -1,0 +1,55 @@
+{
+  "name": "Пирит",
+  "advancement": "spectrum:hidden/collect_pyrite",
+  "icon": "spectrum:pyrite",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:pyrite": 0,
+    "spectrum:pyrite_pile": 0,
+    "spectrum:pyrite_tile": 0,
+    "spectrum:pyrite_plating": 0,
+    "spectrum:pyrite_tubing": 0,
+    "spectrum:pyrite_relief": 0,
+    "spectrum:pyrite_stack": 0,
+    "spectrum:pyrite_panneling": 0,
+    "spectrum:pyrite_vent": 0,
+
+    "spectrum:pyrite_ripper": 0,
+
+    "spectrum:pyrite_chunk": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pyrite",
+      "text": "Твердые, острые и удивительно хрупкие. Эти камни встречаются повсюду в $(l:dimension/razor_edge)Острие$(/l)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Плиты & Ступеньки",
+      "recipe": "spectrum:crafting_table/pyrite/pyrite_chunks_to_pyrite",
+      "text": "Не используя $(thing)шёлкоеове касание$(), пирит рассыпается на кусокчки, и вам придется соединять их снова."
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "Все варианты",
+      "items": [
+        "spectrum:pyrite_pile",
+        "spectrum:pyrite_tile",
+        "spectrum:pyrite_plating",
+        "spectrum:pyrite_tubing",
+        "spectrum:pyrite_relief",
+        "spectrum:pyrite_stack",
+        "spectrum:pyrite_panneling",
+        "spectrum:pyrite_vent"
+      ],
+      "text": "Пирит можно превратить во множество декоративных блоков с помощью крафта, или используя Камнерез."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Пиритовый Шипы",
+      "item": "spectrum:pyrite_ripper",
+      "text": "$(italic)Эти острые штуки разрывают вас на части.$()$(br2)Ну, по большей части, твою одежду. Но все равно, смысл остается тот же."
+    }
+  ]
+}

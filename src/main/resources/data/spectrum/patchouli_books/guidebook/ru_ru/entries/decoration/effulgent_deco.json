@@ -1,0 +1,33 @@
+{
+  "name": "Лучезарный Декор",
+  "icon": "spectrum:effulgent_block",
+  "advancement": "spectrum:lategame/pluck_effulgent_feather",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Можно только позавидовать $(l:creating_life/kindlings)Киндлингам$(), которые проводят дни, укутавшись в эти пушистые вещи. Невероятно мягкие - роскошные и на ощупь, и по цвету, даже с $(c_yellow)золотистой живостью$(), которая струится сквозь них.$(br)Можно представить, как вы засыпаете на подушке из них."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_block",
+      "text": "Можно скрафтить обратно в $(item)Перья$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_cushion",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_feathers",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/effulgent/effulgent_carpet_from_blocks",
+      "text": ""
+    }
+  ]
+}

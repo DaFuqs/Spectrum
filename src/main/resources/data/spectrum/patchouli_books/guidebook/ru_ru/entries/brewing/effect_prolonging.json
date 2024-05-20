@@ -1,0 +1,19 @@
+{
+  "name": "Продление эффекта (Стаканье)",
+  "advancement": "spectrum:hidden/status_effects/effect_prolonging",
+  "icon": "minecraft:clock",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:effect_prolonging",
+      "text": "Увеличивает длительность других эффектов, наложенных на вас."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Стаканье Эффектов",
+      "text": "Получение уровня эффекта Продления добавит дополнительные уровни к уже существующим эффектам, увеличивая силу эффекта вместо сброса его длительности."
+    }
+  ]
+}

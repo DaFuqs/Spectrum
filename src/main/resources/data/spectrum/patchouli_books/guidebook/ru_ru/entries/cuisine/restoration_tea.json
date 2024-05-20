@@ -1,0 +1,21 @@
+{
+  "name": "Восстанавливающий чай",
+  "advancement": "spectrum:unlocks/food/restoration_tea",
+  "icon": "spectrum:restoration_tea",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:restoration_tea": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Есть ли что-то уютнее, чем сидеть дождливым вечером у домашнего камина, потягивая чашку чая?$(br)Конечно: убить босса перед этим.$(br2)Этот чай, заваренный из лепестков $(l:resources/jade_vines)Нефритовой Лозы$(/l) хорош как для расслабления, так и для защиты от смертоносного эффекта Иссушения. $(italic)Удобно$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Рецепт Мастерской Зелий",
+      "recipe": "spectrum:potion_workshop_crafting/restoration_tea",
+      "text": "$(italic)Даже не думайте запивать это $(item)Молоком$()!"
+    }
+  ]
+}

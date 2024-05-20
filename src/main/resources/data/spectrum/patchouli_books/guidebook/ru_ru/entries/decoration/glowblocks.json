@@ -1,0 +1,38 @@
+{
+  "name": "Светящиеся Блоки",
+  "advancement": "spectrum:unlocks/glowblocks/any_glowblock",
+  "icon": "spectrum:orange_glowblock",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_glowblock": 0,
+    "spectrum:blue_glowblock": 0,
+    "spectrum:brown_glowblock": 0,
+    "spectrum:cyan_glowblock": 0,
+    "spectrum:gray_glowblock": 0,
+    "spectrum:green_glowblock": 0,
+    "spectrum:light_blue_glowblock": 0,
+    "spectrum:light_gray_glowblock": 0,
+    "spectrum:lime_glowblock": 0,
+    "spectrum:magenta_glowblock": 0,
+    "spectrum:orange_glowblock": 0,
+    "spectrum:pink_glowblock": 0,
+    "spectrum:purple_glowblock": 0,
+    "spectrum:red_glowblock": 0,
+    "spectrum:white_glowblock": 0,
+    "spectrum:yellow_glowblock": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:orange_glowblock",
+      "title": "Светящиеся Блоки",
+      "text": "У вас есть чистый цвет, какой только может быть. Так почему бы не создать блоки с таким же чистым цветом, какой только может быть!$(br2)Вы думали назвать их $(thing)Антиблоки$(), но поскольку это действительно блоки, это было бы глупо, не так ли?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier3/glowblocks/orange_glowblock",
+      "text": "Светящиеся Блоки представлены во всех цветах и всегда выглядят одинаково, независимо от того, сколько света падает на их поверхность."
+    }
+  ]
+}

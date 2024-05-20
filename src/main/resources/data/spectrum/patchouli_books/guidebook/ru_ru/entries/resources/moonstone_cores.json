@@ -1,0 +1,16 @@
+{
+  "name": "Лунокаменное Ядро",
+  "advancement": "spectrum:lategame/collect_moonstone_core",
+  "icon": "spectrum:moonstone_core",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:moonstone_core": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Лунокаменное Ядро",
+      "text": "Этот мощный предмет способен с легкостью создавать огромное количество $(c_white)Белых чернил$(). Может использоваться для усиления возможностей оборудования и устройств.$(br2)$(italic)Реликвия давних времён$()."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Реприз",
+  "advancement": "spectrum:unlocks/food/reprise",
+  "icon": "spectrum:reprise",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:reprise": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот напиток, приготовленный из плодов $(item)Хорус Фруктов$(), наследует - и усиливает - не только особый вкус, но и уникальные свойства растения.$(br2)При употреблении этот напиток случайным образом переносит вас на большие расстояния. Чем выше содержание алкоголя, тем дальше телепортация."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Рецепт в Бочке",
+      "recipe": "spectrum:titration_barrel/reprise",
+      "text": "$(italic)По вкусу напоминает малину, но в нем её совсем нет. Странно."
+    }
+  ]
+}

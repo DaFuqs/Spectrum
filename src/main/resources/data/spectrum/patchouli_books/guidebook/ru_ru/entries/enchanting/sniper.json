@@ -1,0 +1,25 @@
+{
+  "name": "Снайперство",
+  "icon": "minecraft:crossbow",
+  "advancement": "spectrum:unlocks/enchantments/sniper",
+  "flag": "spectrum:enchantment_exists_spectrum_sniper",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "По сравнению с $(item)Луком$(), $(item)Арбалет$() ведет себя довольно незаметно.$(br2)Однако с зачарованием Снайперство арбалет становится смертоносным оружием дальнего боя."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
+      "text": "Увеличивает урон, точность и скорость полета снаряда.$(br2)Макс. Уровень: 2$(br)Применяется к арбалетам.$(br)Несовместим с Тройным Выстрелом."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Снайперством окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

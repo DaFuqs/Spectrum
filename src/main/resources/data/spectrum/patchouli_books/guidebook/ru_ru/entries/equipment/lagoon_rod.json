@@ -1,0 +1,21 @@
+{
+  "name": "Удочка Лагуны",
+  "advancement": "spectrum:unlocks/equipment/lagoon_rod",
+  "icon": "spectrum:lagoon_rod",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:lagoon_rod": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "В тихие дни, сидя на террасе, вы можете наблюдать, как морских обитателей странным образом привлекают найденные вами $(l:resources/mermaids_brush)Русалочьи Гребешки$(). Поскольку они естественно плавают на воде, вы решили использовать один из них в качестве приманки.$(br2)И вот, пожалуйста, он не только увеличивает ваш успех, но и обладает рядом других интересных побочных эффектов…"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/tools/lagoon_rod",
+      "text": "$(italic)Вам интересно, что вы можете вынести на поверхность?"
+    }
+  ]
+}

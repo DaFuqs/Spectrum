@@ -1,0 +1,43 @@
+{
+  "name": "Кристаллизация",
+  "advancement": "spectrum:hidden/collect_any_crystallized_block",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:blazing_crystal": 0,
+    "spectrum:fiery_powder": 0,
+    "spectrum:frostbite_crystal": 0,
+    "spectrum:blizzard_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:blazing_crystal",
+      "text": "Позволив полному блоку $(l:magical_blocks/liquid_crystal)жидкого кристалла$() поглотить огромное количество тепла $(item)Лавы$() то получится вот что.$(br)По ощущениям как $(item)Магма блок$(), хоть и гораздо горячее."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "recipe": "spectrum:anvil_crushing/fiery_powder_from_blazing_crystal",
+      "text": "Раздавите пылающий кристал с помощью $(item)Наковальни$(), вы получаете горячий порошок, который почти обжигает вашу руку, когда вы к нему прикасаетесь."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "text": "Дробление $(item)Магма блока$() имеет тот же эффект, но не так эффективно."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "item": "spectrum:frostbite_crystal",
+      "text": "Как только $(item)Вода$() попыталась коснуться $(l:magical_blocks/liquid_crystal)жидкого кристалла$(), кристалл стал твёрдым.$(br)Поскольку даже легкого прикосновения к нему достаточно, чтобы вызвать холодную дрожь, вы назвали его Морозный кристалл"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "recipe": "spectrum:anvil_crushing/blizzard_powder_from_frostbite_crystal",
+      "text": "Дробление $(item)Морозного кристалла$() $(item)Наковальней$() даёт вам этот холодный порошок, от которого ваши руки начинают мёрзнуть. Разбив $(item)Лёд$() имеет тот же эффект, но не так эффективно."
+    }
+  ]
+}

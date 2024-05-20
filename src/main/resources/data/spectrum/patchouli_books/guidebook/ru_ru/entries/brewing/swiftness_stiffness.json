@@ -1,0 +1,19 @@
+{
+  "name": "Быстрота / Оцепенелость",
+  "advancement": "spectrum:hidden/status_effects/swiftness_stiffness",
+  "icon": "minecraft:iron_sword",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:swiftness",
+      "text": "$(thing)Увеличивает скорость атаки$() с каждым уровнем.$(br)Позволяет повторять молниеносные атаки, не давая противникам шанса атаковать вас."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:stiffness",
+      "text": "$(thing)Уменьшаеь скорость атаки$() с каждым уровнем."
+    }
+  ]
+}

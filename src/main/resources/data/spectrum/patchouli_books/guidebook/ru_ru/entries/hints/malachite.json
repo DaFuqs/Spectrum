@@ -1,0 +1,23 @@
+{
+  "name": "Новая Руда",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_malachite",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_malachite",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:lategame/collect_malachite",
+      "cost": "spectrum:bismuth_crystal#8",
+      "text": "В Глубоких Низинах можно найти новую руду."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:bismuth_crystal#24",
+      "text": "Он ярко-зеленого цвета и встречается в самых глубоких уголках Глубоких Низин. Его нечасто можно встретить на открытым воздухе, поэтому лучший способ добыть его - копать туннели."
+    }
+  ]
+}

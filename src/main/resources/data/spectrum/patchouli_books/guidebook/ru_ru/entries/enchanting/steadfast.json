@@ -1,0 +1,25 @@
+{
+  "name": "Непоколебимость",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:unlocks/enchantments/steadfast",
+  "flag": "spectrum:enchantment_exists_spectrum_steadfast",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Зная вас, вы создадите для себя идеальный инструмент, но в один прекрасный момент он упадет в лаву. А еще есть Эндер мир, который жестоко карает за каждую ошибку.$(br2)Это новое зачарование защитит ваши любимые инструменты в случае непредвиденных обстоятельств (в том числе если вы бросите их на кактус)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
+      "text": "Защищает инструменты от всех видов урона, когда они находятся на земле, даже от лавы или падения в пустоту.$(br2)Макс. Уровень: 1$(br)Применимо ко всем инструментам."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Непоколебимостью окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Пожиратель Снов",
+  "advancement": "spectrum:unlocks/equipment/dreamflayer",
+  "icon": "spectrum:dreamflayer",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:dreamflayer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "По-настоящему уникальное оружие, оно воплощает в себе определение \"Лучшая Защита — это нападение.\"$(br)Природа Пожирателя Снов заключается в том, чтобы уравновешивать силы:$(br)Чем больше брони у вашего противник по сравнению с вами, тем больше урона он нанесет.$()$(br2)$(k:sneak) + $(k:use) чтобы усилить его, что позволит вам пробивать даже самую прочную броню, расходуя при этом $(c_red)Красную Краску$() с ужасающей скоростью."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/dreamflayer",
+      "text": "Требуется полуночный раствор в полнолуние.$(br2)$(italic)Если вам когда-нибудь нужен был повод для ярости в легкой броне, то это он."
+    }
+  ]
+}

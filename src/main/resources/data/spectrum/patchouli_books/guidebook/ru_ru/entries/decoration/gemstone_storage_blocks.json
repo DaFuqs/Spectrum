@@ -1,0 +1,55 @@
+{
+  "name": "Блоки из Драг. Камней",
+  "advancement": "spectrum:spectrum",
+  "icon": "spectrum:citrine_storage_block",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_storage_block": 0,
+    "spectrum:amethyst_storage_block": 0,
+    "spectrum:citrine_storage_block": 0,
+    "spectrum:onyx_storage_block": 0,
+    "spectrum:moonstone_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Блоки из Драгоценных Камней",
+      "text": "Драгоценные камни имеют исключительно красивый внешний вид.$(br)Внешний вид необработанных камней, как вы их знаете по жеодам, кажется немного слишком естественным для ваших современных зданий. Однако при наличии достаточного количества ресурсов это не должно быть проблемой.$(br2)А если в какой-то момент у вас закончатся драгоценные камни, декор можно будет легко разбить заново.$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Полированный Топаз",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "recipe": "spectrum:crafting_table/gem_blocks/topaz_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_blocks/topaz_shards_from_topaz_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Полированный Аметист",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "recipe": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Полированный Цитрин",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "recipe": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Полированный Оникс",
+      "advancement": "spectrum:create_onyx_shard",
+      "recipe": "spectrum:crafting_table/gem_blocks/onyx_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_blocks/onyx_shards_from_onyx_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Полированный Лунокамень",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "recipe": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
+      "recipe2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"
+    }
+  ]
+}

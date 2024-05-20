@@ -1,0 +1,40 @@
+{
+  "name": "Висмут",
+  "advancement": "spectrum:lategame/collect_bismuth",
+  "icon": "spectrum:bismuth_flake",
+  "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/collect_bismuth_crystal",
+  "extra_recipe_mappings": {
+    "spectrum:bismuth_flake": 0,
+    "spectrum:bismuth_block": 0,
+    "spectrum:small_bismuth_bud": 0,
+    "spectrum:large_bismuth_bud": 0,
+    "spectrum:bismuth_cluster": 0,
+    "spectrum:bismuth_crystal": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Висмут",
+      "text": "Металл, который переливается всеми цветами радуги.$(br)Маленькие посевы, которые вы собрали, слишком малы, чтобы их можно было использовать для каких-либо важных целей."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Висмут",
+      "text": "Как они растут без зарождающего блока? Вы заметили одну вещь: они немного растут рядом с другими металлами."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Выращивание Висмута",
+      "recipe": "spectrum:crystallarieum/bismuth",
+      "text": "Вместо того чтобы жертвовать целыми металлическими блоками, $(l:magical_blocks/crystallarieum)Кристаллярий$() обеспечивает контролируемый субстрат, а также"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Выращивание Висмута",
+      "text": "более тонкий и эффективный способ подачи питательных веществ."
+    }
+  ]
+}

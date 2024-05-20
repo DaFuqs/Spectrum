@@ -1,0 +1,21 @@
+{
+  "name": "Компактный Сундук",
+  "advancement": "spectrum:unlocks/blocks/compacting_chest",
+  "icon": "spectrum:compacting_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:compacting_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вам давно надоело создавать новое место для хранения угля, железа, меди и золота, которые скапливаются в вашем складе. Собирать все это в более компактные кучки снова и снова - тоже не самое веселое занятие.$(br2)Поэтому вы придумали Компактный Сундук, который избавит вас от этой монотонной работы."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/compacting_chest",
+      "text": "Название говорит само за себя.$(br)Компактный сундук попытается собрать все вещи, которые вы положите в него, по схеме 3х3, 2х2 или 1х1 - это можно настроить в графическом интерфейсе."
+    }
+  ]
+}

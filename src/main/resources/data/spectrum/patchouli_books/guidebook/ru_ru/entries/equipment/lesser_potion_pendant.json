@@ -1,0 +1,21 @@
+{
+  "name": "Малый Кулон с Зельям",
+  "advancement": "spectrum:unlocks/trinkets/lesser_potion_pendant",
+  "icon": "spectrum:lesser_potion_pendant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:lesser_potion_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Зелья - это удобно. Однако носить с собой половину их запаса очень неудобно.$(br)В кулоне небольшой отсек, которую можно заполнить зельем. Пока вы носите его, вы получаете эффект от этого зелья.$(br)Поскольку зелья не проглатываются, их действие длится только до III уровня."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
+      "text": "Используйте $(l:brewing/potion_workshop)Мастерскую зелий$(/l) чтобы налить зелье, поместите его туда, куда обычно помещается $(item)Бутылочка$()$(br2)Чтобы снять эффект, поместите его в сетку крафта."
+    }
+  ]
+}

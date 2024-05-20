@@ -1,0 +1,22 @@
+{
+  "name": "Лента Вечного Обета",
+  "advancement": "spectrum:unlocks/items/everpromise_ribbon_guidebook",
+  "icon": "spectrum:everpromise_ribbon",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:everpromise_ribbon": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Лента, которую дарят домашним животным в качестве вечного обещания беречь и заботиться о них.$(br)Назовите его и прикрепите к существу. Если существо умрет, оно сбросит $(item)Нарушенное обещание$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "advancement": "spectrum:unlocks/items/everpromise_ribbon_recipe",
+      "recipe": "spectrum:pedestal/tier4/everpromise_ribbon",
+      "text": "Ваш питомец сразу же начнет доверять вам, если еще не доверяет. Используйте $(item)верстак$() добавьте $(l:general/pigment)Пигмент$() в $(item)ленту$(), чтобы дать питомцу цветное имя."
+    }
+  ]
+}

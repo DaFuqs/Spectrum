@@ -1,0 +1,18 @@
+{
+  "name": "Узел Сбора",
+  "icon": "spectrum:gather_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Узел Сбора будет активно запрашивать у других узлов в своей $(l:pastel_network/pastel_network)Пастельной Сети$(/l) и помещять их в свой подключенный инвентарь.$(br2)Укажите предметы для сбора в его $(thing)Фильтре$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/gather_node",
+      "text": "Порядок сбора:$(br)1. $(l:pastel_network/sender_node)Узел Отправки$(/l)$(br)2. $(l:pastel_network/provider_node)Узел Снабжения$(/l)$(br)3. $(l:pastel_network/storage_node)Узел Хранения$(/l)"
+    }
+  ]
+}

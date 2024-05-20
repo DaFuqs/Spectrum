@@ -1,0 +1,28 @@
+{
+  "name": "Зарождающий блок Оникса",
+  "icon": "spectrum:onyx_cluster",
+  "sortnum": 15,
+  "advancement": "spectrum:unlocks/blocks/budding_onyx",
+  "turnin": "spectrum:midgame/create_budding_onyx",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:small_onyx_bud": 0,
+    "spectrum:medium_onyx_bud": 0,
+    "spectrum:large_onyx_bud": 0,
+    "spectrum:onyx_cluster": 0,
+    "spectrum:budding_onyx": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Зарождающий блок Оникса",
+      "text": "Создания $(l:general/onyx_shards)Оникса$() всегда было очень сложным делом, поскольку зависело от текущей фазы луны. Несмотря на то, что $(l:magical_items/crescent_clock)Лунные Часы$(/l) это удобная вещь, вы часто пропускали этот короткий промежуток времени.$(br)Если сделать оникс выращиваемым, как и другие драгоценные камни, это сэкономит вам огромное количество времени.$(br2)$(italic)Странно, но та же процедура, похоже, не работает для других?"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Рецепт Высекателя душ",
+      "recipe": "spectrum:spirit_instiller/budding_onyx",
+      "text": "Даже если это кажется дорогим, наличие обновляемого оникса стоит того.$(br2)Лучше всего создавать сразу большое количество этих $(l:general/midnight_aberration)Полуночных Заблуждений$(/l) так как они быстро рассыпаются в руках."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Сверкающий Арбуз",
+  "advancement": "spectrum:collect_vegetal",
+  "icon": "minecraft:glistering_melon_slice",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:glistering_melon_slice": 0,
+    "spectrum:glistering_melon": 0,
+    "spectrum:glistering_melon_seeds": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Семена Сверкающего Арбуза",
+      "item": "minecraft:glistering_melon_slice",
+      "text": "С помощью магии, присущей пыли драгоценных камней, вам $(l:general/colored_trees)уже удалось изменить саженцы$(). Что мешает вам попробовать это на других растениях?$(br)Конечно, это не потому, что вы жадный или что-то в этом роде."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
+    }
+  ]
+}

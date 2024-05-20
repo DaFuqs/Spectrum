@@ -1,0 +1,24 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/create_midnight_aberration",
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Маленькое Открытие",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#8",
+      "text": "Эта жидкость, которая была создана во время создания Полуночного Заблуждения… она наносит урон каждому существу, к которому прикасается."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#24",
+      "text": "Полуночный раствор обладает различными эффектами в зависимости от того, что в него попадает. Зачарованные предметы теряют свою магическую силу, некоторые предметы меняются совсем, а существа, убитые им, роняют маленький таинственный фрагмент."
+    }
+  ]
+}

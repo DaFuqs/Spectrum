@@ -1,0 +1,37 @@
+{
+  "name": "Охотник за Головами",
+  "icon": "minecraft:iron_axe",
+  "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
+  "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "На картине вы видели фантастическое существо, которое, кажется, сделано из $(item)Песка Душ$() и $(item)Черепов визер-скелетов$(). Часами вы бродили по Адской Крепости, только для того, чтобы самому чуть не лишиться головы, разыскивая визер-скелетов, у которого позвоночник расшатался настолько, что выпал бы череп. Запомните, вы никогда не были тем, кто зарывает голову в песок."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Получение голов",
+      "item": "spectrum:cow_head",
+      "text": "Но потом появились Криперы! Пораженные молнией, они взрываются с такой силой, что сносят противнику голову прямо с шеи (в худшем случае - с вашей).$(br)Чтобы повторить это, вы придумали новое заклинание с помощью $(l:resources/storm_stones)Осколка Грома$(/l).$(br)Так на свет появился Охотник за головами, позволяющий собирать всевозможные $(l:creating_life/mob_heads)головы мобов$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_axe{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+      "text": "Иногда при убийстве выпадают головы мобов.$(br2)Макс. Уровень: 3$(br)Применяется к топорам и оружию ближнего боя.$(br)Несовместим с добычей."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Охотником за Головами окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
+      "text": "Поначалу повышение уровня Охотника за Головами с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

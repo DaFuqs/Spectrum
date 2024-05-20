@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/build_enchanting_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_four_leaf_clover",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:collect_four_leaf_clover",
+      "cost": "spectrum:vegetal#16",
+      "text": "Найдите биом Равнин. Возможно, вам повезет!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкции",
+      "cost": "spectrum:vegetal#48",
+      "text": "В равнинных биомах вы найдете клевер, растущий небольшими участками, большинство из них с тремя, но некоторые с четырьмя листьями. Вы сразу же заметите четырехлистный клевер в его блочной форме и сможете отличить его от трехлистного. Сломайте, чтобы собрать урожай, Костная мука/Посох Природы, используется чтобы разможножить."
+    }
+  ]
+}

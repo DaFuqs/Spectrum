@@ -1,0 +1,47 @@
+{
+  "name": "Пьедестальное CMY улучшение",
+  "icon": "spectrum:pedestal_all_basic",
+  "sortnum": 9,
+  "advancement": "spectrum:unlocks/blocks/cmy_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:build_basic_pedestal_structure",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_all_basic": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Разновидность CMY",
+      "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "Улучшите свой $(l:general/pedestal)Пигментный Пьедестал$() используя все осколки, которые вы собрали во время своего путешествия."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Пьедестальная Структура",
+      "text": "Чтобы использовать расширенные возможности $(l:general/pedestal)Пигментных Пьедесталов$() вам понадобится структура, в которой будет сосредоточена энергия драгоценных камней.$(br2)Вы называете её $(br)$(bold)Спектральный фокус.$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Спетральный Фокус",
+      "multiblock_id": "spectrum:pedestal_simple_structure_check",
+      "enable_visualize": true,
+      "text": "Размеры: 11x11x4 блоков. Но лучше всего оставить несколько дополнительных блоков свободного пространства вокруг, просто чтобы убедиться в этом."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список Блоков",
+      "text": "$(li)1 Пигментный Пьедестал$(li)4 Блока Полированных Драгоценных Камней$(li)4 Полированных Резных Блоков$(li)4 Пиленых блока$(li)8 Полированных колонн$(li)68 Полированных блоков"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Индивидуализируйте!",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Вы можете заменить базальтовые блоки на кальцит и выбрать блоки с драгоценными камнями по своему вкусу. Смешивайте $(item)Кальцит$() и $(item)Базальт$() для создания своего персонального варианта!"
+    }
+  ]
+}

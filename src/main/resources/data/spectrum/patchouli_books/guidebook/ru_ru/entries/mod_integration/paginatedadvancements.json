@@ -1,0 +1,73 @@
+{
+  "name": "Paginated Advancements",
+  "icon": "minecraft:grass_block",
+  "flag": "mod:paginatedadvancements",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "О, так ты охотник за достижениями со стилем!$(br2)Установив Paginated Advancements, вы обнаружите, что достижения Spectrum используют новые, уникальные рамки."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Вехи развития",
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Отмечает начало и конец дерева продвижения: основные вехи на вашем пути."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Дополнительные разблокировки",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Достижения, использующие эту слегка измененную рамку, имеют какую-то разблокировку: новые рецепты, новое открытие или что-то еще. (Для всех, кто завершает игру!)$(br2)Рамка по умолчанию используется для достижения целей без дополнительных разблокировок."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Постройка Структур",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 104,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Достижения с использованием этой рамки показывают, что вам предстоит построить новую структуру."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Уникальные достижения",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 78,
+      "texture_y": 104,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Для дел сердечных, требующих необыкновенной внимательности к деталям."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Достижения Дерьмопоста",
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 26,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Дается, когда делаешь что-то невероятно глупое.$(br)Это чисто опциональные достижения мемов без каких-либо разблокировок."
+    }
+  ]
+}

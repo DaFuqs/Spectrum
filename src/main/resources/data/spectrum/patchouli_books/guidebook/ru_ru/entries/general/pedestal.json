@@ -1,0 +1,35 @@
+{
+  "name": "Пигментный Пьедестал",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "category": "spectrum:general_category",
+  "sortnum": 2,
+  "turnin": "spectrum:craft_using_pedestal",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_basic_amethyst": 0,
+    "spectrum:pedestal_basic_topaz": 0,
+    "spectrum:pedestal_basic_citrine": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "title": "Пигментный Пьедестал",
+      "recipe": "spectrum:crafting_table/pedestal_basic_amethyst",
+      "text": "$(bold)Пигментный Пьедестал$() это блок, в котором вы будете создавать большинство предметов.$(br2)Чтобы начать крафт активируйте его $(l:general/paintbrush)Кисточкой$() или $(thing)редстоун сигналом$().$(br)Для этого требуется воздух или инвентарь над ним."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Большинство рецептов требует $(l:general/gemstone_powder)Порошок из драгоценных камней$() в качестве ингредиента.$(br2)Пьедестал так же служит в качестве $(item)Стола Создания$() поэтому его можно использовать для изготовления ванильных рецептов.$(br2)Вы можете использовать $(l:magical_items/crafting_tablet)Планшетный верстак$() чтобы автоматизировать создание ванильных, так и спектрум предметов."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Разновидность",
+      "text": "$(br)Пигментный Пьедестал может быть изготовлен с использованием выбранного вами драгоценного камня.$(br2)Несмотря на то, что они выглядят по-разному, функционально они одинаковы."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Рецепт",
+      "recipe": "spectrum:crafting_table/pedestal_basic_topaz",
+      "recipe2": "spectrum:crafting_table/pedestal_basic_citrine"
+    }
+  ]
+}

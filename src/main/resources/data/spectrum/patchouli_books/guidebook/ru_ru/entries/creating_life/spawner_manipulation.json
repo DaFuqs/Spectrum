@@ -1,0 +1,47 @@
+{
+  "name": "Манипуляция Спавнером",
+  "advancement": "spectrum:milestones/unlock_spawner_manipulation",
+  "icon": "minecraft:spawner",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "minecraft:spawner": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Сбор Спавнеров",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Зачарование $(l:enchanting/resonance)Резонанс$(/l) позволяет заставить спавнеры выпадать, чтобы вы их собирали.$(br2)Хотя вы еще не поняли, как создавать эти конструкции самостоятельно, теперь вы чувствуете себя более чем способным изменять их свойства в свою пользу, используя $(l:creating_life/spirit_instiller)Высекатель Духа$(/l)."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Изменение Существа",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
+      "text": "Используя технику, аналогичную $(l:creating_life/memory)Запоминанию Воспоминаний$(/l) вы можете изменить ассоциацию существ спавнера, заставив его извергать другой тип существ."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Задержка между Спавном",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
+      "text": "Уменьшает минимальную и максимальную задержку спавна."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Количество Спавна",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
+      "text": "Увеличивает количество вызываемых существ с каждым циклом."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Условия Спавна",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
+      "text": "Увеличивает количество существ, которым разрешено находиться рядом с спавнером.$(br)$(italic)Кажется, что спавнеры естественным образом прекращают порождать существ, когда их уже много. Как будто они хотят дать вам шанс. Жалко, не правда ли? Как будто вам это нужно."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Диапазон Активации",
+      "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
+      "text": "Увеличивает расстояние, на котором может находиться спавнер, чтобы он продолжал порождать существ."
+    }
+  ]
+}

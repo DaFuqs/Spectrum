@@ -1,0 +1,48 @@
+{
+  "name": "Бархатник",
+  "advancement": "spectrum:milestones/reveal_amaranth",
+  "icon": "spectrum:amaranth_bushel",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:amaranth_grains": 0,
+    "spectrum:amaranth_bushel": 0,
+    "spectrum:honey_pastry": 0,
+    "spectrum:scone": 0,
+    "spectrum:triple_meat_pot_pie": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Бархатник",
+      "text": "Though seemingly left behind for quite some time now, these seeds still look very much alive. You wonder what comes out of it when grown?"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Зёрна Бархатника",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "recipe": "spectrum:anvil_crushing/amaranth_grains",
+      "text": "Вы никогда не видели ничего подобного. Такой насыщенный красный. Такой выразительный!$(br)Эти зерна можно дробить, чтобы получить больше зерен.$(br2)Их также можно декоративно высадить на траве или в цветочном горшке."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "title": "Медовая Булочка",
+      "recipe": "spectrum:pedestal/tier1/food/honey_pastry",
+      "text": "Вкус бархатника так же отличается от пшеницы, как и его внешний вид. В вашем сознании прорастают совершенно новые идеи, к примеру, вот эта вкуснятина."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_amaranth_bushel",
+      "title": "Скон",
+      "recipe": "spectrum:pedestal/tier1/food/scone",
+      "text": "Небольшая, но тонкая выпечка с кремовой начинкой.$(br2)$(italic)Идеально подходит к чаю."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/triple_meat_pot_pie",
+      "title": "Тройной Пирог с Мясом",
+      "recipe": "spectrum:pedestal/tier1/food/triple_meat_pot_pie",
+      "text": "Этот обед гарантированно наполнит ваш живот надолго.$(br2)$(italic)Полон жира, мяса, вина, и бархатника!"
+    }
+  ]
+}

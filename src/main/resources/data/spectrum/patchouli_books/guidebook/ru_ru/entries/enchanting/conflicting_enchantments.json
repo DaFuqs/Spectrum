@@ -1,0 +1,21 @@
+{
+  "name": "Чародейское Мастерство",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "secret": true,
+  "sortnum": 5,
+  "advancement": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Чародейское Мастерство",
+      "item": "minecraft:diamond_chestplate{Enchantments: [{id: \"minecraft:protection\", lvl: 3s}, {id: \"minecraft:blast_protection\", lvl: 3s}, {id: \"minecraft:projectile_protection\", lvl: 3s}, {id: \"minecraft:fire_protection\", lvl: 3s}]}",
+      "text": "Проблемы, которые раньше возникали при зачаровании предметов несколькими конфликтующими чарами, остались позади.$(br)Как мастер магии, ничто не зависит от ваших желаний."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Теперь вы можете использовать Зачарователь, чтобы наложить на снаряжение чары, которые обычно являются несовместимыми.$(br2)Будьте внимательны:$(br)$(italic)Такие действия потребуют больше опыта$()."
+    }
+  ]
+}

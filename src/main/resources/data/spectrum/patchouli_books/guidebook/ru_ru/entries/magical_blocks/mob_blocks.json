@@ -1,0 +1,273 @@
+{
+  "name": "Идолы",
+  "advancement": "spectrum:unlocks/blocks/mob_blocks",
+  "icon": "spectrum:fox_mob_block",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:axolotl_mob_block": 0,
+    "spectrum:bat_mob_block": 0,
+    "spectrum:bee_mob_block": 0,
+    "spectrum:blaze_mob_block": 0,
+    "spectrum:cat_mob_block": 0,
+    "spectrum:chicken_mob_block": 0,
+    "spectrum:cow_mob_block": 0,
+    "spectrum:creeper_mob_block": 0,
+    "spectrum:ender_dragon_mob_block": 0,
+    "spectrum:enderman_mob_block": 0,
+    "spectrum:endermite_mob_block": 0,
+    "spectrum:evoker_mob_block": 0,
+    "spectrum:fish_mob_block": 0,
+    "spectrum:fox_mob_block": 0,
+    "spectrum:ghast_mob_block": 0,
+    "spectrum:glow_squid_mob_block": 0,
+    "spectrum:goat_mob_block": 0,
+    "spectrum:guardian_mob_block": 0,
+    "spectrum:horse_mob_block": 0,
+    "spectrum:illusioner_mob_block": 0,
+    "spectrum:ocelot_mob_block": 0,
+    "spectrum:parrot_mob_block": 0,
+    "spectrum:phantom_mob_block": 0,
+    "spectrum:pig_mob_block": 0,
+    "spectrum:piglin_mob_block": 0,
+    "spectrum:polar_bear_mob_block": 0,
+    "spectrum:pufferfish_mob_block": 0,
+    "spectrum:rabbit_mob_block": 0,
+    "spectrum:sheep_mob_block": 0,
+    "spectrum:shulker_mob_block": 0,
+    "spectrum:silverfish_mob_block": 0,
+    "spectrum:skeleton_mob_block": 0,
+    "spectrum:slime_mob_block": 0,
+    "spectrum:snow_golem_mob_block": 0,
+    "spectrum:spider_mob_block": 0,
+    "spectrum:squid_mob_block": 0,
+    "spectrum:stray_mob_block": 0,
+    "spectrum:strider_mob_block": 0,
+    "spectrum:turtle_mob_block": 0,
+    "spectrum:witch_mob_block": 0,
+    "spectrum:wither_mob_block": 0,
+    "spectrum:wither_skeleton_mob_block": 0,
+    "spectrum:zombie_mob_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Идолы",
+      "text": "Проявления существа в виде блоков.$(br2)Их использование, хождение по ним или попадание в них снарядом вызывает действие, связанное именно с этим существом."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/axolotl_mob_block",
+      "text": "Дает короткую вспышку регенерации."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/bat_mob_block",
+      "text": "Подсвечивает существ в радиусе 8 блоков вокруг себя."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/bee_mob_block",
+      "text": "Удобряет растения рядом с ним."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
+      "text": "Превращает $(item)Незерак$() в $(item)Магму$(), ...)$(br)Также поджигает существо, активирующего его, и блоки рядом с ним."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/cat_mob_block",
+      "text": "Убирает весь урон от падения, если падать на этот блок."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/chicken_mob_block",
+      "text": "Дает короткую вспышку Планого Падения."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/cow_mob_block",
+      "text": "Доит всех коров, коз и грибных коров в радиусе 6 кварталов. Необходимы Вёдра/Миски для работы"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/creeper_mob_block",
+      "text": "Вызывает небольшой взрыв."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ender_dragon_mob_block",
+      "text": "Стреляет снарядом дракона."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/enderman_mob_block",
+      "text": "Телепортирует в случайное место в радиусе 16 блоков."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/endermite_mob_block",
+      "text": "Телепортирует к другому Переносящему Идолу по прямой линии с той стороны, по которой был нанесен удар (на расстояние до 16 блоков)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/evoker_mob_block",
+      "text": "Призывает Вредину"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/fish_mob_block",
+      "text": "Дает короткую вспышку Водное дыхание."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/fox_mob_block",
+      "text": "Дает короткую вспышку спешки."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ghast_mob_block",
+      "text": "Стреляет огненным шаром."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/glow_squid_mob_block",
+      "text": "Дает короткую вспышку свечения."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/goat_mob_block",
+      "text": "Отталкивает Сущностей."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/guardian_mob_block",
+      "text": "Дает короткую вспышку утомления."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/horse_mob_block",
+      "text": "Дает короткую вспышку силы."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/illusioner_mob_block",
+      "text": "Дает короткую вспышку невидемости."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/ocelot_mob_block",
+      "text": "Дает короткую вспышку ночного зрения."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/parrot_mob_block",
+      "text": "Дает короткую вспышку поглощения."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/phantom_mob_block",
+      "text": "Вызывает бессонницу.$(br)Когда игрок окажется под открытым небом, его сразу же начнет преследовать $(thing)Фантом$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/pig_mob_block",
+      "text": "Кормит животных в радиусе 6 кварталов, если рядом лежит еда."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/piglin_mob_block",
+      "text": "Торгуется за $(item)Золотые Слитки$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/polar_bear_mob_block",
+      "text": "Замораживает блоки вокруг себя (замораживание $(item)Воды$() в $(item)Лёд$(), охлаждение $(item)Лавы$() в $(item)Обсидиан$(), ...)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/pufferfish_mob_block",
+      "text": "Дает короткую вспышку тошноты."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/rabbit_mob_block",
+      "text": "Дает короткую вспышку прыгучесть."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/sheep_mob_block",
+      "text": "Стрижет существ в радиусе 6 блоков."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/shulker_mob_block",
+      "text": "Дает короткую вспышку левитации."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/silverfish_mob_block",
+      "text": "Заражает соседние блоки чешуйницами."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/skeleton_mob_block",
+      "text": "Стреляет $(item)Стрелой$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/slime_mob_block",
+      "text": "Увеличивает размер слизней в радиусе 6 блоков."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/snow_golem_mob_block",
+      "text": "Стреляяет $(item)Снежком$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/spider_mob_block",
+      "text": "Дает короткую вспышку отравления."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/squid_mob_block",
+      "text": "Дает короткую вспышку слепоты."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/stray_mob_block",
+      "text": "Дает короткую вспышку замедления."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/strider_mob_block",
+      "text": "Дает короткую вспышку огнестойкости."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/turtle_mob_block",
+      "text": "Дает короткую вспышку сопротивления."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/witch_mob_block",
+      "text": "Дает короткую вспышку слабости."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_mob_block",
+      "text": "Создает мощный взрыв."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_skeleton_mob_block",
+      "text": "Дает короткую вспышку иссушения."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier3/mob_blocks/zombie_mob_block",
+      "text": "Превращает жителей в зомби."
+    }
+  ]
+}

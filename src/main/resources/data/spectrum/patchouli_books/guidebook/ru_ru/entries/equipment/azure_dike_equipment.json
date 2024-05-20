@@ -1,0 +1,43 @@
+{
+  "name": "Азуритовая Защита",
+  "advancement": "spectrum:unlocks/trinkets/any_azure_dike_equipment",
+  "icon": "spectrum:azure_dike_ring",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:azure_dike_ring": 0,
+    "spectrum:azure_dike_belt": 0,
+    "spectrum:shieldgrasp_amulet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Результаты сочетания $(l:resources/azurite)Азурита$(/l) с защитными свойствами $(l:general/pigment#blue)Синего Пигмента$(/l) действительно вызвали у вас интерес. Материал, казалось, окружал себя прозрачной аурой, проникнуть сквозь которую было непросто, когда тянулся к куску.$(br2)$(italic)Это будет интересно…"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Азур. Защита",
+      "text": "Магическая аура окружает ваше тело, защищая от входящего урона.$(br)Медленно, но уверенно перезаряжается до определенного уровня.$(br2)Каждый предмет снаряжения Азуритовый Защиты увеличивает максимальный уровень защиты."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Кольцо Азур. Защиты",
+      "advancement": "spectrum:unlocks/trinkets/azure_dike_ring",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
+      "text": "$(li)Добавялет $(c_green)4$() единицы$(c_blue)Азуритовой Защиты$()$(li)Немного ускоряет зарядку $(c_blue)Азуритовой Защиты$()"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Пояс Азур. Защиты",
+      "advancement": "spectrum:unlocks/trinkets/azure_dike_belt",
+      "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
+      "text": "$(li)Добавялет $(c_green)6$() единиц $(c_blue)Азуритовой Защиты$()$(li)Ускоряет восстановление $(c_blue)Азуритовой Защиты$() после получения урона"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Защитный Амулет",
+      "advancement": "spectrum:unlocks/trinkets/shieldgrasp_amulet",
+      "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
+      "text": "Залейте $(l:magic/ink)Синих Красок$(/l) в $(l:magic/color_picker)Сборщике Красок$() чтобы увеличить количество $(c_blue)Азуритовой Защиты$()$(br)Поначалу это дешево, но энергия, необходимая для придания этому амулету большей силы, увеличивается в геометрической прогрессии."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Пепельная Диадема",
+  "advancement": "spectrum:unlocks/trinkets/ashen_circlet",
+  "icon": "spectrum:ashen_circlet",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:ashen_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/stratine)Стратиновый Самоцвет$() который вы поместили в эту диадему, сам являющийся творением Ада, может с легкостью поглощать высокие температуры.$(br)Он даже защищает вас от пылающего жара лавы - хотя бы на короткое время.$(br)В сочетании с $(thing)Огнеупорностью$(), вы сможете плавать в лаве почти как в воде."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыне Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
+      "text": "$(li)Предотвращает весь урон от огня и горячего пола$(li)Значительное увеличение мобильность и зрение в лаве $(li)При активации дает кратковременную защиту от сильного жара"
+    }
+  ]
+}

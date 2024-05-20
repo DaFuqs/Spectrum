@@ -1,0 +1,25 @@
+{
+  "name": "Инвентарная Вставка",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:unlocks/enchantments/inventory_insertion",
+  "flag": "spectrum:enchantment_exists_spectrum_inventory_insertion",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Если бы вы получали $(item)Блок Земли$() каждый раз, когда добывали руду и она падала прямо в $(item)Лаву$(), у вас было бы много $(item)Земли$().$(br)Не знаю, что бы вы сделали с таким количеством $(item)Земли$(). Может, отдать ее другу, который только что прибыл сюда и нуждается в приюте на первую ночь?$(br)В любом случае, с падением предметов в $(item)Лаву$() пора завязывать. О да, лава! То же самое и с каждой $(item)Слезой Гаста$() падает прямо в неё."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
+      "text": "Помещает добытые блоки и лут с мобов прямо в инвентарь, а не выкидывает  их на землю. $(br2)Макс. Уровень: 1$(br)Применяемо к инструментам, ножницам, оружию, лукам, арбалетам, трезубцам и удочкам Спектрума."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Инвентарной Вставкой окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

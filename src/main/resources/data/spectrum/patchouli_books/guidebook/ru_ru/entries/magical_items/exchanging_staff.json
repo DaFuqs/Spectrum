@@ -1,0 +1,42 @@
+{
+  "name": "Посох Замены",
+  "advancement": "spectrum:unlocks/items/exchanging_staff",
+  "icon": "spectrum:exchanging_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:exchanging_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Для всех тех, кто не живет в простом доме из $(item)Булыжника$() или вообще без стен - разумеется, вы не чувствуете, что к вам обращаются, - был придуман Посох Замены."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier4/exchanging_staff",
+      "text": "$(italic)Добыча стала намного интереснее"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Fortune",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
+      "text": "Зачаровав Посоха Замены на Удачу с помощью $(l:enchanting/enchanting_items)Зачарователя$(/l) позволяет ему умножать количество выпадающей руды при обмене, как и при использовании обычного инструмента Удачи."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Шёлковое Касание",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
+      "text": "Зачаровав Посох Замены на Шёлковое Касание с помощью $(l:enchanting/enchanting_items)Зачарователя$(/l), он сможет обменивать блоки именно так, как они выглядят в мире, не разбивая более хрупкие блоки, такие как стекло или руда."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/enchantments/resonance_usage",
+      "title": "Резонанс",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Зачаровав Посох Замены на Резонанс с помощью $(l:enchanting/enchanting_items)Зачарователя$(/l), вы получите способность собирать некоторые особые блоки."
+    }
+  ]
+}

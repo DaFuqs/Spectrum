@@ -1,0 +1,22 @@
+{
+  "name": "Зачарованная Еда",
+  "advancement": "spectrum:lategame/collect_pure_resource",
+  "icon": "spectrum:enchanted_golden_carrot",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "minecraft:enchanted_golden_apple": 0,
+    "spectrum:enchanted_golden_carrot": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe": "spectrum:enchanter/enchanted_golden_apple",
+      "text": "Почти такая же сложная, как ваша жизнь."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "recipe": "spectrum:enchanter/enchanted_golden_carrot",
+      "text": "Как вы можете видеть, эффект от них, пожалуй, слабее, чем от $(item)Зачарованных Золотых Яблок$(), но они все равно являются удобным хрустящим перекусом для коротких поездок."
+    }
+  ]
+}

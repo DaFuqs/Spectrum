@@ -1,0 +1,22 @@
+{
+  "name": "Мультиинструмент",
+  "advancement": "spectrum:build_basic_pedestal_structure",
+  "icon": "spectrum:multitool",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:multitool": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:multitool",
+      "text": "Выходя из дома, вы берете с собой половину сарая с инструментами. Учитывая тонны камня, которые вы можете унести с собой, это почти ничто. Тем не менее универсальный инструмент, сочетающий в себе способности кирки, топора, лопаты и мотыги, вам бы очень подошел."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier2/multitool",
+      "text": "$(italic)Не так эффективно при выполнении отдельных задач, но гораздо лучше, чем необходимость менять инструменты каждые три секунды."
+    }
+  ]
+}

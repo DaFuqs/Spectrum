@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/unlock_shooting_stars",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_star_fragment",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "На что обратить внимание",
+      "completion_advancement": "spectrum:collect_star_fragment",
+      "cost": "spectrum:shimmerstone_gem#8",
+      "text": "Падающие звезды появляются только ночью. Если у вас есть что-то что может вам помочь, чтобы лучше их видеть в темноте, стоит этим воспользоваться. Они появляются с заметным следом частиц."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:shimmerstone_gem#24",
+      "text": "Больше всего шансов увидеть падающую звезду у вас будет, если вы будете искать ее с ночным зрением и подзорной трубой. Если вы увидите падающую звезду, постарайтесь проследить за ней, чтобы выяснить, где она приземлилась. Они выстреливают частицами, как лучом."
+    }
+  ]
+}

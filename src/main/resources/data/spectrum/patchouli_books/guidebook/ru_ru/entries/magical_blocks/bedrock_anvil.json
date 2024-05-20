@@ -1,0 +1,21 @@
+{
+  "name": "Бедроковая Наковальня",
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "icon": "spectrum:bedrock_anvil",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_anvil": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы уже много раз использовали свою наковальню (точнее, много наковален). $(l:general/anvil_crushing)Дробление предметов$(/l), ремонт и зачарование прожгут дыру в ваших запасах железа.$(br)Чтобы наковальня служила дольше - или даже сделать ее неразрушимой - Бедрок кажется идеальным выбором.$(br)Позволяет переименовывать предметы бесплатно и не имеет максимального лимита на ремонт."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_anvil",
+      "text": "Также вы можете добавлять описания к своим предметам.$(br)$(italic)Профессиональный совет: напишите \\n чтобы разделить текст на несколько строк."
+    }
+  ]
+}

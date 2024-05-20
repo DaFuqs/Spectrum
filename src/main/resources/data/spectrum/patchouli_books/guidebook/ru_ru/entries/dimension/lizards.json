@@ -1,0 +1,30 @@
+{
+  "name": "Прятщерица",
+  "icon": "spectrum:lizard_head",
+  "advancement": "spectrum:hidden/entity_interact/lizard",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:lizard_head": 0,
+    "spectrum:lizard_spawn_egg": 0,
+    "spectrum:lizard_meat": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Lurking Lizards",
+      "entity": "spectrum:lizard",
+      "scale": 0.5,
+      "text": "$(italic)Не самые приятные собеседники."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Ссорящиеся звери, которые всегда ищут неприятностей.$(br2)На самом деле, они были бы довольно милыми, если бы не пытались сразу же откусить вам конечности.$(br)...может быть, лучше держать их за $(item)Стеклянной клеткой$() - ваши конечности будут вам за это благодарны."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:lizard_meat",
+      "anchor": "lizard_meat",
+      "text": "Не особенно вкусное и довольно жесткое, но оно справляется со своей задачей."
+    }
+  ]
+}

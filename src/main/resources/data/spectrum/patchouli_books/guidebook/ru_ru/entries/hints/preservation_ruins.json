@@ -1,0 +1,41 @@
+{
+  "name": "3 Структуры",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/break_decayed_bedrock",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/solve_every_preservation_ruin",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:generate_preservation_ruins_loot",
+      "cost": "spectrum:refined_azurite#4",
+      "text": "Примерно в начале слоя Глубинного Сланца в обычным мире в любом биоме спрятаны 3 непроницаемых структуры. Похоже, что они построены из не ломаемого камня."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Синие сердца",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:generate_preservation_ruins_loot",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "Вход, похоже, заблокирован мощным силовым полем. Однако тот, кто его создал, был достаточно любезен, чтобы оставить вам подсказки! Сердечки по бокам силового поля указывают на то, что у вас должна быть активна Азуритовая Защита."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Цветные спороцветы",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:enter_color_mixing_preservation_ruin",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "Цветущие спороцветы на потолке и гравюры за ними на стенах как бы намекают на решение. Гравировка с порошком и '? + ?'. Вам нужно смешать порошки?"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Бедроковая Затычка",
+      "advancement": "spectrum:find_preservation_ruins",
+      "completion_advancement": "spectrum:enter_wireless_redstone_preservation_ruin",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "Есть ли способ вскрыть Бедрок? После того, как вы попадете внутрь, лучше всего просмотреть соответствующие страницы в вашей книге для всего, что вы там найдете. Всегда полезно иметь при себе немного красителей."
+    }
+  ]
+}

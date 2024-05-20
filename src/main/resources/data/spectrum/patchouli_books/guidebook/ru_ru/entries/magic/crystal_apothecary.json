@@ -1,0 +1,21 @@
+{
+  "name": "Сборщик Осколков",
+  "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+  "icon": "spectrum:crystal_apothecary",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystal_apothecary": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Помещенные в $(l:resources/geodes)Жеоды$(/l), автоматически собирают полностью выращенные $(item)драгоценные камни$().$(br2)Обычно все остальные постройки и даже урожай замирают во времени, когда вы отсутствуете, но эта конструкция, похоже, продолжает работать даже тогда когда вас нет. Странно."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier3/crystal_apothecary",
+      "text": "Хотя это не так эффективно, как разбивать кластеры с помощью $(item)Кирки$(), простота использования, несомненно, пригодится."
+    }
+  ]
+}

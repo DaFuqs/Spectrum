@@ -1,0 +1,22 @@
+{
+  "name": "Зачарованные Книги",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 2,
+  "advancement": "spectrum:unlocks/blocks/enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Используя $(l:general/pigment)Пигмент$(/l), выбранные ингредиенты и некоторый количество опыта $(l:enchanting/enchanter)Чарователь$(/l) позволяет добавлять чары на $(item)обычные книги$().$(br2)Хотя этот процесс требует больше опыта, чем зачарование в обычном столе зачарования, вы можете полностью контролировать, какое зачарование вы хотите создать."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/creating_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "Вы также можете использовать этот процесс для зачарования магических инструментов."
+    }
+  ]
+}

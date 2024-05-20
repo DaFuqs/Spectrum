@@ -1,0 +1,24 @@
+{
+  "name": "Блоки Лепестков.",
+  "advancement": "spectrum:hidden/collect_jade_vine_petals",
+  "icon": "spectrum:jade_vine_petal_block",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:jade_vine_petal_block": 0,
+    "spectrum:jade_vine_petal_carpet": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Блоки из Нефритовых Лепестков",
+      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_block",
+      "text": "Из собранных лепестков $(l:resources/jade_vines)Нефрита$(/l) вы создали декоративные блоки."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Ковёр",
+      "recipe": "spectrum:pedestal/tier1/jade_vines/jade_vine_petal_carpet",
+      "text": ""
+    }
+  ]
+}

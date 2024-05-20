@@ -1,0 +1,83 @@
+{
+  "name": "Создание в Мастерской",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 3,
+  "extra_recipe_mappings": {
+    "minecraft:water_bucket": 0,
+    "minecraft:lava_bucket": 0,
+    "spectrum:midnight_solution_bucket": 0,
+    "minecraft:honey_bottle": 0,
+    "minecraft:powder_snow_bucket": 0,
+    "minecraft:experience_bottle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Как следует из названия, основной задачей $(l:brewing/potion_workshop)Мастерской зелий$() является создание мощных $(item)Зелий$().$(br)Но с помощью всех этих филигранных и гранулированных переключателей и клапанов вы нашли в нем много полезного и для создания других вещей.$(br)$()Во всех этих рецептах не используются $(l:brewing/potion_workshop_reagents)Реактивы$(/l)."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Вода",
+      "recipe": "spectrum:potion_workshop_crafting/water_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Лава",
+      "recipe": "spectrum:potion_workshop_crafting/lava_bucket",
+      "text": "The $(l:magical_blocks/lava_sponge)Lava Sponge$(/l) will not get used up, allowing you to create large amounts of $(item)Lava$() quickly."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Жидкая Грязь",
+      "recipe": "spectrum:potion_workshop_crafting/mud_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Жидкие Кристаллы",
+      "recipe": "spectrum:potion_workshop_crafting/liquid_crystal_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Полуночный Раствор",
+      "advancement": "spectrum:unlocks/blocks/midnight_solution",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Дрконогниль",
+      "advancement": "spectrum:unlocks/blocks/dragonrot_bucket",
+      "recipe": "spectrum:potion_workshop_crafting/dragonrot_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Бутылочка Мёда",
+      "recipe": "spectrum:potion_workshop_crafting/honey_bottle",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Рыхлый Снег",
+      "recipe": "spectrum:potion_workshop_crafting/powder_snow_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Пузырёк Опыта",
+      "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
+      "text": "Потребляет  10 XP из $(item)Жемчужины Знаний$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/dragon_breath",
+      "text": "Потребляет 100 XP из $(item)Жемчужины Знаний$()."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Большой Улов",
+  "icon": "spectrum:lagoon_rod",
+  "advancement": "spectrum:unlocks/enchantments/big_catch",
+  "flag": "spectrum:enchantment_exists_spectrum_big_catch",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ваша новая волшебная удочка обладает интересным свойством притягивать даже живых существ. Почему это не было возможно с вашими скучными удочками? Честно говоря, я не знаю.$(br)С помощью этого заклинания вы сможете еще больше увеличить шанс поймать живых существ."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "spectrum:lagoon_rod{Enchantments: [{id: \"spectrum:big_catch\", lvl: 3s}]}",
+      "text": "Увеличивает шанс поймать живых существ во время рыбалки.$(br2)Макс. Уровень: 3$(br)Применимо к удочкам Спектрума."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_big_catch",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Большим уловом окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2",
+      "text": "Поначалу повышение уровня Большого улова с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

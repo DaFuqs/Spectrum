@@ -1,0 +1,48 @@
+{
+  "name": "Азурит",
+  "advancement": "spectrum:midgame/collect_azurite",
+  "icon": "spectrum:raw_azurite",
+  "category": "spectrum:resources_category",
+  "turnin": "spectrum:midgame/create_refined_azurite",
+  "extra_recipe_mappings": {
+    "spectrum:azurite_ore": 0,
+    "spectrum:deepslate_azurite_ore": 0,
+    "spectrum:blackslag_azurite_ore": 0,
+
+    "spectrum:raw_azurite": 0,
+    "spectrum:refined_azurite": 0,
+    "spectrum:azurite_block": 0,
+
+    "spectrum:small_azurite_bud": 0,
+    "spectrum:large_azurite_bud": 0,
+    "spectrum:azurite_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Азурит",
+      "item": "spectrum:raw_azurite",
+      "text": "Богатая голубая руда, которую на расстоянии можно почти принять за $(item)лазурит$(). В своем натуральном виде он содержит много примесей, которые необходимо сначала удалить, прежде чем его можно будет использовать."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Азурит",
+      "item": "spectrum:raw_azurite",
+      "text": "Он находится глубоко под землей и, по-видимому, способен усиливать энергию любого пигмента."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:unlocks/resources/refined_azurite",
+      "title": "Очищение Азурита",
+      "recipe": "spectrum:fusion_shrine/refined_azurite",
+      "text": "Очистка азурита — дело недешевое.$(br)В этой чистой форме азурита в виде слитка можно использовать для многих других рецептов."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/resources/azurite_growing",
+      "title": "Выращивание Азурита",
+      "recipe": "spectrum:crystallarieum/azurite",
+      "text": ""
+    }
+  ]
+}

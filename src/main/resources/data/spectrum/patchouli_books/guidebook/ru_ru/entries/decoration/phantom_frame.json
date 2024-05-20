@@ -1,0 +1,29 @@
+{
+  "name": "Фантомная Рамка",
+  "icon": "spectrum:phantom_frame",
+  "advancement": "spectrum:collect_shimmerstone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:phantom_frame": 0,
+    "spectrum:glow_phantom_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Фантомные Рамки",
+      "text": "Вы хотите выставить на показ свои самые ценные вещи. До сих пор вы всегда использовали обычные рамки. Но некоторые из ваших экспонатов смотрелись бы лучше, если бы ее не было видно.$(br)Проще простого! Воспользуйтесь свойством драгоценных камней чтобы манипулировать светом."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Создание на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/phantom_frame",
+      "text": "Фантомная Рамка становится невидимой, как только в ней размещается предмет."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Светящаяся Фантомная Рамка",
+      "recipe": "spectrum:pedestal/tier1/glow_phantom_frame",
+      "text": "У этой есть ещё одно приятное свойство: помещенный в неё предмет светится ярким светом, что делает его ещё более привлекательным."
+    }
+  ]
+}

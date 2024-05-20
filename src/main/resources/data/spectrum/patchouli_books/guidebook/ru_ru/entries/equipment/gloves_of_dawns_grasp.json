@@ -1,0 +1,21 @@
+{
+  "name": "Перчатки Рассвета",
+  "advancement": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp",
+  "icon": "spectrum:gloves_of_dawns_grasp",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:gloves_of_dawns_grasp": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Когда вы спрашивали у соседа, что это за $(item)\"Гоббер\"$() о котором они постоянно говорят, вам отвечали, что этот божественный материал \"недоступен для тебя, маленький художник\".$(br)Не успели они объяснить вам, что \"недоступен\" не следует понимать буквально, как вы уже создали эти перчатки. Упс."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/gloves_of_dawns_grasp",
+      "text": "Ну что ж, раз вы их придумали, значит, будете использовать!$(br2)Добавьте им $(l:magic/ink)Голубой Краски$(/l) чтобы увеличить их досягаемость."
+    }
+  ]
+}

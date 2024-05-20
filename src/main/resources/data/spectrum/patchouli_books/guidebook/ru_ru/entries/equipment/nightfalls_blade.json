@@ -1,0 +1,20 @@
+{
+  "name": "Сумеречный Клинок",
+  "advancement": "spectrum:unlocks/equipment/nightfalls_blade",
+  "icon": "spectrum:nightfalls_blade",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:nightfalls_blade": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот небольшой клинок слишком тонок, чтобы наносить серьезные раны, но имеет множество острых шипов, которые вонзаются в плоть противника.$(br2)Наполненный в $(l:brewing/potion_workshop)Мастерской зелий$(), эффект накладывается на всех пораженных противников - при условии, что у вас достаточно $(l:magic/ink)Красок$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/nightfalls_blade",
+      "text": "$(italic)Жестоко, правда. Но эффективно."
+    }
+  ]
+}

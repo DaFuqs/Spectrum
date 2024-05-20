@@ -1,0 +1,35 @@
+{
+  "name": "Пояс Отрыва",
+  "advancement": "spectrum:unlocks/trinkets/take_off_belt",
+  "icon": "spectrum:take_off_belt",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:take_off_belt": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ползать по горам или пещерам неправильных форм всегда отнимает много времени. Если вы не видите возможности залезть наверх по неправильным уступам, у вас нет другого выбора, кроме как прокладывать путь в скале.$(br)С помощью нового пояса отрыва вы сможете преодолевать большие вертикальные расстояния, экономя время и спасая прекрасную природу от разрушения."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
+      "text": "Начните красться, чтобы совершить высокий прыжок, который становится сильнее, от того, сколько вы крадётесь."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+      "title": "Сила",
+      "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "text": "Зачарование Силы увеличивает максимально возможную высоту прыжка."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic",
+      "title": "Невесомость",
+      "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
+      "text": "Невесомость даст вам короткий эффект замедленного падения, позволяющий лучше ориентироваться в том месте, где вы хотите приземлиться. Большой уровень Невесомости может стать очень эффективным способом безопасно спуститься со скал."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_quitoxic_reeds",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:collect_quitoxic_reeds",
+      "cost": "minecraft:clay_ball#16",
+      "text": "Пришло время отправиться в путешествие по поверхности. Посетите болото или мангровое болото!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "minecraft:clay_ball#48",
+      "text": "Странные на вид растения были замечены в (мангровых) болотах, растущих на глине или грязи. В процессе роста они поглощают глину/грязь, превращая ее в землю."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Пышная Диадема",
+  "advancement": "spectrum:unlocks/trinkets/puff_circlet",
+  "icon": "spectrum:puff_circlet",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:puff_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот Диадема создает вокруг вас защитную пленку из воздуха.$(br2)Добавялет $(c_green)4$() единицы $(c_blue)Азуритовой Защиты$(). Используя эти заряды, она не только защищает вас от вражеских снарядов, но и может смягчить длительное падение.$(br)Пышная Диадема также предотвращает вытаптывание $(item)вспаханых грядок$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
+      "text": "$(italic)Прошли те времена, когда скелеты растрерилвали вас сзади."
+    }
+  ]
+}

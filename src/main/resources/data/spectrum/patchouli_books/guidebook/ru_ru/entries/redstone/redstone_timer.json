@@ -1,0 +1,22 @@
+{
+  "name": "Редстоуновый Таймер",
+  "advancement": "spectrum:unlocks/redstone/redstone_timer",
+  "icon": "spectrum:redstone_timer",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_timer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_timer",
+      "text": "Хотя существует множество способов считать время, большинство из них выглядят довольно… простовато. Они не сравнятся с новым трюком в вашем рукаве: родство со временем $(l:general/shards#amethyst)Осколков Аметиста$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/redstone_timer",
+      "text": "Вы можете переключать продолжительность активного времени. ($(k:use)) и неактивное время ($(k:sneak) + $(k:use) с пустой рукой)."
+    }
+  ]
+}

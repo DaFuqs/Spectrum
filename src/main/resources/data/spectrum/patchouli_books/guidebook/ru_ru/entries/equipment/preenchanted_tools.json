@@ -1,0 +1,60 @@
+{
+  "name": "Зачарованные инструменты",
+  "advancement": "spectrum:unlocks/equipment/any_preenchanted_tool",
+  "icon": "spectrum:lucky_pickaxe",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:tender_pickaxe": 0,
+    "spectrum:lucky_pickaxe": 0,
+    "spectrum:razor_falchion": 0,
+    "spectrum:oblivion_pickaxe": 0,
+    "spectrum:resonant_pickaxe": 0,
+    "spectrum:dragonrending_pickaxe": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот дурацкий обсидиановый стол очень упрям, когда дело доходит до того, чтобы дать вам нужные зачарования.$(br)Кроме того, вам придется либо зарезать целое стадо коров, либо ограбить книги сотни деревень (неудивительно, что их жители так глупы и только рады быть съеденными зомби)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Преимущество знания того, чего вы хотите, дает вам возможность формировать инструменты таким образом, чтобы они изначально обладали этими качествами. Магия красок делает это возможным.$(br2)К сожалению, эти особенности делают данные инструменты в большинстве своем очень хрупкими."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/equipment/tender_pickaxe",
+      "recipe": "spectrum:pedestal/tier1/tools/tender_pickaxe",
+      "text": "Концы этой кирки усеяны топазами, чтобы вырезать из камня даже самый хрупкий материал.$(br)Пре-зачарована $(c_cyan)$(bold)Шёлковым Касанием$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/equipment/lucky_pickaxe",
+      "recipe": "spectrum:pedestal/tier1/tools/lucky_pickaxe",
+      "text": "Наполненная $(c_yellow)energy$(), она позволит вам вырезать всё до последней крупицы руды из любой жилы.$(br)Пре-зачарована $(c_yellow)$(bold)Удачей 3$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/equipment/razor_falchion",
+      "recipe": "spectrum:pedestal/tier1/tools/razor_falchion",
+      "text": "Короткое, острое как бритва лезвие делает этот предмет смертоносным оружием - но ценой прочности.$(br)Пре-зачарована $(c_magenta)$(bold)Добычей 3$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/equipment/oblivion_pickaxe",
+      "recipe": "spectrum:pedestal/tier2/oblivion_pickaxe",
+      "text": "Кирка Забвения, как и другие предметы этой категории, обладает большой прочностью и скоростью добычи. However, Однако все добытые блоки $(l:enchanting/curse_of_the_void)уничтожаются$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
+      "text": "Гармонирует своими собственными нежными вибрациями с вибрациями окружающей среды. $(l:enchanting/resonance)Позволяет сохранять блоки в целости и сохранности $(/l) которые в противном случае были бы безвозвратно уничтожены."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/dragonrending_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/dragonrending_pickaxe",
+      "text": "По-настоящему мощная кирка для тех случаев, когда нужно разрушить прочные блоки.$(br)Поставляется с пре-зачарованием $(l:enchanting/razing)Таран$(/l)."
+    }
+  ]
+}

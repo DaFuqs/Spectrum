@@ -1,0 +1,5768 @@
+{
+  "ColorReference": {
+    "white": {
+      "r": 240,
+      "g": 240,
+      "b": 240,
+      "a": 255
+    },
+    "orange": {
+      "r": 235,
+      "g": 136,
+      "b": 68,
+      "a": 255
+    },
+    "magenta": {
+      "r": 195,
+      "g": 84,
+      "b": 205,
+      "a": 255
+    },
+    "light_blue": {
+      "r": 102,
+      "g": 137,
+      "b": 211,
+      "a": 255
+    },
+    "yellow": {
+      "r": 222,
+      "g": 207,
+      "b": 42,
+      "a": 255
+    },
+    "lime": {
+      "r": 65,
+      "g": 205,
+      "b": 52,
+      "a": 255
+    },
+    "pink": {
+      "r": 216,
+      "g": 129,
+      "b": 152,
+      "a": 255
+    },
+    "gray": {
+      "r": 67,
+      "g": 67,
+      "b": 67,
+      "a": 255
+    },
+    "light_gray": {
+      "r": 171,
+      "g": 171,
+      "b": 171,
+      "a": 255
+    },
+    "cyan": {
+      "r": 40,
+      "g": 118,
+      "b": 151,
+      "a": 255
+    },
+    "purple": {
+      "r": 123,
+      "g": 47,
+      "b": 190,
+      "a": 255
+    },
+    "blue": {
+      "r": 37,
+      "g": 49,
+      "b": 146,
+      "a": 255
+    },
+    "brown": {
+      "r": 81,
+      "g": 48,
+      "b": 26,
+      "a": 255
+    },
+    "green": {
+      "r": 59,
+      "g": 81,
+      "b": 26,
+      "a": 255
+    },
+    "red": {
+      "r": 181,
+      "g": 29,
+      "b": 24,
+      "a": 255
+    },
+    "black": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "shimmerstone": {
+      "r": 151,
+      "g": 145,
+      "b": 27,
+      "a": 255
+    },
+    "slate_noxwood": {
+      "r": 151,
+      "g": 128,
+      "b": 69,
+      "a": 255
+    },
+    "ebony_noxwood": {
+      "r": 85,
+      "g": 143,
+      "b": 151,
+      "a": 255
+    },
+    "ivory_noxwood": {
+      "r": 151,
+      "g": 122,
+      "b": 101,
+      "a": 255
+    },
+    "chestnut_noxwood": {
+      "r": 151,
+      "g": 136,
+      "b": 76,
+      "a": 255
+    }
+  },
+  "LightBlock": [
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:small_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 2
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:medium_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 4
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:large_amethyst_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 6
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "minecraft:amethyst_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#magenta",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:small_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:medium_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_topaz_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:topaz_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:medium_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_citrine_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:citrine_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:small_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:medium_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_onyx_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:onyx_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:small_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:medium_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:large_moonstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:small_bismuth_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:large_bismuth_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:bismuth_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#light_gray",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_malachite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:large_malachite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:malachite_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#green",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:blackslag_redstone_ore",
+      "state": {
+        "lit": true
+      },
+      "color": "#red",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:azurite_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_azurite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_azurite_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:small_bloodstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:large_bloodstone_bud",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 4
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "north",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "east",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "south",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "west",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "up",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": true
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:bloodstone_cluster",
+      "state": {
+        "facing": "down",
+        "waterlogged": false
+      },
+      "color": "#red",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:shimmerstone_block",
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_calcite_lamp",
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_calcite_lamp",
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_calcite_lamp",
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_calcite_lamp",
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_calcite_lamp",
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_basalt_lamp",
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_basalt_lamp",
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_basalt_lamp",
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_basalt_lamp",
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_basalt_lamp",
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:basalt_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:calcite_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:stone_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:granite_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:diorite_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:andesite_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:deepslate_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blackslag_shimmerstone_light",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#shimmerstone",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_chiseled_basalt",
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:amethyst_chiseled_basalt",
+      "color": "#magenta",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:citrine_chiseled_basalt",
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:onyx_chiseled_basalt",
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_basalt",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:topaz_chiseled_calcite",
+      "color": "#cyan",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:amethyst_chiseled_calcite",
+      "color": "#magenta",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:citrine_chiseled_calcite",
+      "color": "#yellow",
+      "radius": 7
+    },
+    {
+      "block": "spectrum:onyx_chiseled_calcite",
+      "color": "#black",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "up"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:moonstone_chiseled_calcite",
+      "state": {
+        "facing": "down"
+      },
+      "color": "#white",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:radiant_glass",
+      "color": "#shimmerstone",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:radiant_semi_permeable_glass",
+      "color": "#shimmerstone",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:topaz_chime",
+      "color": "#cyan",
+      "radius": 8
+    },
+    {
+      "block": "spectrum:amethyst_chime",
+      "color": "#magenta",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:citrine_chime",
+      "color": "#yellow",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:onyx_chime",
+      "color": "#black",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:moonstone_chime",
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:white_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:orange_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#orange",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:magenta_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:light_blue_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#light_blue",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:yellow_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:lime_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#lime",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:pink_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#pink",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:gray_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:light_gray_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:cyan_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:purple_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#purple",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blue_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#blue",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:brown_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#brown",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:green_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#green",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:red_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#red",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:black_lamp",
+      "state": {
+        "lit": true
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:white_glowblock",
+      "color": "#white",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:orange_glowblock",
+      "color": "#orange",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:magenta_glowblock",
+      "color": "#magenta",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:light_blue_glowblock",
+      "color": "#light_blue",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:yellow_glowblock",
+      "color": "#yellow",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:lime_glowblock",
+      "color": "#lime",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:pink_glowblock",
+      "color": "#pink",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:gray_glowblock",
+      "color": "#gray",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:light_gray_glowblock",
+      "color": "#light_gray",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:cyan_glowblock",
+      "color": "#cyan",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:purple_glowblock",
+      "color": "#purple",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:blue_glowblock",
+      "color": "#blue",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:brown_glowblock",
+      "color": "#brown",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:green_glowblock",
+      "color": "#green",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:red_glowblock",
+      "color": "#red",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:black_glowblock",
+      "color": "#black",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:slate_noxcap_gills",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#slate_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:slate_noxcap_gills",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#slate_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:slate_noxcap_gills",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#slate_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:slate_noxwood_lantern",
+      "state": {
+        "lit": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:slate_noxwood_light",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#slate_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:slate_noxwood_light",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#slate_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:slate_noxwood_light",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#slate_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:slate_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#slate_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxcap_gills",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ebony_noxcap_gills",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ebony_noxcap_gills",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lantern",
+      "state": {
+        "lit": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ebony_noxwood_light",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ebony_noxwood_light",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ebony_noxwood_light",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#ebony_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ebony_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ebony_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxcap_gills",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ivory_noxcap_gills",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ivory_noxcap_gills",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lantern",
+      "state": {
+        "lit": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ivory_noxwood_light",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ivory_noxwood_light",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ivory_noxwood_light",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#ivory_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:ivory_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#ivory_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxcap_gills",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:chestnut_noxcap_gills",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:chestnut_noxcap_gills",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lantern",
+      "state": {
+        "lit": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_light",
+      "state": {
+        "axis": "x"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_light",
+      "state": {
+        "axis": "y"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_light",
+      "state": {
+        "axis": "z"
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": true,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": true,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": true,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": true
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:chestnut_noxwood_lamp",
+      "state": {
+        "alt": false,
+        "diagonal": false,
+        "hanging": false,
+        "waterlogged": false
+      },
+      "color": "#chestnut_noxwood",
+      "radius": 13
+    },
+    {
+      "block": "spectrum:hummingstone",
+      "state": {
+        "humming": true
+      },
+      "color": "#light_blue",
+      "radius": 14
+    },
+    {
+      "block": "spectrum:hummingstone",
+      "state": {
+        "humming": false
+      },
+      "color": "#light_blue",
+      "radius": 14
+    },
+    {
+      "block": "spectrum:wet_lava_sponge",
+      "color": "#orange",
+      "radius": 9
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#light_gray",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#light_gray",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#cyan",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:topaz_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#cyan",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#magenta",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:amethyst_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#magenta",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#yellow",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:citrine_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#yellow",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#black",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:onyx_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#black",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "none"
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 0,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "none"
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 1,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "none"
+      },
+      "color": "#white",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:moonstone_sugar_stick",
+      "state": {
+        "age": 2,
+        "fluid_logged": "liquid_crystal"
+      },
+      "color": "#white",
+      "radius": 17
+    },
+    {
+      "block": "spectrum:shimmering_preservation_bricks",
+      "color": "#blue",
+      "radius": 5
+    },
+    {
+      "block": "spectrum:powder_chiseled_preservation_stone",
+      "color": "#blue",
+      "radius": 2
+    },
+    {
+      "block": "spectrum:dike_chiseled_preservation_stone",
+      "color": "#blue",
+      "radius": 6
+    },
+    {
+      "block": "spectrum:tinted_preservation_glass",
+      "color": "#cyan",
+      "radius": 12
+    },
+    {
+      "block": "spectrum:dike_gate",
+      "color": "#blue",
+      "radius": 3
+    },
+    {
+      "block": "spectrum:preservation_controller",
+      "state": {
+        "facing": "north"
+      },
+      "color": "#cyan",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:preservation_controller",
+      "state": {
+        "facing": "south"
+      },
+      "color": "#cyan",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:preservation_controller",
+      "state": {
+        "facing": "west"
+      },
+      "color": "#cyan",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:preservation_controller",
+      "state": {
+        "facing": "east"
+      },
+      "color": "#cyan",
+      "radius": 1
+    },
+    {
+      "block": "spectrum:frostbite_crystal",
+      "color": "#light_blue",
+      "radius": 15
+    },
+    {
+      "block": "spectrum:blazing_crystal",
+      "color": "#orange",
+      "radius": 15
+    }
+  ],
+  "Bloom": [
+    {
+      "block": "spectrum:small_glowstone_bud"
+    },
+    {
+      "block": "spectrum:large_glowstone_bud"
+    },
+    {
+      "block": "spectrum:glowstone_cluster"
+    },
+    {
+      "block": "spectrum:pure_glowstone_block"
+    }
+  ]
+}

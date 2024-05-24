@@ -17,7 +17,7 @@
       "type": "spectrum:hint",
       "title": "Concise Instructions",
       "cost": "minecraft:clay_ball#48",
-      "text": "Strange looking plants have been seen in (Mangrove) Swamps, growing on patches of Clay or Mud. When growing, they will consume Clay/Mud in the process, turning it to Dirt."
+      "text": "Strange looking plants have been seen in Swamps and Mangrove Swamps, growing on patches of Clay or Mud. When growing, they will consume Clay/Mud in the process, turning it to Dirt."
     }
   ]
 }

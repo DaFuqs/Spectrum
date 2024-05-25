@@ -11,7 +11,7 @@
       "title": "Small Clue",
       "completion_advancement": "spectrum:collect_vegetal",
       "cost": "spectrum:shimmerstone_gem#16",
-      "text": "Fading, as a small and weak organism, feeds on organic blocks placed next to it."
+      "text": "Fading, as a small and weak organism, feeds on organic blocks placed next to it. Right click with the bottle to place it like a block; you can bottle it again to pick it back up."
     },
     {
       "type": "spectrum:hint",

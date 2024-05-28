@@ -45,7 +45,7 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     }
 
     private static void giveEffect(LivingEntity entity) {
-        entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, DivinityStatusEffect.CIRCLET_AMPLIFIER, true, false, true));
+        entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, DivinityStatusEffect.CIRCLET_AMPLIFIER, true, true));
     }
 
     @Override

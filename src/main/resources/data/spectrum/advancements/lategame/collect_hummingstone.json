@@ -23,11 +23,24 @@
         ]
       }
     },
+    "struck_up_hummingstone_hymn": {
+      "trigger": "spectrum:hummingstone_hymn",
+      "conditions": {}
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/spectrum_lategame"
       }
     }
-  }
+  },
+  "requirements":[
+    [
+      "has_hummingstone",
+      "struck_up_hummingstone_hymn"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

@@ -429,24 +429,28 @@
     "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [
       "spectrum:spectrum_theme"
-    ]
+    ],
+    "stream": true
   },
   "music.boss_theme": {
     "subtitle": "spectrum.subtitles.boss_theme_plays",
     "sounds": [
       "spectrum:radiarc_irrelevance_fading"
-    ]
+    ],
+    "stream": true
   },
   "music.deeper_down_theme": {
     "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
     "sounds": [
       "spectrum:sunsette_darker_than_hell"
-    ]
+    ],
+    "stream": true
   },
   "music.divinity": {
     "sounds": [
       "spectrum:proper_motions_everreflective"
-    ]
+    ],
+    "stream": true
   },
   "spectrum.ui.new_revelation": {
     "sounds": [

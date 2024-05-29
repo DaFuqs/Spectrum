@@ -2866,7 +2866,6 @@
   "block.spectrum.titration_barrel.empty_when_tapping": "Она же была пуста...",
   "block.spectrum.titration_barrel.missing_liquid_when_tapping": "Не хватало жидкости, поэтому всё пошло наперекосяк. Жалко",
   "block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount": "%s выдерживалось %d дней (%s реальных дней)",
-  "block.spectrum.titration_barrel.invalid_recipe_after_opened": "Гадкая жидкость выдерживалась %d дней (%s реальных дней). Фуу",
   "block.spectrum.titration_barrel.recipe_not_unlocked": "Вы без понятия, что внутри. Лучше оставьте всё как есть.",
   "block.spectrum.titration_barrel.debug_added_day": "(Функция Отладки) Добавлен реальный день брожения",
 

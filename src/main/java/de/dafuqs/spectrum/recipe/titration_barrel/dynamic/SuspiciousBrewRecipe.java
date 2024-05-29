@@ -25,7 +25,6 @@ import java.util.*;
 
 public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
-	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SuspiciousBrewRecipe::new);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
@@ -65,10 +64,6 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {

@@ -22,7 +22,6 @@ import java.util.*;
 
 public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
 	
-	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
 		add(1);
 		add(10);
@@ -126,10 +125,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		ItemStack stack = this.outputItemStack.copy();
 		stack.setCount(1);
 		

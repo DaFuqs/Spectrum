@@ -149,7 +149,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
 	}
 	
-	public void addDayOfSealTime() {
+	public void addOneDayOfSealTime() {
 		this.sealTime -= TimeHelper.EPOCH_DAY_MILLIS;
 		this.markDirty();
 	}

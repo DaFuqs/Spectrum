@@ -37,26 +37,16 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	@Environment(EnvType.CLIENT)
 	@Override
     public Text getName(int level) {
-		MinecraftClient client = MinecraftClient.getInstance();
-		MutableText mutableText = Text.translatable(this.getTranslationKey());
-		if (this.isCursed()) {
-			mutableText.formatted(Formatting.RED);
+		Text text = super.getName(level);
+		if (canEntityUse(MinecraftClient.getInstance().player)) {
+			return text;
+		}
+		
+		if (SpectrumCommon.CONFIG.NameForUnrevealedEnchantments.isBlank() && text instanceof MutableText mutableText) {
+			return mutableText.formatted(Formatting.byCode('k'));
 		} else {
-			mutableText.formatted(Formatting.GRAY);
+			return Text.literal(SpectrumCommon.CONFIG.NameForUnrevealedEnchantments).setStyle(text.getStyle());
 		}
-		if (!canEntityUse(client.player)) {
-			if (SpectrumCommon.CONFIG.NameForUnrevealedEnchantments.isBlank()) {
-				mutableText.formatted(Formatting.byCode('k'));
-			} else {
-				return Text.literal(SpectrumCommon.CONFIG.NameForUnrevealedEnchantments).formatted(Formatting.GRAY);
-			}
-		}
-		
-		if (level != 1 || this.getMaxLevel() != 1) {
-			mutableText.append(" ").append(Text.translatable("enchantment.level." + level));
-		}
-		
-		return mutableText;
 	}
 	
 	public boolean canEntityUse(Entity entity) {

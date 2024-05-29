@@ -68,8 +68,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.PEDESTAL, blockPos, blockState);
 		
-		if (blockState.getBlock() instanceof PedestalBlock) {
-			this.pedestalVariant = ((PedestalBlock) (blockState.getBlock())).getVariant();
+		if (blockState.getBlock() instanceof PedestalBlock pedestalBlock) {
+			this.pedestalVariant = pedestalBlock.getVariant();
 		} else {
 			this.pedestalVariant = BuiltinPedestalVariant.BASIC_AMETHYST;
 		}
@@ -100,8 +100,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		};
 	}
 	
-	public static void updateInClientWorld(PedestalBlockEntity pedestalBlockEntity) {
-		((ServerWorld) pedestalBlockEntity.getWorld()).getChunkManager().markForUpdate(pedestalBlockEntity.pos);
+	public void updateInClientWorld() {
+		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
@@ -184,7 +184,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			pedestalBlockEntity.markDirty();
 			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
-			updateInClientWorld(pedestalBlockEntity);
+			pedestalBlockEntity.updateInClientWorld();
 		}
 		
 		// only craft when there is redstone power
@@ -417,7 +417,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 
 		pedestalBlockEntity.markDirty();
 		pedestalBlockEntity.inventoryChanged = true;
-		updateInClientWorld(pedestalBlockEntity);
+		pedestalBlockEntity.updateInClientWorld();
 
 		return true;
 	}

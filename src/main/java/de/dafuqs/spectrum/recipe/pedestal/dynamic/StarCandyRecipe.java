@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -30,8 +29,7 @@ public class StarCandyRecipe extends ShapedPedestalRecipe {
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
-			World world = pedestal.getWorld();
-			if (world.random.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
+			if (pedestal.getWorld().random.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
 				return SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 			}
 		}

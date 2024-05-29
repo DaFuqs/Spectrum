@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -7,47 +9,35 @@ import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-
-import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleItem;
-import de.dafuqs.spectrum.registries.SpectrumItems;
 import oshi.util.tuples.*;
 
 import java.util.*;
 
 public class BuildingHelper {
-
-	private static final Map<TagKey<Block>, List<Block>> SIMILAR_BLOCKS = new HashMap<>() {
-		{
-			put(BlockTags.DIRT, new ArrayList<>() {
-				{
-					add(Blocks.GRASS_BLOCK);
-				}
-			});
-			put(BlockTags.NYLIUM, new ArrayList<>() {
-				{
-					add(Blocks.NETHERRACK);
-				}
-			});
-		}
-	};
+	
+	private static final Map<TagKey<Block>, List<Block>> SIMILAR_BLOCKS = new HashMap<>() {{
+		put(BlockTags.DIRT, new ArrayList<>() {{
+			add(Blocks.GRASS_BLOCK);
+		}});
+		put(BlockTags.NYLIUM, new ArrayList<>() {{
+			add(Blocks.NETHERRACK);
+		}});
+	}};
 
 	private static final Map<Block, List<Block>> SIMILAR_BLOCKS_CACHE = new HashMap<>();
-
-	private static final ArrayList<Vec3i> NEIGHBOR_VECTORS_Y = new ArrayList<>() {
-		{
-			add(Direction.NORTH.getVector());
-			add(Direction.EAST.getVector());
-			add(Direction.SOUTH.getVector());
-			add(Direction.WEST.getVector());
-			add(Direction.WEST.getVector().offset(Direction.NORTH));
-			add(Direction.NORTH.getVector().offset(Direction.EAST));
-			add(Direction.EAST.getVector().offset(Direction.SOUTH));
-			add(Direction.SOUTH.getVector().offset(Direction.WEST));
-		}
-	};
-
-	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player,
-			Block block, long maxCount) {
+	
+	private static final ArrayList<Vec3i> NEIGHBOR_VECTORS_Y = new ArrayList<>() {{
+		add(Direction.NORTH.getVector());
+		add(Direction.EAST.getVector());
+		add(Direction.SOUTH.getVector());
+		add(Direction.WEST.getVector());
+		add(Direction.WEST.getVector().offset(Direction.NORTH));
+		add(Direction.NORTH.getVector().offset(Direction.EAST));
+		add(Direction.EAST.getVector().offset(Direction.SOUTH));
+		add(Direction.SOUTH.getVector().offset(Direction.WEST));
+	}};
+	
+	public static Triplet<Block, Item, Integer> getBuildingItemCountInInventoryIncludingSimilars(PlayerEntity player, Block block, long maxCount) {
 		Item blockItem = block.asItem();
 		if (blockItem instanceof AliasedBlockItem aliasedBlockItem) {
 			// do not process seeds and similar stuff
@@ -76,8 +66,7 @@ public class BuildingHelper {
 	/**
 	 * A simple implementation of a breadth first search
 	 */
-	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull World world, @NotNull BlockPos blockPos,
-			long maxCount, int maxRange) {
+	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull World world, @NotNull BlockPos blockPos, long maxCount, int maxRange) {
 		BlockState originState = world.getBlockState(blockPos);
 		Block originBlock = originState.getBlock();
 
@@ -114,9 +103,8 @@ public class BuildingHelper {
 
 		return connectedPositions;
 	}
-
-	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world,
-			@NotNull BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
+	
+	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.offset(direction);
 		BlockState originState = world.getBlockState(originPos);
 
@@ -152,9 +140,8 @@ public class BuildingHelper {
 		selectedPositions.addAll(storedNeighbors);
 		return selectedPositions;
 	}
-
-	private static @NotNull List<BlockPos> getValidNeighbors(World world, BlockPos startPos, Direction facingDirection,
-			BlockState originState, boolean similarBlockOnly) {
+	
+	private static @NotNull List<BlockPos> getValidNeighbors(World world, BlockPos startPos, Direction facingDirection, BlockState originState, boolean similarBlockOnly) {
 		List<BlockPos> foundNeighbors = new ArrayList<>();
 		for (Vec3i neighborVectors : getNeighborVectors(facingDirection)) {
 			BlockPos targetPos = startPos.add(neighborVectors);

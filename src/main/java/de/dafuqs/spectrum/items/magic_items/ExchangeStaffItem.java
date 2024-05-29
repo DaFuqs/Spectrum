@@ -49,8 +49,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements ExtendedEnch
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
-			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier
-					.getHighestUnlockedRecipeTier(playerEntity);
+			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier.getHighestUnlockedRecipeTier(playerEntity);
 			if (highestUnlockedRecipeTier.isPresent()) {
 				switch (highestUnlockedRecipeTier.get()) {
 					case COMPLEX -> {

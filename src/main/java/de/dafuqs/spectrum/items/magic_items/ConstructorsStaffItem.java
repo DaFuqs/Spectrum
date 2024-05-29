@@ -39,8 +39,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		if (playerEntity == null || playerEntity.isCreative()) {
 			return CREATIVE_RANGE;
 		} else {
-			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier
-					.getHighestUnlockedRecipeTier(playerEntity);
+			Optional<PedestalRecipeTier> highestUnlockedRecipeTier = PedestalRecipeTier.getHighestUnlockedRecipeTier(playerEntity);
 			if (highestUnlockedRecipeTier.isPresent()) {
 				switch (highestUnlockedRecipeTier.get()) {
 					case COMPLEX -> {
@@ -65,8 +64,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(client.player))
-				.formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(client.player)).formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.crouch").formatted(Formatting.GRAY));
 	}
 

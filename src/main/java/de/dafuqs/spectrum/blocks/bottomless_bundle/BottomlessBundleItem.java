@@ -2,22 +2,21 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.api.render.DynamicItemRenderer;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.*;
 import net.minecraft.client.item.*;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.item.*;
+import net.minecraft.client.render.model.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.util.math.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -404,8 +403,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				ItemStack firstStack = getFirstBundledStack(stack);
 				if (firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
 					boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0;
-					int amountAbleToStore = hasVoiding ? itemStack.getCount()
-							: Math.min(itemStack.getCount(), (getMaxStoredAmount(stack) - getStoredAmount(stack)));
+					int amountAbleToStore = hasVoiding ? itemStack.getCount() : Math.min(itemStack.getCount(), (getMaxStoredAmount(stack) - getStoredAmount(stack)));
 					if (amountAbleToStore > 0) {
 						addToBundle(stack, slot.takeStackRange(itemStack.getCount(), amountAbleToStore, player));
 						this.playInsertSound(player);

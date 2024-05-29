@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.deeper_down.weather.WeatherThread;
+import de.dafuqs.spectrum.deeper_down.weather.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -43,7 +43,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.resource.*;
@@ -64,8 +64,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
-	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance()
-			.isModLoaded("foodeffecttooltips");
+	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
 	public static final WeatherThread WEATHER_THREAD = new WeatherThread();
 
 	// initial impl
@@ -185,9 +184,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			logInfo("Registering idwtialsimmoedm Compat...");
 			IdwtialsimmoedmCompat.register();
 		}
-
-		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES)
-				.registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
+		
+		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
@@ -206,9 +204,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		CUSTOM_ITEM_MODELS.add(new ModelIdentifier(MOD_ID, id, "inventory"));
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
-
-	private boolean renderExtendedBlockOutline(WorldRenderContext context,
-			WorldRenderContext.BlockOutlineContext hitResult) {
+	
+	private boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {
 		boolean shouldCancel = false;
 		MinecraftClient client = MinecraftClient.getInstance();
 		if (client.player != null && context.blockOutlines()) {
@@ -216,16 +213,12 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				Item handItem = handStack.getItem();
 				if (handItem instanceof ConstructorsStaffItem) {
 					if (hitResult != null && client.crosshairTarget instanceof BlockHitResult blockHitResult) {
-						shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(),
-								hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(),
-								blockHitResult);
+						shouldCancel = renderPlacementStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), blockHitResult);
 					}
 					break;
 				} else if (handItem instanceof ExchangeStaffItem) {
 					if (hitResult != null) {
-						shouldCancel = renderExchangeStaffOutline(context.matrixStack(), context.camera(),
-								hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(),
-								handStack, hitResult);
+						shouldCancel = renderExchangeStaffOutline(context.matrixStack(), context.camera(), hitResult.cameraX(), hitResult.cameraY(), hitResult.cameraZ(), context.consumers(), handStack, hitResult);
 					}
 					break;
 				}
@@ -240,9 +233,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		if (!isJoinPacket) {
 			for (Block block : blocks) {
 				if (Registries.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-					RevelationToast.showRevelationToast(MinecraftClient.getInstance(),
-							new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()),
-							SpectrumSoundEvents.NEW_REVELATION);
+					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
 					break;
 				}
 			}
@@ -250,15 +241,13 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	}
 
 	@Override
-	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements,
-			boolean isJoinPacket) {
+	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}
-
-	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f,
-			VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
+	
+	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
 		ClientPlayerEntity player = client.player;
@@ -267,9 +256,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
-
-		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff
-				&& (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
+		
+		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
 			VoxelShape shape = VoxelShapes.empty();
@@ -278,13 +266,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				int itemCountInInventory = Integer.MAX_VALUE;
 				long inkLimit = Long.MAX_VALUE;
 				if (!player.isCreative()) {
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper
-							.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock,
-									Integer.MAX_VALUE);
+					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock, Integer.MAX_VALUE);
 					item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR)
-							/ ConstructorsStaffItem.INK_COST_PER_BLOCK;
+					inkLimit = InkPowered.getAvailableInk(player, ConstructorsStaffItem.USED_COLOR) / ConstructorsStaffItem.INK_COST_PER_BLOCK;
 				}
 
 				boolean sneaking = player.isSneaking();
@@ -294,25 +279,18 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
-					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos,
-							hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
-					if (positions.size() > 0) {
+					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
+					if (!positions.isEmpty()) {
 						for (BlockPos newPosition : positions) {
 							if (world.getWorldBorder().contains(newPosition)) {
 								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = VoxelShapes.union(shape,
-										lookingAtState
-												.getOutlineShape(world, lookingAtPos,
-														ShapeContext.of(camera.getFocusedEntity()))
-												.offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
 
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
 						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
-						de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices,
-								linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e,
-								(double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -321,10 +299,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		return false;
 	}
-
-	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f,
-			VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack,
-			WorldRenderContext.BlockOutlineContext hitResult) {
+	
+	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
 		BlockPos lookingAtPos = hitResult.blockPos();
@@ -334,9 +310,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		if (player == null || world == null)
 			return false;
-
-		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff
-				&& (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
+		
+		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
 			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
@@ -358,8 +333,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 							}
 
 						}
-						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR)
-								/ ExchangeStaffItem.INK_COST_PER_BLOCK;
+						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}
 
 					if (itemCountInInventory == 0) {
@@ -368,16 +342,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 1, true);
 					} else {
 						long usableCount = Math.min(itemCountInInventory, inkLimit);
-						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount,
-								ExchangeStaffItem.getRange(player));
+						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
 						for (BlockPos newPosition : positions) {
 							if (world.getWorldBorder().contains(newPosition)) {
 								BlockPos testPos = lookingAtPos.subtract(newPosition);
-								shape = VoxelShapes.union(shape,
-										lookingAtState
-												.getOutlineShape(world, lookingAtPos,
-														ShapeContext.of(camera.getFocusedEntity()))
-												.offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
+								shape = VoxelShapes.union(shape, lookingAtState.getOutlineShape(world, lookingAtPos, ShapeContext.of(camera.getFocusedEntity())).offset(-testPos.getX(), -testPos.getY(), -testPos.getZ()));
 							}
 						}
 

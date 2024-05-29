@@ -20,7 +20,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 		@Override
 		protected boolean canInsert(ItemVariant variant) {
 			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
-			return bundledStack.isEmpty() || variant.matches(bundledStack);
+			return variant.getItem().canBeNested() && (bundledStack.isEmpty() || variant.matches(bundledStack));
 		}
 
 		@Override
@@ -31,7 +31,13 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 			}
 			return inserted;
 		}
-
+		
+		@Override
+		public ItemVariant getResource() {
+			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
+			return ItemVariant.of(bundledStack);
+		}
+		
 		@Override
 		protected ItemVariant getBlankVariant() {
 			return ItemVariant.blank();

@@ -57,33 +57,33 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 			if (player.isSneaking()) {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
-					if (amount == 0) {
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
-					} else {
-						ItemVariant variant = bottomlessBundleBlockEntity.storage.variant;
-						long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
-					}
+					ItemVariant variant = bottomlessBundleBlockEntity.storage.getResource();
+					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
+					player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
 				});
 			} else {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
+					SingleVariantStorage<ItemVariant> storage = bottomlessBundleBlockEntity.storage;
+					ItemVariant storedVariant = storage.variant;
+					
 					try (Transaction transaction = Transaction.openOuter()) {
-						SingleVariantStorage<ItemVariant> storage = bottomlessBundleBlockEntity.storage;
-						ItemVariant variant = storage.variant;
-						
-						if (variant.isBlank()) {
-							ItemStack handStack = player.getStackInHand(hand);
-							long inserted = storage.insert(ItemVariant.of(handStack), handStack.getCount(), transaction);
-							handStack.decrement((int) inserted);
-							world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+						ItemStack handStack = player.getStackInHand(hand);
+						if (storedVariant.matches(handStack) || storedVariant.isBlank()) {
+							// insert
+							if (!handStack.isEmpty() && handStack.getItem().canBeNested()) {
+								long inserted = storage.insert(ItemVariant.of(handStack), handStack.getCount(), transaction);
+								handStack.decrement((int) inserted);
+								world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+							}
 						} else {
-							long extractedAmount = storage.extract(variant, variant.getItem().getMaxCount(), transaction);
-							player.getInventory().offerOrDrop(variant.toStack((int) extractedAmount));
+							// extract
+							long extractedAmount = storage.extract(storedVariant, storedVariant.getItem().getMaxCount(), transaction);
+							player.getInventory().offerOrDrop(storedVariant.toStack((int) extractedAmount));
 							world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_REMOVE_ONE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}
-						
 						transaction.commit();
 					}
+					
 					bottomlessBundleBlockEntity.markDirty();
 				});
 			}

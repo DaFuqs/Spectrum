@@ -74,6 +74,10 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	
 	int getMinFermentationTimeHours();
 	
+	default boolean isFermentingLongEnoughToTap(long secondsFermented) {
+		return secondsFermented / 60 / 60 >= getMinFermentationTimeHours();
+	}
+	
 	FermentationData getFermentationData();
 
 }

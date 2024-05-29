@@ -16,32 +16,32 @@ import org.joml.*;
 public class SpectrumFluids {
 	
 	// LIQUID CRYSTAL
-	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.Still();
-	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.Flowing();
+	public static final SpectrumFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.Still();
+	public static final SpectrumFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.Flowing();
 	public static final int LIQUID_CRYSTAL_TINT = 0xcbbbcb;
 	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = ColorHelper.colorIntToVec(LIQUID_CRYSTAL_TINT);
 	public static final Identifier LIQUID_CRYSTAL_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/liquid_crystal_overlay.png");
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
 	
 	// MUD
-	public static final FlowableFluid MUD = new MudFluid.StillMud();
-	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
+	public static final SpectrumFluid MUD = new MudFluid.StillMud();
+	public static final SpectrumFluid FLOWING_MUD = new MudFluid.FlowingMud();
 	public static final int MUD_TINT = 0x4e2e0a;
 	public static final Vector3f MUD_COLOR_VEC = ColorHelper.colorIntToVec(MUD_TINT);
 	public static final Identifier MUD_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/mud_overlay.png");
 	public static final float MUD_OVERLAY_ALPHA = 0.995F;
 	
 	// MIDNIGHT SOLUTION
-	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.Still();
-	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.Flowing();
+	public static final SpectrumFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.Still();
+	public static final SpectrumFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.Flowing();
 	public static final int MIDNIGHT_SOLUTION_TINT = 0x11183b;
 	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = ColorHelper.colorIntToVec(MIDNIGHT_SOLUTION_TINT);
 	public static final Identifier MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/midnight_solution_overlay.png");
 	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
 	
 	// DRAGONROT
-	public static final FlowableFluid DRAGONROT = new DragonrotFluid.Still();
-	public static final FlowableFluid FLOWING_DRAGONROT = new DragonrotFluid.Flowing();
+	public static final SpectrumFluid DRAGONROT = new DragonrotFluid.Still();
+	public static final SpectrumFluid FLOWING_DRAGONROT = new DragonrotFluid.Flowing();
 	public static final int DRAGONROT_TINT = 0xe3772f;
 	public static final Vector3f DRAGONROT_COLOR_VEC = ColorHelper.colorIntToVec(DRAGONROT_TINT);
 	public static final Identifier DRAGONROT_OVERLAY_TEXTURE = SpectrumCommon.locate("textures/misc/dragonrot_overlay.png");

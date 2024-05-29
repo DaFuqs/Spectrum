@@ -1,15 +1,9 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -18,7 +12,7 @@ import net.minecraft.world.*;
 
 public class MudFluidBlock extends SpectrumFluidBlock {
 	
-	public MudFluidBlock(FlowableFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public MudFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 	
@@ -30,37 +24,6 @@ public class MudFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
 		return new Pair<>(SpectrumParticleTypes.MUD_POP, SpectrumParticleTypes.MUD_FISHING);
-	}
-	
-	@Override
-	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
-		return SpectrumRecipeTypes.MUD_CONVERTING;
-	}
-	
-	/**
-	 * Entities colliding with mud will get a slowness effect
-	 * and losing their breath far quicker
-	 */
-	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		super.onEntityCollision(state, world, pos, entity);
-		
-		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
-			// the entity is hurt at air == -20 and then reset to air = 0
-			// this way the entity loses its breath way faster, but gets damaged just as slow afterwards
-			if (livingEntity.isSubmergedIn(SpectrumFluidTags.MUD) && world.getTime() % 2 == 0 && livingEntity.getAir() > 0) {
-				livingEntity.setAir(livingEntity.getAir() - 1);
-			}
-			
-			// just check every 20 ticks for performance
-			if (world.getTime() % 20 == 0) {
-				StatusEffectInstance slownessInstance = livingEntity.getStatusEffect(StatusEffects.SLOWNESS);
-				if (slownessInstance == null || slownessInstance.getDuration() < 20) {
-					StatusEffectInstance newSlownessInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 3);
-					livingEntity.addStatusEffect(newSlownessInstance);
-				}
-			}
-		}
 	}
 	
 	@Override

@@ -1,15 +1,10 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -20,7 +15,7 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
 	public static final int LUMINANCE = 11;
 	
-	public LiquidCrystalFluidBlock(FlowableFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 	
@@ -35,32 +30,8 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
-		return SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING;
-	}
-	
-	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return true;
-	}
-	
-	/**
-	 * Entities colliding with liquid crystal will get a slight regeneration effect
-	 */
-	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		super.onEntityCollision(state, world, pos, entity);
-		
-		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
-			// just check every x ticks for performance and slow healing
-			if (world.getTime() % 200 == 0) {
-				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
-				if (regenerationInstance == null) {
-					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-					livingEntity.addStatusEffect(newRegenerationInstance);
-				}
-			}
-		}
 	}
 	
 	@Override

@@ -1,16 +1,10 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.entity.mob.*;
-import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -19,7 +13,7 @@ import net.minecraft.world.*;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	
-	public DragonrotFluidBlock(FlowableFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+	public DragonrotFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
 		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 
@@ -31,37 +25,6 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
 		return new Pair<>(SpectrumParticleTypes.DRAGONROT, SpectrumParticleTypes.DRAGONROT_FISHING);
-	}
-
-	@Override
-	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
-		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
-	}
-	
-	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		super.onEntityCollision(state, world, pos, entity);
-		
-		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
-			// just check every 20 ticks for performance
-			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
-				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 6);
-				} else {
-					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 3);
-				}
-				if (!livingEntity.isDead()) {
-					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
-					if (existingEffect == null || existingEffect.getDuration() < 1000) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
-					}
-					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
-					if (existingEffect == null || existingEffect.getDuration() < 80) {
-						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
-					}
-				}
-			}
-		}
 	}
 	
 	@Override

@@ -127,6 +127,13 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidL
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		super.onEntityCollision(state, world, pos, entity);
+		state.get(LOGGED).onEntityCollision(state, world, pos, entity);
+	}
+	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.getBlockState(pos.up()).isOf(this) || !isValidBlock(world, pos.up())) {
 			return;

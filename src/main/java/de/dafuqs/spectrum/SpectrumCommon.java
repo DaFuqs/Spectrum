@@ -204,6 +204,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemProjectileBehaviors.register();
 		
 		SpectrumEntityColorProcessors.register();
+		SpectrumItemProviders.register();
 		
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();

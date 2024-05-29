@@ -254,8 +254,8 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			9-13: Readonly Gemstone Powder
 			14: Crafting Output
 			15-50: player inventory
-				42-50: player inv 0++ (hotbar)
-				15-41: player inv 9-35 (inventory)
+			42-50: player inv 0++ (hotbar)
+			15-41: player inv 9-35 (inventory)
 		 */
 		ItemStack transferStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);

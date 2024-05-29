@@ -25,32 +25,37 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	
 	public static final Identifier GUIDEBOOK_ID = SpectrumCommon.locate("guidebook");
 	
-	
 	public GuidebookItem(Settings settings) {
 		super(settings);
 	}
+	
+	
+	private static final Set<UUID> alreadyReprocessedPlayers = new HashSet<>();
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
 		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
 		
+		UUID uuid = serverPlayerEntity.getUuid();
+		if (alreadyReprocessedPlayers.contains(uuid)) {
+			return;
+		}
+		alreadyReprocessedPlayers.add(uuid);
+		
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 		
-		// "has advancement" criteria with nonexistent advancements
 		for (Advancement advancement : serverPlayerEntity.getServer().getAdvancementLoader().getAdvancements()) {
-			if (advancement.getId().getNamespace().startsWith(SpectrumCommon.MOD_ID)) {
-				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
-				if (!hasAdvancement.isDone()) {
-					for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
-						CriterionConditions conditions = criterionEntry.getValue().getConditions();
-						if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
-							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(hasAdvancementConditions.getAdvancementIdentifier());
-							if (advancementCriterionAdvancement != null) {
-								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
-								if (hasAdvancementCriterionAdvancement.isDone()) {
-									tracker.grantCriterion(advancement, criterionEntry.getKey());
-								}
+			AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
+			if (!hasAdvancement.isDone()) {
+				for (Map.Entry<String, AdvancementCriterion> criterionEntry : advancement.getCriteria().entrySet()) {
+					CriterionConditions conditions = criterionEntry.getValue().getConditions();
+					if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
+						Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(hasAdvancementConditions.getAdvancementIdentifier());
+						if (advancementCriterionAdvancement != null) {
+							AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
+							if (hasAdvancementCriterionAdvancement.isDone()) {
+								tracker.grantCriterion(advancement, criterionEntry.getKey());
 							}
 						}
 					}

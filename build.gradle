@@ -89,6 +89,7 @@ dependencies {
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 	modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
+	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")
 }
 

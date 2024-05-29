@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
+import de.dafuqs.spectrum.compat.botania.*;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
 import net.fabricmc.loader.api.*;
@@ -36,6 +37,7 @@ public class SpectrumIntegrationPacks {
 	public static final String MYTHIC_METALS_ID = "mythicmetals";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
 	public static final String TRAVELERS_BACKPACK_ID = "travelersbackpack";
+	public static final String BOTANIA_ID = "botania";
 	
 	public static void register() {
 		registerIntegrationPack(AE2_ID, () -> new AE2Compat());
@@ -44,6 +46,7 @@ public class SpectrumIntegrationPacks {
 		//registerIntegrationPack(MYTHIC_METALS_ID, () -> new MythicMetalsCompat());
 		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
 		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
+		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

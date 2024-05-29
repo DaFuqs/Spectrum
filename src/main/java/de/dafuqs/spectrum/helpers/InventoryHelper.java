@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -34,55 +33,52 @@ public class InventoryHelper {
 	public static boolean removeFromInventoryWithRemainders(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
-		} else {
-			Inventory playerInventory = playerEntity.getInventory();
-			List<Pair<Integer, ItemStack>> matchingStacks = new ArrayList<>();
-			int paymentStackItemCount = 0;
-			for (int i = 0; i < playerInventory.size(); i++) {
-				ItemStack currentStack = playerInventory.getStack(i);
-				if (currentStack.getItem().equals(stackToRemove.getItem())) {
-					matchingStacks.add(new Pair<>(i, currentStack));
+		}
+		
+		// count how many we have in the inv
+		Inventory playerInventory = playerEntity.getInventory();
+		List<ItemStack> matchingStacks = new ArrayList<>();
+		int paymentStackItemCount = 0;
+		for (int i = 0; i < playerInventory.size(); i++) {
+			ItemStack currentStack = playerInventory.getStack(i);
+			
+			ItemProvider itemProvider = ItemProviderRegistry.getProvider(currentStack);
+			if (itemProvider == null) {
+				if (ItemStack.areItemsEqual(currentStack, stackToRemove)) {
+					matchingStacks.add(currentStack);
 					paymentStackItemCount += currentStack.getCount();
-
 				}
-				if (currentStack.isOf(SpectrumItems.BOTTOMLESS_BUNDLE) && BottomlessBundleItem.getFirstBundledStack(currentStack).isOf(stackToRemove.getItem())) {
-					matchingStacks.add(new Pair<>(i, currentStack));
-					paymentStackItemCount += BottomlessBundleItem.getStoredAmount(currentStack);
-				}
-				if (paymentStackItemCount >= stackToRemove.getCount()) {
-					break;
-				}
-
-			}
-
-			if (paymentStackItemCount < stackToRemove.getCount()) {
-				return false;
 			} else {
-				int amountToRemove = stackToRemove.getCount();
-				for (Pair<Integer, ItemStack> matchingStack : matchingStacks) {
-					if (matchingStack.getRight().isOf(SpectrumItems.BOTTOMLESS_BUNDLE)) {
-						if (BottomlessBundleItem.getStoredAmount(matchingStack.getRight()) >= amountToRemove) {
-							BottomlessBundleItem.removeBundledStackAmount(matchingStack.getRight(), amountToRemove);
-							amountToRemove = 0; // TODO: hmmmmmm
-							break;
-						} else {
-							amountToRemove -= BottomlessBundleItem.getStoredAmount(matchingStack.getRight());
-							BottomlessBundleItem.removeFirstBundledStack(matchingStack.getRight());
-						}
-					} else if (matchingStack.getRight().getCount() <= amountToRemove) {
-						amountToRemove -= matchingStack.getRight().getCount();
-						playerEntity.getInventory().setStack(matchingStack.getLeft(), ItemStack.EMPTY);
-						if (amountToRemove <= 0) {
-							break;
-						}
-					} else {
-						matchingStack.getRight().decrement(amountToRemove);
-						return true;
-					}
-				}
-				return true;
+				matchingStacks.add(currentStack);
+				paymentStackItemCount += itemProvider.getItemCount(playerEntity, currentStack, stackToRemove.getItem());
+			}
+			
+			if (paymentStackItemCount >= stackToRemove.getCount()) {
+				break;
 			}
 		}
+		
+		// did we find enough?
+		if (paymentStackItemCount < stackToRemove.getCount()) {
+			return false;
+		}
+		
+		// decrement the inventory
+		int amountToRemove = stackToRemove.getCount();
+		for (ItemStack matchingStack : matchingStacks) {
+			ItemProvider itemProvider = ItemProviderRegistry.getProvider(matchingStack);
+			if (itemProvider != null) {
+				amountToRemove -= itemProvider.provideItems(playerEntity, matchingStack, stackToRemove.getItem(), amountToRemove);
+			} else {
+				int currentRemove = Math.min(matchingStack.getCount(), amountToRemove);
+				matchingStack.decrement(currentRemove);
+				amountToRemove -= currentRemove;
+				if (amountToRemove <= 0) {
+					return true;
+				}
+			}
+		}
+		return true;
 	}
 	
 	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {

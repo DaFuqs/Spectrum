@@ -74,9 +74,8 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
-
-		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(),
-				context.getPlayer()))) {
+		
+		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block blockToPlace = targetBlockState.getBlock();
 			Item itemToConsume;
 
@@ -85,8 +84,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				itemToConsume = blockToPlace.asItem();
 				count = Integer.MAX_VALUE;
 			} else {
-				Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, blockToPlace, false,
-						INK_COST_PER_BLOCK);
+				Triplet<Block, Item, Integer> replaceData = countSuitableReplacementItems(player, blockToPlace, false, INK_COST_PER_BLOCK);
 				blockToPlace = replaceData.getA();
 				itemToConsume = replaceData.getB();
 				count = replaceData.getC();
@@ -97,8 +95,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				int maxRange = getRange(player);
 				int range = (int) Math.min(maxRange, player.isCreative() ? maxRange : count);
 				boolean sneaking = player.isSneaking();
-				List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count,
-						range, !sneaking);
+				List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
 				if (targetPositions.isEmpty()) {
 					return ActionResult.FAIL;
 				}
@@ -118,9 +115,8 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 
 		return ActionResult.FAIL;
 	}
-
-	protected static void placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace,
-			Item itemToConsume, Direction side, List<BlockPos> targetPositions) {
+	
+	protected static void placeBlocksAndDecrementInventory(PlayerEntity player, World world, Block blockToPlace, Item itemToConsume, Direction side, List<BlockPos> targetPositions) {
 		int placedBlocks = 0;
 		for (BlockPos position : targetPositions) {
 			// Only place blocks where you are allowed to do so
@@ -128,16 +124,12 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 				continue;
 
 			BlockState originalState = world.getBlockState(position);
-			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock
-					|| (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
-				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world,
-						player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
+			if (originalState.isAir() || originalState.getBlock() instanceof FluidBlock || (originalState.isReplaceable() && originalState.getCollisionShape(world, position).isEmpty())) {
+				BlockState stateToPlace = blockToPlace.getPlacementState(new BuildingStaffPlacementContext(world, player, new BlockHitResult(Vec3d.ofBottomCenter(position), side, position, false)));
 				if (stateToPlace != null && stateToPlace.canPlaceAt(world, position)) {
 					if (world.setBlockState(position, stateToPlace)) {
 						if (placedBlocks == 0) {
-							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(),
-									SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(),
-									stateToPlace.getSoundGroup().getPitch());
+							world.playSound(null, player.getBlockPos(), stateToPlace.getSoundGroup().getPlaceSound(), SoundCategory.PLAYERS, stateToPlace.getSoundGroup().getVolume(), stateToPlace.getSoundGroup().getPitch());
 						}
 						placedBlocks++;
 					}
@@ -147,8 +139,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 
 		if (!player.isCreative()) {
 			InventoryHelper.removeFromInventoryWithRemainders(player, new ItemStack(itemToConsume, placedBlocks));
-			InkPowered.tryDrainEnergy(player, USED_COLOR,
-					(long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
+			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
 		}
 	}
 

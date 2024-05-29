@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
-import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -50,9 +49,10 @@ public class BuildingHelper {
 				int similarCount = playerInventory.count(similarBlockItem);
 				for (int i = 0; i < playerInventory.size(); i++) {
 					ItemStack currentStack = playerInventory.getStack(i);
-					if (currentStack.isOf(SpectrumItems.BOTTOMLESS_BUNDLE)
-							&& BottomlessBundleItem.getFirstBundledStack(currentStack).isOf(similarBlockItem)) {
-						similarCount += BottomlessBundleItem.getStoredAmount(currentStack);
+					
+					ItemProvider itemProvider = ItemProviderRegistry.getProvider(currentStack);
+					if (itemProvider != null) {
+						similarCount += itemProvider.getItemCount(player, currentStack, similarBlockItem);
 					}
 				}
 				if (similarCount > 0) {

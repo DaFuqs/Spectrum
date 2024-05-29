@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -46,12 +47,14 @@ import net.minecraft.client.world.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
+import net.minecraft.world.biome.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -109,10 +112,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				return orig;
 			});
 		});
-		registerCustomItemRenderer("bottomless_bundle", SpectrumItems.BOTTOMLESS_BUNDLE,
-				BottomlessBundleItem.Renderer::new);
-		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR,
-				OmniAcceleratorItem.Renderer::new);
+		registerCustomItemRenderer("bottomless_bundle", SpectrumItems.BOTTOMLESS_BUNDLE, BottomlessBundleItem.Renderer::new);
+		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
@@ -151,8 +152,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			var world = client.world;
 			if (client.getCameraEntity() == null)
 				return;
-
-			var biome = world.getBiome(client.getCameraEntity().getBlockPos());
+			
+			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 			lastSpireTicks = spireTicks;
 
 			if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
@@ -169,9 +170,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		}
 
 		WorldRenderEvents.START.register(context -> HudRenderers.clearItemStackOverlay());
-		WorldRenderEvents.AFTER_ENTITIES
-				.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager)
-						.render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> ((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta()));
 		WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> Pastel.getClientInstance().renderLines(context));
 		WorldRenderEvents.BLOCK_OUTLINE.register(this::renderExtendedBlockOutline);
 
@@ -326,12 +325,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 						itemCountInInventory = playerInventory.count(exchangeBlockItem);
 						for (int i = 0; i < player.getInventory().size(); i++) {
 							var currentStack = playerInventory.getStack(i);
-							if (currentStack.isOf(SpectrumItems.BOTTOMLESS_BUNDLE)
-									&& BottomlessBundleItem.getFirstBundledStack(currentStack).isOf(exchangeBlockItem)
-									&& BottomlessBundleItem.getStoredAmount(currentStack) > 0) {
-								itemCountInInventory += BottomlessBundleItem.getStoredAmount(currentStack);
+							ItemProvider itemProvider = ItemProviderRegistry.getProvider(currentStack);
+							if (itemProvider != null) {
+								itemCountInInventory += itemProvider.getItemCount(player, currentStack, exchangeBlockItem);
 							}
-
 						}
 						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}

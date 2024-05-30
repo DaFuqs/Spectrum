@@ -2,19 +2,23 @@ package de.dafuqs.spectrum.compat.botania;
 
 import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.util.*;
 import vazkii.botania.common.item.*;
 
 public class BotaniaCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
 	
-	//public static Item BLACKEST_LOTUS = new BlackestLotusItem(new FabricItemSettings());
+	public static Item LEAST_BLACK_LOTUS = new LeastBlackLotusItem(new Item.Settings());
+	public static Item BLACKEST_LOTUS = new BlackestLotusItem(new Item.Settings());
 	
 	@Override
 	public void register() {
-		//SpectrumItems.register("blackest_lotus", BLACKEST_LOTUS, DyeColor.BLACK);
+		SpectrumItems.register("least_black_lotus", LEAST_BLACK_LOTUS, DyeColor.BLACK);
+		SpectrumItems.register("blackest_lotus", BLACKEST_LOTUS, DyeColor.BLACK);
 		
 		// registering it late, since Botania might not have been initialized yet
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> ItemProviderRegistry.register(BotaniaItems.blackHoleTalisman, new ItemProvider() {

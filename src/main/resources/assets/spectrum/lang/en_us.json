@@ -1847,6 +1847,11 @@
   "block.spectrum.pure_globette_nether_block": "Pure Nether Gobber Block",
   "block.spectrum.pure_globette_end_block": "Pure End Gobber Block",
 
+  "item.spectrum.least_black_lotus": "Least Black Lotus",
+  "item.spectrum.least_black_lotus.tooltip": "Washed one too many times?",
+  "item.spectrum.blackest_lotus": "Blackest Lotus",
+  "item.spectrum.blackest_lotus.tooltip": "Its magical vibes almost makes you vibe, too",
+
   "block.alloy_forgery.polished_basalt_forge_controller": "Basalt Forge Controller",
   "block.alloy_forgery.polished_calcite_forge_controller": "Calcite Forge Controller",
   "block.alloy_forgery.polished_shale_clay_forge_controller": "Shale-Clay Forge Controller",

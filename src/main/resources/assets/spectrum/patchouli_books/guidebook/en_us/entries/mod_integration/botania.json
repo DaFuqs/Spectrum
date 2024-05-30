@@ -10,6 +10,17 @@
       "text": "You found a plethora of colorful flowers growing around forests and plains in small patches. What's up with those? Definitely worth a look if you haven't tinkered with them already."
     },
     {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus",
+      "item": "spectrum:blackest_lotus",
+      "text": "Overflowing with magical energy"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:least_black_lotus",
+      "text": "This flower definitely lacks its former soul..."
+    },
+    {
       "type": "spectrum:anvil_crushing",
       "title": "Crushing Petals",
       "advancement": "spectrum:place_pedestal",
@@ -61,6 +72,12 @@
       "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
       "item": "botania:enchanted_soil",
       "text": "Enchanted Soil can be harvested using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Providing Building Blocks",
+      "item": "botania:black_hole_talisman",
+      "text": "Constructors and Exchange Staffs can pull blocks from your Black Hole Talisman."
     },
     {
       "type": "patchouli:spotlight",

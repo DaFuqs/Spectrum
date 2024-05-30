@@ -18,9 +18,9 @@ import vazkii.botania.xplat.*;
 
 import java.util.*;
 
-public class BlackestLotusItem extends Item implements ManaDissolvable {
+public class LeastBlackLotusItem extends Item implements ManaDissolvable {
 	
-	public BlackestLotusItem(Settings settings) {
+	public LeastBlackLotusItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -32,7 +32,7 @@ public class BlackestLotusItem extends Item implements ManaDissolvable {
 		
 		BlockPos pos = manaPool.getManaReceiverPos();
 		if (!itemEntity.getWorld().isClient) {
-			manaPool.receiveMana(manaPool.getMaxMana());
+			manaPool.receiveMana(1);
 			EntityHelper.shrinkItem(itemEntity);
 			XplatAbstractions.INSTANCE.sendToTracking(itemEntity, new BotaniaEffectPacket(EffectType.BLACK_LOTUS_DISSOLVE, pos.getX(), pos.getY() + 0.5, pos.getZ()));
 		}
@@ -49,7 +49,7 @@ public class BlackestLotusItem extends Item implements ManaDissolvable {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		
-		tooltip.add(Text.translatable("item.spectrum.blackest_lotus.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.least_black_lotus.tooltip").formatted(Formatting.GRAY));
 	}
 	
 }

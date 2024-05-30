@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -72,6 +73,10 @@ public class BlockBreakerBlock extends RedstoneInteractionBlock implements Block
 			return;
 		}
 		PlayerEntity owner = blockBreakerBlockEntity.getOwnerIfOnline();
+		
+		if (!GenericClaimModsCompat.canBreak(world, breakingPos, owner)) {
+			return;
+		}
 		
 		this.breakBlock(world, breakingPos, owner);
 		

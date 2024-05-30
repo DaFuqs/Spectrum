@@ -366,6 +366,12 @@
       "spectrum:block.ruin.place"
     ]
   },
+  "forfeiture_placed": {
+    "subtitle": "spectrum.subtitles.block.forfeiture.place",
+    "sounds": [
+      "spectrum:block.ruin.place"
+    ]
+  },
   "music.spectrum_theme": {
     "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [

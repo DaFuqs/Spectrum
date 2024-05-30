@@ -27,7 +27,7 @@ public class ForfeitureBlock extends DecayBlock {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		
 		if (!world.isClient) {
-			world.playSound(null, pos, SpectrumSoundEvents.RUIN_PLACED, SoundCategory.BLOCKS, 0.5F, 1.0F);
+			world.playSound(null, pos, SpectrumSoundEvents.FORFEITURE_PLACED, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		} else {
 			Random random = world.getRandom();
 			world.addParticle(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F), 0.05, ((-1.0F + random.nextFloat() * 2.0F) / 12.0F));

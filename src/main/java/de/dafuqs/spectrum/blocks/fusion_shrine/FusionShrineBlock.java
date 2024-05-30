@@ -109,29 +109,29 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	}
 	
 	@Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		if(world.getBlockEntity(pos) instanceof FusionShrineBlockEntity blockEntity) {
+	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if (world.getBlockEntity(pos) instanceof FusionShrineBlockEntity blockEntity) {
 			DefaultedList<ItemStack> inventory = blockEntity.getItems();
 			
 			int i = 0;
-	        float f = 0.0f;
-	        for (int j = 0; j < inventory.size(); ++j) {
-	            ItemStack itemStack = blockEntity.getStack(j);
-	            if (itemStack.isEmpty()) continue;
-	            f += (float)itemStack.getCount() / (float)Math.min(blockEntity.getMaxCountPerStack(), itemStack.getMaxCount());
-	            ++i;
-	        }
-			
-			if (blockEntity.fluidStorage.amount > 0) {
-				f += (float)blockEntity.fluidStorage.amount / (float)blockEntity.fluidStorage.getCapacity();
+			float f = 0.0f;
+			for (int j = 0; j < inventory.size(); ++j) {
+				ItemStack itemStack = blockEntity.getStack(j);
+				if (itemStack.isEmpty()) continue;
+				f += (float) itemStack.getCount() / (float) Math.min(blockEntity.getMaxCountPerStack(), itemStack.getMaxCount());
 				++i;
 			}
 			
-	        return MathHelper.floor(f / ((float) inventory.size() + 1) * 14.0f) + (i > 0 ? 1 : 0);
+			if (blockEntity.fluidStorage.amount > 0) {
+				f += (float) blockEntity.fluidStorage.amount / (float) blockEntity.fluidStorage.getCapacity();
+				++i;
+			}
+			
+			return MathHelper.floor(f / ((float) inventory.size() + 1) * 14.0f) + (i > 0 ? 1 : 0);
 		}
 		
 		return 0;
-    }
+	}
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
@@ -142,52 +142,53 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-		if(!world.isClient) {
+		if (!world.isClient) {
 			// Specially handle fluid items
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if(entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+			if (entity instanceof ItemEntity itemEntity && blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				SingleVariantStorage<FluidVariant> storage = fusionShrineBlockEntity.fluidStorage;
 				ItemStack itemStack = itemEntity.getStack();
-
+				
 				// We're not considering stacked fluid storages for the time being
-				if(itemStack.getCount() == 1) {
+				if (itemStack.getCount() == 1) {
 					Item item = itemStack.getItem();
 					SingleSlotStorage<ItemVariant> slot = new DroppedItemStorage(item, itemStack.getNbt());
 					SingleSlotContainerItemContext ctx = new SingleSlotContainerItemContext(slot);
 					Storage<FluidVariant> fluidStorage = FluidStorage.ITEM.find(itemStack, ctx);
-
-					if(fluidStorage != null) {
+					
+					if (fluidStorage != null) {
 						boolean anyInserted = false;
-						for(StorageView<FluidVariant> view : fluidStorage) {
-							try(Transaction transaction = Transaction.openOuter()) {
+						for (StorageView<FluidVariant> view : fluidStorage) {
+							try (Transaction transaction = Transaction.openOuter()) {
 								FluidVariant variant = view.getResource();
 								long inserted = variant.isBlank() ? 0 : storage.insert(variant, view.getAmount(), transaction);
 								long extracted = fluidStorage.extract(variant, inserted, transaction);
-								if(inserted == extracted && inserted != 0) {
+								if (inserted == extracted && inserted != 0) {
 									anyInserted = true;
 									transaction.commit();
 								}
 							}
 						}
-
-						if(!anyInserted && !storage.getResource().isBlank()) {
-							try(Transaction transaction = Transaction.openOuter()) {
+						
+						if (!anyInserted && !storage.getResource().isBlank()) {
+							try (Transaction transaction = Transaction.openOuter()) {
 								long inserted = fluidStorage.insert(storage.getResource(), storage.getAmount(), transaction);
 								long extracted = storage.extract(storage.getResource(), inserted, transaction);
-								if(inserted == extracted && inserted != 0) {
+								if (inserted == extracted && inserted != 0) {
 									transaction.commit();
 								}
 							}
 						}
-
+						
 						itemEntity.setStack(slot.getResource().toStack(itemStack.getCount()));
+						fusionShrineBlockEntity.inventoryChanged();
 						return;
 					}
 				}
 			}
-
+			
 			// do not pick up items that were results of crafting
-			if(entity.getPos().x % 0.5 != 0 && entity.getPos().z % 0.5 != 0) {
+			if (entity.getPos().x % 0.5 != 0 && entity.getPos().z % 0.5 != 0) {
 				super.onLandedUpon(world, state, pos, entity, fallDistance);
 			}
 		}
@@ -201,23 +202,31 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			return ActionResult.SUCCESS;
 		} else {
 			verifySkyAccess((ServerWorld) world, pos);
-			BlockEntity blockEntity = world.getBlockEntity(pos);
+			
 			// if the structure is valid the player can put / retrieve items and fluids into the shrine
+			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
 				fusionShrineBlockEntity.setOwner(player);
-
+				
 				ItemStack handStack = player.getStackInHand(hand);
-				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)
-				|| (player.isSneaking() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)
-				|| !handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-					fusionShrineBlockEntity.updateInClientWorld();
+				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
+					fusionShrineBlockEntity.inventoryChanged();
+					return ActionResult.CONSUME;
+				}
+				if ((player.isSneaking() || handStack.isEmpty()) && retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
+					fusionShrineBlockEntity.inventoryChanged();
+					return ActionResult.CONSUME;
+				}
+				if (!handStack.isEmpty() && inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
+					fusionShrineBlockEntity.inventoryChanged();
+					return ActionResult.CONSUME;
 				}
 			}
-
+			
 			return ActionResult.CONSUME;
 		}
 	}
-
+	
 	@Override
 	@SuppressWarnings("deprecation")
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

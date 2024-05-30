@@ -61,6 +61,9 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		if (blockEntity instanceof Inventory inventory) {
 			ItemScatterer.spawn(world, pos, inventory);
 			world.updateComparators(pos, block);
+			if (inventory instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
+				inWorldInteractionBlockEntity.inventoryChanged();
+			}
 		}
 	}
 
@@ -71,8 +74,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, null);
 
 			if (remainingStack.getCount() != previousCount) {
-				inWorldInteractionBlockEntity.markDirty();
-				inWorldInteractionBlockEntity.updateInClientWorld();
+				inWorldInteractionBlockEntity.inventoryChanged();
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 			}
 			return remainingStack;
@@ -117,6 +119,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		}
 
 		if (itemsChanged) {
+			blockEntity.inventoryChanged();
 			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 		}
 		return itemsChanged;
@@ -132,6 +135,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		} else {
 			player.getInventory().offerOrDrop(retrievedStack);
 		}
+		blockEntity.inventoryChanged();
 		world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 		return true;
 	}
@@ -151,6 +155,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		if (remainingStack.getCount() != previousCount) {
 			player.setStackInHand(hand, remainingStack);
 			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			blockEntity.inventoryChanged();
 			return true;
 		}
 		return false;

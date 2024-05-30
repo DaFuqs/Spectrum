@@ -19,6 +19,10 @@
         "multiblock_identifier": "spectrum:pedestal_complex_structure_without_moonstone_check"
       }
     },
+    "built_complete_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:pedestal_complex_structure_check" }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
@@ -26,6 +30,15 @@
       }
     }
   },
+   "requirements":[
+    [
+      "built_structure",
+      "built_complete_structure"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ],
   "rewards": {
     "experience": 500
   }

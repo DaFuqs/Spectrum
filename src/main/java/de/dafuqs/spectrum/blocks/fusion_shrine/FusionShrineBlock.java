@@ -54,22 +54,33 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		}
 	}
 	
-	public static boolean verifySkyAccess(ServerWorld world, BlockPos blockPos) {
-		if (!world.getBlockState(blockPos.up()).isAir()) {
-			world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, blockPos.up().toCenterPos(), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
+	public static boolean verifySkyAccess(ServerWorld world, BlockPos shrinePos) {
+		if (!world.getBlockState(shrinePos.up()).isAir()) {
+			world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, shrinePos.up().toCenterPos(), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
 			return false;
 		}
-		// getTopY() returns the topmost "air" block, so we have to subtract 1 to get the first solid block
+		
+		// getTopY() returns the topmost "air" block
 		// which may or may not be the pos of the Fusion Shrine
-		int topY = world.getTopY(Heightmap.Type.WORLD_SURFACE, blockPos.getX(), blockPos.getZ()) - 1;
-		if (topY == blockPos.getY()) {
+		// we search down until we find the shrine itself or a non-opaque block
+		int topY = world.getTopY(Heightmap.Type.WORLD_SURFACE, shrinePos.getX(), shrinePos.getZ());
+		BlockPos.Mutable mutablePos = new BlockPos.Mutable(shrinePos.getX(), topY, shrinePos.getZ());
+		for (int y = topY; y > shrinePos.getY(); y--) {
+			mutablePos.setY(y - 1);
+			BlockState posState = world.getBlockState(mutablePos);
+			if (posState.getOpacity(world, mutablePos) > 0) {
+				break;
+			}
+		}
+		
+		if (mutablePos.getY() == shrinePos.getY()) {
 			return true;
 		}
 		
-		SpectrumS2CPacketSender.playParticleWithExactVelocity(world, new Vec3d(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 1, new Vec3d(0, 0.5, 0));
-		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, new Vec3d(blockPos.getX() + 0.5, topY + 0.5, blockPos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
-		world.playSound(null, blockPos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		SpectrumS2CPacketSender.playParticleWithExactVelocity(world, new Vec3d(shrinePos.getX() + 0.5, shrinePos.getY() + 1, shrinePos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 1, new Vec3d(0, 0.5, 0));
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, new Vec3d(shrinePos.getX() + 0.5, topY - 0.5, shrinePos.getZ() + 0.5), SpectrumParticleTypes.RED_SPARKLE_RISING, 8, Vec3d.ZERO, new Vec3d(0.1, 0.1, 0.1));
+		world.playSound(null, shrinePos, SpectrumSoundEvents.USE_FAIL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 		return false;
 	}
 	

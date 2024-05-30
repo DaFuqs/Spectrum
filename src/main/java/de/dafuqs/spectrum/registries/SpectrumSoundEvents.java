@@ -119,6 +119,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent FADING_PLACED = register("fading_placed");
 	public static final SoundEvent FAILING_PLACED = register("failing_placed");
 	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
+	public static final SoundEvent FORFEITURE_PLACED = register("forfeiture_placed");
 	
 	public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
 	public static final SoundEvent SQUEAKER = register("squeaker");

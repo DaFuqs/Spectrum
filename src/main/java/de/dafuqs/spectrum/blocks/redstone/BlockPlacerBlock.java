@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -60,7 +61,11 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 			Direction facing = pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing();
 			BlockPos placementPos = pointer.getPos().offset(facing);
             Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
-
+			
+			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, null)) {
+				return;
+			}
+			
 			try {
 				blockItem.place(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
 				world.syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pointer.getPos(), 0);

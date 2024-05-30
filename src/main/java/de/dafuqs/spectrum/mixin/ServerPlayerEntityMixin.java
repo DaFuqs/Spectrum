@@ -61,22 +61,20 @@ public abstract class ServerPlayerEntityMixin {
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
 	public void spectrum$damageReturn(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		ServerWorld world = this.getServerWorld();
-		if (!world.isClient) {
-			// true if the entity got hurt
-			if (cir.getReturnValue() != null && cir.getReturnValue()) {
-				if (source.getAttacker() instanceof LivingEntity livingSource) {
-					ServerPlayerEntity thisPlayer = (ServerPlayerEntity) (Object) this;
-					
-					int disarmingLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack(), livingSource);
-					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers) {
-						DisarmingEnchantment.disarmPlayer(thisPlayer);
-					}
-					
-					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
-					if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
-						GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());
-						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
-					}
+		
+		// true if the entity got hurt
+		if (cir.getReturnValue() != null && cir.getReturnValue()) {
+			ServerPlayerEntity thisPlayer = (ServerPlayerEntity) (Object) this;
+			Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
+			if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
+				GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());
+				this.spectrum$lastGleamingPinTriggerTick = world.getTime();
+			}
+			
+			if (source.getAttacker() instanceof LivingEntity livingSource) {
+				int disarmingLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack(), livingSource);
+				if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers) {
+					DisarmingEnchantment.disarmEntity(thisPlayer);
 				}
 			}
 		}

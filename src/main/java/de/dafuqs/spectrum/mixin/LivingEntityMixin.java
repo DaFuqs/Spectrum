@@ -232,16 +232,18 @@ public abstract class LivingEntityMixin {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
 		
+		LivingEntity living = (LivingEntity) (Object) this;
+		
 		if (amount <= 0
 				|| source.isIn(SpectrumDamageTypeTags.BYPASSES_DIKE)
 				|| this.blockedByShield(source)
-				|| ((Entity) (Object) this).isInvulnerableTo(source)
-				|| source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+				|| living.isInvulnerableTo(source)
+				|| (source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE))) {
 			
 			return amount;
 		}
 		
-		return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
+		return AzureDikeProvider.absorbDamage(living, amount);
 	}
 
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
@@ -251,9 +253,10 @@ public abstract class LivingEntityMixin {
 			// Disarming does not trigger when dealing damage to enemies using thorns
 			if (!source.isOf(DamageTypes.THORNS)) {
 				if (source.getAttacker() instanceof LivingEntity livingSource && SpectrumEnchantments.DISARMING.canEntityUse(livingSource)) {
+					
 					int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
 					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelMobs) {
-						DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this, this.syncedArmorStacks);
+						DisarmingEnchantment.disarmEntity((LivingEntity) (Object) this);
 					}
 				}
 			}

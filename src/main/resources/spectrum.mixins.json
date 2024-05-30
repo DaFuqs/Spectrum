@@ -75,6 +75,7 @@
     "accessors.FoxEntityAccessor",
     "accessors.GoatHornItemAccessor",
     "accessors.MapStateAccessor",
+    "accessors.MobEntityAccessor",
     "accessors.MooshroomEntityAccessor",
     "accessors.PersistentProjectileEntityAccessor",
     "accessors.ProjectileAttackGoalAccessor",
@@ -92,6 +93,7 @@
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
+
     "client.AbstractClientEntityMixin",
     "client.BackgroundRendererMixin",
     "client.BipedEntityModelMixin",

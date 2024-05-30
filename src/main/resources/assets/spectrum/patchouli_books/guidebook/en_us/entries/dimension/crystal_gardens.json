@@ -33,7 +33,7 @@
       "type": "patchouli:text",
       "title": "Nephrite Blossoms",
       "advancement": "spectrum:hidden/collect_glass_peach",
-      "text": "Little trees, as big as they get down here - more like a big bush. ...or giant shrub.$(br)Eeeeh, details.$(br2)Their fruit isn't made of glass, but it shimmers very much as if it is. They are very tasty too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which reduces the damage you take from hard attacks. They can also be $(l:cuisine/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew potions$()."
+      "text": "Little trees, as big as they get down here - more like a big bush. ...or giant shrub.$(br)Eeeeh, details.$(br2)Their fruit isn't made of glass, but it shimmers very much as if it is. They are very tasty too.$(br)Eating one may give you a short burst of $(thing)Toughness$(), which reduces the damage you take from hard attacks. They can also be $(l:cuisine/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew potions$()."
     },
     {
       "type": "patchouli:spotlight",

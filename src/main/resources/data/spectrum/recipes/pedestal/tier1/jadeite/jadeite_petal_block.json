@@ -22,5 +22,6 @@
     "item": "spectrum:jadeite_petal_block",
     "count": 1
   },
-  "required_advancement": "spectrum:hidden/collect_jadeite"
+  "required_advancement": "spectrum:hidden/collect_jadeite",
+  "disable_yield_upgrades": true
 }

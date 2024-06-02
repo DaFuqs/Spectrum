@@ -88,9 +88,9 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         weatherTicks++;
 
         updateAshEffects(time, random);
-        updateAquiferSaturation((float) time);
-        updateAquiferFill(season, period);
-        updateWeatherTransitions(season, period, time, random);
+        //updateAquiferSaturation((float) time);
+        //updateAquiferFill(season, period);
+        //updateWeatherTransitions(season, period, time, random);
 
         if (dirty) {
             dirty = false;
@@ -216,7 +216,7 @@ public final class DDWorldEffectsComponent implements CommonTickingComponent, Au
         if (cameraEntity != null) {
             var maxAsh = ashSpawns / (SpectrumCommon.CONFIG.ReducedParticles ? 2 : 1);
             spawnHowlingSpiresAsh(cameraEntity, maxAsh, random, clientWorld);
-            spawnPrecipitation(cameraEntity, random, clientWorld);
+            //spawnPrecipitation(cameraEntity, random, clientWorld);
         }
 
 

@@ -1161,7 +1161,7 @@ public class SpectrumBlocks {
 	
 	// CRYSTALLARIEUM
 	private static Settings crystallarieumGrowable(Block baseBlock) {
-		return settings(baseBlock.getDefaultMapColor(), baseBlock.getSoundGroup(baseBlock.getDefaultState()), 1.5F).solid().pistonBehavior(PistonBehavior.DESTROY).requiresTool().nonOpaque();
+		return FabricBlockSettings.copyOf(baseBlock).strength(1.5F).nonOpaque().solid().requiresTool().pistonBehavior(PistonBehavior.DESTROY);
 	}
 	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(crystallarieumGrowable(Blocks.COAL_BLOCK), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);

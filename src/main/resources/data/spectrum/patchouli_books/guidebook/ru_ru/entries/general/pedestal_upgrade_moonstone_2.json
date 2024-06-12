@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Spectrum Palace",
+      "name": "Спектральный Фокус",
       "multiblock_id": "spectrum:pedestal_complex_structure_check",
       "enable_visualize": true,
       "text": "Размеры: 13x13x7 blocks"

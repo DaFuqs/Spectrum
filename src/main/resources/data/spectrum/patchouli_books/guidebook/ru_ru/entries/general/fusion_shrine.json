@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "spectrum:collection",
-      "title": "Fusion Shrine",
+      "title": "Святыня Слияния",
       "items": [
         "spectrum:fusion_shrine_basalt",
         "spectrum:fusion_shrine_calcite"

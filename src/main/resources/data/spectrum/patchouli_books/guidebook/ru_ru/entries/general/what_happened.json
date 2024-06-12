@@ -13,7 +13,7 @@
     },
     {
       "type": "spectrum:checklist",
-      "title": "Where to look",
+      "title": "Куда смотреть?",
       "checklist": {
         "spectrum:lategame/find_forgotten_city": "Было ли место под бедроком обитаемым?",
         "spectrum:lategame/reached_dd_floor": "Теперь, когда Бедрок больше не является дном, что же здесь можно найти?",

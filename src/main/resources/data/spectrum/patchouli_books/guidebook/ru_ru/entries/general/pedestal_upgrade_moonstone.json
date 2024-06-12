@@ -11,13 +11,13 @@
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Moonstone Pedestal",
+      "title": "Лунокаменный Пьедестал",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
       "text": "Улучшите свой $(l:general/pedestal)Пигментный Пьедестал$() используя добытые $(l:general/shards#moonstone)Осколоки Лунокамня$()."
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Spectrum Palace",
+      "name": "Спектральный Фокус",
       "multiblock_id": "spectrum:pedestal_complex_structure_without_moonstone_check",
       "enable_visualize": true,
       "text": "Размеры: 13x13x7 блоков"

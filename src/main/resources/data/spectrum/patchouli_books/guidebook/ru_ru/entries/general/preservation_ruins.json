@@ -57,9 +57,9 @@
       "title": "Сколько их всего?",
       "advancement": "spectrum:hidden/solve_any_preservation_ruin",
       "checklist": {
-        "spectrum:solve_color_mixing_preservation_ruin": "Preservation Ruin #1",
-        "spectrum:solve_dike_gate_preservation_ruin": "Preservation Ruin #2",
-        "spectrum:solve_wireless_redstone_preservation_ruin": "Preservation Ruin #3"
+        "spectrum:solve_color_mixing_preservation_ruin": "Сохраненные Руины #1",
+        "spectrum:solve_dike_gate_preservation_ruin": "Сохраненные Руины #2",
+        "spectrum:solve_wireless_redstone_preservation_ruin": "Сохраненные Руины #3"
       },
       "text": "Они представлены в разных вариантах. В каждой из них вы столкнетесь с разными трудностями."
     },

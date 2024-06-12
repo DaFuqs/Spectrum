@@ -51,10 +51,10 @@
         "spectrum:hidden/collect_pigment/collect_black_pigment": "$(c_black)Чёрный",
         "spectrum:hidden/collect_pigment/collect_blue_pigment": "$(c_blue)Синий",
         "spectrum:hidden/collect_pigment/collect_brown_pigment": "$(c_brown)Коричневый",
-        "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)Голубой",
+        "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)Бирюзовый",
         "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)Серый",
         "spectrum:hidden/collect_pigment/collect_green_pigment": "$(c_green)Зелёный",
-        "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)светло-синий",
+        "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)Голубой",
         "spectrum:hidden/collect_pigment/collect_light_gray_pigment": "$(c_light_gray)Светло-серый",
         "spectrum:hidden/collect_pigment/collect_lime_pigment": "$(c_lime)Лаймовый",
         "spectrum:hidden/collect_pigment/collect_magenta_pigment": "$(c_magenta)Пурпурный",
@@ -114,7 +114,7 @@
       "anchor": "light_blue",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "spectrum:light_blue_pigment",
-      "text": "Глядя на этот цвет, испытываешь чувство оптимизма, но в то же время и отрешенности.$(br2)$(c_light_blue)светло-синий$() символизирует $(italic)Удачу$() и $(italic)Мир$()."
+      "text": "Глядя на этот цвет, испытываешь чувство оптимизма, но в то же время и отрешенности.$(br2)$(c_light_blue)Голубой$() символизирует $(italic)Удачу$() и $(italic)Мир$()."
     },
     {
       "type": "patchouli:spotlight",

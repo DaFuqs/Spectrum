@@ -145,6 +145,7 @@
   "spectrum.gui.lexicon.reveal_hint_button.text": "Узнать Подсказку    ",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Заплати небольшой взнос за подсказку",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "У вас нет необходимого предмета в инвентаре",
+  "container.spectrum.owned_by_player": " %s",
   "container.spectrum.rei.pedestal_crafting.title": "Создание в Пьедестале",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f секунд - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f секунд - %f XP",

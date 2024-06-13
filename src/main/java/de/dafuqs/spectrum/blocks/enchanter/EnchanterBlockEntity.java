@@ -465,7 +465,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 
 		// if there is room: place the output on the table
 		// otherwise: pop it off
-		ItemStack resultStack = enchanterRecipe.getOutput(world.getRegistryManager()).copy();
+		ItemStack resultStack = enchanterRecipe.craft(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world.getRegistryManager()).copy();
 		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
 
 		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD) != 1.0) {

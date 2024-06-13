@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
@@ -8,7 +9,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.predicate.world.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -195,8 +195,9 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		ItemStack firstStack = ItemStack.EMPTY;
 		
 		int maxAmount = 1;
-		if (!getOutput(world.getRegistryManager()).isEmpty()) {
-			maxAmount = getOutput(world.getRegistryManager()).getMaxCount();
+		ItemStack output = craft(fusionShrineBlockEntity, world.getRegistryManager());
+		if (!output.isEmpty()) {
+			maxAmount = output.getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
@@ -229,8 +230,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 		}
-		
-		ItemStack output = getOutput(world.getRegistryManager()).copy();
+
 		if (this.copyNbt) {
 			// this overrides all nbt data, that are not nested compounds (like lists)
 			NbtCompound sourceNbt = firstStack.getNbt();
@@ -239,7 +239,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				sourceNbt.remove(ItemStack.DAMAGE_KEY);
 				output.setNbt(sourceNbt);
 				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(world.getRegistryManager()), firstStack);
+				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output.copy(), false, false, output, firstStack);
 			}
 		}
 		
@@ -282,7 +282,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
-		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
+		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(stack, intExperience);
 	}
 	
 	public boolean shouldPlayCraftingFinishedEffects() {

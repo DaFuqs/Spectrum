@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -74,8 +74,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
+	@Deprecated
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return getDefaultTap(1).copy();
 	}
 	
 	public ItemStack getPreviewTap(int timeMultiplier) {

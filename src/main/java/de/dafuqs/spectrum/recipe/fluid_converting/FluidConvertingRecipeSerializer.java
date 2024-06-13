@@ -38,8 +38,8 @@ public class FluidConvertingRecipeSerializer<R extends FluidConvertingRecipe> im
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		recipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		recipe.input.write(packetByteBuf);
+		packetByteBuf.writeItemStack(recipe.output);
 	}
 	
 	@Override

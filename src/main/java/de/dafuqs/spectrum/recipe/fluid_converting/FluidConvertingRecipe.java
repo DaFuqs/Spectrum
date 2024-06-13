@@ -12,18 +12,18 @@ import org.jetbrains.annotations.*;
 
 public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
 	
-	protected final Ingredient inputIngredient;
-	protected final ItemStack outputItemStack;
+	protected final Ingredient input;
+	protected final ItemStack output;
 	
-	public FluidConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public FluidConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, @NotNull Ingredient input, ItemStack output) {
 		super(id, group, secret, requiredAdvancementIdentifier);
-		this.inputIngredient = inputIngredient;
-		this.outputItemStack = outputItemStack;
+		this.input = input;
+		this.output = output;
 	}
 	
 	@Override
 	public boolean matches(@NotNull Inventory inv, World world) {
-		return this.inputIngredient.test(inv.getStack(0));
+		return this.input.test(inv.getStack(0));
 	}
 	
 	@Override
@@ -38,13 +38,13 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		return outputItemStack.copy();
+		return output;
 	}
 	
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.inputIngredient);
+		defaultedList.add(this.input);
 		return defaultedList;
 	}
 	

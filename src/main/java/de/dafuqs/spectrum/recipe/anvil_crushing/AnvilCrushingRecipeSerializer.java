@@ -49,8 +49,8 @@ public class AnvilCrushingRecipeSerializer implements GatedRecipeSerializer<Anvi
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		recipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		recipe.input.write(packetByteBuf);
+		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.crushedItemsPerPointOfDamage);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeIdentifier(recipe.particleEffectIdentifier);

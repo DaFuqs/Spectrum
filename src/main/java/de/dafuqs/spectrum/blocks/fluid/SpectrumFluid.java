@@ -101,16 +101,16 @@ public abstract class SpectrumFluid extends FlowableFluid {
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 						
-						ItemStack result = recipe.getOutput(world.getRegistryManager());
-						int count = recipe.getOutput(world.getRegistryManager()).getCount() * itemStack.getCount();
+						ItemStack result = craft(recipe, itemStack, world);
+						int count = result.getCount() * itemStack.getCount();
 						result.setCount(count);
 						
 						if (itemEntity.getOwner() instanceof ServerPlayerEntity serverPlayerEntity) {
 							SpectrumAdvancementCriteria.FLUID_DIPPING.trigger(serverPlayerEntity, (ServerWorld) world, pos, itemStack, result);
 						}
-						
-						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), result, count, Vec3d.ZERO, false, itemEntity.getOwner());
+
 						itemEntity.discard();
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), result, count, Vec3d.ZERO, false, itemEntity.getOwner());
 					}
 				}
 			}
@@ -124,6 +124,11 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	public <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull World world, ItemStack itemStack) {
 		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
 		return world.getRecipeManager().getFirstMatch(recipeType, AUTO_INVENTORY, world).orElse(null);
+	}
+	
+	public ItemStack craft(FluidConvertingRecipe recipe, ItemStack itemStack, World world) {
+		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
+		return recipe.craft(AUTO_INVENTORY, world.getRegistryManager());
 	}
 
 }

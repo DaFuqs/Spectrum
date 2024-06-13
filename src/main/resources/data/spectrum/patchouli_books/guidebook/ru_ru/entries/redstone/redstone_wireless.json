@@ -1,0 +1,22 @@
+{
+  "name": "Беспроводной Редстоун",
+  "advancement": "spectrum:create_onyx_shard",
+  "icon": "spectrum:redstone_wireless",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_wireless": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_wireless",
+      "text": "Резонанс усиливается $(l:general/shards#onyx)ониксом$(/l) до такой степени, что при наличии подходящего приемника его можно измерить даже сквозь стены.$(br)Основываясь на ваших предыдущих экспериментах с осколками драгоценных камней, вам было легко разработать такие системы передатчиков и приемников."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier2/redstone_wireless",
+      "text": "Используйте с пустой рукой для переключения режима отправки/приема. В режиме приема выход направленный. Измените частоту с помощью красителя/пигмента. Радиус: 16 блоков."
+    }
+  ]
+}

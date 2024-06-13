@@ -1,0 +1,18 @@
+{
+  "name": "Взаимодей. с Редст-м",
+  "icon": "minecraft:redstone",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "priority": true,
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Когда вы дадите $(item)Пастьельному Узлу$() $(thing)Редстоун Сигнал$(), он теряет связь с подключенным инвентарем."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)$(l:pastel_network/gather_node)Узел Сбора$(/l) перестанет запрашивать предметы$(br)$(li)$(l:pastel_network/provider_node)Узел Снабжения$(/l) не имеют возможности давать свои предметы$(br)$(li)$(l:pastel_network/sender_node)Узел Отправки$(/l) перестанут опустошать свои запасы$(br)$(li)$(l:pastel_network/storage_node)Узел Хранения$(/l) не смогут принимать и предлагать свои предметы"
+    }
+  ]
+}

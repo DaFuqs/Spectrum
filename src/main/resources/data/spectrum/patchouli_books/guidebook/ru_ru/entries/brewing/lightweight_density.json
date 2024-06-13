@@ -1,0 +1,19 @@
+{
+  "name": "Олегчённость / Скученность",
+  "advancement": "spectrum:hidden/status_effects/lightweight_density",
+  "icon": "minecraft:feather",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:lightweight",
+      "text": "С каждым уровнем вы становитесь $(thing)немного легче.$() Вы заметили, что можете прыгать дальше и падать медленнее.$(br)На больших уровнях вы больше не получаете $(thing)урон от падения$()."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:density",
+      "text": "С каждым уровнем вы становитесь$(thing)тяжелее$(), Не позволяя вам совершать длинные прыжки и получать повышенный урон от падения."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Кольцо Стремления",
+  "advancement": "spectrum:unlocks/trinkets/ring_of_pursuit",
+  "icon": "spectrum:ring_of_pursuit",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:ring_of_pursuit": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Копание в шахтах - это ваша игра. Почти чудо, что вам только сейчас пришла в голову идея улучшить не только свои инструменты, но и мастерство добычи в целом. Это кольцо будет улучшаться вместе с вашими способностями."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
+      "text": "Добавьте им $(l:magic/ink)Пурпурной Краски$(/l) в $(l:magic/color_picker)Сборщике Красок$() чтобы увеличить вашу скорость копания."
+    }
+  ]
+}

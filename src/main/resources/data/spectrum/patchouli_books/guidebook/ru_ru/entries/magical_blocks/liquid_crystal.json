@@ -1,0 +1,51 @@
+{
+  "name": "Жидкие Кристаллы",
+  "advancement": "spectrum:unlocks/blocks/liquid_crystal",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "turnin": "spectrum:midgame/enter_liquid_crystal",
+  "extra_recipe_mappings": {
+    "spectrum:liquid_crystal_bucket": 0,
+    "spectrum:blazing_crystal": 0,
+    "spectrum:frostbite_crystal": 0,
+    "spectrum:resonant_lily": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Жидкие Кристаллы",
+      "item": "spectrum:liquid_crystal_bucket",
+      "text": "Чистая энергия драгоценных камней в жидкой форме. Считается, что она обладает целительным эффектом."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
+      "text": "Сочетание его с различными другими жидкостями позволяет получить всевозможные интересные на вид материалы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:clay",
+      "text": "В результате столкновения жидкого кристалла с $(l:magical_blocks/mud)Жидкой Грязь$() создаётся $(item)Глина$()! Наверняка есть еще много комбинаций, которые можно открыть!$(br2)$(italic)Томас никогда раньше не видел такого дисбаланса.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:blazing_crystal",
+      "text": "Если позволить полному блоку жидкого кристалла поглотить огромное количество тепла лавы, в результате получится это.$(br)Почти что $(item)Блок Магмы$(), только гораздо горячее."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "item": "spectrum:frostbite_crystal",
+      "text": "Когда $(item)Вода$() пыталась стечь в полный блок жидкого кристалла, кристалл застывал.$(br)Поскольку даже легкого прикосновения было достаточно, чтобы вызвать холодную дрожь, вы назвали его Морозный Кристалл."
+    },
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "advancement": "spectrum:midgame/collect_resonant_lily",
+      "anchor": "resonant_lily",
+      "recipe": "spectrum:liquid_crystal_converting/resonant_lily",
+      "text": "Это очень интересно. Когда $(item)Цветы$() питывают эту волшебную жидкость через корни, они превращаются в те самые недоступные растения."
+    }
+  ]
+}

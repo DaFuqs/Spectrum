@@ -1,0 +1,63 @@
+{
+  "name": "Святыня Слияния",
+  "icon": "spectrum:fusion_shrine_basalt",
+  "sortnum": 10,
+  "advancement": "spectrum:unlocks/blocks/fusion_shrine",
+  "turnin": "spectrum:build_fusion_shrine",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Святыня Слияния",
+      "items": [
+        "spectrum:fusion_shrine_basalt",
+        "spectrum:fusion_shrine_calcite"
+      ],
+      "text": "Для процесса создания $(l:general/onyx_shards)Черных Осколков$() вы разработали специальную конструкцию.$(br2)Вы можете нажимать на нее или бросать на нее предметы и ведра. Вы даже можете обрабатывать целые стаки ингредиентов одновременно, что делает процесс гораздо более эффективным, чем при использовании одного предмета за цикл. Это будет очень полезно для рецептов, которые можно создать только в $(l:general/onyx_shards)определенный промежуток времени$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пъедестале",
+      "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
+      "text": "Можно создать используя $(item)Кальцит$() или $(item)Базальт$().$(br)Требуется четкая структура фокусировки и четкий вид на небо."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Структура Святыни",
+      "multiblock_id": "spectrum:fusion_shrine_structure",
+      "enable_visualize": true,
+      "text": "Размеры: 9x9x5 Блоков."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список Блоков",
+      "text": "$(li)1 Святыня Слияния$(li)4 Блока Полированных Драгоценных Камней$(li)4 Полированных Резных Блоков$(li)8 Полированных Колонн$(li)12 Полированных Плит$(li)77 Полированных Блока$(br2)Как всегда, вы можете менять $(item)Базальт$() на $(item)Кальцит$() И использовать $(l:decoration/gemstone_storage_blocks)Драгоценные Блоки$(/l) на свой вкус."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Изменение погоды",
+      "text": "Вы разработали структуру для Святыни Слияния, чтобы объединить магическую юнергию $(c_cyan)Материи$(), $(c_magenta)Времени$() и $(c_yellow)Энергии$() и сфокусировать их в одной центральной точке - в самой Святыни Слияния.$(br2)Этого пучка энергии, похоже, хватит даже на то, чтобы изменить погоду."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Солнечная погода",
+      "recipe": "spectrum:fusion_shrine/weather/weather_clear",
+      "text": "$(italic)Новый день светит ярко,$(br)Солнце с неба воссияло.$(br)Поют птицы, но грустно,$(br)Что скоро ты умрешь, друг мой."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Дождливая погода",
+      "advancement": "spectrum:unlocks/weather/weather_rain",
+      "recipe": "spectrum:fusion_shrine/weather/weather_rain",
+      "text": "$(italic)Тук-тук.$(br)Кто там?$(br)Кажется…$(br)Кажется что?$(br)Кажется, дождь собирается."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Гроза",
+      "advancement": "spectrum:unlocks/weather/weather_thunder",
+      "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
+      "text": "$(italic)Почему Бог Грома пил воду?$(br2)Иначе ему ГРОЗИЛО иссушение"
+    }
+  ]
+}

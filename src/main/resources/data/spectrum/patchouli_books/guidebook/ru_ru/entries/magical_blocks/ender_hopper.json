@@ -1,0 +1,23 @@
+{
+  "name": "Эндер-Воронка",
+  "advancement": "spectrum:unlocks/blocks/ender_blocks",
+  "icon": "spectrum:ender_hopper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_hopper": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ender Hopper",
+      "item": "spectrum:ender_hopper",
+      "text": "Разработанный как обычная воронка по форме и функциям, Эндер-Воронка обладает особой способностью помещать предметы прямо в ваш $(item)Эндер-Сундук$(). является копией $(l:magical_blocks/ender_dropper)Эндер-Раздатчика$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/ender_hopper",
+      "text": "Эндер-Воронка работает только тогда, когда вы находитесь онлайн."
+    }
+  ]
+}

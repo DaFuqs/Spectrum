@@ -1,0 +1,29 @@
+{
+  "name": "Углубляясь вниз",
+  "icon": "minecraft:bedrock",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/open_deeper_down_portal",
+  "turnin": "spectrum:midgame/enter_dimension",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Углубляясь вниз",
+      "item": "minecraft:bedrock",
+      "text": "Вы и подумать не могли, что такое возможно. Когда вы прорывались все глубже и глубже сквозь бедрок, открылся темный портал. Куда он ведет? Есть только один способ узнать это.$(br)$(italic)И все же вы не можете избавиться от комка в горле..."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/enter_dimension",
+      "title": "Глубинные Низины",
+      "text": "Место, где уже много веков не было ни одного луча солнца. Место, где никогда не светит солнце, окутано тьмой.$(br2)Что же ждет вас там, внизу?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:__todo/monstrosity",
+      "title": "Ужасы под землей?",
+      "text": "Вы уверены, что в темноте вас что-то ждёт. Или это просто ваши нервы?"
+    }
+  ]
+}

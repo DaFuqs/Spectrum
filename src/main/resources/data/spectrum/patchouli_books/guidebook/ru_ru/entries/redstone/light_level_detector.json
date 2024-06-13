@@ -1,0 +1,22 @@
+{
+  "name": "Датчик Уровня Света",
+  "advancement": "spectrum:unlocks/redstone/light_level_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:light_level_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Датчик Уровня Света",
+      "text": "$(item)Датчик дневного света$() неточны, когда дело доходит до измерения света: используемый $(item)незерный кварц $() настолько грубо обработан, что только солнечный свет может надежно срабатывать на детектор.$(br)Аметист, сформированный пигментным пьедесталом, гораздо более чувствителен к измерению света. Даже тусклое свечение $(item)Факела$() достаточно для получения приличной силы."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/detectors/light_level_detector",
+      "text": "Детектор уровня освещенности реагирует не только на солнечный свет, но и способен улавливать другие источники света, например, блоки, излучающие свет."
+    }
+  ]
+}

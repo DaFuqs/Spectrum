@@ -1,0 +1,21 @@
+{
+  "name": "Посох Памяти",
+  "advancement": "spectrum:unlocks/items/staff_of_remembrance",
+  "icon": "spectrum:staff_of_remembrance",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:staff_of_remembrance": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Один, чтобы править всеми$()$(br)…ну, разумеется, конечно.$(br2)Посох памяти позволит вам с легкостью перемещать животных как на короткие, так и на дальние расстояния."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier4/staff_of_remembrance",
+      "text": "Нажмите на животных, чтобы собрать их в $(l:creating_life/memories)Память$()."
+    }
+  ]
+}

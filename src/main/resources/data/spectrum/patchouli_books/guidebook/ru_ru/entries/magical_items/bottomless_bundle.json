@@ -1,0 +1,49 @@
+{
+  "name": "Бездонный Мешок",
+  "advancement": "spectrum:unlocks/items/bottomless_bundle",
+  "icon": "spectrum:bottomless_bundle",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:bottomless_bundle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottomless_bundle",
+      "text": "В своих путешествиях по миру вы собираете множество одинаковых блоков, которые вам больше никогда не понадобятся. Но они слишком хороши, чтобы их выбрасывать, думаете вы.$(br)Пришло время разработать решение для хранения, которое решит вашу маленькую домашнюю проблему: $(br)Бездонный Мешок хранит практически неограниченное количество предметов, но только одного типа."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier2/bottomless_bundle",
+      "text": "Щелкните правой кнопкой мыши на стаке или пустых слотах в инвентаре, чтобы заполнить / опустошить их."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Автоматизиация",
+      "images": [
+        "spectrum:textures/gui/guidebook/bottomless_bundle_automation.png"
+      ],
+      "text": "Крадучись, он ставится на землю, что позволяет автоматически наполнять/опустошать его."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "",
+      "text": "Размещенный Бездонный Мешок всегда будет помнить о последнем предмете, который вы в него положили.$(br)Даже если он опустошен, в него попадут только те предметы, которые были в нем до этого, что делает его пригодным для использования в качестве фильтра.$(br2)$(italic)Примечание: Если он был установлен пустым, он примет первый предмет, закачанный в него, и заблокируется на нем.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Зачарование - Сила",
+      "item": "spectrum:bottomless_bundle{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "text": "Зачаровав Бездонный Мешок Силой используя $(l:enchanting/enchanting_items)Зачарователь$(/l) вы можете увеличить его вместимость в десять раз за каждый уровень силы.$(br2)$(italic)Сможете ли вы наполнить Бездонный Мешок с силой 5? "
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Проклятие Пустоты",
+      "item": "spectrum:bottomless_bundle{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+      "text": "Зачаровав Бездонный Мешок Проклятьем Пустоты используя $(l:enchanting/enchanting_items)Зачарователь$(/l) приведет к тому, что все предметы, которые переполнят Бездонный Мешок, будут удалены.$(br2)$(italic)Больше никаких бесполезных блоков, загромождающих ваш путь при добыче."
+    }
+  ]
+}

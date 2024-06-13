@@ -1,0 +1,23 @@
+{
+  "name": "Эндер-Раздатчик",
+  "advancement": "spectrum:unlocks/blocks/ender_blocks",
+  "icon": "spectrum:ender_dropper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_dropper": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Эндер-Раздатчик",
+      "item": "spectrum:ender_dropper",
+      "text": "Эндер-Раздатчик является копией $(l:magical_blocks/ender_hopper)Эндер-Воронки$(). При каждом $(thing)импульсе красного камня$() он выбрасывает предмет из вашего личного $(item)Эндер-Сундука$().$(br2)Будь осторожен: Кто мешает кому-либо поставить кнопку рядом с ним и опустошить ваш $(item)Эндер-Сундук$()?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier2/ender_dropper",
+      "text": "Эндер-Раздатчик работает только тогда, когда вы находитесь онлайн."
+    }
+  ]
+}

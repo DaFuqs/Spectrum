@@ -1,0 +1,22 @@
+{
+  "name": "Редстоуновый Песок",
+  "advancement": "spectrum:unlocks/redstone/redstone_sand",
+  "icon": "spectrum:redstone_sand",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_sand": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_sand",
+      "text": "Вспомните старые добрые времена, когда вы ставили друзьям маленькие ловушки: если они касались не того блока, то оказывались полностью погребенными под песком. Теперь ваших друзей не так легко обмануть.$(br2)Современные проблемы требуют современных решений."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/redstone_sand",
+      "text": "Ведет себя как цельный блок, пока не получит $(thing)Редстоун Сигнал$(). $(thing)Редстуон Импульс() распространяется по всем подключенным блокам и заставляет их падать."
+    }
+  ]
+}

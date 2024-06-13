@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_dragonbone",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/break_cracked_dragonbone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Маленькое Открытие",
+      "completion_advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "cost": "spectrum:doombloom_seed#4",
+      "text": "В Драконогнильных Болотах можно найти останки гигантских существ. Похоже, что эти блоки невозможно добыть классическим способом, так как они защищены магической аурой. Есть ли нетрадиционный способ разрушить эту ауру, может быть, с помощью огромной силы?"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:doombloom_seed#12",
+      "text": "Блоки Драконьей Кости можно повредить с помощью мощного взрыва. Вам понадобится нечто, обладающее большей взрывной силой, чем динамит, например Нестабильная Амальгама. Хотя вам кажется, что сильные магические взрывы могут иметь схожий эффект, пробивая их защитную ауру."
+    }
+  ]
+}

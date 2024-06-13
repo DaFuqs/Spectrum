@@ -1,0 +1,18 @@
+{
+  "name": "Воздушная Диадема",
+  "icon": "spectrum:whispy_circlet",
+  "advancement": "spectrum:unlocks/trinkets/whispy_circlet",
+  "category": "spectrum:equipment_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Мешки под глазами - не единственное свидетельство недостатка сна. Есть такие существа, которые приходят к вам прямо из кошмаров, когда вы не ложитесь спать регулярно, - как будто они чувствуют себя обманутыми.$(br)Проявление расслабленности, сон не нужен."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
+      "text": "Уже через несколько минут ношения вы чувствуете себя физически и психически здоровым. Кроме того, вы быстрее восстанавливаетесь после негативных эффектов.$(br2)$(italic)Удовольствия от хорошего сна."
+    }
+  ]
+}

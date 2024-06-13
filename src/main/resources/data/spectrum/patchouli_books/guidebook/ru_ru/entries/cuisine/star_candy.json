@@ -1,0 +1,29 @@
+{
+  "name": "Сладкие Звёздочки",
+  "advancement": "spectrum:unlocks/food/star_candy",
+  "icon": "spectrum:star_candy",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:star_candy": 0,
+    "spectrum:purple_star_candy": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Похоже у $(l:resources/stargazing)Падающих Звёзд$(/l) больше секретов, чем вы думали раньше, причем очень странных.$(br)Вкус печёной $(l:resources/stargazing#stardust)Звёздопыли$() странно освежает, волшебство заставляет язык покалывать, когда небесная конфета растворяется во рту. После этого вы почувствовали себя как ни странно здоровее.$(br)Их твердая золотистая мякоть имеет несколько фиолетовых вкраплений, мерцающих, как осколки звезды."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/food/star_candy",
+      "text": "Может быть, именно эти вкрапления и касаются их восстанавливающих свойств? Остается только догадываться, можно ли создать полностью фиолетовую."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Редкая находка",
+      "advancement": "spectrum:hidden/collect_purple_star_candy",
+      "item": "spectrum:purple_star_candy",
+      "text": "Вот это вкуснятина!$(br)Даже простое прикосновение к этим звездным прожилкам вызывает такие же мурашки, как если бы вы съели их."
+    }
+  ]
+}

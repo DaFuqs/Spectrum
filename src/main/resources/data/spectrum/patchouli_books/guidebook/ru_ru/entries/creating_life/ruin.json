@@ -1,0 +1,53 @@
+{
+  "name": "Эксперимент #3: Порча",
+  "icon": "spectrum:bottle_of_ruin",
+  "advancement": "spectrum:unlocks/items/bottle_of_ruin",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_ruin": 0,
+    "spectrum:bedrock_dust": 0,
+    "spectrum:bedrock_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "Вот оно: совершенство вашего рецепта. Небольшая ошибка точно не остановит вас.$(br)Это может быть единственная вещь, достаточно агрессивная, чтобы разрушить даже те материалы, которые раньше считались несокрушимыми.$(br)Если вы не будете осторожны, то можете разрушить мир.$(br)Необходимая жертва, правда."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
+      "text": "Ты даже не будешь делать это незаметно. Эта штука $(#ff0000)ОТВРАТИТЕЛЬНА$() по своему дизайну, вы не назвали ее так ради забавы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Бедроковая Пыль",
+      "anchor": "bedrock_dust",
+      "item": "spectrum:bedrock_dust",
+      "text": "Даже Бедрок оказался недостаточно прочным, чтобы противостоять вашей новосозданной \"жизни\".  Она пробилась сквозь камень, как одуванчики сквозь бетон."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Дружеское напоминание",
+      "text": "Если вы читаете свои заметки здесь, пока что-то из тут написаного еще свободно бегает вокруг, вам следует исправить это как можно скорее, ИНАЧЕ вы можете пожалеть об этом.$(br2)К счастью, вы уже изобрели подходящее $(l:creating_life/decay_away)противоядие$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Бедрок Блоки",
+      "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block",
+      "text": "Куски бедрока настолько прочны, что обычный стол для крафтинга с ними не справится. Но ваш $(l:general/pedestal)Пигментный Пьедестал$(/l) справится с ними без проблем."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Обратное преобразование",
+      "recipe": "spectrum:pedestal/tier1/compacting/bedrock_storage_block_uncrafting",
+      "text": "Они кажутся такими прочными, что даже чародей не сможет их сломать.$(br2)Конечно, вы также можете конвертировать его обратно."
+    }
+  ]
+}

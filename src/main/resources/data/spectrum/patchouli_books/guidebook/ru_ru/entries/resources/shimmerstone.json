@@ -1,0 +1,26 @@
+{
+  "name": "Сверкамень",
+  "advancement": "spectrum:collect_shimmerstone",
+  "icon": "spectrum:shimmerstone_gem",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:shimmerstone_ore": 0,
+    "spectrum:deepslate_shimmerstone_ore": 0,
+    "spectrum:blackslag_shimmerstone_ore": 0,
+    "spectrum:shimmerstone_gem": 0,
+    "spectrum:shimmerstone_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Сверкамень",
+      "item": "spectrum:shimmerstone_gem",
+      "text": "Желтая руда, которая не только излучает энергию в виде света, но и способна манипулировать ею.$(br2)Сверкамень встречается на высотах, близких к уровню моря."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/compacting/shimmerstone_block",
+      "text": "Целые блоки сверкамня испускают светящиеся ярко-желтые частицы."
+    }
+  ]
+}

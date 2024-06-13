@@ -1,0 +1,197 @@
+{
+  "name": "Напитки с настойками",
+  "icon": "spectrum:infused_beverage",
+  "advancement": "spectrum:unlocks/blocks/titration_barrel",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:infused_beverage": 0,
+    "spectrum:pure_alcohol": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "The Art of Brewing",
+      "text": "Ферментация - это очень естественный процесс, требующий времени и внимания. Поскольку никогда нельзя создать полностью управляемую среду, существует множество факторов.$(br)Вы можете следовать рецепту до мельчайших нюансов, а можете и просто играться. Ферментация - это искусство!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Внешнее влияние",
+      "text": "$(li)Время: Бочке требуется время, чтобы повлиять на содержимое. Большинство напитков приобретают более интенсивный и даже дополнительный эффект, если им дать больше времени, чем требуется. $(li)Температура: Чем жарче, тем больше вашего драгоценного содержимого со временем просто испаряется. Это называется Ангельская доля."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Влажность: Чем влажнее воздух, тем больше воды испаряется по сравнению с алкоголем, что делает напиток более крепким$(li)Доля воды: Увеличение соотношения ингредиентов и воды - это тонкий баланс, но с ним нужно играться. При большей густоте напиток быстрее бродит, хотя и ценой сокращения длительности статусных эффектов"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Солодовое пиво",
+      "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
+      "text": "Солодовое пиво насыщает, оно одновременно сладкое и соленое на вкус. Отличное сочетание."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Яблочный сок по-цейлонски",
+      "advancement": "spectrum:lategame/collect_myceylon",
+      "recipe": "spectrum:titration_barrel/infused_beverages/myceylon_apple_juice",
+      "text": "Сладкий с послевкусием корицы"
+    },
+    {
+      "type": "spectrum:confirmation_button",
+      "title": "Вопрос безопасности",
+      "checked_advancement": "spectrum:milestones/confirmed_drinking_age",
+      "button_text": "Я подтверждаю",
+      "button_text_confirmed": "Подтверждено ✔",
+      "confirmation": "confirm_drinking_age",
+      "text": "В $(item)бочке для брожения$() можно варить алкогольные напитки. Если вы достаточно взрослый, чтобы употреблять алкоголь в вашей стране, вы можете нажать кнопку ниже, чтобы разблокировать эти рецепты.$(br)Если нет, не волнуйтесь - вы не пропустите ничего важного."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Пиво",
+      "recipe": "spectrum:titration_barrel/infused_beverages/beer",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/ale",
+      "text": "В дополнение к Спешке оно может давать немного насыщения, в зависимости от того, как долго оно бродило."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": " ",
+      "recipe": "spectrum:titration_barrel/infused_beverages/lager",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/porter",
+      "text": "Только… не варите их слишком долго, иначе они смещаются и в итоге получаются ужасными на вкус."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/gin",
+      "title": "Джин",
+      "recipe": "spectrum:titration_barrel/infused_beverages/gin",
+      "text": "Изготовлен из $(l:cuisine/amaranth)Бархатника$(/l), даёт $(thing)Везение$() и $(thing)Спешку$()."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Ром",
+      "recipe": "spectrum:titration_barrel/infused_beverages/rum",
+      "text": "Сильный вкус, ставший еще более насыщенным благодаря влиянию цветного дерева, даёт $(thing)Поглощение$() и $(thing)Сопротивление$()."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Медовуха",
+      "recipe": "spectrum:titration_barrel/infused_beverages/mead",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/mead_fluid",
+      "text": "Большое количество сахара в меде идеально подходит для брожения. В результате получаются крепкие, хотя и сладкие напитки."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Яблочный Сидр",
+      "recipe": "spectrum:titration_barrel/infused_beverages/apple_cider",
+      "text": "Ферментированные яблоки, как правило, сладкие и искрящиеся, с легкой кислинкой - если вы конечно не забудете снять их быстро."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Золотой Сидр",
+      "recipe": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
+      "text": "Гораздо более мощный, чем их обычный аналог. Он не испортятся со временем и обладает великолепным вкусом."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Ягодный Сидр",
+      "recipe": "spectrum:titration_barrel/infused_beverages/berry_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
+      "text": "Более фруктовый сидр, чем из яблок. Светящийся вариант, кажется, бродит немного быстрее, но также… заставляет вас светиться. Хм."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Ягодный Ликёр",
+      "recipe": "spectrum:titration_barrel/infused_beverages/berry_liquor",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
+      "text": "Ягоды также можно использовать для приготовления ликера. Он получается более вязким, сладким и крепким, но требует больше времени для брожения."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/mint_beverages",
+      "title": "Мятные напитки",
+      "recipe": "spectrum:titration_barrel/infused_beverages/mint_cream",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/mint_schnapps",
+      "text": "$(italic)Жидкая удача"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Артемизия & Адвокат",
+      "recipe": "spectrum:titration_barrel/infused_beverages/artemisa",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/advocaat",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Дамассин & Заячий Крем",
+      "recipe": "spectrum:titration_barrel/infused_beverages/damassine",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/hare_bane_creme",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Водка",
+      "recipe": "spectrum:titration_barrel/infused_beverages/vodka",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
+      "text": "С возрастом становится только сильнее. Только один вопрос: Насколько смертоносным вы хотите её видеть?"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Текила",
+      "recipe": "spectrum:titration_barrel/infused_beverages/tequila",
+      "text": "С возрастом становится только крепче. По вкусу напоминает драку в баре."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/moonshine",
+      "title": "Лунный коктейль",
+      "recipe": "spectrum:titration_barrel/infused_beverages/moonshine",
+      "text": "Изумительно легкий во рту. Мягкое, сладковатое жжение, позволяющее на время забыть о своих заботах. То, что вас беспокоит, тоже на время забудет о вас.$().$(br2)$(italic)На вкус - как прогулка по Луне."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Мицейлоновый Ликер",
+      "recipe": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
+      "text": "Острее, чем кажется."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Шипастый Глинтвейн",
+      "recipe": "spectrum:titration_barrel/infused_beverages/spiked_mullet_wine",
+      "text": "Интересное сочетание всего того, что находится в Глубоких Низинах. Лучше всего пить в горячем виде!"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Хрустальный Персик",
+      "recipe": "spectrum:titration_barrel/infused_beverages/glass_peach_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/glass_peach_liquor",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Остролистовая Холли",
+      "recipe": "spectrum:titration_barrel/infused_beverages/sawblade_holly_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/sawblade_holly_liquor",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Чистый алкоголь",
+      "advancement": "spectrum:tap_pure_alcohol",
+      "anchor": "pure_alcohol",
+      "item": "spectrum:pure_alcohol",
+      "text": "Ваша память не всегда на высоте. Каким-то образом у вас оказалась эта бутылка. Определенно, она оказалась немного крепче, чем планировалось…$(br)Больше для дезинфекции, чем для питья."
+    }
+  ]
+}

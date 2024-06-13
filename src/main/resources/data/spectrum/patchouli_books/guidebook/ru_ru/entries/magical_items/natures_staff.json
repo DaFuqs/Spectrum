@@ -1,0 +1,28 @@
+{
+  "name": "Посох Природы",
+  "advancement": "spectrum:unlocks/items/natures_staff",
+  "icon": "spectrum:natures_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:natures_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Используя магические элементы $(c_brown)Природы$() и $(c_lime)Плодородия$(), вы создали этот гениальный ход.$(br)Костная мука - просто шутка по сравнению с вашим новым гаджетом."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier2/natures_staff",
+      "text": "$(italic)Укажите на то, что вы хотите увидеть растущим"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Зачарование - Эффективность",
+      "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
+      "text": "Зачаровав Посох Природы Эффективностью Используя $(l:enchanting/enchanting_items)Зачаровател$(/l) уменьшает шанс, что $(l:creating_life/fading#vegetal)Органическая Смесь$(/l) Будет использована, с каждым уровнем шанс всё меньше."
+    }
+  ]
+}

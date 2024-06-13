@@ -1,0 +1,31 @@
+{
+  "name": "Благосклонность Клевера",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/clovers_favor",
+  "flag": "spectrum:enchantment_exists_spectrum_clovers_favor",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Время от времени вам везет, и враг оставляет после себя какой-нибудь редкий предмет.$(br)Сочетание $(l:resources/clover)Клевера$(/l) и $(l:general/pigment#light_blue)Голубого Пигмента$(/l) позволяет значительно увеличить эти шансы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
+      "text": "Повышается шанс получить редкий лут, например $(item)Железный Слиток$() Из зомби.$(br)$(italic)Может быть, это даже увеличит ваши шансы на получение самого ценного из предметов?$()$(br2)Макс. Уровень: 3$(br)Применяется к оружию ближнего боя.$(br)Несовместим с Добычей"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Благосклонностью Клевера окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
+      "text": "Поначалу повышение уровня Благосклонность Клевера с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

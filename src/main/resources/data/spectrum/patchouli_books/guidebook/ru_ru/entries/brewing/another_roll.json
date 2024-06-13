@@ -1,0 +1,18 @@
+{
+  "name": "Джекпот",
+  "advancement": "spectrum:hidden/status_effects/another_roll",
+  "icon": "spectrum:four_leaf_clover",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:another_roll",
+      "text": "Влияет на дроп при использовании зачарований $(thing)Удачи$() для добычи руды, $(thing)Добычи$() при убийстве мобов, или других заклинаний, основанных на удаче.$(br)Каждый уровень Джекпота увеличивает ваши шансы получить максимальную добычу."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

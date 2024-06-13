@@ -1,0 +1,22 @@
+{
+  "name": "Мастерская Зелий",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "sortnum": 0,
+  "extra_recipe_mappings": {
+    "spectrum:potion_workshop": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "За это время в вашем распоряжении появилось множество новых материалов. Пришло время внимательно изучить каждый из них, чтобы понять, какой эффект они оказывают на ваши $(item)Зелья$().$(br2)Ваше предположение, как эксперта: потрясающие!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/potion_workshop",
+      "text": "Вместо $(item)Огненного Порошка$(), Мастерская зелий работает на $(l:resources/mermaids_brush)Русалочьих Гребешках$(). Главное преимущество заключается в том, что вам не нужно наполнять бутылки водой заранее."
+    }
+  ]
+}

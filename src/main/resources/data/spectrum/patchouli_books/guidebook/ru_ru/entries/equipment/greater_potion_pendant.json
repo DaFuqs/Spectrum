@@ -1,0 +1,21 @@
+{
+  "name": "Большой Кулон с Зельем",
+  "advancement": "spectrum:unlocks/trinkets/greater_potion_pendant",
+  "icon": "spectrum:greater_potion_pendant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:greater_potion_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Работает так же, как и его $(l:equipment/lesser_potion_pendant)младший брат$(/l).$(br)Однако в этой версии есть три отсека, каждый из которых может быть заполнен разными зельями - это также означает, что он может поддерживать эффекты только первого уровня."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
+      "text": "Используйте $(l:brewing/potion_workshop)Мастерскую зелий$(/l) чтобы налить зелье, поместите его туда, куда обычно помещается $(item)Бутылочка$()$(br2)Чтобы снять эффект, поместите его в сетку крафта."
+    }
+  ]
+}

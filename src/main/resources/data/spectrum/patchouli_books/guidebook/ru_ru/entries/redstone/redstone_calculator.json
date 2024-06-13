@@ -1,0 +1,22 @@
+{
+  "name": "Редстоун Калькулятор",
+  "advancement": "spectrum:unlocks/redstone/redstone_calculator",
+  "icon": "spectrum:redstone_calculator",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:redstone_calculator": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:redstone_calculator",
+      "text": "С помощью математики редстоуна вы несколько раз строили гигантские сооружения, только для того, чтобы имитировать способность попугая к расчетам. Насыщенный энергией $(l:general/shards#citrine)цитрин(/l), кажется, идеально сочетается с элементарной арифметической логикой."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/redstone_calculator",
+      "text": "Доступные режимы: Сложение, Вычитание, Умножение, Деление, Модулор, Мин и Макс. Первый вход - задний, второй - самый высокий сигнал по бокам."
+    }
+  ]
+}

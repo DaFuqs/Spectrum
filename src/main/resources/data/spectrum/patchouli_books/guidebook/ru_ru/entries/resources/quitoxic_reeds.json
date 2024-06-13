@@ -1,0 +1,31 @@
+{
+  "name": "Малотоксичный Тростник",
+  "icon": "spectrum:quitoxic_reeds",
+  "advancement": "spectrum:collect_quitoxic_reeds",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:quitoxic_reeds": 0,
+    "spectrum:quitoxic_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Малотоксичный Тростник",
+      "images": ["spectrum:textures/gui/guidebook/quitoxic_reed.png"],
+      "border": true,
+      "text": " "
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Малотоксичный Тростник",
+      "text": "Растет исключительно на болотах и, похоже, поглощает глину в качестве питательного вещества."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Малотоксичный Порошок",
+      "anchor": "quitoxic_powder",
+      "item": "spectrum:quitoxic_powder",
+      "text": "Из стеблей странного растения можно добыть фиолетовый порошок, измельчив его наковальней.$(br)Запах и консистенция очень необычны, если растереть их между пальцами.$(br2)$(italic)…погодите-ка, что такое пальцы?"
+    }
+  ]
+}

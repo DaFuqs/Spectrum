@@ -1,0 +1,26 @@
+{
+  "name": "Колокол из Драг. Камней",
+  "icon": "spectrum:amethyst_chime",
+  "advancement": "spectrum:unlocks/gemstone_chimes/any_chime",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chime": 0,
+    "spectrum:amethyst_chime": 0,
+    "spectrum:citrine_chime": 0,
+    "spectrum:onyx_chime": 0,
+    "spectrum:moonstone_chime": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Колокол из Драг. Камней",
+      "text": "Достаточно долго работая с драгоценными камнями, вы теперь можете придать этим хрупким ресурсам самые прекрасные формы.$(br2)Медленно качаясь на ветру, звуки колокола напоминают вам о начале вашего путешествия - о том, как вы впервые ступили в жеоду."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "text": "Каждый колокол издает успокаивающий звук соответствующего драгоценного камня."
+    }
+  ]
+}

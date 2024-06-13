@@ -1,0 +1,189 @@
+{
+  "name": "Пигмент",
+  "icon": "spectrum:magenta_pigment",
+  "sortnum": 8,
+  "advancement": "spectrum:collect_pigment",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
+  "extra_recipe_mappings": {
+    "spectrum:black_pigment": 0,
+    "spectrum:blue_pigment": 0,
+    "spectrum:brown_pigment": 0,
+    "spectrum:cyan_pigment": 0,
+    "spectrum:gray_pigment": 0,
+    "spectrum:green_pigment": 0,
+    "spectrum:light_blue_pigment": 0,
+    "spectrum:light_gray_pigment": 0,
+    "spectrum:lime_pigment": 0,
+    "spectrum:magenta_pigment": 0,
+    "spectrum:orange_pigment": 0,
+    "spectrum:pink_pigment": 0,
+    "spectrum:purple_pigment": 0,
+    "spectrum:red_pigment": 0,
+    "spectrum:white_pigment": 0,
+    "spectrum:yellow_pigment": 0,
+
+    "spectrum:black_block": 0,
+    "spectrum:blue_block": 0,
+    "spectrum:brown_block": 0,
+    "spectrum:cyan_block": 0,
+    "spectrum:gray_block": 0,
+    "spectrum:green_block": 0,
+    "spectrum:light_blue_block": 0,
+    "spectrum:light_gray_block": 0,
+    "spectrum:lime_block": 0,
+    "spectrum:magenta_block": 0,
+    "spectrum:orange_block": 0,
+    "spectrum:pink_block": 0,
+    "spectrum:purple_block": 0,
+    "spectrum:red_block": 0,
+    "spectrum:white_block": 0,
+    "spectrum:yellow_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Наконец-то! Вы смогли получить абсолютно чистые цветовые пигменты из листьев $(l:general/colored_trees)Цветных Деревьев$().$(br)А при использовании мотыги собирать их можно довольно быстро.$(br)Эти пигменты, состоящие из своих основ $(bold)$(c_magenta)ВРЕМЕНИ$(), $(bold)$(c_yellow)ЭНЕРГИИ$() и $(bold)$(c_cyan)МАТЕРИИ$(), определенно ощущаются как волшебные.$(br2)Я до сих пор не уверен, что все они вообще существуют. Сколько вы можете найти?"
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:hidden/collect_pigment/collect_black_pigment": "$(c_black)Чёрный",
+        "spectrum:hidden/collect_pigment/collect_blue_pigment": "$(c_blue)Синий",
+        "spectrum:hidden/collect_pigment/collect_brown_pigment": "$(c_brown)Коричневый",
+        "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)Бирюзовый",
+        "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)Серый",
+        "spectrum:hidden/collect_pigment/collect_green_pigment": "$(c_green)Зелёный",
+        "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)Голубой",
+        "spectrum:hidden/collect_pigment/collect_light_gray_pigment": "$(c_light_gray)Светло-серый",
+        "spectrum:hidden/collect_pigment/collect_lime_pigment": "$(c_lime)Лаймовый",
+        "spectrum:hidden/collect_pigment/collect_magenta_pigment": "$(c_magenta)Пурпурный",
+        "spectrum:hidden/collect_pigment/collect_orange_pigment": "$(c_orange)Оранжевый",
+        "spectrum:hidden/collect_pigment/collect_pink_pigment": "$(c_pink)Розовый",
+        "spectrum:hidden/collect_pigment/collect_purple_pigment": "$(c_purple)Фиолетовый",
+        "spectrum:hidden/collect_pigment/collect_red_pigment": "$(c_red)Красный",
+        "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)Белый",
+        "spectrum:hidden/collect_pigment/collect_yellow_pigment": "$(c_yellow)Жёлтый"
+      },
+      "text": "Гипотетический список?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "black",
+      "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
+      "item": "spectrum:black_pigment",
+      "text": "Самый темный материал, который вы когда-либо держали в руках. Это выглядит почти сюрреалистично.$(br2)$(c_black)Чёрный$() цвет символизирует небытие $(italic)Пустоту$(), $(italic)Силу$() и $(italic)Тайну$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "blue",
+      "advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment",
+      "item": "spectrum:blue_pigment",
+      "text": "Держа его в руке, вы чувствуете себя в безопасности. Конечно, все это ерунда, в конце концов, это всего лишь цвет. Но все же…$(br2)$(c_blue)Синий$() цвет символизирует $(italic)безопасность$() и $(italic)постоянство$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "brown",
+      "advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment",
+      "item": "spectrum:brown_pigment",
+      "text": "Этот насыщенный коричневый цвет заставляет вас тосковать по матери-природе.$(br2)$(c_brown)Коричневый цвет$() символизирует $(italic)Природу$() и $(italic)Стабильность$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "cyan",
+      "advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
+      "item": "spectrum:cyan_pigment",
+      "text": "Он заставляет вас чувствовать себя так, словно вы сидите на вершине горы и созерцаете бескрайние просторы мира.$(br2)$(c_cyan)Бирюзовый$() символизирует $(italic)Материю$() и $(italic)Целостность$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "gray",
+      "advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment",
+      "item": "spectrum:gray_pigment",
+      "text": "Этот цвет кажется вам побежденным старшим братом светло-серого. Всякий раз, когда вы смотрите на него, вам становится немного грустно, но вы не знаете, почему именно.$(br2)$(c_gray)Серый$() символизирует $(italic)Увядание$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "green",
+      "advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
+      "item": "spectrum:green_pigment",
+      "text": "Этот пигмент мягко излучает внутреннее спокойствие.$(br2)$(c_green)Зелёный$() символизирует $(italic)Баланс$() и $(italic)Гармонию$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "light_blue",
+      "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
+      "item": "spectrum:light_blue_pigment",
+      "text": "Глядя на этот цвет, испытываешь чувство оптимизма, но в то же время и отрешенности.$(br2)$(c_light_blue)Голубой$() символизирует $(italic)Удачу$() и $(italic)Мир$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "black",
+      "advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
+      "item": "spectrum:light_gray_pigment",
+      "text": "Знаете это чувство, когда вы безмятежно сидите, смотрите на пейзаж, чувствуете, как жизнь проходит мимо вас, и при этом все хорошо?$(br2)$(c_light_gray)Светло-серый$() символизирует $(italic)Изменения$(), но, так же $(italic)Тишину$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "lime",
+      "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
+      "item": "spectrum:lime_pigment",
+      "text": "Этот сочный лайм почти пахнет теплым весенним утром. Или вам просто показалось?$(br2)$(c_lime)Лаймовый$() символизирует $(italic)Счастье$() и $(italic)Плодородие$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "magenta",
+      "advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment",
+      "item": "spectrum:magenta_pigment",
+      "text": "Этот мягкий пурпурный цвет навевает спокойное и довольное, почти безмятежное настроение.$(br2)$(c_magenta)Пурпурный$() символизирует $(italic)Время$(), $(italic)Доброту$() и $(italic)Терпимость$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "orange",
+      "advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
+      "item": "spectrum:orange_pigment",
+      "text": "Этот оранжевый цвет напоминает об осени и создает ощущение, что вы сидите в уютном кресле перед камином.$(br2)$(c_orange)Оранжевый$() символизирует $(italic)Тепло$() и $(italic)Комфорт$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "pink",
+      "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
+      "item": "spectrum:pink_pigment",
+      "text": "Этот яркий, живой розовый цвет сахарной ваты заставит вас светиться от счастья.$(br2)$(c_pink)Розовый$() символизирует $(italic)Здоровье$() и $(italic)Восхищение$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "purple",
+      "advancement": "spectrum:hidden/collect_pigment/collect_purple_pigment",
+      "item": "spectrum:purple_pigment",
+      "text": "Это зрелище заставляет ваш разум работать на полную катушку. Оно не только стимулирует жажду знаний, но и дарит творческие идеи.$(br2)$(c_purple)Фиолетовый$() символизирует $(italic)Мудрость$() и $(italic)Креативность$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "red",
+      "advancement": "spectrum:hidden/collect_pigment/collect_red_pigment",
+      "item": "spectrum:red_pigment",
+      "text": "Вы чувствуете стремление и желание создать что-то прекрасное.$(br2)$(c_red)Красный$() символизирует $(italic)Страсть$() и $(italic)Силу Воли$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "white",
+      "advancement": "spectrum:hidden/collect_pigment/collect_white_pigment",
+      "item": "spectrum:white_pigment",
+      "text": "Вы не можете точно выразить это словами. Этот пигмент излучает нечто невыразимо прекрасное.$(br2)$(c_white)Белый$() символизирует $(italic)ЖИЗНЬ$(), $(italic)Свет$() и $(italic)Чистоту$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "yellow",
+      "advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment",
+      "item": "spectrum:yellow_pigment",
+      "text": "Яркий желтый цвет почти бурлит энергией.$(br2)$(c_yellow)Жёлтый$() символизирует $(italic)Энергию$() и $(italic)Радость$()."
+    },
+    {
+      "title": "Пигментные блоки",
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/pigment_blocks/magenta_block",
+      "text": "Из них можно создать обратно $(item)Пигменты$()."
+    }
+  ]
+}

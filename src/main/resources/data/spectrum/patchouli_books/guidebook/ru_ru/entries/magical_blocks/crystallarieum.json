@@ -1,0 +1,149 @@
+{
+  "name": "Кристаллярий",
+  "icon": "spectrum:crystallarieum",
+  "advancement": "spectrum:unlocks/blocks/crystallarieum",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystallarieum": 0,
+
+    "spectrum:small_coal_bud": 0,
+    "spectrum:large_coal_bud": 0,
+    "spectrum:coal_cluster": 0,
+    "spectrum:small_copper_bud": 0,
+    "spectrum:large_copper_bud": 0,
+    "spectrum:copper_cluster": 0,
+    "spectrum:small_diamond_bud": 0,
+    "spectrum:large_diamond_bud": 0,
+    "spectrum:diamond_cluster": 0,
+    "spectrum:small_emerald_bud": 0,
+    "spectrum:large_emerald_bud": 0,
+    "spectrum:emerald_cluster": 0,
+    "spectrum:small_glowstone_bud": 0,
+    "spectrum:large_glowstone_bud": 0,
+    "spectrum:glowstone_cluster": 0,
+    "spectrum:small_gold_bud": 0,
+    "spectrum:large_gold_bud": 0,
+    "spectrum:gold_cluster": 0,
+    "spectrum:small_iron_bud": 0,
+    "spectrum:large_iron_bud": 0,
+    "spectrum:iron_cluster": 0,
+    "spectrum:small_lapis_bud": 0,
+    "spectrum:large_lapis_bud": 0,
+    "spectrum:lapis_cluster": 0,
+    "spectrum:small_netherite_scrap_bud": 0,
+    "spectrum:large_netherite_scrap_bud": 0,
+    "spectrum:netherite_scrap_cluster": 0,
+    "spectrum:small_echo_bud": 0,
+    "spectrum:large_echo_bud": 0,
+    "spectrum:echo_cluster": 0,
+    "spectrum:small_prismarine_bud": 0,
+    "spectrum:large_prismarine_bud": 0,
+    "spectrum:prismarine_cluster": 0,
+    "spectrum:small_quartz_bud": 0,
+    "spectrum:large_quartz_bud": 0,
+    "spectrum:quartz_cluster": 0,
+    "spectrum:small_redstone_bud": 0,
+    "spectrum:large_redstone_bud": 0,
+    "spectrum:redstone_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы разработали Кристаллариум: устройство, работающее на Краске, которое превращает куски сырой руды в сверкающие кристаллы. Хотя ваши усилия не привели к выращиванию настоящих $(l:general/shards)драгоценных камней$(/l), вы быстро поняли, что вместо них здесь можно выращивать всевозможные другие ресурсы.$(br2)Бросьте сверху сырую руду, чтобы она кристаллизовалась в бутон, который можно выращивать."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier4/crystallarieum",
+      "text": "$(br)Для роста ресурсов требуется:$(li)Катализатор$(li)Одна $(l:magic/ink_flask)колба$() с краской"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Катализатор",
+      "text": "Каждый катализатор по-разному влияет на рост бутонов: $(br)если один катализатор может уменьшить необходимое количество краски, то другой может изменить продолжительность процесса.."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Металлы против кристаллов",
+      "text": "$(thing)Металлические ресурсы$() требуют необработанного сырья, такого как $(item)Сырое Железо$(), в результате чего образуется $(item)маленький железный бутон$() который будет постоянно расти, пока его не удастся безопасно собрать.$(br2)Что касается $(thing)кристаллических ресурсов$(), то существующий кристалл можно использовать в качестве семени для выращивания идентичных копий самого себя."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Уголь",
+      "recipe": "spectrum:crystallarieum/vanilla/coal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Медь",
+      "recipe": "spectrum:crystallarieum/vanilla/copper",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Алмаз",
+      "recipe": "spectrum:crystallarieum/vanilla/diamond",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Эхо",
+      "recipe": "spectrum:crystallarieum/vanilla/echo",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Изумруд",
+      "recipe": "spectrum:crystallarieum/vanilla/emerald",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Светокамень",
+      "recipe": "spectrum:crystallarieum/vanilla/glowstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Золото",
+      "recipe": "spectrum:crystallarieum/vanilla/gold",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Железо",
+      "recipe": "spectrum:crystallarieum/vanilla/iron",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Лазурит",
+      "recipe": "spectrum:crystallarieum/vanilla/lapis",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Незерит",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite_scrap",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Призмарин",
+      "recipe": "spectrum:crystallarieum/vanilla/prismarine_crystal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Кварц",
+      "recipe": "spectrum:crystallarieum/vanilla/quartz",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Редстоун",
+      "recipe": "spectrum:crystallarieum/vanilla/redstone",
+      "text": ""
+    }
+  ]
+}

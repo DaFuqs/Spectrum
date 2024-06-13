@@ -1,0 +1,34 @@
+{
+  "name": "Жидкая Грязь",
+  "advancement": "spectrum:unlocks/blocks/mud",
+  "icon": "spectrum:mud_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:mud_bucket": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Жидкая Грязь",
+      "item": "spectrum:mud_bucket",
+      "text": "Грязь. Это мокрая грязь. Сама по себе не особенно интересна. Что имеет практическое значение, а вот что практично, так это взаимодействие грязи с другими жидкостями, например с $(item)Водой$() или $(item)Лавой$(). В результате образуется $(item)Земля$() или $(item)Каменистая Земля$(), соответственно."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/mud_bucket",
+      "text": "$(italic)Хотя грязевые ванны кажутся оздоровительными, делать их не рекомендуется."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Преобразование предметов",
+      "text": "Некоторые предметы, соприкасающиеся с грязью, дубеют.$(br)Например, $(item)Гнилая плоть$() будет преобразована в крошечный кусочек $(item)Кожи$()."
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title": "Дубление гнилой плоти",
+      "recipe": "spectrum:mud_converting/rabbit_hide",
+      "text": ""
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Полуночный Раствор",
+  "icon": "spectrum:midnight_solution_bucket",
+  "advancement": "spectrum:midgame/create_midnight_aberration",
+  "category": "spectrum:magical_blocks_category",
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_solution_bucket": 0,
+    "spectrum:midnight_chip": 0,
+    "spectrum:black_materia": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы наткнулись на эту странную жидкость в результате $(l:general/midnight_aberration)неудачного эксперимента$(). Жаль, правда, но посмотрите, что у вас теперь есть.$(br)Существа, которые прикасаются к ней, кажется, терют свою жизнь. Интересно...$(br)Лучше не попадаться в неё самому."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Полуночный Осколок",
+      "item": "spectrum:midnight_chip",
+      "anchor": "midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "Существа, погибшие в этой бурлящей жиже, оставляют после себя маленький осколок, почти похожий на $(l:general/midnight_aberration)Полуночное Заблуждение$(/l), только гораздо, гораздо меньше. Острый и злой.$(br)Из Существ, не выжившие в результате этого жестокого процесса, выпают предметы, как если бы они были убиты игроком."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Ведро Полуночного Раствора",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "advancement": "spectrum:unlocks/blocks/midnight_solution",
+      "text": "Используя тот предмет, который вы получили, убив существ этой жидкостью, вы можете создать еще большее ее количество. Довольно болезненно, если подумать."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Тёмная Материя",
+      "item": "spectrum:black_materia",
+      "advancement": "spectrum:hidden/break_black_materia",
+      "text": "Бесполезный на первый взгляд материал, который образуется вокруг бассейнов Полуночного раствора."
+    },
+    {
+      "type": "spectrum:midnight_solution_converting",
+      "title": "Преобразование предметов",
+      "recipe": "spectrum:midnight_solution_converting/blackstone",
+      "text": "Если бросить некоторые предметы в жидкость, они испортятся до такой степени, что превратятся в нечто совершенно иное."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Удаление Зачарований",
+      "text": "Более того, если вы бросите в него зачарованный предмет, он лишатся своих особых способностей. Останется только обычный предмет и куча опыта."
+    }
+  ]
+}

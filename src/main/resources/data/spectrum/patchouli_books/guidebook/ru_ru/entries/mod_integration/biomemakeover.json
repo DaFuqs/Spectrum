@@ -1,0 +1,34 @@
+{
+  "name": "Biome Makeover",
+  "icon": "biomemakeover:illunite_shard",
+  "flag": "mod:biomemakeover",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You recently found new materials scattered across the landscape in new, beautiful terrain. You are sure you can make use of those in some way."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Antidote Potions",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
+      "recipe": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/antidote",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Nocturnal Potions",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
+      "recipe": "spectrum:mod_integration/biomemakeover/potion_workshop_brewing/nocturnal",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Illunite Auto-Harvesting",
+      "item": "biomemakeover:illunite_shard",
+      "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(item)Gemstone Buds$(), but also $(item)Illunite Shards$()."
+    }
+  ]
+}

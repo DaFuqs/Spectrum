@@ -1,0 +1,36 @@
+{
+  "name": "Цветные лампы",
+  "icon": "spectrum:cyan_lamp",
+  "advancement": "spectrum:unlocks/colored_lamps/any_colored_lamp",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_lamp": 0,
+    "spectrum:blue_lamp": 0,
+    "spectrum:brown_lamp": 0,
+    "spectrum:cyan_lamp": 0,
+    "spectrum:gray_lamp": 0,
+    "spectrum:green_lamp": 0,
+    "spectrum:light_blue_lamp": 0,
+    "spectrum:light_gray_lamp": 0,
+    "spectrum:lime_lamp": 0,
+    "spectrum:magenta_lamp": 0,
+    "spectrum:orange_lamp": 0,
+    "spectrum:pink_lamp": 0,
+    "spectrum:purple_lamp": 0,
+    "spectrum:red_lamp": 0,
+    "spectrum:white_lamp": 0,
+    "spectrum:yellow_lamp": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы, наконец, сумели правильно смешать цвета. Что может быть более естественным, чем сразу же испытать свойства ваших новых $(l:general/pigment)Пигментов$()? Обычных $(item)Редстоуновых фонарей$() вам уже хватает. Пора добавить красок!$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
+      "text": "При активации их окружает яркий свет. Кроме того, цветные лампы работают так же, как и их скучный аналог из красного камня."
+    }
+  ]
+}

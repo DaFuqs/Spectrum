@@ -1,0 +1,47 @@
+{
+  "name": "Улуч. Пьедестала Ониксом",
+  "icon": "spectrum:pedestal_onyx",
+  "sortnum": 12,
+  "advancement": "spectrum:create_onyx_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_onyx": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Вариант оникса",
+      "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
+      "text": "Улучшите свой $(l:general/pedestal)Пигментный Пьедестал$() используя ваши $(l:general/shards#onyx)Осколки Оникса$() чтобы еще больше увеличить его магическую силу."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Храм Спектрума",
+      "multiblock_id": "spectrum:pedestal_advanced_structure_check",
+      "enable_visualize": true,
+      "text": "Размеры: 13x13x6 блоков"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Полная версия)",
+      "text": "$(li)1 Пигментный Пьедестал$(li)8 Блоков Полированных Драгоценных Камней$(li)8 Ламп из Драгоценных Камней$(li)4 Резных Блока$(li)16 Блоков Инкрустированные Драгоценными Камнями$(li)16 Узорчитых Блока$(li)4 Пиленых блока$(li)36 Полированных Колонн$(li)160 Полированных Блока"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Улучшение)",
+      "text": "$(li)4 Блока Полированных Драгоценных Камней$(li)8 Ламп из Драгоценных Камней$(li)16 Блоков Инкрустированные Драгоценными Камнями$(li)16 Узорчитых Блока$(li)28 Полированных Колонн$(li)92 Полированных Блока"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Индивидуализируйте!",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_hall_customisation.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Вы можете заменить базальтовые блоки на кальцит и выбрать блоки с драгоценными камнями по своему вкусу. Смешивайте $(item)Кальцит$() и $(item)Базальт$() для создания своего персонального варианта!"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Датчик Погоды",
+  "advancement": "spectrum:unlocks/redstone/weather_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:weather_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Датчик Погоды",
+      "text": "Цитрин очень чувствителен к энергиям, высвобождающимся во время грозы.$(br2)Если детектор погоды находится под прямым воздействием дождя или грозы, он излучает сигнал $(thing)Редстоуна$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/detectors/weather_detector",
+      "text": "Дождь обеспечивает сигнал силой 8, гроза - 15."
+    }
+  ]
+}

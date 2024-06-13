@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:lategame/build_complex_pedestal_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_downstone_fragments",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:lategame/collect_downstone_fragments",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "Чем глубже вы погружаетесь в подземелья Глубокие Низин, тем чаще вам попадаются камни, которые кажутся неразрушимыми. На этой высоте есть что открыть для себя."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:moonstone_shard#24",
+      "text": "В самых нижних слоях Глубоких Низин иногда можно наткнуться на структуры, с помощью которых прежние обитатели смогли разрушить этот камень."
+    }
+  ]
+}

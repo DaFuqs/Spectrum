@@ -1,0 +1,31 @@
+{
+  "name": "Улучшенный Крит",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/improved_critical",
+  "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы уже заметили, что наносите врагам значительно больше урона, если прыгаете во время атаки.$(br)Чтобы еще больше улучшить эти прыжковые атаки, вы разработали это зачарование, которое еще больше увеличивает дополнительный урон."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
+      "text": "Дополнительный урон при нанесении критов.$(br2)Макс. Уровень: 2$(br)Применимо к оружию ближнего боя.$(br)Несовместимо с Остротой."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_improved_critical",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Улучшенным критом окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
+      "text": "Поначалу повышение уровня Улучшенного Крита с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Кисточка",
+  "icon": "spectrum:paintbrush",
+  "category": "spectrum:general_category",
+  "sortnum": 3,
+  "turnin": "spectrum:craft_using_pedestal",
+  "extra_recipe_mappings": {
+    "spectrum:paintbrush": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Кисточка",
+      "text": "Почему именно $(italic)кисть?$()$(br2)Хороший вопрос, вы и сами задавались им. В основном к этому решению вас привела интуиция. В красочном пьедестале и ярких цветах кристаллов есть что-то такое, что пробуждает в вас внутреннего художника."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Рецепт",
+      "recipe": "spectrum:crafting_table/paintbrush",
+      "text": "Хорошенько ударьте по $(l:general/pedestal)Пигментному Пьедесталу$(/l) чтобы он начал работать."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Раскраска Блоков",
+      "advancement": "spectrum:collect_pigment",
+      "text": "Что может быть лучше для $(l:general/pigment)пигмента$() чем раскрашивать его?$(br)$(thing)Крадитесь, используя кисть, чтобы открыть меню выбора цвета.$(). Достаточно слегка коснуться блока, который вы хотите раскрасить, чтобы $(l:general/pigment)Пигмент$() влился в него и превратил его в цветной вариант."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Нанесение краски",
+      "advancement": "spectrum:midgame/fill_ink_container",
+      "text": "Теперь, когда вы открыли 'Чернила', у вашей кисти появилась еще одна функция: вы можете собрать чернила в снаряд и бросить их.$(br)Пол (или существо!), в которую попадает снаряд, будет окрашен до тех пор, пока находящийся там блок может быть перекрашен."
+    }
+  ]
+}

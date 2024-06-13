@@ -1,0 +1,22 @@
+{
+  "name": "Датчик Сущностей",
+  "advancement": "spectrum:unlocks/redstone/entity_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:entity_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Creature Detector",
+      "text": "Драгоценный камень, встроенный в детектор сущностей, реагирует на микровибрации в земле. Это дает ему возможность измерять количество существ, находящихся рядом с ним."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/detectors/entity_detector",
+      "text": "Выдаёт суммарную силу редстоуна для каждого существа в радиусе 10 блоков."
+    }
+  ]
+}

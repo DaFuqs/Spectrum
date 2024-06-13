@@ -1,0 +1,38 @@
+{
+  "name": "Яйцекладущая Шерстяная Свинья",
+  "icon": "spectrum:egg_laying_wooly_pig_head",
+  "advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:egg_laying_wooly_pig_head": 0,
+    "spectrum:egg_laying_wooly_pig_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Яйцекладущая Шерстяная Свинья",
+      "text": "Вся ваша затея с \"созданием жизни\" пока дает смешанные результаты. Но постепенно вы чувствуете, что можете что-то изменить..$(br2)Создать жизнь из ничего - дело непростое, но объединить существующие знания? Вы чувствуете себя немного Франкенштейном.$(br)$(italic)Хорошо ли это? Плохо? Вы не уверены."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Склеивание голов",
+      "advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
+      "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
+      "text": "Что бы ваше творение хотело съесть? Это актуально, ведь… $(l:creating_life/memories)причины$()."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:midgame/remember_egg_laying_wooly_pig",
+      "title": "Вспоминая",
+      "recipe": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
+      "text": "$(l:cuisine/amaranth)Бархатник$() - это то, что нужно!"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "spectrum:midgame/remember_egg_laying_wooly_pig",
+      "title": "Существо",
+      "entity": "spectrum:egg_laying_wooly_pig",
+      "text": "Способна $(thing)стричься$() и $(thing)доиться$(), а также $(thing)нести яйца$()."
+    }
+  ]
+}

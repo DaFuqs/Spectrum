@@ -1,0 +1,31 @@
+{
+  "name": "Остриё",
+  "advancement": "spectrum:hidden/visit_dd_biomes/razor_edge",
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:sawblade_grass": 0,
+    "spectrum:bristle_sprouts": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Остриё",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_razor_edge.png"
+      ],
+      "border": true,
+      "text": "Кажется, что все здесь стремится нанести вам урон. Не самое приятное место."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:sawblade_grass",
+      "text": "Даже земля: Пересохшая и острая как бритва из-за недостатка света и воды - отсюда и название."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bristle_sprouts",
+      "text": "Маленькие вредные растения, которые сильно жалят при контакте с ними."
+    }
+  ]
+}

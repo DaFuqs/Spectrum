@@ -1,0 +1,43 @@
+{
+  "name": "Нестабильная Амальгама",
+  "advancement": "spectrum:unlocks/items/incandescent_amalgam",
+  "icon": "spectrum:incandescent_amalgam",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:incandescent_amalgam": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "В теории солнце на ладони звучит гораздо лучше. $(br2)Теперь, когда оно сидит, здесь… ну, оно горит. Тот факт, что оно существует, почти чудо - на самом деле оно должно было взорваться в бочке - нестабильная, кипящая смесь этанола с коктейлем катализаторов, который не хочет существовать."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Одно неверное движение может привести к взрыву, который унесет с собой все, что находится поблизости, включая вас самих. И все же, по всем этим причинам и даже больше, мягкое, теплое свечение геля вызывает бесконечное любопытство. Все вещи притягиваются к пламени. Несомненно, то, что по сути является высокоэффективной магической взрывчаткой, обладает бесконечным потенциалом. Все, что вам нужно, - это немного осторожности, небольшая гора и безрассудство."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Бродильный Синтез",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_doom",
+      "text": "$(italic)мое собственное солнце…$()$(br2)Чем дольше идет синтез, тем больше продукции… Нельзя винить ангелов за то, что они не хотят получить свою долю."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Чистый Синтез",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_pure",
+      "text": "$(italic)…так сильно накалился!$()"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Простой Синтез",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_simple",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Перегонка",
+      "recipe": "spectrum:titration_barrel/fast_pure_alcohol",
+      "text": "Первозданный вкус амальгамы делает ее уникальной для перегонки чистого спирта"
+    }
+  ]
+}

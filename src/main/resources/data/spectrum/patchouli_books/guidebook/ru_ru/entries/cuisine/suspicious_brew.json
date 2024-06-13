@@ -1,0 +1,21 @@
+{
+  "name": "Подозрительное Варево",
+  "advancement": "spectrum:unlocks/food/suspicious_brew",
+  "icon": "spectrum:suspicious_brew",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:suspicious_brew": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Любопытно, что сочетание грибов и воды является идеальным рецептором для всех других цветочных нот, либо дополняя вкус, либо создавая... очень своеобразные.$(br2)Каждый цветок обладает определенным эффектом, словно вы кормите им $(thing)коричневый гриб$()."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Рецпт в бочке",
+      "recipe": "spectrum:titration_barrel/special/suspicious_brew",
+      "text": "Благодаря процессу ферментации в бочке для брожжения эффект длится гораздо дольше, чем у $(item)Странного Варева$()."
+    }
+  ]
+}

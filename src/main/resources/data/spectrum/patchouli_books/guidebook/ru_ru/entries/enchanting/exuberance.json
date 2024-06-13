@@ -1,0 +1,31 @@
+{
+  "name": "Изобилие",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:unlocks/enchantments/exuberance",
+  "flag": "spectrum:enchantment_exists_spectrum_exuberance",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Этот необычный книжный стол, хоть и полезен, но он почти моментально поглощает любую единицу опыта, которую вы только сможете добыть. Удовлетворить его неослабевающий голод и пополнить ваш постоянно растущий список волшебных инструментов - грандиозная задача.$(br2)Выжимание последней крупицы опыта из ваших противников очень поможет."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
+      "text": "Увеличивает количество получаемого опыта за убийство монстров.$(br2)Макс. уровень: 5$(br)Применимо к оружию ближнего боя, инструментам и Удочкам Спектрума."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Изобилием окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
+      "text": "Поначалу повышение уровня Изобилия с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

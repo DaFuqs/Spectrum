@@ -1,0 +1,21 @@
+{
+  "name": "Посох Конструктора",
+  "advancement": "spectrum:unlocks/items/constructors_staff",
+  "icon": "spectrum:constructors_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:constructors_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы всегда проводите много времени, расставляя блоки. Можно подумать, что это главная причина вашего существования. Расставлять множество одинаковых блоков - это утомительно.$(br2)Или скорее: $(italic)Это было$() утомительно."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальное Создание",
+      "recipe": "spectrum:pedestal/tier2/constructors_staff",
+      "text": "Крадучись-кликни чтобы получить выбор всех доступных режимов размещения."
+    }
+  ]
+}

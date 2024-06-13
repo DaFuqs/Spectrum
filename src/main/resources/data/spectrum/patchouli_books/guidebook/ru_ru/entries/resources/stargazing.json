@@ -1,0 +1,68 @@
+{
+  "name": "Звездочеты",
+  "advancement": "spectrum:milestones/unlock_shooting_stars",
+  "icon": "minecraft:spyglass",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:star_fragment": 0,
+    "spectrum:stardust": 0,
+    "spectrum:shooting_star_glistering": 0,
+    "spectrum:shooting_star_fiery": 0,
+    "spectrum:shooting_star_colorful": 0,
+    "spectrum:shooting_star_pristine": 0,
+    "spectrum:shooting_star_gemstone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Желание получить звезду",
+      "images": [
+        "spectrum:textures/gui/guidebook/stargazing.png"
+      ],
+      "border": true,
+      "text": "Спокойная ночь приглашает прилечь на траву и посмотреть на звезды!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_star_fragment",
+      "title": "Падающие звезды",
+      "item": "spectrum:shooting_star_glistering",
+      "text": "Маленькие падающие звезды сделаны из материала, неизвестного вам до сих пор.$(br)Сможете ли вы поймать одну прямо с неба?$(br)$(italic)Совет: падающие звезды гораздо легче заметить с помощью подзорной трубы или ночного зрения.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_star_fragment",
+      "title": "Фрагмент Звезды",
+      "item": "spectrum:star_fragment",
+      "text": "Падающие звезды приносят ценные ресурсы: фрагмент звезды, Звездопыль и множество других редких материалов.$(br2)Подняв пыдающую звезду крадучесь, и $(l:general/anvil_crushing)разбив её наковальней$(/l) даст вам"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:collect_star_fragment",
+      "title": "Фрагмент Звезды",
+      "text": "вдвое больше фрагмент звёзд, но ценой других ресурсов."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_star_fragment",
+      "anchor": "stardust",
+      "title": "Звездопыль",
+      "item": "spectrum:stardust",
+      "text": "Порошок неизвестного происхождения, наделенный душой звезд.$(br)Несет в себе скромную, но скрытую силу."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:collect_all_shooting_star_variants",
+      "title": "Закалка звезд",
+      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
+      "text": "Теперь, когда вы собрали все варианты, наконец-то пришло время расслабиться! Звёзды, закаленные алмазом, больше не ломаются при ударе."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:collect_all_shooting_star_variants",
+      "title": "Закалка звезд",
+      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
+      "text": "$(italic)Хотите провести турнир по старболу с друзьями?"
+    }
+  ]
+}

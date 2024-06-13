@@ -1,0 +1,190 @@
+{
+  "name": "Использование Реагентов",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "name": "Reagents",
+      "title": "Использование Реагентов",
+      "text": "Если использовать $(l:resources/mermaids_brush)Русалочий Гребешок$() а не $(item)Огненный Порошок$(), то получится гораздо более реактивное зелье. Это не только позволяет вам добавить свой личный набор дополнительных магических ингредиентов, но и использовать некоторые из них в качестве дополнительных реагентов. Каждый из этих реагентов оказывает уникальное воздействие на $(item)Зелье$(). Каждый реагент может быть использован только один раз в рецепте."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Порядок применения",
+      "text": "Порядок расположения реагентов не имеет значения.$(br2)$(bold)Сначала применяются плоские (фиксированные) бонусы, а затем процентные бонусы изменяют это значение"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:redstone",
+      "text": "$(li)+100% длительности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:glowstone_dust",
+      "text": "$(li)+1 Эффективности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:gunpowder",
+      "text": "$(li)Создаёт Взрывные Зелья"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:dragon_breath",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
+      "text": "$(li)Создаёт Туманные Зелья - также требует Порох как реагент$(li)Позволяет создавать стрелы с эффектами, если положить стрелы вместо пузырьков."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:topaz_powder",
+      "text": "$(li)Созданные зелья не испускают частицы"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:amethyst_powder",
+      "text": "$(li)+60с длительности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:citrine_powder",
+      "text": "$(li)+25% эффективности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:onyx_powder",
+      "text": "$(li)Заставляет зелье странно пахнуть и иметь непонятный вкус. Так же меняет цвет зелья на чёрный, делая так, что невозможно определить, что это за зелье"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:moonstone_powder",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "text": "$(li)Конвертирует негативные эффекты в их позитивные противоположности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:shimmerstone_gem",
+      "text": "$(li)+20% эффективности$(li)+20% длительности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:quitoxic_powder",
+      "advancement": "spectrum:collect_quitoxic_reeds",
+      "text": "$(li)+1 эффективности к негативным эффектам"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:stratine_fragments",
+      "advancement": "spectrum:midgame/collect_stratine",
+      "text": "$(li)+1 эффективности$(li)+1 негативный эффект$(li)-1 продукции"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paltaeria_fragments",
+      "advancement": "spectrum:lategame/collect_paltaeria",
+      "text": "$(li)+1 случайный позитивный эффект"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:stardust",
+      "advancement": "spectrum:hidden/collect_stardust",
+      "text": "$(li)75% шанс добавить эффект предыдущего зелья"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:star_fragment",
+      "advancement": "spectrum:collect_star_fragment",
+      "text": "$(li)Добавляет эффект предыдущего зелья, но с -25% эффективности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:storm_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
+      "text": "$(li)Невероятно повышает эффективность зелья в начале, но со временем она понижается - не работает с мгновенными эффектами!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:raw_azurite",
+      "advancement": "spectrum:midgame/collect_azurite",
+      "text": "$(li)обнуляет понижение длительности зелья для Туманных зелий и Стрел с Эффектами"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:four_leaf_clover",
+      "advancement": "spectrum:collect_four_leaf_clover",
+      "text": "$(li)Намного увеличивает случайную статистику"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:vegetal",
+      "advancement": "spectrum:collect_vegetal",
+      "text": "$(li)+200% длительности$(li)-25% эффективности"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:neolith",
+      "advancement": "spectrum:midgame/collect_neolith",
+      "text": "$(li)+2 продукции"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "$(li)+1 эффективности$(li)+30с длительности$(li)-2 продукции"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "text": "$(li)Понижает время, нужное для питья зелья"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bedrock_dust",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "text": "$(li)+50% эффективности$(li)-75% длительности$(li)-1 продукции"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bismuth_flake",
+      "advancement": "spectrum:lategame/collect_bismuth",
+      "text": "$(li)+1 эффективности для положительных эффектов$(li)Красит зелье в случайный цве"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:raw_malachite",
+      "advancement": "spectrum:lategame/collect_malachite",
+      "text": "$(li)+100% длительности$(li)Замедляет время питья зелья"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:raw_bloodstone",
+      "advancement": "spectrum:lategame/pluck_effulgent_feather",
+      "text": "$(li)+100% эффективности$(li)Замедляет время питья зелья"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:prickly_bayleaf",
+      "anchor": "prickly_bayleaf",
+      "advancement": "spectrum:lategame/collect_prickly_bayleaf",
+      "text": "$(li)-2 эффективности к негативным эффектам"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:jadeite_petals",
+      "anchor": "jadeite_petals",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "text": "$(li)+120с длительности положительных эффектов"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bone_ash",
+      "anchor": "bone_ash",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "text": "$(li)10% шанс добавить эффект зелья, сваренного до этого с +100% эффективности и длительности"
+    }
+  ]
+}

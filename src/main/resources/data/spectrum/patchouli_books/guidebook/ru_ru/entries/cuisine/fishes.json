@@ -1,0 +1,26 @@
+{
+  "name": "Рыбы",
+  "icon": "spectrum:crawfish",
+  "advancement": "spectrum:hidden/collect_any_spectrum_fish",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:crawfish": 0,
+    "spectrum:koi": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_crawfish",
+      "anchor": "crawfish",
+      "item": "spectrum:crawfish",
+      "text": "Ну, на самом деле это не рыба, $(italic)а ракообразное$().$(br2)Кажется, они живут даже в $(l:magical_blocks/mud)самых грязных водоёмах$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_koi",
+      "anchor": "koi",
+      "item": "spectrum:koi",
+      "text": "Эта бледная, крупная и неторопливая рыба чувствует себя как дома в лужицах $(l:magical_blocks/liquid_crystal)Жидких Кристаллов$(/l)."
+    }
+  ]
+}

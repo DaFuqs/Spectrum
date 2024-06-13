@@ -1,0 +1,36 @@
+{
+  "name": "Лунокаменный Пьедестал",
+  "icon": "spectrum:pedestal_moonstone",
+  "sortnum": 18,
+  "advancement": "spectrum:lategame/collect_moonstone_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:hidden/build_any_complex_structure",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_moonstone": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Лунокаменный Пьедестал",
+      "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
+      "text": "Улучшите свой $(l:general/pedestal)Пигментный Пьедестал$() используя добытые $(l:general/shards#moonstone)Осколоки Лунокамня$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Спектральный Фокус",
+      "multiblock_id": "spectrum:pedestal_complex_structure_without_moonstone_check",
+      "enable_visualize": true,
+      "text": "Размеры: 13x13x7 блоков"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Полная версия)",
+      "text": "$(li)1 Пигментный Пьедестал$(li)4 Блока Инкрустрированного Ониксом$(li)4 Пиленых блока$(li)8 Ламп из Драгоценных Камней$(li)4 блока инкрустированные драгоценными камнями$(li)12 Блоков Полированных Драгоценных Камней$(li)16 CMYK Резных Блока$(li)36 Полированных Колонн$(li)52 Узорчитых Блока$(li)172 Полированных Блока"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Улучшение)",
+      "text": "$(li)4 Блока Инкрустрированного Ониксом$(li)4 блока инкрустированные драгоценными камнями$(li)36 Узорчитых Блока$(li)12 Полированных Блока"
+    }
+  ]
+}

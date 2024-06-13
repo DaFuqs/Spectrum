@@ -1,0 +1,21 @@
+{
+  "name": "Облачные Сапоги",
+  "advancement": "spectrum:unlocks/trinkets/cotton_cloud_boots",
+  "icon": "spectrum:cotton_cloud_boots",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:cotton_cloud_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Уметь летать, как птицы, всегда было мечтой многих людей, в том числе и вас.$(br2)Теперь у вас есть эти ботинки. Свобода почти ошеломляет. Правда, без подвоха не обошлось, но что поделаешь."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/cotton_cloud_boots",
+      "text": "Как только вы начинаете бег, под вашими ногами образуются небольшие облака. Эти облака слишком пушистые, чтобы на них прыгать, но они безопасная опускают вас.$(br2)Есть только один нюанс:$(br)$(italic)вам лучше не прекращать бег в воздухе.$()."
+    }
+  ]
+}

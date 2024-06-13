@@ -1,0 +1,22 @@
+{
+  "name": "Генератор Частиц",
+  "advancement": "spectrum:unlocks/blocks/particle_spawner",
+  "icon": "spectrum:particle_spawner",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:particle_spawner": 0,
+    "spectrum:creative_particle_spawner": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/stargazing)Падающая звезда$() оставила за собой фантастический шлейф частиц на пути к земле. Вы создали Генератор Частиц, чтобы воспроизвести это зрелище и множество других - самостоятельно.$()$(br2)Дымоход? Ракетные частицы? Атмосферные эффекты для вашего Пьедестала?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "Используйте графический интерфейс, чтобы настроить эффекты по вашему вкусу. Подайте $(thing)сигнал редстоуна$(), чтобы начать фантастическое представление. По мере продвижения вы будете открывать новые частицы."
+    }
+  ]
+}

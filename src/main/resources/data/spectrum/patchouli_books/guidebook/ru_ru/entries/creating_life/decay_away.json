@@ -1,0 +1,23 @@
+{
+  "name": "Гниль Прочь!",
+  "icon": "spectrum:bottle_of_decay_away",
+  "advancement": "spectrum:unlocks/items/bottle_of_decay_away",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_decay_away": 0
+  },
+  "pages": [
+    {
+      "title": "Гниль Прочь!",
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_decay_away",
+      "text": "Ваш последний эксперимент был не только опасным, но и довольно болезненным, от которого нужно было бы избавиться.$(br)На случай, если что-то выйдет из-под контроля, вы создали этот модифицированный вариант. На этот раз, правда, для лечения, а не для затопление базы.$(br2)Да, так, наверное, лучше."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_decay_away",
+      "text": "Избавляет от 99 % всех самовоспроизводящихся микроорганизмов."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Датчик Игроков",
+  "advancement": "spectrum:unlocks/redstone/player_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:player_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Датчик Игроков",
+      "text": "Вы знаете людей, которые строят гигантские сооружения из $(item)Редстоуна$() чтобы открыть огромную дверь. А затем они устанавливают на неё невзрачную $(item)Нажимную Плиту$().$(br)Датчик игрока, напротив, способен почувствовать ваше присутствие - или присутствие других игроков - на расстоянии и посылает соответствующий $(thing)редстоун сигнал$().$(br)Намного лучше."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/detectors/player_detector",
+      "text": "Радиус: 10 блоков.$(br)Излучает сигнал полной силы, если игрок, поместивший его, обнаружен, иначе 8."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Очки Святящегося Зрения",
+  "advancement": "spectrum:unlocks/trinkets/glow_vision_goggles",
+  "icon": "spectrum:glow_vision_goggles",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:glow_vision_goggles": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:glow_vision_goggles",
+      "text": "Особенность светящихся спрутов в том, что они освещают вам путь в темноте пещер. Как бы красивы они ни были, они слишком часто выбрасываются на берег и встречают там свой печальный конец.$(br)Вы чтите их неуклюжее светящееся наследие, создавая очки, которые смогут и дальше направлять вас во тьме пещер."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/glow_vision_goggles",
+      "text": "Если вы находитесь в темноте и у вас есть светящиеся чернильные мешки, Очки Святящегося Зрения дадут вам эффект ночного зрения."
+    }
+  ]
+}

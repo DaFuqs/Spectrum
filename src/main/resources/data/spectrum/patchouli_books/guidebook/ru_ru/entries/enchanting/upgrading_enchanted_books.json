@@ -1,0 +1,22 @@
+{
+  "name": "Улучшение Зачарования",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 3,
+  "advancement": "spectrum:unlocks/blocks/enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "У зачарований и вашей цветной магии много общего. Поэтому вы не удивились, когда ваша первая попытка объединить $(item)Зачарованную Книгу$() с $(l:general/pigment)Пигментом$(/l) увенчалась мгновенным успехом.$()$(br2)Положив $(item)Зачарованную книгу$() на $(l:enchanting/enchanter)Зачарователь$(), окружив её $(l:general/pigment)пигментом$(/l) и постоянный приток опыта повышает уровень книги."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/upgrading_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "Только постарайтесь не прерывать этот процесс, иначе он полностью остановится."
+    }
+  ]
+}

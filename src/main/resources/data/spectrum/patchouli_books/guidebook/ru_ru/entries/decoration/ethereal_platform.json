@@ -1,0 +1,23 @@
+{
+  "name": "Эфирная Платформа",
+  "advancement": "spectrum:unlocks/blocks/ethereal_platform",
+  "icon": "spectrum:ethereal_platform",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:ethereal_platform": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:ethereal_platform",
+      "title": "Эфирная Платформа",
+      "text": "В поисках подходящего для вас материала, который не испортил бы внешний вид ваших зданий, вам очень помогли $(l:resources/stargazing)Падающие Звезды$() Благодаря усиливающей способности $(l:general/onyx_shards)Оникса$(), вы смогли усилить частицы до такой степени, что они стали твердыми."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт Пьедестала",
+      "recipe": "spectrum:pedestal/tier3/ethereal_platform",
+      "text": "Еще одна особенность Эфирных платформ заключается в том, что она реагирует только на живых существ. Объекты, например предметы, просто проходят сквозь нее."
+    }
+  ]
+}

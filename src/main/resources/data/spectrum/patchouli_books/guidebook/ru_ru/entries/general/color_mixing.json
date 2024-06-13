@@ -1,0 +1,35 @@
+{
+  "name": "Смешивание Цветов",
+  "icon": "minecraft:light_blue_dye",
+  "sortnum": 6,
+  "advancement": "spectrum:collect_vegetal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:craft_colored_sapling",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Смешивание Цветов",
+      "images": [
+        "spectrum:textures/gui/guidebook/color_mixing.png"
+      ],
+      "text": "Используя базовые цвета $(c_cyan)Голубой$(), $(c_magenta)Пурпурный$() и $(c_yellow)Жёлтый$() (почти) Можно создать любой цвет."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Ваши попытки смешать $(l:general/gemstone_powder)порошок драгоценных камней$(/l) напрямую не увенчались успехом. Но теперь у вас появилась другая идея: $(br)Близость ваших драгоценных камней к природе наводит на мысль, что $(italic)природа$() должна быть и источником, и ответом!$(br2)Вы быстро набросали несколько заметок, и в результате получился $(l:general/colored_trees)рецепт$(), который выглядит очень многообещающе."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+      "title": "Коричневый пигмент?",
+      "text": "Вы пробовали и пробовали, но безрезультатно. Вы не смогли найти способ добиться $(c_brown)коричневого цвета$() смешав порошок драгоценных камней. Самое лучшее, что у вас получилось, это размытый апельсин - фуу.$(br)Это не может быть так сложно. Например… $(c_brown)Грязь - коричневая$() и это самый распространенный материал в мире.$(br2)Должен быть способ… $(br)и вы уверены, что $(c_black)Черный$() это ответ."
+    },
+    {
+      "type": "patchouli:link",
+      "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+      "text": "$(br2)$(br2)$(br2)$(br)$(italic)Серьезно, посмотрите сами! То, как мы воспринимаем коричневый цвет, просто завораживает!$()",
+      "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
+      "link_text": "Коричневый - странный"
+    }
+  ]
+}

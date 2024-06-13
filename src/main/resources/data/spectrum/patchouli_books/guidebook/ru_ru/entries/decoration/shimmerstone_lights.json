@@ -1,0 +1,38 @@
+{
+  "name": "Светильники из Сверкамня",
+  "icon": "spectrum:basalt_shimmerstone_light",
+  "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:blackslag_shimmerstone_light": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Светильники из Сверкамня",
+      "items": [
+        "spectrum:andesite_shimmerstone_light",
+        "spectrum:basalt_shimmerstone_light",
+        "spectrum:calcite_shimmerstone_light",
+        "spectrum:deepslate_shimmerstone_light",
+        "spectrum:diorite_shimmerstone_light",
+        "spectrum:granite_shimmerstone_light",
+        "spectrum:stone_shimmerstone_light"
+      ],
+      "text": "В первые ночи в этом новом мире вы освещали свое убежище факелами. Несмотря на то, что это было атмосферно, это было также и примитивно.$(br)Чтобы отойти от вашего тёмного прошлого, освещённого факелами, вы создали лампы из сверкамня."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
+      "text": "Существуют различные варианты, в зависимости от того, какой полированный блок вы используете в качестве основы."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Вариант Тёмной Материи",
+      "advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
+      "text": "Можно использовать и Чёрношлак, тогда получится особенно темный вариант."
+    }
+  ]
+}

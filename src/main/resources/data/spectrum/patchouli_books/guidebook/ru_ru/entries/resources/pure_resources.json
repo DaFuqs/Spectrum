@@ -1,0 +1,83 @@
+{
+  "name": "Чистые Ресурсы",
+  "advancement": "spectrum:lategame/collect_pure_resource",
+  "icon": "spectrum:pure_iron",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:pure_coal": 0,
+    "spectrum:pure_iron": 0,
+    "spectrum:pure_gold": 0,
+    "spectrum:pure_diamond": 0,
+    "spectrum:pure_emerald": 0,
+    "spectrum:pure_redstone": 0,
+    "spectrum:pure_lapis": 0,
+    "spectrum:pure_copper": 0,
+    "spectrum:pure_quartz": 0,
+    "spectrum:pure_glowstone": 0,
+    "spectrum:pure_prismarine": 0,
+    "spectrum:pure_echo": 0,
+    "spectrum:pure_netherite_scrap": 0,
+
+    "spectrum:pure_coal_block": 0,
+    "spectrum:pure_iron_block": 0,
+    "spectrum:pure_gold_block": 0,
+    "spectrum:pure_diamond_block": 0,
+    "spectrum:pure_emerald_block": 0,
+    "spectrum:pure_redstone_block": 0,
+    "spectrum:pure_lapis_block": 0,
+    "spectrum:pure_copper_block": 0,
+    "spectrum:pure_quartz_block": 0,
+    "spectrum:pure_netherite_scrap_block": 0,
+    "spectrum:pure_glowstone_block": 0,
+    "spectrum:pure_prismarine_block": 0,
+    "spectrum:pure_echo_block": 0,
+
+    "spectrum:pure_certus_quartz": 0,
+    "spectrum:pure_fluix": 0,
+    "spectrum:pure_globette": 0,
+    "spectrum:pure_globette_nether": 0,
+    "spectrum:pure_globette_end": 0,
+
+    "spectrum:pure_certus_quartz_block": 0,
+    "spectrum:pure_fluix_block": 0,
+    "spectrum:pure_globette_block": 0,
+    "spectrum:pure_globette_nether_block": 0,
+    "spectrum:pure_globette_end_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Выращивание материалов в $(l:magical_blocks/crystallarieum)Кристалляриуме$(/l) дает вот что: гораздо более чистый, кристаллический вариант по сравнению с простой $(item)Сырой Рудой$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "При ближайшем рассмотрении они кажутся окруженными невидимым блеском, мягко защищающим их от внешних воздействий. Эта пелена, похоже, также защищает $(item)Чистую Медь$() от окисления."
+    },
+    {
+      "type": "patchouli:blasting",
+      "title": "Плавка",
+      "recipe": "spectrum:blasting/pure_resources/pure_iron",
+      "recipe2": "spectrum:blasting/pure_resources/pure_gold",
+      "text": "Как ни странно, вы обнаружили, что эти ресурсы, похоже, способны выдерживать жар обычных $(item)Печей$(). Но вы, по крайней мере, смогли выплавить их в $(item)Плавильной печи$()."
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "Пепельная Плавка",
+      "recipe": "spectrum:cinderhearth/pure_resources/pure_iron",
+      "recipe2": "spectrum:cinderhearth/pure_resources/pure_gold",
+      "text": "Однако выплавка их в $(l:magical_blocks/cinderhearth)Пепельном очаге$() даёт гораздо больше продукции после плавки."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Сжатие",
+      "recipe": "spectrum:pedestal/tier1/compacting/pure_quartz_block",
+      "text": "Можно превратить в $(item)Чистые Ресурсы$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Создание Незерита",
+      "recipe": "spectrum:fusion_shrine/vanilla/pure_netherite_ingot",
+      "text": "Эффективнее и безрисковее не бывает."
+    }
+  ]
+}

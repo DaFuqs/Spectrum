@@ -1,0 +1,31 @@
+{
+  "name": "Первый Удар",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/first_strike",
+  "flag": "spectrum:enchantment_exists_spectrum_first_strike",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Всё, что нужно - это один хорошо обдуманный удар… или так гласила пословица.$(br2)Неважно.$(br)На заметку: вы изобрели Первый удар. Он будет очень полезен, особенно против слабых противников."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
+      "text": "Значительно увеличивает урон, если цель имеет полное здоровье.$(br2)Макс. уровень: 2$(br)Применимо к оружию ближнего боя."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Первым ударом окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
+      "text": "Поначалу повышение уровня Первого удара с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

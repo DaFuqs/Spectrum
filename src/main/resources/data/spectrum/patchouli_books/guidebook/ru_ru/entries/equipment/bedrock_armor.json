@@ -1,0 +1,38 @@
+{
+  "name": "Бедрок Броня",
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "icon": "spectrum:bedrock_chestplate",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_helmet": 0,
+    "spectrum:bedrock_chestplate": 0,
+    "spectrum:bedrock_leggings": 0,
+    "spectrum:bedrock_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Самым прочным материалом, который вы смогли найти на данный момент, был Незерит. Однако ремонт $(item)Незеритовой Брони$() обходился дороже, чем изготовление самих доспехов. Кроме того, защита снижалась с каждой царапиной. Все это не так проблематично, когда доспехи просто $(italic)НЕВОЗМОЖНО$() сломать.$(br2)$(italic)Никогда не увядай, каменный цветок."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
+      "text": "Бедроковый Шлем создаётся с $(bold)Защитой от Снарядов 5$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
+      "text": "Бедроковый Нагрудник создаётся с $(bold)Защитой 5$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
+      "text": "Бедроковые Поножи создаются с $(bold)Взрывоустойчивостью 5$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
+      "text": "Бедроковые Ботинки создаётся с $(bold)Огнеупорностью 5$()."
+    }
+  ]
+}

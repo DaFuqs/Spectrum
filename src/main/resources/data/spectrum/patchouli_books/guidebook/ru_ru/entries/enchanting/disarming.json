@@ -1,0 +1,31 @@
+{
+  "name": "Разоружение",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/disarming",
+  "flag": "spectrum:enchantment_exists_spectrum_disarming",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Зомби, с которыми вы сталкиваетесь каждую ночь, носят много ценного снаряжения. Но когда они умирают, оно исчезает и больше никогда не появляется.$(br2)Не беда, если вам удастся выхватить его у них, пока они еще живы. Попался!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
+      "text": "Небольшой шанс того, что мобы (и другие игроки!) сбросят свое снаряжение при ударе.$(br2)Макс. Уровень: 2$(br)применимо к оружию ближнего боя."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_disarming",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Разоружением окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/disarming_level_2",
+      "text": "Поначалу повышение уровня Разоружения с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Удачный Рулет",
+  "advancement": "spectrum:unlocks/food/lucky_roll",
+  "icon": "spectrum:lucky_roll",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:lucky_roll": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Может быть, вы собираетесь стать кондитером в дополнение к своей основной работе художника? Выглядят они не так уж плохо (и на вкус тоже!).$(br2)Состоящий из $(l:cuisine/amaranth)Бархатника$(/l), $(item)Сахара$(), $(item)Молока$(), и $(l:resources/clover)четырехлистного клевера$(), он обладает особым эффектом: вы заметили, что стали немного успешнее работать с инструментами, связанными с удачей, добычей и другими случайными вещами."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/food/lucky_roll",
+      "text": "$(italic)Удачный бросок, понял???"
+    }
+  ]
+}

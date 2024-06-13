@@ -1,0 +1,36 @@
+{
+  "name": "Эндер-Стык",
+  "advancement": "spectrum:unlocks/items/ender_splice",
+  "icon": "spectrum:ender_splice",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_splice": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:ender_splice",
+      "text": "Самое интересное в Эндерменах - это, несомненно, их способность к телепортации. Вы довольно успешно ее воспроизвели! Однако, чтобы определить место назначения телепорта, нужно сначала сделать снимок местности.$(br)Эндермены, похоже, не обязаны этого делать. Почему?"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/ender_splice",
+      "text": "Используйте с помощью $(k:use) чтобы привязать его к текущей позиции.$(br)При втором использовании вы телепортируетесь обратно. Можно использовать даже на других игроках. Не может телепортировать вас через измерения."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Прочность",
+      "item": "spectrum:ender_splice{Enchantments: [{id: \"minecraft:unbreaking\", lvl: 3s}]}",
+      "text": "При зачаровании Эндер-Стыка на Прочность с помощью $(l:enchanting/enchanting_items)Зачарователя$(/l) уменьшается вероятность того, что он сломается при использовании."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "title": "Резонанс",
+      "item": "spectrum:ender_splice{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Зачаровав Эндер-Стык на Резонанс с помощью $(l:enchanting/enchanting_items)Зачарователя$(/l) вы получите возможность межпространственного телепорта."
+    }
+  ]
+}

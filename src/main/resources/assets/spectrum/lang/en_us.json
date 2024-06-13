@@ -149,6 +149,7 @@
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",
+  "container.spectrum.owned_by_player": " %s",
   "container.spectrum.rei.pedestal_crafting.title": "Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f second - %f XP",

@@ -3,7 +3,7 @@
   "group": "planks",
   "ingredients": [
     {
-      "item": "spectrum:lime_log"
+      "tag": "spectrum:lime_logs"
     }
   ],
   "result": {

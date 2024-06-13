@@ -75,8 +75,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
+	@Deprecated
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return getDefaultTap(1).copy();
 	}
 	
 	public ItemStack getPreviewTap(int timeMultiplier) {

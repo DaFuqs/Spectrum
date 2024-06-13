@@ -33,8 +33,8 @@ public class AnvilCrusher {
 			
 			if (crushingInputAmount > 0) {
 				Vec3d position = itemEntity.getPos();
-				
-				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager());
+
+				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager()).copy();
 				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 				
 				// Remove the input amount from the source stack

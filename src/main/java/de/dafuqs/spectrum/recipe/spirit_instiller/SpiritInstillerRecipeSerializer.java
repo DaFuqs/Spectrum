@@ -52,7 +52,7 @@ public class SpiritInstillerRecipeSerializer implements GatedRecipeSerializer<Sp
 		recipe.centerIngredient.write(packetByteBuf);
 		recipe.bowlIngredient1.write(packetByteBuf);
 		recipe.bowlIngredient2.write(packetByteBuf);
-		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeInt(recipe.craftingTime);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldAndEfficiencyUpgrades);

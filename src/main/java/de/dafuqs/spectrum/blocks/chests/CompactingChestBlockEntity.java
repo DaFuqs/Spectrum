@@ -207,7 +207,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				
 				autoCompactingInventory.setCompacting(autoCraftingMode, itemKey.toStack());
 				Optional<CraftingRecipe> optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCompactingInventory, world);
-				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().getOutput(world.getRegistryManager()).isEmpty()) {
+				if (optionalCraftingRecipe.isEmpty() || optionalCraftingRecipe.get().craft(autoCompactingInventory, world.getRegistryManager()).isEmpty()) {
 					optionalCraftingRecipe = Optional.empty();
 					currentCache.put(itemKey, optionalCraftingRecipe);
 				} else {

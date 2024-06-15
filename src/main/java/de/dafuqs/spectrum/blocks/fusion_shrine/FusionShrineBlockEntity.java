@@ -199,7 +199,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		recipe.craft(world, fusionShrineBlockEntity);
 		
 		if (recipe.shouldPlayCraftingFinishedEffects()) {
-			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput(world.getRegistryManager()));
+			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.craft(fusionShrineBlockEntity, world.getRegistryManager()));
 			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 		}
 		
@@ -264,10 +264,10 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
     }
 
-    public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
+	public void grantPlayerFusionCraftingAdvancement(ItemStack stack, int experience) {
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
         if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(serverPlayerEntity.getWorld().getRegistryManager()), experience);
+			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, stack, experience);
         }
     }
 

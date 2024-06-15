@@ -185,8 +185,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("""
 			True will prevent the spread of Decay blocks in claims.
 			Only enable when necessary and communicate to your players that those blocks will not work in their claims.
-			If any player comes to the Spectrum devs claiming that decay does not spread for them and therefore they could not progress
-			without them gotten told that, your will get put on the 'bad pack devs' list and this config setting removed again
+			If any player comes to the Spectrum devs claiming that decay does not spread for them, and therefore they could not progress
+			You will get put on the 'bad pack devs' list and this config setting removed again
 			""")
 	public boolean DecayIsStoppedByClaimMods = false;
 	

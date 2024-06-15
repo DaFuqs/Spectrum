@@ -353,11 +353,12 @@ public abstract class LivingEntityMixin {
 		}
 	}
 
-	@Inject(method = "setSprinting(Z)V", at = @At("HEAD"), cancellable = true)
-	public void spectrum$setSprinting(boolean sprinting, CallbackInfo ci) {
+	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)
+	public boolean spectrum$setSprinting(boolean sprinting) {
 		if (sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
-			ci.cancel();
+			return false;
 		}
+		return sprinting;
 	}
 
 	@Inject(at = @At("TAIL"), method = "applyFoodEffects(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)V")

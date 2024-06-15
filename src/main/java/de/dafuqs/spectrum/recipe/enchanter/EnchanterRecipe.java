@@ -60,7 +60,7 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return null;
+		return output.copy();
 	}
 	
 	@Override

@@ -69,6 +69,7 @@
     "WalkNodeProcessorMixin",
     "WaterPathNodeMarkerMixin",
     "WitherEntityMixin",
+    "WorldMixin",
     "accessors.BiomeAccessor",
     "accessors.ExplosionAccessor",
     "accessors.FluidBlockAccessor",

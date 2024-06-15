@@ -79,7 +79,7 @@ public class SpectrumItems {
 	public static final Item CITRINE_SHARD = new Item(IS.of());
 	public static final Item ONYX_SHARD = new CloakedItem(IS.of(), SpectrumCommon.locate("collect_all_basic_pigments_besides_brown"), Items.BLACK_DYE);
 	public static final Item MOONSTONE_SHARD = new CloakedItem(IS.of(), SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.WHITE_DYE);
-	public static final Item SPECTRAL_SHARD = new CloakedItem(IS.of(Rarity.RARE), SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
+	public static final Item SPECTRAL_SHARD = new Item(IS.of(Rarity.RARE));
 	
 	public static final Item TOPAZ_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/collect_topaz_shard"), BuiltinGemstoneColor.CYAN);
 	public static final Item AMETHYST_POWDER = new GemstonePowderItem(IS.of(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);

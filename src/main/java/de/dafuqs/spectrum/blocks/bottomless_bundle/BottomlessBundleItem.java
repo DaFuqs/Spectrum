@@ -524,8 +524,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				Direction direction2 = pointer.getWorld().isAir(blockPos.down()) ? direction : Direction.UP;
 
 				try {
-					this.setSuccess(bottomlessBundleItem.place(new AutomaticItemPlacementContext(pointer.getWorld(),
-							blockPos, direction, stack, direction2)).isAccepted());
+					this.setSuccess(bottomlessBundleItem.place(new AutomaticItemPlacementContext(pointer.getWorld(), blockPos, direction, stack, direction2)).isAccepted());
 				} catch (Exception e) {
 					SpectrumCommon.logError("Error trying to place bottomless bundle at " + blockPos + " : " + e);
 				}

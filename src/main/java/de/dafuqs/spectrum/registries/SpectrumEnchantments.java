@@ -27,6 +27,7 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
 	public static final SpectrumEnchantment RAZING = new RazingEnchantment(Enchantment.Rarity.UNCOMMON, SpectrumCommon.locate("unlocks/enchantments/razing_usage"), EquipmentSlot.MAINHAND); // increased mining speed for very hard blocks
 	public static final SpectrumEnchantment INEXORABLE = new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("unlocks/enchantments/inexorable"), EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND); // prevents mining & movement slowdowns
+	
 	public static void register() {
 		register("resonance", RESONANCE);
 		register("voiding", VOIDING);

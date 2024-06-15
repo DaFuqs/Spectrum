@@ -42,7 +42,7 @@ import vazkii.patchouli.api.*;
 import java.util.*;
 
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory {
-
+	
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int FIRST_POWDER_SLOT_ID = 9;
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -163,7 +163,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		
 		// check recipe crafted last tick => performance
 		boolean shouldMarkDirty = false;
-
+		
 		Recipe<?> calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
 		pedestalBlockEntity.inventoryChanged = false;
 		if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
@@ -210,6 +210,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.craftingTime = 0;
 				craftingFinished = pedestalBlockEntity.craftVanillaRecipe(vanillaCraftingRecipe, pedestalBlockEntity, maxCountPerStack);
 				if (craftingFinished) {
+					playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
 					pedestalBlockEntity.inventoryChanged = true;
 				}
 				shouldMarkDirty = true;
@@ -225,19 +226,20 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (outputItemStack != ItemStack.EMPTY) {
 			if (world.getBlockState(blockPos.up()).getCollisionShape(world, blockPos.up()).isEmpty()) {
 				spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack);
-				playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
 			} else {
-				BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
-				if (aboveBlockEntity instanceof Inventory aboveInventory) {
-					boolean putIntoAboveInventorySuccess = tryPutOutputIntoAboveInventory(pedestalBlockEntity, aboveInventory, outputItemStack);
-					if (putIntoAboveInventorySuccess) {
-						playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
-					} else {
-						// play sound when the entity can not put its output anywhere
-						if (craftingFinished) {
-							pedestalBlockEntity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH);
-						}
+				boolean couldOutput = false;
+				BlockEntity belowBlockEntity = world.getBlockEntity(blockPos.down());
+				if (belowBlockEntity instanceof Inventory belowInventory) {
+					couldOutput = tryPutIntoInventory(pedestalBlockEntity, belowInventory, outputItemStack);
+				}
+				if (!couldOutput) {
+					BlockEntity aboveBlockEntity = world.getBlockEntity(blockPos.up());
+					if (aboveBlockEntity instanceof Inventory aboveInventory && !(aboveBlockEntity instanceof HopperBlockEntity)) {
+						couldOutput = tryPutIntoInventory(pedestalBlockEntity, aboveInventory, outputItemStack);
 					}
+				}
+				if (couldOutput) {
+					shouldMarkDirty = true;
 				} else {
 					// play sound when the entity can not put its output anywhere
 					if (craftingFinished) {
@@ -270,11 +272,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		SpectrumS2CPacketSender.sendPlayPedestalCraftingFinishedParticle(world, blockPos, outputItemStack);
 	}
 	
-	public static boolean tryPutOutputIntoAboveInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack) {
-		if (targetInventory instanceof HopperBlockEntity) {
-			return false;
-		}
-		
+	public static boolean tryPutIntoInventory(PedestalBlockEntity pedestalBlockEntity, Inventory targetInventory, ItemStack outputItemStack) {
 		ItemStack remainingStack = InventoryHelper.smartAddToInventory(outputItemStack, targetInventory, Direction.DOWN);
 		if (remainingStack.isEmpty()) {
 			pedestalBlockEntity.inventory.set(OUTPUT_SLOT_ID, ItemStack.EMPTY);
@@ -369,7 +367,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		ItemStack outputStack = recipe.craft(pedestalBlockEntity, pedestalBlockEntity.getWorld().getRegistryManager());
 		recipe.consumeIngredients(pedestalBlockEntity);
-
+		
 		if (!recipe.areYieldUpgradesDisabled()) {
 			double yieldModifier = pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD);
 			if (yieldModifier != 1.0) {
@@ -377,19 +375,19 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				outputStack.setCount(Math.min(outputStack.getMaxCount(), modifiedCount));
 			}
 		}
-
+		
 		// Add the XP for this recipe to the pedestal
 		float experience = recipe.getExperience() * pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE);
 		pedestalBlockEntity.storedXP += experience;
-
+		
 		PlayerEntity player = pedestalBlockEntity.getOwnerIfOnline();
 		if (player != null) {
 			outputStack.onCraft(pedestalBlockEntity.world, player, outputStack.getCount());
 		}
-
+		
 		// trigger advancements
 		pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(outputStack, (int) experience, pedestalBlockEntity.craftingTimeTotal);
-
+		
 		// if it was a recipe to upgrade the pedestal itself
 		// => upgrade
 		PedestalVariant newPedestalVariant = PedestalRecipe.getUpgradedPedestalVariantForOutput(outputStack);
@@ -399,7 +397,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			pedestalBlockEntity.playSound(SpectrumSoundEvents.PEDESTAL_UPGRADE);
 			PedestalBlock.upgradeToVariant(pedestalBlockEntity.world, pedestalBlockEntity.getPos(), newPedestalVariant);
 			SpectrumS2CPacketSender.spawnPedestalUpgradeParticles(pedestalBlockEntity.world, pedestalBlockEntity.pos, newPedestalVariant);
-
+			
 			pedestalBlockEntity.pedestalVariant = newPedestalVariant;
 			pedestalBlockEntity.currentRecipe = null; // reset the recipe, otherwise pedestal would remember crafting the update
 		} else {
@@ -412,11 +410,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			inventory.setStack(OUTPUT_SLOT_ID, outputStack);
 		}
-
+		
 		pedestalBlockEntity.markDirty();
 		pedestalBlockEntity.inventoryChanged = true;
 		pedestalBlockEntity.updateInClientWorld();
-
+		
 		return true;
 	}
 	
@@ -702,7 +700,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if (inventory.get(slot).getCount() > 0) {
 				return false;
 			}
-
+			
 			Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(this.getWorld(), craftingTabletItem);
 			
 			int width = 3;
@@ -786,53 +784,53 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			PedestalRecipeTier denominator = PedestalRecipeTier.values()[Math.min(pedestalTier.ordinal(), structureTier.ordinal())];
 			this.cachedMaxPedestalTier = denominator;
 			this.cachedMaxPedestalTierTick = world.getTime();
-
+			
 			return denominator;
 		}
 	}
-
+	
 	private PedestalRecipeTier getPedestalTier() {
 		return this.pedestalVariant.getRecipeTier();
 	}
-
-
+	
+	
 	@NotNull
 	private PedestalRecipeTier getStructureTier() {
 		IMultiblock multiblock;
-
+		
 		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.COMPLEX;
 		}
-
+		
 		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
-
+		
 		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.ADVANCED;
 		}
-
+		
 		multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK);
 		if (multiblock.validate(world, pos.down(), BlockRotation.NONE)) {
 			SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 			return PedestalRecipeTier.SIMPLE;
 		}
-
+		
 		return PedestalRecipeTier.BASIC;
 	}
-
+	
 	@Override
 	public void resetUpgrades() {
 		this.upgrades = null;
 		this.markDirty();
 	}
-
+	
 	/**
 	 * Search for upgrades at valid positions and apply
 	 */
@@ -841,12 +839,12 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 2, this.ownerUUID);
 		this.markDirty();
 	}
-
+	
 	@Override
 	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
 	}
-
+	
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();

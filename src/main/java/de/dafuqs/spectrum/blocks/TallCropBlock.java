@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.block.entity.*;
+import net.minecraft.block.enums.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 /**
  * A crop block that is two blocks tall.
@@ -125,11 +122,7 @@ public class TallCropBlock extends CropBlock {
             return blockState.isOf(this) && blockState.get(HALF) == DoubleBlockHalf.LOWER && blockState.get(AGE) > this.lastSingleBlockAge;
         }
     }
-
-    protected DoubleBlockHalf getHalf(BlockState state) {
-        return state.get(HALF);
-    }
-
+    
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(HALF) == DoubleBlockHalf.LOWER) {
@@ -145,10 +138,6 @@ public class TallCropBlock extends CropBlock {
     }
 
     // below code is (mostly) copied from TallPlantBlock
-
-    public static BlockState withWaterloggedState(WorldView world, BlockPos pos, BlockState state) {
-        return state.contains(Properties.WATERLOGGED) ? state.with(Properties.WATERLOGGED, world.isWater(pos)) : state;
-    }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         DoubleBlockHalf doubleBlockHalf = state.get(HALF);
@@ -178,16 +167,29 @@ public class TallCropBlock extends CropBlock {
             }
         }
     }
-
-    protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    
+    protected static void breakTheOtherHalf(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (state.get(HALF) == DoubleBlockHalf.UPPER) {
-            // Break the other half
-            BlockPos blockPos = pos.down();
-            BlockState blockState = world.getBlockState(blockPos);
+            BlockPos downPos = pos.down();
+            BlockState blockState = world.getBlockState(downPos);
             if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
+                if (!player.isCreative()) {
+                    dropStacks(state, world, downPos, null, player, player.getMainHandStack());
+                }
                 BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && blockState.get(Properties.WATERLOGGED) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
-                world.setBlockState(blockPos, blockState2, Block.SKIP_DROPS | Block.NOTIFY_ALL);
-                world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(blockState));
+                world.setBlockState(downPos, blockState2, Block.SKIP_DROPS | Block.NOTIFY_ALL);
+                world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, downPos, Block.getRawIdFromState(blockState));
+            }
+        } else {
+            BlockPos upPos = pos.up();
+            BlockState blockState = world.getBlockState(upPos);
+            if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.UPPER) {
+                if (!player.isCreative()) {
+                    dropStacks(state, world, pos, null, player, player.getMainHandStack());
+                }
+                BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && blockState.get(Properties.WATERLOGGED) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
+                world.setBlockState(upPos, blockState2, Block.SKIP_DROPS | Block.NOTIFY_ALL);
+                world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, upPos, Block.getRawIdFromState(blockState));
             }
         }
     }
@@ -195,11 +197,7 @@ public class TallCropBlock extends CropBlock {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient) {
-            if (player.isCreative()) {
-                onBreakInCreative(world, pos, state, player);
-            } else {
-                dropStacks(state, world, pos, null, player, player.getMainHandStack());
-            }
+            breakTheOtherHalf(world, pos, state, player);
         }
 
         super.onBreak(world, pos, state, player);

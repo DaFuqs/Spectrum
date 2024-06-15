@@ -170,12 +170,13 @@ public interface InkPowered {
 		}
 		
 		long available = 0;
-		// offhand
+		
+		// hands
 		for (ItemStack itemStack : player.getHandItems()) {
 			available += tryGetEnergy(itemStack, color);
 		}
 		
-		// trinket slot
+		// trinket slots
 		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
 		if (optionalTrinketComponent.isPresent()) {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem<?>);
@@ -200,8 +201,12 @@ public interface InkPowered {
 			return false;
 		}
 		
-		// offhand
-		for (ItemStack itemStack : player.getInventory().offHand) {
+		if (player.isCreative()) {
+			return true;
+		}
+		
+		// hands
+		for (ItemStack itemStack : player.getHandItems()) {
 			amount -= tryGetEnergy(itemStack, color);
 			if (amount <= 0) {
 				return true;

@@ -190,12 +190,12 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			// alignPosition: center the mob in the center of the blockPos
 			Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
 			if (entity != null) {
+				if (memoryItemStack.hasCustomName()) {
+					entity.setCustomName(memoryItemStack.getName());
+				}
 				if (entity instanceof MobEntity mobEntity) {
 					if (!nbt.getBoolean("SpawnAsAdult")) {
 						mobEntity.setBaby(true);
-					}
-					if (memoryItemStack.hasCustomName()) {
-						mobEntity.setCustomName(memoryItemStack.getName());
 					}
 				}
 				return Optional.of(entity);

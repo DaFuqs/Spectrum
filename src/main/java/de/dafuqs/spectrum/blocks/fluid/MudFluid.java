@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;

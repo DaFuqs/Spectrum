@@ -3,7 +3,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "tag": "spectrum:shulker_heads"
+    "tag": "spectrum:mob_heads/shulker_heads"
   },
   "ingredient2": {
     "item": "spectrum:white_pigment",

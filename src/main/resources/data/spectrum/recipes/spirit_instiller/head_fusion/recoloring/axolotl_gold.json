@@ -3,7 +3,7 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "tag": "spectrum:axolotl_heads"
+    "tag": "spectrum:mob_heads/axolotl_heads"
   },
   "ingredient2": {
     "item": "spectrum:yellow_pigment",

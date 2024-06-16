@@ -86,12 +86,12 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return output.copy();
 	}
 	
 	@Override
 	public boolean fits(int width, int height) {
-		return true;
+		return craftingInputs.size() <= width * height;
 	}
 	
 	@Override

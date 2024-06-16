@@ -10,17 +10,6 @@
       "text": "You found a plethora of colorful flowers growing around forests and plains in small patches. What's up with those? Definitely worth a look if you haven't tinkered with them already."
     },
     {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus",
-      "item": "spectrum:blackest_lotus",
-      "text": "Overflowing with magical energy"
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:least_black_lotus",
-      "text": "This flower definitely lacks its former soul..."
-    },
-    {
       "type": "spectrum:anvil_crushing",
       "title": "Crushing Petals",
       "advancement": "spectrum:place_pedestal",

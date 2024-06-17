@@ -1,5 +1,5 @@
 {
-  "name": "温度水晶",
+  "name": "晶体处理",
   "advancement": "spectrum:hidden/collect_any_crystallized_block",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:resources_category",
@@ -14,13 +14,14 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
       "item": "spectrum:blazing_crystal",
-      "text": "让一整桶$(l:magical_blocks/liquid_crystal)液晶$()吸收$(item)熔岩$()的热量就会让它变成一个炙热水晶块$(br)更像是一个$(item)岩浆块$(), 非常之热·."
-    },
+      "text": "让一整桶$(l:magical_blocks/liquid_crystal)液晶$()吸收$(item)熔岩$()的热量就会让它变成一个炙热水晶块$(br)更像是一个$(item)岩浆块$(), 非常之热."
+    }, 
     {
       "type": "spectrum:anvil_crushing",
+      "title": "Incandescent Essence",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
-      "recipe": "spectrum:anvil_crushing/fiery_powder_from_blazing_crystal",
-      "text": "用$(item)铁砧$()压碎整块炙热水晶, 你会得到这种滚烫的晶粉，当你触摸它时，它几乎会把你的手点燃. 粉碎$(item)炙热晶块$()也可以得到炙热晶粉，但是产量不多"
+      "recipe": "spectrum:anvil_crushing/incandescent_essence_from_blazing_crystal",
+      "text": "用$(item)铁砧$()压碎整块炙热水晶, 你会得到这种滚烫的晶粉，当你触摸它时，它几乎会把你的手点燃. 粉碎$(item)炙热晶块$()也可以得到炙热晶粉，但是产量不多."
     },
     {
       "type": "patchouli:spotlight",
@@ -30,6 +31,7 @@
     },
     {
       "type": "spectrum:anvil_crushing",
+      "title": "Frostbite Essence",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
       "recipe": "spectrum:anvil_crushing/frostbite_essence_from_frostbite_crystal",
       "text": "用$(item)铁砧$()压碎整块寒霜水晶, 你会得到这种冰冷的晶粉，当你触摸它时，它几乎会把你的手冻伤. 粉碎$(item)寒霜晶块$()也可以得到寒霜晶粉，但是产量不多"

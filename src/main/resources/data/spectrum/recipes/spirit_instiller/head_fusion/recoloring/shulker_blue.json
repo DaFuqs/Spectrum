@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "tag": "spectrum:mob_heads/shulker_heads"
+  },
+  "ingredient2": {
+    "item": "spectrum:blue_pigment",
+    "count": 1
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 1
+  },
+  "result": {
+    "item": "spectrum:shulker_blue_head"
+  },
+  "required_advancement": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+}

@@ -86,6 +86,7 @@ dependencies {
 
 	// Mod Compat
 	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
+	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
 	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")

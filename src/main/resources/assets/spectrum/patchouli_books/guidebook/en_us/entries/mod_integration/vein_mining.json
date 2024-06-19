@@ -2,7 +2,7 @@
   "name": "Vein Mining",
   "icon": "spectrum:multitool",
   "flag": "mod:veinmining",
-  "advancement": "spectrum:lategame/collect_paltaeria",
+  "advancement": "spectrum:hidden/collect_stratine_gem",
   "category": "spectrum:mod_integration_category",
   "pages": [
     {

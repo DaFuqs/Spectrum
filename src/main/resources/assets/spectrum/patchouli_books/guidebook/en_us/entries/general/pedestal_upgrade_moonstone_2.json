@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Spectrum Palace",
+      "name": "Spectrum Complex",
       "multiblock_id": "spectrum:pedestal_complex_structure_check",
       "enable_visualize": true,
       "text": "Dimensions: 13x13x7 blocks"

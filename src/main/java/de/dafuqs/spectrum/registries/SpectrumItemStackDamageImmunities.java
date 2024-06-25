@@ -32,6 +32,9 @@ public class SpectrumItemStackDamageImmunities {
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.ON_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.LAVA);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, SpectrumDamageSources.PRIMORDIAL_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.BLAZING_CRYSTAL.asItem(), DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.BLAZING_CRYSTAL.asItem(), DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.BLAZING_CRYSTAL.asItem(), DamageSource.LAVA);
 		
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.PURE_NETHERITE_SCRAP, DamageSource.IN_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.PURE_NETHERITE_SCRAP_BLOCK.asItem(), DamageSource.IN_FIRE);

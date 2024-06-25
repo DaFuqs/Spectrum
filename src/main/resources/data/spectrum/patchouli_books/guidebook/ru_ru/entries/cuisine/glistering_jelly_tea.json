@@ -1,0 +1,21 @@
+{
+  "name": "Сверкающий Желейный Чай",
+  "advancement": "spectrum:unlocks/food/glistering_jelly_tea",
+  "icon": "spectrum:glistering_jelly_tea",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:glistering_jelly_tea": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/jade_vines)Нефритовая лоза$() известна своими регенерирующими свойствами, подобно $(item)сверкающему арбузу$(). Как оказалось, если смешать их вместе, то получится изысканно гармоничный, сладкий вкус.$(br2)Временно дает вам небольшую прибавку к здоровью."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Workshop Recipe",
+      "recipe": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
+      "text": "$(italic)Даже не думайте запивать его молоком!"
+    }
+  ]
+}

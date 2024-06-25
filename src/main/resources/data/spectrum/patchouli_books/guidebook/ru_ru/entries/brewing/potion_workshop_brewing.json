@@ -1,0 +1,115 @@
+{
+  "name": "Создание Зелий",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 1,
+  "extra_recipe_mappings": {
+    "minecraft:potion": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Создание Зелий",
+      "text": "Поскольку $(l:brewing/potion_workshop)Мастерская Зелий$() это, по сути, модернизированная $(item)Зельеварка$(), вы сможете создавать все $(item)варианты зелий$()  которые были доступны вам раньше.$(br)Кроме того, использовать магические предметы в качестве ингредиентов открывает перед вами новые возможности.$(br2)От некоторых из них легче или труднее добиться улучшенных эффектов."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Варианты Ванильных Зелий",
+      "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
+      "text": "Создавайте $(item)Зелья$() используя те же ингредиенты, что и в ванильной $(item)Зельеварке$(). Кроме того, вы можете использовать $(l:brewing/potion_workshop_reagents)Реагенты$(/l) чтобы еще больше усилить их эффект."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Поглощение",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/absorption",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Свечение",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/glowing",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Спешка",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/haste",
+      "text": "Добавление Мариновонный паучий глаз изменит эффект на $(bold)Утомление$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Насыщение",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "recipe": "spectrum:potion_workshop_brewing/saturation",
+      "text": "Добавление Мариновонный паучий глаз изменит эфект на $(bold)Голод$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Левитация",
+      "advancement": "spectrum:unlocks/potions/levitation",
+      "recipe": "spectrum:potion_workshop_brewing/levitation",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Везение",
+      "advancement": "spectrum:unlocks/potions/luck",
+      "recipe": "spectrum:potion_workshop_brewing/luck",
+      "text": "Добавление Мариновонный паучий глаз изменит эфект на $(bold)Невезение$()."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Сопротивление",
+      "advancement": "spectrum:unlocks/potions/resistance",
+      "recipe": "spectrum:potion_workshop_brewing/resistance",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Иссушение",
+      "advancement": "spectrum:unlocks/potions/wither",
+      "recipe": "spectrum:potion_workshop_brewing/wither",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Тьма",
+      "advancement": "spectrum:unlocks/potions/darkness",
+      "recipe": "spectrum:potion_workshop_brewing/darkness",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Прочность",
+      "advancement": "spectrum:unlocks/potions/toughness",
+      "recipe": "spectrum:potion_workshop_brewing/toughness",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Смертельное Отправление",
+      "advancement": "spectrum:unlocks/potions/deadly_poison",
+      "recipe": "spectrum:potion_workshop_brewing/deadly_poison",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Истощение",
+      "advancement": "spectrum:unlocks/potions/life_drain",
+      "recipe": "spectrum:potion_workshop_brewing/life_drain",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Шрамы",
+      "advancement": "spectrum:unlocks/potions/scarred",
+      "recipe": "spectrum:potion_workshop_brewing/scarred",
+      "text": ""
+    }
+  ]
+}

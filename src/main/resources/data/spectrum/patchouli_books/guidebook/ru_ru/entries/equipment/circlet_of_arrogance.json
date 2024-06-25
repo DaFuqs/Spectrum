@@ -1,0 +1,21 @@
+{
+  "name": "Высокомерная Диадема",
+  "advancement": "spectrum:unlocks/trinkets/circlet_of_arrogance",
+  "icon": "spectrum:circlet_of_arrogance",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:circlet_of_arrogance": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Это и есть: Божественность  - величайший бафф - в форме предмета одежды.$(br)Если бы само ваше существование не подвергалось опасности каждый раз, когда вы получаете слишком сильный удар - а это очень дорогая цена, - вы бы, ни секунды не колеблясь, надели его.$(br)Тебе действительно стоит...?$(br2)Конечно."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/circlet_of_arrogance",
+      "text": "$(italic)Гордость предшествует падению."
+    }
+  ]
+}

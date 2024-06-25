@@ -1,0 +1,101 @@
+{
+  "name": "Botania",
+  "icon": "botania:mana_pool",
+  "flag": "mod:botania",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы обнаружили множество разноцветных цветов, растущих небольшими участками в лесах и на равнинах. Что с ними? Определенно стоит на них взглянуть, если вы еще с ними не встречались."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Дробление Лепестков",
+      "advancement": "spectrum:place_pedestal",
+      "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "text": "Хотя Дробление цветов кажется немного непривычным, это $(italic)сработало$(). После этого вырвать лепестки из сплющенного цветка не составило труда."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Краска из Лепестков",
+      "advancement": "spectrum:midgame/place_color_picker",
+      "item": "botania:magenta_petal",
+      "text": "Изучая не только ботанию, но и теорию цвета, вы определенно заметили некоторые сходства. Разноцветные цветы напоминают $(l:general/colored_trees)Цветные Деревья$(/l) больше чем по одному пункту.$(br2)Неудивительно, что их лепестки также можно использовать для создания $(l:magic/ink)Краски$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Мерцающие цветы",
+      "advancement": "spectrum:collect_shimmerstone",
+      "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
+      "text": "Добавляя немного $(l:resources/shimmerstone)Сверкамня$(/l) к магическому цветку, заставляет их мерцать."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Цветные грибы",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
+      "text": "Добавляя $(l:general/pigment)Пигмент$(/l) к цветному грибу окрашивает их в соответствующий цвет."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
+      "text": "Использование $(l:general/pigment)Пигмента$(/l) вместо обычного красителя при создании $(item)цветочного удобрения$() дает гораздо больше продукции."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
+      "text": "$(item)Чёрный лотус$() это отличный источник маны, без вопросов. Но его все же можно улучшить. Используя немного $(thing)Нефритовых Лепестков$()"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed",
+      "text": "Те редкие семена, которые вы могли найти только в сундуках, спрятанных по всему миру? Дороговато, а может, и не стоит тратить на это время, но вы наконец-то нашли способ их создать."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Зачарованная Почва",
+      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
+      "item": "botania:enchanted_soil",
+      "text": "Зачарованная почва может быть собрана с помощью инструментов, зачарованных на $(l:enchanting/resonance)Резонанс$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Новый реактив для зелий",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:black_lotus",
+      "text": "$(li)+2 позитивных эффекта$(li)+1 негативный эффект$(li)Делает зелье неидентефицированным.$(br2)$(italic)Азарт растёт!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Новый реактив для зелий",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:blacker_lotus",
+      "text": "$(li)+3 позитивных эффекта$(li)50% шанс на негативный эффект$(li)Делает зелье неидентефицированным.$(br2)$(italic)Еще больше Азарта!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Новый реактив для зелий",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:life_essence",
+      "text": "$(li)+3 эффективности$(li)-3 продукции$(br2)Нужны другие реагенты, иначе ты останешься ни с чем…"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Новый реактив для зелий",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:mana_powder",
+      "text": "$(li)+25% длительности$(li)15% шанс добавить предыдущий эффект"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Новый реактив для зелий",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:pixie_dust",
+      "text": "$(li)Создаёт туманное зелье & и стреллы$(li)-25% эффективности"
+    }
+  ]
+}

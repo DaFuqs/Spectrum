@@ -1,0 +1,21 @@
+{
+  "name": "Лучезарная Булавка",
+  "advancement": "spectrum:unlocks/trinkets/radiance_pin",
+  "icon": "spectrum:radiance_pin",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:radiance_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Булавка схожа с $(l:magical_items/radiance_staff)Посохом Света$(/l).$(br)Если вы находитесь в темном месте, булавка автоматически создает невидимый свет на вас. Однако, в отличие от света $(l:magical_items/radiance_staff)Посоха Света$(/l), свет постепенно становятся все слабее и слабее, пока, в конце концов, полностью не рассеется."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/radiance_pin",
+      "text": "Приятно видеть путь, который вы уже прошли в своих исследованных пещерах."
+    }
+  ]
+}

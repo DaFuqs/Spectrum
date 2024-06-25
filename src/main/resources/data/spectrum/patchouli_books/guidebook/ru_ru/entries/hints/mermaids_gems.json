@@ -1,0 +1,23 @@
+{
+  "name": "Новый Ресурс",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_mermaids_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:collect_mermaids_gem",
+      "cost": "spectrum:onyx_shard#4",
+      "text": "Иногда в океанах находят блестящие драгоценные камни, которые плавают на поверхности воды, покачиваясь назад-вперед под ударами волн. Если вы проведете некоторое время рядом с океаном или в нем, то, возможно, и сами найдете такой камень!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:onyx_shard#12",
+      "text": "Источник этих драгоценных камней - растение, похожее на коралл, которое растет на морском дне небольшими группами, маскируясь под морскую траву. Подождите рядом с ним, пока оно полностью вырастет и выпустит свое драгоценное сокровище, а затем соберите его. После того как вы соберете одно из них, вы сможете увидеть растение таким, какое оно есть на самом деле."
+    }
+  ]
+}

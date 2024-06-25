@@ -1,0 +1,25 @@
+{
+  "name": "Раскаление",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/autosmelt",
+  "flag": "spectrum:enchantment_exists_spectrum_autosmelt",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы еще помните первые дни в этом мире, когда вы кропотливо выбивали уголь из камня, чтобы расплавить добытую вами руду. Но эти дни сочтены, поклялся ты. Будущее наступило, старик.$(br2)Однако за все приходится платить: вы потеряете опыт, который обычно получали при выплавке руды."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
+      "text": "Автоматически переплавляет сломанные блоки. Используется на $(item)Удочке$() Делает её поплавок огненным.$(br2)Макс. уровень: 1$(br)Применимо к инструментам и $(item)Удочкам Спектрума$().$(br)Несовместимо с Шёлковым касанием."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_autosmelt",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Раскалением окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

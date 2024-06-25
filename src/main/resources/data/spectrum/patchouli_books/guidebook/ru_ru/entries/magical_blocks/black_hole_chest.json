@@ -1,0 +1,27 @@
+{
+  "name": "Сундук Чёрной Дыры",
+  "advancement": "spectrum:unlocks/blocks/black_hole_chest",
+  "icon": "spectrum:black_hole_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_hole_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Проблема с воронками заключается в том, что они не только медленные, но и плохо подходят для больших ферм из-за их несущественного радиуса действия.$(br2)Если нанести немного синего пигмента, все предметы в большом радиусе вокруг ящика можно легко привести в безопасное состояние."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/black_hole_chest",
+      "text": "Радиус действия 12 блоков. Вы можете отключить его, поместив блок сверху. Позволяет задать фильтры, чтобы определить, какие предметы следует принимать.."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Сбор XP сфер",
+      "advancement": "spectrum:unlocks/items/knowledge_gem",
+      "text": "Засунув в него $(l:magical_items/knowledge_gem)Жемчужину Знаний$() позволит ему собирать сферы опыта, засовывая опыт в Жемчужину."
+    }
+  ]
+}

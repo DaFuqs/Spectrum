@@ -1,0 +1,23 @@
+{
+  "name": "Новая Руда",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_azurite",
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_azurite",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:midgame/collect_azurite",
+      "cost": "spectrum:neolith#8",
+      "text": "Появилась новая синяя руда, которую можно найти в обычном мире во всех биомах."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкции",
+      "cost": "spectrum:neolith#24",
+      "text": "Эта богатая голубая руда залегает очень глубоко под землёй и встречается довольно редко."
+    }
+  ]
+}

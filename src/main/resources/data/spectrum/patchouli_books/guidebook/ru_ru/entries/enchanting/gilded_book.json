@@ -1,0 +1,21 @@
+{
+  "name": "Позолоченная Книга",
+  "icon": "spectrum:gilded_book",
+  "advancement": "spectrum:unlocks/items/gilded_book",
+  "category": "spectrum:enchanting_category",
+  "extra_recipe_mappings": {
+    "spectrum:gilded_book": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Позолоченные книги служат альтернативой обычным Книгам для зачарования в $(l:enchanting/enchanter)Зачарователе$(/l). Будучи гораздо более восприимчивыми к магии, процесс зачарования будет и быстрее, и дешевле.$(br)С их помощью можно даже копировать зачарования с любых предметов в предметных чашах вокруг зачарователя на себя (а не только с других зачарованных книг)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный рецепт",
+      "recipe": "spectrum:pedestal/tier3/gilded_book",
+      "text": "$(italic)Не все то золото, что блестит.$(br)Однако эти книги золото."
+    }
+  ]
+}

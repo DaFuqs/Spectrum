@@ -1,0 +1,27 @@
+{
+  "name": "Осколок Грома",
+  "advancement": "spectrum:midgame/collect_storm_stone",
+  "icon": "spectrum:storm_stone",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:storm_stone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Грозы",
+      "text": "Бури - это мощное проявление матушки-природы.$(br)Используя $(l:general/fusion_shrine)Святыню Слияния$() вы даже смогли создать $(l:general/onyx_shard)некоторые мощные ресурсы$().$(br2)Нет никаких сомнений в том, что здесь вы найдете что-то, что поможет вам в вашем путешествии."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Осколки Шторма",
+      "item": "spectrum:storm_stone",
+      "text": "Врытые в землю ударами молний, вы нашли эти камни, вибрирующие в вашей руке из-за едва сдерживаемой энергии.$(br)Используя их в $(l:general/fusion_shrine)Святыне Слияния$(), вы сможете с легкостью вызывать грозу."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Осколки Шторма",
+      "text": "$(italic)Из-за своей изменчивой природы они не слишком хорошо реагируют на взрывы…"
+    }
+  ]
+}

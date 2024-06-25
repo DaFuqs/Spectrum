@@ -1,0 +1,32 @@
+{
+  "name": "Эксперимент #1: Увядание",
+  "icon": "spectrum:bottle_of_fading",
+  "advancement": "spectrum:unlocks/items/bottle_of_fading",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:collect_vegetal",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_fading": 0,
+    "spectrum:vegetal": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_fading",
+      "text": "Идея создания пришла к вам не сразу.$(br2)Организм, который вы создали, слаб, но, похоже, ваши планы по созданию новой жизни увенчались успехом, по крайней мере в принципе! Конечно, это всего лишь скопление микроорганизмов, но они живые!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальные Рецепт",
+      "recipe": "spectrum:pedestal/tier1/bottle_of_fading",
+      "text": "У всех живых существ в основном одни и те же цели: есть и размножаться.$() Итак... чем питаются эти слабые существа? Другими блоками? Определенно, чем-то легкоусвояемым."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_vegetal",
+      "title": "Органическая Смесь",
+      "anchor": "vegetal",
+      "item": "spectrum:vegetal",
+      "text": "Казалось бы, ответ - органика! Действительно, легко усваиваемая.$(br)При переваривании организмом образуется интересный побочный продукт, который вы назвали Органическая Смесь. Он состоит из  $(bold)сырой энергии природы$().$(br2)Вы уверены, что он будет очень полезен для вас."
+    }
+  ]
+}

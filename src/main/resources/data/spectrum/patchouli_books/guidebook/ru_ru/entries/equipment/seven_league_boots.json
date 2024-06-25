@@ -1,0 +1,28 @@
+{
+  "name": "Сапоги-Скороходы",
+  "advancement": "spectrum:unlocks/trinkets/seven_league_boots",
+  "icon": "spectrum:seven_league_boots",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:seven_league_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Добираться из пункта А в пункт Б утомительно. Кажется, что время в пути только увеличивается, особенно если учесть, что $(l:resources/geodes)Жеоды$(/l) разбросаны по всей земле. Чтобы решить эту проблему, вы создали Сапоги-Скороходы, которые делают вас намного мобильнее, чем раньше."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
+      "text": "Увеличивает скорость передвижения и высоту шага."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+      "title": "Сила",
+      "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "text": "Зачарование Силы еще больше увеличивает скорость передвижения."
+    }
+  ]
+}

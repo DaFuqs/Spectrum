@@ -1,0 +1,44 @@
+{
+  "name": "Кристальные Сады",
+  "advancement": "spectrum:hidden/visit_dd_biomes/crystal_gardens",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:overgrown_blackslag": 0,
+    "spectrum:nephrite_blossom_bulb": 0,
+    "spectrum:nephrite_blossom_leaves": 0,
+    "spectrum:nephrite_blossom_stem": 0,
+    "spectrum:jadeite_lotus_stem": 0,
+    "spectrum:jadeite_lotus_flower": 0,
+    "spectrum:jadeite_lotus_bulb": 0,
+    "spectrum:glass_peach": 0,
+    "spectrum:jadeite_petals": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Кристальные Сады",
+      "images": ["spectrum:textures/gui/guidebook/dd_crystal_gardens.png"],
+      "border": true,
+      "text": "Озёра $(l:magical_blocks/liquid_crystal)Жидких Кристаллов$() и гигантские $(l:dimension/hummingstone)кристаллические структуры$() задают их внешний вид."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:overgrown_blackslag",
+      "text": "Земля покрыта небольшим слоем травы. Не очень много, но более чем достаточно, чтобы покрыться толстым ковром мха. Благодаря многочисленным источникам естественного освещения в этом биоме растут растения, которые можно встретить на поверхности, в отличие от большинства других биомов."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Нефритовые Ростки",
+      "advancement": "spectrum:hidden/collect_glass_peach",
+      "text": "Маленькие деревья, которые здесь находятся, больше похожи на большой куст. ....или гигантский кустарник.$(br)Эхххх, детали.$(br2)Их плоды не сделаны из стекла, но так переливаются, как будто это стекло. Они очень вкусные.$(br)Съев один из них, вы можете получить короткую вспышку $(thing)Прочности$(), который снижает урон от мощных атак. Их так же можно использовать для $(l:cuisine/infused_beverages)настоек$() и $(l:brewing/potion_workshop_brewing)приготовления зелий$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Жадеитовый Лепестки",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "item": "spectrum:jadeite_petals",
+      "text": "Внушительные лианы свисают с высокого потолка и пробивают своим светом темноту. Они очень вкусные и могут быть использованы в качестве $(l:brewing/potion_workshop_reagents)Реагента для Зелий$()."
+    }
+  ]
+}

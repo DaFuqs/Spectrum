@@ -1,0 +1,33 @@
+{
+  "name": "Go Fish",
+  "icon": "gofish:starry_salmon",
+  "flag": "mod:go-fish",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Рыбалка - это расслабляющее мероприятие, которым можно заняться в свободное время. Давайте посмотрим, что клюет сегодня."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/equipment/molten_rod",
+      "title": "Лава Рыбалк",
+      "item": "spectrum:molten_rod",
+      "text": "Ваши волшебные удочки способны ловить рыбу из лавы и энда, Как и удочки Go Fish.$(br)Ящики также можно ловить, если вы находитесь на открытой местности."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Фритюр",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"gofish:deepfry\", lvl: 1s}]}",
+      "text": "Пока зачарование Фритюр готовит рыбу, как обычно, вы не нашли способа прикрепить приманки к удочкам, сделанным с помощью пигмента. Но вы уверены, что позже найдете способ усовершенствовать свою удочку.$(br)Фритюр на Удочке так же является несовместимым с Раскалением."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарователя",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
+      "recipe": "spectrum:mod_integration/gofish/enchanter/book_deepfry",
+      "text": ""
+    }
+  ]
+}

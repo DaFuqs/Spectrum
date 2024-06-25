@@ -1,0 +1,22 @@
+{
+  "name": "Датчик Предметов",
+  "advancement": "spectrum:unlocks/redstone/item_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:item_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Датчик Предметов",
+      "text": "Детектор предметов используется для подсчета предметов, лежащих на земле в радиусе 10 блоков от него.$(br2)Сила $(thing)Редстоу Сигнала$() зависит от того, сколько предметов лежит вокруг."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/detectors/item_detector",
+      "text": "64 предмета дают сигнал максимальной силы."
+    }
+  ]
+}

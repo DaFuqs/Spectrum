@@ -1,0 +1,21 @@
+{
+  "name": "Награда Певчего Сердца",
+  "advancement": "spectrum:unlocks/trinkets/heartsingers_reward",
+  "icon": "spectrum:heartsingers_reward",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:heartsingers_reward": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "В этом изящном кольце есть все: с помощью небольшого (или большого!) количества $(c_pink)Розовой Краски$(), оно укрепляет вас изнутри и дарит вам дополнительные сердца."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/heartsingers_reward",
+      "text": "Добавьте в него $(l:magic/ink)Розовых Красок$(/l) в $(l:magic/color_picker)Сборщике Красок$() Чтобы увеличить количество дополнительных сердечек."
+    }
+  ]
+}

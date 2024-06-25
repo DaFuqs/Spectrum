@@ -1,0 +1,22 @@
+{
+  "name": "Держатель для Предметов",
+  "advancement": "spectrum:unlocks/blocks/item_roundel",
+  "icon": "spectrum:item_roundel",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:item_roundel": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "item": "spectrum:item_roundel",
+      "text": "Вам понравилось вращение предметов вокруг держателя настолько, что вы скопировали его дизайн самостоятельно. Определенно, это прекрасный способ представить свои вещи или держать их наготове.$(br2)$(italic)Надеемся, что патенты уже истекли."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier2/item_roundel",
+      "text": "Варианты из базальта и кальцита могут содержать значительно больше предметов, до 6 полных стаков."
+    }
+  ]
+}

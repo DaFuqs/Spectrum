@@ -1,0 +1,29 @@
+{
+  "name": "Краска",
+  "advancement": "spectrum:unlocks/items/basic_ink_storage_items",
+  "icon": "spectrum:ink_flask",
+  "category": "spectrum:magic_category",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Теперь, когда вы знакомы с $(l:general/pigment)Пигментом$(), вы не видите причин таскать его с собой, как в Средние века. Вы нашли способ превратить $(l:general/pigment)Пигмент$() в высшую форму энергии!$(br)Вы назвали её $(c_cyan)Кра$(c_magenta)ск$(c_yellow)ами$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Производство и хранение",
+      "text": "$(l:general/pigment)Пигмент$() можно преобразовать в краски с помощью $(l:magic/color_picker)Сборщик Красок$(/l) а затем извлечь в контейнеры, например, в $(l:magic/ink_flask)Колбы для Красок$(/l).$(br2)Единственный недостаток: лишенные своей физической формы краски невозможно превратить обратно в $(l:general/pigment)Пигмент$()."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Передача",
+      "anchor": "transfer",
+      "images": ["spectrum:textures/gui/guidebook/ink_transfer.png"],
+      "text": "Краски ведут себя почти как жидкость. Они перетекают из того места, где их много, в то, где их мало."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Когда соединяются два объекта, в которых хранится краска, например $(l:magic/color_picker)Сборщик Красок$() и $(l:magic/ink_flask)Колба для красок$() - краски между двумя контейнерами постепенно выравниваются.$(br)Чем больше разница, тем быстрее наполняется колба."
+    }
+  ]
+}

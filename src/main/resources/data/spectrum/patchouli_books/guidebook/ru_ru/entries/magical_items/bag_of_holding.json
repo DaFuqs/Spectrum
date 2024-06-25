@@ -1,0 +1,23 @@
+{
+  "name": "Сумка для Хранения",
+  "advancement": "spectrum:unlocks/items/bag_of_holding",
+  "icon": "spectrum:bag_of_holding",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:bag_of_holding": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Сумка для Хранения",
+      "item": "spectrum:bag_of_holding",
+      "text": "Поставить $(item)Эндер-сундук$(), открыть его и добыть с помощью зачарованной кирки - это не то, что вы думаете о веселье.$(br)Поэтому вы и придумали эту штуку."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/bag_of_holding",
+      "text": "Просто откройте его, и содержимое вашего $(item)Эндер-сундука$() окажется прямо там."
+    }
+  ]
+}

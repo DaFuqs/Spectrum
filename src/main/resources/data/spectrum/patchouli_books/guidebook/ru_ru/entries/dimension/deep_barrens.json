@@ -1,0 +1,22 @@
+{
+  "name": "Глубокие Пустыни",
+  "advancement": "spectrum:hidden/visit_dd_biomes/deep_barrens",
+  "icon": "spectrum:blackslag",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Глубокие Пустыни",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_barrens.png"
+      ],
+      "border": true,
+      "text": "Мрачная, каменистая пустошь."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "На первый взгляд, здесь не так уж много интересного, но посетить это место стоит: руды смотрят на вас со всех сторон - настолько далеко, насколько вы можете видеть (а это не так уж и далеко, если честно).$(br2)В некоторых местах этот биом пронизывают гигантские рудные жилы. Одной жилы вам хватит на годы."
+    }
+  ]
+}

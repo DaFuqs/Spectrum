@@ -1,0 +1,19 @@
+{
+  "name": "Узел Снабжения",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Provider Node",
+      "text": "Делает предметы из подключенного инвентаря доступными в своей $(l:pastel_network/pastel_network)Пастельнйо Сети$(/l).$(br2)Предметы не будут передаваться другим узлам, но могут быть запрошены $(l:pastel_network/gather_node)Узелом Сбора$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
+      "text": ""
+    }
+  ]
+}

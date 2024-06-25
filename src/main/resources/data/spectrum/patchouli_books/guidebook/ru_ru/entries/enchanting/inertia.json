@@ -1,0 +1,31 @@
+{
+  "name": "Вялость",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/inertia",
+  "flag": "spectrum:enchantment_exists_spectrum_inertia",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Можно подумать, что это зачарование вдохнет немного жизни в ваши инструменты.$(br2)Подобно живому существу, инструмент постепенно привыкает к добываемому блоку и специализируется на нем. Однако в ответ на это добыча других блоков становится медленнее."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
+      "text": "Снижение скорости добычи. Скорость увеличивается с каждым добытым блоком одного типа.$(br2)Макс. Уровень: 3$(br)Применимо к инструментам.$(br)Несовместимо с Эффективностью."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Вялостью окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
+      "text": "Поначалу повышение уровня Вялости с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

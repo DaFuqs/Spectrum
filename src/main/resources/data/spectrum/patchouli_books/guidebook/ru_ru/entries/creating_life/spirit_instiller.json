@@ -1,0 +1,33 @@
+{
+  "name": "Высекатель Духа",
+  "icon": "spectrum:spirit_instiller",
+  "advancement": "spectrum:unlocks/blocks/spirit_instiller",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:spirit_instiller": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Собрав все свои знания, вы создали Высекатель Духа. Похоже, он способен соединять энергии двух предметов, а третий предмет - связывает их.$(br2)Почти духовный процесс."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/spirit_instiller",
+      "text": "Для работы Высекателя Духа необходима фокусирующая структура. Чтобы повернуть голограмму структуры в нужном направлении, щелкните на самом Высекателе Духа."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Структура Высекателя",
+      "multiblock_id": "spectrum:spirit_instiller_structure",
+      "enable_visualize": true,
+      "text": "Размеры: 8x9x5 Блоков$(br)Его можно улучшить, разместив $(l:magical_blocks/upgrades)Улучшения$() на один из двух $(item)Ониксовых Инкрустированных Блока$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список Блоков",
+      "text": "$(li)1 Высекатель Духа$(li)2 Предметный Чаши$(li)2 Пиленых Полированных Блока$(li)2 Резных Полированных Блока$(li)2 Инкрустированных Ониксом блока$(li)6 Полированных Колонн$(li)17 Полированных Плит$(li)41 Полированных Блока$(li)2 Колокольчика из драг. камней"
+    }
+  ]
+}

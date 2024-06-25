@@ -1,0 +1,35 @@
+{
+  "name": "Идеальная смесь?",
+  "icon": "spectrum:midnight_aberration",
+  "sortnum": 13,
+  "advancement": "spectrum:midgame/collect_neolith",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:midgame/create_midnight_aberration",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_aberration": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Результаты вашего $(l:creating_life/failing)последнего эксперимента$() заставляют вас стремиться к большему: выжимать из своих драгоценных камней все до последней частицы энергии.$(br2)$(l:creating_life/failing#neolith)Неолит$() вот ключ к разгадке! Обладая такой силой и мощью, он объединит силу всех драгоценных камней в один. Эта реликвия станет вершиной вашего творения, только для вас и ТОЛЬКО для вас, мастер Пигмента!"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни",
+      "recipe": "spectrum:fusion_shrine/midnight_aberration",
+      "text": "Слияние этих магических энергий испытает ваше святилище как ничто другое - с соответствующим шоу. Кто знает, что может произойти? Лучше всего убедиться, что ваша святыня и блоки вокруг нее укреплены и изолированы.$(br)Требуется дневное время суток и чистое небо."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:midnight_aberration",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
+      "title": "Полуночное Заблуждение",
+      "text": "$(italic)Этот отвратительный драгоценный камень излучает жуткую ауру.$()$(br2)В лучшем случае он выглядит слабо соединенным. Неудивительно, что он разваливается в руках в мгновение ока. Полный провал."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/create_midnight_aberration",
+      "text": "Хотя возникший хаос $(italic)определенно $() не был тем результатом, которого вы жаждали, результат все равно обладает огромной силой.$(br)Настолько, что если не использовать ее быстро, она рассыплется в пыль.$(br2)А еще есть агрессивная черноватая жидкость, которая появилась в процессе. Из-за ее цвета вы назвали ее $(l:magical_blocks/midnight_solution)Полуночным раствором$(/l)."
+    }
+  ]
+}

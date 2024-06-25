@@ -1,0 +1,31 @@
+{
+  "name": "Крепкий Хват",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:unlocks/enchantments/tight_grip",
+  "flag": "spectrum:enchantment_exists_spectrum_tight_grip",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "То, что ты можешь наносить удары оружием быстрее, чем можешь себе представить, кажется почти фантастическим сном. В то же время каждый удар отнимает у вас так много сил, что вам приходится делать паузу.$(br)Может быть, вы стареете.$(br2)Несколько небольших изменений в вашем оружии позволят вам несколько сократить время паузы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
+      "text": "Уменьшает время восстановления атаки.$(br2)Макс. Уровень: 2$(br)Применимо к оружию ближнего боя."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_tight_grip",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Крепким Хватом окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Улучшение Зачарования",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
+      "text": "Поначалу повышение уровня Крепкого Хвата с 1-го до 2-го обходится довольно дешево.$(br)Эта цена будет быстро увеличиваться, как и $(l:general/pigment)Пигмент$(), опыт за каждый дополнительный уровень."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Сундук с Сердцем",
+  "advancement": "spectrum:unlocks/blocks/private_chest",
+  "icon": "spectrum:private_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:private_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:private_chest",
+      "text": "То и дело случается так, что вы просто быстро ставите ящик для хранения своих вещей, а вернувшись, обнаруживаете, что все разграблено.$(br)Чтобы решить эту проблему, вы разработали этот специальный сундук, который даже может помочь вам поймать вора на месте преступления."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/private_chest",
+      "text": "Сундук с сердцем может быть открыт только его владельцем и занимает столько же места, сколько два обычных сундука."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Редстоун Компонент",
+      "text": "Как и Сундук-ловушка, он также издаёт $(thing)редстоун сигнал$().$(br)Если вы, как владелец, откроете его, то уровень сигнала будет полным, если же незнакомец захочет пошариться в ваших вещах, то только наполовину."
+    }
+  ]
+}

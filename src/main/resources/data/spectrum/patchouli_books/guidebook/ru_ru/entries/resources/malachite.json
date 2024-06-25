@@ -1,0 +1,45 @@
+{
+  "name": "Малахит",
+  "advancement": "spectrum:lategame/collect_malachite",
+  "icon": "spectrum:raw_malachite",
+  "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_ore": 0,
+    "spectrum:deepslate_malachite_ore": 0,
+    "spectrum:blackslag_malachite_ore": 0,
+
+    "spectrum:raw_malachite": 0,
+    "spectrum:refined_malachite": 0,
+    "spectrum:malachite_block": 0,
+
+    "spectrum:small_malachite_bud": 0,
+    "spectrum:large_malachite_bud": 0,
+    "spectrum:malachite_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Малахит",
+      "text": "Нетронутый материал, переливающийся глубоким зеленым оттенком. Кажется, что он обладает сильными магическими свойствами, почти как аналог $(l:resources/azurite)азурита$() из Глубоких Низин."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Малахит",
+      "text": "Еще одно сходство с $(l:resources/azurite)Азуритом$(), Малахит так же нуждается в очищение. Маленькие фрагменты, которые вы получаете, сначала должны вырасти в полноценные, пригодные для использования кристаллы - хотя вы не уверены, что увидите их законченными при жизни."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Очищение Малахита",
+      "recipe": "spectrum:crystallarieum/malachite",
+      "text": "Кристаллариум, похоже, единственный способ вырастить малахит в разумные сроки, значительно ускорив его рост."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Очищение Малахита",
+      "text": "Требуется $(l:general/moonstone_shards)Лунокамень$() для создания подходящей среды, имитирующей Глубокие Низины."
+    }
+  ]
+}

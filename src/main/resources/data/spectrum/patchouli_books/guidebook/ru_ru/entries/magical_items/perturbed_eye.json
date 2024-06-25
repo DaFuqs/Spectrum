@@ -1,0 +1,58 @@
+{
+  "name": "Перенос Энд. Портала",
+  "advancement": "spectrum:unlocks/items/perturbed_eye",
+  "icon": "minecraft:end_portal_frame",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:perturbed_eye": 0,
+    "spectrum:cracked_end_portal_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Каждый раз, когда вы хотите попасть в царство Эндерменов, вам приходится преодолевать полмира. Кто бы ни создал порталы в Энд… вы гораздо могущественнее, чем они сейчас.$(br2)Ну, почти. Возможно. Вы все еще не поняли, как создавать такие порталы самостоятельно, но упаковать их и забрать домой? $(italic)Нет проблем."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/end_portal.png"
+      ],
+      "border": true,
+      "text": "Портал Энда, который вы нашли в Крепости."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier4/perturbed_eye",
+      "text": "Благодаря чрезвычайно прочным портальным рамам они могут быть весьма разрушительными. Лучше всего держаться подальше после установки Беспокойного Ока."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Reconstructed Portal",
+      "multiblock": {
+        "pattern": [
+          [
+            " HHH ",
+            "VPPPV",
+            "VPPPV",
+            "VPPPV",
+            " HHH ",
+            "  0  "
+          ]
+        ],
+        "mapping": {
+          "H": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=false]",
+          "V": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=true]",
+          "P": "minecraft:end_portal"
+        },
+        "offset": [
+          0,
+          3,
+          0
+        ],
+        "symmetrical": false
+      },
+      "text": "Просто верните портал в прежнее состояние, добавьте Око Эндеров и готово!"
+    }
+  ]
+}

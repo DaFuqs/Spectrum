@@ -1,0 +1,55 @@
+{
+  "name": "Инструменты Хрустал. Герба",
+  "advancement": "spectrum:unlocks/malachite/glass_crest_tools",
+  "icon": "spectrum:glass_crest_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:glass_crest_workstaff": 0,
+    "spectrum:glass_crest_ultra_greatsword": 0,
+    "spectrum:glass_crest_crossbow": 0,
+    "spectrum:ferocious_glass_crest_bident": 0,
+    "spectrum:fractal_glass_crest_bident": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Glass Crest Tools",
+      "text": "Вставляя $(l:resources/moonstone_cores)Лунокаменное Ядро$(/l) в ваши $(l:equipment/malachite_tools)Малахитовые Инструменты$(/l) вы получаете новые мощные способности."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рабочий Посох",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
+      "text": "$(k:use) выстреливает $(c_white)Белой Краской$() которая при ударе разбивает блоки. При переключении зачарований вы также можете выбрать $(l:enchanting/resonance)Резонанс$(/l)."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Супервеликий Меч",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
+      "text": "Большая часть урона наносится $(thing)Магией$(), которая пробивает броню. $(k:use) чтобы нанести $(thing)удар по земле$(), отбросив все вокруг. Эта способность усиливается при использовании c $(thing)Разящим Клинком$())."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Арбалет",
+      "advancement": "spectrum:unlocks/malachite/glass_crest_crossbow",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
+      "text": "Если стрела заряжена, вы можете перезарядить ее, удерживая $(k:sneak) + $(k:use) чтобы еще больше повысить точность, скорость и урон ваших выстрелов."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Причудливый Двузубец",
+      "advancement": "spectrum:unlocks/malachite/ferocious_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
+      "text": "Результат объединения Двузубца и Осколков грома. Поднимитесь в воздух и уничтожьте все на своем пути, даже в самой сухой пустыне! ...пока у вас не кончатся чернила (зависит от уровня зачарования Тягун). $(italic)Полет - это не проблема. А вот посадка - да.$()"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Фрактальный Двузубец",
+      "advancement": "spectrum:unlocks/malachite/fractal_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
+      "text": "Благодаря $(item)Осколкам Эха$() этот двузубец при броске превращается в эхо самого себя, разбивающееся при ударе - оригинал никогда не покинет вашу руку.$(br2)$(o)Двузубец может быть усилен Эффективностью и Остротой, чтобы увеличить его скорость и урон"
+    }
+  ]
+}

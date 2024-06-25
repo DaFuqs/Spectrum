@@ -1,0 +1,44 @@
+{
+  "name": "Лунокаменный Пьедестал (2)",
+  "icon": "spectrum:pedestal_moonstone",
+  "sortnum": 19,
+  "advancement": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/build_complex_pedestal_structure",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Лунокаменный Пьедестал",
+      "item": "spectrum:moonstone_chiseled_basalt",
+      "text": "В Вашей последней структуре кажется… чего-то не хватает. И теперь вы точно знаете, чего именно не хватает: больше $(c_white)Лунокамня$(). Сложность заключается в том: что для создания необходимых $(item)Блоков с Инкрустированным Лунокамнем$() вам уже нужно уметь использовать ваш $(item)Лунокаменный Пьедестал $() на полную мощность.$(br)$(italic)Возможно ли найти способ обойти это ограничение?"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Спектральный Фокус",
+      "multiblock_id": "spectrum:pedestal_complex_structure_check",
+      "enable_visualize": true,
+      "text": "Размеры: 13x13x7 blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Полная версия)",
+      "text": "$(li)1 Пигментный Пьедестал$(li)4 Блока Инкрустрированного Ониксом$(li)4 Пиленых блока$(li)8 Лампы из Драгоценных Камней$(li)4 Блока Инкрустированные Драгоценными Камнями$(li)12 Блоков Полированных Драгоценных Камней$(li)16 CMY Резных Блока.$(li)28 Блоков с Инкрустированным Лунокамнем.$(li)36 Полированных Колонн$(li)52 Узорчитых Блока$(li)144 Полированных Блока"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список блоков (Улучшение)",
+      "text": "$(li)28 Блоков с Инкрустированным Лунокамнем"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Индивидуализируйте!",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Вы можете заменить базальтовые блоки на кальцит и выбрать блоки с драгоценными камнями по своему вкусу. Смешивайте $(item)Кальцит$() и $(item)Базальт$() для создания своего персонального варианта!"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Узоры для баннеров",
+  "icon": "spectrum:amethyst_shard_banner_pattern",
+  "advancement": "spectrum:spectrum",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:logo_banner_pattern": 0,
+    "spectrum:amethyst_shard_banner_pattern": 0,
+    "spectrum:amethyst_cluster_banner_pattern": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Узоры для баннеров",
+      "border": true,
+      "images": [
+        "spectrum:textures/gui/guidebook/banners.png"
+      ],
+      "text": "Ресурсы и инструменты, которые вы найдете, можно использовать непосредственно в Ткацком станке в качестве узоров."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Ванильные узоры",
+      "recipe": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
+      "recipe2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"
+    }
+  ]
+}

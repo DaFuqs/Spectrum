@@ -1,0 +1,27 @@
+{
+  "name": "Эндерин",
+  "advancement": "spectrum:milestones/reveal_radiating_ender",
+  "icon": "minecraft:ender_pearl",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:radiating_ender": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Эти надоедливые эндермены!$(br2)Они всегда появляются по ночам и воруют блоки с земли прямо у вас из-под носа. У вас такое чувство, что через месяц от этого района останется лишь кратер.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Эндерин",
+      "item": "spectrum:radiating_ender",
+      "text": "Эндермены приходят в этот мир, чтобы поставить эти блоки. Но что это за материал? И $(italic)ПОЧЕМУ$() они оставляют его здесь?"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Эндерин",
+      "item": "spectrum:radiating_ender",
+      "text": "Теперь, когда вы держите его в руках… они повсюду! Как вы раньше не замечали? В любом случае, вы уверены, что сможете воспользоваться этим интересным материалом."
+    }
+  ]
+}

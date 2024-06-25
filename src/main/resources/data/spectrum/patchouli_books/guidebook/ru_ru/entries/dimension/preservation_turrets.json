@@ -1,0 +1,24 @@
+{
+  "name": "Охранная Турель",
+  "icon": "spectrum:preservation_turret_head",
+  "advancement": "spectrum:hidden/entity_interact/preservation_turret",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:preservation_turret_head": 0,
+    "spectrum:preservation_turret_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:entity",
+      "title": "Preservation Turrets",
+      "entity": "spectrum:preservation_turret",
+      "scale": 0.5,
+      "offset": 0.4,
+      "text": "$(italic)Настоящее инженерное совершенство. Но как же это больно."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Высокотехнологичные машины, созданные из армированной оболочки из базальта и кальцита, питаются от неизвестного источника энергии, который мягко пульсирует в центре этих устройств.$(br2)Готовы проделать в вас дыры в любой момент, когда вы дадите о себе знать."
+    }
+  ]
+}

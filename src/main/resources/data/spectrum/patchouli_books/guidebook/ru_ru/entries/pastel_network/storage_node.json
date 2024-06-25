@@ -1,0 +1,19 @@
+{
+  "name": "Узел Хранения",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Узел Хранения",
+      "text": "Узел хранения будет наиболее эффективно использоваться в сочетании с $(l:pastel_network/sender_node)Узлом Отправки$(/l) (будут отправлять на него) и $(l:pastel_network/gather_node)Узел Сбора$(/l) (будут получать от него).$(br2)Его $(thing)фильтр$() позволяет указать, какие предметы он будет получать и отдавать. При пустом фильтре узел действует как общее хранилище для всех типов предметов."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/pastel_network/storage_node",
+      "text": ""
+    }
+  ]
+}

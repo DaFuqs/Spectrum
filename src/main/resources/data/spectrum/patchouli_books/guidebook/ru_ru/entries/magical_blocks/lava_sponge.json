@@ -1,0 +1,28 @@
+{
+  "name": "Лавовая Губка",
+  "advancement": "spectrum:unlocks/blocks/lava_sponge",
+  "icon": "spectrum:lava_sponge",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:lava_sponge": 0,
+    "spectrum:wet_lava_sponge": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Lava Sponge",
+      "text": "Когда вы держали в руках $(item)мокрую губку$(), вы подумали, что и для $(item)Лавы$(), должен быть аналог. И хотя вы пока не наткнулись на него, это, конечно, не помешало вам его изобрести.$(br2)Это должно значительно упростить навигацию в адском мире и за пределами адского портала."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/lava_sponge",
+      "text": "...так вы думали, пока не поняли, что у пропитанной лавой губки есть $(italic)неприятный$() побочный эффект.$(br)Вы должны были догадаться."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Топливо для печей",
+      "text": "Лавовую губку можно использовать в качестве высокоэффективного топлива в $(item)печи$(), высушивая ее при этом."
+    }
+  ]
+}

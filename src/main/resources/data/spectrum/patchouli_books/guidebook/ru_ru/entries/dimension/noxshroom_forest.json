@@ -1,0 +1,25 @@
+{
+  "name": "Лес Мракодерева",
+  "advancement": "spectrum:hidden/visit_dd_biomes/noxshroom_forest",
+  "icon": "spectrum:shimmel",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:shimmel": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Лес Мракодерева",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_noxshroom_forest.png"
+      ],
+      "border": true,
+      "text": "Над этим биомом возвышается $(l:dimension/noxwood)странная смесь дерева и гриба$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:shimmel",
+      "text": "Чёрношлак, поросший тонким слоем мицелиеподобного гриба."
+    }
+  ]
+}

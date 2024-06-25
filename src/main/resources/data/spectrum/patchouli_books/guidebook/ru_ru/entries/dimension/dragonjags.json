@@ -1,0 +1,29 @@
+{
+  "name": "Драконья Чешуя",
+  "advancement": "spectrum:hidden/collect_dragonjag",
+  "icon": "spectrum:small_purple_dragonjag",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Драконья Чешуя",
+      "items": [
+        "spectrum:small_red_dragonjag",
+        "spectrum:small_yellow_dragonjag",
+        "spectrum:small_pink_dragonjag",
+        "spectrum:small_purple_dragonjag",
+        "spectrum:small_black_dragonjag"
+      ],
+      "text": "Эти нетребовательные растения могут расти практически везде, даже на твердом камне."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_dragonjags.png"
+      ],
+      "border": true,
+      "text": "Костная мука заставляет их расти и распространяться."
+    }
+  ]
+}

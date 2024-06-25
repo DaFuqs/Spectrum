@@ -1,0 +1,32 @@
+{
+  "name": "Лампы из Драг. Камней",
+  "icon": "spectrum:citrine_basalt_lamp",
+  "advancement": "spectrum:collect_shimmerstone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_basalt_lamp": 0,
+    "spectrum:amethyst_basalt_lamp": 0,
+    "spectrum:citrine_basalt_lamp": 0,
+    "spectrum:onyx_basalt_lamp": 0,
+    "spectrum:moonstone_basalt_lamp": 0,
+    "spectrum:topaz_calcite_lamp": 0,
+    "spectrum:amethyst_calcite_lamp": 0,
+    "spectrum:citrine_calcite_lamp": 0,
+    "spectrum:onyx_calcite_lamp": 0,
+    "spectrum:moonstone_calcite_lamp": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:citrine_basalt_lamp",
+      "title": "Лампы из Драг. Камней",
+      "text": "Когда вы впервые ступили в жеоду, вас встретил приятный уютный свет. С вашими знаниями и помощью сверкамня, легко усилить этот свет, чтобы создать причудливые лампы.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
+      "text": "Лампы из Драгоценных Камней представлены во всех цветах драгоценных камней. В качестве основы могут использоваться как $(l:decoration/block_variants#polished_basalt)Полированный Кальцит$(), так и $(l:decoration/block_variants#polishing)Полированный Базальт$()."
+    }
+  ]
+}

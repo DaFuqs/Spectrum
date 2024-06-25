@@ -1,0 +1,18 @@
+{
+  "name": "Истощение",
+  "advancement": "spectrum:hidden/status_effects/life_drain",
+  "icon": "minecraft:rotten_flesh",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:life_drain",
+      "text": "Истощение - это ужасная вещь, от которой сводит желудок.$(br)Он медленно $(thing)Уменьшает ваше максимальное количество здоровья$(), делая вас очень уязвимым даже против незначительных ударов."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

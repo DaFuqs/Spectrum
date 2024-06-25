@@ -1,0 +1,25 @@
+{
+  "name": "Борьба с Вредителями",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/pest_control",
+  "flag": "spectrum:enchantment_exists_spectrum_pest_control",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "По пути в Энд вы обнаружили огромное подземное сооружение, похожее на крепость цивилизации, жившей задолго до вас.$(br2)Хотя у них, похоже, была технология, позволяющая открыть портал в другой мир, им определенно следовало что-то сделать с проблемой паразитов."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "Избавляет от чешуйниц при разрушении $(item)Зараженных Блоков$(), выпадает двойной XP.$(br2)Макс. Уровень: 1$(br)Применяется к инструментам.$(br)Несовместимо с Резонансом."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Борьбой с Вредителями окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

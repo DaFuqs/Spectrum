@@ -1,0 +1,22 @@
+{
+  "name": "Разместитель",
+  "advancement": "spectrum:unlocks/redstone/block_placer",
+  "icon": "spectrum:block_placer",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:block_placer": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:block_placer",
+      "text": "Вы уже умеете автоматически разбивать блоки, перемещать их, сортировать или складывать в один из сундуков. Есть одна вещь, которую невозможно сделать с помощью всех ваших креативных штуковин: Размещать вещи. Теперь это в прошлом.$(br)$(l:general/shards#topaz)Топаз$(/l), благодаря своей близости к материи позволяет материализовать блоки из своего инвентаря."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/block_placer",
+      "text": "Он делает свое дело!"
+    }
+  ]
+}

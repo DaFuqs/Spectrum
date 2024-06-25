@@ -1,0 +1,48 @@
+{
+  "name": "Кровавый Сироп",
+  "icon": "spectrum:bloodboil_syrup",
+  "advancement": "spectrum:midgame/collect_blood_orchid_petal",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:bloodboil_syrup": 0,
+    "spectrum:demon_tea": 0,
+    "spectrum:demon_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Продукты Кровавого Сиропа",
+      "item": "spectrum:bloodboil_syrup",
+      "text": "Экстракт $(l:resources/blood_orchids)Кроворхидеи$(/l) оказывает сильное воздействие при употреблении: он может привести вас к $(thing)неистовству$().$(br)Урон, скорость атаки, скорость и сопротивление отбрасыванию увеличиваются с каждым убийством. Чем выше уровень эффекта, тем выше бафф. Если за 10 секунд вы не совершили ни одного убийства, то вместо этого на вас будет наложен дебафф."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Стаки Неистовства",
+      "text": "Вместо того чтобы сбросить время действия, применение другого эффекта $(thing)Неистовства$() увеличит его силу.$(br2)Чтобы получить максимальную пользу от эффекта, сначала используйте длительный эффект, а затем добавляйте более короткие."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "text": "Активный ингредиент Лепестка можно извлечь в густой раствор. Пахнет почти как розовая вода, но эффект от него определенно… $(italic)немного более шипуч$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/demon_trifle",
+      "recipe": "spectrum:pedestal/tier1/food/demon_trifle",
+      "text": "Эффект $(thing)Неистовства$() который вы можете получить, начинается с малого, но длится дольше."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "advancement": "spectrum:unlocks/food/demon_tea",
+      "recipe": "spectrum:potion_workshop_crafting/demon_tea",
+      "text": "Эффект $(thing)Неистовства$() который вы можете получить, относительно короткий, но начинается довольно мощно."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/rabbit_poison",
+      "title": "Кроличий Яд",
+      "recipe": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
+      "text": "По-настоящему отвратительное варево. Вкус именно такой, как вы ожидали."
+    }
+  ]
+}

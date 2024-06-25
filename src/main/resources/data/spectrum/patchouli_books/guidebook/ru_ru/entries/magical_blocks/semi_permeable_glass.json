@@ -1,0 +1,52 @@
+{
+  "name": "Полупроницаемое Стекло",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:amethyst_semi_permeable_glass",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:vanilla_semi_permeable_glass": 0,
+    "spectrum:tinted_semi_permeable_glass": 0,
+    "spectrum:glowing_semi_permeable_glass": 0,
+    "spectrum:topaz_semi_permeable_glass": 0,
+    "spectrum:amethyst_semi_permeable_glass": 0,
+    "spectrum:citrine_semi_permeable_glass": 0,
+    "spectrum:onyx_semi_permeable_glass": 0,
+    "spectrum:moonstone_semi_permeable_glass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Полупроницаемое Стекло",
+      "item": "spectrum:amethyst_semi_permeable_glass",
+      "text": "Уже давно надоедливые монстры, которые постоянно появляются по ночам, больше не представляют для вас угрозы и служат лишь поставщиком ресурсов, если вообще служат.$(br)Но это не мешает им преследовать вас и дальше. Вы тратите больше времени на то, чтобы не пустить этих надоедливых монстров на свою базу, чем хотели бы.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Затем вы вспоминаете $(l:decoration/gemstone_glass)Рецепт Стекла из драгоценных камней$(/l) который вы придумали ранее.$(br2)Приложив немного магической энергии, не составит труда сделать его не только прозрачным, но и проходимым для вас (не для них!).$(br2)Бонус: если вы сделаете его похожим на обычное стекло, то, возможно, даже сможете обмануть своих конкурентов.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Простой вариант",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/vanilla_semi_permeable_glass",
+      "text": "Хотя он выглядит точно так же, как и его $(l:decoration/gemstone_glass)обычный аналог$(), пройти через него могут только игроки. Все остальные существа будут отскакивать, как муха от окна."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Вариант из Драг. Камня",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_semi_permeable_glass",
+      "text": "Полупроницаемое стекло бывает всех цветов драгоценных камней. Просто замените $(item)Аметист$() на драгоценный камень по вашему выбору."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Тонированный вариант",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/tinted_semi_permeable_glass",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Светящийся вариант",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/glowing_semi_permeable_glass",
+      "text": ""
+    }
+  ]
+}

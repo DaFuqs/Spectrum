@@ -1,0 +1,23 @@
+{
+  "name": "Новая Руда",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_shimmerstone",
+  "read_by_default": true,
+  "turnin": "spectrum:collect_shimmerstone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:collect_shimmerstone",
+      "cost": "minecraft:copper_ingot#8",
+      "text": "В обычном мире на уровне поверхности и выше можно найти новую руду."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "minecraft:copper_ingot#24",
+      "text": "Она образуется во всех биомах в центре и верхних слоях обычного мира в крупных жилах. Чаще всего её можно найти в горах."
+    }
+  ]
+}

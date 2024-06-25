@@ -1,0 +1,133 @@
+{
+  "name": "Alloy Forgery",
+  "icon": "alloy_forgery:bricks_forge_controller",
+  "flag": "mod:alloy_forgery",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Закаленные под воздействием тепла и давления, прекрасные плавильни могут быть изготовлены из Кальцит и Базальта$(br2)Возможно, вы найдете больше минералов, которые пригодятся вам во время приключений? Лучше всего записать их здесь."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Кроме того, некоторые предметы можно использовать в качестве специального топлива для плавильни. Некоторые руды имеют большей выход при плавке в такой кузнице.$(br2)Передайте Noaaan'у привет!"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Базальтовая Кузница",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:basalt_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_basalt_alloy_forge",
+      "text": "Достаточно медленная, но зато влезает много топлива."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Кальцитовая Кузница",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:calcite_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_calcite_alloy_forge",
+      "text": "В два раза быстрее, чем базальтовый вариант, но вам придется чаще пополнять запасы топлива."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_blackslag",
+      "name": "Чёрношлаковая Кузница",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:blackslag_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "advancement": "spectrum:hidden/collect_blackslag",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_blackslag_alloy_forge",
+      "text": "Высокоуровневая кузница со средней скоростью и запасом топлива."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_shale_clay",
+      "name": "Глиннянно Сланцевая Кузница",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:shale_clay_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "advancement": "spectrum:hidden/collect_shale_clay",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_shale_clay_alloy_forge",
+      "text": "Высококлассная кузница с огромной вместимостью и приемлемой скоростью плавки."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:hidden/collect_pyrite",
+      "name": "Пиритовая Кузница",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:pyrite_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "advancement": "spectrum:hidden/collect_pyrite",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/pyrite_alloy_forge",
+      "text": "Высококлассная кузница, которая плавит при высокой температуре. Низкая производительность по сравнению с другими плавильнями."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "name": "Кузница из Костной Золы",
+      "enable_visualize": true,
+      "multiblock_id": "spectrum:bone_ash_alloy_forge",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Контроллер Кузницы",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "recipe": "spectrum:mod_integration/alloy_forgery/pedestal/polished_bone_ash_alloy_forge",
+      "text": "Уникальная кузница, которая ускоряет процесс плавки за счет дополнительного давления. Вмещает разумное количество топлива."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "Чистые ресурсы можно превратить в их обычный аналог с хорошим множителем."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_stratine",
+      "item": "spectrum:stratine_ore",
+      "text": "Используя высокоуровневую $(thing)кузницу$() вы сможете выжать из сырой руды гораздо больше $(l:resources/stratine)Стратина$(/l)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paltaeria_ore",
+      "advancement": "spectrum:lategame/collect_paltaeria",
+      "text": "...то же самое относится и к $(l:resources/paltaeria)Платерию$(/l), конечно же."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:unlocks/blocks/lava_sponge",
+      "item": "spectrum:wet_lava_sponge",
+      "text": "Мокрая $(item)Лавовая губка$() содержит достаточно тепла для того, чтобы в течение долгого времени подпитывать вашу кузницу."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:fiery_powder",
+      "text": "Также является хорошим источником тепла для кузницы."
+    }
+  ]
+}

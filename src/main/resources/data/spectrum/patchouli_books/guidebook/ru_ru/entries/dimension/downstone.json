@@ -1,0 +1,24 @@
+{
+  "name": "Низинный Камень",
+  "advancement": "spectrum:lategame/reached_dd_floor",
+  "icon": "spectrum:downstone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:downstone": 0,
+    "spectrum:downstone_fragments": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone",
+      "text": "В самых глубоких уголках Глубины вас ждал этот камень.$(br)Невероятно твердый, даже Бедрок по сравнению с ним - просто смех."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:downstone_fragments",
+      "anchor": "downstone_fragments",
+      "advancement": "spectrum:lategame/collect_downstone_fragments",
+      "text": "Похоже, тот, кто пришел до вас, смог добыть его - но только с помощью огромных буров.$(br2)Похоже, что они использовали его для производства $(item)Защитных Камней$()?"
+    }
+  ]
+}

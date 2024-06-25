@@ -1,0 +1,67 @@
+{
+  "name": "Applied Energistics",
+  "icon": "ae2:controller",
+  "flag": "mod:ae2",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "extra_recipe_mappings": {
+    "spectrum:small_certus_quartz_bud": 0,
+    "spectrum:large_certus_quartz_bud": 0,
+    "spectrum:certus_quartz_cluster": 0,
+    "spectrum:small_fluix_bud": 0,
+    "spectrum:large_fluix_bud": 0,
+    "spectrum:fluix_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "\"Любая достаточно развитая технология неотличима от магии\", вы однажды слышали.$(br)Вы до сих пор не совсем понимаете, как этой системе хранения удается хранить столько блоков на таком маленьком объеме, но поскольку вы регулярно ходите с сотнями блоков земли, вы никогда не задавались этим вопросом."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ускоритель Роста Кристаллов",
+      "item": "ae2:quartz_growth_accelerator",
+      "text": "$(item)Ускоритель Роста Кристаллов$() может выращивать не только кварц! Он может выращивать и другие виды драгоценных камней."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Автосбор Кварца",
+      "item": "ae2:quartz_cluster",
+      "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+      "text": "$(l:magic/crystal_apothecary)Сборщик Осколков$() собирает не только $(item)Драгоценные камни с зарождающих блоков$(), но и $(item)Кварц$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Переносим Зарождающий Блок",
+      "advancement": "spectrum:unlocks/enchantments/resonance_usage",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Инструменты зачарованные $(l:enchantments/resonance)Резонансом$() имееют сопосбность собирать $(item)Зарождающий Кварц$(), сохраняя при этом свое $(italic)безупречное$() состояние."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "title": "Дробление",
+      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
+      "text": "Большинство предметов AE2 могут быть $(l:general/anvil_crushing)Разбитый в пыль наковальней$(/l): $(item)Истинный Квар$(), $(item)Изменчивый Кристалл$(), $(item)Небесный Камень$() и $(item)Жемчуг Эндера$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:midgame/collect_storm_stone",
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
+      "text": "Очень нуждаетесь в $(item)Заряжанном кварце$()? $(l:resources/storm_stones)Осколки Грома$() зарядят их в мгновение ока."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Изменчивый Кристалл",
+      "advancement": "spectrum:midgame/collect_storm_stone",
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal",
+      "text": "...а затем создайте $(item)Изменчивый кристалл$() из него, если вам не терпится."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Рост Истинного Кварца",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
+      "text": "Являясь кристаллической структурой, $(item)Истинный Кварц$() и $(item)Изменчивый Кристалл$() может быть выращен в Кристалляриуме."
+    }
+  ]
+}

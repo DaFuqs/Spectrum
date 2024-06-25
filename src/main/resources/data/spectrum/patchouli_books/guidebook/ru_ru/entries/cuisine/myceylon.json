@@ -1,0 +1,37 @@
+{
+  "name": "Грибной Цейлон",
+  "advancement": "spectrum:lategame/collect_myceylon",
+  "icon": "spectrum:myceylon",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:myceylon": 0,
+    "spectrum:myceylon_apple_pie": 0,
+    "spectrum:myceylon_pumpkin_pie": 0,
+    "spectrum:myceylon_cookie": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Грибной Цейлон",
+      "text": "С помощью $(item)Топора$() или $(l:equipment/multitool)Мультиинстурмент$() вы можете снять небольшие, но неожиданно прочные куски $(l:dimension/noxshroom_forest)Мракогриба$(). Они оказались неожиданно крепкими для грибов и… вкусными.$(br2)Цейлонпридает великолепный вкус выпечке и $(l:cuisine/infused_beverages)напиткам$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_pumpkin_pie",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_apple_pie",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
+      "recipe": "spectrum:pedestal/tier1/food/myceylon_cookie",
+      "text": ""
+    }
+  ]
+}

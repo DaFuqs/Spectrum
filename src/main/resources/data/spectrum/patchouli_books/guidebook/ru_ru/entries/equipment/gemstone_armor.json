@@ -1,0 +1,52 @@
+{
+  "name": "Броня Драг. Камней",
+  "advancement": "spectrum:unlocks/equipment/gemstone_armor_category",
+  "icon": "spectrum:ferocious_chestplate",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:fetchling_helmet": 0,
+    "spectrum:ferocious_chestplate": 0,
+    "spectrum:sylph_leggings": 0,
+    "spectrum:oread_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "У вас было достаточно времени, чтобы выработать свой индивидуальный стиль боя.$(br)Чтобы наилучшим образом поддержать этот стиль, вы разработали ряд подходящих вещей из интересных материалов.$(br2)Недостатки: Осколки, используемые в производстве, являются хрупкими. Поэтому данное снаряжение обладает сравнительно низкой прочностью."
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:hidden/collect_vanilla/collect_ender_eye": "Шлем: когда небытие встречается с адом",
+        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "Нагрудник: золотое сечение",
+        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Поножи: источник кошмаров",
+        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Ботинки: Скорбь Ада"
+      },
+      "text": "Их можно починить на наковальне, используя $(l:general/shards)Осколки драг. камней$().$(br2)Чтобы воспользоваться их уникальными способностями, вам понадобятся специальные материалы:"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_ender_eye",
+      "recipe": "spectrum:pedestal/tier2/gemstone_armor/fetchling_helmet",
+      "text": "Дает атакующим слабость и медлительность, когда они попадают по вам, позволяя вам проскользнуть сквозь их когти, как тень."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell",
+      "recipe": "spectrum:pedestal/tier2/gemstone_armor/ferocious_chestplate",
+      "text": "Дает поглощение и сопротивление при попадании, превращая вас в массивную стену на короткое время."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
+      "recipe": "spectrum:pedestal/tier2/gemstone_armor/sylph_leggings",
+      "text": "Дает вам короткую вспышку регенерации при попадании, благодаря чему вы сразу же встаете на ноги, готовые нанести ответный удар."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
+      "recipe": "spectrum:pedestal/tier2/gemstone_armor/oread_boots",
+      "text": "Дает короткую вспышку скорости и невидимости, когда вы попадаете под удар, давая вам возможность отступить. Идеально подходит для дальнего боя."
+    }
+  ]
+}

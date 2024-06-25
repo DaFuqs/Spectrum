@@ -1,0 +1,24 @@
+{
+  "name": "Чёрный Лангаст",
+  "advancement": "spectrum:hidden/visit_dd_biomes/black_langast",
+  "icon": "spectrum:black_materia",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_sludge": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Чёрный Лангаст",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_black_langast.png"
+      ],
+      "border": true,
+      "text": "$(l:magical_blocks/midnight_solution)Полуночный Раствор$(/l) повсюду."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Что должно было произойти, чтобы целые участки земли превратились в эту мертвую пустошь? Наверняка какая-то ужасная катастрофа. Кто бы - или что бы - ни был ответственным за это, у него мог быть опыт, схожий с вашим...., только гораздо более трагичный.$(br2)Это $(italic)нечто$(), что растёт здесь - назвать это растениями было бы возмутительно даже для $(item)Мёртвых кустов$() - выглядят совсем не здоровыми."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Новая Руда",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_stratine",
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_stratine_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Где найти",
+      "completion_advancement": "spectrum:hidden/collect_stratine_gem",
+      "cost": "minecraft:quartz#16",
+      "text": "В Аду можно найти новую руду."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "minecraft:quartz#48",
+      "text": "Она генерируется в нижних слоях Ада во всех биомах, ниже уровня лавы."
+    }
+  ]
+}

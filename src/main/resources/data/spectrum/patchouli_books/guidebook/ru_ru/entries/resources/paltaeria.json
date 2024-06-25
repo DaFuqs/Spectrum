@@ -1,0 +1,41 @@
+{
+  "name": "Палтерий",
+  "advancement": "spectrum:lategame/collect_paltaeria",
+  "icon": "spectrum:paltaeria_fragments",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:paltaeria_ore": 0,
+    "spectrum:paltaeria_fragments": 0,
+    "spectrum:paltaeria_gem": 0,
+    "spectrum:paltaeria_fragment_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Осколки Палтерия",
+      "item": "spectrum:paltaeria_fragments",
+      "text": "Светло-голубой цвет является визитной карточкой этой руды. Она встречается исключительно в Энде в небольших скоплениях.$(br2) Как и сам Энд, любопытные свойства этого материала не остаются незамеченными."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Paltaeria Gem",
+      "advancement": "spectrum:hidden/collect_paltaeria_gem",
+      "recipe": "spectrum:pedestal/tier4/paltaeria_gem",
+      "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Палтеривый Лётоблок",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "item": "spectrum:paltaeria_fragment_block",
+      "text": "Исходя из вашего предыдущего опыта работы с Палтерием, вы уже можете догадаться, что размещать этот блок под открытым небом было бы не очень хорошей идеей - вы будете благодарны себе в будущем."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "recipe": "spectrum:pedestal/tier1/compacting/paltaeria_fragment_block",
+      "text": "$(br)       $(italic)~ Улетай далеко-далеко ~"
+    }
+  ]
+}

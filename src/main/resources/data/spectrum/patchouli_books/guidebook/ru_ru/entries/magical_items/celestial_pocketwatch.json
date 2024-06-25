@@ -1,0 +1,21 @@
+{
+  "name": "Небесные Карманные Часы",
+  "advancement": "spectrum:unlocks/items/celestial_pocketwatch",
+  "icon": "spectrum:celestial_pocketwatch",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:celestial_pocketwatch": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Проблема с $(l:general/onyx_shards)Осколками Оникса$() заключается в том, что их создание связано с очень специфическими условиями. Не каждый день бывает новолуние. Каждый раз, когда вы смотрите на часы, кажется, что прошло всего две минуты.$(br)Пришло время пустить в ход тяжелую артиллерию: Пурпур сроднился со временем."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
+      "text": "$(italic)Какая замечательная идея."
+    }
+  ]
+}

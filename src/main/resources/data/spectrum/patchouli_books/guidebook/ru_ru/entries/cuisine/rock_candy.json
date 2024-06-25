@@ -1,0 +1,48 @@
+{
+  "name": "Конфеты из камня",
+  "advancement": "spectrum:unlocks/food/rock_candy",
+  "icon": "spectrum:rock_candy",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:sugar_stick": 0,
+    "spectrum:topaz_sugar_stick": 0,
+    "spectrum:amethyst_sugar_stick": 0,
+    "spectrum:citrine_sugar_stick": 0,
+    "spectrum:onyx_sugar_stick": 0,
+    "spectrum:moonstone_sugar_stick": 0,
+
+    "spectrum:rock_candy": 0,
+    "spectrum:topaz_rock_candy": 0,
+    "spectrum:amethyst_rock_candy": 0,
+    "spectrum:citrine_rock_candy": 0,
+    "spectrum:onyx_rock_candy": 0,
+    "spectrum:moonstone_rock_candy": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Палочка с $(item)Сахором$() на ней.$(br2)...подождите, подождите, это еще не все!$(br)Если поместить палочку так, чтобы ее нижняя сторона была погружена в $(l:magical_blocks/liquid_crystal)Жидкие Кристаллы$(/l), нужно просто медленно растворять в жидкости все больше и больше сахара, пока палочка не превратится в сладкий хрустящий леденец."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/food/sugar_stick",
+      "text": "Может быть, вы даже сможете использовать не только обычный сахар? Жидкий $(italic)Кристалл$() и всё такое..."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Выращивание каменных конфет",
+      "images": [
+        "spectrum:textures/gui/guidebook/rock_candy_growing.png"
+      ],
+      "text": "$(thing)Шёлковое Касание$() сохраняет размер конфет, это позволяет использовать их в качестве причудливых светильников или просто для хранения."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:topaz_rock_candy",
+      "title": "Конфеты из драгоценных камней",
+      "advancement": "spectrum:midgame/collect_gemstone_rock_candy",
+      "text": "Растворение в жидкости порошка $(l:general/gemstone_powder)Драг. камня$(/l) вместо сахара позволило конфетам приобрести привычный цвет драгоценного камня.$(br2)Вы всегда хотели узнать, каковы они на вкус. Определенно, это более здоровый вариант, чем нюхать их."
+    }
+  ]
+}

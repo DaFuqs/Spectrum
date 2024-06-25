@@ -1,0 +1,120 @@
+{
+  "name": "Структурные Улучшения",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:upgrade_speed",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:upgrade_speed": 0,
+    "spectrum:upgrade_speed2": 0,
+    "spectrum:upgrade_speed3": 0,
+    "spectrum:upgrade_experience": 0,
+    "spectrum:upgrade_experience2": 0,
+    "spectrum:upgrade_efficiency": 0,
+    "spectrum:upgrade_efficiency2": 0,
+    "spectrum:upgrade_yield": 0,
+    "spectrum:upgrade_yield2": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Пигментный пьедестал и Святыния Слияния уже доказали свою состоятельность. Но есть еще много возможностей для совершенствования. Именно поэтому вы создали эти улучшения. Каждое из них улучшает свойства ваших строений по-разному, в зависимости от того, что важнее всего для вас лично.$(br)Дополнительные улучшения того же типа имеют пониженный эффект."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed",
+      "text": "Время создания в $(l:general/pedestal)Пигментном Пьедестале$(/l) сильно возрастает при использовании сложных компонентов. Это поможет вам вернуть время на приемлемый уровень."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed2",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
+      "text": "Пьедестальное улучшение T2 улучшает все аспекты предыдущего варианта. Благодаря этому ваши крафты станут еще более быстрыми."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed3",
+      "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
+      "text": "Уровень 3 не оставляет желать лучшего - по крайней мере, в плане скорости создания."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience",
+      "recipe": "spectrum:pedestal/tier3/upgrade_experience",
+      "text": "По большей части опыт, получаемый за изготовление на $(l:general/pedestal)Пигментном Пьедестале$(/l), практически ничтожен. Но используя этот пилон, вы можете значительно увеличить количество получаемого опыта."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience2",
+      "recipe": "spectrum:pedestal/tier3/upgrade_experience2",
+      "text": "Этот улучшенный пилон знаний еще больше увеличивает получаемый опыт."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency",
+      "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
+      "text": "$(l:general/pedestal)Пигментный пьедестал$(/l) пожирает огромное количество порошка драгоценных камней. Теперь вы сможете немного снизить расход ваших строений."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
+      "text": "Такая 'модернизация модернизации' еще больше снижает расход исходных материалов."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield",
+      "recipe": "spectrum:pedestal/tier4/upgrade_yield",
+      "text": "Это интересный вариант. Хотя вероятность этого очень мала, вы можете увеличить продукцию крафта."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
+      "text": "Эта модернизированная версия намного мощнее, позволяя вам получить еще большую продукции от ваших крафтов."
+    },
+
+    {
+      "type": "patchouli:multiblock",
+      "name": "Pedestal Placement",
+      "multiblock_id": "spectrum:pedestal_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 upgrade slots"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Fusion Shrine Placement",
+      "multiblock_id": "spectrum:fusion_shrine_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 слота для улучшения"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:unlocks/blocks/enchanter",
+      "name": "Enchanter Placement",
+      "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 слота для улучшения"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:unlocks/blocks/cinderhearth",
+      "name": "Cinderhearth Placement",
+      "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "2 слота для улучшения"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "advancement": "spectrum:unlocks/blocks/spirit_instiller",
+      "name": "Spirit Instiller Placement",
+      "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "2 слота для улучшения"
+    }
+  ]
+}

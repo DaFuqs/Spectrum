@@ -1,0 +1,19 @@
+{
+  "name": "Вознесение / Божественность",
+  "advancement": "spectrum:hidden/status_effects/ascension_divinity",
+  "icon": "spectrum:divination_heart",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:ascension",
+      "text": "Зов небес, или что-то в этом роде. Славный, собирающий силы перед тем, как $(thing)Божественность$() начнет действовать."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:divinity",
+      "text": "Дает вам значительные баффы ко всем основным атрибутам.$(br)Почти ($(l:creating_life/hardcore_revival)необратимой$(/l)) ценой вашей жизни, если вы все же умрете."
+    }
+  ]
+}

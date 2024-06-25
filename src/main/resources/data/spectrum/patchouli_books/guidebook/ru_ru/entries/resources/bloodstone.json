@@ -1,0 +1,42 @@
+{
+  "name": "Кровокамень",
+  "advancement": "spectrum:unlocks/resources/bloodstone",
+  "icon": "spectrum:raw_bloodstone",
+  "category": "spectrum:resources_category",
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "extra_recipe_mappings": {
+    "spectrum:raw_bloodstone": 0,
+    "spectrum:refined_bloodstone": 0,
+    "spectrum:bloodstone_block": 0,
+
+    "spectrum:small_bloodstone_bud": 0,
+    "spectrum:large_bloodstone_bud": 0,
+    "spectrum:bloodstone_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:liquid_crystal_converting",
+      "recipe": "spectrum:liquid_crystal_converting/raw_bloodstone",
+      "title": "Кровокамень",
+      "text": "Довольно сияющие перышки $(l:creating_life/kindlings)Киндлингов$(/l) бросаются в глаза, и этого достаточно, чтобы заставить вас регулярно подправлять шерстку этих маленьких простофиль."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Кровокамень",
+      "text": "Однако, к сожалению, вы заметили, что довольно часто на перьях остаются капли крови. Если смочить их в $(l:magical_blocks/liquid_crystal)жидких кристаллах$(), они оставляют после себя блестящий кристаллический осадок."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Очищение Кровокаменя",
+      "recipe": "spectrum:crystallarieum/bloodstone",
+      "text": "Поместив его в кристалларий и дав ему $(bold)$(italic)$(fuck)необходимое$() количество Меди$(), частичка драконьей крови вырастет и кристаллизуется в огромную стеклянную плиту,"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
+      "title": "Очищение Кровокаменя",
+      "text": "сияющую потрясающим алым цветом и истекающую магией!"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Кулон Бессмертия",
+  "advancement": "spectrum:unlocks/trinkets/totem_pendant",
+  "icon": "spectrum:totem_pendant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:totem_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)Тотемы Бессмертия$(), хотя и обладают мощным эффектом, имеют существенный недостаток - их всегда приходится держать в руке.$(br2)Используя силу $(l:general/pigment#blue)Синего Пигмента$(/l) как фокус, вы можете сохранить его спасательный эффект активным даже при ношении на шее."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/totem_pendant",
+      "text": "Одноразовая защита от смерти. После срабатывания рассыпается в пыль."
+    }
+  ]
+}

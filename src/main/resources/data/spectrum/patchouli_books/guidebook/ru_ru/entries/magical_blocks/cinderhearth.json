@@ -1,0 +1,42 @@
+{
+  "name": "Пепельный Очаг",
+  "icon": "spectrum:cinderhearth",
+  "advancement": "spectrum:unlocks/blocks/cinderhearth",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:cinderhearth": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Современная доменная печь, использующая $(c_orange)оранжевую краску$() для плавки руд и тому подобного."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/cinderhearth",
+      "text": "Применяя $(l:magical_items/knowledge_gem)Жемчужину Знаний$() позволяет автоматически собирать опыт при переплавке."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Структура Очага",
+      "multiblock_id": "spectrum:cinderhearth_structure",
+      "enable_visualize": true,
+      "text": "Способности Очага могут быть улучшены с помощью $(l:magical_blocks/upgrades)Улучшений$(). Установите их на верх Резных Блоков."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список Блоков",
+      "text": "$(li)1 Пепельный Очаг$(li)21 Полированных Блока$(li)6 Узорчатых Блока$(li)5 Блоков Стекла$(li)2 Резных Блока$(li)6 Вёдер Лавы$(br2)$(italic)Нужна ли эта $(item)лава$()$(italic)  под ней, ведь у вас уже есть $(c_orange)Краска$()$(italic)? Неа, на самом деле нет. Но так смотрится гораздо лучше."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Улучшение",
+      "text": "$(l:magical_blocks/upgrades)Улучшения$() устанавливаются сверху, на $(item)Резные Блоки$() не работают автоматически, а требуют, чтобы вы подали в Очаг дополнительный тип $(l:magic/ink)чернил$(/l). Чем выше уровень улучшения, тем выше потребление."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Скорость ($(c_magenta)Пурпурная Краска$()):$(br)Ускоряет время плавки$(br)$(li)Продукция ($(c_light_blue)Голубая краска$()):$(br)шанс умножить количество для большинства блоков$(br)$(li)Опыт ($(c_purple)Фиолетовая краска$()):$(br)значительно увеличивает количество получаемого опыта$(br)$(li)Эффективность ($(c_black)Чёрная краска$()):$(br)значительно снижает расход Краски других типов, включая $(c_orange)Оранжевую$()"
+    }
+  ]
+}

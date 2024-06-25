@@ -1,0 +1,21 @@
+{
+  "name": "Рыдающая Диадема",
+  "advancement": "spectrum:unlocks/trinkets/weeping_circlet",
+  "icon": "spectrum:weeping_circlet",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:weeping_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "враждебные подводные храмы - настоящий ад для маневрирования. К счастью, в поисках сокровищ вы наткнулись на $(item)Сердце Моря$().$(br)Эта Диадема позволяет вам жить и копать под водой, как будто это самая естественная вещь на свете. Вы быстрее плаваете и добываете, не нуждаетесь в воздухе и лучше видите.$(br)Она также исцеляет ваших маленьких друзей-аксолотлей. ♥"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/weeping_circlet",
+      "text": "$(italic)Вы когда-нибудь хотели жить под водой?$(br)Нет? Неважно, теперь можете. Пора строить подводную базу!"
+    }
+  ]
+}

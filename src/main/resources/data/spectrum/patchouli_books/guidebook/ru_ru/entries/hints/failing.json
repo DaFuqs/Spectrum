@@ -1,0 +1,23 @@
+{
+  "name": "Эксперимент №2",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_failing",
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_neolith",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Маленькое Открытие",
+      "completion_advancement": "spectrum:midgame/collect_neolith",
+      "cost": "spectrum:stratine_fragments#8",
+      "text": "Как и Увядание, они предпочитают, чтобы рядом с ними находился определенный блок. Правда, на этот раз гораздо сильнее. Точнее, 'ненавижу добывать это'."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Краткие инструкци",
+      "cost": "spectrum:stratine_fragments#24",
+      "text": "Предпочтительная пища - обсидиан. Однако будьте осторожны с их ненасытным голодом. Если дать им возможность, они съедят больше, чем нужно…"
+    }
+  ]
+}

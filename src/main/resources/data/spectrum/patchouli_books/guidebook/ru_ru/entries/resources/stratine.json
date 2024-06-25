@@ -1,0 +1,47 @@
+{
+  "name": "Стратин",
+  "advancement": "spectrum:midgame/collect_stratine",
+  "icon": "spectrum:stratine_fragments",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:stratine_ore": 0,
+    "spectrum:stratine_fragments": 0,
+    "spectrum:stratine_gem": 0,
+    "spectrum:stratine_fragment_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Стратин",
+      "item": "spectrum:stratine_fragments",
+      "text": "Эта очень тяжелая руда разбросана в аду.$(br)Вероятно, не стоит сразу нести домой большое количество этого ресурса."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Стратиновый самоцвет",
+      "advancement": "spectrum:hidden/collect_stratine_gem",
+      "recipe": "spectrum:pedestal/tier3/stratine_gem",
+      "text": "Редко удается вырезать целый драгоценный камень и использовать его в рецептах, для которых осколки слишком малы. Приложив усилия, эти осколки можно снова собрать целиком."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Стратиновый Лётоблок",
+      "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+      "item": "spectrum:stratine_fragment_block",
+      "text": "Стратин - как вы, возможно, уже заметили - исключительно тяжелый материал. К тому же ему трудно придать форму. Даже пылающий жар ада не смог причинить ему вреда."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Стратиновый Лётоблок",
+      "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+      "text": "Однако придание ему формы с помощью вашего $(l:general/pedestal)Пьедестала$() не должно быть проблемой."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный рецепт",
+      "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+      "recipe": "spectrum:pedestal/tier1/compacting/stratine_fragment_block",
+      "text": "$(italic)Тяжелый металл"
+    }
+  ]
+}

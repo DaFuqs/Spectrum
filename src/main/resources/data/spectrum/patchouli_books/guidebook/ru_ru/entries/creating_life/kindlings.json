@@ -1,0 +1,36 @@
+{
+  "name": "Киндлинги",
+  "icon": "spectrum:kindling_head",
+  "advancement": "spectrum:unlocks/blocks/kindling_memory",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:kindling_head": 0,
+    "spectrum:kindling_spawn_egg": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Киндлинги",
+      "text": "Эти величественные скелеты, усеивающие глубины… даже в смерти драконы несут в себе столько силы и жизни, что должен быть способ воссоздать их великолепие с помощью этих $(l:dimension/dragonbone#dragonbone_chunks)Осколков Драконьей Кости$().$(br2)Может быть, именно вы восстановите эпоху божественных драконов?"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Воспоминание",
+      "recipe": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
+      "text": "$(italic)Ваш личный свирепый дракон. Это будет здорово."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Маленький Сюрприз",
+      "text": "$(italic)Вот тебе и планы по созданию личного парка юрского периода. Может быть, вам больше подойдет зоопарк?$()$(br2)Результат определенно не такой... свирепый... как вы себе представляли. Обычно вы говорите, что уже привыкли к неудачам, но с таким результатом кто вы такой, чтобы жаловаться?"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "spectrum:lategame/remember_kindling",
+      "entity": "spectrum:kindling",
+      "scale": 0.45,
+      "offset": 0.5,
+      "text": "Их пух выглядит очень мягким.$(br)$(italic)Может быть, если вы подкрадетесь к нему $(item)Ножницами$()$(italic), то сможете выдернуть перо или два?$()"
+    }
+  ]
+}

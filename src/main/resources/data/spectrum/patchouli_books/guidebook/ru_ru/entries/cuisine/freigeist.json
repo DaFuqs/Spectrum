@@ -1,0 +1,21 @@
+{
+  "name": "Свободный Дух",
+  "icon": "spectrum:freigeist",
+  "advancement": "spectrum:unlocks/food/freigeist",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:freigeist": 0,
+    "spectrum:divination_heart": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Когда первая капля коснулся ваших губ, он уже наполнил ваше тело огромной силой. Одно воспоминание об этом заставляет вашу руку $(italic)дрожать$() от напряжения. Это нехорошо.$(br)И все же вы никогда не чувствовали себя более сильным и живучим, как в этот момент.$(br)Однако действительно ли стоит опустошать этот пузырек? Если вы умрете вопреки всему, цена будет огромной."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "recipe": "spectrum:titration_barrel/freigeist",
+      "text": "$(br)$(italic)Ласкай ту,$(br) что никогда не погаснет$(br)Дождь в твоем сердце,$(br) слёзы белоснежной печали$(br)Ласкай ту,$(br) что прячет бархатник$(br)В стране рассвета."
+    }
+  ]
+}

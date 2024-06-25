@@ -1,0 +1,78 @@
+{
+  "name": "Резонанс",
+  "icon": "spectrum:resonant_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/resonance_usage",
+  "flag": "spectrum:enchantment_exists_spectrum_resonance",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вас всегда интересовали блоки, но вы никогда не могли вырезать их из земли достаточно аккуратно, чтобы извлечь безупречно. Однако вы заметили, что эти блоки вибрируют так же, как и драгоценные камни, которыми вы так интересовались в последнее время.$(br)Если вы попадете в нужную частоту, то сможете наконец-то подержать эти блоки в руках."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "С помощью мягких вибраций некоторые блоки либо выпадают, либо сохраняют особые свойства.$(br2)Макс. Уровень: 1$(br)Применимо к инструментам.$(br)Несовместимо с Шёлковым касанием, Удачей и Борьбой с Вредителями.$(br2)$(br2)"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "advancement": "spectrum:unlocks/enchantments/resonance_crafting",
+      "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() Резонансом окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Бутоны Драг. Камней",
+      "item": "minecraft:medium_amethyst_bud",
+      "text": "Маленькие бутоны драгоценных камней обычно слишком хрупкие, чтобы отделять их от материнского блока.$(br2)Однако если вы ударите в нужную частоту, маленькие бутоны будут отделяться от камня почти сами по себе, как если бы вы использовали $(thing)Шёлковое Касание$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Чистые Ресурсы",
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "При разрушении руд с помощью Резонанса вместо сырой руды напрямую выпадают $(l:resources/pure_resources)Чистые Ресурсы$(). $(br2)Это могло бы сочетаться с Фортуной… если бы вы каким-то образом смогли объединить эти два несовместимых зачарования."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Цветные Листья",
+      "item": "spectrum:orange_leaves",
+      "text": "Цветные листья стимулируются, чтобы выпустить больше $(item)Саженцев$().$(br2)Зачаровав мотыгу, она наконец-то станет вашим ключом к возобновляемым $(l:general/colored_trees)Цветным Саженцам$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Сбор Спавнеров",
+      "item": "minecraft:spawner",
+      "text": "На глубине вы наткнулись на клетки, которые, кажется, выплевывают бесконечное количество врагов. Какой безумец поместил их туда, какая цель за этим стоит и стоило ли это того - для вас загадка. Но вы наверняка сможете найти им применение. Их создатель, надеюсь, не будет слишком зол, если вы возьмете парочку."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:reinforced_deepslate",
+      "text": "Этот чрезвычайно прочный камень, найденный в подземных городах, можно добывать."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:sculk_shrieker",
+      "text": "Скалковый Крикуны сохраняют способность вызывать Хранителей."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:respawn_anchor",
+      "text": "Якоря Возрождения сохраняют свои заряды."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Таблички",
+      "item": "minecraft:oak_sign",
+      "text": "Таблички сохраняют свой текст и цвет."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Зараженные блоки",
+      "item": "minecraft:infested_stone_bricks",
+      "text": "Мягкие вибрации убаюкивают чешуйниц, прячущихся в блоках.$(br2)Вы можете собрать блоки, включая чешуйниц, и забрать их с собой, не давая им понять, что с ними происходит.$(br)Сладкая, сладкая месть?"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Руны из Драг. Камней",
+  "advancement": "spectrum:create_onyx_shard",
+  "icon": "spectrum:citrine_chiseled_calcite",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chiseled_basalt": 0,
+    "spectrum:amethyst_chiseled_basalt": 0,
+    "spectrum:citrine_chiseled_basalt": 0,
+    "spectrum:onyx_chiseled_basalt": 0,
+    "spectrum:moonstone_chiseled_basalt": 0,
+    "spectrum:topaz_chiseled_calcite": 0,
+    "spectrum:amethyst_chiseled_calcite": 0,
+    "spectrum:citrine_chiseled_calcite": 0,
+    "spectrum:onyx_chiseled_calcite": 0,
+    "spectrum:moonstone_chiseled_calcite": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)Кальцит$() и $(item)Базальт$() удерживают энергию драгоценных камней, пока они полностью окружают жеоду. Однако иногда энергия, накапливавшаяся веками, настолько сильна, что пробивает дыру в жеоде.$(br2)Вы воссоздали всё это в миниатюре.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/runes/topaz_chiseled_basalt_from_shards",
+      "text": "Доступны во всех цветах драгоценных камней. Рамку можно сделать из $(l:decoration/block_variants#polished_basalt)Полированного Базальта$() или $(l:decoration/block_variants#polishing)Полированного Кальцита$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Альтернативный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/runes/amethyst_chiseled_basalt_from_cluster",
+      "text": "Если вам удастся получить целые кучи драгоценных камней, создание рун будет намного эффективнее."
+    }
+  ]
+}

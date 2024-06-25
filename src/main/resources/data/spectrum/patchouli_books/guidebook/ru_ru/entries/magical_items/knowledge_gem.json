@@ -1,0 +1,27 @@
+{
+  "name": "Жемчужина Знаний",
+  "advancement": "spectrum:unlocks/items/knowledge_gem",
+  "icon": "spectrum:knowledge_gem{stored_experience:500}",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:knowledge_gem": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Когда вы подбираете один из этих маленьких зеленых шариков, которые появляются всякий раз, когда вы убиваете врага, вы становитесь умнее - якобы.$(br2)Однако неизбежная смерть от неуклюжести означает, что вы всегда быстро теряете этот опыт. Кристаллизованный и надежно хранящийся в ваших сундуках, он будет в полной безопасности.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/knowledge_gem",
+      "text": "Жемчужина хранит до 10,000 опыта. $(l:enchanting/enchanting_items)Зачаровав$() её на $(thing)Эффективность$() увеличит этот лимит, $(thing)Быстрая Перезарядка$() увеличит скорость заливания/выкачивания опыта."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Сбор XP сфер",
+      "advancement": "spectrum:unlocks/blocks/black_hole_chest",
+      "text": "Поместив Жемчужину Знаний в $(l:magical_blocks/black_hole_chest)Сундук Чёрной Дыры$() Позволяет её собирать сферы опыта, засовывая их в Жемчужину."
+    }
+  ]
+}

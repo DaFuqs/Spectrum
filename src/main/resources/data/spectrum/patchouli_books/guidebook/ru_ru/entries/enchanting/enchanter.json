@@ -1,0 +1,32 @@
+{
+  "name": "Зачарователь",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 0,
+  "advancement": "spectrum:unlocks/blocks/enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "В поисках идеального инструмента вы обнаружили, что $(item)Чародейский стол$() часто не справляется со своими задачами. Использование этого улучшенного стола для зачарования должно решить большинство проблем, которые были у вас с обычным столом зачарования.$()$(br2)Он позволяет вам:$(li)$(l:enchanting/creating_enchanted_books)Создавать новый Зачарованные Книги$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)Улучшать их$(/l)$(li)$(l:enchanting/enchanting_items)Зачаровывать предметы без использования зачарованной книги$(/l)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/enchanter",
+      "text": "Для работы Зачарователя, ему необходима структура"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Enchanting Structure",
+      "multiblock_id": "spectrum:enchanter_structure",
+      "enable_visualize": true,
+      "text": "Размеры: 11x11x5 Блоков$(br)Его можно улучшить, разместив $(l:magical_blocks/upgrades)Улучшения$() на четырех блоках с драгоценными камнями."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Список Блоков",
+      "text": "$(li)1 Зачарователь$(li)8 Предметных Чаш$(li)4+ Вёдер Жидкого Кристалла$(li)4 Блока Полированных Драгоценных Камней$(li)8 Ламп из Драгоценных Камней$(li)12 Поллированных Колонн$(li)24 Полированных плит$(li)159 Полированных Блока$(br2)$(italic)Усовершенствуйте Зачарователь, поместив улучшения на блоки драгоценных камней.$()"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Предметная Чаша",
+  "advancement": "spectrum:unlocks/blocks/item_bowl",
+  "icon": "spectrum:item_bowl_basalt",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "Предметная Чаша",
+      "items": [
+        "spectrum:item_bowl_basalt",
+        "spectrum:item_bowl_calcite"
+      ],
+      "text": "Всегда есть что-то, что вы забываете, уходя из базы - возможно, если вы положите это в эту декоративную чашу, это послужит хорошим напоминанием.$()$(br2)Она доступна в вариантах из $(item)Базальта$() и $(item)Кальцита$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "Чаша представляет собой один стак предметов, парящий над ней.$(br)Кликните предметом по Чаше или бросьте его сверху, чтобы поместить его в неё."
+    }
+  ]
+}

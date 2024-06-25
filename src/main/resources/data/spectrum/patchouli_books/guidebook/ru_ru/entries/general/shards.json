@@ -1,0 +1,61 @@
+{
+  "name": "Осколки драг. камней",
+  "icon": "minecraft:amethyst_shard",
+  "sortnum": 2,
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_all_basic_shards",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_shard": 0,
+    "minecraft:amethyst_shard": 0,
+    "spectrum:citrine_shard": 0,
+    "spectrum:onyx_shard": 0,
+    "spectrum:moonstone_shard": 0,
+    "spectrum:spectral_shard": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Чтобы начать изучать Спектрум, вам сначала нужно найти несколько осколков драгоценных камней.$(br2)Каждый вид драгоценного камня представляет собой цвет стихии и различные природные силы."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "topaz",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "title": "Осколок Топаза",
+      "item": "spectrum:topaz_shard",
+      "text": "Осколки топаза лежат в руке удивительно тяжело. Этот драгоценный камень быстро оказался одним из самых прочных материалов, которые когда-либо попадались вам в руки, - пожалуй, его превосходит только алмаз. Топаз можно найти в жеодах на самых вершинах крутых холмов и на вершинах заоблачных гор. $(br)Топаз символизирует $(bold)$(c_cyan)МАТЕРИЮ.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "amethyst",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "title": "Осколок Аметиста",
+      "item": "minecraft:amethyst_shard",
+      "text": "Пурпурный свет преломляется в этом драгоценном камне.$(br)Этот драгоценный камень, веками формировавшийся в жеодах, излучает великолепие. Это символ постоянства, который можно найти в самых глубоких слоях мира.$(br2)Аметист символизирует $(bold)$(c_purple)ВРЕМЯ$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "citrine",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "title": "Осколок Цитрина",
+      "item": "spectrum:citrine_shard",
+      "text": "Этот желтый драгоценный камень находится близко к поверхности земли, где солнечный свет рассеивается, превращаясь в тепло.$(br2)Его ярко-желтый блеск излучает чистую $(bold)$(c_yellow)ЭНЕРГИЮ$() и делает его немного теплым на ощупь в любое время."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "onyx",
+      "advancement": "spectrum:create_onyx_shard",
+      "title": "Осколок Оникса",
+      "item": "spectrum:onyx_shard",
+      "text": "Оникс - это почти кромешная тьма. Кажется, будто он высасывает свет из окружающего пространства.$(br2)Оникс, как сочетание энергии, материи и времени, служит усиливающим фактором и $(bold)$(c_black)КАТАЛИЗАТОРОМ$() для создания магических инструментов и приспособлений."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "anchor": "moonstone",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "title": "Осколок Лунокамня",
+      "item": "spectrum:moonstone_shard",
+      "text": "Его голубовато-белое мерцание напоминает вам о успокаивающем свете луны в тихую летнюю ночь. Спокойствие, которое он излучает, оставляет успокаивающее, но в то же время значительное впечатление, словно спящий кот - бальзам для души и в то же время хищник, всегда настороже.$(br2)Лунокамень воплощает в себе чистую $(bold)$(c_white)МАГИЮ$()."
+    }
+  ]
+}

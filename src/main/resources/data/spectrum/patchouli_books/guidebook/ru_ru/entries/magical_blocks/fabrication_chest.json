@@ -1,0 +1,22 @@
+{
+  "name": "Сундук Изготовления",
+  "advancement": "spectrum:unlocks/blocks/restocking_chest",
+  "icon": "spectrum:restocking_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:restocking_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:restocking_chest",
+      "text": "Пигментный Пьедестал прекрасно подходит для автоматического создания предметов. Но если вам нужно несколько одинаковых предметов снова и снова, вам придется поменять всю конструкцию.$(br2)Конечно, вы нашли более чем подходящее решение для этого."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/restocking_chest",
+      "text": "Сундук Изготовления имеет специальный слоты для $(l:magical_items/crafting_tablet)Планшетных Верстаков$(). Рецепты, которые вы задали в них, всегда хранятся с запасом - до тех пор, пока хватает ингредиентов в сундуке."
+    }
+  ]
+}

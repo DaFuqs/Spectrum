@@ -1,0 +1,99 @@
+{
+  "name": "Нефритовая лоза",
+  "advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds",
+  "icon": "spectrum:hibernating_jade_vine_seeds",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:hibernating_jade_vine_seeds": 0,
+    "spectrum:germinated_jade_vine_seeds": 0,
+    "spectrum:jade_vine_petals": 0,
+    "spectrum:moonstruck_nectar": 0,
+    "spectrum:jade_jelly": 0,
+    "spectrum:jaramel": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Нефритовая лоза",
+      "item": "spectrum:hibernating_jade_vine_seeds",
+      "text": "Остатки энергии этого растения, появившегося много веков назад, все еще едва уловимы. Такое легкое и уязвимое, что кажется, любое неверное движение может выдохнуть последнюю каплю жизни из хрупкой луковицы."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Нефритовая лоза",
+      "text": "Неужели история этого растения навсегда останется для вас загадкой?"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Прорастание",
+      "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+      "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
+      "text": "Когда-то это было почти безнадежным делом, но теперь у вас есть козырь в рукаве $(l:creating_life/spirit_instiller)Высекатель Духа$(/l) Вы уверены, что сможете вдохнуть жизнь в маленькую луковицу."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Посадка и выращивание",
+      "item": "spectrum:germinated_jade_vine_seeds",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "Бледные, хрупкие, но, тем не менее, прекрасные свисающие растения, обвивающие деревянные заборы, под которыми есть свободное место."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Посадка и выращивание",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "$(br)$(c_red)Не привыкшие к сильному свету после стольких веков, они умрут под воздействием слишком большого количества солнечного света."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Посадка и выращивание",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "$(c_lime)За ночь она вырастает только на одну стадию роста и только под воздействием гораздо более мягкого, непрямого света Луны."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Нефритовое Желе",
+      "anchor": "jade_jelly",
+      "item": "spectrum:jade_jelly",
+      "advancement": "spectrum:hidden/collect_jade_jelly",
+      "text": "Когда вы подвергли одно из растений сильному солнечному свету, вы обнаружили, что оно засохло. На месте засохшего куста появились не только новые луковицы, но и желеобразная $(br2)$(italic)неожиданно вкусная$() масса."
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "Джарамель",
+      "anchor": "jaramel",
+      "recipe": "spectrum:cinderhearth/jaramel",
+      "advancement": "spectrum:unlocks/food/jaramel",
+      "text": "Если нефритовое желе быстро нагреть, а затем снова охладить, получится очень вязкая, но сладкая масса.$(br2)$(italic)Хотите подкрепиться?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Лепестки",
+      "anchor": "petals",
+      "item": "spectrum:jade_vine_petals",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "Блестящие лепестки можно отщипывать, если они чатсично выросли. Их можно использовать в качестве $(l:decoration/jade_vine_petal_blocks)украшения$().$(br2)Редко, при осмотре лепестков можно найти $(thing)другую луковицу$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Лепестки",
+      "anchor": "petals",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "Как будут выглядеть нефритовые лепестки, если вы позволите расти им дальше?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Лунный Нектар",
+      "anchor": "nectar",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "После многих ночей в полнолуние растения достигают полного расцвета. Нектар, который они собирают в своих соцветиях, можно собирать с помощью $(item)Бутылочки."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Лунный Нектар",
+      "anchor": "nectar",
+      "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
+      "text": "$(br)Обладает великолепными восстанавливающими свойствами$(li)может быть использован для исцеления$(li)способен восстановить любой поврежденный предмет в сетке крафта"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "Бедрок Инструменты",
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "icon": "spectrum:bedrock_pickaxe",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_pickaxe": 0,
+    "spectrum:bedrock_axe": 0,
+    "spectrum:bedrock_shovel": 0,
+    "spectrum:bedrock_sword": 0,
+    "spectrum:bedrock_hoe": 0,
+    "spectrum:bedrock_bow": 0,
+    "spectrum:bedrock_crossbow": 0,
+    "spectrum:bedrock_shears": 0,
+    "spectrum:bedrock_fishing_rod": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Каждый раз, попадая в новый мир, вы занимаетесь бездумным многодневным трудом - собираете вокруг себя жителей, превращаете их в зомби и снова исцеляете, только для того, чтобы один из них в конце концов дал вам книгу $(thing)Починки$(). И все это только для того, чтобы вам не пришлось чинить свои инструменты.$(br)Это неинтересно и не соответствует биологическому виду. Теперь у вас есть гораздо более удобное решение."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_pickaxe",
+      "text": "Бедрок Кирка создаётся с $(bold)Шёлковым Касанием$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_axe",
+      "text": "Бедрок Топор создаётся с $(bold)Эффективностью 6$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shovel",
+      "text": "Бедрок Лопата создаётся с $(bold)Эффективностью 6$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_sword",
+      "text": "Бедроковый Меч создаётся с $(bold)Остротой 6$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_hoe",
+      "text": "Бедроковая Мотыга создаётся с $(bold)Удачей 4$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_bow",
+      "text": "Бедроковый Лук создаётся с $(bold)Силой 6$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
+      "text": "Бедроковый Арбалет создаётся с $(bold)Быстрой перезарядкой 4$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
+      "text": "Бедроковые Ножницы создаются с $(bold)Эффективностью 6$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
+      "text": "Бедроковая Удочка создаётся с $(bold)Везучий Рыбак 4$()."
+    }
+  ]
+}

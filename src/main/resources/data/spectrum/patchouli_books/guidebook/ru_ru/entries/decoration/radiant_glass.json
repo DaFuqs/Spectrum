@@ -1,0 +1,23 @@
+{
+  "name": "Сверкающее Стекло",
+  "advancement": "spectrum:collect_shimmerstone",
+  "icon": "spectrum:glowing_glass",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:glowing_glass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:glowing_glass",
+      "title": "Сияющее Стекло",
+      "text": "Вам нужен способ эффективно осветить ваше убежище и другие структуры?$(br2)Что может быть лучше, чем использование Сверкающее свойств $(l:resources/shimmerstone)сверкамня$() непосредственно в вашем стекле?$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Рецепт на Пьедестале",
+      "recipe": "spectrum:pedestal/tier1/glowing_glass",
+      "text": "Сверкающее Стекло является практически противоположностью Тонированному Стеклу. $(l:resources/shimmerstone)Сверкамень$(), использованный в его производстве, обеспечивает свечение стекла изнутри."
+    }
+  ]
+}

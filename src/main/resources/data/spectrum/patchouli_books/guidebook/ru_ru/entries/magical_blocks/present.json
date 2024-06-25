@@ -1,0 +1,44 @@
+{
+  "name": "Подарок",
+  "advancement": "spectrum:unlocks/blocks/present",
+  "icon": "spectrum:present",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:present": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Люди, которые вас окружают, уже помогли вам в той или иной сложной ситуации. Пришло время отдать что-то взамен. Щепотка $(l:resources/shimmerstone)Сверкамня$(/l) позволяет подарку взорваться разноцветным дождем частиц.$(br)Щелкните мышью по предмету, который хотите подарить, заверните его в $(item)Верстаке$(), а затем все, что вам нужно сделать, - это положить его на пол, чтобы получатель открыл его и понаблюдать за тем, как он прыгает от радости."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier1/present",
+      "text": "$(italic)(Или, знаете, вы всегда можете подарить своему будущему \"я\"!)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spectrum:crafting_table/special/wrap_present",
+      "title": "Кастомизация",
+      "text": "$(li)Поместите заполненный подарок в сетку для крафта, чтобы завернуть его.$(li)Опционально: Добавьте $(l:general/pigment)Пигмент$() для получения разноцветных частиц.$(li)Опционально: добавьте особый элемент, чтобы выбрать оберточную бумагу:$(li2)Красный краситель: Красный$(li2)Синий Краситель: Синий"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "Упаковка",
+      "items": [
+        "spectrum:present{Variant: \"red\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cyan\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"green\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"purple\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cake\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"striped\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"starry\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
+      ],
+      "text": "$(li2)Голубой краситель: Голубой$(li2)Зеленый Краситель: Зеленый$(li2)Фиолетовый краситель: Фиолетовый$(li2)Торт: Торт$(li2)Цветок: Полоски$(li2)Звезда фейерверка: Звездный$(li2)Снежок: Зима$(li2)Спороцвет: Радуга"
+    }
+  ]
+}

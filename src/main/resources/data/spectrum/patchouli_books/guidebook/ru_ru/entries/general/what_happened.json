@@ -1,0 +1,77 @@
+{
+  "name": "Что случилось внизу?",
+  "icon": "spectrum:black_materia",
+  "sortnum": 20,
+  "advancement": "spectrum:lategame/visit_all_deeper_down_biomes",
+  "turnin": "spectrum:endgame/collect_enough_hints",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)По следам истории Глубоких Низин$().$(br2)Несомненно, несмотря на отсутствие света, здесь когда-то жила высокоразвитая цивилизация. Но вы нашли лишь руины.$(br)Что случилось? Наверняка вы сможете найти подсказки об их местонахождении. Смерть? Старость?"
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "Куда смотреть?",
+      "checklist": {
+        "spectrum:lategame/find_forgotten_city": "Было ли место под бедроком обитаемым?",
+        "spectrum:lategame/reached_dd_floor": "Теперь, когда Бедрок больше не является дном, что же здесь можно найти?",
+        "spectrum:lategame/find_excavation_site": "Как были созданы руины, которые вы нашли в Верхнем мире?"
+      },
+      "text": ""
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:lategame/revive_black_sludge_plant": "Как появилась Чёрная Материя?",
+        "spectrum:lategame/break_cracked_dragonbone": "Те кости в Драконьих болотах… их можно сломать?",
+        "spectrum:lategame/strike_up_hummingstone_hymn": "А как насчет этих странных кристаллов в Кристальных садах?",
+        "spectrum:lategame/collect_moonstone_shard": "Можете ли вы найти здесь Жеоды?"
+      },
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/find_forgotten_city",
+      "title": "Разгадка: Города",
+      "text": "Цивилизация! …или, по крайней мере, то, что от нее осталось. Все производит впечатление суеты, все выглядит так, будто все дома еще заполнены, но при этом не видно ни одной живой души."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/reached_dd_floor",
+      "title": "Разгадка: подземный пол",
+      "text": "Это как матрешка на всем пути вниз. Еще минуту назад вы думали, что Бедрок не сломать, а теперь вы здесь."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/find_excavation_site",
+      "title": "Разгадка: Места раскопок",
+      "text": "Очевидно, низинный камень не был полностью неразрушимым для предыдущих обитателей? Потребовались огромные высокотехнологичные сооружения, но они смогли обработать камень и сделать то, что вы назвали \"Низинный Камень\"."
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/revive_black_sludge_plant",
+      "title": "Разгадка: Чёрная Материя",
+      "text": "Останки, растущие в $(l:dimension/black_langast)Черном Лангасте$(/l) когда-то были Резонансными Лилиями. Что же произошло здесь? Значит ли это…"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "title": "Разгадка: Драконья Кость",
+      "text": "Вы постоянно натыкаетесь на гигантские скелеты. Были ли они на самом деле драконами, еще неизвестно, но кем бы они ни были, они были очень могущественны. Неужели они уничтожили всех жителей, а потом каким-то образом встретили свой собственный конец?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
+      "title": "Разгадка: Гудокамень",
+      "text": "Гудокамни с большой внутренней энергией. При вибрации они раскачивают друг друга без каких-либо внешних воздействий, пока не разлетаются на осколки. Какой-то источник энергии?"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
+      "title": "Разгадка: Лунокамень",
+      "text": "Ослепительно белые Жеоды здесь не похожи на те, что вы видели раньше, и обладают огромной магической силой. Но почему они существуют только здесь? Больше вопросов…"
+    }
+  ]
+}

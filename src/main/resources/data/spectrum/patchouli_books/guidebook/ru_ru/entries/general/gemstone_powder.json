@@ -1,0 +1,26 @@
+{
+  "name": "Порошок Драг. Камней",
+  "icon": "spectrum:amethyst_powder",
+  "sortnum": 5,
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_powder": 0,
+    "spectrum:amethyst_powder": 0,
+    "spectrum:citrine_powder": 0,
+    "spectrum:onyx_powder": 0,
+    "spectrum:moonstone_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Для большинства рецептов в вашем пьедестале требуется некоторое количество порошка драгоценных камней в качестве источника магической энергии.$(br)Он бывает разных цветов и может быть получен путем измельчения $(l:general/shards)Осколков драгоценных камней$() с помощью $(l:general/anvil_crushing)Дробления предметов$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Смешивание Цветов",
+      "text": "Для начинающего художника нет ничего важнее, чем правильно смешать краски.$(br)К сожалению, в случае с порошкома драгоценных камней вы обнаружили, что это не так просто, как кажется на первый взгляд. Порошки не хотят смешиваться, и в результате получается просто разноцветная масса.$(br2)Может быть, вы сможете придумать что-нибудь позже?"
+    }
+  ]
+}

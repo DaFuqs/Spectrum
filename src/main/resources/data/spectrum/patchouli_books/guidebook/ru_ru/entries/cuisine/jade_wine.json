@@ -1,0 +1,37 @@
+{
+  "name": "Нефритовое Вино",
+  "advancement": "spectrum:unlocks/food/jade_wine",
+  "icon": "spectrum:jade_wine",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:jade_wine": 0,
+    "spectrum:chrysocolla": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/jade_vines)Нефритовая Лоза$() известна своими восстанавливающими свойствами, поэтому неудивительно, что она прекрасно сочетается с ферментацией.$(br)В отличие от легкой горечи луковиц, добавление хорошей доли лепестков дает более цветущий и слегка кисловатый вкус, дополненный земляными нотками, почти напоминающими вино, в фирменном нефритовом цвете."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Рецепт в бочке",
+      "recipe": "spectrum:titration_barrel/special/jade_wine",
+      "text": "$(item)1 луковица$() и $(item)3 лепестка$() вместе с $(item)Ведром Воды$() кажется, это хорошая отправная точка.$(br)Чем дольше длится брожение, тем сильнее становится вкус. $(br2)$(italic)Немного $(item)Сладостей$() не помешает, вы уверены."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Подслащение",
+      "advancement": "spectrum:midgame/tap_sweetened_jade_wine",
+      "anchor": "sweetened_jade_wine",
+      "item": "spectrum:moonstruck_nectar",
+      "text": "Если добавить немного $(item)Лунного Нектара$() то вино станет гораздо легче пить. Процесс брожения усиливается, а негативные эффекты заметно смягчаются."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/tap_chrysocolla",
+      "anchor": "Хризоколла",
+      "item": "spectrum:chrysocolla",
+      "text": "Ваш новый результат брожения Нефритового вина был $(italic)слишком $() долгим.$(br)Очень горький и слегка кислый вкус.$(br)Хотя оно и сохраняет некоторые свойства Нефритового вина, на которое когда-то походило, кажется более полезным для медицины, чем для питья.$(br)Но, знаете... разве кто-то вас останавливает?"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Проклятье Пустоты",
+  "icon": "minecraft:wooden_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/voiding_usage",
+  "flag": "spectrum:enchantment_exists_spectrum_voiding",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ваши инструменты с этим заклинанием, кажется, растворяют в воздухе все, что они добывают. Разбивается в мелкую пыль и разносится ветром.$(br2)Когда вы захотите вырубить полгорода из необработанного камня, он может даже пригодиться. Некоторые вещи, вероятно, являются проклятием и благословением одновременно."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Свойства",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+      "text": "Уничтожает лут всех сломанных блоков.$(br2)Макс. Уровень: 1$(br)Применяется для инструментов."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Рецепт Зачарования",
+      "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
+      "advancement": "spectrum:unlocks/enchantments/voiding_crafting",
+      "text": "Вы можете зачаровать $(item)Обычную книгу$() проклятьем пустоты окружив в $(l:enchanting/enchanter)Зачарователе$() $(l:general/pigment)Пигмент$() и другие необходимые предметы."
+    }
+  ]
+}

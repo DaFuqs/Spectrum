@@ -1,0 +1,22 @@
+{
+  "name": "Разрушитель",
+  "advancement": "spectrum:unlocks/redstone/block_breaker",
+  "icon": "spectrum:block_breaker",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:block_breaker": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:block_breaker",
+      "text": "Простой способ уничтожения блоков. Не самый сложный и не самый настраиваемый, но он прост в настройке и очень компактен.$(br2)Дайте ему сигнал редстоуна, чтобы уничтожить блок перед ним."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Пьедестальный Рецепт",
+      "recipe": "spectrum:pedestal/tier3/block_breaker",
+      "text": "Способен разрушать блоки вплоть до железного уровня."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Яростное Кольцо",
+  "advancement": "spectrum:unlocks/trinkets/jeopardant",
+  "icon": "spectrum:jeopardant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:jeopardant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Адреналин не обязательно должен быть единственным, что бурлит в ваших жилах в чрезвычайной ситуации.$(br2)С каждым потерянным сердцем $(l:resources/stratine)Стратиновый Самоцвет$() в этом кольце светится все ярче и ярче, пульсируя в том же ритме, что и ваше бьющееся сердце, - вы получаете экспоненциальный прирост урона."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Рецепт Святыни Слияния",
+      "recipe": "spectrum:fusion_shrine/trinkets/jeopardant",
+      "text": "$(italic)Расскажите, что вы думаете о своей ситуации$(br)Осложнение, усугубление"
+    }
+  ]
+}

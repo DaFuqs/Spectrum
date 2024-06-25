@@ -1,0 +1,55 @@
+{
+  "name": "Ванильные Предметы",
+  "advancement": "spectrum:craft_using_pedestal",
+  "icon": "minecraft:bell",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Ванильные Предметы",
+      "text": "Есть несколько предметов, которые всегда было трудно получить. Благодаря вашим новым навыкам получить их будет гораздо проще."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/bundle",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/cobweb",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/vanilla/spectral_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Unstable TNT",
+      "recipe": "spectrum:pedestal/tier1/vanilla/unstable_tnt",
+      "text": "Взрывается при ударе"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/vanilla/bell",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/vanilla/name_tag",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/vanilla/elytra",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier4/vanilla/trident",
+      "text": ""
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Драконогниль",
+  "icon": "spectrum:dragonrot_bucket",
+  "advancement": "spectrum:hidden/interact_with_dragonrot",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:dragonrot_bucket": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Она выглядит раскаленной, словно в огне, адски жгучим на ощупь (надо же было $(italics)удовлетворить $() свое любопытство...) и при этом совершенно не излучает тепла.$(br)В то время как $(l:magical_blocks/midnight_solution)Полуночный Раствор$() кажется разрушительным ради перемен, Драконогниль похоже, нацелена только на чистое и полное уничтожение. Разумеется, мало какая органика способна противостоять её жажде крови."
+    },
+    {
+      "type": "spectrum:dragonrot_converting",
+      "title": "Преобразование предметов",
+      "recipe": "spectrum:dragonrot_converting/blackslag_from_deepslate",
+      "text": "Бросая некоторые предметы, можно разрушить их до такой степени, что они превратятся в нечто совершенно иное."
+    }
+  ]
+}

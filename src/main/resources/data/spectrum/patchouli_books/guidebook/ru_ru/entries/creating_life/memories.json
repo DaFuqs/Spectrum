@@ -1,0 +1,35 @@
+{
+  "name": "Воспоминания",
+  "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+  "advancement": "spectrum:unlocks/blocks/memories",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:memory": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Воспоминания",
+      "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+      "text": "С помощью $(l:creating_life/spirit_instiller)Высекателя Духа$(/l), вы можете вдохнуть новую жизнь в некогда мертвое существо.$(br)Оно материализуется в виде $(italic)Воспоминания$()."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Рецепт Высекатель Духа",
+      "recipe": "spectrum:spirit_instiller/memories/fox",
+      "text": "Чтобы вспомнить воспоминания о существе, вам понадобится его $(l:creating_life/mob_heads)Голова$(/l), а также самый любимый предмет и $(l:creating_life/fading#vegetal)Органическая Смесь$(/l) в качестве связующего вещества.$(br)Используя $(l:creating_life/failing#neolith)Неолит$(/l) Использование Неолита, похоже, полностью подавляет энергию существа, делая полученное Воспоминание неузнаваемым, пока оно не проявится."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Проявление",
+      "text": "Воспоминаниям требуется определенное время для проявления, почти как яйцу: нужно положить их и подождать. В зависимости от существа это может произойти довольно быстро, а может занять целую вечность.$(br2)$(italic)Размещение их поверх определенных блоков, похоже, ускоряет этот процесс или полностью его останавливает."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:milestones/unlock_remembering_boss_memories",
+      "title": "Оживление боссов",
+      "item": "minecraft:dragon_head",
+      "text": "Благодаря своим обширным знаниям вы теперь можете воскрешать Драконов Энда, Иссушителей и Варденов."
+    }
+  ]
+}

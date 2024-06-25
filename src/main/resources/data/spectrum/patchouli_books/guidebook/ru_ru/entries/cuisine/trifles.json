@@ -1,0 +1,34 @@
+{
+  "name": "Трюфель",
+  "icon": "spectrum:jaramel_trifle",
+  "advancement": "spectrum:unlocks/food/trifles",
+  "category": "spectrum:cuisine_category",
+  "extra_recipe_mappings": {
+    "spectrum:jaramel_trifle": 0,
+    "spectrum:salted_jaramel_trifle": 0,
+    "spectrum:monster_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Сладкие лакомства, которое гарантированно вызовет у вас не только прилив сахара - в зависимости от начинки.$(br)Изготовлен из $(l:resources/jade_vines#jaramel)Джарамели$(/l), $(thing)Желатина$() и $(l:cuisine/amaranth)Бархатника$(/l).$(br)Даже самый простой вариант вкусеный!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Джарамельный Трюфель",
+      "recipe": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "text": "Классика. Единственное, что может сделать его еще вкуснее, - это слезы ваших врагов."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
+      "recipe": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "text": "$(italic)Очень соленый"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/food/monster_trifle",
+      "text": "Даёт случайный эффект. Хотите сыграть в азартную игру?"
+    }
+  ]
+}

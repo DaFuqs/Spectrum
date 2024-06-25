@@ -1,0 +1,24 @@
+{
+  "name": "Пастельная Сеть",
+  "icon": "spectrum:provider_node",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
+  "category": "spectrum:pastel_network_category",
+  "priority": true,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Pastel Network",
+      "text": "Ваши примитивные способы транспортировки предметов вроде $(thing)Воронок$() не идут ни в какое сравнение с $(thing)Пастельной сетью$() - так вы назвали кластеры узлов на основе Азурита.$(br)Расположенные в непосредственной близости друг от друга, узлы будут соединяться друг с другом по беспроводной связи и образовывать сеть передачи предметов."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Маршруты Передачи",
+      "images": [
+        "spectrum:textures/gui/guidebook/pastel_travel.png"
+      ],
+      "border": false,
+      "text": "Способ взаимодействия узлов друг с другом. Они не требуют прямой видимости."
+    }
+  ]
+}

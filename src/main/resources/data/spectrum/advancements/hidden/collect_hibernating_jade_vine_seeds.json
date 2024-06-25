@@ -1,8 +1,17 @@
 {
   "criteria": {
-    "has_hibernating_jade_vine_seeds": {
+    "has_jade_vine_seeds": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": ["spectrum:hibernating_jade_vine_seeds" ] }] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:hibernating_jade_vine_seeds",
+              "spectrum:germinated_jade_vine_seeds"
+            ]
+          }
+        ]
+      }
     }
   }
 }

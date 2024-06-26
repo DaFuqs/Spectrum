@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar",
+      "count": 4
+    }
+  ],
+  "fluid": {
+    "tag": "c:milk"
+  },
+  "min_fermentation_time_hours": 1,
+  "result": {
+    "item": "spectrum:clotted_cream",
+    "count": 4
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:fluid_tags_populated",
+      "values": [
+        "c:milk"
+      ]
+    }
+  ]
+}

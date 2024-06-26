@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.progression.advancement.*;
-import net.fabricmc.fabric.mixin.object.builder.*;
-import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.advancement.criterion.*;
 
 public class SpectrumAdvancementCriteria {
 
@@ -12,7 +11,7 @@ public class SpectrumAdvancementCriteria {
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
 	public static BlockBrokenCriterion BLOCK_BROKEN;
 	public static TreasureHunterDropCriterion TREASURE_HUNTER_DROP;
-	public static NaturesStaffUseCriterion NATURES_STAFF_USE;
+	public static NaturesStaffConversionCriterion NATURES_STAFF_USE;
 	public static EnchanterCraftingCriterion ENCHANTER_CRAFTING;
 	public static EnchanterEnchantingCriterion ENCHANTER_ENCHANTING;
 	public static EnchantmentUpgradedCriterion ENCHANTER_UPGRADING;
@@ -39,8 +38,9 @@ public class SpectrumAdvancementCriteria {
 	public static DivinityTickCriterion DIVINITY_TICK;
 	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
-	public static PastelNetworkCreatingCriterion PASTEL_NETWORK_CREATING;
+	public static PastelNetworkCreationCriterion PASTEL_NETWORK_CREATING;
 	public static PreservationCheckCriterion PRESERVATION_CHECK;
+	public static FluidDippingCriterion FLUID_DIPPING;
 
 	public static void register() {
 		PEDESTAL_RECIPE_CALCULATED = Criteria.register(new PedestalRecipeCalculatedCriterion());
@@ -49,7 +49,7 @@ public class SpectrumAdvancementCriteria {
 		COMPLETED_MULTIBLOCK = Criteria.register(new CompletedMultiblockCriterion());
 		BLOCK_BROKEN = Criteria.register(new BlockBrokenCriterion());
 		TREASURE_HUNTER_DROP = Criteria.register(new TreasureHunterDropCriterion());
-		NATURES_STAFF_USE = Criteria.register(new NaturesStaffUseCriterion());
+		NATURES_STAFF_USE = Criteria.register(new NaturesStaffConversionCriterion());
 		ENCHANTER_CRAFTING = Criteria.register(new EnchanterCraftingCriterion());
 		ENCHANTER_ENCHANTING = Criteria.register(new EnchanterEnchantingCriterion());
 		ENCHANTER_UPGRADING = Criteria.register(new EnchantmentUpgradedCriterion());
@@ -76,8 +76,9 @@ public class SpectrumAdvancementCriteria {
 		DIVINITY_TICK = Criteria.register(new DivinityTickCriterion());
 		CONSUMED_TEA_WITH_SCONE = Criteria.register(new ConsumedTeaWithSconeCriterion());
 		CREATE_HUMMINGSTONE_HYMN = Criteria.register(new HummingstoneHymnCriterion());
-		PASTEL_NETWORK_CREATING = Criteria.register(new PastelNetworkCreatingCriterion());
+		PASTEL_NETWORK_CREATING = Criteria.register(new PastelNetworkCreationCriterion());
 		PRESERVATION_CHECK = Criteria.register(new PreservationCheckCriterion());
+		FLUID_DIPPING = Criteria.register(new FluidDippingCriterion());
 	}
 	
 }

@@ -5,16 +5,16 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -105,23 +105,23 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 		}
 		return Optional.empty();
 	}
-
+	
 	@Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(world.isClient);
 		}
 		return super.useOnBlock(context);
 	}
-
+	
 	private boolean tryColorBlock(ItemUsageContext context) {
 		Optional<InkColor> inkColor = getColor(context.getStack());
 		if (inkColor.isEmpty()) {
 			return false;
 		}
 		DyeColor dyeColor = inkColor.get().getDyeColor();
-
+		
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState state = world.getBlockState(pos);
@@ -135,7 +135,7 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 			}
 			return false;
 		}
-
+		
 		return cursedColor(context);
 	}
 	
@@ -229,12 +229,15 @@ public class PaintbrushItem extends Item implements SignChangingItem {
 		World world = user.getWorld();
 		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
-			if (color.isPresent() && payBlockColorCost(user, color.get())) {
-				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
-				if (colored) {
-					return ActionResult.success(world.isClient);
-				}
+			
+			if (color.isPresent()
+					&& payBlockColorCost(user, color.get())
+					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor())) {
+				
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				return ActionResult.success(world.isClient);
 			}
+			
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}

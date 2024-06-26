@@ -1,16 +1,20 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.*;
 
-import static de.dafuqs.spectrum.SpectrumCommon.*;
-
 public class SpectrumDamageTypeTags {
 	
-	public static final TagKey<DamageType> DROPS_LOOT_LIKE_PLAYERS = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("drops_loot_like_players"));
-	public static final TagKey<DamageType> USES_SET_HEALTH = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("uses_set_health"));
-	public static final TagKey<DamageType> BYPASSES_DIKE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("bypasses_dike"));
-	public static final TagKey<DamageType> IS_PRIMORDIAL_FIRE = TagKey.of(RegistryKeys.DAMAGE_TYPE, locate("is_primordial_fire"));
+	public static final TagKey<DamageType> DROPS_LOOT_LIKE_PLAYERS = of("drops_loot_like_players");
+	public static final TagKey<DamageType> USES_SET_HEALTH = of("uses_set_health");
+	public static final TagKey<DamageType> BYPASSES_DIKE = of("bypasses_dike");
+	public static final TagKey<DamageType> INCREASED_ARMOR_DAMAGE = of("increased_armor_damage");
+	public static final TagKey<DamageType> CALCULATES_DAMAGE_BASED_ON_TOUGHNESS = of("calculates_damage_based_on_toughness");
+	public static final TagKey<DamageType> PARTLY_IGNORES_PROTECTION = of("partly_ignores_protection");
 	
+	private static TagKey<DamageType> of(String id) {
+		return TagKey.of(RegistryKeys.DAMAGE_TYPE, SpectrumCommon.locate(id));
+	}
 }

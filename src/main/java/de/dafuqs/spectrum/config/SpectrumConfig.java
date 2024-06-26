@@ -18,6 +18,13 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
 	
+	@Comment("Graphical options for spectrum's dimension")
+	public boolean WindSim = true;
+	public boolean ReducedParticles = false;
+	
+	@Comment("Affects how often the wind simulation updates - A lower number makes the simulation smoother, but increases the performance impact significantly")
+	public int WindSimInterval = 3;
+
 	@Comment("Mod Integration Packs to not load (in case of mod compat errors)")
 	public List<String> IntegrationPacksToSkipLoading = new ArrayList<>();
 	
@@ -94,6 +101,10 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.5F;
 	
+	@ConfigEntry.Gui.Tooltip
+	@Comment("When empty, enchantments that the player has not unlocked show up with a scattered name. You can use a different name here")
+	public String NameForUnrevealedEnchantments = "";
+	
 	@Comment("""
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
 			This does only disable the registration of said Enchantments, not all recipes based on them (except for Enchantment Upgrade Recipes)
@@ -144,6 +155,8 @@ public class SpectrumConfig implements ConfigData {
 	public float TightGripAttackSpeedBonusPercentPerLevel = 0.0625F;
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
+	@Comment("If the Omni Accelerator should be able to have interactions in PvP that can drain the targets XP, modify their equipment, ...")
+	public boolean OmniAcceleratorPvP = false;
 	
 	public int GemstoneArmorHelmetProtection = 3;
 	public int GemstoneArmorChestplateProtection = 7;
@@ -172,8 +185,8 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("""
 			True will prevent the spread of Decay blocks in claims.
 			Only enable when necessary and communicate to your players that those blocks will not work in their claims.
-			If any player comes to the Spectrum devs claiming that decay does not spread for them and therefore they could not progress
-			without them gotten told that, your will get put on the 'bad pack devs' list and this config setting removed again
+			If any player comes to the Spectrum devs claiming that decay does not spread for them, and therefore they could not progress
+			You will get put on the 'bad pack devs' list and this config setting removed again
 			""")
 	public boolean DecayIsStoppedByClaimMods = false;
 	
@@ -243,6 +256,12 @@ public class SpectrumConfig implements ConfigData {
 			StormStonesWorlds.add("minecraft:overworld");
 			StormStonesWorlds.add("starry_skies:overworld");
 			StormStonesWorlds.add("paradise_lost:paradise_lost");
+		}
+		
+		if (WindSimInterval <= 0) {
+			WindSimInterval = 1;
+		} else if (WindSimInterval > 10) {
+			WindSimInterval = 10;
 		}
 	}
 	

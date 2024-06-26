@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/enter_liquid_crystal",
+  "parent": "spectrum:midgame/dip_something_into_liquid_crystal",
   "display": {
     "icon": {
       "item": "spectrum:resonant_lily"
@@ -23,6 +23,16 @@
         "target_block": "spectrum:resonant_lily"
       }
     },
+    "dipped_resonant_lily": {
+      "trigger": "spectrum:fluid_dipping",
+      "conditions": {
+        "target_stack": {
+          "items": [
+            "spectrum:resonant_lily"
+          ]
+        }
+      }
+    },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
@@ -31,7 +41,8 @@
   "requirements": [
     [
       "has_resonant_lily",
-      "revived_resonant_lily"
+      "revived_resonant_lily",
+      "dipped_resonant_lily"
     ],
     [
       "gotten_previous"

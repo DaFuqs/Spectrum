@@ -43,6 +43,7 @@
     "spectrum:dragonbone",
     "spectrum:cracked_dragonbone",
     "spectrum:overgrown_blackslag",
+    "spectrum:ashen_blackslag",
     "spectrum:pyrite_ripper",
 
     "spectrum:citrine_block",
@@ -122,6 +123,7 @@
     "spectrum:ethereal_platform",
     "spectrum:universe_spyhole",
     "spectrum:decay_away",
-    "spectrum:stuck_storm_stone"
+    "spectrum:stuck_storm_stone",
+    "spectrum:neolith_block"
   ]
 }

@@ -49,7 +49,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		int secondsPerGrowthStage = JsonHelper.getInt(jsonObject, "seconds_per_growth_stage");
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
 		int inkCostTier = JsonHelper.getInt(jsonObject, "ink_cost_tier");
-		int inkPerSecond = inkCostTier == 0 ? 0 : (int) Math.pow(2, inkCostTier - 1); // 0=0; 1=1; 2=4; 3=16; 4=64; 5=256)
+		int inkPerSecond = inkCostTier == 0 ? 0 : (int) Math.pow(2, inkCostTier - 1);
 		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject,   "grows_without_catalyst", false);
 		
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();

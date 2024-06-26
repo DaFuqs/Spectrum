@@ -1,0 +1,18 @@
+{
+  "feature": "spectrum:small_ash_pile",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 0,
+          "max_inclusive": 3
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

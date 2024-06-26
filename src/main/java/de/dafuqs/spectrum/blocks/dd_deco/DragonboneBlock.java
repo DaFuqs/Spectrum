@@ -1,18 +1,26 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.item.*;
 import net.minecraft.sound.*;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class DragonboneBlock extends CrackedDragonboneBlock implements MoonstoneStrikeableBlock {
+import java.util.*;
+
+public class DragonboneBlock extends PillarBlock implements RevelationAware, ExplosionAware, MoonstoneStrikeableBlock {
 	
 	public DragonboneBlock(Settings settings) {
 		super(settings);
+		RevelationAware.register(this);
 	}
 	
 	@Override
@@ -36,6 +44,25 @@ public class DragonboneBlock extends CrackedDragonboneBlock implements Moonstone
 			return SpectrumBlocks.CRACKED_DRAGONBONE.getDefaultState().with(PillarBlock.AXIS, stateAtPos.get(PillarBlock.AXIS));
 		}
 		return Blocks.AIR.getDefaultState();
+	}
+	
+	@Override
+	public Identifier getCloakAdvancementIdentifier() {
+		return SpectrumCommon.locate("milestones/reveal_dragonbone");
+	}
+	
+	@Override
+	public Map<BlockState, BlockState> getBlockStateCloaks() {
+		Map<BlockState, BlockState> map = new Hashtable<>();
+		for (Direction.Axis axis : Properties.AXIS.getValues()) {
+			map.put(this.getDefaultState().with(Properties.AXIS, axis), Blocks.BONE_BLOCK.getDefaultState().with(Properties.AXIS, axis));
+		}
+		return map;
+	}
+	
+	@Override
+	public @Nullable Pair<Item, Item> getItemCloak() {
+		return new Pair<>(this.asItem(), Blocks.BONE_BLOCK.asItem());
 	}
 	
 }

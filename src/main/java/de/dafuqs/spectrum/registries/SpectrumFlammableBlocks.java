@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.util.*;
 
@@ -12,7 +13,7 @@ public class SpectrumFlammableBlocks {
 		// ignite odds, burn odds
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CLOVER, 60, 100);
 		
-		for (DyeColor dyeColor : DyeColor.values()) {
+		for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 			FlammableBlockRegistry.getDefaultInstance().add(ColoredLogBlock.byColor(dyeColor), 5, 5);
 			FlammableBlockRegistry.getDefaultInstance().add(ColoredLeavesBlock.byColor(dyeColor), 30, 60);
 			FlammableBlockRegistry.getDefaultInstance().add(ColoredPlankBlock.byColor(dyeColor), 5, 20);

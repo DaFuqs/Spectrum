@@ -29,5 +29,13 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_luck",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:looting"
+      ]
+    }
+  ]
 }

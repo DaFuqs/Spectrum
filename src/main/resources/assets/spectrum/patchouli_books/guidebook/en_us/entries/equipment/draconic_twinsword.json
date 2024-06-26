@@ -1,0 +1,40 @@
+{
+  "name": "Draconic Twinsword",
+  "advancement": "spectrum:unlocks/equipment/draconic_twinsword",
+  "icon": "spectrum:dragon_talon",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:dragon_talon": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "What your musings have created here is nothing short of a masterwork of versatility.$(br2)This double-headed sword is exquisitely balanced, allowing for wide and powerful sweeping attacks. The delicate $(l:resources/bloodstone)Bloodstone$() construction of the weapon makes it delightfully stalwart, and excellent at keeping an edge."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Draconic Twinsword",
+      "item": "spectrum:dragon_talon",
+      "text": "The $(c_yellow)yellow ink$() coursing through the sword allows you to throw it at extreme speeds by striking it after tossing it upwards. Catch it with right-click - just be mindful of the rebound."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "However, the dynamism of this weapon goes on much further.By swapping hands while you are holding this and your other hand is open, you can split the sword in two, resulting in a pair of twinned daggers. Swift and deadly, these too can be thrown, though to a different effect. Those same wisps of $(c_yellow)fluttering dandelion$() come to enable some particularly nefarious mobility."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Dragon Talons",
+      "item": "spectrum:dragon_needle",
+      "text": "You can throw the daggers and recall them freely after doing so - flinging you towards it, or alternatively flinging mobs it hit towards you. There are a lot of things that affect how and who moves, so play around with it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "As a footnote, the weapon has some unique enchant interactions per-form.$(br)$(b)$(c_brown)Inertia$() will boost the twinsword's strength each time it rebounds, while the talon's yoink on entities becomes stronger.$(br)$(b)$(c_black)Improved Criticals$() improves critical hits against airborne targets.$(br)$(b)$(c_yellow)Channeling$() improves the sweep and trades single target ranged damage for AoE.$(br)$(b)$(c_red)Piercing$() does exactly what you would expect."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/draconic_twinsword",
+      "text": "An unwelcoming, yet entrancing weapon.$(br2)$(italic)Try not to get yourself killed using it."
+    }
+  ]
+}

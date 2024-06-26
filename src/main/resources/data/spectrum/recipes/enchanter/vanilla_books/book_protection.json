@@ -43,5 +43,13 @@
       ]
     }
   },
-  "required_advancement": "spectrum:unlocks/enchantments/vanilla_protection"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_protection",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "minecraft:protection"
+      ]
+    }
+  ]
 }

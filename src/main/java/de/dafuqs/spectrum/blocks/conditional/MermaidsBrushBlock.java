@@ -46,7 +46,13 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
 	}
-
+	
+	@Override
+	@SuppressWarnings("deprecation")
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		super.onEntityCollision(state, world, pos, entity);
+		state.get(LOGGED).onEntityCollision(state, world, pos, entity);
+	}
 
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {

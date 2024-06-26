@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
+import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -9,6 +11,7 @@ import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.context.*;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -53,26 +56,35 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		if (!world.isClient) {
 			if (player.isSneaking()) {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-					ItemStack itemStack = bottomlessBundleBlockEntity.retrieveBundle();
-
-					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-
-					ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
-					itemEntity.setToDefaultPickupDelay();
-					world.spawnEntity(itemEntity);
-
-					itemEntity.onPlayerCollision(player); // auto pickup
+					long amount = bottomlessBundleBlockEntity.storage.amount;
+					ItemVariant variant = bottomlessBundleBlockEntity.storage.getResource();
+					long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
+					player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
 				});
 			} else {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-					long amount = bottomlessBundleBlockEntity.storage.amount;
-					if (amount == 0) {
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
-					} else {
-						ItemVariant variant = bottomlessBundleBlockEntity.storage.variant;
-						long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
-						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
+					SingleVariantStorage<ItemVariant> storage = bottomlessBundleBlockEntity.storage;
+					ItemVariant storedVariant = storage.variant;
+					
+					try (Transaction transaction = Transaction.openOuter()) {
+						ItemStack handStack = player.getStackInHand(hand);
+						if (storedVariant.matches(handStack) || storedVariant.isBlank()) {
+							// insert
+							if (!handStack.isEmpty() && handStack.getItem().canBeNested()) {
+								long inserted = storage.insert(ItemVariant.of(handStack), handStack.getCount(), transaction);
+								handStack.decrement((int) inserted);
+								world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+							}
+						} else {
+							// extract
+							long extractedAmount = storage.extract(storedVariant, storedVariant.getItem().getMaxCount(), transaction);
+							player.getInventory().offerOrDrop(storedVariant.toStack((int) extractedAmount));
+							world.playSound(null, pos, SoundEvents.ITEM_BUNDLE_REMOVE_ONE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+						}
+						transaction.commit();
 					}
+					
+					bottomlessBundleBlockEntity.markDirty();
 				});
 			}
 			return ActionResult.CONSUME;

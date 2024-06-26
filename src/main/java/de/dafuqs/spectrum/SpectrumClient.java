@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
@@ -10,6 +11,7 @@ import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
 import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.deeper_down.weather.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -41,14 +43,17 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
+import net.minecraft.world.biome.*;
 import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
@@ -62,9 +67,12 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
 	public static final boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
+	public static final WeatherThread WEATHER_THREAD = new WeatherThread();
 
 	// initial impl
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
+	
+	public static int spireTicks, lastSpireTicks;
 
 	@Override
 	public void onInitializeClient() {
@@ -97,14 +105,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		ModelLoadingPlugin.register((ctx) -> {
 			ctx.modifyModelAfterBake().register((orig, c) -> {
 				Identifier id = c.id();
-				if(id instanceof ModelIdentifier mid && CUSTOM_ITEM_MODELS.contains(mid)) {
+				if (id instanceof ModelIdentifier mid && CUSTOM_ITEM_MODELS.contains(mid)) {
 					return new DynamicRenderModel(orig);
 				}
 				return orig;
 			});
 		});
 		registerCustomItemRenderer("bottomless_bundle", SpectrumItems.BOTTOMLESS_BUNDLE, BottomlessBundleItem.Renderer::new);
-		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAccelerator.Renderer::new);
+		registerCustomItemRenderer("omni_accelerator", SpectrumItems.OMNI_ACCELERATOR, OmniAcceleratorItem.Renderer::new);
 
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
@@ -134,6 +142,23 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
 			}
 		});
+		
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			var world = client.world;
+			if (client.getCameraEntity() == null)
+				return;
+			
+			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
+			lastSpireTicks = spireTicks;
+			
+			if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
+				if (spireTicks < 60) {
+					spireTicks++;
+				}
+			} else if (spireTicks > 0) {
+				spireTicks--;
+			}
+		});
 
 		if (CONFIG.AddItemTooltips) {
 			SpectrumTooltips.register();
@@ -153,7 +178,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			logInfo("Registering idwtialsimmoedm Compat...");
 			IdwtialsimmoedmCompat.register();
 		}
-
+		
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 
 		logInfo("Registering Armor Renderers...");
@@ -162,6 +187,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
+		
+		logInfo("Initializing Weather Thread...");
+		WEATHER_THREAD.initialize();
 
 		logInfo("Client startup completed!");
 	}
@@ -170,7 +198,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		CUSTOM_ITEM_MODELS.add(new ModelIdentifier(MOD_ID, id, "inventory"));
 		DynamicItemRenderer.RENDERERS.put(item, renderer.get());
 	}
-
+	
 	private boolean renderExtendedBlockOutline(WorldRenderContext context, WorldRenderContext.BlockOutlineContext hitResult) {
 		boolean shouldCancel = false;
 		MinecraftClient client = MinecraftClient.getInstance();
@@ -212,16 +240,17 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}
-
+	
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, @NotNull BlockHitResult hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
 		ClientPlayerEntity player = client.player;
-		if (player == null || world == null) return false;
+		if (player == null || world == null)
+			return false;
 
 		BlockPos lookingAtPos = hitResult.getBlockPos();
 		BlockState lookingAtState = world.getBlockState(lookingAtPos);
-
+		
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Item item = lookingAtBlock.asItem();
@@ -245,7 +274,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				} else {
 					long usableCount = Math.min(itemCountInInventory, inkLimit);
 					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, ConstructorsStaffItem.getRange(player), !sneaking);
-					if (positions.size() > 0) {
+					if (!positions.isEmpty()) {
 						for (BlockPos newPosition : positions) {
 							if (world.getWorldBorder().contains(newPosition)) {
 								BlockPos testPos = lookingAtPos.subtract(newPosition);
@@ -255,7 +284,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
 						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
-						de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -264,7 +293,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		return false;
 	}
-
+	
 	private boolean renderExchangeStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider consumers, ItemStack exchangeStaffItemStack, WorldRenderContext.BlockOutlineContext hitResult) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientWorld world = client.world;
@@ -272,9 +301,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = hitResult.blockState();
 
 		ClientPlayerEntity player = client.player;
-
-		if (player == null || world == null) return false;
-
+		
+		if (player == null || world == null)
+			return false;
+		
 		if (player.getMainHandStack().getItem() instanceof BuildingStaffItem staff && (player.isCreative() || staff.canInteractWith(lookingAtState, world, lookingAtPos, player))) {
 			Block lookingAtBlock = lookingAtState.getBlock();
 			Optional<Block> exchangeBlock = ExchangeStaffItem.getStoredBlock(exchangeStaffItemStack);
@@ -286,7 +316,15 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					int itemCountInInventory = Integer.MAX_VALUE;
 					long inkLimit = Integer.MAX_VALUE;
 					if (!player.isCreative()) {
-						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
+						PlayerInventory playerInventory = player.getInventory();
+						itemCountInInventory = playerInventory.count(exchangeBlockItem);
+						for (int i = 0; i < player.getInventory().size(); i++) {
+							var currentStack = playerInventory.getStack(i);
+							ItemProvider itemProvider = ItemProviderRegistry.getProvider(currentStack);
+							if (itemProvider != null) {
+								itemCountInInventory += itemProvider.getItemCount(player, currentStack, exchangeBlockItem);
+							}
+						}
 						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}
 
@@ -306,7 +344,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
 						VertexConsumer linesBuffer = consumers.getBuffer(RenderLayer.getLines());
-						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape,
+								(double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e,
+								(double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -314,5 +354,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		}
 
 		return false;
+	}
+	
+	public static WeatherThread weatherThread() {
+		return WEATHER_THREAD;
 	}
 }

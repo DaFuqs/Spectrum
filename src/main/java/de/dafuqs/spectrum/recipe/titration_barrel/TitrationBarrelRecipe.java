@@ -22,7 +22,6 @@ import java.util.*;
 
 public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements ITitrationBarrelRecipe {
 	
-	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
 		add(1);
 		add(10);
@@ -76,8 +75,9 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	@Override
+	@Deprecated
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return getDefaultTap(1).copy();
 	}
 	
 	public ItemStack getPreviewTap(int timeMultiplier) {
@@ -96,7 +96,7 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 		return getDefaultTap(1);
 	}
 	
-	// used for display mods like REI to show recipe outputs with a few example fermentation times
+	// used for recipe viewers to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
 		for (int timeMultiplier : timeMultipliers) {
@@ -126,10 +126,6 @@ public class TitrationBarrelRecipe extends GatedStackSpectrumRecipe implements I
 	}
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		ItemStack stack = this.outputItemStack.copy();
 		stack.setCount(1);
 		

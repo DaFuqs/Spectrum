@@ -71,7 +71,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			if (affects(instance.getEffectType())) {
 				int newDurationTicks = instance.getDuration() - duration;
 				if (newDurationTicks > 0) {
-					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), true));
+					newEffects.add(new StatusEffectInstance(instance.getEffectType(), newDurationTicks, instance.getAmplifier(), instance.isAmbient(), instance.shouldShowParticles(), instance.shouldShowIcon()));
 				}
 				if (!effectTypesToClear.contains(instance.getEffectType())) {
 					effectTypesToClear.add(instance.getEffectType());

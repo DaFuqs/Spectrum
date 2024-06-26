@@ -6,31 +6,40 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
+import net.minecraft.screen.slot.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.stat.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExtendedEnchantable {
+public class MalachiteBidentItem extends TridentItem implements Preenchanted, ExtendedEnchantable, ExpandedStatTooltip, ArmorPiercingItem {
 	
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
+	private final float armorPierce, protPierce;
+	public static final String THROW_EFFECTS_DISABLED = "disabled";
 	
-	public MalachiteBidentItem(Settings settings, double damage) {
+	public MalachiteBidentItem(Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings);
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", damage, EntityAttributeModifier.Operation.ADDITION));
-		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -2.6, EntityAttributeModifier.Operation.ADDITION));
+		builder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", attackSpeed, EntityAttributeModifier.Operation.ADDITION));
 		this.attributeModifiers = builder.build();
+		this.armorPierce = armorPierce;
+		this.protPierce = protPierce;
 	}
 	
 	@Override
@@ -73,6 +82,11 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 				}
 			}
 		}
+	}
+	
+	@Override
+	public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+		return SpectrumToolMaterials.ToolMaterial.MALACHITE.getRepairIngredient().test(ingredient) || super.canRepair(stack, ingredient);
 	}
 	
 	public int getRiptideLevel(ItemStack stack) {
@@ -119,7 +133,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		bidentBaseEntity.setStack(stack);
 		bidentBaseEntity.setOwner(playerEntity);
 		bidentBaseEntity.updatePosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
-		bidentBaseEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(), 1.0F);
+		bidentBaseEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, getThrowSpeed(stack), 1.0F);
 		if (!mirrorImage && playerEntity.getAbilities().creativeMode) {
 			bidentBaseEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
 		}
@@ -140,8 +154,35 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 		}
 	}
 	
-	public float getThrowSpeed() {
-		return 2.5F;
+	public void markDisabled(ItemStack stack, boolean disabled) {
+		stack.getOrCreateNbt().putBoolean(THROW_EFFECTS_DISABLED, disabled);
+	}
+	
+	public boolean isDisabled(ItemStack stack) {
+		return stack.getOrCreateNbt().getBoolean(THROW_EFFECTS_DISABLED);
+	}
+	
+	public boolean canBeDisabled() {
+		return false;
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		if (isDisabled(stack))
+			tooltip.add(Text.translatable("item.spectrum.bident.toolTip.disabled").formatted(Formatting.RED, Formatting.ITALIC));
+	}
+	
+	@Override
+	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+		if (canBeDisabled() && clickType == ClickType.RIGHT) {
+			markDisabled(stack, !isDisabled(stack));
+			return true;
+		}
+		return false;
+	}
+	
+	public float getThrowSpeed(ItemStack stack) {
+		return 3F;
 	}
 	
 	public boolean canStartRiptide(PlayerEntity player, ItemStack stack) {
@@ -156,5 +197,44 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted, Ex
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS || enchantment == Enchantments.LOOTING || enchantment == SpectrumEnchantments.CLOVERS_FAVOR;
 	}
-
+	
+	@Override
+	public float getDefenseMultiplier(LivingEntity target, ItemStack stack) {
+		return 1 - armorPierce;
+	}
+	
+	@Override
+	public float getToughnessMultiplier(LivingEntity target, ItemStack stack) {
+		return 1;
+	}
+	
+	@Override
+	public float getProtReduction(LivingEntity target, ItemStack stack) {
+		return protPierce;
+	}
+	
+	@Override
+	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
+		var composition = new DamageComposition();
+		var source = composition.getPlayerOrEntity(attacker);
+		SpectrumDamageTypes.wrapWithStackTracking(source, stack);
+		composition.add(source, damage);
+		return composition;
+	}
+	
+	@Override
+	public void expandTooltip(ItemStack stack, @Nullable PlayerEntity player, List<Text> tooltip, TooltipContext context) {
+		if (Screen.hasShiftDown()) {
+			tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.ap", armorPierce * 100).formatted(Formatting.DARK_GREEN));
+			
+			if (protPierce > 0) {
+				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.pp", protPierce * 100).formatted(Formatting.DARK_GREEN));
+			}
+			if (canBeDisabled()) {
+				tooltip.add(Text.translatable("item.spectrum.bident.postToolTip.disable").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+			}
+		} else {
+			tooltip.add(Text.translatable("spectrum.tooltip.press_shift_for_more").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+		}
+	}
 }

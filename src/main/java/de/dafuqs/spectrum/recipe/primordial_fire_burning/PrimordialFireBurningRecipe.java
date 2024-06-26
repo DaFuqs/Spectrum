@@ -45,7 +45,7 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return ItemStack.EMPTY;
+		return this.output.copy();
 	}
 	
 	@Override
@@ -107,12 +107,13 @@ public class PrimordialFireBurningRecipe extends GatedSpectrumRecipe {
 		}
 		
 		AUTO_INVENTORY.setInputInventory(Collections.singletonList(state.getBlock().asItem().getDefaultStack()));
-		ItemStack output = recipe.craft(AUTO_INVENTORY, world.getRegistryManager()).copy();
+		ItemStack output = recipe.craft(AUTO_INVENTORY, world.getRegistryManager());
 		
 		world.playSound(null, pos, SpectrumSoundEvents.PRIMORDIAL_FIRE_CRACKLE, SoundCategory.BLOCKS, 0.7F, 1.0F);
 		if(output.getItem() instanceof BlockItem blockItem) {
 			world.setBlockState(pos, blockItem.getBlock().getDefaultState());
 		} else {
+			world.removeBlock(pos, false);
 			FireproofItemEntity.scatter(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, output);
 		}
 		

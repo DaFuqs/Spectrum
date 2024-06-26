@@ -8,6 +8,9 @@ import net.minecraft.world.gen.chunk.*;
 import net.minecraft.world.gen.densityfunction.*;
 
 public final class DDOreVeinSampler {
+	
+	private static final int BLACKSLAG_LAYER_START_Y = -192;
+	
 	private static final float field_36620 = 0.4F;
 	private static final int field_36621 = 20;
 	private static final double field_36622 = 0.2D;
@@ -44,7 +47,7 @@ public final class DDOreVeinSampler {
 					} else {
 						double g = MathHelper.clampedMap(absVeinTypeSample, field_36620, field_36626, field_36624, field_36625);
 						if ((double) random.nextFloat() < g && veinGap.sample(pos) > ORE_OR_STONE_THRESHOLD) {
-							return random.nextFloat() < RAW_ORE_BLOCK_CHANCE ? veinType.rawOreBlock : veinType.ore;
+							return random.nextFloat() < RAW_ORE_BLOCK_CHANCE ? veinType.rawOreBlock : (pos.blockY() < BLACKSLAG_LAYER_START_Y ? veinType.blackslagOre : veinType.deepslateOre);
 						} else {
 							return veinType.stone;
 						}
@@ -57,21 +60,23 @@ public final class DDOreVeinSampler {
 	}
 	
 	protected enum VeinType {
-		IRON(SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState(), Blocks.RAW_IRON_BLOCK.getDefaultState(), Blocks.STONE.getDefaultState(), -256, -80),
-		GOLD(SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState(), Blocks.RAW_GOLD_BLOCK.getDefaultState(), Blocks.DIORITE.getDefaultState(), -260, -128),
-		DIAMOND(SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -316, -192),
-		REDSTONE(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -220, -80),
-		LAPIS(SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.DEEPSLATE.getDefaultState(), -260, -128),
-		EMERALD(SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG.getDefaultState(), Blocks.DIORITE.getDefaultState(), -316, -128);
+		IRON(Blocks.IRON_ORE.getDefaultState(), Blocks.IRON_ORE.getDefaultState(), Blocks.RAW_IRON_BLOCK.getDefaultState(), Blocks.STONE.getDefaultState(), -256, -80),
+		GOLD(Blocks.DEEPSLATE_GOLD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState(), Blocks.RAW_GOLD_BLOCK.getDefaultState(), Blocks.DIORITE.getDefaultState(), -260, -128),
+		DIAMOND(Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -316, -192),
+		REDSTONE(Blocks.DEEPSLATE_REDSTONE_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -220, -80),
+		LAPIS(Blocks.DEEPSLATE_LAPIS_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.DEEPSLATE.getDefaultState(), -260, -128),
+		EMERALD(Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG.getDefaultState(), Blocks.DIORITE.getDefaultState(), -316, -128);
 		
-		final BlockState ore;
+		final BlockState deepslateOre;
+		final BlockState blackslagOre;
 		final BlockState rawOreBlock;
 		final BlockState stone;
 		final int minY;
 		final int maxY;
 		
-		VeinType(BlockState ore, BlockState rawOreBlock, BlockState stone, int minY, int maxY) {
-			this.ore = ore;
+		VeinType(BlockState deepslateOre, BlockState blackslagOre, BlockState rawOreBlock, BlockState stone, int minY, int maxY) {
+			this.deepslateOre = deepslateOre;
+			this.blackslagOre = blackslagOre;
 			this.rawOreBlock = rawOreBlock;
 			this.stone = stone;
 			this.minY = minY;

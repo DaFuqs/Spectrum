@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
@@ -160,9 +161,11 @@ public abstract class DecayBlock extends Block {
 		if (canSpreadTo(world, targetPos, targetBlockState)) {
 			@Nullable BlockState spreadState = this.getSpreadState(state, targetBlockState, world, targetPos);
 			if (spreadState != null) {
-				world.setBlockState(targetPos, spreadState);
+				if (world.setBlockState(targetPos, spreadState)) {
+					world.playSound(null, targetPos, spreadState.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
+					return true;
+				}
 			}
-			return true;
 		}
 		return false;
 	}

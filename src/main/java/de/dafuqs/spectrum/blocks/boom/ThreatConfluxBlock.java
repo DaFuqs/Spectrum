@@ -112,6 +112,8 @@ public class ThreatConfluxBlock extends PlacedItemBlock implements FluidLogging.
 			world.scheduleBlockTick(pos, this, TICKS_TO_DETONATE);
 		}
 		
+		state.get(LOGGED).onEntityCollision(state, world, pos, entity);
+		
 		super.onEntityCollision(state, world, pos, entity);
 	}
 	

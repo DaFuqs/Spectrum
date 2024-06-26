@@ -38,10 +38,6 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 	}
 	
 	protected ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		double bloominess = getBloominess(bulbCount, petalCount);
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		if (nectar) {
@@ -49,7 +45,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
-			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
+			return SpectrumItems.CHRYSOCOLLA.getDefaultStack();
 		} else {
 			List<StatusEffectInstance> effects = getEffects(nectar, bloominess, alcPercent);
 			

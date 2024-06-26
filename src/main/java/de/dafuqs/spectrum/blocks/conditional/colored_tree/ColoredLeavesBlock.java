@@ -30,8 +30,11 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Map<BlockState, BlockState> map = new Hashtable<>();
 		for (int distance = 1; distance < 8; distance++) {
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false));
-			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true));
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, false));
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, false).with(WATERLOGGED, true));
+			
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, false), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, false));
+			map.put(this.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, true), Blocks.OAK_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE, distance).with(LeavesBlock.PERSISTENT, true).with(WATERLOGGED, true));
 		}
 		return map;
 	}
@@ -64,6 +67,10 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 	
 	public static ColoredLeavesBlock byColor(DyeColor color) {
 		return LEAVES.get(color);
+	}
+	
+	public static Collection<ColoredLeavesBlock> all() {
+		return LEAVES.values();
 	}
 	
 }

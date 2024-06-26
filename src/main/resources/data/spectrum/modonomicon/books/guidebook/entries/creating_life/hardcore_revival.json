@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.hardcore_revival.name",
+  "icon": "spectrum:divination_heart",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/spirit_instiller"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.hardcore_revival.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.hardcore_revival.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.hardcore_revival.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/hardcore_player_revival",
+      "text": "book.spectrum.guidebook.creating_life.hardcore_revival.page1.text"
+    }
+  ]
+}

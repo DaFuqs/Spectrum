@@ -48,7 +48,7 @@ public class SpectrumModelPredicateProviders {
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
-
+		
 		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
 		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
 		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
@@ -220,7 +220,7 @@ public class SpectrumModelPredicateProviders {
 			}
 		});
 	}
-
+	
 	private static void registerSlotReservingItem(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(SlotReservingItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (itemStack.getItem() instanceof SlotReservingItem reserver && reserver.isReservingSlot(itemStack)) {

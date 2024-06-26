@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.moonstone_cores.name",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -7,
+  "y": -3,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/build_complex_pedestal_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_moonstone_core",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.moonstone_cores.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/moonstone_cores_page0",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.moonstone_cores.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.moonstone_cores.page1.title",
+      "cost": {
+        "item": "spectrum:moonstone_shard",
+        "count": 24
+      },
+      "text": "book.spectrum.guidebook.hints.moonstone_cores.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/moonstone_cores_page1"
+    }
+  ]
+}

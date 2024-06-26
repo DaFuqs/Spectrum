@@ -6,7 +6,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
+import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.client.item.*;
@@ -99,38 +99,38 @@ public class NightfallsBladeItem extends ToolItem implements Vanishable, InkPowe
 		super.appendTooltip(stack, world, tooltip, context);
 		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.nightfalls_blade.when_struck"), true);
 	}
-
+	
 	@Override
 	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		if (getEffects(stack).isEmpty()) {
 			return SlotBackgroundEffectProvider.SlotEffect.NONE;
 		}
-
+		
 		var effect = getEffects(stack).get(0);
 		var usable = InkPowered.hasAvailableInk(player, new InkCost(effect.getInkCost().getColor(), adjustFinalCostFor(effect)));
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotEffect.BORDER;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		if (getEffects(stack).isEmpty())
 			return 0x000000;
-
-        return getEffects(stack).get(0).getColor();
+		
+		return getEffects(stack).get(0).getColor();
 	}
-
+	
 	@Override
 	public float getEffectOpacity(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		if (getEffects(stack).isEmpty())
 			return 0F;
-
+		
 		var effect = getEffects(stack).get(0);
 		if (InkPowered.hasAvailableInk(player, new InkCost(effect.getInkCost().getColor(), adjustFinalCostFor(effect))))
 			return 1F;
-
+		
 		if (player == null)
 			return 0F;
-
+		
 		var time = player.getWorld().getTime();
 		return (float) (Math.sin((time + tickDelta) / 30F) * 0.3F + 0.3);
 	}

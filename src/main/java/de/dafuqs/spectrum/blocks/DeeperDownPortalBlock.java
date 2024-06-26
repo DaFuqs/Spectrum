@@ -175,7 +175,7 @@ public class DeeperDownPortalBlock extends Block {
 			if (state.isOf(Blocks.BEDROCK) || state.isIn(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN)) {
 				world.breakBlock(pos, true, null);
 			}
-
+			
 		}
 	}
 	

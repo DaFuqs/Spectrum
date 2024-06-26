@@ -83,7 +83,7 @@ public class EnchantmentCanvasItem extends Item {
 		EnchantmentHelper.set(canvasEnchantments, targetStack);
 		
 		if (drop && receiver != null) {
-			if(receiver instanceof PlayerEntity player) {
+			if (receiver instanceof PlayerEntity player) {
 				player.getInventory().offerOrDrop(canvasStack);
 			} else {
 				receiver.dropStack(canvasStack);

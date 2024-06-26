@@ -70,7 +70,7 @@ public class SpectrumItemProjectileBehaviors {
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.END_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(6F, true), Items.BLAZE_ROD);
 		ItemProjectileBehavior.register(ItemProjectileBehavior.damaging(8F, true), SpectrumItems.STAR_FRAGMENT);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Damaging() {
 			
 			@Override
@@ -157,7 +157,7 @@ public class SpectrumItemProjectileBehaviors {
 				return accelerator;
 			}
 		}, SpectrumItems.OMNI_ACCELERATOR);
-
+		
 		ItemProjectileBehavior.register(new ItemProjectileBehavior.Default() {
 			@Override
 			public ItemStack onEntityHit(ItemProjectileEntity projectile, ItemStack stack, @Nullable Entity owner, EntityHitResult hitResult) {

@@ -1,0 +1,63 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.blood_orchid_products.name",
+  "icon": "spectrum:bloodboil_syrup",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_blood_orchid_petal"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.title",
+      "item": {
+        "item": "spectrum:bloodboil_syrup"
+      },
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.title",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page1.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/demon_trifle"
+      },
+      "recipe_id_1": "spectrum:pedestal/tier1/food/demon_trifle",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page3.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/demon_tea"
+      },
+      "recipe_id_1": "spectrum:potion_workshop_crafting/demon_tea",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page4.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/rabbit_poison"
+      },
+      "title1": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.title",
+      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
+      "text": "book.spectrum.guidebook.cuisine.blood_orchid_products.page5.text"
+    }
+  ]
+}

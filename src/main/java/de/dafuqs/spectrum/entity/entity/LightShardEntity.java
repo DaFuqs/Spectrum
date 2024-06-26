@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.function.*;
 
 public class LightShardEntity extends LightShardBaseEntity {
-
+	
 	private static final Identifier[] SPRITES;
 	private final int spriteId;
 
@@ -46,7 +46,7 @@ public class LightShardEntity extends LightShardBaseEntity {
 	public Identifier getTexture() {
 		return SPRITES[spriteId];
 	}
-
+	
 	static {
 		SPRITES = new Identifier[4];
 		SPRITES[0] = SpectrumCommon.locate("textures/entity/projectile/light_shard_0.png");

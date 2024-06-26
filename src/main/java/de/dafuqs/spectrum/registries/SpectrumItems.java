@@ -66,13 +66,13 @@ public class SpectrumItems {
 	public static final Item PAINTBRUSH = new PaintbrushItem(IS.of(1));
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(IS.of(1));
 	
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_simple_structure_place"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_advanced_structure_place"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("pedestal_complex_structure_place"));
-	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("fusion_shrine_structure"));
-	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("enchanter_structure"));
-	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("spirit_instiller_structure"));
-	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumCommon.locate("cinderhearth_structure"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_SIMPLE);
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_ADVANCED);
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_COMPLEX);
+	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.FUSION_SHRINE);
+	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.ENCHANTER);
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.SPIRIT_INSTILLER);
+	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.CINDERHEARTH);
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(IS.of());
@@ -168,7 +168,7 @@ public class SpectrumItems {
 	public static final Item CITRINE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.CITRINE, SpectrumParticleTypes.YELLOW_CRAFTING);
 	public static final Item ONYX_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.ONYX, SpectrumParticleTypes.BLACK_CRAFTING);
 	public static final Item MOONSTONE_GLASS_ARROW = new GlassArrowItem(IS.of(Rarity.UNCOMMON), GlassArrowVariant.MOONSTONE, SpectrumParticleTypes.WHITE_CRAFTING);
-
+	
 	public static final Item OMNI_ACCELERATOR = new OmniAcceleratorItem(IS.of(1, Rarity.UNCOMMON));
 
 	public static final Item AZURITE_GLASS_AMPOULE = new GlassAmpouleItem(IS.of(Rarity.UNCOMMON));
@@ -256,7 +256,7 @@ public class SpectrumItems {
 	public static final Item REFINED_BLOODSTONE = new CloakedItem(IS.of(Rarity.UNCOMMON), SpectrumCommon.locate("lategame/pluck_effulgent_feather"), Items.RED_DYE);
 	public static final Item DOWNSTONE_FRAGMENTS = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/find_excavation_site"), Items.LIGHT_GRAY_DYE);
 	public static final Item RESONANCE_SHARD = new CloakedItem(IS.of(16, Rarity.UNCOMMON), SpectrumCommon.locate("lategame/strike_up_hummingstone_hymn"), Items.LIGHT_BLUE_DYE);
-
+	
 	public static final Item VARIA_OPAL = new Item(IS.of());
 
 	public static final Item QUITOXIC_POWDER = new CloakedItem(IS.of(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
@@ -635,7 +635,7 @@ public class SpectrumItems {
 		register("refined_bloodstone", REFINED_BLOODSTONE, DyeColor.RED);
 		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
-
+		
 		register("varia_opal", VARIA_OPAL, DyeColor.BLUE);
 		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);

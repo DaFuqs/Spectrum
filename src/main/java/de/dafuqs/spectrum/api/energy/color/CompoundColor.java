@@ -17,7 +17,7 @@ public class CompoundColor extends InkColor {
 			entry.getKey().addCompoundAmount(this, entry.getValue());
 		}
 	}
-
+	
 	public CompoundColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement, Map<ElementalColor, Float> compoundColors) {
 		this(dyeColor, color, requiredAdvancement, compoundColors, false);
 	}

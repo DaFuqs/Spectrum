@@ -1,0 +1,29 @@
+{
+  "name": "book.spectrum.guidebook.hints.topaz.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -1,
+  "y": -1,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_topaz_shard",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.topaz.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/topaz_page0",
+      "cost": {
+        "item": "minecraft:amethyst_shard",
+        "count": 16
+      },
+      "text": "book.spectrum.guidebook.hints.topaz.page0.text"
+    }
+  ]
+}

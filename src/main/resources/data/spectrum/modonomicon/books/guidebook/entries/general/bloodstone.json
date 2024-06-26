@@ -1,0 +1,43 @@
+{
+  "name": "book.spectrum.guidebook.general.bloodstone.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/resources/bloodstone"
+  },
+  "icon": "spectrum:refined_bloodstone",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/kindlings"
+    },
+    {
+      "entry": "spectrum:general/liquid_crystal"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 18,
+  "y": 5,
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.bloodstone.page0.title",
+      "item": {
+        "item": "spectrum:effulgent_feather"
+      },
+      "text": "book.spectrum.guidebook.general.bloodstone.page0.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
+      "title1": "book.spectrum.guidebook.general.bloodstone.page1.title",
+      "recipe_id_1": "spectrum:crystallarieum/bloodstone",
+      "text": "book.spectrum.guidebook.general.bloodstone.page1.text"
+    }
+  ]
+}

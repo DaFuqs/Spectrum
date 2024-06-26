@@ -1,0 +1,13 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.name",
+  "icon": "spectrum:spirit_instiller",
+  "sort_number": 9,
+  "show_category_button": true,
+
+  "entry_textures": "modonomicon:textures/gui/entry_textures.png",
+  "background": "modonomicon:textures/gui/dark_slate_seamless.png",
+  "background_width": 512,
+  "background_height": 512,
+  "background_texture_zoom_multiplier": 1.0,
+  "background_parallax_layers": []
+}

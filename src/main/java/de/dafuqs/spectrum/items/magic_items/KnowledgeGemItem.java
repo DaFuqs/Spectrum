@@ -100,7 +100,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 							serverPlayerEntity.addExperience(experienceToTransfer);
 						}
 						ExperienceStorageItem.removeStoredExperience(stack, experienceToTransfer);
-
+						
 						if (remainingUseTicks % 4 == 0) {
 							world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.3F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 						}

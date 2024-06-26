@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.decoration.ethereal_platform.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/ethereal_platform"
+  },
+  "icon": "spectrum:ethereal_platform",
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:ethereal_platform"
+      },
+      "title": "book.spectrum.guidebook.decoration.ethereal_platform.page0.title",
+      "text": "book.spectrum.guidebook.decoration.ethereal_platform.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.ethereal_platform.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/ethereal_platform",
+      "text": "book.spectrum.guidebook.decoration.ethereal_platform.page1.text"
+    }
+  ]
+}

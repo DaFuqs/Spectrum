@@ -34,7 +34,7 @@
       }
     }
   },
-  "requirements":[
+  "requirements": [
     [
       "has_hummingstone",
       "struck_up_hummingstone_hymn"

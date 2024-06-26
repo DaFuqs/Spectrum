@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.*;
 @Mixin(LightmapTextureManager.class)
 
 public class LightmapTextureManagerMixin {
-
+	
 	@ModifyReturnValue(method = "getDarkness", at = @At("RETURN"))
 	private float spectrum$getDarkness(float original) {
 		if (isInDim()) {
@@ -18,7 +18,7 @@ public class LightmapTextureManagerMixin {
 		}
 		return original;
 	}
-
+	
 	@ModifyExpressionValue(method = "update", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
 	private float spectrum$decreaseGamma(float original) {
 		if (isInDim()) {
@@ -26,7 +26,7 @@ public class LightmapTextureManagerMixin {
 		}
 		return original;
 	}
-
+	
 	@Unique
 	private static boolean isInDim() {
 		MinecraftClient client = MinecraftClient.getInstance();

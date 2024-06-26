@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
-import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
@@ -44,7 +44,7 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 		tooltip.add(Text.translatable("item.spectrum.fractal_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
 	}
-
+	
 	@Override
 	public boolean canBeDisabled() {
 		return true;
@@ -54,18 +54,18 @@ public class FractalBidentItem extends MalachiteBidentItem implements SlotBackgr
 	public boolean acceptsEnchantment(Enchantment enchantment) {
 		return super.acceptsEnchantment(enchantment) || enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.POWER;
 	}
-
+	
 	@Override
 	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, MIRROR_IMAGE_COST);
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
 	}
-
+	
 	@Override
 	public float getProtReduction(LivingEntity target, ItemStack stack) {
 		return 0.25F;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return ColorHelper.colorVecToRGB(InkColors.PURPLE.getColor());

@@ -1,0 +1,64 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.treasure_hunter.name",
+  "icon": "minecraft:iron_axe",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/treasure_hunter"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "y": 8,
+  "x": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.title",
+      "item": {
+        "item": "spectrum:cow_head"
+      },
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page1.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.treasure_hunter.page2.title",
+      "item": {
+        "item": "minecraft:iron_axe",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:treasure_hunter",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page2.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.treasure_hunter.page3.title",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_treasure_hunter"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "text": "book.spectrum.guidebook.enchanting.treasure_hunter.page4.text",
+      "title1": "book.spectrum.guidebook.enchanting.treasure_hunter.page4.title",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2"
+    }
+  ]
+}

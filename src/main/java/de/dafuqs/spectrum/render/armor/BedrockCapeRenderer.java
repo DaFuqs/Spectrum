@@ -10,7 +10,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.math.*;
 
 public class BedrockCapeRenderer {
-
+	
 	/**
 	 * Renders the bedrock cloth and cape on the player
 	 */

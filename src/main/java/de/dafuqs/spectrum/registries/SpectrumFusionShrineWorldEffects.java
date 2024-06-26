@@ -178,7 +178,7 @@ public class SpectrumFusionShrineWorldEffects {
 			world.playSound(null, pos.up(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	});
-
+	
 	public static FusionShrineRecipeWorldEffect LEGENDARY_TOOL_CRAFT = FusionShrineRecipeWorldEffect.register("legendary_tool_craft", new FusionShrineRecipeWorldEffect.SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {

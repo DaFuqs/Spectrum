@@ -23,13 +23,13 @@ public class KindlingPredicate implements TypeSpecificPredicate {
 	private final Optional<Boolean> clipped;
 	private final Optional<Boolean> angry;
 	private final Optional<KindlingVariant> variant;
-
+	
 	private KindlingPredicate(Optional<Boolean> clipped, Optional<Boolean> angry, Optional<KindlingVariant> variant) {
 		this.clipped = clipped;
 		this.angry = angry;
 		this.variant = variant;
 	}
-
+	
 	public static KindlingPredicate of(Optional<Boolean> clipped, Optional<Boolean> angry, Optional<KindlingVariant> variant) {
 		return new KindlingPredicate(clipped, angry, variant);
 	}
@@ -40,10 +40,10 @@ public class KindlingPredicate implements TypeSpecificPredicate {
 
 		JsonElement angryElement = json.get(ANGRY_KEY);
 		Optional<Boolean> angryOptional = angryElement == null ? Optional.empty() : Optional.of(angryElement.getAsBoolean());
-
+		
 		JsonElement variantElement = json.get(VARIANT_KEY);
 		Optional<KindlingVariant> variantOptional = variantElement == null ? Optional.empty() : SpectrumRegistries.KINDLING_VARIANT.getOrEmpty(Identifier.tryParse(variantElement.getAsString()));
-
+		
 		return new KindlingPredicate(clippedOptional, angryOptional, variantOptional);
 	}
 	

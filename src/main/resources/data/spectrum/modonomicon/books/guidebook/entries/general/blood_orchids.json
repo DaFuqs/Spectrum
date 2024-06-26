@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.general.blood_orchids.name",
+  "icon": "spectrum:blood_orchid_petal",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_blood_orchid_petal"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/preservation_ruins"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 20,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:blood_orchid_petal"
+      },
+      "title": "book.spectrum.guidebook.general.blood_orchids.page0.title",
+      "text": "book.spectrum.guidebook.general.blood_orchids.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/blood_orchid"
+      },
+      "title1": "book.spectrum.guidebook.general.blood_orchids.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/blood_orchid",
+      "text": "book.spectrum.guidebook.general.blood_orchids.page1.text"
+    }
+  ]
+}

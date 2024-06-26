@@ -1,0 +1,30 @@
+{
+  "name": "book.spectrum.guidebook.general.color_mixing.name",
+  "icon": "minecraft:light_blue_dye",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_vegetal"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": -2,
+  "turnin": "spectrum:craft_colored_sapling",
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.color_mixing.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/color_mixing.png"
+      ],
+      "text": "book.spectrum.guidebook.general.color_mixing.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.color_mixing.page1.text"
+    }
+  ]
+}

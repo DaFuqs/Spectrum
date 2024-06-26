@@ -1,0 +1,27 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.pipe_bomb.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/pipe_bomb"
+  },
+  "icon": "spectrum:pipe_bomb",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 14,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_items.pipe_bomb.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.pipe_bomb.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.pipe_bomb.page1.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/boom/pipe_bomb"
+    }
+  ]
+}

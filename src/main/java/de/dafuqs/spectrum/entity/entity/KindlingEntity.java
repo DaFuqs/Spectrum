@@ -138,11 +138,11 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		}
 		super.onTrackedDataSet(data);
 	}
-
+	
 	public KindlingVariant getKindlingVariant() {
 		return this.dataTracker.get(VARIANT);
 	}
-
+	
 	public void setKindlingVariant(KindlingVariant variant) {
 		this.dataTracker.set(VARIANT, variant);
 	}
@@ -377,7 +377,7 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 				setTarget(player);
 				takeRevenge(player.getUuid());
 				this.playAngrySound();
-
+				
 				this.sheared(SoundCategory.PLAYERS);
 				this.emitGameEvent(GameEvent.SHEAR, player);
 				if (!this.getWorld().isClient) {
@@ -408,17 +408,17 @@ public class KindlingEntity extends AbstractHorseEntity implements RangedAttackM
 		
 		return super.interactMob(player, hand);
 	}
-
+	
 	@Override
 	public void sheared(SoundCategory shearedSoundCategory) {
 		this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
-
+		
 		setClipped(4800); // 4 minutes
 		for (ItemStack clippedStack : getClippedStacks((ServerWorld) this.getWorld())) {
 			dropStack(clippedStack, 0.3F);
 		}
 	}
-
+	
 	@Override
 	public boolean isShearable() {
 		return this.isAlive() && !this.isBaby() && !this.isClipped();

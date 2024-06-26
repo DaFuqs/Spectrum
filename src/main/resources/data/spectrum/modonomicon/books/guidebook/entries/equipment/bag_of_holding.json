@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.bag_of_holding.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/bag_of_holding"
+  },
+  "icon": "spectrum:bag_of_holding",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 10,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_items.bag_of_holding.page0.title",
+      "item": {
+        "item": "spectrum:bag_of_holding"
+      },
+      "text": "book.spectrum.guidebook.magical_items.bag_of_holding.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.bag_of_holding.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.bag_of_holding.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/bag_of_holding"
+    }
+  ]
+}

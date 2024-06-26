@@ -99,7 +99,7 @@ public record PotionRecipeEffect(boolean applicableToPotions, boolean applicable
 				potency = 0;
 			}
 		}
-
+		
 		// Prevents some status effects from getting out of hand.
 		// While strong potions are always fun, there are things the player should not be able to make,
 		// such as resistance 5 which would grant invulnerability.

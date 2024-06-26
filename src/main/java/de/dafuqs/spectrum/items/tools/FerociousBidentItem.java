@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
-import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -21,7 +21,7 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 	
 	public static final InkCost RIPTIDE_COST = new InkCost(InkColors.WHITE, 10);
 	public static final int BUILTIN_RIPTIDE_LEVEL = 1;
-
+	
 	public FerociousBidentItem(Settings settings, double attackSpeed, double damage, float armorPierce, float protPierce) {
 		super(settings, attackSpeed, damage, armorPierce, protPierce);
 	}
@@ -70,28 +70,28 @@ public class FerociousBidentItem extends MalachiteBidentItem implements SlotBack
 		tooltip.add(Text.translatable("item.spectrum.ferocious_glass_crest_bident.tooltip3").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
 	}
-
+	
 	@Override
 	public boolean canBeDisabled() {
 		return true;
 	}
-
+	
 	@Override
 	public SlotBackgroundEffectProvider.SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, RIPTIDE_COST);
 		return usable ? SlotBackgroundEffectProvider.SlotEffect.BORDER_FADE : SlotBackgroundEffectProvider.SlotEffect.NONE;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return ColorHelper.colorVecToRGB(InkColors.ORANGE.getColor());
 	}
-
+	
 	@Override
 	public float getDefenseMultiplier(LivingEntity target, ItemStack stack) {
 		return 0.66F;
 	}
-
+	
 	@Override
 	public float getProtReduction(LivingEntity target, ItemStack stack) {
 		return 0.33F;

@@ -1,0 +1,45 @@
+{
+  "name": "book.spectrum.guidebook.general.onyx_shards.name",
+  "icon": "spectrum:onyx_shard",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/fusion_shrine"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/fusion_shrine"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 18,
+  "y": 0,
+  "turnin": "spectrum:create_onyx_shard",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.onyx_shards.page0.text",
+      "title": "book.spectrum.guidebook.general.onyx_shards.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.general.onyx_shards.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/onyx_shard",
+      "text": "book.spectrum.guidebook.general.onyx_shards.page1.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.onyx_shards.page2.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/moon_phases.png"
+      ],
+      "text": "book.spectrum.guidebook.general.onyx_shards.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.onyx_shards.page3.text"
+    }
+  ]
+}

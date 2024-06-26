@@ -422,13 +422,13 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_BLOCK);
 		entries.add(SpectrumBlocks.ONYX_BLOCK);
 		entries.add(SpectrumBlocks.MOONSTONE_BLOCK);
-
+		
 		entries.add(SpectrumItems.TOPAZ_POWDER);
 		entries.add(SpectrumItems.AMETHYST_POWDER);
 		entries.add(SpectrumItems.CITRINE_POWDER);
 		entries.add(SpectrumItems.ONYX_POWDER);
 		entries.add(SpectrumItems.MOONSTONE_POWDER);
-
+		
 		entries.add(SpectrumBlocks.TOPAZ_POWDER_BLOCK);
 		entries.add(SpectrumBlocks.AMETHYST_POWDER_BLOCK);
 		entries.add(SpectrumBlocks.CITRINE_POWDER_BLOCK);
@@ -445,7 +445,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.MEDIUM_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.LARGE_TOPAZ_BUD);
 		entries.add(SpectrumBlocks.TOPAZ_CLUSTER);
-
+		
 		entries.add(Blocks.SMALL_AMETHYST_BUD);
 		entries.add(Blocks.MEDIUM_AMETHYST_BUD);
 		entries.add(Blocks.LARGE_AMETHYST_BUD);
@@ -550,7 +550,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.STARDUST);
 		entries.add(SpectrumBlocks.STARDUST_BLOCK);
 		entries.add(SpectrumItems.STAR_FRAGMENT);
-
+		
 		entries.add(SpectrumItems.VARIA_OPAL);
 		entries.add(SpectrumBlocks.RADIATING_ENDER);
 		
@@ -839,7 +839,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.SLUSH);
 		entries.add(SpectrumBlocks.TILLED_SLUSH);
 		entries.add(SpectrumBlocks.BLACK_SLUDGE);
-
+		
 		entries.add(SpectrumBlocks.ASH);
 		entries.add(SpectrumBlocks.ASH_PILE);
 		entries.add(SpectrumBlocks.OPAL_SPIRE);
@@ -971,7 +971,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CITRINE_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.ONYX_STORAGE_BLOCK);
 		entries.add(SpectrumBlocks.MOONSTONE_STORAGE_BLOCK);
-
+		
 		entries.add(SpectrumBlocks.VEGETAL_BLOCK);
 		entries.add(SpectrumBlocks.NEOLITH_BLOCK);
 		entries.add(SpectrumBlocks.BEDROCK_STORAGE_BLOCK);
@@ -1038,7 +1038,7 @@ public class SpectrumItemGroups {
 		
 		entries.add(SpectrumBlocks.JADE_VINE_PETAL_BLOCK);
 		entries.add(SpectrumBlocks.JADE_VINE_PETAL_CARPET);
-
+		
 		entries.add(SpectrumBlocks.JADEITE_PETAL_BLOCK);
 		entries.add(SpectrumBlocks.JADEITE_PETAL_CARPET);
 
@@ -1369,7 +1369,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumItems.ENCHANTER_STRUCTURE_PLACER);
 		entries.add(SpectrumItems.SPIRIT_INSTILLER_STRUCTURE_PLACER);
 		entries.add(SpectrumItems.CINDERHEARTH_STRUCTURE_PLACER);
-
+		
 		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
 

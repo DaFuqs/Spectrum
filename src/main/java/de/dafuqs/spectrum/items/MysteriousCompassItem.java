@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
+import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -28,12 +28,12 @@ public class MysteriousCompassItem extends StructureCompassItem implements SlotB
 				removeStructurePos(stack);
 		}
 	}
-
+	
 	@Override
 	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		return SlotEffect.FULL_PACKAGE;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;

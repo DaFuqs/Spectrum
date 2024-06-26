@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.decoration.item_bowl.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/item_bowl"
+  },
+  "icon": "spectrum:item_bowl_basalt",
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 4,
+  "pages": [
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.decoration.item_bowl.page0.title",
+      "items": [
+        "spectrum:item_bowl_basalt",
+        "spectrum:item_bowl_calcite"
+      ],
+      "text": "book.spectrum.guidebook.decoration.item_bowl.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.item_bowl.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "book.spectrum.guidebook.decoration.item_bowl.page1.text"
+    }
+  ]
+}

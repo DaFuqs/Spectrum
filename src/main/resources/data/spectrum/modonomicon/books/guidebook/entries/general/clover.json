@@ -1,0 +1,40 @@
+{
+  "name": "book.spectrum.guidebook.general.clover.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_clover"
+  },
+  "icon": "spectrum:four_leaf_clover",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/pigment"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 14,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.clover.page0.title",
+      "item": {
+        "item": "spectrum:clover"
+      },
+      "text": "book.spectrum.guidebook.general.clover.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:four_leaf_clover"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_four_leaf_clover"
+      },
+      "text": "book.spectrum.guidebook.general.clover.page1.text"
+    }
+  ]
+}

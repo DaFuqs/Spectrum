@@ -1,0 +1,73 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.midnight_solution.name",
+  "icon": "spectrum:midnight_solution_bucket",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/create_midnight_aberration"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/midnight_aberration"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 20,
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page1.title",
+      "item": {
+        "item": "spectrum:midnight_chip"
+      },
+      "anchor": "midnight_chip",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/collect_midnight_chip"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page1.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.title",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page3.title",
+      "item": {
+        "item": "spectrum:black_materia"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/break_black_materia"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page3.text"
+    },
+    {
+      "type": "spectrum:midnight_solution_converting",
+      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.title",
+      "recipe_id_1": "spectrum:midnight_solution_converting/blackstone",
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page4.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.midnight_solution.page5.title",
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page5.text"
+    }
+  ]
+}

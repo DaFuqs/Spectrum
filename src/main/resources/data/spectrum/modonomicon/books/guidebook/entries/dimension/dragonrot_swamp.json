@@ -1,0 +1,45 @@
+{
+  "name": "book.spectrum.guidebook.dimension.dragonrot_swamp.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp"
+  },
+  "icon": "spectrum:rotten_ground",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.dimension.dragonrot_swamp.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_dragonrot_swamp.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:snapping_ivy"
+      },
+      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:rotten_ground"
+      },
+      "text": "book.spectrum.guidebook.dimension.dragonrot_swamp.page2.text"
+    }
+  ]
+}

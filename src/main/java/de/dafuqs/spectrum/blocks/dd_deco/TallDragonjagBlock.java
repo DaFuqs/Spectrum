@@ -82,7 +82,7 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 				.get(RegistryKeys.CONFIGURED_FEATURE)
 				.get(SpectrumConfiguredFeatures.DRAGONJAGS.get(variant))
 				.generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
-
+		
 		if (success) {
             setDead(world, pos, state, true);
         }

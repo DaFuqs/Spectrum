@@ -1,0 +1,28 @@
+{
+  "name": "book.spectrum.guidebook.brewing.toughness.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/toughness"
+  },
+  "icon": "minecraft:netherite_chestplate",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 6,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:toughness",
+      "text": "book.spectrum.guidebook.brewing.toughness.page0.text",
+      "title": "book.spectrum.guidebook.brewing.toughness.page0.title"
+    }
+  ]
+}

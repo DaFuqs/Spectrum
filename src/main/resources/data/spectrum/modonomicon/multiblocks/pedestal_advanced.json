@@ -1,0 +1,180 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "_____________",
+      "_Sttr___rttS_",
+      "_T_________T_",
+      "_T_________T_",
+      "_r_________r_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_r_________r_",
+      "_T_________T_",
+      "_T_________T_",
+      "_Sttr___rttS_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_Q__Q___Q__Q_",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_Q__Q___Q__Q_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_C__Q___Q__C_",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_Q_________Q_",
+      "_____________",
+      "_____________",
+      "_C__Q___Q__C_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_Q__L___L__Q_",
+      "_____________",
+      "___S_____S___",
+      "_L_________L_",
+      "_____________",
+      "_____________",
+      "_____________",
+      "_L_________L_",
+      "___S_____S___",
+      "_____________",
+      "_Q__L___L__Q_",
+      "_____________"
+    ],
+    [
+      "_____________",
+      "_K__Q___Q__K_",
+      "_____________",
+      "___Q_____Q___",
+      "_Q_________Q_",
+      "_____________",
+      "______3______",
+      "_____________",
+      "_Q_________Q_",
+      "___Q_____Q___",
+      "_____________",
+      "_K__Q___Q__K_",
+      "_____________"
+    ],
+    [
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXrXrXXXXX",
+      "XXXXrXXXrXXXX",
+      "XXXXXX0XXXXXX",
+      "XXXXrXXXrXXXX",
+      "XXXXXrXrXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX",
+      "XXXXXXXXXXXXX"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    },
+    "T": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_crest[cardinal_facing=true]",
+      "tag": "#spectrum:crest_base_blocks"
+    },
+    "t": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:polished_basalt_crest[cardinal_facing=false]",
+      "tag": "#spectrum:crest_base_blocks"
+    },
+    "Q": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:polished_basalt_pillar[axis=y]",
+      "tag": "#spectrum:pillar_base_blocks"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_basalt_lamp",
+      "tag": "#spectrum:gemstone_lamps"
+    },
+    "S": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:amethyst_storage_block",
+      "tag": "#spectrum:gemstone_storage_blocks"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:chiseled_polished_basalt",
+      "tag": "#spectrum:chiseled_base_blocks"
+    },
+    "K": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:notched_polished_basalt",
+      "tag": "#spectrum:notched_base_blocks"
+    },
+    "r": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:amethyst_chiseled_basalt",
+      "tag": "#spectrum:basic_and_onyx_gemstone_chiseled_base_blocks"
+    },
+    "O": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:onyx_chiseled_basalt",
+      "tag": "#spectrum:onyx_chiseled_base_blocks"
+    },
+    "m": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:moonstone_chiseled_basalt[facing=east]",
+      "tag": "#spectrum:moonstone_chiseled_base_blocks"
+    },
+    "n": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:moonstone_chiseled_basalt[facing=north]",
+      "tag": "#spectrum:moonstone_chiseled_base_blocks"
+    },
+    "M": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:moonstone_chiseled_basalt[facing=west]",
+      "tag": "#spectrum:moonstone_chiseled_base_blocks"
+    },
+    "N": {
+      "type": "modonomicon:tag",
+      "display" : "spectrum:moonstone_chiseled_basalt[facing=south]",
+      "tag": "#spectrum:moonstone_chiseled_base_blocks"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_onyx",
+      "tag": "#spectrum:pedestals"
+    },
+    "3": {
+      "type": "modonomicon:tag",
+      "display": "spectrum:pedestal_onyx",
+      "tag": "#spectrum:pedestals"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    }
+  }
+}

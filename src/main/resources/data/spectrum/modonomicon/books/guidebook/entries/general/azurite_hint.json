@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.azurite.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 20,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/reveal_azurite"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_azurite",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.azurite.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/azurite_page0",
+      "cost": {
+        "item": "spectrum:neolith",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.azurite.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.azurite.page1.title",
+      "cost": {
+        "item": "spectrum:neolith",
+        "count": 24
+      },
+      "text": "book.spectrum.guidebook.hints.azurite.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/azurite_page1"
+    }
+  ]
+}

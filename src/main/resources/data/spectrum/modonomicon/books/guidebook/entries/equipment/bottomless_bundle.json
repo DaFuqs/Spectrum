@@ -1,0 +1,83 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.bottomless_bundle.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/bottomless_bundle"
+  },
+  "icon": "spectrum:bottomless_bundle",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 10,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:bottomless_bundle"
+      },
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.bottomless_bundle.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/bottomless_bundle"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/bottomless_bundle_automation.png"
+      ],
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page3.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.title",
+      "item": {
+        "item": "spectrum:bottomless_bundle",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:power",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page4.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "title": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.title",
+      "item": {
+        "item": "spectrum:bottomless_bundle",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:voiding",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.bottomless_bundle.page5.text"
+    }
+  ]
+}

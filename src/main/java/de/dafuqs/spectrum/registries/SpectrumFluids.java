@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.helpers.*;
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.client.render.fluid.v1.*;
@@ -15,7 +15,7 @@ import net.minecraft.util.*;
 import org.joml.*;
 
 public class SpectrumFluids {
-
+	
 	// RenderHandler storage for compatibility purposes
 	public static final Object2ObjectArrayMap<FluidRenderHandler, Fluid[]> HANDLER_MAP = new Object2ObjectArrayMap<>(4);
 	
@@ -80,7 +80,7 @@ public class SpectrumFluids {
 				SpectrumCommon.locate("block/" + name + "_flow"),
 				tint
 		);
-
+		
 		HANDLER_MAP.put(handler, new Fluid[]{stillFluid, flowingFluid});
 		FluidRenderHandlerRegistry.INSTANCE.register(stillFluid, flowingFluid, handler);
 

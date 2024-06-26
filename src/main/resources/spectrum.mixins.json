@@ -88,7 +88,8 @@
     "accessors.TypeSpecificPredicateDeserializerMixin",
     "compat.connectormod.absent.EntityApplyFluidsMixinNoSinytra",
     "compat.connectormod.absent.ExplosionMixin",
-    "compat.connectormod.present.ExplosionMixin"
+    "compat.connectormod.present.ExplosionMixin",
+    "compat.modonomicon.present.BookIconMixin"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",
@@ -124,6 +125,8 @@
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin",
+    "compat.modonomicon.present.BookPageRendererMixin",
+    "compat.modonomicon.present.BookRecipePageRendererMixin",
     "compat.sodium.present.ColorProviderRegistryMixin"
   ],
   "injectors": {

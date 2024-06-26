@@ -1,0 +1,135 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.upgrades.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
+  },
+  "icon": "spectrum:upgrade_speed",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.upgrades.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/upgrades/upgrade_speed"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page1.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_speed"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed2",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page2.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_speed2"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed3",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_speed3"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/upgrades/upgrade_experience"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page4.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_experience"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience2",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_experience2"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/upgrades/upgrade_efficiency"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page6.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/upgrade_efficiency"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page7.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_efficiency2"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/upgrades/upgrade_yield"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page8.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_yield"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page9.text",
+      "recipe_id_1": "spectrum:pedestal/tier4/upgrade_yield2"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_id": "spectrum:pedestal_advanced_upgrades",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page10.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page10.multiblock_name"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_id": "spectrum:fusion_shrine_upgrades",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page11.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page11.multiblock_name"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/enchanter"
+      },
+      "multiblock_id": "spectrum:enchanter_upgrades",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page12.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page12.multiblock_name"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/cinderhearth"
+      },
+      "multiblock_id": "spectrum:cinderhearth_upgrades",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page13.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page13.multiblock_name"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
+      },
+      "multiblock_id": "spectrum:spirit_instiller_upgrades",
+      "show_visualize_button": false,
+      "text": "book.spectrum.guidebook.magical_blocks.upgrades.page14.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_blocks.upgrades.page14.multiblock_name"
+    }
+  ]
+}

@@ -303,7 +303,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 				this.multiblockRotation = BlockRotation.NONE;
 			}
 		}
-
+		
 		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, SpiritInstillerRecipe.class);
 		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {

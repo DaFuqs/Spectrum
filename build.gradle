@@ -22,6 +22,7 @@ repositories {
 	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
 	maven { url = "https://cfa2.cursemaven.com" }
 	maven { url = "https://repo.unascribed.com" } // Ears API
+	maven { url = "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/" } // Modonomicon
 	mavenCentral()
 }
 
@@ -55,12 +56,14 @@ dependencies {
 	modApi("dev.architectury:architectury-fabric:${project.architectury_version}") { exclude(group: "net.fabricmc.fabric-api") }
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 	modImplementation("eu.pb4:common-protection-api:${project.cpa_version}")
-	modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}")
-	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation("dev.emi:trinkets:${project.trinkets_version}") // https://github.com/emilyploszaj/trinkets
 	modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}")
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
+	// https://github.com/klikli-dev/modonomicon
+	modImplementation ("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") {
+		exclude(group: "com.klikli_dev")
+	}
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break

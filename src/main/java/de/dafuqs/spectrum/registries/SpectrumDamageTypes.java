@@ -62,11 +62,11 @@ public class SpectrumDamageTypes {
 	public static DamageSource irradiance(World world, @Nullable LivingEntity attacker) {
 		return new IrradianceDamageSource(world, attacker);
 	}
-
+	
 	public static DamageSource impaling(World world, Entity weapon, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), weapon, attacker);
 	}
-
+	
 	public static DamageSource evisceration(World world, @Nullable Entity attacker) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(EVISCERATION), attacker);
 	}
@@ -126,7 +126,7 @@ public class SpectrumDamageTypes {
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}
-
+	
 	public static void wrapWithStackTracking(DamageSource source, ItemStack stack) {
 		((StackTracking) source).spectrum$setTrackedStack(stack);
 	}

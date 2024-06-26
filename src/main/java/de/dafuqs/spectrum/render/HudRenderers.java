@@ -4,14 +4,12 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.util.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
-import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class HudRenderers {
@@ -24,7 +22,6 @@ public class HudRenderers {
 	private static boolean missingInk;
 	
 	public static void register() {
-		// That one is on Patchouli. ty <3
 		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> renderSelectedStaffStack(drawContext));
 	}
 	

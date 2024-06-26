@@ -1,0 +1,28 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.crafting_tablet.name",
+  "icon": "spectrum:crafting_tablet",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/crafting_tablet"
+  },
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 12,
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.text",
+      "title1": "book.spectrum.guidebook.magical_items.crafting_tablet.page0.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/crafting_tablet"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_items.crafting_tablet.page1.title",
+      "text": "book.spectrum.guidebook.magical_items.crafting_tablet.page1.text"
+    }
+  ]
+}

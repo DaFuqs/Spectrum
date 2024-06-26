@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.magic.color_picker.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/color_picker"
+  },
+  "icon": "spectrum:color_picker",
+  "category": "spectrum:magic",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:magic/ink"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magic.color_picker.page0.text",
+      "title": "book.spectrum.guidebook.magic.color_picker.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magic.color_picker.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/color_picker",
+      "text": "book.spectrum.guidebook.magic.color_picker.page1.text"
+    }
+  ]
+}

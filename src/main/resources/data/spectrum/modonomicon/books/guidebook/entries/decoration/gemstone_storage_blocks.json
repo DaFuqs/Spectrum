@@ -1,0 +1,72 @@
+{
+  "name": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "icon": "spectrum:citrine_storage_block",
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page0.title",
+      "text": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page0.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/topaz_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/topaz_shards_from_topaz_storage_block"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/amethyst_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/amethyst_shards_from_amethyst_storage_block"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/citrine_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/citrine_shards_from_citrine_storage_block"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page4.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:create_onyx_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/onyx_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/onyx_shards_from_onyx_storage_block"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_storage_blocks.page5.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+      },
+      "recipe_id_1": "spectrum:crafting_table/gem_blocks/moonstone_storage_block",
+      "recipe_id_2": "spectrum:crafting_table/gem_blocks/moonstone_shards_from_moonstone_storage_block"
+    }
+  ]
+}

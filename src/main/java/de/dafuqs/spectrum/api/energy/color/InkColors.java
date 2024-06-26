@@ -13,7 +13,7 @@ public class InkColors {
 	public static final Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static final Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone_shard");
-
+	
 	/**
 	 * A lot of places where color is displayed have black backgrounds, which would make displaying normal black on them... daft.
 	 * <p>
@@ -26,7 +26,7 @@ public class InkColors {
 	public static final ElementalColor YELLOW = registerElemental("yellow", new ElementalColor(DyeColor.YELLOW, ColorHelper.colorIntToVec(0xeded00), BASE_ADVANCEMENT_ID));
 	public static final ElementalColor BLACK = registerElemental("black", new ElementalColor(DyeColor.BLACK, ColorHelper.colorIntToVec(0x020106), BLACK_ADVANCEMENT_ID, true));
 	public static final ElementalColor WHITE = registerElemental("white", new ElementalColor(DyeColor.WHITE, ColorHelper.colorIntToVec(0xFFFFFF), WHITE_ADVANCEMENT_ID));
-
+	
 	public static final CompoundColor ORANGE = registerCompound("orange", new CompoundColor(DyeColor.ORANGE, ColorHelper.colorIntToVec(0xff6303), BASE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 1F / 3F);
 		put(YELLOW, 2F / 3F);

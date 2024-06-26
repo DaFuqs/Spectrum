@@ -189,7 +189,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-
+		
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.put("Looper", this.tickLooper.toNbt());
 		

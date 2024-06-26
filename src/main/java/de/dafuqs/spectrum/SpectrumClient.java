@@ -10,7 +10,6 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.ears.*;
 import de.dafuqs.spectrum.compat.idwtialsimmoedm.*;
-import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.deeper_down.weather.*;
 import de.dafuqs.spectrum.entity.*;
@@ -72,7 +71,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 	// initial impl
 	public static final ObjectOpenHashSet<ModelIdentifier> CUSTOM_ITEM_MODELS = new ObjectOpenHashSet<>();
-
+	
 	public static int spireTicks, lastSpireTicks;
 
 	@Override
@@ -126,10 +125,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
 
-		logInfo("Registering custom Patchouli Pages & Flags...");
-		PatchouliPages.register();
-		PatchouliFlags.register();
-
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
 
@@ -147,7 +142,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon").formatted(Formatting.RED));
 			}
 		});
-
+		
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			var world = client.world;
 			if (client.getCameraEntity() == null)
@@ -155,7 +150,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			
 			RegistryEntry<Biome> biome = world.getBiome(client.getCameraEntity().getBlockPos());
 			lastSpireTicks = spireTicks;
-
+			
 			if (biome.matchesKey(SpectrumBiomes.HOWLING_SPIRES)) {
 				if (spireTicks < 60) {
 					spireTicks++;
@@ -192,7 +187,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-
+		
 		logInfo("Initializing Weather Thread...");
 		WEATHER_THREAD.initialize();
 
@@ -306,7 +301,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		BlockState lookingAtState = hitResult.blockState();
 
 		ClientPlayerEntity player = client.player;
-
+		
 		if (player == null || world == null)
 			return false;
 		
@@ -360,7 +355,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		return false;
 	}
-
+	
 	public static WeatherThread weatherThread() {
 		return WEATHER_THREAD;
 	}

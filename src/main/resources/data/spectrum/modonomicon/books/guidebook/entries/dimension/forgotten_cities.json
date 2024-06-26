@@ -1,0 +1,26 @@
+{
+  "name": "book.spectrum.guidebook.dimension.forgotten_cities.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/find_forgotten_city"
+  },
+  "icon": "spectrum:moonstone_core",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/delving_deeper_down"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -2,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.dimension.forgotten_cities.page0.title",
+      "text": "book.spectrum.guidebook.dimension.forgotten_cities.page0.text"
+    }
+  ]
+}

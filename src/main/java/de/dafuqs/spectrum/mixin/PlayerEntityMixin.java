@@ -36,7 +36,7 @@ import java.util.*;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityAccessor {
-
+	
 	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -79,14 +79,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		
 		player.getAttributes().addTemporaryModifiers(map);
 	}
-
+	
 	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getNonSpectatingEntities(Ljava/lang/Class;Lnet/minecraft/util/math/Box;)Ljava/util/List;"))
 	protected List<LivingEntity> spectrum$increaseSweepRadius(List<LivingEntity> original, Entity target) {
 		var stack = this.getStackInHand(Hand.MAIN_HAND);
 		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD) {
 			var channeling = getChanneling(stack) + 1;
 			var size = channeling * 2 + 0.5;
-			var entities = this.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(size, 0.4 * channeling , size));
+			var entities = this.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(size, 0.4 * channeling, size));
 			if (!getWorld().isClient() && (channeling - 1) > 0) {
 				for (LivingEntity living : entities) {
 					if (living.canTakeDamage()) {
@@ -100,12 +100,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 					}
 				}
 			}
-
+			
 			return entities;
 		}
 		return original;
 	}
-
+	
 	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V", ordinal = 1))
 	protected void spectrum$switchSweepSound(World instance, PlayerEntity except, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch, Operation<Void> original) {
 		var stack = this.getStackInHand(Hand.MAIN_HAND);
@@ -115,8 +115,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		}
 		original.call(instance, except, x, y, z, sound, category, volume, pitch);
 	}
-
-
+	
+	
 	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;squaredDistanceTo(Lnet/minecraft/entity/Entity;)D", shift = At.Shift.AFTER))
 	protected double spectrum$increaseSweepMaxDistance(double original) {
 		var stack = this.getStackInHand(Hand.MAIN_HAND);
@@ -124,7 +124,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 			return original * 3 * ((getChanneling(stack) + 1) * 1.5);
 		return original;
 	}
-
+	
 	@Unique
 	protected int getChanneling(ItemStack stack) {
 		return EnchantmentHelper.getLevel(Enchantments.CHANNELING, stack);

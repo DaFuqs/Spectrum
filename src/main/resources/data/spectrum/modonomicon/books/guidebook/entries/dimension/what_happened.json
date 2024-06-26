@@ -1,0 +1,108 @@
+{
+  "name": "book.spectrum.guidebook.general.what_happened.name",
+  "icon": "spectrum:black_materia",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/find_forgotten_city"
+  },
+  "turnin": "spectrum:lategame/collect_enough_hints",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/delving_deeper_down"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.what_happened.page0.text",
+      "title": "book.spectrum.guidebook.general.what_happened.page0.title"
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "book.spectrum.guidebook.general.what_happened.page1.title",
+      "checklist": {
+        "spectrum:lategame/visit_all_deeper_down_biomes": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry0",
+        "spectrum:lategame/reached_dd_floor": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry1",
+        "spectrum:lategame/find_excavation_site": "book.spectrum.guidebook.general.what_happened.page1.checklist.entry2"
+      }
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:lategame/revive_black_sludge_plant": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry0",
+        "spectrum:hidden/collect_dragonbone": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry1",
+        "spectrum:lategame/strike_up_hummingstone_hymn": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry2",
+        "spectrum:lategame/collect_moonstone_shard": "book.spectrum.guidebook.general.what_happened.page2.checklist.entry3"
+      }
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/visit_all_deeper_down_biomes"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page3.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page3.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/reached_dd_floor"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page4.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page4.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/find_excavation_site"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page5.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page5.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/revive_black_sludge_plant"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page6.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page6.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page7.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page7.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/strike_up_hummingstone_hymn"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page8.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page8.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+      },
+      "title": "book.spectrum.guidebook.general.what_happened.page9.title",
+      "text": "book.spectrum.guidebook.general.what_happened.page9.text"
+    }
+  ]
+}

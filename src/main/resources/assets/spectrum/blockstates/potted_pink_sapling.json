@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/potted_pink_sapling"
+          "model": "spectrum:block/potted_pink_sapling"
 		}
 	}
 }

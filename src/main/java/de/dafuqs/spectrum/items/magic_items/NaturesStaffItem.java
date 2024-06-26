@@ -219,7 +219,7 @@ public class NaturesStaffItem extends Item implements ExtendedEnchantable, InkPo
 				} else if (blockState.hasRandomTicks() && blockState.isIn(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
 					// random tickable and whitelisted? => tick
 					// without whitelist we would be able to tick budding blocks, ...
-
+					
 					if (world instanceof ServerWorld) {
 						blockState.randomTick((ServerWorld) world, blockPos, world.random);
 					}

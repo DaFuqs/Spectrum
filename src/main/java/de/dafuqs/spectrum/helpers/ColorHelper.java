@@ -47,7 +47,7 @@ public class ColorHelper {
 		colorObj.getColorComponents(argb);
 		return new Vector3f(argb[0], argb[1], argb[2]);
 	}
-
+	
 	public static int colorVecToRGB(Vector3f color) {
 		Color colorObj = new Color(color.x, color.y, color.z);
 		return colorObj.getRGB();
@@ -64,11 +64,11 @@ public class ColorHelper {
 		}
 		return Optional.empty();
 	}
-
+	
 	public static int interpolate(Vector3f start, Vector3f end, float delta) {
-		var blendedRed =  Math.round(MathHelper.lerp(delta, start.x, end.x) * 255F);
-		var blendedGreen =  Math.round(MathHelper.lerp(delta, start.y, end.y) * 255F);
-		var blendedBlue =  Math.round(MathHelper.lerp(delta, start.z, end.z) * 255F);
+		var blendedRed = Math.round(MathHelper.lerp(delta, start.x, end.x) * 255F);
+		var blendedGreen = Math.round(MathHelper.lerp(delta, start.y, end.y) * 255F);
+		var blendedBlue = Math.round(MathHelper.lerp(delta, start.z, end.z) * 255F);
 		return (blendedRed & 255) << 16 | (blendedGreen & 255) << 8 | (blendedBlue & 255) | 0xFF000000;
 	}
 	

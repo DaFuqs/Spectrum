@@ -3,7 +3,7 @@
   "advancement": "spectrum:unlocks/blocks/ominous_sapling",
   "secret": true,
   "icon": "spectrum:ominous_sapling",
-  "category": "spectrum:magic_category",
+  "category": "spectrum:magic",
   "priority": true,
   "extra_recipe_mappings": {
     "spectrum:ominous_sapling": 0,
@@ -25,23 +25,23 @@
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
+      "type": "modonomicon:spotlight",
       "item": "spectrum:ominous_sapling",
       "text": "TODO"
     },
     {
-      "type": "patchouli:text",
+      "type": "modonomicon:text",
       "advancement": "spectrum:endgame/grow_ominous_sapling",
       "title": "Spirit Sallow",
       "text": "TODO"
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "modonomicon:spotlight",
       "item": "spectrum:vibrant_cyan_catkin",
       "text": "TODO"
     },
     {
-      "type": "patchouli:text",
+      "type": "modonomicon:text",
       "title": "Lucid Catkin",
       "text": "TODO"
     }

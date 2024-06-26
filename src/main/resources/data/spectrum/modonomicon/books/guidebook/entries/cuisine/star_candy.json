@@ -1,0 +1,45 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.star_candy.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/star_candy"
+  },
+  "icon": "spectrum:star_candy",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/amaranth",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.star_candy.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.star_candy.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/star_candy",
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.cuisine.star_candy.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_purple_star_candy"
+      },
+      "item": {
+        "item": "spectrum:purple_star_candy"
+      },
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page2.text"
+    }
+  ]
+}

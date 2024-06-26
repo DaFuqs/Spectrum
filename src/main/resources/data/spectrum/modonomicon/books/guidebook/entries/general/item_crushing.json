@@ -1,0 +1,41 @@
+{
+  "name": "book.spectrum.guidebook.general.anvil_crushing.name",
+  "icon": "minecraft:anvil",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:place_pedestal"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -2,
+  "turnin": "spectrum:collect_gemstone_powder",
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.anvil_crushing.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/anvil_crushing.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.general.anvil_crushing.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.anvil_crushing.page1.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id_1": "spectrum:anvil_crushing/vanilla_pulverising/gravel_from_cobblestone_anvil_crushing",
+      "text": "book.spectrum.guidebook.general.anvil_crushing.page2.text"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "recipe_id_1": "spectrum:anvil_crushing/dye/blue_dye_from_cornflower",
+      "text": "book.spectrum.guidebook.general.anvil_crushing.page3.text"
+    }
+  ]
+}

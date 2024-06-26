@@ -1,0 +1,27 @@
+{
+  "name": "book.spectrum.guidebook.equipment.dreamflayer.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/dreamflayer"
+  },
+  "icon": "spectrum:dreamflayer",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.dreamflayer.page0.text",
+      "title": "book.spectrum.guidebook.equipment.dreamflayer.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.equipment.dreamflayer.page1.text",
+      "recipe_id_1": "spectrum:fusion_shrine/dreamflayer"
+    }
+  ]
+}

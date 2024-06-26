@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.dimension.dragonrot.name",
+  "icon": "spectrum:dragonrot_bucket",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/interact_with_dragonrot"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/dragonrot_swamp"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.dragonrot.page0.text",
+      "title": "book.spectrum.guidebook.dimension.dragonrot.page0.title"
+    },
+    {
+      "type": "spectrum:dragonrot_converting",
+      "text": "book.spectrum.guidebook.dimension.dragonrot.page1.text",
+      "title1": "book.spectrum.guidebook.dimension.dragonrot.page1.title",
+      "recipe_id_1": "spectrum:dragonrot_converting/blackslag_from_deepslate"
+    }
+  ]
+}

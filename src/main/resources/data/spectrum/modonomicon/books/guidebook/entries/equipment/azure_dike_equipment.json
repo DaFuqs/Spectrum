@@ -1,0 +1,61 @@
+{
+  "name": "book.spectrum.guidebook.equipment.azure_dike_equipment.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/any_azure_dike_equipment"
+  },
+  "icon": "spectrum:azure_dike_ring",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 13,
+  "y": -4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page0.text",
+      "title": "book.spectrum.guidebook.equipment.azure_dike_equipment.page0.title"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.title",
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/trinkets/azure_dike_ring"
+      },
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page2.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page2.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_ring"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/trinkets/azure_dike_belt"
+      },
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page3.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page3.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/azure_dike_belt"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
+      },
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page4.text",
+      "title1": "book.spectrum.guidebook.equipment.azure_dike_equipment.page4.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet"
+    }
+  ]
+}

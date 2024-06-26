@@ -1,0 +1,136 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.resonance.name",
+  "icon": "spectrum:resonant_pickaxe",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_resonance",
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "y": 4,
+  "x": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.resonance.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page0.title"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page1.title",
+      "item": {
+        "item": "minecraft:iron_pickaxe",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:resonance",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page1.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_crafting"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.resonance.page2.title",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_resonance"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page3.title",
+      "item": {
+        "item": "minecraft:medium_amethyst_bud"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page4.title",
+      "item": {
+        "item": "spectrum:pure_iron"
+      },
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_pure_resource"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page5.title",
+      "item": {
+        "item": "spectrum:orange_leaves"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page6.title",
+      "item": {
+        "item": "minecraft:spawner"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page6.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:reinforced_deepslate"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page7.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:sculk_shrieker"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page8.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page9.title",
+      "items": [
+        "minecraft:suspicious_sand",
+        "minecraft:suspicious_gravel"
+      ],
+      "text": "book.spectrum.guidebook.enchanting.resonance.page9.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:respawn_anchor"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page10.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page11.title",
+      "item": {
+        "item": "minecraft:oak_sign"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page11.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.enchanting.resonance.page12.title",
+      "item": {
+        "item": "minecraft:infested_stone_bricks"
+      },
+      "text": "book.spectrum.guidebook.enchanting.resonance.page12.text"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.brewing.swiftness_stiffness.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/swiftness_stiffness"
+  },
+  "icon": "minecraft:iron_sword",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/potion_workshop",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 5,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:swiftness",
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.text",
+      "title": "book.spectrum.guidebook.brewing.swiftness_stiffness.page0.title"
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:stiffness",
+      "text": "book.spectrum.guidebook.brewing.swiftness_stiffness.page1.text"
+    }
+  ]
+}

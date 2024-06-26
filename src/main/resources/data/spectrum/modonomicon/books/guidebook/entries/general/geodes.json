@@ -1,0 +1,97 @@
+{
+  "name": "book.spectrum.guidebook.general.geodes.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "icon": "minecraft:amethyst_cluster",
+  "category": "spectrum:general",
+  "hide_while_locked ": false,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.geodes.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/geode.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.general.geodes.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.geodes.page1.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "show_visualize_button": false,
+      "multiblock_id": "spectrum:amethyst_geode",
+      "text": "book.spectrum.guidebook.general.geodes.page2.text",
+      "multiblock_name": "book.spectrum.guidebook.general.geodes.page2.multiblock_name"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:break_gemstone_ore"
+      },
+      "title": "book.spectrum.guidebook.general.geodes.page3.title",
+      "item": {
+        "item": "spectrum:amethyst_ore"
+      },
+      "text": "book.spectrum.guidebook.general.geodes.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
+      },
+      "title": "book.spectrum.guidebook.general.geodes.page4.title",
+      "item": {
+        "item": "spectrum:topaz_block"
+      },
+      "text": "book.spectrum.guidebook.general.geodes.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+      },
+      "title": "book.spectrum.guidebook.general.geodes.page5.title",
+      "item": {
+        "item": "minecraft:amethyst_block"
+      },
+      "text": "book.spectrum.guidebook.general.geodes.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
+      },
+      "title": "book.spectrum.guidebook.general.geodes.page6.title",
+      "item": {
+        "item": "spectrum:citrine_block"
+      },
+      "text": "book.spectrum.guidebook.general.geodes.page6.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+      },
+      "title": "book.spectrum.guidebook.general.geodes.page7.title",
+      "item": {
+        "item": "spectrum:moonstone_block"
+      },
+      "text": "book.spectrum.guidebook.general.geodes.page7.text"
+    }
+  ]
+}

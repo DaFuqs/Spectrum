@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.equipment.weeping_circlet.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/weeping_circlet"
+  },
+  "icon": "spectrum:weeping_circlet",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 13,
+  "y": 10,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.weeping_circlet.page0.text",
+      "title": "book.spectrum.guidebook.equipment.weeping_circlet.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.equipment.weeping_circlet.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/weeping_circlet",
+      "text": "book.spectrum.guidebook.equipment.weeping_circlet.page1.text"
+    }
+  ]
+}

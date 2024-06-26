@@ -1,0 +1,40 @@
+{
+  "name": "book.spectrum.guidebook.dimension.lizards.name",
+  "icon": "spectrum:lizard_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/lizard"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/creatures"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -4,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "title": "book.spectrum.guidebook.dimension.lizards.page0.name",
+      "entity_id": "spectrum:lizard",
+      "scale": 0.5,
+      "text": "book.spectrum.guidebook.dimension.lizards.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.lizards.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:lizard_meat"
+      },
+      "anchor": "lizard_meat",
+      "text": "book.spectrum.guidebook.dimension.lizards.page2.text"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "book.spectrum.guidebook.general.azurite.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_azurite"
+  },
+  "icon": "spectrum:raw_azurite",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/failing"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 20,
+  "turnin": "spectrum:midgame/create_refined_azurite",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.azurite.page0.title",
+      "item": {
+        "item": "spectrum:raw_azurite"
+      },
+      "text": "book.spectrum.guidebook.general.azurite.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/resources/refined_azurite"
+      },
+      "title1": "book.spectrum.guidebook.general.azurite.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/refined_azurite",
+      "text": "book.spectrum.guidebook.general.azurite.page1.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/resources/azurite_growing"
+      },
+      "title1": "book.spectrum.guidebook.general.azurite.page2.title",
+      "recipe_id_1": "spectrum:crystallarieum/azurite"
+    }
+  ]
+}

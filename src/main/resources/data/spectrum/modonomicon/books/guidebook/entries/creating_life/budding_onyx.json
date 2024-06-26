@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.general.budding_onyx.name",
+  "icon": "spectrum:onyx_cluster",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/budding_onyx"
+  },
+  "turnin": "spectrum:midgame/budding_onyx",
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/spirit_instiller"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -1,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.budding_onyx.page0.title",
+      "text": "book.spectrum.guidebook.general.budding_onyx.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title1": "book.spectrum.guidebook.general.budding_onyx.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/budding_onyx",
+      "text": "book.spectrum.guidebook.general.budding_onyx.page1.text"
+    }
+  ]
+}

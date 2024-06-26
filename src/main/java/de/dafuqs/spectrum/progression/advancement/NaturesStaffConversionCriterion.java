@@ -48,7 +48,7 @@ public class NaturesStaffConversionCriterion extends AbstractCriterion<NaturesSt
 				throw new JsonSyntaxException("Block " + targetBlock + " has no property " + name);
 			});
 		}
-
+		
 		return new NaturesStaffConversionCriterion.Conditions(extended, sourceBlock, sourceStatePredicate, targetBlock, targetStatePredicate);
 	}
 	

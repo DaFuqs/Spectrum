@@ -1,0 +1,45 @@
+{
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.name",
+  "icon": "spectrum:pedestal_moonstone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/moonstone_shards"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 20,
+  "turnin": "spectrum:hidden/build_any_complex_structure",
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page0.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/pedestal_moonstone",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page0.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page1.multiblock_name",
+      "multiblock_id": "spectrum:pedestal_complex_without_moonstone",
+      "show_visualize_button": true,
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone.page3.text"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ import java.util.*;
 public class ShulkerPredicate implements TypeSpecificPredicate {
 	
 	private static final String COLOR_KEY = "color";
-
+	
 	private final DyeColor color;
 	
 	private ShulkerPredicate(@Nullable DyeColor color) {

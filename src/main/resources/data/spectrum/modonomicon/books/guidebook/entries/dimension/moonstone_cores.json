@@ -1,0 +1,26 @@
+{
+  "name": "book.spectrum.guidebook.general.moonstone_cores.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_moonstone_core"
+  },
+  "icon": "spectrum:moonstone_core",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/preservation_turrets"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -7,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.moonstone_cores.page0.title",
+      "text": "book.spectrum.guidebook.general.moonstone_cores.page0.text"
+    }
+  ]
+}

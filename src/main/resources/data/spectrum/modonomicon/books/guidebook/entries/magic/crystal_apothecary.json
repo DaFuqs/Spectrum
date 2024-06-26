@@ -1,0 +1,28 @@
+{
+  "name": "book.spectrum.guidebook.magic.crystal_apothecary.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+  },
+  "icon": "spectrum:crystal_apothecary",
+  "category": "spectrum:magic",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magic.crystal_apothecary.page0.text",
+      "title": "book.spectrum.guidebook.magic.crystal_apothecary.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magic.crystal_apothecary.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/crystal_apothecary",
+      "text": "book.spectrum.guidebook.magic.crystal_apothecary.page1.text"
+    }
+  ]
+}

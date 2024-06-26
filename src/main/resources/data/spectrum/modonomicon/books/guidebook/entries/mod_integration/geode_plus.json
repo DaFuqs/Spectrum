@@ -1,0 +1,55 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.geode_plus.name",
+  "icon": "geode:celestite_cluster",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "geode_plus"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.geode_plus.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.geode_plus.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.geode_plus.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystal_apothecary"
+      },
+      "item": {
+        "item": "spectrum:crystal_apothecary"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.geode_plus.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.geode_plus.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "item": {
+        "item": "spectrum:resonant_pickaxe"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.geode_plus.page2.text"
+    }
+  ]
+}

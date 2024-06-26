@@ -166,7 +166,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	public List<ItemStack> getAdditionalOutputs(DynamicRegistryManager registryManager) {
 		return additionalOutputs;
 	}
-
+	
 	public Optional<BlockState> getNextState(CrystallarieumRecipe recipe, BlockState currentState) {
 		for (Iterator<BlockState> it = recipe.getGrowthStages().iterator(); it.hasNext(); ) {
 			BlockState state = it.next();

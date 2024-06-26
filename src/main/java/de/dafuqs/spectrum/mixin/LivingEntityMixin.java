@@ -86,14 +86,18 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-
-	@Shadow public abstract ItemStack getOffHandStack();
-
-	@Shadow public abstract void damageArmor(DamageSource source, float amount);
-
-	@Shadow public abstract int getArmor();
-
-	@Shadow public abstract double getAttributeValue(EntityAttribute attribute);
+	
+	@Shadow
+	public abstract ItemStack getOffHandStack();
+	
+	@Shadow
+	public abstract void damageArmor(DamageSource source, float amount);
+	
+	@Shadow
+	public abstract int getArmor();
+	
+	@Shadow
+	public abstract double getAttributeValue(EntityAttribute attribute);
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -109,7 +113,7 @@ public abstract class LivingEntityMixin {
 			return 1.0F;
 		}
 	}
-
+	
 	@Inject(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasNoDrag()Z"))
 	public void spectrum$travel(CallbackInfo ci, @Local(ordinal = 1) LocalFloatRef f) {
 		var needle = (DragonTalonItem) SpectrumItems.DRAGON_TALON;
@@ -127,19 +131,19 @@ public abstract class LivingEntityMixin {
 		}
 		return amount;
 	}
-
+	
 	@ModifyArg(method = "modifyAppliedDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/DamageUtil;getInflictedDamage(FF)F"), index = 1)
 	public float spectrum$modifyAppliedDamage(float protection, @Local(argsOnly = true) DamageSource source) {
 		var pair = getArmorPiercing(source);
-
+		
 		if (pair.isPresent()) {
 			var ap = pair.get().getLeft();
 			var stack = pair.get().getRight();
-
+			
 			var modProt = Math.max(protection, 20F) / 25F;
 			protection = Math.max(modProt - ap.getProtReduction((LivingEntity) (Object) this, stack), 0) * 20F;
 		}
-
+		
 		return protection;
 	}
 	
@@ -184,7 +188,7 @@ public abstract class LivingEntityMixin {
 		
 		var stack = stackOptional.get();
 		
-		if (!(stack.getItem() instanceof  ArmorPiercingItem ap))
+		if (!(stack.getItem() instanceof ArmorPiercingItem ap))
 			return Optional.empty();
 		
 		return Optional.of(new Pair<>(ap, stack));
@@ -352,7 +356,7 @@ public abstract class LivingEntityMixin {
 			cir.setReturnValue(false);
 		}
 	}
-
+	
 	@ModifyVariable(method = "setSprinting(Z)V", at = @At("HEAD"), argsOnly = true)
 	public boolean spectrum$setSprinting(boolean sprinting) {
 		if (sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {

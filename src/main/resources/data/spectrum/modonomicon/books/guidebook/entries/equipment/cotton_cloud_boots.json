@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.equipment.cotton_cloud_boots.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/cotton_cloud_boots"
+  },
+  "icon": "spectrum:cotton_cloud_boots",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/base_trinkets"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 13,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page0.text",
+      "title": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.cotton_cloud_boots.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/cotton_cloud_boots"
+    }
+  ]
+}

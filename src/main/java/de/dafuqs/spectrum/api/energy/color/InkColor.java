@@ -80,7 +80,7 @@ public abstract class InkColor {
 	public Identifier getRequiredAdvancement() {
 		return requiredAdvancement;
 	}
-
+	
 	public boolean isDarkShade() {
 		return darkShade;
 	}

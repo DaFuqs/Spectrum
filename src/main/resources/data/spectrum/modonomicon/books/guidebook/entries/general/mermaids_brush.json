@@ -1,0 +1,30 @@
+{
+  "name": "book.spectrum.guidebook.general.mermaids_brush.name",
+  "icon": "spectrum:mermaids_gem",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_mermaids_gem"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 13,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.mermaids_brush.page0.title",
+      "text": "book.spectrum.guidebook.general.mermaids_brush.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.mermaids_brush.page1.title",
+      "item": {
+        "item": "spectrum:mermaids_gem"
+      },
+      "text": "book.spectrum.guidebook.general.mermaids_brush.page1.text"
+    }
+  ]
+}

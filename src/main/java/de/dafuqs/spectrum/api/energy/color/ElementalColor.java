@@ -13,7 +13,7 @@ public class ElementalColor extends InkColor {
 		super(dyeColor, color, requiredAdvancement, darkShade);
 		ELEMENTAL_COLORS.add(this);
 	}
-
+	
 	public ElementalColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement) {
 		this(dyeColor, color, requiredAdvancement, false);
 	}

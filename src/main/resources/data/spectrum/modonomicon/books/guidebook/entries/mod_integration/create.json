@@ -1,0 +1,115 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.create.name",
+  "icon": "create:crushing_wheel",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "create"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.create.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.create.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:spectrum"
+      },
+      "item": {
+        "item": "minecraft:amethyst_shard"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "item": {
+        "item": "spectrum:magenta_leaves"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_pigment"
+      },
+      "item": {
+        "item": "spectrum:magenta_log"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page4.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_quitoxic_reeds"
+      },
+      "item": {
+        "item": "spectrum:quitoxic_reeds"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page5.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:collect_amaranth_bushel"
+      },
+      "item": {
+        "item": "spectrum:amaranth_bushel"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page5.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page6.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_frostbite_crystal"
+      },
+      "item": {
+        "item": "spectrum:frostbite_crystal"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page6.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.mod_integration.create.page7.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_blazing_crystal"
+      },
+      "item": {
+        "item": "spectrum:blazing_crystal"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.create.page7.text"
+    }
+  ]
+}

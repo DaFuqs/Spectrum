@@ -22,7 +22,7 @@ import java.util.*;
 @Environment(EnvType.CLIENT)
 public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumDisplay> {
 	
-	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
+	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/modonomicon/crystallarieum.png");
 	
 	@Override
 	public CategoryIdentifier<CrystallarieumDisplay> getCategoryIdentifier() {

@@ -1,0 +1,78 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.titration_barrel.name",
+  "icon": "spectrum:titration_barrel",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/titration_barrel"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.titration_barrel.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/titration_barrel",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page1.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page2.title",
+      "anchor": "kimchi",
+      "recipe_id_1": "spectrum:titration_barrel/kimchi",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page2.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "anchor": "fermented_spider_eyes",
+      "recipe_id_1": "spectrum:titration_barrel/fermented_spider_eyes",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page3.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page4.title",
+      "anchor": "clotted_cream",
+      "recipe_id_1": "spectrum:titration_barrel/clotted_cream",
+      "recipe_id_2": "spectrum:titration_barrel/clotted_cream_fluid",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page4.text"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page5.title",
+      "anchor": "fresh_chocolate",
+      "recipe_id_1": "spectrum:titration_barrel/fresh_chocolate",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page5.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page6.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/bodacious_berry_bar"
+      },
+      "anchor": "bodacious_berry_bar",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/bodacious_berry_bar",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page6.text"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.titration_barrel.page7.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/potion_workshop"
+      },
+      "anchor": "hot_chocolate",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/hot_chocolate",
+      "text": "book.spectrum.guidebook.cuisine.titration_barrel.page7.text"
+    }
+  ]
+}

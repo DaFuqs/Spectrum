@@ -257,7 +257,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 		}
     }
-
+	
 	public void grantPlayerFusionCraftingAdvancement(ItemStack stack, int experience) {
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
         if (serverPlayerEntity != null) {

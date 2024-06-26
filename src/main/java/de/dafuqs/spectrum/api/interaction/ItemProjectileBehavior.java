@@ -20,19 +20,19 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public interface ItemProjectileBehavior {
-
+	
 	List<Pair<ItemPredicate, ItemProjectileBehavior>> BEHAVIORS = new ArrayList<>();
-
+	
 	ItemProjectileBehavior DEFAULT = new Default();
-
+	
 	static void register(ItemProjectileBehavior behavior, ItemPredicate predicate) {
 		BEHAVIORS.add(new Pair<>(predicate, behavior));
 	}
-
+	
 	static void register(ItemProjectileBehavior behavior, Item... items) {
 		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().items(items).build(), behavior));
 	}
-
+	
 	static void register(ItemProjectileBehavior behavior, TagKey<Item> tag) {
 		BEHAVIORS.add(new Pair<>(ItemPredicate.Builder.create().tag(tag).build(), behavior));
 	}
@@ -155,11 +155,11 @@ public interface ItemProjectileBehavior {
 		
 		@Override
 		public ItemStack onBlockHit(ItemProjectileEntity projectile, ItemStack stack, Entity owner, BlockHitResult hitResult) {
-			if(destroyItemOnHit()) {
+			if (destroyItemOnHit()) {
 				stack.decrement(1);
 			}
 			return stack;
 		}
 	}
-
+	
 }

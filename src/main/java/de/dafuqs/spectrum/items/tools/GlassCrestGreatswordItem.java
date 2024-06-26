@@ -3,8 +3,7 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.api.energy.*;
 import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.api.item.*;
-import de.dafuqs.spectrum.api.render.ExtendedItemBarProvider;
-import de.dafuqs.spectrum.api.render.SlotBackgroundEffectProvider;
+import de.dafuqs.spectrum.api.render.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import de.dafuqs.spectrum.spells.*;
@@ -122,41 +121,41 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 		composition.add(attacker.getDamageSources().magic(), damage * MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
-
+	
 	@Override
 	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
 		var usable = InkPowered.hasAvailableInk(player, GROUND_SLAM_COST);
 		return usable ? SlotEffect.BORDER_FADE : SlotEffect.NONE;
 	}
-
+	
 	@Override
 	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
 		return 0xFFFFFF;
 	}
-
+	
 	@Override
 	public int barCount(ItemStack stack) {
 		return 1;
 	}
-
+	
 	@Override
 	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
 		if (player == null || player.getStackInHand(player.getActiveHand()) != stack)
 			return true;
-
+		
 		return !player.isUsingItem();
 	}
-
+	
 	@Override
 	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
 		if (player == null || !player.isUsingItem())
 			return ExtendedItemBarProvider.PASS;
-
+		
 		var activeStack = player.getStackInHand(player.getActiveHand());
 		if (activeStack != stack)
 			return ExtendedItemBarProvider.PASS;
-
-
+		
+		
 		var progress = Math.round(MathHelper.clampedLerp(0, 13, ((float) player.getItemUseTime() / GROUND_SLAM_CHARGE_TICKS)));
 		return new BarSignature(2, 13, 13, progress, 1, 0xFFFFFFFF, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
 	}

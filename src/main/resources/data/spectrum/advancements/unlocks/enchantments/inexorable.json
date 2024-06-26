@@ -18,10 +18,10 @@
         "advancement_identifier": "spectrum:unlocks/blocks/crystallarieum"
       }
     },
-    "plucked_effulgent_feather": {
+    "collected_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/pluck_effulgent_feather"
+        "advancement_identifier": "spectrum:hidden/collect_dragonbone"
       }
     }
   }

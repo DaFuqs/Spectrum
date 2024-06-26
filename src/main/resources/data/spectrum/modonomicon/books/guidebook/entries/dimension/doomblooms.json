@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.dimension.doomblooms.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/interact_with_doombloom"
+  },
+  "icon": "spectrum:doombloom_seed",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/dragonrot_swamp"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 7,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.doomblooms.page0.text",
+      "title": "book.spectrum.guidebook.dimension.doomblooms.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:doombloom_seed"
+      },
+      "text": "book.spectrum.guidebook.dimension.doomblooms.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "anchor": "primordial_fire",
+      "title": "book.spectrum.guidebook.dimension.doomblooms.page2.title",
+      "text": "book.spectrum.guidebook.dimension.doomblooms.page2.text"
+    }
+  ]
+}

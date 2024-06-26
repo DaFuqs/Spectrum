@@ -231,7 +231,7 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
-
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {

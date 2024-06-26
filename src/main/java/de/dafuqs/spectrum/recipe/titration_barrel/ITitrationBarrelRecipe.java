@@ -38,7 +38,7 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 		if (getFermentationData() == null) {
 			return originalOutputCount;
 		}
-
+		
 		// Linearly adjust the output count based on angelsShareResultCount
 		float angelsShareResultCount = getAngelsShareResultCount(secondsFermented, temperature);
 		if (angelsShareResultCount > 0) {

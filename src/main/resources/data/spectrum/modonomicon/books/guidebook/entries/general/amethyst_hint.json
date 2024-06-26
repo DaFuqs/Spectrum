@@ -1,0 +1,29 @@
+{
+  "name": "book.spectrum.guidebook.hints.amethyst.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -1,
+  "y": 0,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.amethyst.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/amethyst_page0",
+      "cost": {
+        "item": "spectrum:citrine_shard",
+        "count": 16
+      },
+      "text": "book.spectrum.guidebook.hints.amethyst.page0.text"
+    }
+  ]
+}

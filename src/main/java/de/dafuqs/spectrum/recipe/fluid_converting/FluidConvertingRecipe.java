@@ -11,10 +11,10 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
-
+	
 	protected final Ingredient input;
 	protected final ItemStack output;
-
+	
 	public FluidConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, @NotNull Ingredient input, ItemStack output) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		this.input = input;
@@ -47,5 +47,5 @@ public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
 		defaultedList.add(this.input);
 		return defaultedList;
 	}
-
+	
 }

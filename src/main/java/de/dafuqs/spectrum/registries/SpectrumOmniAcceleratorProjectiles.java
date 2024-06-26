@@ -14,7 +14,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 
 public class SpectrumOmniAcceleratorProjectiles {
-
+	
 	public static void register() {
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
@@ -147,28 +147,28 @@ public class SpectrumOmniAcceleratorProjectiles {
 				return SoundEvents.ENTITY_FIREWORK_ROCKET_LAUNCH;
 			}
 		}, Items.FIREWORK_ROCKET);
-
+		
 		OmniAcceleratorProjectile.register(new OmniAcceleratorProjectile() {
 			@Override
 			public Entity createProjectile(ItemStack stack, LivingEntity shooter, World world) {
 				ShootingStarEntity shootingStarEntity = ((ShootingStarItem) stack.getItem()).getEntityForStack(world, shooter.getEyePos(), stack);
 				OmniAcceleratorProjectile.setVelocity(shootingStarEntity, shooter, shooter.getPitch(), shooter.getYaw(), 0, 3.0F, 0F);
 				world.spawnEntity(shootingStarEntity);
-
+				
 				shootingStarEntity.noClip = true;
 				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
 				shootingStarEntity.move(MovementType.SELF, shootingStarEntity.getVelocity()); // leave the owner
 				shootingStarEntity.noClip = false;
-
+				
 				return shootingStarEntity;
 			}
-
+			
 			@Override
 			public SoundEvent getSoundEffect() {
 				return SpectrumSoundEvents.SHOOTING_STAR_CRACKER;
 			}
 		}, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR);
-
+		
 	}
-
+	
 }

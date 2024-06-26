@@ -73,7 +73,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		this.finishWorldEffect = finishWorldEffect;
 		this.description = description;
 		this.copyNbt = copyNbt;
-
+		
 		registerInToastManager(getType(), this);
 	}
 	
@@ -181,7 +181,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 		return Optional.of(this.description);
 	}
-
+	
 	@Override
 	public Identifier getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
@@ -208,7 +208,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
 						if (firstStack.isEmpty()) {
-							firstStack = currentStack;
+							firstStack = currentStack.copy();
 						}
 						int ingredientStackAmount = ingredientStack.getCount();
 						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
@@ -216,7 +216,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 					}
 				}
 			}
-
+			
 			if (maxAmount > 0) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 				decrementIngredients(world, fusionShrineBlockEntity, maxAmount, efficiencyModifier);
@@ -224,7 +224,7 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		} else {
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
-
+				
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
@@ -235,19 +235,18 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 				}
 			}
 		}
-
-		if (this.copyNbt) {
+		
+		if (this.copyNbt && firstStack.hasNbt()) {
 			// this overrides all nbt data, that are not nested compounds (like lists)...
-			NbtCompound sourceNbt = firstStack.getNbt();
-			if (sourceNbt != null) {
-				ItemStack modifiedOutput = output.copy();
-				NbtCompound modifiedNbt = sourceNbt.copy();
-				NbtHelper.mergeNbt(modifiedNbt, sourceNbt);
-				modifiedNbt.remove(ItemStack.DAMAGE_KEY);
-				modifiedOutput.setNbt(modifiedNbt);
-				// ...therefore, we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(modifiedOutput, false, false, output, firstStack);
+			ItemStack modifiedOutput = output.copy();
+			NbtCompound sourceNbt = firstStack.getNbt().copy();
+			sourceNbt.remove(ItemStack.DAMAGE_KEY);
+			if (modifiedOutput.hasNbt()) {
+				NbtHelper.mergeNbt(sourceNbt, modifiedOutput.getNbt());
 			}
+			modifiedOutput.setNbt(sourceNbt);
+			// ...therefore, we need to restore all previous enchantments that the original item had and are still applicable to the new item
+			output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(modifiedOutput, false, false, output, firstStack);
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results

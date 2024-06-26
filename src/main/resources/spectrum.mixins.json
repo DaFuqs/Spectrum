@@ -125,15 +125,9 @@
     "client.accessors.RenderLayerAccessor",
     "compat.colorful_hearts.absent.InGameHudMixin",
     "compat.colorful_hearts.present.HeartMixin",
-    <<<<<<<
-    HEAD
-    "compat.enchdesc.present.DescriptionManagerMixin",
     "compat.modonomicon.present.BookPageRendererMixin",
-    "compat.modonomicon.present.BookRecipePageRendererMixin"
-    =======
+    "compat.modonomicon.present.BookRecipePageRendererMixin",
     "compat.sodium.present.ColorProviderRegistryMixin"
-    >>>>>>>
-    1.20.1-main
   ],
   "injectors": {
     "defaultRequire": 1

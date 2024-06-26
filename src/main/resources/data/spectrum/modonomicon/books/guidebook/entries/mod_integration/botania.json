@@ -79,6 +79,21 @@
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
     },
     {
+      "type": "modonomicon:spotlight",
+      "item": "botania:black_hole_talisman",
+      "text": "book.spectrum.guidebook.mod_integration.botania.page20.text",
+      "title": "book.spectrum.guidebook.mod_integration.botania.page20.title"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
+    },
+    {
       "type": "spectrum:spirit_instiller_crafting",
       "condition": {
         "type": "modonomicon:advancement",

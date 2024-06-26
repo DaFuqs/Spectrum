@@ -127,30 +127,36 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page4.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_light"
+      "title": "book.spectrum.guidebook.dimension.noxwood.page4.title",
+      "recipe": "spectrum:pedestal/tier1/noxwood/ivory_noxcap_hyphae",
+      "text": "book.spectrum.guidebook.dimension.noxwood.page4.text"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page5.text",
       "title1": "book.spectrum.guidebook.dimension.noxwood.page5.title",
-      "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_lamp"
+      "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_light"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.dimension.noxwood.page6.text",
       "title1": "book.spectrum.guidebook.dimension.noxwood.page6.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_lamp"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.dimension.noxwood.page7.text",
+      "title1": "book.spectrum.guidebook.dimension.noxwood.page7.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_amphora"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page7.title",
+      "title1": "book.spectrum.guidebook.dimension.noxwood.page8.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_beam"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "text": "book.spectrum.guidebook.dimension.noxwood.page8.text",
-      "title1": "book.spectrum.guidebook.dimension.noxwood.page8.title",
+      "text": "book.spectrum.guidebook.dimension.noxwood.page9.text",
+      "title1": "book.spectrum.guidebook.dimension.noxwood.page9.title",
       "recipe_id_1": "spectrum:pedestal/tier1/noxwood/ivory_lantern"
     }
   ]

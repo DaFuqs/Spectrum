@@ -30,6 +30,10 @@
     },
     {
       "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/remember_kindling"
+      },
       "title": "book.spectrum.guidebook.creating_life.kindlings.page2.title",
       "text": "book.spectrum.guidebook.creating_life.kindlings.page2.text"
     },

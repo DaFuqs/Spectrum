@@ -119,7 +119,7 @@
       "type": "modonomicon:multiblock",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "show_visualize_button": true,
       "multiblock_id": "spectrum:alloy_forgery/bone_ash_alloy_forge",
@@ -129,7 +129,7 @@
       "type": "spectrum:pedestal_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.mod_integration.alloy_forgery.page13.text",
       "title1": "book.spectrum.guidebook.mod_integration.alloy_forgery.page13.title",

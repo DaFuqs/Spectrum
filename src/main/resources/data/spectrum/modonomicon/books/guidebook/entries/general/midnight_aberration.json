@@ -3,7 +3,7 @@
   "icon": "spectrum:midnight_aberration",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:midgame/collect_neolith"
+    "advancement_id": "spectrum:unlocks/blocks/midnight_aberration"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,

@@ -75,7 +75,6 @@
         "advancement_id": "spectrum:triggers/confirmed_drinking_age"
       },
       "title1": "book.spectrum.guidebook.cuisine.infused_beverages.page7.title",
-      "recipe_id_1": "spectrum:titration_barrel/infused_beverages/lager",
       "recipe_id_2": "spectrum:titration_barrel/infused_beverages/porter",
       "text": "book.spectrum.guidebook.cuisine.infused_beverages.page7.text"
     },

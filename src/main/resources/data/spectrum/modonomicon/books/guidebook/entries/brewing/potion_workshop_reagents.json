@@ -314,7 +314,7 @@
       "anchor": "bone_ash",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.brewing.potion_workshop_reagents.page30.text"
     }

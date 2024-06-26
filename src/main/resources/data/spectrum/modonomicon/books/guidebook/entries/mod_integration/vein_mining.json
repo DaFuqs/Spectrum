@@ -42,7 +42,7 @@
       "type": "spectrum:enchanter_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/blocks/enchanter"
+        "advancement_id": "spectrum:hidden/collect_stratine_gem"
       },
       "text": "book.spectrum.guidebook.mod_integration.vein_mining.page1.text",
       "title1": "book.spectrum.guidebook.mod_integration.vein_mining.page1.title",

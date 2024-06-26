@@ -3,7 +3,7 @@
   "icon": "spectrum:dragonbone",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+    "advancement_id": "spectrum:hidden/collect_dragonbone"
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
@@ -29,7 +29,7 @@
       "type": "modonomicon:spotlight",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "anchor": "dragonbone_chunks",
       "item": {
@@ -41,7 +41,7 @@
       "type": "spectrum:cinderhearth_smelting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.dimension.dragonbone.page2.text",
       "title1": "book.spectrum.guidebook.dimension.dragonbone.page2.title",
@@ -51,7 +51,7 @@
       "type": "spectrum:pedestal_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "recipe_id_1": "spectrum:pedestal/tier1/dragonbone/polished_bone_ash"
     },
@@ -59,7 +59,7 @@
       "type": "spectrum:pedestal_crafting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "recipe_id_1": "spectrum:pedestal/tier1/dragonbone/bone_ash_shingles"
     },
@@ -87,7 +87,7 @@
       "type": "spectrum:cinderhearth_smelting",
       "condition": {
         "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_id": "spectrum:hidden/collect_dragonbone"
       },
       "text": "book.spectrum.guidebook.dimension.dragonbone.page6.text",
       "title1": "book.spectrum.guidebook.dimension.dragonbone.page6.title",

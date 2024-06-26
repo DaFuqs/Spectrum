@@ -190,11 +190,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity, world).orElse(null);
 	}
 	
-	// calculate the max amount of items that will be crafted
-	// note that we only check each ingredient once, if a match was found
-	// custom recipes therefore should not use items / tags that match multiple items
-	// at once, since we can not rely on positions in a grid like vanilla does
-	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		recipe.craft(world, fusionShrineBlockEntity);
 		
@@ -208,7 +203,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
 		fusionShrineBlockEntity.fluidStorage.amount = 0;
 		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-		
 	}
 
 	@Override

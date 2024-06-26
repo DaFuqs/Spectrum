@@ -78,7 +78,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Only tests the items. The required fluid has to be tested manually by the crafting block
+	 * Only tests the items.
+	 * The required fluid has to be tested manually by the crafting block.
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
@@ -125,8 +126,8 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	}
 	
 	/**
-	 * Returns a boolean depending on if the recipes condition is set
-	 * This can be always true, a specific day or moon phase, or weather.
+	 * Returns a boolean depending on if the recipe condition is met.
+	 * This can always be true, a specific day or moon phase, or weather.
 	 */
 	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
 		for (WorldConditionPredicate worldCondition : this.worldConditions) {

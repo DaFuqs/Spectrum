@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.predicate.world.*;
 import de.dafuqs.spectrum.recipe.*;
@@ -191,6 +192,10 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE_ID;
 	}
 	
+	// calculate the max number of items that will be crafted.
+	// note that we only check each ingredient once if a match was found.
+	// custom recipes therefore should not use items / tags that match multiple items
+	// at once, since we cannot rely on positions in a grid like vanilla does in its crafting table.
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		ItemStack firstStack = ItemStack.EMPTY;
 		
@@ -232,14 +237,16 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		}
 
 		if (this.copyNbt) {
-			// this overrides all nbt data, that are not nested compounds (like lists)
+			// this overrides all nbt data, that are not nested compounds (like lists)...
 			NbtCompound sourceNbt = firstStack.getNbt();
 			if (sourceNbt != null) {
-				sourceNbt = sourceNbt.copy();
-				sourceNbt.remove(ItemStack.DAMAGE_KEY);
-				output.setNbt(sourceNbt);
-				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
-				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output.copy(), false, false, output, firstStack);
+				ItemStack modifiedOutput = output.copy();
+				NbtCompound modifiedNbt = sourceNbt.copy();
+				NbtHelper.mergeNbt(modifiedNbt, sourceNbt);
+				modifiedNbt.remove(ItemStack.DAMAGE_KEY);
+				modifiedOutput.setNbt(modifiedNbt);
+				// ...therefore, we need to restore all previous enchantments that the original item had and are still applicable to the new item
+				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(modifiedOutput, false, false, output, firstStack);
 			}
 		}
 		

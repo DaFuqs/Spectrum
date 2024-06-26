@@ -153,34 +153,33 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 	public FusionShrineRecipeWorldEffect getWorldEffectForTick(int tick, int totalTicks) {
 		if (tick == 1) {
 			return this.startWorldEffect;
-		} else if (tick == totalTicks) {
-			return this.finishWorldEffect;
-		} else {
-			if (this.duringWorldEffects.size() == 0) {
-				return null;
-			} else if (this.duringWorldEffects.size() == 1) {
-				return this.duringWorldEffects.get(0);
-			} else {
-				// we really have to calculate the current effect, huh?
-				float parts = (float) totalTicks / this.duringWorldEffects.size();
-				int index = (int) (tick / (parts));
-				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if (effect.isOneTimeEffect()) {
-					if (index != (int) parts) {
-						return null;
-					}
-				}
-				return effect;
-			}
 		}
+		if (tick == totalTicks) {
+			return this.finishWorldEffect;
+		}
+		if (this.duringWorldEffects.isEmpty()) {
+			return null;
+		}
+		if (this.duringWorldEffects.size() == 1) {
+			return this.duringWorldEffects.get(0);
+		}
+		
+		// we really have to calculate the current effect, huh?
+		float parts = (float) totalTicks / this.duringWorldEffects.size();
+		int index = (int) (tick / (parts));
+		FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
+		if (effect.isOneTimeEffect() && index != (int) parts) {
+			return null;
+		}
+		
+		return effect;
 	}
 	
 	public Optional<Text> getDescription() {
 		if (this.description == null) {
 			return Optional.empty();
-		} else {
-			return Optional.of(this.description);
 		}
+		return Optional.of(this.description);
 	}
 
 	@Override

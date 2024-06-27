@@ -64,6 +64,7 @@
     "ServerPlayNetworkHandlerMixin$NetworkEntityValidationMixin",
     "ServerWorldMixin",
     "ShearsDispenserBehaviorMixin",
+    "SugarCaneBlockMixin",
     "TemptGoalMixin",
     "TridentEntityMixin",
     "WalkNodeProcessorMixin",

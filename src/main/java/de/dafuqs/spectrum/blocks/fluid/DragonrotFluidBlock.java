@@ -4,12 +4,14 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.Nullable;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	
@@ -39,43 +41,20 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
-	
-	/**
-	 * @param world The world
-	 * @param pos   The position in the world
-	 * @param state BlockState of the mud. Included the height/fluid level
-	 * @return Dunno, actually. I just mod things.
-	 */
-	public boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
-		for (Direction direction : Direction.values()) {
-			BlockPos blockPos = pos.offset(direction);
-			if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-				world.setBlockState(pos, SpectrumBlocks.SLUSH.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			} else if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-				world.setBlockState(pos, Blocks.BLACKSTONE.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MUD)) {
-				world.setBlockState(pos, Blocks.MUD.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-				world.setBlockState(pos, SpectrumBlocks.ROTTEN_GROUND.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			} else if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-				world.setBlockState(pos, SpectrumBlocks.BLACK_SLUDGE.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			}
+
+	public @Nullable BlockState handleFluidCollision(World world, FluidState state, FluidState otherState) {
+		if (otherState.isIn(FluidTags.WATER)) {
+			return SpectrumBlocks.SLUSH.getDefaultState();
+		} else if (otherState.isIn(FluidTags.LAVA)) {
+			return Blocks.BLACKSTONE.getDefaultState();
+		} else if (otherState.isIn(SpectrumFluidTags.MUD)) {
+			return Blocks.MUD.getDefaultState();
+		} else if (otherState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
+			return SpectrumBlocks.ROTTEN_GROUND.getDefaultState();
+		} else if (otherState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+			return SpectrumBlocks.BLACK_SLUDGE.getDefaultState();
 		}
-		return true;
-	}
-	
-	private void playExtinguishSound(WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+		return null;
 	}
 	
 }

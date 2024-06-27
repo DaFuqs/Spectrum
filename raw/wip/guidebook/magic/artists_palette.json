@@ -3,7 +3,7 @@
   "advancement": "spectrum:unlocks/trinkets/artists_palette",
   "secret": true,
   "icon": "spectrum:artists_palette",
-  "category": "spectrum:magic",
+  "category": "spectrum:ink",
   "extra_recipe_mappings": {
     "spectrum:artists_palette": 0
   },

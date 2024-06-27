@@ -1,15 +1,15 @@
 {
-  "name": "book.spectrum.guidebook.magic.pigment_palette.name",
+  "name": "book.spectrum.guidebook.ink.pigment_palette.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/pigment_palette"
   },
   "icon": "spectrum:pigment_palette",
-  "category": "spectrum:magic",
+  "category": "spectrum:ink",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:magic/color_picker",
+      "entry": "spectrum:ink/color_picker",
       "line_reversed": true
     }
   ],
@@ -20,14 +20,14 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magic.pigment_palette.page0.text",
-      "title": "book.spectrum.guidebook.magic.pigment_palette.page0.title"
+      "text": "book.spectrum.guidebook.ink.pigment_palette.page0.text",
+      "title": "book.spectrum.guidebook.ink.pigment_palette.page0.title"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title1": "book.spectrum.guidebook.magic.pigment_palette.page1.title",
+      "title1": "book.spectrum.guidebook.ink.pigment_palette.page1.title",
       "recipe_id_1": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "book.spectrum.guidebook.magic.pigment_palette.page1.text"
+      "text": "book.spectrum.guidebook.ink.pigment_palette.page1.text"
     }
   ]
 }

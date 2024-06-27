@@ -5,11 +5,11 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/cinderhearth"
   },
-  "category": "spectrum:magic",
+  "category": "spectrum:ink",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:magic/color_picker",
+      "entry": "spectrum:ink/color_picker",
       "line_reversed": true
     }
   ],

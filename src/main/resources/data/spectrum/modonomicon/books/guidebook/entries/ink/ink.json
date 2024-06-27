@@ -1,11 +1,11 @@
 {
-  "name": "book.spectrum.guidebook.magic.ink.name",
+  "name": "book.spectrum.guidebook.ink.ink.name",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/items/basic_ink_storage_items"
   },
   "icon": "spectrum:ink_flask",
-  "category": "spectrum:magic",
+  "category": "spectrum:ink",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
@@ -15,26 +15,26 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magic.ink.page0.text",
-      "title": "book.spectrum.guidebook.magic.ink.page0.title"
+      "text": "book.spectrum.guidebook.ink.ink.page0.text",
+      "title": "book.spectrum.guidebook.ink.ink.page0.title"
     },
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.magic.ink.page1.title",
-      "text": "book.spectrum.guidebook.magic.ink.page1.text"
+      "title": "book.spectrum.guidebook.ink.ink.page1.title",
+      "text": "book.spectrum.guidebook.ink.ink.page1.text"
     },
     {
       "type": "modonomicon:image",
-      "title": "book.spectrum.guidebook.magic.ink.page2.title",
+      "title": "book.spectrum.guidebook.ink.ink.page2.title",
       "anchor": "transfer",
       "images": [
         "spectrum:textures/gui/guidebook/ink_transfer.png"
       ],
-      "text": "book.spectrum.guidebook.magic.ink.page2.text"
+      "text": "book.spectrum.guidebook.ink.ink.page2.text"
     },
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.magic.ink.page3.text"
+      "text": "book.spectrum.guidebook.ink.ink.page3.text"
     }
   ]
 }

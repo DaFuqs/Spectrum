@@ -147,8 +147,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumPotions.register();
 		SpectrumItems.register();
 		SpectrumItemGroups.register();
-		logInfo("Setting up server side Mod Compat...");
-		SpectrumIntegrationPacks.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
 		
@@ -177,6 +175,9 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootConditionTypes.register();
 		SpectrumLootFunctionTypes.register();
+		
+		logInfo("Setting up server side Mod Compat...");
+		SpectrumIntegrationPacks.register();
 		
 		// GUI
 		logInfo("Registering Screen Handler Types...");

@@ -4,14 +4,14 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
@@ -43,8 +43,8 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 			world.addParticle(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
-
-	public @Nullable BlockState handleFluidCollision(World world, FluidState state, FluidState otherState) {
+	
+	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
 		if (otherState.isIn(FluidTags.WATER)) {
 			return state.isStill() ? SpectrumBlocks.FROSTBITE_CRYSTAL.getDefaultState() : Blocks.CALCITE.getDefaultState();
 		}

@@ -100,8 +100,8 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		}
 		return true;
 	}
-
-	public @Nullable BlockState handleFluidCollision(World world, FluidState state, FluidState otherState) {
+	
+	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
 		if (otherState.isIn(FluidTags.LAVA)) return Blocks.TERRACOTTA.getDefaultState();
 		return null;
 	}

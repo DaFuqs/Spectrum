@@ -39,7 +39,7 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create-fabric";
 
 	@SuppressWarnings("Convert2MethodRef")
-    public static void register() {
+	public static void register() {
 		registerIntegrationPack(AE2_ID, () -> new AE2Compat());
 		registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
 		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());

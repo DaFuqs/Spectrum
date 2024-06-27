@@ -29,7 +29,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 3,
-  "y": 0,
+  "y": 2,
   "pages": [
     {
       "type": "spectrum:nbt_spotlight",

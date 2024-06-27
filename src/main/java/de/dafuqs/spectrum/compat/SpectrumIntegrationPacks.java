@@ -36,7 +36,7 @@ public class SpectrumIntegrationPacks {
 	public static final String TRAVELERS_BACKPACK_ID = "travelersbackpack";
 	public static final String BOTANIA_ID = "botania";
 	public static final String MODONOMICON_ID = "modonomicon";
-	public static final String CREATE_ID = "create-fabric";
+	public static final String CREATE_ID = "create";
 
 	@SuppressWarnings("Convert2MethodRef")
 	public static void register() {

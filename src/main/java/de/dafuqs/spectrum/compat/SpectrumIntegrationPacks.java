@@ -39,13 +39,13 @@ public class SpectrumIntegrationPacks {
 	public static final String CREATE_ID = "create-fabric";
 	
 	public static void register() {
-		registerIntegrationPack(AE2_ID, AE2Compat::new);
-		registerIntegrationPack(GOBBER_ID, GobberCompat::new);
-		registerIntegrationPack(ALLOY_FORGERY_ID, AlloyForgeryCompat::new);
-		registerIntegrationPack(TRAVELERS_BACKPACK_ID, TravelersBackpackCompat::new);
-		registerIntegrationPack(BOTANIA_ID, BotaniaCompat::new);
-		registerIntegrationPack(MODONOMICON_ID, ModonomiconCompat::new);
-		registerIntegrationPack(CREATE_ID, CreateCompat::new);
+		registerIntegrationPack(AE2_ID, () -> new AE2Compat());
+		registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
+		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
+		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
+		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
+		registerIntegrationPack(MODONOMICON_ID, () -> new ModonomiconCompat());
+		registerIntegrationPack(CREATE_ID, () -> new CreateCompat());
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

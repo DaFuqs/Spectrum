@@ -85,7 +85,7 @@ dependencies {
 	implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}"))
 
 	// Connect to local dev servers
-	modLocalRuntime("curse.maven:authme-356643:4629826")
+	modLocalRuntime("maven.modrinth:auth-me:7.0.2+1.20")
 
 	// Mod Compat
 	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }

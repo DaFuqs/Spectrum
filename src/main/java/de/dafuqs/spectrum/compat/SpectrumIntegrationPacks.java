@@ -33,8 +33,8 @@ public class SpectrumIntegrationPacks {
 	public static final String AE2_ID = "ae2";
 	public static final String GOBBER_ID = "gobber2";
 	public static final String ALLOY_FORGERY_ID = "alloy_forgery";
-	public static final String CREATE_ID = "create-fabric";
-	
+	public static final String CREATE_ID = "create";
+
 	@SuppressWarnings("Convert2MethodRef")
 	public static void register() {
 		registerIntegrationPack(AE2_ID, () -> new AE2Compat());

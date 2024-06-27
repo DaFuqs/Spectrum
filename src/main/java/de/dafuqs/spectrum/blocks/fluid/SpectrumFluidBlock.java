@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.fluid;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.fluid.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
@@ -58,7 +59,45 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 		
 		super.onBlockAdded(state, world, pos, oldState, notify);
 	}
-	
-	abstract boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state);
+
+	/**
+	 * @param world The world, because why not?
+	 * @param state FluidState of this fluid.
+	 * @param otherState FluidState of the other fluid.
+	 * @return BlockState to be placed at the collision position.
+	 * @implNote Triggers the extinguish sound if result is not null.
+	 */
+	public abstract BlockState handleFluidCollision(World world, FluidState state, FluidState otherState);
+
+	public void fireExtinguishEvent(WorldAccess world, BlockPos pos) {
+		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+	}
+
+	/**
+	 * @param world The world
+	 * @param pos   The position in the world
+	 * @param state BlockState of the block at pos [normally assumed to be this fluid].
+	 * @return Dunno, actually. I just mod things.
+	 * @implNote Provides generic behavior for fluid collision. Extend/override for more advanced behaviors.
+	 */
+	public boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
+		// Shouldn't happen but check anyway
+		// If it IS true then do nothing, since no interaction can take place at this position
+		final FluidState fluidState = state.getFluidState();
+		if (fluidState == null || fluidState.isEmpty()) return true;
+
+		for (Direction direction : Direction.values()) {
+			final FluidState otherState = world.getFluidState(pos.offset(direction));
+			if (otherState == null || otherState.isEmpty()) continue;
+
+			final BlockState setState = handleFluidCollision(world, fluidState, otherState);
+			if (setState != null) {
+				this.fireExtinguishEvent(world, pos);
+				world.setBlockState(pos, setState);
+				return false;
+			}
+		}
+		return true;
+	}
 	
 }

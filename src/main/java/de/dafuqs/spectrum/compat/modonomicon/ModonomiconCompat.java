@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.compat.*;
 import de.dafuqs.spectrum.compat.modonomicon.client.pages.*;
+import de.dafuqs.spectrum.compat.modonomicon.page_types.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
 import de.dafuqs.spectrum.compat.modonomicon.unlock_conditions.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
@@ -24,7 +25,9 @@ import net.minecraft.recipe.*;
 import net.minecraft.util.*;
 
 public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPack {
-
+    
+    public static final Identifier ENTRY_LINK_PAGE_TYPE = SpectrumCommon.locate("entry_link");
+    
     public static final Identifier ANVIL_CRUSHING_PAGE = SpectrumCommon.locate("anvil_crushing");
     public static final Identifier PEDESTAL_CRAFTING_PAGE = SpectrumCommon.locate("pedestal_crafting");
     public static final Identifier FUSION_SHRINE_CRAFTING_PAGE = SpectrumCommon.locate("fusion_shrine_crafting");
@@ -59,6 +62,8 @@ public class ModonomiconCompat extends SpectrumIntegrationPacks.ModIntegrationPa
     }
     
     public void registerPages() {
+        LoaderRegistry.registerEntryType(ENTRY_LINK_PAGE_TYPE, EntryLinkBookEntry::fromJson, EntryLinkBookEntry::fromNetwork);
+        
         registerGatedRecipePage(ANVIL_CRUSHING_PAGE, SpectrumRecipeTypes.ANVIL_CRUSHING);
         registerGatedRecipePage(PEDESTAL_CRAFTING_PAGE, SpectrumRecipeTypes.PEDESTAL);
         registerGatedRecipePage(FUSION_SHRINE_CRAFTING_PAGE, SpectrumRecipeTypes.FUSION_SHRINE);

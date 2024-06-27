@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.ae2.*;
 import de.dafuqs.spectrum.compat.alloy_forgery.*;
 import de.dafuqs.spectrum.compat.botania.*;
+import de.dafuqs.spectrum.compat.create.CreateCompat;
 import de.dafuqs.spectrum.compat.gobber.*;
 import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.compat.travelersbackpack.*;
@@ -35,14 +36,16 @@ public class SpectrumIntegrationPacks {
 	public static final String TRAVELERS_BACKPACK_ID = "travelersbackpack";
 	public static final String BOTANIA_ID = "botania";
 	public static final String MODONOMICON_ID = "modonomicon";
+	public static final String CREATE_ID = "create-fabric";
 	
 	public static void register() {
-		registerIntegrationPack(AE2_ID, () -> new AE2Compat());
-		registerIntegrationPack(GOBBER_ID, () -> new GobberCompat());
-		registerIntegrationPack(ALLOY_FORGERY_ID, () -> new AlloyForgeryCompat());
-		registerIntegrationPack(TRAVELERS_BACKPACK_ID, () -> new TravelersBackpackCompat());
-		registerIntegrationPack(BOTANIA_ID, () -> new BotaniaCompat());
-		registerIntegrationPack(MODONOMICON_ID, () -> new ModonomiconCompat());
+		registerIntegrationPack(AE2_ID, AE2Compat::new);
+		registerIntegrationPack(GOBBER_ID, GobberCompat::new);
+		registerIntegrationPack(ALLOY_FORGERY_ID, AlloyForgeryCompat::new);
+		registerIntegrationPack(TRAVELERS_BACKPACK_ID, TravelersBackpackCompat::new);
+		registerIntegrationPack(BOTANIA_ID, BotaniaCompat::new);
+		registerIntegrationPack(MODONOMICON_ID, ModonomiconCompat::new);
+		registerIntegrationPack(CREATE_ID, CreateCompat::new);
 		
 		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();

@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:entry_link",
+  "entry_to_open": "spectrum:general/shards",
+
+  "name": "book.spectrum.guidebook.general.shards.name",
+  "icon": "minecraft:amethyst_shard",
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0
+}

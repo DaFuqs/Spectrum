@@ -7,7 +7,14 @@
   "icon": "spectrum:particle_spawner",
   "category": "spectrum:decoration",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:decoration/pigment"
+    },
+    {
+      "entry": "spectrum:decoration/stargazing"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 8,

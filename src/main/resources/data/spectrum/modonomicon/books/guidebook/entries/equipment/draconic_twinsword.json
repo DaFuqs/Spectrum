@@ -3,7 +3,7 @@
   "icon": "spectrum:draconic_twinsword",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:unlocks/items/draconic_twinsword"
+    "advancement_id": "spectrum:unlocks/equipment/draconic_twinsword"
   },
   "category": "spectrum:equipment",
   "hide_while_locked ": true,

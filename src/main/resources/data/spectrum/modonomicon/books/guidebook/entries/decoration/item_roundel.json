@@ -7,10 +7,14 @@
   "icon": "spectrum:item_roundel",
   "category": "spectrum:decoration",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:decoration/block_variants"
+    }
+  ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
+  "x": 2,
   "y": 4,
   "pages": [
     {

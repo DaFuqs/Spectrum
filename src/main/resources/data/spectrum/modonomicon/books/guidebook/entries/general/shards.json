@@ -9,7 +9,7 @@
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 2,
   "y": 0,
   "turnin": "spectrum:collect_all_basic_shards",

@@ -7,9 +7,14 @@
   },
   "category": "spectrum:general",
   "hide_while_locked ": true,
-  "parents": [],
+  "parents": [
+    {
+      "entry": "spectrum:general/moonstone_shards",
+      "line_reversed": true
+    }
+  ],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 19,
   "y": 12,
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",

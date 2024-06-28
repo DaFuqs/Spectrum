@@ -5,17 +5,19 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/shards"
+      "entry": "spectrum:general/shards",
+      "line_reversed": true
     },
     {
-      "entry": "spectrum:general/paintbrush"
+      "entry": "spectrum:general/paintbrush",
+      "line_reversed": true
     },
     {
       "entry": "spectrum:general/gemstone_powder"
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 6,
   "y": 1,
   "turnin": "spectrum:craft_using_pedestal",

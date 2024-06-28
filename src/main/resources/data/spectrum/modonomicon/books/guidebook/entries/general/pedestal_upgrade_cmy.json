@@ -9,8 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/pedestal",
-      "line_reversed": true
+      "entry": "spectrum:general/pedestal"
     },
     {
       "entry": "spectrum:general/shards",
@@ -18,7 +17,7 @@
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 8,
   "y": 0,
   "turnin": "spectrum:build_basic_pedestal_structure",

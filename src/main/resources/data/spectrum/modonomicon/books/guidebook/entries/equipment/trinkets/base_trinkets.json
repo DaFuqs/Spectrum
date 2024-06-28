@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 10,
   "y": 0,
   "pages": [
@@ -62,15 +62,6 @@
       },
       "title1": "book.spectrum.guidebook.equipment.base_trinkets.page5.title",
       "recipe_id_1": "spectrum:pedestal/tier3/trinkets/fanciful_gloves"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"
-      },
-      "title1": "book.spectrum.guidebook.equipment.base_trinkets.page6.title",
-      "recipe_id_1": "spectrum:pedestal/tier4/fanciful_bismuth_ring"
     }
   ]
 }

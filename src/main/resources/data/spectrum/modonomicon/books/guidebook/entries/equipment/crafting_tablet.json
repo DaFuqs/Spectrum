@@ -11,7 +11,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 0,
-  "y": 12,
+  "y": -2,
   "pages": [
     {
       "type": "spectrum:pedestal_crafting",

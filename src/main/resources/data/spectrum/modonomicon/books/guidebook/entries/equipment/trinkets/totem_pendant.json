@@ -9,13 +9,14 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:equipment/trinkets/base_trinkets"
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 13,
-  "y": 9,
+  "x": 12,
+  "y": 1,
   "pages": [
     {
       "type": "modonomicon:text",

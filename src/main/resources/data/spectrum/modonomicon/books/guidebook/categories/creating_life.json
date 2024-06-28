@@ -4,7 +4,7 @@
   "sort_number": 9,
   "show_category_button": true,
 
-  "entry_textures": "modonomicon:textures/gui/entry_textures.png",
+  "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",
   "background": "modonomicon:textures/gui/dark_slate_seamless.png",
   "background_width": 512,
   "background_height": 512,

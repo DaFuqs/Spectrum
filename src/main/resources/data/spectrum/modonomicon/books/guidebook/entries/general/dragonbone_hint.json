@@ -4,7 +4,7 @@
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 5,
   "x": 30,
   "y": 8,
   "icon": "minecraft:writable_book",

@@ -16,7 +16,7 @@ repositories {
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/" } // Modmenu, EMI
 	maven { url = "https://maven.nucleoid.xyz/" } // Common Protection API
-	maven { url = "https://maven.blamejared.com" } // Patchouli
+	maven { url = "https://maven.blamejared.com" } // JEI
 	maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components API
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release/" } // Entity Reach Attribute
 	maven { url = "https://api.modrinth.com/maven" } // Revelationary, Additional Entity Attributes, Fractal Lib, Colorful Hearts, idwtialsimmoedm
@@ -61,9 +61,7 @@ dependencies {
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly("dev.emi:emi-fabric:${emi_version}") // https://github.com/emilyploszaj/emi
 	// https://github.com/klikli-dev/modonomicon
-	modImplementation ("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") {
-		exclude(group: "com.klikli_dev")
-	}
+	modImplementation("com.klikli_dev:modonomicon-${project.minecraft_version}-fabric:${project.modonomicon_version}") { exclude(group: "com.klikli_dev") }
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -85,13 +83,12 @@ dependencies {
 	implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixin_extras_version}"))
 
 	// Connect to local dev servers
-	modLocalRuntime("maven.modrinth:auth-me:7.0.2+1.20")
+	modLocalRuntime("maven.modrinth:auth-me:${project.auth_me_version}")
 
 	// Mod Compat
 	modCompileOnly("maven.modrinth:colorful-hearts:${project.colorful_hearts_version}") { transitive = false }
 	modCompileOnly("maven.modrinth:sodium:${project.sodium_version}") { transitive = false }
 	modCompileOnly("com.unascribed:ears-api:${project.ears_version}")
-	// modCompileOnly("maven.modrinth:enchantment-descriptions:${project.enchantment_descriptions_version}")
 	modCompileOnly("maven.modrinth:travelersbackpack:${project.travelers_backpack_version}")
 	modCompileOnly("maven.modrinth:botania:${project.botania_version}")
 	modImplementation("maven.modrinth:idwtialsimmoedm:${project.idwtialsimmoedm_version}")

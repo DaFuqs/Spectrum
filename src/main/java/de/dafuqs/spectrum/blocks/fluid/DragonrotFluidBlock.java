@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class DragonrotFluidBlock extends SpectrumFluidBlock {
@@ -42,7 +43,7 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 		return false;
 	}
 
-	public @Nullable BlockState handleFluidCollision(World world, FluidState state, FluidState otherState) {
+	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
 		if (otherState.isIn(FluidTags.WATER)) {
 			return SpectrumBlocks.SLUSH.getDefaultState();
 		} else if (otherState.isIn(FluidTags.LAVA)) {

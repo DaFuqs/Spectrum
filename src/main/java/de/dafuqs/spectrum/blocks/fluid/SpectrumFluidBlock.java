@@ -8,6 +8,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class SpectrumFluidBlock extends FluidBlock {
@@ -68,7 +69,7 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 	 * @return BlockState to be placed at the collision position. [null means no collision]
 	 * @implNote Triggers the extinguish sound if result is not null.
 	 */
-	public abstract @Nullable BlockState handleFluidCollision(World world, FluidState state, FluidState otherState);
+	public abstract @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState);
 
 	public void fireExtinguishEvent(WorldAccess world, BlockPos pos) {
 		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);

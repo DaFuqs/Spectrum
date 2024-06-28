@@ -18,8 +18,8 @@
       "text": "book.spectrum.guidebook.magical_items.draconic_twinsword.page0.text"
     },
     {
-      "type": "spectrum:pedestal_crafting",
-      "recipe_id_1": "spectrum:pedestal/tier3/draconic_twinsword"
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe_id_1": "spectrum:fusion_shrine/draconic_twinsword"
     },
     {
       "type": "modonomicon:text",

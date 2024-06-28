@@ -29,7 +29,7 @@ public class ModonomiconHelper {
 	
 	/**
 	 * Clears multiblock if the currently rendered one matches the one in the argument
-	 * If null is passed, any multiblock is being cleared
+	 * If null is passed, any multiblock will get cleared
 	 */
 	public static void clearRenderedMultiblock(@Nullable Multiblock multiblock) {
 		Multiblock currentlyRenderedMultiblock = MultiblockPreviewRenderer.getMultiblock();

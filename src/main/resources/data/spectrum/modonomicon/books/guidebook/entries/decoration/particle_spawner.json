@@ -9,7 +9,8 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:decoration/pigment"
+      "entry": "spectrum:decoration/pigment",
+      "line_reversed": true
     },
     {
       "entry": "spectrum:decoration/stargazing"
@@ -17,8 +18,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 8,
-  "y": 4,
+  "x": 5,
+  "y": 8,
   "pages": [
     {
       "type": "modonomicon:text",

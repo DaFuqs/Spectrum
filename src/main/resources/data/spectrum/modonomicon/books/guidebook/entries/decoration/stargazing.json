@@ -8,11 +8,11 @@
     "advancement_id": "spectrum:milestones/unlock_shooting_stars"
   },
   "icon": "spectrum:colorful_shooting_star",
-  "category": "spectrum:general",
+  "category": "spectrum:decoration",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
-  "background_v_index": 0,
-  "x": 4,
-  "y": 13
+  "background_v_index": 260,
+  "x": 3,
+  "y": 8
 }

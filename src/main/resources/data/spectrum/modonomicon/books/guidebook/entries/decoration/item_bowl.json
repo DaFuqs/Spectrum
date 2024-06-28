@@ -14,8 +14,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 4,
+  "x": 6,
+  "y": 0,
   "pages": [
     {
       "type": "spectrum:collection",

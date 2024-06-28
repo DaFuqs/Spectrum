@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:decoration/shards"
+      "entry": "spectrum:decoration/shimmerstone"
     },
     {
       "entry": "spectrum:decoration/block_variants"
@@ -17,8 +17,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 2,
-  "y": 6,
+  "x": 4,
+  "y": 3,
   "pages": [
     {
       "type": "spectrum:collection",

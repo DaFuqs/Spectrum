@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/failing"
+      "entry": "spectrum:general/neolith"
     },
     {
       "entry": "spectrum:general/liquid_crystal"
@@ -18,7 +18,7 @@
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 24,
-  "y": 0,
+  "y": 1,
   "turnin": "spectrum:midgame/create_midnight_aberration",
   "pages": [
     {

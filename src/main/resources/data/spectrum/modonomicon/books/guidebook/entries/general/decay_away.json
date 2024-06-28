@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/failing"
+      "entry": "spectrum:general/neolith"
     },
     {
       "entry": "spectrum:general/azurite"
@@ -17,8 +17,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 20,
+  "x": 22,
+  "y": -1,
   "pages": [
     {
       "title": "book.spectrum.guidebook.creating_life.decay_away.page0.title",

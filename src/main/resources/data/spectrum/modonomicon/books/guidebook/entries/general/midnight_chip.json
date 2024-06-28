@@ -14,8 +14,8 @@
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 20,
+  "x": 25,
+  "y": 0,
   "turnin": "spectrum:midgame/collect_midnight_chip",
   "pages": [
     {

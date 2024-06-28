@@ -11,8 +11,8 @@
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 20,
+  "x": 4,
+  "y": 10,
   "pages": [
     {
       "type": "modonomicon:spotlight",

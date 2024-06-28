@@ -19,9 +19,9 @@
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 0,
-  "x": 0,
-  "y": 20,
+  "background_v_index": 1,
+  "x": 8,
+  "y": 13,
   "pages": [
     {
       "type": "modonomicon:spotlight",

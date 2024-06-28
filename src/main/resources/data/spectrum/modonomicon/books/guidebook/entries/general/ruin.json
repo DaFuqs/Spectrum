@@ -9,13 +9,13 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/midnight_solution"
+      "entry": "spectrum:general/midnight_chip"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 0,
-  "y": 20,
+  "x": 27,
+  "y": 0,
   "turnin": "spectrum:midgame/break_decayed_bedrock",
   "pages": [
     {

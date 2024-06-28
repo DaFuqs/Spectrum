@@ -8,7 +8,7 @@
   "background_v_index": 0,
   "description": "book.spectrum.guidebook.general.intro.description",
   "x": -2,
-  "y": -2,
+  "y": -3,
   "pages": [
     {
       "type": "modonomicon:image",

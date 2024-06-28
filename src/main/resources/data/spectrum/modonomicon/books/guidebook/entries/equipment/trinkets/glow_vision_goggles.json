@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:equipment/base_trinkets"
+      "entry": "spectrum:equipment/trinkets/base_trinkets"
     }
   ],
   "background_u_index": 0,

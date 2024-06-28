@@ -11,11 +11,15 @@
     {
       "entry": "spectrum:ink/color_picker",
       "line_reversed": true
+    },
+    {
+      "entry": "spectrum:ink/pure_resources",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 4,
+  "x": 2,
   "y": 3,
   "pages": [
     {

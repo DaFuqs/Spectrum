@@ -4,14 +4,14 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/malachite/glass_arrows"
   },
-  "icon": "spectrum:amethyst_glass_arrow",
+  "icon": "spectrum:malachite_glass_arrow",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 1,
-  "y": 6,
+  "x": 3,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -21,26 +21,31 @@
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page1.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow"
+      "recipe_id_1": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page2.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow"
+      "recipe_id_1": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page3.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow"
+      "recipe_id_1": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page4.text",
-      "recipe_id_1": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow"
+      "recipe_id_1": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "text": "book.spectrum.guidebook.equipment.glass_arrows.page5.text",
+      "recipe_id_1": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.glass_arrows.page6.text",
       "recipe_id_1": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow"
     }
   ]

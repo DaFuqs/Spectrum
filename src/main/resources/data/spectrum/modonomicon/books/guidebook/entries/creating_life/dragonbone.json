@@ -5,20 +5,13 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/collect_dragonbone"
   },
-  "category": "spectrum:general",
+  "category": "spectrum:creating_life",
   "hide_while_locked ": true,
-  "parents": [
-    {
-      "entry": "spectrum:dimension/delving_deeper_down"
-    },
-    {
-      "entry": "spectrum:dimension/dragonrot_swamp"
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
   "x": 5,
-  "y": 7,
+  "y": 0,
   "pages": [
     {
       "type": "modonomicon:text",

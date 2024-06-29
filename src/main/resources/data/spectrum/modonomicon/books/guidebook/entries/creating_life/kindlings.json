@@ -5,18 +5,20 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/blocks/kindling_memory"
   },
-  "category": "spectrum:general",
+  "category": "spectrum:creating_life",
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:general/dragonbone",
-      "line_reversed": true
+      "entry": "spectrum:creating_life/dragonbone"
+    },
+    {
+      "entry": "spectrum:creating_life/memories"
     }
   ],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 6,
-  "y": 6,
+  "x": 5,
+  "y": 2,
   "pages": [
     {
       "type": "modonomicon:text",
@@ -48,10 +50,6 @@
       "scale": 0.45,
       "offset": 0.5,
       "text": "book.spectrum.guidebook.creating_life.kindlings.page3.text"
-    },
-    {
-      "type": "modonomicon:empty",
-      "anchor": "effulgent_feather"
     }
   ]
 }

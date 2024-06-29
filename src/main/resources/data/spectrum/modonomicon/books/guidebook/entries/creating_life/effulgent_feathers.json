@@ -1,0 +1,25 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.effulgent_feathers.name",
+  "icon": "spectrum:effulgent_feather",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/kindling_memory"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/kindlings"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:empty",
+      "anchor": "effulgent_feather"
+    }
+  ]
+}

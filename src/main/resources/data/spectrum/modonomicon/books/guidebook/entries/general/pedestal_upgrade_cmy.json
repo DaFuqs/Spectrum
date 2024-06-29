@@ -18,7 +18,7 @@
   ],
   "background_u_index": 0,
   "background_v_index": 1,
-  "x": 8,
+  "x": -2,
   "y": 0,
   "turnin": "spectrum:build_basic_pedestal_structure",
   "pages": [

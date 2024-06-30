@@ -12,6 +12,7 @@ public class SpectrumStrippableBlocks {
 		StrippableBlockRegistry.register(SpectrumBlocks.EBONY_NOXCAP_STEM, SpectrumBlocks.STRIPPED_EBONY_NOXCAP_STEM);
 		StrippableBlockRegistry.register(SpectrumBlocks.IVORY_NOXCAP_STEM, SpectrumBlocks.STRIPPED_IVORY_NOXCAP_STEM);
 		StrippableBlockRegistry.register(SpectrumBlocks.CHESTNUT_NOXCAP_STEM, SpectrumBlocks.STRIPPED_CHESTNUT_NOXCAP_STEM);
+		StrippableBlockRegistry.register(SpectrumBlocks.GALA_LOG, SpectrumBlocks.STRIPPED_GALA_LOG);
 		
 		for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 			StrippableBlockRegistry.register(ColoredLogBlock.byColor(dyeColor), ColoredStrippedLogBlock.byColor(dyeColor));

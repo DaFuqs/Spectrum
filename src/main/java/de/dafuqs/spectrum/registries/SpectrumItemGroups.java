@@ -947,6 +947,10 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LANTERN);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LIGHT);
 		entries.add(SpectrumBlocks.CHESTNUT_NOXWOOD_LAMP);
+		entries.add(SpectrumBlocks.GALA_LOG);
+		entries.add(SpectrumBlocks.STRIPPED_GALA_LOG);
+		entries.add(SpectrumBlocks.GALA_PLANKS);
+		entries.add(SpectrumBlocks.GLAZED_PLANKS);
 		entries.add(SpectrumBlocks.SMALL_RED_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG);
 		entries.add(SpectrumBlocks.SMALL_PINK_DRAGONJAG);

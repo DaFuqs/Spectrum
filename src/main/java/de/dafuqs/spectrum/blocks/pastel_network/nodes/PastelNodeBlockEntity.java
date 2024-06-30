@@ -35,7 +35,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 	public static final int ITEM_FILTER_COUNT = 5;
 	public static final int RANGE = 12;
 	protected PastelNetwork network;
-	protected @Nullable UUID networkUUIDToMerge = null;
+	protected Optional<UUID> parentID = Optional.empty();
 	protected long lastTransferTick = 0;
 	protected final long cachedRedstonePowerTick = 0;
 	protected boolean cachedNoRedstonePower = true;
@@ -68,9 +68,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     public void setWorld(World world) {
         super.setWorld(world);
         if (!world.isClient) {
-            if (this.networkUUIDToMerge != null) {
-                this.network = Pastel.getServerInstance().joinNetwork(this, this.networkUUIDToMerge);
-                this.networkUUIDToMerge = null;
+            if (this.parentID.isPresent()) {
+                this.network = Pastel.getServerInstance().joinNetwork(this, this.parentID.get());
+                this.parentID = Optional.empty();
             } else if (this.network == null) {
                 this.network = Pastel.getServerInstance().joinNetwork(this, null);
             }
@@ -96,7 +96,7 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
         if (nbt.contains("Network")) {
             UUID networkUUID = nbt.getUuid("Network");
             if (this.getWorld() == null) {
-                this.networkUUIDToMerge = networkUUID;
+                this.parentID = Optional.of(networkUUID);
             } else {
                 this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
             }

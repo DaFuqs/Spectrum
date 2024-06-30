@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.data.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
@@ -27,25 +28,27 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
 
     public BookCrystallarieumGrowingPageRenderer(BookGatedRecipePage<CrystallarieumRecipe> page) {
         super(page);
+		
+		Identifier font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
 
         if (catalystText == null) {
-            catalystText = new BookTextHolder(Text.translatable("container.spectrum.modonomicon.crystallarieum.catalyst"));
+			catalystText = new BookTextHolder(Text.translatable("container.spectrum.modonomicon.crystallarieum.catalyst").styled(s -> s.withFont(font)));
         }
 
         if (page.getRecipe1() != null) {
             craftingTimeText1 = new BookTextHolder(Text.translatable(page.getRecipe1().growsWithoutCatalyst()
                     ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
-                    : "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe1().getSecondsPerGrowthStage()));
+					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe1().getSecondsPerGrowthStage()).styled(s -> s.withFont(font)));
         }
 
         if (page.getRecipe2() != null) {
             craftingTimeText2 = new BookTextHolder(Text.translatable(page.getRecipe2().growsWithoutCatalyst()
                     ? "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_optional"
-                    : "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe2().getSecondsPerGrowthStage()));
+					: "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", page.getRecipe2().getSecondsPerGrowthStage()).styled(s -> s.withFont(font)));
         }
     }
-
-    @Override
+	
+	@Override
     protected int getRecipeHeight() {
         return 100;
     }
@@ -78,8 +81,8 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         parentScreen.renderItemStack(drawContext, recipeX + 23, recipeY + 8, mouseX, mouseY, SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(NullableDyeColor.get(recipe.getInkColor().getDyeColor())));
 
         // catalyst text
-        renderBookTextHolder(drawContext, catalystText, 0, 38, BookContentScreen.PAGE_WIDTH);
-        renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 74, BookContentScreen.PAGE_WIDTH);
+		renderBookTextHolder(drawContext, catalystText, 0, 36, BookContentScreen.PAGE_WIDTH);
+		renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 76, BookContentScreen.PAGE_WIDTH);
 
         // the catalysts
         x = 0;

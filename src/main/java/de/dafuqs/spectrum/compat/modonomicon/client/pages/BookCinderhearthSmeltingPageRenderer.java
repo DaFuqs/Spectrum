@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.data.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.compat.modonomicon.pages.*;
@@ -43,6 +44,8 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 
         World world = parentScreen.getMinecraft().world;
         if (world == null) return null;
+        
+        Identifier font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
 
         List<BookTextHolder> chanceTexts = new ArrayList<>();
         List<Pair<ItemStack, Float>> possibleOutputs = recipe.getOutputsWithChance(world.getRegistryManager());
@@ -51,7 +54,7 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
         for (Pair<ItemStack, Float> possibleOutput : possibleOutputs) {
             if (possibleOutput.getRight() < 1.0F) {
                 if (chanceTexts.size() < chanceTextIndex + 1) {
-                    chanceTexts.add(new BookTextHolder(Text.literal(String.format("%f.2%%", possibleOutput.getRight() * 100))));
+                    chanceTexts.add(new BookTextHolder(Text.literal(String.format("%f.2%%", possibleOutput.getRight() * 100)).styled(s -> s.withFont(font))));
                 }
                 chanceTextIndex++;
             }
@@ -62,7 +65,7 @@ public class BookCinderhearthSmeltingPageRenderer extends BookGatedRecipePageRen
 
     @Override
     protected int getRecipeHeight() {
-        return 58;
+        return 54;
     }
 
     @Override

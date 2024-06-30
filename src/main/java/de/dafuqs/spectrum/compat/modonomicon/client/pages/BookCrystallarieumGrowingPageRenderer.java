@@ -81,7 +81,7 @@ public class BookCrystallarieumGrowingPageRenderer extends BookGatedRecipePageRe
         parentScreen.renderItemStack(drawContext, recipeX + 23, recipeY + 8, mouseX, mouseY, SpectrumBlocks.CRYSTALLARIEUM.asStackWithColor(NullableDyeColor.get(recipe.getInkColor().getDyeColor())));
 
         // catalyst text
-		renderBookTextHolder(drawContext, catalystText, 0, 36, BookContentScreen.PAGE_WIDTH);
+        renderBookTextHolder(drawContext, catalystText, 0, 38, BookContentScreen.PAGE_WIDTH);
 		renderBookTextHolder(drawContext, second ? craftingTimeText2 : craftingTimeText1, 0, 76, BookContentScreen.PAGE_WIDTH);
 
         // the catalysts

@@ -9,7 +9,8 @@
   "hide_while_locked ": true,
   "parents": [
     {
-      "entry": "spectrum:creating_life/kindlings"
+      "entry": "spectrum:creating_life/kindlings",
+      "line_reversed": true
     }
   ],
   "background_u_index": 0,

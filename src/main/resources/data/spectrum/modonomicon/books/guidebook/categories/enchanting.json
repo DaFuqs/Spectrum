@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.enchanting.name",
   "icon": "spectrum:enchanter",
-  "sort_number": 11,
+  "sort_number": 12,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

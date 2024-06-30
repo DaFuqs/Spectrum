@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.dimension.name",
   "icon": "minecraft:bedrock",
-  "sort_number": 13,
+  "sort_number": 14,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

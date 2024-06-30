@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.equipment.name",
   "icon": "spectrum:multitool",
-  "sort_number": 4,
+  "sort_number": 3,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.ink.name",
   "icon": "spectrum:pigment_palette",
-  "sort_number": 14,
+  "sort_number": 9,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

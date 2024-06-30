@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.brewing.name",
   "icon": "spectrum:potion_workshop",
-  "sort_number": 10,
+  "sort_number": 11,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

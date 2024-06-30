@@ -1,7 +1,7 @@
 {
   "name": "book.spectrum.guidebook.decoration.name",
   "icon": "spectrum:chiseled_polished_calcite",
-  "sort_number": 3,
+  "sort_number": 5,
   "show_category_button": true,
 
   "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",

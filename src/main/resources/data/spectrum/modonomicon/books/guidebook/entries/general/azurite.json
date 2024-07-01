@@ -23,6 +23,17 @@
       "text": "book.spectrum.guidebook.general.azurite.page0.text"
     },
     {
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/azurite.png",
+      "resource_width": 100,
+      "resource_height": 150,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 100,
+      "texture_height": 150,
+      "border": false
+    },
+    {
       "type": "spectrum:fusion_shrine_crafting",
       "condition": {
         "type": "modonomicon:advancement",

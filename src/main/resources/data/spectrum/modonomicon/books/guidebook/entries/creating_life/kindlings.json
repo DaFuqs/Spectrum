@@ -16,7 +16,7 @@
     }
   ],
   "background_u_index": 0,
-  "background_v_index": 0,
+  "background_v_index": 1,
   "x": 5,
   "y": 2,
   "pages": [
@@ -41,15 +41,15 @@
       "text": "book.spectrum.guidebook.creating_life.kindlings.page2.text"
     },
     {
-      "type": "modonomicon:entity",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/remember_kindling"
-      },
-      "entity_id": "spectrum:kindling",
-      "scale": 0.45,
-      "offset": 0.5,
-      "text": "book.spectrum.guidebook.creating_life.kindlings.page3.text"
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/kindlings.png",
+      "resource_width": 100,
+      "resource_height": 150,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 100,
+      "texture_height": 150,
+      "border": false
     }
   ]
 }

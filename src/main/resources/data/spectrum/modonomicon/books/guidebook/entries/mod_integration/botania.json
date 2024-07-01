@@ -30,20 +30,12 @@
     {
       "type": "spectrum:anvil_crushing",
       "title1": "book.spectrum.guidebook.mod_integration.botania.page1.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:place_pedestal"
-      },
       "recipe_id_1": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
       "text": "book.spectrum.guidebook.mod_integration.botania.page1.text"
     },
     {
       "type": "modonomicon:spotlight",
       "title": "book.spectrum.guidebook.mod_integration.botania.page2.title",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/place_color_picker"
-      },
       "item": {
         "item": "botania:magenta_petal"
       },
@@ -51,30 +43,18 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_shimmerstone"
-      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page3.text",
       "title1": "book.spectrum.guidebook.mod_integration.botania.page3.title",
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_pigment"
-      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page4.text",
       "title1": "book.spectrum.guidebook.mod_integration.botania.page4.title",
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:collect_pigment"
-      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page5.text",
       "recipe_id_1": "spectrum:mod_integration/botania/pedestal/floral_fertilizer"
     },
@@ -86,28 +66,21 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
-      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
       "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:hidden/collect_jade_vine_petals"
-      },
-      "text": "book.spectrum.guidebook.mod_integration.botania.page6.text",
-      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus"
+      "text": "book.spectrum.guidebook.mod_integration.botania.blackest_lotus.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/blackest_lotus"
+    },
+    {
+      "type": "spectrum:primordial_fire_burning",
+      "text": "book.spectrum.guidebook.mod_integration.botania.least_black_lotus.text",
+      "recipe_id_1": "spectrum:mod_integration/botania/primordial_fire_burning/least_black_lotus"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:midgame/harvest_moonstruck_nectar"
-      },
       "text": "book.spectrum.guidebook.mod_integration.botania.page7.text",
       "recipe_id_1": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed"
     },

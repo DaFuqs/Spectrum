@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/trinkets/any_azure_dike_equipment"
   },
-  "icon": "spectrum:azure_dike_ring",
+  "icon": "spectrum:textures/gui/guidebook/icons/azure_dike_heart.png",
   "category": "spectrum:equipment",
   "hide_while_locked ": true,
   "parents": [
@@ -24,9 +24,17 @@
       "title": "book.spectrum.guidebook.equipment.azure_dike_equipment.page0.title"
     },
     {
-      "type": "modonomicon:text",
+      "type": "spectrum:snippet",
       "title": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.title",
-      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.text"
+      "text": "book.spectrum.guidebook.equipment.azure_dike_equipment.page1.text",
+      "resource_path": "spectrum:textures/gui/guidebook/icons/azure_dike_heart.png",
+      "resource_width": 16,
+      "resource_height": 16,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 16,
+      "texture_height": 16,
+      "border": false
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

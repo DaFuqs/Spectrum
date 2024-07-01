@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.primordial_fire.name",
+  "name": "block.spectrum.primordial_fire",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/interact_with_doombloom"
@@ -19,13 +19,13 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "text": "book.spectrum.guidebook.dimension.primordial_fire.page0.text",
-      "title": "book.spectrum.guidebook.dimension.primordial_fire.page0.title"
+      "title": "block.spectrum.primordial_fire",
+      "text": "book.spectrum.guidebook.dimension.primordial_fire.page0.text"
     },
     {
       "type": "spectrum:primordial_fire_burning",
-      "text": "book.spectrum.guidebook.dimension.primordial_fire.page0.text",
-      "title": "book.spectrum.guidebook.dimension.primordial_fire.page0.title",
+      "title": "book.spectrum.guidebook.dimension.primordial_fire.page1.title",
+      "text": "book.spectrum.guidebook.dimension.primordial_fire.page1.text",
       "recipe_id_1": "spectrum:primordial_fire_burning/torch_unsouling"
     }
   ]

@@ -35,10 +35,10 @@ public class BookPrimordialFireBurningPageRenderer<R extends PrimordialFireBurni
 		
 		// the ingredient
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-		parentScreen.renderIngredient(drawContext, recipeX + 16, recipeY + 10, mouseX, mouseY, ingredients.get(0));
+		parentScreen.renderIngredient(drawContext, recipeX + 16, recipeY + 8, mouseX, mouseY, ingredients.get(0));
 		
 		// the output
-		parentScreen.renderItemStack(drawContext, recipeX + 51, recipeY + 10, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
+		parentScreen.renderItemStack(drawContext, recipeX + 51, recipeY + 8, mouseX, mouseY, recipe.getOutput(world.getRegistryManager()));
 	}
 	
 }

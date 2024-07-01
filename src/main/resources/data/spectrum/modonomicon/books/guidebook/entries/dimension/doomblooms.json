@@ -28,12 +28,6 @@
         "item": "spectrum:doombloom_seed"
       },
       "text": "book.spectrum.guidebook.dimension.doomblooms.page1.text"
-    },
-    {
-      "type": "modonomicon:text",
-      "anchor": "primordial_fire",
-      "title": "book.spectrum.guidebook.dimension.doomblooms.page2.title",
-      "text": "book.spectrum.guidebook.dimension.doomblooms.page2.text"
     }
   ]
 }

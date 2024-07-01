@@ -60,7 +60,7 @@ public class DraconicTwinswordItem extends SwordItem implements SplittableItem, 
 		var twinsword = initiateTwinswordEntity(stack, world, user, strength);
 		
 		world.spawnEntity(twinsword);
-		SoundEvent soundEvent = SpectrumSoundEvents.METALLIC_UNSHEATHE;
+		SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_THROW;
 		
 		world.playSoundFromEntity(null, twinsword, soundEvent, SoundCategory.PLAYERS, 0.5F + strength / 2, 1.0F);
 		var nbt = stack.getOrCreateNbt();

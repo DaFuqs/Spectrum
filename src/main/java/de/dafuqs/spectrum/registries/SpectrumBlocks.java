@@ -620,7 +620,7 @@ public class SpectrumBlocks {
 		return settings(color, BlockSoundGroup.NETHER_STEM, 4.0F).instrument(Instrument.BASS);
 	}
 	private static final int NOXCAP_BUTTON_BLOCK_PRESS_TIME_TICKS = 30;
-	
+
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final PillarBlock SLATE_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
 	public static final Block STRIPPED_SLATE_NOXCAP_HYPHAE = new PillarBlock(noxcap(MapColor.GRAY));
@@ -704,7 +704,17 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LANTERN_LIGHT_PROVIDER));
 	public static final Block CHESTNUT_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.DULL_RED).luminance(state -> 15));
 	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(FabricBlockSettings.copyOf(Blocks.LANTERN).luminance(13).pistonBehavior(PistonBehavior.DESTROY));
-	
+
+	public static Settings gala(MapColor color) {
+		return settings(color, BlockSoundGroup.CHERRY_WOOD, 30.0F).instrument(Instrument.BASS);
+	}
+
+	public static final Block GALA_LOG = new PillarBlock(gala(MapColor.BROWN));
+	public static final Block STRIPPED_GALA_LOG = new PillarBlock(gala(MapColor.BROWN));
+	public static final Block GALA_PLANKS = new Block(gala(MapColor.BROWN));
+
+	public static final Block GLAZED_PLANKS = new Block(gala(MapColor.OFF_WHITE));
+
 	public static Settings dragonjag(MapColor color) {
 		return settings(color, BlockSoundGroup.GRASS, 1.0F);
 	}
@@ -1631,12 +1641,18 @@ public class SpectrumBlocks {
 		registerBlockWithItem("chestnut_noxwood_lantern", CHESTNUT_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_light", CHESTNUT_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_lamp", CHESTNUT_NOXWOOD_LAMP, settings, DyeColor.LIME);
-		
+
+
 		registerBlock("potted_slate_noxshroom", POTTED_SLATE_NOXSHROOM);
 		registerBlock("potted_ebony_noxshroom", POTTED_EBONY_NOXSHROOM);
 		registerBlock("potted_ivory_noxshroom", POTTED_IVORY_NOXSHROOM);
 		registerBlock("potted_chestnut_noxshroom", POTTED_CHESTNUT_NOXSHROOM);
-		
+
+		registerBlockWithItem("gala_log", GALA_LOG, settings, DyeColor.BLUE);
+		registerBlockWithItem("stripped_gala_log", STRIPPED_GALA_LOG, settings, DyeColor.BLUE);
+		registerBlockWithItem("gala_planks", GALA_PLANKS, settings, DyeColor.BLUE);
+		registerBlockWithItem("glazed_planks", GLAZED_PLANKS, settings, DyeColor.BLUE);
+
 		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_yellow_dragonjag", SMALL_YELLOW_DRAGONJAG, settings, DyeColor.LIME);
 		registerBlockWithItem("small_pink_dragonjag", SMALL_PINK_DRAGONJAG, settings, DyeColor.LIME);

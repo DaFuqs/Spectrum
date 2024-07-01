@@ -48,24 +48,23 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 	
 	@Override
 	public int getMaxUseTime(ItemStack stack) {
-		return CHARGE_TIME;
+		return 72000;
 	}
 	
 	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (!(user instanceof ServerPlayerEntity player)) {
-			return stack;
-		}
+	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+		if (this.getMaxUseTime(stack) - remainingUseTicks < CHARGE_TIME) return;
+		if (!(user instanceof ServerPlayerEntity player)) return;
 		
 		Optional<ItemStack> shootStackOptional = getFirstStack(stack);
 		if (shootStackOptional.isEmpty()) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			return stack;
+			return;
 		}
 		
 		if (!InkPowered.tryDrainEnergy(player, COST)) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			return stack;
+			return;
 		}
 		
 		ItemStack shootStack = shootStackOptional.get();
@@ -76,8 +75,6 @@ public class OmniAcceleratorItem extends BundleItem implements InkPowered, Exten
 				decrementFirstItem(stack);
 			}
 		}
-		
-		return stack;
 	}
 	
 	public static void decrementFirstItem(ItemStack acceleratorStack) {

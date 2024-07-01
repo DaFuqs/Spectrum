@@ -86,6 +86,7 @@
   "recipeGroup.spectrum.glass_crest_equipment": "Glass Crest Equipment",
   "recipeGroup.spectrum.hare_roasts": "Hare Roasts",
   "recipeGroup.spectrum.pure_to_vanilla_resources": "Pure Resource Blasting",
+  "recipeGroup.spectrum.head_fusion": "Creature Manipulation",
 
   "biome.spectrum.deep_barrens": "Deep Barrens",
   "biome.spectrum.crystal_gardens": "Crystal Gardens",
@@ -3806,8 +3807,7 @@
   "book.spectrum.guidebook.creating_life.kindlings.page1.title": "Remembering",
   "book.spectrum.guidebook.creating_life.kindlings.page1.text": "*Your own personal fierce dragon. This will be great.*",
   "book.spectrum.guidebook.creating_life.kindlings.page2.title": "A small Surprise",
-  "book.spectrum.guidebook.creating_life.kindlings.page2.text": "*So much for your plans for a personal jurassic park. Maybe a petting zoo would be more suitable?*\\\n\\\nThe result definitely is not quite as... fierce... as you imagined. Usually you'd say you are used to failures by now, but with this result who are you to complain?",
-  "book.spectrum.guidebook.creating_life.kindlings.page3.text": "Their down looks beyond soft. *Maybe, if you sneak up to one with [Shears](item://minecraft:shears), you can snip a feather or two?*",
+  "book.spectrum.guidebook.creating_life.kindlings.page2.text": "*So much for my plans for a personal jurassic park... maybe a petting zoo would be more suitable?*\\\nThe result definitely is not quite as... fierce... as I imagined them to be, but who am I to complain?\\\nTheir down looks beyond soft. *Maybe, if I sneak up to one with [Shears](item://minecraft:shears), I can snip a feather or two?*",
   "book.spectrum.guidebook.creating_life.memories.name": "Memories",
   "book.spectrum.guidebook.creating_life.memories.page0.title": "Memories",
   "book.spectrum.guidebook.creating_life.memories.page0.text": "With the [Spirit Instiller](entry://creating_life/spirit_instiller), you are able to breathe new life into a once dead creature.\\\nIt will materialise in the form of a *Memory*.",
@@ -6093,6 +6093,14 @@
   "book.spectrum.guidebook.general.stratine.page2.text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.\\\n\\\nHowever, shaping it via your [Pedestal](entry://general/pedestal)[#]() should not be a problem whatsoever.",
   "book.spectrum.guidebook.general.stratine.page3.title": "Pedestal Recipe",
   "book.spectrum.guidebook.general.stratine.page3.text": "*Heavy Metal*",
+
+  "book.spectrum.guidebook.creating_life.creature_manipulation.name": "Creature Manipulation",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.page0.title": "Creature Manipulation",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.page0.text": "Creating a completely new, complex life is a difficult thing.\\nTaking existing things and seeing which combination leads to the desired result, though? A finger exercise. TODO: Merge with text from Wooly pigs",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.axolotls.text": "Works for every color of Axolotl.",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.parrots.text": "Works for every color of Parrot.",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.sheep.text": "Works for every color of Sheep.",
+  "book.spectrum.guidebook.creating_life.creature_manipulation.shulkers.text": "Works for every color of Shulker.",
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:spirit_instiller",
+  "group": "head_fusion",
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
@@ -15,5 +16,5 @@
   "result": {
     "item": "spectrum:zombie_villager_head"
   },
-  "required_advancement": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+  "required_advancement": "spectrum:unlocks/head_fusion"
 }

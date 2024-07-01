@@ -42,6 +42,7 @@ public class SpectrumModelPredicateProviders {
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+		registerStampingItemPredicate(SpectrumItems.TUNING_STAMP);
 		registerInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
@@ -219,6 +220,16 @@ public class SpectrumModelPredicateProviders {
 				return 0.0F;
 			}
 		});
+	}
+
+	private static void registerStampingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("stamped"), ((stack, world, entity, seed) -> {
+			var nbt = stack.getOrCreateNbt();
+			if (nbt.contains(Stampable.STAMPING_DATA_TAG))
+				return 1F;
+
+			return 0F;
+		}));
 	}
 	
 	private static void registerSlotReservingItem(Item item) {

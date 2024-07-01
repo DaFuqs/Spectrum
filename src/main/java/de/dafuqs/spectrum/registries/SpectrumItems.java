@@ -64,6 +64,7 @@ public class SpectrumItems {
 	// Main items
 	public static final Item GUIDEBOOK = new GuidebookItem(IS.of(1));
 	public static final Item PAINTBRUSH = new PaintbrushItem(IS.of(1));
+	public static final Item TUNING_STAMP = new TuningStampItem(IS.of(1));
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(IS.of(1));
 	
 	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(IS.of(1), SpectrumMultiblocks.PEDESTAL_SIMPLE);
@@ -505,6 +506,7 @@ public class SpectrumItems {
 	public static void register() {
 		register("guidebook", GUIDEBOOK, DyeColor.WHITE);
 		register("paintbrush", PAINTBRUSH, DyeColor.WHITE);
+		register("tuning_stamp", TUNING_STAMP, DyeColor.WHITE);
 		
 		registerGemstoneItems();
 		registerPigments();

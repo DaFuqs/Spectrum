@@ -15,17 +15,17 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Marks a block as being interactable with via a Blending Stamp and defines its behaviour.
+ * Marks a block as being interactable with via a Tuning Stamp and defines its behaviour.
  */
 public interface Stampable {
 
-    String BLENDING_DATA_TAG = "spectrum:blending_data";
+    String STAMPING_DATA_TAG = "spectrum:stamping_data";
 
 
     /**
      * Creates a reference to a Stampable object.
      */
-    BlendingData recordData(Optional<PlayerEntity> user, BlockReference reference, World world);
+    StampData recordStampData(Optional<PlayerEntity> user, BlockReference reference, World world);
 
     /**
      * Call this to request a stampable to process the provided data.
@@ -33,11 +33,16 @@ public interface Stampable {
      */
     boolean handleImpression(Optional<UUID> stamper, Optional<PlayerEntity> user, BlockReference reference, World world);
 
-    BlendCategory getBlendCategory();
+    /**
+     * Resets the object to a blank state.
+     */
+    void clearImpression();
+
+    Category getStampCategory();
 
     boolean canUserStamp(Optional<PlayerEntity> stamper);
 
-    static NbtCompound saveBlendingData(BlendingData data) {
+    static NbtCompound saveStampingData(StampData data) {
         var compound = new NbtCompound();
 
         data.stamper.ifPresent(uuid -> compound.putUuid("stamper", uuid));
@@ -49,7 +54,7 @@ public interface Stampable {
         return compound;
     }
 
-    static Optional<Stampable.BlendingData> loadBlendingData(World world, NbtCompound nbt) {
+    static Optional<StampData> loadStampingData(World world, NbtCompound nbt) {
         var sourcePair = findSource(world, nbt);
         var source = sourcePair.getLeft();
 
@@ -61,7 +66,7 @@ public interface Stampable {
         if (nbt.containsUuid("stamper"))
             stamper = Optional.of(nbt.getUuid("stamper"));
 
-        return Optional.of(new BlendingData(stamper, sourcePair.getRight(), source.get()));
+        return Optional.of(new StampData(stamper, sourcePair.getRight(), source.get()));
     }
 
     private static Pair<Optional<Stampable>, BlockReference> findSource(World world, NbtCompound nbt) {
@@ -81,49 +86,54 @@ public interface Stampable {
 
         if (world.getBlockEntity(pos) instanceof Stampable interactable) {
             stampInteractable = interactable;
-            reference.appendBE((BlockEntity) interactable);
+            reference = reference.appendBE((BlockEntity) interactable);
         }
 
         return new Pair<>(Optional.ofNullable(stampInteractable), reference);
     }
 
-    default boolean verifyStampData(BlendingData data) {
-        if (data.source.getBlendCategory() == BlendCategory.UNIQUE) {
+    default boolean verifyStampData(StampData data) {
+        if (data.source.getStampCategory() == Category.UNIQUE) {
             return verifyUniqueStampData(data);
         }
-        return data.source.getBlendCategory() == this.getBlendCategory();
+        return data.source.getStampCategory() == this.getStampCategory();
     }
 
     /**
      * Override for unique type interactables.
      */
     @ApiStatus.OverrideOnly
-    default boolean verifyUniqueStampData(BlendingData data) {
+    default boolean verifyUniqueStampData(StampData data) {
         return true;
     }
 
-    void onImpressedOther(BlendingData data);
+    /**
+     * Called after this Stampable is used as the source for impressing another
+     * @param data the impressed
+     * @param success whether the target's state changed
+     */
+    void onImpressedOther(StampData data, boolean success);
 
-    record BlendingData(Optional<UUID> stamper, BlockReference reference, Stampable source) {
+    record StampData(Optional<UUID> stamper, BlockReference reference, Stampable source) {
 
-        public BlendingData(@Nullable Entity stamper, BlockReference reference, Stampable source) {
+        public StampData(@Nullable Entity stamper, BlockReference reference, Stampable source) {
             this(Optional.ofNullable(stamper).map(Entity::getUuid), reference, source);
         }
 
-        public boolean verifyStampData(BlendingData data) {
+        public boolean verifyStampData(StampData data) {
             return source.verifyStampData(data);
         }
 
-        public void notifySourceOfChange(BlendingData data) {
-            source.onImpressedOther(data);
+        public void notifySourceOfChange(StampData data, boolean succeess) {
+            source.onImpressedOther(data, succeess);
         }
 
-        public boolean canUserStamp(PlayerEntity player) {
-            return source.canUserStamp(Optional.ofNullable(player));
+        public boolean canUserStamp(Optional<PlayerEntity> player) {
+            return source.canUserStamp(player);
         }
     }
 
-    enum BlendCategory {
+    enum Category {
         PASTEL_NODE,
         UNIQUE
     }

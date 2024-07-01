@@ -477,6 +477,7 @@
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
   "spectrum.tooltip.press_shift_for_more": "press Shift to view additional stats",
+  "spectrum.tooltip.press_shift_for_controls": "press Shift to view controls",
 
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties",
@@ -2034,6 +2035,14 @@
   "item.spectrum.paintbrush.ability.pedestal_triggering": "- Pedestal Triggering",
   "item.spectrum.paintbrush.ability.block_coloring": "- Block Coloring",
   "item.spectrum.paintbrush.ability.ink_slinging": "- Ink Slinging",
+  "item.spectrum.tuning_stamp": "Tuning Stamp",
+  "item.spectrum.tuning_stamp.tooltip": "Can impress Links",
+  "item.spectrum.tuning_stamp.tooltip.linked": "Impressing %d",
+  "item.spectrum.tuning_stamp.tooltip.missing": "Impressing... nothing?",
+  "item.spectrum.tuning_stamp.tooltip2": "tuned to %d %d %d",
+  "item.spectrum.tuning_stamp.controls": "Right Click to start/apply links",
+  "item.spectrum.tuning_stamp.controls2": "Strike a block to clear the stamp",
+  "item.spectrum.tuning_stamp.controls3": "Shift to swap to the newly linked node in one click",
   "item.spectrum.multitool": "Multitool",
   "item.spectrum.tender_pickaxe": "Tender Pickaxe",
   "item.spectrum.lucky_pickaxe": "Lucky Pickaxe",

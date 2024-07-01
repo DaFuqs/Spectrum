@@ -268,9 +268,15 @@ public class SpectrumCommon implements ModInitializer {
 					world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					return ActionResult.FAIL;
 				}
+				else if(mainHandStack.getItem() instanceof TuningStampItem tuningStampItem) {
+					if (mainHandStack.getOrCreateNbt().contains(TuningStampItem.DATA))
+						tuningStampItem.clearData(Optional.of(player), mainHandStack);
+				}
 			}
 			return ActionResult.PASS;
 		});
+
+
 		
 		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
 			if (client) {

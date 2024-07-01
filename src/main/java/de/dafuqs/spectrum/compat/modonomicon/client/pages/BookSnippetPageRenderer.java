@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.klikli_dev.modonomicon.client.gui.book.markdown.MarkdownComponentRenderUtils;
-import com.klikli_dev.modonomicon.client.render.page.BookPageRenderer;
-import com.klikli_dev.modonomicon.client.render.page.PageWithTextRenderer;
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookSnippetPage;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.OrderedText;
-import net.minecraft.text.Style;
-import org.jetbrains.annotations.Nullable;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.markdown.*;
+import com.klikli_dev.modonomicon.client.render.page.*;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
 public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> implements PageWithTextRenderer {
 
@@ -29,9 +25,9 @@ public class BookSnippetPageRenderer extends BookPageRenderer<BookSnippetPage> i
         if (page.getText() instanceof RenderedBookTextHolder renderedText) {
             int y = getTextY();
             for (MutableText component : renderedText.getRenderedText()) {
-                var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookContentScreen.PAGE_WIDTH, BookContentScreen.PAGE_WIDTH - 10, font);
+                var wrapped = MarkdownComponentRenderUtils.wrapComponents(component, BookContentScreen.PAGE_WIDTH - 10, BookContentScreen.PAGE_WIDTH - 10, font);
                 for (OrderedText orderedText : wrapped) {
-                    drawCenteredStringNoShadow(drawContext, orderedText, BookContentScreen.PAGE_WIDTH / 2, y, 0, 1);
+                    drawCenteredStringNoShadow(drawContext, orderedText, page.getBook().getBookTextOffsetWidth() + BookContentScreen.PAGE_WIDTH / 2, y, 0, 1);
                     y += font.fontHeight;
                 }
             }

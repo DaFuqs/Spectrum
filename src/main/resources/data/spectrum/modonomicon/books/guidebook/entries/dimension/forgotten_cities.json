@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/find_forgotten_city"
   },
-  "icon": "spectrum:moonstone_core",
+  "icon": "spectrum:slate_noxwood_lamp",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [

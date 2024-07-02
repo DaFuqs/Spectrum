@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/find_excavation_site"
   },
-  "icon": "spectrum:moonstone_core",
+  "icon": "minecraft:end_rod",
   "category": "spectrum:dimension",
   "hide_while_locked ": true,
   "parents": [
@@ -19,7 +19,7 @@
   "pages": [
     {
       "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.dimension.excavation_sites.page0.title",
+      "title": "book.spectrum.guidebook.dimension.excavation_sites.name",
       "text": "book.spectrum.guidebook.dimension.excavation_sites.page0.text"
     }
   ]

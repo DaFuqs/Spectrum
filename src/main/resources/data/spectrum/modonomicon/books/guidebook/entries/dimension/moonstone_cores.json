@@ -18,8 +18,10 @@
   "y": -2,
   "pages": [
     {
-      "type": "modonomicon:text",
-      "title": "book.spectrum.guidebook.general.moonstone_cores.page0.title",
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:moonstone_core"
+      },
       "text": "book.spectrum.guidebook.general.moonstone_cores.page0.text"
     }
   ]

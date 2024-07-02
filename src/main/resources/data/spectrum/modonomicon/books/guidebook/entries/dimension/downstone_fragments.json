@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.downstone_fragments.name",
+  "name": "item.spectrum.downstone_fragments",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/collect_downstone_fragments"
@@ -24,22 +24,9 @@
     {
       "type": "modonomicon:spotlight",
       "item": {
-        "item": "spectrum:downstone"
-      },
-      "text": "book.spectrum.guidebook.dimension.downstone_fragments.page0.text",
-      "title": "book.spectrum.guidebook.dimension.downstone_fragments.page0.title"
-    },
-    {
-      "type": "modonomicon:spotlight",
-      "item": {
         "item": "spectrum:downstone_fragments"
       },
-      "anchor": "downstone_fragments",
-      "condition": {
-        "type": "modonomicon:advancement",
-        "advancement_id": "spectrum:lategame/collect_downstone_fragments"
-      },
-      "text": "book.spectrum.guidebook.dimension.downstone_fragments.page1.text"
+      "text": "book.spectrum.guidebook.dimension.downstone_fragments.page0.text"
     }
   ]
 }

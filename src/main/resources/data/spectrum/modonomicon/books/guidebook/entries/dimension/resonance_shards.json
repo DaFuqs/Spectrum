@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.dimension.resonance_shards.name",
+  "name": "item.spectrum.resonance_shard",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:lategame/strike_up_hummingstone_hymn"

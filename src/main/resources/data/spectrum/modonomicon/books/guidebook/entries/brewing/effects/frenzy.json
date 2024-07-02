@@ -1,28 +1,23 @@
 {
-  "name": "book.spectrum.guidebook.brewing.frenzy.name",
+  "name": "effect.spectrum.frenzy",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/frenzy"
   },
-  "icon": "spectrum:blood_orchid_petal",
+  "icon": "spectrum:textures/mob_effect/frenzy.png",
   "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [
-    {
-      "entry": "spectrum:brewing/potion_workshop",
-      "line_reversed": true
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 3,
-  "y": -3,
+  "x": 5,
+  "y": 0,
   "pages": [
     {
       "type": "spectrum:status_effect",
+      "title": "effect.spectrum.frenzy",
       "status_effect_id": "spectrum:frenzy",
-      "text": "book.spectrum.guidebook.brewing.frenzy.page0.text",
-      "title": "book.spectrum.guidebook.brewing.frenzy.page0.title"
+      "text": "book.spectrum.guidebook.brewing.frenzy.page0.text"
     },
     {
       "type": "modonomicon:text",

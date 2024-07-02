@@ -1,28 +1,23 @@
 {
-  "name": "book.spectrum.guidebook.brewing.immunity.name",
+  "name": "effect.spectrum.immunity",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:hidden/status_effects/immunity"
   },
-  "icon": "spectrum:germinated_jade_vine_bulb",
+  "icon": "spectrum:textures/mob_effect/immunity.png",
   "category": "spectrum:brewing",
   "hide_while_locked ": true,
-  "parents": [
-    {
-      "entry": "spectrum:brewing/potion_workshop",
-      "line_reversed": true
-    }
-  ],
+  "parents": [],
   "background_u_index": 0,
   "background_v_index": 0,
-  "x": 3,
+  "x": 6,
   "y": -2,
   "pages": [
     {
       "type": "spectrum:status_effect",
+      "title": "effect.spectrum.immunity",
       "status_effect_id": "spectrum:immunity",
-      "text": "book.spectrum.guidebook.brewing.immunity.page0.text",
-      "title": "book.spectrum.guidebook.brewing.immunity.page0.title"
+      "text": "book.spectrum.guidebook.brewing.immunity.page0.text"
     },
     {
       "type": "modonomicon:text",

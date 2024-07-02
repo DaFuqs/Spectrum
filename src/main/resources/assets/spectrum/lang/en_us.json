@@ -4299,7 +4299,6 @@
   "book.spectrum.guidebook.dimension.downstone.name": "Downstone",
   "book.spectrum.guidebook.dimension.downstone.page0.title": "Downstone",
   "book.spectrum.guidebook.dimension.downstone.page0.text": "At the deepest parts of the Deeper Down, this stone was waiting for you.\\\nImmensely hard, even Bedrock is a laugh compared to it.",
-  "book.spectrum.guidebook.dimension.downstone_fragments.page0.text": "Looks like whoever came before you was able to harvest Downstone! But only with the help of colossal, imposing drills.\\\n\\\nIt seems like they used it to manufacture [#](bb00bb)Preservation Stone[#]()?",
   "book.spectrum.guidebook.dimension.dragonbone.name": "Dragonbone",
   "book.spectrum.guidebook.dimension.dragonbone.page0.title": "Dragonbone",
   "book.spectrum.guidebook.dimension.dragonbone.page0.text": "Is it really dragons these giant remains come from?\\\nYou don't know, honestly. But judging by the size, it could very well be!\\\n\\\nEven now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface.",
@@ -6138,7 +6137,11 @@
   "book.spectrum.guidebook.general.color_mixing_white.name": "Mixing Whites",
   "book.spectrum.guidebook.general.color_mixing_white.page0.text": "*The whole color spectrum*",
   "book.spectrum.guidebook.general.color_mixing_white.page1.text": "\\\n\\\n**It's incredible!**\\\n\\\nSeeing the full colour spectrum after such a long, arduous journey and many failures makes my heart happy. I can't wait to see what creative innovations will flow through my brush next.",
-  
+
+  "book.spectrum.guidebook.dimension.excavation_sites.name": "Excavation Sites",
+  "book.spectrum.guidebook.dimension.excavation_sites.page0.text": "Looks like whoever came before you was able to harvest Downstone! But only with the help of colossal, imposing drills.\\\n\\\nIt seems like they used it to manufacture [#](bb00bb)Preservation Stone[#]()?",
+
+
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

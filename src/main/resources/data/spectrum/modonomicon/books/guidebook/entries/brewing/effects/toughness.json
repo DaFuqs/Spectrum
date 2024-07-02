@@ -1,0 +1,23 @@
+{
+  "name": "effect.spectrum.toughness",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/toughness"
+  },
+  "icon": "spectrum:textures/mob_effect/toughness.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": -1,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.toughness",
+      "status_effect_id": "spectrum:toughness",
+      "text": "book.spectrum.guidebook.brewing.toughness.page0.text"
+    }
+  ]
+}

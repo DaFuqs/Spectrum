@@ -1,0 +1,27 @@
+{
+  "name": "effect.spectrum.density",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/density"
+  },
+  "icon": "spectrum:textures/mob_effect/density.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/effects/lightweight"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 1,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.density",
+      "status_effect_id": "spectrum:density",
+      "text": "book.spectrum.guidebook.brewing.lightweight_density.page1.text"
+    }
+  ]
+}

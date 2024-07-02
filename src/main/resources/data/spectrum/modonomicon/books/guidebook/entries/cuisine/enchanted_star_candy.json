@@ -1,0 +1,29 @@
+{
+  "name": "item.spectrum.purple_star_candy",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_purple_star_candy"
+  },
+  "icon": "spectrum:purple_star_candy",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/star_candy"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 10,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "item.spectrum.purple_star_candy",
+      "item": {
+        "item": "spectrum:purple_star_candy"
+      },
+      "text": "book.spectrum.guidebook.cuisine.star_candy.page2.text"
+    }
+  ]
+}

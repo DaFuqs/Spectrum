@@ -1,6 +1,6 @@
 {
   "name": "book.spectrum.guidebook.dimension.weather_manipulation.name",
-  "icon": "spectrum:fusion_shrine_calcite",
+  "icon": "minecraft:sunflower",
   "condition": {
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:build_fusion_shrine"

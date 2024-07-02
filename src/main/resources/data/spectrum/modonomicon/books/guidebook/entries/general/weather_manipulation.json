@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.general.weather_manipulation.name",
+  "name": "book.spectrum.guidebook.dimension.weather_manipulation.name",
   "icon": "spectrum:fusion_shrine_calcite",
   "condition": {
     "type": "modonomicon:advancement",
@@ -17,6 +17,11 @@
   "x": 7,
   "y": -1,
   "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.dimension.weather_manipulation.name",
+      "text": "book.spectrum.guidebook.dimension.weather_manipulation.page0.text"
+    },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title1": "book.spectrum.guidebook.general.fusion_shrine.page5.title",

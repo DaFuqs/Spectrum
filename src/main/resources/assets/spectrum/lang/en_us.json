@@ -6141,6 +6141,9 @@
   "book.spectrum.guidebook.dimension.excavation_sites.name": "Excavation Sites",
   "book.spectrum.guidebook.dimension.excavation_sites.page0.text": "Looks like whoever came before you was able to harvest Downstone! But only with the help of colossal, imposing drills.\\\n\\\nIt seems like they used it to manufacture [#](bb00bb)Preservation Stone[#]()?",
 
+  "book.spectrum.guidebook.dimension.weather_manipulation.name": "Weather Manipulation",
+  "book.spectrum.guidebook.dimension.weather_manipulation.page0.text": "TODO",
+
 
 
   "______special_named_items_and_lore": "Special Item Names:",

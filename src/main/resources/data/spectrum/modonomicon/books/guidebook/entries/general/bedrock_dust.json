@@ -1,5 +1,5 @@
 {
-  "name": "book.spectrum.guidebook.creating_life.ruin.name",
+  "name": "item.spectrum.bedrock_dust",
   "icon": "spectrum:bedrock_dust",
   "condition": {
     "type": "modonomicon:advancement",

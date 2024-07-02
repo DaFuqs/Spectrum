@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
 import com.klikli_dev.modonomicon.book.*;
 import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.data.*;
 import com.mojang.blaze3d.systems.*;
 import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
@@ -28,11 +29,10 @@ public class BookTitrationBarrelFermentingPageRenderer extends BookGatedRecipePa
 
         TitrationBarrelRecipe recipe1 = page.getRecipe1();
         TitrationBarrelRecipe recipe2 = page.getRecipe2();
-
-        durationText1 = recipe1 == null ? null
-            : new BookTextHolder(TitrationBarrelRecipe.getDurationText(recipe1.getMinFermentationTimeHours(), recipe1.getFermentationData()));
-        durationText2 = recipe2 == null ? null
-            : new BookTextHolder(TitrationBarrelRecipe.getDurationText(recipe2.getMinFermentationTimeHours(), recipe2.getFermentationData()));
+        
+        Identifier font = BookDataManager.Client.get().safeFont(this.page.getBook().getFont());
+        durationText1 = recipe1 == null ? null : new BookTextHolder(TitrationBarrelRecipe.getDurationText(recipe1.getMinFermentationTimeHours(), recipe1.getFermentationData()).styled(s -> s.withFont(font)));
+        durationText2 = recipe2 == null ? null : new BookTextHolder(TitrationBarrelRecipe.getDurationText(recipe2.getMinFermentationTimeHours(), recipe2.getFermentationData()).styled(s -> s.withFont(font)));
     }
 
     @Override

@@ -39,7 +39,7 @@ public class BookFusionShrineCraftingPageRenderer extends BookGatedRecipePageRen
 
         // the ingredients
         List<IngredientStack> ingredients = recipe.getIngredientStacks();
-        int startX = Math.max(-5, 30 - ingredients.size() * 8);
+        int startX = Math.max(-10, 30 - ingredients.size() * 8);
         for (int i = 0; i < ingredients.size(); i++) {
             ModonomiconHelper.renderIngredientStack(drawContext, parentScreen, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
         }

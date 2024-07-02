@@ -9,7 +9,7 @@
   "hide_while_locked ": true,
   "parents": [],
   "background_u_index": 0,
-  "background_v_index": 1,
+  "background_v_index": 4,
   "x": 0,
   "y": -2,
   "turnin": "spectrum:craft_colored_sapling",
@@ -20,6 +20,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/color_mixing.png"
       ],
+      "border": false,
       "text": "book.spectrum.guidebook.general.color_mixing.page0.text"
     },
     {

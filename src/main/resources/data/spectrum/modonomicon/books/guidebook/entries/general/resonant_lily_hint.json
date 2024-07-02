@@ -10,7 +10,7 @@
   "icon": "minecraft:writable_book",
   "condition": {
     "type": "modonomicon:advancement",
-    "advancement_id": "spectrum:hidden/collect_any_crystallized_block"
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/crystal_gardens"
   },
   "read_by_default": true,
   "turnin": "spectrum:midgame/collect_resonant_lily",

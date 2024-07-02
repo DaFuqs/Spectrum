@@ -5623,7 +5623,7 @@
   "book.spectrum.guidebook.magical_items.perturbed_eye.page3.text": "You just put the portal back together the way it was, re-add Eyes of Ender, done!",
   "book.spectrum.guidebook.magical_items.pipe_bomb.name": "Pipe Bomb",
   "book.spectrum.guidebook.magical_items.pipe_bomb.page0.title": "Pipe Bomb",
-  "book.spectrum.guidebook.magical_items.pipe_bomb.page0.text": "[Moonstone Cores](entry://dimension/moonstone_cores)[#]() are bursting with energy. It sounds like a very bad idea to discharge one within milliseconds.\\\n\\\n*...but sometimes the worst ideas are the best, aren't they?*\\\n\\\nTheir explosion does not damage blocks, but causes [immensely aggressive fire](entry://dimension/doomblooms@primordial_fire)[#]().",
+  "book.spectrum.guidebook.magical_items.pipe_bomb.page0.text": "[Moonstone Cores](entry://dimension/moonstone_cores)[#]() are bursting with energy. It sounds like a very bad idea to discharge one within milliseconds.\\\n\\\n*...but sometimes the worst ideas are the best, aren't they?*\\\n\\\nTheir explosion does not damage blocks, but causes [immensely aggressive fire](entry://dimension/primordial_fire).",
   "book.spectrum.guidebook.magical_items.pipe_bomb.page1.text": "*They make for great gifts!*",
   "book.spectrum.guidebook.magical_items.radiance_staff.name": "Radiance Staff",
   "book.spectrum.guidebook.magical_items.radiance_staff.page0.title": "Radiance Staff",
@@ -6132,7 +6132,13 @@
   "book.spectrum.guidebook.hints.resonant_lily.page1.title": "Concise Instructions",
   "book.spectrum.guidebook.hints.resonant_lily.page1.text": "I don't have that much time to grow a whole new plant like that. But what if I simply throw an existing plant into the liquid to speed up the process?",
 
-
+  "book.spectrum.guidebook.general.color_mixing_black.name": "Mixing Blacks",
+  "book.spectrum.guidebook.general.color_mixing_black.page0.text": "*Hello darkness my old friend*",
+  "book.spectrum.guidebook.general.color_mixing_black.page1.text": "\\\n\\\n\\\nThe blackness of Onyx allows me a few more combinations. Still not perfect, but fantastic progress!\\\n\\\nWhat about grey tones? Maybe I'll come up with another idea...",
+  "book.spectrum.guidebook.general.color_mixing_white.name": "Mixing Whites",
+  "book.spectrum.guidebook.general.color_mixing_white.page0.text": "*The whole color spectrum*",
+  "book.spectrum.guidebook.general.color_mixing_white.page1.text": "\\\n\\\n**It's incredible!**\\\n\\\nSeeing the full colour spectrum after such a long, arduous journey and many failures makes my heart happy. I can't wait to see what creative innovations will flow through my brush next.",
+  
 
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",

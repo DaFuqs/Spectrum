@@ -6126,6 +6126,14 @@
 
   "book.spectrum.guidebook.magical_blocks.crystallarieum.page1.text": "Growing resources requires:\n- a starter bud thrown in\n- catalysts thrown in\n- a specific color of Ink, supplied via [Flask](entry://ink/ink_flask)[#]()",
 
+  "book.spectrum.guidebook.hints.resonant_lily.name": "A new Resource",
+  "book.spectrum.guidebook.hints.resonant_lily.page0.title": "Where to find",
+  "book.spectrum.guidebook.hints.resonant_lily.page0.text": "In [Crystal Gardens](entry://dimension/crystal_gardens), flowers that grow near [Liquid Crystal](entry://general/liquid_crystal) have strange characteristics. Has their proximity to the liquid changed them?.",
+  "book.spectrum.guidebook.hints.resonant_lily.page1.title": "Concise Instructions",
+  "book.spectrum.guidebook.hints.resonant_lily.page1.text": "I don't have that much time to grow a whole new plant like that. But what if I simply throw an existing plant into the liquid to speed up the process?",
+
+
+
   "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",
   "lore.spectrum.probably_sugar": "Sugar... probably?",

@@ -4,7 +4,7 @@
     "type": "modonomicon:advancement",
     "advancement_id": "spectrum:unlocks/resources/bloodstone"
   },
-  "icon": "spectrum:refined_bloodstone",
+  "icon": "spectrum:raw_bloodstone",
   "category": "spectrum:creating_life",
   "hide_while_locked ": true,
   "parents": [

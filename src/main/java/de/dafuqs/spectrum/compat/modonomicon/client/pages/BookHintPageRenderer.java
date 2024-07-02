@@ -1,41 +1,24 @@
 package de.dafuqs.spectrum.compat.modonomicon.client.pages;
 
-import com.klikli_dev.modonomicon.book.BookTextHolder;
-import com.klikli_dev.modonomicon.book.RenderedBookTextHolder;
-import com.klikli_dev.modonomicon.client.gui.book.BookContentScreen;
-import com.klikli_dev.modonomicon.client.render.page.BookPageRenderer;
-import com.klikli_dev.modonomicon.client.render.page.PageWithTextRenderer;
-import de.dafuqs.spectrum.compat.modonomicon.pages.BookHintPage;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import org.jetbrains.annotations.Nullable;
+import com.klikli_dev.modonomicon.book.*;
+import com.klikli_dev.modonomicon.client.gui.book.*;
+import com.klikli_dev.modonomicon.client.render.page.*;
+import de.dafuqs.spectrum.compat.modonomicon.pages.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.sound.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> implements PageWithTextRenderer {
-
-    private static final Style OBFUSCATED_STYLE = Style.EMPTY
-            .withColor(TextColor.fromRgb(0x000000))
-            .withBold(false)
-            .withItalic(false)
-            .withUnderline(false)
-            .withStrikethrough(false)
-            .withObfuscated(true)
-            .withClickEvent(null)
-            .withHoverEvent(null)
-            .withInsertion(null)
-            .withFont(null);
+    
+    private Style OBFUSCATED_STYLE;
 
     public static class PaymentButtonWidget extends ButtonWidget {
 
@@ -57,8 +40,6 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     }
 
     @Nullable
-    private BookTextHolder obfuscatedTitle;
-    @Nullable
     private BookTextHolder obfuscatedText;
 
     // this once was a single property. But because the world sometimes got backdated we have to go this
@@ -73,8 +54,19 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     @Override
     public void onBeginDisplayPage(BookContentScreen parentScreen, int left, int top) {
         super.onBeginDisplayPage(parentScreen, left, top);
+        
+        OBFUSCATED_STYLE = Style.EMPTY
+                .withColor(TextColor.fromRgb(0x000000))
+                .withBold(false)
+                .withItalic(false)
+                .withUnderline(false)
+                .withStrikethrough(false)
+                .withObfuscated(true)
+                .withClickEvent(null)
+                .withHoverEvent(null)
+                .withInsertion(null)
+                .withFont(page.getBook().getFont());
 
-        obfuscatedTitle = null;
         obfuscatedText = null;
 
         boolean isDone = page.isUnlocked();
@@ -181,19 +173,9 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
             var lastText = mutableTexts.get(mutableTexts.size() - 1);
             var siblings = lastText.getSiblings();
             var lastSibling = siblings.get(siblings.size() - 1);
-            return lastSibling.getSiblings().size() == 0;
+            return lastSibling.getSiblings().isEmpty();
         }
         return true;
-    }
-
-    private int getSplitLength(BookTextHolder obfText) {
-        int length = 0;
-        if (obfText instanceof RenderedBookTextHolder renderedText) {
-            for (MutableText mutableText : renderedText.getRenderedText()) {
-                length += mutableText.getSiblings().size();
-            }
-        }
-        return length;
     }
 
     protected void paymentButtonClicked(ButtonWidget button) {
@@ -223,13 +205,10 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     @Override
     public void render(DrawContext drawContext, int mouseX, int mouseY, float ticks) {
         if (mc.world == null) return;
+        
+        renderTitle(drawContext, this.page.getTitle(), page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
 
         int textStart = 1;
-        if (page.hasTitle()) {
-            obfuscatedTitle = obfuscateText(page.getTitle(), obfuscatedTitle, textStart);
-            renderTitle(drawContext, obfuscatedTitle, page.showTitleSeparator(), BookContentScreen.PAGE_WIDTH / 2, 0);
-            textStart += getSplitLength(obfuscatedTitle);
-        }
 
         obfuscatedText = obfuscateText(page.getText(), obfuscatedText, textStart);
         renderBookTextHolder(drawContext, obfuscatedText, 0, getTextY(), BookContentScreen.PAGE_WIDTH);
@@ -244,11 +223,10 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
 
         if (revealProgress > 0) {
             long currentTime = System.currentTimeMillis() / 20;
-
-            if (isDoneRevealing(obfuscatedTitle) && isDoneRevealing(obfuscatedText)) {
+            
+            if (isDoneRevealing(obfuscatedText)) {
                 revealProgress = 0;
                 obfuscatedText = null;
-                obfuscatedTitle = null;
             } else if (currentTime != lastRevealTime) {
                 lastRevealTime = currentTime;
                 revealProgress++;
@@ -261,7 +239,7 @@ public class BookHintPageRenderer extends BookPageRenderer<BookHintPage> impleme
     public Style getClickedComponentStyleAt(double pMouseX, double pMouseY) {
         if (pMouseX > 0 && pMouseY > 0) {
             if (this.page.hasTitle()) {
-                var titleStyle = this.getClickedComponentStyleAtForTitle(obfuscatedTitle, BookContentScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
+                var titleStyle = this.getClickedComponentStyleAtForTitle(this.page.getTitle(), BookContentScreen.PAGE_WIDTH / 2, 0, pMouseX, pMouseY);
                 if (titleStyle != null) {
                     return titleStyle;
                 }

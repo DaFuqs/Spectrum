@@ -21,7 +21,7 @@
       "type": "modonomicon:entity",
       "title": "book.spectrum.guidebook.dimension.erasers.page0.name",
       "entity_id": "spectrum:eraser",
-      "scale": 1.0,
+      "scale": 0.5,
       "text": "book.spectrum.guidebook.dimension.erasers.page0.text"
     },
     {

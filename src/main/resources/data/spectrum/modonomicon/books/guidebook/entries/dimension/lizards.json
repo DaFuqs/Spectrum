@@ -21,7 +21,7 @@
       "type": "modonomicon:entity",
       "title": "book.spectrum.guidebook.dimension.lizards.page0.name",
       "entity_id": "spectrum:lizard",
-      "scale": 0.5,
+      "scale": 0.3,
       "text": "book.spectrum.guidebook.dimension.lizards.page0.text"
     },
     {

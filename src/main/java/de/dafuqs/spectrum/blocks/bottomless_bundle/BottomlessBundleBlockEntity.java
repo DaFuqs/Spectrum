@@ -12,30 +12,30 @@ import net.minecraft.nbt.*;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class BottomlessBundleBlockEntity extends BlockEntity {
 
-	protected ItemStack bottomlessBundleStack;
+	// Do not modify without syncing storage too!
+	// Contents are synced from/into storage whenever needed [i.e. (de)serialization or setting/fetching bundle item]
+	private ItemStack bottomlessBundleStack;
 
-	public final SingleVariantStorage<ItemVariant> storage = new SingleVariantStorage<>() {
+	// Cached to prevent incessant enchantment calls.
+	// No need to write that back into the bundle stack.
+	private boolean isVoiding;
+	protected int powerLevel;
+
+    public final SingleVariantStorage<ItemVariant> storage = new SingleVariantStorage<>() {
 		@Override
 		protected boolean canInsert(ItemVariant variant) {
-			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
-			return variant.getItem().canBeNested() && (bundledStack.isEmpty() || variant.matches(bundledStack));
+			return variant.getItem().canBeNested()
+					&& (this.variant.isBlank()
+						|| this.variant.isOf(variant.getItem()) && this.variant.nbtMatches(variant.getNbt()));
 		}
 
 		@Override
 		public long insert(ItemVariant insertedVariant, long maxAmount, TransactionContext transaction) {
-			long inserted = super.insert(insertedVariant, maxAmount, transaction);
-			if (EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, bottomlessBundleStack) > 0) {
-				return maxAmount;
-			}
-			return inserted;
-		}
-		
-		@Override
-		public ItemVariant getResource() {
-			ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack);
-			return ItemVariant.of(bundledStack);
+			if (isVoiding) return maxAmount;
+            return super.insert(insertedVariant, maxAmount, transaction);
 		}
 		
 		@Override
@@ -45,9 +45,13 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 
 		@Override
 		protected long getCapacity(ItemVariant variant) {
-			return BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleStack);
+			return BottomlessBundleItem.getMaxStoredAmount(powerLevel);
 		}
 
+		// NOTE: the bundle stack's contents *could* be synced here,
+		// though that'd be very costly considering the reasonably large average amount of committed transactions.
+		// Only do so if it [sync] becomes a real problem in the future,
+		// e.g. when unpredictable bundle/storage changes become a thing [if ever]
 		@Override
 		protected void onFinalCommit() {
 			super.onFinalCommit();
@@ -57,43 +61,64 @@ public class BottomlessBundleBlockEntity extends BlockEntity {
 
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, pos, state);
-		this.bottomlessBundleStack = ItemStack.EMPTY;
+		this.bottomlessBundleStack = SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 	}
 
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.bottomlessBundleStack = ItemStack.fromNbt(nbt.getCompound("Bundle"));
+		this.setBundleUnsynced(ItemStack.fromNbt(nbt.getCompound("Bundle")));
 
-		this.storage.variant = ItemVariant.fromNbt(nbt.getCompound("StorageVariant"));
-		this.storage.amount = nbt.getLong("StorageCount");
+		// Handle old data by syncing into bundle
+		if (nbt.contains("StorageVariant")) {
+			this.storage.variant = ItemVariant.fromNbt(nbt.getCompound("StorageVariant"));
+			this.storage.amount = nbt.getLong("StorageCount");
+			syncBundleWithStorage();
+		} else syncStorageWithBundle();
+	}
+
+	// Trivial sync methods. Call whenever bundle/storage contents need to be synced with each other [(de)serialization, bundle stack set, bundle block break loot]
+	private void syncBundleWithStorage() {
+		BottomlessBundleItem.setBundledStack(this.bottomlessBundleStack, this.storage.variant.toStack(), (int) this.storage.amount);
+	}
+
+	private void syncStorageWithBundle() {
+		this.storage.variant = ItemVariant.of(BottomlessBundleItem.getFirstBundledStack(bottomlessBundleStack));
+		this.storage.amount = BottomlessBundleItem.getStoredAmount(bottomlessBundleStack);
 	}
 	
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 
+		// sync bundle data
+		syncBundleWithStorage();
+
 		NbtCompound bundleCompound = new NbtCompound();
 		bottomlessBundleStack.writeNbt(bundleCompound);
 		nbt.put("Bundle", bundleCompound);
+	}
 
-		nbt.put("StorageVariant", this.storage.variant.toNbt());
-		nbt.putLong("StorageCount", this.storage.amount);
+	private boolean setBundleUnsynced(ItemStack itemStack) {
+		if (itemStack.getItem() instanceof BottomlessBundleItem) {
+			this.bottomlessBundleStack = itemStack;
+			// cache once, use many times
+			this.isVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, bottomlessBundleStack) > 0;
+			this.powerLevel = EnchantmentHelper.getLevel(Enchantments.POWER, itemStack);
+			return true;
+		}
+		return false;
 	}
 
 	public void setBundle(@NotNull ItemStack itemStack) {
-		if (itemStack.getItem() instanceof BottomlessBundleItem) {
-			this.bottomlessBundleStack = itemStack;
-			this.storage.variant = ItemVariant.of(BottomlessBundleItem.getFirstBundledStack(itemStack));
-			this.storage.amount = BottomlessBundleItem.getStoredAmount(itemStack);
-		}
+		if (setBundleUnsynced(itemStack)) syncStorageWithBundle();
 	}
 
 	public ItemStack retrieveBundle() {
 		if (this.bottomlessBundleStack.isEmpty()) {
 			return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 		} else {
-			BottomlessBundleItem.setBundledStack(this.bottomlessBundleStack, this.storage.getResource().toStack(), (int) this.storage.amount);
+			syncBundleWithStorage();
 			return this.bottomlessBundleStack;
 		}
 	}

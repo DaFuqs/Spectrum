@@ -43,19 +43,24 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		BottomlessBundleItem.bundleStack(bottomlessBundleStack, itemStack, amount);
 		return bottomlessBundleStack;
 	}
-	
+
 	public static int getMaxStoredAmount(ItemStack itemStack) {
 		int powerLevel = EnchantmentHelper.getLevel(Enchantments.POWER, itemStack);
-		return MAX_STORED_AMOUNT_BASE * (int) Math.pow(10, Math.min(5, powerLevel)); // to not exceed int max
+		return getMaxStoredAmount(powerLevel);
 	}
 	
+	public static int getMaxStoredAmount(int powerLevel) {
+		return MAX_STORED_AMOUNT_BASE * (int) Math.pow(10, Math.min(5, powerLevel)); // to not exceed int max
+	}
+
 	/**
 	 * @return The amount of items put into the bundle
 	 */
 	public static int addToBundle(ItemStack voidBundleStack, ItemStack stackToBundle) {
 		if (!stackToBundle.isEmpty() && stackToBundle.getItem().canBeNested()) {
 			int storedAmount = getStoredAmount(voidBundleStack);
-			int amountAbleToStore = Math.min(stackToBundle.getCount(), (getMaxStoredAmount(voidBundleStack) - getStoredAmount(voidBundleStack)));
+			int amountAbleToStore = Math.min(stackToBundle.getCount(),
+					(getMaxStoredAmount(voidBundleStack) - getStoredAmount(voidBundleStack)));
 			if (amountAbleToStore > 0) {
 				ItemStack stackInBundle = getFirstBundledStack(voidBundleStack);
 				if (stackInBundle.isEmpty()) {
@@ -72,7 +77,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		return 0;
 	}
-	
+
 	public static Optional<ItemStack> removeFirstBundledStack(ItemStack voidBundleStack) {
 		ItemStack removedStack = getFirstBundledStack(voidBundleStack);
 		if (removedStack.isEmpty()) {
@@ -82,11 +87,11 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return Optional.of(removedStack);
 		}
 	}
-	
+
 	private static boolean dropOneBundledStack(ItemStack voidBundleStack, PlayerEntity player) {
 		ItemStack bundledStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
-		
+
 		int droppedAmount = Math.min(bundledStack.getMaxCount(), storedAmount);
 		if (droppedAmount > 0) {
 			ItemStack stackToDrop = bundledStack.copy();
@@ -98,7 +103,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return false;
 		}
 	}
-	
+
 	public static boolean isLocked(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null) {
@@ -106,7 +111,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		return false;
 	}
-	
+
 	public static ItemStack getFirstBundledStack(ItemStack voidBundleStack) {
 		NbtCompound nbtCompound = voidBundleStack.getNbt();
 		if (nbtCompound == null) {
@@ -115,15 +120,15 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			return getFirstBundledStack(nbtCompound);
 		}
 	}
-	
+
 	private static ItemStack getFirstBundledStack(NbtCompound nbtCompound) {
 		NbtCompound storedItemCompound = nbtCompound.getCompound("StoredStack");
-		
+
 		int storedAmount = storedItemCompound.getInt("Count");
 		ItemStack itemStack = new ItemStack(Registries.ITEM.get(new Identifier(storedItemCompound.getString("ID"))));
 		int stackAmount = Math.min(storedAmount, itemStack.getMaxCount());
 		itemStack.setCount(stackAmount);
-		
+
 		if (storedItemCompound.contains("Tag", 10)) {
 			itemStack.setNbt(storedItemCompound.getCompound("Tag"));
 		}
@@ -132,15 +137,15 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		return itemStack;
 	}
-	
+
 	private static void bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle) {
 		bundleStack(voidBundleStack, stackToBundle, stackToBundle.getCount());
 	}
-	
+
 	private static int bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		NbtCompound storedItemCompound = new NbtCompound();
-		
+
 		boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, voidBundleStack) > 0;
 		int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 		int newAmount = Math.min(maxStoredAmount, storedItemCompound.getInt("Count") + amount);
@@ -158,7 +163,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 		return overflowAmount;
 	}
-	
+
 	protected static void setBundledStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
 		if (stackToBundle.isEmpty() || amount <= 0) {
 			voidBundleStack.removeSubNbt("StoredStack");
@@ -177,7 +182,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 			voidBundleCompound.put("StoredStack", storedItemCompound);
 			voidBundleStack.setNbt(voidBundleCompound);
-			
+
 		}
 	}
 
@@ -192,7 +197,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return 0;
 	}
 	
-	private static void removeBundledStackAmount(ItemStack voidBundleStack, int amount) {
+	public static void removeBundledStackAmount(ItemStack voidBundleStack, int amount) {
 		int storedAmount = getStoredAmount(voidBundleStack);
 		
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
@@ -268,7 +273,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 				}
 				
 				BlockSoundGroup blockSoundGroup = blockState2.getSoundGroup();
-				world.playSound(playerEntity, blockPos, this.getPlaceSound(blockState2), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+				world.playSound(playerEntity, blockPos, this.getPlaceSound(blockState2), SoundCategory.BLOCKS,
+						(blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
 				world.emitGameEvent(playerEntity, GameEvent.BLOCK_PLACE, blockPos);
 				if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
 					itemStack.decrement(1);
@@ -296,7 +302,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	protected boolean canPlace(ItemPlacementContext context, BlockState state) {
 		PlayerEntity playerEntity = context.getPlayer();
 		ShapeContext shapeContext = playerEntity == null ? ShapeContext.absent() : ShapeContext.of(playerEntity);
-		return state.canPlaceAt(context.getWorld(), context.getBlockPos()) && context.getWorld().canPlace(state, context.getBlockPos(), shapeContext);
+		return state.canPlaceAt(context.getWorld(), context.getBlockPos())
+				&& context.getWorld().canPlace(state, context.getBlockPos(), shapeContext);
 	}
 	
 	@Override
@@ -334,16 +341,20 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		if (storedAmount == 0) {
 			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty").formatted(Formatting.GRAY));
 			if (locked) {
-				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(
+						Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			}
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
-			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount,
+					getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
 			if (locked) {
-				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(
+						Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory",
+						firstStack.getName().getString()).formatted(Formatting.GRAY));
 			}
 		}
 		if (EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0) {
@@ -383,7 +394,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			ItemStack itemStack = slot.getStack();
 			if (itemStack.isEmpty()) {
 				playRemoveOneSound(player);
-				removeFirstBundledStack(stack).ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
+				removeFirstBundledStack(stack)
+						.ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
 			} else if (itemStack.getItem().canBeNested()) {
 				ItemStack firstStack = getFirstBundledStack(stack);
 				if (firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
@@ -404,7 +416,8 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	 * When an itemStack is right-clicked onto the bundle
 	 */
 	@Override
-	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
+	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player,
+							 StackReference cursorStackReference) {
 		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
 			if (otherStack.isEmpty()) {
 				removeFirstBundledStack(stack).ifPresent((itemStack) -> {
@@ -429,12 +442,14 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		// tick stack inside the bundle. I hope that kinda wrong slot reference does not break anything
+		// tick stack inside the bundle. I hope that kinda wrong slot reference does not
+		// break anything
 		ItemStack bundledStack = BottomlessBundleItem.getFirstBundledStack(stack);
 		if (!bundledStack.isEmpty()) {
 			int amount = BottomlessBundleItem.getStoredAmount(stack);
 			bundledStack.setCount(amount);
 			bundledStack.getItem().inventoryTick(bundledStack, world, entity, slot, selected);
+			BottomlessBundleItem.bundleStack(stack, bundledStack);
 		}
 	}
 	
@@ -449,17 +464,20 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	@Override
-	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
+	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept,
+							   PlayerEntity playerEntity) {
 		if (isLocked(inventoryInsertionAcceptorStack)) {
 			return itemStackToAccept.getCount();
 		}
 		
 		int storedAmount = getStoredAmount(inventoryInsertionAcceptorStack);
-		return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept, itemStackToAccept.getCount() + storedAmount);
+		return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept,
+				itemStackToAccept.getCount() + storedAmount);
 	}
 	
 	private void playRemoveOneSound(Entity entity) {
-		entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE, 0.8F,
+				0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
 	private void playInsertSound(Entity entity) {
@@ -467,11 +485,13 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	private void playDropContentsSound(Entity entity) {
-		entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F,
+				0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
 	private void playZipSound(Entity entity, float basePitch) {
-		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F, basePitch + entity.getWorld().getRandom().nextFloat() * 0.4F);
+		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F,
+				basePitch + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override

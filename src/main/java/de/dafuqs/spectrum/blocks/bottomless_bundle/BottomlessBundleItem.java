@@ -52,6 +52,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 
 	// NOTE: this method will become problematic in later versions (1.21)
+	@Deprecated
 	public static int getMaxStoredAmount(ItemStack itemStack) {
 		int powerLevel = EnchantmentHelper.getLevel(Enchantments.POWER, itemStack);
 		return getMaxStoredAmount(powerLevel);

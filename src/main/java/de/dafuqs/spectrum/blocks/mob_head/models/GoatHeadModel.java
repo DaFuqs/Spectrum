@@ -26,12 +26,12 @@ public class GoatHeadModel extends SpectrumHeadModel {
         modelPartData2.addChild(
                 "left_horn",
                 ModelPartBuilder.create().uv(12, 55).cuboid(-0.01F, -16.0F, -10.0F, 2.0F, 7.0F, 2.0F),
-                ModelTransform.pivot(0.0F, 0.0F, 0.0F)
+                ModelTransform.NONE
         );
         modelPartData2.addChild(
                 "right_horn",
                 ModelPartBuilder.create().uv(12, 55).cuboid(-2.99F, -16.0F, -10.0F, 2.0F, 7.0F, 2.0F),
-                ModelTransform.pivot(0.0F, 0.0F, 0.0F)
+                ModelTransform.NONE
         );
         modelPartData2.addChild(
                 "nose",

@@ -23,9 +23,9 @@ public class PiglinHeadModel extends SpectrumHeadModel {
                         .uv(2, 0).cuboid(2.0F, -2.0F, -5.0F, 1.0F, 2.0F, 1.0F),
                 ModelTransform.pivot(0.0F, 24.0F, 0.0F)
         );
-    
-        head.addChild("cube_r1", ModelPartBuilder.create().uv(51, 6).cuboid(0.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(5.0F, -6.0F, 0.0F, 0.0F, 0.0F, -0.3927F));
-        head.addChild("cube_r2", ModelPartBuilder.create().uv(39, 6).cuboid(-1.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-5.0F, -6.0F, 0.0F, 0.0F, 0.0F, 0.3927F));
+		
+		head.addChild("cube_r1", ModelPartBuilder.create().uv(51, 6).cuboid(0.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, Dilation.NONE), ModelTransform.of(5.0F, -6.0F, 0.0F, 0.0F, 0.0F, -0.3927F));
+		head.addChild("cube_r2", ModelPartBuilder.create().uv(39, 6).cuboid(-1.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, Dilation.NONE), ModelTransform.of(-5.0F, -6.0F, 0.0F, 0.0F, 0.0F, 0.3927F));
     
         return TexturedModelData.of(modelData, 64, 64);
     }

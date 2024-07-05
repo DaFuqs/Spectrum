@@ -16,7 +16,7 @@ public class AllayHeadModel extends SpectrumHeadModel {
 		
 		modelPartData.addChild(
 				EntityModelPartNames.HEAD,
-				ModelPartBuilder.create().uv(0, 0).cuboid(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)),
+				ModelPartBuilder.create().uv(0, 0).cuboid(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, Dilation.NONE),
 				ModelTransform.NONE
 		);
 		

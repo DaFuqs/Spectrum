@@ -11,6 +11,8 @@ import net.minecraft.screen.slot.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
+import java.util.function.*;
+
 public class FilteringScreenHandler extends ScreenHandler {
 
 	protected final World world;
@@ -18,18 +20,20 @@ public class FilteringScreenHandler extends ScreenHandler {
 	protected final Inventory filterInventory;
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
+				(handler) -> FilterConfigurable.getFilterInventoryFromPacketHandler(syncId, playerInventory, packetByteBuf, handler));
 	}
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, FilterConfigurable filterConfigurable) {
-		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromItems(filterConfigurable.getItemFilters()));
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory,
+				(handler) -> FilterConfigurable.getFilterInventoryFromItemsHandler(syncId, playerInventory, filterConfigurable.getItemFilters(), handler));
 		this.filterConfigurable = filterConfigurable;
 	}
-
-	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory filterInventory) {
+	
+	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Function<ScreenHandler, Inventory> filterInventoryFactory) {
 		super(type, syncId);
 		this.world = playerInventory.player.getWorld();
-		this.filterInventory = filterInventory;
+		this.filterInventory = filterInventoryFactory.apply(this);
 
 		// filter slots
 		int startX = (176 / 2) - (filterInventory.size() + 1) * 9;

@@ -63,7 +63,7 @@
     {
       "type": "spectrum:titration_barrel_fermenting",
       "recipe_id_1": "spectrum:titration_barrel/bristle_mead_fluid",
-      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page8.text"
+      "text": "book.spectrum.guidebook.cuisine.brewers_handbook.page7.text"
     },
     {
       "type": "modonomicon:text",

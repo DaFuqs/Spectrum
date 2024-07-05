@@ -18,7 +18,7 @@
     "spectrum:cat_head",
     "spectrum:cave_spider_head",
     "spectrum:chicken_head",
-    "spectrum:clownfish_head",
+    "spectrum:tropical_fish_head",
     "spectrum:cow_head",
     "spectrum:donkey_head",
     "spectrum:drowned_head",
@@ -97,6 +97,12 @@
     "spectrum:frog_warm_head",
     "spectrum:allay_head",
     "spectrum:warden_head",
-    "spectrum:tadpole_head"
+    "spectrum:tadpole_head",
+    "spectrum:camel_head",
+    "spectrum:sniffer_head",
+    "spectrum:skeleton_horse_head",
+    "spectrum:zombie_horse_head",
+    "spectrum:dolphin_head",
+    "spectrum:pillager_head"
   ]
 }

@@ -29,6 +29,7 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/wither_skeleton"), new TreasureHunterDropDefinition(Items.WITHER_SKELETON_SKULL, 0.1F));
 		put(new Identifier("entities/zombie"), new TreasureHunterDropDefinition(Items.ZOMBIE_HEAD, 0.02F));
 		put(new Identifier("entities/piglin"), new TreasureHunterDropDefinition(Items.PIGLIN_HEAD, 0.02F));
+		put(new Identifier("entities/piglin_brute"), new TreasureHunterDropDefinition(Items.PIGLIN_HEAD, 0.02F));
 		put(new Identifier("entities/ender_dragon"), new TreasureHunterDropDefinition(Items.DRAGON_HEAD, 0.35F)); // why not!
 		
 		// Spectrum head drops
@@ -86,12 +87,18 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/zombie_villager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ZOMBIE_VILLAGER).asItem(), 0.02F));
 		put(new Identifier("entities/zombified_piglin"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ZOMBIFIED_PIGLIN).asItem(), 0.02F));
 		put(new Identifier("entities/bee"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.BEE).asItem(), 0.02F));
-		put(new Identifier("entities/tropical_fish"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.CLOWNFISH).asItem(), 0.02F));
+		put(new Identifier("entities/tropical_fish"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.TROPICAL_FISH).asItem(), 0.02F));
 		put(new Identifier("entities/goat"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.GOAT).asItem(), 0.02F));
 		put(new Identifier("entities/glow_squid"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.GLOW_SQUID).asItem(), 0.02F));
 		put(new Identifier("entities/warden"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.WARDEN).asItem(), 0.2F));
 		put(new Identifier("entities/tadpole"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.TADPOLE).asItem(), 0.02F));
 		put(new Identifier("entities/allay"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ALLAY).asItem(), 0.02F));
+		put(new Identifier("entities/camel"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.CAMEL).asItem(), 0.02F));
+		put(new Identifier("entities/sniffer"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SNIFFER).asItem(), 0.02F));
+		put(new Identifier("entities/skeleton_horse"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.SKELETON_HORSE).asItem(), 0.02F));
+		put(new Identifier("entities/zombie_horse"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.ZOMBIE_HORSE).asItem(), 0.02F));
+		put(new Identifier("entities/dolphin"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.DOLPHIN).asItem(), 0.02F));
+		put(new Identifier("entities/pillager"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.PILLAGER).asItem(), 0.02F));
 		
 		put(new Identifier("spectrum:entities/egg_laying_wooly_pig"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG).asItem(), 0.1F));
 		put(new Identifier("spectrum:entities/kindling"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlockType.KINDLING).asItem(), 0.1F));

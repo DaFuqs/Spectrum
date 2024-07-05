@@ -25,7 +25,7 @@
     "spectrum:cat_head",
     "spectrum:cave_spider_head",
     "spectrum:chicken_head",
-    "spectrum:clownfish_head",
+    "spectrum:tropical_fish_head",
     "spectrum:cow_head",
     "spectrum:donkey_head",
     "spectrum:drowned_head",
@@ -105,6 +105,12 @@
     "spectrum:allay_head",
     "spectrum:warden_head",
     "spectrum:tadpole_head",
+    "spectrum:camel_head",
+    "spectrum:sniffer_head",
+    "spectrum:skeleton_horse_head",
+    "spectrum:zombie_horse_head",
+    "spectrum:dolphin_head",
+    "spectrum:pillager_head",
 
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_wild_wall_head",
@@ -117,7 +123,7 @@
     "spectrum:cat_wall_head",
     "spectrum:cave_spider_wall_head",
     "spectrum:chicken_wall_head",
-    "spectrum:clownfish_wall_head",
+    "spectrum:tropical_fish_wall_head",
     "spectrum:cow_wall_head",
     "spectrum:donkey_wall_head",
     "spectrum:drowned_wall_head",
@@ -196,6 +202,12 @@
     "spectrum:frog_warm_wall_head",
     "spectrum:allay_wall_head",
     "spectrum:warden_wall_head",
-    "spectrum:tadpole_wall_head"
+    "spectrum:tadpole_wall_head",
+    "spectrum:camel_wall_head",
+    "spectrum:sniffer_wall_head",
+    "spectrum:skeleton_horse_wall_head",
+    "spectrum:zombie_horse_wall_head",
+    "spectrum:dolphin_wall_head",
+    "spectrum:pillager_wall_head"
   ]
 }

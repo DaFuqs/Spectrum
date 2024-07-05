@@ -38,7 +38,6 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "minecraft:dragon_head" ]}] }
     },
-
     "has_axolotl_blue_head": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:axolotl_blue_head" ]}] }
@@ -83,9 +82,17 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:chicken_head" ]}] }
     },
-    "has_clownfish_head": {
+    "has_tropical_fish_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:clownfish_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:tropical_fish_head"
+            ]
+          }
+        ]
+      }
     },
     "has_cow_head": {
       "trigger": "minecraft:inventory_changed",
@@ -550,6 +557,78 @@
           {
             "items": [
               "spectrum:lizard_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_camel_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:camel_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_sniffer_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sniffer_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_skeleton_horse_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:skeleton_horse_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_zombie_horse_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:zombie_horse_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_dolphin_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dolphin_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_pillager_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pillager_head"
             ]
           }
         ]

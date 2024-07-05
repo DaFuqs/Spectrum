@@ -104,7 +104,7 @@ public interface FilterConfigurable {
             @Override
             public void clickShadowSlot(int syncId, @Nullable Slot slot, ItemStack shadowStack) {
                 if (this.syncId != syncId || !(slot instanceof ShadowSlot shadowSlot)) return;
-                shadowSlot.onClicked(shadowStack, ClickType.LEFT, player);
+                if (!shadowSlot.onClicked(shadowStack, ClickType.LEFT, player)) return;
 
                 // Sync with server
                 if (player.getWorld().isClient()) SpectrumC2SPacketSender.sendShadowSlot(syncId, slot.id, shadowStack);

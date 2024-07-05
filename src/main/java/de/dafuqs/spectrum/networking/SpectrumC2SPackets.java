@@ -14,5 +14,6 @@ public class SpectrumC2SPackets {
 	public static final Identifier INK_COLOR_SELECTED = SpectrumCommon.locate("ink_color_select");
 	public static final Identifier WORKSTAFF_TOGGLE_SELECTED = SpectrumCommon.locate("workstaff_toggle_select");
 	public static final Identifier CONFIRMATION_BUTTON_PRESSED = SpectrumCommon.locate("confirmation_button_pressed");
+	public static final Identifier SET_SHADOW_SLOT = SpectrumCommon.locate("set_shadow_slot");
 	
 }

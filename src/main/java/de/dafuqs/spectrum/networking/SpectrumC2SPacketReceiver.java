@@ -6,11 +6,13 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.networking.v1.*;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -18,6 +20,7 @@ import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.*;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -145,6 +148,27 @@ public class SpectrumC2SPacketReceiver {
                 WorkstaffItem.GUIToggle toggle = WorkstaffItem.GUIToggle.values()[buf.readInt()];
 				workstaffScreenHandler.onWorkstaffToggleSelectionPacket(toggle);
 			}
+		});
+
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.SET_SHADOW_SLOT, (server, player, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = player.currentScreenHandler;
+
+			int syncId = buf.readInt();
+			if (screenHandler == null || screenHandler.syncId != syncId) {
+				buf.skipBytes(buf.readableBytes());
+				return;
+			}
+
+			Slot slot = screenHandler.getSlot(buf.readInt());
+			if (slot == null || !(slot instanceof ShadowSlot) || !(slot.inventory instanceof FilterConfigurable.FilterInventory filterInventory)) {
+				buf.skipBytes(buf.readableBytes());
+				return;
+			}
+
+            @SuppressWarnings("UnstableApiUsage")
+			ItemStack shadowStack = ItemVariant.fromPacket(buf).toStack(buf.readInt());
+
+			filterInventory.getClicker().clickShadowSlot(syncId, slot, shadowStack);
 		});
 		
 	}

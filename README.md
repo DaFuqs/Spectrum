@@ -41,7 +41,7 @@ Just because something looks like stone doesn't mean it is...
 
 There is a lot to uncover and lots of discoveries to be made.
 
-![Revelations](/images/readme/revelations.webp)
+![Revelations](/images/readme/revelation.png)
 
 ## Is this mod for me?
 **You might enjoy Spectrum if you like the following:** Outer Wilds; Myst; Thaumcraft; Chromaticraft; figuring out how

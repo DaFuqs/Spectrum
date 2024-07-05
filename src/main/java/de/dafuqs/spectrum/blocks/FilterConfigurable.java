@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks;
+package de.dafuqs.spectrum.api.block;
 
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.*;
@@ -43,7 +43,7 @@ public interface FilterConfigurable {
         }
         return inventory;
     }
-    
+
     static Inventory getFilterInventoryFromPacketClicker(PacketByteBuf packetByteBuf, ShadowSlotClicker clicker) {
         int size = packetByteBuf.readInt();
         Inventory inventory = new FilterInventory(clicker, size);
@@ -102,8 +102,8 @@ public interface FilterConfigurable {
             @Override
             public void clickShadowSlot(int syncId, @Nullable Slot slot, ItemStack shadowStack) {
                 if (this.syncId != syncId || !(slot instanceof ShadowSlot shadowSlot)) return;
-                shadowSlot.onClicked(shadowStack, ClickType.LEFT, player);
-                
+                if (!shadowSlot.onClicked(shadowStack, ClickType.LEFT, player)) return;
+
                 // Sync with server
                 if (player.getWorld().isClient()) SpectrumC2SPacketSender.sendShadowSlot(syncId, slot.id, shadowStack);
             }

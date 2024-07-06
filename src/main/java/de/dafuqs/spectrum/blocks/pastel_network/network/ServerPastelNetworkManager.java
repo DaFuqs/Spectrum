@@ -93,33 +93,39 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 
 	@Override
 	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
-		PastelNetwork parentNetwork, otherNetwork;
+		PastelNetwork mainNetwork, yieldingNetwork;
 
 		if (parent.getParentNetwork() != null) {
-			parentNetwork = parent.getParentNetwork();
-			otherNetwork = node.getParentNetwork();
+			mainNetwork = parent.getParentNetwork();
+			yieldingNetwork = node.getParentNetwork();
+
+			if (yieldingNetwork == null) {
+				mainNetwork.addNode(node);
+				node.setParentNetwork(mainNetwork);
+				return;
+			}
 		}
 		else if (node.getParentNetwork() != null) {
-			parentNetwork = node.getParentNetwork();
-			otherNetwork = parent.getParentNetwork();
+			mainNetwork = node.getParentNetwork();
+			yieldingNetwork = parent.getParentNetwork();
+
+			if (yieldingNetwork == null) {
+				mainNetwork.addNode(parent);
+				parent.setParentNetwork(mainNetwork);
+				return;
+			}
 		}
 		else {
-			parentNetwork = createNetwork(node.getWorld(), null);
-			parentNetwork.addNode(parent);
-			parent.setParentNetwork(parentNetwork);
-			parentNetwork.addNode(node);
-			node.setParentNetwork(parentNetwork);
+			mainNetwork = createNetwork(node.getWorld(), null);
+			mainNetwork.addNode(parent);
+			parent.setParentNetwork(mainNetwork);
+			mainNetwork.addNode(node);
+			node.setParentNetwork(mainNetwork);
 			return;
 		}
 
-		if (otherNetwork == null) {
-			parentNetwork.addNode(node);
-			node.setParentNetwork(parentNetwork);
-			return;
-		}
-
-		parentNetwork.incorporate(otherNetwork);
-		this.networks.remove(otherNetwork);
+		mainNetwork.incorporate(yieldingNetwork);
+		this.networks.remove(yieldingNetwork);
 	}
 
 	@Override

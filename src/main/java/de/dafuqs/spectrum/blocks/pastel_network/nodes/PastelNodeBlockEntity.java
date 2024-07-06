@@ -239,13 +239,19 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
 
     @Override
     public StampData recordStampData(Optional<PlayerEntity> user, BlockReference reference, World world) {
-        return new StampData(user.map(Entity::getUuid), BlockReference.of(getCachedState(), getPos()).appendBE(this), this);
+        return new StampData(user.map(Entity::getUuid), reference, this);
     }
 
     @Override
     public boolean handleImpression(Optional<UUID> stamper, Optional<PlayerEntity> user, BlockReference reference, World world) {
         var sourceNode = (PastelNodeBlockEntity) reference.tryGetBlockEntity().orElseThrow(() -> new IllegalStateException("Attempted to connect a non-existent node - what did you do?!"));
         var manager = Pastel.getInstance(world.isClient());
+
+        if (sourceNode.parentID.map(uuid -> uuid.equals(this.parentID.orElse(null))).orElse(false))
+            return false;
+
+        if (sourceNode.parentNetwork != null && sourceNode.parentNetwork == this.parentNetwork)
+            return false;
 
         if (!sourceNode.canConnect(this))
             return false;

@@ -1,0 +1,29 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/dragon_talon"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0,
+        "reserved": 0.0
+      },
+      "model": "spectrum:item/dragon_talon_oversized"
+    },
+    {
+      "predicate": {
+        "in_world": 1.0,
+        "reserved": 1.0
+      },
+      "model": "spectrum:item/dragon_blank"
+    },
+    {
+      "predicate": {
+        "in_world": 0.0,
+        "reserved": 1.0
+      },
+      "model": "spectrum:item/dragon_talon_phantom"
+    }
+  ]
+}

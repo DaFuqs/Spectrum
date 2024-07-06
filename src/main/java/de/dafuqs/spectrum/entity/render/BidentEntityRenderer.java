@@ -18,15 +18,23 @@ import net.minecraft.util.math.*;
 public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 	
 	private final ItemRenderer itemRenderer;
+	private final float scale;
+	private final float offset;
 	
 	public BidentEntityRenderer(EntityRendererFactory.Context context) {
+		this(context, 2F, -0.625F);
+	}
+	
+	public BidentEntityRenderer(EntityRendererFactory.Context context, float scale, float offset) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
+		this.scale = scale;
+		this.offset = offset;
 	}
 	
 	@Override
 	public void render(BidentBaseEntity bidentBaseEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-		ItemStack itemStack = bidentBaseEntity.getStack();
+		ItemStack itemStack = bidentBaseEntity.getTrackedStack();
 		renderAsItemStack(bidentBaseEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
 		super.render(bidentBaseEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
 	}
@@ -36,10 +44,11 @@ public class BidentEntityRenderer extends EntityRenderer<BidentBaseEntity> {
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(), null, entity.getId());
 		
 		matrixStack.push();
+		matrixStack.translate(0, entity.calculateBoundingBox().getAverageSideLength() / 2, 0);
 		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
 		matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
+		matrixStack.translate(0, offset, 0);
 
-		float scale = 2.0F;
 		matrixStack.scale(scale, scale, scale);
 
 		this.itemRenderer.renderItem(itemStack, ModelTransformationMode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);

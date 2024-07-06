@@ -1,0 +1,32 @@
+{
+  "name": "block.spectrum.primordial_fire",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/interact_with_doombloom"
+  },
+  "icon": "spectrum:textures/gui/guidebook/icons/primordial_fire.png",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/doomblooms"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 8,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "block.spectrum.primordial_fire",
+      "text": "book.spectrum.guidebook.dimension.primordial_fire.page0.text"
+    },
+    {
+      "type": "spectrum:primordial_fire_burning",
+      "title": "book.spectrum.guidebook.dimension.primordial_fire.page1.title",
+      "text": "book.spectrum.guidebook.dimension.primordial_fire.page1.text",
+      "recipe_id_1": "spectrum:primordial_fire_burning/torch_unsouling"
+    }
+  ]
+}

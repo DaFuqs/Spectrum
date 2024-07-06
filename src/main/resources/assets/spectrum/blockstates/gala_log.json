@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/gala_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/gala_log"
+    },
+    "axis=z": {
+      "model": "spectrum:block/gala_log",
+      "x": 90
+    }
+  }
+}

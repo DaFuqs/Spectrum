@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.*;
 import com.llamalad7.mixinextras.injector.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.api.entity.*;
 import de.dafuqs.spectrum.api.item.*;
@@ -20,9 +21,13 @@ import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -30,8 +35,12 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import java.util.*;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
+public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityAccessor {
 	
+	protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+		super(entityType, world);
+	}
+
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
 
@@ -71,12 +80,70 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		player.getAttributes().addTemporaryModifiers(map);
 	}
 	
+	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getNonSpectatingEntities(Ljava/lang/Class;Lnet/minecraft/util/math/Box;)Ljava/util/List;"))
+	protected List<LivingEntity> spectrum$increaseSweepRadius(List<LivingEntity> original, Entity target) {
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD) {
+			var channeling = getChanneling(stack) + 1;
+			var size = channeling * 2 + 0.5;
+			var entities = this.getWorld().getNonSpectatingEntities(LivingEntity.class, target.getBoundingBox().expand(size, 0.4 * channeling, size));
+			if (!getWorld().isClient() && (channeling - 1) > 0) {
+				for (LivingEntity living : entities) {
+					if (living.canTakeDamage()) {
+						for (int i = 0; i < 5; i++) {
+							((ServerWorld) getWorld()).spawnParticles(ParticleTypes.ENCHANTED_HIT,
+									living.getParticleX(1.25),
+									living.getY() + living.getHeight() * random.nextFloat(),
+									living.getParticleZ(1.25),
+									random.nextInt(2), 0, random.nextFloat() / 6F, 0, 0);
+						}
+					}
+				}
+			}
+			
+			return entities;
+		}
+		return original;
+	}
+	
+	@WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/sound/SoundEvent;Lnet/minecraft/sound/SoundCategory;FF)V", ordinal = 1))
+	protected void spectrum$switchSweepSound(World instance, PlayerEntity except, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch, Operation<Void> original) {
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD && getChanneling(stack) > 0) {
+			this.getWorld().playSound(except, x, y, z, SpectrumSoundEvents.ELECTRIC_DISCHARGE, category, 0.75F, 0.9F + random.nextFloat() * 0.2F);
+			return;
+		}
+		original.call(instance, except, x, y, z, sound, category, volume, pitch);
+	}
+	
+	
+	@ModifyExpressionValue(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;squaredDistanceTo(Lnet/minecraft/entity/Entity;)D", shift = At.Shift.AFTER))
+	protected double spectrum$increaseSweepMaxDistance(double original) {
+		var stack = this.getStackInHand(Hand.MAIN_HAND);
+		if (stack.getItem() == SpectrumItems.DRACONIC_TWINSWORD)
+			return original * 3 * ((getChanneling(stack) + 1) * 1.5);
+		return original;
+	}
+	
+	@Unique
+	protected int getChanneling(ItemStack stack) {
+		return EnchantmentHelper.getLevel(Enchantments.CHANNELING, stack);
+	}
+
 	@Inject(at = @At("TAIL"), method = "jump()V")
 	protected void spectrum$jumpAdvancementCriterion(CallbackInfo ci) {
 
 		if ((Object) this instanceof ServerPlayerEntity serverPlayerEntity) {
 			SpectrumAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}
+	}
+	
+	@ModifyVariable(method = "damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
+	private float spectrum$damageArmor(float amount, DamageSource source) {
+		if (source.isIn(SpectrumDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
+			return amount * 10;
+		}
+		return amount;
 	}
 	
 	@Inject(at = @At("TAIL"), method = "isInvulnerableTo(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)

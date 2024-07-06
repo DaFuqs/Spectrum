@@ -1,0 +1,64 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "C___",
+      "____",
+      "_H__",
+      "____",
+      "C___"
+    ],
+    [
+      "Xcc_",
+      "cGGX",
+      "__GX",
+      "cGGX",
+      "Xcc_"
+    ],
+    [
+      "_XX_",
+      "XLLX",
+      "XLLX",
+      "XLLX",
+      "_XX_"
+    ],
+    [
+      "____",
+      "_XX_",
+      "_0X_",
+      "_XX_",
+      "____"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    },
+    "C": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:chiseled_base_blocks"
+    },
+    "c": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:crest_base_blocks"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "tag": "#minecraft:impermeable"
+    },
+    "L": {
+      "type": "modonomicon:block",
+      "block": "minecraft:lava"
+    },
+    "H": {
+      "type": "modonomicon:block",
+      "display": "spectrum:cinderhearth[facing=south]",
+      "block": "spectrum:cinderhearth"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    }
+  }
+}

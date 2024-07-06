@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.general.malachite.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_malachite"
+  },
+  "icon": "spectrum:raw_malachite",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/blackslag"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 6,
+  "turnin": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.malachite.page0.title",
+      "text": "book.spectrum.guidebook.general.malachite.page0.text"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/crystallarieum"
+      },
+      "title1": "book.spectrum.guidebook.general.malachite.page1.title",
+      "recipe_id_1": "spectrum:crystallarieum/malachite",
+      "text": "book.spectrum.guidebook.general.malachite.page1.text"
+    }
+  ]
+}

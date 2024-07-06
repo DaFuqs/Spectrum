@@ -59,13 +59,14 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 	public void tick() {
 		// using a for here instead of foreach
 		// to prevent ConcurrentModificationExceptions
+		//noinspection ForLoopReplaceableByForEach
 		for (int i = 0; i < this.networks.size(); i++) {
 			this.networks.get(i).tick();
 		}
 	}
 	
 	@Override
-	public PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
+	public PastelNetwork JoinOrCreateNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
 		if (uuid == null) {
 			for (ServerPastelNetwork network : this.networks) {
 				if (network.canConnect(node)) {
@@ -89,17 +90,54 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 		network.addNode(node);
 		return network;
 	}
-	
+
+	@Override
+	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		PastelNetwork mainNetwork, yieldingNetwork;
+
+		if (parent.getParentNetwork() != null) {
+			mainNetwork = parent.getParentNetwork();
+			yieldingNetwork = node.getParentNetwork();
+
+			if (yieldingNetwork == null) {
+				mainNetwork.addNode(node);
+				node.setParentNetwork(mainNetwork);
+				return;
+			}
+		}
+		else if (node.getParentNetwork() != null) {
+			mainNetwork = node.getParentNetwork();
+			yieldingNetwork = parent.getParentNetwork();
+
+			if (yieldingNetwork == null) {
+				mainNetwork.addNode(parent);
+				parent.setParentNetwork(mainNetwork);
+				return;
+			}
+		}
+		else {
+			mainNetwork = createNetwork(node.getWorld(), null);
+			mainNetwork.addNode(parent);
+			parent.setParentNetwork(mainNetwork);
+			mainNetwork.addNode(node);
+			node.setParentNetwork(mainNetwork);
+			return;
+		}
+
+		mainNetwork.incorporate(yieldingNetwork);
+		this.networks.remove(yieldingNetwork);
+	}
+
 	@Override
 	public void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		ServerPastelNetwork network = (ServerPastelNetwork) node.getNetwork();
+		ServerPastelNetwork network = (ServerPastelNetwork) node.getParentNetwork();
 		if (network != null) {
 			network.removeNode(node, reason);
 			
 			if (network.hasNodes()) {
 				// check if the removed node split the network into subnetworks
 				checkForNetworkSplit(network);
-			} else if (reason == NodeRemovalReason.BROKEN || reason == NodeRemovalReason.MOVED) {
+			} else if (reason.destructive) {
 				this.networks.remove(network);
 			}
 		}
@@ -116,7 +154,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 					network.nodes.get(disconnectedNode.getNodeType()).remove(disconnectedNode);
 					network.getGraph().removeVertex(disconnectedNode);
 					newNetwork.addNode(disconnectedNode);
-					disconnectedNode.setNetwork(newNetwork);
+					disconnectedNode.setParentNetwork(newNetwork);
 				}
 			}
 		}
@@ -143,7 +181,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 			}
 		}
 		
-		if (smallerNetworks.size() == 0) {
+		if (smallerNetworks.isEmpty()) {
 			return;
 		}
 		

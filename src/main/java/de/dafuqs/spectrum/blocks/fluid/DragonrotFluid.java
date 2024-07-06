@@ -1,12 +1,17 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.mob.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -99,6 +104,38 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 	@Override
 	public ParticleEffect getSplashParticle() {
 		return SpectrumParticleTypes.DRAGONROT_SPLASH;
+	}
+	
+	
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		super.onEntityCollision(state, world, pos, entity);
+		
+		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
+			// just check every 20 ticks for performance
+			if (!livingEntity.isDead() && world.getTime() % 20 == 0 && !(livingEntity instanceof Monster)) {
+				if (livingEntity.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 6);
+				} else {
+					livingEntity.damage(SpectrumDamageTypes.dragonrot(world), 3);
+				}
+				if (!livingEntity.isDead()) {
+					StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
+					if (existingEffect == null || existingEffect.getDuration() < 1000) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
+					}
+					existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
+					if (existingEffect == null || existingEffect.getDuration() < 80) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
+		return SpectrumRecipeTypes.DRAGONROT_CONVERTING;
 	}
 	
 	public static class Flowing extends DragonrotFluid {

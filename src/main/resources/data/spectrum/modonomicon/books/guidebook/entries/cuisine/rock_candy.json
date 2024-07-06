@@ -1,0 +1,48 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.rock_candy.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/rock_candy"
+  },
+  "icon": "spectrum:rock_candy",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.rock_candy.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.rock_candy.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.rock_candy.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/sugar_stick",
+      "text": "book.spectrum.guidebook.cuisine.rock_candy.page1.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.cuisine.rock_candy.page2.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/rock_candy_growing.png"
+      ],
+      "text": "book.spectrum.guidebook.cuisine.rock_candy.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:topaz_rock_candy"
+      },
+      "title": "book.spectrum.guidebook.cuisine.rock_candy.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/collect_gemstone_rock_candy"
+      },
+      "text": "book.spectrum.guidebook.cuisine.rock_candy.page3.text"
+    }
+  ]
+}

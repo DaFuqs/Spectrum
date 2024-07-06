@@ -1,0 +1,35 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.creating_enchanted_books.name",
+  "icon": "minecraft:enchanted_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/enchanter"
+  },
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -1,
+  "y": -1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page0.title"
+    },
+    {
+      "type": "modonomicon:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/creating_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.enchanting.creating_enchanted_books.page1.text"
+    }
+  ]
+}

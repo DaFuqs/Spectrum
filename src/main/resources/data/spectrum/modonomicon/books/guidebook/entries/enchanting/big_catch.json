@@ -1,0 +1,65 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.big_catch.name",
+  "icon": "spectrum:lagoon_rod",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/big_catch"
+      },
+      {
+        "type": "spectrum:enchantment_registered",
+        "enchantment_id": "spectrum:big_catch"
+      }
+    ]
+  },
+  "flag": "spectrum:enchantment_exists_spectrum_big_catch",
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "y": -10,
+  "x": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page0.text",
+      "title": "book.spectrum.guidebook.enchanting.big_catch.page0.title"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.big_catch.page1.title",
+      "item": {
+        "item": "spectrum:lagoon_rod",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:big_catch",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page1.text"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page2.text",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page2.title",
+      "recipe_id_1": "spectrum:enchanter/spectrum_books/book_big_catch"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "text": "book.spectrum.guidebook.enchanting.big_catch.page3.text",
+      "title1": "book.spectrum.guidebook.enchanting.big_catch.page3.title",
+      "recipe_id_1": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2"
+    }
+  ]
+}

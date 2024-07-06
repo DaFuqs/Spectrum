@@ -1,0 +1,47 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.trifles.name",
+  "icon": "spectrum:jaramel_trifle",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/trifles"
+  },
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:cuisine/amaranth",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.trifles.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.trifles.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/jaramel_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:craft_salted_jaramel_trifle_or_tart"
+      },
+      "recipe_id_1": "spectrum:pedestal/tier1/food/salted_jaramel_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/monster_trifle",
+      "text": "book.spectrum.guidebook.cuisine.trifles.page3.text"
+    }
+  ]
+}

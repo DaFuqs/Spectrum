@@ -89,7 +89,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new CraftingTabletScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), TITLE);
 	}
 	
-	private void tryCraftRecipe(ServerPlayerEntity serverPlayerEntity, Recipe<?> recipe) {
+	public static void tryCraftRecipe(ServerPlayerEntity serverPlayerEntity, Recipe<?> recipe) {
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 		
 		Inventory playerInventory = serverPlayerEntity.getInventory();

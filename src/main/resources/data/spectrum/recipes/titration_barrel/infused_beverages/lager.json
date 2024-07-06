@@ -106,7 +106,7 @@
       "Color": 12080430
     }
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age",
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age",
   "fabric:load_conditions": [
     {
       "condition": "fabric:not",

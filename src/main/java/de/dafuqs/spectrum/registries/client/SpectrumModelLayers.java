@@ -48,7 +48,7 @@ public class SpectrumModelLayers {
 	 */
 	public static final EntityModelLayer FEET_BEDROCK_LAYER = new EntityModelLayer(SpectrumCommon.locate("bedrock_armor"), "feet");
 	public static final EntityModelLayer MAIN_BEDROCK_LAYER = new EntityModelLayer(SpectrumCommon.locate("bedrock_armor"), "main");
-	public static final Identifier BEDROCK_ARMOR_LOCATION = SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
+	public static final Identifier BEDROCK_ARMOR_MAIN_ID = SpectrumCommon.locate("textures/armor/bedrock_armor_main.png");
 	
 	public static void register() {
 		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG, EggLayingWoolyPigEntityModel::getTexturedModelData);

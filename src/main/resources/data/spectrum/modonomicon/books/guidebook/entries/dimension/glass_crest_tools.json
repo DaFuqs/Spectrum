@@ -1,0 +1,80 @@
+{
+  "name": "book.spectrum.guidebook.equipment.glass_crest_tools.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/malachite/glass_crest_tools"
+  },
+  "icon": "spectrum:glass_crest_workstaff",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/malachite_tools"
+    },
+    {
+      "entry": "spectrum:dimension/moonstone_cores",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -7,
+  "y": 7,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.title",
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/malachite/glass_crest_workstaff"
+      },
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_workstaff"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword"
+      },
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page2.title",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/malachite/glass_crest_crossbow"
+      },
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page3.title",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/glass_crest_crossbow"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/malachite/ferocious_glass_crest_bident"
+      },
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page4.title",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/malachite/fractal_glass_crest_bident"
+      },
+      "text": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.text",
+      "title1": "book.spectrum.guidebook.equipment.glass_crest_tools.page5.title",
+      "recipe_id_1": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "book.spectrum.guidebook.dimension.deep_dripstone_caves.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves"
+  },
+  "icon": "minecraft:dripstone_block",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 4,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_deep_dripstone_caves.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.deep_dripstone_caves.page1.text"
+    }
+  ]
+}

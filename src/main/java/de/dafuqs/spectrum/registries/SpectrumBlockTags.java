@@ -16,7 +16,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> SNAPPING_IVY_PLANTABLE = of("snapping_ivy_plantable");
 	public static final TagKey<Block> ALOE_PLANTABLE = of("aloe_plantable");
 	public static final TagKey<Block> ALOE_CONVERTED = of("aloe_converted");
-	
+
 	// DECAY
 	public static final TagKey<Block> DECAY = of("decay/decay");
 	public static final TagKey<Block> DECAY_AWAY_CURABLES = of("decay/decay_away_curables");
@@ -51,7 +51,9 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = of("unbreakable_structure_blocks");
 	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = of("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
 	public static final TagKey<Block> SPREADS_TO_BLACKSLAG = of("spreads_to_blackslag");
-	
+	public static final TagKey<Block> ASH = of("ash");
+	public static final TagKey<Block> PRECIPITATION_SOURCES = of("precipitation_source");
+
 	// DEBUG
 	public static final TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = of("exempt_from_mineable_debug_check");
 	public static final TagKey<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK = of("exempt_from_loot_table_debug_check");

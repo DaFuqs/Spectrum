@@ -1,16 +1,12 @@
 package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.api.recipe.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
-
-import java.util.*;
 
 public abstract class GatedSpectrumRecipe implements GatedRecipe {
 	
@@ -57,7 +53,8 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier()) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, getRecipeTypeUnlockIdentifier())
+				&& AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	public abstract String getRecipeTypeShortID();
@@ -79,8 +76,8 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 	
 	@Override
 	public boolean equals(Object object) {
-		if (object instanceof GatedSpectrumRecipe) {
-			return ((GatedSpectrumRecipe) object).getId().equals(this.getId());
+		if (object instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
+			return gatedSpectrumRecipe.getId().equals(this.getId());
 		}
 		return false;
 	}
@@ -94,64 +91,6 @@ public abstract class GatedSpectrumRecipe implements GatedRecipe {
 		ItemStack stack = item.getDefaultStack();
 		stack.setCount(count);
 		return stack;
-	}
-	
-	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredientStacks) {
-		if (inv.size() < ingredientStacks.size()) {
-			return false;
-		}
-		
-		int inputStackCount = 0;
-		for (int i = 0; i < inv.size(); i++) {
-			if (!inv.getStack(i).isEmpty()) {
-				inputStackCount++;
-			}
-		}
-		if (inputStackCount != ingredientStacks.size()) {
-			return false;
-		}
-		
-		
-		for (IngredientStack ingredientStack : ingredientStacks) {
-			boolean found = false;
-			for (int i = 0; i < inv.size(); i++) {
-				if (ingredientStack.test(inv.getStack(i))) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredients, int[] slots) {
-		int inputStackCount = 0;
-		for (int slot : slots) {
-			if (!inv.getStack(slot).isEmpty()) {
-				inputStackCount++;
-			}
-		}
-		if (inputStackCount != ingredients.size()) {
-			return false;
-		}
-		
-		for (IngredientStack ingredient : ingredients) {
-			boolean found = false;
-			for (int slot : slots) {
-				if (ingredient.test(inv.getStack(slot))) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		
-		return true;
 	}
 	
 }

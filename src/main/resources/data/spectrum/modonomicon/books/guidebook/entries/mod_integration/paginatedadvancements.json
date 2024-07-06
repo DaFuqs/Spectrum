@@ -1,0 +1,91 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.paginatedadvancements.name",
+  "icon": "minecraft:grass_block",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "paginatedadvancements"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page0.title"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page1.title",
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page1.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page2.title",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page2.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page3.title",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 104,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page3.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page4.title",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 78,
+      "texture_y": 104,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page4.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page5.title",
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 26,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "book.spectrum.guidebook.mod_integration.paginatedadvancements.page5.text"
+    }
+  ]
+}

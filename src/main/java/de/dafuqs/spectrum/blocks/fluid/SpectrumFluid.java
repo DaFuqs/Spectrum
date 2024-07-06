@@ -1,12 +1,22 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -81,5 +91,44 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	}
 	
 	public abstract ParticleEffect getSplashParticle();
+	
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		if (!world.isClient) {
+			if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
+				if (world.random.nextInt(100) == 0) {
+					ItemStack itemStack = itemEntity.getStack();
+					FluidConvertingRecipe recipe = getConversionRecipeFor(getDippingRecipeType(), world, itemStack);
+					if (recipe != null) {
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+						
+						ItemStack result = craft(recipe, itemStack, world);
+						int count = result.getCount() * itemStack.getCount();
+						result.setCount(count);
+						
+						if (itemEntity.getOwner() instanceof ServerPlayerEntity serverPlayerEntity) {
+							SpectrumAdvancementCriteria.FLUID_DIPPING.trigger(serverPlayerEntity, (ServerWorld) world, pos, itemStack, result);
+						}
+						
+						itemEntity.discard();
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), result, count, Vec3d.ZERO, false, itemEntity.getOwner());
+					}
+				}
+			}
+		}
+	}
+	
+	public abstract RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType();
+	
+	private static final AutoCraftingInventory AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
+	
+	public <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull World world, ItemStack itemStack) {
+		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
+		return world.getRecipeManager().getFirstMatch(recipeType, AUTO_INVENTORY, world).orElse(null);
+	}
+	
+	public ItemStack craft(FluidConvertingRecipe recipe, ItemStack itemStack, World world) {
+		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
+		return recipe.craft(AUTO_INVENTORY, world.getRegistryManager());
+	}
 
 }

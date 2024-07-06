@@ -1,0 +1,44 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.sawblade_holly.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/collect_prickly_bayleaf"
+  },
+  "icon": "spectrum:prickly_bayleaf",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 8,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:sawblade_holly_berry"
+      },
+      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.sawblade_holly.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:prickly_bayleaf"
+      },
+      "text": "book.spectrum.guidebook.cuisine.sawblade_holly.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe_id_1": "spectrum:pedestal/tier1/food/triple_meat_pot_stew"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/food/dragonbone_broth"
+      },
+      "recipe_id_1": "spectrum:pedestal/tier1/food/dragonbone_broth"
+    }
+  ]
+}

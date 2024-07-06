@@ -183,6 +183,10 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType WHITE_EXPLOSION = register("white_explosion", true);
 	public static DefaultParticleType YELLOW_EXPLOSION = register("yellow_explosion", true);
 	
+	public static DefaultParticleType FALLING_ASH = register("falling_ash", true);
+	
+	public static DefaultParticleType LIGHT_RAIN = register("light_rain", true);
+	
 	public static DefaultParticleType LIGHT_TRAIL = register("light_trail", true);
 	
 	public static ParticleType<DynamicParticleEffect> DYNAMIC = register("particle_spawner", DynamicParticleEffect.FACTORY, (particleType) -> DynamicParticleEffect.CODEC, false);

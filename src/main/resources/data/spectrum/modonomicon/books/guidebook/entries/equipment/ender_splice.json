@@ -1,0 +1,71 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.ender_splice.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/ender_splice"
+  },
+  "icon": "spectrum:ender_splice",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:ender_splice"
+      },
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.ender_splice.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/ender_splice"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page2.title",
+      "item": {
+        "item": "spectrum:ender_splice",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:unbreaking",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page2.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/create_resonance_enchanted_book"
+      },
+      "title": "book.spectrum.guidebook.magical_items.ender_splice.page3.title",
+      "item": {
+        "item": "spectrum:ender_splice",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:resonance",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.ender_splice.page3.text"
+    }
+  ]
+}

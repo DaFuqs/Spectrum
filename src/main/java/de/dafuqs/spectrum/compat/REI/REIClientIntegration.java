@@ -103,7 +103,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
-		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
+		registry.addWorkstations(SpectrumPlugins.PRIMORDIAL_FIRE_BURNING, EntryStacks.of(SpectrumItems.DOOMBLOOM_SEED), EntryStacks.of(SpectrumItems.PRIMORDIAL_LIGHTER), EntryStacks.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EntryStacks.of(SpectrumItems.PIPE_BOMB));
 	}
 	
 	@Override
@@ -175,11 +175,11 @@ public class REIClientIntegration implements REIClientPlugin {
 	public void registerTransferHandlers(TransferHandlerRegistry registry) {
 		// REI input magic to prevent moving incorrect amount of gem powder yet still complain about a lack of such
 		registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, SpectrumPlugins.PEDESTAL_CRAFTING,
-				new SimpleTransferHandler.IntRange(0, 8),
-				List.of(new SimpleTransferHandler.IntRange(9, 14), new SimpleTransferHandler.IntRange(16, 52))));
+				new SimpleTransferHandler.IntRange(0, 9),
+				List.of(new SimpleTransferHandler.IntRange(9, 15), new SimpleTransferHandler.IntRange(16, 52))));
 		if (SpectrumCommon.CONFIG.canPedestalCraftVanillaRecipes()) {
 			registry.register(SimpleTransferHandlerExtension.create(PedestalScreenHandler.class, BuiltinPlugin.CRAFTING,
-					new SimpleTransferHandler.IntRange(0, 8), new SimpleTransferHandler.IntRange(16, 52)));
+					new SimpleTransferHandler.IntRange(0, 9), new SimpleTransferHandler.IntRange(16, 52)));
 		}
 		registry.register(SimpleTransferHandlerExtension.create(CinderhearthScreenHandler.class, SpectrumPlugins.CINDERHEARTH,
 				new SimpleTransferHandler.IntRange(2, 3), new SimpleTransferHandler.IntRange(11, 47)));

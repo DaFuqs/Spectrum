@@ -9,7 +9,9 @@ public interface PastelNetworkManager {
     
     //PastelNetwork createNetwork(World world, UUID uuid);
     
-    PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid);
+    PastelNetwork JoinOrCreateNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid);
+
+    void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent);
     
     //void removeEmptyNetwork(PastelNetwork network);
     

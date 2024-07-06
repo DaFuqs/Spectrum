@@ -1,0 +1,41 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.mud.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/mud"
+  },
+  "icon": "spectrum:mud_bucket",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_blocks.mud.page0.title",
+      "item": {
+        "item": "spectrum:mud_bucket"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.mud.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/mud_bucket"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.mud.page2.title",
+      "text": "book.spectrum.guidebook.magical_blocks.mud.page2.text"
+    },
+    {
+      "type": "spectrum:mud_converting",
+      "title1": "book.spectrum.guidebook.magical_blocks.mud.page3.title",
+      "recipe_id_1": "spectrum:mud_converting/rabbit_hide"
+    }
+  ]
+}

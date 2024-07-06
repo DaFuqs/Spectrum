@@ -55,7 +55,7 @@ public class SpectrumColorProviders {
 			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
 			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
 			
-			for (DyeColor dyeColor : DyeColor.values()) {
+			for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 				Block block = ColoredLeavesBlock.byColor(dyeColor);
 				ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
 				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);

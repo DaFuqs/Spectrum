@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "has_dragonbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonbone",
+              "spectrum:cracked_dragonbone",
+              "spectrum:dragonbone_chunk"
+            ]
+          }
+        ]
+      }
+    },
+    "broken_cracked_dragonbone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "broken_cracked_dragonbone",
+      "has_dragonbone"
+    ]
+  ]
+}

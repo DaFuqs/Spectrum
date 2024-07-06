@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_sculk_emerald",
+  "budding_block": "geode_plus:budding_sculk_emerald",
   "valid_neighbor_blocks": [
-    "geode:small_emerald_bud",
-    "geode:medium_emerald_bud",
-    "geode:large_emerald_bud",
-    "geode:emerald_cluster",
+    "geode_plus:small_emerald_bud",
+    "geode_plus:medium_emerald_bud",
+    "geode_plus:large_emerald_bud",
+    "geode_plus:emerald_cluster",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

@@ -1,0 +1,45 @@
+{
+  "name": "book.spectrum.guidebook.dimension.razor_edge.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/razor_edge"
+  },
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 4,
+  "y": -7,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.dimension.razor_edge.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_razor_edge.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.dimension.razor_edge.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:sawblade_grass"
+      },
+      "text": "book.spectrum.guidebook.dimension.razor_edge.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:bristle_sprouts"
+      },
+      "text": "book.spectrum.guidebook.dimension.razor_edge.page2.text"
+    }
+  ]
+}

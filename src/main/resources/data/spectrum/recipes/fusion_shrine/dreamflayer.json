@@ -1,8 +1,9 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 2400,
+  "time": 1200,
   "experience": 16.0,
   "fluid": "spectrum:midnight_solution",
+  "copy_nbt": true,
   "ingredients": [
     {
       "item": "minecraft:netherite_sword"
@@ -51,6 +52,6 @@
     "visual_explosions_on_shrine",
     "nothing"
   ],
-  "finish_crafting_effect": "lightning_on_shrine",
+  "finish_crafting_effect": "legendary_tool_craft",
   "description": "spectrum.recipe.fusion_shrine.explanation.dreamflayer"
 }

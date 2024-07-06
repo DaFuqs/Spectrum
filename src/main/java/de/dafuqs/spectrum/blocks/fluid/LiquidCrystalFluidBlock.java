@@ -1,27 +1,25 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.particle.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.entity.effect.*;
-import net.minecraft.fluid.*;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
 	public static final int LUMINANCE = 11;
 	
-	public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
-		super(fluid, settings);
+	public LiquidCrystalFluidBlock(SpectrumFluid fluid, BlockState ultrawarmReplacementBlockState, Settings settings) {
+		super(fluid, ultrawarmReplacementBlockState, settings);
 	}
 	
 	@Override
@@ -35,46 +33,8 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	}
 	
 	@Override
-	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
-		return SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING;
-	}
-
-	@Override
-	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-		}
-	}
-	
-	@Override
-	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-		if (this.receiveNeighborFluids(world, pos, state)) {
-			world.scheduleFluidTick(pos, state.getFluidState().getFluid(), this.fluid.getTickRate(world));
-		}
-	}
-	
-	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return true;
-	}
-	
-	/**
-	 * Entities colliding with liquid crystal will get a slight regeneration effect
-	 */
-	@Override
-	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-		super.onEntityCollision(state, world, pos, entity);
-		
-		if (!world.isClient && entity instanceof LivingEntity livingEntity) {
-			// just check every x ticks for performance and slow healing
-			if (world.getTime() % 200 == 0) {
-				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
-				if (regenerationInstance == null) {
-					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-					livingEntity.addStatusEffect(newRegenerationInstance);
-				}
-			}
-		}
 	}
 	
 	@Override
@@ -84,44 +44,18 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 			world.addParticle(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, pos.getX() + random.nextDouble(), pos.getY() + random.nextDouble(), pos.getZ() + random.nextDouble(), 0, random.nextDouble() * 0.1, 0);
 		}
 	}
-	
-	/**
-	 * @param world The world
-	 * @param pos   The position in the world
-	 * @param state BlockState of the liquid crystal. Included the height/fluid level
-	 * @return Dunno, actually. I just mod things.
-	 */
-	private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
-		for (Direction direction : Direction.values()) {
-			BlockPos blockPos = pos.offset(direction);
-			if (world.getFluidState(blockPos).isIn(FluidTags.WATER)) {
-				Block block = world.getFluidState(pos).isStill() ? SpectrumBlocks.FROSTBITE_CRYSTAL : Blocks.CALCITE;
-				world.setBlockState(pos, block.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			}
-			if (world.getFluidState(blockPos).isIn(FluidTags.LAVA)) {
-				Block block;
-				if (world.getFluidState(pos).isStill()) {
-					block = SpectrumBlocks.BLAZING_CRYSTAL;
-				} else {
-					block = Blocks.COBBLED_DEEPSLATE;
-				}
-				world.setBlockState(pos, block.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			}
-			if (world.getFluidState(blockPos).isIn(SpectrumFluidTags.MUD)) {
-				world.setBlockState(pos, Blocks.CLAY.getDefaultState());
-				this.playExtinguishSound(world, pos);
-				return false;
-			}
+
+	public @Nullable BlockState handleFluidCollision(World world, @NotNull FluidState state, @NotNull FluidState otherState) {
+		if (otherState.isIn(FluidTags.WATER)) {
+			return state.isStill() ? SpectrumBlocks.FROSTBITE_CRYSTAL.getDefaultState() : Blocks.CALCITE.getDefaultState();
 		}
-		return true;
-	}
-	
-	private void playExtinguishSound(WorldAccess world, BlockPos pos) {
-		world.syncWorldEvent(WorldEvents.LAVA_EXTINGUISHED, pos, 0);
+		else if (otherState.isIn(FluidTags.LAVA)) {
+			return state.isStill() ? SpectrumBlocks.BLAZING_CRYSTAL.getDefaultState() : Blocks.COBBLED_DEEPSLATE.getDefaultState();
+		}
+		else if (otherState.isIn(SpectrumFluidTags.MUD)) {
+			return Blocks.CLAY.getDefaultState();
+		}
+		return null;
 	}
 	
 }

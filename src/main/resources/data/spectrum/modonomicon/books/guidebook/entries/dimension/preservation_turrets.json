@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.dimension.preservation_turrets.name",
+  "icon": "spectrum:preservation_turret_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/preservation_turret"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/forgotten_cities"
+    },
+    {
+      "entry": "spectrum:dimension/creatures"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -4,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "title": "book.spectrum.guidebook.dimension.preservation_turrets.page0.title",
+      "entity_id": "spectrum:preservation_turret",
+      "scale": 0.5,
+      "offset": 0.4,
+      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.preservation_turrets.page1.text"
+    }
+  ]
+}

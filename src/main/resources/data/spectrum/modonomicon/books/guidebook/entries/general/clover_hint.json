@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.clover.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 4,
+  "y": -4,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_enchanting_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:collect_four_leaf_clover",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.clover.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/clover_page0",
+      "cost": {
+        "item": "spectrum:vegetal",
+        "count": 16
+      },
+      "text": "book.spectrum.guidebook.hints.clover.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.clover.page1.title",
+      "cost": {
+        "item": "spectrum:vegetal",
+        "count": 48
+      },
+      "text": "book.spectrum.guidebook.hints.clover.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/clover_page1"
+    }
+  ]
+}

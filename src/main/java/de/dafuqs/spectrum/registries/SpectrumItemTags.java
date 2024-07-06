@@ -3,17 +3,14 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.*;
-import net.minecraft.util.*;
 import net.minecraft.registry.tag.*;
+import net.minecraft.util.*;
 
 public class SpectrumItemTags {
 	
 	// "c" namespace
-
-    public static final TagKey<Item> EGGPLANTS = common("eggplants");
-	public static final TagKey<Item> PEACHES = common("peaches");
-public static final TagKey<Item> SKULLS = common("skulls");
-
+	public static final TagKey<Item> SKULLS = common("skulls");
+	
 	// "spectrum" namespace
 	public static final TagKey<Item> COLORED_SAPLINGS = of("colored_saplings");
 	public static final TagKey<Item> COLORED_PLANKS = of("colored_planks");
@@ -35,7 +32,7 @@ public static final TagKey<Item> SKULLS = common("skulls");
 	public static final TagKey<Item> KINDLING_FOOD = of("kindling_food");
 	public static final TagKey<Item> COLORED_FENCES = of("colored_fences");
 	public static final TagKey<Item> COLORED_FENCE_GATES = of("colored_fence_gates");
-
+	
 	private static TagKey<Item> of(String id) {
 		return TagKey.of(RegistryKeys.ITEM, SpectrumCommon.locate(id));
 	}
@@ -43,5 +40,5 @@ public static final TagKey<Item> SKULLS = common("skulls");
 	private static TagKey<Item> common(String id) {
 		return TagKey.of(RegistryKeys.ITEM, new Identifier("c", id));
 	}
-
+	
 }

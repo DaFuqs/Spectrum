@@ -1,0 +1,40 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.spirit_instiller.name",
+  "icon": "spectrum:spirit_instiller",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/spirit_instiller"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.text",
+      "title": "book.spectrum.guidebook.creating_life.spirit_instiller.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/spirit_instiller",
+      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page1.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.creating_life.spirit_instiller.page2.multiblock_name",
+      "multiblock_id": "spectrum:spirit_instiller",
+      "show_visualize_button": true,
+      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.spirit_instiller.page3.title",
+      "text": "book.spectrum.guidebook.creating_life.spirit_instiller.page3.text"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.equipment.molten_rod.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/equipment/molten_rod"
+  },
+  "icon": "spectrum:molten_rod",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/tools_and_armor/lagoon_rod"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.molten_rod.page0.text",
+      "title": "book.spectrum.guidebook.equipment.molten_rod.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.molten_rod.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.molten_rod.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/tools/molten_rod"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "effect.spectrum.life_drain",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/life_drain"
+  },
+  "icon": "spectrum:textures/mob_effect/life_drain.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": 1,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.life_drain",
+      "status_effect_id": "spectrum:life_drain",
+      "text": "book.spectrum.guidebook.brewing.life_drain.page0.text"
+    }
+  ]
+}

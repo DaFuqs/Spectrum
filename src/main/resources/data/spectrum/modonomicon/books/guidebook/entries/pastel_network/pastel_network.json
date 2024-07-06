@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.pastel_network.pastel_network.name",
+  "icon": "spectrum:provider_node",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.pastel_network.pastel_network.page0.title",
+      "text": "book.spectrum.guidebook.pastel_network.pastel_network.page0.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.pastel_network.pastel_network.page1.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/pastel_travel.png"
+      ],
+      "border": false,
+      "text": "book.spectrum.guidebook.pastel_network.pastel_network.page1.text"
+    }
+  ]
+}

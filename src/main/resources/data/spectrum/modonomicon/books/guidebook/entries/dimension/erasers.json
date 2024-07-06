@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.dimension.erasers.name",
+  "icon": "spectrum:eraser_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/entity_interact/eraser"
+  },
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/creatures"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -5,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:entity",
+      "title": "book.spectrum.guidebook.dimension.erasers.page0.name",
+      "entity_id": "spectrum:eraser",
+      "scale": 0.5,
+      "text": "book.spectrum.guidebook.dimension.erasers.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.erasers.page1.text"
+    }
+  ]
+}

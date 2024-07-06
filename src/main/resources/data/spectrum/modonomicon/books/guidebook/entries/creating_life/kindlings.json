@@ -1,0 +1,55 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.kindlings.name",
+  "icon": "spectrum:kindling_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/kindling_memory"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/dragonbone"
+    },
+    {
+      "entry": "spectrum:creating_life/memories"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 5,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.kindlings.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.kindlings.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/memories/kindling_from_dragonbone",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/remember_kindling"
+      },
+      "title": "book.spectrum.guidebook.creating_life.kindlings.page2.title",
+      "text": "book.spectrum.guidebook.creating_life.kindlings.page2.text"
+    },
+    {
+      "type": "spectrum:snippet",
+      "resource_path": "spectrum:textures/gui/guidebook/kindlings.png",
+      "resource_width": 100,
+      "resource_height": 150,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 100,
+      "texture_height": 150,
+      "border": false
+    }
+  ]
+}

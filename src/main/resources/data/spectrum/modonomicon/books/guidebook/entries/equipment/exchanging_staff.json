@@ -1,0 +1,88 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.exchanging_staff.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/exchanging_staff"
+  },
+  "icon": "spectrum:exchanging_staff",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 11,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.text",
+      "title1": "book.spectrum.guidebook.magical_items.exchanging_staff.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/exchanging_staff"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.title",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:fortune",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page2.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_enchanting_structure"
+      },
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.title",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:silk_touch",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page3.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/resonance_usage"
+      },
+      "title": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.title",
+      "item": {
+        "item": "spectrum:exchanging_staff",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "spectrum:resonance",
+              "lvl": "1s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.magical_items.exchanging_staff.page4.text"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "book.spectrum.guidebook.dimension.shale_clay.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/collect_shale_clay"
+  },
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/razor_edge"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": -7,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page0.text",
+      "title": "book.spectrum.guidebook.dimension.shale_clay.page0.title"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.dimension.shale_clay.page1.title",
+      "items": [
+        "spectrum:shale_clay",
+        "spectrum:shale_clay_bricks",
+        "spectrum:shale_clay_tiles",
+        "spectrum:shale_clay_brick_slab",
+        "spectrum:shale_clay_brick_stairs",
+        "spectrum:polished_shale_clay_slab",
+        "spectrum:polished_shale_clay_stairs",
+        "spectrum:shale_clay_tile_slab",
+        "spectrum:shale_clay_tile_stairs",
+        "spectrum:exposed_polished_shale_clay",
+        "spectrum:exposed_polished_shale_clay_slab",
+        "spectrum:exposed_polished_shale_clay_stairs",
+        "spectrum:exposed_shale_clay_brick_slab",
+        "spectrum:exposed_shale_clay_brick_stairs",
+        "spectrum:exposed_shale_clay_bricks",
+        "spectrum:exposed_shale_clay_tile_slab",
+        "spectrum:exposed_shale_clay_tile_stairs",
+        "spectrum:exposed_shale_clay_tiles",
+        "spectrum:weathered_polished_shale_clay",
+        "spectrum:weathered_polished_shale_clay_slab",
+        "spectrum:weathered_polished_shale_clay_stairs",
+        "spectrum:weathered_shale_clay_brick_slab",
+        "spectrum:weathered_shale_clay_brick_stairs",
+        "spectrum:weathered_shale_clay_bricks",
+        "spectrum:weathered_shale_clay_tile_slab",
+        "spectrum:weathered_shale_clay_tile_stairs",
+        "spectrum:weathered_shale_clay_tiles"
+      ],
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page1.text"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "recipe_id_1": "spectrum:smelting/shale_clay_to_polished_shale_clay",
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page2.text"
+    },
+    {
+      "type": "modonomicon:smelting_recipe",
+      "title1": "book.spectrum.guidebook.dimension.shale_clay.page3.title",
+      "recipe_id_1": "spectrum:smelting/polished_shale_clay_unsmelting",
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:tilled_shale_clay"
+      },
+      "text": "book.spectrum.guidebook.dimension.shale_clay.page4.text"
+    }
+  ]
+}

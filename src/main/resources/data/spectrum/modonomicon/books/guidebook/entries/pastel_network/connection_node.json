@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.pastel_network.connection_node.name",
+  "icon": "spectrum:connection_node",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/pastel_network"
+  },
+  "category": "spectrum:pastel_network",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:pastel_network/pastel_network",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.pastel_network.connection_node.page0.text",
+      "title": "book.spectrum.guidebook.pastel_network.connection_node.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.pastel_network.connection_node.page1.text",
+      "title1": "book.spectrum.guidebook.pastel_network.connection_node.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/pastel_network/connection_node"
+    }
+  ]
+}

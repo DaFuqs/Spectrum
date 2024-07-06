@@ -1,0 +1,27 @@
+{
+  "name": "effect.spectrum.divinity",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/divinity"
+  },
+  "icon": "spectrum:textures/mob_effect/divinity.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/effects/ascension"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 5,
+  "y": -4,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.divinity",
+      "status_effect_id": "spectrum:divinity",
+      "text": "book.spectrum.guidebook.brewing.ascension_divinity.page1.text"
+    }
+  ]
+}

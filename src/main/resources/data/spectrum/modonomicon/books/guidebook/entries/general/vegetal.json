@@ -1,0 +1,42 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.vegetal.name",
+  "icon": "spectrum:vegetal",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_vegetal"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/fading"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 2,
+  "turnin": "spectrum:collect_vegetal",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.creating_life.fading.page2.title",
+      "item": {
+        "item": "spectrum:vegetal"
+      },
+      "text": "book.spectrum.guidebook.creating_life.fading.page2.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Compression",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Decompression",
+      "recipe_id_1": "spectrum:pedestal/tier1/compacting/vegetal_from_vegetal_block",
+      "text": ""
+    }
+  ]
+}

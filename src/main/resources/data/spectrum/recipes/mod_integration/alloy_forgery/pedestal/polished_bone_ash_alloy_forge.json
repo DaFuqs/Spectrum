@@ -24,7 +24,7 @@
   "result": {
     "item": "alloy_forgery:polished_bone_ash_forge_controller"
   },
-  "required_advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "required_advancement": "spectrum:hidden/collect_dragonbone",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

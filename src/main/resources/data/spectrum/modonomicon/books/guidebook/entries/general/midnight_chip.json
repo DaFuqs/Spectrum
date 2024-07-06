@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.midnight_chip.name",
+  "icon": "spectrum:midnight_chip",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/create_midnight_aberration"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/midnight_solution"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 15,
+  "y": 0,
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "pages": [
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/midnight_solution"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.midnight_solution.page2.title",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/midnight_solution_bucket"
+    }
+  ]
+}

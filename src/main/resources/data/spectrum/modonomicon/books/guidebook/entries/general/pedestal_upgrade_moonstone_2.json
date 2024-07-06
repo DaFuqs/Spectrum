@@ -1,0 +1,59 @@
+{
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.name",
+  "icon": "spectrum:pedestal_moonstone",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/moonstone_shards",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 5,
+  "y": 9,
+  "turnin": "spectrum:lategame/build_complex_pedestal_structure",
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.title",
+      "item": {
+        "item": "spectrum:moonstone_chiseled_basalt"
+      },
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page0.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.multiblock_name",
+      "multiblock_id": "spectrum:pedestal_complex",
+      "show_visualize_button": true,
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page3.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page4.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
+      ]
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_moonstone_2.page5.text"
+    }
+  ]
+}

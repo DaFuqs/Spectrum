@@ -60,7 +60,8 @@
       "spectrum:hardcore_deaths",
       "spectrum:last_kill",
       "spectrum:everpromise_ribbon",
-      "spectrum:on_primordial_fire"
+      "spectrum:on_primordial_fire",
+      "spectrum:dd_world_effects"
     ],
     "lithium:options": {
       "entity.collisions.fluid": false
@@ -73,7 +74,7 @@
     "java": ">=17",
     "revelationary": "*",
     "cloth-config": "*",
-    "patchouli": "*",
+    "modonomicon": "*",
     "trinkets": "*",
     "matchbooks": "*"
   },

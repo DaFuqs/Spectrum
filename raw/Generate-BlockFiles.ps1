@@ -13,6 +13,9 @@ enum BlockType {
     Button
     PressurePlate
     Orientable
+    Beam
+    Flower
+    TallFlower
 }
 
 Function Generate-BlockFiles {
@@ -42,7 +45,6 @@ Function Generate-BlockFiles {
         #region    CODE                    #
         ####################################
 
-
         function Get-BlockObjects([string[]] $Names) {
             $Names | Foreach-Object {
                 $o = $_.toUpper()
@@ -69,8 +71,6 @@ Function Generate-BlockFiles {
             }
         }
 
-
-
         ####################################
         #endregion CODE                    #
         ####################################
@@ -79,7 +79,6 @@ Function Generate-BlockFiles {
         ####################################
         #region    BLOCK STATE             #
         ####################################
-
 
         # The blockstate file determines which model a block should use depending on its blockstate. Our block doesn't have any potential states, so we cover everything with “”.
         # LOG
@@ -103,6 +102,44 @@ Function Generate-BlockFiles {
 }
 "@
         }
+
+                function Get-BlockStateBeam($Name) {
+            Write-Output @"
+{
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/$Name",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/$Name"
+		},
+		"axis=z": {
+			"model": "spectrum:block/$Name",
+			"x": 90
+		}
+	}
+}
+
+"@
+        }
+
+                function Get-BlockStateTallFlower($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "half=lower": {
+      "model": "spectrum:block/$Name`_bottom"
+    },
+    "half=upper": {
+      "model": "spectrum:block/$Name`_top"
+    }
+  }
+}
+"@
+        }
+
 
                 function Get-BlockStateWood($Name) {
             Write-Output @"
@@ -775,6 +812,52 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-BlockModelBeam($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/$Name`_top",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+}
+
+        function Get-BlockModelFlower($Name) {
+            Write-Output @"
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "spectrum:block/$Name",
+    "particle": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelTallFlowerBottom($Name) {
+            Write-Output @"
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "spectrum:block/$Name`_bottom"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelTallFlowerTop($Name) {
+            Write-Output @"
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "spectrum:block/$Name`_top"
+  }
+}
+"@
+        }
+
         function Get-BlockModelLampOn($Name) {
             Write-Output @"
 {
@@ -816,9 +899,9 @@ Function Generate-BlockFiles {
         function Get-BlockModelCrystallarieum($Name) {
             Write-Output @"
 {
-  "parent": "minecraft:block/crop",
+  "parent": "spectrum:block/crystallarieum_farmable",
   "textures": {
-    "crop": "spectrum:block/$Name"
+    "cross": "spectrum:block/$Name"
   }
 }
 "@
@@ -1019,6 +1102,17 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-ItemModelTallFlower($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "srias_flowers:block/$Name`_top"
+  }
+}
+"@
+        }
+
         ####################################
         #endregion ITEM MODEL              #
         ####################################
@@ -1043,6 +1137,40 @@ Function Generate-BlockFiles {
 			"condition": "minecraft:survives_explosion"
 		}]
 	}]
+}
+"@
+        }
+
+        function Get-LootTableTallFlower($Name) {
+            Write-Output @"
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "spectrum:$Name",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
+          "name": "spectrum:$Name"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
 }
 "@
         }
@@ -1126,12 +1254,16 @@ Function Generate-BlockFiles {
         Write-Output "- Mineable Block tags"
         Write-Output "- Guidebook Entry"
         Write-Output "- Recipes"
+        Write-Output "- Item Group"
+        Write-Output "- Transparency"
 
         $BlockNames | ForEach-Object {
 
             # BLOCK STATES
-            if($blockType -eq [BlockType]::Default) {
+            if($blockType -eq [BlockType]::Default -or $blockType -eq [BlockType]::Flower) {
                 $blockState = Get-BlockStateDefault -Name $_
+            } elseif ($blockType -eq [BlockType]::TallFlower) {
+                $blockState = Get-BlockStateTallFlower -Name $_
             } elseif ($blockType -eq [BlockType]::Orientable) {
                 $blockState = Get-BlockStateOrientable -Name $_
             } elseif ($blockType -eq [BlockType]::Log) {
@@ -1153,8 +1285,10 @@ Function Generate-BlockFiles {
             } elseif ($blockType -eq [BlockType]::PressurePlate) {
                 $blockState = Get-BlockStatePressurePlate -Name $_
             } elseif ($blockType -eq [BlockType]::Slab) {
-              $blockState = Get-BlockStateSlab -Name $_
-          }
+                $blockState = Get-BlockStateSlab -Name $_
+            } elseif ($blockType -eq [BlockType]::Beam) {
+                $blockState = Get-BlockStateBeam -Name $_
+            }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
             # BLOCK MODELS
@@ -1162,6 +1296,11 @@ Function Generate-BlockFiles {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModel -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Orientable) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelOrientable -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Flower) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelFlower -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::TallFlower) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelTallFlowerTop -Name $_) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_bottom.json" -ItemType File -Force -Value $(Get-BlockModelTallFlowerBottom -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Log) {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelLog -Name $_) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $(Get-BlockModelLogHorizontal -Name $_) | Out-Null
@@ -1199,59 +1338,34 @@ Function Generate-BlockFiles {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlate -Name $textureName) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_down.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlateDown -Name $textureName) | Out-Null
             } elseif ($blockType -eq [BlockType]::Slab) {
-              $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
-              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelSlab -Name $textureName) | Out-Null
-              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
-          }
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelSlab -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Beam) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelBeam -Name $_) | Out-Null
+            }
 
             # ITEM MODEL
             if($blockType -eq [BlockType]::Upgrade) {
                 $itemModel = Get-ItemModel -Name ($_ -replace "[0-9]", "")
+            } elseif($blockType -eq [BlockType]::TallFlower) {
+                $itemModel = Get-ItemModelTallFlower -Name $_
             } else {
                 $itemModel = Get-ItemModel -Name $_
             }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\item\") -Name "$_`.json" -ItemType File -Force -Value $itemModel -ErrorAction SilentlyContinue | Out-Null
 
-            # TEXTURE
-            # create empty pngs
-            if($blockType -eq [BlockType]::Default) {
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-                if($AnimationFrameTime -ne 0) {
-                    $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-                    New-Item -Path $(Join-Path -Path $pach -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-                }
-            } elseif($blockType -eq [BlockType]::Log) {
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_top.png" -ItemType File -Force | Out-Null
-                if($AnimationFrameTime -ne 0) {
-                    $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-                    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-                    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_top.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-                }
-            } elseif($blockType -eq [BlockType]::Lamp) {
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_off.png" -ItemType File -Force | Out-Null
-                if($AnimationFrameTime -ne 0) {
-                    $mcMetaContent = Get-McMetaFile -Frametime $frameTime
-                    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-                    New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`_off.mcmeta" -ItemType File -Value $mcMetaContent | Out-Null
-                }
-            } elseif($blockType -eq [BlockType]::Upgrade) {
-                $NameWithoutNumber = $_ -replace "[0-9]", ""
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_inner.png" -ItemType File -Force | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_outer.png" -ItemType File -Force | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_base.png" -ItemType File -Force | Out-Null
-            } elseif($blockType -eq [BlockType]::Crystallarieum) {
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
-            }
 
             # LOOT TABLE
             # To make your block drop items when broken, you will need a loot table. The following file will cause your block to drop its respective item form when broken
-            if($blockType -eq [BlockType]::Slab) {
+            if($blockType -eq [BlockType]::TallFlower) {
+              $lootTable = Get-LootTableTallFlower -Name $_
+            } elseif($blockType -eq [BlockType]::Slab) {
               $lootTable = Get-LootTableSlab -Name $_
             } else {
               $lootTable = Get-LootTable -Name $_
             }
+
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\data\spectrum\loot_tables\blocks\") -Name "$_`.json" -ItemType File -Force -Value $lootTable | Out-Null
           
         }
@@ -1261,6 +1375,5 @@ Function Generate-BlockFiles {
         
     }
 }
-
 
 Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Orientable)

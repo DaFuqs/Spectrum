@@ -1,0 +1,27 @@
+{
+  "name": "effect.spectrum.lava_gliding",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/lava_gliding"
+  },
+  "icon": "spectrum:textures/mob_effect/lava_gliding.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": -1,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.lava_gliding",
+      "status_effect_id": "spectrum:lava_gliding",
+      "text": "book.spectrum.guidebook.brewing.lava_gliding.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.brewing.lava_gliding.page1.text"
+    }
+  ]
+}

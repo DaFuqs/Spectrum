@@ -1,0 +1,42 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.perturbed_eye.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/perturbed_eye"
+  },
+  "icon": "minecraft:end_portal_frame",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.text",
+      "title": "book.spectrum.guidebook.magical_items.perturbed_eye.page0.title"
+    },
+    {
+      "type": "modonomicon:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/end_portal.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.text",
+      "title1": "book.spectrum.guidebook.magical_items.perturbed_eye.page2.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/perturbed_eye"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_id": "spectrum:perturbed_eye",
+      "text": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.text",
+      "multiblock_name": "book.spectrum.guidebook.magical_items.perturbed_eye.page3.multiblock_name"
+    }
+  ]
+}

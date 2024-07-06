@@ -1,0 +1,56 @@
+{
+  "name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.name",
+  "icon": "spectrum:pedestal_onyx",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:create_onyx_shard"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/onyx_shards"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 8,
+  "y": 1,
+  "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/pedestal_onyx",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page0.text"
+    },
+    {
+      "type": "modonomicon:multiblock",
+      "multiblock_name": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page1.multiblock_name",
+      "multiblock_id": "spectrum:pedestal_advanced",
+      "show_visualize_button": true,
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page2.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page3.title",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page3.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page4.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_hall_customisation.png"
+      ]
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.pedestal_upgrade_onyx.page5.text"
+    }
+  ]
+}

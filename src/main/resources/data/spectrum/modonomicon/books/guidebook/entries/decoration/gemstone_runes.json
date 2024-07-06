@@ -1,0 +1,42 @@
+{
+  "name": "book.spectrum.guidebook.decoration.gemstone_runes.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:create_onyx_shard"
+  },
+  "icon": "spectrum:citrine_chiseled_calcite",
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/shards",
+      "line_reversed": true
+    },
+    {
+      "entry": "spectrum:decoration/block_variants"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page0.text",
+      "title": "book.spectrum.guidebook.decoration.gemstone_runes.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_runes.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/runes/topaz_chiseled_basalt_from_shards",
+      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.gemstone_runes.page2.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/runes/amethyst_chiseled_basalt_from_cluster",
+      "text": "book.spectrum.guidebook.decoration.gemstone_runes.page2.text"
+    }
+  ]
+}

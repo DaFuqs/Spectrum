@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
+import com.klikli_dev.modonomicon.client.render.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.compat.modonomicon.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -10,14 +13,12 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
@@ -30,15 +31,12 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
 	public static void clearCurrentlyRenderedMultiBlock(World world) {
 		if (world.isClient) {
-			IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
-			if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER)) {
-				PatchouliAPI.get().clearMultiblock();
-			}
+			ModonomiconHelper.clearRenderedMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER));
 		}
 	}
 	
 	public static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.SPIRIT_INSTILLER_IDENTIFIER);
+		Multiblock multiblock = SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER);
 		
 		BlockRotation lastBlockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 		boolean valid = false;
@@ -64,12 +62,12 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 			}
 		} else {
 			if (world.isClient) {
-				IMultiblock currentMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+				Multiblock currentMultiBlock = MultiblockPreviewRenderer.getMultiblock();
 				if (currentMultiBlock == multiblock) {
 					lastBlockRotation = BlockRotation.values()[(lastBlockRotation.ordinal() + 1) % BlockRotation.values().length]; // cycle rotation
 					spiritInstillerBlockEntity.setMultiblockRotation(lastBlockRotation);
 				}
-				PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.spirit_instiller.structure"), blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
+				ModonomiconHelper.renderMultiblock(SpectrumMultiblocks.get(SpectrumMultiblocks.SPIRIT_INSTILLER), SpectrumMultiblocks.SPIRIT_INSTILLER_TEXT, blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), offset), lastBlockRotation);
 			} else {
 				scatterContents(world, blockPos);
 			}

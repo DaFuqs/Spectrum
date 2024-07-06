@@ -1,0 +1,33 @@
+{
+  "name": "book.spectrum.guidebook.ink.ink_flask.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/basic_ink_storage_items"
+  },
+  "icon": "spectrum:ink_flask",
+  "category": "spectrum:ink",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:ink/color_picker",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.ink.ink_flask.page0.text",
+      "title": "book.spectrum.guidebook.ink.ink_flask.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.ink.ink_flask.page1.text",
+      "title1": "book.spectrum.guidebook.ink.ink_flask.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/ink_flask"
+    }
+  ]
+}

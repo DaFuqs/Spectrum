@@ -5,6 +5,12 @@
       {"name": "fabric-sound-api-v1:empty", "stream": true}
     ]
   },
+  "item.primordial_lighter.use": {
+    "subtitle": "spectrum.subtitles.primordial_lighter.use",
+    "sounds": [
+      "minecraft:fire/ignite"
+    ]
+  },
   "use_fail": {
     "subtitle": "spectrum.subtitles.use_fail",
     "sounds": [
@@ -25,6 +31,46 @@
   "paintbrush_select": {
     "sounds": [
       "spectrum:paintbrush_select"
+    ]
+  },
+  "critical_crunch": {
+    "sounds": [
+      "spectrum:critical_crunch"
+    ]
+  },
+  "impact_base": {
+    "sounds": [
+      "spectrum:impact_base"
+    ]
+  },
+  "impaling_hit": {
+    "sounds": [
+      "spectrum:impaling_hit"
+    ]
+  },
+  "legendary_weapon_craft": {
+    "sounds": [
+      "spectrum:legendary_weapon_craft"
+    ]
+  },
+  "metal_hit": {
+    "sounds": [
+      "spectrum:metal_hit"
+    ]
+  },
+  "metal_tap": {
+    "sounds": [
+      "spectrum:metal_tap"
+    ]
+  },
+  "metallic_unsheathe": {
+    "sounds": [
+      "spectrum:metallic_unsheathe"
+    ]
+  },
+  "discharge": {
+    "sounds": [
+      "spectrum:discharge"
     ]
   },
   "paintbrush_paint": {
@@ -385,28 +431,38 @@
       "spectrum:block.ruin.place"
     ]
   },
+  "forfeiture_placed": {
+    "subtitle": "spectrum.subtitles.block.forfeiture.place",
+    "sounds": [
+      "spectrum:block.ruin.place"
+    ]
+  },
   "music.spectrum_theme": {
     "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [
       "spectrum:spectrum_theme"
-    ]
+    ],
+    "stream": true
   },
   "music.boss_theme": {
     "subtitle": "spectrum.subtitles.boss_theme_plays",
     "sounds": [
       "spectrum:radiarc_irrelevance_fading"
-    ]
+    ],
+    "stream": true
   },
   "music.deeper_down_theme": {
     "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
     "sounds": [
       "spectrum:sunsette_darker_than_hell"
-    ]
+    ],
+    "stream": true
   },
   "music.divinity": {
     "sounds": [
       "spectrum:proper_motions_everreflective"
-    ]
+    ],
+    "stream": true
   },
   "spectrum.ui.new_revelation": {
     "sounds": [
@@ -1667,12 +1723,6 @@
     "subtitle": "spectrum.subtitles.entity.kindling.angry",
     "sounds": [
       "spectrum:entity.kindling.angy"
-    ]
-  },
-  "entity.kindling.love": {
-    "subtitle": "spectrum.subtitles.entity.kindling.love",
-    "sounds": [
-      "spectrum:entity.kindling.love"
     ]
   },
   "entity.kindling.jump": {

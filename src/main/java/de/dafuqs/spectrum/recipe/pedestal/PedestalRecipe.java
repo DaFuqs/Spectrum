@@ -103,7 +103,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 
 	@Override
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
-		return this.getOutput(registryManager).copy();
+		return this.output.copy();
 	}
 
 	public PedestalRecipeTier getTier() {

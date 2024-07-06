@@ -1,0 +1,38 @@
+{
+  "name": "book.spectrum.guidebook.decoration.phantom_frame.name",
+  "icon": "spectrum:phantom_frame",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_shimmerstone"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:decoration/shimmerstone"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 1,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.decoration.phantom_frame.page0.title",
+      "text": "book.spectrum.guidebook.decoration.phantom_frame.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/phantom_frame",
+      "text": "book.spectrum.guidebook.decoration.phantom_frame.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.decoration.phantom_frame.page2.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/glow_phantom_frame",
+      "text": "book.spectrum.guidebook.decoration.phantom_frame.page2.text"
+    }
+  ]
+}

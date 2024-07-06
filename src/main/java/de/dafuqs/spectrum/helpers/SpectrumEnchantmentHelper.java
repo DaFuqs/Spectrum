@@ -16,26 +16,28 @@ import java.util.*;
 public class SpectrumEnchantmentHelper {
 	
 	/**
+	 * Adds an enchantment to an ItemStack. If the stack already has that enchantment, it gets upgraded instead
+	 *
 	 * @param stack                     the stack that receives the enchantments
 	 * @param enchantment               the enchantment to add
 	 * @param level                     the level of the enchantment
 	 * @param forceEvenIfNotApplicable  add enchantments to the item, even if the item does usually not support that enchantment
 	 * @param allowEnchantmentConflicts add enchantments to the item, even if there are enchantment conflicts
-	 * @return the enchanted stack
+	 * @return the enchanted stack and a boolean if the enchanting was successful
 	 */
-	public static ItemStack addOrExchangeEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
+	public static Pair<Boolean, ItemStack> addOrUpgradeEnchantment(ItemStack stack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
 		// can this enchant even go on that tool?
 		if (!enchantment.isAcceptableItem(stack)
 				&& !stack.isOf(Items.ENCHANTED_BOOK)
 				&& !SpectrumEnchantmentHelper.isEnchantableBook(stack)) {
-
-			return stack;
+			
+			return new Pair<>(false, stack);
 		}
-
+		
 		// if not forced check if the stack already has enchantments
 		// that conflict with the new one
 		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(stack, enchantment)) {
-			return stack;
+			return new Pair<>(false, stack);
 		}
 
 		// If it's in the tag, there's nothing more to check here. Enchant away!
@@ -48,7 +50,7 @@ public class SpectrumEnchantmentHelper {
 				if (stack.getItem() instanceof ExtendedEnchantable extendedEnchantable) {
 					// ExtendedEnchantable explicitly states this enchantment is acceptable
 					if (!extendedEnchantable.acceptsEnchantment(enchantment)) {
-						return stack;
+						return new Pair<>(false, stack);
 					}
 				}
 			}
@@ -61,7 +63,7 @@ public class SpectrumEnchantmentHelper {
 		} else {
 			nbtString = ItemStack.ENCHANTMENTS_KEY;
 		}
-		if (!nbtCompound.contains(nbtString, 9)) {
+		if (!nbtCompound.contains(nbtString, NbtElement.LIST_TYPE)) {
 			nbtCompound.put(nbtString, new NbtList());
 		}
 		
@@ -70,9 +72,9 @@ public class SpectrumEnchantmentHelper {
 		for (int i = 0; i < nbtList.size(); i++) {
 			NbtCompound enchantmentCompound = nbtList.getCompound(i);
 			if (enchantmentCompound.contains("id", NbtElement.STRING_TYPE) && Identifier.tryParse(enchantmentCompound.getString("id")).equals(enchantmentIdentifier)) {
-				boolean isEqualOrDowngrade = enchantmentCompound.contains("lvl", NbtElement.SHORT_TYPE) ? enchantmentCompound.getInt("lvl") >= level : false;
+				boolean isEqualOrDowngrade = enchantmentCompound.contains("lvl", NbtElement.SHORT_TYPE) && enchantmentCompound.getInt("lvl") >= level;
 				if (isEqualOrDowngrade) {
-					return stack;
+					return new Pair<>(false, stack);
 				}
 
 				nbtList.remove(i);
@@ -84,7 +86,7 @@ public class SpectrumEnchantmentHelper {
 		nbtCompound.put(nbtString, nbtList);
 		stack.setNbt(nbtCompound);
 		
-		return stack;
+		return new Pair<>(true, stack);
 	}
 	
 	public static void setStoredEnchantments(Map<Enchantment, Integer> enchantments, ItemStack stack) {
@@ -98,23 +100,23 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	/**
-	 * Clears all enchantments of modifiedStack and replaces them with the ones present in enchantmentSourceStacks
-	 * The enchantments are applied in order, so if there are conflicts, the first enchant in enchantmentSourceStacks gets chosen
+	 * Clears all enchantments of receiverStack and replaces them with the ones present in sourceStacks
+	 * The enchantments are applied in order, so if there are conflicts, the first enchantment in sourceStacks gets chosen
 	 *
-	 * @param modifiedStack             the stack that receives the enchantments
+	 * @param receiverStack             the stack that receives the enchantments
 	 * @param forceEvenIfNotApplicable  add enchantments to the item, even if the item does usually not support that enchantment
 	 * @param allowEnchantmentConflicts add enchantments to the item, even if there are enchantment conflicts
-	 * @param enchantmentSourceStacks   enchantmentSourceStacks the stacks that supply the enchantments
+	 * @param sourceStacks   sourceStacks the stacks that supply the enchantments
 	 * @return the resulting stack
 	 */
-	public static ItemStack clearAndCombineEnchantments(ItemStack modifiedStack, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts, ItemStack... enchantmentSourceStacks) {
-		EnchantmentHelper.set(Map.of(), modifiedStack); // clear current ones
-		for (ItemStack stack : enchantmentSourceStacks) {
+	public static ItemStack clearAndCombineEnchantments(ItemStack receiverStack, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts, ItemStack... sourceStacks) {
+		EnchantmentHelper.set(Map.of(), receiverStack); // clear current ones
+		for (ItemStack stack : sourceStacks) {
 			for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.get(stack).entrySet()) {
-				modifiedStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(modifiedStack, entry.getKey(), entry.getValue(), forceEvenIfNotApplicable, allowEnchantmentConflicts);
+				receiverStack = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(receiverStack, entry.getKey(), entry.getValue(), forceEvenIfNotApplicable, allowEnchantmentConflicts).getRight();
 			}
 		}
-		return modifiedStack;
+		return receiverStack;
 	}
 	
 	/**
@@ -233,7 +235,7 @@ public class SpectrumEnchantmentHelper {
 		for (Enchantment enchantment : Registries.ENCHANTMENT.stream().toList()) {
 			if (item.acceptsEnchantment(enchantment)) {
 				int maxLevel = enchantment.getMaxLevel();
-				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
+				itemStack = addOrUpgradeEnchantment(itemStack, enchantment, maxLevel, true, true).getRight();
 			}
 		}
 		return itemStack;

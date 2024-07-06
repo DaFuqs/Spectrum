@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:primordial_fire_burning",
+  "ingredient": {
+    "tag": "c:black_lotuses"
+  },
+  "result": {
+    "item": "spectrum:least_black_lotus"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botania"
+      ]
+    }
+  ]
+}

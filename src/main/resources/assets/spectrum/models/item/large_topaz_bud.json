@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/large_amethyst_bud",
+  "parent": "spectrum:templates_item/large_bud",
   "textures": {
     "layer0": "spectrum:block/large_topaz_bud"
   }

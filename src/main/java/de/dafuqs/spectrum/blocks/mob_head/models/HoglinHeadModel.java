@@ -18,15 +18,20 @@ public class HoglinHeadModel extends SpectrumHeadModel {
 		
 		ModelPartData head = modelPartData.addChild(
 				EntityModelPartNames.HEAD,
-				ModelPartBuilder.create().uv(61, 1).cuboid(-7.0F, -3.0F, -19.0F, 14.0F, 6.0F, 19.0F),
-				ModelTransform.of(0.0F, 0.0F, 0.0F, 0.87266463F, 0.0F, 0.0F)
+				ModelPartBuilder.create().uv(61, 1).cuboid(-7.0F, -6.0F, -9.5F, 14.0F, 6.0F, 19.0F),
+				ModelTransform.NONE
 		);
-		head.addChild("right_ear", ModelPartBuilder.create().uv(1, 1).cuboid(-6.0F, -1.0F, -2.0F, 6.0F, 1.0F, 4.0F), ModelTransform.of(-6.0F, -2.0F, -3.0F, 0.0F, 0.0F, -0.6981317F));
-		head.addChild("left_ear", ModelPartBuilder.create().uv(1, 6).cuboid(0.0F, -1.0F, -2.0F, 6.0F, 1.0F, 4.0F), ModelTransform.of(6.0F, -2.0F, -3.0F, 0.0F, 0.0F, 0.6981317F));
-		head.addChild("right_horn", ModelPartBuilder.create().uv(10, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(-7.0F, 2.0F, -12.0F));
-		head.addChild("left_horn", ModelPartBuilder.create().uv(1, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(7.0F, 2.0F, -12.0F));
+		head.addChild(EntityModelPartNames.RIGHT_EAR, ModelPartBuilder.create().uv(1, 1).cuboid(-6.0F, -1.0F, -2.0F, 6.0F, 1.0F, 4.0F), ModelTransform.of(-6.0F, -5.0F, 6.5F, 0.0F, 0.0F, -0.6981317F));
+		head.addChild(EntityModelPartNames.LEFT_EAR, ModelPartBuilder.create().uv(1, 6).cuboid(0.0F, -1.0F, -2.0F, 6.0F, 1.0F, 4.0F), ModelTransform.of(6.0F, -5.0F, 6.5F, 0.0F, 0.0F, 0.6981317F));
+		head.addChild(EntityModelPartNames.RIGHT_HORN, ModelPartBuilder.create().uv(10, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(-7.0F, -1.0F, -2.5F));
+		head.addChild(EntityModelPartNames.LEFT_HORN, ModelPartBuilder.create().uv(1, 13).cuboid(-1.0F, -11.0F, -1.0F, 2.0F, 11.0F, 2.0F), ModelTransform.pivot(7.0F, -1.0F, -2.5F));
 		
 		return TexturedModelData.of(modelData, 128, 64);
+	}
+	
+	@Override
+	public float getScale() {
+		return 0.5F;
 	}
 
 }

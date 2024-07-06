@@ -83,7 +83,6 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer PARROT_GREEN_HEAD = new EntityModelLayer(SpectrumCommon.locate("parrot_green_head"), "main");
 	public static final EntityModelLayer PARROT_RED_HEAD = new EntityModelLayer(SpectrumCommon.locate("parrot_red_head"), "main");
 	public static final EntityModelLayer PHANTOM_HEAD = new EntityModelLayer(SpectrumCommon.locate("phantom_head"), "main");
-	public static final EntityModelLayer PIGLIN_HEAD = new EntityModelLayer(SpectrumCommon.locate("piglin_head"), "main");
 	public static final EntityModelLayer PIG_HEAD = new EntityModelLayer(SpectrumCommon.locate("pig_head"), "main");
 	public static final EntityModelLayer PILLAGER_HEAD = new EntityModelLayer(SpectrumCommon.locate("pillager_head"), "main");
 	public static final EntityModelLayer POLAR_BEAR_HEAD = new EntityModelLayer(SpectrumCommon.locate("polar_bear_head"), "main");
@@ -212,7 +211,6 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(PARROT_RED_HEAD, ParrotHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PHANTOM_HEAD, PhantomHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PIG_HEAD, PigHeadModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(PIGLIN_HEAD, PiglinHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(POLAR_BEAR_HEAD, BearHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(PUFFERFISH_HEAD, PufferFishHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(RABBIT_HEAD, RabbitHeadModel::getTexturedModelData);

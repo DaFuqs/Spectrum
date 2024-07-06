@@ -30,5 +30,10 @@ public class ShulkerHeadModel extends SpectrumHeadModel {
 
 		return TexturedModelData.of(modelData, 64, 64);
 	}
+	
+	@Override
+	public float getScale() {
+		return 0.5F;
+	}
 
 }

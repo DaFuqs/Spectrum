@@ -17,7 +17,7 @@ public class BlazeHeadModel extends SpectrumHeadModel {
         modelPartData.addChild(
                 EntityModelPartNames.HEAD,
                 ModelPartBuilder.create()
-                        .uv(0, 0).cuboid(-4.0F, -4.0F, -4.0F, 8.0F, 8.0F, 8.0F),
+                        .uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
                 ModelTransform.NONE
         );
 

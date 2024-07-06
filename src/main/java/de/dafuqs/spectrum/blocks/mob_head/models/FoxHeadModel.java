@@ -16,19 +16,19 @@ public class FoxHeadModel extends SpectrumHeadModel {
         
         ModelPartData modelPartData2 = modelPartData.addChild(
                 EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(1, 5).cuboid(-3.0F, -2.0F, -5.0F, 8.0F, 6.0F, 6.0F),
+                ModelPartBuilder.create().uv(1, 5).cuboid(-4.0F, -6.0F, -3.0F, 8.0F, 6.0F, 6.0F),
                 ModelTransform.NONE
         );
-        modelPartData2.addChild("right_ear",
-                ModelPartBuilder.create().uv(8, 1).cuboid(-3.0F, -4.0F, -4.0F, 2.0F, 2.0F, 1.0F),
+        modelPartData2.addChild(EntityModelPartNames.RIGHT_EAR,
+                ModelPartBuilder.create().uv(8, 1).cuboid(-4.0F, -8.0F, -2.0F, 2.0F, 2.0F, 1.0F),
                 ModelTransform.NONE
         );
-        modelPartData2.addChild("left_ear",
-                ModelPartBuilder.create().uv(15, 1).cuboid(3.0F, -4.0F, -4.0F, 2.0F, 2.0F, 1.0F),
+        modelPartData2.addChild(EntityModelPartNames.LEFT_EAR,
+                ModelPartBuilder.create().uv(15, 1).cuboid(2.0F, -8.0F, -2.0F, 2.0F, 2.0F, 1.0F),
                 ModelTransform.NONE
         );
-        modelPartData2.addChild("nose",
-                ModelPartBuilder.create().uv(6, 18).cuboid(-1.0F, 2.01F, -8.0F, 4.0F, 2.0F, 3.0F),
+        modelPartData2.addChild(EntityModelPartNames.NOSE,
+                ModelPartBuilder.create().uv(6, 18).cuboid(-2.0F, -1.99F, -6.0F, 4.0F, 2.0F, 3.0F),
                 ModelTransform.NONE
         );
 

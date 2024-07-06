@@ -12,6 +12,7 @@ public class CamelHeadModel extends SpectrumHeadModel {
 	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
+		
 		ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create()
 						.uv(21, 0).cuboid(-3.5F, -14.0F, -3.5F, 7.0F, 14.0F, 7.0F)
 						.uv(21, 0).cuboid(-3.5F, 0.0F, -3.5F, 7.0F, 0.0F, 7.0F),
@@ -27,6 +28,11 @@ public class CamelHeadModel extends SpectrumHeadModel {
 				ModelTransform.pivot(-3.0F, -14.0F, 2.0F));
 		
 		return TexturedModelData.of(modelData, 128, 128);
+	}
+	
+	@Override
+	public float getScale() {
+		return 0.75F;
 	}
 	
 }

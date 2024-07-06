@@ -16,11 +16,16 @@ public class GhastHeadModel extends SpectrumHeadModel {
 
         modelPartData.addChild(
                 EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
+                ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F),
                 ModelTransform.NONE
         );
-
-        return TexturedModelData.of(modelData, 32, 16);
+        
+        return TexturedModelData.of(modelData, 64, 32);
+    }
+    
+    @Override
+    public float getScale() {
+        return 0.5F;
     }
 
 }

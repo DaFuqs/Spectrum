@@ -17,9 +17,9 @@ public class CowHeadModel extends SpectrumHeadModel {
         modelPartData.addChild(
                 EntityModelPartNames.HEAD,
                 ModelPartBuilder.create()
-                        .uv(0, 0).cuboid(-4.0F, -4.0F, -6.0F, 8.0F, 8.0F, 6.0F)
-                        .uv(22, 0).cuboid("right_horn", -5.0F, -5.0F, -4.0F, 1.0F, 3.0F, 1.0F)
-                        .uv(22, 0).cuboid("left_horn", 4.0F, -5.0F, -4.0F, 1.0F, 3.0F, 1.0F),
+                        .uv(0, 0).cuboid(-4.0F, -8.0F, -3.0F, 8.0F, 8.0F, 6.0F)
+                        .uv(22, 0).cuboid(EntityModelPartNames.RIGHT_HORN, -5.0F, -9.0F, -1.0F, 1.0F, 3.0F, 1.0F)
+                        .uv(22, 0).cuboid(EntityModelPartNames.LEFT_HORN, 4.0F, -9.0F, -1.0F, 1.0F, 3.0F, 1.0F),
                 ModelTransform.NONE
         );
         

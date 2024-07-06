@@ -16,11 +16,16 @@ public class SquidHeadModel extends SpectrumHeadModel {
 
         modelPartData.addChild(
                 EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, -14.0F, -6.0F, 12.0F, 14.0F, 12.0F),
+                ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, -16.0F, -6.0F, 12.0F, 16.0F, 12.0F),
                 ModelTransform.NONE
         );
 
         return TexturedModelData.of(modelData, 64, 32);
+    }
+    
+    @Override
+    public float getScale() {
+        return 0.5F;
     }
 
 }

@@ -17,17 +17,18 @@ public class ChickenHeadModel extends SpectrumHeadModel {
     
         ModelPartData head = modelPartData.addChild(
                 EntityModelPartNames.HEAD,
-                ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -6.0F, -2.0F, 4.0F, 6.0F, 3.0F),
+                ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -6.0F, -1.5F, 4.0F, 6.0F, 3.0F),
                 ModelTransform.NONE
         );
+        
         head.addChild(
-                "beak",
-                ModelPartBuilder.create().uv(14, 0).cuboid(-2.0F, -4.0F, -4.0F, 4.0F, 2.0F, 2.0F),
+                EntityModelPartNames.BEAK,
+                ModelPartBuilder.create().uv(14, 0).cuboid(-2.0F, -4.0F, -3.5F, 4.0F, 2.0F, 2.0F),
                 ModelTransform.NONE
         );
         head.addChild(
                 "red_thing",
-                ModelPartBuilder.create().uv(14, 4).cuboid(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F),
+                ModelPartBuilder.create().uv(14, 4).cuboid(-1.0F, -2.0F, -2.5F, 2.0F, 2.0F, 2.0F),
                 ModelTransform.NONE
         );
 

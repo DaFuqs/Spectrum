@@ -30,6 +30,9 @@
         },
         "gather_nodes": {
           "min": 1
+        },
+        "buffer_nodes": {
+          "min": 1
         }
       }
     },

@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
@@ -459,6 +460,28 @@ public class SpectrumS2CPacketReceiver {
 				});
 			});
 		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, ((((client, handler, buf, responseSender) -> {
+			var nodeCount = buf.readInt();
+			var positions = new ArrayList<BlockPos>(nodeCount);
+			var times = new ArrayList<Integer>(nodeCount);
+
+			for (int n = 0; n < nodeCount; n++) {
+				positions.add(buf.readBlockPos());
+				times.add(buf.readInt());
+			}
+
+			client.execute(() -> {
+				for (int index = 0; index < positions.size(); index++) {
+					var entity = client.world.getBlockEntity(positions.get(index));
+
+					if (!(entity instanceof PastelNodeBlockEntity node))
+						continue;
+
+					node.setSpinTicks(times.get(index));
+				}
+			});
+		}))));
 
         ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
             client.execute(() -> {

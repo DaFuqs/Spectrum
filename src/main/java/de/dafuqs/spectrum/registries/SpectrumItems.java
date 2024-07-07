@@ -497,7 +497,16 @@ public class SpectrumItems {
 	public static final Item PURE_IRON = new Item(IS.of());
 	public static final Item PURE_NETHERITE_SCRAP = new Item(IS.of());
 	public static final Item PURE_ECHO = new Item(IS.of());
-	
+
+	//Technical Items
+	public static final Item CONNECTION_NODE_CRYSTAL = new Item(IS.of());
+	public static final Item PROVIDER_NODE_CRYSTAL = new Item(IS.of());
+	public static final Item SENDER_NODE_CRYSTAL = new Item(IS.of());
+	public static final Item STORAGE_NODE_CRYSTAL = new Item(IS.of());
+	public static final Item BUFFER_NODE_CRYSTAL = new Item(IS.of());
+	public static final Item GATHER_NODE_CRYSTAL = new Item(IS.of());
+
+
 	public static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registries.ITEM, SpectrumCommon.locate(name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
@@ -524,6 +533,7 @@ public class SpectrumItems {
 		registerStructurePlacers();
 		registerSpawningStuff();
 		registerMusicDisks();
+		registerTechnicalItems();
 	}
 	
 	public static void registerMusicDisks() {
@@ -922,6 +932,15 @@ public class SpectrumItems {
 		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
 		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
 		register("dragonrot_bucket", DRAGONROT_BUCKET, DyeColor.LIGHT_GRAY);
+	}
+
+	public static void registerTechnicalItems() {
+		register("connection_node_crystal", CONNECTION_NODE_CRYSTAL, DyeColor.LIGHT_GRAY);
+		register("provider_node_crystal", PROVIDER_NODE_CRYSTAL, DyeColor.MAGENTA);
+		register("sender_node_crystal", SENDER_NODE_CRYSTAL, DyeColor.YELLOW);
+		register("storage_node_crystal", STORAGE_NODE_CRYSTAL, DyeColor.CYAN);
+		register("buffer_node_crystal", BUFFER_NODE_CRYSTAL, DyeColor.GREEN);
+		register("gather_node_crystal", GATHER_NODE_CRYSTAL, DyeColor.BLACK);
 	}
 	
 	public static void registerFuelRegistry() {

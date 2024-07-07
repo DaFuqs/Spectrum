@@ -126,7 +126,7 @@ public class SpectrumBlockEntities {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
+		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE, SpectrumBlocks.BUFFER_NODE);
 		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
 		PLACED_ITEM = register("placed_item", PlacedItemBlockEntity::new, SpectrumBlocks.INCANDESCENT_AMALGAM, SpectrumBlocks.THREAT_CONFLUX, SpectrumBlocks.PARAMETRIC_MINING_DEVICE);
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
@@ -170,6 +170,8 @@ public class SpectrumBlockEntities {
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
+
+		BlockEntityRendererFactories.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 
 		BlockEntityRendererFactories.register(SpectrumBlockEntities.STARFIELD, StarfieldBlockEntityRenderer::new);
 	}

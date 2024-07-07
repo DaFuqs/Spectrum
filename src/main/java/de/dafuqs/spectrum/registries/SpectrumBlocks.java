@@ -454,6 +454,7 @@ public class SpectrumBlocks {
 	public static final Block CONNECTION_NODE = new PastelNodeBlock(pastelNode(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.CONNECTION);
 	public static final Block PROVIDER_NODE = new PastelNodeBlock(pastelNode(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.PROVIDER);
 	public static final Block STORAGE_NODE = new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE);
+	public static final Block BUFFER_NODE = new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.BUFFER);
 	public static final Block SENDER_NODE = new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER);
 	public static final Block GATHER_NODE = new PastelNodeBlock(pastelNode(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER);
 	
@@ -2437,11 +2438,12 @@ public class SpectrumBlocks {
 	}
 	
 	public static void registerPastelNetworkNodes(FabricItemSettings settings) {
-		registerBlockWithItem("connection_node", CONNECTION_NODE, settings, DyeColor.GREEN);
-		registerBlockWithItem("provider_node", PROVIDER_NODE, settings, DyeColor.GREEN);
-		registerBlockWithItem("storage_node", STORAGE_NODE, settings, DyeColor.GREEN);
-		registerBlockWithItem("sender_node", SENDER_NODE, settings, DyeColor.GREEN);
-		registerBlockWithItem("gather_node", GATHER_NODE, settings, DyeColor.GREEN);
+		registerBlockWithItem("connection_node", CONNECTION_NODE, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("provider_node", PROVIDER_NODE, settings, DyeColor.MAGENTA);
+		registerBlockWithItem("storage_node", STORAGE_NODE, settings, DyeColor.CYAN);
+		registerBlockWithItem("buffer_node", BUFFER_NODE, settings, DyeColor.GREEN);
+		registerBlockWithItem("sender_node", SENDER_NODE, settings, DyeColor.YELLOW);
+		registerBlockWithItem("gather_node", GATHER_NODE, settings, DyeColor.BLACK);
 	}
 	
 	public static void registerSporeBlossoms(FabricItemSettings settings) {
@@ -2698,6 +2700,9 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), FUSION_SHRINE_BASALT, FUSION_SHRINE_CALCITE);
 		BlockRenderLayerMap.INSTANCE.putBlock(ENCHANTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(POTION_WORKSHOP, RenderLayer.getTranslucent());
+
+		// Pastel
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), CONNECTION_NODE, PROVIDER_NODE, SENDER_NODE, STORAGE_NODE, BUFFER_NODE, GATHER_NODE);
 		
 		// Gemstones
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TOPAZ_CLUSTER, RenderLayer.getCutout());

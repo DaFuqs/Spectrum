@@ -3,10 +3,6 @@
 	"textures": {
 		"0": "spectrum:block/pastel_pedestal",
 		"1": "spectrum:block/provider_node",
-		"2": "spectrum:block/sender_node_crystal",
-		"3": "spectrum:block/pastel_inner_ring_blank",
-		"4": "spectrum:block/pastel_redstone_ring_blank",
-		"5": "spectrum:block/pastel_outer_ring_blank",
 		"particle": "spectrum:block/pastel_pedestal"
 	},
 	"elements": [
@@ -191,76 +187,6 @@
 				"up": {"uv": [0, 3, 4, 6], "rotation": 90, "texture": "#1"},
 				"down": {"uv": [4, 3, 8, 6], "rotation": 270, "texture": "#1"}
 			}
-		},
-		{
-			"name": "crystal",
-			"from": [6.5, 8, 6.5],
-			"to": [9.5, 11, 9.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
-			"faces": {
-				"north": {"uv": [3, 0, 0, 3], "texture": "#2"},
-				"east": {"uv": [3, 0, 0, 3], "texture": "#2"},
-				"south": {"uv": [3, 0, 0, 3], "texture": "#2"},
-				"west": {"uv": [3, 0, 0, 3], "texture": "#2"},
-				"up": {"uv": [3, 6, 6, 3], "rotation": 180, "texture": "#2"},
-				"down": {"uv": [3, 3, 0, 6], "rotation": 270, "texture": "#2"}
-			}
-		},
-		{
-			"name": "crystal inner",
-			"from": [9.64264, 11.15, 9.65736],
-			"to": [6.34264, 7.85, 6.35736],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.5, 8]},
-			"faces": {
-				"north": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
-				"east": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
-				"south": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
-				"west": {"uv": [3, 3, 6, 0], "rotation": 90, "texture": "#2"},
-				"up": {"uv": [3, 3, 6, 0], "rotation": 180, "texture": "#2"},
-				"down": {"uv": [3, 3, 6, 0], "texture": "#2"}
-			}
-		},
-		{
-			"name": "ring_inner",
-			"from": [4.5, 3.75, 4.5],
-			"to": [11.5, 3.75, 11.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 3.75, 8]},
-			"faces": {
-				"north": {"uv": [1, 1, 8, 8], "texture": "#3"},
-				"east": {"uv": [1, 1, 8, 8], "texture": "#3"},
-				"south": {"uv": [1, 1, 8, 8], "texture": "#3"},
-				"west": {"uv": [1, 1, 8, 8], "texture": "#3"},
-				"up": {"uv": [1, 1, 8, 8], "texture": "#3"},
-				"down": {"uv": [1, 1, 8, 8], "texture": "#3"}
-			}
-		},
-		{
-			"name": "ring_outer",
-			"from": [2.5, 5.75, 2.5],
-			"to": [13.5, 5.75, 13.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5.75, 8]},
-			"faces": {
-				"north": {"uv": [1, 1, 12, 12], "texture": "#5"},
-				"east": {"uv": [1, 1, 12, 12], "texture": "#5"},
-				"south": {"uv": [1, 1, 12, 12], "texture": "#5"},
-				"west": {"uv": [1, 1, 12, 12], "texture": "#5"},
-				"up": {"uv": [1, 1, 12, 12], "texture": "#5"},
-				"down": {"uv": [1, 1, 12, 12], "texture": "#5"}
-			}
-		},
-		{
-			"name": "ring_redstone",
-			"from": [0.5, 5, 0.5],
-			"to": [15.5, 5, 15.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 8]},
-			"faces": {
-				"north": {"uv": [1, 1, 16, 16], "texture": "#4"},
-				"east": {"uv": [1, 1, 16, 16], "texture": "#4"},
-				"south": {"uv": [1, 1, 16, 16], "texture": "#4"},
-				"west": {"uv": [1, 1, 16, 16], "texture": "#4"},
-				"up": {"uv": [1, 1, 16, 16], "texture": "#4"},
-				"down": {"uv": [1, 1, 16, 16], "texture": "#4"}
-			}
 		}
 	],
 	"display": {
@@ -305,20 +231,6 @@
 			"color": 0,
 			"nbt": "{}",
 			"children": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-		},
-		{
-			"name": "crystal",
-			"origin": [8, 3.5, 8],
-			"color": 0,
-			"nbt": "{}",
-			"children": [13, 14]
-		},
-		{
-			"name": "rings",
-			"origin": [7.5, 5, 6.5],
-			"color": 0,
-			"nbt": "{}",
-			"children": [15, 16, 17]
 		}
 	]
 }

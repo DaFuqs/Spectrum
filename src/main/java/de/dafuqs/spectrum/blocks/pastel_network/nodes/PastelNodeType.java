@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
+import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.item.Item;
 import net.minecraft.text.*;
 
 public enum PastelNodeType {
     CONNECTION("block.spectrum.connection_node.tooltip", false),
     STORAGE("block.spectrum.storage_node.tooltip", true),
+    BUFFER("block.spectrum.buffer_node.tooltip", true),
     PROVIDER("block.spectrum.provider_node.tooltip", false),
     SENDER("block.spectrum.sender_node.tooltip", false),
     GATHER("block.spectrum.gather_node.tooltip", true);
@@ -24,5 +27,4 @@ public enum PastelNodeType {
     public boolean usesFilters() {
         return usesFilters;
     }
-
 }

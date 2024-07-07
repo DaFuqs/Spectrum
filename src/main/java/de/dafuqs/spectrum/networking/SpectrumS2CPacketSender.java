@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.blocks.chests.BlackHoleChestBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.particle.*;
@@ -407,6 +408,25 @@ public class SpectrumS2CPacketSender {
 
 		for (ServerPlayerEntity player : PlayerLookup.tracking(chest)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, buf);
+		}
+	}
+
+	public static void sendPastelNodeStatusUpdate(List<PastelNodeBlockEntity> nodes, boolean longSpin) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(nodes.size());
+		for (PastelNodeBlockEntity node : nodes) {
+			var world = node.getWorld();
+
+			if (world == null)
+				continue;
+
+			var time = longSpin ? 24 + world.getRandom().nextInt(11) : 10 + world.getRandom().nextInt(11);
+			buf.writeBlockPos(node.getPos());
+			buf.writeInt(time);
+		}
+
+		for (ServerPlayerEntity player : PlayerLookup.tracking(nodes.get(0))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, buf);
 		}
 	}
 

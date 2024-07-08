@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation;
 
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
@@ -19,7 +20,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
-		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SKULLS)));
+		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SKULLS)), IngredientStack.ofItems(4, SpectrumItems.REFINED_BLOODSTONE), SpectrumCommon.locate("milestones/unlock_spawner_creature_change"));
 	}
 	
 	@Override

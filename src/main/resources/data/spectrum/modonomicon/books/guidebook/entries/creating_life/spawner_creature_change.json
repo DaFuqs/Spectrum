@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.spawner_creature_change.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_spawner_creature_change"
+  },
+  "icon": "minecraft:spawner",
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/spawner_manipulation"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -3,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.spawner_creature_change.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.spawner_creature_change.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.spawner_creature_change.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_creature_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_creature_change.page1.text"
+    }
+  ]
+}

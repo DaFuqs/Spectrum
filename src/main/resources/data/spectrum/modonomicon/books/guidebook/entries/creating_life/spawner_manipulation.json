@@ -30,20 +30,14 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page1.title",
-      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_creature_change",
-      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page1.text"
+      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page3.title",
+      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
+      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page2.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page2.title",
       "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
-      "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page2.text"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "title1": "book.spectrum.guidebook.creating_life.spawner_manipulation.page3.title",
-      "recipe_id_1": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
       "text": "book.spectrum.guidebook.creating_life.spawner_manipulation.page3.text"
     },
     {

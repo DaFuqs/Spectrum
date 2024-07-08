@@ -1339,7 +1339,7 @@ public class SpectrumItemGroups {
 		entries.add(SpectrumBlocks.BLACK_SLAB);
 	}).build();
 	
-	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_MOB_HEADS, Text.translatable("itemGroup.spectrum.mob_heads")).backgroundTexture(TEXTURE).entries((displayContext, entries) -> {
+	public static final ItemSubGroup MOB_HEADS = new ItemSubGroup.Builder(MAIN, ItemGroupIDs.SUBTAB_MOB_HEADS, Text.translatable("itemGroup.spectrum.mob_heads")).backgroundTexture(ItemGroupIDs.BACKGROUND_TEXTURE).entries((displayContext, entries) -> {
 		for (Block skullBlock : SpectrumSkullBlock.MOB_HEADS.values()) {
 			entries.add(skullBlock.asItem());
 		}

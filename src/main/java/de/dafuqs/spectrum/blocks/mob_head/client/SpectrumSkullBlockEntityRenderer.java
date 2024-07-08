@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.mob_head.*;
 import de.dafuqs.spectrum.blocks.mob_head.client.models.*;
 import de.dafuqs.spectrum.entity.render.*;
+import de.dafuqs.spectrum.entity.variants.*;
 import de.dafuqs.spectrum.registries.client.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
@@ -132,7 +133,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
         // Spectrum
         builder.put(SpectrumSkullType.EGG_LAYING_WOOLY_PIG, new Pair<>(new EggLayingWoolyPigHeadModel(modelLoader.getModelPart(SpectrumModelLayers.EGG_LAYING_WOOLY_PIG_HEAD)), EggLayingWoolyPigEntityRenderer.TEXTURE));
         builder.put(SpectrumSkullType.ERASER, new Pair<>(new SpiderHeadModel(modelLoader.getModelPart(SpectrumModelLayers.ERASER_HEAD)), SpectrumCommon.locate("textures/entity/eraser/eraser_combined.png")));
-        builder.put(SpectrumSkullType.KINDLING, new Pair<>(new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)), KindlingEntityRenderer.TEXTURE));
+        builder.put(SpectrumSkullType.KINDLING, new Pair<>(new KindlingHeadModel(modelLoader.getModelPart(SpectrumModelLayers.KINDLING_HEAD)), KindlingVariant.DEFAULT.defaultTexture()));
         builder.put(SpectrumSkullType.LIZARD, new Pair<>(new LizardHeadModel(modelLoader.getModelPart(SpectrumModelLayers.LIZARD_HEAD)), SpectrumCommon.locate("textures/entity/lizard/lizard_head.png")));
         builder.put(SpectrumSkullType.MONSTROSITY, new Pair<>(new MonstrosityHeadModel(modelLoader.getModelPart(SpectrumModelLayers.MONSTROSITY_HEAD)), MonstrosityEntityRenderer.TEXTURE));
         builder.put(SpectrumSkullType.PRESERVATION_TURRET, new Pair<>(new PreservationTurretHeadModel(modelLoader.getModelPart(SpectrumModelLayers.PRESERVATION_TURRET_HEAD)), PreservationTurretEntityRenderer.TEXTURE));

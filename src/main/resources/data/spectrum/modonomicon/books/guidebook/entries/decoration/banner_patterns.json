@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.decoration.banner_patterns.name",
+  "icon": "spectrum:amethyst_shard_banner_pattern",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:spectrum"
+  },
+  "category": "spectrum:decoration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 2,
+  "y": -3,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.decoration.banner_patterns.page0.title",
+      "border": true,
+      "images": [
+        "spectrum:textures/gui/guidebook/banners.png"
+      ],
+      "text": "book.spectrum.guidebook.decoration.banner_patterns.page0.text"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.decoration.banner_patterns.page1.title",
+      "recipe_id_1": "spectrum:crafting_table/banner_patterns/amethyst_cluster_banner_pattern",
+      "recipe_id_2": "spectrum:crafting_table/banner_patterns/amethyst_shard_banner_pattern"
+    }
+  ]
+}

@@ -1,18 +1,20 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.FilterConfigurable;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.idols.*;
 import de.dafuqs.spectrum.compat.emi.handlers.*;
 import de.dafuqs.spectrum.compat.emi.recipes.*;
 import de.dafuqs.spectrum.data_loaders.*;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.fluid_converting.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.inventory.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -28,6 +30,25 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registerCategories(registry);
 		registerRecipes(registry);
 		registerRecipeHandlers(registry);
+		registerDragDropHandlers(registry);
+	}
+
+	@SuppressWarnings("UnstableApiUsage")
+    public void registerDragDropHandlers(EmiRegistry registry) {
+		// Registering here since this is a trivial solution.
+		var handlerOne = new EmiDragDropHandler.SlotBased<>((_ignored, slot) -> slot instanceof ShadowSlot && slot.inventory instanceof FilterConfigurable.FilterInventory,
+				(screen, slot, ingredient) -> {
+					if (ingredient instanceof ItemEmiStack stack)
+						((FilterConfigurable.FilterInventory)slot.inventory).getClicker().clickShadowSlot(screen.getScreenHandler().syncId, slot, stack.getItemStack());
+				});
+
+		registerDragDropHandler(registry, BlackHoleChestScreen.class, handlerOne);
+		registerDragDropHandler(registry, FilteringScreen.class, handlerOne);
+	}
+
+	// Type erasure BS
+	private void registerDragDropHandler(EmiRegistry registry, Class<? extends HandledScreen<?>> clazz, EmiDragDropHandler<HandledScreen<?>> handler) {
+		registry.addDragDropHandler((Class<HandledScreen<?>>)clazz, handler);
 	}
 
 	public void registerCategories(EmiRegistry registry) {
@@ -51,6 +72,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addCategory(SpectrumEmiRecipeCategories.CRYSTALLARIEUM);
 		registry.addCategory(SpectrumEmiRecipeCategories.CINDERHEARTH);
 		registry.addCategory(SpectrumEmiRecipeCategories.TITRATION_BARREL);
+		registry.addCategory(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING);
 		
 		EmiIngredient pedestals = EmiIngredient.of(List.of(
 				EmiStack.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
@@ -91,6 +113,7 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		registry.addWorkstation(SpectrumEmiRecipeCategories.POTION_WORKSHOP_REACTING, EmiStack.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.CINDERHEARTH, EmiStack.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstation(SpectrumEmiRecipeCategories.TITRATION_BARREL, EmiStack.of(SpectrumBlocks.TITRATION_BARREL));
+		registry.addWorkstation(SpectrumEmiRecipeCategories.PRIMORDIAL_FIRE_BURNING, EmiIngredient.of(List.of(EmiStack.of(SpectrumItems.DOOMBLOOM_SEED), EmiStack.of(SpectrumItems.PRIMORDIAL_LIGHTER), EmiStack.of(SpectrumBlocks.INCANDESCENT_AMALGAM), EmiStack.of(SpectrumItems.PIPE_BOMB))));
 	}
 
 	public void registerRecipes(EmiRegistry registry) {
@@ -103,14 +126,15 @@ public class SpectrumEmiPlugin implements EmiPlugin {
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, r -> new PotionWorkshopEmiRecipeGated(SpectrumEmiRecipeCategories.POTION_WORKSHOP_CRAFTING, r));
 		addAll(registry, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingEmiRecipe::new);
 		addAll(registry, SpectrumRecipeTypes.SPIRIT_INSTILLING, SpiritInstillingEmiRecipeGated::new);
-		addAll(registry, SpectrumRecipeTypes.MUD_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MUD_CONVERTING, r, MudConvertingRecipe.UNLOCK_IDENTIFIER));
-		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r, LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER));
-		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r, MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER));
-		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r, DragonrotConvertingRecipe.UNLOCK_IDENTIFIER));
+		addAll(registry, SpectrumRecipeTypes.MUD_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MUD_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.LIQUID_CRYSTAL_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.MIDNIGHT_SOLUTION_CONVERTING, r));
+		addAll(registry, SpectrumRecipeTypes.DRAGONROT_CONVERTING, r -> new FluidConvertingEmiRecipeGated(SpectrumEmiRecipeCategories.DRAGONROT_CONVERTING, r));
 		addAll(registry, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CRYSTALLARIEUM, CrystallarieumEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthEmiRecipeGated::new);
 		addAll(registry, SpectrumRecipeTypes.TITRATION_BARREL, TitrationBarrelEmiRecipeGated::new);
+		addAll(registry, SpectrumRecipeTypes.PRIMORDIAL_FIRE_BURNING, PrimordialFireBurningEmiRecipeGated::new);
 		
 		FreezingIdolBlock.FREEZING_STATE_MAP.forEach((key, value) -> {
 			EmiStack in = EmiStack.of(key.getBlock());

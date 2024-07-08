@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.redstone.block_placer.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/redstone/block_placer"
+  },
+  "icon": "spectrum:block_placer",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:block_placer"
+      },
+      "text": "book.spectrum.guidebook.redstone.block_placer.page0.text",
+      "title": "book.spectrum.guidebook.redstone.block_placer.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.redstone.block_placer.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/block_placer",
+      "text": "book.spectrum.guidebook.redstone.block_placer.page1.text"
+    }
+  ]
+}

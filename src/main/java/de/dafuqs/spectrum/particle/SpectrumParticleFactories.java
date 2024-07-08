@@ -214,6 +214,9 @@ public class SpectrumParticleFactories {
 		//Azzyy sucked cock here
 		//Can confirm this sucks ~Daf
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_TRAIL, LightTrailparticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_ASH, FallingAshParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_RAIN, RaindropParticle.Factory::new);
+
 		
 		// Since these can reference other particle types, they should always come last
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DYNAMIC, DynamicParticle.Factory::new);

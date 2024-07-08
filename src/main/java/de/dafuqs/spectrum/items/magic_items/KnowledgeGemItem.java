@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
@@ -43,7 +42,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		stack.setNbt(compound);
 		return stack;
 	}
-	
+
 	@Override
 	public int getMaxStoredExperience(ItemStack itemStack) {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
@@ -139,20 +138,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Ext
 		} else if (playerEntity.totalExperience < experience) {
 			return false;
 		} else {
-			playerEntity.totalExperience -= experience;
-			
-			// recalculate levels & level progress
-			playerEntity.experienceProgress -= (float) experience / (float) playerEntity.getNextLevelExperience();
-			while (playerEntity.experienceProgress < 0.0F) {
-				float f = playerEntity.experienceProgress * (float) playerEntity.getNextLevelExperience();
-				if (playerEntity.experienceLevel > 0) {
-					playerEntity.addExperienceLevels(-1);
-					playerEntity.experienceProgress = 1.0F + f / (float) playerEntity.getNextLevelExperience();
-				} else {
-					playerEntity.addExperienceLevels(-1);
-					playerEntity.experienceProgress = 0.0F;
-				}
-			}
+			playerEntity.addExperience(-experience);
 			return true;
 		}
 	}

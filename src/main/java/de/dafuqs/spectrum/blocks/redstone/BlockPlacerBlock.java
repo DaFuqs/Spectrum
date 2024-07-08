@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
+import de.dafuqs.spectrum.compat.claims.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
@@ -60,9 +61,13 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 			Direction facing = pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing();
 			BlockPos placementPos = pointer.getPos().offset(facing);
             Direction placementDirection = world.isAir(placementPos.down()) ? facing : Direction.UP;
-
+			
+			if (!GenericClaimModsCompat.canPlaceBlock(world, placementPos, null)) {
+				return;
+			}
+			
 			try {
-				blockItem.place(new AutomaticItemPlacementContext(world, placementPos, facing, stack, placementDirection));
+				blockItem.place(new BlockPlacerPlacementContext(world, placementPos, facing, stack, placementDirection));
 				world.syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pointer.getPos(), 0);
 				world.syncWorldEvent(WorldEvents.DISPENSER_ACTIVATED, pointer.getPos(), pointer.getBlockState().get(BlockPlacerBlock.ORIENTATION).getFacing().getId());
                 world.emitGameEvent(null, GameEvent.BLOCK_PLACE, placementPos);
@@ -123,5 +128,23 @@ public class BlockPlacerBlock extends RedstoneInteractionBlock implements BlockE
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 	
+	public static final class BlockPlacerPlacementContext extends AutomaticItemPlacementContext {
+		
+		public BlockPlacerPlacementContext(World world, BlockPos pos, Direction facing, ItemStack stack, Direction side) {
+			super(world, pos, facing, stack, side);
+		}
+		
+		// SlabBlocks cause a non-funny StackOverflowError
+		// at net.minecraft.block.SlabBlock.canReplace(SlabBlock.java)
+		// at net.minecraft.block.AbstractBlock$AbstractBlockState.canReplace(AbstractBlock.java)
+		// at net.minecraft.item.AutomaticItemPlacementContext.canPlace(AutomaticItemPlacementContext.java)
+		// at net.minecraft.item.AutomaticItemPlacementContext.canReplaceExisting(AutomaticItemPlacementContext.java)
+		// at net.minecraft.block.SlabBlock.canReplace(SlabBlock.java)
+		@Override
+		public boolean canReplaceExisting() {
+			return false;
+		}
+		
+	}
 	
 }

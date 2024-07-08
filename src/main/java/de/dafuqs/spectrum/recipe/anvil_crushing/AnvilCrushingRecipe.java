@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -14,8 +15,8 @@ import net.minecraft.world.*;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	
-	protected final Ingredient inputIngredient;
-	protected final ItemStack outputItemStack;
+	protected final Ingredient input;
+	protected final ItemStack output;
 	protected final float crushedItemsPerPointOfDamage;
 	protected final float experience;
 	protected final Identifier particleEffectIdentifier;
@@ -23,13 +24,13 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	protected final Identifier soundEvent;
 	
 	public AnvilCrushingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-	                           Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage,
-	                           float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
+							   Ingredient input, ItemStack output, float crushedItemsPerPointOfDamage,
+							   float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
-		this.inputIngredient = inputIngredient;
-		this.outputItemStack = outputItemStack;
+		this.input = input;
+		this.output = output;
 		this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
 		this.experience = experience;
 		this.particleEffectIdentifier = particleEffectIdentifier;
@@ -43,12 +44,12 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		return this.inputIngredient.test(inv.getStack(0));
+		return this.input.test(inv.getStack(0));
 	}
 	
 	@Override
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
-		return outputItemStack.copy();
+		return output.copy();
 	}
 	
 	@Override
@@ -58,7 +59,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		return outputItemStack.copy();
+		return output;
 	}
 	
 	@Override
@@ -84,7 +85,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.inputIngredient);
+		defaultedList.add(this.input);
 		return defaultedList;
 	}
 

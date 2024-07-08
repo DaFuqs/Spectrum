@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.block.*;
@@ -19,7 +19,6 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -191,16 +190,11 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity, world).orElse(null);
 	}
 	
-	// calculate the max amount of items that will be crafted
-	// note that we only check each ingredient once, if a match was found
-	// custom recipes therefore should not use items / tags that match multiple items
-	// at once, since we can not rely on positions in a grid like vanilla does
-	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		recipe.craft(world, fusionShrineBlockEntity);
 		
 		if (recipe.shouldPlayCraftingFinishedEffects()) {
-			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput(world.getRegistryManager()));
+			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.craft(fusionShrineBlockEntity, world.getRegistryManager()));
 			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 		}
 		
@@ -209,7 +203,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
 		fusionShrineBlockEntity.fluidStorage.amount = 0;
 		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-		
 	}
 
 	@Override
@@ -233,15 +226,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 
         this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
-					this.currentRecipe = optionalFusionRecipe;
-				}
-			}
-		}
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, FusionShrineRecipe.class);
 
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
@@ -272,11 +257,11 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 		}
     }
-
-    public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
+	
+	public void grantPlayerFusionCraftingAdvancement(ItemStack stack, int experience) {
         ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
         if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(serverPlayerEntity.getWorld().getRegistryManager()), experience);
+			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, stack, experience);
         }
     }
 

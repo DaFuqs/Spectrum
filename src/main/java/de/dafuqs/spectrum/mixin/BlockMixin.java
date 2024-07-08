@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.*;
-import de.dafuqs.spectrum.data_loaders.resonance.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -12,6 +12,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 import net.minecraft.stat.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -57,11 +58,13 @@ public abstract class BlockMixin {
 				List<ItemStack> leftoverReturnStacks = new ArrayList<>();
 				
 				if (entity instanceof PlayerEntity playerEntity) {
+					boolean anyAdded = false;
 					for (ItemStack itemStack : droppedStacks) {
 						Item item = itemStack.getItem();
 						int count = itemStack.getCount();
 						
 						if (playerEntity.getInventory().insertStack(itemStack)) {
+							anyAdded = true;
 							if (itemStack.isEmpty()) {
 								itemStack.setCount(count);
 							}
@@ -69,6 +72,11 @@ public abstract class BlockMixin {
 						} else {
 							leftoverReturnStacks.add(itemStack);
 						}
+					}
+					if(anyAdded) {
+						playerEntity.getWorld().playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
+								SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS,
+								0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 					}
 				}
 				droppedStacks = leftoverReturnStacks;

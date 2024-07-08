@@ -15,7 +15,7 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 	private final List<OrderedText> texts;
 	
 	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 138, 60);
+		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, recipe, 138, 60);
 		MinecraftClient client = MinecraftClient.getInstance();
 		if (recipe.getDescription().isPresent()) {
 			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);

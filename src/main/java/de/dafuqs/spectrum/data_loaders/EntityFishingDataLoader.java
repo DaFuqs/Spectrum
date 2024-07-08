@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.data_loaders;
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.NbtHelper;
-import de.dafuqs.spectrum.predicate.entity.*;
+import de.dafuqs.spectrum.api.predicate.entity.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;

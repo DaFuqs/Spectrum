@@ -38,4 +38,9 @@ public class EnchantedStarCandyItem extends Item {
 		tooltip.add(Text.translatable("item.spectrum.purple_star_candy.tooltip2").formatted(Formatting.GRAY));
 	}
 	
+	@Override
+	public boolean hasGlint(ItemStack stack) {
+		return true;
+	}
+	
 }

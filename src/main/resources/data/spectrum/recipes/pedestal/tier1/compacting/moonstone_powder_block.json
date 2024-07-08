@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "compacting",
+  "time": 20,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:moonstone_powder"
+    }
+  },
+  "result": {
+    "item": "spectrum:moonstone_powder_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/collect_moonstone_shard",
+  "disable_yield_upgrades": true
+}

@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.general.brown_is_weird.name",
+  "icon": "spectrum:brown_pigment",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_all_basic_pigments_besides_brown"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/color_mixing"
+    },
+    {
+      "entry": "spectrum:general/pigment"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": -2,
+  "turnin": "spectrum:craft_colored_sapling",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.color_mixing.page2.title",
+      "text": "book.spectrum.guidebook.general.color_mixing.page2.text"
+    },
+    {
+      "type": "spectrum:link",
+      "text": "book.spectrum.guidebook.general.color_mixing.page3.text",
+      "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
+      "link_text": "book.spectrum.guidebook.general.color_mixing.page3.link_text"
+    }
+  ]
+}

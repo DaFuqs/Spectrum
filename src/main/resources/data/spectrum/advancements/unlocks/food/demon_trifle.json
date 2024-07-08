@@ -6,7 +6,7 @@
     },
     "collected_jade_jelly": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_jelly" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_jade_jelly" }
     },
     "collected_blood_orchid_petal": {
       "trigger":"revelationary:advancement_gotten",

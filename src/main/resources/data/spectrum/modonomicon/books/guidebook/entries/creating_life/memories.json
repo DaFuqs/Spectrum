@@ -1,0 +1,72 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.memories.name",
+  "icon": {
+    "item": "spectrum:memory",
+    "nbt": {
+      "EntityTag": {
+        "id": "minecraft:fox"
+      },
+      "TicksToManifest": 20
+    }
+  },
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/memories"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/spirit_instiller"
+    },
+    {
+      "entry": "spectrum:creating_life/mob_heads"
+    },
+    {
+      "entry": "spectrum:creating_life/staff_of_remembrance"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 3,
+  "y": 2,
+  "pages": [
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.creating_life.memories.page0.title",
+      "item": {
+        "item": "spectrum:memory",
+        "nbt": {
+          "EntityTag": {
+            "id": "minecraft:fox"
+          },
+          "TicksToManifest": 20
+        }
+      },
+      "text": "book.spectrum.guidebook.creating_life.memories.page0.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.memories.page1.title",
+      "recipe_id_1": "spectrum:spirit_instiller/memories/fox",
+      "text": "book.spectrum.guidebook.creating_life.memories.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.memories.page2.title",
+      "text": "book.spectrum.guidebook.creating_life.memories.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:milestones/unlock_remembering_boss_memories"
+      },
+      "title": "book.spectrum.guidebook.creating_life.memories.page3.title",
+      "item": {
+        "item": "minecraft:dragon_head"
+      },
+      "text": "book.spectrum.guidebook.creating_life.memories.page3.text"
+    }
+  ]
+}

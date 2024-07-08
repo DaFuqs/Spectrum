@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.present;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -76,7 +76,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		} else {
 			this.openerUUID = null;
 		}
-		if (nbt.contains("OpeningTick", NbtElement.INT_TYPE)) {
+		if (nbt.contains("OpeningTick", NbtElement.NUMBER_TYPE)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}
@@ -133,12 +133,15 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	}
 	
 	public ItemStack retrievePresent(PresentBlock.WrappingPaper wrappingPaper) {
-		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
-		PresentItem.wrap(stack, wrappingPaper, this.colors);
-		if (this.ownerUUID != null && this.ownerName != null) {
-			PresentItem.setWrapper(stack, this.ownerUUID, this.ownerName);
+		ItemStack presentStack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+		for (ItemStack contentStack : this.stacks) {
+			PresentItem.addToPresent(presentStack, contentStack);
 		}
-		return stack;
+		PresentItem.wrap(presentStack, wrappingPaper, this.colors);
+		if (this.ownerUUID != null && this.ownerName != null) {
+			PresentItem.setWrapper(presentStack, this.ownerUUID, this.ownerName);
+		}
+		return presentStack;
 	}
 	
 	public boolean isEmpty() {

@@ -9,11 +9,12 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public abstract class BidentBaseEntity extends TridentEntity {
 	
-	private static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+	protected static final TrackedData<ItemStack> STACK = DataTracker.registerData(BidentBaseEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 	
 	public BidentBaseEntity(EntityType<? extends TridentEntity> entityType, World world) {
 		super(entityType, world);
@@ -26,7 +27,7 @@ public abstract class BidentBaseEntity extends TridentEntity {
 	}
 	
 	public void setStack(ItemStack stack) {
-		this.dataTracker.set(STACK, stack.copy());
+		setTrackedStack(stack.copy());
 		((TridentEntityAccessor) this).spectrum$setTridentStack(stack);
 		this.dataTracker.set(TridentEntityAccessor.spectrum$getLoyalty(), (byte) EnchantmentHelper.getLoyalty(stack));
 		this.dataTracker.set(TridentEntityAccessor.spectrum$getEnchanted(), stack.hasGlint());
@@ -37,8 +38,12 @@ public abstract class BidentBaseEntity extends TridentEntity {
 		return SpectrumSoundEvents.BIDENT_HIT_GROUND;
 	}
 	
-	public ItemStack getStack() {
+	public ItemStack getTrackedStack() {
 		return this.dataTracker.get(STACK);
+	}
+	
+	public void setTrackedStack(ItemStack stack) {
+		dataTracker.set(STACK, stack);
 	}
 	
 	@Override
@@ -47,4 +52,8 @@ public abstract class BidentBaseEntity extends TridentEntity {
 		this.dataTracker.set(STACK, ItemStack.fromNbt(nbt.getCompound("Trident")));
 	}
 	
+	@Override
+	public Box calculateBoundingBox() {
+		return super.calculateBoundingBox();
+	}
 }

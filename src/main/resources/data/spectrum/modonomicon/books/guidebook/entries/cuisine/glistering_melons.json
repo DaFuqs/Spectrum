@@ -1,0 +1,30 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.glistering_melons.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:collect_vegetal"
+  },
+  "icon": "spectrum:glistering_melon",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.title",
+      "item": {
+        "item": "minecraft:glistering_melon_slice"
+      },
+      "text": "book.spectrum.guidebook.magical_blocks.glistering_melons.page0.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_blocks.glistering_melons.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/glistering_melon_seeds"
+    }
+  ]
+}

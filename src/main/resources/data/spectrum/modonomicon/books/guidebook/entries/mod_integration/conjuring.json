@@ -1,0 +1,59 @@
+{
+  "name": "book.spectrum.guidebook.mod_integration.conjuring.name",
+  "icon": "conjuring:conjurer",
+  "condition": {
+    "type": "modonomicon:and",
+    "children": [
+      {
+        "type": "modonomicon:mod_loaded",
+        "mod_id": "conjuring"
+      },
+      {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:place_pedestal"
+      }
+    ]
+  },
+  "category": "spectrum:mod_integration",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page0.text",
+      "title": "book.spectrum.guidebook.mod_integration.conjuring.page0.title"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page1.text",
+      "title1": "book.spectrum.guidebook.mod_integration.conjuring.page1.title",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page2.text",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/build_spirit_instiller_structure"
+      },
+      "text": "book.spectrum.guidebook.mod_integration.conjuring.page3.text",
+      "recipe_id_1": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner"
+    }
+  ]
+}

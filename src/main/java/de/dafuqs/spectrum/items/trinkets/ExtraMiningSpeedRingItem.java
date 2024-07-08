@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.items.trinkets;
 import com.google.common.collect.*;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
@@ -37,7 +37,7 @@ public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		double miningSpeedMod = getExtraMiningSpeed(storedInk);
 		if (miningSpeedMod != 0) {
-			modifiers.put(AdditionalEntityAttributes.DIG_SPEED, new EntityAttributeModifier(uuid, "spectrum:ring_of_pursuit", miningSpeedMod, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+			modifiers.put(AdditionalEntityAttributes.DIG_SPEED, new EntityAttributeModifier(uuid, "spectrum:ring_of_pursuit", miningSpeedMod, EntityAttributeModifier.Operation.ADDITION));
 		}
 		
 		return modifiers;
@@ -47,7 +47,7 @@ public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 0.1 + 0.1 * (int) (Math.log(storedInk / 100.0f) / Math.log(8));
+			return 1 + (int) (Math.log(storedInk / 100.0f) / Math.log(8));
 		}
 	}
 	

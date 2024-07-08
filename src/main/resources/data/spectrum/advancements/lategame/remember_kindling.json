@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/break_cracked_dragonbone",
+  "parent": "spectrum:hidden/collect_dragonbone",
   "display": {
     "icon": {
       "item": "spectrum:kindling_head"
@@ -24,7 +24,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
+        "advancement_identifier": "spectrum:hidden/collect_dragonbone"
       }
     }
   }

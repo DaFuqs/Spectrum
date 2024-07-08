@@ -30,6 +30,17 @@ public class PastelNetwork {
 		}
 	}
 
+    public void incorporate(PastelNetwork networkToIncorporate) {
+        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
+            PastelNodeType type = nodesToIncorporate.getKey();
+            for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
+                this.nodes.get(type).add(nodeToIncorporate);
+                nodeToIncorporate.setParentNetwork(this);
+            }
+        }
+        this.graph = null;
+    }
+
     public World getWorld() {
         return this.world;
     }

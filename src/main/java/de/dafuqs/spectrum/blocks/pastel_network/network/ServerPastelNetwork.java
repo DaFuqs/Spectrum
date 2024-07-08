@@ -24,15 +24,9 @@ public class ServerPastelNetwork extends PastelNetwork {
 		this.transmissionLogic = new PastelTransmissionLogic(this);
 	}
 
+	@Override
 	public void incorporate(PastelNetwork networkToIncorporate) {
-        for (Map.Entry<PastelNodeType, Set<PastelNodeBlockEntity>> nodesToIncorporate : networkToIncorporate.getNodes().entrySet()) {
-            PastelNodeType type = nodesToIncorporate.getKey();
-            for (PastelNodeBlockEntity nodeToIncorporate : nodesToIncorporate.getValue()) {
-                this.nodes.get(type).add(nodeToIncorporate);
-                nodeToIncorporate.setNetwork(this);
-            }
-        }
-		this.graph = null;
+        super.incorporate(networkToIncorporate);
 		this.transmissionLogic.invalidateCache();
 	}
 	

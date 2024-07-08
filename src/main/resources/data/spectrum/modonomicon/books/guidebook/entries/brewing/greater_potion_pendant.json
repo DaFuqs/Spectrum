@@ -1,0 +1,32 @@
+{
+  "name": "book.spectrum.guidebook.equipment.greater_potion_pendant.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/greater_potion_pendant"
+  },
+  "icon": "spectrum:greater_potion_pendant",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:brewing/lesser_potion_pendant"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": -3,
+  "y": 3,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.text",
+      "title": "book.spectrum.guidebook.equipment.greater_potion_pendant.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "text": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.greater_potion_pendant.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/greater_potion_pendant"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
@@ -63,6 +64,12 @@ public class FluidLogging {
 		@Override
 		public String toString() {
 			return this.name;
+		}
+		
+		public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+			if (this == State.LIQUID_CRYSTAL) {
+				SpectrumFluids.LIQUID_CRYSTAL.onEntityCollision(state, world, pos, entity);
+			}
 		}
 	}
 	

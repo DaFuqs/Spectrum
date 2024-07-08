@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
@@ -33,23 +33,26 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	
 	// the amount of bottles able to get out of a single barrel
 	default int getOutputCountAfterAngelsShare(World world, float temperature, long secondsFermented) {
+		int originalOutputCount = getOutput(world.getRegistryManager()).getCount();
+
 		if (getFermentationData() == null) {
-			return getOutput(world.getRegistryManager()).getCount();
+			return originalOutputCount;
 		}
 		
-		float angelsSharePercent = getAngelsSharePercent(secondsFermented, temperature);
-		if (angelsSharePercent > 0) {
-			return (int) (getOutput(world.getRegistryManager()).getCount() * Math.ceil(1F - angelsSharePercent / 100F));
+		// Linearly adjust the output count based on angelsShareResultCount
+		float angelsShareResultCount = getAngelsShareResultCount(secondsFermented, temperature);
+		if (angelsShareResultCount > 0) {
+			return Math.max(1, (int) Math.ceil((originalOutputCount - angelsShareResultCount)));
 		} else {
-			return (int) (getOutput(world.getRegistryManager()).getCount() * Math.floor(1F - angelsSharePercent / 100F));
+			return Math.max(1, (int) Math.floor((originalOutputCount - angelsShareResultCount)));
 		}
 	}
 	
 	// the amount of fluid that evaporated while fermenting
 	// the higher the temperature in the biome is, the more evaporates
 	// making colder biomes more desirable
-	default float getAngelsSharePercent(long secondsFermented, float temperature) {
-		return Math.max(0.1F, temperature) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) * getAngelsSharePerMcDay();
+	default float getAngelsShareResultCount(long secondsFermented, float temperature) {
+		return Math.max(0.1F, temperature / 10F) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) * getAngelsSharePerMcDay();
 	}
 	
 	@Override
@@ -70,6 +73,10 @@ public interface ITitrationBarrelRecipe extends GatedRecipe {
 	List<IngredientStack> getIngredientStacks();
 	
 	int getMinFermentationTimeHours();
+	
+	default boolean isFermentingLongEnoughToTap(long secondsFermented) {
+		return secondsFermented / 60 / 60 >= getMinFermentationTimeHours();
+	}
 	
 	FermentationData getFermentationData();
 

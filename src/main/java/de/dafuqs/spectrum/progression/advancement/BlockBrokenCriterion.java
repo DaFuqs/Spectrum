@@ -2,13 +2,12 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.predicate.block.*;
+import de.dafuqs.spectrum.api.predicate.block.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.server.network.*;
 import net.minecraft.util.*;
-import org.jetbrains.annotations.*;
 
 public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
 	
@@ -33,7 +32,7 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 		
 		private final BrokenBlockPredicate brokenBlockPredicate;
 		
-		public Conditions(LootContextPredicate player, @Nullable BrokenBlockPredicate brokenBlockPredicate) {
+		public Conditions(LootContextPredicate player, BrokenBlockPredicate brokenBlockPredicate) {
 			super(ID, player);
 			this.brokenBlockPredicate = brokenBlockPredicate;
 		}

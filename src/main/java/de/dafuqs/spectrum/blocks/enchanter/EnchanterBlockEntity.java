@@ -2,14 +2,14 @@ package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.item_bowl.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.compat.biome_makeover.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
@@ -31,7 +31,6 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.listener.*;
 import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
-import net.minecraft.recipe.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -182,6 +181,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 						if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
 							playCraftingFinishedEffects(enchanterBlockEntity);
 							craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+							SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 							craftingSuccess = true;
 						}
 					}
@@ -196,6 +197,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					if (!drained) {
 						enchanterBlockEntity.currentItemProcessingTime = -1;
 						enchanterBlockEntity.updateInClientWorld();
+						SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 					}
 				}
 				if (enchanterBlockEntity.currentItemProcessingTime > 0 && enchanterBlockEntity.craftingTime >= enchanterBlockEntity.currentItemProcessingTime) {
@@ -205,7 +208,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					enchanterBlockEntity.currentItemProcessingTime = -1;
 					enchanterBlockEntity.craftingTime = 0;
 					enchanterBlockEntity.updateInClientWorld();
-					
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
+
 					craftingSuccess = true;
 				}
 				enchanterBlockEntity.markDirty();
@@ -216,8 +220,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				enchanterBlockEntity.craftingTime = 0;
 				enchanterBlockEntity.inventoryChanged();
 			}
-		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) enchanterBlockEntity.getWorld(), enchanterBlockEntity.pos);
 		}
 	}
 	
@@ -304,7 +306,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {
-			centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
+			centerStackCopy = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(centerStackCopy, enchantment, highestEnchantments.get(enchantment), false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments).getRight();
 		}
 		
 		// START BIOME MAKEOVER COMPAT
@@ -356,7 +358,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				int enchantmentLevel = highestEnchantmentLevels.get(enchantment);
 				int currentRequired = getRequiredExperienceToEnchantWithEnchantment(centerStackCopy, enchantment, enchantmentLevel, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 				if (currentRequired > 0) {
-					centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
+					centerStackCopy = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments).getRight();
 					requiredExperience += currentRequired;
 					valid = true;
 				} else {
@@ -463,7 +465,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 
 		// if there is room: place the output on the table
 		// otherwise: pop it off
-		ItemStack resultStack = enchanterRecipe.getOutput(world.getRegistryManager()).copy();
+		ItemStack resultStack = enchanterRecipe.craft(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world.getRegistryManager()).copy();
 		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
 
 		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD) != 1.0) {
@@ -524,7 +526,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		enchanterBlockEntity.drainExperience(enchantmentUpgradeRecipe.getRequiredExperience());
 		
 		ItemStack resultStack = enchanterBlockEntity.getStack(0);
-		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false, true);
+		resultStack = SpectrumEnchantmentHelper.addOrUpgradeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false, true).getRight();
 		enchanterBlockEntity.setStack(0, resultStack);
 		
 		// vanilla
@@ -633,18 +635,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.ownerUUID = PlayerOwned.readOwnerUUID(nbt);
 		
 		this.currentRecipe = null;
-		if (nbt.contains("CurrentRecipe")) {
-			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
-				Optional<? extends Recipe<?>> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof GatedSpectrumRecipe gatedSpectrumRecipe) {
-					if (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe) {
-						this.currentRecipe = gatedSpectrumRecipe;
-					}
-				}
-			}
-		}
-		
+		this.currentRecipe = MultiblockCrafter.getRecipeFromNbt(world, nbt, GatedSpectrumRecipe.class);
 		if (this.currentRecipe == null && this.world != null && this.world.isClient) {
 			stopCraftingMusic();
 		}

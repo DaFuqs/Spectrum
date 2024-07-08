@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
@@ -16,13 +17,13 @@ import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
 public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
-	
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SuspiciousBrewRecipe::new);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
@@ -37,7 +38,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.01F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, FluidIngredient.of(Fluids.WATER), OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.25F, 0.01F, List.of()));
 	}
 
 	@Override
@@ -63,10 +64,6 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
@@ -78,7 +75,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				Optional<Pair<StatusEffect, Integer>> stewEffect = getStewEffectFrom(stack);
 				if (stewEffect.isPresent()) {
 					StatusEffect effect = stewEffect.get().getLeft();
-					int duration = (int) (stewEffect.get().getRight() * (1 + Support.logBase(stack.getCount(), 2)));
+					int duration = (int) (stewEffect.get().getRight() * (Support.logBase(2, 1 + stack.getCount())));
 					if (stewEffects.containsKey(effect)) {
 						stewEffects.put(effect, stewEffects.get(effect) + duration);
 					} else {
@@ -88,9 +85,9 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			}
 			
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
-			double cappedAlcPercent = Math.min(alcPercent, 20D);
+			double clampedAlcPercent = MathHelper.clamp(alcPercent, 1D, 20D); // a too high number will cause issues with the effects length exceeding the integer limit, lol
 			for (Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
-				int finalDurationTicks = (int) (entry.getValue() * Math.pow(2, 1 + cappedAlcPercent));
+				int finalDurationTicks = (int) (entry.getValue() * Math.pow(2, clampedAlcPercent));
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
 			

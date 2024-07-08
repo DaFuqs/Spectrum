@@ -1,0 +1,13 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.name",
+  "icon": "spectrum:lucky_roll",
+  "sort_number": 7,
+  "show_category_button": true,
+
+  "entry_textures": "spectrum:textures/gui/modonomicon/entry_textures.png",
+  "background": "spectrum:textures/gui/modonomicon/category_background.png",
+  "background_width": 1024,
+  "background_height": 1024,
+  "background_texture_zoom_multiplier": 1.0,
+  "background_parallax_layers": []
+}

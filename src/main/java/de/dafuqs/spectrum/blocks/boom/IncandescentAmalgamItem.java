@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.boom;
 
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;

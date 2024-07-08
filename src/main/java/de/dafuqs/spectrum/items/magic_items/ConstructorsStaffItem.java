@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import net.fabricmc.api.*;
@@ -25,11 +25,11 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 
 	public static final int INK_COST_PER_BLOCK = 1;
 	public static final int CREATIVE_RANGE = 10;
-	
+
 	public ConstructorsStaffItem(Settings settings) {
 		super(settings);
 	}
-	
+
 	// The range grows with the players progression
 	// this way the item is not overpowered at the start
 	// but not useless at the end
@@ -57,10 +57,10 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 			}
 		}
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
@@ -74,7 +74,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
-
+		
 		if ((player != null && this.canInteractWith(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block blockToPlace = targetBlockState.getBlock();
 			Item itemToConsume;
@@ -108,7 +108,8 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 			}
 		} else {
 			if (player != null) {
-				world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				world.playSound(null, player.getBlockPos(), SoundEvents.BLOCK_DISPENSER_FAIL, SoundCategory.PLAYERS,
+						1.0F, 1.0F);
 			}
 		}
 		
@@ -137,7 +138,7 @@ public class ConstructorsStaffItem extends BuildingStaffItem {
 		}
 		
 		if (!player.isCreative()) {
-			player.getInventory().remove(stack -> stack.getItem().equals(itemToConsume), placedBlocks, player.getInventory());
+			InventoryHelper.removeFromInventoryWithRemainders(player, new ItemStack(itemToConsume, placedBlocks));
 			InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * ConstructorsStaffItem.INK_COST_PER_BLOCK);
 		}
 	}

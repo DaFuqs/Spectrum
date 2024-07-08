@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -77,9 +77,9 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements ExtendedEnch
 							
 							int powerEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.POWER, stack);
 							int featherFallingEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.FEATHER_FALLING, stack);
-							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, getJumpBoostAmplifier(sneakTimeMod, powerEnchantmentLevel), true, false, true));
+							entity.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, CHARGE_TIME_TICKS, getJumpBoostAmplifier(sneakTimeMod, powerEnchantmentLevel), true, true));
 							if (featherFallingEnchantmentLevel > 0) {
-								entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, CHARGE_TIME_TICKS + featherFallingEnchantmentLevel * 20, 0, true, false, true));
+								entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, CHARGE_TIME_TICKS + featherFallingEnchantmentLevel * 20, 0, true, true));
 							}
 						}
 					}

@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.registries.client;
 
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.entity.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.present.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -19,7 +20,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 import java.util.*;
 
@@ -41,12 +42,19 @@ public class SpectrumModelPredicateProviders {
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+		registerStampingItemPredicate(SpectrumItems.TUNING_STAMP);
 		registerInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.BEDROCK_SWORD);
 		
+		registerOversizedItemPredicate(SpectrumItems.DRACONIC_TWINSWORD);
+		registerOversizedItemPredicate(SpectrumItems.DRAGON_TALON);
+		registerSlotReservingItem(SpectrumItems.DRAGON_TALON);
+		registerSlotReservingItem(SpectrumItems.DRACONIC_TWINSWORD);
+
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW);
@@ -140,6 +148,9 @@ public class SpectrumModelPredicateProviders {
 	private static void registerBidentThrowingItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (currentItemRenderMode == ModelTransformationMode.NONE) {
+				if (itemStack.getItem() instanceof FractalBidentItem fractal) {
+					return fractal.isDisabled(itemStack) ? 0.5F : 1F;
+				}
 				return 1.0F;
 			}
 			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
@@ -204,6 +215,26 @@ public class SpectrumModelPredicateProviders {
 	private static void registerActivatableItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (ActivatableItem.isActivated(itemStack)) {
+				return 1.0F;
+			} else {
+				return 0.0F;
+			}
+		});
+	}
+
+	private static void registerStampingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("stamped"), ((stack, world, entity, seed) -> {
+			var nbt = stack.getOrCreateNbt();
+			if (nbt.contains(Stampable.STAMPING_DATA_TAG))
+				return 1F;
+
+			return 0F;
+		}));
+	}
+	
+	private static void registerSlotReservingItem(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier(SlotReservingItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
+			if (itemStack.getItem() instanceof SlotReservingItem reserver && reserver.isReservingSlot(itemStack)) {
 				return 1.0F;
 			} else {
 				return 0.0F;

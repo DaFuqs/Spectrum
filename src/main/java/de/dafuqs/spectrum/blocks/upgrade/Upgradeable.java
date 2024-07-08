@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.progression.*;
 import net.minecraft.block.*;
 import net.minecraft.nbt.*;
@@ -93,6 +93,11 @@ public interface Upgradeable {
 		public long getEffectiveCostUsingEfficiency(UpgradeType upgradeType) {
 			int efficiencyMod = getRawValue(Upgradeable.UpgradeType.EFFICIENCY);
 			return 1L << Math.max(this.upgrades.get(upgradeType) - efficiencyMod, 0);
+		}
+		
+		public long getEffectiveCostUsingEfficiency(long amount) {
+			int efficiencyMod = getRawValue(Upgradeable.UpgradeType.EFFICIENCY);
+			return Math.max(1, amount >> efficiencyMod);
 		}
 
 		public Iterable<? extends Map.Entry<UpgradeType, Integer>> entrySet() {

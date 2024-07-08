@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.memory.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.storage.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.progression.*;
@@ -55,7 +55,7 @@ public class SpectrumColorProviders {
 			coloredLeavesBlockColorProvider = new ToggleableBlockColorProvider(leavesBlockColorProvider);
 			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
 			
-			for (DyeColor dyeColor : DyeColor.values()) {
+			for (DyeColor dyeColor : ColorHelper.VANILLA_DYE_COLORS) {
 				Block block = ColoredLeavesBlock.byColor(dyeColor);
 				ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
 				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);

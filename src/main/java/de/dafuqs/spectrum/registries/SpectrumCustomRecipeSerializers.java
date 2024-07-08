@@ -7,6 +7,9 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
 import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.dynamic.spawner_manipulation.*;
+import de.dafuqs.spectrum.recipe.primordial_fire_burning.dynamic.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
@@ -52,6 +55,10 @@ public class SpectrumCustomRecipeSerializers {
 		register(AquaRegiaRecipe.SERIALIZER, "titration_barrel_aqua_regia");
 		register(NecteredViognierRecipe.SERIALIZER, "titration_barrel_nectered_viognier");
 		register(SuspiciousBrewRecipe.SERIALIZER, "titration_barrel_suspicious_brew");
+		
+		// Primordial Fire Burning
+		register(MemoryDementiaRecipe.SERIALIZER, "memory_dementia");
+		register(EnchantedBookUnsoulingRecipe.SERIALIZER, "enchanted_book_unsouling");
 	}
 	
 }

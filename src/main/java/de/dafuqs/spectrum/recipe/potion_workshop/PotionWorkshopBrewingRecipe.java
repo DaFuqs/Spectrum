@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -349,7 +348,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			for (Pair<Float, Float> mods : SPLIT_EFFECT_POTENCY_AND_DURATION) {
 				int newDuration = (int) (instance.getDuration() * mods.getRight());
 				int newAmplifier = Support.getIntFromDecimalWithChance(instance.getAmplifier() * mods.getLeft(), random);
-				if (newAmplifier > 0) {
+				if (newAmplifier >= 0) {
 					splitInstances.add(new InkPoweredStatusEffectInstance(new StatusEffectInstance(instance.getEffectType(), newDuration, newAmplifier, instance.isAmbient(), instance.shouldShowParticles()), poweredInstance.getInkCost(), poweredInstance.getColor(), poweredInstance.isUnidentifiable()));
 				}
 			}

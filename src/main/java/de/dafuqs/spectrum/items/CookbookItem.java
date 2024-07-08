@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.server.network.*;
 import net.minecraft.stat.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 import java.util.*;
 
@@ -25,18 +24,21 @@ public class CookbookItem extends Item {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (!world.isClient && user instanceof ServerPlayerEntity serverPlayerEntity) {
-			openGuidebookPage(serverPlayerEntity, SpectrumCommon.locate(guidebookPageToOpen), 0);
+		if (!world.isClient) {
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
 			
 			return TypedActionResult.success(user.getStackInHand(hand));
+		} else {
+			openGuidebookPage(SpectrumCommon.locate(guidebookPageToOpen), 0);
 		}
 		
 		return TypedActionResult.consume(user.getStackInHand(hand));
 	}
 	
-	private void openGuidebookPage(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, GuidebookItem.GUIDEBOOK_ID, entry, page);
+	private void openGuidebookPage(Identifier entry, int page) {
+		if (SpectrumItems.GUIDEBOOK instanceof GuidebookItem guidebook) {
+			guidebook.openGuidebook(entry, page);
+		}
 	}
 	
 	@Override

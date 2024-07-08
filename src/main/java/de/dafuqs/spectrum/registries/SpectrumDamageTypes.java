@@ -1,18 +1,20 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.api.damage_type.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
 import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
-// Damage Types handle the logic of how the damage behaves, determined via tags
+// Damage Types handle the logic of how the damage behaves, determined via tag
 // Damage Sources decide how death messages are handled
-// Make a custom damage source if you want a custom message, otherwise just return a damage source with the type you want
+// Make a custom damage source if you want a custom message, otherwise return a damage source with the type you want
 public class SpectrumDamageTypes {
 	
 	public static boolean recursiveDamageFlag = false;
@@ -25,7 +27,7 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> DIKE_GATE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("dike_gate"));
 	public static final RegistryKey<DamageType> INK_PROJECTILE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("ink_projectile"));
 	public static final RegistryKey<DamageType> DEADLY_POISON = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("deadly_poison"));
-	public static final RegistryKey<DamageType> INCANDESCENCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("incandescence"));
+	public static final RegistryKey<DamageType> INCANDESCENCE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("incandescence")); // explosions with that type cause Primordial Fire
 	public static final RegistryKey<DamageType> MOONSTONE_STRIKE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("moonstone_strike"));
 	public static final RegistryKey<DamageType> BRISTLE_SPROUTS = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("bristle_sprouts"));
 	public static final RegistryKey<DamageType> SAWTOOTH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("sawtooth"));
@@ -34,6 +36,9 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
 	public static final RegistryKey<DamageType> PRIMORDIAL_FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("primordial_fire"));
+	public static final RegistryKey<DamageType> IMPALING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("impaling"));
+	public static final RegistryKey<DamageType> EVISCERATION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("evisceration"));
+
 	public static final RegistryKey<DamageType> MOB_HEAD_DROP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("mob_head_drop"));
 	
 	public static DamageSource mobHeadDrop(World world) {
@@ -62,6 +67,14 @@ public class SpectrumDamageTypes {
 	
 	public static DamageSource irradiance(World world, @Nullable LivingEntity attacker) {
 		return new IrradianceDamageSource(world, attacker);
+	}
+	
+	public static DamageSource impaling(World world, Entity weapon, @Nullable Entity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(IMPALING), weapon, attacker);
+	}
+	
+	public static DamageSource evisceration(World world, @Nullable Entity attacker) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(EVISCERATION), attacker);
 	}
 
 	public static DamageSource setHealth(World world, @Nullable LivingEntity attacker) {
@@ -115,9 +128,13 @@ public class SpectrumDamageTypes {
 	public static DamageSource primordialFire(World world) {
 		return new PrimordialFireDamageSource(world, null);
 	}
-	
+
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
+	}
+	
+	public static void wrapWithStackTracking(DamageSource source, ItemStack stack) {
+		((StackTracking) source).spectrum$setTrackedStack(stack);
 	}
 	
 	public static class SetHealthDamageSource extends DamageSource {
@@ -158,5 +175,4 @@ public class SpectrumDamageTypes {
 			super(world.getDamageSources().registry.entryOf(PRIMORDIAL_FIRE), attacker);
 		}
 	}
-
 }

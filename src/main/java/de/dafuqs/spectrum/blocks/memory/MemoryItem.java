@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.memory;
 
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
@@ -10,6 +9,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.item.ItemGroup.*;
 import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -62,6 +62,19 @@ public class MemoryItem extends BlockItem {
 		return stack;
 	}
 	
+	public static ItemStack getForEntityType(EntityType<?> entityType, int ticksToManifest) {
+		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultStack();
+		
+		NbtCompound stackNbt = stack.getOrCreateNbt();
+		stackNbt.putInt("TicksToManifest", ticksToManifest);
+		
+		NbtCompound entityCompound = new NbtCompound();
+		entityCompound.putString("id", Registries.ENTITY_TYPE.getId(entityType).toString());
+		stackNbt.put("EntityTag", entityCompound);
+
+		return stack;
+	}
+	
 	public static Optional<EntityType<?>> getEntityType(@Nullable NbtCompound nbt) {
 		if (nbt != null && nbt.contains("EntityTag", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound nbtCompound = nbt.getCompound("EntityTag");
@@ -89,7 +102,7 @@ public class MemoryItem extends BlockItem {
 	// Same nbt format as SpawnEggs
 	// That way we can reuse entityType.spawnFromItemStack()
 	public static int getTicksToManifest(@Nullable NbtCompound nbtCompound) {
-		if (nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.INT_TYPE)) {
+		if (nbtCompound != null && nbtCompound.contains("TicksToManifest", NbtElement.NUMBER_TYPE)) {
 			return nbtCompound.getInt("TicksToManifest");
 		}
 		return -1;
@@ -164,7 +177,6 @@ public class MemoryItem extends BlockItem {
 		nbtCompound.putBoolean("Unrecognizable", true);
 		itemStack.setNbt(nbtCompound);
 	}
-	
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

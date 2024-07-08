@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.radiating_ender.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": -4,
+  "y": -4,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/build_advanced_pedestal_structure"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:get_radiating_ender",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.radiating_ender.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/radiating_ender_page0",
+      "cost": {
+        "item": "minecraft:ender_pearl",
+        "count": 4
+      },
+      "text": "book.spectrum.guidebook.hints.radiating_ender.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.radiating_ender.page1.title",
+      "cost": {
+        "item": "minecraft:ender_pearl",
+        "count": 12
+      },
+      "text": "book.spectrum.guidebook.hints.radiating_ender.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/radiating_ender_page1"
+    }
+  ]
+}

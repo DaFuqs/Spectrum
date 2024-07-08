@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PreenchantedMultiToolItem extends MultiToolItem implements Preenchanted, LoomPatternProvider  {
+public class PreenchantedMultiToolItem extends MultiToolItem implements Preenchanted, LoomPatternProvider {
 	
 	public PreenchantedMultiToolItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);

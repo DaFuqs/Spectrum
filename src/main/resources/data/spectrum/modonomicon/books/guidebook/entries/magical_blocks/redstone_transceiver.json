@@ -1,0 +1,31 @@
+{
+  "name": "book.spectrum.guidebook.redstone.redstone_transceiver.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:create_onyx_shard"
+  },
+  "icon": "spectrum:redstone_transceiver",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 6,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:redstone_transceiver"
+      },
+      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.text",
+      "title": "book.spectrum.guidebook.redstone.redstone_transceiver.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.redstone.redstone_transceiver.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier2/redstone_transceiver",
+      "text": "book.spectrum.guidebook.redstone.redstone_transceiver.page1.text"
+    }
+  ]
+}

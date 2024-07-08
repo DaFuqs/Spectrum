@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.stargazing.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 7,
+  "y": -5,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_shooting_stars"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:collect_star_fragment",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.stargazing.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/stargazing_page0",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.stargazing.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.stargazing.page1.title",
+      "cost": {
+        "item": "spectrum:shimmerstone_gem",
+        "count": 24
+      },
+      "text": "book.spectrum.guidebook.hints.stargazing.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/stargazing_page1"
+    }
+  ]
+}

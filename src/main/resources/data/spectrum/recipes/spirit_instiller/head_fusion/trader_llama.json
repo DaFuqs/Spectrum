@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "group": "head_fusion",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:llama_head"
+  },
+  "ingredient2": {
+    "tag": "minecraft:wool_carpets",
+    "count": 4
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:trader_llama_head"
+  },
+  "required_advancement": "spectrum:unlocks/head_fusion"
+}

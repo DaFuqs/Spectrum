@@ -20,7 +20,7 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 	private final List<PastelNetwork> networks = new ArrayList<>();
 	
 	@Override
-	public PastelNetwork joinNetwork(PastelNodeBlockEntity node, UUID uuid) {
+	public PastelNetwork JoinOrCreateNetwork(PastelNodeBlockEntity node, UUID uuid) {
 		PastelNetwork foundNetwork = null;
 		for (int i = 0; i < this.networks.size(); i++) {
 			PastelNetwork network = this.networks.get(i);
@@ -45,10 +45,41 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
 		network.addNode(node);
 		return network;
 	}
-	
+
+	@Override
+	public void connectNodes(PastelNodeBlockEntity node, PastelNodeBlockEntity parent) {
+		PastelNetwork parentNetwork, otherNetwork;
+
+		if (parent.getParentNetwork() != null) {
+			parentNetwork = parent.getParentNetwork();
+			otherNetwork = node.getParentNetwork();
+		}
+		else if (node.getParentNetwork() != null) {
+			parentNetwork = node.getParentNetwork();
+			otherNetwork = parent.getParentNetwork();
+		}
+		else {
+			parentNetwork = createNetwork(node.getWorld(), null);
+			parentNetwork.addNode(parent);
+			parent.setParentNetwork(parentNetwork);
+			parentNetwork.addNode(node);
+			node.setParentNetwork(parentNetwork);
+			return;
+		}
+
+		if (otherNetwork == null) {
+			parentNetwork.addNode(node);
+			node.setParentNetwork(parentNetwork);
+			return;
+		}
+
+		parentNetwork.incorporate(otherNetwork);
+		this.networks.remove(otherNetwork);
+	}
+
 	@Override
 	public void removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-		PastelNetwork network = node.getNetwork();
+		PastelNetwork network = node.getParentNetwork();
 		if (network != null) {
 			network.removeNode(node, reason);
 			if (network.nodes.size() == 0) {

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.ender;
 
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -159,7 +159,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return Text.translatable("block.spectrum.ender_hopper").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.ender_hopper.owner", this.ownerName);
 		} else {
 			return Text.translatable("block.spectrum.ender_hopper");
 		}

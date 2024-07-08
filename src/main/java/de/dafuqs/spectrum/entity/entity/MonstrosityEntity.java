@@ -324,10 +324,10 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		if (nbt.contains("previous_health", NbtElement.FLOAT_TYPE)) {
 			this.previousHealth = nbt.getFloat("previous_health");
 		}
-		if (nbt.contains("times_gotten_stronger", NbtElement.INT_TYPE)) {
+		if (nbt.contains("times_gotten_stronger", NbtElement.NUMBER_TYPE)) {
 			this.timesGottenStronger = nbt.getInt("times_gotten_stronger");
 		}
-		if (nbt.contains("ticks_without_target", NbtElement.INT_TYPE)) {
+		if (nbt.contains("ticks_without_target", NbtElement.NUMBER_TYPE)) {
 			this.ticksWithoutTarget = nbt.getInt("ticks_without_target");
 		}
 	}

@@ -1,0 +1,35 @@
+{
+  "name": "book.spectrum.guidebook.general.color_mixing_black.name",
+  "icon": "minecraft:black_dye",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:create_onyx_shard"
+  },
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/color_mixing"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 0,
+  "y": -4,
+  "turnin": "spectrum:craft_colored_sapling",
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.general.color_mixing_black.name",
+      "images": [
+        "spectrum:textures/gui/guidebook/color_mixing_black.png"
+      ],
+      "border": false,
+      "text": "book.spectrum.guidebook.general.color_mixing_black.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.color_mixing_black.page1.text"
+    }
+  ]
+}

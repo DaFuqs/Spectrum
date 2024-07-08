@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import net.minecraft.item.*;
 import net.minecraft.screen.slot.*;
 import org.spongepowered.asm.mixin.*;

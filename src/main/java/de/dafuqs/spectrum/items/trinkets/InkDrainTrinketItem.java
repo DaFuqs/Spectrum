@@ -1,24 +1,30 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage> {
+public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage>, ExtendedItemBarProvider, SlotBackgroundEffectProvider {
 	
 	/**
 	 * TODO: set to the original value again, once ink networking is in. Currently the original max value cannot be achieved.
 	 * Players WILL grind out that amount of pigment in some way and will then complain
+	 * <p>
+	 * lmao trueee ~ Azzyypaaras.
 	 */
 	public static final int MAX_INK = 3276800; // 1677721600;
 	public final InkColor inkColor;
@@ -98,4 +104,43 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		return InkStorageItem.super.getFullStack();
 	}
 	
+	@Override
+	public int barCount(ItemStack stack) {
+		return 1;
+	}
+	
+	@Override
+	public boolean allowVanillaDurabilityBarRendering(@Nullable PlayerEntity player, ItemStack stack) {
+		return false;
+	}
+	
+	@Override
+	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+		var inkTank = getEnergyStorage(stack);
+		var progress = (int) Math.round(MathHelper.clampedLerp(0, 14, Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F));
+		
+		if (progress == 0 || progress == 14)
+			return PASS;
+		
+		var color = inkColor == InkColors.BLACK ? InkColors.ALT_BLACK : ColorHelper.colorVecToRGB(inkColor.getColor());
+		
+		return new BarSignature(1, 13, 14, progress, 1, color, 2, ExtendedItemBarProvider.DEFAULT_BACKGROUND_COLOR);
+	}
+	
+	@Override
+	public float getEffectOpacity(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		var inkTank = getEnergyStorage(stack);
+		return (float) (Math.log(inkTank.getEnergy(inkColor) / 100.0f) / Math.log(8) / 5.0F);
+	}
+	
+	@Override
+	public SlotEffect backgroundType(@Nullable PlayerEntity player, ItemStack stack) {
+		var inkTank = getEnergyStorage(stack);
+		return inkTank.isFull() ? SlotEffect.PULSE : SlotEffect.NONE;
+	}
+	
+	@Override
+	public int getBackgroundColor(@Nullable PlayerEntity player, ItemStack stack, float tickDelta) {
+		return ColorHelper.colorVecToRGB(inkColor.getColor());
+	}
 }

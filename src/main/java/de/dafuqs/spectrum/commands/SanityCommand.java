@@ -1,24 +1,24 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.*;
+import com.mojang.brigadier.arguments.*;
+import com.mojang.brigadier.tree.*;
 import de.dafuqs.revelationary.*;
 import de.dafuqs.revelationary.advancement_criteria.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.color.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.gemstone.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.anvil_crushing.*;
 import de.dafuqs.spectrum.recipe.enchanter.*;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.mininglevel.v1.*;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
@@ -47,21 +47,25 @@ public class SanityCommand {
 			SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"),    // its parent is 2 parents in
 			SpectrumCommon.locate("lategame/collect_myceylon")                    // its parent is 2 parents in
 	);
-
-	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register(CommandManager.literal("spectrum_sanity")
-			.requires((source) -> source.hasPermissionLevel(2))
-				.executes((context) -> execute(context.getSource()))
-		);
+	
+	public static void register(LiteralCommandNode<ServerCommandSource> root) {
+		LiteralCommandNode<ServerCommandSource> sanity = CommandManager.literal("sanity")
+				.requires((source) -> source.hasPermissionLevel(2))
+				.executes((context) -> execute(context.getSource(), SpectrumCommon.MOD_ID)).build();
+		ArgumentCommandNode<ServerCommandSource, String> modId = CommandManager.argument("mod_id", StringArgumentType.word())
+				.executes((context) -> execute(context.getSource(), StringArgumentType.getString(context, "mod_id"))).build();
+		
+		sanity.addChild(modId);
+		root.addChild(sanity);
 	}
-
-	private static int execute(ServerCommandSource source) {
+	
+	private static int execute(ServerCommandSource source, String modId) {
 		SpectrumCommon.logInfo("##### SANITY CHECK START ######");
 
 		// All blocks that do not have a mineable tag
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				BlockState blockState = entry.getValue().getDefaultState();
 
 				// unbreakable or instabreak blocks do not need to have an entry
@@ -84,7 +88,7 @@ public class SanityCommand {
 		// All blocks without a loot table
 		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
-			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (registryKey.getValue().getNamespace().equals(modId)) {
 				Block block = entry.getValue();
 				
 				if (block instanceof PlacedItemBlock) {
@@ -152,6 +156,19 @@ public class SanityCommand {
 				usedColorsForEachTier.get(pedestalRecipe.getTier()).put(powderInput.getKey(), usedColorsForEachTier.get(pedestalRecipe.getTier()).get(powderInput.getKey()) + powderInput.getValue());
 			}
 		}
+		
+		// Items / Blocks without a translation
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
+			if (!Language.getInstance().hasTranslation(item.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Item Lang] Missing translation string " + item.getValue().getTranslationKey());
+			}
+		}
+		for (Map.Entry<RegistryKey<Block>, Block> block : Registries.BLOCK.getEntrySet()) {
+			if (!Language.getInstance().hasTranslation(block.getValue().getTranslationKey())) {
+				SpectrumCommon.logWarning("[SANITY: Block Lang] Missing translation string " + block.getValue().getTranslationKey());
+			}
+		}
+		
 		// recipe groups without localisation
 		Set<String> recipeGroups = new HashSet<>();
 		recipeManager.keys().forEach(identifier -> {
@@ -172,7 +189,7 @@ public class SanityCommand {
 				SpectrumCommon.logWarning("[SANITY: Recipe Group Lang] Recipe group " + recipeGroup + " is not localized.");
 			}
 		}
-
+		
 		// Impossible to unlock recipes
 		testRecipeUnlocks(SpectrumRecipeTypes.PEDESTAL, "Pedestal", recipeManager, advancementLoader);
 		testRecipeUnlocks(SpectrumRecipeTypes.ANVIL_CRUSHING, "Anvil Crushing", recipeManager, advancementLoader);
@@ -229,7 +246,7 @@ public class SanityCommand {
 		// advancements that dont require parent
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
 			String path = advancement.getId().getPath();
-			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
+			if (advancement.getId().getNamespace().equals(modId) && !path.startsWith("hidden") && !path.startsWith("progression") && !path.startsWith("milestones") && advancement.getParent() != null) {
 				Identifier previousAdvancementIdentifier = null;
 				for (String[] requirement : advancement.getRequirements()) {
 					if (requirement.length > 0 && requirement[0].equals("gotten_previous")) {
@@ -317,7 +334,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0) {
+				if (!enchantments.isEmpty()) {
 					for (Ingredient ingredient : recipe.getIngredients()) {
 						for (ItemStack matchingStack : ingredient.getMatchingStacks()) {
 							if (matchingStack.getItem() instanceof PigmentItem pigmentItem) {
@@ -332,7 +349,7 @@ public class SanityCommand {
 			ItemStack output = recipe.getOutput(source.getRegistryManager());
 			if (output.getItem() == Items.ENCHANTED_BOOK) {
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(output);
-				if (enchantments.size() > 0 && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
+				if (!enchantments.isEmpty() && recipe.getRequiredItem() instanceof PigmentItem pigmentItem) {
 					upgradeColors.put(enchantments.keySet().stream().toList().get(0), pigmentItem.getColor());
 				}
 			}
@@ -351,7 +368,7 @@ public class SanityCommand {
 		}
 		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> entry : Registries.ENCHANTMENT.getEntrySet()) {
 			Enchantment enchantment = entry.getValue();
-			if (entry.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
+			if (entry.getKey().getValue().getNamespace().equals(modId) && !SpectrumEnchantmentTags.isIn(SpectrumEnchantmentTags.SPECTRUM_ENCHANTMENT, enchantment)) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Tags] Enchantment '" + entry.getKey().getValue() + "' is missing in the spectrum:enchantments tag");
 			}
 		}
@@ -371,7 +388,7 @@ public class SanityCommand {
 		Collection<ItemStack> itemGroupStacks = SpectrumItemGroups.MAIN.getSearchTabStacks();
 		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			
-			if (item.getKey().getValue().getNamespace().equals(SpectrumCommon.MOD_ID) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+			if (item.getKey().getValue().getNamespace().equals(modId) && !item.getValue().getRegistryEntry().isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				boolean found = false;
 				for(ItemStack stack : itemGroupStacks) {
 					if(stack.isOf(item.getValue())) {

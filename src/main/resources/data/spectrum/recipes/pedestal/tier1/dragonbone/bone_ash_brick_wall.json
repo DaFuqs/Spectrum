@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "group": "bone_ash_blocks",
   "time": 200,
   "tier": "basic",
   "cyan": 0,
@@ -21,6 +22,6 @@
     "item": "spectrum:bone_ash_brick_wall",
     "count": 6
   },
-  "required_advancement": "spectrum:lategame/break_cracked_dragonbone",
+  "required_advancement": "spectrum:hidden/collect_dragonbone",
   "disable_yield_upgrades": true
 }

@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.registry.*;
@@ -40,12 +41,8 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			if (result.malformed()) {
 				// Currently handling malformed input leniently. May throw an error in the future.
 				SpectrumCommon.logError("Titration Recipe " + identifier + "contains a malformed fluid input tag! This recipe will not be craftable.");
-			} else if (result.result() == FluidIngredient.EMPTY) {
-				if (result.isTag()) {
-					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid tag " + result.id() + " that does not exist! This recipe will not be craftable.");
-				} else {
-					SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
-				}
+			} else if (result.result() == FluidIngredient.EMPTY && !result.isTag()) { // tags get populated after recipes are
+				SpectrumCommon.logError("Titration Recipe " + identifier + " specifies fluid " + result.id() + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 

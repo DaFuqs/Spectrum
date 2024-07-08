@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.*;
-import de.dafuqs.spectrum.predicate.world.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
+import de.dafuqs.spectrum.api.predicate.world.*;
+import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;

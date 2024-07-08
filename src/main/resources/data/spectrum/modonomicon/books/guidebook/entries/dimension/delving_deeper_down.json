@@ -1,0 +1,40 @@
+{
+  "name": "book.spectrum.guidebook.dimension.delving_deeper_down.name",
+  "icon": "minecraft:bedrock",
+  "turnin": "spectrum:midgame/enter_dimension",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 0,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.dimension.delving_deeper_down.page0.title",
+      "item": {
+        "item": "minecraft:bedrock"
+      },
+      "text": "book.spectrum.guidebook.dimension.delving_deeper_down.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/enter_dimension"
+      },
+      "title": "book.spectrum.guidebook.dimension.delving_deeper_down.page1.title",
+      "text": "book.spectrum.guidebook.dimension.delving_deeper_down.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:__todo/monstrosity"
+      },
+      "title": "book.spectrum.guidebook.dimension.delving_deeper_down.page2.title",
+      "text": "book.spectrum.guidebook.dimension.delving_deeper_down.page2.text"
+    }
+  ]
+}

@@ -36,6 +36,10 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		this.repeat = true;
 		this.repeatDelay = 0;
 		
+		this.x = sourceBlockPos.getX() + 0.5;
+		this.y = sourceBlockPos.getY() + 0.5;
+		this.z = sourceBlockPos.getZ() + 0.5;
+		
 		updateVolume();
 	}
 	

@@ -44,20 +44,20 @@ public class ArtisansAtlasState extends MapState {
 
     public ArtisansAtlasState(double centerX, double centerZ, byte scale, boolean showIcons, boolean unlimitedTracking, boolean locked, RegistryKey<World> dimension, NbtCompound nbt) {
         this((int) centerX, (int) centerZ, scale, showIcons, unlimitedTracking, locked, dimension);
-
-        // We'll use the colors from nbt
-        this.displayDelta = Vec3i.ZERO;
-
-        if (nbt.contains("targetId", NbtElement.STRING_TYPE)) {
-            this.targetId = new Identifier(nbt.getString("targetId"));
-        } else {
-            this.targetId = null;
-        }
-
-        int xDisplay = nbt.contains("displayX", NbtElement.INT_TYPE) ? nbt.getInt("displayX") : this.displayedCenter.getX();
-        int zDisplay = nbt.contains("displayZ", NbtElement.INT_TYPE) ? nbt.getInt("displayZ") : this.displayedCenter.getZ();
-        this.displayedCenter = new BlockPos(xDisplay, 0, zDisplay);
-    }
+	
+		// We'll use the colors from nbt
+		this.displayDelta = Vec3i.ZERO;
+	
+		if (nbt.contains("targetId", NbtElement.STRING_TYPE)) {
+			this.targetId = new Identifier(nbt.getString("targetId"));
+		} else {
+			this.targetId = null;
+		}
+	
+		int xDisplay = nbt.contains("displayX", NbtElement.NUMBER_TYPE) ? nbt.getInt("displayX") : this.displayedCenter.getX();
+		int zDisplay = nbt.contains("displayZ", NbtElement.NUMBER_TYPE) ? nbt.getInt("displayZ") : this.displayedCenter.getZ();
+		this.displayedCenter = new BlockPos(xDisplay, 0, zDisplay);
+	}
 
     public static @Nullable Pair<Identifier, StructureStart> locateAnyStructureAtBlock(ServerWorld world, BlockPos pos) {
         Registry<Structure> registry = world.getRegistryManager().getOptional(RegistryKeys.STRUCTURE).orElse(null);

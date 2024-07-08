@@ -1,0 +1,37 @@
+{
+  "name": "book.spectrum.guidebook.equipment.ring_of_pursuit.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/ring_of_pursuit"
+  },
+  "icon": "spectrum:ring_of_pursuit",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/bismuth_trinkets",
+      "line_enabled": false
+    },
+    {
+      "entry": "spectrum:equipment/color_picker",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 14,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.ring_of_pursuit.page0.text",
+      "title": "book.spectrum.guidebook.equipment.ring_of_pursuit.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.equipment.ring_of_pursuit.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
+      "text": "book.spectrum.guidebook.equipment.ring_of_pursuit.page1.text"
+    }
+  ]
+}

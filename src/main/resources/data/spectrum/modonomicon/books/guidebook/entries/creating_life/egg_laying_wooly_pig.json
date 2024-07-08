@@ -1,0 +1,56 @@
+{
+  "name": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.name",
+  "icon": "spectrum:egg_laying_wooly_pig_head",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
+  },
+  "category": "spectrum:creating_life",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:creating_life/creature_manipulation"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": 4,
+  "y": 6,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page0.title",
+      "text": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page0.text"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page1.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
+      },
+      "recipe_id_1": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
+      "text": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page1.text"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
+      },
+      "title1": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page2.title",
+      "recipe_id_1": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
+      "text": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page2.text"
+    },
+    {
+      "type": "modonomicon:entity",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:midgame/remember_egg_laying_wooly_pig"
+      },
+      "entity_id": "spectrum:egg_laying_wooly_pig",
+      "scale": 0.7,
+      "text": "book.spectrum.guidebook.creating_life.egg_laying_wooly_pig.page3.text"
+    }
+  ]
+}

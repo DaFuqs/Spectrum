@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.api.block.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

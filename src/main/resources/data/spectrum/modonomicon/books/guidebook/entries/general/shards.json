@@ -1,0 +1,88 @@
+{
+  "name": "book.spectrum.guidebook.general.shards.name",
+  "icon": "minecraft:amethyst_shard",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:general/geodes"
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 1,
+  "x": -8,
+  "y": 0,
+  "turnin": "spectrum:collect_all_basic_shards",
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.general.shards.page0.text",
+      "title": "book.spectrum.guidebook.general.shards.page0.title"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "anchor": "topaz",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_topaz_shard"
+      },
+      "title": "book.spectrum.guidebook.general.shards.page1.title",
+      "item": {
+        "item": "spectrum:topaz_shard"
+      },
+      "text": "book.spectrum.guidebook.general.shards.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "anchor": "amethyst",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_amethyst_shard"
+      },
+      "title": "book.spectrum.guidebook.general.shards.page2.title",
+      "item": {
+        "item": "minecraft:amethyst_shard"
+      },
+      "text": "book.spectrum.guidebook.general.shards.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "anchor": "citrine",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_shards/collect_citrine_shard"
+      },
+      "title": "book.spectrum.guidebook.general.shards.page3.title",
+      "item": {
+        "item": "spectrum:citrine_shard"
+      },
+      "text": "book.spectrum.guidebook.general.shards.page3.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "anchor": "onyx",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:create_onyx_shard"
+      },
+      "title": "book.spectrum.guidebook.general.shards.page4.title",
+      "item": {
+        "item": "spectrum:onyx_shard"
+      },
+      "text": "book.spectrum.guidebook.general.shards.page4.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "anchor": "moonstone",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:lategame/collect_moonstone_shard"
+      },
+      "title": "book.spectrum.guidebook.general.shards.page5.title",
+      "item": {
+        "item": "spectrum:moonstone_shard"
+      },
+      "text": "book.spectrum.guidebook.general.shards.page5.text"
+    }
+  ]
+}

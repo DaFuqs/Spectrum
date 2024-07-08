@@ -1,0 +1,23 @@
+{
+  "name": "effect.spectrum.scarred",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/status_effects/scarred"
+  },
+  "icon": "spectrum:textures/mob_effect/scarred.png",
+  "category": "spectrum:brewing",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 0,
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "title": "effect.spectrum.scarred",
+      "status_effect_id": "spectrum:scarred",
+      "text": "book.spectrum.guidebook.brewing.scarred.page0.text"
+    }
+  ]
+}

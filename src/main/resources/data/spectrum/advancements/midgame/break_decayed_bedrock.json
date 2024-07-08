@@ -25,9 +25,30 @@
         }
       }
     },
+    "collected_bedrock_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:bedrock_dust"
+            ]
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/craft_bottle_of_ruin" }
     }
-  }
+  },
+  "requirements": [
+    [
+      "broken_decayed_bedrock",
+      "collected_bedrock_dust"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

@@ -1,0 +1,67 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.modular_explosives.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/modular_explosives"
+  },
+  "icon": "spectrum:threat_conflux",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 7,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page0.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page1.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page1.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page2.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/boom/threat_conflux"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page3.text",
+      "recipe_id_1": "spectrum:pedestal/tier3/boom/parametric_mining_device"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page4.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page4.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page5.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page5.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page6.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page6.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page7.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page7.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page8.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page8.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.magical_blocks.modular_explosives.page9.title",
+      "text": "book.spectrum.guidebook.magical_blocks.modular_explosives.page9.text"
+    }
+  ]
+}

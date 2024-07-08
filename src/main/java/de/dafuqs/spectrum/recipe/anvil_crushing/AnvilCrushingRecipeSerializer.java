@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
@@ -49,8 +50,8 @@ public class AnvilCrushingRecipeSerializer implements GatedRecipeSerializer<Anvi
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		recipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		recipe.input.write(packetByteBuf);
+		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.crushedItemsPerPointOfDamage);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeIdentifier(recipe.particleEffectIdentifier);

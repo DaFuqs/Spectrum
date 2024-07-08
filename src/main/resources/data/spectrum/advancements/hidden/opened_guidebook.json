@@ -1,0 +1,7 @@
+{
+  "criteria": {
+    "opened_guidebook": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "book.spectrum.guidebook.magical_items.glass_ampoules.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/items/glass_ampoules"
+  },
+  "icon": "spectrum:azurite_glass_ampoule",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 0,
+  "y": 6,
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page0.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/azurite"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/azurite_from_refined"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page2.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/malachite"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page3.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/malachite_from_refined"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page4.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/bloodstone"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title1": "book.spectrum.guidebook.magical_items.glass_ampoules.page5.title",
+      "recipe_id_1": "spectrum:pedestal/tier4/glass_ampoules/bloodstone_from_refined"
+    }
+  ]
+}

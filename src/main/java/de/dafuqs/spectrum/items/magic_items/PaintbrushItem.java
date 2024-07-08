@@ -2,18 +2,19 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.interaction.*;
 import de.dafuqs.spectrum.compat.claims.*;
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PaintbrushItem extends Item {
+public class PaintbrushItem extends Item implements SignChangingItem {
 	
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
 	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
@@ -104,23 +105,23 @@ public class PaintbrushItem extends Item {
 		}
 		return Optional.empty();
 	}
-
+	
 	@Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(world.isClient);
 		}
 		return super.useOnBlock(context);
 	}
-
+	
 	private boolean tryColorBlock(ItemUsageContext context) {
 		Optional<InkColor> inkColor = getColor(context.getStack());
 		if (inkColor.isEmpty()) {
 			return false;
 		}
 		DyeColor dyeColor = inkColor.get().getDyeColor();
-
+		
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState state = world.getBlockState(pos);
@@ -134,7 +135,7 @@ public class PaintbrushItem extends Item {
 			}
 			return false;
 		}
-
+		
 		return cursedColor(context);
 	}
 	
@@ -156,7 +157,7 @@ public class PaintbrushItem extends Item {
 		if (newBlockState.isAir()) {
 			return false;
 		}
-		
+
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
 			if (!world.isClient) {
 				world.setBlockState(context.getBlockPos(), newBlockState);
@@ -228,14 +229,44 @@ public class PaintbrushItem extends Item {
 		World world = user.getWorld();
 		if (canColor(user) && GenericClaimModsCompat.canInteract(entity.getWorld(), entity, user)) {
 			Optional<InkColor> color = getColor(stack);
-			if (color.isPresent() && payBlockColorCost(user, color.get())) {
-				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
-				if (colored) {
-					return ActionResult.success(world.isClient);
-				}
+			
+			if (color.isPresent()
+					&& payBlockColorCost(user, color.get())
+					&& EntityColorProcessorRegistry.colorEntity(entity, color.get().getDyeColor())) {
+				
+				entity.getWorld().playSoundFromEntity(null, entity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				return ActionResult.success(world.isClient);
 			}
+			
 		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
-	
+
+	@Override
+	public boolean useOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player) {
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.MAIN_HAND))) return true;
+		if (tryUseOnSign(world, signBlockEntity, front, player, player.getStackInHand(Hand.OFF_HAND))) return true;
+
+		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		return false;
+	}
+
+	private boolean tryUseOnSign(World world, SignBlockEntity signBlockEntity, boolean front, PlayerEntity player, ItemStack stack) {
+		if (stack.isOf(SpectrumItems.PAINTBRUSH)) {
+			Optional<InkColor> color = getColor(stack);
+			if (color.isPresent()) {
+				InkColor inkColor = color.get();
+				DyeColor dyeColor = inkColor.getDyeColor();
+
+				if (canColor(player) && payBlockColorCost(player, inkColor)) {
+					if (signBlockEntity.changeText((text) -> text.withColor(dyeColor), front)) {
+						world.playSound(null, signBlockEntity.getPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 }

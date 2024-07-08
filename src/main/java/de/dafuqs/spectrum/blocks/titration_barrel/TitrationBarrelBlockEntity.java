@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.titration_barrel;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
@@ -87,18 +86,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
 		this.tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
-		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.INT_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
-		
-		if (world != null) {
-			BlockState blockState = world.getBlockState(pos);
-			if (blockState.isOf(SpectrumBlocks.TITRATION_BARREL)) {
-				BarrelState barrelState = this.tapTime > -1
-						? BarrelState.TAPPED : this.sealTime > -1
-						? BarrelState.SEALED : this.inventory.isEmpty() && this.fluidStorage.amount == 0
-						? BarrelState.EMPTY : BarrelState.FILLED;
-				world.setBlockState(this.pos, blockState.with(BARREL_STATE, barrelState));
-			}
-		}
+		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.NUMBER_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
 	}
 	
 	public Inventory getInventory() {
@@ -161,7 +149,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(this.world, temperature, getSealSeconds());
 	}
 	
-	public void addDayOfSealTime() {
+	public void addOneDayOfSealTime() {
 		this.sealTime -= TimeHelper.EPOCH_DAY_MILLIS;
 		this.markDirty();
 	}

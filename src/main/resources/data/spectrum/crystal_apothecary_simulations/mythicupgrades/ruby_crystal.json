@@ -1,0 +1,25 @@
+{
+  "budding_block": "mythicupgrades:budding_ruby_crystal",
+  "valid_neighbor_blocks": [
+    "mythicupgrades:small_ruby_crystal_bud",
+    "mythicupgrades:medium_ruby_crystal_bud",
+    "mythicupgrades:large_ruby_crystal_bud",
+    "mythicupgrades:ruby_crystal_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "mythicupgrades:ruby_crystal_shard",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "mythicupgrades"
+      ]
+    }
+  ]
+}

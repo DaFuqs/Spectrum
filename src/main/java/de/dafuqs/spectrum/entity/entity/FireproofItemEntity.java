@@ -24,9 +24,33 @@ public class FireproofItemEntity extends ItemEntity {
 		this.setStack(stack);
 	}
 	
+	private FireproofItemEntity(ItemEntity entity) {
+		super(SpectrumEntityTypes.FIREPROOF_ITEM, entity.getWorld());
+	}
+	
 	@Override
 	public boolean isInvulnerableTo(DamageSource damageSource) {
 		return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
+	}
+	
+	public ItemEntity copy() {
+		return new FireproofItemEntity(this);
+	}
+	
+	public static void scatter(World world, double x, double y, double z, ItemStack stack) {
+		double d = EntityType.ITEM.getWidth();
+		double e = 1.0 - d;
+		double f = d / 2.0;
+		double g = Math.floor(x) + world.random.nextDouble() * e + f;
+		double h = Math.floor(y) + world.random.nextDouble() * e;
+		double i = Math.floor(z) + world.random.nextDouble() * e + f;
+		
+		while(!stack.isEmpty()) {
+			FireproofItemEntity itemEntity = new FireproofItemEntity(world, g, h, i, stack.split(world.random.nextInt(21) + 10));
+			itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.11485000171139836), world.random.nextTriangular(0.2, 0.11485000171139836), world.random.nextTriangular(0.0, 0.11485000171139836));
+			world.spawnEntity(itemEntity);
+		}
+		
 	}
 	
 }

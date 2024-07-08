@@ -1,0 +1,48 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.enchanting_items.name",
+  "icon": "spectrum:enchanter",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/enchanter"
+  },
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -1,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page0.title",
+      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page0.text"
+    },
+    {
+      "type": "modonomicon:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/enchanting_items.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page1.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "minecraft:enchanted_book"
+      },
+      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page2.title",
+      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page2.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.enchanting.enchanting_items.page3.title",
+      "text": "book.spectrum.guidebook.enchanting.enchanting_items.page3.text"
+    }
+  ]
+}

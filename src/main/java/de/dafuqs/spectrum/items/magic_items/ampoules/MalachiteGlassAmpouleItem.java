@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.magic_items.ampoules;
 
-import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.entity.entity.*;
-import de.dafuqs.spectrum.items.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
-import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -34,7 +34,7 @@ public class AnvilCrusher {
 			if (crushingInputAmount > 0) {
 				Vec3d position = itemEntity.getPos();
 				
-				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager());
+				ItemStack crushingOutput = recipe.getOutput(world.getRegistryManager()).copy();
 				crushingOutput.setCount(crushingOutput.getCount() * crushingInputAmount);
 				
 				// Remove the input amount from the source stack

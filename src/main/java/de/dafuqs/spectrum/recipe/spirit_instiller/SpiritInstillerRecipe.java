@@ -1,17 +1,16 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.blocks.memory.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -36,21 +35,21 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 	protected final IngredientStack centerIngredient;
 	protected final IngredientStack bowlIngredient1;
 	protected final IngredientStack bowlIngredient2;
-	protected final ItemStack outputItemStack;
+	protected final ItemStack output;
 	
 	protected final int craftingTime;
 	protected final float experience;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	
 	public SpiritInstillerRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-	                             IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
+								 IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack output, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades) {
 		
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.centerIngredient = centerIngredient;
 		this.bowlIngredient1 = bowlIngredient1;
 		this.bowlIngredient2 = bowlIngredient2;
-		this.outputItemStack = outputItemStack;
+		this.output = output;
 		this.craftingTime = craftingTime;
 		this.experience = experience;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
@@ -75,7 +74,7 @@ public class SpiritInstillerRecipe extends GatedStackSpectrumRecipe {
 	
 	@Override
 	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		return outputItemStack.copy();
+		return output;
 	}
 	
 	@Override

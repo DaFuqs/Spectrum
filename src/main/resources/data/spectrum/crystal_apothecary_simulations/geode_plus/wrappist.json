@@ -1,24 +1,24 @@
 {
-  "budding_block": "geode:budding_wrappist",
+  "budding_block": "geode_plus:budding_wrappist",
   "valid_neighbor_blocks": [
-    "geode:small_wrappist_bud",
-    "geode:medium_wrappist_bud",
-    "geode:large_wrappist_bud",
-    "geode:wrappist_cluster",
+    "geode_plus:small_wrappist_bud",
+    "geode_plus:medium_wrappist_bud",
+    "geode_plus:large_wrappist_bud",
+    "geode_plus:wrappist_cluster",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
   ],
   "ticks_for_compensation_loot_per_valid_neighbor": 20000,
   "compensated_loot": {
-    "item": "geode:wrappist_shard",
+    "item": "geode_plus:wrappist_shard",
     "count": 2
   },
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

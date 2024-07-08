@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
@@ -128,6 +128,7 @@ public class PipeBombItem extends Item implements DamageAwareItem, TickAwareItem
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip").formatted(Formatting.GRAY));
         tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip2").formatted(Formatting.GRAY));
+	tooltip.add(Text.translatable("item.spectrum.pipe_bomb.tooltip3").formatted(Formatting.GRAY));
     }
 
 }

@@ -67,11 +67,10 @@
 
   "spectrum.tooltip.coming_soon": "§4Não obtível no modo Sobrevivência ainda",
 
-  "spectrum.gui.lexicon.reveal_hint_button.text": "Revelar Dica",
-  "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pague uma pequena taxa para revelar uma dica",
-  "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "Você não tem essa taxa no seu invetário",
+  "spectrum.gui.guidebook.reveal_hint_button.text": "Revelar Dica",
+  "spectrum.gui.guidebook.reveal_hint_button.tooltip.pay": "Pague uma pequena taxa para revelar uma dica",
+  "spectrum.gui.guidebook.reveal_hint_button.tooltip.lacking_resource": "Você não tem essa taxa no seu invetário",
 
-  "container.spectrum.owned_by_player": " de %s",
   "container.spectrum.rei.pedestal_crafting.title": "Fabricação no Pedestal",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f segundos - %f XP",
   "container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp": "%f segundos - %f XP",
@@ -103,12 +102,12 @@
   "container.spectrum.rei.potion_workshop.crafting_time": "%f segundos",
 
   "multiblock.spectrum.pedestal.upgrade_available": "Melhoria de Estrutura disponível!",
-  "multiblock.spectrum.pedestal.simple_structure": "Foco Spectrum",
-  "multiblock.spectrum.pedestal.advanced_structure": "Templo Spectrum",
-  "multiblock.spectrum.pedestal.complex_structure": "Palácio Spectrum",
-  "multiblock.spectrum.fusion_shrine.structure": "Altar de Fusão",
-  "multiblock.spectrum.enchanter.structure": "Encantador",
-  "multiblock.spectrum.spirit_instiller.structure": "Instilador de Espíritos",
+  "multiblock.spectrum.pedestal_simple": "Foco Spectrum",
+  "multiblock.spectrum.pedestal_advanced": "Templo Spectrum",
+  "multiblock.spectrum.pedestal_complex": "Palácio Spectrum",
+  "multiblock.spectrum.fusion_shrine": "Altar de Fusão",
+  "multiblock.spectrum.enchanter": "Encantador",
+  "multiblock.spectrum.spirit_instiller": "Instilador de Espíritos",
 
   "death.attack.spectrum_decay": "%s foi devorado vivo",
   "death.attack.spectrum_floatblock": "%s foi esmagado por um Bloco Flutuante",
@@ -1756,8 +1755,8 @@
   "advancements.spectrum.finish_progression.description": "Chegue no fim da sua jornada mágica. Parabéns, Ciêntista de Pigmentos!",
   "advancements.spectrum.finish_progression_without_tips.title": "Artista Lendário",
   "advancements.spectrum.finish_progression_without_tips.description": "Complete o Spectrum completamente sem usar dicas. Uau! Aproveite seu pequeno Presente",
-  "advancements.spectrum.create_budding_onyx.title": "Meu melhor Amigo",
-  "advancements.spectrum.create_budding_onyx.description": "Crie uma Drusa de Ônix no Instilador de Espíritos. Parece que você não depende mais de fundir eles!",
+  "advancements.spectrum.budding_onyx.title": "Meu melhor Amigo",
+  "advancements.spectrum.budding_onyx.description": "Crie uma Drusa de Ônix no Instilador de Espíritos. Parece que você não depende mais de fundir eles!",
   "advancements.spectrum.collect_all_shooting_star_variants.title": "Estrela Criança",
   "advancements.spectrum.collect_all_shooting_star_variants.description": "Clique agachado em uma Estrela Cadente para coletá-la. Você consegue coletar todas as variantes?",
   "advancements.spectrum.equip_neat_ring.title": "Da Hora",
@@ -1838,13 +1837,5 @@
   "advancements.spectrum.craft_energy_collector.title": "Sim capitão",
   "advancements.spectrum.craft_energy_collector.description": "Construa um coletor poderoso o suficiente para coletar energia de geodos",
   "advancements.spectrum.place_energy_collector.title": "Uma nova forma de energia",
-  "advancements.spectrum.place_energy_collector.description": "Coloque o coletor no centro do geodo e observe ele funcionar",
-
-  "______unused" : "UNUSED:",
-  "advancements.spectrum.place_bottle_of_failing.title": "Se alimenta... de Obsidiana?",
-  "advancements.spectrum.place_bottle_of_failing.description": "É MUITO mais poderoso que o seu primeiro experimento. Parece destruir tudo que encosta por um tempo. Será que existe alguma coisa resistente o suficiente para aguentar o seu poder destrutivo?",
-  "advancements.spectrum.place_bottle_of_ruin.title": "O que você fez",
-  "advancements.spectrum.place_bottle_of_ruin.description": "Não tem volta... (por agora?)",
-  "advancements.spectrum.craft_spawn_egg.title": "De volta a Vida",
-  "advancements.spectrum.craft_spawn_egg.description": "Use os resultados de seus experimentos para trazer de volta uma criatura que já foi morta"
+  "advancements.spectrum.place_energy_collector.description": "Coloque o coletor no centro do geodo e observe ele funcionar"
 }

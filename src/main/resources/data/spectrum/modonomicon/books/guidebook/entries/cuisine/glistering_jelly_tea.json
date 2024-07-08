@@ -1,0 +1,28 @@
+{
+  "name": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/food/glistering_jelly_tea"
+  },
+  "icon": "spectrum:glistering_jelly_tea",
+  "category": "spectrum:cuisine",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 4,
+  "y": 5,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page0.text",
+      "title": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page0.title"
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title1": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.title",
+      "recipe_id_1": "spectrum:potion_workshop_crafting/glistering_jelly_tea",
+      "text": "book.spectrum.guidebook.cuisine.glistering_jelly_tea.page1.text"
+    }
+  ]
+}

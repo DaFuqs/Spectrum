@@ -1,0 +1,28 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.universe_spyhole.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/universe_spyhole"
+  },
+  "icon": "spectrum:universe_spyhole",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 9,
+  "y": 1,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.universe_spyhole.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier3/universe_spyhole"
+    }
+  ]
+}

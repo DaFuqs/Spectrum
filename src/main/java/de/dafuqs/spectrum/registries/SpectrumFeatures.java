@@ -20,6 +20,7 @@ public class SpectrumFeatures {
 	public static Feature<RandomBlockProximityPatchFeatureConfig> RANDOM_BLOCK_PROXIMITY_PATCH;
 	public static Feature<FossilFeatureConfig> EXPOSED_FOSSIL;
 	public static Feature<WallPatchFeatureConfig> WALL_PATCH;
+	public static Feature<AshDunesFeatureConfig> ASH_DUNES;
 
 	public static void register() {
 		WEIGHTED_RANDOM_FEATURE = registerFeature("weighted_random_feature", new WeightedRandomFeature(WeightedRandomFeatureConfig.CODEC));
@@ -35,6 +36,7 @@ public class SpectrumFeatures {
 		RANDOM_BLOCK_PROXIMITY_PATCH = registerFeature("random_block_proximity_patch", new RandomBlockProximityPatchFeature(RandomBlockProximityPatchFeatureConfig.CODEC));
 		EXPOSED_FOSSIL = registerFeature("exposed_fossil", new ExposedFossilFeature(FossilFeatureConfig.CODEC));
 		WALL_PATCH = registerFeature("wall_patch", new WallPatchFeature(WallPatchFeatureConfig.CODEC));
+		ASH_DUNES = registerFeature("ash_dunes", new AshDunesFeature(AshDunesFeatureConfig.CODEC));
 	}
 	
 	private static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {

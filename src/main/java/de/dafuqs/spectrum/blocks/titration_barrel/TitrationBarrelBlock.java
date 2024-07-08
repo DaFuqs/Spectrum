@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.context.*;
@@ -11,6 +10,7 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -138,14 +138,23 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					case SEALED -> {
 						// player is able to query the days the barrel already ferments
 						// or open it with a shift-click
+						Optional<ITitrationBarrelRecipe> recipe = barrelEntity.getRecipeForInventory(world);
+						if (recipe.isPresent()) {
+							if (player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
+								barrelEntity.addOneDayOfSealTime();
+								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+							}
+							
+							if (!recipe.get().isFermentingLongEnoughToTap(barrelEntity.getSealSeconds())) {
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.not_yet_ready", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								break;
+							}
+						}
+						
 						if (player.isSneaking()) {
 							unsealBarrel(world, pos, state, barrelEntity);
 						} else {
-							if (player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
-								barrelEntity.addDayOfSealTime();
-								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-							}
 							player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_before_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 						}
 					}
@@ -155,9 +164,9 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						if (player.isSneaking()) {
 							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
 							if (recipe.isPresent()) {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput(world.getRegistryManager()).getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().craft(barrelEntity.inventory, world.getRegistryManager()).getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 							} else {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_after_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
 							}
 						} else {
 							ItemStack harvestedStack = barrelEntity.tryHarvest(world, pos, state, player.getStackInHand(hand), player);
@@ -208,7 +217,23 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+		BlockState state = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+		
+		NbtCompound nbt = ctx.getStack().getSubNbt("BlockEntityTag");
+		if(nbt != null) {
+			boolean inventoryEmpty = nbt.getList("Inventory", NbtElement.COMPOUND_TYPE).isEmpty();
+			long fluidAmount = nbt.getLong("FluidAmount");
+			long sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
+			long tapTime = nbt.contains("TapTime", NbtElement.LONG_TYPE) ? nbt.getLong("TapTime") : -1;
+
+			BarrelState barrelState = tapTime > -1
+					? BarrelState.TAPPED : sealTime > -1
+					? BarrelState.SEALED : inventoryEmpty && fluidAmount == 0
+					? BarrelState.EMPTY : BarrelState.FILLED;
+			state = state.with(BARREL_STATE, barrelState);
+		}
+		
+		return state;
 	}
 	
 	@Override

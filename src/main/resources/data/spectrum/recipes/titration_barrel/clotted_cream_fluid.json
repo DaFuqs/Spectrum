@@ -7,7 +7,7 @@
     }
   ],
   "fluid": {
-    "fluid": "milk:still_milk"
+    "tag": "c:milk"
   },
   "min_fermentation_time_hours": 1,
   "result": {
@@ -16,9 +16,9 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:all_mods_loaded",
+      "condition": "fabric:fluid_tags_populated",
       "values": [
-        "milk"
+        "c:milk"
       ]
     }
   ]

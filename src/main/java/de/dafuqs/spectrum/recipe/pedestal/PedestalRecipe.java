@@ -1,14 +1,15 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.recipe.*;
-import de.dafuqs.spectrum.recipe.pedestal.color.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -102,7 +103,7 @@ public abstract class PedestalRecipe extends GatedStackSpectrumRecipe {
 
 	@Override
 	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
-		return this.getOutput(registryManager).copy();
+		return this.output.copy();
 	}
 
 	public PedestalRecipeTier getTier() {

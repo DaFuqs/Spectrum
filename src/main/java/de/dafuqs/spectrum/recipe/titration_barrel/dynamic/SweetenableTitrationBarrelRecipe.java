@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
+import de.dafuqs.matchbooks.recipe.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -38,10 +38,6 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 	}
 	
 	protected ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall) {
-		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
-		}
-		
 		double bloominess = getBloominess(bulbCount, petalCount);
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		if (nectar) {
@@ -49,7 +45,7 @@ public abstract class SweetenableTitrationBarrelRecipe extends TitrationBarrelRe
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
-			return SpectrumItems.PURE_ALCOHOL.getDefaultStack();
+			return SpectrumItems.CHRYSOCOLLA.getDefaultStack();
 		} else {
 			List<StatusEffectInstance> effects = getEffects(nectar, bloominess, alcPercent);
 			

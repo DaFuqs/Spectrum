@@ -1,0 +1,36 @@
+{
+  "name": "book.spectrum.guidebook.equipment.glow_vision_goggles.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/glow_vision_goggles"
+  },
+  "icon": "spectrum:glow_vision_goggles",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 12,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:glow_vision_goggles"
+      },
+      "text": "book.spectrum.guidebook.equipment.glow_vision_goggles.page0.text",
+      "title": "book.spectrum.guidebook.equipment.glow_vision_goggles.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.text",
+      "title1": "book.spectrum.guidebook.equipment.glow_vision_goggles.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/glow_vision_goggles"
+    }
+  ]
+}

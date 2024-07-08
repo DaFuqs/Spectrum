@@ -1,0 +1,51 @@
+{
+  "name": "book.spectrum.guidebook.magical_blocks.present.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/blocks/present"
+  },
+  "icon": "spectrum:present",
+  "category": "spectrum:magical_blocks",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 11,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.magical_blocks.present.page0.text",
+      "title": "book.spectrum.guidebook.magical_blocks.present.page0.title"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "text": "book.spectrum.guidebook.magical_blocks.present.page1.text",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page1.title",
+      "recipe_id_1": "spectrum:pedestal/tier1/present"
+    },
+    {
+      "type": "modonomicon:crafting_recipe",
+      "title1": "book.spectrum.guidebook.magical_blocks.present.page2.title",
+      "recipe_id_1": "spectrum:crafting_table/special/wrap_present",
+      "text": "book.spectrum.guidebook.magical_blocks.present.page2.text"
+    },
+    {
+      "type": "spectrum:collection",
+      "title": "book.spectrum.guidebook.magical_blocks.present.page3.title",
+      "items": [
+        "spectrum:present{Variant: \"red\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"blue\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cyan\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"green\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"purple\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"cake\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"striped\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"starry\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"winter\", Wrapped: 1b}",
+        "spectrum:present{Variant: \"pride\", Wrapped: 1b}"
+      ],
+      "text": "book.spectrum.guidebook.magical_blocks.present.page3.text"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "book.spectrum.guidebook.general.storm_stones.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:midgame/collect_storm_stone"
+  },
+  "icon": "spectrum:storm_stone",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 12,
+  "y": 4,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.general.storm_stones.page0.title",
+      "text": "book.spectrum.guidebook.general.storm_stones.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.general.storm_stones.page1.title",
+      "item": {
+        "item": "spectrum:storm_stone"
+      },
+      "text": "book.spectrum.guidebook.general.storm_stones.page1.text"
+    }
+  ]
+}

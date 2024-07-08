@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
+import de.dafuqs.matchbooks.recipe.*;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.api.block.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.progression.*;
-import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.matchbooks.recipe.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -484,8 +483,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
-		if (slot == MERMAIDS_GEM_INPUT_SLOT_ID) {
-			return stack.isOf(SpectrumItems.MERMAIDS_GEM);
+		if(stack.isOf(SpectrumItems.MERMAIDS_GEM)) {
+			return slot == MERMAIDS_GEM_INPUT_SLOT_ID;
 		} else if (slot == BASE_INPUT_SLOT_ID) {
 			return true;
 		} else if (slot < FIRST_REAGENT_SLOT) {

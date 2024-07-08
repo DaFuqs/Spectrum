@@ -1,10 +1,10 @@
 {
-  "budding_block": "geode:budding_echo",
+  "budding_block": "geode_plus:budding_echo",
   "valid_neighbor_blocks": [
-    "geode:small_echo_bud",
-    "geode:medium_echo_bud",
-    "geode:large_echo_bud",
-    "geode:echo_crystal",
+    "geode_plus:small_echo_bud",
+    "geode_plus:medium_echo_bud",
+    "geode_plus:large_echo_bud",
+    "geode_plus:echo_crystal",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:water"
@@ -18,7 +18,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "geode"
+        "geode_plus"
       ]
     }
   ]

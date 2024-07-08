@@ -1,0 +1,73 @@
+{
+  "name": "book.spectrum.guidebook.equipment.take_off_belt.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:unlocks/trinkets/take_off_belt"
+  },
+  "icon": "spectrum:take_off_belt",
+  "category": "spectrum:equipment",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:equipment/trinkets/base_trinkets",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 0,
+  "x": 11,
+  "y": -2,
+  "pages": [
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page0.text",
+      "title": "book.spectrum.guidebook.equipment.take_off_belt.page0.title"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title1": "book.spectrum.guidebook.equipment.take_off_belt.page1.title",
+      "recipe_id_1": "spectrum:fusion_shrine/trinkets/take_off_belt",
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page1.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/vanilla_projectile"
+      },
+      "title": "book.spectrum.guidebook.equipment.take_off_belt.page2.title",
+      "item": {
+        "item": "spectrum:take_off_belt",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:power",
+              "lvl": "5s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page2.text"
+    },
+    {
+      "type": "spectrum:nbt_spotlight",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:unlocks/enchantments/vanilla_quitoxic"
+      },
+      "title": "book.spectrum.guidebook.equipment.take_off_belt.page3.title",
+      "item": {
+        "item": "spectrum:take_off_belt",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:feather_falling",
+              "lvl": "4s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.equipment.take_off_belt.page3.text"
+    }
+  ]
+}

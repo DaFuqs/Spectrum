@@ -248,28 +248,19 @@ public class NbtHelper {
 			return;
 		}
 		
-		switch (original.getType()) {
-			case NbtElement.BYTE_TYPE, NbtElement.SHORT_TYPE, NbtElement.INT_TYPE, NbtElement.LONG_TYPE, NbtElement.FLOAT_TYPE, NbtElement.DOUBLE_TYPE, NbtElement.STRING_TYPE, NbtElement.END_TYPE,
-					NbtElement.BYTE_ARRAY_TYPE, NbtElement.INT_ARRAY_TYPE, NbtElement.LONG_ARRAY_TYPE, NbtElement.LIST_TYPE -> {
+		if (original.getType() == NbtElement.COMPOUND_TYPE) {
+			NbtCompound originalCompound = (NbtCompound) original;
+			NbtCompound deltaCompound = (NbtCompound) delta;
+			
+			deltaCompound.getKeys().forEach(key -> {
+				NbtElement value = deltaCompound.get(key);
 				
-			}
-			case NbtElement.COMPOUND_TYPE -> {
-				NbtCompound originalCompound = (NbtCompound) original;
-				NbtCompound deltaCompound = (NbtCompound) delta;
-				
-				deltaCompound.getKeys().forEach(key -> {
-					NbtElement value = deltaCompound.get(key);
-					
-					if (originalCompound.contains(key)) {
-						mergeNbt(originalCompound.get(key), value);
-					} else {
-						originalCompound.put(key, value);
-					}
-				});
-				
-			}
-			default -> {
-			}
+				if (originalCompound.contains(key)) {
+					mergeNbt(originalCompound.get(key), value);
+				} else {
+					originalCompound.put(key, value);
+				}
+			});
 		}
 	}
 }

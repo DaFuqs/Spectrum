@@ -41,6 +41,7 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
+	@Deprecated
 	public ItemStack craft(Inventory inv, DynamicRegistryManager drm) {
 		return ItemStack.EMPTY;
 	}

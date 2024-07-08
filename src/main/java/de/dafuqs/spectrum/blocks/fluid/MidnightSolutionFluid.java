@@ -1,19 +1,31 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.blocks.decay.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
-import net.minecraft.state.property.*;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+
+import java.util.*;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
@@ -93,6 +105,66 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	@Override
 	public ParticleEffect getSplashParticle() {
 		return SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH;
+	}
+	
+	
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		super.onEntityCollision(state, world, pos, entity);
+		
+		if (!world.isClient) {
+			if (entity instanceof LivingEntity livingEntity) {
+				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
+					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
+						livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
+						livingEntity.damage(SpectrumDamageTypes.midnightSolution(world), 2);
+					} else {
+						livingEntity.damage(SpectrumDamageTypes.midnightSolution(world), 1);
+					}
+					if (livingEntity.isDead()) {
+						livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
+					}
+				}
+			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
+				if (world.random.nextInt(120) == 0) {
+					disenchantItemAndSpawnXP(world, itemEntity);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public RecipeType<? extends FluidConvertingRecipe> getDippingRecipeType() {
+		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING;
+	}
+	
+	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
+	
+	private static void disenchantItemAndSpawnXP(World world, ItemEntity itemEntity) {
+		ItemStack itemStack = itemEntity.getStack();
+		// if the item is enchanted: remove enchantments and spawn XP
+		// basically disenchanting the item
+		Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
+		if (!enchantments.isEmpty()) {
+			int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
+			Enchantment enchantmentToRemove = (Enchantment) enchantments.keySet().toArray()[randomEnchantmentIndex];
+			Pair<ItemStack, Integer> result = SpectrumEnchantmentHelper.removeEnchantments(itemStack, enchantmentToRemove);
+			
+			if (result.getRight() > 0) {
+				int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
+				experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+				if (experience > 0) {
+					ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
+					world.spawnEntity(experienceOrbEntity);
+				}
+				
+				world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
+				
+				itemEntity.setStack(result.getLeft());
+				itemEntity.setToDefaultPickupDelay();
+			}
+		}
 	}
 	
 	public static class Flowing extends MidnightSolutionFluid {

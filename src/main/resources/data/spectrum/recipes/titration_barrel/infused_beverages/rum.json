@@ -100,5 +100,5 @@
       "Color": 10505507
     }
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:triggers/confirmed_drinking_age"
 }

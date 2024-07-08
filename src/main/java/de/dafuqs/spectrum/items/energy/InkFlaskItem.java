@@ -1,23 +1,27 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.energy.*;
-import de.dafuqs.spectrum.energy.color.*;
-import de.dafuqs.spectrum.energy.storage.*;
-import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.api.energy.*;
+import de.dafuqs.spectrum.api.energy.color.*;
+import de.dafuqs.spectrum.api.energy.storage.*;
+import de.dafuqs.spectrum.api.item.*;
+import de.dafuqs.spectrum.api.render.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.entry.*;
 import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorage>, LoomPatternProvider {
+public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorage>, LoomPatternProvider, ExtendedItemBarProvider {
 	
 	private final long maxEnergy;
 	
@@ -76,4 +80,20 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 		return SpectrumBannerPatterns.INK_FLASK;
 	}
 	
+	@Override
+	public int barCount(ItemStack stack) {
+		return 1;
+	}
+	
+	@Override
+	public BarSignature getSignature(@Nullable PlayerEntity player, @NotNull ItemStack stack, int index) {
+		var storage = getEnergyStorage(stack);
+		var color = storage.getStoredColor();
+		
+		if (storage.isEmpty())
+			return ExtendedItemBarProvider.PASS;
+		
+		var progress = Math.round(MathHelper.clampedLerp(0, 14, (float) storage.getCurrentTotal() / storage.getMaxTotal()));
+		return new BarSignature(1, 13, 14, progress, 1, ColorHelper.colorVecToRGB(color == InkColors.BLACK ? ColorHelper.colorIntToVec(InkColors.ALT_BLACK) : color.getColor()), 2, DEFAULT_BACKGROUND_COLOR);
+	}
 }

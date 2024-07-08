@@ -14,7 +14,7 @@ import java.util.*;
 public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<SpiritInstillerRecipe> {
 	
 	public SpiritInstillingEmiRecipeGated(SpiritInstillerRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, SpiritInstillerRecipe.UNLOCK_IDENTIFIER, recipe, 116, 48);
+		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, recipe, 116, 48);
 		inputs = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
 		
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {

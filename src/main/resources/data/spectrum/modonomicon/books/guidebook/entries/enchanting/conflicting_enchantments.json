@@ -1,0 +1,55 @@
+{
+  "name": "book.spectrum.guidebook.enchanting.conflicting_enchantments.name",
+  "icon": "minecraft:enchanted_book",
+  "hide_while_locked": true,
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter"
+  },
+  "category": "spectrum:enchanting",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:enchanting/enchanter",
+      "line_enabled": false
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": -1,
+  "y": 2,
+  "pages": [
+    {
+      "type": "spectrum:nbt_spotlight",
+      "title": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.title",
+      "item": {
+        "item": "minecraft:diamond_chestplate",
+        "nbt": {
+          "Enchantments": [
+            {
+              "id": "minecraft:protection",
+              "lvl": "3s"
+            },
+            {
+              "id": "minecraft:blast_protection",
+              "lvl": "3s"
+            },
+            {
+              "id": "minecraft:projectile_protection",
+              "lvl": "3s"
+            },
+            {
+              "id": "minecraft:fire_protection",
+              "lvl": "3s"
+            }
+          ]
+        }
+      },
+      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page0.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "text": "book.spectrum.guidebook.enchanting.conflicting_enchantments.page1.text"
+    }
+  ]
+}

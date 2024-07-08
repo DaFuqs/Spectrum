@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.malachite.name",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 1,
+  "y": 6,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:milestones/reveal_malachite"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_malachite",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.malachite.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/malachite_page0",
+      "cost": {
+        "item": "spectrum:bismuth_crystal",
+        "count": 8
+      },
+      "text": "book.spectrum.guidebook.hints.malachite.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.malachite.page1.title",
+      "cost": {
+        "item": "spectrum:bismuth_crystal",
+        "count": 24
+      },
+      "text": "book.spectrum.guidebook.hints.malachite.page1.text",
+      "completion_advancement": "spectrum:triggers/hints/malachite_page1"
+    }
+  ]
+}

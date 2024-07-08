@@ -1,0 +1,112 @@
+{
+  "type": "modonomicon:dense",
+  "pattern": [
+    [
+      "__I_____I__",
+      "___________",
+      "I_U_____U_I",
+      "___________",
+      "___________",
+      "_____F_____",
+      "___________",
+      "___________",
+      "I_U_____U_I",
+      "___________",
+      "__I_____I__"
+    ],
+    [
+      "__L_____L__",
+      "___________",
+      "L_G_____G_L",
+      "____BBB____",
+      "___BXXXB___",
+      "___BXXXB___",
+      "___BXXXB___",
+      "____BBB____",
+      "L_G_____G_L",
+      "___________",
+      "__L_____L__"
+    ],
+    [
+      "__P_____P__",
+      "____BBB____",
+      "P_P_XXX_P_P",
+      "____XXX____",
+      "_BXXXXXXXB_",
+      "_BXXXXXXXB_",
+      "_BXXXXXXXB_",
+      "____XXX____",
+      "P_P_XXX_P_P",
+      "____BBB____",
+      "__P_____P__"
+    ],
+    [
+      "_XXXXXXXXX_",
+      "XCCCXXXCCCX",
+      "XCXCXXXCXCX",
+      "XCCCXXXCCCX",
+      "XXXXXXXXXXX",
+      "XXXXX0XXXXX",
+      "XXXXXXXXXXX",
+      "XCCCXXXCCCX",
+      "XCXCXXXCXCX",
+      "XCCCXXXCCCX",
+      "_XXXXXXXXX_"
+    ],
+    [
+      "___________",
+      "_XXX___XXX_",
+      "_X_X___X_X_",
+      "_XXX___XXX_",
+      "___________",
+      "___________",
+      "___________",
+      "_XXX___XXX_",
+      "_X_X___X_X_",
+      "_XXX___XXX_",
+      "___________"
+    ]
+  ],
+  "mapping": {
+    "X": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    },
+    "P": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:pillar_base_blocks"
+    },
+    "B": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_block_slabs"
+    },
+    "L": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:gemstone_lamps"
+    },
+    "G": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:gemstone_storage_blocks"
+    },
+    "F": {
+      "type": "modonomicon:block",
+      "block": "spectrum:enchanter"
+    },
+    "C": {
+      "type": "modonomicon:block",
+      "block": "spectrum:liquid_crystal"
+    },
+    "I": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:item_bowls"
+    },
+    "U": {
+      "type": "modonomicon:block",
+      "block": "spectrum:upgrade_speed"
+    },
+    "0": {
+      "type": "modonomicon:tag",
+      "tag": "#spectrum:polished_base_blocks"
+    }
+  }
+}

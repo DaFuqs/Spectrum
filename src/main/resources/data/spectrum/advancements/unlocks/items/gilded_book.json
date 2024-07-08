@@ -2,7 +2,7 @@
   "criteria": {
     "harvested_jade_vine_petals": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_jade_vine_petals" }
     },
     "gotten_gilded_book_in_preservation_ruins": {
       "trigger": "minecraft:inventory_changed",

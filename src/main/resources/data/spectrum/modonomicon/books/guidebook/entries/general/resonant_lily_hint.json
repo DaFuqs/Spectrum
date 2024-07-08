@@ -1,0 +1,39 @@
+{
+  "name": "book.spectrum.guidebook.hints.resonant_lily.name",
+  "category": "spectrum:general",
+  "hide_while_locked ": true,
+  "parents": [],
+  "background_u_index": 0,
+  "background_v_index": 5,
+  "x": 7,
+  "y": 5,
+  "icon": "minecraft:writable_book",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/crystal_gardens"
+  },
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_resonant_lily",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.resonant_lily.page0.title",
+      "completion_advancement": "spectrum:triggers/hints/resonant_lily_page0",
+      "cost": {
+        "item": "spectrum:frostbite_essence",
+        "count": 4
+      },
+      "text": "book.spectrum.guidebook.hints.resonant_lily.page0.text"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "book.spectrum.guidebook.hints.resonant_lily.page1.title",
+      "completion_advancement": "spectrum:triggers/hints/resonant_lily_page1",
+      "cost": {
+        "item": "spectrum:incandescent_essence",
+        "count": 12
+      },
+      "text": "book.spectrum.guidebook.hints.resonant_lily.page1.text"
+    }
+  ]
+}

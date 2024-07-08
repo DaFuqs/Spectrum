@@ -10,7 +10,8 @@ public class SpectrumTypeSpecificPredicates {
 	public static final TypeSpecificPredicate.Deserializer EGG_LAYING_WOOLY_PIG = EggLayingWoolyPigPredicate::fromJson;
 	public static final TypeSpecificPredicate.Deserializer SHULKER = ShulkerPredicate::fromJson;
 	public static final TypeSpecificPredicate.Deserializer KINDLING = KindlingPredicate::fromJson;
-	
+	public static final TypeSpecificPredicate.Deserializer LIZARD = LizardPredicate::fromJson;
+
 	public static void register() {
 		// creating a new map, in case the previous one was immutable (it usually is)
 		BiMap<String, TypeSpecificPredicate.Deserializer> newMap = HashBiMap.create(TypeSpecificPredicate.Deserializers.TYPES);
@@ -20,7 +21,8 @@ public class SpectrumTypeSpecificPredicates {
 		newMap.put("spectrum:egg_laying_wooly_pig", EGG_LAYING_WOOLY_PIG);
 		newMap.put("spectrum:shulker", SHULKER);
 		newMap.put("spectrum:kindling", KINDLING);
-		
+		newMap.put("spectrum:lizard", LIZARD);
+
 		TypeSpecificPredicateDeserializerMixin.setTypes(newMap);
 	}
 	

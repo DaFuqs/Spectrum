@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.block_flooder;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.api.block.*;
 import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.interfaces.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;

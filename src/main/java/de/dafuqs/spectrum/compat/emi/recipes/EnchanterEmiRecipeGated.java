@@ -42,7 +42,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 	}
 	
 	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
-		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 80);
+		super(category, recipe, 132, 80);
 		this.craftingTime = craftingTime;
 		this.description = description;
 		

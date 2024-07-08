@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.items;
 
+import com.klikli_dev.modonomicon.api.multiblock.*;
+import de.dafuqs.spectrum.api.item.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
@@ -8,7 +10,6 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
-import vazkii.patchouli.api.*;
 
 import java.util.*;
 
@@ -24,10 +25,10 @@ public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (context.getPlayer() != null && context.getPlayer().isCreative()) {
-			IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
-			if (iMultiblock != null) {
+			Multiblock multiblock = SpectrumMultiblocks.get(multiBlockIdentifier);
+			if (multiblock != null) {
 				BlockRotation blockRotation = Support.rotationFromDirection(context.getHorizontalPlayerFacing());
-				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), blockRotation);
+				multiblock.place(context.getWorld(), context.getBlockPos().up(), blockRotation);
 				return ActionResult.CONSUME;
 			}
 		}

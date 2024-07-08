@@ -1,0 +1,73 @@
+{
+  "name": "book.spectrum.guidebook.dimension.crystal_gardens.name",
+  "condition": {
+    "type": "modonomicon:advancement",
+    "advancement_id": "spectrum:hidden/visit_dd_biomes/crystal_gardens"
+  },
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:dimension",
+  "hide_while_locked ": true,
+  "parents": [
+    {
+      "entry": "spectrum:dimension/biomes",
+      "line_reversed": true
+    }
+  ],
+  "background_u_index": 0,
+  "background_v_index": 4,
+  "x": 4,
+  "y": 0,
+  "pages": [
+    {
+      "type": "modonomicon:image",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page0.title",
+      "images": [
+        "spectrum:textures/gui/guidebook/dd_crystal_gardens.png"
+      ],
+      "border": true,
+      "text": "book.spectrum.guidebook.dimension.crystal_gardens.page0.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "item": {
+        "item": "spectrum:overgrown_blackslag"
+      },
+      "text": "book.spectrum.guidebook.dimension.crystal_gardens.page1.text"
+    },
+    {
+      "type": "modonomicon:text",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page2.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_glass_peach"
+      },
+      "text": "book.spectrum.guidebook.dimension.crystal_gardens.page2.text"
+    },
+    {
+      "type": "modonomicon:spotlight",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page3.title",
+      "condition": {
+        "type": "modonomicon:advancement",
+        "advancement_id": "spectrum:hidden/collect_jadeite"
+      },
+      "item": {
+        "item": "spectrum:jadeite_petals"
+      },
+      "text": "book.spectrum.guidebook.dimension.crystal_gardens.page3.text"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page4.title",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "recipe_id_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_block",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "book.spectrum.guidebook.dimension.crystal_gardens.page5.title",
+      "advancement": "spectrum:hidden/collect_jadeite",
+      "recipe_id_1": "spectrum:pedestal/tier1/jadeite/jadeite_petal_carpet",
+      "text": ""
+    }
+  ]
+}

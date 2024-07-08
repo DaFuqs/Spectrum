@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_bismuth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth"
+      }
+    },
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.fluid_converting;
 
 import com.google.gson.*;
+import de.dafuqs.spectrum.api.recipe.*;
 import de.dafuqs.spectrum.recipe.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
@@ -38,8 +39,8 @@ public class FluidConvertingRecipeSerializer<R extends FluidConvertingRecipe> im
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		recipe.inputIngredient.write(packetByteBuf);
-		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		recipe.input.write(packetByteBuf);
+		packetByteBuf.writeItemStack(recipe.output);
 	}
 	
 	@Override

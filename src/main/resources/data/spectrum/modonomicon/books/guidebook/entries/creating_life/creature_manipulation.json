@@ -40,7 +40,11 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/trader_llama"
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/zombie_horse"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/skeleton_horse"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
@@ -71,11 +75,6 @@
       "type": "spectrum:spirit_instiller_crafting",
       "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/parrot_green",
       "text": "book.spectrum.guidebook.creating_life.creature_manipulation.parrots.text"
-    },
-    {
-      "type": "spectrum:spirit_instiller_crafting",
-      "recipe_id_1": "spectrum:spirit_instiller/head_fusion/recoloring/sheep_lime",
-      "text": "book.spectrum.guidebook.creating_life.creature_manipulation.sheep.text"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

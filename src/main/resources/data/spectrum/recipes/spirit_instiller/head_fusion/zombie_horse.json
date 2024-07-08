@@ -4,18 +4,18 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "tag": "spectrum:mob_heads/sheep_heads"
+    "item": "spectrum:horse_head"
   },
   "ingredient2": {
-    "item": "spectrum:red_pigment",
+    "item": "spectrum:dragonrot_bucket",
     "count": 1
   },
   "center_ingredient": {
     "item": "spectrum:vegetal",
-    "count": 1
+    "count": 4
   },
   "result": {
-    "item": "spectrum:sheep_red_head"
+    "item": "spectrum:zombie_horse_head"
   },
   "required_advancement": "spectrum:unlocks/head_fusion"
 }

@@ -4,10 +4,10 @@
   "time": 800,
   "experience": 4.0,
   "ingredient1": {
-    "item": "spectrum:llama_head"
+    "item": "spectrum:horse_head"
   },
   "ingredient2": {
-    "tag": "minecraft:wool_carpets",
+    "item": "spectrum:storm_stone",
     "count": 4
   },
   "center_ingredient": {
@@ -15,7 +15,7 @@
     "count": 4
   },
   "result": {
-    "item": "spectrum:trader_llama_head"
+    "item": "spectrum:skeleton_horse_head"
   },
   "required_advancement": "spectrum:unlocks/head_fusion"
 }

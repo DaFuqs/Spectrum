@@ -21,6 +21,7 @@
     {
       "type": "spectrum:collection",
       "items": [
+        "spectrum:allay_head",
         "spectrum:axolotl_blue_head",
         "spectrum:axolotl_wild_head",
         "spectrum:axolotl_cyan_head",
@@ -29,11 +30,12 @@
         "spectrum:bat_head",
         "spectrum:bee_head",
         "spectrum:blaze_head",
+        "spectrum:camel_head",
         "spectrum:cat_head",
         "spectrum:cave_spider_head",
         "spectrum:chicken_head",
-        "spectrum:tropical_fish_head",
         "spectrum:cow_head",
+        "spectrum:dolphin_head",
         "spectrum:donkey_head",
         "spectrum:drowned_head",
         "spectrum:elder_guardian_head",
@@ -42,6 +44,9 @@
         "spectrum:evoker_head",
         "spectrum:fox_head",
         "spectrum:fox_arctic_head",
+        "spectrum:frog_cold_head",
+        "spectrum:frog_temperate_head",
+        "spectrum:frog_warm_head",
         "spectrum:ghast_head",
         "spectrum:glow_squid_head",
         "spectrum:goat_head",
@@ -53,8 +58,8 @@
         "spectrum:iron_golem_head",
         "spectrum:llama_head",
         "spectrum:magma_cube_head",
-        "spectrum:mooshroom_red_head",
         "spectrum:mooshroom_brown_head",
+        "spectrum:mooshroom_red_head",
         "spectrum:mule_head",
         "spectrum:ocelot_head",
         "spectrum:panda_head",
@@ -63,19 +68,21 @@
         "spectrum:parrot_gray_head",
         "spectrum:parrot_green_head",
         "spectrum:parrot_red_head",
-        "spectrum:phantom_head",
-        "spectrum:pig_head",
-        "spectrum:polar_bear_head",
-        "spectrum:pufferfish_head",
-        "spectrum:rabbit_head",
-        "spectrum:ravager_head"
+        "spectrum:phantom_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
+        "spectrum:pig_head",
+        "spectrum:pillager_head",
+        "spectrum:polar_bear_head",
+        "spectrum:pufferfish_head",
+        "spectrum:rabbit_head",
+        "spectrum:ravager_head",
         "spectrum:salmon_head",
         "spectrum:sheep_head",
+        "spectrum:shulker_head",
         "spectrum:shulker_black_head",
         "spectrum:shulker_blue_head",
         "spectrum:shulker_brown_head",
@@ -93,34 +100,34 @@
         "spectrum:shulker_white_head",
         "spectrum:shulker_yellow_head",
         "spectrum:silverfish_head",
+        "spectrum:skeleton_horse_head",
         "spectrum:slime_head",
+        "spectrum:sniffer_head",
         "spectrum:snow_golem_head",
         "spectrum:spider_head",
         "spectrum:squid_head",
         "spectrum:stray_head",
         "spectrum:strider_head",
+        "spectrum:tadpole_head",
+        "spectrum:tropical_fish_head",
         "spectrum:turtle_head",
         "spectrum:vex_head",
         "spectrum:villager_head",
         "spectrum:vindicator_head",
         "spectrum:wandering_trader_head",
+        "spectrum:warden_head",
         "spectrum:witch_head",
-        "spectrum:wither_head"
+        "spectrum:wither_head",
+        "spectrum:wolf_head",
+        "spectrum:zoglin_head",
+        "spectrum:zombie_horse_head",
+        "spectrum:zombie_villager_head"
       ]
     },
     {
       "type": "spectrum:collection",
       "items": [
-        "spectrum:wolf_head",
-        "spectrum:zoglin_head",
-        "spectrum:zombie_villager_head",
-        "spectrum:zombified_piglin_head",
-        "spectrum:warden_head",
-        "spectrum:allay_head",
-        "spectrum:tadpole_head",
-        "spectrum:frog_temperate_head",
-        "spectrum:frog_warm_head",
-        "spectrum:frog_cold_head"
+        "spectrum:zombified_piglin_head"
       ]
     }
   ]

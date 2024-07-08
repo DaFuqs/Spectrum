@@ -157,7 +157,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
             yaw *= blockState.get(SkullBlock.ROTATION);
         }
         SpectrumSkullType skullType = SpectrumSkullBlock.getSkullType(spectrumSkullBlockEntity.getCachedState().getBlock());
-        ;
+        
         if (skullType == null) {
             skullType = SpectrumSkullType.PIG;
         }

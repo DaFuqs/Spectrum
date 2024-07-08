@@ -27,8 +27,7 @@ import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
-import de.dafuqs.spectrum.blocks.starfield.StarfieldBlockEntity;
-import de.dafuqs.spectrum.blocks.starfield.StarfieldBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.starfield.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -146,6 +145,7 @@ public class SpectrumBlockEntities {
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();
 		skullBlocksList.addAll(SpectrumSkullBlock.getMobHeads());
+		skullBlocksList.addAll(SpectrumWallSkullBlock.getMobWallHeads());
 		
 		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
 		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);

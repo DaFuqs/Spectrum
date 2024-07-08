@@ -211,8 +211,9 @@ public class SpectrumItemGroups {
 				
 				entries.add(SpectrumBlocks.CONNECTION_NODE);
 				entries.add(SpectrumBlocks.PROVIDER_NODE);
-				entries.add(SpectrumBlocks.STORAGE_NODE);
 				entries.add(SpectrumBlocks.SENDER_NODE);
+				entries.add(SpectrumBlocks.STORAGE_NODE);
+				entries.add(SpectrumBlocks.BUFFER_NODE);
 				entries.add(SpectrumBlocks.GATHER_NODE);
 				
 				entries.add(SpectrumBlocks.LIGHT_LEVEL_DETECTOR);
@@ -1378,6 +1379,13 @@ public class SpectrumItemGroups {
 		
 		entries.add(SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		entries.add(SpectrumItems.CREATIVE_INK_ASSORTMENT);
+
+		entries.add(SpectrumItems.CONNECTION_NODE_CRYSTAL);
+		entries.add(SpectrumItems.PROVIDER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.SENDER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.STORAGE_NODE_CRYSTAL);
+		entries.add(SpectrumItems.BUFFER_NODE_CRYSTAL);
+		entries.add(SpectrumItems.GATHER_NODE_CRYSTAL);
 
 		entries.add(SpectrumBlocks.DOWNSTONE);
 		entries.add(SpectrumBlocks.PRESERVATION_STONE);

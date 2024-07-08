@@ -35,7 +35,27 @@ public class BeverageProperties {
 	}
 	
 	public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
-		tooltip.add(Text.translatable("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
+		tooltip.add(getTimeText());
+	}
+
+	public Text getTimeText() {
+		long ageInDays = ageDays;
+		long ageInYears;
+
+		if (ageDays > 365) {
+			ageInDays = ageDays % 365;
+			ageInYears = Math.floorDiv(ageDays, 365);
+
+			if (ageInDays == 0) {
+				return Text.translatable("item.spectrum.infused_beverage.tooltip.age_years", ageInYears, alcPercent).formatted(Formatting.GRAY);
+			}
+			else {
+				return Text.translatable("item.spectrum.infused_beverage.tooltip.age_composite", ageInYears, ageInDays, alcPercent).formatted(Formatting.GRAY);
+
+			}
+		}
+
+		return Text.translatable("item.spectrum.infused_beverage.tooltip.age", ageInDays, alcPercent).formatted(Formatting.GRAY);
 	}
 	
 	protected void toNbt(NbtCompound nbtCompound) {

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import com.google.common.collect.ImmutableList;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.api.energy.*;
@@ -18,6 +19,7 @@ import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
+import de.dafuqs.spectrum.mixin.client.accessors.RenderLayerAccessor;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.render.*;
@@ -26,6 +28,7 @@ import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
 import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.sound.music.SpectrumAudioManager;
 import de.dafuqs.spectrum.render.capes.*;
 import it.unimi.dsi.fastutil.objects.*;
 import net.fabricmc.api.*;
@@ -81,6 +84,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
 
+		SpectrumShaderPrograms.initPrograms();
+		SpectrumRenderPhases.init();
+
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 
@@ -119,6 +125,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
 
+		logInfo("Initializing Dynamic Music...");
+		SpectrumDynamicAudio.init();
+		SpectrumAudioManager.getInstance().init();
+
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
 
@@ -128,9 +138,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering Dimension Effects...");
 		SpectrumDimensions.registerClient();
 
+		logInfo("Adding Chunk Render Layers...");
+		var renderLayers = ImmutableList.<RenderLayer>builder().addAll(RenderLayerAccessor.getBLOCK_LAYERS()).add(SpectrumRenderPhases.STARFIELD).build();
+		RenderLayerAccessor.setBLOCK_LAYERS(renderLayers);
+
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> SpectrumColorProviders.registerClient());
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> Pastel.clearClientInstance());
+		ClientTickEvents.END_CLIENT_TICK.register(client -> SpectrumAudioManager.getInstance().tick());
 
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {

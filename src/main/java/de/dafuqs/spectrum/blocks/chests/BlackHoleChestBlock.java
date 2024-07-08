@@ -14,7 +14,7 @@ import org.jetbrains.annotations.*;
 
 public class BlackHoleChestBlock extends SpectrumChestBlock {
 
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 9.0D, 15.0D);
 
 	public BlackHoleChestBlock(Settings settings) {
 		super(settings);
@@ -50,12 +50,11 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 	
 	@Override
 	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
+		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-	
 }

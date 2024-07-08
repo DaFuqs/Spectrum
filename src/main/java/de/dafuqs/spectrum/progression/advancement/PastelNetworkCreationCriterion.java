@@ -27,13 +27,14 @@ public class PastelNetworkCreationCriterion extends AbstractCriterion<PastelNetw
 		NumberRange.IntRange storageNodes = NumberRange.IntRange.fromJson(jsonObject.get("storage_nodes"));
 		NumberRange.IntRange senderNodes = NumberRange.IntRange.fromJson(jsonObject.get("sender_nodes"));
 		NumberRange.IntRange gatherNodes = NumberRange.IntRange.fromJson(jsonObject.get("gather_nodes"));
-		
-		return new PastelNetworkCreationCriterion.Conditions(predicate, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
+		NumberRange.IntRange bufferNodes = NumberRange.IntRange.fromJson(jsonObject.get("buffer_nodes"));
+
+		return new PastelNetworkCreationCriterion.Conditions(predicate, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes, bufferNodes);
 	}
 
 	public void trigger(ServerPlayerEntity player, ServerPastelNetwork network) {
 		this.trigger(player, (conditions) -> conditions.matches(network.getNodes(PastelNodeType.CONNECTION).size(), network.getNodes(PastelNodeType.PROVIDER).size(),
-				network.getNodes(PastelNodeType.STORAGE).size(), network.getNodes(PastelNodeType.SENDER).size(), network.getNodes(PastelNodeType.GATHER).size()));
+				network.getNodes(PastelNodeType.STORAGE).size(), network.getNodes(PastelNodeType.SENDER).size(), network.getNodes(PastelNodeType.GATHER).size(), network.getNodes(PastelNodeType.BUFFER).size()));
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
@@ -44,8 +45,9 @@ public class PastelNetworkCreationCriterion extends AbstractCriterion<PastelNetw
 		private final NumberRange.IntRange storageNodes;
 		private final NumberRange.IntRange senderNodes;
 		private final NumberRange.IntRange gatherNodes;
+		private final NumberRange.IntRange bufferNodes;
 
-		public Conditions(LootContextPredicate playerPredicate, NumberRange.IntRange totalNodes, NumberRange.IntRange connectionNodes, NumberRange.IntRange providerNodes, NumberRange.IntRange storageNodes, NumberRange.IntRange senderNodes, NumberRange.IntRange gatherNodes) {
+		public Conditions(LootContextPredicate playerPredicate, NumberRange.IntRange totalNodes, NumberRange.IntRange connectionNodes, NumberRange.IntRange providerNodes, NumberRange.IntRange storageNodes, NumberRange.IntRange senderNodes, NumberRange.IntRange gatherNodes, NumberRange.IntRange bufferNodes) {
 			super(PastelNetworkCreationCriterion.ID, playerPredicate);
 			this.totalNodes = totalNodes;
 			this.connectionNodes = connectionNodes;
@@ -53,6 +55,7 @@ public class PastelNetworkCreationCriterion extends AbstractCriterion<PastelNetw
 			this.storageNodes = storageNodes;
 			this.senderNodes = senderNodes;
 			this.gatherNodes = gatherNodes;
+			this.bufferNodes = bufferNodes;
 		}
 		
 		@Override
@@ -64,11 +67,12 @@ public class PastelNetworkCreationCriterion extends AbstractCriterion<PastelNetw
 			jsonObject.add("storage_nodes", this.storageNodes.toJson());
 			jsonObject.add("sender_nodes", this.senderNodes.toJson());
 			jsonObject.add("gather_nodes", this.gatherNodes.toJson());
+			jsonObject.add("buffer_nodes", this.bufferNodes.toJson());
 			return jsonObject;
 		}
 
-		public boolean matches(int connectionNodes, int providerNodes, int storageNodes, int senderNodes, int gatherNodes) {
-			return this.totalNodes.test(connectionNodes + providerNodes + storageNodes + senderNodes + gatherNodes) && this.connectionNodes.test(connectionNodes) && this.providerNodes.test(providerNodes) && this.storageNodes.test(storageNodes) && this.senderNodes.test(senderNodes) && this.gatherNodes.test(gatherNodes);
+		public boolean matches(int connectionNodes, int providerNodes, int storageNodes, int senderNodes, int gatherNodes, int bufferNodes) {
+			return this.totalNodes.test(connectionNodes + providerNodes + storageNodes + senderNodes + gatherNodes) && this.connectionNodes.test(connectionNodes) && this.providerNodes.test(providerNodes) && this.storageNodes.test(storageNodes) && this.senderNodes.test(senderNodes) && this.gatherNodes.test(gatherNodes) && this.bufferNodes.test(bufferNodes);
 		}
 
 	}

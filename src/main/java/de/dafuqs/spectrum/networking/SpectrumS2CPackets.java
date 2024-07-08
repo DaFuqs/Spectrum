@@ -27,6 +27,7 @@ public class SpectrumS2CPackets {
 	// Sounds
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = SpectrumCommon.locate("play_pedestal_crafting_sound_instance");
 	public static final Identifier PLAY_TAKE_OFF_BELT_SOUND_INSTANCE = SpectrumCommon.locate("play_take_off_belt_sound_instance");
+	public static final Identifier PLAY_MUTABLE_MUSIC = SpectrumCommon.locate("play_mutable_music");
 
 	// Others
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = SpectrumCommon.locate("change_particle_spawner_settings_client");
@@ -39,5 +40,10 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_DIVINITY_APPLIED_EFFECTS = SpectrumCommon.locate("play_divinity_applied_effects");
 	public static final Identifier MOONSTONE_BLAST = SpectrumCommon.locate("moonstone_blast");
 	public static final Identifier SYNC_ARTISANS_ATLAS = SpectrumCommon.locate("sync_artisans_atlas");
+
+	// Logic
+	public static final Identifier COMPACTING_CHEST_STATUS_UPDATE = SpectrumCommon.locate("compacting_chest_status");
+	public static final Identifier BLACK_HOLE_CHEST_STATUS_UPDATE = SpectrumCommon.locate("black_hole_chest_status");
+	public static final Identifier PASTEL_NODE_STATUS_UPDATE = SpectrumCommon.locate("pastel_node_status");
 
 }

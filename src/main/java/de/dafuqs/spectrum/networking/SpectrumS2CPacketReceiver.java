@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.api.energy.color.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNodeBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
@@ -19,6 +20,7 @@ import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
+import de.dafuqs.spectrum.sound.music.SpectrumAudioManager;
 import de.dafuqs.spectrum.spells.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
@@ -426,6 +428,65 @@ public class SpectrumS2CPacketReceiver {
 				}
 			});
 		});
-	}
-	
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COMPACTING_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var hasToCraft = buf.readBoolean();
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.COMPACTING_CHEST);
+
+				if (entity.isEmpty())
+					return;
+
+				entity.get().shouldCraft(hasToCraft);
+			});
+		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLACK_HOLE_CHEST_STATUS_UPDATE, (((client, handler, buf, responseSender) -> {
+			var pos = buf.readBlockPos();
+			var isFull = buf.readBoolean();
+			var canStoreXP = buf.readBoolean();
+			var xp = buf.readLong();
+			var max = buf.readLong();
+
+			client.execute(() -> {
+				var entity = client.world.getBlockEntity(pos, SpectrumBlockEntities.BLACK_HOLE_CHEST);
+
+				entity.ifPresent(chest -> {
+					chest.setFull(isFull);
+					chest.setHasXPStorage(canStoreXP);
+					chest.setXPData(xp, max);
+				});
+			});
+		})));
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_NODE_STATUS_UPDATE, ((((client, handler, buf, responseSender) -> {
+			var nodeCount = buf.readInt();
+			var positions = new ArrayList<BlockPos>(nodeCount);
+			var times = new ArrayList<Integer>(nodeCount);
+
+			for (int n = 0; n < nodeCount; n++) {
+				positions.add(buf.readBlockPos());
+				times.add(buf.readInt());
+			}
+
+			client.execute(() -> {
+				for (int index = 0; index < positions.size(); index++) {
+					var entity = client.world.getBlockEntity(positions.get(index));
+
+					if (!(entity instanceof PastelNodeBlockEntity node))
+						continue;
+
+					node.setSpinTicks(times.get(index));
+				}
+			});
+		}))));
+
+        ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_MUTABLE_MUSIC, ((client, handler, buf, responseSender) -> {
+            client.execute(() -> {
+                SpectrumAudioManager.getInstance().start();
+            });
+        }));
+    }
 }

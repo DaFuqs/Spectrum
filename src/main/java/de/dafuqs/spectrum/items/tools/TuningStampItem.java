@@ -80,9 +80,11 @@ public class TuningStampItem extends Item implements ExpandedStatTooltip {
 
             //Allow for 'rolling' linking for flow.
             player.ifPresent(user -> {
-                var newSource = target.source().recordStampData(player, reference, world);
-                saveToNbt(stack, newSource);
-                tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME);
+                if (user.isSneaking()) {
+                    var newSource = target.source().recordStampData(player, reference, world);
+                    saveToNbt(stack, newSource);
+                    tryPlaySound(player, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME);
+                }
             });
 
             return ActionResult.success(world.isClient());

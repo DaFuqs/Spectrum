@@ -158,6 +158,8 @@ public class PastelNetwork {
         transmissions.tick();
     }
 
+
+
     public UUID getUUID() {
         return this.uuid;
     }
@@ -197,6 +199,8 @@ public class PastelNetwork {
                 getNodes(PastelNodeType.GATHER).size() +
                 " - Stor: " +
                 getNodes(PastelNodeType.STORAGE).size() +
+                " - Buff: " +
+                getNodes(PastelNodeType.BUFFER).size() +
                 " - Conn: " +
                 getNodes(PastelNodeType.CONNECTION).size();
     }

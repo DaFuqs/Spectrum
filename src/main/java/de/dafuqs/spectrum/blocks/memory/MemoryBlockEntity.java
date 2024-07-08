@@ -149,10 +149,6 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		}
 	}
 	
-	protected void triggerManifestingAdvancementCriterion(Entity hatchedEntity) {
-
-	}
-	
 	public int getEggColor(int tintIndex) {
 		if (tint1 == -1) {
 			if (this.memoryItemStack == null) {
@@ -183,7 +179,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 		return nbtCompound;
 	}
 	
-	protected static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
+	public static Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack memoryItemStack) {
 		NbtCompound nbt = memoryItemStack.getNbt();
 		if (nbt == null) {
 			return Optional.empty();

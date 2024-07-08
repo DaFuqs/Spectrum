@@ -34,6 +34,11 @@ public class SpectrumDamageTypes {
 	public static final RegistryKey<DamageType> KINDLING_COUGH = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("kindling_cough"));
 	public static final RegistryKey<DamageType> SNAPPING_IVY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("snapping_ivy"));
 	public static final RegistryKey<DamageType> PRIMORDIAL_FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("primordial_fire"));
+	public static final RegistryKey<DamageType> MOB_HEAD_DROP = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, locate("mob_head_drop"));
+	
+	public static DamageSource mobHeadDrop(World world) {
+		return new DamageSource(world.getDamageSources().registry.entryOf(MOB_HEAD_DROP));
+	}
 	
 	public static DamageSource sawtooth(World world) {
 		return new DamageSource(world.getDamageSources().registry.entryOf(SAWTOOTH));
@@ -110,7 +115,7 @@ public class SpectrumDamageTypes {
 	public static DamageSource primordialFire(World world) {
 		return new PrimordialFireDamageSource(world, null);
 	}
-
+	
 	public static DamageSource primordialFire(World world, @Nullable LivingEntity attacker) {
 		return new PrimordialFireDamageSource(world, attacker);
 	}

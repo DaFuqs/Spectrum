@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.api.color.*;
 import de.dafuqs.spectrum.blocks.*;
@@ -45,7 +44,7 @@ import de.dafuqs.spectrum.blocks.rock_candy.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
-import de.dafuqs.spectrum.blocks.starfield.StarfieldBlock;
+import de.dafuqs.spectrum.blocks.starfield.*;
 import de.dafuqs.spectrum.blocks.structure.*;
 import de.dafuqs.spectrum.blocks.titration_barrel.*;
 import de.dafuqs.spectrum.blocks.upgrade.*;
@@ -55,7 +54,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.recipe.pedestal.*;
-import de.dafuqs.spectrum.render.SpectrumRenderPhases;
+import de.dafuqs.spectrum.render.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -81,7 +80,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -392,7 +390,7 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(block).nonOpaque();
 	}
 	public static final Block TOPAZ_DECOSTONE = new DecoStoneBlock(decostone(TOPAZ_BLOCK));
-	public static final Block AMETHYST_DECOSTONE = new PylonBlock(false, decostone(Blocks.AMETHYST_BLOCK));
+	public static final Block AMETHYST_DECOSTONE = new PylonBlock(decostone(Blocks.AMETHYST_BLOCK));
 	public static final Block CITRINE_DECOSTONE = new DecoStoneBlock(decostone(CITRINE_BLOCK));
 	public static final Block ONYX_DECOSTONE = new DecoStoneBlock(decostone(ONYX_BLOCK));
 	public static final Block MOONSTONE_DECOSTONE = new DecoStoneBlock(decostone(MOONSTONE_BLOCK));

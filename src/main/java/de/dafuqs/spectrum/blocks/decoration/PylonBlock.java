@@ -1,28 +1,20 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.ImmutableMap;
-import de.dafuqs.spectrum.blocks.FluidLogging;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.SideShapeType;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.blocks.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLoggable {
 
@@ -33,12 +25,9 @@ public class PylonBlock extends Block implements FluidLogging.SpectrumFluidLogga
 
     public static final Map<Direction.Axis, VoxelShape> PYLON_SHAPES;
     public static final Map<Direction, VoxelShape> PEDESTAL_SHAPES;
-
-    private final boolean stasis;
-
-    public PylonBlock(boolean stasis, Settings settings) {
+    
+    public PylonBlock(Settings settings) {
         super(settings);
-        this.stasis = stasis;
 
         setDefaultState(getStateManager().getDefaultState()
                 .with(LOGGED, FluidLogging.State.NOT_LOGGED)
